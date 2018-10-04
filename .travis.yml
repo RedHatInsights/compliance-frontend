@@ -1,0 +1,16 @@
+language: node_js
+sudo: required
+notifications:
+  email: false
+node_js:
+- '10'
+install:
+  - npm ci
+script:
+  - npm run travis:verify
+after_success:
+- .travis/after_success.sh
+env:
+    global:
+    - REPO="git@github.com:RedHatInsights/insights-frontend-starter-app-build"
+    - REPO_DIR="insights-frontend-starter-app-build"
