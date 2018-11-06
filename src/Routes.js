@@ -18,12 +18,9 @@ import some from 'lodash/some';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Rules = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Rules/Rules'));
-const SamplePage = asyncComponent(() => import(
-    /* webpackChunkName: "SamplePage" */ './SmartComponents/SamplePage/SamplePage'));
+const Compliance = asyncComponent(() => import('./SmartComponents/Compliance/Compliance'));
 const paths = {
-    sample: '/samplepage',
-    rules: '/advisor/rules'
+    compliance: '/:subpage?'
 };
 
 type Props = {
@@ -33,9 +30,10 @@ type Props = {
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
     const root = document.getElementById('root');
     root.removeAttribute('class');
-    root.classList.add(`page__${rootClass}`);
+    root.classList.add(`page__${rootClass}`, 'pf-l-page__main');
+    root.setAttribute('role', 'main');
 
-    return (<Component {...rest} />);
+    return (<Component { ...rest } />);
 };
 
 InsightsRoute.propTypes = {
@@ -48,7 +46,7 @@ InsightsRoute.propTypes = {
  *
  * Route properties:
  *      exact - path must match exactly,
- *      path - https://prod.foo.redhat.com:1337/insights/advisor/rules
+ *      path - https://prod.foo.redhat.com:1337/insights/compliance/rules
  *      component - component to be rendered when a route has been chosen.
  */
 export const Routes = (props: Props) => {
@@ -56,11 +54,10 @@ export const Routes = (props: Props) => {
 
     return (
         <Switch>
-            <InsightsRoute exact path={paths.sample} component={SamplePage} rootClass='sample' />
-            <InsightsRoute path={paths.rules} component={Rules} rootClass='rules' />
+            <InsightsRoute path={ paths.compliance } component={ Compliance } rootClass='Compliance'/>
 
-            {/* Finally, catch all unmatched routes */}
-            <Route render={() => some(paths, p => p === path) ? null : (<Redirect to={paths.sample} />)} />
+            { /* Finally, catch all unmatched routes */ }
+            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.compliance }/>) }/>
         </Switch>
     );
 };

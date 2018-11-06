@@ -6,10 +6,9 @@ import { Routes } from './Routes';
 import './App.scss';
 
 class App extends Component {
-
     componentDidMount () {
         insights.chrome.init();
-        insights.chrome.identifyApp('advisor');
+        insights.chrome.identifyApp('compliance');
         insights.chrome.navigation(buildNavigation());
 
         this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
@@ -23,7 +22,7 @@ class App extends Component {
 
     render () {
         return (
-            <Routes childProps={this.props} />
+            <Routes childProps={ this.props } />
         );
     }
 }
@@ -42,8 +41,8 @@ export default withRouter (connect()(App));
 function buildNavigation () {
     const currentPath = window.location.pathname.split('/').slice(-1)[0];
     return [{
-        title: 'Sample App',
-        id: 'samplepage'
+        title: 'Profiles',
+        id: 'profiles'
     }, {
         title: 'Rules',
         id: 'rules'
