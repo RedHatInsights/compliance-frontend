@@ -9,8 +9,9 @@ install:
 script:
   - npm run travis:verify
 after_success:
-- .travis/after_success.sh
+- curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
     global:
-    - REPO="git@github.com:RedHatInsights/insights-frontend-starter-app-build"
-    - REPO_DIR="insights-frontend-starter-app-build"
+    - REPO="git@github.com:RedHatInsights/compliance-frontend-build"
+    - REPO_DIR="compliance-frontend-build"
+    - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
