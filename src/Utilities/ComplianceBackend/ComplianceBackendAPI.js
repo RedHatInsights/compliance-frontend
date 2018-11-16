@@ -1,9 +1,9 @@
 import { API_HEADERS, COMPLIANCE_API_ROOT } from '../../constants';
 
-export const getProfiles = apiProps => {
+export const get = (path, apiProps) => {
     return window.insights.chrome.auth.getUser()
     .then(() => {
-        return fetch(COMPLIANCE_API_ROOT.concat('/profiles'), {
+        return fetch(COMPLIANCE_API_ROOT.concat(path), {
             method: 'get',
             headers: API_HEADERS,
             body: JSON.stringify(apiProps)

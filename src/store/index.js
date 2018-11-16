@@ -1,6 +1,7 @@
 import ReducerRegistry from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 import promiseMiddleware from 'redux-promise-middleware';
 import { ProfileReducer } from './Reducers/ProfileStore';
+import { SystemReducer } from './Reducers/SystemStore';
 
 let registry;
 
@@ -17,7 +18,8 @@ export function init (...middleware) {
     //If you want to register all of your reducers, this is good place.
     registry.register({
         //ProfileStore: ProfileReducer //(state, action) => ({...state})
-        ProfileReducer //(state, action) => ({...state})
+        ProfileReducer, //(state, action) => ({...state})
+        SystemReducer //(state, action) => ({...state})
     });
 
     return registry;
