@@ -67,7 +67,7 @@ class ComplianceSystemsTable extends React.Component {
 
                     <GridItem span={12}>
                         <Table
-                            header={['Systems', 'Profiles', 'Compliant']}
+                            header={['Systems', 'Policies', 'Compliant']}
                             rows={this.props.systemTableRows}
                             onRowClick={(event, key) => this.handleRedirect(key)}
                             onSort={(event, key, value) => this.sort(key, value)}
