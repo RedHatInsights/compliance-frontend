@@ -16,7 +16,7 @@ class ComplianceTabs extends Component {
             <React.Fragment>
                 <TabLayout
                     items={[
-                        { title: 'Profiles', name: paths.complianceProfiles },
+                        { title: 'Policies', name: paths.compliancePolicies },
                         { title: 'Systems', name: paths.complianceSystems }
                     ]}
                     onTabClick={this.redirect}

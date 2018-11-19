@@ -6,7 +6,7 @@ const WEBSOCKET_HOST = process.env.NODE_ENV === 'production'
     ? 'ws://localhost:3000/cable'
     : 'ws://localhost:3000/cable';
 
-class Profile extends Component {
+class Policy extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,12 +15,12 @@ class Profile extends Component {
         this.cable = ActionCable.createConsumer(WEBSOCKET_HOST);
         this.cable.subscriptions.create(
             {
-                channel: 'ProfilesChannel',
+                channel: 'PoliciesChannel',
                 refId: 'xccdf_org.ssgproject.content_profile_standard'
             },
             {
-                connected: () => { }, // console.log('ProfileChannel connected'),
-                disconnected: () => { }, // console.log('ProfileChannel disconnected'),
+                connected: () => { }, // console.log('PolicyChannel connected'),
+                disconnected: () => { }, // console.log('PolicyChannel disconnected'),
                 received: data => {
                     // Data broadcasted from the chat channel
                     // console.log('Received data:');
@@ -51,8 +51,8 @@ class Profile extends Component {
     }
 }
 
-Profile.propTypes = {
+Policy.propTypes = {
     profileId: PropTypes.number
 };
 
-export default Profile;
+export default Policy;
