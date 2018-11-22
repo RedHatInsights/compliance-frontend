@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
 import { fetchPolicies } from '../../store/Actions/PolicyActions';
 
-class CompliancePoliciesDonuts extends React.Component {
+class CompliancePoliciesCards extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,7 +57,7 @@ class CompliancePoliciesDonuts extends React.Component {
 
 };
 
-CompliancePoliciesDonuts.propTypes = {
+CompliancePoliciesCards.propTypes = {
     history: propTypes.object,
     fetchData: propTypes.func,
     policies: propTypes.array,
@@ -79,5 +79,5 @@ export default routerParams(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(CompliancePoliciesDonuts)
+    )(CompliancePoliciesCards)
 );

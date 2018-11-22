@@ -57,7 +57,8 @@ export const Routes = (props: Props) => {
             <InsightsRoute path={ paths.compliance } component={ Compliance } rootClass='Compliance'/>
 
             { /* Finally, catch all unmatched routes */ }
-            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.compliance }/>) }/>
+            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.ompliance }/>) }/>
+
         </Switch>
     );
 };
