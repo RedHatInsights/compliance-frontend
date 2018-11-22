@@ -23,12 +23,13 @@ class CompliancePolicyCard extends React.Component {
     }
 
     getChart(theme) {
+        const compliantHostCount = this.policy.attributes.compliant_host_count;
+        const totalHostCount = this.policy.attributes.total_host_count;
         return (
             <ChartDonut
                 data={[
-                    { x: 'Cats', y: 35 },
-                    { x: 'Dogs', y: 55 },
-                    { x: 'Birds', y: 10 }
+                    { x: 'Compliant', y: compliantHostCount },
+                    { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
                 ]}
                 labels={this.getTooltipLabel}
                 theme={theme}
@@ -43,6 +44,9 @@ class CompliancePolicyCard extends React.Component {
     };
 
     render() {
+        const compliantHostCount = this.policy.attributes.compliant_host_count;
+        const totalHostCount = this.policy.attributes.total_host_count;
+        const compliancePercentage = 100 * compliantHostCount / totalHostCount;
         const label = (
             <svg
                 className="chart-label"
@@ -52,7 +56,7 @@ class CompliancePolicyCard extends React.Component {
             >
                 <ChartLabel
                     style={{ fontSize: 20 }}
-                    text="75%"
+                    text={compliancePercentage + '%'}
                     textAnchor="middle"
                     verticalAnchor="middle"
                     x={160}
@@ -73,8 +77,8 @@ class CompliancePolicyCard extends React.Component {
             <Card>
                 <CardHeader>
                     <TextContent>
-                        <Text style={{ lineHeight: '0px' }} component={TextVariants.small}>External Policy</Text>
-                        <Text style={{ lineHeight: '0px' }} component={TextVariants.h2}>{this.policy.attributes.name}</Text>
+                        <Text component={TextVariants.small}>External Policy</Text>
+                        <Text component={TextVariants.h2}>{this.policy.attributes.name}</Text>
                     </TextContent>
                 </CardHeader>
                 <CardBody>
@@ -82,19 +86,19 @@ class CompliancePolicyCard extends React.Component {
                         <Grid>
                             <GridItem style={{ fontWeight: '800' }} span={4} rowSpan={2}>
                                 <Text component={TextVariants.h1}>
-                                    384
+                                    { compliantHostCount }
                                 </Text>
                             </GridItem>
                             <GridItem span={8}>
-                                <Text style={{ lineHeight: '0px', fontWeight: '200' }}
+                                <Text style={{ fontWeight: '200' }}
                                     className="chart-title" component={TextVariants.h6}>
                                     Compliant
                                 </Text>
                             </GridItem>
                             <GridItem span={8}>
-                                <Text style={{ lineHeight: '0px', fontWeight: '200' }}
+                                <Text style={{ fontWeight: '200' }}
                                     className="chart-title" component={TextVariants.h6}>
-                                    of 512
+                                    of { totalHostCount }
                                 </Text>
                             </GridItem>
                         </Grid>
