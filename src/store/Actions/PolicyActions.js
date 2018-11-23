@@ -7,3 +7,10 @@ export const fetchPolicies = apiProps => ({
         resolve(ComplianceBackendAPI.get('/profiles', apiProps));
     })
 });
+
+export const fetchPolicyDetails = (policyId, apiProps) => ({
+    type: ActionTypes.FETCH_COMPLIANCE_POLICY_DETAILS,
+    payload: new Promise(resolve => {
+        resolve(ComplianceBackendAPI.get('/profiles/' + policyId, apiProps));
+    })
+});

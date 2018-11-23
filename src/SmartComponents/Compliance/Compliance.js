@@ -13,11 +13,15 @@ const ComplianceSystems = asyncComponent(() =>
     import(/* webpackChunkName: "ComplianceSystems" */ '../ComplianceSystems/ComplianceSystems')
 );
 
+const PolicyDetails = asyncComponent(() =>
+    import(/* webpackChunkName: "PolicyDetails" */ '../PolicyDetails/PolicyDetails')
+);
+
 export const paths = {
     compliance: '/',
-    compliancePolicies: '/profiles',
+    compliancePolicies: '/policies',
     complianceSystems: '/systems',
-    profilePage: '/profiles/:profile'
+    policyDetails: '/policies/:policy_id'
 };
 
 const Compliance = props => {
@@ -32,6 +36,7 @@ const Compliance = props => {
                     <Switch>
                         <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
                         <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
+                        <Route exact path={ paths.policyDetails } component={ PolicyDetails } />
                         <Route
                             render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.compliance} />)}
                         />

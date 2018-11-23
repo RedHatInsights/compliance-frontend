@@ -1,12 +1,10 @@
 import React from 'react';
-import CompliancePoliciesTable from '../CompliancePoliciesTable/CompliancePoliciesTable';
-import CompliancePoliciesDonuts from '../CompliancePoliciesDonuts/CompliancePoliciesDonuts';
+import CompliancePoliciesCards from '../CompliancePoliciesCards/CompliancePoliciesCards';
 
 const CompliancePolicies = () => {
     return (
         <React.Fragment>
-            <CompliancePoliciesDonuts />
-            <CompliancePoliciesTable />
+            <CompliancePoliciesCards />
         </React.Fragment>
     );
 };

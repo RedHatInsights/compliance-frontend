@@ -1,5 +1,8 @@
 import React from 'react';
 import {
+    Link
+} from 'react-router-dom';
+import {
     Card,
     CardHeader,
     CardBody,
@@ -10,11 +13,7 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import {
-    ChartDonut,
-    ChartLabel,
-    ChartTheme
-} from '@patternfly/react-charts';
+import CompliancePolicyDonut from '../CompliancePolicyDonut/CompliancePolicyDonut.js';
 
 class CompliancePolicyCard extends React.Component {
     constructor(policy) {
@@ -22,56 +21,9 @@ class CompliancePolicyCard extends React.Component {
         this.policy = policy.policy;
     }
 
-    getChart(theme) {
-        const compliantHostCount = this.policy.attributes.compliant_host_count;
-        const totalHostCount = this.policy.attributes.total_host_count;
-        return (
-            <ChartDonut
-                data={[
-                    { x: 'Compliant', y: compliantHostCount },
-                    { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
-                ]}
-                labels={this.getTooltipLabel}
-                theme={theme}
-                height={210}
-                width={210}
-            />
-        );
-    };
-
-    getTooltipLabel(datum) {
-        return `${datum.x}: ${datum.y}`;
-    };
-
     render() {
         const compliantHostCount = this.policy.attributes.compliant_host_count;
         const totalHostCount = this.policy.attributes.total_host_count;
-        const compliancePercentage = 100 * compliantHostCount / totalHostCount;
-        const label = (
-            <svg
-                className="chart-label"
-                style={{ position: 'absolute' }}
-                height={210}
-                width={210}
-            >
-                <ChartLabel
-                    style={{ fontSize: 20 }}
-                    text={compliancePercentage + '%'}
-                    textAnchor="middle"
-                    verticalAnchor="middle"
-                    x={160}
-                    y={150}
-                />
-                <ChartLabel
-                    style={{ fill: '#bbb', fontSize: 15 }}
-                    text="Compliant"
-                    textAnchor="middle"
-                    verticalAnchor="middle"
-                    x={160}
-                    y={170}
-                />
-            </svg>
-        );
 
         return (
             <Card>
@@ -104,17 +56,18 @@ class CompliancePolicyCard extends React.Component {
                         </Grid>
                     </TextContent>
                     <hr/>
-                    <div className="chart-container">
-                        {label}
-                        {this.getChart(ChartTheme.light.green)}
-                    </div>
+                    <Grid>
+                        <GridItem span={12}>
+                            <CompliancePolicyDonut policy={this.policy} height={320} width={320} />
+                        </GridItem>
+                    </Grid>
                 </CardBody>
                 <CardFooter>
                     <TextContent>
                         <Text component={TextVariants.small}>
-                            <Text component={TextVariants.a} href="#">
+                            <Link to={'/policies/' + this.policy.id} >
                                 View details
-                            </Text>
+                            </Link>
                         </Text>
                     </TextContent>
                 </CardFooter>
