@@ -1,4 +1,4 @@
-import ReducerRegistry from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
+import { getRegistry } from '@red-hat-insights/insights-frontend-components';
 import promiseMiddleware from 'redux-promise-middleware';
 import { PolicyReducer } from './Reducers/PolicyStore';
 import { SystemReducer } from './Reducers/SystemStore';
@@ -6,18 +6,13 @@ import { SystemReducer } from './Reducers/SystemStore';
 let registry;
 
 export function init (...middleware) {
-    if (registry) {
-        throw new Error('store already initialized');
-    }
-
-    registry = new ReducerRegistry({}, [
+    registry = getRegistry({}, [
         promiseMiddleware(),
         ...middleware
     ]);
 
     //If you want to register all of your reducers, this is good place.
     registry.register({
-        //PolicyStore: PolicyReducer //(state, action) => ({...state})
         PolicyReducer, //(state, action) => ({...state})
         SystemReducer //(state, action) => ({...state})
     });

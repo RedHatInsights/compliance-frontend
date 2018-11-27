@@ -1,12 +1,29 @@
 {
-    presets: ["env", "react", "es2017", "es2015"],
+    presets: [
+        [
+            "@babel/env",
+            {
+                "targets": "> 0.25%, not dead"
+            }
+        ],
+        "@babel/react",
+        "@babel/flow"
+    ],
     "plugins": [
-        ["transform-runtime", {
-            "polyfill": false,
-            "regenerator": true
-        }],
-        "syntax-dynamic-import",
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ],
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        "@babel/plugin-syntax-dynamic-import",
         "lodash",
-        "babel-plugin-transform-object-rest-spread"
+        "@babel/plugin-proposal-object-rest-spread"
     ]
 }

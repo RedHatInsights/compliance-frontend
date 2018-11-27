@@ -13,7 +13,7 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import CompliancePolicyDonut from '../CompliancePolicyDonut/CompliancePolicyDonut.js';
+import { Donut } from '@red-hat-insights/insights-frontend-components';
 
 class CompliancePolicyCard extends React.Component {
     constructor(policy) {
@@ -24,6 +24,10 @@ class CompliancePolicyCard extends React.Component {
     render() {
         const compliantHostCount = this.policy.attributes.compliant_host_count;
         const totalHostCount = this.policy.attributes.total_host_count;
+        let donutValues = [
+            ['Compliant', compliantHostCount],
+            ['Non-compliant', totalHostCount - compliantHostCount]
+        ];
 
         return (
             <Card>
@@ -58,7 +62,9 @@ class CompliancePolicyCard extends React.Component {
                     <hr/>
                     <Grid>
                         <GridItem span={12}>
-                            <CompliancePolicyDonut policy={this.policy} height={320} width={320} />
+                            <Donut values={donutValues}
+                                identifier={this.policy.attributes.name.replace(/ /g, '')}
+                            />
                         </GridItem>
                     </Grid>
                 </CardBody>
