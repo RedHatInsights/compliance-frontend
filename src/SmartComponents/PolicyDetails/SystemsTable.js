@@ -2,7 +2,8 @@ import React from 'react';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import propTypes from 'prop-types';
+import { entitiesDetailReducer } from '../../store/Reducers/SystemStore';
 import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
 
 @registryDecorator()
@@ -13,11 +14,17 @@ class SystemsTable extends React.Component {
             InventoryCmp: () => <div>Loading...</div>
         };
 
+        this.fetchInventory = this.fetchInventory.bind(this);
         this.fetchInventory();
     }
 
     async fetchInventory() {
-        const { inventoryConnector, mergeWithEntities, mergeWithDetail } = await insights.loadInventory({
+        const {
+            inventoryConnector,
+            INVENTORY_ACTION_TYPES,
+            mergeWithEntities,
+            mergeWithDetail
+        } = await insights.loadInventory({
             react: React,
             reactRouterDom,
             reactCore,
@@ -25,7 +32,7 @@ class SystemsTable extends React.Component {
         });
 
         this.getRegistry().register({
-            ...mergeWithEntities(),
+            ...mergeWithEntities(entitiesDetailReducer(INVENTORY_ACTION_TYPES, this.props.items)),
             ...mergeWithDetail()
         });
 
@@ -36,10 +43,18 @@ class SystemsTable extends React.Component {
 
     render() {
         const { InventoryCmp } = this.state;
+        //const items = this.props.items;
+        // concatenate the names of profiles
+        // let hosts = [{ id: '19200f9f-dd49-4ec9-ac91-83009ec0acec', profiles: 'profile 1, profile 2', compliant: 'true' }];
+        // Ideally change items to look like the right Entities format
         return (
             <InventoryCmp />
         );
     }
 }
 
-export default routerParams(SystemsTable);
+SystemsTable.propTypes = {
+    items: propTypes.array
+};
+
+export default SystemsTable;
