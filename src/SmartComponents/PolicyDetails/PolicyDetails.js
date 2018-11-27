@@ -1,10 +1,13 @@
 import React from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { connect } from 'react-redux';
 import { fetchPolicyDetails } from '../../store/Actions/PolicyActions';
-import CompliancePolicyDonut from '../CompliancePolicyDonut/CompliancePolicyDonut';
+import { Donut, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import * as reactRouterDom from 'react-router-dom';
+import * as reactCore from '@patternfly/react-core';
+import * as reactIcons from '@patternfly/react-icons';
 import {
     Title,
     Text,
@@ -38,6 +41,18 @@ class PolicyDetails extends React.Component {
 
     render() {
         const { policy, loading } = this.state;
+        let donutValues = [];
+        let donutId = 'loading-donut';
+        if (!loading) {
+            const compliantHostCount = policy.attributes.compliant_host_count;
+            const totalHostCount = policy.attributes.total_host_count;
+            donutId = policy.attributes.name.replace(/ /g, '');
+            donutValues = [
+                ['Compliant', compliantHostCount],
+                ['Non-compliant', totalHostCount - compliantHostCount]
+            ];
+        }
+
         return (
             <React.Fragment>
                 { (loading) ? <span>Loading Policies...</span> :
@@ -46,12 +61,9 @@ class PolicyDetails extends React.Component {
                     <GridItem span={6}>
                         { (loading) ?
                             <span>Loading Policies...</span> :
-                            <CompliancePolicyDonut
-                                policy={policy}
-                                height={200}
-                                width={200}
-                                showLegend={true}
-                                legendHorizontal={false}
+                            <Donut values={donutValues}
+                                identifier={donutId}
+                                withLegend
                             />
                         }
                     </GridItem>
@@ -65,7 +77,7 @@ class PolicyDetails extends React.Component {
                             </TextContent> }
                     </GridItem>
                     <GridItem span={12}>
-                        Systems table
+                        <SystemsTable />
                     </GridItem>
                 </Grid>
             </React.Fragment>
@@ -98,3 +110,40 @@ export default routerParams(
         mapDispatchToProps
     )(PolicyDetails)
 );
+
+@registryDecorator()
+class SystemsTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            InventoryCmp: () => <div>Loading...</div>
+        };
+
+        this.fetchInventory();
+    }
+
+    async fetchInventory() {
+        const { inventoryConnector, mergeWithEntities, mergeWithDetail } = await insights.loadInventory({
+            react: React,
+            reactRouterDom,
+            reactCore,
+            reactIcons
+        });
+
+        this.getRegistry().register({
+            ...mergeWithEntities(),
+            ...mergeWithDetail()
+        });
+
+        this.setState({
+            InventoryCmp: inventoryConnector()
+        });
+    }
+
+    render() {
+        const { InventoryCmp } = this.state;
+        return (
+            <InventoryCmp />
+        );
+    }
+}
