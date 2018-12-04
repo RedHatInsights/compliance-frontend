@@ -22,8 +22,8 @@ class CompliancePolicyCard extends React.Component {
     }
 
     render() {
-        const compliantHostCount = this.policy.attributes.compliant_host_count;
-        const totalHostCount = this.policy.attributes.total_host_count;
+        const compliantHostCount = this.policy.compliant_host_count;
+        const totalHostCount = this.policy.total_host_count;
         let donutValues = [
             ['Compliant', compliantHostCount],
             ['Non-compliant', totalHostCount - compliantHostCount]
@@ -34,7 +34,7 @@ class CompliancePolicyCard extends React.Component {
                 <CardHeader>
                     <TextContent>
                         <Text component={TextVariants.small}>External Policy</Text>
-                        <Text component={TextVariants.h2}>{this.policy.attributes.name}</Text>
+                        <Text component={TextVariants.h2}>{this.policy.name}</Text>
                     </TextContent>
                 </CardHeader>
                 <CardBody>
@@ -63,7 +63,7 @@ class CompliancePolicyCard extends React.Component {
                     <Grid>
                         <GridItem span={12}>
                             <Donut values={donutValues}
-                                identifier={this.policy.attributes.name.replace(/ /g, '')}
+                                identifier={this.policy.name.replace(/ /g, '')}
                             />
                         </GridItem>
                     </Grid>

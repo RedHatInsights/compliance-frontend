@@ -1,83 +1,52 @@
 import React from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
-import { fetchPolicies } from '../../store/Actions/PolicyActions';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-class CompliancePoliciesCards extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            policies: [],
-            loading: false
-        };
-    };
-
-    componentDidMount() {
-        this.setState({ loading: true });
-        this.props.fetchData();
-    };
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.policies !== this.props.policies) {
-            this.setState({ loading: this.props.loading, policies: this.props.policies });
-        }
+const QUERY = gql`
+{
+    allProfiles {
+        name
+        ref_id
+        description
+        total_host_count
+        compliant_host_count
     }
+}
+`;
 
-    handleRedirect() {
-        this.props.history.push('/policies/');
-    }
+const CompliancePoliciesCards = () => (
+    <Query query={QUERY}>
+        {({ data, error, loading }) => {
+            if (error) { return 'Oops! Error loading Policy data: ' + error; }
 
-    render() {
-        const { policies, loading } = this.state;
-        let policyCards = [];
-        if (policies.length) {
-            policyCards = policies.map(
-                (policy, i) =>
-                    <GridItem span={3} key={i}>
-                        <CompliancePolicyCard
-                            key={i}
-                            policy={policy}
-                        />
-                    </GridItem>
+            if (loading) { return 'Loading Policies...'; }
+
+            const policies = data.allProfiles;
+            let policyCards = [];
+            if (policies.length) {
+                policyCards = policies.map(
+                    (policy, i) =>
+                        <GridItem span={3} key={i}>
+                            <CompliancePolicyCard
+                                key={i}
+                                policy={policy}
+                            />
+                        </GridItem>
+                );
+            }
+
+            return (
+                <div className="policies-donuts">
+                    <Grid gutter='md'>
+                        {policyCards}
+                    </Grid>
+                </div>
             );
-        }
-
-        return (
-            <div className="policies-donuts">
-                { (loading) ? <span>Loading Policies...</span> : '' }
-                <Grid gutter='md'>
-                    {policyCards}
-                </Grid>
-            </div>
-        );
-    };
-
-};
-
-CompliancePoliciesCards.propTypes = {
-    history: propTypes.object,
-    fetchData: propTypes.func,
-    policies: propTypes.array,
-    loading: propTypes.bool
-};
-
-const mapStateToProps = (state) => ({
-    policies: state.PolicyReducer.policiesList.items,
-    loading: state.PolicyReducer.policiesList.isLoading
-});
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchData: () => dispatch(fetchPolicies())
-    };
-};
-
-export default routerParams(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(CompliancePoliciesCards)
+        }}
+    </Query>
 );
+
+export default routerParams(CompliancePoliciesCards);
