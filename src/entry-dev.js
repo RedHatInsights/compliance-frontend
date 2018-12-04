@@ -1,19 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { init } from './store';
 import App from './App';
 import logger from 'redux-logger';
+import { COMPLIANCE_API_ROOT } from './constants';
 
-/**
- * Hooks up redux to app.
- *  https://redux.js.org/advanced/usage-with-react-router
- */
+const client = new ApolloClient({
+    link: new HttpLink({ uri: COMPLIANCE_API_ROOT + '/graphql' }),
+    cache: new InMemoryCache()
+});
+
 ReactDOM.render(
     <Provider store={ init(logger).getStore() }>
         <Router basename='/insights/platform/compliance'>
-            <App/>
+            <ApolloProvider client={client}>
+                <App />
+            </ApolloProvider>
         </Router>
     </Provider>,
 
