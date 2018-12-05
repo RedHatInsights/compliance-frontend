@@ -36,7 +36,7 @@ const Compliance = props => {
                     <Switch>
                         <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
                         <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
-                        <Route exact path={ paths.policyDetails } component={ PolicyDetails } />
+                        <Route path={ paths.policyDetails } component={ PolicyDetails } />
                         <Route
                             render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.compliance} />)}
                         />

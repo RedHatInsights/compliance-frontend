@@ -1,149 +1,104 @@
 import React from 'react';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchPolicyDetails } from '../../store/Actions/PolicyActions';
+import SystemsTable from '../SystemsTable/SystemsTable';
 import { Donut, routerParams } from '@red-hat-insights/insights-frontend-components';
-import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
-import * as reactRouterDom from 'react-router-dom';
-import * as reactCore from '@patternfly/react-core';
-import * as reactIcons from '@patternfly/react-icons';
 import {
     Title,
     Text,
     TextContent,
     TextVariants
 } from '@patternfly/react-core';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-class PolicyDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            policy: {},
-            loading: true
-        };
-    };
+const QUERY = gql`
+query Profile($policyId: String!){
+    profile(id: $policyId) {
+        name
+        ref_id
+        description
+        total_host_count
+		compliant_host_count
+	}
 
-    componentDidMount() {
-        this.setState({ loading: true });
-        this.props.fetchData(this.props.match.params.policy_id);
-    };
+	allSystems{
+		id,
+		name,
+		profile_names,
+		rules_passed(profile_id: $policyId)
+		rules_failed(profile_id: $policyId)
+		last_scanned(profile_id: $policyId)
+	}
+}
+`;
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.policy !== this.props.policy) {
-            this.setState({ loading: this.props.loading, policy: this.props.policy });
-        }
-    }
+const PolicyDetailsQuery = ({ policyId }) => (
+    <Query query={QUERY} variables={{ policyId }} >
+        {({ data, error, loading }) => {
+            let donutValues = [];
+            let donutId = 'loading-donut';
+            let policy = {};
 
-    handleRedirect() {
-        this.props.history.push('/policies/' + this.props.match.params.policy_id);
-    }
+            if (error) { return 'Oops! Error loading Policy data: ' + error; }
 
-    render() {
-        const { policy, loading } = this.state;
-        let donutValues = [];
-        let donutId = 'loading-donut';
-        if (!loading) {
-            const compliantHostCount = policy.attributes.compliant_host_count;
-            const totalHostCount = policy.attributes.total_host_count;
-            donutId = policy.attributes.name.replace(/ /g, '');
-            donutValues = [
-                ['Compliant', compliantHostCount],
-                ['Non-compliant', totalHostCount - compliantHostCount]
-            ];
-        }
+            if (loading) {
+                return 'Loading Policy details...';
+            } else {
+                policy = data.profile;
+                const compliantHostCount = policy.compliant_host_count;
+                const totalHostCount = policy.total_host_count;
+                donutId = policy.name.replace(/ /g, '');
+                donutValues = [
+                    ['Compliant', compliantHostCount],
+                    ['Non-compliant', totalHostCount - compliantHostCount]
+                ];
+            }
 
-        return (
-            <React.Fragment>
-                { (loading) ? <span>Loading Policies...</span> :
-                    <Title size="3xl">{policy.attributes.name}</Title> }
-                <Grid gutter='md'>
-                    <GridItem span={6}>
-                        { (loading) ?
-                            <span>Loading Policies...</span> :
+            const systems = data.allSystems;
+
+            return (
+                <React.Fragment>
+                    <Title size="3xl">{policy.name}</Title>
+                    <Grid gutter='md'>
+                        <GridItem span={6}>
                             <Donut values={donutValues}
                                 identifier={donutId}
                                 withLegend
                             />
-                        }
-                    </GridItem>
-                    <GridItem span={6}>
-                        { (loading) ? <span>Loading Policies...</span> :
+                        </GridItem>
+                        <GridItem span={6}>
                             <TextContent>
                                 <Text component={TextVariants.h3}>Description</Text>
                                 <Text className="policy-description" component={TextVariants.p}>
-                                    {policy.attributes.description}
+                                    {policy.description}
                                 </Text>
-                            </TextContent> }
-                    </GridItem>
-                    <GridItem span={12}>
-                        <SystemsTable />
-                    </GridItem>
-                </Grid>
-            </React.Fragment>
-        );
-    };
-};
-
-PolicyDetails.propTypes = {
-    match: propTypes.object,
-    history: propTypes.object,
-    fetchData: propTypes.func,
-    policy: propTypes.object,
-    loading: propTypes.bool
-};
-
-const mapStateToProps = (state) => ({
-    policy: state.PolicyReducer.policy.result,
-    loading: state.PolicyReducer.policy.isLoading
-});
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchData: (policyId) => dispatch(fetchPolicyDetails(policyId))
-    };
-};
-
-export default routerParams(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(PolicyDetails)
+                            </TextContent>
+                        </GridItem>
+                        <GridItem span={12}>
+                            <SystemsTable items={systems} />
+                        </GridItem>
+                    </Grid>
+                </React.Fragment>
+            );
+        }}
+    </Query>
 );
 
-@registryDecorator()
-class SystemsTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            InventoryCmp: () => <div>Loading...</div>
-        };
+PolicyDetailsQuery.propTypes = {
+    policyId: propTypes.string
+};
 
-        this.fetchInventory();
-    }
-
-    async fetchInventory() {
-        const { inventoryConnector, mergeWithEntities, mergeWithDetail } = await insights.loadInventory({
-            react: React,
-            reactRouterDom,
-            reactCore,
-            reactIcons
-        });
-
-        this.getRegistry().register({
-            ...mergeWithEntities(),
-            ...mergeWithDetail()
-        });
-
-        this.setState({
-            InventoryCmp: inventoryConnector()
-        });
-    }
-
+class PolicyDetails extends React.Component {
     render() {
-        const { InventoryCmp } = this.state;
         return (
-            <InventoryCmp />
+            <PolicyDetailsQuery policyId={this.props.match.params.policy_id} />
         );
     }
 }
+
+PolicyDetails.propTypes = {
+    match: propTypes.object
+};
+
+export default routerParams(PolicyDetails);

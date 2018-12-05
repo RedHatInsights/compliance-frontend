@@ -8,6 +8,7 @@ import gql from 'graphql-tag';
 const QUERY = gql`
 {
     allProfiles {
+        id
         name
         ref_id
         description
