@@ -20,7 +20,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
         system => {
             let matchingEntity = entities.find((entity) => {
-                return entity.facts.inventory.hostname === system.attributes.name;
+                return entity.facts.inventory.hostname === system.name;
             });
             if (matchingEntity === undefined) {
                 return;
@@ -49,12 +49,12 @@ export const systemsToInventoryEntities = (systems, entities) =>
                         release: matchingEntity.facts.inventory.release
                     },
                     compliance: {
-                        profiles: system.attributes.profiles.map((profile) => profile.name).join(),
-                        rules_passed: '100',
-                        rules_failed: '50',
-                        score: '75%',
-                        last_scanned: '4 days ago',
-                        compliant: 'true'
+                        profiles: system.profile_names,
+                        rules_passed: system.rules_passed,
+                        rules_failed: system.rules_failed,
+                        score: (100 * (system.rules_failed / system.rules_passed)).toFixed(2) + '%',
+                        last_scanned: system.last_scanned,
+                        compliant: system.compliant.toString()
                     }
                 }
                 /* eslint-enable camelcase */
@@ -62,52 +62,11 @@ export const systemsToInventoryEntities = (systems, entities) =>
         }
     ).filter(value => value !== undefined);
 
-export const entitiesDetailReducer = (INVENTORY_ACTION, systems) => applyReducerHash(
+export const entitiesDetailReducer = (INVENTORY_ACTION, systems, columns) => applyReducerHash(
     {
-        //[INVENTORY_ACTION.LOAD_ENTITY_FULFILLED]: (state, action) => {
-        [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state, action) => {
-            /* eslint-disable no-console */
-            // action contains the new items
-            // state.systemsList.items
-            // Merge state.entities.entities with action.items (which contains my items)
-            // Change the columns from state.entities.columns
-            //
-            //
-            // concatenate the names of profiles
-            //let hosts = [
-            //    {
-            //        id: '19200f9f-dd49-4ec9-ac91-83009ec0acec',
-            //        facts: {
-            //            compliance: {
-            //                profiles: 'profile 1, profile 2', compliant: 'true'
-            //            }
-            //        }
-            //    }
-            //];
-            console.log('My items', action);
-            console.log('My systems', systems);
+        [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
             state.entities = systemsToInventoryEntities(systems, state.entities);
-            console.log('My new entities', state.entities);
-            state.columns.push({
-                key: 'facts.compliance.profiles',
-                title: 'Profile'
-            }, {
-                key: 'facts.compliance.rules_passed',
-                title: 'Rules Passed'
-            }, {
-                key: 'facts.compliance.rules_failed',
-                title: 'Rules Failed'
-            }, {
-                key: 'facts.compliance.score',
-                title: 'Score'
-            }, {
-                key: 'facts.compliance.compliant',
-                title: 'Compliant'
-            }, {
-                key: 'facts.compliance.last_scanned',
-                title: 'Last Scanned'
-            });
-            /* eslint-enable no-console */
+            state.columns.push(...columns);
             return { ...state };
         }
     },

@@ -32,7 +32,10 @@ class SystemsTable extends React.Component {
         });
 
         this.getRegistry().register({
-            ...mergeWithEntities(entitiesDetailReducer(INVENTORY_ACTION_TYPES, this.props.items)),
+            ...mergeWithEntities(
+                entitiesDetailReducer(
+                    INVENTORY_ACTION_TYPES, this.props.items, this.props.columns
+                )),
             ...mergeWithDetail()
         });
 
@@ -54,7 +57,8 @@ class SystemsTable extends React.Component {
 }
 
 SystemsTable.propTypes = {
-    items: propTypes.array
+    items: propTypes.array,
+    columns: propTypes.array
 };
 
 export default SystemsTable;

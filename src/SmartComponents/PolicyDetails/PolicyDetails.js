@@ -29,6 +29,7 @@ query Profile($policyId: String!){
 		rules_passed(profile_id: $policyId)
 		rules_failed(profile_id: $policyId)
 		last_scanned(profile_id: $policyId)
+		compliant(profile_id: $policyId)
 	}
 }
 `;
@@ -56,6 +57,25 @@ const PolicyDetailsQuery = ({ policyId }) => (
             }
 
             const systems = data.allSystems;
+            const columns = [{
+                key: 'facts.compliance.profiles',
+                title: 'Profile'
+            }, {
+                key: 'facts.compliance.rules_passed',
+                title: 'Rules Passed'
+            }, {
+                key: 'facts.compliance.rules_failed',
+                title: 'Rules Failed'
+            }, {
+                key: 'facts.compliance.score',
+                title: 'Score'
+            }, {
+                key: 'facts.compliance.compliant',
+                title: 'Compliant'
+            }, {
+                key: 'facts.compliance.last_scanned',
+                title: 'Last Scanned'
+            }];
 
             return (
                 <React.Fragment>
@@ -76,7 +96,7 @@ const PolicyDetailsQuery = ({ policyId }) => (
                             </TextContent>
                         </GridItem>
                         <GridItem span={12}>
-                            <SystemsTable items={systems} />
+                            <SystemsTable items={systems} columns={columns} />
                         </GridItem>
                     </Grid>
                 </React.Fragment>
