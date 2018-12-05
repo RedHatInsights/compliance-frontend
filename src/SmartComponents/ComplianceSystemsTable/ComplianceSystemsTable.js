@@ -21,10 +21,18 @@ const ComplianceSystemsTable = () => (
 
             if (loading) { return 'Loading Systems...'; }
 
-            const systems = data.systems;
+            const systems = data.allSystems;
+            const columns = [{
+                key: 'facts.compliance.profiles',
+                title: 'Profiles'
+            }, {
+                key: 'facts.compliance.compliant',
+                title: 'Compliant'
+            }];
+
             return (
                 <div className="systems-table">
-                    <SystemsTable items={systems} />
+                    <SystemsTable items={systems} columns={columns} />
                 </div>
             );
         }}
