@@ -51,7 +51,14 @@ class SystemsTable extends React.Component {
         // let hosts = [{ id: '19200f9f-dd49-4ec9-ac91-83009ec0acec', profiles: 'profile 1, profile 2', compliant: 'true' }];
         // Ideally change items to look like the right Entities format
         return (
-            <InventoryCmp />
+            <reactCore.Card>
+                <reactCore.CardHeader>
+                    Filters and download button
+                </reactCore.CardHeader>
+                <reactCore.CardBody>
+                    <InventoryCmp />
+                </reactCore.CardBody>
+            </reactCore.Card>
         );
     }
 }
