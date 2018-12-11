@@ -6,6 +6,7 @@
  */
 const path = require('path');
 const webpack = require('webpack');
+const config = require('./webpack.common.js');
 const plugins = [];
 
 /**
@@ -86,5 +87,13 @@ const CopyFilesWebpackPlugin = new (require('copy-webpack-plugin'))([
     { from: path.resolve(__dirname, '../static/images'), to: 'images' }
 ]);
 plugins.push(CopyFilesWebpackPlugin);
+
+/**
+ * Replaces any instance of RELEASE in js files with config.insightsDeployment value.
+ */
+const Release = new webpack.DefinePlugin({
+    RELEASE: JSON.stringify(config.insightsDeployment)
+});
+plugins.push(Release);
 
 module.exports = { plugins };
