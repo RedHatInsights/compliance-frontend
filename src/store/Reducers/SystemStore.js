@@ -20,7 +20,8 @@ export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
         system => {
             let matchingEntity = entities.find((entity) => {
-                return entity.facts.inventory.hostname === system.name;
+                return entity.facts.inventory !== undefined &&
+                    entity.facts.inventory.hostname === system.name;
             });
             if (matchingEntity === undefined) {
                 return;
