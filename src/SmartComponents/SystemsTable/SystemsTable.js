@@ -4,6 +4,7 @@ import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import { entitiesDetailReducer } from '../../store/Reducers/SystemStore';
+import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
 
 @registryDecorator()
@@ -53,7 +54,7 @@ class SystemsTable extends React.Component {
         return (
             <reactCore.Card>
                 <reactCore.CardHeader>
-                    Filters and download button
+                    <DownloadTableButton />
                 </reactCore.CardHeader>
                 <reactCore.CardBody>
                     <InventoryCmp />

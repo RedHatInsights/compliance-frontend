@@ -19,8 +19,11 @@ export const systemsToInventoryEntities = (systems, entities) =>
     // });
     systems.map(
         system => {
+            // This should compare the inventory ID instead with
+            // the ID in compliance
             let matchingEntity = entities.find((entity) => {
-                return entity.facts.inventory.hostname === system.name;
+                return entity.facts.inventory !== undefined &&
+                    entity.facts.inventory.hostname === system.name;
             });
             if (matchingEntity === undefined) {
                 return;
