@@ -8,6 +8,7 @@
   "dependencies": {
     "@patternfly/patternfly-next": "^1.0.41",
     "@patternfly/react-charts": "1.1.0",
+    "@patternfly/react-icons": "2.9.3",
     "@patternfly/react-core": "1.31.0",
     "@red-hat-insights/insights-frontend-components": "^3.24.3",
     "actioncable": "^5.2.1",
