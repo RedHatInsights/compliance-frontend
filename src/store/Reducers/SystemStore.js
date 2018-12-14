@@ -65,7 +65,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
         }
     ).filter(value => value !== undefined);
 
-export const entitiesDetailReducer = (INVENTORY_ACTION, systems, columns) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyReducerHash(
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
             state.entities = systemsToInventoryEntities(systems, state.entities);
