@@ -24,7 +24,7 @@ class SystemPolicyCard extends React.Component {
             </div>;
         } else {
             result = <div style={{ color: '#a30000' }} id='policy_compliant'>
-                <ExclamationCircleIcon /> Noncompliant
+                <ExclamationCircleIcon/> Noncompliant
             </div>;
         }
 

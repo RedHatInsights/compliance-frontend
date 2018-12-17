@@ -22,6 +22,7 @@ class ComplianceTabs extends Component {
                     onTabClick={this.redirect}
                     active={this.props.location.pathname}
                 >
+                    <br/>
                     {this.props.children}
                 </TabLayout>
             </React.Fragment>

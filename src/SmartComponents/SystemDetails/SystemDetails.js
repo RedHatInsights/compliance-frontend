@@ -1,12 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import { PageHeader, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
 import SystemPolicyCards from '../SystemPolicyCards/SystemPolicyCards';
 import SystemRulesTable from '../SystemRulesTable/SystemRulesTable';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Text, TextVariants, TextContent } from '@patternfly/react-core';
+import { Card, CardBody } from '@patternfly/react-core';
 const QUERY = gql`
 query System($systemId: String!){
     system(id: $systemId) {
@@ -51,16 +51,20 @@ class SystemDetails extends React.Component {
                     }
 
                     return (
-                        <div>
-                            <InventoryDetails />
-                            <br/>
-                            <SystemPolicyCards policies={data.system.profiles} />
-                            <br/>
-                            <TextContent>
-                                <Text component={TextVariants.h2}>Rules Checked</Text>
-                            </TextContent>
-                            <SystemRulesTable profileRules={rules} />
-                        </div>
+                        <React.Fragment>
+                            <PageHeader>
+                                <InventoryDetails />
+                            </PageHeader>
+                            <Main>
+                                <SystemPolicyCards policies={data.system.profiles} />
+                                <br/>
+                                <Card>
+                                    <CardBody>
+                                        <SystemRulesTable profileRules={rules} />
+                                    </CardBody>
+                                </Card>
+                            </Main>
+                        </React.Fragment>
                     );
                 }}
             </Query>

@@ -3,22 +3,46 @@ import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { DownloadIcon } from '@patternfly/react-icons';
+import { Dropdown, DropdownItem } from '@red-hat-insights/insights-frontend-components';
 
 class DownloadTableButton extends React.Component {
-    downloadLink() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            collapsed: true
+        };
+
+        this.onToggle = this.onToggle.bind(this);
+    }
+
+    onToggle() {
+        this.setState({
+            collapsed: !this.state.collapsed
+        });
+    }
+
+    downloadLink(format) {
         let link = '';
         if (this.props !== null && this.props.selectedEntities !== null) {
-            link = COMPLIANCE_API_ROOT + '/systems.csv?search=(id ^ (' +
+            link = COMPLIANCE_API_ROOT + '/systems.' + format + '?search=(id ^ (' +
                 this.props.selectedEntities.join(',') + '))';
         }
 
         return link;
-
     }
 
     render() {
         return (
-            <a href={this.downloadLink()} ><DownloadIcon /></a>
+            <React.Fragment>
+                <Dropdown
+                    title={ <DownloadIcon/> }
+                    isCollapsed={this.state.collapsed}
+                    onToggle={this.onToggle}
+                >
+                    <DropdownItem target='_blank' href={this.downloadLink('csv')}>CSV</DropdownItem>
+                    <DropdownItem target='_blank' href={this.downloadLink('json')}>JSON</DropdownItem>
+                </Dropdown>
+            </React.Fragment>
         );
     }
 }

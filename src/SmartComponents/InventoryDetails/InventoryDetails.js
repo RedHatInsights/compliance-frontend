@@ -40,11 +40,9 @@ class InventoryDetails extends React.Component {
     render() {
         const { InventoryCmp } = this.state;
         return (
-            <reactCore.Card>
-                <reactCore.CardBody>
-                    <InventoryCmp />
-                </reactCore.CardBody>
-            </reactCore.Card>
+            <React.Fragment>
+                <InventoryCmp />
+            </React.Fragment>
         );
     }
 }
