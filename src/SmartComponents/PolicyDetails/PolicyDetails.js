@@ -1,10 +1,10 @@
 import React from 'react';
+import ShowMoreText from 'react-show-more-text';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { Donut, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { PageHeader, PageHeaderTitle, Main, Donut, routerParams } from '@red-hat-insights/insights-frontend-components';
 import {
-    Title,
     Text,
     TextContent,
     TextVariants
@@ -79,26 +79,33 @@ const PolicyDetailsQuery = ({ policyId }) => (
 
             return (
                 <React.Fragment>
-                    <Title size="3xl">{policy.name}</Title>
-                    <Grid gutter='md'>
-                        <GridItem span={6}>
-                            <Donut values={donutValues}
-                                identifier={donutId}
-                                withLegend
-                            />
-                        </GridItem>
-                        <GridItem span={6}>
-                            <TextContent>
-                                <Text component={TextVariants.h3}>Description</Text>
-                                <Text className="policy-description" component={TextVariants.p}>
-                                    {policy.description}
-                                </Text>
-                            </TextContent>
-                        </GridItem>
-                        <GridItem span={12}>
-                            <SystemsTable items={systems} columns={columns} />
-                        </GridItem>
-                    </Grid>
+                    <PageHeader>
+                        <PageHeaderTitle title={policy.name} />
+                        <Grid gutter='md'>
+                            <GridItem span={6}>
+                                <Donut values={donutValues}
+                                    identifier={donutId}
+                                    withLegend
+                                    legendPosition='right'
+                                />
+                            </GridItem>
+                            <GridItem span={6}>
+                                <TextContent>
+                                    <Text component={TextVariants.h3}>Description</Text>
+                                    <Text className="policy-description" component={TextVariants.p}>
+                                        <ShowMoreText>{policy.description}</ShowMoreText>
+                                    </Text>
+                                </TextContent>
+                            </GridItem>
+                        </Grid>
+                    </PageHeader>
+                    <Main>
+                        <Grid gutter='md'>
+                            <GridItem span={12}>
+                                <SystemsTable items={systems} columns={columns} />
+                            </GridItem>
+                        </Grid>
+                    </Main>
                 </React.Fragment>
             );
         }}
