@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import { PaginationRow } from 'patternfly-react';
 
 @registryDecorator()
 class SystemsTable extends React.Component {
@@ -28,7 +29,8 @@ class SystemsTable extends React.Component {
             react: React,
             reactRouterDom,
             reactCore,
-            reactIcons
+            reactIcons,
+            pfReact: { PaginationRow }
         });
 
         this.getRegistry().register({
