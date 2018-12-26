@@ -1,38 +1,49 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
-import { Table, Input, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { Table, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { SearchIcon } from '@patternfly/react-icons';
 import { Grid, GridItem } from '@patternfly/react-core';
 
 class SystemRulesTable extends React.Component {
     constructor(props) {
         super(props);
-        const rows = [
-            {
-                children: [1], // row index
-                isActive: false, // bool to change if children rows are expanded or not
-                cells: ['1-1', '1-2', '1-3', '1-4']
-            },
-            {
-                isOpen: false, // bool to indicate if this row is expanded
-                cells: [{ title: 'This text will span across whole table.', colSpan: 4 }]
-            },
-            {
-                children: [1], // row index
-                isActive: false, // bool to change if children rows are expanded or not
-                cells: ['3-1', '3-2', '3-3', '3-4']
-            }
-        ];
-        rows.length;
-
         this.state = {
             openNodes: [],
-            rows: this.rulesToRows(this.props.profileRules)
+            page: 1,
+            itemsPerPage: 10,
+            rows: this.rulesToRows(this.props.profileRules),
+            currentRows: []
         };
-
+        this.state.currentRows = this.currentRows(1, 10);
         this.onExpandClick = this.onExpandClick.bind(this);
+        this.setPage = this.setPage.bind(this);
+        this.setPerPage = this.setPerPage.bind(this);
+    }
 
+    setPage(page) {
+        this.setState(() => (
+            {
+                page,
+                currentRows: this.currentRows(page, this.state.itemsPerPage)
+            }
+        ));
+    }
+
+    setPerPage(itemsPerPage) {
+        this.setState(() => (
+            {
+                itemsPerPage,
+                currentRows: this.currentRows(this.state.page, itemsPerPage)
+            }
+        ));
+    }
+
+    currentRows(page, itemsPerPage) {
+        return this.state.rows.slice(
+            (page - 1) * itemsPerPage * 2,
+            page * itemsPerPage * 2
+        );
     }
 
     rulesToRows(profileRules) {
@@ -95,7 +106,6 @@ class SystemRulesTable extends React.Component {
     }
 
     render() {
-        this.rulesToRows(this.props.profileRules);
         return (
             <React.Fragment>
                 <Grid gutter="sm">
@@ -111,7 +121,7 @@ class SystemRulesTable extends React.Component {
                     <GridItem span={12}>
                         <Table
                             header={['Title', 'Policy', 'Severity', 'Passed']}
-                            rows={this.state.rows.map((oneRow, key) => {
+                            rows={this.state.currentRows.map((oneRow, key) => {
                                 if (!oneRow.hasOwnProperty('isOpen')) {
                                     return oneRow;
                                 }
@@ -121,6 +131,13 @@ class SystemRulesTable extends React.Component {
                             })}
                             expandable={true}
                             onExpandClick={this.onExpandClick}
+                            footer={<Pagination
+                                numberOfItems={this.state.rows.length}
+                                onPerPageSelect={ this.setPerPage }
+                                page={ this.state.page }
+                                onSetPage={ this.setPage }
+                                itemsPerPage={ this.state.itemsPerPage }
+                            />}
                         />
                     </GridItem>
                 </Grid>
