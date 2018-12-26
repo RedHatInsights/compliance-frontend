@@ -11,12 +11,6 @@ const initialState = Immutable({
 });
 
 export const systemsToInventoryEntities = (systems, entities) =>
-//export const systemsToInventoryEntities = (systems) =>
-    // eslint-disable-next-line no-console
-    // console.log('My entities', entities);
-    //    matching_entity = entities.find((entity) => {
-    //    entity.facts.inventory.hostname === system.attributes.name
-    // });
     systems.map(
         system => {
             // This should compare the inventory ID instead with
@@ -55,7 +49,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
                         profiles: system.profile_names,
                         rules_passed: system.rules_passed,
                         rules_failed: system.rules_failed,
-                        score: (100 * (system.rules_failed / system.rules_passed)).toFixed(2) + '%',
+                        score: (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%',
                         last_scanned: system.last_scanned,
                         compliant: system.compliant.toString()
                     }
