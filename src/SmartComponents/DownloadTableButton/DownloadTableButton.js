@@ -3,23 +3,29 @@ import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { DownloadIcon } from '@patternfly/react-icons';
-import { Dropdown, DropdownItem } from '@red-hat-insights/insights-frontend-components';
+import { Dropdown, DropdownToggle, DropdownItem } from '@patternfly/react-core';
 
 class DownloadTableButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapsed: true
+            isOpen: false
         };
-
         this.onToggle = this.onToggle.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
-    onToggle() {
+    onToggle(isOpen) {
         this.setState({
-            collapsed: !this.state.collapsed
+            isOpen
         });
-    }
+    };
+
+    onSelect() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    };
 
     downloadLink(format) {
         let link = '';
@@ -32,16 +38,23 @@ class DownloadTableButton extends React.Component {
     }
 
     render() {
+        const { isOpen } = this.state;
+        const dropdownItems = [
+            <DropdownItem key='csv' href={this.downloadLink('csv')}>
+                CSV
+            </DropdownItem>,
+            <DropdownItem target='_blank' key='json' href={this.downloadLink('json')}>
+                JSON
+            </DropdownItem>
+        ];
         return (
             <React.Fragment>
                 <Dropdown
-                    title={ <DownloadIcon/> }
-                    isCollapsed={this.state.collapsed}
-                    onToggle={this.onToggle}
-                >
-                    <DropdownItem target='_blank' href={this.downloadLink('csv')}>CSV</DropdownItem>
-                    <DropdownItem target='_blank' href={this.downloadLink('json')}>JSON</DropdownItem>
-                </Dropdown>
+                    onSelect={this.onSelect}
+                    toggle={<DropdownToggle onToggle={this.onToggle}><DownloadIcon/></DropdownToggle>}
+                    isOpen={isOpen}
+                    dropdownItems={dropdownItems}
+                />
             </React.Fragment>
         );
     }
