@@ -1,6 +1,9 @@
 parser: babel-eslint
 env:
   browser: true
+settings:
+  react:
+    version: '16.4.2'
 extends:
   - 'eslint:recommended'
   - 'prettier'

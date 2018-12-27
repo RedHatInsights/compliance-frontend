@@ -1,15 +1,18 @@
 import React from 'react';
-import { Grid, GridItem } from '@patternfly/react-core';
 import ComplianceSystemsTable from '../ComplianceSystemsTable/ComplianceSystemsTable';
+import ComplianceTabs from '../ComplianceTabs/ComplianceTabs';
+import { PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
 
 const ComplianceSystems = () => {
     return (
         <React.Fragment>
-            <Grid gutter={'sm'}>
-                <GridItem span={12}>
-                    <ComplianceSystemsTable />
-                </GridItem>
-            </Grid>
+            <PageHeader>
+                <PageHeaderTitle title="Compliance" />
+                <ComplianceTabs/>
+            </PageHeader>
+            <Main>
+                <ComplianceSystemsTable />
+            </Main>
         </React.Fragment>
     );
 };

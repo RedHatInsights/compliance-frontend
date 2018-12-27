@@ -1,38 +1,36 @@
-import { routerParams, TabLayout } from '@red-hat-insights/insights-frontend-components';
+import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import propTypes from 'prop-types';
 import React, { Component } from 'react';
-import { paths } from '../Compliance/Compliance';
+import { paths } from '../../Routes';
+import { Nav, NavList, NavItem, NavVariants } from '@patternfly/react-core';
 
 class ComplianceTabs extends Component {
     constructor(props) {
         super(props);
         this.redirect = this.redirect.bind(this);
     }
-    redirect(event, tab) {
-        this.props.history.push(tab.name);
+    redirect(tab) {
+        this.props.history.push(tab.itemId);
     }
     render() {
         return (
             <React.Fragment>
-                <TabLayout
-                    items={[
-                        { title: 'Policies', name: paths.compliancePolicies },
-                        { title: 'Systems', name: paths.complianceSystems }
-                    ]}
-                    onTabClick={this.redirect}
-                    active={this.props.location.pathname}
-                >
-                    <br/>
-                    {this.props.children}
-                </TabLayout>
+                <Nav onSelect={this.redirect} aria-label="Compliance Tabs">
+                    <NavList variant={NavVariants.horizontal}>
+                        <NavItem preventDefault={true} itemId={paths.compliancePolicies}>
+                            Policies
+                        </NavItem>
+                        <NavItem preventDefault={true} itemId={paths.complianceSystems}>
+                            Systems
+                        </NavItem>
+                    </NavList>
+                </Nav>
             </React.Fragment>
         );
     }
 }
 
 ComplianceTabs.propTypes = {
-    children: propTypes.any,
-    location: propTypes.object,
     history: propTypes.object
 };
 

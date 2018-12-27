@@ -1,9 +1,17 @@
 import React from 'react';
-import ShowMoreText from 'react-show-more-text';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { PageHeader, PageHeaderTitle, Main, Donut, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { onNavigate } from '../../Utilities/Breadcrumbs';
+import {
+    Breadcrumbs,
+    PageHeader,
+    PageHeaderTitle,
+    Main,
+    Donut,
+    Truncate,
+    routerParams
+} from '@red-hat-insights/insights-frontend-components';
 import {
     Text,
     TextContent,
@@ -34,7 +42,7 @@ query Profile($policyId: String!){
 }
 `;
 
-const PolicyDetailsQuery = ({ policyId }) => (
+const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
     <Query query={QUERY} variables={{ policyId }} >
         {({ data, error, loading }) => {
             let donutValues = [];
@@ -44,7 +52,7 @@ const PolicyDetailsQuery = ({ policyId }) => (
             if (error) { return 'Oops! Error loading Policy data: ' + error; }
 
             if (loading) {
-                return 'Loading Policy details...';
+                return (<PageHeader>Loading Policy details...</PageHeader>);
             } else {
                 policy = data.profile;
                 const compliantHostCount = policy.compliant_host_count;
@@ -80,6 +88,11 @@ const PolicyDetailsQuery = ({ policyId }) => (
             return (
                 <React.Fragment>
                     <PageHeader>
+                        <Breadcrumbs
+                            items={[{ title: 'Policies', navigate: '/policies' }]}
+                            current={policy.name}
+                            onNavigate={onNavigateWithProps}
+                        />
                         <PageHeaderTitle title={policy.name} />
                         <Grid gutter='md'>
                             <GridItem span={6}>
@@ -93,7 +106,7 @@ const PolicyDetailsQuery = ({ policyId }) => (
                                 <TextContent>
                                     <Text component={TextVariants.h3}>Description</Text>
                                     <Text className="policy-description" component={TextVariants.p}>
-                                        <ShowMoreText>{policy.description}</ShowMoreText>
+                                        <Truncate text={policy.description} length={380} />
                                     </Text>
                                 </TextContent>
                             </GridItem>
@@ -113,13 +126,19 @@ const PolicyDetailsQuery = ({ policyId }) => (
 );
 
 PolicyDetailsQuery.propTypes = {
-    policyId: propTypes.string
+    policyId: propTypes.string,
+    onNavigateWithProps: propTypes.func
 };
 
 class PolicyDetails extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onNavigate = onNavigate.bind(this);
+    }
+
     render() {
         return (
-            <PolicyDetailsQuery policyId={this.props.match.params.policy_id} />
+            <PolicyDetailsQuery policyId={this.props.match.params.policy_id} onNavigateWithProps={this.onNavigate} />
         );
     }
 }
