@@ -18,9 +18,26 @@ import some from 'lodash/some';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Compliance = asyncComponent(() => import('./SmartComponents/Compliance/Compliance'));
-const paths = {
-    compliance: '/:subpage?'
+const CompliancePolicies = asyncComponent(() =>
+    import(/* webpackChunkName: "CompliancePolicies" */ './SmartComponents/CompliancePolicies/CompliancePolicies')
+);
+const ComplianceSystems = asyncComponent(() =>
+    import(/* webpackChunkName: "ComplianceSystems" */ './SmartComponents/ComplianceSystems/ComplianceSystems')
+);
+
+const PolicyDetails = asyncComponent(() =>
+    import(/* webpackChunkName: "PolicyDetails" */ './SmartComponents/PolicyDetails/PolicyDetails')
+);
+
+const SystemDetails = asyncComponent(() =>
+    import(/* webpackChunkName: "SystemDetails" */ './SmartComponents/SystemDetails/SystemDetails')
+);
+
+export const paths = {
+    compliancePolicies: '/policies',
+    complianceSystems: '/systems',
+    policyDetails: '/policies/:policy_id',
+    systemDetails: '/systems/:inventoryId'
 };
 
 type Props = {
@@ -54,11 +71,13 @@ export const Routes = (props: Props) => {
 
     return (
         <Switch>
-            <InsightsRoute path={ paths.compliance } component={ Compliance } rootClass='Compliance'/>
+            <InsightsRoute exact path={paths.compliancePolicies} component={CompliancePolicies} />
+            <InsightsRoute exact path={paths.complianceSystems} component={ComplianceSystems} />
+            <Route path={ paths.policyDetails } component={ PolicyDetails } />
+            <Route path={ paths.systemDetails } component={ SystemDetails } />
 
             { /* Finally, catch all unmatched routes */ }
-            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.compliance }/>) }/>
-
+            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.compliancePolicies }/>) }/>
         </Switch>
     );
 };

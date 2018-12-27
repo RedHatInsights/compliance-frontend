@@ -72,7 +72,7 @@ class CompliancePolicyCard extends React.Component {
                     <TextContent>
                         <Text component={TextVariants.small}>
                             <Link to={'/policies/' + this.policy.id} >
-                                View details
+                                More Details
                             </Link>
                         </Text>
                     </TextContent>

@@ -25,6 +25,7 @@ plugins.push(WriteFileWebpackPlugin);
 const HtmlWebpackPlugin = new (require('html-webpack-plugin'))({
     title: 'My App',
     filename: 'index.html',
+    chunksSortMode: 'none',
     template: path.resolve(__dirname, '../src/index.html')
 });
 plugins.push(HtmlWebpackPlugin);

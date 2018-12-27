@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { PageHeader, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { Breadcrumbs, PageHeader, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { onNavigate } from '../../Utilities/Breadcrumbs';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
 import SystemPolicyCards from '../SystemPolicyCards/SystemPolicyCards';
 import SystemRulesTable from '../SystemRulesTable/SystemRulesTable';
@@ -33,6 +34,11 @@ query System($systemId: String!){
 `;
 
 class SystemDetails extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onNavigate = onNavigate.bind(this);
+    }
+
     render() {
         const systemId = this.props.match.params.inventoryId;
         return (
@@ -42,7 +48,7 @@ class SystemDetails extends React.Component {
                     if (error) { return 'Oops! Error loading System data: ' + error; }
 
                     if (loading) {
-                        return 'Loading System details...';
+                        return (<PageHeader>Loading System details...</PageHeader>);
                     } else {
                         rules = data.system.profiles.map((profile) => ({
                             profile: profile.name,
@@ -53,6 +59,11 @@ class SystemDetails extends React.Component {
                     return (
                         <React.Fragment>
                             <PageHeader>
+                                <Breadcrumbs
+                                    items={[{ title: 'Systems', navigate: '/systems' }]}
+                                    current={data.system.name}
+                                    onNavigate={this.onNavigate}
+                                />
                                 <InventoryDetails />
                             </PageHeader>
                             <Main>
