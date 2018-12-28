@@ -33,7 +33,7 @@ const ComplianceSystemsTable = () => (
 
             return (
                 <div className="systems-table">
-                    <SystemsTable items={systems} columns={columns} />
+                    <SystemsTable expandable={true} items={systems} columns={columns} />
                 </div>
             );
         }}

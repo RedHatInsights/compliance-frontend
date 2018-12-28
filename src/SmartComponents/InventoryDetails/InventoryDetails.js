@@ -4,6 +4,7 @@ import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
 import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import { PageHeader } from '@red-hat-insights/insights-frontend-components';
 
 @registryDecorator()
 class InventoryDetails extends React.Component {
@@ -41,14 +42,15 @@ class InventoryDetails extends React.Component {
         const { InventoryCmp } = this.state;
         return (
             <React.Fragment>
-                <InventoryCmp />
+                { this.props.wrap ? <PageHeader><InventoryCmp /></PageHeader> : <InventoryCmp /> }
             </React.Fragment>
         );
     }
 }
 
 InventoryDetails.propTypes = {
-    entity: propTypes.object
+    entity: propTypes.object,
+    wrap: propTypes.bool
 };
 
 export default InventoryDetails;
