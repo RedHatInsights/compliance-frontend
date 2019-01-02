@@ -5,10 +5,11 @@ import * as reactIcons from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
-import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
+import { registry } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
 
-@registryDecorator()
+@registry()
 class SystemsTable extends React.Component {
     constructor(props) {
         super(props);
@@ -55,6 +56,7 @@ class SystemsTable extends React.Component {
             <reactCore.Card>
                 <reactCore.CardHeader>
                     <DownloadTableButton />
+                    <ComplianceRemediationButton />
                 </reactCore.CardHeader>
                 <reactCore.CardBody>
                     <InventoryCmp />
