@@ -25,7 +25,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
 
             return {
                 /* eslint-disable camelcase */
-                id: system.id,
+                id: matchingEntity.id,
                 account: matchingEntity.account,
                 bios_uuid: matchingEntity.bios_uuid,
                 created: matchingEntity.created,
