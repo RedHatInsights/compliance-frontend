@@ -24,11 +24,9 @@ const CompliancePolicies = asyncComponent(() =>
 const ComplianceSystems = asyncComponent(() =>
     import(/* webpackChunkName: "ComplianceSystems" */ './SmartComponents/ComplianceSystems/ComplianceSystems')
 );
-
 const PolicyDetails = asyncComponent(() =>
     import(/* webpackChunkName: "PolicyDetails" */ './SmartComponents/PolicyDetails/PolicyDetails')
 );
-
 const SystemDetails = asyncComponent(() =>
     import(/* webpackChunkName: "SystemDetails" */ './SmartComponents/SystemDetails/SystemDetails')
 );
@@ -36,7 +34,9 @@ const SystemDetails = asyncComponent(() =>
 export const paths = {
     compliancePolicies: '/policies',
     complianceSystems: '/systems',
+    complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
+    policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
     systemDetails: '/systems/:inventoryId'
 };
 
@@ -71,13 +71,15 @@ export const Routes = (props: Props) => {
 
     return (
         <Switch>
-            <InsightsRoute exact path={paths.compliancePolicies} component={CompliancePolicies} />
-            <InsightsRoute exact path={paths.complianceSystems} component={ComplianceSystems} />
-            <Route path={ paths.policyDetails } component={ PolicyDetails } />
-            <Route path={ paths.systemDetails } component={ SystemDetails } />
+            <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
+            <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
+            <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
+            <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
+            <Route exact path={paths.policyDetails} component={PolicyDetails} />
+            <Route path={paths.systemDetails} component={SystemDetails} />
 
             { /* Finally, catch all unmatched routes */ }
-            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.compliancePolicies }/>) }/>
+            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={paths.compliancePolicies}/>) }/>
         </Switch>
     );
 };
