@@ -7,6 +7,7 @@ import SystemsTable from '../SystemsTable/SystemsTable';
 const QUERY = gql`
 {
     allSystems {
+        id
         name
         profile_names
         compliant
