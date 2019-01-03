@@ -33,11 +33,21 @@ class ComplianceRemediationButton extends React.Component {
             return result;
         }
 
-        for (const system of this.props.allSystems) {
-            result.systems.push(system.id);
+        // 1 host, multiple rules
+        if (this.props.selectedRules !== undefined && this.props.allSystems.length === 1) {
+            result.systems.push(this.props.allSystems[0].id);
 
-            for (const rule of system.rule_objects_failed) {
-                result.issues.push({ id: rule.ref_id });
+            for (const rule of this.props.selectedRules) {
+                result.issues.push({ id: rule });
+            }
+        // Multiple hosts, multiple rules
+        } else {
+            for (const system of this.props.allSystems) {
+                result.systems.push(system.id);
+
+                for (const rule of system.rule_objects_failed) {
+                    result.issues.push({ id: rule.ref_id });
+                }
             }
         }
 
@@ -55,6 +65,7 @@ class ComplianceRemediationButton extends React.Component {
 
 ComplianceRemediationButton.propTypes = {
     selectedEntities: propTypes.array,
+    selectedRules: propTypes.array,
     allSystems: propTypes.array // Prop coming from data.allSystems GraphQL query
 };
 

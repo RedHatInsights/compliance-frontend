@@ -1,6 +1,8 @@
 import Immutable from 'seamless-immutable';
+import React from 'react';
 import * as ActionTypes from '../ActionTypes';
 import { applyReducerHash } from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
+import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 
 // eslint-disable-next-line new-cap
 const initialState = Immutable({
@@ -51,7 +53,8 @@ export const systemsToInventoryEntities = (systems, entities) =>
                         rules_failed: system.rules_failed,
                         score: (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%',
                         last_scanned: system.last_scanned,
-                        compliant: system.compliant.toString()
+                        compliant: (system.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :
+                            <ExclamationCircleIcon style={{ color: '#a30000' }}/>)
                     }
                 }
                 /* eslint-enable camelcase */

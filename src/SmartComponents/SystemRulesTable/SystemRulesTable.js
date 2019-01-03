@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Table, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { SearchIcon } from '@patternfly/react-icons';
@@ -19,6 +20,7 @@ class SystemRulesTable extends React.Component {
         this.onExpandClick = this.onExpandClick.bind(this);
         this.setPage = this.setPage.bind(this);
         this.setPerPage = this.setPerPage.bind(this);
+        this.onItemSelect = this.onItemSelect.bind(this);
     }
 
     setPage(page) {
@@ -46,6 +48,15 @@ class SystemRulesTable extends React.Component {
         );
     }
 
+    onItemSelect(_event, key, selected) {
+        let { rows, page, itemsPerPage } = this.state;
+        const firstIndex = page === 1 ? 0 : page * itemsPerPage - itemsPerPage;
+        rows[firstIndex + Number(key)].selected = selected;
+        this.setState({
+            rows
+        });
+    }
+
     rulesToRows(profileRules) {
         const rows = [];
         profileRules.forEach((profileRule) => (
@@ -54,6 +65,7 @@ class SystemRulesTable extends React.Component {
                     children: [i * 2 + 1],
                     cells: [
                         rule.title,
+                        rule.ref_id,
                         profileRule.profile,
                         rule.severity,
                         (rule.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :
@@ -105,11 +117,15 @@ class SystemRulesTable extends React.Component {
         });
     }
 
+    selectedRules() {
+        return this.state.rows.filter(row => row.selected).map(row => row.cells[1]);
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Grid gutter="sm">
-                    <GridItem span={3}>
+                    <GridItem span={10}>
                         <Input
                             id="search"
                             type="text"
@@ -117,10 +133,15 @@ class SystemRulesTable extends React.Component {
                         />{' '}
                         <SearchIcon style={{ paddingTop: '4px' }} />
                     </GridItem>
+                    <GridItem span={2}>
+                        <ComplianceRemediationButton selectedRules={this.selectedRules()} />
+                    </GridItem>
 
                     <GridItem span={12}>
                         <Table
-                            header={['Title', 'Policy', 'Severity', 'Passed']}
+                            header={['Rule', 'Reference ID', 'Policy', 'Severity', 'Passed']}
+                            hasCheckbox
+                            onItemSelect={this.onItemSelect}
                             rows={this.state.currentRows.map((oneRow, key) => {
                                 if (!oneRow.hasOwnProperty('isOpen')) {
                                     return oneRow;

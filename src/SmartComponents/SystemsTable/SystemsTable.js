@@ -59,7 +59,7 @@ class SystemsTable extends React.Component {
                     <ComplianceRemediationButton />
                 </reactCore.CardHeader>
                 <reactCore.CardBody>
-                    <InventoryCmp />
+                    <InventoryCmp/>
                 </reactCore.CardBody>
             </reactCore.Card>
         );
