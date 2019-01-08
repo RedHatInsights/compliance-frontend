@@ -2,7 +2,6 @@ import React from 'react';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import {
     Card,
-    CardHeader,
     CardBody,
     CardFooter,
     Text,
@@ -19,11 +18,11 @@ class SystemPolicyCard extends React.Component {
     complianceIcon(compliant) {
         let result;
         if (compliant) {
-            result = <div style={{ color: '#92d400' }} id='policy_compliant'>
+            result = <div style={{ fontSize: 'large', color: '#92d400' }} id='policy_compliant'>
                 <CheckCircleIcon /> Compliant
             </div>;
         } else {
-            result = <div style={{ color: '#a30000' }} id='policy_compliant'>
+            result = <div style={{ fontSize: 'large', color: '#a30000' }} id='policy_compliant'>
                 <ExclamationCircleIcon/> Noncompliant
             </div>;
         }
@@ -35,15 +34,13 @@ class SystemPolicyCard extends React.Component {
         const totalRules = this.policy.rules_passed + this.policy.rules_failed;
         return (
             <Card>
-                <CardHeader>
-                    <TextContent>
-                        <Text component={TextVariants.small}>External Policy</Text>
-                        <Text component={TextVariants.medium}>{this.policy.name}</Text>
-                    </TextContent>
-                </CardHeader>
                 <CardBody>
-                    { this.complianceIcon(this.policy.compliant) }
-                    <TextContent className="chart-title">
+                    <TextContent>
+                        <Text style={{ marginBottom: '0px' }} component={TextVariants.small}>External Policy</Text>
+                        <Text style={{ marginTop: '0px' }} component={TextVariants.h4}>{this.policy.name}</Text>
+                    </TextContent>
+                    <TextContent>
+                        { this.complianceIcon(this.policy.compliant) }
                         <Text component={TextVariants.small}>
                             { this.policy.rules_passed } of { totalRules } passed
                         </Text>

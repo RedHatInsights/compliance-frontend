@@ -89,20 +89,21 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 <React.Fragment>
                     <PageHeader>
                         <Breadcrumbs
+                            style={{ padding: '0px' }}
                             items={[{ title: 'Policies', navigate: '/policies' }]}
                             current={policy.name}
                             onNavigate={onNavigateWithProps}
                         />
                         <PageHeaderTitle title={policy.name} />
                         <Grid gutter='md'>
-                            <GridItem span={6}>
+                            <GridItem span={5}>
                                 <Donut values={donutValues}
                                     identifier={donutId}
                                     withLegend
                                     legendPosition='right'
                                 />
                             </GridItem>
-                            <GridItem span={6}>
+                            <GridItem span={7}>
                                 <TextContent>
                                     <Text component={TextVariants.h3}>Description</Text>
                                     <Text className="policy-description" component={TextVariants.p}>
