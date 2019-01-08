@@ -54,12 +54,11 @@ class SystemsTable extends React.Component {
         // Ideally change items to look like the right Entities format
         return (
             <reactCore.Card>
-                <reactCore.CardHeader>
-                    <DownloadTableButton />
-                    <ComplianceRemediationButton />
-                </reactCore.CardHeader>
                 <reactCore.CardBody>
-                    <InventoryCmp/>
+                    <InventoryCmp>
+                        <DownloadTableButton />
+                        <ComplianceRemediationButton />
+                    </InventoryCmp>
                 </reactCore.CardBody>
             </reactCore.Card>
         );
