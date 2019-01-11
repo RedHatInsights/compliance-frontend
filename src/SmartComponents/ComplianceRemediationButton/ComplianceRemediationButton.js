@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
+import './ComplianceRemediationButton.scss';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -56,9 +57,11 @@ class ComplianceRemediationButton extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
-                <RemediationButton dataProvider={this.dataProvider} />
-            </React.Fragment>
+            <div id='remediation-button' style={{ marginRight: '20px' }}>
+                <RemediationButton
+                    dataProvider={this.dataProvider}
+                />
+            </div>
         );
     }
 }

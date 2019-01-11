@@ -60,6 +60,7 @@ class SystemDetails extends React.Component {
                         <React.Fragment>
                             <PageHeader>
                                 <Breadcrumbs
+                                    style={{ padding: '0px' }}
                                     items={[{ title: 'Systems', navigate: '/systems' }]}
                                     current={data.system.name}
                                     onNavigate={this.onNavigate}
