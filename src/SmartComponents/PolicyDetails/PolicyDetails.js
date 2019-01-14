@@ -8,10 +8,15 @@ import {
     PageHeader,
     PageHeaderTitle,
     Main,
-    Donut,
     Truncate,
     routerParams
 } from '@red-hat-insights/insights-frontend-components';
+import {
+    ChartDonut,
+    ChartLegend,
+    ChartLabel,
+    ChartTheme
+} from '@patternfly/react-charts';
 import {
     Text,
     TextContent,
@@ -19,6 +24,7 @@ import {
 } from '@patternfly/react-core';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import '../../Charts.scss';
 
 const QUERY = gql`
 query Profile($policyId: String!){
@@ -59,8 +65,8 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 const totalHostCount = policy.total_host_count;
                 donutId = policy.name.replace(/ /g, '');
                 donutValues = [
-                    ['Compliant', compliantHostCount],
-                    ['Non-compliant', totalHostCount - compliantHostCount]
+                    { x: 'Compliant', y: compliantHostCount },
+                    { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
                 ];
             }
 
@@ -85,6 +91,38 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 title: 'Last Scanned'
             }];
 
+            const legendData = [
+                { name: donutValues[0].y + ' Systems Compliant' },
+                { name: donutValues[1].y + ' Systems Non-Compliant' }
+            ];
+
+            const compliancePercentage = (donutValues[0].y / donutValues[1].y) + '%';
+
+            const label = (
+                <svg
+                    className="chart-label"
+                    height={200}
+                    width={200}
+                >
+                    <ChartLabel
+                        style={{ fontSize: 20 }}
+                        text={compliancePercentage}
+                        textAnchor="middle"
+                        verticalAnchor="middle"
+                        x={100}
+                        y={90}
+                    />
+                    <ChartLabel
+                        style={{ fill: '#bbb' }}
+                        text="Compliant"
+                        textAnchor="middle"
+                        verticalAnchor="middle"
+                        x={100}
+                        y={110}
+                    />
+                </svg>
+            );
+
             return (
                 <React.Fragment>
                     <PageHeader>
@@ -97,11 +135,26 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                         <PageHeaderTitle title={policy.name} />
                         <Grid gutter='md'>
                             <GridItem span={5}>
-                                <Donut values={donutValues}
-                                    identifier={donutId}
-                                    withLegend
-                                    legendPosition='right'
-                                />
+                                <div className='chart-inline'>
+                                    <div className='chart-container'>
+                                        {label}
+                                        <ChartDonut data={donutValues}
+                                            identifier={donutId}
+                                            theme={ChartTheme.light.blue}
+                                            legendPosition='right'
+                                            height={200}
+                                            width={200}
+                                        />
+                                    </div>
+                                    <ChartLegend
+                                        data={legendData}
+                                        orientation={'vertical'}
+                                        theme={ChartTheme.light.blue}
+                                        y={55}
+                                        height={200}
+                                        width={200}
+                                    />
+                                </div>
                             </GridItem>
                             <GridItem span={7}>
                                 <TextContent>

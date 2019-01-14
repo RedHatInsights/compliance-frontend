@@ -1,0 +1,20 @@
+@import "./App";
+
+.chart-inline {
+    display: inline-flex;
+}
+
+.chart-label{
+    position: absolute;
+}
+
+.chart-container{
+    width: 200px;
+    height: 200px;
+}
+
+.card-chart-container{
+    width: 300px;
+    height: 300px;
+    text-align: left;
+}
