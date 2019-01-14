@@ -75,19 +75,22 @@ class SystemRulesTable extends React.Component {
                 rows.push({
                     isOpen: false,
                     cells: [
-                        <React.Fragment key={i}>
-                            <div id='rule-description'>
-                                <b>Description</b>
+                        {
+                            title: <React.Fragment key={i}>
+                                <div id='rule-description'>
+                                    <b>Description</b>
+                                    <br/>
+                                    <p>{rule.description}</p>
+                                </div>
                                 <br/>
-                                <p>{rule.description}</p>
-                            </div>
-                            <br/>
-                            <div id='rule-rationale'>
-                                <b>Rationale</b>
-                                <br/>
-                                <p>{rule.rationale}</p>
-                            </div>
-                        </React.Fragment>
+                                <div id='rule-rationale'>
+                                    <b>Rationale</b>
+                                    <br/>
+                                    <p>{rule.rationale}</p>
+                                </div>
+                            </React.Fragment>,
+                            colSpan: 5
+                        }
                     ]
                 });
             })
