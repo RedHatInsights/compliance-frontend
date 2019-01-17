@@ -65,7 +65,7 @@ class SystemDetails extends React.Component {
                                     current={data.system.name}
                                     onNavigate={this.onNavigate}
                                 />
-                                <InventoryDetails />
+                                <InventoryDetails hideBack />
                             </PageHeader>
                             <Main>
                                 <SystemPolicyCards policies={data.system.profiles} />
