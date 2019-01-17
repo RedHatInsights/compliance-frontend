@@ -66,6 +66,7 @@ class SystemDetails extends React.Component {
                                     onNavigate={this.onNavigate}
                                 />
                                 <InventoryDetails />
+                                <br/>
                             </PageHeader>
                             <Main>
                                 <SystemPolicyCards policies={data.system.profiles} />

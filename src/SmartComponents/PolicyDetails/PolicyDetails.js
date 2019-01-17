@@ -96,7 +96,8 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 { name: donutValues[1].y + ' Systems Non-Compliant' }
             ];
 
-            const compliancePercentage = (donutValues[0].y / donutValues[1].y) + '%';
+            const compliancePercentage = 100 *
+                (donutValues[0].y / (donutValues[0].y + donutValues[1].y)) + '%';
 
             const label = (
                 <svg
