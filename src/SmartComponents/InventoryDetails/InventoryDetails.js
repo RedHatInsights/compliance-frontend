@@ -41,7 +41,7 @@ class InventoryDetails extends React.Component {
         const { InventoryCmp } = this.state;
         return (
             <React.Fragment>
-                <InventoryCmp />
+                <InventoryCmp hideBack />
             </React.Fragment>
         );
     }

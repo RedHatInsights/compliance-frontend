@@ -18,8 +18,8 @@ export const systemsToInventoryEntities = (systems, entities) =>
             // This should compare the inventory ID instead with
             // the ID in compliance
             let matchingEntity = entities.find((entity) => {
-                return entity.facts.inventory !== undefined &&
-                    entity.facts.inventory.hostname === system.name;
+                return entity.facts !== undefined &&
+                    entity.facts.hostname === system.name;
             });
             if (matchingEntity === undefined) {
                 return;
@@ -43,9 +43,9 @@ export const systemsToInventoryEntities = (systems, entities) =>
                 updated: matchingEntity.updated,
                 facts: {
                     inventory: {
-                        hostname: matchingEntity.facts.inventory.hostname,
-                        machine_id: matchingEntity.facts.inventory.machine_id,
-                        release: matchingEntity.facts.inventory.release
+                        hostname: matchingEntity.facts.hostname,
+                        machine_id: matchingEntity.facts.machine_id,
+                        release: matchingEntity.facts.release
                     },
                     compliance: {
                         profiles: system.profile_names,
