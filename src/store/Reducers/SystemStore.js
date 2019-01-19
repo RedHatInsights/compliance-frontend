@@ -66,6 +66,8 @@ export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyRedu
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
             state.rows = systemsToInventoryEntities(systems, state.rows);
+            state.count = state.rows.length;
+            state.total = state.rows.length;
             for (const column of columns) {
                 if (state.columns.map(column => column.key).indexOf(column.key) === -1) {
                     state.columns.push(column);
