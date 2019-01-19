@@ -18,7 +18,7 @@ query FailedRulesForSystem($systemIdsQuery: String!){
 `;
 
 const FailedRulesQuery = graphql(GET_FAILED_RULES, {
-    options: (props) => ({ variables: { systemIdsQuery: 'id ^ (' + props.selectedEntities + ')' } }),
+    options: (props) => ({ variables: { systemIdsQuery: 'id ^ (' + props.selectedEntities.map(entity => entity.id) + ')' } }),
     props: ({ data }) => (data)
 });
 
@@ -34,21 +34,11 @@ class ComplianceRemediationButton extends React.Component {
             return result;
         }
 
-        // 1 host, multiple rules
-        if (this.props.selectedRules !== undefined && this.props.allSystems.length === 1) {
-            result.systems.push(this.props.allSystems[0].id);
+        for (const system of this.props.allSystems) {
+            result.systems.push(system.id);
 
-            for (const rule of this.props.selectedRules) {
-                result.issues.push({ id: rule });
-            }
-        // Multiple hosts, multiple rules
-        } else {
-            for (const system of this.props.allSystems) {
-                result.systems.push(system.id);
-
-                for (const rule of system.rule_objects_failed) {
-                    result.issues.push({ id: 'compliance:' + rule.ref_id });
-                }
+            for (const rule of system.rule_objects_failed) {
+                result.issues.push({ id: 'compliance:' + rule.ref_id });
             }
         }
 
@@ -73,14 +63,15 @@ ComplianceRemediationButton.propTypes = {
 };
 
 const mapStateToProps = state => {
-    if (state.entities === undefined || state.entities.entities === undefined) {
+    if (state.entities === undefined || state.entities.rows === undefined) {
         return { selectedEntities: [] };
+    } else if (state.entityDetails !== undefined && state.entityDetails.entity !== undefined) {
+        return { selectedEntities: [state.entityDetails.entity] };
     }
 
     return {
-        selectedEntities: state.entities.entities.
-        filter(entity => entity.selected).
-        map(entity => entity.id)
+        selectedEntities: state.entities.rows.
+        filter(entity => entity.selected)
     };
 };
 
