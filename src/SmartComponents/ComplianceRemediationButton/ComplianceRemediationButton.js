@@ -47,7 +47,7 @@ class ComplianceRemediationButton extends React.Component {
                 result.systems.push(system.id);
 
                 for (const rule of system.rule_objects_failed) {
-                    result.issues.push({ id: rule.ref_id });
+                    result.issues.push({ id: 'compliance:' + rule.ref_id });
                 }
             }
         }
