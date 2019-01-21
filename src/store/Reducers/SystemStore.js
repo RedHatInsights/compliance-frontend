@@ -19,7 +19,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
             // the ID in compliance
             let matchingEntity = entities.find((entity) => {
                 return entity.facts !== undefined &&
-                    entity.facts.hostname === system.name;
+                    entity.id === system.id;
             });
             if (matchingEntity === undefined) {
                 return;
@@ -43,9 +43,15 @@ export const systemsToInventoryEntities = (systems, entities) =>
                 updated: matchingEntity.updated,
                 facts: {
                     inventory: {
-                        hostname: matchingEntity.facts.hostname,
-                        machine_id: matchingEntity.facts.machine_id,
-                        release: matchingEntity.facts.release
+                        hostname: (matchingEntity.facts.inventory !== undefined) ?
+                            matchingEntity.facts.inventory.hostname :
+                            matchingEntity.facts.hostname,
+                        machine_id: (matchingEntity.facts.inventory !== undefined) ?
+                            matchingEntity.facts.inventory.machine_id :
+                            matchingEntity.facts.machine_id,
+                        release: (matchingEntity.facts.inventory !== undefined) ?
+                            matchingEntity.facts.inventory.release :
+                            matchingEntity.facts.release
                     },
                     compliance: {
                         profiles: system.profile_names,
