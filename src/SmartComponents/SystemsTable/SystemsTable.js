@@ -48,6 +48,7 @@ class SystemsTable extends React.Component {
 
     render() {
         const { InventoryCmp } = this.state;
+        const { items } = this.props;
         const tableHeaderButtons = <reactCore.Level gutter="md">
             <reactCore.LevelItem>
                 <DownloadTableButton />
@@ -63,7 +64,7 @@ class SystemsTable extends React.Component {
         // Ideally change items to look like the right Entities format
         return (
             <reactCore.Card>
-                <InventoryCmp>
+                <InventoryCmp items={items}>
                     { tableHeaderButtons }
                 </InventoryCmp>
             </reactCore.Card>
