@@ -57,7 +57,7 @@ class CompliancePolicyDonut extends React.Component {
     };
 
     render() {
-        const compliancePercentage = 100 * this.state.compliantHostCount / this.state.totalHostCount;
+        const compliancePercentage = Math.floor(100 * this.state.compliantHostCount / this.state.totalHostCount);
         const label = (
             <svg
                 className="chart-label"

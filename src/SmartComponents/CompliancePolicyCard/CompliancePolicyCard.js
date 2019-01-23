@@ -31,8 +31,8 @@ class CompliancePolicyCard extends React.Component {
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
         ];
-        const compliancePercentage = 100 *
-            (donutValues[0].y / (donutValues[0].y + donutValues[1].y)) + '%';
+        const compliancePercentage = Math.floor(100 *
+            (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
         const label = (
             <svg
                 className="chart-label"
