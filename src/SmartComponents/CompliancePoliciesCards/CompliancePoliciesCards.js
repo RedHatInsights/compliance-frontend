@@ -1,5 +1,18 @@
 import React from 'react';
-import { Grid, GridItem } from '@patternfly/react-core';
+import {
+    Grid,
+    GridItem,
+    Title,
+    Text,
+    TextContent,
+    TextVariants,
+    Button,
+    EmptyState,
+    EmptyStateIcon,
+    EmptyStateBody,
+    EmptyStateAction
+} from '@patternfly/react-core';
+import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
 import { Query } from 'react-apollo';
@@ -37,6 +50,38 @@ const CompliancePoliciesCards = () => (
                             />
                         </GridItem>
                 );
+            } else {
+                policyCards = <EmptyState>
+                    <EmptyStateIcon size="xl" title="Compliance" icon={ClipboardCheckIcon} />
+                    <br/>
+                    <Title size="lg">Welcome to Insights Compliance</Title>
+                    <EmptyStateBody>
+                        <TextContent>
+                            You have not uploaded any reports yet. Please generate a report using
+                            OpenSCAP:
+                            <Text component={TextVariants.blockquote}>
+                                scap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
+                                --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+                            </Text>
+                            and upload it using the following command:
+                            <Text component={TextVariants.blockquote}>
+                                sudo insights-client --verbose --payload scan.xml
+                                --content-type application/vnd.redhat.compliance.something+tgz
+                            </Text>
+                        </TextContent>
+                    </EmptyStateBody>
+
+                    <EmptyStateAction>
+                        <Button
+                            variant="primary"
+                            component="a"
+                            target="_blank"
+                            href="https://www.open-scap.org/getting-started/">
+                            Get started with OpenSCAP
+                        </Button>
+                    </EmptyStateAction>
+                </EmptyState>;
+
             }
 
             return (
