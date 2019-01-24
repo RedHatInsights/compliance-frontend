@@ -1,16 +1,6 @@
-import Immutable from 'seamless-immutable';
 import React from 'react';
-import * as ActionTypes from '../ActionTypes';
 import { applyReducerHash } from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
-
-// eslint-disable-next-line new-cap
-const initialState = Immutable({
-    systemsList: {
-        isLoading: true,
-        items: []
-    }
-});
 
 export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
@@ -82,23 +72,5 @@ export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyRedu
 
             return { ...state };
         }
-    },
-    initialState
-);
-
-export const SystemReducer = (state = initialState, action) => {
-    let newState;
-
-    switch (action.type) {
-        case ActionTypes.FETCH_COMPLIANCE_SYSTEMS + '_PENDING':
-            return Immutable.setIn(state, ['systemsList', 'isLoading'], true);
-
-        case ActionTypes.FETCH_COMPLIANCE_SYSTEMS + '_FULFILLED':
-            newState = Immutable.setIn(state, ['systemsList', 'items'], action.payload.data);
-            newState = Immutable.setIn(newState, ['systemsList', 'isLoading'], false);
-            return newState;
-
-        default:
-            return state;
     }
-};
+);
