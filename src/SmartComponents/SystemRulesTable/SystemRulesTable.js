@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
-import { Table, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { Ansible, Table, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { SearchIcon } from '@patternfly/react-icons';
 import { Grid, GridItem, Text, TextVariants } from '@patternfly/react-core';
 
@@ -16,7 +16,9 @@ class SystemRulesTable extends React.Component {
             rows: this.rulesToRows(this.props.profileRules),
             currentRows: []
         };
-        this.state.currentRows = this.currentRows(1, 10);
+        this.currentRows(1, 10).then((rows) => {
+            this.state.currentRows = rows;
+        });
         this.onExpandClick = this.onExpandClick.bind(this);
         this.setPage = this.setPage.bind(this);
         this.setPerPage = this.setPerPage.bind(this);
@@ -24,34 +26,69 @@ class SystemRulesTable extends React.Component {
     }
 
     setPage(page) {
-        this.setState(() => (
-            {
-                page,
-                currentRows: this.currentRows(page, this.state.itemsPerPage)
-            }
-        ));
+        this.currentRows(page, this.state.itemsPerPage).then((rows) => {
+            this.setState(() => (
+                {
+                    page,
+                    currentRows: rows
+                }
+            ));
+        });
     }
 
     setPerPage(itemsPerPage) {
-        this.setState(() => (
-            {
-                itemsPerPage,
-                currentRows: this.currentRows(this.state.page, itemsPerPage)
-            }
-        ));
+        this.currentRows(this.state.page, itemsPerPage).then((rows) => {
+            this.setState(() => (
+                {
+                    itemsPerPage,
+                    currentRows: rows
+                }
+            ));
+        });
     }
 
     currentRows(page, itemsPerPage) {
-        return this.state.rows.slice(
+        let newRows = this.state.rows.slice(
             (page - 1) * itemsPerPage * 2,
-            page * itemsPerPage * 2
-        );
+            page * itemsPerPage * 2);
+        const ruleIds = newRows.map((row) => {
+            if (row.cells.length === 5) { return row.cells[1]; }
+        }).filter(rule => rule).map(rule => 'compliance:' + rule);
+
+        return window.insights.chrome.auth.getUser()
+        .then(() => {
+            return fetch('/r/insights/platform/remediations/v1/resolutions', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ issues: ruleIds })
+            }).then((response) => {
+                if (!response.ok) {
+                    // If remediations doesn't respond, inject no fix available
+                    return {};
+                }
+
+                return response.json();
+            });
+        }).then(response => {
+            newRows = newRows.map((row) => {
+                if (row.cells.length === 5) {
+                    if (response['compliance:' + row.cells[1]]) {
+                        row.cells.push(<Ansible/>);
+                    } else {
+                        row.cells.push(<Ansible unsupported />);
+                    }
+                }
+
+                return row;
+            });
+
+            return newRows;
+        });
     }
 
     onItemSelect(_event, key, selected) {
         let { rows, page, itemsPerPage } = this.state;
-        const firstIndex = page === 1 ? 0 : page * itemsPerPage - itemsPerPage;
-        rows[firstIndex + Number(key)].selected = selected;
+        rows[((page - 1) * itemsPerPage * 2) + Number(key)].selected = selected;
         this.setState({
             rows
         });
@@ -99,7 +136,8 @@ class SystemRulesTable extends React.Component {
     }
 
     onExpandClick(_event, row, rowKey) {
-        const activeRow = this.state.rows[rowKey];
+        const key = ((this.state.page - 1) * this.state.itemsPerPage * 2) + Number(rowKey);
+        const activeRow = this.state.rows[key];
         const isActive = !activeRow.active;
         let openNodes = this.state.openNodes;
         activeRow.active = isActive;
@@ -143,7 +181,7 @@ class SystemRulesTable extends React.Component {
                     <GridItem span={12}>
                         <Table
                             variant='large'
-                            header={['Rule', 'Reference ID', 'Policy', 'Severity', 'Passed']}
+                            header={['Rule', 'Reference ID', 'Policy', 'Severity', 'Passed', 'Remediation']}
                             hasCheckbox
                             onItemSelect={this.onItemSelect}
                             rows={this.state.currentRows.map((oneRow, key) => {
@@ -151,7 +189,8 @@ class SystemRulesTable extends React.Component {
                                     return oneRow;
                                 }
 
-                                oneRow.isOpen = this.state.openNodes.indexOf(key) !== -1;
+                                const rowKey = ((this.state.page - 1) * this.state.itemsPerPage * 2) + Number(key);
+                                oneRow.isOpen = this.state.openNodes.indexOf(rowKey) !== -1;
                                 return oneRow;
                             })}
                             expandable={true}
