@@ -65,12 +65,12 @@ DownloadTableButton.propTypes = {
 };
 
 const mapStateToProps = state => {
-    if (state.entities === undefined || state.entities.entities === undefined) {
+    if (state.entities === undefined || state.entities.rows === undefined) {
         return { selectedEntities: [] };
     }
 
     return {
-        selectedEntities: state.entities.entities.
+        selectedEntities: state.entities.rows.
         filter(entity => entity.selected).
         map(entity => entity.id)
     };
