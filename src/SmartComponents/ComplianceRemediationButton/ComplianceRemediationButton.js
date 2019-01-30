@@ -52,9 +52,11 @@ class ComplianceRemediationButton extends React.Component {
     }
 
     render() {
+        const { disableRemediations } = this.props;
         return (
             <div id='remediation-button' style={{ marginRight: '20px' }}>
                 <RemediationButton
+                    isDisabled={disableRemediations || this.dataProvider().issues.length === 0}
                     dataProvider={this.dataProvider}
                 />
             </div>
@@ -65,7 +67,12 @@ class ComplianceRemediationButton extends React.Component {
 ComplianceRemediationButton.propTypes = {
     selectedEntities: propTypes.array,
     selectedRules: propTypes.array,
-    allSystems: propTypes.array // Prop coming from data.allSystems GraphQL query
+    allSystems: propTypes.array, // Prop coming from data.allSystems GraphQL query
+    disableRemediations: propTypes.bool
+};
+
+ComplianceRemediationButton.defaultProps = {
+    disableRemediations: false
 };
 
 const mapStateToProps = state => {

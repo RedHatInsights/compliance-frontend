@@ -170,7 +170,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                     <Main>
                         <Grid gutter='md'>
                             <GridItem span={12}>
-                                <SystemsTable items={systems} columns={columns} />
+                                <SystemsTable disableRemediations={true} items={systems} columns={columns} />
                             </GridItem>
                         </Grid>
                     </Main>
