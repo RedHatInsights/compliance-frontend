@@ -43,7 +43,7 @@ const CompliancePoliciesCards = () => (
             if (policies.length) {
                 policyCards = policies.map(
                     (policy, i) =>
-                        <GridItem span={3} key={i}>
+                        <GridItem sm={12} md={6} lg={6} xl={4} key={i}>
                             <CompliancePolicyCard
                                 key={i}
                                 policy={policy}
