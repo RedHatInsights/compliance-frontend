@@ -33,18 +33,17 @@ query Profile($policyId: String!){
         ref_id
         description
         total_host_count
-		compliant_host_count
-	}
-
-	allSystems{
-		id,
-		name,
-		profile_names,
-		rules_passed(profile_id: $policyId)
-		rules_failed(profile_id: $policyId)
-		last_scanned(profile_id: $policyId)
-		compliant(profile_id: $policyId)
-	}
+        compliant_host_count
+        hosts {
+            id,
+            name,
+            profile_names,
+            rules_passed(profile_id: $policyId)
+            rules_failed(profile_id: $policyId)
+            last_scanned(profile_id: $policyId)
+            compliant(profile_id: $policyId)
+        }
+    }
 }
 `;
 
@@ -70,7 +69,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 ];
             }
 
-            const systems = data.allSystems;
+            const systems = data.profile.hosts;
             const columns = [{
                 key: 'facts.compliance.profiles',
                 title: 'Profile'
