@@ -162,6 +162,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                     <Text className="policy-description" component={TextVariants.p}>
                                         <Truncate text={policy.description} length={380} />
                                     </Text>
+                                    <br/>
                                 </TextContent>
                             </GridItem>
                         </Grid>
