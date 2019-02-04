@@ -24,6 +24,10 @@ const ComplianceSystemsTable = () => (
 
             const systems = data.allSystems;
             const columns = [{
+                composed: ['facts.os_release', 'display_name'],
+                key: 'display_name',
+                title: 'Name'
+            }, {
                 key: 'facts.compliance.profiles',
                 title: 'Profiles',
                 props: {

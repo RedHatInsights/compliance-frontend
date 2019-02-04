@@ -71,6 +71,10 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
 
             const systems = data.profile.hosts;
             const columns = [{
+                composed: ['facts.os_release', 'display_name'],
+                key: 'display_name',
+                title: 'Name'
+            }, {
                 key: 'facts.compliance.profiles',
                 title: 'Profile'
             }, {
