@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Link
 } from 'react-router-dom';
+import Truncate from 'react-truncate';
 import {
     Card,
     CardBody,
@@ -22,6 +23,17 @@ class CompliancePolicyCard extends React.Component {
     constructor(policy) {
         super();
         this.policy = policy.policy;
+        this.state = { cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> };
+        this.onMouseover = this.onMouseover.bind(this);
+        this.onMouseout = this.onMouseout.bind(this);
+    }
+
+    onMouseover() {
+        this.setState({ cardTitle: this.policy.name });
+    }
+
+    onMouseout() {
+        this.setState({ cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> });
     }
 
     render() {
@@ -63,7 +75,10 @@ class CompliancePolicyCard extends React.Component {
                 <CardBody>
                     <Text style={{ fontWeight: '500', color: '#bbb' }} component={TextVariants.small}>External Policy</Text>
                     <TextContent>
-                        <Text style={{ fontWeight: '500' }} component={TextVariants.h4}>{this.policy.name}</Text>
+                        <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
+                            style={{ fontWeight: '500' }} component={TextVariants.h4}>
+                            {this.state.cardTitle}
+                        </Text>
                     </TextContent>
                     <TextContent className="chart-title">
                         <Grid>

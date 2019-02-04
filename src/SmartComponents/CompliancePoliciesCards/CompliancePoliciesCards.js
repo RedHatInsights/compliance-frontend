@@ -43,7 +43,7 @@ const CompliancePoliciesCards = () => (
             if (policies.length) {
                 policyCards = policies.map(
                     (policy, i) =>
-                        <GridItem sm={12} md={6} lg={6} xl={4} key={i}>
+                        <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
                             <CompliancePolicyCard
                                 key={i}
                                 policy={policy}
@@ -60,7 +60,7 @@ const CompliancePoliciesCards = () => (
                             You have not uploaded any reports yet. Please generate a report using
                             OpenSCAP:
                             <Text component={TextVariants.blockquote}>
-                                scap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
+                                openscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
                                 --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
                             </Text>
                             and upload it using the following command:
