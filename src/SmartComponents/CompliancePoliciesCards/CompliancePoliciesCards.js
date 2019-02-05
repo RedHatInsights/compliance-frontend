@@ -34,7 +34,13 @@ const QUERY = gql`
 const CompliancePoliciesCards = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {
-            if (error) { return 'Oops! Error loading Policy data: ' + error; }
+            if (error) {
+                if (error.networkError.statusCode === 401) {
+                    window.insights.chrome.auth.logout();
+                }
+
+                return 'Oops! Error loading Policy data: ' + error;
+            }
 
             if (loading) { return 'Loading Policies...'; }
 

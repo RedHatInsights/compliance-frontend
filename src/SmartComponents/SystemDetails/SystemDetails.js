@@ -45,7 +45,13 @@ class SystemDetails extends React.Component {
             <Query query={QUERY} variables={{ systemId }}>
                 {({ data, error, loading }) => {
                     let rules = {};
-                    if (error) { return 'Oops! Error loading System data: ' + error; }
+                    if (error) {
+                        if (error.networkError.statusCode === 401) {
+                            window.insights.chrome.auth.logout();
+                        }
+
+                        return 'Oops! Error loading Systems data: ' + error;
+                    }
 
                     if (loading) {
                         return (<PageHeader>Loading System details...</PageHeader>);

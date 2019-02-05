@@ -54,7 +54,13 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
             let donutId = 'loading-donut';
             let policy = {};
 
-            if (error) { return 'Oops! Error loading Policy data: ' + error; }
+            if (error) {
+                if (error.networkError.statusCode === 401) {
+                    window.insights.chrome.auth.logout();
+                }
+
+                return 'Oops! Error loading Policy data: ' + error;
+            }
 
             if (loading) {
                 return (<PageHeader>Loading Policy details...</PageHeader>);

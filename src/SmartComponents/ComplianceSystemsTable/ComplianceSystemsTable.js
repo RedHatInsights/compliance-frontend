@@ -18,7 +18,13 @@ const QUERY = gql`
 const ComplianceSystemsTable = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {
-            if (error) { return 'Oops! Error loading Systems data: ' + error; }
+            if (error) {
+                if (error.networkError.statusCode === 401) {
+                    window.insights.chrome.auth.logout();
+                }
+
+                return 'Oops! Error loading Systems data: ' + error;
+            }
 
             if (loading) { return 'Loading Systems...'; }
 
