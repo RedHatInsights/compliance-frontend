@@ -21,7 +21,7 @@ node {
 }
 
 def runStages() {
-    openShift.withNode(yaml: "openshift/jenkins/slave_pod_template.yaml") {
+    openShift.withNode(yaml: "openshift/jenkins/slave_pod_template.yml") {
         // check out source again to get it in this node's workspace
         scmVars = checkout scm
 
