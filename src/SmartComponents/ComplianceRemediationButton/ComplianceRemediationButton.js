@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
-import './ComplianceRemediationButton.scss';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
