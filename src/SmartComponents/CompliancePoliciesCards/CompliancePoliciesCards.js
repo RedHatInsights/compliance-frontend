@@ -17,6 +17,7 @@ import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const QUERY = gql`
 {
@@ -34,13 +35,7 @@ const QUERY = gql`
 const CompliancePoliciesCards = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {
-            if (error) {
-                if (error.networkError.statusCode === 401) {
-                    window.insights.chrome.auth.logout();
-                }
-
-                return 'Oops! Error loading Policy data: ' + error;
-            }
+            if (error) { return <ErrorPage error={error}/>; }
 
             if (loading) { return 'Loading Policies...'; }
 

@@ -3,6 +3,7 @@ import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import SystemsTable from '../SystemsTable/SystemsTable';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const QUERY = gql`
 {
@@ -18,13 +19,7 @@ const QUERY = gql`
 const ComplianceSystemsTable = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {
-            if (error) {
-                if (error.networkError.statusCode === 401) {
-                    window.insights.chrome.auth.logout();
-                }
-
-                return 'Oops! Error loading Systems data: ' + error;
-            }
+            if (error) { return <ErrorPage error={error}/>; }
 
             if (loading) { return 'Loading Systems...'; }
 
