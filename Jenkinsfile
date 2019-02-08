@@ -17,6 +17,7 @@ def runStages() {
     openShift.withUINode(cloud: 'cmqe') {
         stage('Install integration tests env') {
             sh "pip install iqe-integration-tests"
+            sh "iqe plugin install iqe-red-hat-internal-envs-plugin"
             sh "iqe plugin install iqe-compliance-plugin"
         }
 
