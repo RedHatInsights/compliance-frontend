@@ -14,12 +14,10 @@ node {
 }
 
 def runStages() {
-    openShift.withUINode() {
-        // check out source again to get it in this node's workspace
-
+    openShift.withUINode(cloud: 'cmqe') {
         stage('Install integration tests env') {
-            sh 'pip install iqe-integration-tests'
-            sh 'iqe plugin install iqe-compliance-plugin'
+            sh "pip install iqe-integration-tests"
+            sh "iqe plugin install iqe-compliance-plugin"
         }
 
         stage('Run integration tests') {
