@@ -9,32 +9,22 @@ node {
     scmVars = checkout scm
 
     if (env.BRANCH_NAME == 'master' && scmVars.GIT_COMMIT != scmVars.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-
-        stage('Wait until frontend is updated') {
-            withCredentials([string(credentialsId: "compliance_app_info_url", variable: "APP_INFO_URL")]) {
-                waitForFrontend(scmVars: scmVars, appInfoUrl: env.APP_INFO_URL, timeout: 300)
-            }
-        }
-
         runStages()
     }
 }
 
 def runStages() {
-    openShift.withNode(
-        yaml: "openshift/jenkins/slave_pod_template.yml",
-        namespace: "jenkinsstg"
-    ) {
+    openShift.withUINode() {
         // check out source again to get it in this node's workspace
-        scmVars = checkout scm
 
         stage('Install integration tests env') {
-            runIqeInstall(pluginName: "iqe-compliance-plugin")
+            sh 'pip install iqe-integration-tests'
+            sh 'iqe plugin install iqe-compliance-plugin'
         }
 
         stage('Run integration tests') {
             withStatusContext.integrationTest {
-                sh "iqe tests plugin compliance -v --junitxml=junit.xml"
+                sh "ENV_FOR_DYNACONF=ci iqe tests plugin compliance -v -s -k test_get_all_policies --junitxml=junit.xml"
             }
 
             junit 'junit.xml'
