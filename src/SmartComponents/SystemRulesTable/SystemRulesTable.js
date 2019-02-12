@@ -2,9 +2,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
-import { Ansible, Table, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { Ansible, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
+import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import { SearchIcon } from '@patternfly/react-icons';
-import { Grid, GridItem, Text, TextVariants } from '@patternfly/react-core';
+import { Grid, GridItem } from '@patternfly/react-core';
 
 class SystemRulesTable extends React.Component {
     constructor(props) {
@@ -13,16 +14,20 @@ class SystemRulesTable extends React.Component {
             openNodes: [],
             page: 1,
             itemsPerPage: 10,
-            rows: this.rulesToRows(this.props.profileRules),
-            currentRows: []
+            rows: [],
+            currentRows: [],
+            refIds: {}
         };
+        const rowsRefIds = this.rulesToRows(this.props.profileRules);
+        this.state.rows = rowsRefIds.rows;
+        this.state.refIds = rowsRefIds.refIds;
         this.currentRows(1, 10).then((rows) => {
             this.state.currentRows = rows;
         });
-        this.onExpandClick = this.onExpandClick.bind(this);
+        this.onCollapse = this.onCollapse.bind(this);
         this.setPage = this.setPage.bind(this);
         this.setPerPage = this.setPerPage.bind(this);
-        this.onItemSelect = this.onItemSelect.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     setPage(page) {
@@ -51,8 +56,15 @@ class SystemRulesTable extends React.Component {
         let newRows = this.state.rows.slice(
             (page - 1) * itemsPerPage * 2,
             page * itemsPerPage * 2);
+        newRows = newRows.map((row) => {
+            if (row.hasOwnProperty('parent') && row.parent > itemsPerPage) {
+                row.parent = row.parent % (itemsPerPage * 2);
+            }
+
+            return row;
+        });
         const ruleIds = newRows.map((row) => {
-            if (row.cells.length === 5) { return row.cells[1]; }
+            if (row.cells.length === 4) { return this.state.refIds[row.cells[0]]; }
         }).filter(rule => rule).map(rule => 'compliance:' + rule);
 
         return window.insights.chrome.auth.getUser()
@@ -71,8 +83,8 @@ class SystemRulesTable extends React.Component {
             });
         }).then(response => {
             newRows = newRows.map((row) => {
-                if (row.cells.length === 5) {
-                    if (response['compliance:' + row.cells[1]]) {
+                if (row.cells.length === 4) {
+                    if (response['compliance:' + this.state.refIds[row.cells[0]]]) {
                         row.cells.push(<Ansible/>);
                     } else {
                         row.cells.push(<Ansible unsupported />);
@@ -86,23 +98,30 @@ class SystemRulesTable extends React.Component {
         });
     }
 
-    onItemSelect(_event, key, selected) {
+    onSelect(_event, selected, key) {
         let { rows, page, itemsPerPage } = this.state;
-        rows[((page - 1) * itemsPerPage * 2) + Number(key)].selected = selected;
-        this.setState({
-            rows
-        });
+        if (key === -1) {
+            // This represents "Select all rules"
+            const lowerBound = (page - 1) * itemsPerPage * 2;
+            Array.from(new Array(itemsPerPage), (x, i) => { rows[i + lowerBound].selected = selected; });
+        } else {
+            // One rule was selected
+            rows[((page - 1) * itemsPerPage * 2) + Number(key)].selected = selected;
+        }
+
+        this.setState({ rows });
     }
 
     rulesToRows(profileRules) {
         const rows = [];
+        const refIds = {};
         profileRules.forEach((profileRule) => (
             profileRule.rules.forEach((rule, i) => {
+                refIds[rule.title] = rule.ref_id;
                 rows.push({
-                    children: [i * 2 + 1],
+                    isOpen: false,
                     cells: [
-                        <Text key={i} component={TextVariants.a}>{rule.title}</Text>,
-                        rule.ref_id,
+                        rule.title,
                         profileRule.profile,
                         rule.severity,
                         (rule.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :
@@ -110,7 +129,7 @@ class SystemRulesTable extends React.Component {
                     ]
                 });
                 rows.push({
-                    isOpen: false,
+                    parent: [i * 2],
                     cells: [
                         {
                             title: <React.Fragment key={i}>
@@ -126,40 +145,27 @@ class SystemRulesTable extends React.Component {
                                     <p>{rule.rationale}</p>
                                 </div>
                             </React.Fragment>,
-                            colSpan: 5
+                            colSpan: 6
                         }
                     ]
                 });
             })
         ));
-        return rows;
+        return { rows, refIds };
     }
 
-    onExpandClick(_event, row, rowKey) {
+    onCollapse(_event, rowKey, isOpen) {
+        const { rows } = this.state;
         const key = ((this.state.page - 1) * this.state.itemsPerPage * 2) + Number(rowKey);
-        const activeRow = this.state.rows[key];
-        const isActive = !activeRow.active;
-        let openNodes = this.state.openNodes;
-        activeRow.active = isActive;
-        if (!isActive) {
-            activeRow.children.forEach(oneChild => {
-                openNodes.splice(openNodes.indexOf(oneChild), 1);
-            });
-        } else {
-            openNodes = [
-                ...openNodes,
-                ...row.children
-            ];
-        }
-
-        this.setState({
-            openNodes,
-            rows: this.state.rows
+        rows[key].isOpen = isOpen;
+        this.setState(() => ({ rows }));
+        this.currentRows(this.state.page, this.state.itemsPerPage).then((newRows) => {
+            this.setState(() => ({ currentRows: newRows }));
         });
     }
 
     selectedRules() {
-        return this.state.rows.filter(row => row.selected).map(row => row.cells[1]);
+        return this.state.rows.filter(row => row.selected).map(row => this.state.refIds[row.cells[0]]);
     }
 
     render() {
@@ -180,28 +186,19 @@ class SystemRulesTable extends React.Component {
 
                     <GridItem span={12}>
                         <Table
-                            variant='large'
-                            header={['Rule', 'Reference ID', 'Policy', 'Severity', 'Passed', 'Remediation']}
-                            hasCheckbox
-                            onItemSelect={this.onItemSelect}
-                            rows={this.state.currentRows.map((oneRow, key) => {
-                                if (!oneRow.hasOwnProperty('isOpen')) {
-                                    return oneRow;
-                                }
-
-                                const rowKey = ((this.state.page - 1) * this.state.itemsPerPage * 2) + Number(key);
-                                oneRow.isOpen = this.state.openNodes.indexOf(rowKey) !== -1;
-                                return oneRow;
-                            })}
-                            expandable={true}
-                            onExpandClick={this.onExpandClick}
-                            footer={<Pagination
-                                numberOfItems={this.state.rows.length}
-                                onPerPageSelect={ this.setPerPage }
-                                page={ this.state.page }
-                                onSetPage={ this.setPage }
-                                itemsPerPage={ this.state.itemsPerPage }
-                            />}
+                            cells={['Rule', 'Policy', 'Severity', 'Passed', 'Remediation']}
+                            onCollapse={this.onCollapse}
+                            onSelect={this.onSelect}
+                            rows={this.state.currentRows}>
+                            <TableHeader />
+                            <TableBody />
+                        </Table>
+                        <Pagination
+                            numberOfItems={this.state.rows.length}
+                            onPerPageSelect={ this.setPerPage }
+                            page={ this.state.page }
+                            onSetPage={ this.setPage }
+                            itemsPerPage={ this.state.itemsPerPage }
                         />
                     </GridItem>
                 </Grid>

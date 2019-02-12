@@ -39,16 +39,14 @@ class SystemPolicyCard extends React.Component {
                         <Text style={{ marginBottom: '0px' }} component={TextVariants.small}>External Policy</Text>
                         <Text style={{ marginTop: '0px' }} component={TextVariants.h4}>{this.policy.name}</Text>
                     </TextContent>
-                    <TextContent>
-                        { this.complianceIcon(this.policy.compliant) }
-                        <Text component={TextVariants.small}>
-                            { this.policy.rules_passed } of { totalRules } passed
-                        </Text>
-                        <Text component={TextVariants.medium}>
-                            Profile <br/>
-                            { this.policy.ref_id }
-                        </Text>
-                    </TextContent>
+                    { this.complianceIcon(this.policy.compliant) }
+                    <Text component={TextVariants.small}>
+                        { this.policy.rules_passed } of { totalRules } passed
+                    </Text>
+                    <Text component={TextVariants.medium}>
+                        Profile <br/>
+                        { this.policy.ref_id }
+                    </Text>
                 </CardBody>
                 <CardFooter>
                     <TextContent>
