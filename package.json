@@ -10,7 +10,7 @@
     "@patternfly/react-charts": "1.4.1",
     "@patternfly/react-core": "1.49.4",
     "@patternfly/react-icons": "2.9.3",
-    "@red-hat-insights/insights-frontend-components": "3.33.59",
+    "@red-hat-insights/insights-frontend-components": "3.33.61",
     "actioncable": "^5.2.1",
     "apollo-boost": "^0.1.22",
     "classnames": "^2.2.5",
