@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Ansible, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
-import { Table, TableHeader, TableBody } from '@patternfly/react-table';
+import { Table, TableHeader, TableBody, sortable, SortByDirection } from '@patternfly/react-table';
 import { SearchIcon } from '@patternfly/react-icons';
 import { Grid, GridItem } from '@patternfly/react-core';
 
@@ -11,12 +11,19 @@ class SystemRulesTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openNodes: [],
+            columns: [
+                { title: 'Rule', transforms: [sortable] },
+                { title: 'Policy', transforms: [sortable] },
+                { title: 'Severity', transforms: [sortable] },
+                { title: 'Passed', transforms: [sortable] },
+                { title: 'Remediation' }
+            ],
             page: 1,
             itemsPerPage: 10,
             rows: [],
             currentRows: [],
-            refIds: {}
+            refIds: {},
+            sortBy: {}
         };
         const rowsRefIds = this.rulesToRows(this.props.profileRules);
         this.state.rows = rowsRefIds.rows;
@@ -28,32 +35,34 @@ class SystemRulesTable extends React.Component {
         this.setPage = this.setPage.bind(this);
         this.setPerPage = this.setPerPage.bind(this);
         this.onSelect = this.onSelect.bind(this);
+        this.onSort = this.onSort.bind(this);
     }
 
     setPage(page) {
-        this.currentRows(page, this.state.itemsPerPage).then((rows) => {
+        this.currentRows(page, this.state.itemsPerPage).then((currentRows) => {
             this.setState(() => (
                 {
                     page,
-                    currentRows: rows
+                    currentRows
                 }
             ));
         });
     }
 
     setPerPage(itemsPerPage) {
-        this.currentRows(this.state.page, itemsPerPage).then((rows) => {
+        this.currentRows(this.state.page, itemsPerPage).then((currentRows) => {
             this.setState(() => (
                 {
                     itemsPerPage,
-                    currentRows: rows
+                    currentRows
                 }
             ));
         });
     }
 
-    currentRows(page, itemsPerPage) {
-        let newRows = this.state.rows.slice(
+    currentRows(page, itemsPerPage, providedRows) {
+        const allRows = !providedRows ? this.state.rows : providedRows;
+        let newRows = allRows.slice(
             (page - 1) * itemsPerPage * 2,
             page * itemsPerPage * 2);
         newRows = newRows.map((row) => {
@@ -64,7 +73,7 @@ class SystemRulesTable extends React.Component {
             return row;
         });
         const ruleIds = newRows.map((row) => {
-            if (row.cells.length === 4) { return this.state.refIds[row.cells[0]]; }
+            if (row.hasOwnProperty('isOpen')) { return this.state.refIds[row.cells[0]]; }
         }).filter(rule => rule).map(rule => 'compliance:' + rule);
 
         return window.insights.chrome.auth.getUser()
@@ -83,7 +92,7 @@ class SystemRulesTable extends React.Component {
             });
         }).then(response => {
             newRows = newRows.map((row) => {
-                if (row.cells.length === 4) {
+                if (row.hasOwnProperty('isOpen') && row.cells.length === 4) {
                     if (response['compliance:' + this.state.refIds[row.cells[0]]]) {
                         row.cells.push(<Ansible/>);
                     } else {
@@ -103,7 +112,7 @@ class SystemRulesTable extends React.Component {
         if (key === -1) {
             // This represents "Select all rules"
             const lowerBound = (page - 1) * itemsPerPage * 2;
-            Array.from(new Array(itemsPerPage), (x, i) => { rows[i + lowerBound].selected = selected; });
+            Array.from(new Array(itemsPerPage * 2), (x, i) => { rows[i + lowerBound].selected = selected; });
         } else {
             // One rule was selected
             rows[((page - 1) * itemsPerPage * 2) + Number(key)].selected = selected;
@@ -129,7 +138,7 @@ class SystemRulesTable extends React.Component {
                     ]
                 });
                 rows.push({
-                    parent: [i * 2],
+                    parent: i * 2,
                     cells: [
                         {
                             title: <React.Fragment key={i}>
@@ -158,9 +167,8 @@ class SystemRulesTable extends React.Component {
         const { rows } = this.state;
         const key = ((this.state.page - 1) * this.state.itemsPerPage * 2) + Number(rowKey);
         rows[key].isOpen = isOpen;
-        this.setState(() => ({ rows }));
-        this.currentRows(this.state.page, this.state.itemsPerPage).then((newRows) => {
-            this.setState(() => ({ currentRows: newRows }));
+        this.currentRows(this.state.page, this.state.itemsPerPage, rows).then((currentRows) => {
+            this.setState(() => ({ rows, currentRows }));
         });
     }
 
@@ -168,7 +176,73 @@ class SystemRulesTable extends React.Component {
         return this.state.rows.filter(row => row.selected).map(row => this.state.refIds[row.cells[0]]);
     }
 
+    // This takes both the row and its children (collapsible rows) and puts them into
+    // one element. It is used only so that the rows can be compared.
+    compressRows(rows) {
+        const compressedRows = [];
+        rows.forEach((row, i) => {
+            if (row.hasOwnProperty('isOpen')) {
+                compressedRows.push({ parent: row, child: rows[i + 1] });
+            }
+        });
+
+        return compressedRows;
+    }
+
+    uncompressRows(compressedRows) {
+        const originalRows = [];
+        compressedRows.forEach((compressedRow, i) => {
+            originalRows.push(compressedRow.parent);
+            if (compressedRow.child) {
+                let child = compressedRow.child;
+                child.parent = i * 2;
+                originalRows.push(child);
+            }
+        });
+        return originalRows;
+    }
+
+    onSort(_event, index, direction) {
+        // Original index is not the right column, as patternfly adds 1 because
+        // of the 'collapsible' button and 1 because of the checkbox.
+        let column = index - 2;
+        const sortedRows = this.uncompressRows(
+            this.compressRows(this.state.rows).sort(
+                (a, b) => {
+                    if (direction === SortByDirection.asc) {
+                        if (column === 3) {
+                            return a.parent.cells[column].props.style.color === b.parent.cells[column].props.style.color ? 0 :
+                                a.parent.cells[column].props.style.color < b.parent.cells[column].props.style.color ? 1 : -1;
+                        } else {
+                            return a.parent.cells[column].localeCompare(b.parent.cells[column]);
+                        }
+
+                    } else {
+                        if (column === 3) {
+                            return a.parent.cells[column].props.style.color === b.parent.cells[column].props.style.color ? 0 :
+                                a.parent.cells[column].props.style.color > b.parent.cells[column].props.style.color ? 1 : -1;
+                        } else {
+                            return -a.parent.cells[column].localeCompare(b.parent.cells[column]);
+                        }
+                    }
+                }
+            )
+        );
+        this.currentRows(this.state.page, this.state.itemsPerPage).then((currentRows) => {
+            this.setState(() => ({
+                currentRows,
+                sortBy: {
+                    index,
+                    direction
+                },
+                rows: sortedRows
+            }));
+        });
+    }
+
     render() {
+        const { sortBy, currentRows, columns, rows, page, itemsPerPage } = this.state;
+
         return (
             <React.Fragment>
                 <Grid gutter="sm">
@@ -186,19 +260,21 @@ class SystemRulesTable extends React.Component {
 
                     <GridItem span={12}>
                         <Table
-                            cells={['Rule', 'Policy', 'Severity', 'Passed', 'Remediation']}
+                            cells={columns}
                             onCollapse={this.onCollapse}
+                            onSort={this.onSort}
+                            sortBy={sortBy}
                             onSelect={this.onSelect}
-                            rows={this.state.currentRows}>
+                            rows={currentRows}>
                             <TableHeader />
                             <TableBody />
                         </Table>
                         <Pagination
-                            numberOfItems={this.state.rows.length}
-                            onPerPageSelect={ this.setPerPage }
-                            page={ this.state.page }
-                            onSetPage={ this.setPage }
-                            itemsPerPage={ this.state.itemsPerPage }
+                            numberOfItems={rows.length}
+                            onPerPageSelect={this.setPerPage}
+                            page={page}
+                            onSetPage={this.setPage}
+                            itemsPerPage={itemsPerPage}
                         />
                     </GridItem>
                 </Grid>
