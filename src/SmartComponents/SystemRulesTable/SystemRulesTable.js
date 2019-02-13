@@ -5,7 +5,11 @@ import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons'
 import { Ansible, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { Table, TableHeader, TableBody, sortable, SortByDirection } from '@patternfly/react-table';
 import { SearchIcon } from '@patternfly/react-icons';
-import { Grid, GridItem } from '@patternfly/react-core';
+import { Checkbox, Grid, GridItem } from '@patternfly/react-core';
+
+const FAILED_COLOR = '#a30000';
+const PASSED_COLOR = '#92d400';
+const COMPLIANT_COLUMN = 3;
 
 class SystemRulesTable extends React.Component {
     constructor(props) {
@@ -36,6 +40,7 @@ class SystemRulesTable extends React.Component {
         this.setPerPage = this.setPerPage.bind(this);
         this.onSelect = this.onSelect.bind(this);
         this.onSort = this.onSort.bind(this);
+        this.hidePassed = this.hidePassed.bind(this);
     }
 
     setPage(page) {
@@ -133,8 +138,8 @@ class SystemRulesTable extends React.Component {
                         rule.title,
                         profileRule.profile,
                         rule.severity,
-                        (rule.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :
-                            <ExclamationCircleIcon style={{ color: '#a30000' }}/>)
+                        (rule.compliant ? <CheckCircleIcon style={{ color: PASSED_COLOR }}/> :
+                            <ExclamationCircleIcon style={{ color: FAILED_COLOR }}/>)
                     ]
                 });
                 rows.push({
@@ -210,7 +215,7 @@ class SystemRulesTable extends React.Component {
             this.compressRows(this.state.rows).sort(
                 (a, b) => {
                     if (direction === SortByDirection.asc) {
-                        if (column === 3) {
+                        if (column === COMPLIANT_COLUMN) {
                             return a.parent.cells[column].props.style.color === b.parent.cells[column].props.style.color ? 0 :
                                 a.parent.cells[column].props.style.color < b.parent.cells[column].props.style.color ? 1 : -1;
                         } else {
@@ -218,7 +223,7 @@ class SystemRulesTable extends React.Component {
                         }
 
                     } else {
-                        if (column === 3) {
+                        if (column === COMPLIANT_COLUMN) {
                             return a.parent.cells[column].props.style.color === b.parent.cells[column].props.style.color ? 0 :
                                 a.parent.cells[column].props.style.color > b.parent.cells[column].props.style.color ? 1 : -1;
                         } else {
@@ -240,19 +245,54 @@ class SystemRulesTable extends React.Component {
         });
     }
 
+    hidePassed(checked) {
+        if (checked) {
+            const { rows } = this.state;
+            const onlyPassedRows = [];
+            this.state.rows.forEach((row, i) => {
+                if (row.hasOwnProperty('isOpen') && row.cells[COMPLIANT_COLUMN].props.style.color === FAILED_COLOR) {
+                    onlyPassedRows.push(row);
+                    if (!rows[i + 1].hasOwnProperty('isOpen')) {
+                        let child = rows[i + 1];
+                        child.parent = onlyPassedRows.length - 1;
+                        onlyPassedRows.push(child);
+                    }
+                }
+            });
+
+            this.currentRows(this.state.page, this.state.itemsPerPage, onlyPassedRows).then((currentRows) => {
+                this.setState(() => ({
+                    currentRows,
+                    originalRows: rows,
+                    rows: onlyPassedRows
+                }));
+            });
+        } else {
+            this.currentRows(this.state.page, this.state.itemsPerPage, this.state.originalRows).then((currentRows) => {
+                this.setState(() => ({
+                    currentRows,
+                    rows: this.state.originalRows
+                }));
+            });
+        }
+    }
+
     render() {
         const { sortBy, currentRows, columns, rows, page, itemsPerPage } = this.state;
 
         return (
             <React.Fragment>
                 <Grid gutter="sm">
-                    <GridItem span={10}>
+                    <GridItem span={8}>
                         <Input
                             id="search"
                             type="text"
                             style={{ width: '200px' }}
                         />{' '}
                         <SearchIcon style={{ paddingTop: '4px' }} />
+                    </GridItem>
+                    <GridItem span={2}>
+                        <Checkbox onChange={this.hidePassed} label={'Hide Passed Rules'} />
                     </GridItem>
                     <GridItem span={2}>
                         <ComplianceRemediationButton selectedRules={this.selectedRules()} />
