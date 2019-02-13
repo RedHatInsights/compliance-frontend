@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
-import './ComplianceRemediationButton.scss';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -37,8 +36,14 @@ class ComplianceRemediationButton extends React.Component {
         for (const system of this.props.allSystems) {
             result.systems.push(system.id);
 
-            for (const rule of system.rule_objects_failed) {
-                result.issues.push({ id: 'compliance:' + rule.ref_id });
+            if (this.props.selectedRules !== undefined) {
+                for (const rule of this.props.selectedRules) {
+                    result.issues.push({ id: 'compliance:' + rule });
+                }
+            } else {
+                for (const rule of system.rule_objects_failed) {
+                    result.issues.push({ id: 'compliance:' + rule.ref_id });
+                }
             }
         }
 
@@ -46,9 +51,11 @@ class ComplianceRemediationButton extends React.Component {
     }
 
     render() {
+        const { disableRemediations } = this.props;
         return (
             <div id='remediation-button' style={{ marginRight: '20px' }}>
                 <RemediationButton
+                    isDisabled={disableRemediations || this.dataProvider().issues.length === 0}
                     dataProvider={this.dataProvider}
                 />
             </div>
@@ -59,7 +66,12 @@ class ComplianceRemediationButton extends React.Component {
 ComplianceRemediationButton.propTypes = {
     selectedEntities: propTypes.array,
     selectedRules: propTypes.array,
-    allSystems: propTypes.array // Prop coming from data.allSystems GraphQL query
+    allSystems: propTypes.array, // Prop coming from data.allSystems GraphQL query
+    disableRemediations: propTypes.bool
+};
+
+ComplianceRemediationButton.defaultProps = {
+    disableRemediations: false
 };
 
 const mapStateToProps = state => {

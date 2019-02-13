@@ -33,18 +33,17 @@ query Profile($policyId: String!){
         ref_id
         description
         total_host_count
-		compliant_host_count
-	}
-
-	allSystems{
-		id,
-		name,
-		profile_names,
-		rules_passed(profile_id: $policyId)
-		rules_failed(profile_id: $policyId)
-		last_scanned(profile_id: $policyId)
-		compliant(profile_id: $policyId)
-	}
+        compliant_host_count
+        hosts {
+            id,
+            name,
+            profile_names,
+            rules_passed(profile_id: $policyId)
+            rules_failed(profile_id: $policyId)
+            last_scanned(profile_id: $policyId)
+            compliant(profile_id: $policyId)
+        }
+    }
 }
 `;
 
@@ -55,7 +54,13 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
             let donutId = 'loading-donut';
             let policy = {};
 
-            if (error) { return 'Oops! Error loading Policy data: ' + error; }
+            if (error) {
+                if (error.networkError.statusCode === 401) {
+                    window.insights.chrome.auth.logout();
+                }
+
+                return 'Oops! Error loading Policy data: ' + error;
+            }
 
             if (loading) {
                 return (<PageHeader>Loading Policy details...</PageHeader>);
@@ -70,8 +75,12 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 ];
             }
 
-            const systems = data.allSystems;
+            const systems = data.profile.hosts;
             const columns = [{
+                composed: ['facts.os_release', 'display_name'],
+                key: 'display_name',
+                title: 'Name'
+            }, {
                 key: 'facts.compliance.profiles',
                 title: 'Profile'
             }, {
@@ -96,8 +105,8 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 { name: donutValues[1].y + ' Systems Non-Compliant' }
             ];
 
-            const compliancePercentage = 100 *
-                (donutValues[0].y / (donutValues[0].y + donutValues[1].y)) + '%';
+            const compliancePercentage = Math.floor(100 *
+                (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
 
             const label = (
                 <svg
@@ -163,6 +172,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                     <Text className="policy-description" component={TextVariants.p}>
                                         <Truncate text={policy.description} length={380} />
                                     </Text>
+                                    <br/>
                                 </TextContent>
                             </GridItem>
                         </Grid>
@@ -170,7 +180,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                     <Main>
                         <Grid gutter='md'>
                             <GridItem span={12}>
-                                <SystemsTable items={systems} columns={columns} />
+                                <SystemsTable disableRemediations={true} items={systems} columns={columns} />
                             </GridItem>
                         </Grid>
                     </Main>

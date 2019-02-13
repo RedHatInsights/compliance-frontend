@@ -17,10 +17,14 @@ class ComplianceTabs extends Component {
             <React.Fragment>
                 <Nav onSelect={this.redirect} aria-label="Compliance Tabs">
                     <NavList variant={NavVariants.horizontal}>
-                        <NavItem preventDefault={true} itemId={paths.compliancePolicies}>
+                        <NavItem preventDefault={true}
+                            isActive={this.props.match.path === paths.compliancePolicies}
+                            itemId={paths.compliancePolicies}>
                             Policies
                         </NavItem>
-                        <NavItem preventDefault={true} itemId={paths.complianceSystems}>
+                        <NavItem preventDefault={true}
+                            isActive={this.props.match.path === paths.complianceSystems}
+                            itemId={paths.complianceSystems}>
                             Systems
                         </NavItem>
                     </NavList>
@@ -31,7 +35,8 @@ class ComplianceTabs extends Component {
 }
 
 ComplianceTabs.propTypes = {
-    history: propTypes.object
+    history: propTypes.object,
+    match: propTypes.object
 };
 
 export default routerParams(ComplianceTabs);

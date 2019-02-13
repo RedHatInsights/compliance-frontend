@@ -9,29 +9,23 @@ node {
     scmVars = checkout scm
 
     if (env.BRANCH_NAME == 'master' && scmVars.GIT_COMMIT != scmVars.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-
-        stage('Wait until frontend is updated') {
-            withCredentials([string(credentialsId: "compliance_app_info_url", variable: "APP_INFO_URL")]) {
-                waitForFrontend(scmVars: scmVars, appInfoUrl: env.APP_INFO_URL, timeout: 300)
-            }
-        }
-
         runStages()
     }
 }
 
 def runStages() {
-    openShift.withNode(image: "docker-registry.default.svc:5000/jenkins/jenkins-slave-iqe:latest") {
-        // check out source again to get it in this node's workspace
-        scmVars = checkout scm
-
+    openShift.withUINode(cloud: 'cmqe') {
         stage('Install integration tests env') {
-            runIqeInstall(pluginName: "iqe-compliance-plugin")
+            sh "pip install iqe-integration-tests"
+            sh "iqe plugin install iqe-compliance-plugin"
+            sh "iqe plugin install iqe-red-hat-internal-envs-plugin"
         }
 
         stage('Run integration tests') {
             withStatusContext.integrationTest {
-                sh "iqe tests plugin compliance -v --junitxml=junit.xml"
+                withEnv(['ENV_FOR_DYNACONF=ci']) {
+                   sh "iqe tests plugin compliance -v -s -k test_get_all_policies --junitxml=junit.xml"    
+                }
             }
 
             junit 'junit.xml'
