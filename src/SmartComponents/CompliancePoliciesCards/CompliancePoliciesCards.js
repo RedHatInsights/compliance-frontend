@@ -7,6 +7,7 @@ import {
     TextContent,
     TextVariants,
     Button,
+    Bullseye,
     EmptyState,
     EmptyStateIcon,
     EmptyStateBody,
@@ -52,36 +53,38 @@ const CompliancePoliciesCards = () => (
                         </GridItem>
                 );
             } else {
-                policyCards = <EmptyState>
-                    <EmptyStateIcon size="xl" title="Compliance" icon={ClipboardCheckIcon} />
-                    <br/>
-                    <Title size="lg">Welcome to Insights Compliance</Title>
-                    <EmptyStateBody>
-                        <TextContent>
-                            You have not uploaded any reports yet. Please generate a report using
-                            OpenSCAP:
-                            <Text component={TextVariants.blockquote}>
-                                openscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
-                                --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
-                            </Text>
-                            and upload it using the following command:
-                            <Text component={TextVariants.blockquote}>
-                                sudo insights-client --verbose --payload scan.xml
-                                --content-type application/vnd.redhat.compliance.something+tgz
-                            </Text>
-                        </TextContent>
-                    </EmptyStateBody>
+                policyCards = <Bullseye>
+                    <EmptyState>
+                        <EmptyStateIcon size="xl" title="Compliance" icon={ClipboardCheckIcon} />
+                        <br/>
+                        <Title size="lg">Welcome to Insights Compliance</Title>
+                        <EmptyStateBody>
+                            <TextContent>
+                                You have not uploaded any reports yet. Please generate a report using
+                                OpenSCAP:
+                                <Text component={TextVariants.blockquote}>
+                                    openscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
+                                    --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+                                </Text>
+                                and upload it using the following command:
+                                <Text component={TextVariants.blockquote}>
+                                    sudo insights-client --verbose --payload scan.xml
+                                    --content-type application/vnd.redhat.compliance.something+tgz
+                                </Text>
+                            </TextContent>
+                        </EmptyStateBody>
 
-                    <EmptyStateAction>
-                        <Button
-                            variant="primary"
-                            component="a"
-                            target="_blank"
-                            href="https://www.open-scap.org/getting-started/">
-                            Get started with OpenSCAP
-                        </Button>
-                    </EmptyStateAction>
-                </EmptyState>;
+                        <EmptyStateAction>
+                            <Button
+                                variant="primary"
+                                component="a"
+                                target="_blank"
+                                href="https://www.open-scap.org/getting-started/">
+                                Get started with OpenSCAP
+                            </Button>
+                        </EmptyStateAction>
+                    </EmptyState>
+                </Bullseye>;
 
             }
 
