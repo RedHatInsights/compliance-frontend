@@ -5,7 +5,7 @@ import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons'
 import { Ansible, Input, Pagination, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { Table, TableHeader, TableBody, sortable, SortByDirection } from '@patternfly/react-table';
 import { SearchIcon } from '@patternfly/react-icons';
-import { Checkbox, Grid, GridItem } from '@patternfly/react-core';
+import { Checkbox, Level, LevelItem } from '@patternfly/react-core';
 
 const FAILED_COLOR = '#a30000';
 const PASSED_COLOR = '#92d400';
@@ -233,7 +233,7 @@ class SystemRulesTable extends React.Component {
                 }
             )
         );
-        this.currentRows(this.state.page, this.state.itemsPerPage).then((currentRows) => {
+        this.currentRows(this.state.page, this.state.itemsPerPage, sortedRows).then((currentRows) => {
             this.setState(() => ({
                 currentRows,
                 sortBy: {
@@ -282,42 +282,42 @@ class SystemRulesTable extends React.Component {
 
         return (
             <React.Fragment>
-                <Grid gutter="sm">
-                    <GridItem span={8}>
+                <Level gutter='md'>
+                    <LevelItem>
                         <Input
                             id="search"
                             type="text"
                             style={{ width: '200px' }}
                         />{' '}
                         <SearchIcon style={{ paddingTop: '4px' }} />
-                    </GridItem>
-                    <GridItem span={2}>
+                    </LevelItem>
+                    <LevelItem>
                         <Checkbox onChange={this.hidePassed} label={'Hide Passed Rules'} />
-                    </GridItem>
-                    <GridItem span={2}>
+                    </LevelItem>
+                    <LevelItem>
+                        {rows.length} results
+                    </LevelItem>
+                    <LevelItem>
                         <ComplianceRemediationButton selectedRules={this.selectedRules()} />
-                    </GridItem>
-
-                    <GridItem span={12}>
-                        <Table
-                            cells={columns}
-                            onCollapse={this.onCollapse}
-                            onSort={this.onSort}
-                            sortBy={sortBy}
-                            onSelect={this.onSelect}
-                            rows={currentRows}>
-                            <TableHeader />
-                            <TableBody />
-                        </Table>
-                        <Pagination
-                            numberOfItems={rows.length}
-                            onPerPageSelect={this.setPerPage}
-                            page={page}
-                            onSetPage={this.setPage}
-                            itemsPerPage={itemsPerPage}
-                        />
-                    </GridItem>
-                </Grid>
+                    </LevelItem>
+                </Level>
+                <Table
+                    cells={columns}
+                    onCollapse={this.onCollapse}
+                    onSort={this.onSort}
+                    sortBy={sortBy}
+                    onSelect={this.onSelect}
+                    rows={currentRows}>
+                    <TableHeader />
+                    <TableBody />
+                </Table>
+                <Pagination
+                    numberOfItems={rows.length}
+                    onPerPageSelect={this.setPerPage}
+                    page={page}
+                    onSetPage={this.setPage}
+                    itemsPerPage={itemsPerPage}
+                />
             </React.Fragment>
         );
     }
