@@ -6,12 +6,12 @@
     "appname": "compliance"
   },
   "dependencies": {
+    "@red-hat-insights/insights-frontend-components": "3.34.10",
     "@patternfly/patternfly-next": "^1.0.175",
     "@patternfly/react-charts": "1.4.1",
     "@patternfly/react-core": "1.49.4",
     "@patternfly/react-icons": "2.9.3",
     "@patternfly/react-table": "1.0.7",
-    "@red-hat-insights/insights-frontend-components": "3.33.61",
     "actioncable": "^5.2.1",
     "apollo-boost": "^0.1.22",
     "classnames": "^2.2.5",
@@ -21,8 +21,8 @@
     "graphql-tag": "^2.10.0",
     "patternfly-react": "^2.29.7",
     "react-apollo": "^2.3.2",
-    "react-truncate": "^2.4.0",
-    "react-show-more-text": "^1.0.4"
+    "react-show-more-text": "^1.0.4",
+    "react-truncate": "^2.4.0"
   },
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",
