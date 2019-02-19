@@ -3,33 +3,15 @@ import propTypes from 'prop-types';
 import { Breadcrumbs, PageHeader, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
-import SystemPolicyCards from '../SystemPolicyCards/SystemPolicyCards';
-import SystemRulesTable from '../SystemRulesTable/SystemRulesTable';
+import { Compliance as ComplianceSystemDetails } from '@red-hat-insights/insights-frontend-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Card, CardBody } from '@patternfly/react-core';
+
 const QUERY = gql`
 query System($systemId: String!){
     system(id: $systemId) {
-        id
         name
-        profiles {
-            name
-            ref_id
-            compliant(system_id: $systemId)
-            rules_failed(system_id: $systemId)
-            rules_passed(system_id: $systemId)
-            last_scanned(system_id: $systemId)
-            rules {
-                title
-                severity
-                rationale
-                ref_id
-                description
-                compliant(system_id: $systemId)
-            }
-        }
-	}
+    }
 }
 `;
 
@@ -44,7 +26,6 @@ class SystemDetails extends React.Component {
         return (
             <Query query={QUERY} variables={{ systemId }}>
                 {({ data, error, loading }) => {
-                    let rules = {};
                     if (error) {
                         if (error.networkError.statusCode === 401) {
                             window.insights.chrome.auth.logout();
@@ -55,11 +36,6 @@ class SystemDetails extends React.Component {
 
                     if (loading) {
                         return (<PageHeader>Loading System details...</PageHeader>);
-                    } else {
-                        rules = data.system.profiles.map((profile) => ({
-                            profile: profile.name,
-                            rules: profile.rules
-                        }));
                     }
 
                     return (
@@ -71,17 +47,11 @@ class SystemDetails extends React.Component {
                                     current={data.system.name}
                                     onNavigate={this.onNavigate}
                                 />
-                                <InventoryDetails />
+                                <InventoryDetails sendData={this.getData} />
                                 <br/>
                             </PageHeader>
                             <Main>
-                                <SystemPolicyCards policies={data.system.profiles} />
-                                <br/>
-                                <Card>
-                                    <CardBody>
-                                        <SystemRulesTable profileRules={rules} />
-                                    </CardBody>
-                                </Card>
+                                <ComplianceSystemDetails />
                             </Main>
                         </React.Fragment>
                     );
