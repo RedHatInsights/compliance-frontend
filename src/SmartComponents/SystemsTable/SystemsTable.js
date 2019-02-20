@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
-import { registry } from '@red-hat-insights/insights-frontend-components';
+import { registry, TableToolbar } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
 
 @registry()
@@ -49,14 +49,16 @@ class SystemsTable extends React.Component {
     render() {
         const { InventoryCmp } = this.state;
         const { items, disableRemediations } = this.props;
-        const tableHeaderButtons = <reactCore.Level gutter="md">
-            <reactCore.LevelItem>
-                <DownloadTableButton />
-            </reactCore.LevelItem>
-            <reactCore.LevelItem>
-                <ComplianceRemediationButton disableRemediations={disableRemediations} />
-            </reactCore.LevelItem>
-        </reactCore.Level>;
+        const tableHeaderButtons = <TableToolbar>
+            <reactCore.Level gutter="md">
+                <reactCore.LevelItem>
+                    <DownloadTableButton />
+                </reactCore.LevelItem>
+                <reactCore.LevelItem>
+                    <ComplianceRemediationButton disableRemediations={disableRemediations} />
+                </reactCore.LevelItem>
+            </reactCore.Level>
+        </TableToolbar>;
 
         //const items = this.props.items;
         // concatenate the names of profiles

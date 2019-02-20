@@ -57,7 +57,7 @@ const CompliancePoliciesCards = () => (
                     <EmptyState>
                         <EmptyStateIcon size="xl" title="Compliance" icon={ClipboardCheckIcon} />
                         <br/>
-                        <Title size="lg">Welcome to Insights Compliance</Title>
+                        <Title size="lg">Welcome to Compliance</Title>
                         <EmptyStateBody>
                             <TextContent>
                                 You have not uploaded any reports yet. Please generate a report using
