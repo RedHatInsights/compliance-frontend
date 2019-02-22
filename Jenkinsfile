@@ -2,7 +2,7 @@
  * Requires: https://github.com/RedHatInsights/insights-pipeline-lib
  */
 
-@Library("github.com/quarckster/insights-pipeline-lib@iqe") _
+@Library("github.com/RedHatInsights/insights-pipeline-lib") _
 
 node {
     cancelPriorBuilds()
@@ -16,15 +16,24 @@ node {
 def runStages() {
     openShift.withUINode(cloud: 'cmqe') {
         stage('Install integration tests env') {
-            sh "pip install iqe-integration-tests"
             sh "iqe plugin install iqe-compliance-plugin"
             sh "iqe plugin install iqe-red-hat-internal-envs-plugin"
+        }
+
+        stage('Inject credentials and settings') {
+            withCredentials([
+                file(credentialsId: 'compliance-settings-credentials-yaml', variable: 'creds'),
+                file(credentialsId: 'compliance-settings-local-yaml', variable: 'settings')]
+            ) {
+                sh "cp \$creds \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
+                sh "cp \$settings \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
+            }
         }
 
         stage('Run integration tests') {
             withStatusContext.integrationTest {
                 withEnv(['ENV_FOR_DYNACONF=ci']) {
-                   sh "iqe tests plugin compliance -v -s -k test_get_all_policies --junitxml=junit.xml"    
+                   sh "iqe tests plugin compliance -v -s -k "test_get_all_policies or test_policy_details or test_navigate_smoke" --junitxml=junit.xml"    
                 }
             }
 
