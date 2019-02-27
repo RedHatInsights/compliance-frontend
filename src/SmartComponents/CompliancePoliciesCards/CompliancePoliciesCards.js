@@ -63,7 +63,7 @@ const CompliancePoliciesCards = () => (
                                 You have not uploaded any reports yet. Please generate a report using
                                 OpenSCAP:
                                 <Text component={TextVariants.blockquote}>
-                                    openscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
+                                    oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
                                     --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
                                 </Text>
                                 and upload it using the following command:
