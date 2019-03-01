@@ -47,7 +47,7 @@ const ComplianceSystemsTable = () => (
 
             return (
                 <div className="systems-table">
-                    <SystemsTable disableRemediations={true} items={systems} columns={columns} />
+                    <SystemsTable items={systems} columns={columns} />
                 </div>
             );
         }}
