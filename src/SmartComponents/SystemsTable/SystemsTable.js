@@ -48,14 +48,14 @@ class SystemsTable extends React.Component {
 
     render() {
         const { InventoryCmp } = this.state;
-        const { items, disableRemediations } = this.props;
+        const { items } = this.props;
         const tableHeaderButtons = <TableToolbar>
             <reactCore.Level gutter="md">
                 <reactCore.LevelItem>
                     <DownloadTableButton />
                 </reactCore.LevelItem>
                 <reactCore.LevelItem>
-                    <ComplianceRemediationButton disableRemediations={disableRemediations} />
+                    <ComplianceRemediationButton />
                 </reactCore.LevelItem>
             </reactCore.Level>
         </TableToolbar>;
@@ -76,12 +76,7 @@ class SystemsTable extends React.Component {
 
 SystemsTable.propTypes = {
     items: propTypes.array,
-    columns: propTypes.array,
-    disableRemediations: propTypes.bool
-};
-
-SystemsTable.defaultProps = {
-    disableRemediations: false
+    columns: propTypes.array
 };
 
 export default SystemsTable;

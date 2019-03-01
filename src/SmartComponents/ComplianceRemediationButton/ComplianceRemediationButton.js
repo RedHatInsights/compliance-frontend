@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
+import flatten from 'lodash/flatten';
+import uniqBy from 'lodash/uniqBy';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
     allSystems(search: $systemIdsQuery) {
         id,
         rule_objects_failed {
-            ref_id
+            ref_id,
+            title
         }
     }
 }
@@ -24,41 +27,79 @@ const FailedRulesQuery = graphql(GET_FAILED_RULES, {
 class ComplianceRemediationButton extends React.Component {
     constructor(props) {
         super(props);
-        this.dataProvider = this.dataProvider.bind(this);
     }
 
-    dataProvider() {
-        let result = { issues: [], systems: [] };
-        if (this.props.allSystems === undefined) {
-            return result;
-        }
+    /* eslint-disable camelcase */
+    formatRule = ({ title, ref_id }, system) => ({
+        id: `compliance:${ref_id}`,
+        description: title,
+        systems: [
+            system
+        ]
+    })
 
-        for (const system of this.props.allSystems) {
+    findRule = (rules, ref_id) => {
+        const prefix = 'compliance:';
+        return rules.find(rule => rule.ref_id === ref_id.slice(prefix.length));
+    }
+
+    rulesWithRemediations = (rules, id) => {
+        return window.insights.chrome.auth.getUser()
+        .then(() => {
+            return fetch('/r/insights/platform/remediations/v1/resolutions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; chartset=utf-8' },
+                body: JSON.stringify({ issues: rules.map(rule => `compliance:${rule.ref_id}`) })
+            }).then((response) => {
+                if (!response.ok) {
+                    // If remediations doesn't respond, inject no fix available
+                    return {};
+                }
+
+                return response.json();
+            }).then(response => Object.keys(response).filter(rule => response[rule]).map(
+                rule_ref_id => this.formatRule(this.findRule(rules, rule_ref_id), id)
+            ));
+        });
+    }
+
+    dataProvider = () => {
+        const { allSystems, selectedRules } = this.props;
+        const result = { systems: [], issues: [] };
+        allSystems.forEach(async (system) => {
             result.systems.push(system.id);
-
-            if (this.props.selectedRules !== undefined) {
-                for (const rule of this.props.selectedRules) {
-                    result.issues.push({ id: 'compliance:' + rule });
-                }
+            if (selectedRules) {
+                result.issues.push(selectedRules.map(rule => this.formatRule(rule, system.id)));
             } else {
-                for (const rule of system.rule_objects_failed) {
-                    result.issues.push({ id: 'compliance:' + rule.ref_id });
-                }
+                result.issues.push(this.rulesWithRemediations(system.rule_objects_failed, system.id));
             }
-        }
+        });
 
-        return result;
+        return Promise.all(result.issues).then(issues => {
+            result.issues = uniqBy(flatten(issues), 'id');
+            return result;
+        });
+        //        return allSystems.reduce(async (acc, { id, rule_objects_failed }) => ({
+        //            systems: [...acc.systems, id],
+        //            issues: [
+        //                ...acc.issues,
+        //                ...selectedRules ? selectedRules.map(rule => this.formatRule(rule, id)) :
+        //                    await(this.rulesWithRemediations(rule_objects_failed, id))
+        //            ]
+        //        }), { issues: [], systems: [] });
     }
+    /* eslint-enable camelcase */
 
     render() {
-        const { disableRemediations } = this.props;
+        const { allSystems } = this.props;
+
         return (
-            <div id='remediation-button' style={{ marginRight: '20px' }}>
+            <React.Fragment>
                 <RemediationButton
-                    isDisabled={disableRemediations || this.dataProvider().issues.length === 0}
-                    dataProvider={this.dataProvider}
+                    isDisabled={ allSystems.length === 0 || allSystems[0].rule_objects_failed.length === 0 }
+                    dataProvider={ this.dataProvider }
                 />
-            </div>
+            </React.Fragment>
         );
     }
 }
@@ -66,26 +107,21 @@ class ComplianceRemediationButton extends React.Component {
 ComplianceRemediationButton.propTypes = {
     selectedEntities: propTypes.array,
     selectedRules: propTypes.array,
-    allSystems: propTypes.array, // Prop coming from data.allSystems GraphQL query
-    disableRemediations: propTypes.bool
+    allSystems: propTypes.array // Prop coming from data.allSystems GraphQL query
 };
 
 ComplianceRemediationButton.defaultProps = {
-    disableRemediations: false
+    allSystems: []
 };
 
-const mapStateToProps = state => {
-    if (state.entities === undefined || state.entities.rows === undefined) {
-        return { selectedEntities: [] };
-    } else if (state.entityDetails !== undefined && state.entityDetails.entity !== undefined) {
-        return { selectedEntities: [state.entityDetails.entity] };
-    }
+const mapStateToProps = ({ entities, entityDetails }) => ({
+    selectedEntities: entities && entities.rows ?
+        entityDetails && entityDetails.entity ?
+            [entityDetails.entity] :
+            entities.rows.filter(entity => entity.selected) :
+        []
 
-    return {
-        selectedEntities: state.entities.rows.
-        filter(entity => entity.selected)
-    };
-};
+});
 
 export default compose(
     connect(mapStateToProps),
