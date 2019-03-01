@@ -5,7 +5,6 @@ import { RemediationButton } from '@red-hat-insights/insights-frontend-component
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
-import uniqBy from 'lodash/uniqBy';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -43,6 +42,15 @@ class ComplianceRemediationButton extends React.Component {
         return rules.find(rule => rule.ref_id === ref_id.slice(prefix.length));
     }
 
+    uniqIssuesBySystem = (issues) => {
+        const issueIds = issues.map((issue) => issue.id);
+        return issues.filter((issue, index) => {
+            const originalIssueIndex = issueIds.indexOf(issue.id);
+            return (originalIssueIndex === index) ? true :
+                (issues[originalIssueIndex].systems = issues[originalIssueIndex].systems.concat(issue.systems)) && false;
+        });
+    }
+
     rulesWithRemediations = (rules, id) => {
         return window.insights.chrome.auth.getUser()
         .then(() => {
@@ -76,7 +84,7 @@ class ComplianceRemediationButton extends React.Component {
         });
 
         return Promise.all(result.issues).then(issues => {
-            result.issues = uniqBy(flatten(issues), 'id');
+            result.issues = this.uniqIssuesBySystem(flatten(issues));
             return result;
         });
         //        return allSystems.reduce(async (acc, { id, rule_objects_failed }) => ({
