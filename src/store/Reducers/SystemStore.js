@@ -1,6 +1,7 @@
 import React from 'react';
 import { applyReducerHash } from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
+import { Link } from 'react-router-dom';
 
 export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
@@ -46,7 +47,12 @@ export const systemsToInventoryEntities = (systems, entities) =>
                     compliance: {
                         profiles: system.profile_names,
                         rules_passed: system.rules_passed,
-                        rules_failed: system.rules_failed,
+                        rules_failed: <Link to={{
+                            pathname: `/systems/${system.id}`,
+                            query: {
+                                hidePassed: true
+                            }
+                        }}>{system.rules_failed}</Link>,
                         score: (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%',
                         last_scanned: system.last_scanned,
                         compliant: (system.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :

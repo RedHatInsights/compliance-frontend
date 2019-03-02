@@ -8,8 +8,8 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const QUERY = gql`
-query System($systemId: String!){
-    system(id: $systemId) {
+query System($inventoryId: String!){
+    system(id: $inventoryId) {
         name
     }
 }
@@ -22,9 +22,12 @@ class SystemDetails extends React.Component {
     }
 
     render() {
-        const systemId = this.props.match.params.inventoryId;
+        const {
+            match: { params: { inventoryId } }
+        } = this.props;
+        const hidePassed = this.props.location.query && this.props.location.query.hidePassed;
         return (
-            <Query query={QUERY} variables={{ systemId }}>
+            <Query query={QUERY} variables={{ inventoryId }}>
                 {({ data, error, loading }) => {
                     if (error) {
                         if (error.networkError.statusCode === 401) {
@@ -51,7 +54,7 @@ class SystemDetails extends React.Component {
                                 <br/>
                             </PageHeader>
                             <Main>
-                                <ComplianceSystemDetails />
+                                <ComplianceSystemDetails hidePassed={hidePassed} />
                             </Main>
                         </React.Fragment>
                     );
@@ -62,7 +65,8 @@ class SystemDetails extends React.Component {
 }
 
 SystemDetails.propTypes = {
-    match: propTypes.object
+    match: propTypes.object,
+    location: propTypes.object
 };
 
 export default routerParams(SystemDetails);
