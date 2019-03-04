@@ -28,6 +28,7 @@ import {
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
+import linkifyHtml from 'linkifyjs/html';
 
 const QUERY = gql`
 query Profile($policyId: String!){
@@ -176,7 +177,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                 <TextContent>
                                     <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
                                     <Text className="policy-description" component={TextVariants.p}>
-                                        <Truncate text={policy.description} length={380} />
+                                        <Truncate text={linkifyHtml(policy.description)} length={380} />
                                     </Text>
                                     <br/>
                                 </TextContent>
