@@ -1,5 +1,6 @@
 import { getRegistry } from '@red-hat-insights/insights-frontend-components';
 import promiseMiddleware from 'redux-promise-middleware';
+import { reducer as form } from 'redux-form';
 
 let registry;
 
@@ -9,7 +10,7 @@ export function init (...middleware) {
         ...middleware
     ]);
 
-    //If you want to register all of your reducers, this is good place.
+    registry.register({ form });
     return registry;
 }
 
