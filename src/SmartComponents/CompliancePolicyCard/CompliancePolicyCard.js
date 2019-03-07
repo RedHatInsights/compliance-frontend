@@ -71,7 +71,7 @@ class CompliancePolicyCard extends React.Component {
         );
 
         return (
-            <Card>
+            <Card widget-id={this.policy.ref_id}>
                 <CardBody>
                     <Text style={{ fontWeight: '500', color: '#bbb' }} component={TextVariants.small}>External Policy</Text>
                     <TextContent>
