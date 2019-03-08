@@ -14,30 +14,34 @@ node {
 }
 
 def runStages() {
-    openShift.withUINode(cloud: 'cmqe') {
-        stage('Install integration tests env') {
-            sh "iqe plugin install iqe-compliance-plugin"
-            sh "iqe plugin install iqe-red-hat-internal-envs-plugin"
-        }
-
-        stage('Inject credentials and settings') {
-            withCredentials([
-                file(credentialsId: 'compliance-settings-credentials-yaml', variable: 'creds'),
-                file(credentialsId: 'compliance-settings-local-yaml', variable: 'settings')]
-            ) {
-                sh "cp \$creds \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
-                sh "cp \$settings \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
+    openShift.withUINode(cloud: "cmqe") {
+        stage("Install-integration-tests-env") {
+            withStatusContext.custom(env.STAGE_NAME, true) {
+                sh "iqe plugin install compliance"
+                sh "iqe plugin install red-hat-internal-envs"
             }
         }
 
-        stage('Run integration tests') {
-            withStatusContext.integrationTest {
+        stage("Inject-credentials-and-settings") {
+            withCredentials([
+                file(credentialsId: "compliance-settings-credentials-yaml", variable: "creds"),
+                file(credentialsId: "compliance-settings-local-yaml", variable: "settings")]
+            ) {
+                withStatusContext.custom(env.STAGE_NAME, true) {
+                    sh "cp \$creds \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
+                    sh "cp \$settings \$IQE_VENV/lib/python3.6/site-packages/iqe_compliance/conf"
+                }
+            }
+        }
+
+        stage("Run-integration-tests") {
+            withStatusContext.custom(env.STAGE_NAME, true) {
                 withEnv(['ENV_FOR_DYNACONF=ci']) {
                    sh "iqe tests plugin compliance -v -s -k 'test_get_all_policies or test_policy_details or test_navigate_smoke' --junitxml=junit.xml"    
                 }
             }
 
-            junit 'junit.xml'
+            junit "junit.xml"
         }
     }
 }
