@@ -37,7 +37,7 @@ def runStages() {
         stage("Run-integration-tests") {
             withStatusContext.custom(env.STAGE_NAME, true) {
                 withEnv(['ENV_FOR_DYNACONF=ci']) {
-                   sh "iqe tests plugin compliance -v -s -k 'test_get_all_policies or test_policy_details or test_navigate_smoke' --junitxml=junit.xml"    
+                   sh "iqe tests plugin compliance -v -s -m tier1 --junitxml=junit.xml"    
                 }
             }
 
