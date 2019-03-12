@@ -2,10 +2,10 @@
 @import '~@red-hat-insights/insights-frontend-components/Utilities/_all';
 @import '~@red-hat-insights/insights-frontend-components/index.css';
 
-section.pf-l-page-header.pf-l-page__main-section.pf-m-light {
+section.pf-l-page-header.pf-l-page__main-section, section.pf-c-page-header.pf-c-page__main-section {
     padding-bottom: 0px;
 }
 
-section.pf-c-page-header.pf-c-page__main-section.pf-m-light {
-    padding-bottom: 0px;
+.pf-l-tabs, .pf-c-tabs {
+    padding-top: 22px;
 }

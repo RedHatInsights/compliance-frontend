@@ -2,33 +2,35 @@ import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import propTypes from 'prop-types';
 import React, { Component } from 'react';
 import { paths } from '../../Routes';
-import { Nav, NavList, NavItem, NavVariants } from '@patternfly/react-core';
+import { Tabs, Tab } from '@patternfly/react-core';
+import invert from 'lodash/invert';
 
 class ComplianceTabs extends Component {
     constructor(props) {
         super(props);
+        this.tabPaths = {
+            0: paths.compliancePolicies,
+            1: paths.complianceSystems
+        };
         this.redirect = this.redirect.bind(this);
     }
-    redirect(tab) {
-        this.props.history.push(tab.itemId);
+
+    redirect(_, tabIndex) {
+        this.props.history.push(this.tabPaths[tabIndex]);
     }
+
     render() {
+        const { match: { path } } = this.props;
+        const currentKey = Number(invert(this.tabPaths)[path]);
+
         return (
             <React.Fragment>
-                <Nav onSelect={this.redirect} aria-label="Compliance Tabs">
-                    <NavList variant={NavVariants.horizontal}>
-                        <NavItem preventDefault={true}
-                            isActive={this.props.match.path === paths.compliancePolicies}
-                            itemId={paths.compliancePolicies}>
-                            Policies
-                        </NavItem>
-                        <NavItem preventDefault={true}
-                            isActive={this.props.match.path === paths.complianceSystems}
-                            itemId={paths.complianceSystems}>
-                            Systems
-                        </NavItem>
-                    </NavList>
-                </Nav>
+                <Tabs activeKey={currentKey} onSelect={this.redirect} aria-label="Compliance Tabs">
+                    <Tab title={'Policies'} eventKey={0}>
+                    </Tab>
+                    <Tab title={'Systems'} eventKey={1}>
+                    </Tab>
+                </Tabs>
             </React.Fragment>
         );
     }
