@@ -17,14 +17,16 @@ const client = new ApolloClient({
 // exposes webpack variable RELEASE
 /*global RELEASE:true*/
 
-ReactDOM.render(
-    <Provider store={ init(logger).getStore() }>
-        <Router basename={ `/${RELEASE}/platform/compliance` }>
-            <ApolloProvider client={client}>
-                <App />
-            </ApolloProvider>
-        </Router>
-    </Provider>,
+window.insights.chrome.auth.getUser().then(() => {
+    ReactDOM.render(
+        <Provider store={ init(logger).getStore() }>
+            <Router basename={ `/${RELEASE}/platform/compliance` }>
+                <ApolloProvider client={client}>
+                    <App />
+                </ApolloProvider>
+            </Router>
+        </Provider>,
 
-    document.getElementById('root')
-);
+        document.getElementById('root')
+    );
+});
