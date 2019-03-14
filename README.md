@@ -17,6 +17,14 @@ Note: You will need to set up the Insights environment if you want to develop wi
 
 You should also run [Insights Compliance Backend](https://github.com/RedHatInsights/compliance-backend) so that the frontend can consume its data from somewhere.
 
+## Running locally
+Have [insights-proxy](https://github.com/RedHatInsights/insights-proxy) installed under PROXY_PATH
+
+```shell
+SPANDX_CONFIG="./config/spandx.config.js" bash $PROXY_PATH/scripts/run.sh
+```
+
+
 ## Build app
 
 1. ```npm install```
