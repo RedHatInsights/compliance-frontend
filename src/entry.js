@@ -13,13 +13,10 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-// exposes webpack variable RELEASE
-/*global RELEASE:true*/
-
 window.insights.chrome.auth.getUser().then(() => {
     ReactDOM.render(
         <Provider store={ init().getStore() }>
-            <Router basename={`${RELEASE ? `/${RELEASE}` : ''}/rhcs/compliance` }>
+            <Router basename={`rhcs/compliance`}>
                 <ApolloProvider client={client}>
                     <App />
                 </ApolloProvider>
