@@ -13,10 +13,17 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
+const pathName = window.location.pathname.split('/');
+pathName.shift();
+
+if (pathName[0] === 'beta') {
+    pathName.shift();
+}
+
 window.insights.chrome.auth.getUser().then(() => {
     ReactDOM.render(
         <Provider store={ init().getStore() }>
-            <Router basename={`rhcs/compliance`}>
+            <Router basename={`${pathName[0]}/${pathName[1]}`}>
                 <ApolloProvider client={client}>
                     <App />
                 </ApolloProvider>
