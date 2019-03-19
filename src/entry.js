@@ -19,7 +19,7 @@ const client = new ApolloClient({
 window.insights.chrome.auth.getUser().then(() => {
     ReactDOM.render(
         <Provider store={ init().getStore() }>
-            <Router basename={ `/${RELEASE}/platform/compliance` }>
+            <Router basename={ `${pathName[1] === 'beta' ? pathName[2] : pathName[1]}/compliance` }>
                 <ApolloProvider client={client}>
                     <App />
                 </ApolloProvider>
