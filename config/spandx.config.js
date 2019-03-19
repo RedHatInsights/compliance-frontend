@@ -8,6 +8,8 @@ module.exports = {
         '/apps/compliance': { host: `http://${localhost}:8002` },
         '/rhcs/compliance': { host: `http://${localhost}:8002` },
         '/r/insights/platform': { host: 'http://access.ci.cloud.paas.upshift.redhat.com' },
-        '/apps/chrome': { host: 'https://ci.cloud.paas.upshift.redhat.com' }
+        '/apps/chrome': { host: 'https://ci.cloud.paas.upshift.redhat.com' },
+        '/api/compliance': { host: `http://${localhost}:3000` },
+        '/r': { host: 'https://access.redhat.com' } // works for prod environment
     }
 };
