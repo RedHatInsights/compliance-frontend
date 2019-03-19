@@ -54,7 +54,7 @@ class ComplianceRemediationButton extends React.Component {
     rulesWithRemediations = (rules, id) => {
         return window.insights.chrome.auth.getUser()
         .then(() => {
-            return fetch('/r/insights/platform/remediations/v1/resolutions', {
+            return fetch('/api/remediations/v1/resolutions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; chartset=utf-8' },
                 body: JSON.stringify({ issues: rules.map(rule => `compliance:${rule.ref_id}`) })
