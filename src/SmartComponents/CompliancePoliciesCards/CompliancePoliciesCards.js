@@ -10,8 +10,7 @@ import {
     Bullseye,
     EmptyState,
     EmptyStateIcon,
-    EmptyStateBody,
-    EmptyStateAction
+    EmptyStateBody
 } from '@patternfly/react-core';
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
@@ -74,15 +73,13 @@ const CompliancePoliciesCards = () => (
                             </TextContent>
                         </EmptyStateBody>
 
-                        <EmptyStateAction>
-                            <Button
-                                variant="primary"
-                                component="a"
-                                target="_blank"
-                                href="https://www.open-scap.org/getting-started/">
-                                Get started with OpenSCAP
-                            </Button>
-                        </EmptyStateAction>
+                        <Button
+                            variant="primary"
+                            component="a"
+                            target="_blank"
+                            href="https://www.open-scap.org/getting-started/">
+                            Get started with OpenSCAP
+                        </Button>
                     </EmptyState>
                 </Bullseye>;
 
