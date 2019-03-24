@@ -97,7 +97,7 @@ class CompliancePolicyCard extends React.Component {
                             </GridItem>
                             <GridItem span={8}>
                                 <Text style={{ fontWeight: '500', color: '#bbb' }} component={TextVariants.small}>
-                                    Systems Compliant
+                                    Systems above compliance threshold
                                 </Text>
                             </GridItem>
                         </Grid>
