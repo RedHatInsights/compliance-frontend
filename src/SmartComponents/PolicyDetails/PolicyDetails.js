@@ -3,6 +3,8 @@ import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
+import SetThresholdDropdown from '../SetThresholdDropdown/SetThresholdDropdown';
+import { QuestionCircleIcon } from '@patternfly/react-icons';
 import {
     Breadcrumbs,
     PageHeader,
@@ -20,6 +22,7 @@ import {
 import {
     Text,
     TextContent,
+    Tooltip,
     TextVariants
 } from '@patternfly/react-core';
 import { Query } from 'react-apollo';
@@ -29,11 +32,13 @@ import '../../Charts.scss';
 const QUERY = gql`
 query Profile($policyId: String!){
     profile(id: $policyId) {
+        id
         name
         ref_id
         description
         total_host_count
         compliant_host_count
+        compliance_threshold
         hosts {
             id,
             name,
@@ -144,7 +149,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                         />
                         <PageHeaderTitle title={policy.name} />
                         <Grid gutter='md'>
-                            <GridItem span={5}>
+                            <GridItem span={4}>
                                 <div className='chart-inline'>
                                     <div className='chart-container'>
                                         {label}
@@ -165,8 +170,9 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                         width={200}
                                     />
                                 </div>
+
                             </GridItem>
-                            <GridItem span={7}>
+                            <GridItem span={6}>
                                 <TextContent>
                                     <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
                                     <Text className="policy-description" component={TextVariants.p}>
@@ -174,6 +180,29 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                     </Text>
                                     <br/>
                                 </TextContent>
+                                <Grid>
+                                    <GridItem span={4}>
+                                        <Tooltip
+                                            position='bottom'
+                                            content={
+                                                <div>
+                                                    The threshold for compliance is a value set by your organization for
+                                                    each policy.
+                                                    This defines the percentage of passed rules that must be met in order for a
+                                                    system to be determined &quot;compliant&quot;.
+                                                </div>
+                                            }
+                                        >
+                                            <Text component={TextVariants.small}>
+                                                Threshold for compliance: {policy.compliance_threshold}% <QuestionCircleIcon/>
+                                            </Text>
+                                        </Tooltip>
+                                    </GridItem>
+                                </Grid>
+                            </GridItem>
+                            <GridItem span={2}>
+                                <SetThresholdDropdown policyId={policy.id}
+                                    previousThreshold={policy.compliance_threshold} />
                             </GridItem>
                         </Grid>
                     </PageHeader>
