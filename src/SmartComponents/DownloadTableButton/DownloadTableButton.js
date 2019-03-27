@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { DownloadIcon } from '@patternfly/react-icons';
-import { Dropdown, DropdownToggle, DropdownItem } from '@patternfly/react-core';
+import { Dropdown, DropdownToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 
 class DownloadTableButton extends React.Component {
     constructor(props) {
@@ -49,12 +49,22 @@ class DownloadTableButton extends React.Component {
         ];
         return (
             <React.Fragment>
-                <Dropdown
-                    onSelect={this.onSelect}
-                    toggle={<DropdownToggle onToggle={this.onToggle}><DownloadIcon/></DropdownToggle>}
-                    isOpen={isOpen}
-                    dropdownItems={dropdownItems}
-                />
+                <Tooltip
+                    enableFlip={ true }
+                    position="left"
+                    content={
+                        <div translate>
+                            More actions
+                        </div>
+                    }
+                >
+                    <Dropdown
+                        onSelect={this.onSelect}
+                        toggle={<DropdownToggle onToggle={this.onToggle}><DownloadIcon/></DropdownToggle>}
+                        isOpen={isOpen}
+                        dropdownItems={dropdownItems}
+                    />
+                </Tooltip>
             </React.Fragment>
         );
     }
