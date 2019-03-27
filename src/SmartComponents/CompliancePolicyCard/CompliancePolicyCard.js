@@ -102,7 +102,9 @@ class CompliancePolicyCard extends React.Component {
                             </GridItem>
                         </Grid>
                     </TextContent>
-                    <hr/>
+                </CardBody>
+                <hr/>
+                <CardBody>
                     <Grid>
                         <GridItem style={{ textAlign: 'center' }} span={12}>
                             <div className='chart-inline'>
