@@ -19,6 +19,7 @@
     "eslint-loader": "^2.1.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
+    "linkifyjs": "^2.1",
     "patternfly-react": "^2.29.7",
     "react-apollo": "^2.3.2",
     "react-show-more-text": "^1.0.4",
