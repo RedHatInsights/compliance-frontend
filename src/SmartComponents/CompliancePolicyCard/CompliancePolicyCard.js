@@ -60,8 +60,8 @@ class CompliancePolicyCard extends React.Component {
                     y={135}
                 />
                 <ChartLabel
-                    style={{ fill: '#bbb' }}
-                    text="Compliant"
+                    style={{ fill: 'var(--pf-global--Color--200)' }}
+                    text="Systems above threshold"
                     textAnchor="middle"
                     verticalAnchor="middle"
                     x={150}
@@ -89,7 +89,7 @@ class CompliancePolicyCard extends React.Component {
                                     <span style={{ fontSize: '30px', fontWeight: '500' }}>
                                         { compliantHostCount }
                                     </span>
-                                    <span style={{ fontWeight: '500', color: '#bbb' }}>
+                                    <span style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}>
                                         {' '}of{' '}
                                     </span>
                                     <span style={{ fontSize: '30px', fontWeight: '500' }}>
@@ -98,7 +98,10 @@ class CompliancePolicyCard extends React.Component {
                                 </TextContent>
                             </GridItem>
                             <GridItem span={8}>
-                                <Text style={{ fontWeight: '500', color: '#bbb' }} component={TextVariants.small}>
+                                <Text
+                                    style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}
+                                    component={TextVariants.small}
+                                >
                                     Systems above compliance threshold
                                 </Text>
                             </GridItem>
@@ -123,9 +126,9 @@ class CompliancePolicyCard extends React.Component {
                         </GridItem>
                     </Grid>
                     <TextContent style={{ textAlign: 'right' }}>
-                        <Text component={TextVariants.small}>
+                        <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
                             <Link to={'/policies/' + this.policy.id} >
-                                More Details
+                                More details
                             </Link>
                         </Text>
                     </TextContent>
