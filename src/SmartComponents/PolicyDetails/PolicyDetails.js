@@ -89,17 +89,11 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 key: 'facts.compliance.profiles',
                 title: 'Profile'
             }, {
-                key: 'facts.compliance.rules_passed',
-                title: 'Rules Passed'
-            }, {
                 key: 'facts.compliance.rules_failed',
                 title: 'Rules Failed'
             }, {
-                key: 'facts.compliance.score',
-                title: 'Score'
-            }, {
-                key: 'facts.compliance.compliant',
-                title: 'Compliant'
+                key: 'facts.compliance.compliance_score',
+                title: 'Compliance Score'
             }, {
                 key: 'facts.compliance.last_scanned',
                 title: 'Last Scanned'
