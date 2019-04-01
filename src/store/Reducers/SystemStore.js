@@ -2,6 +2,7 @@ import React from 'react';
 import { applyReducerHash } from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
+import { FormattedRelative } from 'react-intl';
 
 const complianceScore = (system) => (
     <React.Fragment>
@@ -63,7 +64,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
                             }
                         }}>{system.rules_failed}</Link>,
                         compliance_score: complianceScore(system),
-                        last_scanned: system.last_scanned
+                        last_scanned: <FormattedRelative value={Date.parse(system.last_scanned)} />
                     }
                 }
                 /* eslint-enable camelcase */

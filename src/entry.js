@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { init } from './store';
 import App from './App';
 import { COMPLIANCE_API_ROOT } from './constants';
+import { IntlProvider } from 'react-intl';
 
 const client = new ApolloClient({
     link: new HttpLink({ uri: COMPLIANCE_API_ROOT + '/graphql' }),
@@ -24,11 +25,13 @@ if (pathName[0] === 'beta') {
 window.insights.chrome.auth.getUser().then(() => {
     ReactDOM.render(
         <Provider store={ init().getStore() }>
-            <Router basename={`${release}${pathName[0]}/${pathName[1]}`}>
-                <ApolloProvider client={client}>
-                    <App />
-                </ApolloProvider>
-            </Router>
+            <IntlProvider locale={navigator.language}>
+                <Router basename={`${release}${pathName[0]}/${pathName[1]}`}>
+                    <ApolloProvider client={client}>
+                        <App />
+                    </ApolloProvider>
+                </Router>
+            </IntlProvider>
         </Provider>,
         document.getElementById('root')
     );
