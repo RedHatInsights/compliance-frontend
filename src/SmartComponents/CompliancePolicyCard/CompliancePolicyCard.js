@@ -21,18 +21,16 @@ import '../../Charts.scss';
 
 class CompliancePolicyCard extends React.Component {
     constructor(policy) {
-        super();
+        super(policy);
         this.policy = policy.policy;
         this.state = { cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> };
-        this.onMouseover = this.onMouseover.bind(this);
-        this.onMouseout = this.onMouseout.bind(this);
     }
 
-    onMouseover() {
+    onMouseover = () => {
         this.setState({ cardTitle: this.policy.name });
     }
 
-    onMouseout() {
+    onMouseout = () => {
         this.setState({ cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> });
     }
 
