@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
-import { registry, TableToolbar } from '@red-hat-insights/insights-frontend-components';
+import { registry } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
 
 @registry()
@@ -48,28 +48,22 @@ class SystemsTable extends React.Component {
 
     render() {
         const { InventoryCmp } = this.state;
-        const { items } = this.props;
-        const tableHeaderButtons = <TableToolbar>
-            <reactCore.Level gutter="md">
-                <reactCore.LevelItem>
-                    <DownloadTableButton />
-                </reactCore.LevelItem>
-                <reactCore.LevelItem>
-                    <ComplianceRemediationButton />
-                </reactCore.LevelItem>
-            </reactCore.Level>
-        </TableToolbar>;
 
         //const items = this.props.items;
         // concatenate the names of profiles
         // let hosts = [{ id: '19200f9f-dd49-4ec9-ac91-83009ec0acec', profiles: 'profile 1, profile 2', compliant: 'true' }];
         // Ideally change items to look like the right Entities format
         return (
-            <reactCore.Card>
-                <InventoryCmp items={items}>
-                    { tableHeaderButtons }
-                </InventoryCmp>
-            </reactCore.Card>
+            <InventoryCmp>
+                <reactCore.ToolbarGroup>
+                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                        <ComplianceRemediationButton />
+                    </reactCore.ToolbarItem>
+                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
+                        <DownloadTableButton />
+                    </reactCore.ToolbarItem>
+                </reactCore.ToolbarGroup>
+            </InventoryCmp>
         );
     }
 }

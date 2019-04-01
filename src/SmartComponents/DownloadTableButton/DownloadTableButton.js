@@ -2,8 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
-import { DownloadIcon } from '@patternfly/react-icons';
-import { Dropdown, DropdownToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
+import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 
 class DownloadTableButton extends React.Component {
     constructor(props) {
@@ -41,17 +40,17 @@ class DownloadTableButton extends React.Component {
         const { isOpen } = this.state;
         const dropdownItems = [
             <DropdownItem key='csv' href={this.downloadLink('csv')}>
-                CSV
+                Export as CSV
             </DropdownItem>,
             <DropdownItem target='_blank' key='json' href={this.downloadLink('json')}>
-                JSON
+                Export as JSON
             </DropdownItem>
         ];
+
         return (
             <React.Fragment>
                 <Tooltip
                     enableFlip={ true }
-                    position="left"
                     content={
                         <div translate>
                             More actions
@@ -60,7 +59,10 @@ class DownloadTableButton extends React.Component {
                 >
                     <Dropdown
                         onSelect={this.onSelect}
-                        toggle={<DropdownToggle onToggle={this.onToggle}><DownloadIcon/></DropdownToggle>}
+                        toggle={<KebabToggle
+                            onToggle={this.onToggle}
+                            style={{ color: 'var(--pf-global--icon--Color--light)' }}
+                        />}
                         isOpen={isOpen}
                         dropdownItems={dropdownItems}
                     />
