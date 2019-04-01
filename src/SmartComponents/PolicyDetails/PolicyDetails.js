@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import SetThresholdDropdown from '../SetThresholdDropdown/SetThresholdDropdown';
-import { QuestionCircleIcon } from '@patternfly/react-icons';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
     Breadcrumbs,
     PageHeader,
@@ -28,6 +28,7 @@ import {
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
+import './PolicyDetails.scss';
 import linkifyHtml from 'linkifyjs/html';
 
 const QUERY = gql`
@@ -176,30 +177,28 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                             <GridItem span={6}>
                                 <TextContent>
                                     <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
-                                    <Text className="policy-description" component={TextVariants.p}>
+                                    <Text component={TextVariants.p}>
                                         <Truncate text={linkifyHtml(policy.description)} length={380} />
                                     </Text>
-                                    <br/>
+                                    <Tooltip
+                                        position='left'
+                                        content={
+                                            <div>
+                                                The threshold for compliance is a value set by your organization for
+                                                each policy.
+                                                This defines the percentage of passed rules that must be met in order
+                                                for a system to be determined &quot;compliant&quot;.
+                                            </div>
+                                        }
+                                    >
+                                        <Text style={{ fontWeight: 'bold' }} component={ TextVariants.p }>
+                                            Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                        </Text>
+                                        <Text className='threshold-tooltip' component={TextVariants.p}>
+                                            { policy.compliance_threshold }%
+                                        </Text>
+                                    </Tooltip>
                                 </TextContent>
-                                <Grid>
-                                    <GridItem span={4}>
-                                        <Tooltip
-                                            position='bottom'
-                                            content={
-                                                <div>
-                                                    The threshold for compliance is a value set by your organization for
-                                                    each policy.
-                                                    This defines the percentage of passed rules that must be met in order for a
-                                                    system to be determined &quot;compliant&quot;.
-                                                </div>
-                                            }
-                                        >
-                                            <Text component={TextVariants.small}>
-                                                Threshold for compliance: {policy.compliance_threshold}% <QuestionCircleIcon/>
-                                            </Text>
-                                        </Tooltip>
-                                    </GridItem>
-                                </Grid>
                             </GridItem>
                             <GridItem span={2}>
                                 <SetThresholdDropdown policyId={policy.id}
