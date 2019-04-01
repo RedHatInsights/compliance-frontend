@@ -52,7 +52,7 @@ class DownloadTableButton extends React.Component {
                 <Tooltip
                     enableFlip={ true }
                     content={
-                        <div translate>
+                        <div>
                             More actions
                         </div>
                     }
