@@ -3,6 +3,15 @@ import { applyReducerHash } from '@red-hat-insights/insights-frontend-components
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
 
+const complianceScore = (system) => (
+    <React.Fragment>
+        {system.compliant ?
+            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
+            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>}
+        { ' ' + (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%'}
+    </React.Fragment>
+);
+
 export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
         system => {
@@ -53,10 +62,8 @@ export const systemsToInventoryEntities = (systems, entities) =>
                                 hidePassed: true
                             }
                         }}>{system.rules_failed}</Link>,
-                        score: (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%',
-                        last_scanned: system.last_scanned,
-                        compliant: (system.compliant ? <CheckCircleIcon style={{ color: '#92d400' }}/> :
-                            <ExclamationCircleIcon style={{ color: '#a30000' }}/>)
+                        compliance_score: complianceScore(system),
+                        last_scanned: system.last_scanned
                     }
                 }
                 /* eslint-enable camelcase */
