@@ -9,9 +9,9 @@ import {
     Button,
     Bullseye,
     EmptyState,
-    EmptyStateIcon,
-    EmptyStateBody
+    EmptyStateIcon
 } from '@patternfly/react-core';
+import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty-state.css';
 import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import { routerParams } from '@red-hat-insights/insights-frontend-components';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
@@ -57,7 +57,7 @@ const CompliancePoliciesCards = () => (
                         <EmptyStateIcon size="xl" title="Compliance" icon={ClipboardCheckIcon} />
                         <br/>
                         <Title size="lg">Welcome to Compliance</Title>
-                        <EmptyStateBody>
+                        <span className={emptyStateStyles.emptyStateBody}>
                             <TextContent>
                                 You have not uploaded any reports yet. Please generate a report using
                                 OpenSCAP:
@@ -71,7 +71,7 @@ const CompliancePoliciesCards = () => (
                                     --content-type application/vnd.redhat.compliance.something+tgz
                                 </Text>
                             </TextContent>
-                        </EmptyStateBody>
+                        </span>
 
                         <Button
                             variant="primary"
