@@ -8,13 +8,12 @@ class ErrorPage extends Component {
 
     render() {
         const { error } = this.props;
-        if (error.networkError.statusCode === 401) {
+        if (error.networkError && error.networkError.statusCode === 401) {
             window.insights.chrome.auth.logout();
         }
 
         return 'Oops! There was an error loading Compliance data. If you need to contact ' +
-            'Red Hat Support about this, this is the exact error: ' +
-            error.networkError.statusCode + ' ' + error;
+            'Red Hat Support about this, this is the exact error: ' + ' ' + error.message;
     }
 }
 
