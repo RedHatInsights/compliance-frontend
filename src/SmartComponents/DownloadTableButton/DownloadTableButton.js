@@ -5,38 +5,36 @@ import { connect } from 'react-redux';
 import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 
 class DownloadTableButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        };
-        this.onToggle = this.onToggle.bind(this);
-        this.onSelect = this.onSelect.bind(this);
-    }
+    state = {
+        isOpen: false
+    };
 
-    onToggle(isOpen) {
+    onToggle = (isOpen) => {
         this.setState({
             isOpen
         });
     };
 
-    onSelect() {
+    onSelect = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     };
 
-    downloadLink(format) {
+    downloadLink = (format) => {
+        const { selectedEntities, columns } = this.props;
         let link = '';
-        if (this.props !== null && this.props.selectedEntities !== null) {
+        const requestedColumns = columns.map(column => column.title);
+
+        if (selectedEntities !== null) {
             link = COMPLIANCE_API_ROOT + '/systems.' + format + '?search=(id ^ (' +
-                this.props.selectedEntities.join(',') + '))';
+                selectedEntities.join(',') + '))' + '&columns=' + requestedColumns.join(',');
         }
 
         return link;
     }
 
-    render() {
+    render = () => {
         const { isOpen } = this.state;
         const dropdownItems = [
             <DropdownItem key='csv' href={this.downloadLink('csv')}>
@@ -73,7 +71,8 @@ class DownloadTableButton extends React.Component {
 }
 
 DownloadTableButton.propTypes = {
-    selectedEntities: propTypes.array
+    selectedEntities: propTypes.array,
+    columns: propTypes.array
 };
 
 const mapStateToProps = state => {
