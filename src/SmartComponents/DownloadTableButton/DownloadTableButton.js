@@ -59,6 +59,7 @@ class DownloadTableButton extends React.Component {
                 >
                     <Dropdown
                         onSelect={this.onSelect}
+                        isPlain
                         toggle={<KebabToggle
                             onToggle={this.onToggle}
                             style={{ color: 'var(--pf-global--icon--Color--light)' }}
