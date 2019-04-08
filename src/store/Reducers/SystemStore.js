@@ -82,7 +82,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
 export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyReducerHash(
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
-            state.rows = systemsToInventoryEntities(systems, state.rows);
+            state.items = systemsToInventoryEntities(systems, state.rows);
             state.count = state.rows.length;
             state.total = state.rows.length;
             state.columns = [];
