@@ -4,11 +4,17 @@ import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons'
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
 
+const compliantIcon = (system) => (
+    <React.Fragment>
+        { system.compliant ?
+            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
+            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/> }
+    </React.Fragment>
+);
+
 const complianceScore = (system) => (
     <React.Fragment>
-        {system.compliant ?
-            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
-            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>}
+        {compliantIcon(system)}
         { ' ' + (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%'}
     </React.Fragment>
 );
@@ -64,6 +70,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
                             }
                         }}>{system.rules_failed}</Link>,
                         compliance_score: complianceScore(system),
+                        compliant: compliantIcon(system),
                         last_scanned: <FormattedRelative value={Date.parse(system.last_scanned)} />
                     }
                 }
