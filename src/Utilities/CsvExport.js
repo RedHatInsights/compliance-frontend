@@ -1,0 +1,44 @@
+import get from 'lodash/get';
+
+const CSV_FILE_PREFIX = 'compliance-export';
+
+const linkAndDownload = (data, filename) => {
+    let link = document.createElement('a');
+    link.setAttribute('href', data);
+    link.setAttribute('download', filename);
+    link.dispatchEvent(new MouseEvent(`click`, { bubbles: true, cancelable: true, view: window }));
+};
+
+const textCsvCell = (row, key) => {
+    let cell = get(row, key);
+
+    if (typeof(cell) === 'object') {
+        cell = get(row, key + '_text');
+    }
+
+    if (typeof(cell) === 'string' && cell.includes(',')) {
+        cell = '"' + cell + '"';
+    }
+
+    return cell;
+};
+
+const csvFromState = (state) => {
+    if (state.rows) {
+        const CELL_DELIMITER = ',';
+        let csvRows = [state.columns.map((column) => column.title).join(CELL_DELIMITER)];
+        csvRows = csvRows.concat(state.rows.map((row) => {
+            return state.columns.map((column) => textCsvCell(row, column.key)).join(CELL_DELIMITER);
+        }));
+        return encodeURI('data:text/csv;charset=utf-8,' + csvRows.join('\n'));
+    }
+};
+
+export const downloadCsv = (state) => {
+    const csv = csvFromState(state);
+    if (csv) {
+        let filename = CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.csv';
+
+        linkAndDownload(csv, filename);
+    }
+};
