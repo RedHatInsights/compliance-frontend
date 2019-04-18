@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
+import { exportToCSV } from '../../store/ActionTypes.js';
 
 class DownloadTableButton extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class DownloadTableButton extends React.Component {
     render() {
         const { isOpen } = this.state;
         const dropdownItems = [
-            <DropdownItem key='csv' href={this.downloadLink('csv')}>
+            <DropdownItem key='csv' onClick={ this.props.exportToCSV }>
                 Export as CSV
             </DropdownItem>,
             <DropdownItem target='_blank' key='json' href={this.downloadLink('json')}>
@@ -74,7 +75,8 @@ class DownloadTableButton extends React.Component {
 }
 
 DownloadTableButton.propTypes = {
-    selectedEntities: propTypes.array
+    selectedEntities: propTypes.array,
+    exportToCSV: propTypes.func
 };
 
 const mapStateToProps = state => {
@@ -89,4 +91,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(DownloadTableButton);
+const mapDispatchToProps = dispatch => {
+    return {
+        exportToCSV: event => dispatch(exportToCSV(event))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DownloadTableButton);

@@ -3,6 +3,8 @@ import { applyReducerHash } from '@red-hat-insights/insights-frontend-components
 import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
+import { EXPORT_TO_CSV } from '../ActionTypes';
+import { downloadCsv } from '../../Utilities/CsvExport';
 
 const compliantIcon = (system) => (
     <React.Fragment>
@@ -12,10 +14,14 @@ const compliantIcon = (system) => (
     </React.Fragment>
 );
 
+const complianceScoreString = (system) => {
+    return ' ' + (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%';
+};
+
 const complianceScore = (system) => (
     <React.Fragment>
         {compliantIcon(system)}
-        { ' ' + (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%'}
+        { complianceScoreString(system) }
     </React.Fragment>
 );
 
@@ -69,9 +75,13 @@ export const systemsToInventoryEntities = (systems, entities) =>
                                 hidePassed: true
                             }
                         }}>{system.rules_failed}</Link>,
+                        rules_failed_text: system.rules_failed,
                         compliance_score: complianceScore(system),
+                        compliance_score_text: complianceScoreString(system),
                         compliant: compliantIcon(system),
-                        last_scanned: <FormattedRelative value={Date.parse(system.last_scanned)} />
+                        compliant_text: system.compliant.toString(),
+                        last_scanned: <FormattedRelative value={Date.parse(system.last_scanned)} />,
+                        last_scanned_text: system.last_scanned
                     }
                 }
                 /* eslint-enable camelcase */
@@ -91,6 +101,10 @@ export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyRedu
             }
 
             return { ...state };
+        },
+        [EXPORT_TO_CSV]: (state) => {
+            downloadCsv(state);
+            return state;
         }
     }
 );
