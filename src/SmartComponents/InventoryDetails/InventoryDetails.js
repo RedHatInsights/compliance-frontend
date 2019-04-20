@@ -3,14 +3,14 @@ import propTypes from 'prop-types';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
-import { registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import { Skeleton, SkeletonSize, registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
 
 @registryDecorator()
 class InventoryDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            InventoryCmp: () => <div>Loading...</div>
+            InventoryCmp: () => <Skeleton size={ SkeletonSize.md } />
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);
