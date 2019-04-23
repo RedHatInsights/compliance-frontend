@@ -1,5 +1,5 @@
 import React from 'react';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import { routerParams, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import SystemsTable from '../SystemsTable/SystemsTable';
@@ -21,7 +21,7 @@ const ComplianceSystemsTable = () => (
         {({ data, error, loading }) => {
             if (error) { return <ErrorPage error={error}/>; }
 
-            if (loading) { return 'Loading Systems...'; }
+            if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
             const systems = data.allSystems;
             const columns = [{
@@ -45,11 +45,7 @@ const ComplianceSystemsTable = () => (
                 }
             }];
 
-            return (
-                <div className="systems-table">
-                    <SystemsTable items={systems} columns={columns} />
-                </div>
-            );
+            return <SystemsTable items={systems} columns={columns} />;
         }}
     </Query>
 );

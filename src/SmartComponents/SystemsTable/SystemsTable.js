@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
-import { registry } from '@red-hat-insights/insights-frontend-components';
+import { registry, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
 
 @registry()
@@ -14,7 +14,7 @@ class SystemsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            InventoryCmp: () => <div>Loading...</div>
+            InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);

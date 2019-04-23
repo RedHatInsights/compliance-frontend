@@ -1,6 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Breadcrumbs, PageHeader, Main, routerParams } from '@red-hat-insights/insights-frontend-components';
+import {
+    Breadcrumbs,
+    PageHeader,
+    Main,
+    Skeleton,
+    SkeletonSize,
+    routerParams
+} from '@red-hat-insights/insights-frontend-components';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
 import { Compliance as ComplianceSystemDetails } from '@red-hat-insights/insights-frontend-components';
@@ -38,7 +45,7 @@ class SystemDetails extends React.Component {
                     }
 
                     if (loading) {
-                        return (<PageHeader>Loading System details...</PageHeader>);
+                        return (<PageHeader><Skeleton size={ SkeletonSize.md } /></PageHeader>);
                     }
 
                     return (
