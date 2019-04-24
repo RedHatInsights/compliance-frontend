@@ -14,7 +14,13 @@ class SystemsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>
+            InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
+            items: this.props.items,
+            meta: {
+                page: 1,
+                perPage: 50,
+                totalItems: this.props.items.length
+            }
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);
@@ -47,11 +53,15 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { InventoryCmp } = this.state;
-        const { items } = this.props;
+        const { items, meta, InventoryCmp } = this.state;
 
         return (
-            <InventoryCmp items={items.map(host => host.id)}>
+            <InventoryCmp
+                page={meta.page}
+                total={meta.totalItems}
+                perPage={meta.perPage}
+                items={items.map(host => host.id)}
+            >
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
