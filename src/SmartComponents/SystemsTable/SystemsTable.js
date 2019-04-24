@@ -48,13 +48,10 @@ class SystemsTable extends React.Component {
 
     render() {
         const { InventoryCmp } = this.state;
+        const { items } = this.props;
 
-        //const items = this.props.items;
-        // concatenate the names of profiles
-        // let hosts = [{ id: '19200f9f-dd49-4ec9-ac91-83009ec0acec', profiles: 'profile 1, profile 2', compliant: 'true' }];
-        // Ideally change items to look like the right Entities format
         return (
-            <InventoryCmp>
+            <InventoryCmp items={items.map(host => host.id)}>
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
