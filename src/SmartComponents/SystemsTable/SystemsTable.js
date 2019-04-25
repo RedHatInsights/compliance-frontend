@@ -6,6 +6,7 @@ import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
+import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
 import { registry, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
 
@@ -16,6 +17,7 @@ class SystemsTable extends React.Component {
         this.state = {
             InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
             items: this.props.items,
+            filterEnabled: false,
             meta: {
                 page: 1,
                 perPage: 50,
@@ -27,7 +29,14 @@ class SystemsTable extends React.Component {
         this.fetchInventory();
     }
 
+    onRefresh = (items, filterEnabled) => {
+        this.setState({ items, filterEnabled });
+    }
+
     async fetchInventory() {
+        const { items } = this.state;
+        const { columns } = this.props ;
+
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -43,7 +52,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, this.props.items, this.props.columns
+                    INVENTORY_ACTION_TYPES, items, columns
                 ))
         });
 
@@ -63,6 +72,9 @@ class SystemsTable extends React.Component {
                 items={items.map(host => host.id)}
             >
                 <reactCore.ToolbarGroup>
+                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                        <SystemsComplianceFilter onRefresh={this.onRefresh} />
+                    </reactCore.ToolbarItem>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
                     </reactCore.ToolbarItem>
