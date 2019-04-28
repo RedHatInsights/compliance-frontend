@@ -9,6 +9,14 @@ import ComplianceRemediationButton from '../ComplianceRemediationButton/Complian
 import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
 import { registry, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
 import { PaginationRow } from 'patternfly-react';
+import { withApollo } from 'react-apollo';
+import gql from 'graphql-tag';
+
+const GET_SYSTEMS = gql`
+query getSystems($filter: String!, $perPage: Int, $page: Int) {
+    allSystems(search: $filter, per_page: $perPage, page: $page) { id }
+}
+`;
 
 @registry()
 class SystemsTable extends React.Component {
@@ -16,21 +24,38 @@ class SystemsTable extends React.Component {
         super(props);
         this.state = {
             InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
-            items: this.props.items,
+            items: this.props.items.slice(0, 50),
             filterEnabled: false,
-            meta: {
-                page: 1,
-                perPage: 50,
-                totalItems: this.props.items.length
-            }
+            filter: '',
+            page: 1,
+            perPage: 50,
+            totalItems: this.props.items.length
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);
         this.fetchInventory();
     }
 
-    onRefresh = (items, filterEnabled) => {
-        this.setState({ items, filterEnabled });
+    onRefresh = ({ page, per_page: perPage }) => {
+        this.setState({ page, perPage }, this.systemFetch);
+    }
+
+    updateFilter = (filter, filterEnabled) => {
+        this.setState({ filter, filterEnabled }, this.systemFetch);
+    }
+
+    systemFetch = () => {
+        const { client } = this.props;
+        const { filter, perPage, page } = this.state;
+        client.query({ query: GET_SYSTEMS, variables: { filter, perPage, page } })
+        .then((items) => {
+            this.setState({
+                page,
+                perPage,
+                items: items.data.allSystems
+            });
+        });
+
     }
 
     async fetchInventory() {
@@ -62,18 +87,19 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { items, meta, InventoryCmp } = this.state;
+        const { page, totalItems, perPage, items, InventoryCmp } = this.state;
 
         return (
             <InventoryCmp
-                page={meta.page}
-                total={meta.totalItems}
-                perPage={meta.perPage}
+                onRefresh={this.onRefresh}
+                page={page}
+                total={totalItems}
+                perPage={perPage}
                 items={items.map(host => host.id)}
             >
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <SystemsComplianceFilter onRefresh={this.onRefresh} />
+                        <SystemsComplianceFilter updateFilter={this.updateFilter} />
                     </reactCore.ToolbarItem>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
@@ -88,8 +114,9 @@ class SystemsTable extends React.Component {
 }
 
 SystemsTable.propTypes = {
+    client: propTypes.object,
     items: propTypes.array,
     columns: propTypes.array
 };
 
-export default SystemsTable;
+export default withApollo(SystemsTable);
