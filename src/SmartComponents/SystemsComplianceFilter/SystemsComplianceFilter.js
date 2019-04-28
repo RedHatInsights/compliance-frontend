@@ -2,14 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { FilterDropdown } from '@red-hat-insights/insights-frontend-components';
 import { FILTER_CATEGORIES } from '../../constants';
-import { withApollo } from 'react-apollo';
-import gql from 'graphql-tag';
-
-const GET_SYSTEMS = gql`
-query getSystems($filter: String!) {
-    allSystems(search: $filter) { id }
-}
-`;
 
 class SystemsComplianceFilter extends React.Component {
     state = {
@@ -43,13 +35,9 @@ class SystemsComplianceFilter extends React.Component {
     }
 
     updateInventory = () => {
-        const { client, onRefresh } = this.props;
+        const { updateFilter } = this.props;
         const filter = this.buildFilter();
-
-        client.query({ query: GET_SYSTEMS, variables: { filter } })
-        .then((items) => {
-            onRefresh(items.data.allSystems, true);
-        });
+        updateFilter(filter, true);
     }
 
     addFilter = (filterName, selectedValue) => {
@@ -87,8 +75,7 @@ class SystemsComplianceFilter extends React.Component {
 }
 
 SystemsComplianceFilter.propTypes = {
-    onRefresh: propTypes.function,
-    client: propTypes.object,
+    updateFilter: propTypes.function,
     compliant: propTypes.array,
     complianceScore: propTypes.array
 };
@@ -98,4 +85,4 @@ SystemsComplianceFilter.defaultProps = {
     complianceScore: []
 };
 
-export default withApollo(SystemsComplianceFilter);
+export default SystemsComplianceFilter;
