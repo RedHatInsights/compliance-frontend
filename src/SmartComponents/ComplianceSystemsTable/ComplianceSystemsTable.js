@@ -7,7 +7,7 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 
 const QUERY = gql`
 {
-    allSystems {
+    allSystems(per_page: 50, page: 1) {
         id
         name
         profile_names
