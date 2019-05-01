@@ -80,7 +80,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
                         compliance_score_text: complianceScoreString(system),
                         compliant: compliantIcon(system),
                         compliant_text: system.compliant.toString(),
-                        last_scanned: <FormattedRelative value={Date.parse(system.last_scanned)} />,
+                        last_scanned: { title: <FormattedRelative value={Date.parse(system.last_scanned)} /> },
                         last_scanned_text: system.last_scanned
                     }
                 }
