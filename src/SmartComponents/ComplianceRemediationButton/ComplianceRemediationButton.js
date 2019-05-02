@@ -12,6 +12,9 @@ query FailedRulesForSystem($systemIdsQuery: String!){
         id,
         rule_objects_failed {
             ref_id,
+            profiles {
+                ref_id
+            }
             title
         }
     }
@@ -29,8 +32,8 @@ class ComplianceRemediationButton extends React.Component {
     }
 
     /* eslint-disable camelcase */
-    formatRule = ({ title, ref_id }, system) => ({
-        id: `compliance:${ref_id}`,
+    formatRule = ({ title, ref_id }, profile, system) => ({
+        id: `ssg:rhel7|${profile}|${ref_id}`,
         description: title,
         systems: [
             system
@@ -38,8 +41,7 @@ class ComplianceRemediationButton extends React.Component {
     })
 
     findRule = (rules, ref_id) => {
-        const prefix = 'compliance:';
-        return rules.find(rule => rule.ref_id === ref_id.slice(prefix.length));
+        return rules.find(rule => rule.ref_id === ref_id.split('|')[2]);
     }
 
     uniqIssuesBySystem = (issues) => {
@@ -51,13 +53,21 @@ class ComplianceRemediationButton extends React.Component {
         });
     }
 
-    rulesWithRemediations = (rules, id) => {
+    removeRefIdPrefix = (ref_id) => {
+        return ref_id.split('xccdf_org.ssgproject.content_profile_')[1];
+    }
+
+    rulesWithRemediations = (rules, system_id) => {
         return window.insights.chrome.auth.getUser()
         .then(() => {
             return fetch('/api/remediations/v1/resolutions', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; chartset=utf-8' },
-                body: JSON.stringify({ issues: rules.map(rule => `compliance:${rule.ref_id}`) })
+                body: JSON.stringify({
+                    issues: rules.map(rule => `ssg:rhel7|` +
+                                      `${this.removeRefIdPrefix(rule.profiles[0].ref_id)}|` +
+                                      `${rule.ref_id}`)
+                })
             }).then((response) => {
                 if (!response.ok) {
                     // If remediations doesn't respond, inject no fix available
@@ -66,7 +76,7 @@ class ComplianceRemediationButton extends React.Component {
 
                 return response.json();
             }).then(response => Object.keys(response).filter(rule => response[rule]).map(
-                rule_ref_id => this.formatRule(this.findRule(rules, rule_ref_id), id)
+                rule_ref_id => this.formatRule(this.findRule(rules, rule_ref_id), rule_ref_id.split('|')[1], system_id)
             ));
         });
     }
@@ -87,14 +97,6 @@ class ComplianceRemediationButton extends React.Component {
             result.issues = this.uniqIssuesBySystem(flatten(issues));
             return result;
         });
-        //        return allSystems.reduce(async (acc, { id, rule_objects_failed }) => ({
-        //            systems: [...acc.systems, id],
-        //            issues: [
-        //                ...acc.issues,
-        //                ...selectedRules ? selectedRules.map(rule => this.formatRule(rule, id)) :
-        //                    await(this.rulesWithRemediations(rule_objects_failed, id))
-        //            ]
-        //        }), { issues: [], systems: [] });
     }
     /* eslint-enable camelcase */
 
