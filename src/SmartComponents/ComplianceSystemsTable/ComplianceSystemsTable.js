@@ -13,6 +13,9 @@ const QUERY = gql`
         profile_names
         compliant
     }
+    allProfiles {
+        total_host_count
+    }
 }
 `;
 
@@ -24,6 +27,7 @@ const ComplianceSystemsTable = () => (
             if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
             const systems = data.allSystems;
+            const systemsCount = data.allProfiles.reduce((acc, curr) => acc + curr.total_host_count, 0);
             const columns = [{
                 composed: ['facts.os_release', 'display_name'],
                 key: 'display_name',
@@ -45,7 +49,7 @@ const ComplianceSystemsTable = () => (
                 }
             }];
 
-            return <SystemsTable items={systems} columns={columns} />;
+            return <SystemsTable items={systems} columns={columns} systemsCount={systemsCount}/>;
         }}
     </Query>
 );
