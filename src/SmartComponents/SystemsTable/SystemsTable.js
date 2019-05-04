@@ -14,7 +14,12 @@ import gql from 'graphql-tag';
 
 const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
-    allSystems(search: $filter, per_page: $perPage, page: $page) { id }
+    allSystems(search: $filter, per_page: $perPage, page: $page) {
+        id
+        name
+        profile_names
+        compliant
+    }
 }
 `;
 
@@ -24,12 +29,12 @@ class SystemsTable extends React.Component {
         super(props);
         this.state = {
             InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
-            items: this.props.items.slice(0, 50),
+            items: this.props.items,
             filterEnabled: false,
             filter: '',
             page: 1,
             perPage: 50,
-            totalItems: this.props.items.length
+            totalItems: this.props.systemsCount
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);
@@ -59,7 +64,6 @@ class SystemsTable extends React.Component {
     }
 
     async fetchInventory() {
-        const { items } = this.state;
         const { columns } = this.props ;
 
         const {
@@ -77,7 +81,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, items, columns
+                    INVENTORY_ACTION_TYPES, () => this.state.items, columns
                 ))
         });
 
@@ -116,7 +120,8 @@ class SystemsTable extends React.Component {
 SystemsTable.propTypes = {
     client: propTypes.object,
     items: propTypes.array,
-    columns: propTypes.array
+    columns: propTypes.array,
+    systemsCount: propTypes.number
 };
 
 export default withApollo(SystemsTable);
