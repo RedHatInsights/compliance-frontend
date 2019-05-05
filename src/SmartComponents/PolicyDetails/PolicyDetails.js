@@ -44,15 +44,6 @@ query Profile($policyId: String!){
         total_host_count
         compliant_host_count
         compliance_threshold
-        hosts {
-            id,
-            name,
-            profile_names,
-            rules_passed(profile_id: $policyId)
-            rules_failed(profile_id: $policyId)
-            last_scanned(profile_id: $policyId)
-            compliant(profile_id: $policyId)
-        }
     }
 }
 `;
@@ -117,7 +108,6 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 ];
             }
 
-            const systems = data.profile.hosts;
             const systemsCount = data.profile.total_host_count;
             const columns = [{
                 composed: ['facts.os_release', 'display_name'],
@@ -239,7 +229,9 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                     <Main>
                         <Grid gutter='md'>
                             <GridItem span={12}>
-                                <SystemsTable items={systems} columns={columns} systemsCount={systemsCount} />
+                                <SystemsTable policyId={policy.id}
+                                    columns={columns}
+                                    systemsCount={systemsCount} />
                             </GridItem>
                         </Grid>
                     </Main>

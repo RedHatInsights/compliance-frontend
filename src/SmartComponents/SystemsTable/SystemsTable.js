@@ -13,12 +13,15 @@ import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const GET_SYSTEMS = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int) {
-    allSystems(search: $filter, per_page: $perPage, page: $page) {
+query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String) {
+    allSystems(search: $filter, per_page: $perPage, page: $page, profile_id: $policyId) {
         id
         name
         profile_names
-        compliant
+        rules_passed(profile_id: $policyId)
+        rules_failed(profile_id: $policyId)
+        last_scanned(profile_id: $policyId)
+        compliant(profile_id: $policyId)
     }
 }
 `;
@@ -30,15 +33,23 @@ class SystemsTable extends React.Component {
         this.state = {
             InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
             items: this.props.items,
-            filterEnabled: false,
-            filter: '',
+            filterEnabled: this.props.filterEnabled,
+            filter: this.props.filter,
+            policyId: this.props.policyId,
             page: 1,
             perPage: 50,
             totalItems: this.props.systemsCount
         };
 
+        if (this.state.items === []) { this.systemFetch(); }
+
         this.fetchInventory = this.fetchInventory.bind(this);
         this.fetchInventory();
+    }
+
+    buildFilter = () => {
+        const { policyId, filter } = this.state;
+        return (!policyId || policyId.length === 0) ? filter : `profile_id = ${policyId} and ${filter}`;
     }
 
     onRefresh = ({ page, per_page: perPage }) => {
@@ -51,8 +62,8 @@ class SystemsTable extends React.Component {
 
     systemFetch = () => {
         const { client } = this.props;
-        const { filter, perPage, page } = this.state;
-        client.query({ query: GET_SYSTEMS, variables: { filter, perPage, page } })
+        const { policyId, perPage, page } = this.state;
+        client.query({ query: GET_SYSTEMS, variables: { filter: this.buildFilter(), perPage, page, policyId } })
         .then((items) => {
             this.setState({
                 page,
@@ -119,9 +130,20 @@ class SystemsTable extends React.Component {
 
 SystemsTable.propTypes = {
     client: propTypes.object,
+    filter: propTypes.string,
+    filterEnabled: propTypes.bool,
+    policyId: propTypes.string,
     items: propTypes.array,
     columns: propTypes.array,
     systemsCount: propTypes.number
+};
+
+SystemsTable.defaultProps = {
+    items: [],
+    systemsCount: 0,
+    policyId: '',
+    filter: '',
+    filterEnabled: false
 };
 
 export default withApollo(SystemsTable);
