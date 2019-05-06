@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 const CSV_FILE_PREFIX = 'compliance-export';
 
 const linkAndDownload = (data, filename) => {
@@ -9,11 +7,17 @@ const linkAndDownload = (data, filename) => {
     link.dispatchEvent(new MouseEvent(`click`, { bubbles: true, cancelable: true, view: window }));
 };
 
+const getNestedObject = (nestedObj, path) => {
+    return path.split('.').reduce(
+        (obj, key) => (obj && obj[key] !== 'undefined') ? obj[key] : undefined, nestedObj
+    );
+};
+
 const textCsvCell = (row, key) => {
-    let cell = get(row, key);
+    let cell = getNestedObject(row, key);
 
     if (typeof(cell) === 'object') {
-        cell = get(row, key + '_text');
+        cell = getNestedObject(row, key + '_text');
     }
 
     if (typeof(cell) === 'string' && cell.includes(',')) {
