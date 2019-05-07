@@ -10,8 +10,7 @@ import { COMPLIANCE_API_ROOT } from './constants';
 import { IntlProvider } from 'react-intl';
 
 const client = new ApolloClient({
-    credentials: 'include',
-    link: new HttpLink({ uri: COMPLIANCE_API_ROOT + '/graphql' }),
+    link: new HttpLink({ credentials: 'include', uri: COMPLIANCE_API_ROOT + '/graphql' }),
     cache: new InMemoryCache()
 });
 
