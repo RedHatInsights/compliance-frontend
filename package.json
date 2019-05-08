@@ -11,7 +11,7 @@
     "@patternfly/react-core": "2.10.6",
     "@patternfly/react-icons": "3.7.1",
     "@patternfly/react-table": "1.4.6",
-    "@red-hat-insights/insights-frontend-components": "3.41.50",
+    "@red-hat-insights/insights-frontend-components": "3.41.57",
     "actioncable": "^5.2.1",
     "apollo-boost": "^0.1.22",
     "classnames": "^2.2.5",
