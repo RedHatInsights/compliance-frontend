@@ -69,12 +69,12 @@ export const systemsToInventoryEntities = (systems, entities) =>
                     compliance: {
                         profiles: system.profile_names,
                         rules_passed: system.rules_passed,
-                        rules_failed: <Link to={{
+                        rules_failed: { title: <Link to={{
                             pathname: `/systems/${system.id}`,
                             query: {
                                 hidePassed: true
                             }
-                        }}>{system.rules_failed}</Link>,
+                        }}>{system.rules_failed}</Link> },
                         rules_failed_text: system.rules_failed,
                         compliance_score: complianceScore(system),
                         compliance_score_text: complianceScoreString(system),
