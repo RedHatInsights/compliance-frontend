@@ -2,9 +2,11 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
+import { addNotification } from '@red-hat-insights/insights-frontend-components/components/Notifications';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
+import { dispatchAction } from '../../Utilities/Dispatcher';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -100,6 +102,10 @@ class ComplianceRemediationButton extends React.Component {
     }
     /* eslint-enable camelcase */
 
+    onCreated = (result) => {
+        dispatchAction(addNotification(result.getNotification()));
+    }
+
     render() {
         const { allSystems } = this.props;
 
@@ -108,6 +114,7 @@ class ComplianceRemediationButton extends React.Component {
                 <RemediationButton
                     isDisabled={ allSystems.length === 0 || allSystems[0].rule_objects_failed.length === 0 }
                     dataProvider={ this.dataProvider }
+                    onRemediationCreated={ this.onCreated }
                 />
             </React.Fragment>
         );

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Routes } from './Routes';
+import { NotificationsPortal } from '@red-hat-insights/insights-frontend-components/components/Notifications';
+import '@red-hat-insights/insights-frontend-components/components/Notifications.css';
 import './App.scss';
 
 class App extends Component {
@@ -19,7 +21,10 @@ class App extends Component {
 
     render () {
         return (
-            <Routes childProps={ this.props } />
+            <React.Fragment>
+                <NotificationsPortal />
+                <Routes childProps={ this.props } />
+            </React.Fragment>
         );
     }
 }
