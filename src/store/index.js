@@ -1,4 +1,5 @@
 import { getRegistry } from '@red-hat-insights/insights-frontend-components';
+import { notifications } from '@red-hat-insights/insights-frontend-components/components/Notifications';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reducer as form } from 'redux-form';
 
@@ -10,7 +11,7 @@ export function init (...middleware) {
         ...middleware
     ]);
 
-    registry.register({ form });
+    registry.register({ form, notifications });
     return registry;
 }
 
