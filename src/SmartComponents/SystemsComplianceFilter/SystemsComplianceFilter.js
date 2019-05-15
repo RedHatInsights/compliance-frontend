@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { FilterDropdown } from '@red-hat-insights/insights-frontend-components';
+import { FilterDropdown } from '@redhat-cloud-services/frontend-components';
 import { FILTER_CATEGORIES } from '../../constants';
 
 class SystemsComplianceFilter extends React.Component {

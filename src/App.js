@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Routes } from './Routes';
-import { NotificationsPortal } from '@red-hat-insights/insights-frontend-components/components/Notifications';
-import '@red-hat-insights/insights-frontend-components/components/Notifications.css';
+import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
+import '@redhat-cloud-services/frontend-components-notifications/index.css';
 import './App.scss';
 
 class App extends Component {

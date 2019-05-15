@@ -2,13 +2,14 @@ import React from 'react';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
+import * as pfReactTable from '@patternfly/react-table';
 import propTypes from 'prop-types';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
-import { registry, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
-import { PaginationRow } from 'patternfly-react';
+import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
+import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -86,7 +87,7 @@ class SystemsTable extends React.Component {
             reactRouterDom,
             reactCore,
             reactIcons,
-            pfReact: { PaginationRow }
+            pfReactTable
         });
 
         this.getRegistry().register({

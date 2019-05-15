@@ -1,5 +1,5 @@
-import { getRegistry } from '@red-hat-insights/insights-frontend-components';
-import { notifications } from '@red-hat-insights/insights-frontend-components/components/Notifications';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import { notifications } from '@redhat-cloud-services/frontend-components-notifications';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reducer as form } from 'redux-form';
 

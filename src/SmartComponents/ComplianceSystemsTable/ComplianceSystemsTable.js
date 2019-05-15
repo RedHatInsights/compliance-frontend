@@ -1,5 +1,6 @@
 import React from 'react';
-import { routerParams, EmptyTable, Spinner } from '@red-hat-insights/insights-frontend-components';
+import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import SystemsTable from '../SystemsTable/SystemsTable';
