@@ -14,7 +14,7 @@ import {
 } from '@patternfly/react-core';
 import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty-state.css';
 import { CloudServerIcon } from '@patternfly/react-icons';
-import { routerParams } from '@red-hat-insights/insights-frontend-components';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';

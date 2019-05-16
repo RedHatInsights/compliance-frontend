@@ -5,16 +5,15 @@ import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import SetThresholdDropdown from '../SetThresholdDropdown/SetThresholdDropdown';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     Breadcrumbs,
     PageHeader,
     PageHeaderTitle,
     Main,
-    Truncate,
-    routerParams,
-    EmptyTable,
+    Truncate, EmptyTable,
     Spinner
-} from '@red-hat-insights/insights-frontend-components';
+} from '@redhat-cloud-services/frontend-components';
 import {
     ChartDonut,
     ChartLegend,

@@ -3,7 +3,8 @@ import propTypes from 'prop-types';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
-import { Skeleton, SkeletonSize, registry as registryDecorator } from '@red-hat-insights/insights-frontend-components';
+import { Skeleton, SkeletonSize } from '@redhat-cloud-services/frontend-components';
+import registryDecorator from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 
 @registryDecorator()
 class InventoryDetails extends React.Component {

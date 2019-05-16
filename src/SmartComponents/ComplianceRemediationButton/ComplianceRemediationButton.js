@@ -1,8 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { RemediationButton } from '@red-hat-insights/insights-frontend-components';
-import { addNotification } from '@red-hat-insights/insights-frontend-components/components/Notifications';
+import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
+import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';

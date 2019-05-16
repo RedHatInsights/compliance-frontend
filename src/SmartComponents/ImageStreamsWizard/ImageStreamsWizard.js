@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wizard } from '@red-hat-insights/insights-frontend-components';
+import { Wizard } from '@redhat-cloud-services/frontend-components';
 import AddOpenshiftConnection from '../ImageStreamsWizard/AddOpenshiftConnection';
 import SelectPolicy from '../ImageStreamsWizard/SelectPolicy';
 import ApplyPoliciesToImageStreams from '../ImageStreamsWizard/ApplyPoliciesToImageStreams';

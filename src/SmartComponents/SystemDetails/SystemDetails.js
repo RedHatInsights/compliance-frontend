@@ -5,12 +5,12 @@ import {
     PageHeader,
     Main,
     Skeleton,
-    SkeletonSize,
-    routerParams
-} from '@red-hat-insights/insights-frontend-components';
+    SkeletonSize
+} from '@redhat-cloud-services/frontend-components';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
-import { Compliance as ComplianceSystemDetails } from '@red-hat-insights/insights-frontend-components';
+import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
