@@ -14,11 +14,10 @@ node {
 }
 
 def runStages() {
-    openShift.withUINode(cloud: "cmqe") {
+    openShift.withUINode(cloud: "cmqe", workingDir: "/tmp") {
         stage("Install-integration-tests-env") {
             withStatusContext.custom(env.STAGE_NAME, true) {
                 sh "iqe plugin install compliance"
-                sh "iqe plugin install red-hat-internal-envs"
             }
         }
 
@@ -37,7 +36,7 @@ def runStages() {
         stage("Run-integration-tests") {
             withStatusContext.custom(env.STAGE_NAME, true) {
                 withEnv(['ENV_FOR_DYNACONF=ci']) {
-                   sh "iqe tests plugin compliance -v -s -m tier1 --junitxml=junit.xml"    
+                   sh "iqe tests plugin compliance -v -s -k test_navigate_smoke --junitxml=junit.xml"    
                 }
             }
 
