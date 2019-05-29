@@ -4,13 +4,13 @@ import {
     Grid,
     GridItem,
     Title,
-    Text,
     TextContent,
-    TextVariants,
     Button,
     Bullseye,
     EmptyState,
-    EmptyStateIcon
+    EmptyStateIcon,
+    ClipboardCopy,
+    ClipboardCopyVariant
 } from '@patternfly/react-core';
 import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty-state.css';
 import { CloudServerIcon } from '@patternfly/react-icons';
@@ -101,15 +101,15 @@ const CompliancePoliciesCards = () => (
                                 about your system&#39;s compliance to policies.
                                 <br/>
                                 Generate a report with OpenSCAP with the following command:
-                                <Text component={TextVariants.blockquote}>
+                                <ClipboardCopy isReadOnly variant={ClipboardCopyVariant.expansion}>
                                     oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
                                     --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
-                                </Text>
+                                </ClipboardCopy>
                                 And upload it using the following command:
-                                <Text component={TextVariants.blockquote}>
+                                <ClipboardCopy isReadOnly variant={ClipboardCopyVariant.expansion}>
                                     sudo insights-client --verbose --payload scan.xml
                                     --content-type application/vnd.redhat.compliance.something+tgz
-                                </Text>
+                                </ClipboardCopy>
                             </TextContent>
                         </span>
 
