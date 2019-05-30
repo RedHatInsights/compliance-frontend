@@ -66,6 +66,7 @@ class SystemsComplianceFilter extends React.Component {
     render() {
         return (
             <FilterDropdown
+                filters={ this.state }
                 addFilter={ this.addFilter }
                 removeFilter={ this.removeFilter }
                 filterCategories={ FILTER_CATEGORIES }
