@@ -8,7 +8,7 @@
   "dependencies": {
     "@patternfly/patternfly-next": "^1.0.175",
     "@patternfly/react-charts": "2.3.0",
-    "@patternfly/react-core": "3.2.6",
+    "@patternfly/react-core": "3.32.6",
     "@patternfly/react-icons": "3.7.4",
     "@patternfly/react-table": "2.1.6",
     "@redhat-cloud-services/frontend-components": "0.0.5",
