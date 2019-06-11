@@ -100,8 +100,17 @@ class CompliancePolicyCard extends React.Component {
                                     style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}
                                     component={TextVariants.small}
                                 >
-                                    Systems above compliance threshold
+                                    Systems meet compliance threshold
                                 </Text>
+                            </GridItem>
+                            <GridItem span={12}>
+                                <TextContent>
+                                    <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
+                                        <Link to={'/policies/' + this.policy.id} >
+                                                More details
+                                        </Link>
+                                    </Text>
+                                </TextContent>
                             </GridItem>
                         </Grid>
                     </TextContent>
@@ -123,13 +132,6 @@ class CompliancePolicyCard extends React.Component {
                             </div>
                         </GridItem>
                     </Grid>
-                    <TextContent style={{ textAlign: 'right' }}>
-                        <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                            <Link to={'/policies/' + this.policy.id} >
-                                More details
-                            </Link>
-                        </Text>
-                    </TextContent>
                 </CardBody>
             </Card>
         );
