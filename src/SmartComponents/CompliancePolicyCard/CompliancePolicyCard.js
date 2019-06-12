@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import {
+    Chip,
     Card,
     CardBody,
     Text,
@@ -103,7 +104,7 @@ class CompliancePolicyCard extends React.Component {
                                     Systems meet compliance threshold
                                 </Text>
                             </GridItem>
-                            <GridItem span={12}>
+                            <GridItem span={6}>
                                 <TextContent>
                                     <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
                                         <Link to={'/policies/' + this.policy.id} >
@@ -111,6 +112,13 @@ class CompliancePolicyCard extends React.Component {
                                         </Link>
                                     </Text>
                                 </TextContent>
+                            </GridItem>
+                            <GridItem span={6} style={{ textAlign: 'right' }}>
+                                { this.policy.business_objective &&
+                                    <Chip isReadOnly>
+                                        { this.policy.business_objective.title }
+                                    </Chip>
+                                }
                             </GridItem>
                         </Grid>
                     </TextContent>

@@ -30,6 +30,9 @@ const QUERY = gql`
         description
         total_host_count
         compliant_host_count
+        business_objective {
+            title
+        }
     }
 }
 `;

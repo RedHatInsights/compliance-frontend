@@ -43,6 +43,9 @@ query Profile($policyId: String!){
         total_host_count
         compliant_host_count
         compliance_threshold
+        business_objective {
+            title
+        }
     }
 }
 `;
@@ -169,6 +172,11 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                             onNavigate={onNavigateWithProps}
                         />
                         <PageHeaderTitle title={policy.name} />
+                        { policy.business_objective &&
+                        <Text style={{ color: 'var(--pf-global--Color--200)' }}>
+                            Business objective: { policy.business_objective.title }
+                        </Text>
+                        }
                         <Grid gutter='md'>
                             <GridItem span={4}>
                                 <div className='chart-inline'>
