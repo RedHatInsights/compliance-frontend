@@ -4,22 +4,24 @@ import {
     DropdownItem,
     Modal,
     Form,
-    FormGroup,
-    TextInput,
     Button
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import UpdateProfileThreshold from './UpdateProfileThreshold';
+import UpdateProfile from './UpdateProfile';
+import ProfileThresholdField from './ProfileThresholdField';
+import BusinessObjectiveField from './BusinessObjectiveField';
+import { formValueSelector } from 'redux-form';
+import { connect } from 'react-redux';
 
-class SetThresholdDropdown extends Component {
+class EditPolicy extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
             isModalOpen: false,
-            validThreshold: true,
-            threshold: props.previousThreshold
+            policyId: props.policyId,
+            businessObjective: props.businessObjective
         };
     }
 
@@ -27,14 +29,6 @@ class SetThresholdDropdown extends Component {
         this.setState(({ isModalOpen }) => ({
             isModalOpen: !isModalOpen
         }));
-    };
-
-    handleTextInputChange = threshold => {
-        if (threshold > 100 || threshold < 0) {
-            this.setState({ validThreshold: false });
-        } else {
-            this.setState({ validThreshold: true, threshold });
-        }
     };
 
     onToggle = isOpen => {
@@ -50,11 +44,11 @@ class SetThresholdDropdown extends Component {
     };
 
     render() {
-        const { isOpen, isModalOpen, threshold, validThreshold } = this.state;
-        const { policyId } = this.props;
+        const { policyId, isOpen, isModalOpen, businessObjective } = this.state;
+        const { previousThreshold, businessObjectiveId, complianceThreshold } = this.props;
         const dropdownItems = [
             <DropdownItem key="action" onClick={this.handleModalToggle} component="button">
-                Set compliance threshold
+                Edit policy
             </DropdownItem>
         ];
 
@@ -68,35 +62,29 @@ class SetThresholdDropdown extends Component {
                 />
                 <Modal
                     isSmall
-                    title="Update compliance threshold"
+                    title="Edit policy"
                     isOpen={isModalOpen}
                     onClose={this.handleModalToggle}
                     actions={[
                         <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
                             Cancel
                         </Button>,
-                        <UpdateProfileThreshold
+                        <UpdateProfile
                             key='confirm'
                             policyId={policyId}
-                            threshold={threshold} />
+                            threshold={complianceThreshold || previousThreshold}
+                            businessObjectiveId={businessObjectiveId}
+                        />
                     ]}
                 >
                         The compliance threshold defines what percentage of rules must be met in order for a system to
                         be determined &quot;compliant&quot;
                     <Form>
-                        <FormGroup field-id='policy-threshold'
-                            isValid={validThreshold}
-                            helperTextInvalid='Threshold has to be a number between 0 and 100'
-                            label="Compliance threshold (%):">
-                            <TextInput
-                                value={threshold}
-                                type='number'
-                                id='policy-threshold'
-                                onChange={this.handleTextInputChange}
-                                isValid={validThreshold}
-                                aria-label="compliance threshold"
-                            />
-                        </FormGroup>
+                        <ProfileThresholdField previousThreshold={previousThreshold} />
+                        <BusinessObjectiveField
+                            businessObjective={businessObjective}
+                            policyId={policyId}
+                        />
                     </Form>
                 </Modal>
             </React.Fragment>
@@ -104,9 +92,18 @@ class SetThresholdDropdown extends Component {
     }
 }
 
-SetThresholdDropdown.propTypes = {
+EditPolicy.propTypes = {
     policyId: propTypes.string,
-    previousThreshold: propTypes.number
+    previousThreshold: propTypes.number,
+    businessObjective: propTypes.object,
+    businessObjectiveId: propTypes.string,
+    complianceThreshold: propTypes.string
 };
 
-export default SetThresholdDropdown;
+const selector = formValueSelector('editPolicy');
+export default connect(
+    state => ({
+        complianceThreshold: selector(state, 'complianceThreshold'),
+        businessObjectiveId: selector(state, 'businessObjectiveId') && selector(state, 'businessObjectiveId').value
+    })
+)(EditPolicy);

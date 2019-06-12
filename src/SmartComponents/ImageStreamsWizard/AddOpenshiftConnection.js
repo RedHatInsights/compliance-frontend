@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, FormSection, reduxForm } from 'redux-form';
 import { Form, FormGroup } from '@patternfly/react-core';
-import { ReduxFormTextInput } from './ReduxFormWrappers';
+import { ReduxFormTextInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 
 const AddOpenshiftConnection = () => {
     return (

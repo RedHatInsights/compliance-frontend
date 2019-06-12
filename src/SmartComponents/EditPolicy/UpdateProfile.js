@@ -6,15 +6,14 @@ import propTypes from 'prop-types';
 
 class UpdateProfileButton extends React.Component {
     onClick = () => {
-        const { mutate, policyId, threshold } = this.props;
+        const { mutate, policyId, threshold, businessObjectiveId } = this.props;
         mutate({
             variables: {
-                /* eslint-disable camelcase */
                 input: {
                     id: policyId,
-                    complianceThreshold: parseFloat(threshold)
+                    complianceThreshold: parseFloat(threshold),
+                    businessObjectiveId
                 }
-                /* eslint-disable camelcase */
             }
         })
         .then(() => {
@@ -31,10 +30,11 @@ class UpdateProfileButton extends React.Component {
 
 const UPDATE_THRESHOLD = gql`
 mutation UpdateProfile($input: UpdateProfileInput!) {
-    UpdateProfile(input: $input) {
+    updateProfile(input: $input) {
         profile {
             id,
-            complianceThreshold
+            complianceThreshold,
+            businessObjectiveId
         }
     }
 }
@@ -42,9 +42,10 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
 
 UpdateProfileButton.propTypes = {
     policyId: propTypes.string,
+    businessObjectiveId: propTypes.string,
     mutate: propTypes.function,
     threshold: propTypes.number
 };
 
-const UpdateProfileThreshold = graphql(UPDATE_THRESHOLD)(UpdateProfileButton);
-export default UpdateProfileThreshold;
+const UpdateProfile = graphql(UPDATE_THRESHOLD)(UpdateProfileButton);
+export default UpdateProfile;

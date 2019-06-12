@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Form } from '@patternfly/react-core';
 import { FormSection, Field, reduxForm } from 'redux-form';
-import { ReduxFormCheckboxInput } from './ReduxFormWrappers';
+import { ReduxFormCheckboxInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 
 const SelectPolicy = () => {
     return (
