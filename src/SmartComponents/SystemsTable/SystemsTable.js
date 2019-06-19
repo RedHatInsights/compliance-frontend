@@ -15,14 +15,14 @@ import gql from 'graphql-tag';
 
 const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String) {
-    allSystems(search: $filter, per_page: $perPage, page: $page, profile_id: $policyId) {
+    allSystems(search: $filter, perPage: $perPage, page: $page, profileId: $policyId) {
         id
         name
-        profile_names
-        rules_passed(profile_id: $policyId)
-        rules_failed(profile_id: $policyId)
-        last_scanned(profile_id: $policyId)
-        compliant(profile_id: $policyId)
+        profileNames
+        rulesPassed(profileId: $policyId)
+        rulesFailed(profileId: $policyId)
+        lastScanned(profileId: $policyId)
+        compliant(profileId: $policyId)
     }
 }
 `;

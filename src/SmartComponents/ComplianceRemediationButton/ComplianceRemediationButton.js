@@ -12,10 +12,10 @@ const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
     allSystems(search: $systemIdsQuery) {
         id,
-        rule_objects_failed {
-            ref_id,
+        ruleObjectsFailed {
+            refId,
             profiles {
-                ref_id
+                refId
             }
             title
         }

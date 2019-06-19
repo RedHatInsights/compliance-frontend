@@ -38,12 +38,12 @@ query Profile($policyId: String!){
     profile(id: $policyId) {
         id
         name
-        ref_id
+        refId
         description
-        total_host_count
-        compliant_host_count
-        compliance_threshold
-        business_objective {
+        totalHostCount
+        compliantHostCount
+        complianceThreshold
+        businessObjective {
             title
         }
     }
@@ -101,8 +101,8 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 );
             } else {
                 policy = data.profile;
-                const compliantHostCount = policy.compliant_host_count;
-                const totalHostCount = policy.total_host_count;
+                const compliantHostCount = policy.compliantHostCount;
+                const totalHostCount = policy.totalHostCount;
                 donutId = policy.name.replace(/ /g, '');
                 donutValues = [
                     { x: 'Compliant', y: compliantHostCount },
@@ -110,7 +110,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                 ];
             }
 
-            const systemsCount = data.profile.total_host_count;
+            const systemsCount = data.profile.totalHostCount;
             const columns = [{
                 composed: ['facts.os_release', 'display_name'],
                 key: 'display_name',
@@ -172,9 +172,9 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                             onNavigate={onNavigateWithProps}
                         />
                         <PageHeaderTitle title={policy.name} />
-                        { policy.business_objective &&
+                        { policy.businessObjective &&
                         <Text style={{ color: 'var(--pf-global--Color--200)' }}>
-                            Business objective: { policy.business_objective.title }
+                            Business objective: { policy.businessObjective.title }
                         </Text>
                         }
                         <Grid gutter='md'>
@@ -222,14 +222,14 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                             Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
                                         </Text>
                                         <Text className='threshold-tooltip' component={TextVariants.p}>
-                                            { policy.compliance_threshold }%
+                                            { policy.complianceThreshold }%
                                         </Text>
                                     </Tooltip>
                                 </TextContent>
                             </GridItem>
                             <GridItem span={2}>
                                 <SetThresholdDropdown policyId={policy.id}
-                                    previousThreshold={policy.compliance_threshold} />
+                                    previousThreshold={policy.complianceThreshold} />
                             </GridItem>
                         </Grid>
                     </PageHeader>

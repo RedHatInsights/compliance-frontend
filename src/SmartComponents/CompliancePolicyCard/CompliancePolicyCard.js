@@ -36,8 +36,8 @@ class CompliancePolicyCard extends React.Component {
     }
 
     render() {
-        const compliantHostCount = this.policy.compliant_host_count;
-        const totalHostCount = this.policy.total_host_count;
+        const compliantHostCount = this.policy.compliantHostCount;
+        const totalHostCount = this.policy.totalHostCount;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
@@ -70,7 +70,7 @@ class CompliancePolicyCard extends React.Component {
         );
 
         return (
-            <Card widget-id={this.policy.ref_id}>
+            <Card widget-id={this.policy.refId}>
                 <CardBody>
                     <Text style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }} component={TextVariants.small}>
                         External Policy
@@ -114,9 +114,9 @@ class CompliancePolicyCard extends React.Component {
                                 </TextContent>
                             </GridItem>
                             <GridItem span={6} style={{ textAlign: 'right' }}>
-                                { this.policy.business_objective &&
+                                { this.policy.businessObjective &&
                                     <Chip isReadOnly>
-                                        { this.policy.business_objective.title }
+                                        { this.policy.businessObjective.title }
                                     </Chip>
                                 }
                             </GridItem>

@@ -15,7 +15,7 @@ const compliantIcon = (system) => (
 );
 
 const complianceScoreString = (system) => {
-    return ' ' + (100 * (system.rules_passed / (system.rules_passed + system.rules_failed))).toFixed(2) + '%';
+    return ' ' + (100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed))).toFixed(2) + '%';
 };
 
 const complianceScore = (system) => (
@@ -67,19 +67,19 @@ export const systemsToInventoryEntities = (systems, entities) =>
                             matchingEntity.facts.release
                     },
                     compliance: {
-                        profiles: system.profile_names,
-                        rules_passed: system.rules_passed,
+                        profiles: system.profileNames,
+                        rules_passed: system.rulesPassed,
                         rules_failed: { title: <Link to={{
                             pathname: `/systems/${system.id}`,
                             query: {
                                 hidePassed: true
                             }
-                        }}>{system.rules_failed}</Link> },
-                        rules_failed_text: system.rules_failed,
+                        }}>{system.rulesFailed}</Link> },
+                        rules_failed_text: system.rulesFailed,
                         compliance_score: complianceScore(system),
                         compliance_score_text: complianceScoreString(system),
-                        last_scanned: { title: <FormattedRelative value={Date.parse(system.last_scanned)} /> },
-                        last_scanned_text: system.last_scanned
+                        last_scanned: { title: <FormattedRelative value={Date.parse(system.lastScanned)} /> },
+                        last_scanned_text: system.lastScanned
                     }
                 }
                 /* eslint-enable camelcase */
