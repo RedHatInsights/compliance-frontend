@@ -4,8 +4,7 @@ RUN dnf install -y npm git
 COPY . /frontend
 WORKDIR /frontend
 
-RUN rm -rf node_modules/*
-
+COPY package*.json /frontend/
 RUN npm install
 
 CMD ["/usr/bin/npm", "run", "start"]
