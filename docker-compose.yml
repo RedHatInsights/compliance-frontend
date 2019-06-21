@@ -6,7 +6,7 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      - .:/frontend:Z
+      - .:/frontend/:z
       - /frontend/node_modules/
     extra_hosts:
       - prod.foo.redhat.com:127.0.0.1
@@ -31,5 +31,5 @@ services:
       - LOCAL_API_SCHEME=http
       - LOCAL_API_PORT=3000
     volumes:
-      - ${LOCAL_CHROME_PATH}:/chrome:Z
+      - ${LOCAL_CHROME_PATH}:/chrome:z
       - ./config/spandx.config.js:/config/spandx.config.js
