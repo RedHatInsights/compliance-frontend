@@ -8,17 +8,17 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 
 const QUERY = gql`
 {
-    allSystems(per_page: 50, page: 1) {
+    allSystems(perPage: 50, page: 1) {
         id
         name
-        profile_names
-        rules_passed
-        rules_failed
+        profileNames
+        rulesPassed
+        rulesFailed
+        lastScanned
         compliant
-        last_scanned
     }
     allProfiles {
-        total_host_count
+        totalHostCount
     }
 }
 `;

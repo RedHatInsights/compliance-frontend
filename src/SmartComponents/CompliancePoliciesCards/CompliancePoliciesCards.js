@@ -26,10 +26,13 @@ const QUERY = gql`
     allProfiles {
         id
         name
-        ref_id
+        refId
         description
-        total_host_count
-        compliant_host_count
+        totalHostCount
+        compliantHostCount
+        businessObjective {
+            title
+        }
     }
 }
 `;

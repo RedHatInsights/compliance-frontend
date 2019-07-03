@@ -12,7 +12,7 @@ class UpdateProfileButton extends React.Component {
                 /* eslint-disable camelcase */
                 input: {
                     id: policyId,
-                    compliance_threshold: parseFloat(threshold)
+                    complianceThreshold: parseFloat(threshold)
                 }
                 /* eslint-disable camelcase */
             }
@@ -34,7 +34,7 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
     UpdateProfile(input: $input) {
         profile {
             id,
-            compliance_threshold
+            complianceThreshold
         }
     }
 }
