@@ -12,7 +12,10 @@ const QUERY = gql`
         id
         name
         profile_names
+        rules_passed
+        rules_failed
         compliant
+        last_scanned
     }
     allProfiles {
         total_host_count
@@ -40,11 +43,17 @@ const ComplianceSystemsTable = () => (
                 key: 'facts.compliance.profiles',
                 title: 'Profiles',
                 props: {
-                    width: 50
+                    width: 40
                 }
             }, {
-                key: 'facts.compliance.compliant',
+                key: 'facts.compliance.compliance_score',
                 title: 'Compliant',
+                props: {
+                    width: 10
+                }
+            }, {
+                key: 'facts.compliance.last_scanned',
+                title: 'Last Scanned',
                 props: {
                     width: 10
                 }
