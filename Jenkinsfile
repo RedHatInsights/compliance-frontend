@@ -16,6 +16,7 @@ node {
 def runStages() {
     openShift.withUINode(cloud: "upshift") {
         stageWithContext("Install-integration-tests-env") {
+            sh "pip install ibutsu-pytest-plugin"
             sh "iqe plugin install compliance"
         }
 
@@ -30,8 +31,8 @@ def runStages() {
         }
 
         stageWithContext("Run-integration-tests") {
-            withEnv(['ENV_FOR_DYNACONF=ci']) {
-               sh "iqe tests plugin compliance -v -s -k test_navigate_smoke --junitxml=junit.xml"    
+            withEnv(['ENV_FOR_DYNACONF=ci', 'REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt']) {
+               sh "iqe tests plugin compliance -v -s -k test_navigate_smoke --junitxml=junit.xml -o ibutsu_server=https://ibutsu-api.cloud.paas.psi.redhat.com/"    
             }
 
             junit "junit.xml"
