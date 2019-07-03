@@ -104,12 +104,14 @@ const CompliancePoliciesCards = () => (
                                 about your system&#39;s compliance to policies.
                                 <br/>
                                 Generate a report with OpenSCAP with the following command:
-                                <ClipboardCopy isReadOnly variant={ClipboardCopyVariant.expansion}>
+                                <ClipboardCopy className='upload-instructions'
+                                    variant={ClipboardCopyVariant.expansion}>
                                     oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
                                     --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
                                 </ClipboardCopy>
                                 And upload it using the following command:
-                                <ClipboardCopy isReadOnly variant={ClipboardCopyVariant.expansion}>
+                                <ClipboardCopy className='upload-instructions'
+                                    variant={ClipboardCopyVariant.expansion}>
                                     sudo insights-client --verbose --payload scan.xml
                                     --content-type application/vnd.redhat.compliance.something+tgz
                                 </ClipboardCopy>
