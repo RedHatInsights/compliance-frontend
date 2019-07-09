@@ -172,13 +172,17 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                             onNavigate={onNavigateWithProps}
                         />
                         <PageHeaderTitle title={policy.name} />
+                        <EditPolicy policyId={policy.id}
+                            previousThreshold={policy.complianceThreshold}
+                            businessObjective={policy.businessObjective}
+                        />
                         { policy.businessObjective &&
                         <Text style={{ color: 'var(--pf-global--Color--200)' }}>
                             Business objective: { policy.businessObjective.title }
                         </Text>
                         }
                         <Grid gutter='md'>
-                            <GridItem span={4}>
+                            <GridItem sm={12} md={12} lg={12} xl={6}>
                                 <div className='chart-inline'>
                                     <div className='chart-container'>
                                         {label}
@@ -201,7 +205,7 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                 </div>
 
                             </GridItem>
-                            <GridItem span={6}>
+                            <GridItem sm={12} md={12} lg={12} xl={6}>
                                 <TextContent>
                                     <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
                                     <Text component={TextVariants.p}>
@@ -226,12 +230,6 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                         </Text>
                                     </Tooltip>
                                 </TextContent>
-                            </GridItem>
-                            <GridItem span={2}>
-                                <EditPolicy policyId={policy.id}
-                                    previousThreshold={policy.complianceThreshold}
-                                    businessObjective={policy.businessObjective}
-                                />
                             </GridItem>
                         </Grid>
                     </PageHeader>
