@@ -130,6 +130,7 @@
     "start": "NODE_ENV=development webpack-serve --config config/dev.webpack.config.js",
     "travis:build": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack --config config/prod.webpack.config.js",
     "travis:verify": "npm-run-all travis:build lint test",
-    "verify": "npm-run-all build lint test"
+    "verify": "npm-run-all build lint test",
+    "nightly": "npm run travis:verify"
   }
 }
