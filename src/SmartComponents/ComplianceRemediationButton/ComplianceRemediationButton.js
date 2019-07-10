@@ -34,14 +34,14 @@ class ComplianceRemediationButton extends React.Component {
     }
 
     /* eslint-disable camelcase */
-    formatRule = ({ title, ref_id }, profile, systems) => ({
-        id: `ssg:rhel7|${profile}|${ref_id}`,
+    formatRule = ({ title, refId }, profile, systems) => ({
+        id: `ssg:rhel7|${profile}|${refId}`,
         description: title,
         systems
     })
 
-    findRule = (rules, ref_id) => {
-        return rules.find(rule => rule.ref_id === ref_id.split('|')[2]);
+    findRule = (rules, refId) => {
+        return rules.find(rule => rule.refId === refId.split('|')[2]);
     }
 
     uniqIssuesBySystem = (issues) => {
@@ -53,14 +53,14 @@ class ComplianceRemediationButton extends React.Component {
         });
     }
 
-    removeRefIdPrefix = (ref_id) => {
-        const splitRefId = ref_id.split('xccdf_org.ssgproject.content_profile_')[1];
+    removeRefIdPrefix = (refId) => {
+        const splitRefId = refId.split('xccdf_org.ssgproject.content_profile_')[1];
         if (splitRefId) {
             return splitRefId;
         } else {
             // Sometimes the reports contain IDs like "stig-rhel7-disa" which we can pass
             // directly
-            return ref_id;
+            return refId;
         }
     }
 
@@ -72,8 +72,8 @@ class ComplianceRemediationButton extends React.Component {
                 headers: { 'Content-Type': 'application/json; chartset=utf-8' },
                 body: JSON.stringify({
                     issues: rules.map(rule => `ssg:rhel7|` +
-                                      `${this.removeRefIdPrefix(rule.profiles[0].ref_id)}|` +
-                                      `${rule.ref_id}`)
+                                      `${this.removeRefIdPrefix(rule.profiles[0].refId)}|` +
+                                      `${rule.refId}`)
                 })
             }).then((response) => {
                 if (!response.ok) {
@@ -88,9 +88,9 @@ class ComplianceRemediationButton extends React.Component {
 
     rulesWithRemediations = (rules, rulesPerSystem) => {
         return this.fetchRules(rules).then(response => Object.keys(response).filter(rule => response[rule]).reduce(
-            (acc, rule_ref_id) => {
-                const rule = this.findRule(rules, rule_ref_id);
-                acc.push(this.formatRule(rule, rule_ref_id.split('|')[1], rulesPerSystem[rule.ref_id]));
+            (acc, rule_refId) => {
+                const rule = this.findRule(rules, rule_refId);
+                acc.push(this.formatRule(rule, rule_refId.split('|')[1], rulesPerSystem[rule.refId]));
                 return acc;
             }, []
         ));
@@ -105,10 +105,10 @@ class ComplianceRemediationButton extends React.Component {
         if (selectedRules) {
             result.issues.push(selectedRules.map(rule => this.formatRule(rule, [allSystems[0].id])));
         } else {
-            const rules = flatten(allSystems.map(system => system.rule_objects_failed));
+            const rules = flatten(allSystems.map(system => system.ruleObjectsFailed));
             const rulesPerSystem = rules.reduce((acc, rule) => {
-                acc[rule.ref_id] = allSystems.filter(
-                    system => system.rule_objects_failed.map(rule => rule.ref_id).includes(rule.ref_id)
+                acc[rule.refId] = allSystems.filter(
+                    system => system.ruleObjectsFailed.map(rule => rule.refId).includes(rule.refId)
                 ).map(system => system.id);
                 return acc;
             }, {});
@@ -132,7 +132,7 @@ class ComplianceRemediationButton extends React.Component {
         return (
             <React.Fragment>
                 <RemediationButton
-                    isDisabled={ allSystems.length === 0 || allSystems[0].rule_objects_failed.length === 0 }
+                    isDisabled={ allSystems.length === 0 || allSystems[0].ruleObjectsFailed.length === 0 }
                     dataProvider={ this.dataProvider }
                     onRemediationCreated={ this.onCreated }
                 />
