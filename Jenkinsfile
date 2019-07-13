@@ -14,7 +14,7 @@ node {
 }
 
 def runStages() {
-    openShift.withUINode(cloud: "upshift") {
+    openShift.withUINode {
         stageWithContext("Install-integration-tests-env") {
             sh "pip install ibutsu-pytest-plugin"
             sh "iqe plugin install compliance"
