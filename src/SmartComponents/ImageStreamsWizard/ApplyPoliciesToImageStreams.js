@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormSection, Field, reduxForm } from 'redux-form';
 import { Form, FormGroup } from '@patternfly/react-core';
-import { ReduxFormTextInput } from './ReduxFormWrappers';
+import { ReduxFormTextInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 
 class ApplyPoliciesToImageStreams extends React.Component {
     render() {

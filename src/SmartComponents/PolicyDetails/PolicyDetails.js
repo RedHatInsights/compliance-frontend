@@ -3,7 +3,7 @@ import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
-import SetThresholdDropdown from '../SetThresholdDropdown/SetThresholdDropdown';
+import EditPolicy from '../EditPolicy/EditPolicy';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
@@ -228,8 +228,10 @@ const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
                                 </TextContent>
                             </GridItem>
                             <GridItem span={2}>
-                                <SetThresholdDropdown policyId={policy.id}
-                                    previousThreshold={policy.complianceThreshold} />
+                                <EditPolicy policyId={policy.id}
+                                    previousThreshold={policy.complianceThreshold}
+                                    businessObjective={policy.businessObjective}
+                                />
                             </GridItem>
                         </Grid>
                     </PageHeader>
