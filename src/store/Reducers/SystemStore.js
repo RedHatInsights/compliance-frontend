@@ -1,6 +1,6 @@
 import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
-import { CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
+import { QuestionCircleIcon, CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
@@ -8,13 +8,21 @@ import { downloadCsv } from '../../Utilities/CsvExport';
 
 const compliantIcon = (system) => (
     <React.Fragment>
-        { system.compliant ?
-            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
-            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/> }
+        {
+            ((system.rulesPassed + system.rulesFailed) === 0) ?
+                <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
+                system.compliant ?
+                    <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
+                    <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
+        }
     </React.Fragment>
 );
 
 const complianceScoreString = (system) => {
+    if ((system.rulesPassed + system.rulesFailed) === 0) {
+        return ' N/A';
+    }
+
     return ' ' + (100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed))).toFixed(2) + '%';
 };
 
