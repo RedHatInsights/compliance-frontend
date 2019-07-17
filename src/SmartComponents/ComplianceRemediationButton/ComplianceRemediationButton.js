@@ -54,7 +54,7 @@ class ComplianceRemediationButton extends React.Component {
     }
 
     removeRefIdPrefix = (refId) => {
-        const splitRefId = refId.split('xccdf_org.ssgproject.content_profile_')[1];
+        const splitRefId = refId.toLowerCase().split('xccdf_org.ssgproject.content_profile_')[1];
         if (splitRefId) {
             return splitRefId;
         } else {
