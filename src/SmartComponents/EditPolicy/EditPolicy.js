@@ -1,5 +1,6 @@
 import {
     Dropdown,
+    DropdownPosition,
     DropdownToggle,
     DropdownItem,
     Modal,
@@ -56,6 +57,8 @@ class EditPolicy extends Component {
             <React.Fragment>
                 <Dropdown
                     onSelect={this.onSelect}
+                    className='policy-details-dropdown'
+                    position={DropdownPosition.right}
                     toggle={<DropdownToggle onToggle={this.onToggle}>Actions</DropdownToggle>}
                     isOpen={isOpen}
                     dropdownItems={dropdownItems}
