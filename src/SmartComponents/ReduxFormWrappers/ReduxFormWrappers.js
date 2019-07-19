@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatableSelect from 'react-select/creatable';
+import { rawComponents } from '@data-driven-forms/pf4-component-mapper';
 import { TextInput, Checkbox } from '@patternfly/react-core';
 
 export const ReduxFormTextInput = field => (
@@ -17,7 +17,7 @@ export const ReduxFormCheckboxInput = field => (
 );
 
 export const ReduxFormCreatableSelectInput = field => (
-    <CreatableSelect
+    <rawComponents.Select selectVariant="createable"
         value={field.selected}
         onChange={field.input.onChange}
         {...field} />
