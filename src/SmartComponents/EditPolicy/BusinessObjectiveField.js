@@ -6,23 +6,13 @@ import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWra
 import gql from 'graphql-tag';
 import { compose, withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
+import debounce from 'lodash/debounce';
 
 const GET_BUSINESS_OBJECTIVES = gql`
 query businessObjectives {
     businessObjectives {
         id
         title
-    }
-}
-`;
-
-const CREATE_BUSINESS_OBJECTIVE = gql`
-mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
-    createBusinessObjective(input: $input) {
-        businessObjective {
-            id
-            title
-        }
     }
 }
 `;
@@ -36,6 +26,7 @@ class BusinessObjectiveField extends React.Component {
             originalValue: props.businessObjective ? props.businessObjective.title : 'e.g: China expansion',
             selected: props.businessObjective ? props.businessObjective.id : '',
             options: [],
+            originalOptions: [],
             client: props.client,
             isLoading: true
         };
@@ -50,7 +41,8 @@ class BusinessObjectiveField extends React.Component {
 
             this.setState({
                 isLoading: false,
-                options
+                options,
+                originalOptions: options
             });
         });
     }
@@ -60,34 +52,37 @@ class BusinessObjectiveField extends React.Component {
         value: businessObjective.id
     });
 
+    handleInputChange = debounce(value => {
+        this.handleCreate(value);
+    }, 500)
+
     handleChange = (newValue) => {
         this.setState({ selected: newValue });
     };
 
     handleCreate = (inputValue) => {
-        const { client, options } = this.state;
+        if (inputValue.length === 0) {
+            return;
+        }
+
+        const { originalOptions } = this.state;
         const { dispatch } = this.props;
         this.setState({ isLoading: true });
 
-        client.mutate({
-            mutation: CREATE_BUSINESS_OBJECTIVE,
-            variables: { input: { title: inputValue } }
-        }).then((result) => {
-            const newOption = this.createOption(result.data.createBusinessObjective.businessObjective);
-            // Manually dispatch the action to ensure the newly created label is set
-            dispatch({
-                type: '@@redux-form/CHANGE',
-                meta: {
-                    field: 'businessObjectiveId',
-                    form: 'editPolicy'
-                },
-                payload: newOption
-            });
-            this.setState({
-                isLoading: false,
-                options: [newOption, ...options],
-                selected: newOption
-            });
+        const newOption = this.createOption({ title: inputValue, id: inputValue });
+        // Manually dispatch the action to ensure the newly created label is set
+        dispatch({
+            type: '@@redux-form/CHANGE',
+            meta: {
+                field: 'businessObjectiveTitle',
+                form: 'editPolicy'
+            },
+            payload: newOption
+        });
+        this.setState({
+            isLoading: false,
+            options: [newOption, ...originalOptions],
+            selected: newOption
         });
     };
 
@@ -97,8 +92,8 @@ class BusinessObjectiveField extends React.Component {
 
         return (
             <FormGroup field-id='edit-policy-business-objective' label="Business objective">
-                <Field name='businessObjectiveId'
-                    id='businessObjectiveId'
+                <Field name='businessObjectiveTitle'
+                    id='businessObjectiveTitle'
                     ariaLabelledBy={titleId}
                     aria-label="Select a business objective"
                     component={ReduxFormCreatableSelectInput}
@@ -109,6 +104,7 @@ class BusinessObjectiveField extends React.Component {
                     isLoading={isLoading}
                     onChange={this.handleChange}
                     onCreateOption={this.handleCreate}
+                    onInputChange={this.handleInputChange}
                     options={options}
                 />
             </FormGroup>
