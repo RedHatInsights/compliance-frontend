@@ -8,10 +8,11 @@ import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
-import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
+import { EmptyTable, SimpleTableFilter, Spinner } from '@redhat-cloud-services/frontend-components';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
+import debounce from 'lodash/debounce';
 
 const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String) {
@@ -36,6 +37,7 @@ class SystemsTable extends React.Component {
             items: this.props.items,
             filterEnabled: this.props.filterEnabled,
             filter: this.props.filter,
+            search: '',
             policyId: this.props.policyId,
             page: 1,
             perPage: 50,
@@ -49,8 +51,23 @@ class SystemsTable extends React.Component {
     }
 
     buildFilter = () => {
-        const { policyId, filter } = this.state;
-        return (!policyId || policyId.length === 0) ? filter : `profile_id = ${policyId} and ${filter}`;
+        const { policyId, filter, search } = this.state;
+        let result = filter;
+        result = this.appendToFilter(result, 'profile_id', '=', policyId);
+        result = this.appendToFilter(result, 'name', '~', search);
+        return result;
+    }
+
+    appendToFilter = (filter, attribute, operation, append) => {
+        if (append && append.length > 0) {
+            if (filter.length > 0) {
+                filter += ' and ';
+            }
+
+            filter += `${attribute} ${operation} ${append}`;
+        }
+
+        return filter;
     }
 
     onRefresh = ({ page, per_page: perPage }) => {
@@ -60,6 +77,10 @@ class SystemsTable extends React.Component {
     updateFilter = (filter, filterEnabled) => {
         this.setState({ filter, filterEnabled }, this.systemFetch);
     }
+
+    handleSearch = debounce(search => {
+        this.setState({ search }, this.systemFetch);
+    }, 500)
 
     systemFetch = () => {
         const { client } = this.props;
@@ -115,7 +136,12 @@ class SystemsTable extends React.Component {
             >
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <SystemsComplianceFilter updateFilter={this.updateFilter} />
+                        <reactCore.InputGroup>
+                            <SystemsComplianceFilter updateFilter={this.updateFilter} />
+                            <SimpleTableFilter buttonTitle={null}
+                                onFilterChange={this.handleSearch}
+                                placeholder="Search by name" />
+                        </reactCore.InputGroup>
                     </reactCore.ToolbarItem>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
