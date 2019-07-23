@@ -96,8 +96,7 @@ class BusinessObjectiveField extends React.Component {
         const titleId = 'business-objective-typeahead';
 
         return (
-            <FormGroup fieldId='policy-business-objective'
-                label="Business objective">
+            <FormGroup field-id='edit-policy-business-objective' label="Business objective">
                 <Field name='businessObjectiveId'
                     id='businessObjectiveId'
                     ariaLabelledBy={titleId}
