@@ -65,7 +65,7 @@ class EditPolicy extends Component {
                 />
                 <Modal
                     isSmall
-                    title="Edit policy"
+                    title="Edit policy details"
                     isOpen={isModalOpen}
                     onClose={this.handleModalToggle}
                     actions={[
@@ -80,14 +80,12 @@ class EditPolicy extends Component {
                         />
                     ]}
                 >
-                        The compliance threshold defines what percentage of rules must be met in order for a system to
-                        be determined &quot;compliant&quot;
                     <Form>
-                        <ProfileThresholdField previousThreshold={previousThreshold} />
                         <BusinessObjectiveField
                             businessObjective={businessObjective}
                             policyId={policyId}
                         />
+                        <ProfileThresholdField previousThreshold={previousThreshold} />
                     </Form>
                 </Modal>
             </React.Fragment>

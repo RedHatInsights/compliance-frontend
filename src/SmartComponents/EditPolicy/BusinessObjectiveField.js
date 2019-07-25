@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup } from '@patternfly/react-core';
+import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
@@ -91,23 +91,28 @@ class BusinessObjectiveField extends React.Component {
         const titleId = 'business-objective-typeahead';
 
         return (
-            <FormGroup field-id='edit-policy-business-objective' label="Business objective">
-                <Field name='businessObjectiveTitle'
-                    id='businessObjectiveTitle'
-                    ariaLabelledBy={titleId}
-                    aria-label="Select a business objective"
-                    component={ReduxFormCreatableSelectInput}
-                    isClearable
-                    selected={selected}
-                    placeholder={originalValue}
-                    isDisabled={isLoading}
-                    isLoading={isLoading}
-                    onChange={this.handleChange}
-                    onCreateOption={this.handleCreate}
-                    onInputChange={this.handleInputChange}
-                    options={options}
-                />
-            </FormGroup>
+            <React.Fragment>
+                <Title headingLevel='h3' size='xl'>Business objective</Title>
+                This is an optional field that can be used to label policies that are related to
+                specific business objectives.
+                <FormGroup field-id='edit-policy-business-objective' label="Business objective">
+                    <Field name='businessObjectiveTitle'
+                        id='businessObjectiveTitle'
+                        ariaLabelledBy={titleId}
+                        aria-label="Select a business objective"
+                        component={ReduxFormCreatableSelectInput}
+                        isClearable
+                        selected={selected}
+                        placeholder={originalValue}
+                        isDisabled={isLoading}
+                        isLoading={isLoading}
+                        onChange={this.handleChange}
+                        onCreateOption={this.handleCreate}
+                        onInputChange={this.handleInputChange}
+                        options={options}
+                    />
+                </FormGroup>
+            </React.Fragment>
         );
     }
 }
