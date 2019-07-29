@@ -8,7 +8,7 @@ node {
     cancelPriorBuilds()
     scmVars = checkout scm
 
-    if (env.BRANCH_NAME == 'master' && scmVars.GIT_COMMIT != scmVars.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+    if (env.CHANGE_TARGET == "prod-stable") {
         runStages()
     }
 }
@@ -31,8 +31,12 @@ def runStages() {
         }
 
         stageWithContext("Run-integration-tests") {
-            withEnv(['ENV_FOR_DYNACONF=ci', 'REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt']) {
-               sh "iqe tests plugin compliance -v -s -k test_navigate_smoke --junitxml=junit.xml -o ibutsu_server=https://ibutsu-api.cloud.paas.psi.redhat.com/"    
+            withEnv([
+                "ENV_FOR_DYNACONF=prod",
+                "REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt",
+                "DYNACONF_MAIN='@json {\"use_beta\":\"True\", \"dynaconf_merge\":\"True\"}'"
+            ]) {
+               sh "iqe tests plugin compliance -v -s -m compliance_ui --junitxml=junit.xml -o ibutsu_server=https://ibutsu-api.cloud.paas.psi.redhat.com/"    
             }
 
             junit "junit.xml"
