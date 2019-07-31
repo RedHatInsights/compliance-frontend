@@ -2,34 +2,8 @@ version: '3'
 services:
   frontend:
     build: .
-    network_mode: "host"
     ports:
       - "8002:8002"
     volumes:
       - .:/frontend/:z
       - /frontend/node_modules/
-    extra_hosts:
-      - prod.foo.redhat.com:127.0.0.1
-      - stage.foo.redhat.com:127.0.0.1
-      - qa.foo.redhat.com:127.0.0.1
-      - ci.foo.redhat.com:127.0.0.1
-  proxy:
-    image: docker.io/redhatinsights/insights-proxy
-    network_mode: "host"
-    ports:
-      - "1337:1337"
-    extra_hosts:
-      - prod.foo.redhat.com:127.0.0.1
-      - stage.foo.redhat.com:127.0.0.1
-      - qa.foo.redhat.com:127.0.0.1
-      - ci.foo.redhat.com:127.0.0.1
-    environment:
-      - PLATFORM=linux
-      - PORT=8002
-      - LOCAL_CHROME=true
-      - LOCAL_API=true
-      - LOCAL_API_SCHEME=http
-      - LOCAL_API_PORT=3000
-    volumes:
-      - ${LOCAL_CHROME_PATH}:/chrome:z
-      - ./config/spandx.config.js:/config/spandx.config.js
