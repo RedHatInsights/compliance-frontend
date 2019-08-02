@@ -3,7 +3,12 @@ services:
   frontend:
     build: .
     ports:
-      - "8002:8002"
+      - 8002:8002
     volumes:
       - .:/frontend/:z
       - /frontend/node_modules/
+
+networks:
+  default:
+    external:
+      name: docker_default # should match insights-upload's network name
