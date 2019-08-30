@@ -31,7 +31,6 @@ const ComplianceSystemsTable = () => (
             if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
             const systems = data.allSystems;
-            const systemsCount = data.allProfiles.reduce((acc, curr) => acc + curr.totalHostCount, 0);
             const columns = [{
                 composed: ['facts.os_release', 'display_name'],
                 key: 'display_name',
@@ -59,7 +58,7 @@ const ComplianceSystemsTable = () => (
                 }
             }];
 
-            return <SystemsTable items={systems} columns={columns} systemsCount={systemsCount}/>;
+            return <SystemsTable items={systems} columns={columns} systemsCount={systems.length}/>;
         }}
     </Query>
 );
