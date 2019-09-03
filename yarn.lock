@@ -1068,9 +1068,9 @@
   version "2.6.13"
   resolved "https://registry.yarnpkg.com/@patternfly/react-tokens/-/react-tokens-2.6.13.tgz#68c4c7ba2cde6b5a99ea3a9a85a8cbffce118695"
 
-"@redhat-cloud-services/frontend-components-inventory-compliance@0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@redhat-cloud-services/frontend-components-inventory-compliance/-/frontend-components-inventory-compliance-0.0.21.tgz#951c0727162a4ccef5698255a150ee4d973edfec"
+"@redhat-cloud-services/frontend-components-inventory-compliance@0.0.23":
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/@redhat-cloud-services/frontend-components-inventory-compliance/-/frontend-components-inventory-compliance-0.0.23.tgz#070ced8aa0ef3ee6c5d31d22c72658b31ed605c2"
   dependencies:
     "@redhat-cloud-services/frontend-components" "*"
     "@redhat-cloud-services/frontend-components-notifications" "*"
@@ -7983,8 +7983,8 @@ mississippi@^3.0.0:
     through2 "^2.0.0"
 
 mixin-deep@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
