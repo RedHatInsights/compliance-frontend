@@ -76,7 +76,7 @@ class SystemsComplianceFilter extends React.Component {
 }
 
 SystemsComplianceFilter.propTypes = {
-    updateFilter: propTypes.function,
+    updateFilter: propTypes.func,
     compliant: propTypes.array,
     complianceScore: propTypes.array
 };
