@@ -8,13 +8,13 @@ import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
-import { EmptyTable, SimpleTableFilter, Spinner } from '@redhat-cloud-services/frontend-components';
+import { SimpleTableFilter } from '@redhat-cloud-services/frontend-components';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';
 
-const GET_SYSTEMS = gql`
+export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String) {
     allSystems(search: $filter, perPage: $perPage, page: $page, profileId: $policyId) {
         id
@@ -30,23 +30,23 @@ query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String)
 
 @registry()
 class SystemsTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            InventoryCmp: () => <EmptyTable><Spinner/></EmptyTable>,
-            items: this.props.items,
-            filterEnabled: this.props.filterEnabled,
-            filter: this.props.filter,
-            search: '',
-            policyId: this.props.policyId,
-            page: 1,
-            perPage: 50,
-            totalItems: this.props.systemsCount
-        };
+    inventoryTableRef = React.createRef();
+    state = {
+        InventoryCmp: null,
+        items: this.props.items,
+        filterEnabled: this.props.filterEnabled,
+        filter: this.props.filter,
+        search: '',
+        policyId: this.props.policyId,
+        page: 1,
+        perPage: 50,
+        totalItems: this.props.systemsCount,
+        loading: this.props.loading
+    }
 
-        if (this.state.items === []) { this.systemFetch(); }
+    componentDidMount() {
+        if (this.state.items.length === 0) { this.systemFetch(); }
 
-        this.fetchInventory = this.fetchInventory.bind(this);
         this.fetchInventory();
     }
 
@@ -85,20 +85,23 @@ class SystemsTable extends React.Component {
     systemFetch = () => {
         const { client } = this.props;
         const { policyId, perPage, page } = this.state;
-        client.query({ query: GET_SYSTEMS, variables: { filter: this.buildFilter(), perPage, page, policyId } })
+        client.query({ query: GET_SYSTEMS, fetchResults: true, fetchPolicy: 'no-cache',
+            variables: { filter: this.buildFilter(), perPage, page, policyId } })
         .then((items) => {
             this.setState({
                 page,
                 perPage,
-                items: items.data.allSystems
+                items: items.data.allSystems,
+                totalItems: items.data.allSystems.length,
+                loading: false
             });
-        });
 
+            this.fetchInventory();
+        });
     }
 
     async fetchInventory() {
         const { columns } = this.props ;
-
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -126,18 +129,19 @@ class SystemsTable extends React.Component {
     render() {
         const { page, totalItems, perPage, items, InventoryCmp } = this.state;
 
-        return (
+        return (InventoryCmp &&
             <InventoryCmp
                 onRefresh={this.onRefresh}
                 page={page}
                 total={totalItems}
                 perPage={perPage}
                 items={items.map(host => host.id)}
+                ref={ this.inventoryTableRef }
             >
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <reactCore.InputGroup>
-                            <SystemsComplianceFilter updateFilter={this.updateFilter} />
+                            <SystemsComplianceFilter updateFilter={this.updateFilter}/>
                             <SimpleTableFilter buttonTitle={null}
                                 onFilterChange={this.handleSearch}
                                 placeholder="Search by name" />
@@ -162,7 +166,8 @@ SystemsTable.propTypes = {
     policyId: propTypes.string,
     items: propTypes.array,
     columns: propTypes.array,
-    systemsCount: propTypes.number
+    systemsCount: propTypes.number,
+    loading: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -170,7 +175,9 @@ SystemsTable.defaultProps = {
     systemsCount: 0,
     policyId: '',
     filter: '',
-    filterEnabled: false
+    filterEnabled: false,
+    loading: true
 };
 
-export default withApollo(SystemsTable);
+export { SystemsTable };
+export default withApollo(SystemsTable, { withRef: true });

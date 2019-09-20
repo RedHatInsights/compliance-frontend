@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
@@ -26,14 +27,13 @@ import {
     Tooltip,
     TextVariants
 } from '@patternfly/react-core';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
 import './PolicyDetails.scss';
 import linkifyHtml from 'linkifyjs/html';
 import ContentLoader from 'react-content-loader';
 
-const QUERY = gql`
+export const QUERY = gql`
 query Profile($policyId: String!){
     profile(id: $policyId) {
         id
@@ -77,183 +77,195 @@ const PolicyDetailsContentLoader = () => (
     </ContentLoader>
 );
 
-const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => (
-    <Query query={QUERY} variables={{ policyId }} >
-        {({ data, error, loading }) => {
-            let donutValues = [];
-            let donutId = 'loading-donut';
-            let policy = {};
+export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
+    const { data, error, loading, refetch } = useQuery(QUERY, {
+        variables: { policyId }
+    });
+    let systemsTable = useRef();
+    let donutValues = [];
+    let donutId = 'loading-donut';
+    let policy = {};
 
-            if (error) {
-                if (error.networkError.statusCode === 401) {
-                    window.insights.chrome.auth.logout();
+    const forceUpdate = () => {
+        refetch();
+        systemsTable.current.getWrappedInstance().systemFetch();
+        systemsTable.current.getWrappedInstance().forceUpdate();
+    };
+
+    if (error) {
+        if (error.networkError.statusCode === 401) {
+            window.insights.chrome.auth.logout();
+        }
+
+        return 'Oops! Error loading Policy data: ' + error;
+    }
+
+    if (loading) {
+        return (
+            <React.Fragment>
+                <PageHeader><PolicyDetailsContentLoader/></PageHeader>
+                <Main><EmptyTable><Spinner/></EmptyTable></Main>
+            </React.Fragment>
+        );
+    } else {
+        policy = data.profile;
+        const compliantHostCount = policy.compliantHostCount;
+        const totalHostCount = policy.totalHostCount;
+        donutId = policy.name.replace(/ /g, '');
+        donutValues = [
+            { x: 'Compliant', y: compliantHostCount },
+            { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
+        ];
+    }
+
+    const systemsCount = data.profile.totalHostCount;
+    const columns = [{
+        composed: ['facts.os_release', 'display_name'],
+        key: 'display_name',
+        title: 'Name'
+    }, {
+        key: 'facts.compliance.profiles',
+        title: 'Profile'
+    }, {
+        key: 'facts.compliance.rules_failed',
+        title: 'Rules Failed'
+    }, {
+        key: 'facts.compliance.compliance_score',
+        title: 'Compliance Score'
+    }, {
+        key: 'facts.compliance.last_scanned',
+        title: 'Last Scanned'
+    }];
+
+    const legendData = [
+        { name: donutValues[0].y + ' Systems Compliant' },
+        { name: donutValues[1].y + ' Systems Non-Compliant' }
+    ];
+
+    const compliancePercentage = Math.floor(100 *
+        (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
+
+    const label = (
+        <svg
+            className="chart-label"
+            height={200}
+            width={200}
+        >
+            <ChartLabel
+                style={{ fontSize: 20 }}
+                text={compliancePercentage}
+                textAnchor="middle"
+                verticalAnchor="middle"
+                x={100}
+                y={90}
+            />
+            <ChartLabel
+                style={{ fill: '#bbb' }}
+                text="Compliant"
+                textAnchor="middle"
+                verticalAnchor="middle"
+                x={100}
+                y={110}
+            />
+        </svg>
+    );
+
+    return (
+        <React.Fragment>
+            <PageHeader>
+                <Breadcrumbs
+                    style={{ padding: '0px' }}
+                    items={[{ title: 'Policies', navigate: '/policies' }]}
+                    current={policy.name}
+                    onNavigate={onNavigateWithProps}
+                />
+                <PageHeaderTitle title={policy.name} />
+                <EditPolicy policyId={policy.id}
+                    previousThreshold={policy.complianceThreshold}
+                    businessObjective={policy.businessObjective}
+                    onClose={ () => {
+                        forceUpdate();
+                    }}
+                />
+                { policy.businessObjective &&
+                <Text style={{ color: 'var(--pf-global--Color--200)' }}>
+                    Business objective: { policy.businessObjective.title }
+                </Text>
                 }
+                <Grid gutter='md'>
+                    <GridItem sm={12} md={12} lg={12} xl={6}>
+                        <div className='chart-inline'>
+                            <div className='chart-container'>
+                                {label}
+                                <ChartDonut data={donutValues}
+                                    identifier={donutId}
+                                    theme={ChartTheme.light.blue}
+                                    legendPosition='right'
+                                    height={200}
+                                    width={200}
+                                />
+                            </div>
+                            <ChartLegend
+                                data={legendData}
+                                orientation={'vertical'}
+                                theme={ChartTheme.light.blue}
+                                y={55}
+                                height={200}
+                                width={200}
+                            />
+                        </div>
 
-                return 'Oops! Error loading Policy data: ' + error;
-            }
-
-            if (loading) {
-                return (
-                    <React.Fragment>
-                        <PageHeader><PolicyDetailsContentLoader/></PageHeader>
-                        <Main><EmptyTable><Spinner/></EmptyTable></Main>
-                    </React.Fragment>
-                );
-            } else {
-                policy = data.profile;
-                const compliantHostCount = policy.compliantHostCount;
-                const totalHostCount = policy.totalHostCount;
-                donutId = policy.name.replace(/ /g, '');
-                donutValues = [
-                    { x: 'Compliant', y: compliantHostCount },
-                    { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
-                ];
-            }
-
-            const systemsCount = data.profile.totalHostCount;
-            const columns = [{
-                composed: ['facts.os_release', 'display_name'],
-                key: 'display_name',
-                title: 'Name'
-            }, {
-                key: 'facts.compliance.profiles',
-                title: 'Profile'
-            }, {
-                key: 'facts.compliance.rules_failed',
-                title: 'Rules Failed'
-            }, {
-                key: 'facts.compliance.compliance_score',
-                title: 'Compliance Score'
-            }, {
-                key: 'facts.compliance.last_scanned',
-                title: 'Last Scanned'
-            }];
-
-            const legendData = [
-                { name: donutValues[0].y + ' Systems Compliant' },
-                { name: donutValues[1].y + ' Systems Non-Compliant' }
-            ];
-
-            const compliancePercentage = Math.floor(100 *
-                (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
-
-            const label = (
-                <svg
-                    className="chart-label"
-                    height={200}
-                    width={200}
-                >
-                    <ChartLabel
-                        style={{ fontSize: 20 }}
-                        text={compliancePercentage}
-                        textAnchor="middle"
-                        verticalAnchor="middle"
-                        x={100}
-                        y={90}
-                    />
-                    <ChartLabel
-                        style={{ fill: '#bbb' }}
-                        text="Compliant"
-                        textAnchor="middle"
-                        verticalAnchor="middle"
-                        x={100}
-                        y={110}
-                    />
-                </svg>
-            );
-
-            return (
-                <React.Fragment>
-                    <PageHeader>
-                        <Breadcrumbs
-                            style={{ padding: '0px' }}
-                            items={[{ title: 'Policies', navigate: '/policies' }]}
-                            current={policy.name}
-                            onNavigate={onNavigateWithProps}
-                        />
-                        <PageHeaderTitle title={policy.name} />
-                        <EditPolicy policyId={policy.id}
-                            previousThreshold={policy.complianceThreshold}
-                            businessObjective={policy.businessObjective}
-                        />
-                        { policy.businessObjective &&
-                        <Text style={{ color: 'var(--pf-global--Color--200)' }}>
-                            Business objective: { policy.businessObjective.title }
-                        </Text>
-                        }
-                        <Grid gutter='md'>
-                            <GridItem sm={12} md={12} lg={12} xl={6}>
-                                <div className='chart-inline'>
-                                    <div className='chart-container'>
-                                        {label}
-                                        <ChartDonut data={donutValues}
-                                            identifier={donutId}
-                                            theme={ChartTheme.light.blue}
-                                            legendPosition='right'
-                                            height={200}
-                                            width={200}
-                                        />
-                                    </div>
-                                    <ChartLegend
-                                        data={legendData}
-                                        orientation={'vertical'}
-                                        theme={ChartTheme.light.blue}
-                                        y={55}
-                                        height={200}
-                                        width={200}
-                                    />
-                                </div>
-
-                            </GridItem>
-                            <GridItem sm={12} md={12} lg={12} xl={6}>
-                                <TextContent>
-                                    <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
-                                    <Text component={TextVariants.p}>
-                                        <Truncate text={linkifyHtml(policy.description)} length={380} />
+                    </GridItem>
+                    <GridItem sm={12} md={12} lg={12} xl={6}>
+                        <TextContent>
+                            <Text style={{ fontWeight: 'bold' }} component={TextVariants.span}>Description</Text>
+                            <Text component={TextVariants.span}>
+                                <Truncate text={linkifyHtml(policy.description)} length={380} />
+                            </Text>
+                            <Tooltip
+                                position='left'
+                                content={
+                                    <span>
+                                        The threshold for compliance is a value set by your organization for
+                                        each policy.
+                                        This defines the percentage of passed rules that must be met in order
+                                        for a system to be determined &quot;compliant&quot;.
+                                    </span>
+                                }
+                            >
+                                <span>
+                                    <Text style={{ fontWeight: 'bold' }} component={ TextVariants.p }>
+                                      Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
                                     </Text>
-                                    <Tooltip
-                                        position='left'
-                                        content={
-                                            <div>
-                                                The threshold for compliance is a value set by your organization for
-                                                each policy.
-                                                This defines the percentage of passed rules that must be met in order
-                                                for a system to be determined &quot;compliant&quot;.
-                                            </div>
-                                        }
-                                    >
-                                        <Text style={{ fontWeight: 'bold' }} component={ TextVariants.p }>
-                                            Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
-                                        </Text>
-                                        <Text className='threshold-tooltip' component={TextVariants.p}>
-                                            { policy.complianceThreshold }%
-                                        </Text>
-                                    </Tooltip>
-                                </TextContent>
-                            </GridItem>
-                        </Grid>
-                    </PageHeader>
-                    <Main>
-                        <Grid gutter='md'>
-                            <GridItem span={12}>
-                                <SystemsTable policyId={policy.id}
-                                    columns={columns}
-                                    systemsCount={systemsCount} />
-                            </GridItem>
-                        </Grid>
-                    </Main>
-                </React.Fragment>
-            );
-        }}
-    </Query>
-);
+                                    <Text className='threshold-tooltip' component={TextVariants.p}>
+                                        { policy.complianceThreshold }%
+                                    </Text>
+                                </span>
+                            </Tooltip>
+                        </TextContent>
+                    </GridItem>
+                </Grid>
+            </PageHeader>
+            <Main>
+                <Grid gutter='md'>
+                    <GridItem span={12}>
+                        <SystemsTable policyId={policy.id}
+                            columns={columns}
+                            systemsCount={systemsCount}
+                            ref={systemsTable} />
+                    </GridItem>
+                </Grid>
+            </Main>
+        </React.Fragment>
+    );
+};
 
 PolicyDetailsQuery.propTypes = {
     policyId: propTypes.string,
     onNavigateWithProps: propTypes.func
 };
 
-class PolicyDetails extends React.Component {
+export class PolicyDetails extends React.Component {
     constructor(props) {
         super(props);
         this.onNavigate = onNavigate.bind(this);

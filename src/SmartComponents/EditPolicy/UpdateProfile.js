@@ -29,7 +29,7 @@ mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
 
 class UpdateProfileButton extends React.Component {
     onClick = () => {
-        const { mutate, policyId, threshold, businessObjectiveTitle } = this.props;
+        const { mutate, policyId, threshold, businessObjectiveTitle, onClick } = this.props;
         let businessObjectivePromise;
         if (businessObjectiveTitle && businessObjectiveTitle.length > 0) {
             businessObjectivePromise = mutate({
@@ -52,7 +52,7 @@ class UpdateProfileButton extends React.Component {
                 }
             })
             .then(() => {
-                document.location.reload();
+                onClick();
             });
         });
     }
@@ -67,8 +67,9 @@ class UpdateProfileButton extends React.Component {
 UpdateProfileButton.propTypes = {
     policyId: propTypes.string,
     businessObjectiveTitle: propTypes.string,
-    mutate: propTypes.function,
-    threshold: propTypes.number
+    mutate: propTypes.func,
+    threshold: propTypes.number,
+    onClick: propTypes.func
 };
 
 const UpdateProfile = graphql(UPDATE_PROFILE)(UpdateProfileButton);
