@@ -4,9 +4,10 @@ import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
-import { compose, withApollo } from 'react-apollo';
+import { withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
+import flowRight from 'lodash.flowright';
 
 const GET_BUSINESS_OBJECTIVES = gql`
 query businessObjectives {
@@ -124,7 +125,7 @@ BusinessObjectiveField.propTypes = {
     dispatch: propTypes.function
 };
 
-export default compose(
+export default flowRight(
     connect(),
     withApollo,
     reduxForm({

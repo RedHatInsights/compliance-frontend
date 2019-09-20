@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import gql from 'graphql-tag';
-import { compose, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
 import { dispatchAction } from '../../Utilities/Dispatcher';
+import flowRight from 'lodash.flowright';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -160,7 +161,7 @@ const mapStateToProps = ({ entities, entityDetails }) => ({
 
 });
 
-export default compose(
+export default flowRight(
     connect(mapStateToProps),
     FailedRulesQuery
 )(ComplianceRemediationButton);
