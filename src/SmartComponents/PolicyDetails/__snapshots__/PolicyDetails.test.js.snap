@@ -1,0 +1,2874 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PolicyDetails expect to render without error 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="pf-c-breadcrumb ins-c-breadcrumbs"
+      style="padding: 0px;"
+    >
+      <ol
+        class="pf-c-breadcrumb__list"
+      >
+        <li
+          class="pf-c-breadcrumb__item"
+          data-key="0"
+        >
+          <a
+            aria-label="/policies"
+          >
+            Policies
+          </a>
+          <span
+            class="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          class="pf-c-breadcrumb__item"
+        >
+           
+          profile1
+           
+        </li>
+      </ol>
+    </nav>
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1
+       
+    </h1>
+    <div>
+      Edit Policy
+    </div>
+    <p
+      class=""
+      data-pf-content="true"
+    >
+      Business objective: 
+      BO 1
+    </p>
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="chart-inline"
+        >
+          <div
+            class="chart-container"
+          >
+            <svg
+              class="chart-label"
+              height="200"
+              width="200"
+            >
+              <text
+                direction="inherit"
+                dx="0"
+                dy="7.1"
+                x="100"
+                y="90"
+              >
+                <tspan
+                  dx="0"
+                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  100%
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="100"
+                y="110"
+              >
+                <tspan
+                  dx="0"
+                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              class="VictoryContainer"
+              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+            >
+              <svg
+                aria-labelledby="victory-container-19-title victory-container-19-desc"
+                height="200"
+                role="img"
+                style="pointer-events: all; width: 100%; height: 100%;"
+                viewBox="0 0 200 200"
+                width="200"
+              >
+                <g>
+                  <path
+                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                  <path
+                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                </g>
+              </svg>
+              <div
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+              >
+                <svg
+                  height="200"
+                  style="overflow: visible; width: 100%; height: 100%;"
+                  viewBox="0 0 200 200"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="VictoryContainer"
+            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
+          >
+            <svg
+              aria-labelledby="victory-container-20-title victory-container-20-desc"
+              height="200"
+              role="img"
+              style="pointer-events: all; width: 200px; height: 200px;"
+              width="200"
+            >
+              <rect
+                height="61.809999999999995"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: none;"
+                vector-effect="non-scaling-stroke"
+                width="202.5554655870445"
+                x="0"
+                y="55"
+              />
+              <path
+                d="M 9.128, 73.872
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #06c;"
+              />
+              <path
+                d="M 9.128, 104.777
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #bee1f4;"
+              />
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="69"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  1 Systems Compliant
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="99.905"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  0 Systems Non-Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
+            >
+              <svg
+                height="200"
+                style="overflow: visible; width: 200px; height: 200px;"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="pf-c-content"
+        >
+          <p
+            class=""
+            data-pf-content="true"
+            style="font-weight: bold;"
+          >
+            Description
+          </p>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            <div
+              class="pf-l-stack ins-c-truncate is-block"
+            >
+              <div
+                class="pf-l-stack__item"
+              >
+                <span
+                  widget-type="InsightsTruncateBlock"
+                >
+                  profile description...
+                </span>
+              </div>
+              <div
+                class="pf-l-stack__item"
+              >
+                <button
+                  class="pf-c-button pf-m-link ins-c-expand-button"
+                  type="button"
+                >
+                  Read more
+                </button>
+              </div>
+            </div>
+          </p>
+          <span
+            tabindex="0"
+          >
+            <p
+              class=""
+              data-pf-content="true"
+              style="font-weight: bold;"
+            >
+              Minimum threshold for compliance 
+              <svg
+                aria-hidden="true"
+                class="grey-icon"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                style="vertical-align: -0.125em;"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  transform=""
+                />
+              </svg>
+            </p>
+            <p
+              class="threshold-tooltip"
+              data-pf-content="true"
+            >
+              1
+              %
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="pf-c-breadcrumb ins-c-breadcrumbs"
+      style="padding: 0px;"
+    >
+      <ol
+        class="pf-c-breadcrumb__list"
+      >
+        <li
+          class="pf-c-breadcrumb__item"
+          data-key="0"
+        >
+          <a
+            aria-label="/policies"
+          >
+            Policies
+          </a>
+          <span
+            class="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          class="pf-c-breadcrumb__item"
+        >
+           
+          profile1
+           
+        </li>
+      </ol>
+    </nav>
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1
+       
+    </h1>
+    <div>
+      Edit Policy
+    </div>
+    <p
+      class=""
+      data-pf-content="true"
+    >
+      Business objective: 
+      BO 1
+    </p>
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="chart-inline"
+        >
+          <div
+            class="chart-container"
+          >
+            <svg
+              class="chart-label"
+              height="200"
+              width="200"
+            >
+              <text
+                direction="inherit"
+                dx="0"
+                dy="7.1"
+                x="100"
+                y="90"
+              >
+                <tspan
+                  dx="0"
+                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  100%
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="100"
+                y="110"
+              >
+                <tspan
+                  dx="0"
+                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              class="VictoryContainer"
+              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+            >
+              <svg
+                aria-labelledby="victory-container-3-title victory-container-3-desc"
+                height="200"
+                role="img"
+                style="pointer-events: all; width: 100%; height: 100%;"
+                viewBox="0 0 200 200"
+                width="200"
+              >
+                <g>
+                  <path
+                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                  <path
+                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                </g>
+              </svg>
+              <div
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+              >
+                <svg
+                  height="200"
+                  style="overflow: visible; width: 100%; height: 100%;"
+                  viewBox="0 0 200 200"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="VictoryContainer"
+            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
+          >
+            <svg
+              aria-labelledby="victory-container-4-title victory-container-4-desc"
+              height="200"
+              role="img"
+              style="pointer-events: all; width: 200px; height: 200px;"
+              width="200"
+            >
+              <rect
+                height="61.809999999999995"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: none;"
+                vector-effect="non-scaling-stroke"
+                width="202.5554655870445"
+                x="0"
+                y="55"
+              />
+              <path
+                d="M 9.128, 73.872
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #06c;"
+              />
+              <path
+                d="M 9.128, 104.777
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #bee1f4;"
+              />
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="69"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  1 Systems Compliant
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="99.905"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  0 Systems Non-Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
+            >
+              <svg
+                height="200"
+                style="overflow: visible; width: 200px; height: 200px;"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="pf-c-content"
+        >
+          <p
+            class=""
+            data-pf-content="true"
+            style="font-weight: bold;"
+          >
+            Description
+          </p>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            <div
+              class="pf-l-stack ins-c-truncate is-block"
+            >
+              <div
+                class="pf-l-stack__item"
+              >
+                <span
+                  widget-type="InsightsTruncateBlock"
+                >
+                  profile description...
+                </span>
+              </div>
+              <div
+                class="pf-l-stack__item"
+              >
+                <button
+                  class="pf-c-button pf-m-link ins-c-expand-button"
+                  type="button"
+                >
+                  Read more
+                </button>
+              </div>
+            </div>
+          </p>
+          <span
+            tabindex="0"
+          >
+            <p
+              class=""
+              data-pf-content="true"
+              style="font-weight: bold;"
+            >
+              Minimum threshold for compliance 
+              <svg
+                aria-hidden="true"
+                class="grey-icon"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                style="vertical-align: -0.125em;"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  transform=""
+                />
+              </svg>
+            </p>
+            <p
+              class="threshold-tooltip"
+              data-pf-content="true"
+            >
+              1
+              %
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="pf-c-breadcrumb ins-c-breadcrumbs"
+      style="padding: 0px;"
+    >
+      <ol
+        class="pf-c-breadcrumb__list"
+      >
+        <li
+          class="pf-c-breadcrumb__item"
+          data-key="0"
+        >
+          <a
+            aria-label="/policies"
+          >
+            Policies
+          </a>
+          <span
+            class="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          class="pf-c-breadcrumb__item"
+        >
+           
+          profile1
+           
+        </li>
+      </ol>
+    </nav>
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1
+       
+    </h1>
+    <div>
+      Edit Policy
+    </div>
+    <p
+      class=""
+      data-pf-content="true"
+    >
+      Business objective: 
+      BO 1
+    </p>
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="chart-inline"
+        >
+          <div
+            class="chart-container"
+          >
+            <svg
+              class="chart-label"
+              height="200"
+              width="200"
+            >
+              <text
+                direction="inherit"
+                dx="0"
+                dy="7.1"
+                x="100"
+                y="90"
+              >
+                <tspan
+                  dx="0"
+                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  100%
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="100"
+                y="110"
+              >
+                <tspan
+                  dx="0"
+                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              class="VictoryContainer"
+              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+            >
+              <svg
+                aria-labelledby="victory-container-15-title victory-container-15-desc"
+                height="200"
+                role="img"
+                style="pointer-events: all; width: 100%; height: 100%;"
+                viewBox="0 0 200 200"
+                width="200"
+              >
+                <g>
+                  <path
+                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                  <path
+                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                </g>
+              </svg>
+              <div
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+              >
+                <svg
+                  height="200"
+                  style="overflow: visible; width: 100%; height: 100%;"
+                  viewBox="0 0 200 200"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="VictoryContainer"
+            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
+          >
+            <svg
+              aria-labelledby="victory-container-16-title victory-container-16-desc"
+              height="200"
+              role="img"
+              style="pointer-events: all; width: 200px; height: 200px;"
+              width="200"
+            >
+              <rect
+                height="61.809999999999995"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: none;"
+                vector-effect="non-scaling-stroke"
+                width="202.5554655870445"
+                x="0"
+                y="55"
+              />
+              <path
+                d="M 9.128, 73.872
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #06c;"
+              />
+              <path
+                d="M 9.128, 104.777
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #bee1f4;"
+              />
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="69"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  1 Systems Compliant
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="99.905"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  0 Systems Non-Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
+            >
+              <svg
+                height="200"
+                style="overflow: visible; width: 200px; height: 200px;"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="pf-c-content"
+        >
+          <p
+            class=""
+            data-pf-content="true"
+            style="font-weight: bold;"
+          >
+            Description
+          </p>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            <div
+              class="pf-l-stack ins-c-truncate is-block"
+            >
+              <div
+                class="pf-l-stack__item"
+              >
+                <span
+                  widget-type="InsightsTruncateBlock"
+                >
+                  profile description...
+                </span>
+              </div>
+              <div
+                class="pf-l-stack__item"
+              >
+                <button
+                  class="pf-c-button pf-m-link ins-c-expand-button"
+                  type="button"
+                >
+                  Read more
+                </button>
+              </div>
+            </div>
+          </p>
+          <span
+            tabindex="0"
+          >
+            <p
+              class=""
+              data-pf-content="true"
+              style="font-weight: bold;"
+            >
+              Minimum threshold for compliance 
+              <svg
+                aria-hidden="true"
+                class="grey-icon"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                style="vertical-align: -0.125em;"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  transform=""
+                />
+              </svg>
+            </p>
+            <p
+              class="threshold-tooltip"
+              data-pf-content="true"
+            >
+              1
+              %
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
+<Fragment>
+  <PageHeader>
+    <Breadcrumbs
+      className=""
+      current="profile1"
+      items={
+        Array [
+          Object {
+            "navigate": "/policies",
+            "title": "Policies",
+          },
+        ]
+      }
+      onNavigate={[MockFunction]}
+      style={
+        Object {
+          "padding": "0px",
+        }
+      }
+    />
+    <PageHeaderTitle
+      title="profile1"
+    />
+    <EditPolicy
+      businessObjective={
+        Object {
+          "id": "1",
+          "title": "BO 1",
+        }
+      }
+      onClose={[Function]}
+      policyId="1"
+      previousThreshold={1}
+    />
+    <Text
+      style={
+        Object {
+          "color": "var(--pf-global--Color--200)",
+        }
+      }
+    >
+      Business objective: 
+      BO 1
+    </Text>
+    <Grid
+      gutter="md"
+    >
+      <GridItem
+        lg={12}
+        md={12}
+        sm={12}
+        xl={6}
+      >
+        <div
+          className="chart-inline"
+        >
+          <div
+            className="chart-container"
+          >
+            <svg
+              className="chart-label"
+              height={200}
+              width={200}
+            >
+              <ChartLabel
+                style={
+                  Object {
+                    "fontSize": 20,
+                  }
+                }
+                text="100%"
+                textAnchor="middle"
+                verticalAnchor="middle"
+                x={100}
+                y={90}
+              />
+              <ChartLabel
+                style={
+                  Object {
+                    "fill": "#bbb",
+                  }
+                }
+                text="Compliant"
+                textAnchor="middle"
+                verticalAnchor="middle"
+                x={100}
+                y={110}
+              />
+            </svg>
+            <ChartDonut
+              data={
+                Array [
+                  Object {
+                    "x": "Compliant",
+                    "y": 1,
+                  },
+                  Object {
+                    "x": "Non-compliant",
+                    "y": 0,
+                  },
+                ]
+              }
+              height={200}
+              identifier="profile1"
+              legendPosition="right"
+              theme={
+                Object {
+                  "area": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "fill": "#bee1f4",
+                        "fillOpacity": 0.4,
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 2,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "axis": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "axis": Object {
+                        "fill": "transparent",
+                        "stroke": "#72767b",
+                        "strokeLinecap": "round",
+                        "strokeLinejoin": "round",
+                        "strokeWidth": 1,
+                      },
+                      "axisLabel": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 100,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                      "grid": Object {
+                        "fill": "none",
+                        "pointerEvents": "painted",
+                        "stroke": "none",
+                      },
+                      "tickLabels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "ticks": Object {
+                        "fill": "transparent",
+                        "size": 1,
+                        "stroke": "transparent",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "bar": Object {
+                    "barWidth": 10,
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "stroke": "none",
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "boxplot": Object {
+                    "boxWidth": 20,
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "max": Object {
+                        "padding": 8,
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 1,
+                      },
+                      "maxLabels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "median": Object {
+                        "padding": 8,
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 1,
+                      },
+                      "medianLabels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "min": Object {
+                        "padding": 8,
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 1,
+                      },
+                      "minLabels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "q1": Object {
+                        "fill": "#bee1f4",
+                        "padding": 8,
+                      },
+                      "q1Labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "q3": Object {
+                        "fill": "#bee1f4",
+                        "padding": 8,
+                      },
+                      "q3Labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "candlestick": Object {
+                    "candleColors": Object {
+                      "negative": "#73bcf7",
+                      "positive": "#bee1f4",
+                    },
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 1,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "chart": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "parent": Object {
+                        "border": "1px solid #bee1f4",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "errorbar": Object {
+                    "borderWidth": 8,
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "fill": "transparent",
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 2,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "group": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "width": 451,
+                  },
+                  "legend": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "gutter": 20,
+                    "orientation": "horizontal",
+                    "style": Object {
+                      "data": Object {
+                        "type": "square",
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                      },
+                      "title": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 2,
+                        "stroke": "transparent",
+                      },
+                    },
+                    "titleOrientation": "top",
+                  },
+                  "line": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "fill": "transparent",
+                        "stroke": "#73bcf7",
+                        "strokeWidth": 2,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "pie": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "padding": 20,
+                    "style": Object {
+                      "data": Object {
+                        "padding": 8,
+                        "stroke": "transparent",
+                        "strokeWidth": 1,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 8,
+                        "stroke": "transparent",
+                      },
+                    },
+                  },
+                  "scatter": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "fill": "#bee1f4",
+                        "stroke": "transparent",
+                        "strokeWidth": 0,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 10,
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "stack": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "stroke": "#fff",
+                        "strokeWidth": 1,
+                      },
+                    },
+                    "width": 451,
+                  },
+                  "tooltip": Object {
+                    "cornerRadius": 0,
+                    "flyoutStyle": Object {
+                      "cornerRadius": 0,
+                      "fill": "#fff",
+                      "pointerEvents": "none",
+                      "stroke": "#151515",
+                      "strokeWidth": 1,
+                    },
+                    "pointerLength": 10,
+                    "style": Object {
+                      "fill": "#fff",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 8,
+                      "pointerEvents": "none",
+                      "stroke": "#151515",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "voronoi": Object {
+                    "colorScale": Array [
+                      "#06c",
+                      "#bee1f4",
+                      "#73bcf7",
+                      "#0066ff",
+                    ],
+                    "height": 301,
+                    "padding": 8,
+                    "style": Object {
+                      "data": Object {
+                        "fill": "transparent",
+                        "stroke": "transparent",
+                        "strokeWidth": 0,
+                      },
+                      "flyout": Object {
+                        "fill": "#fff",
+                        "pointerEvents": "none",
+                        "strokeWidth": 1,
+                      },
+                      "labels": Object {
+                        "fill": "#151515",
+                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                        "fontSize": 14,
+                        "letterSpacing": "normal",
+                        "padding": 8,
+                        "pointerEvents": "none",
+                        "stroke": "transparent",
+                        "textAnchor": "middle",
+                      },
+                    },
+                    "width": 451,
+                  },
+                }
+              }
+              width={200}
+            />
+          </div>
+          <ChartLegend
+            data={
+              Array [
+                Object {
+                  "name": "1 Systems Compliant",
+                },
+                Object {
+                  "name": "0 Systems Non-Compliant",
+                },
+              ]
+            }
+            height={200}
+            orientation="vertical"
+            theme={
+              Object {
+                "area": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "fill": "#bee1f4",
+                      "fillOpacity": 0.4,
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 2,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+                "axis": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "axis": Object {
+                      "fill": "transparent",
+                      "stroke": "#72767b",
+                      "strokeLinecap": "round",
+                      "strokeLinejoin": "round",
+                      "strokeWidth": 1,
+                    },
+                    "axisLabel": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 100,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                    "grid": Object {
+                      "fill": "none",
+                      "pointerEvents": "painted",
+                      "stroke": "none",
+                    },
+                    "tickLabels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "ticks": Object {
+                      "fill": "transparent",
+                      "size": 1,
+                      "stroke": "transparent",
+                    },
+                  },
+                  "width": 451,
+                },
+                "bar": Object {
+                  "barWidth": 10,
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "stroke": "none",
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                  },
+                  "width": 451,
+                },
+                "boxplot": Object {
+                  "boxWidth": 20,
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "max": Object {
+                      "padding": 8,
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 1,
+                    },
+                    "maxLabels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "median": Object {
+                      "padding": 8,
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 1,
+                    },
+                    "medianLabels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "min": Object {
+                      "padding": 8,
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 1,
+                    },
+                    "minLabels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "q1": Object {
+                      "fill": "#bee1f4",
+                      "padding": 8,
+                    },
+                    "q1Labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "q3": Object {
+                      "fill": "#bee1f4",
+                      "padding": 8,
+                    },
+                    "q3Labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                  },
+                  "width": 451,
+                },
+                "candlestick": Object {
+                  "candleColors": Object {
+                    "negative": "#73bcf7",
+                    "positive": "#bee1f4",
+                  },
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 1,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+                "chart": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "parent": Object {
+                      "border": "1px solid #bee1f4",
+                    },
+                  },
+                  "width": 451,
+                },
+                "errorbar": Object {
+                  "borderWidth": 8,
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "fill": "transparent",
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 2,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+                "group": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "width": 451,
+                },
+                "legend": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "gutter": 20,
+                  "orientation": "horizontal",
+                  "style": Object {
+                    "data": Object {
+                      "type": "square",
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                    },
+                    "title": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 2,
+                      "stroke": "transparent",
+                    },
+                  },
+                  "titleOrientation": "top",
+                },
+                "line": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "fill": "transparent",
+                      "stroke": "#73bcf7",
+                      "strokeWidth": 2,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+                "pie": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "padding": 20,
+                  "style": Object {
+                    "data": Object {
+                      "padding": 8,
+                      "stroke": "transparent",
+                      "strokeWidth": 1,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 8,
+                      "stroke": "transparent",
+                    },
+                  },
+                },
+                "scatter": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "fill": "#bee1f4",
+                      "stroke": "transparent",
+                      "strokeWidth": 0,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 10,
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+                "stack": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "stroke": "#fff",
+                      "strokeWidth": 1,
+                    },
+                  },
+                  "width": 451,
+                },
+                "tooltip": Object {
+                  "cornerRadius": 0,
+                  "flyoutStyle": Object {
+                    "cornerRadius": 0,
+                    "fill": "#fff",
+                    "pointerEvents": "none",
+                    "stroke": "#151515",
+                    "strokeWidth": 1,
+                  },
+                  "pointerLength": 10,
+                  "style": Object {
+                    "fill": "#fff",
+                    "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                    "fontSize": 14,
+                    "letterSpacing": "normal",
+                    "padding": 8,
+                    "pointerEvents": "none",
+                    "stroke": "#151515",
+                    "textAnchor": "middle",
+                  },
+                },
+                "voronoi": Object {
+                  "colorScale": Array [
+                    "#06c",
+                    "#bee1f4",
+                    "#73bcf7",
+                    "#0066ff",
+                  ],
+                  "height": 301,
+                  "padding": 8,
+                  "style": Object {
+                    "data": Object {
+                      "fill": "transparent",
+                      "stroke": "transparent",
+                      "strokeWidth": 0,
+                    },
+                    "flyout": Object {
+                      "fill": "#fff",
+                      "pointerEvents": "none",
+                      "strokeWidth": 1,
+                    },
+                    "labels": Object {
+                      "fill": "#151515",
+                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
+                      "fontSize": 14,
+                      "letterSpacing": "normal",
+                      "padding": 8,
+                      "pointerEvents": "none",
+                      "stroke": "transparent",
+                      "textAnchor": "middle",
+                    },
+                  },
+                  "width": 451,
+                },
+              }
+            }
+            width={200}
+            y={55}
+          />
+        </div>
+      </GridItem>
+      <GridItem
+        lg={12}
+        md={12}
+        sm={12}
+        xl={6}
+      >
+        <TextContent>
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Description
+          </Text>
+          <Text>
+            <Truncate
+              collapseText="Collapse"
+              expandText="Read more"
+              length={380}
+              text="profile description"
+            />
+          </Text>
+          <Tooltip
+            appendTo={[Function]}
+            className=""
+            content={
+              <span>
+                The threshold for compliance is a value set by your organization for each policy. This defines the percentage of passed rules that must be met in order for a system to be determined "compliant".
+              </span>
+            }
+            distance={15}
+            enableFlip={true}
+            entryDelay={500}
+            exitDelay={500}
+            isAppLauncher={false}
+            maxWidth="18.75rem"
+            position="left"
+            trigger="mouseenter focus"
+            zIndex={9999}
+          >
+            <span>
+              <Text
+                component="p"
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Minimum threshold for compliance 
+                <OutlinedQuestionCircleIcon
+                  className="grey-icon"
+                  color="currentColor"
+                  size="sm"
+                  title={null}
+                />
+              </Text>
+              <Text
+                className="threshold-tooltip"
+                component="p"
+              >
+                1
+                %
+              </Text>
+            </span>
+          </Tooltip>
+        </TextContent>
+      </GridItem>
+    </Grid>
+  </PageHeader>
+  <Connect(Main)>
+    <Grid
+      gutter="md"
+    >
+      <GridItem
+        span={12}
+      >
+        <SystemsTable
+          columns={
+            Array [
+              Object {
+                "composed": Array [
+                  "facts.os_release",
+                  "display_name",
+                ],
+                "key": "display_name",
+                "title": "Name",
+              },
+              Object {
+                "key": "facts.compliance.profiles",
+                "title": "Profile",
+              },
+              Object {
+                "key": "facts.compliance.rules_failed",
+                "title": "Rules Failed",
+              },
+              Object {
+                "key": "facts.compliance.compliance_score",
+                "title": "Compliance Score",
+              },
+              Object {
+                "key": "facts.compliance.last_scanned",
+                "title": "Last Scanned",
+              },
+            ]
+          }
+          policyId="1"
+          systemsCount={1}
+        />
+      </GridItem>
+    </Grid>
+  </Connect(Main)>
+</Fragment>
+`;
+
+exports[`PolicyDetailsQuery renders without error 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="pf-c-breadcrumb ins-c-breadcrumbs"
+      style="padding: 0px;"
+    >
+      <ol
+        class="pf-c-breadcrumb__list"
+      >
+        <li
+          class="pf-c-breadcrumb__item"
+          data-key="0"
+        >
+          <a
+            aria-label="/policies"
+          >
+            Policies
+          </a>
+          <span
+            class="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          class="pf-c-breadcrumb__item"
+        >
+           
+          profile1
+           
+        </li>
+      </ol>
+    </nav>
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1
+       
+    </h1>
+    <div>
+      Edit Policy
+    </div>
+    <p
+      class=""
+      data-pf-content="true"
+    >
+      Business objective: 
+      BO 1
+    </p>
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="chart-inline"
+        >
+          <div
+            class="chart-container"
+          >
+            <svg
+              class="chart-label"
+              height="200"
+              width="200"
+            >
+              <text
+                direction="inherit"
+                dx="0"
+                dy="7.1"
+                x="100"
+                y="90"
+              >
+                <tspan
+                  dx="0"
+                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  100%
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="100"
+                y="110"
+              >
+                <tspan
+                  dx="0"
+                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              class="VictoryContainer"
+              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+            >
+              <svg
+                aria-labelledby="victory-container-7-title victory-container-7-desc"
+                height="200"
+                role="img"
+                style="pointer-events: all; width: 100%; height: 100%;"
+                viewBox="0 0 200 200"
+                width="200"
+              >
+                <g>
+                  <path
+                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                  <path
+                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                </g>
+              </svg>
+              <div
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+              >
+                <svg
+                  height="200"
+                  style="overflow: visible; width: 100%; height: 100%;"
+                  viewBox="0 0 200 200"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="VictoryContainer"
+            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
+          >
+            <svg
+              aria-labelledby="victory-container-8-title victory-container-8-desc"
+              height="200"
+              role="img"
+              style="pointer-events: all; width: 200px; height: 200px;"
+              width="200"
+            >
+              <rect
+                height="61.809999999999995"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: none;"
+                vector-effect="non-scaling-stroke"
+                width="202.5554655870445"
+                x="0"
+                y="55"
+              />
+              <path
+                d="M 9.128, 73.872
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #06c;"
+              />
+              <path
+                d="M 9.128, 104.777
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #bee1f4;"
+              />
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="69"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  1 Systems Compliant
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="99.905"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  0 Systems Non-Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
+            >
+              <svg
+                height="200"
+                style="overflow: visible; width: 200px; height: 200px;"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="pf-c-content"
+        >
+          <p
+            class=""
+            data-pf-content="true"
+            style="font-weight: bold;"
+          >
+            Description
+          </p>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            <div
+              class="pf-l-stack ins-c-truncate is-block"
+            >
+              <div
+                class="pf-l-stack__item"
+              >
+                <span
+                  widget-type="InsightsTruncateBlock"
+                >
+                  profile description...
+                </span>
+              </div>
+              <div
+                class="pf-l-stack__item"
+              >
+                <button
+                  class="pf-c-button pf-m-link ins-c-expand-button"
+                  type="button"
+                >
+                  Read more
+                </button>
+              </div>
+            </div>
+          </p>
+          <span
+            tabindex="0"
+          >
+            <p
+              class=""
+              data-pf-content="true"
+              style="font-weight: bold;"
+            >
+              Minimum threshold for compliance 
+              <svg
+                aria-hidden="true"
+                class="grey-icon"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                style="vertical-align: -0.125em;"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  transform=""
+                />
+              </svg>
+            </p>
+            <p
+              class="threshold-tooltip"
+              data-pf-content="true"
+            >
+              1
+              %
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`PolicyDetailsQuery renders without error 2`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      class="pf-c-breadcrumb ins-c-breadcrumbs"
+      style="padding: 0px;"
+    >
+      <ol
+        class="pf-c-breadcrumb__list"
+      >
+        <li
+          class="pf-c-breadcrumb__item"
+          data-key="0"
+        >
+          <a
+            aria-label="/policies"
+          >
+            Policies
+          </a>
+          <span
+            class="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          class="pf-c-breadcrumb__item"
+        >
+           
+          profile1
+           
+        </li>
+      </ol>
+    </nav>
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1
+       
+    </h1>
+    <div>
+      Edit Policy
+    </div>
+    <p
+      class=""
+      data-pf-content="true"
+    >
+      Business objective: 
+      BO 1
+    </p>
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="chart-inline"
+        >
+          <div
+            class="chart-container"
+          >
+            <svg
+              class="chart-label"
+              height="200"
+              width="200"
+            >
+              <text
+                direction="inherit"
+                dx="0"
+                dy="7.1"
+                x="100"
+                y="90"
+              >
+                <tspan
+                  dx="0"
+                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  100%
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="100"
+                y="110"
+              >
+                <tspan
+                  dx="0"
+                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
+                  text-anchor="middle"
+                  x="100"
+                >
+                  Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              class="VictoryContainer"
+              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+            >
+              <svg
+                aria-labelledby="victory-container-11-title victory-container-11-desc"
+                height="200"
+                role="img"
+                style="pointer-events: all; width: 100%; height: 100%;"
+                viewBox="0 0 200 200"
+                width="200"
+              >
+                <g>
+                  <path
+                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                  <path
+                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(100, 100)"
+                  />
+                </g>
+              </svg>
+              <div
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+              >
+                <svg
+                  height="200"
+                  style="overflow: visible; width: 100%; height: 100%;"
+                  viewBox="0 0 200 200"
+                  width="200"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="VictoryContainer"
+            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
+          >
+            <svg
+              aria-labelledby="victory-container-12-title victory-container-12-desc"
+              height="200"
+              role="img"
+              style="pointer-events: all; width: 200px; height: 200px;"
+              width="200"
+            >
+              <rect
+                height="61.809999999999995"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: none;"
+                vector-effect="non-scaling-stroke"
+                width="202.5554655870445"
+                x="0"
+                y="55"
+              />
+              <path
+                d="M 9.128, 73.872
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #06c;"
+              />
+              <path
+                d="M 9.128, 104.777
+      h9.744
+      v-9.744
+      h-9.744
+      z"
+                role="presentation"
+                shape-rendering="auto"
+                style="fill: #bee1f4;"
+              />
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="69"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  1 Systems Compliant
+                </tspan>
+              </text>
+              <text
+                direction="inherit"
+                dx="0"
+                dy="4.97"
+                x="30.8"
+                y="99.905"
+              >
+                <tspan
+                  dx="0"
+                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
+                  text-anchor="start"
+                  x="30.8"
+                >
+                  0 Systems Non-Compliant
+                </tspan>
+              </text>
+            </svg>
+            <div
+              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
+            >
+              <svg
+                height="200"
+                style="overflow: visible; width: 200px; height: 200px;"
+                width="200"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          class="pf-c-content"
+        >
+          <p
+            class=""
+            data-pf-content="true"
+            style="font-weight: bold;"
+          >
+            Description
+          </p>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            <div
+              class="pf-l-stack ins-c-truncate is-block"
+            >
+              <div
+                class="pf-l-stack__item"
+              >
+                <span
+                  widget-type="InsightsTruncateBlock"
+                >
+                  profile description...
+                </span>
+              </div>
+              <div
+                class="pf-l-stack__item"
+              >
+                <button
+                  class="pf-c-button pf-m-link ins-c-expand-button"
+                  type="button"
+                >
+                  Read more
+                </button>
+              </div>
+            </div>
+          </p>
+          <span
+            tabindex="0"
+          >
+            <p
+              class=""
+              data-pf-content="true"
+              style="font-weight: bold;"
+            >
+              Minimum threshold for compliance 
+              <svg
+                aria-hidden="true"
+                class="grey-icon"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                style="vertical-align: -0.125em;"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  transform=""
+                />
+              </svg>
+            </p>
+            <p
+              class="threshold-tooltip"
+              data-pf-content="true"
+            >
+              1
+              %
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      class="pf-l-grid pf-m-gutter"
+    >
+      <div
+        class="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+`;
