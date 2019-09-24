@@ -52,5 +52,5 @@ ProfileThresholdField.propTypes = {
 };
 
 export default reduxForm({
-    form: 'editPolicy'
+    form: 'policyForm'
 })(ProfileThresholdField);

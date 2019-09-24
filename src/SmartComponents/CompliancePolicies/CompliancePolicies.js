@@ -14,6 +14,7 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
+import PoliciesTable from '../PoliciesTable/PoliciesTable';
 
 const QUERY = gql`
 {
@@ -22,8 +23,7 @@ const QUERY = gql`
         name
         refId
         description
-        totalHostCount
-        compliantHostCount
+        complianceThreshold
         businessObjective {
             id
             title

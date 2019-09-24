@@ -5,13 +5,14 @@ import {
     DropdownItem,
     Modal,
     Form,
+    Title,
     Button
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import UpdateProfileButton from './UpdateProfileButton';
-import ProfileThresholdField from './ProfileThresholdField';
-import BusinessObjectiveField from './BusinessObjectiveField';
+import ProfileThresholdField from '../ProfileThresholdField/ProfileThresholdField';
+import BusinessObjectiveField from '../BusinessObjectiveField/BusinessObjectiveField';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import round from 'lodash/round';
@@ -89,11 +90,17 @@ export class EditPolicy extends Component {
                     ]}
                 >
                     <Form>
+                        <Title headingLevel='h3' size='xl'>Business objective</Title>
+                        This is an optional field that can be used to label policies that are related to
+                        specific business objectives.
                         <BusinessObjectiveField
                             businessObjective={businessObjective}
                             policyId={policyId}
                             dispatch={dispatch}
                         />
+                        <Title headingLevel="h3" size="xl">Compliance threshold</Title>
+                        The compliance threshold defines what percentage of rules must be met in order for a system to
+                        be determined &quot;compliant&quot;
                         <ProfileThresholdField previousThreshold={previousThreshold} />
                     </Form>
                 </Modal>
@@ -112,7 +119,7 @@ EditPolicy.propTypes = {
     dispatch: propTypes.func
 };
 
-const selector = formValueSelector('editPolicy');
+const selector = formValueSelector('policyForm');
 export default connect(
     state => ({
         complianceThreshold: selector(state, 'complianceThreshold'),

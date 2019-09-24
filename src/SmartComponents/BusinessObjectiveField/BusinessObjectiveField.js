@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup, Title } from '@patternfly/react-core';
+import { FormGroup } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
@@ -102,6 +102,6 @@ BusinessObjectiveField.propTypes = {
 export default compose(
     withApollo,
     reduxForm({
-        form: 'editPolicy'
+        form: 'policyForm'
     })
 )(BusinessObjectiveField);
