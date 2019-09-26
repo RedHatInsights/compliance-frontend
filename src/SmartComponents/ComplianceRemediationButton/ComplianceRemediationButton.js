@@ -17,7 +17,8 @@ query FailedRulesForSystem($systemIdsQuery: String!){
             profiles {
                 refId
             }
-            title
+            title,
+            remediationAvailable
         }
     }
 }
@@ -64,36 +65,18 @@ class ComplianceRemediationButton extends React.Component {
         }
     }
 
-    fetchRules = (rules) => {
-        return window.insights.chrome.auth.getUser()
-        .then(() => {
-            return fetch('/api/remediations/v1/resolutions', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json; chartset=utf-8' },
-                body: JSON.stringify({
-                    issues: rules.map(rule => `ssg:rhel7|` +
-                                      `${this.removeRefIdPrefix(rule.profiles[0].refId)}|` +
-                                      `${rule.refId}`)
-                })
-            }).then((response) => {
-                if (!response.ok) {
-                    // If remediations doesn't respond, inject no fix available
-                    return {};
-                }
-
-                return response.json();
-            });
-        });
-    }
-
     rulesWithRemediations = (rules, rulesPerSystem) => {
-        return this.fetchRules(rules).then(response => Object.keys(response).filter(rule => response[rule]).reduce(
+        return rules.map(
+            rule => `ssg:rhel7|` +
+                    `${this.removeRefIdPrefix(rule.profiles[0].refId)}|` +
+                    `${rule.refId}`
+        ).reduce(
             (acc, rule_refId) => {
                 const rule = this.findRule(rules, rule_refId);
                 acc.push(this.formatRule(rule, rule_refId.split('|')[1], rulesPerSystem[rule.refId]));
                 return acc;
             }, []
-        ));
+        );
     }
 
     dataProvider = () => {
@@ -105,7 +88,7 @@ class ComplianceRemediationButton extends React.Component {
         if (selectedRules) {
             result.issues.push(selectedRules.map(rule => this.formatRule(rule, [allSystems[0].id])));
         } else {
-            const rules = flatten(allSystems.map(system => system.ruleObjectsFailed));
+            const rules = flatten(allSystems.map(system => system.ruleObjectsFailed)).filter(rule => rule.remediationAvailable);
             const rulesPerSystem = rules.reduce((acc, rule) => {
                 acc[rule.refId] = allSystems.filter(
                     system => system.ruleObjectsFailed.map(rule => rule.refId).includes(rule.refId)
