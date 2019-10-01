@@ -45,8 +45,7 @@ class SystemsTable extends React.Component {
     }
 
     componentDidMount() {
-        if (this.state.items.length === 0) { this.systemFetch(); }
-
+        this.systemFetch();
         this.fetchInventory();
     }
 
