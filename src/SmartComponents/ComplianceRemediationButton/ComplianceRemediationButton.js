@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
@@ -7,7 +8,6 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
 import { dispatchAction } from '../../Utilities/Dispatcher';
-import { default as compose } from 'lodash.flowright';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
