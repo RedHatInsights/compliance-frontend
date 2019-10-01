@@ -1189,7 +1189,7 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
                     "style": Object {
                       "axis": Object {
                         "fill": "transparent",
-                        "stroke": "#72767b",
+                        "stroke": "#737679",
                         "strokeLinecap": "round",
                         "strokeLinejoin": "round",
                         "strokeWidth": 1,
@@ -1652,7 +1652,7 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
                   "style": Object {
                     "axis": Object {
                       "fill": "transparent",
-                      "stroke": "#72767b",
+                      "stroke": "#737679",
                       "strokeLinecap": "round",
                       "strokeLinejoin": "round",
                       "strokeWidth": 1,
