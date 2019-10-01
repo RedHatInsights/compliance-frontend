@@ -1,10 +1,11 @@
 import React from 'react';
+import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
-import { compose, withApollo } from 'react-apollo';
+import { withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 

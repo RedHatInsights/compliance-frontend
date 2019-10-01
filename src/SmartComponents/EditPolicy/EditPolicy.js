@@ -30,6 +30,7 @@ class EditPolicy extends Component {
         this.setState(({ isModalOpen }) => ({
             isModalOpen: !isModalOpen
         }));
+        this.props.onClose();
     };
 
     onToggle = isOpen => {
@@ -75,8 +76,9 @@ class EditPolicy extends Component {
                         <UpdateProfile
                             key='confirm'
                             policyId={policyId}
-                            threshold={complianceThreshold || previousThreshold}
+                            threshold={ parseInt(complianceThreshold || previousThreshold) }
                             businessObjectiveTitle={businessObjectiveTitle}
+                            onClick={this.handleModalToggle}
                         />
                     ]}
                 >
@@ -98,7 +100,8 @@ EditPolicy.propTypes = {
     previousThreshold: propTypes.number,
     businessObjective: propTypes.object,
     businessObjectiveTitle: propTypes.string,
-    complianceThreshold: propTypes.string
+    complianceThreshold: propTypes.string,
+    onClose: propTypes.func
 };
 
 const selector = formValueSelector('editPolicy');

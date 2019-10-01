@@ -1,10 +1,11 @@
 import React from 'react';
+import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import gql from 'graphql-tag';
-import { compose, graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
 import { dispatchAction } from '../../Utilities/Dispatcher';
 

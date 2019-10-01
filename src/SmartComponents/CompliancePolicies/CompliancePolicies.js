@@ -5,7 +5,7 @@ import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty
 import { CloudServerIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import CompliancePolicyCard from '../CompliancePolicyCard/CompliancePolicyCard';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import ContentLoader from 'react-content-loader';
@@ -73,99 +73,97 @@ const LoadingComplianceCards = () => (
     </Grid>
 );
 
-const CompliancePolicies = () => (
-    <Query query={QUERY}>
-        {({ data, error, loading }) => {
-            if (error) { return <ErrorPage error={error}/>; }
+const CompliancePolicies = () => {
+    const { data, error, loading } = useQuery(QUERY);
 
-            if (loading) {
-                return (
-                    <React.Fragment>
-                        <PageHeader>
-                            <PageHeaderTitle title="Compliance" />
-                        </PageHeader>
-                        <Main>
-                            <div className="policies-donuts">
-                                <Grid gutter='md'>
-                                    <LoadingComplianceCards/>;
-                                </Grid>
-                            </div>
-                        </Main>
-                    </React.Fragment>
-                );
-            }
+    if (error) { return <ErrorPage error={error}/>; }
 
-            const policies = data.allProfiles;
-            let policyCards = [];
-            let pageHeader;
-            if (policies.length) {
-                pageHeader = <PageHeader>
+    if (loading) {
+        return (
+            <React.Fragment>
+                <PageHeader>
                     <PageHeaderTitle title="Compliance" />
-                    <ComplianceTabs/>
-                </PageHeader>;
-                policyCards = policies.map(
-                    (policy, i) =>
-                        <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
-                            <CompliancePolicyCard
-                                key={i}
-                                policy={policy}
-                            />
-                        </GridItem>
-                );
-            } else {
-                pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-                policyCards = <Bullseye>
-                    <EmptyState>
-                        <EmptyStateIcon style={{ fontWeight: '500', color: 'var(--pf-global--primary-color--100)' }}
-                            size="xl" title="Compliance" icon={CloudServerIcon} />
-                        <br/>
-                        <Title size="lg">Connect with OpenSCAP to do more with Red Hat Enterprise Linux</Title>
-                        <br/>
-                        <span className={emptyStateStyles.emptyStateBody}>
-                            <TextContent>
-                                Scan and upload a report on a system with OpenSCAP to see information
-                                about your system&#39;s compliance to policies.
-                                <br/>
-                                Generate a report with OpenSCAP with the following command:
-                                <ClipboardCopy className='upload-instructions'
-                                    variant={ClipboardCopyVariant.expansion}>
-                                    oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
-                                    --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
-                                </ClipboardCopy>
-                                And upload it using the following command:
-                                <ClipboardCopy className='upload-instructions'
-                                    variant={ClipboardCopyVariant.expansion}>
-                                    sudo insights-client --verbose --payload scan.xml
-                                    --content-type application/vnd.redhat.compliance.something+tgz
-                                </ClipboardCopy>
-                            </TextContent>
-                        </span>
+                </PageHeader>
+                <Main>
+                    <div className="policies-donuts">
+                        <Grid gutter='md'>
+                            <LoadingComplianceCards/>;
+                        </Grid>
+                    </div>
+                </Main>
+            </React.Fragment>
+        );
+    }
 
-                        <Button
-                            variant="primary"
-                            component="a"
-                            target="_blank"
-                            href="https://www.open-scap.org/getting-started/">
-                            Get started with OpenSCAP
-                        </Button>
-                    </EmptyState>
-                </Bullseye>;
-            }
+    const policies = data.allProfiles;
+    let policyCards = [];
+    let pageHeader;
+    if (policies.length) {
+        pageHeader = <PageHeader>
+            <PageHeaderTitle title="Compliance" />
+            <ComplianceTabs/>
+        </PageHeader>;
+        policyCards = policies.map(
+            (policy, i) =>
+                <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
+                    <CompliancePolicyCard
+                        key={i}
+                        policy={policy}
+                    />
+                </GridItem>
+        );
+    } else {
+        pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
+        policyCards = <Bullseye>
+            <EmptyState>
+                <EmptyStateIcon style={{ fontWeight: '500', color: 'var(--pf-global--primary-color--100)' }}
+                    size="xl" title="Compliance" icon={CloudServerIcon} />
+                <br/>
+                <Title size="lg">Connect with OpenSCAP to do more with Red Hat Enterprise Linux</Title>
+                <br/>
+                <span className={emptyStateStyles.emptyStateBody}>
+                    <TextContent>
+                        Scan and upload a report on a system with OpenSCAP to see information
+                        about your system&#39;s compliance to policies.
+                        <br/>
+                        Generate a report with OpenSCAP with the following command:
+                        <ClipboardCopy className='upload-instructions'
+                            variant={ClipboardCopyVariant.expansion}>
+                            oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
+                            --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+                        </ClipboardCopy>
+                        And upload it using the following command:
+                        <ClipboardCopy className='upload-instructions'
+                            variant={ClipboardCopyVariant.expansion}>
+                            sudo insights-client --verbose --payload scan.xml
+                            --content-type application/vnd.redhat.compliance.something+tgz
+                        </ClipboardCopy>
+                    </TextContent>
+                </span>
 
-            return (
-                <React.Fragment>
-                    { pageHeader }
-                    <Main>
-                        <div className="policies-donuts">
-                            <Grid gutter='md'>
-                                {policyCards}
-                            </Grid>
-                        </div>
-                    </Main>
-                </React.Fragment>
-            );
-        }}
-    </Query>
-);
+                <Button
+                    variant="primary"
+                    component="a"
+                    target="_blank"
+                    href="https://www.open-scap.org/getting-started/">
+                    Get started with OpenSCAP
+                </Button>
+            </EmptyState>
+        </Bullseye>;
+    }
+
+    return (
+        <React.Fragment>
+            { pageHeader }
+            <Main>
+                <div className="policies-donuts">
+                    <Grid gutter='md'>
+                        {policyCards}
+                    </Grid>
+                </div>
+            </Main>
+        </React.Fragment>
+    );
+};
 
 export default routerParams(CompliancePolicies);

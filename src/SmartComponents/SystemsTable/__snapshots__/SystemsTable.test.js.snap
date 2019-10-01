@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SystemsTable expect to not render a loading state 1`] = `""`;
+
+exports[`SystemsTable expect to render a loading state 1`] = `""`;
+
+exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] = `
+<mockConstructor
+  items={
+    Array [
+      1,
+    ]
+  }
+  onRefresh={[Function]}
+  page={1}
+  perPage={50}
+  total={1}
+>
+  <ToolbarGroup>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--lg)",
+        }
+      }
+    >
+      <InputGroup>
+        <SystemsComplianceFilter
+          complianceScore={Array []}
+          compliant={Array []}
+          updateFilter={[Function]}
+        />
+        <SimpleFilter
+          buttonTitle={null}
+          className=""
+          onButtonClick={[Function]}
+          onFilterChange={[Function]}
+          onOptionSelect={[Function]}
+          placeholder="Search by name"
+        />
+      </InputGroup>
+    </ToolbarItem>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--lg)",
+        }
+      }
+    >
+      <Connect(Apollo(ComplianceRemediationButton)) />
+    </ToolbarItem>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--md)",
+        }
+      }
+    >
+      <Connect(DownloadTableButton) />
+    </ToolbarItem>
+  </ToolbarGroup>
+</mockConstructor>
+`;
