@@ -30,7 +30,6 @@ query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String)
 
 @registry()
 class SystemsTable extends React.Component {
-    inventoryTableRef = React.createRef();
     state = {
         InventoryCmp: null,
         items: this.props.items,
@@ -135,7 +134,6 @@ class SystemsTable extends React.Component {
                 total={totalItems}
                 perPage={perPage}
                 items={items.map(host => host.id)}
-                ref={ this.inventoryTableRef }
             >
                 <reactCore.ToolbarGroup>
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
