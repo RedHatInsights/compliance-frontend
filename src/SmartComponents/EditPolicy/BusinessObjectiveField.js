@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
-import flowRight from 'lodash.flowright';
+import { default as compose } from 'lodash.flowright';
 
 const GET_BUSINESS_OBJECTIVES = gql`
 query businessObjectives {
@@ -125,7 +125,7 @@ BusinessObjectiveField.propTypes = {
     dispatch: propTypes.function
 };
 
-export default flowRight(
+export default compose(
     connect(),
     withApollo,
     reduxForm({

@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import flatten from 'lodash/flatten';
 import { dispatchAction } from '../../Utilities/Dispatcher';
-import flowRight from 'lodash.flowright';
+import { default as compose } from 'lodash.flowright';
 
 const GET_FAILED_RULES = gql`
 query FailedRulesForSystem($systemIdsQuery: String!){
@@ -161,7 +161,7 @@ const mapStateToProps = ({ entities, entityDetails }) => ({
 
 });
 
-export default flowRight(
+export default compose(
     connect(mapStateToProps),
     FailedRulesQuery
 )(ComplianceRemediationButton);
