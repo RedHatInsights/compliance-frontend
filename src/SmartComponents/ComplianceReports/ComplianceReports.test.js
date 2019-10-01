@@ -1,32 +1,31 @@
 import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
-import { CompliancePolicies } from './CompliancePolicies.js';
+
+import { ComplianceReports } from './ComplianceReports.js';
 
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
 
-describe('CompliancePolicies', () => {
+describe('ComplianceReports', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({
             data: {
-                profiles: {
-                    edges: [{
+                allProfiles: [{
+                    id: '1',
+                    refId: '121212',
+                    name: 'profile1',
+                    description: 'profile description',
+                    totalHostCount: 1,
+                    complianceThreshold: 1,
+                    compliantHostCount: 1,
+                    businessObjective: {
                         id: '1',
-                        refId: '121212',
-                        name: 'profile1',
-                        complianceThreshold: 90.0,
-                        businessObjective: {
-                            id: '1',
-                            title: 'BO 1'
-                        }
-                    }]
-                }
+                        title: 'BO 1'
+                    }
+                }]
             }, error: false, loading: false }));
 
         const wrapper = shallow(
-            <CompliancePolicies />
+            <ComplianceReports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -35,13 +34,11 @@ describe('CompliancePolicies', () => {
     it('expect to render emptystate', () => {
         useQuery.mockImplementation(() => ({
             data: {
-                profiles: {
-                    edges: []
-                }
+                allProfiles: []
             }, error: false, loading: false }));
 
         const wrapper = shallow(
-            <CompliancePolicies />
+            <ComplianceReports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -54,7 +51,7 @@ describe('CompliancePolicies', () => {
         };
         useQuery.mockImplementation(() => ({ data: {}, error, loading: false }));
         const wrapper = shallow(
-            <CompliancePolicies />
+            <ComplianceReports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -63,7 +60,7 @@ describe('CompliancePolicies', () => {
     it('expect to render loading', () => {
         useQuery.mockImplementation(() => ({ data: {}, error: false, loading: true }));
         const wrapper = shallow(
-            <CompliancePolicies />
+            <ComplianceReports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

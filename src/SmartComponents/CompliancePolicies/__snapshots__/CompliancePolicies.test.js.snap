@@ -15,27 +15,16 @@ exports[`CompliancePolicies expect to render an error 1`] = `
 
 exports[`CompliancePolicies expect to render emptystate 1`] = `
 <Fragment>
-  <PageHeader
-    style={
-      Object {
-        "paddingBottom": 22,
-      }
-    }
-  >
+  <PageHeader>
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance policies"
     />
+    <withRouter(Connect(RouterParams)) />
   </PageHeader>
   <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
-      >
-        <CompliancePoliciesEmptyState />
-      </Grid>
-    </div>
+    <withRouter(Connect(RouterParams))
+      policies={Array []}
+    />
   </Connect(Main)>
 </Fragment>
 `;
@@ -44,19 +33,11 @@ exports[`CompliancePolicies expect to render loading 1`] = `
 <Fragment>
   <PageHeader>
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance policies"
     />
   </PageHeader>
   <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
-      >
-        <LoadingComplianceCards />
-      </Grid>
-    </div>
+    <LoadingPoliciesTable />
   </Connect(Main)>
 </Fragment>
 `;
@@ -65,45 +46,18 @@ exports[`CompliancePolicies expect to render without error 1`] = `
 <Fragment>
   <PageHeader>
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance policies"
     />
     <withRouter(Connect(RouterParams)) />
   </PageHeader>
   <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
-      >
-        <GridItem
-          key="0"
-          lg={6}
-          md={12}
-          sm={12}
-          xl={4}
-        >
-          <CompliancePolicyCard
-            key="0"
-            policy={
-              Object {
-                "businessObjective": Object {
-                  "id": "1",
-                  "title": "BO 1",
-                },
-                "complianceThreshold": 1,
-                "compliantHostCount": 1,
-                "description": "profile description",
-                "id": "1",
-                "name": "profile1",
-                "refId": "121212",
-                "totalHostCount": 1,
-              }
-            }
-          />
-        </GridItem>
-      </Grid>
-    </div>
+    <withRouter(Connect(RouterParams))
+      policies={
+        Array [
+          undefined,
+        ]
+      }
+    />
   </Connect(Main)>
 </Fragment>
 `;

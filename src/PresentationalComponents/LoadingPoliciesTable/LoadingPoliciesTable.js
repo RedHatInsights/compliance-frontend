@@ -1,0 +1,25 @@
+import React from 'react';
+import { Table, TableHeader, TableBody } from '@patternfly/react-table';
+import { RowLoader } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
+
+const LoadingPoliciesTable = () => (
+    <Table
+        aria-label='policies-table'
+        cells={ [
+            { title: 'Policy name' },
+            { title: 'Policy type' },
+            { title: 'Business initiative' },
+            { title: 'Compliance threshold' }
+        ] }
+        rows={ [...Array(5)].map(() => ({
+            cells: [{
+                title: <RowLoader />,
+                colSpan: 5
+            }]
+        })) }>
+        <TableHeader />
+        <TableBody />
+    </Table>
+);
+
+export default LoadingPoliciesTable;

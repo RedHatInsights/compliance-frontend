@@ -1,11 +1,18 @@
 import React from 'react';
 import { Button, Wizard } from '@patternfly/react-core';
+import { formValueSelector } from 'redux-form';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import EditPolicyRules from './EditPolicyRules';
 import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';
+import FinishedCreatePolicy from './FinishedCreatePolicy';
 import { connect } from 'react-redux';
+import {
+    validateFirstPage,
+    validateSecondPage
+} from './validate';
+import propTypes from 'prop-types';
 
 class CreatePolicy extends React.Component {
     constructor(props) {
@@ -32,14 +39,48 @@ class CreatePolicy extends React.Component {
 
     render() {
         const { isOpen, stepIdReached } = this.state;
+        const { benchmark, profile, name, refId } = this.props;
 
         const steps = [
-            { id: 1, name: 'Create SCAP policy', component: <CreateSCAPPolicy/> },
-            { id: 2, name: 'Details', component: <EditPolicyDetails/>, canJumpTo: stepIdReached >= 2 },
-            { id: 3, name: 'Rules', component: <EditPolicyRules/>, canJumpTo: stepIdReached >= 3 },
-            { id: 4, name: 'Systems', component: <EditPolicySystems/>, canJumpTo: stepIdReached >= 4 },
-            { id: 5, name: 'Review & Schedule', component: <ReviewCreatedPolicy/>, nextButtonText: 'Finish',
-                canJumpTo: stepIdReached >= 5 }
+            {
+                id: 1,
+                name: 'Create SCAP policy',
+                component: <CreateSCAPPolicy/>,
+                enableNext: validateFirstPage(benchmark, profile)
+            },
+            {
+                id: 2,
+                name: 'Details',
+                component: <EditPolicyDetails/>,
+                canJumpTo: stepIdReached >= 2,
+                enableNext: validateSecondPage(name, refId)
+            },
+            {
+                id: 3,
+                name: 'Rules',
+                component: <EditPolicyRules/>,
+                canJumpTo: stepIdReached >= 3
+            },
+            {
+                id: 4,
+                name: 'Systems',
+                component: <EditPolicySystems/>,
+                canJumpTo: stepIdReached >= 4
+            },
+            {
+                id: 5,
+                name: 'Review',
+                component: <ReviewCreatedPolicy/>,
+                nextButtonText: 'Finish',
+                canJumpTo: stepIdReached >= 5
+            },
+            {
+                id: 6,
+                name: 'Finished',
+                component: <FinishedCreatePolicy onClose={this.toggleOpen}/>,
+                isFinishedStep: true,
+                canJumpTo: stepIdReached >= 6
+            }
         ];
 
         return (
@@ -51,6 +92,8 @@ class CreatePolicy extends React.Component {
                     <Wizard
                         isOpen={isOpen}
                         onClose={this.toggleOpen}
+                        isFullWidth
+                        isFullHeight
                         title="Create SCAP policy"
                         description="Create a new policy for managing SCAP compliance"
                         steps={steps}
@@ -62,19 +105,19 @@ class CreatePolicy extends React.Component {
     }
 }
 
-// const selector = formValueSelector('policyForm');
-export default connect(
-    /* state => ({
-        benchmark:
-        profileType:
-        name:
-        description:
-        userNotes:
-        businessObjectiveTitle:
-        complianceThreshold:
-        systems:
-        rules:
+CreatePolicy.propTypes = {
+    benchmark: propTypes.string,
+    profile: propTypes.string,
+    name: propTypes.string,
+    refId: propTypes.string
+};
 
+const selector = formValueSelector('policyForm');
+export default connect(
+    state => ({
+        benchmark: selector(state, 'benchmark'),
+        profile: selector(state, 'profile'),
+        name: selector(state, 'name'),
+        refId: selector(state, 'refId')
     })
-    */
 )(CreatePolicy);

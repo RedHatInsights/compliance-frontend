@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup } from '@patternfly/react-core';
+import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
@@ -72,7 +72,7 @@ export class BusinessObjectiveField extends React.Component {
                 <Title headingLevel='h3' size='xl'>Business objective</Title>
                 This is an optional field that can be used to label policies that are related to
                 specific business objectives.
-                <FormGroup field-id='edit-policy-business-objective'
+                <FormGroup fieldId='edit-policy-business-objective'
                     label="Business objective"
                     helperText='e.g Project Gemini'>
                     <Field name='businessObjective'
@@ -102,6 +102,8 @@ BusinessObjectiveField.propTypes = {
 export default compose(
     withApollo,
     reduxForm({
-        form: 'policyForm'
+        form: 'policyForm',
+        destroyOnUnmount: false,
+        forceUnregisterOnUnmount: true
     })
 )(BusinessObjectiveField);

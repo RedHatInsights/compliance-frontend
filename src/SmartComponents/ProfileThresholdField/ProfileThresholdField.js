@@ -29,7 +29,7 @@ export class ProfileThresholdField extends React.Component {
                 <Title headingLevel="h3" size="xl">Compliance threshold</Title>
                 The compliance threshold defines what percentage of rules must be met in order for a system to
                 be determined &quot;compliant&quot;.
-                <FormGroup field-id='policy-threshold'
+                <FormGroup fieldId='policy-threshold'
                     isValid={validThreshold}
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
                     helperText="A value of 95% or higher is recommended"
@@ -52,5 +52,7 @@ ProfileThresholdField.propTypes = {
 };
 
 export default reduxForm({
-    form: 'policyForm'
+    form: 'policyForm',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true
 })(ProfileThresholdField);

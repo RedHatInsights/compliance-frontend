@@ -11,8 +11,10 @@ import {
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import UpdateProfileButton from './UpdateProfileButton';
-import ProfileThresholdField from '../ProfileThresholdField/ProfileThresholdField';
-import BusinessObjectiveField from '../BusinessObjectiveField/BusinessObjectiveField';
+import {
+    ProfileThresholdField,
+    BusinessObjectiveField
+} from 'SmartComponents';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import round from 'lodash/round';

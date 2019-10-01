@@ -10,7 +10,7 @@ exports[`BusinessObjectiveField expect to render without error 1`] = `
   </Title>
   This is an optional field that can be used to label policies that are related to specific business objectives.
   <FormGroup
-    field-id="edit-policy-business-objective"
+    fieldId="edit-policy-business-objective"
     helperText="e.g Project Gemini"
     label="Business objective"
   >

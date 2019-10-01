@@ -14,8 +14,10 @@ import {
     PaginationVariant,
     Title
 } from '@patternfly/react-core';
-import { RowLoader } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import { paths } from '../../Routes';
+import debounce from 'lodash/debounce';
 
 const emptyRows = [{
     cells: [{
@@ -39,107 +41,168 @@ const emptyRows = [{
     }]
 }];
 
-class PoliciesTable extends React.Component {
+export class PoliciesTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             columns: [
                 { title: 'Policy name' },
                 { title: 'Policy type' },
-                { title: 'Business initiative' },
+                { title: 'Business objective' },
                 { title: 'Compliance threshold' }
             ],
             page: 1,
             itemsPerPage: 10,
+            search: '',
             rows: [],
             currentRows: []
         };
     }
 
+    componentDidMount = () => {
+        this.setInitialCurrentRows();
+    }
+
+    setInitialCurrentRows = () => {
+        const { policies } = this.props;
+        const { itemsPerPage } = this.state;
+        const policyRows = this.policiesToRows(policies);
+
+        this.setState({
+            currentRows: policyRows.slice(0, itemsPerPage),
+            rows: policyRows,
+            allRows: policyRows
+        });
+    }
+
+    policiesToRows = (policies) => {
+        return policies.map((policy) => {
+            return {
+                cells: [
+                    policy.name,
+                    'External',
+                    policy.businessObjective && policy.businessObjective.title,
+                    policy.complianceThreshold
+                ]
+            };
+        });
+    }
+
+    currentRows = (page, itemsPerPage, policyRows) => {
+        const { rows } = (policyRows) ? policyRows : this.state;
+
+        if (!rows.length) {
+            return [];
+        }
+
+        if (rows.length < itemsPerPage) { itemsPerPage = rows.length; }
+
+        const firstIndex = (page - 1) * itemsPerPage;
+        const lastIndex = page * itemsPerPage;
+        const newRows = rows.slice(firstIndex, lastIndex);
+
+        return newRows;
+    }
+
+    setPage = (_event, page) => {
+        const { itemsPerPage } = this.state;
+        this.changePage(page, itemsPerPage);
+    }
+
+    setPerPage = (_event, itemsPerPage) => {
+        const { page } = this.state;
+        this.changePage(page, itemsPerPage);
+    }
+
+    changePage = (page, itemsPerPage) => {
+        this.setState({
+            currentRows: this.currentRows(page, itemsPerPage),
+            page,
+            itemsPerPage
+        });
+    }
+
+    handleSearch = debounce(search => {
+        const { itemsPerPage, allRows } = this.state;
+        const filteredRows = allRows.filter(row => row.cells[0].match(search));
+        this.setState({
+            search,
+            rows: filteredRows,
+            currentRows: filteredRows.slice(0, itemsPerPage)
+        });
+    }, 500)
+
+    actionResolver = () => {
+        const { history, policies } = this.props;
+        return [
+            {
+                title: 'View latest results',
+                onClick: (event, rowId) => history.push(`${paths.compliancePolicies}/${policies[rowId].id}`)
+            }
+        ];
+    }
+
     render() {
         const { rows, currentRows, columns, page, itemsPerPage } = this.state;
-        const { loading } = this.props;
-
-        if (loading) {
-            return (
+        return (
+            <React.Fragment>
+                <TableToolbar>
+                    <Level gutter='md'>
+                        <LevelItem>
+                            <InputGroup>
+                                <SimpleTableFilter buttonTitle={ null }
+                                    onFilterChange={ this.handleSearch }
+                                    placeholder="Search" />
+                            </InputGroup>
+                        </LevelItem>
+                        <LevelItem>
+                            { rows.length } results
+                        </LevelItem>
+                        <LevelItem>
+                            <CreatePolicy />
+                        </LevelItem>
+                    </Level>
+                    <Pagination
+                        page={ page }
+                        itemCount={ rows.length }
+                        dropDirection='down'
+                        onSetPage={ this.setPage }
+                        onPerPageSelect={ this.setPerPage }
+                        perPage={ itemsPerPage }
+                    />
+                </TableToolbar>
                 <Table
-                    aria-label='policies-loading'
+                    aria-label='policies'
+                    className='compliance-policies-table'
                     cells={ columns }
-                    rows={ [...Array(5)].map(() => ({
-                        cells: [{
-                            title: <RowLoader />,
-                            colSpan: 5
-                        }]
-                    })) }>
+                    actionResolver={this.actionResolver}
+                    rows={ (currentRows.length === 0) ? emptyRows : currentRows }>
                     <TableHeader />
                     <TableBody />
                 </Table>
-            );
-        } else {
-            /* eslint-disable camelcase */
-            return (
-                <React.Fragment>
-                    <TableToolbar>
-                        <Level gutter='md'>
-                            <LevelItem>
-                                <InputGroup>
-                                    <SimpleTableFilter buttonTitle={ null }
-                                        onFilterChange={ this.handleSearch }
-                                        placeholder="Search" />
-                                </InputGroup>
-                            </LevelItem>
-                            <LevelItem>
-                                { rows.length / 2 } results
-                            </LevelItem>
-                            <LevelItem>
-                                <CreatePolicy />
-                            </LevelItem>
-                        </Level>
-                        <Pagination
-                            page={ page }
-                            itemCount={ rows.length / 2 }
-                            dropDirection='down'
-                            onSetPage={ this.setPage }
-                            onPerPageSelect={ this.setPerPage }
-                            perPage={ itemsPerPage }
-                        />
-                    </TableToolbar>
-                    <Table
-                        aria-label='policies'
-                        className='compliance-profiles-table'
-                        cells={ columns }
-                        rows={ (currentRows.length === 0) ? emptyRows : currentRows }>
-                        <TableHeader />
-                        <TableBody />
-                    </Table>
-                    <TableToolbar isFooter className="ins-c-inventory__table--toolbar">
-                        <Pagination
-                            page={ page }
-                            itemCount={ rows.length / 2 }
-                            dropDirection='up'
-                            onSetPage={ this.setPage }
-                            onPerPageSelect={ this.setPerPage }
-                            perPage={ itemsPerPage }
-                            variant={ PaginationVariant.bottom }
-                        />
-                    </TableToolbar>
-                </React.Fragment>
-            );
-            /* eslint-enable camelcase */
-        }
+                <TableToolbar isFooter className="ins-c-inventory__table--toolbar">
+                    <Pagination
+                        page={ page }
+                        itemCount={ rows.length }
+                        dropDirection='up'
+                        onSetPage={ this.setPage }
+                        onPerPageSelect={ this.setPerPage }
+                        perPage={ itemsPerPage }
+                        variant={ PaginationVariant.bottom }
+                    />
+                </TableToolbar>
+            </React.Fragment>
+        );
     }
 }
 
 PoliciesTable.propTypes = {
-    profiles: propTypes.array,
-    loading: propTypes.bool,
-    hidePassed: propTypes.bool,
-    severity: propTypes.array,
-    rows: propTypes.array
+    policies: propTypes.array.isRequired,
+    history: propTypes.object
 };
 
 PoliciesTable.defaultProps = {
-    profiles: []
+    policies: []
 };
 
-export default PoliciesTable;
+export default routerParams(PoliciesTable);

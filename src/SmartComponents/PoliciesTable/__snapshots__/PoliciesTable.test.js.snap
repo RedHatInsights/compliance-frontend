@@ -1,0 +1,275 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PoliciesTable expect to render emptystate 1`] = `
+<Fragment>
+  <TableToolbar
+    isFooter={false}
+  >
+    <Level
+      gutter="md"
+    >
+      <LevelItem>
+        <InputGroup>
+          <SimpleFilter
+            buttonTitle={null}
+            className=""
+            onButtonClick={[Function]}
+            onFilterChange={[Function]}
+            onOptionSelect={[Function]}
+            placeholder="Search"
+            searchIcon={true}
+          />
+        </InputGroup>
+      </LevelItem>
+      <LevelItem>
+        0
+         results
+      </LevelItem>
+      <LevelItem>
+        <Connect(CreatePolicy) />
+      </LevelItem>
+    </Level>
+    <Component
+      dropDirection="down"
+      itemCount={0}
+      onPerPageSelect={[Function]}
+      onSetPage={[Function]}
+      page={1}
+      perPage={10}
+    />
+  </TableToolbar>
+  <Component
+    actionResolver={[Function]}
+    aria-label="policies"
+    cells={
+      Array [
+        Object {
+          "title": "Policy name",
+        },
+        Object {
+          "title": "Policy type",
+        },
+        Object {
+          "title": "Business objective",
+        },
+        Object {
+          "title": "Compliance threshold",
+        },
+      ]
+    }
+    className="compliance-policies-table"
+    rows={
+      Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 5,
+              },
+              "title": <EmptyTable>
+                <Bullseye>
+                  <EmptyState
+                    variant="full"
+                  >
+                    <Title
+                      headingLevel="h5"
+                      size="lg"
+                    >
+                      No matching policies found
+                    </Title>
+                    <EmptyStateBody>
+                      This filter criteria matches no policies. 
+                      <br />
+                       Try changing your filter settings.
+                    </EmptyStateBody>
+                  </EmptyState>
+                </Bullseye>
+              </EmptyTable>,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <TableHeader />
+    <TableBody />
+  </Component>
+  <TableToolbar
+    className="ins-c-inventory__table--toolbar"
+    isFooter={true}
+  >
+    <Component
+      dropDirection="up"
+      itemCount={0}
+      onPerPageSelect={[Function]}
+      onSetPage={[Function]}
+      page={1}
+      perPage={10}
+      variant="bottom"
+    />
+  </TableToolbar>
+</Fragment>
+`;
+
+exports[`PoliciesTable expect to render without error 1`] = `
+<Fragment>
+  <TableToolbar
+    isFooter={false}
+  >
+    <Level
+      gutter="md"
+    >
+      <LevelItem>
+        <InputGroup>
+          <SimpleFilter
+            buttonTitle={null}
+            className=""
+            onButtonClick={[Function]}
+            onFilterChange={[Function]}
+            onOptionSelect={[Function]}
+            placeholder="Search"
+            searchIcon={true}
+          />
+        </InputGroup>
+      </LevelItem>
+      <LevelItem>
+        13
+         results
+      </LevelItem>
+      <LevelItem>
+        <Connect(CreatePolicy) />
+      </LevelItem>
+    </Level>
+    <Component
+      dropDirection="down"
+      itemCount={13}
+      onPerPageSelect={[Function]}
+      onSetPage={[Function]}
+      page={1}
+      perPage={10}
+    />
+  </TableToolbar>
+  <Component
+    actionResolver={[Function]}
+    aria-label="policies"
+    cells={
+      Array [
+        Object {
+          "title": "Policy name",
+        },
+        Object {
+          "title": "Policy type",
+        },
+        Object {
+          "title": "Business objective",
+        },
+        Object {
+          "title": "Compliance threshold",
+        },
+      ]
+    }
+    className="compliance-policies-table"
+    rows={
+      Array [
+        Object {
+          "cells": Array [
+            "United States Government Configuration Baseline23",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+            "External",
+            null,
+            67,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "United States Government Configuration Baseline2",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "C2S for Red Hat Enterprise Linux 7",
+            "External",
+            null,
+            69.5,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "Criminal Justice Information Services (CJIS) Security Policy",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "Health Insurance Portability and Accountability Act (HIPAA)",
+            "External",
+            null,
+            100,
+          ],
+        },
+        Object {
+          "cells": Array [
+            "United States Government Configuration Baseline",
+            "External",
+            null,
+            100,
+          ],
+        },
+      ]
+    }
+  >
+    <TableHeader />
+    <TableBody />
+  </Component>
+  <TableToolbar
+    className="ins-c-inventory__table--toolbar"
+    isFooter={true}
+  >
+    <Component
+      dropDirection="up"
+      itemCount={13}
+      onPerPageSelect={[Function]}
+      onSetPage={[Function]}
+      page={1}
+      perPage={10}
+      variant="bottom"
+    />
+  </TableToolbar>
+</Fragment>
+`;

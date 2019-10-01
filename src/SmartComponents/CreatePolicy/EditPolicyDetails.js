@@ -1,4 +1,5 @@
 import React from 'react';
+import { compose } from 'redux';
 import {
     Form,
     FormGroup,
@@ -8,10 +9,12 @@ import {
 } from '@patternfly/react-core';
 import BusinessObjectiveField from '../BusinessObjectiveField/BusinessObjectiveField';
 import ProfileThresholdField from '../ProfileThresholdField/ProfileThresholdField';
-import { ReduxFormTextInput, ReduxFormTextArea } from '../ReduxFormWrappers/ReduxFormWrappers';
-import { Field, reduxForm } from 'redux-form';
+import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
 
-const EditPolicyDetails = () => {
+const EditPolicyDetails = ({ profile }) => {
     return (
         <React.Fragment>
             <TextContent>
@@ -21,13 +24,24 @@ const EditPolicyDetails = () => {
             </TextContent>
             <Form>
                 <FormGroup label="Policy name" isRequired fieldId="name">
-                    <Field defaultValue={'default value is SSG + profile'}
+                    <Field
                         component={ReduxFormTextInput}
                         type='text'
                         isRequired={true}
+                        isDisabled
                         id="name"
                         name="name"
                         aria-describedby="name"
+                    />
+                </FormGroup>
+                <FormGroup label="Reference ID" isRequired fieldId="refId">
+                    <Field
+                        type="text"
+                        component={ReduxFormTextInput}
+                        isDisabled
+                        id="refId"
+                        name="refId"
+                        aria-describedby="refId"
                     />
                 </FormGroup>
                 <FormGroup label="Description" fieldId="description">
@@ -39,23 +53,35 @@ const EditPolicyDetails = () => {
                         aria-describedby="description"
                     />
                 </FormGroup>
-                <FormGroup label="User notes" fieldId="user-notes" helperText="A short note about this policy">
-                    <Field
-                        type="text"
-                        component={ReduxFormTextInput}
-                        id="userNotes"
-                        name="userNotes"
-                        aria-describedby="userNotes"
-                    />
-                </FormGroup>
                 <BusinessObjectiveField />
-                <ProfileThresholdField previousThreshold={90} />
+                <ProfileThresholdField previousThreshold={profile.complianceThreshold} />
             </Form>
         </React.Fragment>
     );
 };
 
-export default reduxForm({
-    form: 'policyForm',
-    destroyOnUnmount: false
-})(EditPolicyDetails);
+const selector = formValueSelector('policyForm');
+
+EditPolicyDetails.propTypes = {
+    profile: propTypes.object
+};
+
+export default compose(
+    connect(
+        state => ({
+            profile: JSON.parse(selector(state, 'profile')),
+            initialValues: {
+                name: `${JSON.parse(selector(state, 'profile')).name}`,
+                refId: `${JSON.parse(selector(state, 'profile')).refId}`,
+                description: `${JSON.parse(selector(state, 'profile')).description}`,
+                benchmark: selector(state, 'benchmark'),
+                profile: selector(state, 'profile')
+            }
+        })
+    ),
+    reduxForm({
+        form: 'policyForm',
+        destroyOnUnmount: false,
+        forceUnregisterOnUnmount: true
+    })
+)(EditPolicyDetails);

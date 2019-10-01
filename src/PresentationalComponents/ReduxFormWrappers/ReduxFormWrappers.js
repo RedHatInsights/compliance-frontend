@@ -1,6 +1,6 @@
 import React from 'react';
 import { rawComponents } from '@data-driven-forms/pf4-component-mapper';
-import { TextInput, TextArea, Checkbox, Radio } from '@patternfly/react-core';
+import { TextInput, TextArea, Checkbox } from '@patternfly/react-core';
 
 export const ReduxFormTextInput = field => (
     <TextInput
@@ -18,13 +18,6 @@ export const ReduxFormTextArea = field => (
 
 export const ReduxFormCheckboxInput = field => (
     <Checkbox
-        value={field.input.value}
-        onChange={field.input.onChange}
-        {...field} />
-);
-
-export const ReduxFormRadioInput = field => (
-    <Radio
         value={field.input.value}
         onChange={field.input.onChange}
         {...field} />
