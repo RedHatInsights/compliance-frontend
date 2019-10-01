@@ -76,7 +76,7 @@ class EditPolicy extends Component {
                         <UpdateProfile
                             key='confirm'
                             policyId={policyId}
-                            threshold={complianceThreshold || previousThreshold}
+                            threshold={ parseInt(complianceThreshold || previousThreshold) }
                             businessObjectiveTitle={businessObjectiveTitle}
                             onClick={this.handleModalToggle}
                         />
