@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { FilterDropdown } from '@redhat-cloud-services/frontend-components';
 import { FILTER_CATEGORIES } from '../../constants';
+import { FilterIcon } from '@patternfly/react-icons';
 
 class SystemsComplianceFilter extends React.Component {
     state = {
@@ -66,6 +67,7 @@ class SystemsComplianceFilter extends React.Component {
     render() {
         return (
             <FilterDropdown
+                label={<FilterIcon/>}
                 filters={ this.state }
                 addFilter={ this.addFilter }
                 removeFilter={ this.removeFilter }

@@ -272,18 +272,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 <span
                   widget-type="InsightsTruncateBlock"
                 >
-                  profile description...
+                  profile description
                 </span>
-              </div>
-              <div
-                class="pf-l-stack__item"
-              >
-                <button
-                  class="pf-c-button pf-m-link ins-c-expand-button"
-                  type="button"
-                >
-                  Read more
-                </button>
               </div>
             </div>
           </p>
@@ -619,18 +609,8 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                 <span
                   widget-type="InsightsTruncateBlock"
                 >
-                  profile description...
+                  profile description
                 </span>
-              </div>
-              <div
-                class="pf-l-stack__item"
-              >
-                <button
-                  class="pf-c-button pf-m-link ins-c-expand-button"
-                  type="button"
-                >
-                  Read more
-                </button>
               </div>
             </div>
           </p>
@@ -966,18 +946,8 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                 <span
                   widget-type="InsightsTruncateBlock"
                 >
-                  profile description...
+                  profile description
                 </span>
-              </div>
-              <div
-                class="pf-l-stack__item"
-              >
-                <button
-                  class="pf-c-button pf-m-link ins-c-expand-button"
-                  type="button"
-                >
-                  Read more
-                </button>
               </div>
             </div>
           </p>
@@ -2451,18 +2421,8 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                 <span
                   widget-type="InsightsTruncateBlock"
                 >
-                  profile description...
+                  profile description
                 </span>
-              </div>
-              <div
-                class="pf-l-stack__item"
-              >
-                <button
-                  class="pf-c-button pf-m-link ins-c-expand-button"
-                  type="button"
-                >
-                  Read more
-                </button>
               </div>
             </div>
           </p>
@@ -2798,18 +2758,8 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                 <span
                   widget-type="InsightsTruncateBlock"
                 >
-                  profile description...
+                  profile description
                 </span>
-              </div>
-              <div
-                class="pf-l-stack__item"
-              >
-                <button
-                  class="pf-c-button pf-m-link ins-c-expand-button"
-                  type="button"
-                >
-                  Read more
-                </button>
               </div>
             </div>
           </p>

@@ -52,6 +52,13 @@ exports[`SystemsComplianceFilter expect to render without error 1`] = `
     }
   }
   hideCategories={Array []}
+  label={
+    <FilterIcon
+      color="currentColor"
+      size="sm"
+      title={null}
+    />
+  }
   removeFilter={[Function]}
 />
 `;

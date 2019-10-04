@@ -37,6 +37,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
           onFilterChange={[Function]}
           onOptionSelect={[Function]}
           placeholder="Search by name"
+          searchIcon={true}
         />
       </InputGroup>
     </ToolbarItem>
