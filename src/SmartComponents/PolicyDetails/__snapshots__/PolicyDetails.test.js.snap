@@ -2058,6 +2058,8 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
           </Text>
           <Tooltip
             appendTo={[Function]}
+            aria="describedby"
+            boundary="window"
             className=""
             content={
               <span>
@@ -2068,9 +2070,22 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
             enableFlip={true}
             entryDelay={500}
             exitDelay={500}
+            flipBehavior={
+              Array [
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top",
+                "right",
+                "bottom",
+              ]
+            }
             isAppLauncher={false}
+            isVisible={false}
             maxWidth="18.75rem"
             position="left"
+            tippyProps={Object {}}
             trigger="mouseenter focus"
             zIndex={9999}
           >
