@@ -24,7 +24,7 @@ class BusinessObjectiveField extends React.Component {
         this.state = {
             policyId: props.policyId,
             isExpanded: false,
-            originalValue: props.businessObjective ? props.businessObjective.title : 'e.g: Project Gemini',
+            originalValue: props.businessObjective ? props.businessObjective.title : 'e.g.: Project Gemini',
             selected: props.businessObjective ? props.businessObjective.id : '',
             options: [],
             originalOptions: [],

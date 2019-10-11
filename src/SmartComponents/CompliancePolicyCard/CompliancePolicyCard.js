@@ -19,6 +19,7 @@ import {
     ChartTheme
 } from '@patternfly/react-charts';
 import '../../Charts.scss';
+import { fixedPercentage } from '../../Utilities/TextHelper';
 
 class CompliancePolicyCard extends React.Component {
     constructor(policy) {
@@ -42,8 +43,8 @@ class CompliancePolicyCard extends React.Component {
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
         ];
-        const compliancePercentage = Math.floor(100 *
-            (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
+        const compliancePercentage = fixedPercentage(Math.floor(100 *
+            (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
         const label = (
             <svg
                 className="chart-label"
