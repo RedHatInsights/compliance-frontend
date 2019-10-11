@@ -219,9 +219,9 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                     </GridItem>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <TextContent>
-                            <Text style={{ fontWeight: 'bold' }} component={TextVariants.span}>Description</Text>
-                            <Text component={TextVariants.span}>
-                                <Truncate text={linkifyHtml(policy.description)} length={380} />
+                            <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
+                            <Text component={TextVariants.p}>
+                                <Truncate text={linkifyHtml(policy.description)} length={380} inline={true} />
                             </Text>
                             <Tooltip
                                 position='left'
