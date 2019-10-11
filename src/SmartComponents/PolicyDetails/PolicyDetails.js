@@ -4,6 +4,7 @@ import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
+import { fixedPercentage } from '../../Utilities/TextHelper';
 import EditPolicy from '../EditPolicy/EditPolicy';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
@@ -142,8 +143,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         { name: donutValues[1].y + ' Systems Non-Compliant' }
     ];
 
-    const compliancePercentage = Math.floor(100 *
-        (donutValues[0].y / (donutValues[0].y + donutValues[1].y))) + '%';
+    const compliancePercentage = fixedPercentage(Math.floor(100 *
+        (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
 
     const label = (
         <svg
@@ -238,7 +239,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                                       Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
                                     </Text>
                                     <Text className='threshold-tooltip' component={TextVariants.p}>
-                                        { policy.complianceThreshold }%
+                                        { fixedPercentage(policy.complianceThreshold) }
                                     </Text>
                                 </span>
                             </Tooltip>

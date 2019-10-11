@@ -306,8 +306,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
               class="threshold-tooltip"
               data-pf-content="true"
             >
-              1
-              %
+              1%
             </p>
           </span>
         </div>
@@ -643,8 +642,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
               class="threshold-tooltip"
               data-pf-content="true"
             >
-              1
-              %
+              1%
             </p>
           </span>
         </div>
@@ -980,8 +978,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
               class="threshold-tooltip"
               data-pf-content="true"
             >
-              1
-              %
+              1%
             </p>
           </span>
         </div>
@@ -2110,8 +2107,7 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
                 className="threshold-tooltip"
                 component="p"
               >
-                1
-                %
+                1%
               </Text>
             </span>
           </Tooltip>
@@ -2470,8 +2466,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
               class="threshold-tooltip"
               data-pf-content="true"
             >
-              1
-              %
+              1%
             </p>
           </span>
         </div>
@@ -2807,8 +2802,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
               class="threshold-tooltip"
               data-pf-content="true"
             >
-              1
-              %
+              1%
             </p>
           </span>
         </div>

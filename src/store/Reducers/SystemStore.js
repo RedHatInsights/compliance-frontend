@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from '../../Utilities/CsvExport';
+import { fixedPercentage } from '../../Utilities/TextHelper';
 
 const compliantIcon = (system) => (
     <React.Fragment>
@@ -23,7 +24,7 @@ const complianceScoreString = (system) => {
         return ' N/A';
     }
 
-    return ' ' + (100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed))).toFixed(2) + '%';
+    return ' ' + fixedPercentage(100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed)));
 };
 
 const complianceScore = (system) => (
