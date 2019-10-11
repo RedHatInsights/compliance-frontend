@@ -263,19 +263,12 @@ exports[`PolicyDetails expect to render without error 1`] = `
             class=""
             data-pf-content="true"
           >
-            <div
-              class="pf-l-stack ins-c-truncate is-block"
+            <span
+              class="ins-c-truncate is-inline"
+              widget-type="InsightsTruncateInline"
             >
-              <div
-                class="pf-l-stack__item"
-              >
-                <span
-                  widget-type="InsightsTruncateBlock"
-                >
-                  profile description
-                </span>
-              </div>
-            </div>
+              profile description
+            </span>
           </p>
           <span
             tabindex="0"
@@ -600,19 +593,12 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
             class=""
             data-pf-content="true"
           >
-            <div
-              class="pf-l-stack ins-c-truncate is-block"
+            <span
+              class="ins-c-truncate is-inline"
+              widget-type="InsightsTruncateInline"
             >
-              <div
-                class="pf-l-stack__item"
-              >
-                <span
-                  widget-type="InsightsTruncateBlock"
-                >
-                  profile description
-                </span>
-              </div>
-            </div>
+              profile description
+            </span>
           </p>
           <span
             tabindex="0"
@@ -937,19 +923,12 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
             class=""
             data-pf-content="true"
           >
-            <div
-              class="pf-l-stack ins-c-truncate is-block"
+            <span
+              class="ins-c-truncate is-inline"
+              widget-type="InsightsTruncateInline"
             >
-              <div
-                class="pf-l-stack__item"
-              >
-                <span
-                  widget-type="InsightsTruncateBlock"
-                >
-                  profile description
-                </span>
-              </div>
-            </div>
+              profile description
+            </span>
           </p>
           <span
             tabindex="0"
@@ -2040,6 +2019,7 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
       >
         <TextContent>
           <Text
+            component="p"
             style={
               Object {
                 "fontWeight": "bold",
@@ -2048,10 +2028,13 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
           >
             Description
           </Text>
-          <Text>
+          <Text
+            component="p"
+          >
             <Truncate
               collapseText="Collapse"
               expandText="Read more"
+              inline={true}
               length={380}
               text="profile description"
             />
@@ -2427,19 +2410,12 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
             class=""
             data-pf-content="true"
           >
-            <div
-              class="pf-l-stack ins-c-truncate is-block"
+            <span
+              class="ins-c-truncate is-inline"
+              widget-type="InsightsTruncateInline"
             >
-              <div
-                class="pf-l-stack__item"
-              >
-                <span
-                  widget-type="InsightsTruncateBlock"
-                >
-                  profile description
-                </span>
-              </div>
-            </div>
+              profile description
+            </span>
           </p>
           <span
             tabindex="0"
@@ -2764,19 +2740,12 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
             class=""
             data-pf-content="true"
           >
-            <div
-              class="pf-l-stack ins-c-truncate is-block"
+            <span
+              class="ins-c-truncate is-inline"
+              widget-type="InsightsTruncateInline"
             >
-              <div
-                class="pf-l-stack__item"
-              >
-                <span
-                  widget-type="InsightsTruncateBlock"
-                >
-                  profile description
-                </span>
-              </div>
-            </div>
+              profile description
+            </span>
           </p>
           <span
             tabindex="0"
