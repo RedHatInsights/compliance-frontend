@@ -74,7 +74,7 @@ class CompliancePolicyCard extends React.Component {
             <Card widget-id={this.policy.refId}>
                 <CardBody>
                     <Text style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }} component={TextVariants.small}>
-                        External Policy
+                        External policy
                     </Text>
                     <TextContent>
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}

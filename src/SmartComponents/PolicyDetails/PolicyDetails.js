@@ -135,12 +135,12 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         title: 'Compliance Score'
     }, {
         key: 'facts.compliance.last_scanned',
-        title: 'Last Scanned'
+        title: 'Last scanned'
     }];
 
     const legendData = [
-        { name: donutValues[0].y + ' Systems Compliant' },
-        { name: donutValues[1].y + ' Systems Non-Compliant' }
+        { name: donutValues[0].y + ' Systems compliant' },
+        { name: donutValues[1].y + ' Systems non-compliant' }
     ];
 
     const compliancePercentage = fixedPercentage(Math.floor(100 *
