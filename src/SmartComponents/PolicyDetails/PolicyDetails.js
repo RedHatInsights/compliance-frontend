@@ -132,7 +132,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         title: 'Rules Failed'
     }, {
         key: 'facts.compliance.compliance_score',
-        title: 'Compliance Score'
+        title: 'Compliance score'
     }, {
         key: 'facts.compliance.last_scanned',
         title: 'Last scanned'

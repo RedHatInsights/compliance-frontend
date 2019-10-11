@@ -18,7 +18,7 @@ export const FILTER_CATEGORIES = [
         ]
     },
     {
-        type: 'checkbox', title: 'Compliance Score', urlParam: 'complianceScore', values: [
+        type: 'checkbox', title: 'Compliance score', urlParam: 'complianceScore', values: [
             { label: '90 - 100%', value: '90-100' },
             { label: '70 - 89%', value: '70-89' },
             { label: '50 - 69%', value: '50-69' },

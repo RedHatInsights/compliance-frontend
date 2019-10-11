@@ -52,7 +52,7 @@ const ComplianceSystemsTable = () => (
                 }
             }, {
                 key: 'facts.compliance.last_scanned',
-                title: 'Last Scanned',
+                title: 'Last scanned',
                 props: {
                     width: 10
                 }
