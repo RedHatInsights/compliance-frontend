@@ -214,7 +214,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  1 Systems Compliant
+                  1 Systems compliant
                 </tspan>
               </text>
               <text
@@ -230,7 +230,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  0 Systems Non-Compliant
+                  0 Systems non-compliant
                 </tspan>
               </text>
             </svg>
@@ -543,7 +543,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  1 Systems Compliant
+                  1 Systems compliant
                 </tspan>
               </text>
               <text
@@ -559,7 +559,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  0 Systems Non-Compliant
+                  0 Systems non-compliant
                 </tspan>
               </text>
             </svg>
@@ -872,7 +872,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  1 Systems Compliant
+                  1 Systems compliant
                 </tspan>
               </text>
               <text
@@ -888,7 +888,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  0 Systems Non-Compliant
+                  0 Systems non-compliant
                 </tspan>
               </text>
             </svg>
@@ -1547,10 +1547,10 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
             data={
               Array [
                 Object {
-                  "name": "1 Systems Compliant",
+                  "name": "1 Systems compliant",
                 },
                 Object {
-                  "name": "0 Systems Non-Compliant",
+                  "name": "0 Systems non-compliant",
                 },
               ]
             }
@@ -2126,11 +2126,11 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
               },
               Object {
                 "key": "facts.compliance.compliance_score",
-                "title": "Compliance Score",
+                "title": "Compliance score",
               },
               Object {
                 "key": "facts.compliance.last_scanned",
-                "title": "Last Scanned",
+                "title": "Last scanned",
               },
             ]
           }
@@ -2357,7 +2357,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  1 Systems Compliant
+                  1 Systems compliant
                 </tspan>
               </text>
               <text
@@ -2373,7 +2373,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  0 Systems Non-Compliant
+                  0 Systems non-compliant
                 </tspan>
               </text>
             </svg>
@@ -2686,7 +2686,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  1 Systems Compliant
+                  1 Systems compliant
                 </tspan>
               </text>
               <text
@@ -2702,7 +2702,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                   text-anchor="start"
                   x="30.8"
                 >
-                  0 Systems Non-Compliant
+                  0 Systems non-compliant
                 </tspan>
               </text>
             </svg>
