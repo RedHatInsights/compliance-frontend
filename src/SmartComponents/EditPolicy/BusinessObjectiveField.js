@@ -24,7 +24,7 @@ class BusinessObjectiveField extends React.Component {
         this.state = {
             policyId: props.policyId,
             isExpanded: false,
-            originalValue: props.businessObjective ? props.businessObjective.title : 'e.g.: Project Gemini',
+            originalValue: props.businessObjective ? props.businessObjective.title : '',
             selected: props.businessObjective ? props.businessObjective.id : '',
             options: [],
             originalOptions: [],
@@ -96,7 +96,9 @@ class BusinessObjectiveField extends React.Component {
                 <Title headingLevel='h3' size='xl'>Business objective</Title>
                 This is an optional field that can be used to label policies that are related to
                 specific business objectives.
-                <FormGroup field-id='edit-policy-business-objective' label="Business objective">
+                <FormGroup field-id='edit-policy-business-objective'
+                    label="Business objective"
+                    helperText='e.g Project Gemini'>
                     <Field name='businessObjectiveTitle'
                         id='businessObjectiveTitle'
                         ariaLabelledBy={titleId}
