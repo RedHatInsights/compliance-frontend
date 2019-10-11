@@ -32,7 +32,7 @@ class ProfileThresholdField extends React.Component {
                     isValid={validThreshold}
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
                     helperText="A value of 95% or higher is recommended"
-                    label="Compliance threshold (%):">
+                    label="Compliance threshold (%)">
                     <Field name='complianceThreshold' id='complianceThreshold' isRequired={true}
                         onChange={this.handleThresholdChange}
                         isValid={validThreshold}
