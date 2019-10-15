@@ -4,7 +4,7 @@ import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import { fixedPercentage, pluralize } from '../../Utilities/TextHelper';
 import EditPolicy from '../EditPolicy/EditPolicy';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
@@ -129,7 +129,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         title: 'Profile'
     }, {
         key: 'facts.compliance.rules_failed',
-        title: 'Rules Failed'
+        title: 'Rules failed'
     }, {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score'
@@ -139,8 +139,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     }];
 
     const legendData = [
-        { name: donutValues[0].y + ' Systems compliant' },
-        { name: donutValues[1].y + ' Systems non-compliant' }
+        { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'System') + ' compliant' },
+        { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'System') + ' non-compliant' }
     ];
 
     const compliancePercentage = fixedPercentage(Math.floor(100 *

@@ -69,6 +69,7 @@ class EditPolicy extends Component {
                     title="Edit policy details"
                     isOpen={isModalOpen}
                     onClose={this.handleModalToggle}
+                    isFooterLeftAligned
                     actions={[
                         <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
                             Cancel

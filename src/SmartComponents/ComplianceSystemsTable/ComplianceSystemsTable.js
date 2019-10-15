@@ -46,7 +46,7 @@ const ComplianceSystemsTable = () => (
                 }
             }, {
                 key: 'facts.compliance.compliance_score',
-                title: 'Compliant',
+                title: 'Compliance score',
                 props: {
                     width: 10
                 }

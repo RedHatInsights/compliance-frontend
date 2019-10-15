@@ -27,7 +27,7 @@ class ProfileThresholdField extends React.Component {
             <React.Fragment>
                 <Title headingLevel="h3" size="xl">Compliance threshold</Title>
                 The compliance threshold defines what percentage of rules must be met in order for a system to
-                be determined &quot;compliant&quot;
+                be determined &quot;compliant&quot;.
                 <FormGroup field-id='policy-threshold'
                     isValid={validThreshold}
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
@@ -38,7 +38,8 @@ class ProfileThresholdField extends React.Component {
                         isValid={validThreshold}
                         defaultValue={threshold}
                         aria-label="compliance threshold"
-                        component={ReduxFormTextInput} type='number' />
+                        component={ReduxFormTextInput} type='number'
+                        style={ { width: '60%', display: 'block' } } />
                 </FormGroup>
             </React.Fragment>
         );
