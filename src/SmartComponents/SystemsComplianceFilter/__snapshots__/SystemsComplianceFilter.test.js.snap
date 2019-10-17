@@ -55,6 +55,7 @@ exports[`SystemsComplianceFilter expect to render without error 1`] = `
   label={
     <FilterIcon
       color="currentColor"
+      noVerticalAlign={false}
       size="sm"
       title={null}
     />
