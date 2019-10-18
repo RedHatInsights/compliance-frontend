@@ -3,6 +3,8 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
+import { AnsibeTowerIcon } from '@patternfly/react-icons';
+import { global_BackgroundColor_100 as globalBackgroundColor100 } from '@patternfly/react-tokens';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
@@ -119,7 +121,10 @@ class ComplianceRemediationButton extends React.Component {
                     isDisabled={ allSystems.length === 0 || allSystems[0].ruleObjectsFailed.length === 0 }
                     dataProvider={ this.dataProvider }
                     onRemediationCreated={ this.onCreated }
-                />
+                >
+                    <AnsibeTowerIcon size='sm' color={globalBackgroundColor100.value} />
+                    &nbsp;Remediate
+                </RemediationButton>
             </React.Fragment>
         );
     }

@@ -123,19 +123,34 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'display_name',
-        title: 'Name'
+        title: 'Name',
+        props: {
+            width: 30
+        }
     }, {
         key: 'facts.compliance.profiles',
-        title: 'Profile'
+        title: 'Profile',
+        props: {
+            width: 50
+        }
     }, {
         key: 'facts.compliance.rules_failed',
-        title: 'Rules failed'
+        title: 'Rules failed',
+        props: {
+            width: 5
+        }
     }, {
         key: 'facts.compliance.compliance_score',
-        title: 'Compliance score'
+        title: 'Compliance score',
+        props: {
+            width: 5
+        }
     }, {
         key: 'facts.compliance.last_scanned',
-        title: 'Last scanned'
+        title: 'Last scanned',
+        props: {
+            width: 10
+        }
     }];
 
     const legendData = [
@@ -218,8 +233,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
 
                     </GridItem>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
-                        <TextContent>
-                            <Text style={{ fontWeight: 'bold' }} component={TextVariants.p}>Description</Text>
+                        <TextContent className='policy-description'>
+                            <Text component={TextVariants.h5}><b>Description</b></Text>
                             <Text component={TextVariants.p}>
                                 <Truncate text={linkifyHtml(policy.description)} length={380} inline={true} />
                             </Text>
@@ -235,8 +250,11 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                                 }
                             >
                                 <span>
-                                    <Text style={{ fontWeight: 'bold' }} component={ TextVariants.p }>
-                                      Minimum threshold for compliance <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                    <Text component={TextVariants.h5}>
+                                        <b>
+                                            Minimum threshold for compliance
+                                            <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                        </b>
                                     </Text>
                                     <Text className='threshold-tooltip' component={TextVariants.p}>
                                         { fixedPercentage(policy.complianceThreshold) }
