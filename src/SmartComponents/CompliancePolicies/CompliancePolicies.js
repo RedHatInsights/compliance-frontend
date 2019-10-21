@@ -87,7 +87,7 @@ const CompliancePolicies = () => {
                 <Main>
                     <div className="policies-donuts">
                         <Grid gutter='md'>
-                            <LoadingComplianceCards/>;
+                            <LoadingComplianceCards/>
                         </Grid>
                     </div>
                 </Main>

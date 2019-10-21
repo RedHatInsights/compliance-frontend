@@ -18,9 +18,8 @@ import {
 } from '@redhat-cloud-services/frontend-components';
 import {
     ChartDonut,
-    ChartLegend,
-    ChartLabel,
-    ChartTheme
+    ChartThemeColor,
+    ChartThemeVariant
 } from '@patternfly/react-charts';
 import {
     Text,
@@ -161,31 +160,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const compliancePercentage = fixedPercentage(Math.floor(100 *
         (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
 
-    const label = (
-        <svg
-            className="chart-label"
-            height={200}
-            width={200}
-        >
-            <ChartLabel
-                style={{ fontSize: 20 }}
-                text={compliancePercentage}
-                textAnchor="middle"
-                verticalAnchor="middle"
-                x={100}
-                y={90}
-            />
-            <ChartLabel
-                style={{ fill: '#bbb' }}
-                text="Compliant"
-                textAnchor="middle"
-                verticalAnchor="middle"
-                x={100}
-                y={110}
-            />
-        </svg>
-    );
-
     return (
         <React.Fragment>
             <PageHeader>
@@ -212,23 +186,26 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <div className='chart-inline'>
                             <div className='chart-container'>
-                                {label}
                                 <ChartDonut data={donutValues}
                                     identifier={donutId}
-                                    theme={ChartTheme.light.blue}
+                                    title={compliancePercentage}
+                                    subTitle="Compliant"
+                                    themeColor={ChartThemeColor.blue}
+                                    themeVariant={ChartThemeVariant.light}
+                                    style={{ fontSize: 20 }}
+                                    innerRadius={88}
+                                    width={462}
                                     legendPosition='right'
-                                    height={200}
-                                    width={200}
+                                    legendData={legendData}
+                                    legendOrientation='vertical'
+                                    padding={{
+                                        bottom: 20,
+                                        left: 0,
+                                        right: 250,
+                                        top: 20
+                                    }}
                                 />
                             </div>
-                            <ChartLegend
-                                data={legendData}
-                                orientation={'vertical'}
-                                theme={ChartTheme.light.blue}
-                                y={55}
-                                height={200}
-                                width={200}
-                            />
                         </div>
 
                     </GridItem>
