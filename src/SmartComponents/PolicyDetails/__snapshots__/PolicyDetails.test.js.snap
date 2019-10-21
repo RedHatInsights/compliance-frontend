@@ -81,167 +81,131 @@ exports[`PolicyDetails expect to render without error 1`] = `
           <div
             class="chart-container"
           >
-            <svg
-              class="chart-label"
-              height="200"
-              width="200"
-            >
-              <text
-                direction="inherit"
-                dx="0"
-                dy="7.1"
-                x="100"
-                y="90"
-              >
-                <tspan
-                  dx="0"
-                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  100%
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="100"
-                y="110"
-              >
-                <tspan
-                  dx="0"
-                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  Compliant
-                </tspan>
-              </text>
-            </svg>
             <div
-              class="VictoryContainer"
-              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+              class="pf-c-chart"
+              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                aria-labelledby="victory-container-19-title victory-container-19-desc"
-                height="200"
+                height="230"
                 role="img"
-                style="pointer-events: all; width: 100%; height: 100%;"
-                viewBox="0 0 200 200"
-                width="200"
+                style="pointer-events: all; width: 100%; height: auto;"
+                viewBox="0 0 462 230"
+                width="462"
               >
                 <g>
                   <path
-                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
                     role="presentation"
                     shape-rendering="auto"
                     style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    transform="translate(106, 115)"
                   />
                   <path
-                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
                     role="presentation"
                     shape-rendering="auto"
-                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(106, 115)"
                   />
                 </g>
+                <g>
+                  <rect
+                    height="61.809999999999995"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: none;"
+                    vector-effect="non-scaling-stroke"
+                    width="225.29780853517875"
+                    x="209"
+                    y="86.095"
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #06c;"
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #8bc1f7;"
+                  />
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-0"
+                    x="239.8"
+                    y="100.095"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      1 System compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-1"
+                    x="239.8"
+                    y="131"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      0 Systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx="0"
+                  dy="1.200000000000001"
+                  x="106"
+                  y="115"
+                >
+                  <tspan
+                    dx="0"
+                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx="0"
+                    dy="19"
+                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    Compliant
+                  </tspan>
+                </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
               >
                 <svg
-                  height="200"
-                  style="overflow: visible; width: 100%; height: 100%;"
-                  viewBox="0 0 200 200"
-                  width="200"
+                  height="230"
+                  style="overflow: visible; width: 100%; height: auto;"
+                  viewBox="0 0 462 230"
+                  width="462"
                 />
               </div>
-            </div>
-          </div>
-          <div
-            class="VictoryContainer"
-            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
-          >
-            <svg
-              aria-labelledby="victory-container-20-title victory-container-20-desc"
-              height="200"
-              role="img"
-              style="pointer-events: all; width: 200px; height: 200px;"
-              width="200"
-            >
-              <rect
-                height="61.809999999999995"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: none;"
-                vector-effect="non-scaling-stroke"
-                width="202.5554655870445"
-                x="0"
-                y="55"
-              />
-              <path
-                d="M 9.128, 73.872
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #06c;"
-              />
-              <path
-                d="M 9.128, 104.777
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #bee1f4;"
-              />
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="69"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  1 System compliant
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="99.905"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  0 Systems non-compliant
-                </tspan>
-              </text>
-            </svg>
-            <div
-              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
-            >
-              <svg
-                height="200"
-                style="overflow: visible; width: 200px; height: 200px;"
-                width="200"
-              />
             </div>
           </div>
         </div>
@@ -412,167 +376,131 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
           <div
             class="chart-container"
           >
-            <svg
-              class="chart-label"
-              height="200"
-              width="200"
-            >
-              <text
-                direction="inherit"
-                dx="0"
-                dy="7.1"
-                x="100"
-                y="90"
-              >
-                <tspan
-                  dx="0"
-                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  100%
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="100"
-                y="110"
-              >
-                <tspan
-                  dx="0"
-                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  Compliant
-                </tspan>
-              </text>
-            </svg>
             <div
-              class="VictoryContainer"
-              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+              class="pf-c-chart"
+              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                aria-labelledby="victory-container-3-title victory-container-3-desc"
-                height="200"
+                height="230"
                 role="img"
-                style="pointer-events: all; width: 100%; height: 100%;"
-                viewBox="0 0 200 200"
-                width="200"
+                style="pointer-events: all; width: 100%; height: auto;"
+                viewBox="0 0 462 230"
+                width="462"
               >
                 <g>
                   <path
-                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
                     role="presentation"
                     shape-rendering="auto"
                     style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    transform="translate(106, 115)"
                   />
                   <path
-                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
                     role="presentation"
                     shape-rendering="auto"
-                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(106, 115)"
                   />
                 </g>
+                <g>
+                  <rect
+                    height="61.809999999999995"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: none;"
+                    vector-effect="non-scaling-stroke"
+                    width="225.29780853517875"
+                    x="209"
+                    y="86.095"
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #06c;"
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #8bc1f7;"
+                  />
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-0"
+                    x="239.8"
+                    y="100.095"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      1 System compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-1"
+                    x="239.8"
+                    y="131"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      0 Systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx="0"
+                  dy="1.200000000000001"
+                  x="106"
+                  y="115"
+                >
+                  <tspan
+                    dx="0"
+                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx="0"
+                    dy="19"
+                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    Compliant
+                  </tspan>
+                </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
               >
                 <svg
-                  height="200"
-                  style="overflow: visible; width: 100%; height: 100%;"
-                  viewBox="0 0 200 200"
-                  width="200"
+                  height="230"
+                  style="overflow: visible; width: 100%; height: auto;"
+                  viewBox="0 0 462 230"
+                  width="462"
                 />
               </div>
-            </div>
-          </div>
-          <div
-            class="VictoryContainer"
-            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
-          >
-            <svg
-              aria-labelledby="victory-container-4-title victory-container-4-desc"
-              height="200"
-              role="img"
-              style="pointer-events: all; width: 200px; height: 200px;"
-              width="200"
-            >
-              <rect
-                height="61.809999999999995"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: none;"
-                vector-effect="non-scaling-stroke"
-                width="202.5554655870445"
-                x="0"
-                y="55"
-              />
-              <path
-                d="M 9.128, 73.872
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #06c;"
-              />
-              <path
-                d="M 9.128, 104.777
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #bee1f4;"
-              />
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="69"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  1 System compliant
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="99.905"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  0 Systems non-compliant
-                </tspan>
-              </text>
-            </svg>
-            <div
-              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
-            >
-              <svg
-                height="200"
-                style="overflow: visible; width: 200px; height: 200px;"
-                width="200"
-              />
             </div>
           </div>
         </div>
@@ -743,167 +671,131 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
           <div
             class="chart-container"
           >
-            <svg
-              class="chart-label"
-              height="200"
-              width="200"
-            >
-              <text
-                direction="inherit"
-                dx="0"
-                dy="7.1"
-                x="100"
-                y="90"
-              >
-                <tspan
-                  dx="0"
-                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  100%
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="100"
-                y="110"
-              >
-                <tspan
-                  dx="0"
-                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  Compliant
-                </tspan>
-              </text>
-            </svg>
             <div
-              class="VictoryContainer"
-              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+              class="pf-c-chart"
+              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                aria-labelledby="victory-container-15-title victory-container-15-desc"
-                height="200"
+                height="230"
                 role="img"
-                style="pointer-events: all; width: 100%; height: 100%;"
-                viewBox="0 0 200 200"
-                width="200"
+                style="pointer-events: all; width: 100%; height: auto;"
+                viewBox="0 0 462 230"
+                width="462"
               >
                 <g>
                   <path
-                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
                     role="presentation"
                     shape-rendering="auto"
                     style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    transform="translate(106, 115)"
                   />
                   <path
-                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
                     role="presentation"
                     shape-rendering="auto"
-                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(106, 115)"
                   />
                 </g>
+                <g>
+                  <rect
+                    height="61.809999999999995"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: none;"
+                    vector-effect="non-scaling-stroke"
+                    width="225.29780853517875"
+                    x="209"
+                    y="86.095"
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #06c;"
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #8bc1f7;"
+                  />
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-0"
+                    x="239.8"
+                    y="100.095"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      1 System compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-1"
+                    x="239.8"
+                    y="131"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      0 Systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx="0"
+                  dy="1.200000000000001"
+                  x="106"
+                  y="115"
+                >
+                  <tspan
+                    dx="0"
+                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx="0"
+                    dy="19"
+                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    Compliant
+                  </tspan>
+                </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
               >
                 <svg
-                  height="200"
-                  style="overflow: visible; width: 100%; height: 100%;"
-                  viewBox="0 0 200 200"
-                  width="200"
+                  height="230"
+                  style="overflow: visible; width: 100%; height: auto;"
+                  viewBox="0 0 462 230"
+                  width="462"
                 />
               </div>
-            </div>
-          </div>
-          <div
-            class="VictoryContainer"
-            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
-          >
-            <svg
-              aria-labelledby="victory-container-16-title victory-container-16-desc"
-              height="200"
-              role="img"
-              style="pointer-events: all; width: 200px; height: 200px;"
-              width="200"
-            >
-              <rect
-                height="61.809999999999995"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: none;"
-                vector-effect="non-scaling-stroke"
-                width="202.5554655870445"
-                x="0"
-                y="55"
-              />
-              <path
-                d="M 9.128, 73.872
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #06c;"
-              />
-              <path
-                d="M 9.128, 104.777
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #bee1f4;"
-              />
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="69"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  1 System compliant
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="99.905"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  0 Systems non-compliant
-                </tspan>
-              </text>
-            </svg>
-            <div
-              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
-            >
-              <svg
-                height="200"
-                style="overflow: visible; width: 200px; height: 200px;"
-                width="200"
-              />
             </div>
           </div>
         </div>
@@ -1053,36 +945,6 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
           <div
             className="chart-container"
           >
-            <svg
-              className="chart-label"
-              height={200}
-              width={200}
-            >
-              <ChartLabel
-                style={
-                  Object {
-                    "fontSize": 20,
-                  }
-                }
-                text="100%"
-                textAnchor="middle"
-                verticalAnchor="middle"
-                x={100}
-                y={90}
-              />
-              <ChartLabel
-                style={
-                  Object {
-                    "fill": "#bbb",
-                  }
-                }
-                text="Compliant"
-                textAnchor="middle"
-                verticalAnchor="middle"
-                x={100}
-                y={110}
-              />
-            </svg>
             <ChartDonut
               data={
                 Array [
@@ -1096,922 +958,40 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
                   },
                 ]
               }
-              height={200}
               identifier="profile1"
+              innerRadius={88}
+              legendData={
+                Array [
+                  Object {
+                    "name": "1 System compliant",
+                  },
+                  Object {
+                    "name": "0 Systems non-compliant",
+                  },
+                ]
+              }
+              legendOrientation="vertical"
               legendPosition="right"
-              theme={
+              padding={
                 Object {
-                  "area": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "fill": "#bee1f4",
-                        "fillOpacity": 0.4,
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 2,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "axis": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "axis": Object {
-                        "fill": "transparent",
-                        "stroke": "#737679",
-                        "strokeLinecap": "round",
-                        "strokeLinejoin": "round",
-                        "strokeWidth": 1,
-                      },
-                      "axisLabel": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 100,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                      "grid": Object {
-                        "fill": "none",
-                        "pointerEvents": "painted",
-                        "stroke": "none",
-                      },
-                      "tickLabels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "ticks": Object {
-                        "fill": "transparent",
-                        "size": 1,
-                        "stroke": "transparent",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "bar": Object {
-                    "barWidth": 10,
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "stroke": "none",
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "boxplot": Object {
-                    "boxWidth": 20,
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "max": Object {
-                        "padding": 8,
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 1,
-                      },
-                      "maxLabels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "median": Object {
-                        "padding": 8,
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 1,
-                      },
-                      "medianLabels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "min": Object {
-                        "padding": 8,
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 1,
-                      },
-                      "minLabels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "q1": Object {
-                        "fill": "#bee1f4",
-                        "padding": 8,
-                      },
-                      "q1Labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "q3": Object {
-                        "fill": "#bee1f4",
-                        "padding": 8,
-                      },
-                      "q3Labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "candlestick": Object {
-                    "candleColors": Object {
-                      "negative": "#73bcf7",
-                      "positive": "#bee1f4",
-                    },
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 1,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "chart": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "parent": Object {
-                        "border": "1px solid #bee1f4",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "errorbar": Object {
-                    "borderWidth": 8,
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "fill": "transparent",
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 2,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "group": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "width": 451,
-                  },
-                  "legend": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "gutter": 20,
-                    "orientation": "horizontal",
-                    "style": Object {
-                      "data": Object {
-                        "type": "square",
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                      },
-                      "title": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 2,
-                        "stroke": "transparent",
-                      },
-                    },
-                    "titleOrientation": "top",
-                  },
-                  "line": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "fill": "transparent",
-                        "stroke": "#73bcf7",
-                        "strokeWidth": 2,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "pie": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "padding": 20,
-                    "style": Object {
-                      "data": Object {
-                        "padding": 8,
-                        "stroke": "transparent",
-                        "strokeWidth": 1,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 8,
-                        "stroke": "transparent",
-                      },
-                    },
-                  },
-                  "scatter": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "fill": "#bee1f4",
-                        "stroke": "transparent",
-                        "strokeWidth": 0,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 10,
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "stack": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "stroke": "#fff",
-                        "strokeWidth": 1,
-                      },
-                    },
-                    "width": 451,
-                  },
-                  "tooltip": Object {
-                    "cornerRadius": 0,
-                    "flyoutStyle": Object {
-                      "cornerRadius": 0,
-                      "fill": "#fff",
-                      "pointerEvents": "none",
-                      "stroke": "#151515",
-                      "strokeWidth": 1,
-                    },
-                    "pointerLength": 10,
-                    "style": Object {
-                      "fill": "#fff",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 8,
-                      "pointerEvents": "none",
-                      "stroke": "#151515",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "voronoi": Object {
-                    "colorScale": Array [
-                      "#06c",
-                      "#bee1f4",
-                      "#73bcf7",
-                      "#0066ff",
-                    ],
-                    "height": 301,
-                    "padding": 8,
-                    "style": Object {
-                      "data": Object {
-                        "fill": "transparent",
-                        "stroke": "transparent",
-                        "strokeWidth": 0,
-                      },
-                      "flyout": Object {
-                        "fill": "#fff",
-                        "pointerEvents": "none",
-                        "strokeWidth": 1,
-                      },
-                      "labels": Object {
-                        "fill": "#151515",
-                        "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                        "fontSize": 14,
-                        "letterSpacing": "normal",
-                        "padding": 8,
-                        "pointerEvents": "none",
-                        "stroke": "transparent",
-                        "textAnchor": "middle",
-                      },
-                    },
-                    "width": 451,
-                  },
+                  "bottom": 20,
+                  "left": 0,
+                  "right": 250,
+                  "top": 20,
                 }
               }
-              width={200}
+              style={
+                Object {
+                  "fontSize": 20,
+                }
+              }
+              subTitle="Compliant"
+              themeColor="blue"
+              themeVariant="light"
+              title="100%"
+              width={462}
             />
           </div>
-          <ChartLegend
-            data={
-              Array [
-                Object {
-                  "name": "1 System compliant",
-                },
-                Object {
-                  "name": "0 Systems non-compliant",
-                },
-              ]
-            }
-            height={200}
-            orientation="vertical"
-            theme={
-              Object {
-                "area": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "fill": "#bee1f4",
-                      "fillOpacity": 0.4,
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 2,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-                "axis": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "axis": Object {
-                      "fill": "transparent",
-                      "stroke": "#737679",
-                      "strokeLinecap": "round",
-                      "strokeLinejoin": "round",
-                      "strokeWidth": 1,
-                    },
-                    "axisLabel": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 100,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                    "grid": Object {
-                      "fill": "none",
-                      "pointerEvents": "painted",
-                      "stroke": "none",
-                    },
-                    "tickLabels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "ticks": Object {
-                      "fill": "transparent",
-                      "size": 1,
-                      "stroke": "transparent",
-                    },
-                  },
-                  "width": 451,
-                },
-                "bar": Object {
-                  "barWidth": 10,
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "stroke": "none",
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                  },
-                  "width": 451,
-                },
-                "boxplot": Object {
-                  "boxWidth": 20,
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "max": Object {
-                      "padding": 8,
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 1,
-                    },
-                    "maxLabels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "median": Object {
-                      "padding": 8,
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 1,
-                    },
-                    "medianLabels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "min": Object {
-                      "padding": 8,
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 1,
-                    },
-                    "minLabels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "q1": Object {
-                      "fill": "#bee1f4",
-                      "padding": 8,
-                    },
-                    "q1Labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "q3": Object {
-                      "fill": "#bee1f4",
-                      "padding": 8,
-                    },
-                    "q3Labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                  },
-                  "width": 451,
-                },
-                "candlestick": Object {
-                  "candleColors": Object {
-                    "negative": "#73bcf7",
-                    "positive": "#bee1f4",
-                  },
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 1,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-                "chart": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "parent": Object {
-                      "border": "1px solid #bee1f4",
-                    },
-                  },
-                  "width": 451,
-                },
-                "errorbar": Object {
-                  "borderWidth": 8,
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "fill": "transparent",
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 2,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-                "group": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "width": 451,
-                },
-                "legend": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "gutter": 20,
-                  "orientation": "horizontal",
-                  "style": Object {
-                    "data": Object {
-                      "type": "square",
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                    },
-                    "title": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 2,
-                      "stroke": "transparent",
-                    },
-                  },
-                  "titleOrientation": "top",
-                },
-                "line": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "fill": "transparent",
-                      "stroke": "#73bcf7",
-                      "strokeWidth": 2,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-                "pie": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "padding": 20,
-                  "style": Object {
-                    "data": Object {
-                      "padding": 8,
-                      "stroke": "transparent",
-                      "strokeWidth": 1,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 8,
-                      "stroke": "transparent",
-                    },
-                  },
-                },
-                "scatter": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "fill": "#bee1f4",
-                      "stroke": "transparent",
-                      "strokeWidth": 0,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 10,
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-                "stack": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "stroke": "#fff",
-                      "strokeWidth": 1,
-                    },
-                  },
-                  "width": 451,
-                },
-                "tooltip": Object {
-                  "cornerRadius": 0,
-                  "flyoutStyle": Object {
-                    "cornerRadius": 0,
-                    "fill": "#fff",
-                    "pointerEvents": "none",
-                    "stroke": "#151515",
-                    "strokeWidth": 1,
-                  },
-                  "pointerLength": 10,
-                  "style": Object {
-                    "fill": "#fff",
-                    "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                    "fontSize": 14,
-                    "letterSpacing": "normal",
-                    "padding": 8,
-                    "pointerEvents": "none",
-                    "stroke": "#151515",
-                    "textAnchor": "middle",
-                  },
-                },
-                "voronoi": Object {
-                  "colorScale": Array [
-                    "#06c",
-                    "#bee1f4",
-                    "#73bcf7",
-                    "#0066ff",
-                  ],
-                  "height": 301,
-                  "padding": 8,
-                  "style": Object {
-                    "data": Object {
-                      "fill": "transparent",
-                      "stroke": "transparent",
-                      "strokeWidth": 0,
-                    },
-                    "flyout": Object {
-                      "fill": "#fff",
-                      "pointerEvents": "none",
-                      "strokeWidth": 1,
-                    },
-                    "labels": Object {
-                      "fill": "#151515",
-                      "fontFamily": "'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif",
-                      "fontSize": 14,
-                      "letterSpacing": "normal",
-                      "padding": 8,
-                      "pointerEvents": "none",
-                      "stroke": "transparent",
-                      "textAnchor": "middle",
-                    },
-                  },
-                  "width": 451,
-                },
-              }
-            }
-            width={200}
-            y={55}
-          />
         </div>
       </GridItem>
       <GridItem
@@ -2242,167 +1222,131 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
           <div
             class="chart-container"
           >
-            <svg
-              class="chart-label"
-              height="200"
-              width="200"
-            >
-              <text
-                direction="inherit"
-                dx="0"
-                dy="7.1"
-                x="100"
-                y="90"
-              >
-                <tspan
-                  dx="0"
-                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  100%
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="100"
-                y="110"
-              >
-                <tspan
-                  dx="0"
-                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  Compliant
-                </tspan>
-              </text>
-            </svg>
             <div
-              class="VictoryContainer"
-              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+              class="pf-c-chart"
+              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                aria-labelledby="victory-container-7-title victory-container-7-desc"
-                height="200"
+                height="230"
                 role="img"
-                style="pointer-events: all; width: 100%; height: 100%;"
-                viewBox="0 0 200 200"
-                width="200"
+                style="pointer-events: all; width: 100%; height: auto;"
+                viewBox="0 0 462 230"
+                width="462"
               >
                 <g>
                   <path
-                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
                     role="presentation"
                     shape-rendering="auto"
                     style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    transform="translate(106, 115)"
                   />
                   <path
-                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
                     role="presentation"
                     shape-rendering="auto"
-                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(106, 115)"
                   />
                 </g>
+                <g>
+                  <rect
+                    height="61.809999999999995"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: none;"
+                    vector-effect="non-scaling-stroke"
+                    width="225.29780853517875"
+                    x="209"
+                    y="86.095"
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #06c;"
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #8bc1f7;"
+                  />
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-0"
+                    x="239.8"
+                    y="100.095"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      1 System compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-1"
+                    x="239.8"
+                    y="131"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      0 Systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx="0"
+                  dy="1.200000000000001"
+                  x="106"
+                  y="115"
+                >
+                  <tspan
+                    dx="0"
+                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx="0"
+                    dy="19"
+                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    Compliant
+                  </tspan>
+                </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
               >
                 <svg
-                  height="200"
-                  style="overflow: visible; width: 100%; height: 100%;"
-                  viewBox="0 0 200 200"
-                  width="200"
+                  height="230"
+                  style="overflow: visible; width: 100%; height: auto;"
+                  viewBox="0 0 462 230"
+                  width="462"
                 />
               </div>
-            </div>
-          </div>
-          <div
-            class="VictoryContainer"
-            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
-          >
-            <svg
-              aria-labelledby="victory-container-8-title victory-container-8-desc"
-              height="200"
-              role="img"
-              style="pointer-events: all; width: 200px; height: 200px;"
-              width="200"
-            >
-              <rect
-                height="61.809999999999995"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: none;"
-                vector-effect="non-scaling-stroke"
-                width="202.5554655870445"
-                x="0"
-                y="55"
-              />
-              <path
-                d="M 9.128, 73.872
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #06c;"
-              />
-              <path
-                d="M 9.128, 104.777
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #bee1f4;"
-              />
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="69"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  1 System compliant
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="99.905"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  0 Systems non-compliant
-                </tspan>
-              </text>
-            </svg>
-            <div
-              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
-            >
-              <svg
-                height="200"
-                style="overflow: visible; width: 200px; height: 200px;"
-                width="200"
-              />
             </div>
           </div>
         </div>
@@ -2573,167 +1517,131 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
           <div
             class="chart-container"
           >
-            <svg
-              class="chart-label"
-              height="200"
-              width="200"
-            >
-              <text
-                direction="inherit"
-                dx="0"
-                dy="7.1"
-                x="100"
-                y="90"
-              >
-                <tspan
-                  dx="0"
-                  style="font-size: 20px; fill: #252525; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  100%
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="100"
-                y="110"
-              >
-                <tspan
-                  dx="0"
-                  style="fill: #bbb; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; stroke: transparent;"
-                  text-anchor="middle"
-                  x="100"
-                >
-                  Compliant
-                </tspan>
-              </text>
-            </svg>
             <div
-              class="VictoryContainer"
-              style="height: 100%; width: 100%; pointer-events: none; position: relative;"
+              class="pf-c-chart"
+              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                aria-labelledby="victory-container-11-title victory-container-11-desc"
-                height="200"
+                height="230"
                 role="img"
-                style="pointer-events: all; width: 100%; height: 100%;"
-                viewBox="0 0 200 200"
-                width="200"
+                style="pointer-events: all; width: 100%; height: auto;"
+                viewBox="0 0 462 230"
+                width="462"
               >
                 <g>
                   <path
-                    d="M1.0378342131579386,-87.99387990164998A88,88,0,1,1,-2.5733811020175525,-87.96236530303047L-2.4337511686168343,-79.96297177599926A80,80,0,1,0,1.0378342131579519,-79.99326784265035Z"
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
                     role="presentation"
                     shape-rendering="auto"
                     style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    transform="translate(106, 115)"
                   />
                   <path
-                    d="M-0.7679351238568747,-87.99664922964708L-0.698122839869886,-79.9969538451337Z"
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
                     role="presentation"
                     shape-rendering="auto"
-                    style="fill: #bee1f4; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(100, 100)"
+                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    transform="translate(106, 115)"
                   />
                 </g>
+                <g>
+                  <rect
+                    height="61.809999999999995"
+                    role="presentation"
+                    shape-rendering="auto"
+                    style="fill: none;"
+                    vector-effect="non-scaling-stroke"
+                    width="225.29780853517875"
+                    x="209"
+                    y="86.095"
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #06c;"
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    style="fill: #8bc1f7;"
+                  />
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-0"
+                    x="239.8"
+                    y="100.095"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      1 System compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx="0"
+                    dy="4.97"
+                    id="legend-labels-1"
+                    x="239.8"
+                    y="131"
+                  >
+                    <tspan
+                      dx="0"
+                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
+                      text-anchor="start"
+                      x="239.8"
+                    >
+                      0 Systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx="0"
+                  dy="1.200000000000001"
+                  x="106"
+                  y="115"
+                >
+                  <tspan
+                    dx="0"
+                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx="0"
+                    dy="19"
+                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
+                    text-anchor="middle"
+                    x="106"
+                  >
+                    Compliant
+                  </tspan>
+                </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
               >
                 <svg
-                  height="200"
-                  style="overflow: visible; width: 100%; height: 100%;"
-                  viewBox="0 0 200 200"
-                  width="200"
+                  height="230"
+                  style="overflow: visible; width: 100%; height: auto;"
+                  viewBox="0 0 462 230"
+                  width="462"
                 />
               </div>
-            </div>
-          </div>
-          <div
-            class="VictoryContainer"
-            style="pointer-events: none; position: relative; width: 200px; height: 200px;"
-          >
-            <svg
-              aria-labelledby="victory-container-12-title victory-container-12-desc"
-              height="200"
-              role="img"
-              style="pointer-events: all; width: 200px; height: 200px;"
-              width="200"
-            >
-              <rect
-                height="61.809999999999995"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: none;"
-                vector-effect="non-scaling-stroke"
-                width="202.5554655870445"
-                x="0"
-                y="55"
-              />
-              <path
-                d="M 9.128, 73.872
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #06c;"
-              />
-              <path
-                d="M 9.128, 104.777
-      h9.744
-      v-9.744
-      h-9.744
-      z"
-                role="presentation"
-                shape-rendering="auto"
-                style="fill: #bee1f4;"
-              />
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="69"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  1 System compliant
-                </tspan>
-              </text>
-              <text
-                direction="inherit"
-                dx="0"
-                dy="4.97"
-                x="30.8"
-                y="99.905"
-              >
-                <tspan
-                  dx="0"
-                  style="font-family: 'Gill Sans', 'Gill Sans MT', 'Ser­avek', 'Trebuchet MS', sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; fill: #151515; stroke: transparent;"
-                  text-anchor="start"
-                  x="30.8"
-                >
-                  0 Systems non-compliant
-                </tspan>
-              </text>
-            </svg>
-            <div
-              style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 200px; height: 200px;"
-            >
-              <svg
-                height="200"
-                style="overflow: visible; width: 200px; height: 200px;"
-                width="200"
-              />
             </div>
           </div>
         </div>

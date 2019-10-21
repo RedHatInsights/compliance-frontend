@@ -15,8 +15,8 @@ import {
 } from '@patternfly/react-core';
 import {
     ChartDonut,
-    ChartLabel,
-    ChartTheme
+    ChartThemeColor,
+    ChartThemeVariant
 } from '@patternfly/react-charts';
 import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
@@ -45,30 +45,6 @@ class CompliancePolicyCard extends React.Component {
         ];
         const compliancePercentage = fixedPercentage(Math.floor(100 *
             (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
-        const label = (
-            <svg
-                className="chart-label"
-                height={300}
-                width={300}
-            >
-                <ChartLabel
-                    style={{ fontSize: 26 }}
-                    text={compliancePercentage}
-                    textAnchor="middle"
-                    verticalAnchor="middle"
-                    x={150}
-                    y={135}
-                />
-                <ChartLabel
-                    style={{ fill: 'var(--pf-global--Color--200)' }}
-                    text="Systems above threshold"
-                    textAnchor="middle"
-                    verticalAnchor="middle"
-                    x={150}
-                    y={165}
-                />
-            </svg>
-        );
 
         return (
             <Card widget-id={this.policy.refId}>
@@ -97,7 +73,7 @@ class CompliancePolicyCard extends React.Component {
                                     </span>
                                 </TextContent>
                             </GridItem>
-                            <GridItem span={8}>
+                            <GridItem span={12}>
                                 <Text
                                     style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}
                                     component={TextVariants.small}
@@ -130,12 +106,15 @@ class CompliancePolicyCard extends React.Component {
                         <GridItem style={{ textAlign: 'center' }} span={12}>
                             <div className='chart-inline'>
                                 <div className='card-chart-container'>
-                                    {label}
                                     <ChartDonut data={donutValues}
                                         identifier={this.policy.name.replace(/ /g, '')}
-                                        theme={ChartTheme.light.blue}
-                                        height={205}
-                                        width={205}
+                                        innerRadius={122}
+                                        themeColor={ChartThemeColor.blue}
+                                        themeVariant={ChartThemeVariant.light}
+                                        title={compliancePercentage}
+                                        subTitle="Systems above threshold"
+                                        height={300}
+                                        width={300}
                                     />
                                 </div>
                             </div>
