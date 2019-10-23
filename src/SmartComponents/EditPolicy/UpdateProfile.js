@@ -29,15 +29,17 @@ mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
 
 class UpdateProfileButton extends React.Component {
     onClick = () => {
-        const { mutate, policyId, threshold, businessObjectiveTitle, onClick } = this.props;
+        const { mutate, policyId, threshold, businessObjective, onClick } = this.props;
         let businessObjectivePromise;
-        if (businessObjectiveTitle && businessObjectiveTitle.length > 0) {
+        if (businessObjective && businessObjective.create) {
             businessObjectivePromise = mutate({
                 mutation: CREATE_BUSINESS_OBJECTIVE,
-                variables: { input: { title: businessObjectiveTitle } }
+                variables: { input: { title: businessObjective.label } }
             });
         } else {
-            businessObjectivePromise = Promise.resolve();
+            businessObjectivePromise = Promise.resolve(
+                { data: { createBusinessObjective: { businessObjective: { id: businessObjective.value } } } }
+            );
         }
 
         businessObjectivePromise.then((result) => {
@@ -66,7 +68,7 @@ class UpdateProfileButton extends React.Component {
 
 UpdateProfileButton.propTypes = {
     policyId: propTypes.string,
-    businessObjectiveTitle: propTypes.string,
+    businessObjective: propTypes.object,
     mutate: propTypes.func,
     threshold: propTypes.number,
     onClick: propTypes.func

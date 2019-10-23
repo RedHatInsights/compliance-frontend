@@ -32,6 +32,9 @@ class BusinessObjectiveField extends React.Component {
             isLoading: true
         };
 
+        // Resetting the cache is necessary to reload the list of Business Objectives
+        // after removing or adding any.
+        props.client.cache.reset();
         props.client.query({
             query: GET_BUSINESS_OBJECTIVES
         }).then((items) => {
@@ -62,20 +65,22 @@ class BusinessObjectiveField extends React.Component {
     };
 
     handleCreate = (inputValue) => {
-        if (inputValue.length === 0) {
+        const { originalOptions } = this.state;
+
+        if (inputValue.length === 0 || originalOptions.map(option => option.label).indexOf(inputValue) !== -1) {
             return;
         }
 
-        const { originalOptions } = this.state;
         const { dispatch } = this.props;
         this.setState({ isLoading: true });
 
-        const newOption = this.createOption({ title: inputValue, id: inputValue });
+        let newOption = this.createOption({ title: inputValue, value: inputValue });
+        newOption.create = true;
         // Manually dispatch the action to ensure the newly created label is set
         dispatch({
             type: '@@redux-form/CHANGE',
             meta: {
-                field: 'businessObjectiveTitle',
+                field: 'businessObjective',
                 form: 'editPolicy'
             },
             payload: newOption
@@ -99,8 +104,8 @@ class BusinessObjectiveField extends React.Component {
                 <FormGroup field-id='edit-policy-business-objective'
                     label="Business objective"
                     helperText='e.g Project Gemini'>
-                    <Field name='businessObjectiveTitle'
-                        id='businessObjectiveTitle'
+                    <Field name='businessObjective'
+                        id='businessObjective'
                         ariaLabelledBy={titleId}
                         aria-label="Select a business objective"
                         component={ReduxFormCreatableSelectInput}
