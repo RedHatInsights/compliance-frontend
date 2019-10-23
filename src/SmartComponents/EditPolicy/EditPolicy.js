@@ -47,7 +47,7 @@ class EditPolicy extends Component {
 
     render() {
         const { policyId, isOpen, isModalOpen, businessObjective } = this.state;
-        const { previousThreshold, businessObjectiveTitle, complianceThreshold } = this.props;
+        const { previousThreshold, editPolicyBusinessObjective, complianceThreshold } = this.props;
         const dropdownItems = [
             <DropdownItem key="action" onClick={this.handleModalToggle} component="button">
                 Edit policy
@@ -78,7 +78,7 @@ class EditPolicy extends Component {
                             key='confirm'
                             policyId={policyId}
                             threshold={ parseInt(complianceThreshold || previousThreshold) }
-                            businessObjectiveTitle={businessObjectiveTitle}
+                            businessObjective={editPolicyBusinessObjective}
                             onClick={this.handleModalToggle}
                         />
                     ]}
@@ -100,7 +100,7 @@ EditPolicy.propTypes = {
     policyId: propTypes.string,
     previousThreshold: propTypes.number,
     businessObjective: propTypes.object,
-    businessObjectiveTitle: propTypes.string,
+    editPolicyBusinessObjective: propTypes.object,
     complianceThreshold: propTypes.string,
     onClose: propTypes.func
 };
@@ -109,6 +109,6 @@ const selector = formValueSelector('editPolicy');
 export default connect(
     state => ({
         complianceThreshold: selector(state, 'complianceThreshold'),
-        businessObjectiveTitle: selector(state, 'businessObjectiveTitle') && selector(state, 'businessObjectiveTitle').value
+        editPolicyBusinessObjective: selector(state, 'businessObjective')
     })
 )(EditPolicy);

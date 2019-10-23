@@ -6,7 +6,7 @@
     "appname": "compliance"
   },
   "dependencies": {
-    "@data-driven-forms/pf4-component-mapper": "^1.13.4",
+    "@data-driven-forms/pf4-component-mapper": "1.13.4",
     "@patternfly/patternfly-next": "^1.0.175",
     "@patternfly/react-charts": "5.0.13",
     "@patternfly/react-tokens": "2.6.31",
