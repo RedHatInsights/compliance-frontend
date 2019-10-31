@@ -2,10 +2,10 @@
  * Requires: https://github.com/RedHatInsights/insights-pipeline-lib
  */
 
-@Library("github.com/RedHatInsights/insights-pipeline-lib") _
+@Library("github.com/RedHatInsights/insights-pipeline-lib@v3") _
 
 node {
-    cancelPriorBuilds()
+    pipelineUtils.cancelPriorBuilds()
     scmVars = checkout scm
 
     if (env.CHANGE_TARGET == "prod-stable") {
@@ -14,13 +14,13 @@ node {
 }
 
 def runStages() {
-    openShift.withUINode {
-        stageWithContext("Install-integration-tests-env") {
+    openShiftUtils.withUINode {
+        gitUtils.stageWithContext("Install-integration-tests-env") {
             sh "pip install ibutsu-pytest-plugin"
             sh "iqe plugin install compliance"
         }
 
-        stageWithContext("Inject-credentials-and-settings") {
+        gitUtils.stageWithContext("Inject-credentials-and-settings") {
             withCredentials([
                 file(credentialsId: "compliance-settings-credentials-yaml", variable: "creds"),
                 file(credentialsId: "compliance-settings-local-yaml", variable: "settings")]
@@ -30,7 +30,7 @@ def runStages() {
             }
         }
 
-        stageWithContext("Run-integration-tests") {
+        gitUtils.stageWithContext("Run-integration-tests") {
             withEnv([
                 "ENV_FOR_DYNACONF=prod",
                 "REQUESTS_CA_BUNDLE=/etc/pki/tls/certs/ca-bundle.crt",
