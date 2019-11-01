@@ -24,8 +24,7 @@ class BusinessObjectiveField extends React.Component {
         this.state = {
             policyId: props.policyId,
             isExpanded: false,
-            originalValue: props.businessObjective ? props.businessObjective.title : 'Type to select and create',
-            selected: props.businessObjective ? props.businessObjective.id : '',
+            selected: props.businessObjective ? this.createOption(props.businessObjective) : '',
             options: [],
             originalOptions: [],
             client: props.client,
@@ -76,6 +75,7 @@ class BusinessObjectiveField extends React.Component {
 
         let newOption = this.createOption({ title: inputValue, value: inputValue });
         newOption.create = true;
+
         // Manually dispatch the action to ensure the newly created label is set
         dispatch({
             type: '@@redux-form/CHANGE',
@@ -93,7 +93,7 @@ class BusinessObjectiveField extends React.Component {
     };
 
     render() {
-        const { isLoading, originalValue, selected, options } = this.state;
+        const { isLoading, selected, options } = this.state;
         const titleId = 'business-objective-typeahead';
 
         return (
@@ -111,7 +111,7 @@ class BusinessObjectiveField extends React.Component {
                         component={ReduxFormCreatableSelectInput}
                         isClearable
                         selected={selected}
-                        placeholder={originalValue}
+                        placeholder='Type to select and create'
                         isDisabled={isLoading}
                         isLoading={isLoading}
                         onChange={this.handleChange}

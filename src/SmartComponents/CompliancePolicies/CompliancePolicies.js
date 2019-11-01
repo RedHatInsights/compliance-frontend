@@ -33,6 +33,7 @@ const QUERY = gql`
         totalHostCount
         compliantHostCount
         businessObjective {
+            id
             title
         }
     }

@@ -44,6 +44,7 @@ query Profile($policyId: String!){
         compliantHostCount
         complianceThreshold
         businessObjective {
+            id
             title
         }
     }
