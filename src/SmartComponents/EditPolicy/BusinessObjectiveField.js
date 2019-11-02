@@ -40,7 +40,6 @@ class BusinessObjectiveField extends React.Component {
             const options = items.data.businessObjectives.map(businessObjective => (
                 this.createOption(businessObjective)
             ));
-            options.push({ label: 'None', value: null });
 
             this.setState({
                 isLoading: false,
