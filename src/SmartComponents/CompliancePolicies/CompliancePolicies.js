@@ -95,7 +95,8 @@ const CompliancePolicies = () => {
         );
     }
 
-    const policies = data.allProfiles;
+    const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
+
     let policyCards = [];
     let pageHeader;
     if (policies.length) {
