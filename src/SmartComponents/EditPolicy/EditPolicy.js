@@ -28,7 +28,8 @@ class EditPolicy extends Component {
 
     handleModalToggle = () => {
         this.setState(({ isModalOpen }) => ({
-            isModalOpen: !isModalOpen
+            isModalOpen: !isModalOpen,
+            businessObjective: this.props.businessObjective
         }));
         this.props.onClose();
     };

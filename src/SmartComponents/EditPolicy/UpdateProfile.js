@@ -36,10 +36,12 @@ class UpdateProfileButton extends React.Component {
                 mutation: CREATE_BUSINESS_OBJECTIVE,
                 variables: { input: { title: businessObjective.label } }
             });
-        } else {
+        } else if (businessObjective !== null) {
             businessObjectivePromise = Promise.resolve(
                 { data: { createBusinessObjective: { businessObjective: { id: businessObjective.value } } } }
             );
+        } else {
+            businessObjectivePromise = Promise.resolve(null);
         }
 
         businessObjectivePromise.then((result) => {
