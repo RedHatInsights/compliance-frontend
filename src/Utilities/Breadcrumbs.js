@@ -1,3 +1,4 @@
-export function onNavigate(event, item) {
-    this.props.history.push(item);
+export function onNavigate(event) {
+    event.preventDefault();
+    this.props.history.push(event.target.pathname);
 }
