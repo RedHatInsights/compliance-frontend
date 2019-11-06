@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComplianceTabs expect to render without error 1`] = `
+<Component
+  activeKey={1}
+  aria-label="Compliance Tabs"
+  onSelect={[Function]}
+>
+  <ForwardRef
+    eventKey={0}
+    key="0"
+    title="Policies"
+  />
+  <ForwardRef
+    eventKey={1}
+    key="1"
+    title="Systems"
+  />
+</Component>
+`;
