@@ -4,7 +4,7 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/f
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import { ErrorPage } from 'PresentationalComponents';
 
 const QUERY = gql`
 {
