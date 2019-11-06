@@ -9,7 +9,6 @@ import EditPolicy from '../EditPolicy/EditPolicy';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
-    Breadcrumbs,
     PageHeader,
     PageHeaderTitle,
     Main,
@@ -25,7 +24,9 @@ import {
     Text,
     TextContent,
     Tooltip,
-    TextVariants
+    TextVariants,
+    Breadcrumb,
+    BreadcrumbItem
 } from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
@@ -164,12 +165,12 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     return (
         <React.Fragment>
             <PageHeader>
-                <Breadcrumbs
-                    style={{ padding: '0px' }}
-                    items={[{ title: 'Policies', navigate: '/policies' }]}
-                    current={policy.name}
-                    onNavigate={onNavigateWithProps}
-                />
+                <Breadcrumb>
+                    <BreadcrumbItem to='/rhel/compliance/policies' onClick={ (event) => onNavigateWithProps(event) }>
+                      Policies
+                    </BreadcrumbItem>
+                    <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
+                </Breadcrumb>
                 <PageHeaderTitle title={policy.name} />
                 <EditPolicy policyId={policy.id}
                     previousThreshold={policy.complianceThreshold}

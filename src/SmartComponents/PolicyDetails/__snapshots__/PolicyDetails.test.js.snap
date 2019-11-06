@@ -8,18 +8,17 @@ exports[`PolicyDetails expect to render without error 1`] = `
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb ins-c-breadcrumbs"
-      style="padding: 0px;"
+      class="pf-c-breadcrumb"
     >
       <ol
         class="pf-c-breadcrumb__list"
       >
         <li
           class="pf-c-breadcrumb__item"
-          data-key="0"
         >
           <a
-            aria-label="/policies"
+            class="pf-c-breadcrumb__link"
+            href="/rhel/compliance/policies"
           >
             Policies
           </a>
@@ -45,9 +44,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <li
           class="pf-c-breadcrumb__item"
         >
-           
           profile1
-           
         </li>
       </ol>
     </nav>
@@ -303,18 +300,17 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb ins-c-breadcrumbs"
-      style="padding: 0px;"
+      class="pf-c-breadcrumb"
     >
       <ol
         class="pf-c-breadcrumb__list"
       >
         <li
           class="pf-c-breadcrumb__item"
-          data-key="0"
         >
           <a
-            aria-label="/policies"
+            class="pf-c-breadcrumb__link"
+            href="/rhel/compliance/policies"
           >
             Policies
           </a>
@@ -340,9 +336,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
         <li
           class="pf-c-breadcrumb__item"
         >
-           
           profile1
-           
         </li>
       </ol>
     </nav>
@@ -598,18 +592,17 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb ins-c-breadcrumbs"
-      style="padding: 0px;"
+      class="pf-c-breadcrumb"
     >
       <ol
         class="pf-c-breadcrumb__list"
       >
         <li
           class="pf-c-breadcrumb__item"
-          data-key="0"
         >
           <a
-            aria-label="/policies"
+            class="pf-c-breadcrumb__link"
+            href="/rhel/compliance/policies"
           >
             Policies
           </a>
@@ -635,9 +628,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
         <li
           class="pf-c-breadcrumb__item"
         >
-           
           profile1
-           
         </li>
       </ol>
     </nav>
@@ -888,24 +879,19 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
 exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
 <Fragment>
   <PageHeader>
-    <Breadcrumbs
-      className=""
-      current="profile1"
-      items={
-        Array [
-          Object {
-            "navigate": "/policies",
-            "title": "Policies",
-          },
-        ]
-      }
-      onNavigate={[MockFunction]}
-      style={
-        Object {
-          "padding": "0px",
-        }
-      }
-    />
+    <Component>
+      <BreadcrumbItem
+        onClick={[Function]}
+        to="/rhel/compliance/policies"
+      >
+        Policies
+      </BreadcrumbItem>
+      <BreadcrumbItem
+        isActive={true}
+      >
+        profile1
+      </BreadcrumbItem>
+    </Component>
     <PageHeaderTitle
       title="profile1"
     />
@@ -1149,18 +1135,17 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb ins-c-breadcrumbs"
-      style="padding: 0px;"
+      class="pf-c-breadcrumb"
     >
       <ol
         class="pf-c-breadcrumb__list"
       >
         <li
           class="pf-c-breadcrumb__item"
-          data-key="0"
         >
           <a
-            aria-label="/policies"
+            class="pf-c-breadcrumb__link"
+            href="/rhel/compliance/policies"
           >
             Policies
           </a>
@@ -1186,9 +1171,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
         <li
           class="pf-c-breadcrumb__item"
         >
-           
           profile1
-           
         </li>
       </ol>
     </nav>
@@ -1444,18 +1427,17 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb ins-c-breadcrumbs"
-      style="padding: 0px;"
+      class="pf-c-breadcrumb"
     >
       <ol
         class="pf-c-breadcrumb__list"
       >
         <li
           class="pf-c-breadcrumb__item"
-          data-key="0"
         >
           <a
-            aria-label="/policies"
+            class="pf-c-breadcrumb__link"
+            href="/rhel/compliance/policies"
           >
             Policies
           </a>
@@ -1481,9 +1463,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
         <li
           class="pf-c-breadcrumb__item"
         >
-           
           profile1
-           
         </li>
       </ol>
     </nav>

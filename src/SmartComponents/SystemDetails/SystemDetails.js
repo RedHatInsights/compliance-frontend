@@ -1,7 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-    Breadcrumbs,
     PageHeader,
     Main,
     Skeleton,
@@ -9,6 +8,10 @@ import {
 } from '@redhat-cloud-services/frontend-components';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
+import {
+    Breadcrumb,
+    BreadcrumbItem
+} from '@patternfly/react-core';
 import InventoryDetails from '../InventoryDetails/InventoryDetails';
 import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { Query } from 'react-apollo';
@@ -51,12 +54,12 @@ class SystemDetails extends React.Component {
                     return (
                         <React.Fragment>
                             <PageHeader>
-                                <Breadcrumbs
-                                    style={{ padding: '0px' }}
-                                    items={[{ title: 'Systems', navigate: '/systems' }]}
-                                    current={data.system.name}
-                                    onNavigate={this.onNavigate}
-                                />
+                                <Breadcrumb>
+                                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ (event) => this.onNavigate(event) }>
+                                        Systems
+                                    </BreadcrumbItem>
+                                    <BreadcrumbItem isActive>{data.system.name}</BreadcrumbItem>
+                                </Breadcrumb>
                                 <InventoryDetails sendData={this.getData} />
                                 <br/>
                             </PageHeader>
