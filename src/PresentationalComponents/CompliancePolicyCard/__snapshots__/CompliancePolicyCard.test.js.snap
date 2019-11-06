@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CompliancePolicyCard expect to render without error 1`] = `
+<Card
+  widget-id="REF_ID"
+>
+  <CardBody>
+    <Text
+      component="small"
+      style={
+        Object {
+          "color": "var(--pf-global--Color--200)",
+          "fontWeight": "500",
+        }
+      }
+    >
+      External policy
+    </Text>
+    <TextContent>
+      <Text
+        component="h4"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        style={
+          Object {
+            "fontWeight": "500",
+          }
+        }
+      >
+        <Truncate
+          ellipsis="…"
+          lines={1}
+          trimWhitespace={false}
+          width={0}
+        >
+          Test Policy
+        </Truncate>
+      </Text>
+    </TextContent>
+    <TextContent
+      className="chart-title"
+    >
+      <Grid>
+        <GridItem
+          span={12}
+          style={
+            Object {
+              "display": "inline-flex",
+            }
+          }
+        >
+          <TextContent>
+            <span
+              style={
+                Object {
+                  "fontSize": "30px",
+                  "fontWeight": "500",
+                }
+              }
+            >
+              10
+            </span>
+            <span
+              style={
+                Object {
+                  "color": "var(--pf-global--Color--200)",
+                  "fontWeight": "500",
+                }
+              }
+            >
+               
+              of
+               
+            </span>
+            <span
+              style={
+                Object {
+                  "fontSize": "30px",
+                  "fontWeight": "500",
+                }
+              }
+            >
+              15
+            </span>
+          </TextContent>
+        </GridItem>
+        <GridItem
+          span={12}
+        >
+          <Text
+            component="small"
+            style={
+              Object {
+                "color": "var(--pf-global--Color--200)",
+                "fontWeight": "500",
+              }
+            }
+          >
+            Systems meet compliance threshold
+          </Text>
+        </GridItem>
+        <GridItem
+          span={6}
+        >
+          <TextContent>
+            <Text
+              component="small"
+              style={
+                Object {
+                  "fontSize": "16px",
+                }
+              }
+            >
+              <Link
+                replace={false}
+                to="/policies/ID"
+              >
+                More details
+              </Link>
+            </Text>
+          </TextContent>
+        </GridItem>
+        <GridItem
+          span={6}
+          style={
+            Object {
+              "textAlign": "right",
+            }
+          }
+        >
+          <Chip
+            className=""
+            closeBtnAriaLabel="close"
+            component="div"
+            isOverflowChip={false}
+            isReadOnly={true}
+            onClick={[Function]}
+            tooltipPosition="top"
+          >
+            BO
+          </Chip>
+        </GridItem>
+      </Grid>
+    </TextContent>
+  </CardBody>
+  <hr />
+  <CardBody>
+    <Grid>
+      <GridItem
+        span={12}
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        <div
+          className="chart-inline"
+        >
+          <div
+            className="card-chart-container"
+          >
+            <ChartDonut
+              data={
+                Array [
+                  Object {
+                    "x": "Compliant",
+                    "y": 10,
+                  },
+                  Object {
+                    "x": "Non-compliant",
+                    "y": 5,
+                  },
+                ]
+              }
+              height={300}
+              identifier="TestPolicy"
+              innerRadius={122}
+              subTitle="Systems above threshold"
+              themeColor="blue"
+              themeVariant="light"
+              title="66%"
+              width={300}
+            />
+          </div>
+        </div>
+      </GridItem>
+    </Grid>
+  </CardBody>
+</Card>
+`;
