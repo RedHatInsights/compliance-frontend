@@ -32,13 +32,9 @@ const QUERY = gql`
 }
 `;
 
-// Only CompliancePolicies should be in this file.
-// The general rule should be to only have one Component per file.
-// TODO: The component looks a bit turned around. (see in-component comments)
 const CompliancePolicies = () => {
     const { data, error, loading } = useQuery(QUERY);
 
-    // TODO: There should only be one return per component
     if (error) { return <ErrorPage error={error}/>; }
 
     if (loading) {
@@ -62,7 +58,6 @@ const CompliancePolicies = () => {
 
     let policyCards = [];
     let pageHeader;
-    // TODO: this differentiation should happen in the last return JSX
     if (policies.length) {
         pageHeader = <PageHeader>
             <PageHeaderTitle title="Compliance" />

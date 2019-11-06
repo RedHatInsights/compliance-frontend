@@ -21,8 +21,6 @@ import {
 import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
-// TODO: Turn into functional component
-// TODO: Use hooks for state changing
 class CompliancePolicyCard extends React.Component {
     constructor(policy) {
         super(policy);
@@ -39,7 +37,6 @@ class CompliancePolicyCard extends React.Component {
     }
 
     render() {
-        // TODO: These donut charts are in a few places with similar calculations possibly extract this into a component
         const compliantHostCount = this.policy.compliantHostCount;
         const totalHostCount = this.policy.totalHostCount;
         let donutValues = [
