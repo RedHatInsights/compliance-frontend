@@ -1,5 +1,5 @@
 import React from 'react';
-import ComplianceTabs from '../ComplianceTabs/ComplianceTabs';
+import { ComplianceTabs } from 'PresentationalComponents';
 import ComplianceImageStreamsTable from '../ComplianceImageStreamsTable/ComplianceImageStreamsTable';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 

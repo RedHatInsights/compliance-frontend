@@ -1,6 +1,6 @@
 import React from 'react';
 import ComplianceSystemsTable from '../ComplianceSystemsTable/ComplianceSystemsTable';
-import ComplianceTabs from '../ComplianceTabs/ComplianceTabs';
+import { ComplianceTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 
 const ComplianceSystems = () => {
