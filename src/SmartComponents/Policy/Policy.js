@@ -6,6 +6,7 @@ const WEBSOCKET_HOST = process.env.NODE_ENV === 'production'
     ? 'ws://localhost:3000/cable'
     : 'ws://localhost:3000/cable';
 
+// TODO: this is unused it seems?
 class Policy extends Component {
     constructor(props) {
         super(props);

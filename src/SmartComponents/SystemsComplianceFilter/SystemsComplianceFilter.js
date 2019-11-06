@@ -4,6 +4,8 @@ import { FilterDropdown } from '@redhat-cloud-services/frontend-components';
 import { FILTER_CATEGORIES } from '../../constants';
 import { FilterIcon } from '@patternfly/react-icons';
 
+// TODO: Even though this component is working with state it could live in Presentational components
+// ps.: Maybe we can keep that state in the SystemsTable
 class SystemsComplianceFilter extends React.Component {
     state = {
         compliant: this.props.compliant,

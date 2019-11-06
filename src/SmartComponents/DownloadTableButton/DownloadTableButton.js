@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 import { exportToCSV } from '../../store/ActionTypes.js';
 
+// TODO: I'm not fond of these buttons being so powerfull.
+// If exportToCSV would be in SystemsTable, the button wouldn't
+// need to be connected and could be a Presentational Component
 class DownloadTableButton extends React.Component {
     constructor(props) {
         super(props);

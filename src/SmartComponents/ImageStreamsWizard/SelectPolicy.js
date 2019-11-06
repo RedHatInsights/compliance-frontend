@@ -4,6 +4,7 @@ import { FormSection, Field, reduxForm } from 'redux-form';
 import { ReduxFormCheckboxInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 
 const SelectPolicy = () => {
+    // TODO: possibly extract the field options into an array. unless the order matters and should be guranteed
     return (
         <Form>
             <FormSection name='policy'>

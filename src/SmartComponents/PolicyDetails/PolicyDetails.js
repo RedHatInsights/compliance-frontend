@@ -51,6 +51,7 @@ query Profile($policyId: String!){
 }
 `;
 
+// TODO: Move this into Presentational components
 const PolicyDetailsContentLoader = () => (
     <ContentLoader
         height={320}
@@ -160,7 +161,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
 
     const compliancePercentage = fixedPercentage(Math.floor(100 *
         (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
-
+    // TODO: Split this out into a PolicyDetailsHeader component
     return (
         <React.Fragment>
             <PageHeader>

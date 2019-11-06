@@ -1,3 +1,4 @@
+// TODO: is this used?
 const validate = values => {
     const errors = {};
     if (!values.firstName) {

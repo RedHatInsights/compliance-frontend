@@ -2,6 +2,7 @@ import React from 'react';
 import { rawComponents } from '@data-driven-forms/pf4-component-mapper';
 import { TextInput, Checkbox } from '@patternfly/react-core';
 
+// TODO: Presentational Component
 export const ReduxFormTextInput = field => (
     <TextInput
         value={field.input.value || field.defaultValue}

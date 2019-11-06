@@ -11,6 +11,7 @@ import { ClipboardCheckIcon } from '@patternfly/react-icons';
 import PropTypes from 'prop-types';
 import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty-state.css';
 
+// TODO: Presentational Component
 const ImageStreamEmptyState = ({ openWizard }) => (
     <Bullseye>
         <EmptyState>

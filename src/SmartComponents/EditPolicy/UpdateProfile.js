@@ -4,6 +4,8 @@ import { graphql } from 'react-apollo';
 import { Button } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 
+// TODO: Should we possibly move all queries into a module under store/...
+// even if they are not shared it would put it in a common place and clean up components
 const UPDATE_PROFILE = gql`
 mutation UpdateProfile($input: UpdateProfileInput!) {
     updateProfile(input: $input) {

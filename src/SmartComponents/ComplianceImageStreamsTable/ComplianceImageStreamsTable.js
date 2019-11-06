@@ -16,6 +16,8 @@ const QUERY = gql`
 }
 `;
 
+// TODO: This looks odd. the query should probably be in ImageStreamsWizard
+// TODO: The query should also be executed via the useQuery hook
 const ComplianceImageStreamsTable = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {

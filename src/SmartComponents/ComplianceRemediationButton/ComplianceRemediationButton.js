@@ -33,6 +33,7 @@ const FailedRulesQuery = graphql(GET_FAILED_RULES, {
 });
 
 class ComplianceRemediationButton extends React.Component {
+    // TODO: unneeded(?)
     constructor(props) {
         super(props);
     }

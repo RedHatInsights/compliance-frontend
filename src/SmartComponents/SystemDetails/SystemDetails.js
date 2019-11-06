@@ -22,6 +22,7 @@ query System($inventoryId: String!){
 }
 `;
 
+// TODO: this is a very strange component...
 class SystemDetails extends React.Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,8 @@ class SystemDetails extends React.Component {
         return (
             <Query query={QUERY} variables={{ inventoryId }}>
                 {({ data, error, loading }) => {
+                    // TODO: we should set a onError handler as a defaultOption for the Apollo client
+                    // this way we can handle all sorts of errors in one place and consistantly throught all queries
                     if (error) {
                         if (error.networkError.statusCode === 401) {
                             window.insights.chrome.auth.logout();

@@ -23,6 +23,7 @@ const QUERY = gql`
 }
 `;
 
+// TODO: Also feels like this query should be elswhere and use the hook
 const ComplianceSystemsTable = () => (
     <Query query={QUERY}>
         {({ data, error, loading }) => {

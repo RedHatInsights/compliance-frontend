@@ -3,6 +3,7 @@ import ComplianceSystemsTable from '../ComplianceSystemsTable/ComplianceSystemsT
 import { ComplianceTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 
+// TODO: Same as ComplianceImageStreams
 const ComplianceSystems = () => {
     return (
         <React.Fragment>
