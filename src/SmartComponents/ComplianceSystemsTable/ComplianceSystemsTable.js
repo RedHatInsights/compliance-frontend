@@ -8,17 +8,8 @@ import { ErrorPage } from 'PresentationalComponents';
 
 const QUERY = gql`
 {
-    allSystems(perPage: 50, page: 1) {
-        id
-        name
-        profileNames
-        rulesPassed
-        rulesFailed
-        lastScanned
-        compliant
-    }
-    allProfiles {
-        totalHostCount
+    systems(first: 50) {
+        totalCount
     }
 }
 `;
@@ -30,7 +21,7 @@ const ComplianceSystemsTable = () => (
 
             if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
-            const systems = data.allSystems;
+            const totalCount = data.systems.totalCount;
             const columns = [{
                 composed: ['facts.os_release', 'display_name'],
                 key: 'display_name',
@@ -58,7 +49,7 @@ const ComplianceSystemsTable = () => (
                 }
             }];
 
-            return <SystemsTable items={systems} columns={columns} systemsCount={systems.length}/>;
+            return <SystemsTable items={[]} columns={columns} systemsCount={totalCount}/>;
         }}
     </Query>
 );

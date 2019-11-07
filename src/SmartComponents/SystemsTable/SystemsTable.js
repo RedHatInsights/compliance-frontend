@@ -15,15 +15,24 @@ import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';
 
 export const GET_SYSTEMS = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int, $policyId: String) {
-    allSystems(search: $filter, perPage: $perPage, page: $page, profileId: $policyId) {
-        id
-        name
-        profileNames
-        rulesPassed(profileId: $policyId)
-        rulesFailed(profileId: $policyId)
-        lastScanned(profileId: $policyId)
-        compliant(profileId: $policyId)
+query getSystems($filter: String!, $first: Int, $cursor: String, $policyId: String) {
+    systems(search: $filter, first: $first, cursor: $cursor, profileId: $policyId) {
+        totalCount,
+        pageInfo {
+            startCursor
+            endCursor
+        }
+        edges {
+            node {
+                id
+                name
+                profileNames
+                rulesPassed(profileId: $policyId)
+                rulesFailed(profileId: $policyId)
+                lastScanned(profileId: $policyId)
+                compliant(profileId: $policyId)
+            }
+        }
     }
 }
 `;
@@ -37,8 +46,7 @@ class SystemsTable extends React.Component {
         filter: this.props.filter,
         search: '',
         policyId: this.props.policyId,
-        page: 1,
-        perPage: 50,
+        first: 50,
         totalItems: this.props.systemsCount,
         loading: this.props.loading
     }
@@ -69,7 +77,7 @@ class SystemsTable extends React.Component {
     }
 
     onRefresh = ({ page, per_page: perPage }) => {
-        this.setState({ page, perPage }, this.systemFetch);
+        this.setState({ cursor: page, first: perPage }, this.systemFetch);
     }
 
     updateFilter = (filter, filterEnabled) => {
@@ -82,15 +90,14 @@ class SystemsTable extends React.Component {
 
     systemFetch = () => {
         const { client } = this.props;
-        const { policyId, perPage, page } = this.state;
+        const { policyId, first, cursor } = this.state;
         client.query({ query: GET_SYSTEMS, fetchResults: true, fetchPolicy: 'no-cache',
-            variables: { filter: this.buildFilter(), perPage, page, policyId } })
+            variables: { filter: this.buildFilter(), first, cursor, policyId } })
         .then((items) => {
             this.setState({
-                page,
-                perPage,
-                items: items.data.allSystems,
-                totalItems: items.data.allSystems.length,
+                cursor: items.data.systems.pageInfo.endCursor,
+                items: items.data.systems.edges.map(edge => edge.node),
+                totalItems: items.data.systems.totalCount,
                 loading: false
             });
 
@@ -125,14 +132,14 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { page, totalItems, perPage, items, InventoryCmp } = this.state;
+        const { cursor, totalItems, first, items, InventoryCmp } = this.state;
 
         return (InventoryCmp &&
             <InventoryCmp
                 onRefresh={this.onRefresh}
-                page={page}
+                page={cursor}
                 total={totalItems}
-                perPage={perPage}
+                perPage={first}
                 items={items.map(host => host.id)}
             >
                 <reactCore.ToolbarGroup>
