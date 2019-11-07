@@ -1,5 +1,5 @@
 /* global require, module, __dirname */
-
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = require('./webpack.common.js');
 const { resolve } = require('path');
@@ -29,6 +29,14 @@ const webpackConfig = {
         path: config.paths.public,
         publicPath: config.paths.publicPath,
         chunkFilename: 'js/[name].js'
+    },
+    resolve: {
+        alias: {
+            PresentationalComponents: path.join(__dirname, '../src/PresentationalComponents'),
+            SmartComponents: path.join(__dirname, '../src/SmartComponents'),
+            Utilities: path.join(__dirname, '../src/Utilities'),
+            Store: path.join(__dirname, '../src/store')
+        }
     },
     module: {
         rules: [{

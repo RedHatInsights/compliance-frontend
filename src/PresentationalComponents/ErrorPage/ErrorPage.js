@@ -2,10 +2,6 @@ import { Component } from 'react';
 import propTypes from 'prop-types';
 
 class ErrorPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { error } = this.props;
         if (error.networkError && error.networkError.statusCode === 401) {

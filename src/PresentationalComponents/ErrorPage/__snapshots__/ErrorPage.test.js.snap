@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorPage expect to render without error 1`] = `"Oops! There was an error loading Compliance data. If you need to contact Red Hat Support about this, this is the exact error:  An error message"`;

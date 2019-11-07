@@ -2,7 +2,7 @@ import React from 'react';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import { ErrorPage } from 'PresentationalComponents';
 import ImageStreamsWizard from '../ImageStreamsWizard/ImageStreamsWizard';
 
 const QUERY = gql`
