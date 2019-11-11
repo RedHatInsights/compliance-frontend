@@ -11,9 +11,16 @@ jest.doMock('../ComplianceRemediationButton/ComplianceRemediationButton', () => 
 
 const items = {
     data: {
-        allSystems: [
-            { id: 1 }
-        ]
+        systems: {
+            totalCount: 1,
+            edges: [
+                {
+                    node: {
+                        id: 1
+                    }
+                }
+            ]
+        }
     }
 };
 
@@ -72,7 +79,7 @@ describe('SystemsTable', () => {
         await wrapper.instance().systemFetch();
         expect(instance.state.loading).toBe(false);
         expect(instance.state.totalItems).toBe(1);
-        expect(instance.state.items).toBe(items.data.allSystems);
+        expect(instance.state.items).toBe(items.data.systems.edges);
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });

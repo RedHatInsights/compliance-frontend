@@ -8,7 +8,7 @@ import { ErrorPage } from 'PresentationalComponents';
 
 const QUERY = gql`
 {
-    systems(first: 50) {
+    systems(first: 1) {
         totalCount
     }
 }

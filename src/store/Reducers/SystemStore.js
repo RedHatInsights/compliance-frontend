@@ -34,9 +34,22 @@ const complianceScore = (system) => (
     </React.Fragment>
 );
 
+const lastScanned = (system) => {
+    const dates = system.profiles.map((profile) => new Date(profile.lastScanned));
+    const last = new Date(Math.max.apply(null, dates));
+    const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
+
+    return result;
+};
+
 export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
-        system => {
+        edge => {
+            const system = edge.node;
+            system.profileNames = system.profiles.map((profile) => profile.name).join(', ');
+            system.rulesPassed = system.profiles.map((profile) => profile.rulesPassed).reduce((acc, curr) => acc + curr);
+            system.rulesFailed = system.profiles.map((profile) => profile.rulesFailed).reduce((acc, curr) => acc + curr);
+            system.lastScanned = lastScanned(system);
             // This should compare the inventory ID instead with
             // the ID in compliance
             let matchingEntity = entities.find((entity) => {
@@ -87,7 +100,9 @@ export const systemsToInventoryEntities = (systems, entities) =>
                         rules_failed_text: system.rulesFailed,
                         compliance_score: complianceScore(system),
                         compliance_score_text: complianceScoreString(system),
-                        last_scanned: { title: <FormattedRelative value={Date.parse(system.lastScanned)} /> },
+                        last_scanned: (system.lastScanned instanceof Date) ?
+                            { title: <FormattedRelative value={Date.parse(system.lastScanned)} /> } :
+                            system.lastScanned,
                         last_scanned_text: system.lastScanned
                     }
                 }
