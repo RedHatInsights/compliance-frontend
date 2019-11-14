@@ -879,7 +879,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
 exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
 <Fragment>
   <PageHeader>
-    <Breadcrumb>
+    <Component>
       <BreadcrumbItem
         onClick={[Function]}
         to="/rhel/compliance/policies"
@@ -891,7 +891,7 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
       >
         profile1
       </BreadcrumbItem>
-    </Breadcrumb>
+    </Component>
     <PageHeaderTitle
       title="profile1"
     />
