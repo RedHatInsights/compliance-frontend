@@ -120,7 +120,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         ];
     }
 
-    const systemsCount = data.profile.totalHostCount;
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'display_name',
@@ -249,7 +248,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                     <GridItem span={12}>
                         <SystemsTable policyId={policy.id}
                             columns={columns}
-                            systemsCount={systemsCount}
                             ref={systemsTable} />
                     </GridItem>
                 </Grid>

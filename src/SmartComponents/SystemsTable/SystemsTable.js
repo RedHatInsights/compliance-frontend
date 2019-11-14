@@ -46,7 +46,7 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         page: 1,
         perPage: 50,
-        totalItems: this.props.systemsCount,
+        totalCount: 0,
         loading: this.props.loading
     }
 
@@ -97,7 +97,7 @@ class SystemsTable extends React.Component {
                 page,
                 perPage,
                 items: items.data.systems.edges,
-                totalItems: items.data.systems.totalCount,
+                totalCount: items.data.systems.totalCount,
                 loading: false
             });
 
@@ -132,13 +132,13 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { page, totalItems, perPage, items, InventoryCmp } = this.state;
+        const { page, totalCount, perPage, items, InventoryCmp } = this.state;
 
         return (InventoryCmp &&
             <InventoryCmp
                 onRefresh={this.onRefresh}
                 page={page}
-                total={totalItems}
+                total={totalCount}
                 perPage={perPage}
                 items={items.map((edge) => edge.node.id)}
             >
@@ -170,13 +170,11 @@ SystemsTable.propTypes = {
     policyId: propTypes.string,
     items: propTypes.array,
     columns: propTypes.array,
-    systemsCount: propTypes.number,
     loading: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
     items: [],
-    systemsCount: 0,
     policyId: '',
     filter: '',
     filterEnabled: false,
