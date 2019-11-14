@@ -28,36 +28,66 @@ mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
 `;
 
 class UpdateProfileButton extends React.Component {
-    onClick = () => {
-        const { mutate, policyId, threshold, businessObjective, onClick } = this.props;
-        let businessObjectivePromise;
-        if (businessObjective && businessObjective.create) {
-            businessObjectivePromise = mutate({
-                mutation: CREATE_BUSINESS_OBJECTIVE,
-                variables: { input: { title: businessObjective.label } }
-            });
-        } else if (businessObjective !== null) {
-            businessObjectivePromise = Promise.resolve(
-                { data: { createBusinessObjective: { businessObjective: { id: businessObjective.value } } } }
-            );
-        } else {
-            businessObjectivePromise = Promise.resolve(null);
+    handleBusinessObjective = () => {
+        const { businessObjective, editPolicyBusinessObjective, mutate } = this.props;
+
+        // nothing changed
+        //  -> if there is a businessObjective return it's id
+        //  -> else null
+        if (editPolicyBusinessObjective === undefined) {
+            return Promise.resolve(businessObjective ? businessObjective.id : null);
         }
 
-        businessObjectivePromise.then((result) => {
-            mutate({
-                mutation: UPDATE_PROFILE,
-                variables: {
-                    input: {
-                        id: policyId,
-                        complianceThreshold: parseFloat(threshold),
-                        businessObjectiveId: result && result.data.createBusinessObjective.businessObjective.id
-                    }
-                }
-            })
-            .then(() => {
-                onClick();
+        // The businessObjective changed to a different one
+        //  -> return the new id/value
+        if (editPolicyBusinessObjective && businessObjective
+            && (editPolicyBusinessObjective.value !== businessObjective.id)) {
+            return Promise.resolve(editPolicyBusinessObjective.value);
+        }
+
+        // The businessObjective changed to a different one from no BO
+        //  -> return the new id/value
+        if (editPolicyBusinessObjective && businessObjective === null) {
+            return Promise.resolve(editPolicyBusinessObjective.value);
+        }
+
+        // Objective got unset
+        //  -> return null
+        if (editPolicyBusinessObjective === null) {
+            return Promise.resolve(null);
+        }
+
+        // An objective needs to be created
+        // = -> return the id
+        if (editPolicyBusinessObjective.create) {
+            return mutate({
+                mutation: CREATE_BUSINESS_OBJECTIVE,
+                variables: { input: { title: editPolicyBusinessObjective.label } }
+            }).then((result) => {
+                return result.data.createBusinessObjective.businessObjective.id;
             });
+        }
+    }
+
+    onClick = () => {
+        const { mutate, policyId, threshold, onClick } = this.props;
+
+        this.handleBusinessObjective().then((businessObjectiveId) => {
+            let input = {
+                id: policyId,
+                complianceThreshold: parseFloat(threshold)
+            };
+
+            if (businessObjectiveId) {
+                input.businessObjectiveId = businessObjectiveId;
+            }
+
+            return mutate({
+                mutation: UPDATE_PROFILE,
+                variables: { input }
+            });
+        }).then(() => {
+            onClick();
         });
     }
 
@@ -71,6 +101,7 @@ class UpdateProfileButton extends React.Component {
 UpdateProfileButton.propTypes = {
     policyId: propTypes.string,
     businessObjective: propTypes.object,
+    editPolicyBusinessObjective: propTypes.object,
     mutate: propTypes.func,
     threshold: propTypes.number,
     onClick: propTypes.func
