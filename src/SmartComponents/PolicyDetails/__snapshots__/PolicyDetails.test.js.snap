@@ -1119,7 +1119,6 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
             ]
           }
           policyId="1"
-          systemsCount={1}
         />
       </GridItem>
     </Grid>
