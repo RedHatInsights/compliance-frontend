@@ -31,34 +31,23 @@ export class UpdateProfileButton extends React.Component {
     handleBusinessObjective = () => {
         const { businessObjective, editPolicyBusinessObjective, mutate } = this.props;
 
-        // nothing changed
-        //  -> if there is a businessObjective return it's id
-        //  -> else null
         if (editPolicyBusinessObjective === undefined) {
             return Promise.resolve(businessObjective ? businessObjective.id : null);
         }
 
-        // The businessObjective changed to a different one
-        //  -> return the new id/value
         if (editPolicyBusinessObjective && businessObjective
             && (editPolicyBusinessObjective.value !== businessObjective.id)) {
             return Promise.resolve(editPolicyBusinessObjective.value);
         }
 
-        // The businessObjective changed to a different one from no BO
-        //  -> return the new id/value
         if (editPolicyBusinessObjective && businessObjective === null) {
             return Promise.resolve(editPolicyBusinessObjective.value);
         }
 
-        // Objective got unset
-        //  -> return null
         if (editPolicyBusinessObjective === null) {
             return Promise.resolve(null);
         }
 
-        // An objective needs to be created
-        // = -> return the id
         if (editPolicyBusinessObjective.create) {
             return mutate({
                 mutation: CREATE_BUSINESS_OBJECTIVE,
