@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import UpdateProfile from './UpdateProfile';
+import UpdateProfileButton from './UpdateProfileButton';
 import ProfileThresholdField from './ProfileThresholdField';
 import BusinessObjectiveField from './BusinessObjectiveField';
 import { formValueSelector } from 'redux-form';
@@ -75,7 +75,7 @@ class EditPolicy extends Component {
                         <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
                             Cancel
                         </Button>,
-                        <UpdateProfile
+                        <UpdateProfileButton
                             key='confirm'
                             policyId={policyId}
                             threshold={ parseInt(complianceThreshold || previousThreshold) }

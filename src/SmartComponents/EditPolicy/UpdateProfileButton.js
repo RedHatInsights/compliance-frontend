@@ -27,7 +27,7 @@ mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
 }
 `;
 
-class UpdateProfileButton extends React.Component {
+export class UpdateProfileButton extends React.Component {
     handleBusinessObjective = () => {
         const { businessObjective, editPolicyBusinessObjective, mutate } = this.props;
 
