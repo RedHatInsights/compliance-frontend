@@ -128,17 +128,11 @@ exports[`CompliancePolicyCard expect to render without error 1`] = `
             }
           }
         >
-          <Chip
-            className=""
-            closeBtnAriaLabel="close"
-            component="div"
-            isOverflowChip={false}
+          <Component
             isReadOnly={true}
-            onClick={[Function]}
-            tooltipPosition="top"
           >
             BO
-          </Chip>
+          </Component>
         </GridItem>
       </Grid>
     </TextContent>
