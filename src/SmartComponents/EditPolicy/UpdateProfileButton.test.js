@@ -11,7 +11,9 @@ describe('UpdateProfileButton', () => {
         editPolicyBusinessObjective: {
             title: 'Edited Test Objective',
             value: '2'
-        }
+        },
+        mutate: jest.fn(),
+        onClick: jest.fn()
     };
 
     it('expect to render without error', () => {
@@ -119,6 +121,23 @@ describe('UpdateProfileButton', () => {
                 expect(resultId).toBe('3');
             });
             expect(mutate).toHaveBeenCalled();
+        });
+    });
+
+    describe('.onClick', () => {
+        it('calls mutate and onClick', async () => {
+            const mutate = jest.fn();
+            const hBO = jest.fn(() => Promise.resolve(1));
+            const wrapper = shallow(
+                <UpdateProfileButton { ...defaultProps } mutate={ mutate } />
+            );
+            wrapper.instance().handleBusinessObjective = hBO;
+            wrapper.update();
+
+            await wrapper.instance().onClick();
+
+            expect(mutate).toHaveBeenCalled();
+            expect(hBO).toHaveBeenCalled();
         });
     });
 });
