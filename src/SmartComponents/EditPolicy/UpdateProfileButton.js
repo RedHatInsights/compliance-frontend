@@ -62,7 +62,7 @@ export class UpdateProfileButton extends React.Component {
     onClick = () => {
         const { mutate, policyId, threshold, onClick } = this.props;
 
-        this.handleBusinessObjective().then((businessObjectiveId) => {
+        return this.handleBusinessObjective().then((businessObjectiveId) => {
             let input = {
                 id: policyId,
                 complianceThreshold: parseFloat(threshold)
@@ -89,12 +89,12 @@ export class UpdateProfileButton extends React.Component {
 }
 
 UpdateProfileButton.propTypes = {
-    policyId: propTypes.string,
+    policyId: propTypes.string.isRequired,
     businessObjective: propTypes.object,
     editPolicyBusinessObjective: propTypes.object,
-    mutate: propTypes.func,
+    mutate: propTypes.func.isRequired,
     threshold: propTypes.number,
-    onClick: propTypes.func
+    onClick: propTypes.func.isRequired
 };
 
 export default graphql(UPDATE_PROFILE)(UpdateProfileButton);
