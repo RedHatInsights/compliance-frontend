@@ -96,5 +96,4 @@ UpdateProfileButton.propTypes = {
     onClick: propTypes.func
 };
 
-const UpdateProfile = graphql(UPDATE_PROFILE)(UpdateProfileButton);
-export default UpdateProfile;
+export default graphql(UPDATE_PROFILE)(UpdateProfileButton);
