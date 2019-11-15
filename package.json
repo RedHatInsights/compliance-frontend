@@ -17,7 +17,7 @@
     "@redhat-cloud-services/frontend-components": "^0.0.27",
     "@redhat-cloud-services/frontend-components-inventory-compliance": "^0.0.29",
     "@redhat-cloud-services/frontend-components-notifications": "^0.0.7",
-    "@redhat-cloud-services/frontend-components-remediations": "^0.0.3",
+    "@redhat-cloud-services/frontend-components-remediations": "^0.0.4",
     "@redhat-cloud-services/frontend-components-utilities": "^0.0.10",
     "actioncable": "^5.2.1",
     "apollo-boost": "^0.4.4",
