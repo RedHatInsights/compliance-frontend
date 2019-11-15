@@ -25,6 +25,7 @@ class BusinessObjectiveField extends React.Component {
     }
 
     loadOptions = () => {
+        this.props.client.cache.reset();
         return this.props.client.query({
             query: GET_BUSINESS_OBJECTIVES
         }).then((items) => {
