@@ -35,12 +35,13 @@ export class UpdateProfileButton extends React.Component {
             return Promise.resolve(businessObjective ? businessObjective.id : null);
         }
 
-        if (editPolicyBusinessObjective && businessObjective
+        if (editPolicyBusinessObjective && !editPolicyBusinessObjective.create && businessObjective
             && (editPolicyBusinessObjective.value !== businessObjective.id)) {
             return Promise.resolve(editPolicyBusinessObjective.value);
         }
 
-        if (editPolicyBusinessObjective && businessObjective === null) {
+        if (editPolicyBusinessObjective && !editPolicyBusinessObjective.create
+            && businessObjective === null) {
             return Promise.resolve(editPolicyBusinessObjective.value);
         }
 
