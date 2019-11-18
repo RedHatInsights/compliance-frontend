@@ -24,10 +24,12 @@ class BusinessObjectiveField extends React.Component {
         };
     }
 
-    loadOptions = () => {
+    loadOptions = (title) => {
+        const variables = title ? { title } : {};
         this.props.client.cache.reset();
         return this.props.client.query({
-            query: GET_BUSINESS_OBJECTIVES
+            query: GET_BUSINESS_OBJECTIVES,
+            variables
         }).then((items) => {
             return items.data.businessObjectives.map(businessObjective => (
                 this.createOption(businessObjective)
