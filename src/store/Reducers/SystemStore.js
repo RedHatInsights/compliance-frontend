@@ -42,13 +42,18 @@ const lastScanned = (system) => {
     return result;
 };
 
+const rulesCount = (system, rulesMethod) => {
+    const rulesCount = system.profiles.map((profile) => profile[rulesMethod]);
+    return rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr);
+};
+
 export const systemsToInventoryEntities = (systems, entities) =>
     systems.map(
         edge => {
             const system = edge.node;
             system.profileNames = system.profiles.map((profile) => profile.name).join(', ');
-            system.rulesPassed = system.profiles.map((profile) => profile.rulesPassed).reduce((acc, curr) => acc + curr);
-            system.rulesFailed = system.profiles.map((profile) => profile.rulesFailed).reduce((acc, curr) => acc + curr);
+            system.rulesPassed = rulesCount(system, 'rulesPassed');
+            system.rulesFailed = rulesCount(system, 'rulesFailed');
             system.lastScanned = lastScanned(system);
             // This should compare the inventory ID instead with
             // the ID in compliance
