@@ -34,17 +34,17 @@ const complianceScore = (system) => (
     </React.Fragment>
 );
 
-const lastScanned = (system) => {
+export const lastScanned = (system) => {
     const dates = system.profiles.map((profile) => new Date(profile.lastScanned));
-    const last = new Date(Math.max.apply(null, dates));
+    const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
 
     return result;
 };
 
-const rulesCount = (system, rulesMethod) => {
+export const rulesCount = (system, rulesMethod) => {
     const rulesCount = system.profiles.map((profile) => profile[rulesMethod]);
-    return rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr);
+    return (rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr)) || 0;
 };
 
 export const systemsToInventoryEntities = (systems, entities) =>
