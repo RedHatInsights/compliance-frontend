@@ -1,5 +1,4 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import React from 'react';
 import asyncComponent from './Utilities/asyncComponent';
 import some from 'lodash/some';
@@ -19,25 +18,21 @@ import some from 'lodash/some';
  *
  */
 const CompliancePolicies = asyncComponent(() =>
-    import(/* webpackChunkName: "CompliancePolicies" */ './SmartComponents/CompliancePolicies/CompliancePolicies')
+    import(/* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies')
 );
 const ComplianceSystems = asyncComponent(() =>
-    import(/* webpackChunkName: "ComplianceSystems" */ './SmartComponents/ComplianceSystems/ComplianceSystems')
-);
-const ComplianceImageStreams = asyncComponent(() =>
-    import(/* webpackChunkName: "ComplianceImageStreams" */ './SmartComponents/ComplianceImageStreams/ComplianceImageStreams')
+    import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
 );
 const PolicyDetails = asyncComponent(() =>
-    import(/* webpackChunkName: "PolicyDetails" */ './SmartComponents/PolicyDetails/PolicyDetails')
+    import(/* webpackChunkName: "PolicyDetails" */ 'SmartComponents/PolicyDetails/PolicyDetails')
 );
 const SystemDetails = asyncComponent(() =>
-    import(/* webpackChunkName: "SystemDetails" */ './SmartComponents/SystemDetails/SystemDetails')
+    import(/* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails')
 );
 
 export const paths = {
     compliancePolicies: '/policies',
     complianceSystems: '/systems',
-    complianceImageStreams: '/imagestreams',
     complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
     policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
@@ -46,21 +41,6 @@ export const paths = {
 
 type Props = {
     childProps: any
-};
-
-const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
-    const root = document.getElementById('root');
-    root.removeAttribute('class');
-    root.classList.add(`page__${rootClass}`, 'pf-c-page__main');
-    root.classList.add(`page__${rootClass}`, 'pf-l-page__main');
-    root.setAttribute('role', 'main');
-
-    return (<Component { ...rest } />);
-};
-
-InsightsRoute.propTypes = {
-    component: PropTypes.func,
-    rootClass: PropTypes.string
 };
 
 /**
@@ -78,14 +58,13 @@ export const Routes = (props: Props) => {
         <Switch>
             <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
-            <Route exact path={paths.complianceImageStreams} component={ComplianceImageStreams} />
             <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
             <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
             <Route exact path={paths.policyDetails} component={PolicyDetails} />
             <Route path={paths.systemDetails} component={SystemDetails} />
 
-            { /* Finally, catch all unmatched routes */ }
-            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={paths.compliancePolicies}/>) }/>
+            {/* Finally, catch all unmatched routes */}
+            <Route render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.compliancePolicies} />)} />
         </Switch>
     );
 };
