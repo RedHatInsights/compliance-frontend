@@ -37,7 +37,6 @@ const SystemDetails = asyncComponent(() =>
 export const paths = {
     compliancePolicies: '/policies',
     complianceSystems: '/systems',
-    complianceImageStreams: '/imagestreams',
     complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
     policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
@@ -78,7 +77,6 @@ export const Routes = (props: Props) => {
         <Switch>
             <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
-            <Route exact path={paths.complianceImageStreams} component={ComplianceImageStreams} />
             <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
             <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
             <Route exact path={paths.policyDetails} component={PolicyDetails} />
