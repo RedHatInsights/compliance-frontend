@@ -6,8 +6,6 @@ import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
-import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
 
 const GET_BUSINESS_OBJECTIVES = gql`
 query businessObjectives {
@@ -22,30 +20,20 @@ class BusinessObjectiveField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            policyId: props.policyId,
-            isExpanded: false,
-            selected: props.businessObjective ? this.createOption(props.businessObjective) : '',
-            options: [],
-            originalOptions: [],
-            client: props.client,
-            isLoading: true
+            selected: props.businessObjective ? this.createOption(props.businessObjective) : null
         };
+    }
 
-        // Resetting the cache is necessary to reload the list of Business Objectives
-        // after removing or adding any.
-        props.client.cache.reset();
-        props.client.query({
-            query: GET_BUSINESS_OBJECTIVES
+    loadOptions = (title) => {
+        const variables = title ? { title } : {};
+        this.props.client.cache.reset();
+        return this.props.client.query({
+            query: GET_BUSINESS_OBJECTIVES,
+            variables
         }).then((items) => {
-            const options = items.data.businessObjectives.map(businessObjective => (
+            return items.data.businessObjectives.map(businessObjective => (
                 this.createOption(businessObjective)
             ));
-
-            this.setState({
-                isLoading: false,
-                options,
-                originalOptions: options
-            });
         });
     }
 
@@ -54,26 +42,9 @@ class BusinessObjectiveField extends React.Component {
         value: businessObjective.id
     });
 
-    handleInputChange = debounce(value => {
-        this.handleCreate(value);
-    }, 500)
-
     handleChange = (newValue) => {
-        this.setState({ selected: newValue });
-    };
-
-    handleCreate = (inputValue) => {
-        const { originalOptions } = this.state;
-
-        if (inputValue.length === 0 || originalOptions.map(option => option.label).indexOf(inputValue) !== -1) {
-            return;
-        }
-
         const { dispatch } = this.props;
-        this.setState({ isLoading: true });
-
-        let newOption = this.createOption({ title: inputValue, value: inputValue });
-        newOption.create = true;
+        this.setState({ selected: newValue });
 
         // Manually dispatch the action to ensure the newly created label is set
         dispatch({
@@ -82,17 +53,18 @@ class BusinessObjectiveField extends React.Component {
                 field: 'businessObjective',
                 form: 'editPolicy'
             },
-            payload: newOption
-        });
-        this.setState({
-            isLoading: false,
-            options: [newOption, ...originalOptions],
-            selected: newOption
+            payload: newValue
         });
     };
 
+    handleCreate = (inputValue) => {
+        let newOption = this.createOption({ title: inputValue, value: inputValue });
+        newOption.create = true;
+        this.handleChange(newOption);
+    };
+
     render() {
-        const { isLoading, selected, options } = this.state;
+        const { selected } = this.state;
         const titleId = 'business-objective-typeahead';
 
         return (
@@ -109,14 +81,11 @@ class BusinessObjectiveField extends React.Component {
                         aria-label="Select a business objective"
                         component={ReduxFormCreatableSelectInput}
                         isClearable
-                        selected={selected}
                         placeholder='Type to select and create'
-                        isDisabled={isLoading}
-                        isLoading={isLoading}
                         onChange={this.handleChange}
                         onCreateOption={this.handleCreate}
-                        onInputChange={this.handleInputChange}
-                        options={options}
+                        loadOptions={this.loadOptions}
+                        selected={selected}
                     />
                 </FormGroup>
             </React.Fragment>
@@ -125,14 +94,12 @@ class BusinessObjectiveField extends React.Component {
 }
 
 BusinessObjectiveField.propTypes = {
-    policyId: propTypes.string,
     businessObjective: propTypes.object,
     client: propTypes.object,
-    dispatch: propTypes.function
+    dispatch: propTypes.func
 };
 
 export default compose(
-    connect(),
     withApollo,
     reduxForm({
         form: 'editPolicy'

@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import UpdateProfile from './UpdateProfile';
+import UpdateProfileButton from './UpdateProfileButton';
 import ProfileThresholdField from './ProfileThresholdField';
 import BusinessObjectiveField from './BusinessObjectiveField';
 import { formValueSelector } from 'redux-form';
@@ -48,7 +48,7 @@ class EditPolicy extends Component {
 
     render() {
         const { policyId, isOpen, isModalOpen, businessObjective } = this.state;
-        const { previousThreshold, editPolicyBusinessObjective, complianceThreshold } = this.props;
+        const { previousThreshold, editPolicyBusinessObjective, complianceThreshold, dispatch } = this.props;
         const dropdownItems = [
             <DropdownItem key="action" onClick={this.handleModalToggle} component="button">
                 Edit policy
@@ -75,11 +75,12 @@ class EditPolicy extends Component {
                         <Button key="cancel" variant="secondary" onClick={this.handleModalToggle}>
                             Cancel
                         </Button>,
-                        <UpdateProfile
+                        <UpdateProfileButton
                             key='confirm'
                             policyId={policyId}
                             threshold={ parseInt(complianceThreshold || previousThreshold) }
-                            businessObjective={editPolicyBusinessObjective}
+                            businessObjective={businessObjective}
+                            editPolicyBusinessObjective={editPolicyBusinessObjective}
                             onClick={this.handleModalToggle}
                         />
                     ]}
@@ -88,6 +89,7 @@ class EditPolicy extends Component {
                         <BusinessObjectiveField
                             businessObjective={businessObjective}
                             policyId={policyId}
+                            dispatch={dispatch}
                         />
                         <ProfileThresholdField previousThreshold={previousThreshold} />
                     </Form>
@@ -103,7 +105,8 @@ EditPolicy.propTypes = {
     businessObjective: propTypes.object,
     editPolicyBusinessObjective: propTypes.object,
     complianceThreshold: propTypes.string,
-    onClose: propTypes.func
+    onClose: propTypes.func,
+    dispatch: propTypes.func
 };
 
 const selector = formValueSelector('editPolicy');
