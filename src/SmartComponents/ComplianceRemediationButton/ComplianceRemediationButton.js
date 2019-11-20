@@ -33,10 +33,6 @@ const FailedRulesQuery = graphql(GET_FAILED_RULES, {
 });
 
 class ComplianceRemediationButton extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     /* eslint-disable camelcase */
     formatRule = ({ title, refId }, profile, systems) => ({
         id: `ssg:rhel7|${profile}|${refId}`,
