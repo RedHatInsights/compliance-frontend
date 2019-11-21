@@ -1032,7 +1032,9 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
                 "bottom",
               ]
             }
+            id=""
             isAppLauncher={false}
+            isContentLeftAligned={false}
             isVisible={false}
             maxWidth="18.75rem"
             position="left"
