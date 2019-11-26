@@ -1,5 +1,3 @@
-import React from 'react';
-import { QuestionCircleIcon, CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import {
     compliantIcon,
     rulesCount,
@@ -7,6 +5,7 @@ import {
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from './SystemStore.fixtures';
+import renderer from 'react-test-renderer';
 
 describe('mapping systems to inventory entities', () => {
     it('should return an empty set if there are no systems', () => {
@@ -86,13 +85,8 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        expect(compliantIcon(system)).toEqual(
-            <React.Fragment>
-                <ExclamationCircleIcon color='currentColor' noVerticalAlign={false} size='sm'
-                    style={ { color: 'var(--pf-global--danger-color--100)' } }
-                    title={null} />
-            </React.Fragment>
-        );
+        const dangerIcon = renderer.create(compliantIcon(system)).toJSON();
+        expect(dangerIcon).toMatchSnapshot();
     });
 
     it('should show a danger icon if the host is not compliant in some profile', () => {
@@ -105,13 +99,8 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        expect(compliantIcon(system)).toEqual(
-            <React.Fragment>
-                <ExclamationCircleIcon color='currentColor' noVerticalAlign={false} size='sm'
-                    style={ { color: 'var(--pf-global--danger-color--100)' } }
-                    title={null} />
-            </React.Fragment>
-        );
+        const dangerIcon = renderer.create(compliantIcon(system)).toJSON();
+        expect(dangerIcon).toMatchSnapshot();
     });
 
     it('should show a success icon if the host is compliant in all profiles', () => {
@@ -124,13 +113,8 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        expect(compliantIcon(system)).toEqual(
-            <React.Fragment>
-                <CheckCircleIcon color='currentColor' noVerticalAlign={false} size="sm"
-                    style={ { color: 'var(--pf-global--success-color--100)' } }
-                    title={null} />
-            </React.Fragment>
-        );
+        const checkIcon = renderer.create(compliantIcon(system)).toJSON();
+        expect(checkIcon).toMatchSnapshot();
     });
 
     it('should show a question mark icon if the host has no rules passed or failed', () => {
@@ -139,12 +123,7 @@ describe('auxiliary functions to reducer', () => {
             rulesFailed: 0
         };
 
-        expect(compliantIcon(system)).toEqual(
-            <React.Fragment>
-                <QuestionCircleIcon color='currentColor' noVerticalAlign={false} size="sm"
-                    style={ { color: 'var(--pf-global--disabled-color--100)' } }
-                    title={null} />
-            </React.Fragment>
-        );
+        const questionMarkIcon = renderer.create(compliantIcon(system)).toJSON();
+        expect(questionMarkIcon).toMatchSnapshot();
     });
 });
