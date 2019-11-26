@@ -7,12 +7,12 @@ import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from '../../Utilities/CsvExport';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
-const compliantIcon = (system) => (
+export const compliantIcon = (system) => (
     <React.Fragment>
         {
             ((system.rulesPassed + system.rulesFailed) === 0) ?
                 <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
-                system.compliant ?
+                system.profiles.every(profile => profile.compliant === true) ?
                     <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
                     <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
         }

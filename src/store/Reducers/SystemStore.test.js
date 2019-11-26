@@ -1,4 +1,6 @@
-import { rulesCount, lastScanned } from './SystemStore';
+import React from 'react';
+import { QuestionCircleIcon, CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
+import { compliantIcon, rulesCount, lastScanned } from './SystemStore';
 
 describe('SystemsStore:', () => {
     it('should set rules count as the sum over all profiles', () => {
@@ -42,5 +44,77 @@ describe('SystemsStore:', () => {
     it('should print Never if the scan date cannot be ascertained', () => {
         expect(lastScanned({ profiles: [] })).toEqual('Never');
         expect(lastScanned({ profiles: [{ lastScanned: 'Never' }] })).toEqual('Never');
+    });
+
+    it('should show a danger icon if the host is not compliant in any profile', () => {
+        const system = {
+            rulesPassed: 30,
+            rulesFailed: 300,
+            profiles: [
+                { compliant: false },
+                { compliant: false }
+            ]
+        };
+
+        expect(compliantIcon(system)).toEqual(
+            <React.Fragment>
+                <ExclamationCircleIcon color='currentColor' noVerticalAlign={false} size='sm'
+                    style={ { color: 'var(--pf-global--danger-color--100)' } }
+                    title={null} />
+            </React.Fragment>
+        );
+    });
+
+    it('should show a danger icon if the host is not compliant in some profile', () => {
+        const system = {
+            rulesPassed: 30,
+            rulesFailed: 3,
+            profiles: [
+                { compliant: true },
+                { compliant: false }
+            ]
+        };
+
+        expect(compliantIcon(system)).toEqual(
+            <React.Fragment>
+                <ExclamationCircleIcon color='currentColor' noVerticalAlign={false} size='sm'
+                    style={ { color: 'var(--pf-global--danger-color--100)' } }
+                    title={null} />
+            </React.Fragment>
+        );
+    });
+
+    it('should show a success icon if the host is compliant in all profiles', () => {
+        const system = {
+            rulesPassed: 30,
+            rulesFailed: 3,
+            profiles: [
+                { compliant: true },
+                { compliant: true }
+            ]
+        };
+
+        expect(compliantIcon(system)).toEqual(
+            <React.Fragment>
+                <CheckCircleIcon color='currentColor' noVerticalAlign={false} size="sm"
+                    style={ { color: 'var(--pf-global--success-color--100)' } }
+                    title={null} />
+            </React.Fragment>
+        );
+    });
+
+    it('should show a question mark icon if the host has no rules passed or failed', () => {
+        const system = {
+            rulesPassed: 0,
+            rulesFailed: 0
+        };
+
+        expect(compliantIcon(system)).toEqual(
+            <React.Fragment>
+                <QuestionCircleIcon color='currentColor' noVerticalAlign={false} size="sm"
+                    style={ { color: 'var(--pf-global--disabled-color--100)' } }
+                    title={null} />
+            </React.Fragment>
+        );
     });
 });
