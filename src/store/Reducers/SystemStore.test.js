@@ -14,6 +14,7 @@ describe('mapping systems to inventory entities', () => {
         const oneMatchingEntityInventory = [{ id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6', facts: [] }];
         const inventoryEntities = systemsToInventoryEntities(systems, oneMatchingEntityInventory);
         expect(inventoryEntities.length).toBe(1);
+        expect(inventoryEntities).toMatchSnapshot();
     });
 
     it('should only return all systems if all have a matching in the inventory', () => {

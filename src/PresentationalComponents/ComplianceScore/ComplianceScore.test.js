@@ -12,7 +12,7 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        const dangerIcon = renderer.create(<ComplianceScore system={ system } />).toJSON();
+        const dangerIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
         expect(dangerIcon).toMatchSnapshot();
     });
 
@@ -26,7 +26,7 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        const dangerIcon = renderer.create(<ComplianceScore system={ system } />).toJSON();
+        const dangerIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
         expect(dangerIcon).toMatchSnapshot();
     });
 
@@ -40,7 +40,7 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        const checkIcon = renderer.create(<ComplianceScore system={ system } />).toJSON();
+        const checkIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
         expect(checkIcon).toMatchSnapshot();
     });
 
@@ -50,7 +50,7 @@ describe('auxiliary functions to reducer', () => {
             rulesFailed: 0
         };
 
-        const questionMarkIcon = renderer.create(<ComplianceScore system={ system } />).toJSON();
+        const questionMarkIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
         expect(questionMarkIcon).toMatchSnapshot();
     });
 });

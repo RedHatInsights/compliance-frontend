@@ -28,7 +28,7 @@ export const complianceScoreString = (system) => {
 
 const ComplianceScore = (system) => (
     <React.Fragment>
-        <CompliantIcon system={system} />
+        <CompliantIcon { ...system } />
         { complianceScoreString(system) }
     </React.Fragment>
 );

@@ -2,7 +2,7 @@
 
 exports[`ReduxFormCheckboxInput expect to render without error 1`] = `
 <Checkbox
-  additional_prop="Prop1"
+  additionalProp="Prop1"
   className=""
   input={
     Object {
@@ -20,7 +20,7 @@ exports[`ReduxFormCheckboxInput expect to render without error 1`] = `
 
 exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
 <Select
-  additional_prop="Prop1"
+  additionalProp="Prop1"
   input={
     Object {
       "onChange": [MockFunction],
@@ -41,7 +41,7 @@ exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
 
 exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
 <TextInput
-  additional_prop="Prop1"
+  additionalProp="Prop1"
   aria-label={null}
   className=""
   defaultValue="Default Value"
@@ -62,7 +62,7 @@ exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
 
 exports[`ReduxFormTextInput expect to render without error 1`] = `
 <TextInput
-  additional_prop="Prop1"
+  additionalProp="Prop1"
   aria-label={null}
   className=""
   input={
