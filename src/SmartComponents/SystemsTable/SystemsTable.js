@@ -1,18 +1,27 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
 import * as pfReactTable from '@patternfly/react-table';
-import propTypes from 'prop-types';
-import { entitiesReducer } from '../../store/Reducers/SystemStore';
-import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
-import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
-import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
-import { SimpleTableFilter } from '@redhat-cloud-services/frontend-components';
-import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';
+
+import {
+  SimpleTableFilter
+ } from '@redhat-cloud-services/frontend-components';
+import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+
+import { entitiesReducer } from '../../store/Reducers/SystemStore';
+import  {
+    DownloadTableButton,
+    ComplianceRemediationButton
+} from '../../SmartComponents';
+import {
+    SystemsComplianceFilter
+} from '../../PresentationalComponents';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
