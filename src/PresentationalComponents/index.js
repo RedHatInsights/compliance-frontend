@@ -5,3 +5,4 @@ export { default as CompliancePoliciesEmptyState } from './CompliancePoliciesEmp
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
 export { default as SystemsComplianceFilter } from './SystemsComplianceFilter/SystemsComplianceFilter';
 export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoader/PolicyDetailsContentLoader';
+export { default as ComplianceScore, complianceScoreString } from './ComplianceScore/ComplianceScore';
