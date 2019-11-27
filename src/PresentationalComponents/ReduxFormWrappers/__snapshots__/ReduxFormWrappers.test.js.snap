@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReduxFormCheckboxInput expect to render without error 1`] = `
+<Checkbox
+  additional_prop="Prop1"
+  className=""
+  input={
+    Object {
+      "onChange": [MockFunction],
+      "value": "Value",
+    }
+  }
+  isChecked={false}
+  isDisabled={false}
+  isValid={true}
+  onChange={[MockFunction]}
+  value="Value"
+/>
+`;
+
+exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
+<Select
+  additional_prop="Prop1"
+  input={
+    Object {
+      "onChange": [MockFunction],
+    }
+  }
+  loadingMessage="Loading..."
+  onChange={[MockFunction]}
+  options={Array []}
+  selectVariant="createable"
+  selected="SELECTED_VALUE"
+  showLessLabel="Show less"
+  showMoreLabel="more"
+  simpleValue={true}
+  updatingMessage="Loading data..."
+  value="SELECTED_VALUE"
+/>
+`;
+
+exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
+<TextInput
+  additional_prop="Prop1"
+  aria-label={null}
+  className=""
+  defaultValue="Default Value"
+  input={
+    Object {
+      "onChange": [MockFunction],
+    }
+  }
+  isDisabled={false}
+  isReadOnly={false}
+  isRequired={false}
+  isValid={true}
+  onChange={[MockFunction]}
+  type="text"
+  value="Default Value"
+/>
+`;
+
+exports[`ReduxFormTextInput expect to render without error 1`] = `
+<TextInput
+  additional_prop="Prop1"
+  aria-label={null}
+  className=""
+  input={
+    Object {
+      "onChange": [MockFunction],
+      "value": "Value",
+    }
+  }
+  isDisabled={false}
+  isReadOnly={false}
+  isRequired={false}
+  isValid={true}
+  onChange={[MockFunction]}
+  type="text"
+  value="Value"
+/>
+`;
