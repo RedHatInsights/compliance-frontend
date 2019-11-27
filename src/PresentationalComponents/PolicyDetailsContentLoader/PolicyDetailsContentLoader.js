@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-export default () => (
+const PolicyDetailsContentLoader = () => (
     <ContentLoader
         height={320}
         width={1550}
@@ -26,3 +26,5 @@ export default () => (
         <rect x="529" y="275" rx="0" ry="0" width="231" height="7" />
     </ContentLoader>
 );
+
+export default PolicyDetailsContentLoader;

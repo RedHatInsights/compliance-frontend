@@ -20,13 +20,13 @@ describe('buildFilter', () => {
     it('expect to render without error', () => {
         const wrapper = shallow(
             <SystemsComplianceFilter { ...defaultProps }
-              compliant={
-                ['YES', 'NO']
-              }
-              complianceScore={[
-                '10-20',
-                '30-40'
-              ]} />
+                compliant={
+                    ['YES', 'NO']
+                }
+                complianceScore={[
+                    '10-20',
+                    '30-40'
+                ]} />
         );
         const instance = wrapper.instance();
         expect(instance.buildFilter()).toMatchSnapshot();
@@ -53,18 +53,17 @@ describe('addFilter', () => {
     });
 });
 
-
 describe('removeFilter', () => {
     it('removes filters from state', () => {
         const wrapper = shallow(
-          <SystemsComplianceFilter { ...defaultProps }
-            compliant={
-              ['YES', 'NO']
-            }
-            complianceScore={[
-              '10-20',
-              '30-40'
-            ]} />
+            <SystemsComplianceFilter { ...defaultProps }
+                compliant={
+                    ['YES', 'NO']
+                }
+                complianceScore={[
+                    '10-20',
+                    '30-40'
+                ]} />
         );
         const instance = wrapper.instance();
 

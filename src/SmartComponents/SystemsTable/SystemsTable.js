@@ -10,8 +10,8 @@ import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';
 
 import {
-  SimpleTableFilter
- } from '@redhat-cloud-services/frontend-components';
+    SimpleTableFilter
+} from '@redhat-cloud-services/frontend-components';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 
 import { entitiesReducer } from '../../store/Reducers/SystemStore';

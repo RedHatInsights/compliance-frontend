@@ -1,20 +1,20 @@
 import toJson from 'enzyme-to-json';
 
 import {
-  ReduxFormTextInput,
-  ReduxFormCheckboxInput,
-  ReduxFormCreatableSelectInput
+    ReduxFormTextInput,
+    ReduxFormCheckboxInput,
+    ReduxFormCreatableSelectInput
 } from './ReduxFormWrappers';
 
 describe('ReduxFormTextInput', () => {
     it('expect to render without error', () => {
         const field = {
-          input: {
-            onChange: jest.fn(),
-            value: 'Value'
-          },
-          additional_prop: 'Prop1'
-        }
+            input: {
+                onChange: jest.fn(),
+                value: 'Value'
+            },
+            additionalProp: 'Prop1'
+        };
         const wrapper = shallow(
             <ReduxFormTextInput { ...field } />
         );
@@ -24,12 +24,12 @@ describe('ReduxFormTextInput', () => {
 
     it('expect to render with defaultValue', () => {
         const field = {
-          input: {
-            onChange: jest.fn()
-          },
-          defaultValue: 'Default Value',
-          additional_prop: 'Prop1'
-        }
+            input: {
+                onChange: jest.fn()
+            },
+            defaultValue: 'Default Value',
+            additionalProp: 'Prop1'
+        };
         const wrapper = shallow(
             <ReduxFormTextInput { ...field } />
         );
@@ -41,12 +41,12 @@ describe('ReduxFormTextInput', () => {
 describe('ReduxFormCheckboxInput', () => {
     it('expect to render without error', () => {
         const field = {
-          input: {
-            onChange: jest.fn(),
-            value: 'Value'
-          },
-          additional_prop: 'Prop1'
-        }
+            input: {
+                onChange: jest.fn(),
+                value: 'Value'
+            },
+            additionalProp: 'Prop1'
+        };
         const wrapper = shallow(
             <ReduxFormCheckboxInput { ...field } />
         );
@@ -58,12 +58,12 @@ describe('ReduxFormCheckboxInput', () => {
 describe('ReduxFormCreatableSelectInput', () => {
     it('expect to render without error', () => {
         const field = {
-          input: {
-            onChange: jest.fn()
-          },
-          selected: 'SELECTED_VALUE',
-          additional_prop: 'Prop1'
-        }
+            input: {
+                onChange: jest.fn()
+            },
+            selected: 'SELECTED_VALUE',
+            additionalProp: 'Prop1'
+        };
         const wrapper = shallow(
             <ReduxFormCreatableSelectInput { ...field } />
         );

@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  QuestionCircleIcon,
-  CheckCircleIcon,
-  ExclamationCircleIcon
+    QuestionCircleIcon,
+    CheckCircleIcon,
+    ExclamationCircleIcon
 } from '@patternfly/react-icons';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
@@ -26,9 +26,11 @@ export const complianceScoreString = (system) => {
     return ' ' + fixedPercentage(100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed)));
 };
 
-export default (system) => (
+const ComplianceScore = (system) => (
     <React.Fragment>
-        { CompliantIcon(system) }
+        <CompliantIcon system={system} />
         { complianceScoreString(system) }
     </React.Fragment>
 );
+
+export default ComplianceScore;
