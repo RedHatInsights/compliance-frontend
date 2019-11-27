@@ -56,6 +56,7 @@ exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
   isValid={true}
   onChange={[MockFunction]}
   type="text"
+  validated="default"
   value="Default Value"
 />
 `;
@@ -77,6 +78,7 @@ exports[`ReduxFormTextInput expect to render without error 1`] = `
   isValid={true}
   onChange={[MockFunction]}
   type="text"
+  validated="default"
   value="Value"
 />
 `;
