@@ -5,7 +5,7 @@ import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from '../../Utilities/CsvExport';
 import {
-    ComplianceScore,
+    ComplianceScore as complianceScore,
     complianceScoreString
 } from '../../PresentationalComponents';
 
@@ -78,7 +78,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
                             }
                         }}>{system.rulesFailed}</Link> },
                         rules_failed_text: system.rulesFailed,
-                        compliance_score: ComplianceScore(system),
+                        compliance_score: complianceScore(system),
                         compliance_score_text: complianceScoreString(system),
                         last_scanned: (system.lastScanned instanceof Date) ?
                             { title: <FormattedRelative value={Date.parse(system.lastScanned)} /> } :
