@@ -122,6 +122,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #06c;"
                   />
                   <path
@@ -130,6 +132,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #8bc1f7;"
                   />
                   <text
@@ -414,6 +418,8 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #06c;"
                   />
                   <path
@@ -422,6 +428,8 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #8bc1f7;"
                   />
                   <text
@@ -706,6 +714,8 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #06c;"
                   />
                   <path
@@ -714,6 +724,8 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #8bc1f7;"
                   />
                   <text
@@ -1250,6 +1262,8 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #06c;"
                   />
                   <path
@@ -1258,6 +1272,8 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #8bc1f7;"
                   />
                   <text
@@ -1542,6 +1558,8 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #06c;"
                   />
                   <path
@@ -1550,6 +1568,8 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
       v-9.744000000000028
       h-9.744000000000028
       z"
+                    role="presentation"
+                    shape-rendering="auto"
                     style="fill: #8bc1f7;"
                   />
                   <text
