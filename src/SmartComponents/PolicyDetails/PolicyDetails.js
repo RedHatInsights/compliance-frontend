@@ -154,8 +154,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     }];
 
     const legendData = [
-        { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'System') + ' compliant' },
-        { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'System') + ' non-compliant' }
+        { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
+        { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
     ];
 
     const compliancePercentage = fixedPercentage(Math.floor(100 *

@@ -146,7 +146,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      1 System compliant
+                      1 system compliant
                     </tspan>
                   </text>
                   <text
@@ -163,7 +163,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      0 Systems non-compliant
+                      0 systems non-compliant
                     </tspan>
                   </text>
                 </g>
@@ -438,7 +438,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      1 System compliant
+                      1 system compliant
                     </tspan>
                   </text>
                   <text
@@ -455,7 +455,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      0 Systems non-compliant
+                      0 systems non-compliant
                     </tspan>
                   </text>
                 </g>
@@ -730,7 +730,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      1 System compliant
+                      1 system compliant
                     </tspan>
                   </text>
                   <text
@@ -747,7 +747,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      0 Systems non-compliant
+                      0 systems non-compliant
                     </tspan>
                   </text>
                 </g>
@@ -949,10 +949,10 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
               legendData={
                 Array [
                   Object {
-                    "name": "1 System compliant",
+                    "name": "1 system compliant",
                   },
                   Object {
-                    "name": "0 Systems non-compliant",
+                    "name": "0 systems non-compliant",
                   },
                 ]
               }
@@ -1274,7 +1274,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      1 System compliant
+                      1 system compliant
                     </tspan>
                   </text>
                   <text
@@ -1291,7 +1291,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      0 Systems non-compliant
+                      0 systems non-compliant
                     </tspan>
                   </text>
                 </g>
@@ -1566,7 +1566,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      1 System compliant
+                      1 system compliant
                     </tspan>
                   </text>
                   <text
@@ -1583,7 +1583,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                       text-anchor="start"
                       x="239.8"
                     >
-                      0 Systems non-compliant
+                      0 systems non-compliant
                     </tspan>
                   </text>
                 </g>
