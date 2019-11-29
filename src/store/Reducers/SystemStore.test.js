@@ -1,11 +1,9 @@
 import {
-    compliantIcon,
     rulesCount,
     lastScanned,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from './SystemStore.fixtures';
-import renderer from 'react-test-renderer';
 
 describe('mapping systems to inventory entities', () => {
     it('should return an empty set if there are no systems', () => {
@@ -16,6 +14,7 @@ describe('mapping systems to inventory entities', () => {
         const oneMatchingEntityInventory = [{ id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6', facts: [] }];
         const inventoryEntities = systemsToInventoryEntities(systems, oneMatchingEntityInventory);
         expect(inventoryEntities.length).toBe(1);
+        expect(inventoryEntities).toMatchSnapshot();
     });
 
     it('should only return all systems if all have a matching in the inventory', () => {
@@ -31,7 +30,7 @@ describe('mapping systems to inventory entities', () => {
     });
 });
 
-describe('auxiliary functions to reducer', () => {
+describe('.rulesCount', () => {
     it('should set rules count as the sum over all profiles', () => {
         const system = {
             profiles: [
@@ -48,7 +47,9 @@ describe('auxiliary functions to reducer', () => {
         expect(rulesCount(system, 'rulesPassed')).toEqual(0);
         expect(rulesCount(system, 'rulesFailed')).toEqual(0);
     });
+});
 
+describe('.lastScanned', () => {
     it('should find the latest scan date', () => {
         const system = {
             profiles: [
@@ -73,57 +74,5 @@ describe('auxiliary functions to reducer', () => {
     it('should print Never if the scan date cannot be ascertained', () => {
         expect(lastScanned({ profiles: [] })).toEqual('Never');
         expect(lastScanned({ profiles: [{ lastScanned: 'Never' }] })).toEqual('Never');
-    });
-
-    it('should show a danger icon if the host is not compliant in any profile', () => {
-        const system = {
-            rulesPassed: 30,
-            rulesFailed: 300,
-            profiles: [
-                { compliant: false },
-                { compliant: false }
-            ]
-        };
-
-        const dangerIcon = renderer.create(compliantIcon(system)).toJSON();
-        expect(dangerIcon).toMatchSnapshot();
-    });
-
-    it('should show a danger icon if the host is not compliant in some profile', () => {
-        const system = {
-            rulesPassed: 30,
-            rulesFailed: 3,
-            profiles: [
-                { compliant: true },
-                { compliant: false }
-            ]
-        };
-
-        const dangerIcon = renderer.create(compliantIcon(system)).toJSON();
-        expect(dangerIcon).toMatchSnapshot();
-    });
-
-    it('should show a success icon if the host is compliant in all profiles', () => {
-        const system = {
-            rulesPassed: 30,
-            rulesFailed: 3,
-            profiles: [
-                { compliant: true },
-                { compliant: true }
-            ]
-        };
-
-        const checkIcon = renderer.create(compliantIcon(system)).toJSON();
-        expect(checkIcon).toMatchSnapshot();
-    });
-
-    it('should show a question mark icon if the host has no rules passed or failed', () => {
-        const system = {
-            rulesPassed: 0,
-            rulesFailed: 0
-        };
-
-        const questionMarkIcon = renderer.create(compliantIcon(system)).toJSON();
-        expect(questionMarkIcon).toMatchSnapshot();
     });
 });

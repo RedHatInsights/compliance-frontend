@@ -1,38 +1,13 @@
 import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
-import { QuestionCircleIcon, CheckCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from '../../Utilities/CsvExport';
-import { fixedPercentage } from '../../Utilities/TextHelper';
-
-export const compliantIcon = (system) => (
-    <React.Fragment>
-        {
-            ((system.rulesPassed + system.rulesFailed) === 0) ?
-                <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
-                system.profiles.every(profile => profile.compliant === true) ?
-                    <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
-                    <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
-        }
-    </React.Fragment>
-);
-
-const complianceScoreString = (system) => {
-    if ((system.rulesPassed + system.rulesFailed) === 0) {
-        return ' N/A';
-    }
-
-    return ' ' + fixedPercentage(100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed)));
-};
-
-const complianceScore = (system) => (
-    <React.Fragment>
-        {compliantIcon(system)}
-        { complianceScoreString(system) }
-    </React.Fragment>
-);
+import {
+    ComplianceScore as complianceScore,
+    complianceScoreString
+} from '../../PresentationalComponents';
 
 export const lastScanned = (system) => {
     const dates = system.profiles.map((profile) => new Date(profile.lastScanned));

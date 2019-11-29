@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { ReduxFormCreatableSelectInput } from '../ReduxFormWrappers/ReduxFormWrappers';
+import { ReduxFormCreatableSelectInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 
