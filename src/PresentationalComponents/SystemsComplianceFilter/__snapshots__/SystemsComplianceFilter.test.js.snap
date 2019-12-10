@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SystemsComplianceFilter expect to render without error 1`] = `
+<FilterDropdown
+  addFilter={[Function]}
+  filterCategories={
+    Array [
+      Object {
+        "title": "Compliant",
+        "type": "checkbox",
+        "urlParam": "compliant",
+        "values": Array [
+          Object {
+            "label": "Compliant",
+            "value": true,
+          },
+          Object {
+            "label": "Non-compliant",
+            "value": false,
+          },
+        ],
+      },
+      Object {
+        "title": "Compliance score",
+        "type": "checkbox",
+        "urlParam": "complianceScore",
+        "values": Array [
+          Object {
+            "label": "90 - 100%",
+            "value": "90-100",
+          },
+          Object {
+            "label": "70 - 89%",
+            "value": "70-89",
+          },
+          Object {
+            "label": "50 - 69%",
+            "value": "50-69",
+          },
+          Object {
+            "label": "Less than 50%",
+            "value": "0-49",
+          },
+        ],
+      },
+    ]
+  }
+  filters={
+    Object {
+      "complianceScore": Array [],
+      "compliant": Array [],
+    }
+  }
+  hideCategories={Array []}
+  label={
+    <FilterIcon
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      title={null}
+    />
+  }
+  removeFilter={[Function]}
+/>
+`;
+
+exports[`addFilter adds filters to state 1`] = `
+Object {
+  "complianceScore": Array [],
+  "compliant": Array [],
+}
+`;
+
+exports[`addFilter adds filters to state 2`] = `
+Object {
+  "complianceScore": Array [],
+  "compliant": Array [
+    "Sure",
+  ],
+}
+`;
+
+exports[`addFilter adds filters to state 3`] = `
+Object {
+  "complianceScore": Array [],
+  "compliant": Array [
+    "Sure",
+  ],
+}
+`;
+
+exports[`addFilter adds filters to state 4`] = `
+Object {
+  "complianceScore": Array [
+    "10-20",
+  ],
+  "compliant": Array [
+    "Sure",
+  ],
+}
+`;
+
+exports[`buildFilter expect to render without error 1`] = `"compliant = YES or compliant = NO and compliance_score >= 10 and compliance_score <= 20 or compliance_score >= 30 and compliance_score <= 40"`;
+
+exports[`removeFilter removes filters from state 1`] = `
+Object {
+  "complianceScore": Array [
+    "10-20",
+    "30-40",
+  ],
+  "compliant": Array [
+    "YES",
+    "NO",
+  ],
+}
+`;
+
+exports[`removeFilter removes filters from state 2`] = `
+Object {
+  "complianceScore": Array [
+    "10-20",
+    "30-40",
+  ],
+  "compliant": Array [
+    "NO",
+  ],
+}
+`;
+
+exports[`removeFilter removes filters from state 3`] = `
+Object {
+  "complianceScore": Array [
+    "10-20",
+    "30-40",
+  ],
+  "compliant": Array [
+    "NO",
+  ],
+}
+`;
+
+exports[`removeFilter removes filters from state 4`] = `
+Object {
+  "complianceScore": Array [
+    "30-40",
+  ],
+  "compliant": Array [
+    "NO",
+  ],
+}
+`;

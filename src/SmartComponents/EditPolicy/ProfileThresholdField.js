@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { FormGroup, Title } from '@patternfly/react-core';
-import { ReduxFormTextInput } from '../ReduxFormWrappers/ReduxFormWrappers';
+import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
 
 class ProfileThresholdField extends React.Component {

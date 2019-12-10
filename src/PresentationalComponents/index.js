@@ -3,3 +3,6 @@ export { default as LoadingComplianceCards } from './LoadingComplianceCards/Load
 export { default as CompliancePolicyCard } from './CompliancePolicyCard/CompliancePolicyCard';
 export { default as CompliancePoliciesEmptyState } from './CompliancePoliciesEmptyState/CompliancePoliciesEmptyState';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
+export { default as SystemsComplianceFilter } from './SystemsComplianceFilter/SystemsComplianceFilter';
+export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoader/PolicyDetailsContentLoader';
+export { default as ComplianceScore, complianceScoreString } from './ComplianceScore/ComplianceScore';
