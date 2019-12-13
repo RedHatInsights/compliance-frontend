@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 import { exportToCSV } from '../../store/ActionTypes.js';
 
-class DownloadTableButton extends React.Component {
+export class DownloadTableButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

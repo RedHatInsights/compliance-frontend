@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DownloadTableButton expect to render without error 1`] = `
+<Fragment>
+  <Tooltip
+    appendTo={[Function]}
+    aria="describedby"
+    boundary="window"
+    className=""
+    content={
+      <div>
+        More actions
+      </div>
+    }
+    distance={15}
+    enableFlip={true}
+    entryDelay={500}
+    exitDelay={500}
+    flipBehavior={
+      Array [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top",
+        "right",
+        "bottom",
+      ]
+    }
+    id=""
+    isAppLauncher={false}
+    isContentLeftAligned={false}
+    isVisible={false}
+    maxWidth="18.75rem"
+    position="top"
+    tippyProps={Object {}}
+    trigger="mouseenter focus"
+    zIndex={9999}
+  >
+    <Dropdown
+      dropdownItems={
+        Array [
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Export as CSV
+          </DropdownItem>,
+          <DropdownItem
+            href="/api/compliance/systems.json?search=(id ^ (1,2,3))"
+            target="_blank"
+          >
+            Export as JSON
+          </DropdownItem>,
+        ]
+      }
+      isOpen={false}
+      isPlain={true}
+      onSelect={[Function]}
+      toggle={
+        <KebabToggle
+          onToggle={[Function]}
+          style={
+            Object {
+              "color": "var(--pf-global--icon--Color--light)",
+            }
+          }
+        />
+      }
+    />
+  </Tooltip>
+</Fragment>
+`;
