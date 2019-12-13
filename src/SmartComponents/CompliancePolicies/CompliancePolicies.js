@@ -15,7 +15,7 @@ import {
     GridItem
 } from '@patternfly/react-core';
 
-const QUERY = gql`
+export const QUERY = gql`
 {
     allProfiles {
         id
@@ -32,7 +32,7 @@ const QUERY = gql`
 }
 `;
 
-const CompliancePolicies = () => {
+export const CompliancePolicies = () => {
     const { data, error, loading } = useQuery(QUERY);
 
     if (error) { return <ErrorPage error={error}/>; }
