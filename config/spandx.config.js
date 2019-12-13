@@ -12,5 +12,6 @@ routes[`/beta/apps/${APP_ID}`]       = { host: `http://localhost:${FRONTEND_PORT
 routes[`/apps/${APP_ID}`]            = { host: `http://localhost:${FRONTEND_PORT}` };
 
 routes[`/api/${APP_ID}`] = { host: `http://localhost:${API_PORT}` };
+routes[`/r/insights/platform/${APP_ID}`] = { host: `http://localhost:${API_PORT}` };
 
 module.exports = { routes };
