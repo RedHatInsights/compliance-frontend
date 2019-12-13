@@ -1,9 +1,9 @@
 import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
 
-import { CompliancePolicies, QUERY } from './CompliancePolicies.js';
+import { CompliancePolicies } from './CompliancePolicies.js';
 
-jest.mock('@apollo/react-hooks')
+jest.mock('@apollo/react-hooks');
 
 describe('CompliancePolicies', () => {
     it('expect to render without error', () => {
