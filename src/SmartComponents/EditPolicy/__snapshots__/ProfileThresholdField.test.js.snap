@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileThresholdField expect to render without error 1`] = `
+<Fragment>
+  <Title
+    headingLevel="h3"
+    size="xl"
+  >
+    Compliance threshold
+  </Title>
+  The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
+  <FormGroup
+    field-id="policy-threshold"
+    helperText="A value of 95% or higher is recommended"
+    helperTextInvalid="Threshold has to be a number between 0 and 100"
+    isValid={true}
+    label="Compliance threshold (%)"
+  >
+    <Field
+      aria-label="compliance threshold"
+      defaultValue={10}
+      id="complianceThreshold"
+      isRequired={true}
+      isValid={true}
+      name="complianceThreshold"
+      onChange={[Function]}
+      style={
+        Object {
+          "display": "block",
+          "width": "60%",
+        }
+      }
+      type="number"
+    />
+  </FormGroup>
+</Fragment>
+`;
