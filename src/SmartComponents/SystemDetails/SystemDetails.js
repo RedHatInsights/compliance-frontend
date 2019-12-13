@@ -1,4 +1,6 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { useHistory, useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
 import {
     PageHeader,
@@ -6,15 +8,13 @@ import {
     Skeleton,
     SkeletonSize
 } from '@redhat-cloud-services/frontend-components';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
 import {
     Breadcrumb,
     BreadcrumbItem
 } from '@patternfly/react-core';
-import InventoryDetails from '../InventoryDetails/InventoryDetails';
+import InventoryDetails from 'SmartComponents';
 import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const QUERY = gql`
@@ -25,58 +25,51 @@ query System($inventoryId: String!){
 }
 `;
 
-class SystemDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onNavigate = onNavigate.bind(this);
+export const SystemDetails = (props) => {
+    let history = useHistory();
+    let location = useLocation();
+    const {
+        match: { params: { inventoryId } }
+    } = props;
+    const hidePassed = location.query && location.query.hidePassed;
+    const { data, error, loading } = useQuery(QUERY, {
+        variables: { inventoryId }
+    });
+
+    if (error) {
+        if (error.networkError.statusCode === 401) {
+            window.insights.chrome.auth.logout();
+        }
+
+        return 'Oops! Error loading Systems data: ' + error;
     }
 
-    render() {
-        const {
-            match: { params: { inventoryId } }
-        } = this.props;
-        const hidePassed = this.props.location.query && this.props.location.query.hidePassed;
-        return (
-            <Query query={QUERY} variables={{ inventoryId }}>
-                {({ data, error, loading }) => {
-                    if (error) {
-                        if (error.networkError.statusCode === 401) {
-                            window.insights.chrome.auth.logout();
-                        }
-
-                        return 'Oops! Error loading Systems data: ' + error;
-                    }
-
-                    if (loading) {
-                        return (<PageHeader><Skeleton size={ SkeletonSize.md } /></PageHeader>);
-                    }
-
-                    return (
-                        <React.Fragment>
-                            <PageHeader>
-                                <Breadcrumb>
-                                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ (event) => this.onNavigate(event) }>
-                                        Systems
-                                    </BreadcrumbItem>
-                                    <BreadcrumbItem isActive>{data.system.name}</BreadcrumbItem>
-                                </Breadcrumb>
-                                <InventoryDetails sendData={this.getData} />
-                                <br/>
-                            </PageHeader>
-                            <Main>
-                                <ComplianceSystemDetails hidePassed={hidePassed} />
-                            </Main>
-                        </React.Fragment>
-                    );
-                }}
-            </Query>
-        );
+    if (loading) {
+        return (<PageHeader><Skeleton size={ SkeletonSize.md } /></PageHeader>);
     }
-}
+
+    return (
+        <React.Fragment>
+            <PageHeader>
+                <Breadcrumb>
+                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ (event) => onNavigate(event, history) }>
+                        Systems
+                    </BreadcrumbItem>
+                    <BreadcrumbItem isActive>{data.system.name}</BreadcrumbItem>
+                </Breadcrumb>
+                <InventoryDetails />
+                <br/>
+            </PageHeader>
+            <Main>
+                <ComplianceSystemDetails hidePassed={hidePassed} />
+            </Main>
+        </React.Fragment>
+    );
+};
 
 SystemDetails.propTypes = {
     match: propTypes.object,
     location: propTypes.object
 };
 
-export default routerParams(SystemDetails);
+export default SystemDetails;
