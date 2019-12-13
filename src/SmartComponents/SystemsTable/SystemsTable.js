@@ -46,11 +46,48 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 
 @registry()
 class SystemsTable extends React.Component {
+    updateFilter = (event, filter) => {
+        debugger;
+    }
+
     state = {
         InventoryCmp: null,
         items: this.props.items,
         filterEnabled: this.props.filterEnabled,
         filter: this.props.filter,
+        filterConfig: {
+            items: [
+                {
+                    type: 'checkbox',
+                    label: 'Compliant',
+                    value: 'compliant',
+                    filterValues: {
+                        onChange: this.updateFilter,
+                        items: [
+                            { label: 'Compliant', value: 'compliant' },
+                            { label: 'Non-compliant', value: 'noncompliant' }
+                        ]
+                    }
+                },
+                {
+                    type: 'checkbox',
+                    label: 'Compliance score',
+                    value: 'complianceScore',
+                    filterValues: {
+                        onChange: this.updateFilter,
+                        items: [
+                            { label: '90 - 100%', value: '90-100' },
+                            { label: '70 - 89%', value: '70-89' },
+                            { label: '50 - 69%', value: '50-69' },
+                            { label: 'Less than 50%', value: '0-49' }
+                        ]
+                    }
+                }
+            ]
+        },
+        actionsConfig: {
+            actions: ['', {}]
+        },
         search: '',
         policyId: this.props.policyId,
         page: 1,
@@ -86,10 +123,6 @@ class SystemsTable extends React.Component {
 
     onRefresh = ({ page, per_page: perPage }) => {
         this.setState({ page, perPage }, this.systemFetch);
-    }
-
-    updateFilter = (filter, filterEnabled) => {
-        this.setState({ filter, filterEnabled }, this.systemFetch);
     }
 
     handleSearch = debounce(search => {
@@ -141,33 +174,19 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { page, totalCount, perPage, items, InventoryCmp } = this.state;
+        const { page, totalCount, perPage, items, InventoryCmp, filter, filterConfig, activeFiltersConfig } = this.state;
 
         return (InventoryCmp &&
             <InventoryCmp
+                ref={this.inventory}
                 onRefresh={this.onRefresh}
                 page={page}
                 total={totalCount}
                 perPage={perPage}
-                items={items.map((edge) => edge.node.id)}
-            >
-                <reactCore.ToolbarGroup>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <reactCore.InputGroup>
-                            <SystemsComplianceFilter updateFilter={this.updateFilter}/>
-                            <SimpleTableFilter buttonTitle={null}
-                                onFilterChange={this.handleSearch}
-                                placeholder="Search by name" />
-                        </reactCore.InputGroup>
-                    </reactCore.ToolbarItem>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <ComplianceRemediationButton />
-                    </reactCore.ToolbarItem>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
-                        <DownloadTableButton />
-                    </reactCore.ToolbarItem>
-                </reactCore.ToolbarGroup>
-            </InventoryCmp>
+                filter={filter}
+                filterConfig={filterConfig}
+                activeFiltersConfig={activeFiltersConfig}
+            />
         );
     }
 }
