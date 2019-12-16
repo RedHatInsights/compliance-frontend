@@ -15,7 +15,7 @@ import {
     GridItem
 } from '@patternfly/react-core';
 
-export const QUERY = gql`
+const QUERY = gql`
 {
     allProfiles {
         id
