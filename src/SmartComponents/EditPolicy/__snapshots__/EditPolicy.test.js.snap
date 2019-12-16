@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicy expect to render without error 1`] = `
+<Fragment>
+  <Dropdown
+    className="policy-details-dropdown"
+    dropdownItems={
+      Array [
+        <DropdownItem
+          component="button"
+          onClick={[Function]}
+        >
+          Edit policy
+        </DropdownItem>,
+      ]
+    }
+    isOpen={false}
+    onSelect={[Function]}
+    position="right"
+    toggle={
+      <DropdownToggle
+        onToggle={[Function]}
+      >
+        Actions
+      </DropdownToggle>
+    }
+  />
+  <Modal
+    actions={
+      Array [
+        <Unknown
+          onClick={[Function]}
+          variant="secondary"
+        >
+          Cancel
+        </Unknown>,
+        <Apollo(UpdateProfileButton)
+          businessObjective={
+            Object {
+              "id": 1,
+              "title": "BO title",
+            }
+          }
+          onClick={[Function]}
+          policyId="POLICY_ID"
+          threshold={30}
+        />,
+      ]
+    }
+    appendTo={<body />}
+    ariaDescribedById=""
+    className=""
+    hideTitle={false}
+    isFooterLeftAligned={true}
+    isLarge={false}
+    isOpen={false}
+    isSmall={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Edit policy details"
+  >
+    <Form>
+      <withApollo(ReduxForm)
+        businessObjective={
+          Object {
+            "id": 1,
+            "title": "BO title",
+          }
+        }
+        dispatch={[MockFunction]}
+        policyId="POLICY_ID"
+      />
+      <ReduxForm
+        destroyOnUnmount={true}
+        enableReinitialize={false}
+        forceUnregisterOnUnmount={false}
+        form="editPolicy"
+        getFormState={[Function]}
+        keepDirtyOnReinitialize={false}
+        persistentSubmitErrors={false}
+        pure={true}
+        shouldAsyncValidate={[Function]}
+        shouldError={[Function]}
+        shouldValidate={[Function]}
+        shouldWarn={[Function]}
+        submitAsSideEffect={false}
+        touchOnBlur={true}
+        touchOnChange={false}
+        updateUnregisteredFields={false}
+      />
+    </Form>
+  </Modal>
+</Fragment>
+`;

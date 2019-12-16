@@ -32,7 +32,7 @@ const QUERY = gql`
 }
 `;
 
-const CompliancePolicies = () => {
+export const CompliancePolicies = () => {
     const { data, error, loading } = useQuery(QUERY);
 
     if (error) { return <ErrorPage error={error}/>; }

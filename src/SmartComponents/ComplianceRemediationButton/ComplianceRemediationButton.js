@@ -1,3 +1,6 @@
+/*
+    TODO: Replace with frontend-components version
+*/
 import React from 'react';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
@@ -33,6 +36,7 @@ const FailedRulesQuery = graphql(GET_FAILED_RULES, {
 });
 
 class ComplianceRemediationButton extends React.Component {
+
     /* eslint-disable camelcase */
     formatRule = ({ title, refId }, profile, systems) => ({
         id: `ssg:rhel7|${profile}|${refId}`,

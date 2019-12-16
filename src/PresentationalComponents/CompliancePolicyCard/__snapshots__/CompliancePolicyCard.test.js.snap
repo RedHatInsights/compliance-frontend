@@ -112,7 +112,6 @@ exports[`CompliancePolicyCard expect to render without error 1`] = `
               }
             >
               <Link
-                replace={false}
                 to="/policies/ID"
               >
                 More details

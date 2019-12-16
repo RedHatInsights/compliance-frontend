@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SystemDetails expect to render an error 1`] = `"Oops! Error loading Systems data: [object Object]"`;
+
+exports[`SystemDetails expect to render an error 2`] = `"Oops! Error loading Systems data: [object Object]"`;
+
+exports[`SystemDetails expect to render loading 1`] = `
+<PageHeader>
+  <Skeleton
+    isDark={false}
+    size="md"
+  />
+</PageHeader>
+`;
+
+exports[`SystemDetails expect to render without error 1`] = `
+<Fragment>
+  <PageHeader>
+    <Component>
+      <BreadcrumbItem
+        onClick={[Function]}
+        to="/rhel/compliance/systems"
+      >
+        Systems
+      </BreadcrumbItem>
+      <BreadcrumbItem
+        isActive={true}
+      >
+        test.host.local
+      </BreadcrumbItem>
+    </Component>
+    <[object Object] />
+    <br />
+  </PageHeader>
+  <Connect(Main)>
+    <Component
+      hidePassed={false}
+    />
+  </Connect(Main)>
+</Fragment>
+`;

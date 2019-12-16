@@ -15,7 +15,7 @@ import BusinessObjectiveField from './BusinessObjectiveField';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
-class EditPolicy extends Component {
+export class EditPolicy extends Component {
     constructor(props) {
         super(props);
         this.state = {

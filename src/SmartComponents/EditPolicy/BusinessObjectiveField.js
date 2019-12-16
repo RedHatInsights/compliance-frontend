@@ -16,7 +16,7 @@ query businessObjectives {
 }
 `;
 
-class BusinessObjectiveField extends React.Component {
+export class BusinessObjectiveField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
