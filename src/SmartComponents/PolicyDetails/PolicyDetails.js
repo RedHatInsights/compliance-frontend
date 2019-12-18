@@ -187,7 +187,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                         <TextContent className='policy-description'>
                             <Text component={TextVariants.h5}><b>Description</b></Text>
                             <Text component={TextVariants.p}>
-                                <Truncate text={linkifyHtml(policy.description)} length={380} inline={true} />
+                                <Truncate text={linkifyHtml(policy.description || '')} length={380} inline={true} />
                             </Text>
                             <Tooltip
                                 position='left'
