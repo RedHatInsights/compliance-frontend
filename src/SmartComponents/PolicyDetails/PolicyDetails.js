@@ -208,7 +208,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                                         </b>
                                     </Text>
                                     <Text className='threshold-tooltip' component={TextVariants.p}>
-                                        { fixedPercentage(policy.complianceThreshold) }
+                                        { fixedPercentage(policy.complianceThreshold, 1) }
                                     </Text>
                                 </span>
                             </Tooltip>
