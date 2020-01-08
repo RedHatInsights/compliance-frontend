@@ -51,7 +51,6 @@ class SystemsTable extends React.Component {
     }
 
     componentDidMount() {
-        this.systemFetch();
         this.fetchInventory();
     }
 
@@ -100,8 +99,6 @@ class SystemsTable extends React.Component {
                 totalCount: items.data.systems.totalCount,
                 loading: false
             });
-
-            this.fetchInventory();
         });
     }
 
