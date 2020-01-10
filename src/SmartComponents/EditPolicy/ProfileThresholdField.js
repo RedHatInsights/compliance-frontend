@@ -3,13 +3,14 @@ import { Field, reduxForm } from 'redux-form';
 import { FormGroup, Title } from '@patternfly/react-core';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
+import round from 'lodash/round';
 
 export class ProfileThresholdField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             validThreshold: true,
-            threshold: props.previousThreshold
+            threshold: round(props.previousThreshold, 1)
         };
     }
 
@@ -17,7 +18,7 @@ export class ProfileThresholdField extends React.Component {
         if (threshold > 100 || threshold < 0) {
             this.setState({ validThreshold: false });
         } else {
-            this.setState({ validThreshold: true, threshold });
+            this.setState({ validThreshold: true, threshold: round(threshold, 1) });
         }
     };
 
