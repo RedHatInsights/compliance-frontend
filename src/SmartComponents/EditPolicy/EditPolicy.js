@@ -14,6 +14,7 @@ import ProfileThresholdField from './ProfileThresholdField';
 import BusinessObjectiveField from './BusinessObjectiveField';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
+import round from 'lodash/round';
 
 export class EditPolicy extends Component {
     constructor(props) {
@@ -78,7 +79,7 @@ export class EditPolicy extends Component {
                         <UpdateProfileButton
                             key='confirm'
                             policyId={policyId}
-                            threshold={ parseFloat(complianceThreshold || previousThreshold) }
+                            threshold={ round(parseFloat(complianceThreshold || previousThreshold), 1) }
                             businessObjective={businessObjective}
                             editPolicyBusinessObjective={editPolicyBusinessObjective}
                             onClick={this.handleModalToggle}
