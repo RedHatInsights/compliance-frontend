@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyDetails expect to render without error 1`] = `
+<ReduxForm
+  destroyOnUnmount={false}
+  dispatch={[Function]}
+  enableReinitialize={false}
+  forceUnregisterOnUnmount={true}
+  form="policyForm"
+  getFormState={[Function]}
+  initialValues={
+    Object {
+      "benchmark": "a5e7f1ea-e63c-40be-a17a-c2a247c11e10",
+      "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
+      "name": "C2S for Red Hat Enterprise Linux 6",
+      "profile": "{\\"complianceThreshold\\":100,\\"description\\":\\"This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)\\",\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\"}",
+      "refId": "xccdf_org.ssgproject.content_profile_C2S",
+    }
+  }
+  keepDirtyOnReinitialize={false}
+  persistentSubmitErrors={false}
+  profile={
+    Object {
+      "complianceThreshold": 100,
+      "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
+      "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
+      "name": "C2S for Red Hat Enterprise Linux 6",
+      "refId": "xccdf_org.ssgproject.content_profile_C2S",
+    }
+  }
+  pure={true}
+  shouldAsyncValidate={[Function]}
+  shouldError={[Function]}
+  shouldValidate={[Function]}
+  shouldWarn={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  submitAsSideEffect={false}
+  touchOnBlur={true}
+  touchOnChange={false}
+  updateUnregisteredFields={false}
+/>
+`;

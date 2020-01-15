@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewCreatedPolicy expect to render without error 1`] = `
+<ReviewCreatedPolicy
+  benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+  dispatch={[Function]}
+  name="C2S for Red Hat Enterprise Linux 6"
+  refId="xccdf_org.ssgproject.content_profile_C2S"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  systemsCount={0}
+/>
+`;

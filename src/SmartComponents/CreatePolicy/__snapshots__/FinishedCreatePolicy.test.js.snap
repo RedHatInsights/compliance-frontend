@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FinishedCreatePolicy expect to render without error 1`] = `
+<Apollo(FinishedCreatePolicy)
+  benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+  cloneFromProfileId="197eb783-7bca-45c5-978d-c1e89b0118da"
+  complianceThreshold={100}
+  description="This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)"
+  dispatch={[Function]}
+  name="C2S for Red Hat Enterprise Linux 6"
+  refId="xccdf_org.ssgproject.content_profile_C2S"
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  systemIds={Array []}
+/>
+`;
