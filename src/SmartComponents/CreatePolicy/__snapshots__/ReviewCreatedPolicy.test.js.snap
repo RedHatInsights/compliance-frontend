@@ -1,42 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReviewCreatedPolicy expect to render without error 1`] = `
-<ReviewCreatedPolicy
-  benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-  dispatch={[Function]}
-  name="C2S for Red Hat Enterprise Linux 6"
-  refId="xccdf_org.ssgproject.content_profile_C2S"
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  systemsCount={0}
-/>
+<div
+  className="pf-c-content"
+>
+  <h1
+    className=""
+    data-pf-content={true}
+  >
+    Review
+  </h1>
+  <h4
+    className=""
+    data-pf-content={true}
+  >
+    Review your policy before finishing. SCAP security guide, profile type and name cannot be changed after initial creation. Make sure they are correct!
+  </h4>
+  <hr />
+  <dl
+    className=""
+    data-pf-content={true}
+  >
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      SCAP security guide
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+       SCAP security guide for RHEL7 - 0.1.40
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      Profile type
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      C2S for Red Hat Enterprise Linux 6
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      Generated ID
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      xccdf_org.ssgproject.content_profile_C2S
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      Number of systems
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      0
+    </dd>
+  </dl>
+</div>
+`;
+
+exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
+<div
+  className="ins-c-spinner"
+  role="status"
+>
+  <span
+    className="pf-u-screen-reader"
+  >
+    Loading...
+  </span>
+</div>
 `;
