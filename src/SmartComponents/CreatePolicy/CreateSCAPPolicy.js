@@ -67,7 +67,7 @@ class CreateSCAPPolicy extends React.Component {
                                     label="Security guide"
                                     isRequired
                                     fieldId="benchmark">
-                                    { benchmarks.map((benchmark) => {
+                                    { benchmarks && benchmarks.map((benchmark) => {
                                         const { title, version, id } = benchmark;
                                         return (
                                             <Text key={id}>

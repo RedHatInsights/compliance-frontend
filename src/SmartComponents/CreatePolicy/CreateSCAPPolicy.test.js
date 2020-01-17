@@ -1,26 +1,62 @@
 import toJson from 'enzyme-to-json';
 import CreateSCAPPolicy from './CreateSCAPPolicy.js';
 import configureStore from 'redux-mock-store';
+import { useQuery } from '@apollo/react-hooks';
+import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
+import { benchmarksQuery } from './fixtures.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
 
 describe('CreateSCAPPolicy', () => {
     let store;
-    let CreateSCAPPolicyWrapper;
-    let CreateSCAPPolicyComponent;
+    let component;
 
     beforeEach(() => {
         store = mockStore({});
-        /* eslint-disable react/display-name */
-        CreateSCAPPolicyWrapper = (props) => (
-            <CreateSCAPPolicy {...props} store={store} />
-        );
-        /* eslint-enable react/display-name */
-        CreateSCAPPolicyComponent = shallow(<CreateSCAPPolicyWrapper />).dive();
     });
 
     it('expect to render without error', () => {
-        expect(toJson(CreateSCAPPolicyComponent)).toMatchSnapshot();
+        useQuery.mockImplementation(() => ({ data: {}, error: false, loading: false }));
+        component = renderer.create(
+            <Provider store={store}>
+                <CreateSCAPPolicy />
+            </Provider>
+        );
+        expect(toJson(component)).toMatchSnapshot();
+    });
+
+    it('should render a spinner while loading', () => {
+        useQuery.mockImplementation(() => ({ data: {}, error: false, loading: true }));
+        component = renderer.create(
+            <Provider store={store}>
+                <CreateSCAPPolicy />
+            </Provider>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it('should render benchmarks and no policies until one is selected', () => {
+        useQuery.mockImplementation(() => ({ data: benchmarksQuery, error: false, loading: false }));
+        component = renderer.create(
+            <Provider store={store}>
+                <CreateSCAPPolicy />
+            </Provider>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it('should render policies from the selected benchmark only', () => {
+        store = mockStore({ form: { policyForm: {
+            values: { benchmark: benchmarksQuery.allBenchmarks[0].id }
+        } } });
+        useQuery.mockImplementation(() => ({ data: benchmarksQuery, error: false, loading: false }));
+        component = renderer.create(
+            <Provider store={store}>
+                <CreateSCAPPolicy />
+            </Provider>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
     });
 });
