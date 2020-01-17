@@ -1,6 +1,7 @@
 import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
 import { CompliancePolicies } from './CompliancePolicies.js';
+import { profiles } from './fixtures.js';
 
 jest.mock('@apollo/react-hooks');
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
@@ -69,4 +70,12 @@ describe('CompliancePolicies', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
+    it('expect to render a policies table', () => {
+        useQuery.mockImplementation(() => ({ data: profiles, error: false, loading: false }));
+        const wrapper = shallow(
+            <CompliancePolicies />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 });
