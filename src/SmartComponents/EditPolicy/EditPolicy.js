@@ -28,7 +28,9 @@ export class EditPolicy extends Component {
     }
 
     handleModalToggle = () => {
-        this.setState(({ isModalOpen }) => ({
+        const { isModalOpen } = this.state;
+        insights.chrome.appAction(!isModalOpen ? 'edit-business-objective' : '');
+        this.setState(() => ({
             isModalOpen: !isModalOpen,
             businessObjective: this.props.businessObjective
         }));
