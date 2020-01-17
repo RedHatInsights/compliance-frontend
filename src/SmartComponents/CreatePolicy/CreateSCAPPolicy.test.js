@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import CreateSCAPPolicy from './CreateSCAPPolicy.js';
 import configureStore from 'redux-mock-store';
 import { useQuery } from '@apollo/react-hooks';
@@ -24,7 +23,7 @@ describe('CreateSCAPPolicy', () => {
                 <CreateSCAPPolicy />
             </Provider>
         );
-        expect(toJson(component)).toMatchSnapshot();
+        expect(component.toJSON()).toMatchSnapshot();
     });
 
     it('should render a spinner while loading', () => {
