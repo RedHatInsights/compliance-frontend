@@ -1,38 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreatePolicy expect to render without error 1`] = `
-<CreatePolicy
-  dispatch={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-/>
+exports[`CreatePolicy expect to render the create button 1`] = `
+<button
+  aria-disabled={null}
+  aria-label={null}
+  className="pf-c-button pf-m-primary"
+  disabled={false}
+  onClick={[Function]}
+  tabIndex={null}
+  type="button"
+>
+  Create new policy
+</button>
 `;

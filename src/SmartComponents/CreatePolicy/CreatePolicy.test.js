@@ -1,6 +1,7 @@
-import toJson from 'enzyme-to-json';
 import CreatePolicy from './CreatePolicy.js';
 import configureStore from 'redux-mock-store';
+import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
@@ -10,20 +11,18 @@ jest.mock('../CreatePolicy/EditPolicyRules', () => {
 
 describe('CreatePolicy', () => {
     let store;
-    let CreatePolicyWrapper;
-    let CreatePolicyComponent;
+    let component;
 
     beforeEach(() => {
         store = mockStore({});
-        /* eslint-disable react/display-name */
-        CreatePolicyWrapper = (props) => (
-            <CreatePolicy {...props} store={store} />
-        );
-        /* eslint-enable react/display-name */
-        CreatePolicyComponent = shallow(<CreatePolicyWrapper />).dive();
     });
 
-    it('expect to render without error', () => {
-        expect(toJson(CreatePolicyComponent)).toMatchSnapshot();
+    it('expect to render the create button', () => {
+        component = renderer.create(
+            <Provider store={store}>
+                <CreatePolicy />
+            </Provider>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
     });
 });
