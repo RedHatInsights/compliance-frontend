@@ -19,7 +19,7 @@ class CreatePolicy extends React.Component {
         super(props);
 
         this.state = {
-            isOpen: false,
+            isOpen: this.props.isOpen,
             stepIdReached: 1
         };
 
@@ -109,7 +109,12 @@ CreatePolicy.propTypes = {
     benchmark: propTypes.string,
     profile: propTypes.string,
     name: propTypes.string,
-    refId: propTypes.string
+    refId: propTypes.string,
+    isOpen: propTypes.bool
+};
+
+CreatePolicy.defaultProps = {
+    isOpen: false
 };
 
 const selector = formValueSelector('policyForm');

@@ -1,4 +1,5 @@
 import CreatePolicy from './CreatePolicy.js';
+import toJson from 'enzyme-to-json';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
@@ -24,5 +25,14 @@ describe('CreatePolicy', () => {
             </Provider>
         );
         expect(component.toJSON()).toMatchSnapshot();
+    });
+
+    it('expect to render the wizard', async () => {
+        const wrapper = shallow(
+            <Provider store={store}>
+                <CreatePolicy isOpen />
+            </Provider>
+        );
+        expect(toJson(wrapper.dive().dive())).toMatchSnapshot();
     });
 });
