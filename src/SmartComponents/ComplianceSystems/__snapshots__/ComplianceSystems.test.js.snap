@@ -2,9 +2,11 @@
 
 exports[`ComplianceSystems expect to render without error 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance systems"
     />
     <withRouter(Connect(RouterParams)) />
   </PageHeader>
