@@ -17,12 +17,12 @@ import propTypes from 'prop-types';
 class CreatePolicy extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isOpen: this.props.isOpen,
-            stepIdReached: 1
-        };
     }
+
+    state = {
+        isOpen: this.props.isOpen,
+        stepIdReached: 1
+    };
 
     toggleOpen = () => {
         const { isOpen } = this.state;

@@ -22,8 +22,9 @@ import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from './mutations';
 class FinishedCreatePolicy extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { percent: 0 };
     }
+
+    state = { percent: 0 };
 
     componentDidMount() {
         this.createProfile().then((result) => {
