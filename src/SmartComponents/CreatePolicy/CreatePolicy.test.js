@@ -28,11 +28,11 @@ describe('CreatePolicy', () => {
     });
 
     it('expect to render the wizard', async () => {
-        const wrapper = shallow(
+        const wrapper = mount(
             <Provider store={store}>
                 <CreatePolicy isOpen />
             </Provider>
         );
-        expect(toJson(wrapper.dive().dive())).toMatchSnapshot();
+        expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
     });
 });

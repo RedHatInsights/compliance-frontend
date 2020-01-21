@@ -15,29 +15,9 @@ import {
 import { CogsIcon } from '@patternfly/react-icons';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import gql from 'graphql-tag';
 import { compose } from 'redux';
-import { graphql } from 'react-apollo';
-
-const CREATE_PROFILE = gql`
-mutation CreateProfile($input: createProfileInput!) {
-    createProfile(input: $input) {
-        profile {
-            id
-        }
-    }
-}
-`;
-
-const ASSOCIATE_SYSTEMS_TO_PROFILES = gql`
-mutation associateSystems($input: associateSystemsInput!) {
-    associateSystems(input: $input) {
-        profile {
-            id
-        }
-    }
-}
-`;
+import { withApollo } from 'react-apollo';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from './mutations';
 
 class FinishedCreatePolicy extends React.Component {
     constructor(props) {
@@ -55,8 +35,8 @@ class FinishedCreatePolicy extends React.Component {
     }
 
     createProfile = () => {
-        const { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold, mutate } = this.props;
-        return mutate({
+        const { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold, client } = this.props;
+        return client.mutate({
             mutation: CREATE_PROFILE,
             variables: {
                 input: { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold }
@@ -65,9 +45,9 @@ class FinishedCreatePolicy extends React.Component {
     }
 
     associateSystems = () => {
-        const { systemIds, mutate } = this.props;
+        const { systemIds, client } = this.props;
         const { profileId: id } = this.state;
-        return mutate({
+        return client.mutate({
             mutation: ASSOCIATE_SYSTEMS_TO_PROFILES,
             variables: {
                 input: { id, systemIds }
@@ -88,7 +68,11 @@ class FinishedCreatePolicy extends React.Component {
                         {percent === 100 ? 'Profile creation complete' : 'Profile creation in progress'}
                     </Title>
                     <EmptyStateBody>
-                        <Progress value={percent} measureLocation={ProgressMeasureLocation.outside} />
+                        <Progress
+                            id={'finished-create-policy'}
+                            value={percent}
+                            measureLocation={ProgressMeasureLocation.outside}
+                        />
                     </EmptyStateBody>
                     <EmptyStateBody>
                         Your Compliance Profile is being created. After this is created, you may assign it
@@ -105,7 +89,7 @@ class FinishedCreatePolicy extends React.Component {
 
 FinishedCreatePolicy.propTypes = {
     benchmarkId: propTypes.string.isRequired,
-    mutate: propTypes.func.isRequired,
+    client: propTypes.object.isRequired,
     cloneFromProfileId: propTypes.string.isRequired,
     onClose: propTypes.func.isRequired,
     refId: propTypes.string.isRequired,
@@ -129,5 +113,5 @@ export default compose(
             systemIds: selector(state, 'systems')
         })
     ),
-    graphql(CREATE_PROFILE)
+    withApollo
 )(FinishedCreatePolicy);

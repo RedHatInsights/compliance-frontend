@@ -6,8 +6,8 @@ import { sortable } from '@patternfly/react-table';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Query } from 'react-apollo';
 import propTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 
 const QUERY = gql`
 query Profile($profileId: String!){
@@ -37,27 +37,25 @@ const columns = [
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
 
-const EditPolicyRules = ({ profileId }) => (
-    <Query query={ QUERY } variables={{ profileId }}>
-        { ({ data, error, loading }) => {
-            if (error) { return error; }
+const EditPolicyRules = ({ profileId }) => {
+    const { data, error, loading } = useQuery(QUERY, { variables: { profileId } });
 
-            if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
+    if (error) { return error; }
 
-            return (
-                <SystemRulesTable
-                    remediationsEnabled={false}
-                    columns={columns}
-                    loading={loading}
-                    profileRules={ !loading && [{
-                        profile: { refId: data.profile.refId, name: data.profile.name },
-                        rules: data.profile.rules
-                    }]}
-                />
-            );
-        } }
-    </Query>
-);
+    if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
+
+    return (
+        <SystemRulesTable
+            remediationsEnabled={false}
+            columns={columns}
+            loading={loading}
+            profileRules={ !loading && [{
+                profile: { refId: data.profile.refId, name: data.profile.name },
+                rules: data.profile.rules
+            }]}
+        />
+    );
+};
 
 EditPolicyRules.propTypes = {
     profileId: propTypes.string

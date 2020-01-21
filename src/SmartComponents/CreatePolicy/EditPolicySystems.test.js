@@ -1,29 +1,25 @@
-import toJson from 'enzyme-to-json';
 import EditPolicySystems from './EditPolicySystems.js';
+import { policyFormValues } from './fixtures.js';
 import configureStore from 'redux-mock-store';
+import renderer from 'react-test-renderer';
+import { MockedProvider } from '@apollo/react-testing';
 
 const mockStore = configureStore();
-jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Systems table</p>;
-});
 
 describe('EditPolicySystems', () => {
     let store;
-    let EditPolicySystemsWrapper;
-    let EditPolicySystemsComponent;
+    let component;
 
     beforeEach(() => {
-        store = mockStore({});
-        /* eslint-disable react/display-name */
-        EditPolicySystemsWrapper = (props) => (
-            <EditPolicySystems {...props} store={store} />
-        );
-        /* eslint-enable react/display-name */
-        EditPolicySystemsComponent = shallow(<EditPolicySystemsWrapper />).dive();
+        store = mockStore({ form: { policyForm: { values: policyFormValues } } });
     });
 
     it('expect to render without error', () => {
-        expect(toJson(EditPolicySystemsComponent)).toMatchSnapshot();
+        component = renderer.create(
+            <MockedProvider>
+                <EditPolicySystems store={store} />
+            </MockedProvider>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
     });
 });

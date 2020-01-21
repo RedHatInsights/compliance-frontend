@@ -1,55 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicySystems expect to render without error 1`] = `
-<ReduxForm
-  destroyOnUnmount={false}
-  dispatch={[Function]}
-  enableReinitialize={false}
-  forceUnregisterOnUnmount={true}
-  form="policyForm"
-  getFormState={[Function]}
-  keepDirtyOnReinitialize={false}
-  persistentSubmitErrors={false}
-  pure={true}
-  selectedSystemIds={Array []}
-  shouldAsyncValidate={[Function]}
-  shouldError={[Function]}
-  shouldValidate={[Function]}
-  shouldWarn={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  submitAsSideEffect={false}
-  touchOnBlur={true}
-  touchOnChange={false}
-  updateUnregisteredFields={false}
-/>
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Systems
+    </h1>
+    <h4
+      className=""
+      data-pf-content={true}
+    >
+      Choose systems to scan with this policy. You can add and remove systems later.
+    </h4>
+  </div>,
+  <form
+    className="pf-c-form"
+    noValidate={true}
+  />,
+]
 `;

@@ -1,3 +1,5 @@
+import { CREATE_PROFILE } from './mutations';
+
 export const policyFormValues = {
     benchmark: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
     description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
@@ -481,5 +483,30 @@ export const policyRulesQuery = {
             }
         ],
         __typename: 'Profile'
+    }
+};
+
+export const mutateCreateProfileMock =  {
+    request: {
+        query: CREATE_PROFILE,
+        variables: {
+            input: {
+                benchmarkId: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
+                cloneFromProfileId: '197eb783-7bca-45c5-978d-c1e89b0118da',
+                refId: 'xccdf_org.ssgproject.content_profile_C2S',
+                name: 'C2S for Red Hat Enterprise Linux 6',
+                description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
+                complianceThreshold: 100
+            }
+        }
+    },
+    result: {
+        data: {
+            createProfile: {
+                profile: {
+                    id: 'foo'
+                }
+            }
+        }
     }
 };
