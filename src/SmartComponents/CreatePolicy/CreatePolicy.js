@@ -22,20 +22,20 @@ class CreatePolicy extends React.Component {
             isOpen: this.props.isOpen,
             stepIdReached: 1
         };
-
-        this.toggleOpen = () => {
-            const { isOpen } = this.state;
-            this.setState({
-                isOpen: !isOpen
-            });
-        };
-
-        this.onNext = ({ id }) => {
-            this.setState({
-                stepIdReached: this.state.stepIdReached < id ? id : this.state.stepIdReached
-            });
-        };
     }
+
+    toggleOpen = () => {
+        const { isOpen } = this.state;
+        this.setState({
+            isOpen: !isOpen
+        });
+    };
+
+    onNext = ({ id }) => {
+        this.setState({
+            stepIdReached: this.state.stepIdReached < id ? id : this.state.stepIdReached
+        });
+    };
 
     render() {
         const { isOpen, stepIdReached } = this.state;
