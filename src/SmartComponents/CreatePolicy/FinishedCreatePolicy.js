@@ -20,14 +20,22 @@ import { withApollo } from 'react-apollo';
 import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from './mutations';
 
 class FinishedCreatePolicy extends React.Component {
-    state = { percent: 0 };
+    state = {
+        percent: 0,
+        message: 'Your Compliance Profile is being created. After this is created, you may assign it to hosts and customize it.'
+    };
 
     componentDidMount() {
         this.createProfile().then((result) => {
             this.setState(prevState => ({
+                message: 'Your Compliance Profile has been created. Associating systems to it...',
                 percent: prevState.percent + 50,
                 profileId: result.data.createProfile.profile.id
             }), this.associateSystems);
+        }).catch((error) => {
+            this.setState({
+                message: error.networkError.message
+            });
         });
     }
 
@@ -50,12 +58,15 @@ class FinishedCreatePolicy extends React.Component {
                 input: { id, systemIds }
             }
         }).then(() => {
-            this.setState(prevState => ({ percent: prevState.percent + 50 }));
+            this.setState(prevState => ({
+                percent: prevState.percent + 50,
+                message: 'Your Compliance Profile has been created and systems have been associated to it.'
+            }));
         });
     }
 
     render() {
-        const { percent } = this.state;
+        const { percent, message } = this.state;
         return (
             <Bullseye>
                 <EmptyState variant={EmptyStateVariant.full}>
@@ -72,8 +83,7 @@ class FinishedCreatePolicy extends React.Component {
                         />
                     </EmptyStateBody>
                     <EmptyStateBody>
-                        Your Compliance Profile is being created. After this is created, you may assign it
-                        to hosts and customize it.
+                        { message }
                     </EmptyStateBody>
                     <EmptyStateSecondaryActions>
                         {percent === 100 ? <Button variant={'primary'} onClick={this.props.onClose}>Close</Button> : ''}

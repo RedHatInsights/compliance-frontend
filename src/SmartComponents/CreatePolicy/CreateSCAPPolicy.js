@@ -15,12 +15,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 
-const ALL_BENCHMARKS = gql`
-query allBenchmarks{
+const BENCHMARKS_AND_PROFILES = gql`
+query benchmarksAndProfiles {
     allBenchmarks {
-        id,
-        title,
-        version,
+        id
+        title
+        version
         profiles {
             id
             name
@@ -29,11 +29,24 @@ query allBenchmarks{
             complianceThreshold
         }
     }
+    profiles {
+        edges {
+            node {
+                id
+                refId
+                benchmarkId
+            }
+        }
+    }
 }
 `;
 
 const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
-    const { data, error, loading } = useQuery(ALL_BENCHMARKS);
+    const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES);
+
+    const userProfileRefIdsForBenchmarkId = (profiles, benchmarkId) => (
+        profiles.filter(profile => benchmarkId === profile.node.benchmarkId).map(profile => profile.node.refId)
+    );
 
     if (error) { return error; }
 
@@ -41,8 +54,11 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
 
     const benchmarks = data.allBenchmarks;
     let selectedBenchmark;
+    let validProfiles;
     if (selectedBenchmarkId) {
         selectedBenchmark = benchmarks.find(benchmark => benchmark.id === selectedBenchmarkId);
+        const userProfileRefIds = userProfileRefIdsForBenchmarkId(data.profiles.edges, selectedBenchmarkId);
+        validProfiles = selectedBenchmark.profiles.filter((profile) => !userProfileRefIds.includes(profile.refId));
     }
 
     return (
@@ -76,7 +92,7 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
                     })}
                 </FormGroup>
                 <FormGroup label="Profile type" isRequired fieldId="profile-type">
-                    <ProfileTypeSelect profiles={selectedBenchmark && selectedBenchmark.profiles} />
+                    <ProfileTypeSelect profiles={selectedBenchmark && validProfiles } />
                 </FormGroup>
             </Form>
         </React.Fragment>
