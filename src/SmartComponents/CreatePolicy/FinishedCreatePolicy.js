@@ -20,10 +20,6 @@ import { withApollo } from 'react-apollo';
 import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from './mutations';
 
 class FinishedCreatePolicy extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = { percent: 0 };
 
     componentDidMount() {

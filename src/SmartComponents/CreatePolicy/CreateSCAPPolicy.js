@@ -8,7 +8,7 @@ import {
 } from '@patternfly/react-core';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { Spinner } from '@redhat-cloud-services/frontend-components';
 import { formValueSelector, Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
@@ -32,66 +32,55 @@ query allBenchmarks{
 }
 `;
 
-class CreateSCAPPolicy extends React.Component {
-    constructor(props) {
-        super(props);
+const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
+    const { data, error, loading } = useQuery(ALL_BENCHMARKS);
+
+    if (error) { return error; }
+
+    if (loading) { return <Spinner/>; }
+
+    const benchmarks = data.allBenchmarks;
+    let selectedBenchmark;
+    if (selectedBenchmarkId) {
+        selectedBenchmark = benchmarks.find(benchmark => benchmark.id === selectedBenchmarkId);
     }
 
-    render () {
-        return (
-            <Query query={ALL_BENCHMARKS}>
-                { ({ data, error, loading }) => {
-                    if (error) { return error; }
-
-                    if (loading) { return <Spinner/>; }
-
-                    const benchmarks = data.allBenchmarks;
-                    const { selectedBenchmarkId } = this.props;
-                    let selectedBenchmark;
-                    if (selectedBenchmarkId) {
-                        selectedBenchmark = benchmarks.find(benchmark => benchmark.id === selectedBenchmarkId);
-                    }
-
-                    return (
-                        <React.Fragment>
-                            <TextContent>
-                                <Text component={TextVariants.h1}>
-                                    Create SCAP policy
-                                </Text>
-                                <Text component={TextVariants.h4}>
-                                    Select the security guide and profile type for this policy.
-                                </Text>
-                            </TextContent>
-                            <Form>
-                                <FormGroup
-                                    label="Security guide"
-                                    isRequired
-                                    fieldId="benchmark">
-                                    { benchmarks && benchmarks.map((benchmark) => {
-                                        const { title, version, id } = benchmark;
-                                        return (
-                                            <Text key={id}>
-                                                <Field component='input'
-                                                    name='benchmark'
-                                                    type='radio'
-                                                    value={id}
-                                                    id={id}
-                                                />
-                                                {` ${title} - ${version}`}
-                                            </Text>
-                                        );
-                                    })}
-                                </FormGroup>
-                                <FormGroup label="Profile type" isRequired fieldId="profile-type">
-                                    <ProfileTypeSelect profiles={selectedBenchmark && selectedBenchmark.profiles} />
-                                </FormGroup>
-                            </Form>
-                        </React.Fragment>
-                    );
-                }}
-            </Query>
-        );
-    }
+    return (
+        <React.Fragment>
+            <TextContent>
+                <Text component={TextVariants.h1}>
+                    Create SCAP policy
+                </Text>
+                <Text component={TextVariants.h4}>
+                    Select the security guide and profile type for this policy.
+                </Text>
+            </TextContent>
+            <Form>
+                <FormGroup
+                    label="Security guide"
+                    isRequired
+                    fieldId="benchmark">
+                    { benchmarks && benchmarks.map((benchmark) => {
+                        const { title, version, id } = benchmark;
+                        return (
+                            <Text key={id}>
+                                <Field component='input'
+                                    name='benchmark'
+                                    type='radio'
+                                    value={id}
+                                    id={id}
+                                />
+                                {` ${title} - ${version}`}
+                            </Text>
+                        );
+                    })}
+                </FormGroup>
+                <FormGroup label="Profile type" isRequired fieldId="profile-type">
+                    <ProfileTypeSelect profiles={selectedBenchmark && selectedBenchmark.profiles} />
+                </FormGroup>
+            </Form>
+        </React.Fragment>
+    );
 };
 
 CreateSCAPPolicy.propTypes = {

@@ -3,6 +3,8 @@ import toJson from 'enzyme-to-json';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
+import { useQuery } from '@apollo/react-hooks';
+import { benchmarksQuery } from './fixtures.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
@@ -28,6 +30,7 @@ describe('CreatePolicy', () => {
     });
 
     it('expect to render the wizard', async () => {
+        useQuery.mockImplementation(() => ({ data: benchmarksQuery, error: false, loading: false }));
         const wrapper = mount(
             <Provider store={store}>
                 <CreatePolicy isOpen />

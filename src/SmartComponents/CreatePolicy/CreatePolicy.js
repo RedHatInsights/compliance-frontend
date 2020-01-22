@@ -15,10 +15,6 @@ import {
 import propTypes from 'prop-types';
 
 class CreatePolicy extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         isOpen: this.props.isOpen,
         stepIdReached: 1
