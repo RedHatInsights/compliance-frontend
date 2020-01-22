@@ -30,7 +30,7 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading } = useQuery(QUERY);
+    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'network-only' });
 
     if (error) { return <ErrorPage error={error}/>; }
 
@@ -43,7 +43,7 @@ export const CompliancePolicies = () => {
             <Main>
                 { loading ?
                     <LoadingPoliciesTable /> :
-                    <PoliciesTable policies={data.profiles.edges.map(profile => profile.node)} />
+                    <PoliciesTable onWizardFinish={() => refetch()} policies={data.profiles.edges.map(profile => profile.node)} />
                 }
             </Main>
         </React.Fragment>

@@ -63,6 +63,13 @@ export class PoliciesTable extends React.Component {
         this.setInitialCurrentRows();
     }
 
+    componentDidUpdate = (prevProps) => {
+        const { policies } = this.props;
+        if (policies !== prevProps.policies) {
+            this.setInitialCurrentRows();
+        }
+    }
+
     setInitialCurrentRows = () => {
         const { policies } = this.props;
         const { itemsPerPage } = this.state;
@@ -143,6 +150,7 @@ export class PoliciesTable extends React.Component {
     }
 
     render() {
+        const { onWizardFinish } = this.props;
         const { rows, currentRows, columns, page, itemsPerPage } = this.state;
         return (
             <React.Fragment>
@@ -159,7 +167,7 @@ export class PoliciesTable extends React.Component {
                             { rows.length } results
                         </LevelItem>
                         <LevelItem>
-                            <CreatePolicy />
+                            <CreatePolicy onWizardFinish={onWizardFinish} />
                         </LevelItem>
                     </Level>
                     <Pagination
@@ -198,7 +206,8 @@ export class PoliciesTable extends React.Component {
 
 PoliciesTable.propTypes = {
     policies: propTypes.array.isRequired,
-    history: propTypes.object
+    history: propTypes.object,
+    onWizardFinish: propTypes.func
 };
 
 PoliciesTable.defaultProps = {

@@ -50,7 +50,7 @@ class FinishedCreatePolicy extends React.Component {
     }
 
     associateSystems = () => {
-        const { systemIds, client } = this.props;
+        const { systemIds, client, onWizardFinish } = this.props;
         const { profileId: id } = this.state;
         return client.mutate({
             mutation: ASSOCIATE_SYSTEMS_TO_PROFILES,
@@ -61,7 +61,7 @@ class FinishedCreatePolicy extends React.Component {
             this.setState(prevState => ({
                 percent: prevState.percent + 50,
                 message: 'Your Compliance Profile has been created and systems have been associated to it.'
-            }));
+            }), onWizardFinish);
         });
     }
 
@@ -103,7 +103,8 @@ FinishedCreatePolicy.propTypes = {
     name: propTypes.string.isRequired,
     description: propTypes.string,
     systemIds: propTypes.array,
-    complianceThreshold: propTypes.number
+    complianceThreshold: propTypes.number,
+    onWizardFinish: propTypes.func
 };
 
 export const selector = formValueSelector('policyForm');

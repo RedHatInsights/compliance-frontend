@@ -35,7 +35,7 @@ class CreatePolicy extends React.Component {
 
     render() {
         const { isOpen, stepIdReached } = this.state;
-        const { benchmark, profile, name, refId } = this.props;
+        const { benchmark, profile, name, refId, onWizardFinish } = this.props;
 
         const steps = [
             {
@@ -73,7 +73,7 @@ class CreatePolicy extends React.Component {
             {
                 id: 6,
                 name: 'Finished',
-                component: <FinishedCreatePolicy onClose={this.toggleOpen}/>,
+                component: <FinishedCreatePolicy onWizardFinish={onWizardFinish} onClose={this.toggleOpen}/>,
                 isFinishedStep: true,
                 canJumpTo: stepIdReached >= 6
             }
@@ -106,7 +106,8 @@ CreatePolicy.propTypes = {
     profile: propTypes.string,
     name: propTypes.string,
     refId: propTypes.string,
-    isOpen: propTypes.bool
+    isOpen: propTypes.bool,
+    onWizardFinish: propTypes.func
 };
 
 CreatePolicy.defaultProps = {
