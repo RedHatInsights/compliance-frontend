@@ -13,7 +13,7 @@ import {
     EmptyStateIcon
 } from '@patternfly/react-core';
 import { CogsIcon } from '@patternfly/react-icons';
-import { formValueSelector } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from 'react-apollo';
@@ -120,5 +120,10 @@ export default compose(
             systemIds: selector(state, 'systems')
         })
     ),
+    reduxForm({
+        form: 'policyForm',
+        destroyOnUnmount: true,
+        forceUnregisterOnUnmount: true
+    }),
     withApollo
 )(FinishedCreatePolicy);
