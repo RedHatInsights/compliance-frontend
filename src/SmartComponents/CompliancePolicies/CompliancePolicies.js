@@ -34,11 +34,13 @@ export const CompliancePolicies = () => {
 
     if (error) { return <ErrorPage error={error}/>; }
 
+    const beta = window.location.pathname.split('/')[1] === 'beta';
+
     return (
         <React.Fragment>
-            <PageHeader>
+            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
                 <PageHeaderTitle title="Compliance policies" />
-                { !loading && <ComplianceTabs /> }
+                { !loading && !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
                 { loading ?

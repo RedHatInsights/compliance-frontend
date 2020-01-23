@@ -30,12 +30,13 @@ const ComplianceSystems = () => {
             width: 10
         }
     }];
+    const beta = window.location.pathname.split('/')[1] === 'beta';
 
     return (
         <React.Fragment>
-            <PageHeader>
-                <PageHeaderTitle title="Compliance" />
-                <ComplianceTabs/>
+            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+                <PageHeaderTitle title="Compliance systems" />
+                { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
                 <SystemsTable columns={columns} />

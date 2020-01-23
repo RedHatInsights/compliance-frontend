@@ -55,13 +55,15 @@ export const ComplianceReports = () => {
     }
 
     const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
+    const beta = window.location.pathname.split('/')[1] === 'beta';
 
     let policyCards = [];
     let pageHeader;
     if (policies.length) {
-        pageHeader = <PageHeader>
-            <PageHeaderTitle title="Compliance" />
-            <ComplianceTabs/>
+        pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
+            <PageHeaderTitle title="Compliance reports" />
+            { !beta && <ComplianceTabs/> }
+
         </PageHeader>;
         policyCards = policies.map(
             (policy, i) =>

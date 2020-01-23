@@ -63,9 +63,11 @@ exports[`ComplianceReports expect to render loading 1`] = `
 
 exports[`ComplianceReports expect to render without error 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance reports"
     />
     <withRouter(Connect(RouterParams)) />
   </PageHeader>
