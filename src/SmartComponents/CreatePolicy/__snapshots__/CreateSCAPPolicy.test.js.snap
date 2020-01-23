@@ -1,0 +1,701 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateSCAPPolicy expect to render without error 1`] = `
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Create SCAP policy
+    </h1>
+    <h4
+      className=""
+      data-pf-content={true}
+    >
+      Select the security guide and profile type for this policy.
+    </h4>
+  </div>,
+  <form
+    className="pf-c-form"
+    noValidate={true}
+  >
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="benchmark"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Security guide
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="profile-type"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Profile type
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <div
+        className="pf-l-grid pf-m-gutter"
+      />
+      
+    </div>
+  </form>,
+]
+`;
+
+exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `
+<div
+  className="ins-c-spinner"
+  role="status"
+>
+  <span
+    className="pf-u-screen-reader"
+  >
+    Loading...
+  </span>
+</div>
+`;
+
+exports[`CreateSCAPPolicy should render benchmarks and no policies until one is selected 1`] = `
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Create SCAP policy
+    </h1>
+    <h4
+      className=""
+      data-pf-content={true}
+    >
+      Select the security guide and profile type for this policy.
+    </h4>
+  </div>,
+  <form
+    className="pf-c-form"
+    noValidate={true}
+  >
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="benchmark"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Security guide
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="f1dff140-6649-4060-b0f6-7b1548f9e901"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="f1dff140-6649-4060-b0f6-7b1548f9e901"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
+      </p>
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="profile-type"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Profile type
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <div
+        className="pf-l-grid pf-m-gutter"
+      />
+      
+    </div>
+  </form>,
+]
+`;
+
+exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Create SCAP policy
+    </h1>
+    <h4
+      className=""
+      data-pf-content={true}
+    >
+      Select the security guide and profile type for this policy.
+    </h4>
+  </div>,
+  <form
+    className="pf-c-form"
+    noValidate={true}
+  >
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="benchmark"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Security guide
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={true}
+          id="f1dff140-6649-4060-b0f6-7b1548f9e901"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="f1dff140-6649-4060-b0f6-7b1548f9e901"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
+      </p>
+      <p
+        className=""
+        data-pf-content={true}
+      >
+        <input
+          checked={false}
+          id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+          name="benchmark"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onDragStart={[Function]}
+          onDrop={[Function]}
+          onFocus={[Function]}
+          type="radio"
+          value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+        />
+         Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
+      </p>
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="profile-type"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Profile type
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <div
+        className="pf-l-grid pf-m-gutter"
+      >
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"7d674214-ad7f-4f37-8b54-0825f7e81b42\\",\\"name\\":\\"OSPP - Protection Profile for General Purpose Operating Systems v. 4.2\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_ospp42\\",\\"description\\":\\"This profile reflects mandatory configuration controls identified in the\\\\nNIAP Configuration Annex to the Protection Profile for General Purpose\\\\nOperating Systems (Protection Profile Version 4.2).\\\\n\\\\nThis Annex is consistent with CNSSI-1253, which requires US National Security\\\\nSystems to adhere to certain configuration parameters. Accordingly, configuration\\\\nguidance produced according to the requirements of this Annex is suitable for use\\\\nin US National Security Systems.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             OSPP - Protection Profile for General Purpose Operating Systems v. 4.2
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile reflects mandatory configuration controls identified in the
+NIAP Configuration Annex to the Protection Profile for General Purpose
+Operating Systems (Protection Profile Version 4.2).
+
+This Annex is consistent with CNSSI-1253, which requires US National Security
+Systems to adhere to certain configuration parameters. Accordingly, configuration
+guidance produced according to the requirements of this Annex is suitable for use
+in US National Security Systems.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"d6f099f4-9ff9-4315-9904-60e21aab1176\\",\\"name\\":\\"DISA STIG for Red Hat Enterprise Linux 7\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel7-disa\\",\\"description\\":\\"This profile contains configuration checks that align to the \\\\n  DISA STIG for Red Hat Enterprise Linux V1R4. \\\\n  \\\\n  In addition to being applicable to RHEL7, DISA recognizes this \\\\n  configuration baseline as applicable to the operating system tier of \\\\n  Red Hat technologies that are based off RHEL7, such as: \\\\n  - Red Hat Enterprise Linux Server \\\\n  - Red Hat Enterprise Linux Workstation and Desktop \\\\n  - Red Hat Virtualization Hypervisor (RHV-H) \\\\n  - Red Hat Enterprise Linux for HPC \\\\n  - Red Hat Storage\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             DISA STIG for Red Hat Enterprise Linux 7
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile contains configuration checks that align to the 
+  DISA STIG for Red Hat Enterprise Linux V1R4. 
+  
+  In addition to being applicable to RHEL7, DISA recognizes this 
+  configuration baseline as applicable to the operating system tier of 
+  Red Hat technologies that are based off RHEL7, such as: 
+  - Red Hat Enterprise Linux Server 
+  - Red Hat Enterprise Linux Workstation and Desktop 
+  - Red Hat Virtualization Hypervisor (RHV-H) 
+  - Red Hat Enterprise Linux for HPC 
+  - Red Hat Storage
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"edac5bce-98d5-43b9-a8e7-189347083125\\",\\"name\\":\\"Health Insurance Portability and Accountability Act (HIPAA)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_hipaa\\",\\"description\\":\\"The HIPAA Security Rule establishes U.S. national standards to protect individuals’\\\\nelectronic personal health information that is created, received, used, or\\\\nmaintained by a covered entity. The Security Rule requires appropriate\\\\nadministrative, physical and technical safeguards to ensure the\\\\nconfidentiality, integrity, and security of electronic protected health\\\\ninformation.\\\\n\\\\nThis profile configures Red Hat Enterprise Linux 7 to the HIPAA Security\\\\nRule identified for securing of electronic protected health information.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             Health Insurance Portability and Accountability Act (HIPAA)
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  The HIPAA Security Rule establishes U.S. national standards to protect individuals’
+electronic personal health information that is created, received, used, or
+maintained by a covered entity. The Security Rule requires appropriate
+administrative, physical and technical safeguards to ensure the
+confidentiality, integrity, and security of electronic protected health
+information.
+
+This profile configures Red Hat Enterprise Linux 7 to the HIPAA Security
+Rule identified for securing of electronic protected health information.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"0c8bd8ed-622a-4bd6-849a-0a80b0721427\\",\\"name\\":\\"United States Government Configuration Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_ospp\\",\\"description\\":\\"This compliance profile reflects the core set of security\\\\nrelated configuration settings for deployment of Red Hat Enterprise\\\\nLinux 7.x into U.S. Defense, Intelligence, and Civilian agencies.\\\\nDevelopment partners and sponsors include the U.S. National Institute\\\\nof Standards and Technology (NIST), U.S. Department of Defense,\\\\nthe National Security Agency, and Red Hat.\\\\n\\\\nThis baseline implements configuration requirements from the following\\\\nsources:\\\\n\\\\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\\\\n- NIST Controlled Unclassified Information (NIST 800-171)\\\\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\\\\n- U.S. Government Configuration Baseline (USGCB)\\\\n- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)\\\\n- DISA Operating System Security Requirements Guide (OS SRG)\\\\n\\\\nFor any differing configuration requirements, e.g. password lengths, the stricter\\\\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\\\\nsample System Security Configuration Guides are provided via the\\\\nscap-security-guide-docs package.\\\\n\\\\nThis profile reflects U.S. Government consensus content and is developed through\\\\nthe OpenSCAP/SCAP Security Guide initiative, championed by the National\\\\nSecurity Agency. Except for differences in formatting to accommodate\\\\npublishing processes, this profile mirrors OpenSCAP/SCAP Security Guide\\\\ncontent as minor divergences, such as bugfixes, work through the\\\\nconsensus and release processes.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             United States Government Configuration Baseline
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This compliance profile reflects the core set of security
+related configuration settings for deployment of Red Hat Enterprise
+Linux 7.x into U.S. Defense, Intelligence, and Civilian agencies.
+Development partners and sponsors include the U.S. National Institute
+of Standards and Technology (NIST), U.S. Department of Defense,
+the National Security Agency, and Red Hat.
+
+This baseline implements configuration requirements from the following
+sources:
+
+- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)
+- NIST Controlled Unclassified Information (NIST 800-171)
+- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)
+- U.S. Government Configuration Baseline (USGCB)
+- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)
+- DISA Operating System Security Requirements Guide (OS SRG)
+
+For any differing configuration requirements, e.g. password lengths, the stricter
+security setting was chosen. Security Requirement Traceability Guides (RTMs) and
+sample System Security Configuration Guides are provided via the
+scap-security-guide-docs package.
+
+This profile reflects U.S. Government consensus content and is developed through
+the OpenSCAP/SCAP Security Guide initiative, championed by the National
+Security Agency. Except for differences in formatting to accommodate
+publishing processes, this profile mirrors OpenSCAP/SCAP Security Guide
+content as minor divergences, such as bugfixes, work through the
+consensus and release processes.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"f4bbc861-4dd5-44d3-8437-61a36d1177b6\\",\\"name\\":\\"Standard System Security Profile for Red Hat Enterprise Linux 7\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security baseline\\\\nof a Red Hat Enterprise Linux 7 system. Regardless of your system's workload\\\\nall of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             Standard System Security Profile for Red Hat Enterprise Linux 7
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile contains rules to ensure standard security baseline
+of a Red Hat Enterprise Linux 7 system. Regardless of your system's workload
+all of these checks should pass.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </form>,
+]
+`;

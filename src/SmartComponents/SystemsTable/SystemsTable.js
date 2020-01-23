@@ -138,6 +138,7 @@ class SystemsTable extends React.Component {
     }
 
     render() {
+        const { remediationsEnabled, compact } = this.props;
         const { page, totalCount, perPage, items, InventoryCmp } = this.state;
 
         return (InventoryCmp &&
@@ -146,6 +147,7 @@ class SystemsTable extends React.Component {
                 page={page}
                 total={totalCount}
                 perPage={perPage}
+                variant={compact ? pfReactTable.TableVariant.compact : null}
                 items={items.map((edge) => edge.node.id)}
             >
                 <reactCore.ToolbarGroup>
@@ -157,9 +159,11 @@ class SystemsTable extends React.Component {
                                 placeholder="Search by name" />
                         </reactCore.InputGroup>
                     </reactCore.ToolbarItem>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <ComplianceRemediationButton />
-                    </reactCore.ToolbarItem>
+                    { remediationsEnabled &&
+                        <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                            <ComplianceRemediationButton />
+                        </reactCore.ToolbarItem>
+                    }
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
                         <DownloadTableButton />
                     </reactCore.ToolbarItem>
@@ -176,7 +180,9 @@ SystemsTable.propTypes = {
     policyId: propTypes.string,
     items: propTypes.array,
     columns: propTypes.array,
-    loading: propTypes.bool
+    loading: propTypes.bool,
+    remediationsEnabled: propTypes.bool,
+    compact: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -184,7 +190,9 @@ SystemsTable.defaultProps = {
     policyId: '',
     filter: '',
     filterEnabled: false,
-    loading: true
+    loading: true,
+    remediationsEnabled: true,
+    compact: false
 };
 
 export { SystemsTable };

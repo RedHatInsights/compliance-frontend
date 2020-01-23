@@ -20,6 +20,9 @@ import some from 'lodash/some';
 const CompliancePolicies = asyncComponent(() =>
     import(/* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies')
 );
+const ComplianceReports = asyncComponent(() =>
+    import(/* webpackChunkName: "ComplianceReports" */ './SmartComponents/ComplianceReports/ComplianceReports')
+);
 const ComplianceSystems = asyncComponent(() =>
     import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
 );
@@ -32,6 +35,7 @@ const SystemDetails = asyncComponent(() =>
 
 export const paths = {
     compliancePolicies: '/policies',
+    complianceReports: '/reports',
     complianceSystems: '/systems',
     complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
@@ -57,6 +61,7 @@ export const Routes = (props: Props) => {
     return (
         <Switch>
             <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
+            <Route exact path={paths.complianceReports} component={ComplianceReports} />
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
             <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
             <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
@@ -64,7 +69,7 @@ export const Routes = (props: Props) => {
             <Route path={paths.systemDetails} component={SystemDetails} />
 
             {/* Finally, catch all unmatched routes */}
-            <Route render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.compliancePolicies} />)} />
+            <Route render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.complianceReports} />)} />
         </Switch>
     );
 };

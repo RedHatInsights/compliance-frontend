@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyDetails expect to render without error 1`] = `
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Policy details
+    </h1>
+  </div>,
+  <form
+    className="pf-c-form"
+    id="editpolicydetails"
+    noValidate={true}
+  >
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="name"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Policy name
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <Field
+        aria-describedby="name"
+        id="name"
+        isDisabled={true}
+        isRequired={true}
+        name="name"
+        type="text"
+      />
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="refId"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Reference ID
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <Field
+        aria-describedby="refId"
+        id="refId"
+        isDisabled={true}
+        name="refId"
+        type="text"
+      />
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="description"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Description
+        </span>
+      </label>
+      <Field
+        aria-describedby="description"
+        id="description"
+        name="description"
+        type="text"
+      />
+      
+    </div>
+    <h3
+      className="pf-c-title pf-m-xl"
+    >
+      Compliance threshold
+    </h3>
+    The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="policy-threshold"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Compliance threshold (%)
+        </span>
+      </label>
+      <Field
+        aria-label="compliance threshold"
+        defaultValue={100}
+        id="complianceThreshold"
+        isRequired={true}
+        isValid={true}
+        name="complianceThreshold"
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "block",
+            "width": "60%",
+          }
+        }
+        type="number"
+      />
+      <div
+        aria-live="polite"
+        className="pf-c-form__helper-text"
+        id="policy-threshold-helper"
+      >
+        A value of 95% or higher is recommended
+      </div>
+    </div>
+  </form>,
+]
+`;

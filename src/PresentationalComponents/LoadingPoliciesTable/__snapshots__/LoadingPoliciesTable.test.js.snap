@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingPoliciesTable expect to render without error 1`] = `
+<Component
+  aria-label="policies-table"
+  cells={
+    Array [
+      Object {
+        "title": "Policy name",
+      },
+      Object {
+        "title": "Policy type",
+      },
+      Object {
+        "title": "Business initiative",
+      },
+      Object {
+        "title": "Compliance threshold",
+      },
+    ]
+  }
+  rows={
+    Array [
+      Object {
+        "cells": Array [
+          Object {
+            "colSpan": 5,
+            "title": <RowLoader />,
+          },
+        ],
+      },
+      Object {
+        "cells": Array [
+          Object {
+            "colSpan": 5,
+            "title": <RowLoader />,
+          },
+        ],
+      },
+      Object {
+        "cells": Array [
+          Object {
+            "colSpan": 5,
+            "title": <RowLoader />,
+          },
+        ],
+      },
+      Object {
+        "cells": Array [
+          Object {
+            "colSpan": 5,
+            "title": <RowLoader />,
+          },
+        ],
+      },
+      Object {
+        "cells": Array [
+          Object {
+            "colSpan": 5,
+            "title": <RowLoader />,
+          },
+        ],
+      },
+    ]
+  }
+>
+  <TableHeader />
+  <TableBody />
+</Component>
+`;

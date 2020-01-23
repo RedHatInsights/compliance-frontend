@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicySystems expect to render without error 1`] = `
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Systems
+    </h1>
+    <h4
+      className=""
+      data-pf-content={true}
+    >
+      Choose systems to scan with this policy. You can add and remove systems later.
+    </h4>
+  </div>,
+  <form
+    className="pf-c-form"
+    noValidate={true}
+  />,
+]
+`;

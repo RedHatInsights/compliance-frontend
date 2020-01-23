@@ -1,31 +1,8 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Button } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-
-const UPDATE_PROFILE = gql`
-mutation UpdateProfile($input: UpdateProfileInput!) {
-    updateProfile(input: $input) {
-        profile {
-            id,
-            complianceThreshold,
-            businessObjectiveId
-        }
-    }
-}
-`;
-
-const CREATE_BUSINESS_OBJECTIVE = gql`
-mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
-    createBusinessObjective(input: $input) {
-        businessObjective {
-            id
-            title
-        }
-    }
-}
-`;
+import { CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE } from '../../Utilities/graphql/mutations';
 
 export class UpdateProfileButton extends React.Component {
     handleBusinessObjective = () => {

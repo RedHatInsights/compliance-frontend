@@ -1,91 +1,50 @@
 import React from 'react';
 import {
     ComplianceTabs,
-    LoadingComplianceCards,
-    CompliancePolicyCard,
-    CompliancePoliciesEmptyState,
-    ErrorPage
+    ErrorPage,
+    LoadingPoliciesTable
 } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import {
-    Grid,
-    GridItem
-} from '@patternfly/react-core';
+import PoliciesTable from '../PoliciesTable/PoliciesTable';
 
 const QUERY = gql`
 {
-    allProfiles {
-        id
-        name
-        refId
-        description
-        totalHostCount
-        compliantHostCount
-        businessObjective {
-            id
-            title
+    profiles {
+        edges {
+            node {
+                id
+                name
+                refId
+                complianceThreshold
+                businessObjective {
+                    id
+                    title
+                }
+            }
         }
     }
 }
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading } = useQuery(QUERY);
+    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'network-only' });
 
     if (error) { return <ErrorPage error={error}/>; }
 
-    if (loading) {
-        return (
-            <React.Fragment>
-                <PageHeader>
-                    <PageHeaderTitle title="Compliance" />
-                </PageHeader>
-                <Main>
-                    <div className="policies-donuts">
-                        <Grid gutter='md'>
-                            <LoadingComplianceCards/>
-                        </Grid>
-                    </div>
-                </Main>
-            </React.Fragment>
-        );
-    }
-
-    const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
-
-    let policyCards = [];
-    let pageHeader;
-    if (policies.length) {
-        pageHeader = <PageHeader>
-            <PageHeaderTitle title="Compliance" />
-            <ComplianceTabs/>
-        </PageHeader>;
-        policyCards = policies.map(
-            (policy, i) =>
-                <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
-                    <CompliancePolicyCard
-                        key={i}
-                        policy={policy}
-                    />
-                </GridItem>
-        );
-    } else {
-        pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-        policyCards = <CompliancePoliciesEmptyState />;
-    }
-
     return (
         <React.Fragment>
-            { pageHeader }
+            <PageHeader>
+                <PageHeaderTitle title="Compliance policies" />
+                { !loading && <ComplianceTabs /> }
+            </PageHeader>
             <Main>
-                <div className="policies-donuts">
-                    <Grid gutter='md'>
-                        {policyCards}
-                    </Grid>
-                </div>
+                { loading ?
+                    <LoadingPoliciesTable /> :
+                    <PoliciesTable onWizardFinish={() => refetch()} policies={data.profiles.edges.map(profile => profile.node)} />
+                }
             </Main>
         </React.Fragment>
     );

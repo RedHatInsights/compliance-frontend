@@ -72,7 +72,7 @@ export class BusinessObjectiveField extends React.Component {
                 <Title headingLevel='h3' size='xl'>Business objective</Title>
                 This is an optional field that can be used to label policies that are related to
                 specific business objectives.
-                <FormGroup field-id='edit-policy-business-objective'
+                <FormGroup fieldId='edit-policy-business-objective'
                     label="Business objective"
                     helperText='e.g Project Gemini'>
                     <Field name='businessObjective'
