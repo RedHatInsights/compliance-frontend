@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store';
 import { useQuery } from '@apollo/react-hooks';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import { benchmarksQuery } from './fixtures.js';
+import { benchmarksQuery, profileRefIdsQuery } from './fixtures.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
@@ -37,7 +37,7 @@ describe('CreateSCAPPolicy', () => {
     });
 
     it('should render benchmarks and no policies until one is selected', () => {
-        useQuery.mockImplementation(() => ({ data: benchmarksQuery, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({ data: { allBenchmarks: benchmarksQuery }, error: false, loading: false }));
         component = renderer.create(
             <Provider store={store}>
                 <CreateSCAPPolicy />
@@ -48,9 +48,11 @@ describe('CreateSCAPPolicy', () => {
 
     it('should render policies from the selected benchmark only', () => {
         store = mockStore({ form: { policyForm: {
-            values: { benchmark: benchmarksQuery.allBenchmarks[0].id }
+            values: { benchmark: benchmarksQuery[0].id }
         } } });
-        useQuery.mockImplementation(() => ({ data: benchmarksQuery, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({
+            data: { allBenchmarks: benchmarksQuery, profiles: profileRefIdsQuery }, error: false, loading: false
+        }));
         component = renderer.create(
             <Provider store={store}>
                 <CreateSCAPPolicy />

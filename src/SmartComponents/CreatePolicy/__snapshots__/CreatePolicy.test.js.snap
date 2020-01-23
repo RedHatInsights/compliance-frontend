@@ -74,7 +74,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       },
       Object {
         "canJumpTo": false,
-        "component": <Connect(withApollo(FinishedCreatePolicy))
+        "component": <Connect(ReduxForm)
           onClose={[Function]}
         />,
         "id": 6,
@@ -590,7 +590,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                         },
                         Object {
                           "canJumpTo": false,
-                          "component": <Connect(withApollo(FinishedCreatePolicy))
+                          "component": <Connect(ReduxForm)
                             onClose={[Function]}
                           />,
                           "id": 6,

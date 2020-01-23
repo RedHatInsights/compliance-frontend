@@ -7,7 +7,6 @@ import {
     TextContent,
     TextVariants
 } from '@patternfly/react-core';
-import BusinessObjectiveField from '../BusinessObjectiveField/BusinessObjectiveField';
 import ProfileThresholdField from '../ProfileThresholdField/ProfileThresholdField';
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
@@ -53,7 +52,6 @@ const EditPolicyDetails = ({ profile }) => {
                         aria-describedby="description"
                     />
                 </FormGroup>
-                <BusinessObjectiveField />
                 <ProfileThresholdField previousThreshold={profile.complianceThreshold} />
             </Form>
         </React.Fragment>

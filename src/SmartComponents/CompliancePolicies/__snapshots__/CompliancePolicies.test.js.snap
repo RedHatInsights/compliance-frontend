@@ -10,6 +10,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
   </PageHeader>
   <Connect(Main)>
     <withRouter(Connect(RouterParams))
+      onWizardFinish={[Function]}
       policies={
         Array [
           Object {
@@ -194,6 +195,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
   </PageHeader>
   <Connect(Main)>
     <withRouter(Connect(RouterParams))
+      onWizardFinish={[Function]}
       policies={Array []}
     />
   </Connect(Main)>
@@ -223,6 +225,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
   </PageHeader>
   <Connect(Main)>
     <withRouter(Connect(RouterParams))
+      onWizardFinish={[Function]}
       policies={
         Array [
           undefined,

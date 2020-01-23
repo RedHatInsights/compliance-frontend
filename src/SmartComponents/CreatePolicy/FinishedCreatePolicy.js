@@ -17,7 +17,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from 'react-apollo';
-import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from './mutations';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from '../../Utilities/graphql/mutations';
 
 class FinishedCreatePolicy extends React.Component {
     state = {
