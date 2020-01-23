@@ -1,30 +1,18 @@
-import toJson from 'enzyme-to-json';
-import EditPolicyDetails from './EditPolicyDetails.js';
-import configureStore from 'redux-mock-store';
+import { EditPolicyDetails } from './EditPolicyDetails.js';
 import { policyFormValues } from './fixtures.js';
+import renderer from 'react-test-renderer';
 
-const mockStore = configureStore();
-jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Details table</p>;
-});
+jest.mock('redux-form', () => ({
+    Field: 'Field',
+    reduxForm: () => component => component,
+    formValueSelector: () => () => ('')
+}));
 
 describe('EditPolicyDetails', () => {
-    let store;
-    let EditPolicyDetailsWrapper;
-    let EditPolicyDetailsComponent;
-
-    beforeEach(() => {
-        store = mockStore({ form: { policyForm: { values: policyFormValues } } });
-        /* eslint-disable react/display-name */
-        EditPolicyDetailsWrapper = (props) => (
-            <EditPolicyDetails {...props} store={store} />
-        );
-        /* eslint-enable react/display-name */
-        EditPolicyDetailsComponent = shallow(<EditPolicyDetailsWrapper />).dive();
-    });
-
     it('expect to render without error', () => {
-        expect(toJson(EditPolicyDetailsComponent)).toMatchSnapshot();
+        const component = renderer.create(
+            <EditPolicyDetails profile={JSON.parse(policyFormValues.profile)}/>
+        );
+        expect(component.toJSON()).toMatchSnapshot();
     });
 });

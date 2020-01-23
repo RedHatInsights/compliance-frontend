@@ -1,72 +1,143 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetails expect to render without error 1`] = `
-<ReduxForm
-  destroyOnUnmount={false}
-  dispatch={[Function]}
-  enableReinitialize={false}
-  forceUnregisterOnUnmount={true}
-  form="policyForm"
-  getFormState={[Function]}
-  initialValues={
-    Object {
-      "benchmark": "a5e7f1ea-e63c-40be-a17a-c2a247c11e10",
-      "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
-      "name": "C2S for Red Hat Enterprise Linux 6",
-      "profile": "{\\"complianceThreshold\\":100,\\"description\\":\\"This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)\\",\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\"}",
-      "refId": "xccdf_org.ssgproject.content_profile_C2S",
-    }
-  }
-  keepDirtyOnReinitialize={false}
-  persistentSubmitErrors={false}
-  profile={
-    Object {
-      "complianceThreshold": 100,
-      "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
-      "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
-      "name": "C2S for Red Hat Enterprise Linux 6",
-      "refId": "xccdf_org.ssgproject.content_profile_C2S",
-    }
-  }
-  pure={true}
-  shouldAsyncValidate={[Function]}
-  shouldError={[Function]}
-  shouldValidate={[Function]}
-  shouldWarn={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  submitAsSideEffect={false}
-  touchOnBlur={true}
-  touchOnChange={false}
-  updateUnregisteredFields={false}
-/>
+Array [
+  <div
+    className="pf-c-content"
+  >
+    <h1
+      className=""
+      data-pf-content={true}
+    >
+      Policy details
+    </h1>
+  </div>,
+  <form
+    className="pf-c-form"
+    id="editpolicydetails"
+    noValidate={true}
+  >
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="name"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Policy name
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <Field
+        aria-describedby="name"
+        id="name"
+        isDisabled={true}
+        isRequired={true}
+        name="name"
+        type="text"
+      />
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="refId"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Reference ID
+        </span>
+        <span
+          aria-hidden="true"
+          className="pf-c-form__label-required"
+        >
+          *
+        </span>
+      </label>
+      <Field
+        aria-describedby="refId"
+        id="refId"
+        isDisabled={true}
+        name="refId"
+        type="text"
+      />
+      
+    </div>
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="description"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Description
+        </span>
+      </label>
+      <Field
+        aria-describedby="description"
+        id="description"
+        name="description"
+        type="text"
+      />
+      
+    </div>
+    <h3
+      className="pf-c-title pf-m-xl"
+    >
+      Compliance threshold
+    </h3>
+    The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
+    <div
+      className="pf-c-form__group"
+    >
+      <label
+        className="pf-c-form__label"
+        htmlFor="policy-threshold"
+      >
+        <span
+          className="pf-c-form__label-text"
+        >
+          Compliance threshold (%)
+        </span>
+      </label>
+      <Field
+        aria-label="compliance threshold"
+        defaultValue={100}
+        id="complianceThreshold"
+        isRequired={true}
+        isValid={true}
+        name="complianceThreshold"
+        onChange={[Function]}
+        style={
+          Object {
+            "display": "block",
+            "width": "60%",
+          }
+        }
+        type="number"
+      />
+      <div
+        aria-live="polite"
+        className="pf-c-form__helper-text"
+        id="policy-threshold-helper"
+      >
+        A value of 95% or higher is recommended
+      </div>
+    </div>
+  </form>,
+]
 `;

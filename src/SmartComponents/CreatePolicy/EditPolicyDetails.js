@@ -21,7 +21,7 @@ const EditPolicyDetails = ({ profile }) => {
                     Policy details
                 </Text>
             </TextContent>
-            <Form>
+            <Form id='editpolicydetails'>
                 <FormGroup label="Policy name" isRequired fieldId="name">
                     <Field
                         component={ReduxFormTextInput}
@@ -83,3 +83,5 @@ export default compose(
         forceUnregisterOnUnmount: true
     })
 )(EditPolicyDetails);
+
+export { EditPolicyDetails };
