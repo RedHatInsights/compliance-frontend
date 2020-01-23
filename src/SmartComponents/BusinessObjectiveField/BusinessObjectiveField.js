@@ -51,7 +51,7 @@ export class BusinessObjectiveField extends React.Component {
             type: '@@redux-form/CHANGE',
             meta: {
                 field: 'businessObjective',
-                form: 'editPolicy'
+                form: 'policyForm'
             },
             payload: newValue
         });
@@ -102,6 +102,6 @@ BusinessObjectiveField.propTypes = {
 export default compose(
     withApollo,
     reduxForm({
-        form: 'editPolicy'
+        form: 'policyForm'
     })
 )(BusinessObjectiveField);
