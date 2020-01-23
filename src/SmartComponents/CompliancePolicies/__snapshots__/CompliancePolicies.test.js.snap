@@ -2,7 +2,9 @@
 
 exports[`CompliancePolicies expect to render a policies table 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
       title="Compliance policies"
     />
@@ -187,7 +189,9 @@ exports[`CompliancePolicies expect to render an error 1`] = `
 
 exports[`CompliancePolicies expect to render emptystate 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
       title="Compliance policies"
     />
@@ -204,7 +208,9 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
 
 exports[`CompliancePolicies expect to render loading 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
       title="Compliance policies"
     />
@@ -217,7 +223,9 @@ exports[`CompliancePolicies expect to render loading 1`] = `
 
 exports[`CompliancePolicies expect to render without error 1`] = `
 <Fragment>
-  <PageHeader>
+  <PageHeader
+    className="stable-page-header"
+  >
     <PageHeaderTitle
       title="Compliance policies"
     />
