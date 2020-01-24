@@ -24,11 +24,16 @@ export class ProfileThresholdField extends React.Component {
 
     render() {
         const { threshold, validThreshold } = this.state;
+        const { showTitle } = this.props;
+        const title = <React.Fragment>
+            <Title headingLevel="h3" size="xl">Compliance threshold</Title>
+            The compliance threshold defines what percentage of rules must be met in order for a system to
+            be determined &quot;compliant&quot;.
+        </React.Fragment>;
+
         return (
             <React.Fragment>
-                <Title headingLevel="h3" size="xl">Compliance threshold</Title>
-                The compliance threshold defines what percentage of rules must be met in order for a system to
-                be determined &quot;compliant&quot;.
+                { showTitle && title }
                 <FormGroup fieldId='policy-threshold'
                     isValid={validThreshold}
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
@@ -48,7 +53,12 @@ export class ProfileThresholdField extends React.Component {
 }
 
 ProfileThresholdField.propTypes = {
-    previousThreshold: propTypes.number
+    previousThreshold: propTypes.number,
+    showTitle: propTypes.bool
+};
+
+ProfileThresholdField.defaultProps = {
+    showTitle: true
 };
 
 export default reduxForm({
