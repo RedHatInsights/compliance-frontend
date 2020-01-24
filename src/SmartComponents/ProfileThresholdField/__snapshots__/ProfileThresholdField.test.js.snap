@@ -35,3 +35,32 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
   </FormGroup>
 </Fragment>
 `;
+
+exports[`ProfileThresholdField expect to render without title 1`] = `
+<Fragment>
+  <FormGroup
+    fieldId="policy-threshold"
+    helperText="A value of 95% or higher is recommended"
+    helperTextInvalid="Threshold has to be a number between 0 and 100"
+    isValid={true}
+    label="Compliance threshold (%)"
+  >
+    <Field
+      aria-label="compliance threshold"
+      defaultValue={10}
+      id="complianceThreshold"
+      isRequired={true}
+      isValid={true}
+      name="complianceThreshold"
+      onChange={[Function]}
+      style={
+        Object {
+          "display": "block",
+          "width": "60%",
+        }
+      }
+      type="number"
+    />
+  </FormGroup>
+</Fragment>
+`;

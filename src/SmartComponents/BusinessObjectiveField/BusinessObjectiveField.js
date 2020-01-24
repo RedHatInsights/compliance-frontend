@@ -65,13 +65,17 @@ export class BusinessObjectiveField extends React.Component {
 
     render() {
         const { selected } = this.state;
+        const { showTitle } = this.props;
         const titleId = 'business-objective-typeahead';
+        const title = <React.Fragment>
+            <Title headingLevel='h3' size='xl'>Business objective</Title>
+            This is an optional field that can be used to label policies that are related to
+            specific business objectives.
+        </React.Fragment>;
 
         return (
             <React.Fragment>
-                <Title headingLevel='h3' size='xl'>Business objective</Title>
-                This is an optional field that can be used to label policies that are related to
-                specific business objectives.
+                { showTitle && title }
                 <FormGroup fieldId='edit-policy-business-objective'
                     label="Business objective"
                     helperText='e.g Project Gemini'>
@@ -96,7 +100,12 @@ export class BusinessObjectiveField extends React.Component {
 BusinessObjectiveField.propTypes = {
     businessObjective: propTypes.object,
     client: propTypes.object,
-    dispatch: propTypes.func
+    dispatch: propTypes.func,
+    showTitle: propTypes.bool
+};
+
+BusinessObjectiveField.defaultProps = {
+    showTitle: true
 };
 
 export default compose(
