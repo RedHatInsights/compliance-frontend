@@ -5,7 +5,6 @@ import {
     DropdownItem,
     Modal,
     Form,
-    Title,
     Button
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
@@ -92,17 +91,11 @@ export class EditPolicy extends Component {
                     ]}
                 >
                     <Form>
-                        <Title headingLevel='h3' size='xl'>Business objective</Title>
-                        This is an optional field that can be used to label policies that are related to
-                        specific business objectives.
                         <BusinessObjectiveField
                             businessObjective={businessObjective}
                             policyId={policyId}
                             dispatch={dispatch}
                         />
-                        <Title headingLevel="h3" size="xl">Compliance threshold</Title>
-                        The compliance threshold defines what percentage of rules must be met in order for a system to
-                        be determined &quot;compliant&quot;
                         <ProfileThresholdField previousThreshold={previousThreshold} />
                     </Form>
                 </Modal>

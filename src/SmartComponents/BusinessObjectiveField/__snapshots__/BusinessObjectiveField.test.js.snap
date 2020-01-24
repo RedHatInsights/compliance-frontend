@@ -34,3 +34,31 @@ exports[`BusinessObjectiveField expect to render without error 1`] = `
   </FormGroup>
 </Fragment>
 `;
+
+exports[`BusinessObjectiveField expect to render without title 1`] = `
+<Fragment>
+  <FormGroup
+    fieldId="edit-policy-business-objective"
+    helperText="e.g Project Gemini"
+    label="Business objective"
+  >
+    <Field
+      aria-label="Select a business objective"
+      ariaLabelledBy="business-objective-typeahead"
+      id="businessObjective"
+      isClearable={true}
+      loadOptions={[Function]}
+      name="businessObjective"
+      onChange={[Function]}
+      onCreateOption={[Function]}
+      placeholder="Type to select and create"
+      selected={
+        Object {
+          "label": "BO title",
+          "value": 1,
+        }
+      }
+    />
+  </FormGroup>
+</Fragment>
+`;
