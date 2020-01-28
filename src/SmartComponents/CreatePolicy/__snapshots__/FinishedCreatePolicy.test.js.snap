@@ -82,7 +82,7 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
     <div
       className="pf-c-empty-state__body"
     >
-      Your Compliance Profile is being created. After this is created, you may assign it to hosts and customize it.
+      Your Compliance policy is being created. After this is created, you may assign it to hosts and customize it.
     </div>
     <div
       className="pf-c-empty-state__secondary"

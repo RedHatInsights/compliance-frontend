@@ -22,13 +22,13 @@ import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from '../../Utilities/g
 class FinishedCreatePolicy extends React.Component {
     state = {
         percent: 0,
-        message: 'Your Compliance Profile is being created. After this is created, you may assign it to hosts and customize it.'
+        message: 'Your Compliance policy is being created. After this is created, you may assign it to hosts and customize it.'
     };
 
     componentDidMount() {
         this.createProfile().then((result) => {
             this.setState(prevState => ({
-                message: 'Your Compliance Profile has been created. Associating systems to it...',
+                message: 'Your Compliance policy has been created. Associating systems to it...',
                 percent: prevState.percent + 50,
                 profileId: result.data.createProfile.profile.id
             }), this.associateSystems);
@@ -60,7 +60,7 @@ class FinishedCreatePolicy extends React.Component {
         }).then(() => {
             this.setState(prevState => ({
                 percent: prevState.percent + 50,
-                message: 'Your Compliance Profile has been created and systems have been associated to it.'
+                message: 'Your Compliance policy has been created and systems have been associated to it.'
             }), onWizardFinish);
         });
     }

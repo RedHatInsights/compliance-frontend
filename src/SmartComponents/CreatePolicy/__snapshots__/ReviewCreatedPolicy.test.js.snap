@@ -37,7 +37,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       className=""
       data-pf-content={true}
     >
-      Profile type
+      Policy type
     </dt>
     <dd
       className=""

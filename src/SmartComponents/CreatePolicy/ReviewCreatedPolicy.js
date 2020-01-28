@@ -48,7 +48,7 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount }) => {
                 <TextListItem component={TextListItemVariants.dd}>
                     {` ${benchmark.title} - ${benchmark.version}`}
                 </TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>Profile type</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Policy type</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ name }</TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>Generated ID</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ refId }</TextListItem>
