@@ -21,10 +21,7 @@ query Profile($profileId: String!){
             refId
             description
             remediationAvailable
-            identifier {
-                label
-                system
-            }
+            identifier
         }
     }
 }
@@ -32,7 +29,6 @@ query Profile($profileId: String!){
 
 const columns = [
     { title: 'Rule', transforms: [sortable] },
-    { title: 'Policy', transforms: [sortable] },
     { title: 'Severity', transforms: [sortable] },
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
