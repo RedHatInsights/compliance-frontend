@@ -50,6 +50,9 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
           "title": "Policy type",
         },
         Object {
+          "title": "Systems",
+        },
+        Object {
           "title": "Business objective",
         },
         Object {
@@ -161,6 +164,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
           "title": "Policy type",
         },
         Object {
+          "title": "Systems",
+        },
+        Object {
           "title": "Business objective",
         },
         Object {
@@ -175,80 +181,90 @@ exports[`PoliciesTable expect to render without error 1`] = `
           "cells": Array [
             "United States Government Configuration Baseline23",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
             "External",
-            null,
-            67,
+            10,
+            "--",
+            "67%",
           ],
         },
         Object {
           "cells": Array [
             "United States Government Configuration Baseline2",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "C2S for Red Hat Enterprise Linux 7",
             "External",
-            null,
-            69.5,
+            10,
+            "--",
+            "69.5%",
           ],
         },
         Object {
           "cells": Array [
             "Criminal Justice Information Services (CJIS) Security Policy",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "Health Insurance Portability and Accountability Act (HIPAA)",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
         Object {
           "cells": Array [
             "United States Government Configuration Baseline",
             "External",
-            null,
-            100,
+            10,
+            "--",
+            "100%",
           ],
         },
       ]
