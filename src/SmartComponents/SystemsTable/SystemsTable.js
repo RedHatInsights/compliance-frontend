@@ -8,11 +8,14 @@ import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import DownloadTableButton from '../DownloadTableButton/DownloadTableButton';
 import ComplianceRemediationButton from '../ComplianceRemediationButton/ComplianceRemediationButton';
 import SystemsComplianceFilter from '../SystemsComplianceFilter/SystemsComplianceFilter';
-import { SimpleTableFilter } from '@redhat-cloud-services/frontend-components';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { withApollo } from 'react-apollo';
-import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';
+import gql from 'graphql-tag';
+import {
+    SimpleTableFilter,
+    SkeletonTable
+} from '@redhat-cloud-services/frontend-components';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -38,7 +41,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 @registry()
 class SystemsTable extends React.Component {
     state = {
-        InventoryCmp: null,
+        InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
         items: this.props.items,
         filterEnabled: this.props.filterEnabled,
         filter: this.props.filter,
@@ -46,11 +49,10 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         page: 1,
         perPage: 50,
-        totalCount: 0,
-        loading: this.props.loading
-    }
+        totalCount: 0
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.fetchInventory();
     }
 
@@ -89,7 +91,7 @@ class SystemsTable extends React.Component {
     systemFetch = () => {
         const { client } = this.props;
         const { policyId, perPage, page } = this.state;
-        client.query({ query: GET_SYSTEMS, fetchResults: true, fetchPolicy: 'no-cache',
+        return client.query({ query: GET_SYSTEMS, fetchResults: true, fetchPolicy: 'no-cache',
             variables: { filter: this.buildFilter(), perPage, page, policyId } })
         .then((items) => {
             this.setState({
@@ -97,13 +99,17 @@ class SystemsTable extends React.Component {
                 perPage,
                 items: items.data.systems.edges,
                 totalCount: items.data.systems.totalCount,
-                loading: false
+                loaded: true
             });
         });
     }
 
+    isGraphqlFinished = () => (
+        this.state.loaded
+    )
+
     async fetchInventory() {
-        const { columns } = this.props ;
+        const { columns } = this.props;
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -119,7 +125,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, () => this.state.items, columns
+                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished
                 ))
         });
 
@@ -130,33 +136,35 @@ class SystemsTable extends React.Component {
 
     render() {
         const { page, totalCount, perPage, items, InventoryCmp } = this.state;
+        const { remediationsEnabled, compact } = this.props;
 
-        return (InventoryCmp &&
-            <InventoryCmp
-                onRefresh={this.onRefresh}
-                page={page}
-                total={totalCount}
-                perPage={perPage}
-                items={items.map((edge) => edge.node.id)}
-            >
-                <reactCore.ToolbarGroup>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <reactCore.InputGroup>
-                            <SystemsComplianceFilter updateFilter={this.updateFilter}/>
-                            <SimpleTableFilter buttonTitle={null}
-                                onFilterChange={this.handleSearch}
-                                placeholder="Search by name" />
-                        </reactCore.InputGroup>
-                    </reactCore.ToolbarItem>
+        return <InventoryCmp
+            onRefresh={this.onRefresh}
+            page={page}
+            total={totalCount}
+            perPage={perPage}
+            variant={compact ? pfReactTable.TableVariant.compact : null}
+            items={items.map((edge) => edge.node.id)}
+        >
+            <reactCore.ToolbarGroup>
+                <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                    <reactCore.InputGroup>
+                        <SystemsComplianceFilter updateFilter={this.updateFilter}/>
+                        <SimpleTableFilter buttonTitle={null}
+                            onFilterChange={this.handleSearch}
+                            placeholder="Search by name" />
+                    </reactCore.InputGroup>
+                </reactCore.ToolbarItem>
+                { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton />
                     </reactCore.ToolbarItem>
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
-                        <DownloadTableButton />
-                    </reactCore.ToolbarItem>
-                </reactCore.ToolbarGroup>
-            </InventoryCmp>
-        );
+                }
+                <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
+                    <DownloadTableButton />
+                </reactCore.ToolbarItem>
+            </reactCore.ToolbarGroup>
+        </InventoryCmp>;
     }
 }
 
@@ -167,7 +175,8 @@ SystemsTable.propTypes = {
     policyId: propTypes.string,
     items: propTypes.array,
     columns: propTypes.array,
-    loading: propTypes.bool
+    remediationsEnabled: propTypes.bool,
+    compact: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -175,7 +184,8 @@ SystemsTable.defaultProps = {
     policyId: '',
     filter: '',
     filterEnabled: false,
-    loading: true
+    remediationsEnabled: true,
+    compact: false
 };
 
 export { SystemsTable };
