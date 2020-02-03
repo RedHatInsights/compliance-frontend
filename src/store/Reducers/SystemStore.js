@@ -91,9 +91,13 @@ export const systemsToInventoryEntities = (systems, entities) =>
         }
     ).filter(value => value !== undefined);
 
-export const entitiesReducer = (INVENTORY_ACTION, systems, columns) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished) => applyReducerHash(
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
+            if (!isGraphqlFinished()) {
+                return { ...state, loaded: false };
+            }
+
             state.rows = systemsToInventoryEntities(systems(), state.rows);
             state.count = state.rows.length;
             state.total = state.rows.length;
