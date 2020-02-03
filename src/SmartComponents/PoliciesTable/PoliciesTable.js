@@ -15,6 +15,7 @@ import {
     Title
 } from '@patternfly/react-core';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
+import DeletePolicy from '../DeletePolicy/DeletePolicy';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { paths } from '../../Routes';
 import debounce from 'lodash/debounce';
@@ -141,12 +142,15 @@ export class PoliciesTable extends React.Component {
         });
     }, 500)
 
-    actionResolver = () => {
+    actionResolver = (rowData) => {
         const { history, policies } = this.props;
         return [
             {
                 title: 'View latest results',
                 onClick: (event, rowId) => history.push(`${paths.compliancePolicies}/${policies[rowId].id}`)
+            },
+            {
+                title: rowData.id && <DeletePolicy id={policies[rowData.id].id} name={rowData.cells[0]} />
             }
         ];
     }
