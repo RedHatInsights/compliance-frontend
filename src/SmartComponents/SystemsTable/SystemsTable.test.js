@@ -1,6 +1,8 @@
 import { init } from '../../store';
 import logger from 'redux-logger';
 import toJson from 'enzyme-to-json';
+import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 
 import { SystemsTable } from './SystemsTable';
 
@@ -47,17 +49,18 @@ describe('SystemsTable', () => {
     });
 
     it('expect to render a loading state', () => {
-        const wrapper = shallow(
-            <SystemsTable { ...defaultProps } />
+        const component = renderer.create(
+            <Provider store={defaultProps.store}>
+                <SystemsTable/>
+            </Provider>
         );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-        expect(global.insights.loadInventory).toHaveBeenCalled();
+        expect(component.toJSON()).toMatchSnapshot();
     });
 
     it('expect to not render a loading state', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } loading={ false } items={ items.data.allSystems } systemsCount= { 1 } />
+            <SystemsTable { ...defaultProps }  items={ items.data.allSystems } systemsCount= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
