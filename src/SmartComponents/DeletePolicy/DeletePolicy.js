@@ -4,35 +4,40 @@ import {
     Button
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_PROFILE } from '../../Utilities/graphql/mutations';
 
-const DeletePolicy = ({ name, id }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
     const [deletePolicy] = useMutation(DELETE_PROFILE);
+    const { name, id } = policy;
 
     return (
         <React.Fragment>
-            <div onClick={() => setIsModalOpen(true)}>Delete policy</div>
             <Modal
                 isSmall
                 title='Delete policy'
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={toggle}
                 actions={[
-                    <Button key='cancel' variant='danger'
-                        onClick={() => deletePolicy({ variables: { id } })}
-                    >
+                    <Button key='destroy' variant='danger'
+                        onClick={() => {
+                            deletePolicy({ variables: { input: { id } } });
+                            onDelete();
+                            toggle();
+                        }} >
                         Delete policy
                     </Button>,
-                    <Button key='cancel' variant='secondary' onClick={() => setIsModalOpen(false)}>
+                    <Button key='cancel' variant='secondary' onClick={toggle}>
                         Cancel
                     </Button>
                 ]}
             >
                 <TextContent>
-                    Are you sure you want to delete the <b>{ name }</b> policy?. This cannot be undone.
+                    Are you sure you want to delete <b>{ name }</b>?
+                </TextContent>
+                <TextContent>
+                    This cannot be undone.
                 </TextContent>
             </Modal>
         </React.Fragment>
@@ -40,8 +45,10 @@ const DeletePolicy = ({ name, id }) => {
 };
 
 DeletePolicy.propTypes = {
-    name: propTypes.string,
-    id: propTypes.string
+    policy: propTypes.object,
+    toggle: propTypes.func,
+    isModalOpen: propTypes.bool,
+    onDelete: propTypes.func
 };
 
 export default DeletePolicy;

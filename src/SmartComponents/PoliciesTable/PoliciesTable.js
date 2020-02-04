@@ -57,7 +57,9 @@ export class PoliciesTable extends React.Component {
             itemsPerPage: 10,
             search: '',
             rows: [],
-            currentRows: []
+            currentRows: [],
+            isDeleteModalOpen: false,
+            policyToDelete: {}
         };
     }
 
@@ -144,22 +146,35 @@ export class PoliciesTable extends React.Component {
 
     actionResolver = (rowData) => {
         const { history, policies } = this.props;
+
         return [
             {
                 title: 'View latest results',
                 onClick: (event, rowId) => history.push(`${paths.compliancePolicies}/${policies[rowId].id}`)
             },
             {
-                title: rowData.id && <DeletePolicy id={policies[rowData.id].id} name={rowData.cells[0]} />
+                title: 'Delete policy',
+                onClick: () => {
+                    this.setState((prev) => ({
+                        policyToDelete: policies[rowData.id],
+                        isDeleteModalOpen: !prev.isDeleteModalOpen
+                    }));
+                }
             }
         ];
     }
 
     render() {
         const { onWizardFinish } = this.props;
-        const { rows, currentRows, columns, page, itemsPerPage } = this.state;
+        const { rows, currentRows, columns, page, itemsPerPage, policyToDelete, isDeleteModalOpen } = this.state;
         return (
             <React.Fragment>
+                <DeletePolicy
+                    isModalOpen={isDeleteModalOpen}
+                    policy={policyToDelete}
+                    onDelete={onWizardFinish}
+                    toggle={() => this.setState((prev) => ({ isDeleteModalOpen: !prev.isDeleteModalOpen }))}
+                />
                 <TableToolbar>
                     <Level gutter='md'>
                         <LevelItem>
