@@ -1,0 +1,1029 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
+<MockedProvider
+  addTypename={true}
+>
+  <ApolloProvider
+    client={
+      ApolloClient {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "cacheKeyRoot": KeyTrie {
+            "weakness": true,
+          },
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "freezeResults": false,
+            "resultCaching": true,
+          },
+          "data": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "silenceBroadcast": false,
+          "storeReader": StoreReader {
+            "executeSelectionSet": [Function],
+            "executeStoreQuery": [Function],
+            "executeSubSelectedArray": [Function],
+            "freezeResults": false,
+          },
+          "storeWriter": StoreWriter {},
+          "typenameDocumentCache": Array [],
+          "watches": Array [],
+        },
+        "clearStoreCallbacks": Array [],
+        "defaultOptions": Object {},
+        "disableNetworkFetches": false,
+        "link": MockLink {
+          "addTypename": true,
+          "mockedResponsesByKey": Object {},
+        },
+        "localState": LocalState {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Array [],
+            "watches": Array [],
+          },
+          "client": [Circular],
+        },
+        "mutate": [Function],
+        "query": [Function],
+        "queryDeduplication": true,
+        "queryManager": QueryManager {
+          "assumeImmutableResults": false,
+          "clientAwareness": Object {
+            "name": undefined,
+            "version": undefined,
+          },
+          "dataStore": DataStore {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+          },
+          "fetchQueryRejectFns": Array [],
+          "idCounter": 1,
+          "inFlightLinkObservables": Array [],
+          "link": MockLink {
+            "addTypename": true,
+            "mockedResponsesByKey": Object {},
+          },
+          "localState": LocalState {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "client": [Circular],
+          },
+          "mutationStore": MutationStore {
+            "store": Object {},
+          },
+          "onBroadcast": [Function],
+          "pollingInfoByQueryId": Array [],
+          "queries": Array [],
+          "queryDeduplication": true,
+          "queryStore": QueryStore {
+            "store": Object {},
+          },
+          "ssrMode": false,
+          "transformCache": WeakMap {},
+        },
+        "reFetchObservableQueries": [Function],
+        "resetStore": [Function],
+        "resetStoreCallbacks": Array [],
+        "store": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Array [],
+            "watches": Array [],
+          },
+        },
+        "typeDefs": undefined,
+        "version": "2.6.4",
+        "watchQuery": [Function],
+      }
+    }
+  >
+    <DeletePolicy
+      isModalOpen={false}
+      onDelete={[Function]}
+      policy={
+        Object {
+          "id": 1,
+          "name": "foo",
+        }
+      }
+      toggle={[Function]}
+    >
+      <Modal
+        actions={
+          Array [
+            <Unknown
+              onClick={[Function]}
+              variant="danger"
+            >
+              Delete policy
+            </Unknown>,
+            <Unknown
+              onClick={[Function]}
+              variant="secondary"
+            >
+              Cancel
+            </Unknown>,
+          ]
+        }
+        appendTo={
+          <body>
+            <div />
+          </body>
+        }
+        ariaDescribedById=""
+        className=""
+        hideTitle={false}
+        isFooterLeftAligned={false}
+        isLarge={false}
+        isOpen={false}
+        isSmall={true}
+        onClose={[Function]}
+        showClose={true}
+        title="Delete policy"
+      >
+        <Portal
+          containerInfo={<div />}
+        >
+          <ModalContent
+            actions={
+              Array [
+                <Unknown
+                  onClick={[Function]}
+                  variant="danger"
+                >
+                  Delete policy
+                </Unknown>,
+                <Unknown
+                  onClick={[Function]}
+                  variant="secondary"
+                >
+                  Cancel
+                </Unknown>,
+              ]
+            }
+            ariaDescribedById=""
+            className=""
+            hideTitle={false}
+            id="pf-modal-0"
+            isFooterLeftAligned={false}
+            isLarge={false}
+            isOpen={false}
+            isSmall={true}
+            onClose={[Function]}
+            showClose={true}
+            title="Delete policy"
+          />
+        </Portal>
+      </Modal>
+    </DeletePolicy>
+  </ApolloProvider>
+</MockedProvider>
+`;
+
+exports[`DeletePolicy expect to render an open modal without error 1`] = `
+<MockedProvider
+  addTypename={true}
+>
+  <ApolloProvider
+    client={
+      ApolloClient {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "cacheKeyRoot": KeyTrie {
+            "weakness": true,
+          },
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": HeuristicFragmentMatcher {},
+            "freezeResults": false,
+            "resultCaching": true,
+          },
+          "data": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "maybeBroadcastWatch": [Function],
+          "optimisticData": DepTrackingCache {
+            "data": Object {},
+            "depend": [Function],
+          },
+          "silenceBroadcast": false,
+          "storeReader": StoreReader {
+            "executeSelectionSet": [Function],
+            "executeStoreQuery": [Function],
+            "executeSubSelectedArray": [Function],
+            "freezeResults": false,
+          },
+          "storeWriter": StoreWriter {},
+          "typenameDocumentCache": Array [],
+          "watches": Array [],
+        },
+        "clearStoreCallbacks": Array [],
+        "defaultOptions": Object {},
+        "disableNetworkFetches": false,
+        "link": MockLink {
+          "addTypename": true,
+          "mockedResponsesByKey": Object {},
+        },
+        "localState": LocalState {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Array [],
+            "watches": Array [],
+          },
+          "client": [Circular],
+        },
+        "mutate": [Function],
+        "query": [Function],
+        "queryDeduplication": true,
+        "queryManager": QueryManager {
+          "assumeImmutableResults": false,
+          "clientAwareness": Object {
+            "name": undefined,
+            "version": undefined,
+          },
+          "dataStore": DataStore {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+          },
+          "fetchQueryRejectFns": Array [],
+          "idCounter": 1,
+          "inFlightLinkObservables": Array [],
+          "link": MockLink {
+            "addTypename": true,
+            "mockedResponsesByKey": Object {},
+          },
+          "localState": LocalState {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "client": [Circular],
+          },
+          "mutationStore": MutationStore {
+            "store": Object {},
+          },
+          "onBroadcast": [Function],
+          "pollingInfoByQueryId": Array [],
+          "queries": Array [],
+          "queryDeduplication": true,
+          "queryStore": QueryStore {
+            "store": Object {},
+          },
+          "ssrMode": false,
+          "transformCache": WeakMap {},
+        },
+        "reFetchObservableQueries": [Function],
+        "resetStore": [Function],
+        "resetStoreCallbacks": Array [],
+        "store": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "cacheKeyRoot": KeyTrie {
+              "weakness": true,
+            },
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": HeuristicFragmentMatcher {},
+              "freezeResults": false,
+              "resultCaching": true,
+            },
+            "data": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "maybeBroadcastWatch": [Function],
+            "optimisticData": DepTrackingCache {
+              "data": Object {},
+              "depend": [Function],
+            },
+            "silenceBroadcast": false,
+            "storeReader": StoreReader {
+              "executeSelectionSet": [Function],
+              "executeStoreQuery": [Function],
+              "executeSubSelectedArray": [Function],
+              "freezeResults": false,
+            },
+            "storeWriter": StoreWriter {},
+            "typenameDocumentCache": Array [],
+            "watches": Array [],
+          },
+        },
+        "typeDefs": undefined,
+        "version": "2.6.4",
+        "watchQuery": [Function],
+      }
+    }
+  >
+    <DeletePolicy
+      isModalOpen={true}
+      onDelete={[Function]}
+      policy={
+        Object {
+          "id": 1,
+          "name": "foo",
+        }
+      }
+      toggle={[Function]}
+    >
+      <Modal
+        actions={
+          Array [
+            <Unknown
+              onClick={[Function]}
+              variant="danger"
+            >
+              Delete policy
+            </Unknown>,
+            <Unknown
+              onClick={[Function]}
+              variant="secondary"
+            >
+              Cancel
+            </Unknown>,
+          ]
+        }
+        appendTo={
+          <body
+            class="pf-c-backdrop__open"
+          >
+            <div
+              aria-hidden="true"
+            />
+            <div>
+              <div
+                class="pf-c-backdrop"
+              >
+                <div
+                  class="pf-l-bullseye"
+                >
+                  <div
+                    aria-describedby="pf-modal-1"
+                    aria-label="Delete policy"
+                    aria-modal="true"
+                    class="pf-c-modal-box pf-m-sm"
+                    role="dialog"
+                  >
+                    <button
+                      aria-label="Close"
+                      class="pf-c-button pf-m-plain"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        height="1em"
+                        role="img"
+                        style="vertical-align: -0.125em;"
+                        viewBox="0 0 352 512"
+                        width="1em"
+                      >
+                        <path
+                          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                          transform=""
+                        />
+                      </svg>
+                    </button>
+                    <h1
+                      class="pf-c-title pf-m-2xl"
+                    >
+                       
+                      Delete policy
+                       
+                    </h1>
+                    <div
+                      class="pf-c-modal-box__body"
+                      id="pf-modal-1"
+                    >
+                      <div
+                        class="pf-c-content"
+                      >
+                        Are you sure you want to delete 
+                        <b>
+                          foo
+                        </b>
+                        ?
+                      </div>
+                      <div
+                        class="pf-c-content"
+                      >
+                        This cannot be undone.
+                      </div>
+                    </div>
+                    <div
+                      class="pf-c-modal-box__footer"
+                    >
+                      <button
+                        class="pf-c-button pf-m-danger"
+                        type="button"
+                      >
+                        Delete policy
+                      </button>
+                      <button
+                        class="pf-c-button pf-m-secondary"
+                        type="button"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </body>
+        }
+        ariaDescribedById=""
+        className=""
+        hideTitle={false}
+        isFooterLeftAligned={false}
+        isLarge={false}
+        isOpen={true}
+        isSmall={true}
+        onClose={[Function]}
+        showClose={true}
+        title="Delete policy"
+      >
+        <Portal
+          containerInfo={
+            <div>
+              <div
+                class="pf-c-backdrop"
+              >
+                <div
+                  class="pf-l-bullseye"
+                >
+                  <div
+                    aria-describedby="pf-modal-1"
+                    aria-label="Delete policy"
+                    aria-modal="true"
+                    class="pf-c-modal-box pf-m-sm"
+                    role="dialog"
+                  >
+                    <button
+                      aria-label="Close"
+                      class="pf-c-button pf-m-plain"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        height="1em"
+                        role="img"
+                        style="vertical-align: -0.125em;"
+                        viewBox="0 0 352 512"
+                        width="1em"
+                      >
+                        <path
+                          d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                          transform=""
+                        />
+                      </svg>
+                    </button>
+                    <h1
+                      class="pf-c-title pf-m-2xl"
+                    >
+                       
+                      Delete policy
+                       
+                    </h1>
+                    <div
+                      class="pf-c-modal-box__body"
+                      id="pf-modal-1"
+                    >
+                      <div
+                        class="pf-c-content"
+                      >
+                        Are you sure you want to delete 
+                        <b>
+                          foo
+                        </b>
+                        ?
+                      </div>
+                      <div
+                        class="pf-c-content"
+                      >
+                        This cannot be undone.
+                      </div>
+                    </div>
+                    <div
+                      class="pf-c-modal-box__footer"
+                    >
+                      <button
+                        class="pf-c-button pf-m-danger"
+                        type="button"
+                      >
+                        Delete policy
+                      </button>
+                      <button
+                        class="pf-c-button pf-m-secondary"
+                        type="button"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <ModalContent
+            actions={
+              Array [
+                <Unknown
+                  onClick={[Function]}
+                  variant="danger"
+                >
+                  Delete policy
+                </Unknown>,
+                <Unknown
+                  onClick={[Function]}
+                  variant="secondary"
+                >
+                  Cancel
+                </Unknown>,
+              ]
+            }
+            ariaDescribedById=""
+            className=""
+            hideTitle={false}
+            id="pf-modal-1"
+            isFooterLeftAligned={false}
+            isLarge={false}
+            isOpen={true}
+            isSmall={true}
+            onClose={[Function]}
+            showClose={true}
+            title="Delete policy"
+          >
+            <Backdrop>
+              <div
+                className="pf-c-backdrop"
+              >
+                <FocusTrap
+                  _createFocusTrap={[Function]}
+                  active={true}
+                  className="pf-l-bullseye"
+                  focusTrapOptions={
+                    Object {
+                      "clickOutsideDeactivates": true,
+                    }
+                  }
+                  paused={false}
+                  tag="div"
+                >
+                  <div
+                    className="pf-l-bullseye"
+                  >
+                    <ModalBox
+                      className=""
+                      id="pf-modal-1"
+                      isLarge={false}
+                      isSmall={true}
+                      style={Object {}}
+                      title="Delete policy"
+                    >
+                      <div
+                        aria-describedby="pf-modal-1"
+                        aria-label="Delete policy"
+                        aria-modal="true"
+                        className="pf-c-modal-box pf-m-sm"
+                        role="dialog"
+                        style={Object {}}
+                      >
+                        <ModalBoxCloseButton
+                          onClose={[Function]}
+                        >
+                          <Component
+                            aria-label="Close"
+                            className=""
+                            onClick={[Function]}
+                            variant="plain"
+                          >
+                            <ComponentWithOuia
+                              component={[Function]}
+                              componentProps={
+                                Object {
+                                  "aria-label": "Close",
+                                  "children": <TimesIcon
+                                    color="currentColor"
+                                    noVerticalAlign={false}
+                                    size="sm"
+                                    title={null}
+                                  />,
+                                  "className": "",
+                                  "onClick": [Function],
+                                  "variant": "plain",
+                                }
+                              }
+                              consumerContext={null}
+                            >
+                              <Button
+                                aria-label="Close"
+                                className=""
+                                onClick={[Function]}
+                                ouiaContext={
+                                  Object {
+                                    "isOuia": false,
+                                    "ouiaId": null,
+                                  }
+                                }
+                                variant="plain"
+                              >
+                                <button
+                                  aria-disabled={null}
+                                  aria-label="Close"
+                                  className="pf-c-button pf-m-plain"
+                                  disabled={false}
+                                  onClick={[Function]}
+                                  tabIndex={null}
+                                  type="button"
+                                >
+                                  <TimesIcon
+                                    color="currentColor"
+                                    noVerticalAlign={false}
+                                    size="sm"
+                                    title={null}
+                                  >
+                                    <svg
+                                      aria-hidden={true}
+                                      aria-labelledby={null}
+                                      fill="currentColor"
+                                      height="1em"
+                                      role="img"
+                                      style={
+                                        Object {
+                                          "verticalAlign": "-0.125em",
+                                        }
+                                      }
+                                      viewBox="0 0 352 512"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                                        transform=""
+                                      />
+                                    </svg>
+                                  </TimesIcon>
+                                </button>
+                              </Button>
+                            </ComponentWithOuia>
+                          </Component>
+                        </ModalBoxCloseButton>
+                        <ModalBoxHeader
+                          hideTitle={false}
+                        >
+                          <Title
+                            className=""
+                            headingLevel="h1"
+                            size="2xl"
+                          >
+                            <h1
+                              className="pf-c-title pf-m-2xl"
+                            >
+                               
+                              Delete policy
+                               
+                            </h1>
+                          </Title>
+                        </ModalBoxHeader>
+                        <ModalBoxBody
+                          id="pf-modal-1"
+                        >
+                          <div
+                            className="pf-c-modal-box__body"
+                            id="pf-modal-1"
+                          >
+                            <TextContent>
+                              <div
+                                className="pf-c-content"
+                              >
+                                Are you sure you want to delete 
+                                <b>
+                                  foo
+                                </b>
+                                ?
+                              </div>
+                            </TextContent>
+                            <TextContent>
+                              <div
+                                className="pf-c-content"
+                              >
+                                This cannot be undone.
+                              </div>
+                            </TextContent>
+                          </div>
+                        </ModalBoxBody>
+                        <ModalBoxFooter
+                          isLeftAligned={false}
+                        >
+                          <div
+                            className="pf-c-modal-box__footer"
+                          >
+                            <Component
+                              key="destroy"
+                              onClick={[Function]}
+                              variant="danger"
+                            >
+                              <ComponentWithOuia
+                                component={[Function]}
+                                componentProps={
+                                  Object {
+                                    "children": "Delete policy",
+                                    "onClick": [Function],
+                                    "variant": "danger",
+                                  }
+                                }
+                                consumerContext={null}
+                              >
+                                <Button
+                                  onClick={[Function]}
+                                  ouiaContext={
+                                    Object {
+                                      "isOuia": false,
+                                      "ouiaId": null,
+                                    }
+                                  }
+                                  variant="danger"
+                                >
+                                  <button
+                                    aria-disabled={null}
+                                    aria-label={null}
+                                    className="pf-c-button pf-m-danger"
+                                    disabled={false}
+                                    onClick={[Function]}
+                                    tabIndex={null}
+                                    type="button"
+                                  >
+                                    Delete policy
+                                  </button>
+                                </Button>
+                              </ComponentWithOuia>
+                            </Component>
+                            <Component
+                              key="cancel"
+                              onClick={[Function]}
+                              variant="secondary"
+                            >
+                              <ComponentWithOuia
+                                component={[Function]}
+                                componentProps={
+                                  Object {
+                                    "children": "Cancel",
+                                    "onClick": [Function],
+                                    "variant": "secondary",
+                                  }
+                                }
+                                consumerContext={null}
+                              >
+                                <Button
+                                  onClick={[Function]}
+                                  ouiaContext={
+                                    Object {
+                                      "isOuia": false,
+                                      "ouiaId": null,
+                                    }
+                                  }
+                                  variant="secondary"
+                                >
+                                  <button
+                                    aria-disabled={null}
+                                    aria-label={null}
+                                    className="pf-c-button pf-m-secondary"
+                                    disabled={false}
+                                    onClick={[Function]}
+                                    tabIndex={null}
+                                    type="button"
+                                  >
+                                    Cancel
+                                  </button>
+                                </Button>
+                              </ComponentWithOuia>
+                            </Component>
+                          </div>
+                        </ModalBoxFooter>
+                      </div>
+                    </ModalBox>
+                  </div>
+                </FocusTrap>
+              </div>
+            </Backdrop>
+          </ModalContent>
+        </Portal>
+      </Modal>
+    </DeletePolicy>
+  </ApolloProvider>
+</MockedProvider>
+`;
