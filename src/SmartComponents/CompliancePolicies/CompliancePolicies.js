@@ -19,6 +19,7 @@ const QUERY = gql`
                 name
                 refId
                 complianceThreshold
+                totalHostCount
                 businessObjective {
                     id
                     title

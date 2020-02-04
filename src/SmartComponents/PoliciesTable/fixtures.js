@@ -7,6 +7,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_ospp23',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -18,6 +19,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss3',
                 complianceThreshold: 67,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -29,6 +31,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_ospp2',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -40,6 +43,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 complianceThreshold: 69.5,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -51,6 +55,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_cjis',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -62,6 +67,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_nist-800-171-cui',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -73,6 +79,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -84,6 +91,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -94,6 +102,7 @@ export const policies = {
                 name: 'Health Insurance Portability and Accountability Act (HIPAA)',
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
                 complianceThreshold: 100,
+                totalHostCount: 10,
                 businessObjective: null,
                 __typename: 'Profile'
             },
@@ -106,6 +115,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_ospp',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -117,6 +127,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -128,6 +139,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_stig-rhel7-disa',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -139,10 +151,11 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss2',
                 complianceThreshold: 100,
                 businessObjective: null,
+                totalHostCount: 10,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
         }
     ],
     __typename: 'ProfileConnection'
-}
+};
