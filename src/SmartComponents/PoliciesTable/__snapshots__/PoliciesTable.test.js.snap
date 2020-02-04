@@ -2,6 +2,11 @@
 
 exports[`PoliciesTable expect to render emptystate 1`] = `
 <Fragment>
+  <DeletePolicy
+    isModalOpen={false}
+    policy={Object {}}
+    toggle={[Function]}
+  />
   <TableToolbar
     isFooter={false}
   >
@@ -116,6 +121,11 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
 
 exports[`PoliciesTable expect to render without error 1`] = `
 <Fragment>
+  <DeletePolicy
+    isModalOpen={false}
+    policy={Object {}}
+    toggle={[Function]}
+  />
   <TableToolbar
     isFooter={false}
   >

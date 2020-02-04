@@ -15,6 +15,7 @@ import {
     Title
 } from '@patternfly/react-core';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
+import DeletePolicy from '../DeletePolicy/DeletePolicy';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { paths } from '../../Routes';
 import debounce from 'lodash/debounce';
@@ -56,7 +57,9 @@ export class PoliciesTable extends React.Component {
             itemsPerPage: 10,
             search: '',
             rows: [],
-            currentRows: []
+            currentRows: [],
+            isDeleteModalOpen: false,
+            policyToDelete: {}
         };
     }
 
@@ -141,21 +144,37 @@ export class PoliciesTable extends React.Component {
         });
     }, 500)
 
-    actionResolver = () => {
+    actionResolver = (rowData) => {
         const { history, policies } = this.props;
+
         return [
             {
                 title: 'View latest results',
                 onClick: (event, rowId) => history.push(`${paths.compliancePolicies}/${policies[rowId].id}`)
+            },
+            {
+                title: 'Delete policy',
+                onClick: () => {
+                    this.setState((prev) => ({
+                        policyToDelete: policies[rowData.id],
+                        isDeleteModalOpen: !prev.isDeleteModalOpen
+                    }));
+                }
             }
         ];
     }
 
     render() {
         const { onWizardFinish } = this.props;
-        const { rows, currentRows, columns, page, itemsPerPage } = this.state;
+        const { rows, currentRows, columns, page, itemsPerPage, policyToDelete, isDeleteModalOpen } = this.state;
         return (
             <React.Fragment>
+                <DeletePolicy
+                    isModalOpen={isDeleteModalOpen}
+                    policy={policyToDelete}
+                    onDelete={onWizardFinish}
+                    toggle={() => this.setState((prev) => ({ isDeleteModalOpen: !prev.isDeleteModalOpen }))}
+                />
                 <TableToolbar>
                     <Level gutter='md'>
                         <LevelItem>

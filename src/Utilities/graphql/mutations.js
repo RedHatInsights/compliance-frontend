@@ -43,3 +43,12 @@ mutation createBusinessObjective($input: createBusinessObjectiveInput!) {
 }
 `;
 
+export const DELETE_PROFILE = gql`
+mutation DeleteProfile($input: deleteProfileInput!) {
+    deleteProfile(input: $input) {
+        profile {
+            id
+        }
+    }
+}
+`;
