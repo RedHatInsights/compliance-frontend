@@ -45,7 +45,7 @@ describe('DeletePolicy', () => {
         const component = mount(
             <DeletePolicy { ...defaultProps } />
         );
-        // console.log(component.find('button').at(0));
+
         component.find('button[aria-label="delete"]').simulate('click');
         expect(defaultProps.toggle).toHaveBeenCalled();
         expect(defaultProps.onDelete).toHaveBeenCalled();
