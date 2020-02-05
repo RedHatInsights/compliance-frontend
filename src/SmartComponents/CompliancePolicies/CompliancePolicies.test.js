@@ -1,12 +1,17 @@
 import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
-import { CompliancePolicies } from './CompliancePolicies.js';
 import { profiles } from './fixtures.js';
 
 jest.mock('@apollo/react-hooks');
+jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
+    const ComplianceRemediationButton = () => <button>Remediations</button>;
+    return ComplianceRemediationButton;
+});
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
     return <p>Rules table</p>;
 });
+
+import { CompliancePolicies } from './CompliancePolicies.js';
 
 describe('CompliancePolicies', () => {
     it('expect to render without error', () => {

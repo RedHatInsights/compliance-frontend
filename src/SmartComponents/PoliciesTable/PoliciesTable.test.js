@@ -1,5 +1,4 @@
 import toJson from 'enzyme-to-json';
-import { PoliciesTable } from './PoliciesTable.js';
 import { policies } from './fixtures.js';
 import debounce from 'lodash/debounce';
 
@@ -9,6 +8,12 @@ debounce.mockImplementation(fn => fn);
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
     return <p>Rules table</p>;
 });
+jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
+    const ComplianceRemediationButton = () => <button>Remediations</button>;
+    return ComplianceRemediationButton;
+});
+
+import { PoliciesTable } from './PoliciesTable.js';
 
 describe('PoliciesTable', () => {
     it('expect to render without error', () => {

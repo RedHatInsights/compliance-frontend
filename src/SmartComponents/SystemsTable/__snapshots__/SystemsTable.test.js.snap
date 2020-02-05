@@ -41,7 +41,10 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
         }
       }
     >
-      <Connect(Apollo(ComplianceRemediationButton)) />
+      <Component
+        allSystems={Array []}
+        selectedRules={Array []}
+      />
     </ToolbarItem>
     <ToolbarItem
       style={
@@ -564,7 +567,16 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
         }
       }
     >
-      <Connect(Apollo(ComplianceRemediationButton)) />
+      <Component
+        allSystems={
+          Array [
+            Object {
+              "id": 1,
+            },
+          ]
+        }
+        selectedRules={Array []}
+      />
     </ToolbarItem>
     <ToolbarItem
       style={
