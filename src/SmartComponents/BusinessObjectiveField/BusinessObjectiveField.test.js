@@ -1,15 +1,29 @@
 import toJson from 'enzyme-to-json';
 
 import { BusinessObjectiveField } from './BusinessObjectiveField';
+const businessObjective = {
+    title: 'BO title',
+    id: 1
+};
+
+const defaultProps = {
+    businessObjective,
+    client: {
+        cache: {
+            reset: jest.fn()
+        },
+        query: jest.fn(() => {
+            return Promise.resolve({
+                data: {
+                    businessObjectives: [businessObjective]
+                }
+            });
+        })
+    },
+    dispatch: jest.fn()
+};
 
 describe('BusinessObjectiveField', () => {
-    const defaultProps = {
-        businessObjective: {
-            title: 'BO title',
-            id: 1
-        }
-    };
-
     it('expect to render without error', () => {
         const wrapper = shallow(
             <BusinessObjectiveField { ...defaultProps }/>
@@ -24,5 +38,28 @@ describe('BusinessObjectiveField', () => {
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
+    });
+});
+
+describe('BusinessObjectiveField.loadOptions', () => {
+    it('expect to return options to consume', () => {
+        const wrapper = shallow(
+            <BusinessObjectiveField { ...defaultProps }/>
+        );
+        const instance = wrapper.instance();
+        instance.loadOptions().then((result) => {
+            return expect(result).toMatchSnapshot();
+        });
+    });
+});
+
+describe('BusinessObjectiveField.handleCreate', () => {
+    it('expect to call dispatch', () => {
+        const wrapper = shallow(
+            <BusinessObjectiveField { ...defaultProps }/>
+        );
+        const instance = wrapper.instance();
+        instance.handleCreate();
+        expect(defaultProps.dispatch).toHaveBeenCalled();
     });
 });
