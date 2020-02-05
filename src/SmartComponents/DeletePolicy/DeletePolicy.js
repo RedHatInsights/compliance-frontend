@@ -39,7 +39,10 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
             isOpen={isModalOpen}
             onClose={toggle}
             actions={[
-                <Button key='destroy' variant='danger' onClick={() => deletePolicy({ variables: { input: { id } } })}>
+                <Button key='destroy'
+                    aria-label="delete"
+                    variant='danger'
+                    onClick={() => deletePolicy({ variables: { input: { id } } })}>
                     Delete policy
                 </Button>,
                 <Button key='cancel' variant='secondary' onClick={toggle}>
