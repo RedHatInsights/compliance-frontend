@@ -33,7 +33,7 @@ const columns = [
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
 
-const EditPolicyRules = ({ profileId }) => {
+export const EditPolicyRules = ({ profileId }) => {
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId } });
 
     if (error) { return error; }

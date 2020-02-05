@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyRules expect to render without error 1`] = `
+<Component
+  columns={
+    Array [
+      Object {
+        "title": "Rule",
+        "transforms": Array [
+          [Function],
+        ],
+      },
+      Object {
+        "title": "Severity",
+        "transforms": Array [
+          [Function],
+        ],
+      },
+      Object {
+        "original": "Ansible",
+        "title": <React.Fragment>
+           Ansible
+        </React.Fragment>,
+        "transforms": Array [
+          [Function],
+        ],
+      },
+    ]
+  }
+  loading={false}
+  profileRules={
+    Array [
+      Object {
+        "profile": Object {
+          "name": "test profile",
+          "refId": "refID-test",
+        },
+        "rules": undefined,
+      },
+    ]
+  }
+  remediationsEnabled={false}
+/>
+`;
+
+exports[`EditPolicyRules expect to render without error on error 1`] = `<Component />`;
+
+exports[`EditPolicyRules expect to render without error on loading 1`] = `
+<EmptyTable>
+  <Spinner />
+</EmptyTable>
+`;
