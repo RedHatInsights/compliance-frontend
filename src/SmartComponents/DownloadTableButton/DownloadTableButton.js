@@ -1,78 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import { connect } from 'react-redux';
 import { Dropdown, KebabToggle, DropdownItem, Tooltip } from '@patternfly/react-core';
 import { exportToCSV } from '../../store/ActionTypes.js';
 
-export class DownloadTableButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false
-        };
-        this.onToggle = this.onToggle.bind(this);
-        this.onSelect = this.onSelect.bind(this);
-    }
+export const DownloadTableButton = ({ selectedEntities, exportToCSV }) => {
+    const [isOpen, setOpen] = useState(false);
 
-    onToggle(isOpen) {
-        this.setState({
-            isOpen
-        });
+    const toggleButton = <KebabToggle
+        onToggle={(value) => setOpen(value)}
+        style={{ color: 'var(--pf-global--icon--Color--light)' }}
+    />;
+
+    const downloadLink = (format) => {
+        return (selectedEntities !== null) ?
+            COMPLIANCE_API_ROOT + '/systems.' + format +
+            '?search=(id ^ (' + selectedEntities.join(',') + '))' : '';
     };
 
-    onSelect() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    };
+    const content = <div>More actions</div>;
 
-    downloadLink(format) {
-        let link = '';
-        if (this.props !== null && this.props.selectedEntities !== null) {
-            link = COMPLIANCE_API_ROOT + '/systems.' + format + '?search=(id ^ (' +
-                this.props.selectedEntities.join(',') + '))';
-        }
+    const dropdownItems = [
+        <DropdownItem key='csv' onClick={ exportToCSV }>
+            Export as CSV
+        </DropdownItem>,
+        <DropdownItem target='_blank' key='json' href={ downloadLink('json') }>
+            Export as JSON
+        </DropdownItem>
+    ];
 
-        return link;
-    }
-
-    render() {
-        const { isOpen } = this.state;
-        const dropdownItems = [
-            <DropdownItem key='csv' onClick={ this.props.exportToCSV }>
-                Export as CSV
-            </DropdownItem>,
-            <DropdownItem target='_blank' key='json' href={this.downloadLink('json')}>
-                Export as JSON
-            </DropdownItem>
-        ];
-
-        return (
-            <React.Fragment>
-                <Tooltip
-                    enableFlip={ true }
-                    content={
-                        <div>
-                            More actions
-                        </div>
-                    }
-                >
-                    <Dropdown
-                        onSelect={this.onSelect}
-                        isPlain
-                        toggle={<KebabToggle
-                            onToggle={this.onToggle}
-                            style={{ color: 'var(--pf-global--icon--Color--light)' }}
-                        />}
-                        isOpen={isOpen}
-                        dropdownItems={dropdownItems}
-                    />
-                </Tooltip>
-            </React.Fragment>
-        );
-    }
-}
+    return <Tooltip enableFlip={ true } content={ content }>
+        <Dropdown
+            onSelect={ () => setOpen(!isOpen) }
+            isPlain
+            toggle={ toggleButton }
+            isOpen={ isOpen }
+            dropdownItems={ dropdownItems } />
+    </Tooltip>;
+};
 
 DownloadTableButton.propTypes = {
     selectedEntities: propTypes.array,
