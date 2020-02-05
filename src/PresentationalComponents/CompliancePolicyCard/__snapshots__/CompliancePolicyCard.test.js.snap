@@ -182,3 +182,22 @@ exports[`CompliancePolicyCard expect to render without error 1`] = `
   </CardBody>
 </Card>
 `;
+
+exports[`CompliancePolicyCard onMousover/onMouseout changes to state to the full policy name on hover and back to truncated 1`] = `
+Object {
+  "cardTitle": "Test Policy",
+}
+`;
+
+exports[`CompliancePolicyCard onMousover/onMouseout changes to state to the full policy name on hover and back to truncated 2`] = `
+Object {
+  "cardTitle": <Truncate
+    ellipsis="…"
+    lines={1}
+    trimWhitespace={false}
+    width={0}
+  >
+    Test Policy
+  </Truncate>,
+}
+`;
