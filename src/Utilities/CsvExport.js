@@ -27,7 +27,7 @@ const textCsvCell = (row, key) => {
     return cell;
 };
 
-const csvFromState = (state) => {
+export const csvFromState = (state) => {
     if (state.rows) {
         const CELL_DELIMITER = ',';
         let csvRows = [state.columns.map((column) => column.title).join(CELL_DELIMITER)];
