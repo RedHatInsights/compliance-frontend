@@ -33,10 +33,10 @@ describe('DownloadTableButton', () => {
     });
 
     it('expect to render the create button', () => {
-        expect(store.getActions().length).toEqual(0)
+        expect(store.getActions().length).toEqual(0);
         component.find('button[aria-label="Actions"]').simulate('click');
         component.find('.pf-c-dropdown__menu-item').first().simulate('click');
 
-        expect(store.getActions()[0]['type']).toEqual('@@COMPLIANCE/EXPORT_TO_CSV');
+        expect(store.getActions()[0].type).toEqual('@@COMPLIANCE/EXPORT_TO_CSV');
     });
 });
