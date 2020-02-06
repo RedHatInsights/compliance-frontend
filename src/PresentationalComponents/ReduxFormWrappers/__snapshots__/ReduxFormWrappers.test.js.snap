@@ -4,6 +4,7 @@ exports[`ReduxFormCheckboxInput expect to render without error 1`] = `
 <Checkbox
   additionalProp="Prop1"
   className=""
+  id="checkbox-id"
   input={
     Object {
       "onChange": [MockFunction],
