@@ -35,6 +35,7 @@ exports[`SystemDetails expect to render without error 1`] = `
   <Connect(Main)>
     <Component
       hidePassed={false}
+      inventoryId={1}
     />
   </Connect(Main)>
 </Fragment>
