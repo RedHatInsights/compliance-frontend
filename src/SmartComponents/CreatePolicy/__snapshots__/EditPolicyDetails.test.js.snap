@@ -38,6 +38,7 @@ Array [
       </label>
       <Field
         aria-describedby="name"
+        component={[Function]}
         id="name"
         isDisabled={true}
         isRequired={true}
@@ -67,6 +68,7 @@ Array [
       </label>
       <Field
         aria-describedby="refId"
+        component={[Function]}
         id="refId"
         isDisabled={true}
         name="refId"
@@ -89,6 +91,7 @@ Array [
       </label>
       <Field
         aria-describedby="description"
+        component={[Function]}
         id="description"
         name="description"
         type="text"
@@ -116,6 +119,7 @@ Array [
       </label>
       <Field
         aria-label="compliance threshold"
+        component={[Function]}
         defaultValue={100}
         id="complianceThreshold"
         isRequired={true}

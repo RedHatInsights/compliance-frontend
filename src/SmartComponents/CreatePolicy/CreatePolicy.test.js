@@ -1,4 +1,3 @@
-import CreatePolicy from './CreatePolicy.js';
 import toJson from 'enzyme-to-json';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
@@ -11,6 +10,12 @@ jest.mock('@apollo/react-hooks');
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
     return <p>Rules table</p>;
 });
+jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
+    const ComplianceRemediationButton = () => <button>Remediations</button>;
+    return ComplianceRemediationButton;
+});
+
+import CreatePolicy from './CreatePolicy.js';
 
 describe('CreatePolicy', () => {
     let store;

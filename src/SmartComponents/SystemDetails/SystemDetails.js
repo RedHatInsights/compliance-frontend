@@ -61,7 +61,8 @@ export const SystemDetails = (props) => {
                 <br/>
             </PageHeader>
             <Main>
-                <ComplianceSystemDetails hidePassed={hidePassed} />
+                { (inventoryId !== null && typeof(inventoryId) !== 'undefined') &&
+                <ComplianceSystemDetails hidePassed={hidePassed} inventoryId={ inventoryId } /> }
             </Main>
         </React.Fragment>
     );

@@ -12,12 +12,14 @@ import {
     SimpleTableFilter,
     SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
+import {
+    ComplianceRemediationButton
+} from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import  {
-    DownloadTableButton,
-    ComplianceRemediationButton
+    DownloadTableButton
 } from '../../SmartComponents';
 import {
     SystemsComplianceFilter
@@ -37,6 +39,14 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     rulesFailed
                     lastScanned
                     compliant
+                }
+                ruleObjectsFailed {
+                    refId,
+                    profiles {
+                        refId
+                    }
+                    title,
+                    remediationAvailable
                 }
             }
         }
@@ -163,7 +173,9 @@ class SystemsTable extends React.Component {
                 </reactCore.ToolbarItem>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <ComplianceRemediationButton />
+                        <ComplianceRemediationButton
+                            allSystems={ items.map((edge) => edge.node) }
+                            selectedRules={ [] } />
                     </reactCore.ToolbarItem>
                 }
                 <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>

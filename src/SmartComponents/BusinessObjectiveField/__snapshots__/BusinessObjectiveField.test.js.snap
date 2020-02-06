@@ -17,6 +17,7 @@ exports[`BusinessObjectiveField expect to render without error 1`] = `
     <Field
       aria-label="Select a business objective"
       ariaLabelledBy="business-objective-typeahead"
+      component={[Function]}
       id="businessObjective"
       isClearable={true}
       loadOptions={[Function]}
@@ -45,6 +46,7 @@ exports[`BusinessObjectiveField expect to render without title 1`] = `
     <Field
       aria-label="Select a business objective"
       ariaLabelledBy="business-objective-typeahead"
+      component={[Function]}
       id="businessObjective"
       isClearable={true}
       loadOptions={[Function]}
@@ -61,4 +63,13 @@ exports[`BusinessObjectiveField expect to render without title 1`] = `
     />
   </FormGroup>
 </Fragment>
+`;
+
+exports[`BusinessObjectiveField.loadOptions expect to return options to consume 1`] = `
+Array [
+  Object {
+    "label": "BO title",
+    "value": 1,
+  },
+]
 `;

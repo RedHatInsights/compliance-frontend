@@ -1,4 +1,6 @@
 import React from 'react';
+import propTypes from 'prop-types';
+
 import {
     Link
 } from 'react-router-dom';
@@ -22,10 +24,9 @@ import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
 class CompliancePolicyCard extends React.Component {
-    constructor(policy) {
-        super(policy);
-        this.policy = policy.policy;
-        this.state = { cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> };
+    policy = this.props.policy;
+    state = {
+        cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate>
     }
 
     onMouseover = () => {
@@ -124,6 +125,10 @@ class CompliancePolicyCard extends React.Component {
             </Card>
         );
     };
+};
+
+CompliancePolicyCard.propTypes = {
+    policy: propTypes.object
 };
 
 export default CompliancePolicyCard;

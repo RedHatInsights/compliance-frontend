@@ -4,12 +4,11 @@ import toJson from 'enzyme-to-json';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 
-import { SystemsTable } from './SystemsTable';
+jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () =>
+    () => 'Mocked ComplianceSystemDetails'
+);
 
-jest.doMock('../ComplianceRemediationButton/ComplianceRemediationButton', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
+import { SystemsTable } from './SystemsTable';
 
 const items = {
     data: {
