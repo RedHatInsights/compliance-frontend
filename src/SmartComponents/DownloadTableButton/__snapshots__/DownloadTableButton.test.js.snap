@@ -62,7 +62,6 @@ exports[`DownloadTableButton expect to render the create button 1`] = `
         zIndex={9999}
       >
         <PopoverBase
-          animateFill={false}
           appendTo={[Function]}
           aria="describedby"
           arrow={true}
@@ -105,7 +104,6 @@ exports[`DownloadTableButton expect to render the create button 1`] = `
           lazy={true}
           maxWidth="18.75rem"
           onCreate={[Function]}
-          performance={true}
           placement="top"
           popperOptions={
             Object {
@@ -270,7 +268,6 @@ exports[`DownloadTableButton expect to render the create button 1`] = `
                         Object {
                           "current": <div
                             class="pf-c-dropdown"
-                            tabindex="0"
                           >
                             <button
                               aria-expanded="false"
@@ -323,7 +320,6 @@ exports[`DownloadTableButton expect to render the create button 1`] = `
                           Object {
                             "current": <div
                               class="pf-c-dropdown"
-                              tabindex="0"
                             >
                               <button
                                 aria-expanded="false"
@@ -513,7 +509,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
         zIndex={9999}
       >
         <PopoverBase
-          animateFill={false}
           appendTo={[Function]}
           aria="describedby"
           arrow={true}
@@ -556,7 +551,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
           lazy={true}
           maxWidth="18.75rem"
           onCreate={[Function]}
-          performance={true}
           placement="top"
           popperOptions={
             Object {
@@ -721,7 +715,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                         Object {
                           "current": <div
                             class="pf-c-dropdown pf-m-expanded"
-                            tabindex="0"
                           >
                             <button
                               aria-expanded="true"
@@ -752,27 +745,23 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                               role="menu"
                             >
                               <li
-                                id=""
                                 role="menuitem"
                               >
                                 <a
                                   aria-disabled="false"
                                   class="pf-c-dropdown__menu-item"
-                                  id=""
                                   tabindex="-1"
                                 >
                                   Export as CSV
                                 </a>
                               </li>
                               <li
-                                id=""
                                 role="menuitem"
                               >
                                 <a
                                   aria-disabled="false"
                                   class="pf-c-dropdown__menu-item"
                                   href="/api/compliance/systems.json?search=(id ^ ())"
-                                  id=""
                                   tabindex="-1"
                                   target="_blank"
                                 >
@@ -808,7 +797,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                           Object {
                             "current": <div
                               class="pf-c-dropdown pf-m-expanded"
-                              tabindex="0"
                             >
                               <button
                                 aria-expanded="true"
@@ -839,27 +827,23 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                                 role="menu"
                               >
                                 <li
-                                  id=""
                                   role="menuitem"
                                 >
                                   <a
                                     aria-disabled="false"
                                     class="pf-c-dropdown__menu-item"
-                                    id=""
                                     tabindex="-1"
                                   >
                                     Export as CSV
                                   </a>
                                 </li>
                                 <li
-                                  id=""
                                   role="menuitem"
                                 >
                                   <a
                                     aria-disabled="false"
                                     class="pf-c-dropdown__menu-item"
                                     href="/api/compliance/systems.json?search=(id ^ ())"
-                                    id=""
                                     tabindex="-1"
                                     target="_blank"
                                   >
@@ -946,20 +930,18 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                           <InternalDropdownItem
                             className=""
                             component="a"
-                            componentID=""
                             context={
                               Object {
                                 "keyHandler": [Function],
                                 "sendRef": [Function],
                               }
                             }
+                            enterTriggersArrowDown={false}
                             href=""
-                            id=""
                             index={0}
                             isDisabled={false}
                             isHovered={false}
                             onClick={[Function]}
-                            onSelect={[Function]}
                             role="menuitem"
                             tabIndex={-1}
                             tooltip={null}
@@ -968,7 +950,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                           >
                             <li
                               className={null}
-                              id=""
                               onClick={[Function]}
                               onKeyDown={[Function]}
                               role="menuitem"
@@ -977,8 +958,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                                 aria-disabled={false}
                                 className="pf-c-dropdown__menu-item"
                                 href={null}
-                                id=""
-                                onSelect={[Function]}
                                 tabIndex={-1}
                               >
                                 Export as CSV
@@ -995,20 +974,18 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                           <InternalDropdownItem
                             className=""
                             component="a"
-                            componentID=""
                             context={
                               Object {
                                 "keyHandler": [Function],
                                 "sendRef": [Function],
                               }
                             }
+                            enterTriggersArrowDown={false}
                             href="/api/compliance/systems.json?search=(id ^ ())"
-                            id=""
                             index={1}
                             isDisabled={false}
                             isHovered={false}
                             onClick={[Function]}
-                            onSelect={[Function]}
                             role="menuitem"
                             tabIndex={-1}
                             target="_blank"
@@ -1018,7 +995,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                           >
                             <li
                               className={null}
-                              id=""
                               onClick={[Function]}
                               onKeyDown={[Function]}
                               role="menuitem"
@@ -1027,8 +1003,6 @@ exports[`DownloadTableButton expect to render the create button 2`] = `
                                 aria-disabled={false}
                                 className="pf-c-dropdown__menu-item"
                                 href="/api/compliance/systems.json?search=(id ^ ())"
-                                id=""
-                                onSelect={[Function]}
                                 tabIndex={-1}
                                 target="_blank"
                               >

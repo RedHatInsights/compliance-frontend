@@ -59,45 +59,29 @@ exports[`ReduxFormTextArea expect to render without error 1`] = `
 `;
 
 exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
-<TextInput
+<ForwardRef
   additionalProp="Prop1"
-  aria-label={null}
-  className=""
   defaultValue="Default Value"
   input={
     Object {
       "onChange": [MockFunction],
     }
   }
-  isDisabled={false}
-  isReadOnly={false}
-  isRequired={false}
-  isValid={true}
   onChange={[MockFunction]}
-  type="text"
-  validated="default"
   value="Default Value"
 />
 `;
 
 exports[`ReduxFormTextInput expect to render without error 1`] = `
-<TextInput
+<ForwardRef
   additionalProp="Prop1"
-  aria-label={null}
-  className=""
   input={
     Object {
       "onChange": [MockFunction],
       "value": "Value",
     }
   }
-  isDisabled={false}
-  isReadOnly={false}
-  isRequired={false}
-  isValid={true}
   onChange={[MockFunction]}
-  type="text"
-  validated="default"
   value="Value"
 />
 `;

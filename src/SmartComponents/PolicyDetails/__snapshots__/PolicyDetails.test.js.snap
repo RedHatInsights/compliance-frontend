@@ -236,9 +236,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
               profile description
             </span>
           </p>
-          <span
-            tabindex="0"
-          >
+          <span>
             <h5
               class=""
               data-pf-content="true"
@@ -532,9 +530,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
               profile description
             </span>
           </p>
-          <span
-            tabindex="0"
-          >
+          <span>
             <h5
               class=""
               data-pf-content="true"
@@ -828,9 +824,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
               profile description
             </span>
           </p>
-          <span
-            tabindex="0"
-          >
+          <span>
             <h5
               class=""
               data-pf-content="true"
@@ -1376,9 +1370,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
               profile description
             </span>
           </p>
-          <span
-            tabindex="0"
-          >
+          <span>
             <h5
               class=""
               data-pf-content="true"
@@ -1672,9 +1664,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
               profile description
             </span>
           </p>
-          <span
-            tabindex="0"
-          >
+          <span>
             <h5
               class=""
               data-pf-content="true"
