@@ -101,7 +101,7 @@ class SystemsTable extends React.Component {
     }
 
     handleSearch = debounce(search => {
-        this.setState({ search }, this.systemFetch);
+        this.setState({ search, page: 1 }, this.systemFetch);
     }, 500)
 
     systemFetch = () => {
@@ -111,7 +111,7 @@ class SystemsTable extends React.Component {
             variables: { filter: this.buildFilter(), perPage, page, policyId } })
         .then((items) => {
             this.setState({
-                page: 1,
+                page,
                 perPage,
                 items: items.data.systems.edges,
                 totalCount: items.data.systems.totalCount,
