@@ -2,12 +2,14 @@ import { init } from '../../store';
 import { Provider } from 'react-redux';
 import ReactDom from 'react-dom';
 import { act } from 'react-dom/test-utils';
+import toJson from 'enzyme-to-json';
 import { BrowserRouter as Router } from 'react-router-dom';
+
 import {
     QUERY,
-    PolicyDetailsQuery,
-    PolicyDetails
-} from './PolicyDetails';
+    ReportDetailsQuery,
+    ReportDetails
+} from './ReportDetails';
 
 const mocks = [
     {
@@ -61,7 +63,7 @@ jest.mock('@apollo/react-hooks', () => ({
     }
 }));
 
-describe('PolicyDetailsQuery', () => {
+describe('ReportDetailsQuery', () => {
     const MockComponent = jest.fn(({ children, loaded }) => {
         return children && loaded ? children : 'Test Loading...';
     });
@@ -93,14 +95,22 @@ describe('PolicyDetailsQuery', () => {
         container = null;
     });
 
+    it('passes loading on to SystemTable', () => {
+        const wrapper = shallow(
+            <ReportDetailsQuery { ...defaultProps } />
+        );
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
     it('expect to render even without policyId', () => {
         act(() => {
             ReactDom.render(
                 <Router>
                     <Provider store={ store }>
-                        <PolicyDetailsQuery />
+                        <ReportDetailsQuery />
                     </Provider>
-                </Router>, container);
+                </Router>,
+                container);
         });
 
         expect(container).toMatchSnapshot();
@@ -111,9 +121,10 @@ describe('PolicyDetailsQuery', () => {
             ReactDom.render(
                 <Router>
                     <Provider store={ store }>
-                        <PolicyDetailsQuery policyId="1234" />
+                        <ReportDetailsQuery policyId="1234" />
                     </Provider>
-                </Router>, container);
+                </Router>,
+                container);
         });
 
         expect(container).toMatchSnapshot();
@@ -124,9 +135,10 @@ describe('PolicyDetailsQuery', () => {
             ReactDom.render(
                 <Router>
                     <Provider store={ store }>
-                        <PolicyDetailsQuery policyId="1234" />
+                        <ReportDetailsQuery policyId="1234" />
                     </Provider>
-                </Router>, container);
+                </Router>,
+                container);
         });
 
         expect(container).toMatchSnapshot();
@@ -136,17 +148,16 @@ describe('PolicyDetailsQuery', () => {
         act(() => {
             ReactDom.render(
                 <Router>
-                    <Provider store={ store }>
-                        <PolicyDetailsQuery { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
+                <Provider store={ store }>
+                    <ReportDetailsQuery { ...defaultProps } />
+                </Provider></Router>, container);
         });
 
         expect(container).toMatchSnapshot();
     });
 });
 
-describe('PolicyDetails', () => {
+describe('ReportDetails', () => {
     const defaultProps = {
         match: {
             params: {
@@ -170,10 +181,9 @@ describe('PolicyDetails', () => {
         act(() => {
             ReactDom.render(
                 <Router>
-                    <Provider store={ store }>
-                        <PolicyDetails { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
+                <Provider store={ store }>
+                    <ReportDetails { ...defaultProps } />
+                    </Provider></Router>, container);
         });
 
         expect(container).toMatchSnapshot();

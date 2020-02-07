@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ComplianceReports expect to render an error 1`] = `
+exports[`Reports expect to render an error 1`] = `
 <ErrorPage
   error={
     Object {
@@ -13,7 +13,7 @@ exports[`ComplianceReports expect to render an error 1`] = `
 />
 `;
 
-exports[`ComplianceReports expect to render emptystate 1`] = `
+exports[`Reports expect to render emptystate 1`] = `
 <Fragment>
   <PageHeader
     style={
@@ -40,7 +40,7 @@ exports[`ComplianceReports expect to render emptystate 1`] = `
 </Fragment>
 `;
 
-exports[`ComplianceReports expect to render loading 1`] = `
+exports[`Reports expect to render loading 1`] = `
 <Fragment>
   <PageHeader>
     <PageHeaderTitle
@@ -61,7 +61,7 @@ exports[`ComplianceReports expect to render loading 1`] = `
 </Fragment>
 `;
 
-exports[`ComplianceReports expect to render without error 1`] = `
+exports[`Reports expect to render without error 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"

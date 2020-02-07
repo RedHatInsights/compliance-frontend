@@ -8,6 +8,7 @@ const defaultProps = {
         refId: 'REF_ID',
         name: 'Test Policy',
         compliantHostCount: 10,
+        complianceThreshold: 90,
         totalHostCount: 15,
         businessObjective: {
             title: 'BO'

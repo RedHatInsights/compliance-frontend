@@ -2,29 +2,12 @@
 
 exports[`EditPolicy expect to render without error 1`] = `
 <Fragment>
-  <Dropdown
-    className="policy-details-dropdown"
-    dropdownItems={
-      Array [
-        <DropdownItem
-          component="button"
-          onClick={[Function]}
-        >
-          Edit policy
-        </DropdownItem>,
-      ]
-    }
-    isOpen={false}
-    onSelect={[Function]}
-    position="right"
-    toggle={
-      <DropdownToggle
-        onToggle={[Function]}
-      >
-        Actions
-      </DropdownToggle>
-    }
-  />
+  <Component
+    onClick={[Function]}
+    variant="secondary"
+  >
+    Edit policy
+  </Component>
   <Modal
     actions={
       Array [

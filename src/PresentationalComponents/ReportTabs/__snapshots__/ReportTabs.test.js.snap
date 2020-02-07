@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportTabs expect to render without error 1`] = `
+<Component
+  activeKey={NaN}
+  aria-label="Report Tabs"
+  onSelect={[Function]}
+>
+  <Tab
+    eventKey={0}
+    key="0"
+    title="By policy"
+  />
+  <Tab
+    eventKey={1}
+    key="1"
+    title="By systems"
+  />
+</Component>
+`;

@@ -2,136 +2,124 @@
 
 exports[`PolicyDetailsContentLoader expect to render without error 1`] = `
 <Holder
-  height={320}
-  primaryColor="#f3f3f3"
-  secondaryColor="#ecebeb"
+  backgroundColor="#f3f3f3"
+  foregroundColor="#ecebeb"
+  height={400}
   speed={2}
-  width={1550}
+  viewBox="0 0 1000 400"
+  width={1000}
 >
   <rect
-    height="15"
-    rx="4"
-    ry="4"
-    width="478"
-    x="18"
-    y="50"
-  />
-  <rect
-    height="9"
+    height="19"
     rx="3"
     ry="3"
-    width="220"
-    x="19"
-    y="18"
-  />
-  <circle
-    cx="118"
-    cy="156"
-    r="73"
+    width="760"
+    x="-3"
+    y="7"
   />
   <rect
-    height="23"
-    rx="0"
-    ry="0"
-    width="69"
-    x="1002"
-    y="40"
+    height="29"
+    rx="3"
+    ry="3"
+    width="67"
+    x="823"
+    y="3"
   />
   <rect
-    height="0"
-    rx="0"
-    ry="0"
-    width="0"
-    x="47"
-    y="77"
+    height="29"
+    rx="3"
+    ry="3"
+    width="67"
+    x="910"
+    y="3"
   />
   <rect
-    height="0"
+    height="19"
     rx="0"
     ry="0"
-    width="16"
-    x="36"
-    y="77"
+    width="46"
+    x="6"
+    y="54"
   />
   <rect
-    height="0"
+    height="19"
     rx="0"
     ry="0"
-    width="0"
-    x="409"
+    width="46"
+    x="68"
+    y="54"
+  />
+  <rect
+    height="19"
+    rx="0"
+    ry="0"
+    width="46"
+    x="133"
+    y="54"
+  />
+  <rect
+    height="17"
+    rx="0"
+    ry="0"
+    width="255"
+    x="3"
+    y="110"
+  />
+  <rect
+    height="16"
+    rx="0"
+    ry="0"
+    width="47"
+    x="1"
     y="149"
   />
   <rect
-    height="9"
+    height="17"
     rx="0"
     ry="0"
-    width="205"
-    x="214"
-    y="145"
+    width="255"
+    x="1"
+    y="185"
   />
   <rect
-    height="9"
+    height="16"
     rx="0"
     ry="0"
-    width="205"
-    x="216"
-    y="119"
+    width="187"
+    x="-1"
+    y="224"
   />
   <rect
-    height="8"
+    height="17"
     rx="0"
     ry="0"
-    width="431"
-    x="526"
-    y="100"
+    width="255"
+    x="-4"
+    y="267"
   />
   <rect
-    height="8"
+    height="16"
     rx="0"
     ry="0"
-    width="431"
-    x="526"
-    y="122"
+    width="47"
+    x="-6"
+    y="306"
   />
   <rect
-    height="8"
+    height="17"
     rx="0"
     ry="0"
-    width="431"
-    x="526"
-    y="146"
+    width="255"
+    x="-6"
+    y="342"
   />
   <rect
-    height="8"
+    height="16"
     rx="0"
     ry="0"
-    width="431"
-    x="527"
-    y="170"
-  />
-  <rect
-    height="8"
-    rx="0"
-    ry="0"
-    width="431"
-    x="527"
-    y="194"
-  />
-  <rect
-    height="8"
-    rx="0"
-    ry="0"
-    width="431"
-    x="527"
-    y="218"
-  />
-  <rect
-    height="7"
-    rx="0"
-    ry="0"
-    width="231"
-    x="529"
-    y="275"
+    width="187"
+    x="-8"
+    y="381"
   />
 </Holder>
 `;

@@ -20,8 +20,14 @@ import some from 'lodash/some';
 const CompliancePolicies = asyncComponent(() =>
     import(/* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies')
 );
-const ComplianceReports = asyncComponent(() =>
-    import(/* webpackChunkName: "ComplianceReports" */ './SmartComponents/ComplianceReports/ComplianceReports')
+const Reports = asyncComponent(() =>
+    import(/* webpackChunkName: "ComplianceReports" */ './SmartComponents/Reports/Reports')
+);
+const ReportsSystems = asyncComponent(() =>
+    import(/* webpackChunkName: "ComplianceReportsSystems" */ './SmartComponents/ReportsSystems/ReportsSystems')
+);
+const ReportDetails = asyncComponent(() =>
+    import(/* webpackChunkName: "ComplianceReportDetails" */ './SmartComponents/ReportDetails/ReportDetails')
 );
 const ComplianceSystems = asyncComponent(() =>
     import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
@@ -35,11 +41,14 @@ const SystemDetails = asyncComponent(() =>
 
 export const paths = {
     compliancePolicies: '/policies',
-    complianceReports: '/reports',
+    reports: '/reports',
+    reportsSystems: '/reports/systems',
     complianceSystems: '/systems',
     complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
     policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
+    reportDetails: '/reports/:report_id',
+    reportDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
     systemDetails: '/systems/:inventoryId'
 };
 
@@ -61,7 +70,9 @@ export const Routes = (props: Props) => {
     return (
         <Switch>
             <Route exact path={paths.compliancePolicies} component={CompliancePolicies} />
-            <Route exact path={paths.complianceReports} component={ComplianceReports} />
+            <Route exact path={paths.reports} component={Reports} />
+            <Route exact path={paths.reportsSystems} component={ReportsSystems} />
+            <Route exact path={paths.reportDetails} component={ReportDetails} />
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
             <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
             <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
@@ -69,7 +80,7 @@ export const Routes = (props: Props) => {
             <Route path={paths.systemDetails} component={SystemDetails} />
 
             {/* Finally, catch all unmatched routes */}
-            <Route render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.complianceReports} />)} />
+            <Route render={() => (some(paths, p => p === path) ? null : <Redirect to={paths.reports} />)} />
         </Switch>
     );
 };

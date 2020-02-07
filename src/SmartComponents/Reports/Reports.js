@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     ComplianceTabs,
+    ReportTabs,
     LoadingComplianceCards,
     CompliancePolicyCard,
     CompliancePoliciesEmptyState,
@@ -24,6 +25,8 @@ const QUERY = gql`
         description
         totalHostCount
         compliantHostCount
+        majorOsVersion
+        complianceThreshold
         businessObjective {
             id
             title
@@ -32,7 +35,7 @@ const QUERY = gql`
 }
 `;
 
-export const ComplianceReports = () => {
+export const Reports = () => {
     const { data, error, loading } = useQuery(QUERY);
 
     if (error) { return <ErrorPage error={error}/>; }
@@ -57,15 +60,15 @@ export const ComplianceReports = () => {
     const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
     const beta = window.location.pathname.split('/')[1] === 'beta';
 
-    let policyCards = [];
+    let reportCards = [];
     let pageHeader;
     if (policies.length) {
         pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
             <PageHeaderTitle title="Compliance reports" />
-            { !beta && <ComplianceTabs/> }
+            { beta ? <ReportTabs/> : <ComplianceTabs/> }
 
         </PageHeader>;
-        policyCards = policies.map(
+        reportCards = policies.map(
             (policy, i) =>
                 <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
                     <CompliancePolicyCard
@@ -76,7 +79,7 @@ export const ComplianceReports = () => {
         );
     } else {
         pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-        policyCards = <CompliancePoliciesEmptyState />;
+        reportCards = <CompliancePoliciesEmptyState />;
     }
 
     return (
@@ -85,7 +88,7 @@ export const ComplianceReports = () => {
             <Main>
                 <div className="policies-donuts">
                     <Grid gutter='md'>
-                        {policyCards}
+                        {reportCards}
                     </Grid>
                 </div>
             </Main>
@@ -93,4 +96,4 @@ export const ComplianceReports = () => {
     );
 };
 
-export default routerParams(ComplianceReports);
+export default routerParams(Reports);

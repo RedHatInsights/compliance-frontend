@@ -2,20 +2,13 @@ import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
+import { lastScanned } from '../../Utilities/TextHelper';
 import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from '../../Utilities/CsvExport';
 import {
     ComplianceScore as complianceScore,
     complianceScoreString
 } from '../../PresentationalComponents';
-
-export const lastScanned = (system) => {
-    const dates = system.profiles.map((profile) => new Date(profile.lastScanned));
-    const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
-    const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
-
-    return result;
-};
 
 export const rulesCount = (system, rulesMethod) => {
     const rulesCount = system.profiles.map((profile) => profile[rulesMethod]);
@@ -29,7 +22,7 @@ export const systemsToInventoryEntities = (systems, entities) =>
             system.profileNames = system.profiles.map((profile) => profile.name).join(', ');
             system.rulesPassed = rulesCount(system, 'rulesPassed');
             system.rulesFailed = rulesCount(system, 'rulesFailed');
-            system.lastScanned = lastScanned(system);
+            system.lastScanned = lastScanned(system.profiles.map((profile) => new Date(profile.lastScanned)));
             // This should compare the inventory ID instead with
             // the ID in compliance
             let matchingEntity = entities.find((entity) => {

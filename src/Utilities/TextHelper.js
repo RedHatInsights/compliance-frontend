@@ -9,3 +9,10 @@ export const pluralize = (value, singular, plural) => {
 
     return (value > 1 || value === 0 ? plural : singular);
 };
+
+export const lastScanned = (dates) => {
+    const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
+    const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
+
+    return result;
+};

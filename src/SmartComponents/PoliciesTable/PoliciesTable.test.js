@@ -22,6 +22,7 @@ jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () 
     const ComplianceRemediationButton = () => <button>Remediations</button>;
     return ComplianceRemediationButton;
 });
+
 import { PoliciesTable, policiesToRows } from './PoliciesTable.js';
 
 describe('PoliciesTable', () => {
