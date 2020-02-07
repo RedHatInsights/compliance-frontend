@@ -111,7 +111,7 @@ class SystemsTable extends React.Component {
             variables: { filter: this.buildFilter(), perPage, page, policyId } })
         .then((items) => {
             this.setState({
-                page,
+                page: 1,
                 perPage,
                 items: items.data.systems.edges,
                 totalCount: items.data.systems.totalCount,
