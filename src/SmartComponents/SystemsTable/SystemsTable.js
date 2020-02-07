@@ -101,7 +101,7 @@ class SystemsTable extends React.Component {
     }
 
     handleSearch = debounce(search => {
-        this.setState({ search }, this.systemFetch);
+        this.setState({ search, page: 1 }, this.systemFetch);
     }, 500)
 
     systemFetch = () => {

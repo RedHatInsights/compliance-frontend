@@ -139,6 +139,7 @@ export class PoliciesTable extends React.Component {
         const filteredRows = allRows.filter(row => row.cells[0].match(search));
         this.setState({
             search,
+            page: 1,
             rows: filteredRows,
             currentRows: filteredRows.slice(0, itemsPerPage)
         });
