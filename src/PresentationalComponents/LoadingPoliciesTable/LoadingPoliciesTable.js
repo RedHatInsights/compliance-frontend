@@ -7,7 +7,8 @@ const LoadingPoliciesTable = () => (
         aria-label='policies-table'
         cells={ [
             { title: 'Policy name' },
-            { title: 'Policy type' },
+            { title: 'Operating system' },
+            { title: 'Systems' },
             { title: 'Business initiative' },
             { title: 'Compliance threshold' }
         ] }
