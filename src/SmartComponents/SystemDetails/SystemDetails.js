@@ -1,21 +1,29 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { useHistory, useLocation } from 'react-router-dom';
-import propTypes from 'prop-types';
+import gql from 'graphql-tag';
+import {
+    useQuery
+} from '@apollo/react-hooks';
+import {
+    useHistory,
+    useLocation,
+    useParams
+} from 'react-router-dom';
 import {
     PageHeader,
     Main,
     Skeleton,
     SkeletonSize
 } from '@redhat-cloud-services/frontend-components';
-import { onNavigate } from '../../Utilities/Breadcrumbs';
 import {
     Breadcrumb,
     BreadcrumbItem
 } from '@patternfly/react-core';
-import InventoryDetails from 'SmartComponents';
 import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import gql from 'graphql-tag';
+import {
+    onNavigate
+} from 'Utilities/Breadcrumbs';
+
+import InventoryDetails from 'SmartComponents';
 
 const QUERY = gql`
 query System($inventoryId: String!){
@@ -25,16 +33,15 @@ query System($inventoryId: String!){
 }
 `;
 
-export const SystemDetails = (props) => {
-    let history = useHistory();
-    let location = useLocation();
-    const {
-        match: { params: { inventoryId } }
-    } = props;
+const SystemDetails = () => {
+    const history = useHistory();
+    const location = useLocation();
     const hidePassed = location.query && location.query.hidePassed;
+    const { inventoryId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { inventoryId }
     });
+    const onClick = (event) => onNavigate(event, history);
 
     if (error) {
         if (error.networkError.statusCode === 401) {
@@ -52,25 +59,20 @@ export const SystemDetails = (props) => {
         <React.Fragment>
             <PageHeader>
                 <Breadcrumb>
-                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ (event) => onNavigate(event, history) }>
+                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ onClick }>
                         Systems
                     </BreadcrumbItem>
-                    <BreadcrumbItem isActive>{data.system.name}</BreadcrumbItem>
+                    <BreadcrumbItem isActive>{ data.system.name }</BreadcrumbItem>
                 </Breadcrumb>
                 <InventoryDetails />
                 <br/>
             </PageHeader>
             <Main>
-                { (inventoryId !== null && typeof(inventoryId) !== 'undefined') &&
-                <ComplianceSystemDetails hidePassed={hidePassed} inventoryId={ inventoryId } /> }
+                { inventoryId &&
+                    <ComplianceSystemDetails hidePassed={ hidePassed } inventoryId={ inventoryId } /> }
             </Main>
         </React.Fragment>
     );
-};
-
-SystemDetails.propTypes = {
-    match: propTypes.object,
-    location: propTypes.object
 };
 
 export default SystemDetails;

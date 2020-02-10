@@ -46,7 +46,8 @@ describe('ReduxFormCheckboxInput', () => {
                 onChange: jest.fn(),
                 value: 'Value'
             },
-            additionalProp: 'Prop1'
+            additionalProp: 'Prop1',
+            id: 'checkbox-id'
         };
         const wrapper = shallow(
             <ReduxFormCheckboxInput { ...field } />

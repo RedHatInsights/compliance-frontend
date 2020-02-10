@@ -8,6 +8,7 @@ describe('UpdateProfileButton', () => {
             title: 'Test Objective',
             id: '1'
         },
+        policyId: '12345',
         editPolicyBusinessObjective: {
             title: 'Edited Test Objective',
             value: '2'
