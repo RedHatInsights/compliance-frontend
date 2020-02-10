@@ -48,7 +48,7 @@ export class PoliciesTable extends React.Component {
         this.state = {
             columns: [
                 { title: 'Policy name' },
-                { title: 'Policy type' },
+                { title: 'Operating system' },
                 { title: 'Systems' },
                 { title: 'Business objective' },
                 { title: 'Compliance threshold' }
@@ -91,7 +91,7 @@ export class PoliciesTable extends React.Component {
             return {
                 cells: [
                     policy.name,
-                    'External',
+                    `RHEL ${policy.majorOsVersion}`,
                     policy.totalHostCount,
                     policy.businessObjective && policy.businessObjective.title || '--',
                     `${policy.complianceThreshold}%`

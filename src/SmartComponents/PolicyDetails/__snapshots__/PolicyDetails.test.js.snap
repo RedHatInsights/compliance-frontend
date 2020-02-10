@@ -267,6 +267,20 @@ exports[`PolicyDetails expect to render without error 1`] = `
               1.0%
             </p>
           </span>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            <b>
+              Operating system
+            </b>
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            RHEL 
+          </p>
         </div>
       </div>
     </div>
@@ -561,6 +575,20 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
               1.0%
             </p>
           </span>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            <b>
+              Operating system
+            </b>
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            RHEL 
+          </p>
         </div>
       </div>
     </div>
@@ -855,6 +883,20 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
               1.0%
             </p>
           </span>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            <b>
+              Operating system
+            </b>
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            RHEL 
+          </p>
         </div>
       </div>
     </div>
@@ -1071,6 +1113,18 @@ exports[`PolicyDetailsQuery passes loading on to SystemTable 1`] = `
               </Text>
             </span>
           </Tooltip>
+          <Text
+            component="h5"
+          >
+            <b>
+              Operating system
+            </b>
+          </Text>
+          <Text
+            component="p"
+          >
+            RHEL 
+          </Text>
         </TextContent>
       </GridItem>
     </Grid>
@@ -1401,6 +1455,20 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
               1.0%
             </p>
           </span>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            <b>
+              Operating system
+            </b>
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            RHEL 
+          </p>
         </div>
       </div>
     </div>
@@ -1695,6 +1763,20 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
               1.0%
             </p>
           </span>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            <b>
+              Operating system
+            </b>
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            RHEL 
+          </p>
         </div>
       </div>
     </div>
