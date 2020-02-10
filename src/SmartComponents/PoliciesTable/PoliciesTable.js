@@ -43,24 +43,22 @@ const emptyRows = [{
 }];
 
 export class PoliciesTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            columns: [
-                { title: 'Policy name' },
-                { title: 'Operating system' },
-                { title: 'Systems' },
-                { title: 'Business objective' },
-                { title: 'Compliance threshold' }
-            ],
-            page: 1,
-            itemsPerPage: 10,
-            search: '',
-            rows: [],
-            currentRows: [],
-            isDeleteModalOpen: false,
-            policyToDelete: {}
-        };
+    columns = [
+        { title: 'Policy name' },
+        { title: 'Operating system' },
+        { title: 'Systems' },
+        { title: 'Business objective' },
+        { title: 'Compliance threshold' }
+    ]
+    state = {
+        columns: this.columns,
+        page: 1,
+        itemsPerPage: 10,
+        search: '',
+        rows: [],
+        currentRows: [],
+        isDeleteModalOpen: false,
+        policyToDelete: {}
     }
 
     componentDidMount = () => {
