@@ -42,6 +42,20 @@ const emptyRows = [{
     }]
 }];
 
+const policiesToRows = (policies) => {
+    return policies.map((policy) => {
+        return {
+            cells: [
+                policy.name,
+                `RHEL ${policy.majorOsVersion}`,
+                policy.totalHostCount,
+                policy.businessObjective && policy.businessObjective.title || '--',
+                `${policy.complianceThreshold}%`
+            ]
+        };
+    });
+};
+
 export class PoliciesTable extends React.Component {
     columns = [
         { title: 'Policy name' },
@@ -75,26 +89,12 @@ export class PoliciesTable extends React.Component {
     setInitialCurrentRows = () => {
         const { policies } = this.props;
         const { itemsPerPage } = this.state;
-        const policyRows = this.policiesToRows(policies);
+        const policyRows = policiesToRows(policies);
 
         this.setState({
             currentRows: policyRows.slice(0, itemsPerPage),
             rows: policyRows,
             allRows: policyRows
-        });
-    }
-
-    policiesToRows = (policies) => {
-        return policies.map((policy) => {
-            return {
-                cells: [
-                    policy.name,
-                    `RHEL ${policy.majorOsVersion}`,
-                    policy.totalHostCount,
-                    policy.businessObjective && policy.businessObjective.title || '--',
-                    `${policy.complianceThreshold}%`
-                ]
-            };
         });
     }
 
@@ -145,17 +145,20 @@ export class PoliciesTable extends React.Component {
 
     actionResolver = (rowData) => {
         const { history, policies } = this.props;
+        const { itemsPerPage, page } = this.state;
+
+        const currentRowIndex = rowData.id + (page - 1) * itemsPerPage;
 
         return [
             {
                 title: 'View latest results',
-                onClick: (event, rowId) => history.push(`${paths.compliancePolicies}/${policies[rowId].id}`)
+                onClick: () => history.push(`${paths.compliancePolicies}/${policies[currentRowIndex].id}`)
             },
             {
                 title: 'Delete policy',
                 onClick: () => {
                     this.setState((prev) => ({
-                        policyToDelete: policies[rowData.id],
+                        policyToDelete: policies[currentRowIndex],
                         isDeleteModalOpen: !prev.isDeleteModalOpen
                     }));
                 }
@@ -234,4 +237,5 @@ PoliciesTable.defaultProps = {
     policies: []
 };
 
+export { policiesToRows };
 export default routerParams(PoliciesTable);
