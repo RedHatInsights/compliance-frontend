@@ -8,6 +8,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -20,6 +21,7 @@ export const policies = {
                 complianceThreshold: 67,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -32,6 +34,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -44,6 +47,7 @@ export const policies = {
                 complianceThreshold: 69.5,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -56,6 +60,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -68,6 +73,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -80,6 +86,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -92,6 +99,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -104,6 +112,7 @@ export const policies = {
                 complianceThreshold: 100,
                 totalHostCount: 10,
                 businessObjective: null,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -116,6 +125,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -128,6 +138,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -140,6 +151,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -152,6 +164,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                majorOsVersion: 7,
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'

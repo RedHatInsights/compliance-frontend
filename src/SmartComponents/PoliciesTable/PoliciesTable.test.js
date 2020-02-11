@@ -47,7 +47,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -65,7 +65,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'United States Government Configuration Baseline23',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -74,7 +74,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '67%'
@@ -83,7 +83,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'United States Government Configuration Baseline2',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -92,7 +92,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'C2S for Red Hat Enterprise Linux 7',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '69.5%'
@@ -101,7 +101,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'Criminal Justice Information Services (CJIS) Security Policy',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -110,7 +110,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -119,7 +119,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -128,7 +128,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -137,7 +137,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'Health Insurance Portability and Accountability Act (HIPAA)',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -146,7 +146,7 @@ describe('PoliciesTable', () => {
                 {
                     cells: [
                         'United States Government Configuration Baseline',
-                        'External',
+                        'RHEL 7',
                         10,
                         '--',
                         '100%'
@@ -156,21 +156,21 @@ describe('PoliciesTable', () => {
             const secondPage = [
                 { cells: [
                     'Standard System Security Profile for Red Hat Enterprise Linux 7',
-                    'External',
+                    'RHEL 7',
                     10,
                     '--',
                     '100%'
                 ] },
                 { cells: [
                     'DISA STIG for Red Hat Enterprise Linux 7',
-                    'External',
+                    'RHEL 7',
                     10,
                     '--',
                     '100%'
                 ] },
                 { cells: [
                     'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72',
-                    'External',
+                    'RHEL 7',
                     10,
                     '--',
                     '100%'

@@ -9,7 +9,10 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "title": "Policy name",
       },
       Object {
-        "title": "Policy type",
+        "title": "Operating system",
+      },
+      Object {
+        "title": "Systems",
       },
       Object {
         "title": "Business initiative",

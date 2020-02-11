@@ -44,6 +44,7 @@ query Profile($policyId: String!){
         totalHostCount
         compliantHostCount
         complianceThreshold
+        majorOsVersion
         businessObjective {
             id
             title
@@ -212,6 +213,14 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                                     </Text>
                                 </span>
                             </Tooltip>
+                            <Text component={TextVariants.h5}>
+                                <b>
+                                    Operating system
+                                </b>
+                            </Text>
+                            <Text component={TextVariants.p}>
+                                RHEL { policy.majorOsVersion }
+                            </Text>
                         </TextContent>
                     </GridItem>
                 </Grid>
