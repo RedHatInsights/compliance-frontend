@@ -56,6 +56,8 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 
 @registry()
 class SystemsTable extends React.Component {
+    inventory = React.createRef();
+
     state = {
         InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
         items: this.props.items,
@@ -116,6 +118,15 @@ class SystemsTable extends React.Component {
                 items: items.data.systems.edges,
                 totalCount: items.data.systems.totalCount,
                 loaded: true
+            }, () => {
+                // If the items in the table are the same after two GQL calls,
+                // e.g: if you try to load 19 items for a perPage of 20 items, then
+                // change perPage to 50 items - the Inventory will not trigger a call
+                // to the Inventory API, and the table will remain on a loading state.
+                // To avoid this, we call refresh manually on such cases.
+                if (items.data.systems.totalCount <= perPage) {
+                    this.inventory.current && this.inventory.current.onRefreshData();
+                }
             });
         });
     }
@@ -157,6 +168,7 @@ class SystemsTable extends React.Component {
         return <InventoryCmp
             onRefresh={this.onRefresh}
             page={page}
+            ref={this.inventory}
             total={totalCount}
             perPage={perPage}
             variant={compact ? pfReactTable.TableVariant.compact : null}
