@@ -16,7 +16,7 @@
     "@patternfly/react-tokens": "^2.6.31",
     "@redhat-cloud-services/frontend-components": "^1.0.0",
     "@redhat-cloud-services/frontend-components-inventory-compliance": "^1.0.0",
-    "@redhat-cloud-services/frontend-components-notifications": "^1.0.0",
+    "@redhat-cloud-services/frontend-components-notifications": "^1.0.1",
     "@redhat-cloud-services/frontend-components-remediations": "^1.0.0",
     "@redhat-cloud-services/frontend-components-utilities": "^1.0.0",
     "actioncable": "^5.2.1",
