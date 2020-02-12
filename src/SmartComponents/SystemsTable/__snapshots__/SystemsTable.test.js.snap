@@ -530,6 +530,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
   page={1}
   perPage={50}
   total={1}
+  variant={null}
 >
   <ToolbarGroup>
     <ToolbarItem
