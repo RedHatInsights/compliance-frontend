@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ComplianceTabs,
     LoadingComplianceCards,
-    CompliancePolicyCard,
+    ReportCard,
     CompliancePoliciesEmptyState,
     ErrorPage
 } from 'PresentationalComponents';
@@ -24,6 +24,8 @@ const QUERY = gql`
         description
         totalHostCount
         compliantHostCount
+        majorOsVersion
+        complianceThreshold
         businessObjective {
             id
             title
@@ -57,7 +59,7 @@ export const ComplianceReports = () => {
     const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
     const beta = window.location.pathname.split('/')[1] === 'beta';
 
-    let policyCards = [];
+    let reportCards = [];
     let pageHeader;
     if (policies.length) {
         pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
@@ -65,10 +67,10 @@ export const ComplianceReports = () => {
             { !beta && <ComplianceTabs/> }
 
         </PageHeader>;
-        policyCards = policies.map(
+        reportCards = policies.map(
             (policy, i) =>
                 <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
-                    <CompliancePolicyCard
+                    <ReportCard
                         key={i}
                         policy={policy}
                     />
@@ -76,7 +78,7 @@ export const ComplianceReports = () => {
         );
     } else {
         pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-        policyCards = <CompliancePoliciesEmptyState />;
+        reportCards = <CompliancePoliciesEmptyState />;
     }
 
     return (
@@ -85,7 +87,7 @@ export const ComplianceReports = () => {
             <Main>
                 <div className="policies-donuts">
                     <Grid gutter='md'>
-                        {policyCards}
+                        {reportCards}
                     </Grid>
                 </div>
             </Main>

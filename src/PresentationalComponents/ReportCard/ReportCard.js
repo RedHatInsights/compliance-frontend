@@ -1,13 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
-
 import {
     Link
 } from 'react-router-dom';
 import Truncate from 'react-truncate';
 import {
-    Chip,
     Card,
+    CardHeader,
+    CardFooter,
     CardBody,
     Text,
     TextContent,
@@ -15,6 +15,7 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
+import PolicyPopover from './PolicyPopover';
 import {
     ChartDonut,
     ChartThemeColor,
@@ -23,23 +24,29 @@ import {
 import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
-class CompliancePolicyCard extends React.Component {
+class ReportCard extends React.Component {
     policy = this.props.policy;
     state = {
-        cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate>
+        cardTitle: <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate>
     }
 
     onMouseover = () => {
-        this.setState({ cardTitle: this.policy.name });
+        this.setState({
+            cardTitle: <React.Fragment>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment>
+        });
     }
 
     onMouseout = () => {
-        this.setState({ cardTitle: <Truncate lines={1}>{this.policy.name}</Truncate> });
+        this.setState({
+            cardTitle: <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate>
+        });
     }
 
     render() {
-        const compliantHostCount = this.policy.compliantHostCount;
-        const totalHostCount = this.policy.totalHostCount;
+        const { cardTitle } = this.state;
+        const {
+            majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+        } = this.policy;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
@@ -48,67 +55,48 @@ class CompliancePolicyCard extends React.Component {
             (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
 
         return (
-            <Card widget-id={this.policy.refId}>
-                <CardBody>
-                    <Text style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }} component={TextVariants.small}>
-                        External policy
-                    </Text>
+            <Card widget-id={refId}>
+                <CardHeader>
                     <TextContent>
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
-                            style={{ fontWeight: '500' }} component={TextVariants.h4}>
-                            {this.state.cardTitle}
+                            style={{ fontWeight: '500' }} component={TextVariants.h2}>
+                            { cardTitle }
                         </Text>
-                    </TextContent>
-                    <TextContent className="chart-title">
                         <Grid>
+                            <GridItem span={12}>
+                                <Text>
+                                    Operating system: RHEL { majorOsVersion }
+                                </Text>
+                            </GridItem>
+                            <GridItem className='pf-u-m-sm'/>
                             <GridItem style={{ display: 'inline-flex' }} span={12}>
                                 <TextContent>
-                                    <span style={{ fontSize: '30px', fontWeight: '500' }}>
+                                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>
                                         { compliantHostCount }
                                     </span>
-                                    <span style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}>
+                                    <span style={{ fontWeight: '500' }}>
                                         {' '}of{' '}
                                     </span>
-                                    <span style={{ fontSize: '30px', fontWeight: '500' }}>
+                                    <span style={{ fontSize: '30px', fontWeight: 'bold' }}>
                                         { totalHostCount }
                                     </span>
                                 </TextContent>
                             </GridItem>
                             <GridItem span={12}>
-                                <Text
-                                    style={{ fontWeight: '500', color: 'var(--pf-global--Color--200)' }}
-                                    component={TextVariants.small}
-                                >
+                                <Text>
                                     Systems meet compliance threshold
                                 </Text>
                             </GridItem>
-                            <GridItem span={6}>
-                                <TextContent>
-                                    <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                        <Link to={'/policies/' + this.policy.id} >
-                                                More details
-                                        </Link>
-                                    </Text>
-                                </TextContent>
-                            </GridItem>
-                            <GridItem span={6} style={{ textAlign: 'right' }}>
-                                { this.policy.businessObjective &&
-                                    <Chip isReadOnly>
-                                        { this.policy.businessObjective.title }
-                                    </Chip>
-                                }
-                            </GridItem>
                         </Grid>
                     </TextContent>
-                </CardBody>
-                <hr/>
+                </CardHeader>
                 <CardBody>
                     <Grid>
                         <GridItem style={{ textAlign: 'center' }} span={12}>
                             <div className='chart-inline'>
                                 <div className='card-chart-container'>
                                     <ChartDonut data={donutValues}
-                                        identifier={this.policy.name.replace(/ /g, '')}
+                                        identifier={name.replace(/ /g, '')}
                                         innerRadius={122}
                                         themeColor={ChartThemeColor.blue}
                                         themeVariant={ChartThemeVariant.light}
@@ -122,13 +110,31 @@ class CompliancePolicyCard extends React.Component {
                         </GridItem>
                     </Grid>
                 </CardBody>
+                <CardFooter>
+                    <Grid>
+                        <GridItem span={6}>
+                            <TextContent>
+                                <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
+                                    <Link to={'/policies/' + id} >
+                                        View report
+                                    </Link>
+                                </Text>
+                                <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
+                                    <Link to={'/policies/' + id} >
+                                        View policy
+                                    </Link>
+                                </Text>
+                            </TextContent>
+                        </GridItem>
+                    </Grid>
+                </CardFooter>
             </Card>
         );
     };
 };
 
-CompliancePolicyCard.propTypes = {
+ReportCard.propTypes = {
     policy: propTypes.object
 };
 
-export default CompliancePolicyCard;
+export default ReportCard;

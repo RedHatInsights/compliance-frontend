@@ -1,6 +1,6 @@
 import toJson from 'enzyme-to-json';
 
-import CompliancePolicyCard from './CompliancePolicyCard';
+import ReportCard from './ReportCard';
 
 const defaultProps = {
     policy: {
@@ -15,20 +15,20 @@ const defaultProps = {
     }
 };
 
-describe('CompliancePolicyCard', () => {
+describe('ReportCard', () => {
     it('expect to render without error', () => {
         const wrapper = shallow(
-            <CompliancePolicyCard { ...defaultProps } />
+            <ReportCard { ...defaultProps } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 });
 
-describe('CompliancePolicyCard onMousover/onMouseout', () => {
+describe('ReportCard onMousover/onMouseout', () => {
     it('changes to state to the full policy name on hover and back to truncated', () => {
         const wrapper = shallow(
-            <CompliancePolicyCard { ...defaultProps } />
+            <ReportCard { ...defaultProps } />
         );
         const instance = wrapper.instance();
 
