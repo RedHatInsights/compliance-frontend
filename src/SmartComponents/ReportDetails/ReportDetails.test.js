@@ -148,9 +148,10 @@ describe('ReportDetailsQuery', () => {
         act(() => {
             ReactDom.render(
                 <Router>
-                <Provider store={ store }>
-                    <ReportDetailsQuery { ...defaultProps } />
-                </Provider></Router>, container);
+                    <Provider store={ store }>
+                        <ReportDetailsQuery { ...defaultProps } />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
@@ -181,9 +182,10 @@ describe('ReportDetails', () => {
         act(() => {
             ReactDom.render(
                 <Router>
-                <Provider store={ store }>
-                    <ReportDetails { ...defaultProps } />
-                    </Provider></Router>, container);
+                    <Provider store={ store }>
+                        <ReportDetails { ...defaultProps } />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
