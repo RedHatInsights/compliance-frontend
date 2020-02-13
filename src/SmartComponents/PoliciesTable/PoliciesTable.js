@@ -19,6 +19,9 @@ import DeletePolicy from '../DeletePolicy/DeletePolicy';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { paths } from '../../Routes';
 import debounce from 'lodash/debounce';
+import {
+    Link
+} from 'react-router-dom';
 
 const emptyRows = [{
     cells: [{
@@ -42,19 +45,19 @@ const emptyRows = [{
     }]
 }];
 
-const policiesToRows = (policies) => {
-    return policies.map((policy) => {
-        return {
+const policiesToRows = (policies) => (
+    policies.map((policy) => (
+        {
             cells: [
-                policy.name,
+                { title: <Link to={'/policies/' + policy.id}>{policy.name}</Link>, original: policy.name },
                 `RHEL ${policy.majorOsVersion}`,
                 policy.totalHostCount,
                 policy.businessObjective && policy.businessObjective.title || '--',
                 `${policy.complianceThreshold}%`
             ]
-        };
-    });
-};
+        }
+    ))
+);
 
 export class PoliciesTable extends React.Component {
     columns = [
@@ -134,7 +137,7 @@ export class PoliciesTable extends React.Component {
 
     handleSearch = debounce(search => {
         const { itemsPerPage, allRows } = this.state;
-        const filteredRows = allRows.filter(row => row.cells[0].match(search));
+        const filteredRows = allRows.filter(row => row.cells[0].original.match(search));
         this.setState({
             search,
             page: 1,
@@ -238,4 +241,5 @@ PoliciesTable.defaultProps = {
 };
 
 export { policiesToRows };
+
 export default routerParams(PoliciesTable);

@@ -1,38 +1,37 @@
-import React, { useRef } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { Grid, GridItem } from '@patternfly/react-core';
+import React, { useState, useRef } from 'react';
 import propTypes from 'prop-types';
-import SystemsTable from '../SystemsTable/SystemsTable';
+import { useQuery } from '@apollo/react-hooks';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
-import { fixedPercentage, pluralize } from '../../Utilities/TextHelper';
-import { PolicyDetailsContentLoader } from '../../PresentationalComponents';
+import {
+    PolicyDetailsDescription,
+    PolicyDetailsContentLoader,
+    PolicyTabs
+} from '../../PresentationalComponents';
+import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import EditPolicy from '../EditPolicy/EditPolicy';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     PageHeader,
     PageHeaderTitle,
     Main,
-    Truncate, EmptyTable,
     Spinner
 } from '@redhat-cloud-services/frontend-components';
-import {
-    ChartDonut,
-    ChartThemeColor,
-    ChartThemeVariant
-} from '@patternfly/react-charts';
-import {
-    Text,
-    TextContent,
-    Tooltip,
-    TextVariants,
-    Breadcrumb,
-    BreadcrumbItem
-} from '@patternfly/react-core';
+import { sortable } from '@patternfly/react-table';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
 import './PolicyDetails.scss';
-import linkifyHtml from 'linkifyjs/html';
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    Button,
+    Grid,
+    GridItem
+} from '@patternfly/react-core';
+import {
+    Link
+} from 'react-router-dom';
+import { Alert } from '@patternfly/react-core';
+import SystemsTable from '../SystemsTable/SystemsTable';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -45,9 +44,19 @@ query Profile($policyId: String!){
         compliantHostCount
         complianceThreshold
         majorOsVersion
+        lastScanned
         businessObjective {
             id
             title
+        }
+        rules {
+            title
+            severity
+            rationale
+            refId
+            description
+            remediationAvailable
+            identifier
         }
     }
 }
@@ -58,15 +67,15 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         variables: { policyId }
     });
     let systemsTable = useRef();
-    let donutValues = [];
-    let donutId = 'loading-donut';
-    let policy = {};
 
     const forceUpdate = () => {
         refetch();
         systemsTable.current.getWrappedInstance().systemFetch();
         systemsTable.current.getWrappedInstance().forceUpdate();
     };
+
+    const [activeTab, setActiveTab] = useState(0);
+    let policy = {};
 
     if (error) {
         if (error.networkError.statusCode === 401) {
@@ -80,159 +89,92 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         return (
             <React.Fragment>
                 <PageHeader><PolicyDetailsContentLoader/></PageHeader>
-                <Main><EmptyTable><Spinner/></EmptyTable></Main>
+                <Main><Spinner/></Main>
             </React.Fragment>
         );
     } else {
         policy = data.profile;
-        const compliantHostCount = policy.compliantHostCount;
-        const totalHostCount = policy.totalHostCount;
-        donutId = policy.name.replace(/ /g, '');
-        donutValues = [
-            { x: 'Compliant', y: compliantHostCount },
-            { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
-        ];
     }
 
-    const columns = [{
-        composed: ['facts.os_release', 'display_name'],
-        key: 'display_name',
-        title: 'Name',
-        props: {
-            width: 30
-        }
-    }, {
-        key: 'facts.compliance.profiles',
-        title: 'Profile',
-        props: {
-            width: 50
-        }
-    }, {
-        key: 'facts.compliance.rules_failed',
-        title: 'Rules failed',
-        props: {
-            width: 5
-        }
-    }, {
-        key: 'facts.compliance.compliance_score',
-        title: 'Compliance score',
-        props: {
-            width: 5
-        }
-    }, {
-        key: 'facts.compliance.last_scanned',
-        title: 'Last scanned',
-        props: {
-            width: 10
-        }
-    }];
-
-    const legendData = [
-        { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
-        { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
-    ];
-
-    const compliancePercentage = fixedPercentage(Math.floor(100 *
-        (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
+    let currentTab;
+    if (activeTab === 0) {
+        currentTab = <PolicyDetailsDescription policy={policy} />;
+    } else if (activeTab === 1) {
+        const columns = [
+            { title: 'Rule', transforms: [sortable] },
+            { title: 'Severity', transforms: [sortable] },
+            { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
+        ];
+        currentTab = <React.Fragment>
+            <Alert variant="info" isInline title="Rule editing coming soon" />
+            <SystemRulesTable
+                remediationsEnabled={false}
+                columns={columns}
+                loading={loading}
+                profileRules={ !loading && [{
+                    profile: { refId: policy.refId, name: policy.name },
+                    rules: policy.rules
+                }]}
+            />
+        </React.Fragment>;
+    } else if (activeTab === 2) {
+        const columns = [{
+            composed: ['facts.os_release', 'display_name'],
+            key: 'display_name',
+            title: 'System name',
+            props: {
+                width: 40
+            }
+        }, {
+            key: 'facts.compliance.compliance_score',
+            title: 'Compliance score',
+            props: {
+                width: 10
+            }
+        }, {
+            key: 'facts.compliance.last_scanned',
+            title: 'Last scanned',
+            props: {
+                width: 10
+            }
+        }];
+        currentTab = <SystemsTable policyId={policy.id} columns={columns} ref={systemsTable} />;
+    }
 
     return (
         <React.Fragment>
-            <PageHeader>
+            <PageHeader className={ 'beta-page-header'} >
                 <Breadcrumb>
                     <BreadcrumbItem to='/rhel/compliance/policies' onClick={ (event) => onNavigateWithProps(event) }>
                       Policies
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                 </Breadcrumb>
-                <PageHeaderTitle title={policy.name} />
-                <EditPolicy policyId={policy.id}
-                    previousThreshold={policy.complianceThreshold}
-                    businessObjective={policy.businessObjective}
-                    onClose={ () => {
-                        forceUpdate();
-                    }}
-                />
-                { policy.businessObjective &&
-                <Text style={{ color: 'var(--pf-global--Color--200)' }}>
-                    Business objective: { policy.businessObjective.title }
-                </Text>
-                }
-                <Grid gutter='md'>
-                    <GridItem sm={12} md={12} lg={12} xl={6}>
-                        <div className='chart-inline'>
-                            <div className='chart-container'>
-                                <ChartDonut data={donutValues}
-                                    identifier={donutId}
-                                    title={compliancePercentage}
-                                    subTitle="Compliant"
-                                    themeColor={ChartThemeColor.blue}
-                                    themeVariant={ChartThemeVariant.light}
-                                    style={{ fontSize: 20 }}
-                                    innerRadius={88}
-                                    width={462}
-                                    legendPosition='right'
-                                    legendData={legendData}
-                                    legendOrientation='vertical'
-                                    padding={{
-                                        bottom: 20,
-                                        left: 0,
-                                        right: 250,
-                                        top: 20
-                                    }}
-                                />
-                            </div>
-                        </div>
-
+                <Grid>
+                    <GridItem span={10}>
+                        <PageHeaderTitle title={policy.name} />
                     </GridItem>
-                    <GridItem sm={12} md={12} lg={12} xl={6}>
-                        <TextContent className='policy-description'>
-                            <Text component={TextVariants.h5}><b>Description</b></Text>
-                            <Text component={TextVariants.p}>
-                                <Truncate text={linkifyHtml(policy.description || '')} length={380} inline={true} />
-                            </Text>
-                            <Tooltip
-                                position='left'
-                                content={
-                                    <span>
-                                        The threshold for compliance is a value set by your organization for
-                                        each policy.
-                                        This defines the percentage of passed rules that must be met in order
-                                        for a system to be determined &quot;compliant&quot;.
-                                    </span>
-                                }
-                            >
-                                <span>
-                                    <Text component={TextVariants.h5}>
-                                        <b>
-                                            Minimum threshold for compliance
-                                            <OutlinedQuestionCircleIcon className='grey-icon'/>
-                                        </b>
-                                    </Text>
-                                    <Text className='threshold-tooltip' component={TextVariants.p}>
-                                        { fixedPercentage(policy.complianceThreshold, 1) }
-                                    </Text>
-                                </span>
-                            </Tooltip>
-                            <Text component={TextVariants.h5}>
-                                <b>
-                                    Operating system
-                                </b>
-                            </Text>
-                            <Text component={TextVariants.p}>
-                                RHEL { policy.majorOsVersion }
-                            </Text>
-                        </TextContent>
+                    <GridItem span={1}>
+                        <Link to={'/reports/' + policy.id} >
+                            <Button variant='primary'>
+                                View reports
+                            </Button>
+                        </Link>
+                    </GridItem>
+                    <GridItem span={1}>
+                        <EditPolicy policyId={policy.id}
+                            previousThreshold={policy.complianceThreshold}
+                            businessObjective={policy.businessObjective}
+                            onClose={ () => {
+                                forceUpdate();
+                            }}
+                        />
                     </GridItem>
                 </Grid>
+                <PolicyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             </PageHeader>
             <Main>
-                <Grid gutter='md'>
-                    <GridItem span={12}>
-                        <SystemsTable policyId={policy.id}
-                            columns={columns}
-                            ref={systemsTable} />
-                    </GridItem>
-                </Grid>
+                { currentTab }
             </Main>
         </React.Fragment>
     );

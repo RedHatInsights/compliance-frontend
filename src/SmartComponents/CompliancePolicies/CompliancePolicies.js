@@ -40,7 +40,7 @@ export const CompliancePolicies = () => {
 
     return (
         <React.Fragment>
-            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+            <PageHeader style={{ paddingBottom: '22px' }} className={ beta ? 'beta-page-header' : 'stable-page-header' } >
                 <PageHeaderTitle title="Compliance policies" />
                 { !loading && !beta && <ComplianceTabs/> }
             </PageHeader>
