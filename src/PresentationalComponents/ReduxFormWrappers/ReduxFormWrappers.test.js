@@ -2,7 +2,6 @@ import toJson from 'enzyme-to-json';
 
 import {
     ReduxFormTextInput,
-    ReduxFormCheckboxInput,
     ReduxFormCreatableSelectInput,
     ReduxFormTextArea
 } from './ReduxFormWrappers';
@@ -33,24 +32,6 @@ describe('ReduxFormTextInput', () => {
         };
         const wrapper = shallow(
             <ReduxFormTextInput { ...field } />
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-});
-
-describe('ReduxFormCheckboxInput', () => {
-    it('expect to render without error', () => {
-        const field = {
-            input: {
-                onChange: jest.fn(),
-                value: 'Value'
-            },
-            additionalProp: 'Prop1',
-            id: 'checkbox-id'
-        };
-        const wrapper = shallow(
-            <ReduxFormCheckboxInput { ...field } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

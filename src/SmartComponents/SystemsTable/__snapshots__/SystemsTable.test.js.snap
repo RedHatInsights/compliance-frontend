@@ -2,6 +2,18 @@
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
 <InventoryCmp
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
   items={Array []}
   onRefresh={[Function]}
   page={1}
@@ -524,6 +536,18 @@ exports[`SystemsTable expect to render a loading state 1`] = `
 
 exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] = `
 <mockConstructor
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
   items={
     Array [
       1,

@@ -1,24 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReduxFormCheckboxInput expect to render without error 1`] = `
-<Checkbox
-  additionalProp="Prop1"
-  className=""
-  id="checkbox-id"
-  input={
-    Object {
-      "onChange": [MockFunction],
-      "value": "Value",
-    }
-  }
-  isChecked={false}
-  isDisabled={false}
-  isValid={true}
-  onChange={[MockFunction]}
-  value="Value"
-/>
-`;
-
 exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
 <Select
   additionalProp="Prop1"

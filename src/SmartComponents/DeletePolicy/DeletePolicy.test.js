@@ -52,4 +52,3 @@ describe('DeletePolicy', () => {
         expect(toJson(component)).toMatchSnapshot();
     });
 });
-
