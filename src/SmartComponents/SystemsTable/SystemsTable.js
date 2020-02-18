@@ -19,7 +19,7 @@ import {
 import { COMPLIANCE_API_ROOT } from '../../constants';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { exportToCSV } from '../../store/ActionTypes.js';
-import { linkAndDownload, filename as formatFilename } from 'Utilities/CsvExport';
+import { linkAndDownload, filename as formatFilename } from 'Utilities/Export';
 import { isNumberRange } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 

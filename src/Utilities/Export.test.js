@@ -1,4 +1,4 @@
-import { csvFromState } from './CsvExport.js';
+import { csvFromState } from './Export.js';
 import { tableState } from './fixtures.js';
 
 describe('csvFromState', () => {

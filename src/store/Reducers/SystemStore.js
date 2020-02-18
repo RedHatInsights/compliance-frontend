@@ -3,7 +3,7 @@ import { applyReducerHash } from '@redhat-cloud-services/frontend-components-uti
 import { Link } from 'react-router-dom';
 import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
-import { downloadCsv } from '../../Utilities/CsvExport';
+import { downloadCsv } from 'Utilities/Export';
 import {
     ComplianceScore as complianceScore,
     complianceScoreString
