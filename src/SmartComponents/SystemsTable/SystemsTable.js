@@ -16,10 +16,9 @@ import {
 import {
     ComplianceRemediationButton
 } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { COMPLIANCE_API_ROOT } from '../../constants';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { exportToCSV } from '../../store/ActionTypes.js';
-import { linkAndDownload, filename as formatFilename } from 'Utilities/Export';
+import { exportToJson } from 'Utilities/Export';
 import { isNumberRange } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 
@@ -86,30 +85,19 @@ class SystemsTable extends React.Component {
     }
 
     buildFilterString = () => {
-        const compliant = this.state.activeFilters.complianceStates;
-        const complianceScore = this.state.activeFilters.complianceScores;
-
-        let filter = '';
-
-        compliant.forEach((compliant) => {
-            if (filter !== '') {
-                filter += (' or ');
-            }
-
-            filter += ('compliant = ' + compliant);
-        });
-
-        complianceScore.forEach((scoreRange, index) => {
-            if (index === 0 && filter !== '') { filter += ' and '; }
-
-            if (index !== 0 && filter !== '') { filter += ' or '; }
-
+        const compliant = this.state.activeFilters.complianceStates.map((compliant) =>
+            `compliant = ${compliant}`
+        );
+        const complianceScore = this.state.activeFilters.complianceScores.map((scoreRange) => {
             scoreRange = scoreRange.split('-');
-            filter += ('compliance_score >= ' + scoreRange[0] +
-                       ' and compliance_score <= ' + scoreRange[1]);
+            return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
         });
+        const andJoin = complianceScore.length > 0 && compliant.length > 0;
 
-        return filter;
+        return [
+            compliant,
+            complianceScore
+        ].map((filters) => filters.join(' or ')).join(andJoin ? ' and ' : '');
     }
 
     appendToFilter = (filter, attribute, operation, append) => {
@@ -162,47 +150,40 @@ class SystemsTable extends React.Component {
         this.state.loaded
     )
 
-    exportToJson = () => {
-        linkAndDownload((this.props.selectedEntities !== null) ?
-            COMPLIANCE_API_ROOT + '/systems.json' +
-            '?search=(id ^ (' + this.props.selectedEntities.join(',') + '))' : '',
-        formatFilename('json'));
-    }
-
     onExportSelect = (_, format) => {
         if (format === 'csv') {
             this.props.exportToCSV();
         }
 
         if (format === 'json') {
-            this.exportToJson();
+            exportToJson(this.props.selectedEntities);
         }
     }
 
-    onFilterChange = debounce((_event, selectedValues, value) => {
-        if (value) {
-            const filterToSet = isNumberRange(value) ? 'complianceScores' : 'complianceStates';
-            this.setState({
-                ...this.state,
-                page: 1,
-                activeFilters: {
-                    ...this.state.activeFilters,
-                    [filterToSet]: selectedValues
-                }
-            }, () => {
-                this.updateFilterChips();
-                this.systemFetch();
-            });
-        } else {
-            this.setState({
-                ...this.state,
-                search: selectedValues
-            }, () => {
-                this.updateFilterChips();
-                this.systemFetch();
-            });
-        }
+    updateSearchFilter = debounce((_event, selectedValues, value) => {
+        this.setState({
+            ...this.state,
+            page: 1,
+            search: value
+        }, this.filterUpdate);
     }, 500)
+
+    updateCompliancFilter = debounce((_event, selectedValues, value) => {
+        const filterToSet = isNumberRange(value) ? 'complianceScores' : 'complianceStates';
+        this.setState({
+            ...this.state,
+            page: 1,
+            activeFilters: {
+                ...this.state.activeFilters,
+                [filterToSet]: selectedValues
+            }
+        }, this.filterUpdate);
+    }, 500)
+
+    filterUpdate = () => {
+        this.updateFilterChips();
+        this.systemFetch();
+    }
 
     onFilterDelete = (_event, chips, clearAll = false) => {
         if (clearAll) {
@@ -233,9 +214,7 @@ class SystemsTable extends React.Component {
                         complianceStates: [],
                         chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Compliant'))
                     }
-                }, () => {
-                    this.systemFetch();
-                });
+                }, this.systemFetch);
                 break;
             case 'Compliance Score':
                 this.setState({
@@ -334,7 +313,7 @@ class SystemsTable extends React.Component {
                     type: conditionalFilterType.text,
                     label: 'Name or reference',
                     filterValues: {
-                        onSubmit: this.onFilterChange,
+                        onSubmit: this.updateSearchFilter,
                         value: search
                     }
                 },
@@ -343,7 +322,7 @@ class SystemsTable extends React.Component {
                     label: 'Compliant',
                     id: 'compliant',
                     filterValues: {
-                        onChange: this.onFilterChange,
+                        onChange: this.updateCompliancFilter,
                         value: complianceStates,
                         items: [
                             { label: 'Compliant', value: 'compliant' },
@@ -356,7 +335,7 @@ class SystemsTable extends React.Component {
                     label: 'Compliance score',
                     id: 'complianceScore',
                     filterValues: {
-                        onChange: this.onFilterChange,
+                        onChange: this.updateCompliancFilter,
                         value: complianceScores,
                         items: [
                             { label: '90 - 100%', value: '90-100' },

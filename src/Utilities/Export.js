@@ -1,3 +1,5 @@
+import { COMPLIANCE_API_ROOT } from '../constants';
+
 const CSV_FILE_PREFIX = 'compliance-export';
 
 export const linkAndDownload = (data, filename) => {
@@ -47,4 +49,12 @@ export const downloadCsv = (state) => {
     if (csv) {
         linkAndDownload(csv, filename());
     }
+};
+
+export const exportToJson = (selectedEntities) => {
+    const url = (selectedEntities.length > 0) ?
+        COMPLIANCE_API_ROOT + '/systems.json' + '?search=(id ^ (' + selectedEntities.join(',') + '))' :
+        COMPLIANCE_API_ROOT + '/systems.json';
+
+    linkAndDownload(url, filename('json'));
 };
