@@ -440,5 +440,5 @@ const mapDispatchToProps = dispatch => {
 export { SystemsTable };
 export default connect(
     mapStateToProps,
-    mapDispatchToProps)(withApollo(SystemsTable, { withRef: true })
-);
+    mapDispatchToProps
+)(withApollo(SystemsTable, { withRef: true }));
