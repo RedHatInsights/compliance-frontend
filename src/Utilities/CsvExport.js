@@ -1,6 +1,6 @@
 const CSV_FILE_PREFIX = 'compliance-export';
 
-const linkAndDownload = (data, filename) => {
+export const linkAndDownload = (data, filename) => {
     let link = document.createElement('a');
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
@@ -38,11 +38,13 @@ export const csvFromState = (state) => {
     }
 };
 
+export const filename = (format = 'csv') => {
+    return CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format;
+};
+
 export const downloadCsv = (state) => {
     const csv = csvFromState(state);
     if (csv) {
-        let filename = CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.csv';
-
-        linkAndDownload(csv, filename);
+        linkAndDownload(csv, filename());
     }
 };
