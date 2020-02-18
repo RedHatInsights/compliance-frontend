@@ -184,6 +184,7 @@ class SystemsTable extends React.Component {
             const filterToSet = isNumberRange(value) ? 'complianceScores' : 'complianceStates';
             this.setState({
                 ...this.state,
+                page: 1,
                 activeFilters: {
                     ...this.state.activeFilters,
                     [filterToSet]: selectedValues
@@ -327,6 +328,7 @@ class SystemsTable extends React.Component {
 		const { complianceScores, complianceStates } = this.state.activeFilters;
 
         const filterConfig = {
+            hideLabel: true,
             items: [
                 {
                     type: conditionalFilterType.text,
