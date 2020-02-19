@@ -51,9 +51,61 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 }
 `;
 
+const defaultFilterConfig = (
+    updateSearchFilter,
+    updateCompliancFilter,
+    { complianceScores, complianceStates },
+    search
+) => ({
+    hideLabel: true,
+    items: [
+        {
+            type: conditionalFilterType.text,
+            label: 'Name or reference',
+            filterValues: {
+                onSubmit: updateSearchFilter,
+                value: search
+            }
+        },
+        {
+            type: 'checkbox',
+            label: 'Compliant',
+            id: 'compliant',
+            filterValues: {
+                onChange: updateCompliancFilter,
+                value: complianceStates,
+                items: [
+                    { label: 'Compliant', value: 'compliant' },
+                    { label: 'Non-compliant', value: 'noncompliant' }
+                ]
+            }
+        },
+        {
+            type: 'checkbox',
+            label: 'Compliance score',
+            id: 'complianceScore',
+            filterValues: {
+                onChange: updateCompliancFilter,
+                value: complianceScores,
+                items: [
+                    { label: '90 - 100%', value: '90-100' },
+                    { label: '70 - 89%', value: '70-89' },
+                    { label: '50 - 69%', value: '50-69' },
+                    { label: 'Less than 50%', value: '0-49' }
+                ]
+            }
+        }
+    ]
+});
+
 @registry()
 class SystemsTable extends React.Component {
     inventory = React.createRef();
+    initialFilter = {
+        complianceScores: [],
+        complianceStates: [],
+        chips: []
+    }
     state = {
         InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
         items: [],
@@ -62,12 +114,7 @@ class SystemsTable extends React.Component {
         page: 1,
         perPage: 50,
         totalCount: 0,
-		isAssignPoliciesModalOpen: false,
-        activeFilters: {
-            complianceScores: [],
-            complianceStates: [],
-            chips: []
-        }
+        activeFilters: this.initialFilter
     }
 
     componentDidMount = () => {
@@ -210,11 +257,7 @@ class SystemsTable extends React.Component {
 
     clearAllFilter = () => {
         this.setState({
-            activeFilters: {
-                complianceStates: [],
-                complianceScores: [],
-                chips: []
-            }
+            activeFilters: this.initialFilter
         }, this.systemFetch);
     }
 
