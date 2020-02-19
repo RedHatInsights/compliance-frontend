@@ -10,8 +10,7 @@ import debounce from 'lodash/debounce';
 import gql from 'graphql-tag';
 
 import {
-    SkeletonTable,
-    conditionalFilterType
+    SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
 import {
     ComplianceRemediationButton
@@ -23,6 +22,7 @@ import { isNumberRange } from 'Utilities/TextHelper';
 import { buildFilterString } from 'Utilities/FilterBuilder';
 
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
+import { defaultFilterConfig } from './filterConfig';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -52,53 +52,6 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
     }
 }
 `;
-
-const defaultFilterConfig = (
-    updateSearchFilter,
-    updateCompliancFilter,
-    { complianceScores, complianceStates },
-    search
-) => ({
-    hideLabel: true,
-    items: [
-        {
-            type: conditionalFilterType.text,
-            label: 'Name or reference',
-            filterValues: {
-                onSubmit: updateSearchFilter,
-                value: search
-            }
-        },
-        {
-            type: 'checkbox',
-            label: 'Compliant',
-            id: 'compliant',
-            filterValues: {
-                onChange: updateCompliancFilter,
-                value: complianceStates,
-                items: [
-                    { label: 'Compliant', value: 'compliant' },
-                    { label: 'Non-compliant', value: 'noncompliant' }
-                ]
-            }
-        },
-        {
-            type: 'checkbox',
-            label: 'Compliance score',
-            id: 'complianceScore',
-            filterValues: {
-                onChange: updateCompliancFilter,
-                value: complianceScores,
-                items: [
-                    { label: '90 - 100%', value: '90-100' },
-                    { label: '70 - 89%', value: '70-89' },
-                    { label: '50 - 69%', value: '50-69' },
-                    { label: 'Less than 50%', value: '0-49' }
-                ]
-            }
-        }
-    ]
-});
 
 @registry()
 class SystemsTable extends React.Component {
@@ -398,8 +351,7 @@ class SystemsTable extends React.Component {
             activeFiltersConfig={{
                 filters: this.state.activeFilters.chips,
                 onDelete: this.onFilterDelete
-            }}
-            staleFilter={{}}>
+            }}>
             <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
