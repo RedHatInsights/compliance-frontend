@@ -20,6 +20,8 @@ import registry from '@redhat-cloud-services/frontend-components-utilities/files
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
 import { isNumberRange } from 'Utilities/TextHelper';
+import { buildFilterString } from 'Utilities/FilterBuilder';
+
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 
 export const GET_SYSTEMS = gql`
@@ -121,41 +123,6 @@ class SystemsTable extends React.Component {
         this.fetchInventory();
     }
 
-    buildBaseFilter = () => {
-        const { policyId, search } = this.state;
-        let additionalFilter = [];
-
-        if (policyId.length > 0) {
-            additionalFilter.push(`profile_id = ${policyId}`);
-        }
-
-        if (search.length > 0) {
-            additionalFilter.push(`name ~ ${search}`);
-        }
-
-        return [additionalFilter.join(' and ')].filter((f) => (f.length > 0));
-    }
-
-    buildFilterString = () => {
-        const additionalFilter = this.buildBaseFilter();
-        const { complianceStates, complianceScores } = this.state.activeFilters;
-        const compliant = complianceStates.map((compliant) =>
-            `compliant = ${compliant}`
-        );
-        const complianceScore = complianceScores.map((scoreRange) => {
-            scoreRange = scoreRange.split('-');
-            return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
-        });
-        const filters = [
-            additionalFilter,
-            compliant,
-            complianceScore
-        ].filter((f) => (f.length > 0));
-        const moreThanTwo = filters.map((f) => (f.length)).filter((fl) => (fl > 0)).length >= 2;
-
-        return filters.map((fs) => (fs.join(' or '))).join(moreThanTwo ? ' and ' : '');
-    }
-
     onRefresh = ({ page, per_page: perPage }) => {
         this.setState({ page, perPage }, this.systemFetch);
     }
@@ -163,7 +130,7 @@ class SystemsTable extends React.Component {
     systemFetch = () => {
         const { client } = this.props;
         const { policyId, perPage, page } = this.state;
-        const filter = this.buildFilterString();
+        const filter = buildFilterString(this.state);
 
         return client.query({
             query: GET_SYSTEMS,
@@ -431,7 +398,8 @@ class SystemsTable extends React.Component {
             activeFiltersConfig={{
                 filters: this.state.activeFilters.chips,
                 onDelete: this.onFilterDelete
-            }}>
+            }}
+            staleFilter={{}}>
             <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
