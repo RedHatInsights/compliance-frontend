@@ -253,8 +253,9 @@ class SystemsTable extends React.Component {
                         return chips;
                     }
 
-                    return { ...chips, chips: chips.chips.filter((c) => c.name !== chipName) };
-                })
+                    const freshChips = chips.chips.filter((c) => c.name !== chipName);
+                    return freshChips.length > 0 ? { ...chips, chips: freshChips } : null;
+                }).filter((c) => (!!c))
             }
         }, this.systemFetch);
     }
