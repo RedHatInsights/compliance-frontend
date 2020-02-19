@@ -121,42 +121,39 @@ class SystemsTable extends React.Component {
         this.fetchInventory();
     }
 
-    buildFilter = () => {
+    buildBaseFilter = () => {
         const { policyId, search } = this.state;
-        let result = this.buildFilterString();
+        let additionalFilter = [];
 
-        result = this.appendToFilter(result, 'profile_id', '=', policyId);
-        result = this.appendToFilter(result, 'name', '~', search);
+        if (policyId.length > 0) {
+            additionalFilter.push(`profile_id = ${policyId}`);
+        }
 
-        return result;
+        if (search.length > 0) {
+            additionalFilter.push(`name ~ ${search}`);
+        }
+
+        return [additionalFilter.join(' and ')].filter((f) => (f.length > 0));
     }
 
     buildFilterString = () => {
-        const compliant = this.state.activeFilters.complianceStates.map((compliant) =>
+        const additionalFilter = this.buildBaseFilter();
+        const { complianceStates, complianceScores } = this.state.activeFilters;
+        const compliant = complianceStates.map((compliant) =>
             `compliant = ${compliant}`
         );
-        const complianceScore = this.state.activeFilters.complianceScores.map((scoreRange) => {
+        const complianceScore = complianceScores.map((scoreRange) => {
             scoreRange = scoreRange.split('-');
             return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
         });
-        const andJoin = complianceScore.length > 0 && compliant.length > 0;
-
-        return [
+        const filters = [
+            additionalFilter,
             compliant,
             complianceScore
-        ].map((filters) => filters.join(' or ')).join(andJoin ? ' and ' : '');
-    }
+        ].filter((f) => (f.length > 0));
+        const moreThanTwo = filters.map((f) => (f.length)).filter((fl) => (fl > 0)).length >= 2;
 
-    appendToFilter = (filter, attribute, operation, append) => {
-        if (append && append.length > 0) {
-            if (filter.length > 0) {
-                filter += ' and ';
-            }
-
-            filter += `${attribute} ${operation} ${append}`;
-        }
-
-        return filter;
+        return filters.map((fs) => (fs.join(' or '))).join(moreThanTwo ? ' and ' : '');
     }
 
     onRefresh = ({ page, per_page: perPage }) => {
@@ -166,7 +163,7 @@ class SystemsTable extends React.Component {
     systemFetch = () => {
         const { client } = this.props;
         const { policyId, perPage, page } = this.state;
-        const filter = this.buildFilter();
+        const filter = this.buildFilterString();
 
         return client.query({
             query: GET_SYSTEMS,
@@ -207,11 +204,11 @@ class SystemsTable extends React.Component {
         }
     }
 
-    updateSearchFilter = debounce((_event, selectedValues, value) => {
+    updateSearchFilter = debounce((_event, selectedValue) => {
         this.setState({
             ...this.state,
             page: 1,
-            search: value
+            search: selectedValue
         }, this.filterUpdate);
     }, 500)
 
@@ -242,15 +239,22 @@ class SystemsTable extends React.Component {
         },  this.systemFetch);
     }
 
-    deleteComplianceFilter = (category) => {
-        const stateProp = category === 'Compliant' ? 'complianceStates' : 'complianceScores';
+    deleteComplianceFilter = (chips) => {
+        const chipCategory = chips.category;
+        const stateProp = chipCategory === 'Compliant' ? 'complianceStates' : 'complianceScores';
+        const chipName = chips.chips[0].name;
+
         this.setState({
             activeFilters: {
                 ...this.state.activeFilters,
-                [stateProp]: [],
-                chips: this.state.activeFilters.chips.filter((chips) => (
-                    chips.category !== category
-                ))
+                [stateProp]: this.state.activeFilters[stateProp].filter((value) => value !== chipName),
+                chips: this.state.activeFilters.chips.map((chips) => {
+                    if (chips.category !== chipCategory) {
+                        return chips;
+                    }
+
+                    return { ...chips, chips: chips.chips.filter((c) => c.name !== chipName) };
+                })
             }
         }, this.systemFetch);
     }
@@ -270,7 +274,7 @@ class SystemsTable extends React.Component {
         if (chips.category === 'Name or reference') {
             this.deleteSearchFilter(chips);
         } else {
-            this.deleteComplianceFilter(chips.category);
+            this.deleteComplianceFilter(chips);
         }
     }, 500)
 
