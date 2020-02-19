@@ -2,17 +2,77 @@
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
 <InventoryCmp
-  actions={
-    Array [
-      Object {
-        "onClick": [Function],
-        "title": "Edit policies for this system",
-      },
-      Object {
-        "onClick": [Function],
-        "title": "View in inventory",
-      },
-    ]
+  activeFiltersConfig={
+    Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    }
+  }
+  exportConfig={
+    Object {
+      "onSelect": [Function],
+    }
+  }
+  filterConfig={
+    Object {
+      "hideLabel": true,
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onSubmit": [Function],
+            "value": "",
+          },
+          "label": "Name or reference",
+          "type": "text",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "Compliant",
+                "value": "compliant",
+              },
+              Object {
+                "label": "Non-compliant",
+                "value": "noncompliant",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliant",
+          "label": "Compliant",
+          "type": "checkbox",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "90 - 100%",
+                "value": "90-100",
+              },
+              Object {
+                "label": "70 - 89%",
+                "value": "70-89",
+              },
+              Object {
+                "label": "50 - 69%",
+                "value": "50-69",
+              },
+              Object {
+                "label": "Less than 50%",
+                "value": "0-49",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "complianceScore",
+          "label": "Compliance score",
+          "type": "checkbox",
+        },
+      ],
+    }
   }
   items={Array []}
   onRefresh={[Function]}
@@ -29,43 +89,10 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
         }
       }
     >
-      <InputGroup>
-        <SystemsComplianceFilter
-          complianceScore={Array []}
-          compliant={Array []}
-          updateFilter={[Function]}
-        />
-        <SimpleFilter
-          buttonTitle={null}
-          className=""
-          onButtonClick={[Function]}
-          onFilterChange={[Function]}
-          onOptionSelect={[Function]}
-          placeholder="Search by name"
-          searchIcon={true}
-        />
-      </InputGroup>
-    </ToolbarItem>
-    <ToolbarItem
-      style={
-        Object {
-          "marginLeft": "var(--pf-global--spacer--lg)",
-        }
-      }
-    >
       <Component
         allSystems={Array []}
         selectedRules={Array []}
       />
-    </ToolbarItem>
-    <ToolbarItem
-      style={
-        Object {
-          "marginLeft": "var(--pf-global--spacer--md)",
-        }
-      }
-    >
-      <Connect(DownloadTableButton) />
     </ToolbarItem>
   </ToolbarGroup>
 </InventoryCmp>
@@ -536,17 +563,77 @@ exports[`SystemsTable expect to render a loading state 1`] = `
 
 exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] = `
 <mockConstructor
-  actions={
-    Array [
-      Object {
-        "onClick": [Function],
-        "title": "Edit policies for this system",
-      },
-      Object {
-        "onClick": [Function],
-        "title": "View in inventory",
-      },
-    ]
+  activeFiltersConfig={
+    Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    }
+  }
+  exportConfig={
+    Object {
+      "onSelect": [Function],
+    }
+  }
+  filterConfig={
+    Object {
+      "hideLabel": true,
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onSubmit": [Function],
+            "value": "",
+          },
+          "label": "Name or reference",
+          "type": "text",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "Compliant",
+                "value": "compliant",
+              },
+              Object {
+                "label": "Non-compliant",
+                "value": "noncompliant",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliant",
+          "label": "Compliant",
+          "type": "checkbox",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "90 - 100%",
+                "value": "90-100",
+              },
+              Object {
+                "label": "70 - 89%",
+                "value": "70-89",
+              },
+              Object {
+                "label": "50 - 69%",
+                "value": "50-69",
+              },
+              Object {
+                "label": "Less than 50%",
+                "value": "0-49",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "complianceScore",
+          "label": "Compliance score",
+          "type": "checkbox",
+        },
+      ],
+    }
   }
   items={
     Array [
@@ -567,30 +654,6 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
         }
       }
     >
-      <InputGroup>
-        <SystemsComplianceFilter
-          complianceScore={Array []}
-          compliant={Array []}
-          updateFilter={[Function]}
-        />
-        <SimpleFilter
-          buttonTitle={null}
-          className=""
-          onButtonClick={[Function]}
-          onFilterChange={[Function]}
-          onOptionSelect={[Function]}
-          placeholder="Search by name"
-          searchIcon={true}
-        />
-      </InputGroup>
-    </ToolbarItem>
-    <ToolbarItem
-      style={
-        Object {
-          "marginLeft": "var(--pf-global--spacer--lg)",
-        }
-      }
-    >
       <Component
         allSystems={
           Array [
@@ -601,15 +664,6 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
         }
         selectedRules={Array []}
       />
-    </ToolbarItem>
-    <ToolbarItem
-      style={
-        Object {
-          "marginLeft": "var(--pf-global--spacer--md)",
-        }
-      }
-    >
-      <Connect(DownloadTableButton) />
     </ToolbarItem>
   </ToolbarGroup>
 </mockConstructor>
