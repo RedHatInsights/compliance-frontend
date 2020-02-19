@@ -185,50 +185,51 @@ class SystemsTable extends React.Component {
         this.systemFetch();
     }
 
-    onFilterDelete = (_event, chips, clearAll = false) => {
+    deleteSearchFilter = () => {
+        this.setState({
+            search: '',
+            activeFilters: {
+                ...this.state.activeFilters,
+                chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Name or reference'))
+            }
+        },  this.systemFetch);
+    }
+
+    deleteComplianceFilter = (category) => {
+        const stateProp = category === 'Compliant' ? 'complianceStates' : 'complianceScores';
+        this.setState({
+            activeFilters: {
+                ...this.state.activeFilters,
+                [stateProp]: [],
+                chips: this.state.activeFilters.chips.filter((chips) => (
+                    chips.category !== category
+                ))
+            }
+        }, this.systemFetch);
+    }
+
+    clearAllFilter = () => {
+        this.setState({
+            activeFilters: {
+                complianceStates: [],
+                complianceScores: [],
+                chips: []
+            }
+        }, this.systemFetch);
+    }
+
+    onFilterDelete = debounce((_event, chips, clearAll = false) => {
         if (clearAll) {
-            this.setState({
-                activeFilters: {
-                    complianceStates: [],
-                    complianceScores: [],
-                    chips: []
-                }
-            }, this.systemFetch);
+            this.clearAllFilter();
             return;
         }
 
-        switch (chips.category) {
-            case 'Name or reference':
-                this.setState({
-                    search: '',
-                    activeFilters: {
-                        ...this.state.activeFilters,
-                        chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Name or reference'))
-                    }
-                },  this.systemFetch);
-                break;
-            case 'Compliant':
-                this.setState({
-                    activeFilters: {
-                        ...this.state.activeFilters,
-                        complianceStates: [],
-                        chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Compliant'))
-                    }
-                }, this.systemFetch);
-                break;
-            case 'Compliance Score':
-                this.setState({
-                    activeFilters: {
-                        ...this.state.activeFilters,
-                        complianceScores: [],
-                        chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Compliance Score'))
-                    }
-                },  this.systemFetch);
-                break;
-            default:
-                return;
+        if (chips.category === 'Name or reference') {
+            this.deleteSearchFilter(chips);
+        } else {
+            this.deleteComplianceFilter(chips.category);
         }
-    }
+    }, 500)
 
     updateFilterChips = () => {
         const { complianceStates: compliant, complianceScores } = this.state.activeFilters;
