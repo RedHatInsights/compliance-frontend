@@ -49,6 +49,7 @@ const policiesToRows = (policies) => {
                 policy.name,
                 `RHEL ${policy.majorOsVersion}`,
                 policy.totalHostCount,
+                policy.businessObjective && policy.businessObjective.title || '--',
                 `${policy.complianceThreshold}%`
             ]
         };
@@ -60,6 +61,7 @@ export class PoliciesTable extends React.Component {
         { title: 'Policy name' },
         { title: 'Operating system' },
         { title: 'Systems' },
+        { title: 'Business objective' },
         { title: 'Compliance threshold' }
     ]
     state = {
