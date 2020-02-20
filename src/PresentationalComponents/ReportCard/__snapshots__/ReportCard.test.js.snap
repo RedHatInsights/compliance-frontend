@@ -189,51 +189,12 @@ exports[`ReportCard expect to render without error 1`] = `
 
 exports[`ReportCard onMousover/onMouseout changes to state to the full policy name on hover and back to truncated 1`] = `
 Object {
-  "cardTitle": <React.Fragment>
-    Test Policy
-     
-    <PolicyPopover
-      policy={
-        Object {
-          "businessObjective": Object {
-            "title": "BO",
-          },
-          "compliantHostCount": 10,
-          "id": "ID",
-          "name": "Test Policy",
-          "refId": "REF_ID",
-          "totalHostCount": 15,
-        }
-      }
-    />
-  </React.Fragment>,
+  "cardTitleTruncated": false,
 }
 `;
 
 exports[`ReportCard onMousover/onMouseout changes to state to the full policy name on hover and back to truncated 2`] = `
 Object {
-  "cardTitle": <Truncate
-    ellipsis="…"
-    lines={1}
-    trimWhitespace={false}
-    width={0}
-  >
-    Test Policy
-     
-    <PolicyPopover
-      policy={
-        Object {
-          "businessObjective": Object {
-            "title": "BO",
-          },
-          "compliantHostCount": 10,
-          "id": "ID",
-          "name": "Test Policy",
-          "refId": "REF_ID",
-          "totalHostCount": 15,
-        }
-      }
-    />
-  </Truncate>,
+  "cardTitleTruncated": true,
 }
 `;
