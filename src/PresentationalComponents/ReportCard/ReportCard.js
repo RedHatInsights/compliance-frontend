@@ -27,23 +27,23 @@ import { fixedPercentage } from '../../Utilities/TextHelper';
 class ReportCard extends React.Component {
     policy = this.props.policy;
     state = {
-        cardTitle: <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate>
+        cardTitleTruncated: true
     }
 
     onMouseover = () => {
         this.setState({
-            cardTitle: <React.Fragment>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment>
+            cardTitleTruncated: false
         });
     }
 
     onMouseout = () => {
         this.setState({
-            cardTitle: <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate>
+            cardTitleTruncated: true
         });
     }
 
     render() {
-        const { cardTitle } = this.state;
+        const { cardTitleTruncated } = this.state;
         const {
             majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
         } = this.policy;
@@ -60,7 +60,9 @@ class ReportCard extends React.Component {
                     <TextContent>
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
-                            { cardTitle }
+                            { cardTitleTruncated ?
+                                <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate> :
+                                <React.Fragment>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
