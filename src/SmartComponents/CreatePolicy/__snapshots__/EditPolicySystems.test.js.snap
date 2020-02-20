@@ -22,7 +22,466 @@ Array [
     className="pf-c-form"
     noValidate={true}
   >
-    MockedSystemsTable
+    <table
+      aria-label="Loading"
+      className="pf-c-table pf-m-grid-md"
+      role="grid"
+    >
+      <thead
+        className=""
+      >
+        <tr>
+          <th
+            className=""
+            data-key={0}
+            data-label="column-0"
+            scope="col"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__sm"
+            >
+               
+            </div>
+          </th>
+          <th
+            className=""
+            data-key={1}
+            data-label="column-1"
+            scope="col"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__sm"
+            >
+               
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className=""
+      >
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+        <tr
+          className=""
+          hidden={false}
+          onMouseDown={[Function]}
+        >
+          <td
+            className=""
+            data-key={0}
+            data-label="column-0"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+          <td
+            className=""
+            data-key={1}
+            data-label="column-1"
+          >
+            <div
+              className="ins-c-skeleton ins-c-skeleton__md"
+            >
+               
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </form>,
 ]
 `;
