@@ -62,6 +62,7 @@ export const labelForValue = (value, category) => {
         .filterValues.items.filter((item) => (item.value === value))[0].label;
     }
     catch (_) {
+        // eslint-disable-next-line no-console
         console.info('No label found for ' + value + ' in ' + category);
         return value;
     }
