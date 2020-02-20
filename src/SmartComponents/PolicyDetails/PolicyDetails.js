@@ -6,7 +6,7 @@ import {
     PolicyDetailsDescription,
     PolicyDetailsContentLoader,
     PolicyTabs
-} from '../../PresentationalComponents';
+} from 'PresentationalComponents';
 import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import EditPolicy from '../EditPolicy/EditPolicy';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
@@ -31,7 +31,7 @@ import {
     Link
 } from 'react-router-dom';
 import { Alert } from '@patternfly/react-core';
-import SystemsTable from '../SystemsTable/SystemsTable';
+import { SystemsTable } from 'SmartComponents';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
