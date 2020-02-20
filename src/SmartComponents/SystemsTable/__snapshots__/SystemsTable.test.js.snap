@@ -35,7 +35,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -182,7 +182,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -328,7 +328,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -463,7 +463,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -589,7 +589,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -660,7 +660,7 @@ Object {
   "activeFilters": Object {
     "chips": Array [
       Object {
-        "category": "Name or reference",
+        "category": "Name",
         "chips": Array [
           Object {
             "name": "Search term",
@@ -715,7 +715,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
-                "label": "Name or reference",
+                "label": "Name",
                 "type": "text",
               },
               Object {
@@ -797,7 +797,7 @@ Object {
 }
 `;
 
-exports[`SystemsTable Instance functions #updateCompliancFilter set search in state properly 1`] = `
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 1`] = `
 Object {
   "chips": Array [],
   "complianceScores": Array [],
@@ -805,7 +805,7 @@ Object {
 }
 `;
 
-exports[`SystemsTable Instance functions #updateCompliancFilter set search in state properly 2`] = `
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 2`] = `
 Object {
   "chips": Array [
     Object {
@@ -862,7 +862,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
             "onSubmit": [Function],
             "value": "",
           },
-          "label": "Name or reference",
+          "label": "Name",
           "type": "text",
         },
         Object {
@@ -1423,7 +1423,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
             "onSubmit": [Function],
             "value": "",
           },
-          "label": "Name or reference",
+          "label": "Name",
           "type": "text",
         },
         Object {

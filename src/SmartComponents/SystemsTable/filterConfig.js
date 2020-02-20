@@ -12,7 +12,7 @@ export const defaultFilterConfig = (
     items: [
         {
             type: conditionalFilterType.text,
-            label: 'Name or reference',
+            label: 'Name',
             filterValues: {
                 onSubmit: updateSearchFilter,
                 value: search

@@ -13,9 +13,9 @@ jest.mock('Utilities/Export', () => ({
 }));
 
 // We mock the debounce function otherwise we'd have to deal with time.
-import debouce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 jest.mock('lodash/debounce');
-debouce.mockImplementation(fn => fn);
+debounce.mockImplementation(fn => fn);
 
 import { SystemsTable } from './SystemsTable';
 
@@ -101,15 +101,13 @@ describe('SystemsTable', () => {
 
         beforeEach(() =>{
             wrapper = shallow(
-                <SystemsTable { ...defaultProps } />
+                <SystemsTable { ...defaultProps } exportToCSV={ exportCsvFunction } />
             );
             instance = wrapper.instance();
         });
 
         describe('#onExportSelect', () => {
             it('expect to dispatch calls to export functions per arguments', () => {
-                wrapper.setProps({ exportToCSV: exportCsvFunction });
-
                 instance.onExportSelect('_event', 'csv');
                 expect(exportCsvFunction).toHaveBeenCalled();
 
@@ -126,10 +124,10 @@ describe('SystemsTable', () => {
             });
         });
 
-        describe('#updateCompliancFilter', () => {
+        describe('#updateComplianceFilter', () => {
             it('set search in state properly', () => {
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
-                instance.updateCompliancFilter('_event',
+                instance.updateComplianceFilter('_event',
                     ['0-49', '50-69', '70-89', '90-100'], '70-89'
                 );
 
@@ -155,7 +153,7 @@ describe('SystemsTable', () => {
             });
 
             it('set search in state properly', () => {
-                instance.updateCompliancFilter('_event',
+                instance.updateComplianceFilter('_event',
                     ['0-49', '50-69', '70-89', '90-100'], '70-89'
                 );
                 expect(wrapper.state()).toMatchSnapshot();
@@ -172,7 +170,7 @@ describe('SystemsTable', () => {
             });
 
             it('set search in state properly', () => {
-                instance.updateCompliancFilter('_event',
+                instance.updateComplianceFilter('_event',
                     ['false']
                 );
                 expect(wrapper.state()).toMatchSnapshot();

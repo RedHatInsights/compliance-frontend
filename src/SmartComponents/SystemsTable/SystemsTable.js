@@ -115,12 +115,12 @@ class SystemsTable extends React.Component {
     )
 
     onExportSelect = (_, format) => {
-        if (format === 'csv') {
-            this.props.exportToCSV();
-        }
+        const { exportToCSV, selectedEntities } = this.props;
 
-        if (format === 'json') {
-            exportToJson(this.props.selectedEntities);
+        if (format === 'csv') {
+            exportToCSV();
+        } else if (format === 'json') {
+            exportToJson(selectedEntities);
         }
     }
 
@@ -132,7 +132,7 @@ class SystemsTable extends React.Component {
         }, this.filterUpdate);
     }, 500)
 
-    updateCompliancFilter = debounce((_event, selectedValues, value) => {
+    updateComplianceFilter = debounce((_event, selectedValues, value) => {
         const filterToSet = isNumberRange(value) ? 'complianceScores' : 'complianceStates';
         this.setState({
             ...this.state,
@@ -154,7 +154,7 @@ class SystemsTable extends React.Component {
             search: '',
             activeFilters: {
                 ...this.state.activeFilters,
-                chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Name or reference'))
+                chips: this.state.activeFilters.chips.filter((chips) => (chips.category !== 'Name'))
             }
         },  this.systemFetch);
     }
@@ -192,7 +192,7 @@ class SystemsTable extends React.Component {
             return;
         }
 
-        if (chips.category === 'Name or reference') {
+        if (chips.category === 'Name') {
             this.deleteSearchFilter(chips);
         } else {
             this.deleteComplianceFilter(chips);
@@ -209,7 +209,7 @@ class SystemsTable extends React.Component {
             newChips = [
                 ...newChips,
                 {
-                    category: 'Name or reference',
+                    category: 'Name',
                     chips: [{ name: search }]
                 }
             ];
@@ -386,13 +386,15 @@ SystemsTable.propTypes = {
     remediationsEnabled: propTypes.bool,
     compact: propTypes.bool,
     selectedEntities: propTypes.array,
-    exportToCSV: propTypes.func
+    exportToCSV: propTypes.func,
+    enableExport: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
     policyId: '',
     remediationsEnabled: true,
-    compact: false
+    compact: false,
+    enableExport: true
 };
 
 const mapStateToProps = state => {
@@ -414,7 +416,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 export { SystemsTable };
+export const SystemsTableWithApollo = withApollo(SystemsTable, { withRef: true });
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withApollo(SystemsTable, { withRef: true }));
+)(SystemsTableWithApollo);
