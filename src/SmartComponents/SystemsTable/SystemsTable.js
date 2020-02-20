@@ -282,49 +282,6 @@ class SystemsTable extends React.Component {
         } = this.state;
 		const { complianceScores, complianceStates } = this.state.activeFilters;
 
-        const filterConfig = {
-            hideLabel: true,
-            items: [
-                {
-                    type: conditionalFilterType.text,
-                    label: 'Name or reference',
-                    filterValues: {
-                        onSubmit: this.updateSearchFilter,
-                        value: search
-                    }
-                },
-                {
-                    type: 'checkbox',
-                    label: 'Compliant',
-                    id: 'compliant',
-                    filterValues: {
-                        onChange: this.updateCompliancFilter,
-                        value: complianceStates,
-                        items: [
-                            { label: 'Compliant', value: 'compliant' },
-                            { label: 'Non-compliant', value: 'noncompliant' }
-                        ]
-                    }
-                },
-                {
-                    type: 'checkbox',
-                    label: 'Compliance score',
-                    id: 'complianceScore',
-                    filterValues: {
-                        onChange: this.updateCompliancFilter,
-                        value: complianceScores,
-                        items: [
-                            { label: '90 - 100%', value: '90-100' },
-                            { label: '70 - 89%', value: '70-89' },
-                            { label: '50 - 69%', value: '50-69' },
-                            { label: 'Less than 50%', value: '0-49' }
-                        ]
-                    }
-                }
-            ]
-        };
-
-
         return <InventoryCmp
             onRefresh={this.onRefresh}
             actions={[
