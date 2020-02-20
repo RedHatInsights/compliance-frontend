@@ -12,6 +12,7 @@ jest.mock('@redhat-cloud-services/frontend-components-notifications');
 describe('SubmitPoliciesButton', () => {
     const defaultProps = {
         toggle: jest.fn(),
+        dispatch: jest.fn(),
         policyIds: ['1', '2', '3'],
         system: { id: '1', name: 'foo' }
     };
@@ -65,5 +66,6 @@ describe('SubmitPoliciesButton', () => {
         });
         expect(addNotification).toHaveBeenCalled();
         expect(defaultProps.toggle).toHaveBeenCalled();
+        expect(defaultProps.dispatch).toHaveBeenCalled();
     });
 });

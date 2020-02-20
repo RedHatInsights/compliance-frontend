@@ -23,7 +23,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
       destroyOnUnmount={true}
       dispatch={[Function]}
       enableReinitialize={false}
-      forceUnregisterOnUnmount={true}
+      forceUnregisterOnUnmount={false}
       form="assignPolicies"
       fqdn="myhost"
       getFormState={[Function]}
@@ -46,7 +46,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
         destroyOnUnmount={true}
         dispatch={[Function]}
         enableReinitialize={false}
-        forceUnregisterOnUnmount={true}
+        forceUnregisterOnUnmount={false}
         form="assignPolicies"
         forwardedRef={null}
         fqdn="myhost"
@@ -71,7 +71,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
           destroyOnUnmount={true}
           dispatch={[Function]}
           enableReinitialize={false}
-          forceUnregisterOnUnmount={true}
+          forceUnregisterOnUnmount={false}
           form="assignPolicies"
           fqdn="myhost"
           getFormState={[Function]}
@@ -95,7 +95,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
             destroyOnUnmount={true}
             dispatch={[Function]}
             enableReinitialize={false}
-            forceUnregisterOnUnmount={true}
+            forceUnregisterOnUnmount={false}
             form="assignPolicies"
             fqdn="myhost"
             getFormState={[Function]}
@@ -155,7 +155,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
               dispatch={[Function]}
               enableReinitialize={false}
               focus={[Function]}
-              forceUnregisterOnUnmount={true}
+              forceUnregisterOnUnmount={false}
               form="assignPolicies"
               fqdn="myhost"
               getFormState={[Function]}
@@ -257,6 +257,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                     Array [
                       <SubmitPoliciesButton
                         aria-label="save"
+                        dispatch={[Function]}
                         system={
                           Object {
                             "profiles": Array [
@@ -272,7 +273,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                       />,
                       <Unknown
                         aria-label="cancel"
-                        onClick={[MockFunction]}
+                        onClick={[Function]}
                         variant="secondary"
                       >
                         Cancel
@@ -401,7 +402,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                   isLarge={false}
                   isOpen={false}
                   isSmall={true}
-                  onClose={[MockFunction]}
+                  onClose={[Function]}
                   showClose={true}
                   title="Edit policies for myhost"
                 >
@@ -413,6 +414,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                         Array [
                           <SubmitPoliciesButton
                             aria-label="save"
+                            dispatch={[Function]}
                             system={
                               Object {
                                 "profiles": Array [
@@ -428,7 +430,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                           />,
                           <Unknown
                             aria-label="cancel"
-                            onClick={[MockFunction]}
+                            onClick={[Function]}
                             variant="secondary"
                           >
                             Cancel
@@ -443,7 +445,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                       isLarge={false}
                       isOpen={false}
                       isSmall={true}
-                      onClose={[MockFunction]}
+                      onClose={[Function]}
                       showClose={true}
                       title="Edit policies for myhost"
                     />
@@ -482,7 +484,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
       destroyOnUnmount={true}
       dispatch={[Function]}
       enableReinitialize={false}
-      forceUnregisterOnUnmount={true}
+      forceUnregisterOnUnmount={false}
       form="assignPolicies"
       fqdn="myhost"
       getFormState={[Function]}
@@ -505,7 +507,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
         destroyOnUnmount={true}
         dispatch={[Function]}
         enableReinitialize={false}
-        forceUnregisterOnUnmount={true}
+        forceUnregisterOnUnmount={false}
         form="assignPolicies"
         forwardedRef={null}
         fqdn="myhost"
@@ -530,7 +532,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
           destroyOnUnmount={true}
           dispatch={[Function]}
           enableReinitialize={false}
-          forceUnregisterOnUnmount={true}
+          forceUnregisterOnUnmount={false}
           form="assignPolicies"
           fqdn="myhost"
           getFormState={[Function]}
@@ -554,7 +556,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
             destroyOnUnmount={true}
             dispatch={[Function]}
             enableReinitialize={false}
-            forceUnregisterOnUnmount={true}
+            forceUnregisterOnUnmount={false}
             form="assignPolicies"
             fqdn="myhost"
             getFormState={[Function]}
@@ -614,7 +616,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
               dispatch={[Function]}
               enableReinitialize={false}
               focus={[Function]}
-              forceUnregisterOnUnmount={true}
+              forceUnregisterOnUnmount={false}
               form="assignPolicies"
               fqdn="myhost"
               getFormState={[Function]}
@@ -716,6 +718,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                     Array [
                       <SubmitPoliciesButton
                         aria-label="save"
+                        dispatch={[Function]}
                         system={
                           Object {
                             "profiles": Array [
@@ -731,7 +734,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                       />,
                       <Unknown
                         aria-label="cancel"
-                        onClick={[MockFunction]}
+                        onClick={[Function]}
                         variant="secondary"
                       >
                         Cancel
@@ -859,7 +862,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                   isLarge={false}
                   isOpen={true}
                   isSmall={true}
-                  onClose={[MockFunction]}
+                  onClose={[Function]}
                   showClose={true}
                   title="Edit policies for myhost"
                 >
@@ -980,6 +983,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                         Array [
                           <SubmitPoliciesButton
                             aria-label="save"
+                            dispatch={[Function]}
                             system={
                               Object {
                                 "profiles": Array [
@@ -995,7 +999,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                           />,
                           <Unknown
                             aria-label="cancel"
-                            onClick={[MockFunction]}
+                            onClick={[Function]}
                             variant="secondary"
                           >
                             Cancel
@@ -1010,7 +1014,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                       isLarge={false}
                       isOpen={true}
                       isSmall={true}
-                      onClose={[MockFunction]}
+                      onClose={[Function]}
                       showClose={true}
                       title="Edit policies for myhost"
                     >
@@ -1050,12 +1054,12 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                   style={Object {}}
                                 >
                                   <ModalBoxCloseButton
-                                    onClose={[MockFunction]}
+                                    onClose={[Function]}
                                   >
                                     <Component
                                       aria-label="Close"
                                       className=""
-                                      onClick={[MockFunction]}
+                                      onClick={[Function]}
                                       variant="plain"
                                     >
                                       <ComponentWithOuia
@@ -1070,7 +1074,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                               title={null}
                                             />,
                                             "className": "",
-                                            "onClick": [MockFunction],
+                                            "onClick": [Function],
                                             "variant": "plain",
                                           }
                                         }
@@ -1079,7 +1083,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                         <Button
                                           aria-label="Close"
                                           className=""
-                                          onClick={[MockFunction]}
+                                          onClick={[Function]}
                                           ouiaContext={
                                             Object {
                                               "isOuia": false,
@@ -1093,7 +1097,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                             aria-label="Close"
                                             className="pf-c-button pf-m-plain"
                                             disabled={false}
-                                            onClick={[MockFunction]}
+                                            onClick={[Function]}
                                             tabIndex={null}
                                             type="button"
                                           >
@@ -1262,7 +1266,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                           "enableReinitialize": false,
                                                           "error": undefined,
                                                           "focus": [Function],
-                                                          "forceUnregisterOnUnmount": true,
+                                                          "forceUnregisterOnUnmount": false,
                                                           "form": "assignPolicies",
                                                           "fqdn": "myhost",
                                                           "getFormState": [Function],
@@ -1376,7 +1380,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                             "enableReinitialize": false,
                                                             "error": undefined,
                                                             "focus": [Function],
-                                                            "forceUnregisterOnUnmount": true,
+                                                            "forceUnregisterOnUnmount": false,
                                                             "form": "assignPolicies",
                                                             "fqdn": "myhost",
                                                             "getFormState": [Function],
@@ -1491,7 +1495,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                               "enableReinitialize": false,
                                                               "error": undefined,
                                                               "focus": [Function],
-                                                              "forceUnregisterOnUnmount": true,
+                                                              "forceUnregisterOnUnmount": false,
                                                               "form": "assignPolicies",
                                                               "fqdn": "myhost",
                                                               "getFormState": [Function],
@@ -1665,6 +1669,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                     >
                                       <SubmitPoliciesButton
                                         aria-label="save"
+                                        dispatch={[Function]}
                                         key="save"
                                         system={
                                           Object {
@@ -1728,7 +1733,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                       <Component
                                         aria-label="cancel"
                                         key="cancel"
-                                        onClick={[MockFunction]}
+                                        onClick={[Function]}
                                         variant="secondary"
                                       >
                                         <ComponentWithOuia
@@ -1737,7 +1742,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                             Object {
                                               "aria-label": "cancel",
                                               "children": "Cancel",
-                                              "onClick": [MockFunction],
+                                              "onClick": [Function],
                                               "variant": "secondary",
                                             }
                                           }
@@ -1745,7 +1750,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                         >
                                           <Button
                                             aria-label="cancel"
-                                            onClick={[MockFunction]}
+                                            onClick={[Function]}
                                             ouiaContext={
                                               Object {
                                                 "isOuia": false,
@@ -1759,7 +1764,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                               aria-label="cancel"
                                               className="pf-c-button pf-m-secondary"
                                               disabled={false}
-                                              onClick={[MockFunction]}
+                                              onClick={[Function]}
                                               tabIndex={null}
                                               type="button"
                                             >

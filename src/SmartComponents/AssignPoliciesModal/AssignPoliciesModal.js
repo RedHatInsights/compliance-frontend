@@ -10,7 +10,7 @@ import {
 import { useQuery } from '@apollo/react-hooks';
 import SubmitPoliciesButton from './SubmitPoliciesButton';
 import gql from 'graphql-tag';
-import { reduxForm, formValueSelector } from 'redux-form';
+import { reset, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -39,7 +39,7 @@ const isSystemAssignedToProfile = (system, id) => (
     system.profiles.map(profile => profile.id).includes(id)
 );
 
-const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds }) => {
+const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds, dispatch }) => {
     // Display all policies with the same OS as host
     const { data, error, loading } = useQuery(QUERY, { variables: { id } });
 
@@ -60,15 +60,17 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds 
             isSmall
             title={`Edit policies for ${fqdn}`}
             isOpen={isModalOpen}
-            onClose={toggle}
+            onClose={() => { dispatch(reset('assignPolicies')); toggle(); }}
             actions={[
                 <SubmitPoliciesButton key='save'
                     aria-label='save'
                     toggle={toggle}
                     system={data.system}
+                    dispatch={dispatch}
                     policyIds={selectedPolicyIds}
                     variant='primary' />,
-                <Button key='cancel' aria-label='cancel' variant='secondary' onClick={toggle}>
+                <Button key='cancel' aria-label='cancel' variant='secondary'
+                    onClick={() => { dispatch(reset('assignPolicies')); toggle(); }}>
                     Cancel
                 </Button>
             ]}
@@ -93,7 +95,8 @@ AssignPoliciesModal.propTypes = {
     toggle: propTypes.func,
     id: propTypes.string,
     fqdn: propTypes.string,
-    selectedPolicyIds: propTypes.arrayOf(propTypes.string)
+    selectedPolicyIds: propTypes.arrayOf(propTypes.string),
+    dispatch: propTypes.func
 };
 
 const selector = formValueSelector('assignPolicies');
@@ -105,8 +108,6 @@ export default compose(
         })
     ),
     reduxForm({
-        form: 'assignPolicies',
-        destroyOnUnmount: true,
-        forceUnregisterOnUnmount: true
+        form: 'assignPolicies'
     })
 )(AssignPoliciesModal);
