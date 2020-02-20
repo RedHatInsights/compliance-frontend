@@ -1,4 +1,4 @@
-import { buildFilterString } from './filterbuilder';
+import { buildFilterString } from './FilterBuilder';
 import { pickBy } from 'lodash';
 
 const filterKeys = (obj, keys) => (
