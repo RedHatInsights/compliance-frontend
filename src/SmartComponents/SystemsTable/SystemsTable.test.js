@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 
 jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () =>
-    () => 'Mocked ComplianceSystemDetails'
+    () => <div />
 );
 const mockExportJsonFunction = jest.fn();
 jest.mock('Utilities/Export', () => ({
@@ -130,7 +130,7 @@ describe('SystemsTable', () => {
             it('set search in state properly', () => {
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
                 instance.updateCompliancFilter('_event',
-                    ['10-40', '40-70', '70-100'], '70-100'
+                    ['0-49', '50-69', '70-89', '90-100'], '70-89'
                 );
 
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
@@ -156,14 +156,14 @@ describe('SystemsTable', () => {
 
             it('set search in state properly', () => {
                 instance.updateCompliancFilter('_event',
-                    ['10-40', '40-70', '70-100'], '70-100'
+                    ['0-49', '50-69', '70-89', '90-100'], '70-89'
                 );
                 expect(wrapper.state()).toMatchSnapshot();
                 const prevState = wrapper.state();
                 instance.deleteComplianceFilter({
                     category: 'complianceScores',
                     chips: [
-                        { name: '40-70' }
+                        { name: '70-89' }
                     ]
                 });
 
@@ -173,14 +173,14 @@ describe('SystemsTable', () => {
 
             it('set search in state properly', () => {
                 instance.updateCompliancFilter('_event',
-                    ['compliant = noncompliant']
+                    ['false']
                 );
                 expect(wrapper.state()).toMatchSnapshot();
                 const prevState = wrapper.state();
                 instance.deleteComplianceFilter({
                     category: 'Compliant',
                     chips: [
-                        { name: 'compliant = noncompliant' }
+                        { name: 'Non-compliant' }
                     ]
                 });
 

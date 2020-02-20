@@ -22,7 +22,7 @@ import { isNumberRange } from 'Utilities/TextHelper';
 import { buildFilterString } from 'Utilities/FilterBuilder';
 
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
-import { defaultFilterConfig } from './filterConfig';
+import { defaultFilterConfig, labelForValue } from './filterConfig';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -203,6 +203,7 @@ class SystemsTable extends React.Component {
         const { complianceStates: compliant, complianceScores } = this.state.activeFilters;
         const { search } = this.state;
         let newChips = [];
+        let category;
 
         if (search !== '') {
             newChips = [
@@ -215,21 +216,27 @@ class SystemsTable extends React.Component {
         }
 
         if (compliant && compliant.length > 0) {
+            category = 'Compliant';
             newChips = [
                 ...newChips,
                 {
-                    category: 'Compliant',
-                    chips: compliant.map((complianceCondition) => ({ name: complianceCondition }))
+                    category,
+                    chips: compliant.map((complianceCondition) => (
+                        { name: labelForValue(complianceCondition, category) }
+                    ))
                 }
             ];
         }
 
         if (complianceScores && complianceScores.length > 0) {
+            category = 'Compliance score';
             newChips = [
                 ...newChips,
                 {
-                    category: 'Compliance Score',
-                    chips: complianceScores.map((complianceScore) => ({ name: complianceScore }))
+                    category,
+                    chips: complianceScores.map((complianceScore) => (
+                        { name: labelForValue(complianceScore, category) }
+                    ))
                 }
             ];
         }

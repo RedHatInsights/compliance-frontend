@@ -26,8 +26,8 @@ export const defaultFilterConfig = (
                 onChange: updateCompliancFilter,
                 value: complianceStates,
                 items: [
-                    { label: 'Compliant', value: 'compliant' },
-                    { label: 'Non-compliant', value: 'noncompliant' }
+                    { label: 'Compliant', value: 'true' },
+                    { label: 'Non-compliant', value: 'false' }
                 ]
             }
         },
@@ -48,3 +48,21 @@ export const defaultFilterConfig = (
         }
     ]
 });
+
+const noOpDefaultConfig = defaultFilterConfig(
+    ()=>({}),
+    ()=>({}),
+    { complianceScores: {}, complianceStates: {} },
+    ''
+);
+
+export const labelForValue = (value, category) => {
+    try {
+        return noOpDefaultConfig.items.filter((item) => (item.label === category))[0]
+        .filterValues.items.filter((item) => (item.value === value))[0].label;
+    }
+    catch (_) {
+        console.info('No label found for ' + value + ' in ' + category);
+        return value;
+    }
+};
