@@ -214,7 +214,7 @@ class SystemsTable extends React.Component {
             ];
         }
 
-        if (compliant.length > 0) {
+        if (compliant && compliant.length > 0) {
             newChips = [
                 ...newChips,
                 {
@@ -224,7 +224,7 @@ class SystemsTable extends React.Component {
             ];
         }
 
-        if (complianceScores.length > 0) {
+        if (complianceScores && complianceScores.length > 0) {
             newChips = [
                 ...newChips,
                 {

@@ -16,13 +16,13 @@ const buildBaseFilter = (state) => {
 export const buildFilterString = (state) => {
     const additionalFilter = buildBaseFilter(state);
     const { complianceStates, complianceScores } = state.activeFilters;
-    const compliant = complianceStates.map((compliant) =>
+    const compliant = complianceStates ? complianceStates.map((compliant) =>
         `compliant = ${compliant}`
-    );
-    const complianceScore = complianceScores.map((scoreRange) => {
+    ) : [];
+    const complianceScore = complianceScores ? complianceScores.map((scoreRange) => {
         scoreRange = scoreRange.split('-');
         return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
-    });
+    }) : [];
     const filters = [
         additionalFilter,
         compliant,
