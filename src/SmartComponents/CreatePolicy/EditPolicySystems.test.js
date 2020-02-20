@@ -5,10 +5,6 @@ import { MockedProvider } from '@apollo/react-testing';
 
 const mockStore = configureStore();
 
-jest.mock('SmartComponents', () => ({
-    SystemsTable: () => 'MockedSystemsTable'
-}));
-
 jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
     const ComplianceRemediationButton = () => <button>Remediations</button>;
     return ComplianceRemediationButton;
