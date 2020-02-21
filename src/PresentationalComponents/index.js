@@ -8,3 +8,4 @@ export { default as SystemsComplianceFilter } from './SystemsComplianceFilter/Sy
 export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoader/PolicyDetailsContentLoader';
 export { default as ProfileTypeSelect } from './ProfileTypeSelect/ProfileTypeSelect';
 export { default as ComplianceScore, complianceScoreString } from './ComplianceScore/ComplianceScore';
+export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';

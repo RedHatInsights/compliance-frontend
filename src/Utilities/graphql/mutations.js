@@ -20,6 +20,21 @@ mutation associateSystems($input: associateSystemsInput!) {
 }
 `;
 
+export const ASSOCIATE_PROFILES_TO_SYSTEM = gql`
+mutation associateProfiles($input: associateProfilesInput!) {
+    associateProfiles(input: $input) {
+        system {
+            id
+            name
+            profiles {
+                id
+                name
+            }
+        }
+    }
+}
+`;
+
 export const UPDATE_PROFILE = gql`
 mutation UpdateProfile($input: UpdateProfileInput!) {
     updateProfile(input: $input) {

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubmitPoliciesButton expect to render button without error 1`] = `
+<button
+  aria-disabled={null}
+  aria-label="save"
+  className="pf-c-button pf-m-primary"
+  disabled={false}
+  onClick={[Function]}
+  tabIndex={null}
+  type="submit"
+>
+  Save
+</button>
+`;

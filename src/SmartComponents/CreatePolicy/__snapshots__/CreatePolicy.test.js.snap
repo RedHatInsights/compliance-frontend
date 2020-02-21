@@ -27,6 +27,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   hasBodyPadding={true}
   height={null}
   isCompactNav={false}
+  isFooterLeftAligned={true}
   isFullHeight={true}
   isFullWidth={true}
   isInPage={false}
@@ -428,6 +429,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                   aria-labelledby="pf-wizard-title-0"
                   aria-modal="true"
                   className="pf-c-wizard pf-m-full-width pf-m-full-height"
+                  isFooterLeftAligned={true}
                   role="dialog"
                 >
                   <WizardHeader

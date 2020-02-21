@@ -19,7 +19,8 @@ import registry from '@redhat-cloud-services/frontend-components-utilities/files
 
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import  {
-    DownloadTableButton
+    DownloadTableButton,
+    AssignPoliciesModal
 } from '../../SmartComponents';
 import {
     SystemsComplianceFilter
@@ -67,7 +68,8 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         page: 1,
         perPage: 50,
-        totalCount: 0
+        totalCount: 0,
+        isAssignPoliciesModalOpen: false
     };
 
     componentDidMount = () => {
@@ -163,10 +165,29 @@ class SystemsTable extends React.Component {
 
     render() {
         const { remediationsEnabled, compact } = this.props;
-        const { page, totalCount, perPage, items, InventoryCmp } = this.state;
+        const { page, totalCount, perPage, items, InventoryCmp,
+            selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen
+        } = this.state;
 
         return <InventoryCmp
             onRefresh={this.onRefresh}
+            actions={[
+                {
+                    title: 'Edit policies for this system',
+                    onClick: (_event, _index, { id, fqdn }) => {
+                        this.setState((prev) => ({
+                            isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen,
+                            selectedSystemFqdn: fqdn,
+                            selectedSystemId: id
+                        }));
+                    }
+                }, {
+                    title: 'View in inventory',
+                    onClick: (_event, _index, { id }) => {
+                        window.location.href = `${window.location.origin}/rhel/inventory/${id}`;
+                    }
+                }
+            ]}
             page={page}
             ref={this.inventory}
             total={totalCount}
@@ -194,6 +215,13 @@ class SystemsTable extends React.Component {
                     <DownloadTableButton />
                 </reactCore.ToolbarItem>
             </reactCore.ToolbarGroup>
+            { selectedSystemId &&
+            <AssignPoliciesModal
+                isModalOpen={isAssignPoliciesModalOpen}
+                id={selectedSystemId}
+                fqdn={selectedSystemFqdn}
+                toggle={() => this.setState((prev) => ({ isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }))}
+            /> }
         </InventoryCmp>;
     }
 }
