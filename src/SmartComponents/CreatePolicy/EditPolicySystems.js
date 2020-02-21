@@ -42,7 +42,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
                 </Text>
             </TextContent>
             <Form>
-                <SystemsTable columns={columns} remediationsEnabled={false} compact={true} />
+                <SystemsTable columns={columns} remediationsEnabled={false} compact={true} allSystems={true} />
             </Form>
         </React.Fragment>
     );

@@ -154,7 +154,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished
+                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, this.props.allSystems
                 ))
         });
 
@@ -164,7 +164,7 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact } = this.props;
+        const { remediationsEnabled, compact, allSystems } = this.props;
         const { page, totalCount, perPage, items, InventoryCmp,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen
         } = this.state;
@@ -193,9 +193,9 @@ class SystemsTable extends React.Component {
             total={totalCount}
             perPage={perPage}
             variant={compact ? pfReactTable.TableVariant.compact : null}
-            items={items.map((edge) => edge.node.id)}
+            items={allSystems ? undefined : items.map((edge) => edge.node.id)}
         >
-            <reactCore.ToolbarGroup>
+            { !allSystems && <reactCore.ToolbarGroup>
                 <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                     <reactCore.InputGroup>
                         <SystemsComplianceFilter updateFilter={this.updateFilter}/>
@@ -214,7 +214,7 @@ class SystemsTable extends React.Component {
                 <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--md)' }}>
                     <DownloadTableButton />
                 </reactCore.ToolbarItem>
-            </reactCore.ToolbarGroup>
+            </reactCore.ToolbarGroup> }
             { selectedSystemId &&
             <AssignPoliciesModal
                 isModalOpen={isAssignPoliciesModalOpen}
@@ -229,6 +229,7 @@ class SystemsTable extends React.Component {
 SystemsTable.propTypes = {
     client: propTypes.object,
     filter: propTypes.string,
+    allSystems: propTypes.bool,
     filterEnabled: propTypes.bool,
     policyId: propTypes.string,
     items: propTypes.array,
@@ -241,6 +242,7 @@ SystemsTable.defaultProps = {
     items: [],
     policyId: '',
     filter: '',
+    allSystems: false,
     filterEnabled: false,
     remediationsEnabled: true,
     compact: false
