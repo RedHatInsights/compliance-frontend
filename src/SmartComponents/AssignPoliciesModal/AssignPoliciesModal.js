@@ -60,6 +60,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
             isSmall
             title={`Edit policies for ${fqdn}`}
             isOpen={isModalOpen}
+            isFooterLeftAligned
             onClose={() => { dispatch(reset('assignPolicies')); toggle(); }}
             actions={[
                 <SubmitPoliciesButton key='save'

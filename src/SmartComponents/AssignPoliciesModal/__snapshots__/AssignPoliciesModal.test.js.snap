@@ -372,7 +372,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                                 </div>
                               </div>
                               <div
-                                class="pf-c-modal-box__footer"
+                                class="pf-c-modal-box__footer pf-m-align-left"
                               >
                                 <button
                                   aria-label="save"
@@ -399,7 +399,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                   ariaDescribedById=""
                   className=""
                   hideTitle={false}
-                  isFooterLeftAligned={false}
+                  isFooterLeftAligned={true}
                   isLarge={false}
                   isOpen={false}
                   isSmall={true}
@@ -442,7 +442,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                       className=""
                       hideTitle={false}
                       id="pf-modal-1"
-                      isFooterLeftAligned={false}
+                      isFooterLeftAligned={true}
                       isLarge={false}
                       isOpen={false}
                       isSmall={true}
@@ -834,7 +834,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                 </div>
                               </div>
                               <div
-                                class="pf-c-modal-box__footer"
+                                class="pf-c-modal-box__footer pf-m-align-left"
                               >
                                 <button
                                   aria-label="save"
@@ -860,7 +860,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                   ariaDescribedById=""
                   className=""
                   hideTitle={false}
-                  isFooterLeftAligned={false}
+                  isFooterLeftAligned={true}
                   isLarge={false}
                   isOpen={true}
                   isSmall={true}
@@ -958,7 +958,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                 </div>
                               </div>
                               <div
-                                class="pf-c-modal-box__footer"
+                                class="pf-c-modal-box__footer pf-m-align-left"
                               >
                                 <button
                                   aria-label="save"
@@ -1013,7 +1013,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                       className=""
                       hideTitle={false}
                       id="pf-modal-0"
-                      isFooterLeftAligned={false}
+                      isFooterLeftAligned={true}
                       isLarge={false}
                       isOpen={true}
                       isSmall={true}
@@ -1666,10 +1666,10 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                     </div>
                                   </ModalBoxBody>
                                   <ModalBoxFooter
-                                    isLeftAligned={false}
+                                    isLeftAligned={true}
                                   >
                                     <div
-                                      className="pf-c-modal-box__footer"
+                                      className="pf-c-modal-box__footer pf-m-align-left"
                                     >
                                       <SubmitPoliciesButton
                                         aria-label="save"
