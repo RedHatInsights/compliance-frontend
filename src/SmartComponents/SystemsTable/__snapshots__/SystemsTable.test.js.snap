@@ -133,14 +133,8 @@ Object {
       ],
     },
   ],
-  "items": Array [
-    Object {
-      "node": Object {
-        "id": 1,
-      },
-    },
-  ],
-  "loaded": true,
+  "items": Array [],
+  "loaded": false,
   "page": 1,
   "perPage": 50,
   "policyId": "",
@@ -280,14 +274,8 @@ Object {
       ],
     },
   ],
-  "items": Array [
-    Object {
-      "node": Object {
-        "id": 1,
-      },
-    },
-  ],
-  "loaded": true,
+  "items": Array [],
+  "loaded": false,
   "page": 1,
   "perPage": 50,
   "policyId": "",
@@ -417,14 +405,8 @@ Object {
       ],
     },
   ],
-  "items": Array [
-    Object {
-      "node": Object {
-        "id": 1,
-      },
-    },
-  ],
-  "loaded": true,
+  "items": Array [],
+  "loaded": false,
   "page": 1,
   "perPage": 50,
   "policyId": "",
@@ -545,14 +527,8 @@ Object {
     "name": "",
   },
   "filterChips": Array [],
-  "items": Array [
-    Object {
-      "node": Object {
-        "id": 1,
-      },
-    },
-  ],
-  "loaded": true,
+  "items": Array [],
+  "loaded": false,
   "page": 1,
   "perPage": 50,
   "policyId": "",
