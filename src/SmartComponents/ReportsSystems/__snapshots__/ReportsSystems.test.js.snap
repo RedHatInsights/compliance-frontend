@@ -26,6 +26,13 @@ exports[`ReportsSystems expect to render without error 1`] = `
             "title": "System name",
           },
           Object {
+            "key": "facts.compliance.profiles",
+            "props": Object {
+              "width": 40,
+            },
+            "title": "Profiles",
+          },
+          Object {
             "key": "facts.compliance.compliance_score",
             "props": Object {
               "width": 10,

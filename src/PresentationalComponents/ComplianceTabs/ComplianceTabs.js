@@ -9,7 +9,7 @@ export const ComplianceTabs = (props) => {
     const { match: { path } } = props;
 
     const tabPaths = {
-        0: paths.Reports,
+        0: paths.reports,
         1: paths.compliancePolicies,
         2: paths.complianceSystems
     };
