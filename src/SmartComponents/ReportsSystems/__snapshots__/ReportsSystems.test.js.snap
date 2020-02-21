@@ -11,7 +11,7 @@ exports[`ReportsSystems expect to render without error 1`] = `
     <withRouter(Connect(RouterParams)) />
   </PageHeader>
   <Connect(Main)>
-    <withApollo(SystemsTable)
+    <Connect(withApollo(SystemsTable))
       columns={
         Array [
           Object {

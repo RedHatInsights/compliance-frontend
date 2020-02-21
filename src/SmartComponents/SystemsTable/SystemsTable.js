@@ -268,9 +268,9 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport } = this.props;
+        const { remediationsEnabled, compact, enableExport, allSystems } = this.props;
         const {
-            page, totalCount, perPage, items, InventoryCmp, filterChips, allSystems,
+            page, totalCount, perPage, items, InventoryCmp, filterChips,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.updateFilter,
@@ -300,13 +300,13 @@ class SystemsTable extends React.Component {
             onRefresh={ this.onRefresh }
             page={ page }
             ref={ this.inventory }
-            total={totalCount}
+            total={ allSystems ? undefined : totalCount}
             perPage={ perPage }
             variant={ compact ? pfReactTable.TableVariant.compact : null }
             items={ allSystems ? undefined : items.map((edge) => edge.node.id) }
-            filterConfig={ filterConfig }
+            filterConfig={ allSystems ? undefined : filterConfig }
             exportConfig={ exportConfig }
-            activeFiltersConfig={{
+            activeFiltersConfig={allSystems ? undefined : {
                 filters: filterChips,
                 onDelete: this.onFilterDelete
             }}>
