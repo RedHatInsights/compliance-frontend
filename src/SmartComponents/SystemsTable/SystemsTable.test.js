@@ -5,8 +5,17 @@ import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 
 jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () =>
-    () => 'Mocked ComplianceSystemDetails'
+    () => <div />
 );
+const mockExportJsonFunction = jest.fn();
+jest.mock('Utilities/Export', () => ({
+    exportToJson: () => mockExportJsonFunction()
+}));
+
+// We mock the debounce function otherwise we'd have to deal with time.
+import debounce from 'lodash/debounce';
+jest.mock('lodash/debounce');
+debounce.mockImplementation(fn => fn);
 
 import { SystemsTable } from './SystemsTable';
 
@@ -83,5 +92,85 @@ describe('SystemsTable', () => {
         expect(instance.state.totalCount).toBe(1);
         expect(instance.state.items).toBe(items.data.systems.edges);
         expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    describe('Instance functions', () => {
+        const exportCsvFunction = jest.fn();
+        let wrapper;
+        let instance;
+
+        beforeEach(() =>{
+            wrapper = shallow(
+                <SystemsTable { ...defaultProps } exportToCSV={ exportCsvFunction } />
+            );
+            instance = wrapper.instance();
+        });
+
+        describe('#onExportSelect', () => {
+            it('expect to dispatch calls to export functions per arguments', () => {
+                instance.onExportSelect('_event', 'csv');
+                expect(exportCsvFunction).toHaveBeenCalled();
+
+                instance.onExportSelect('_event', 'json');
+                expect(mockExportJsonFunction).toHaveBeenCalled();
+            });
+        });
+
+        describe('#updateComplianceFilter', () => {
+            it('set search in state properly', () => {
+                expect(wrapper.state().search).toMatchSnapshot();
+                instance.updateComplianceFilter('name', 'SEARCH TERM');
+                expect(wrapper.state().search).toMatchSnapshot();
+            });
+
+            it('set search in state properly', () => {
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
+                instance.updateComplianceFilter('compliancescore',
+                    ['0-49', '50-69', '90-100']
+                );
+
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
+            });
+        });
+
+        describe('#deleteComplianceFilter', () => {
+            beforeEach(() => {
+                instance.clearAllFilter();
+            });
+
+            it('set search in state properly', () => {
+                instance.updateComplianceFilter('compliancescore',
+                    ['0-49', '50-69', '70-89', '90-100']
+                );
+                expect(wrapper.state()).toMatchSnapshot();
+                const prevState = wrapper.state();
+                instance.deleteComplianceFilter({
+                    category: 'Compliance score',
+                    chips: [
+                        { name: '70-89' }
+                    ]
+                });
+
+                expect(wrapper.state()).not.toEqual(prevState);
+                expect(wrapper.state()).toMatchSnapshot();
+            });
+
+            it('set search in state properly', () => {
+                instance.updateComplianceFilter('_event',
+                    ['false']
+                );
+                expect(wrapper.state()).toMatchSnapshot();
+                const prevState = wrapper.state();
+                instance.deleteComplianceFilter({
+                    category: 'Compliant',
+                    chips: [
+                        { name: 'Non-compliant' }
+                    ]
+                });
+
+                expect(wrapper.state()).not.toEqual(prevState);
+                expect(wrapper.state()).toMatchSnapshot();
+            });
+        });
     });
 });

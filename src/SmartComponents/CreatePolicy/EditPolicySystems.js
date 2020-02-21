@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm } from 'redux-form';
 import {
     Form,
@@ -6,7 +6,7 @@ import {
     TextContent,
     TextVariants
 } from '@patternfly/react-core';
-import SystemsTable from '../SystemsTable/SystemsTable';
+import { SystemsTableWithApollo as SystemsTable } from '../SystemsTable/SystemsTable';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -27,9 +27,11 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
         }
     }];
 
-    if (selectedSystemIds) {
-        change('systems', selectedSystemIds);
-    }
+    useEffect(() => {
+        if (selectedSystemIds) {
+            change('systems', selectedSystemIds);
+        }
+    }, [selectedSystemIds]);
 
     return (
         <React.Fragment>
@@ -42,7 +44,11 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
                 </Text>
             </TextContent>
             <Form>
-                <SystemsTable columns={columns} remediationsEnabled={false} compact={true} allSystems={true} />
+                <SystemsTable
+                    columns={columns}
+                    remediationsEnabled={false}
+                    compact={true}
+                    enableExport={ false }/>
             </Form>
         </React.Fragment>
     );
