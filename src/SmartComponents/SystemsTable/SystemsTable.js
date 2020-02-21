@@ -199,6 +199,8 @@ class SystemsTable extends React.Component {
         const freshChips = this.filterChip(chips);
 
         this.setState({
+            loaded: false,
+            items: [],
             activeFilters: {
                 ...this.state.activeFilters,
                 [stateProp]: newFilterState
