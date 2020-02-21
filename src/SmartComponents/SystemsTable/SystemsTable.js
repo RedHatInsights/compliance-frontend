@@ -22,6 +22,7 @@ import { FilterConfigBuilder } from 'Utilities/FilterConfigBuilder';
 import { stringToId } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import { FILTER_CONFIGURATION } from '../../constants';
+const DEBOUNCE_TIME = 200;
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -120,6 +121,16 @@ class SystemsTable extends React.Component {
         }
     }
 
+    updateFilter = (filter, selectedValues) => {
+        this.setState({
+            ...this.state,
+            loaded: false,
+            items: []
+        }, () => {
+            this.updateComplianceFilter(filter, selectedValues);
+        });
+    }
+
     updateComplianceFilter = debounce((filter, selectedValues) => {
         this.setState({
             ...this.state,
@@ -131,7 +142,7 @@ class SystemsTable extends React.Component {
                 [filter]: selectedValues
             }
         }, this.filterUpdate);
-    }, 500)
+    }, DEBOUNCE_TIME)
 
     filterUpdate = () => {
         this.updateFilterChips();
@@ -216,13 +227,13 @@ class SystemsTable extends React.Component {
         }
 
         this.deleteComplianceFilter(chips);
-    }, 500)
+    }, DEBOUNCE_TIME)
 
-    clearAllFilter = () => {
+    clearAllFilter = debounce(() => {
         this.setState({
             activeFilters: this.filterConfig.initialDefaultState()
         }, this.filterUpdate);
-    }
+    }, DEBOUNCE_TIME)
 
     async fetchInventory() {
         const { columns } = this.props;
@@ -255,7 +266,7 @@ class SystemsTable extends React.Component {
         const { page, totalCount, perPage, items, InventoryCmp, filterChips, 
 			selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
-            this.updateComplianceFilter,
+            this.updateFilter,
             this.state.activeFilters,
             { hideLabel: true }
         );
