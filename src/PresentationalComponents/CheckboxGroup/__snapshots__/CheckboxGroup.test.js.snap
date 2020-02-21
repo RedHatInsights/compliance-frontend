@@ -10,7 +10,7 @@ Array [
       checked={false}
       className="pf-c-check__input"
       disabled={false}
-      id="pci"
+      id="12345"
       name="policies[0]"
       onChange={[Function]}
       type="checkbox"
@@ -18,7 +18,7 @@ Array [
     />
     <label
       className="pf-c-check__label"
-      htmlFor="pci"
+      htmlFor="12345"
     >
       pci
     </label>
@@ -31,7 +31,7 @@ Array [
       checked={true}
       className="pf-c-check__input"
       disabled={false}
-      id="hipaa"
+      id="1111"
       name="policies[1]"
       onChange={[Function]}
       type="checkbox"
@@ -39,7 +39,7 @@ Array [
     />
     <label
       className="pf-c-check__label"
-      htmlFor="hipaa"
+      htmlFor="1111"
     >
       hipaa
     </label>
@@ -57,7 +57,7 @@ Array [
       checked={false}
       className="pf-c-check__input"
       disabled={false}
-      id="pci"
+      id="12345"
       name="policies[0]"
       onChange={[Function]}
       type="checkbox"
@@ -65,7 +65,7 @@ Array [
     />
     <label
       className="pf-c-check__label"
-      htmlFor="pci"
+      htmlFor="12345"
     >
       pci
     </label>
@@ -78,7 +78,7 @@ Array [
       checked={false}
       className="pf-c-check__input"
       disabled={false}
-      id="hipaa"
+      id="1111"
       name="policies[1]"
       onChange={[Function]}
       type="checkbox"
@@ -86,7 +86,7 @@ Array [
     />
     <label
       className="pf-c-check__label"
-      htmlFor="hipaa"
+      htmlFor="1111"
     >
       hipaa
     </label>

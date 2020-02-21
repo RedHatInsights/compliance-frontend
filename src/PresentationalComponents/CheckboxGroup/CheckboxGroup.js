@@ -22,7 +22,7 @@ const CheckboxFieldArray = ({ input, options }) => {
         <React.Fragment>
             {
                 options.map(({ label, value, defaultChecked }, index) => (
-                    <Checkbox key={label} id={label} label={label}
+                    <Checkbox key={value} id={value} label={label}
                         name={`${name}[${index}]`} value={value}
                         isChecked={inputValue === '' ? defaultChecked : inputValue.includes(value)}
                         onChange={(checked) => handleChange(checked, value)}

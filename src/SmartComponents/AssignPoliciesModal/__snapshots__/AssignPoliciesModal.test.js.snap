@@ -356,14 +356,14 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                                         aria-invalid="false"
                                         checked=""
                                         class="pf-c-check__input"
-                                        id="profile1"
+                                        id="1"
                                         name="policies[0]"
                                         type="checkbox"
                                         value="1"
                                       />
                                       <label
                                         class="pf-c-check__label"
-                                        for="profile1"
+                                        for="1"
                                       >
                                         profile1
                                       </label>
@@ -818,14 +818,14 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                         aria-invalid="false"
                                         checked=""
                                         class="pf-c-check__input"
-                                        id="profile1"
+                                        id="1"
                                         name="policies[0]"
                                         type="checkbox"
                                         value="1"
                                       />
                                       <label
                                         class="pf-c-check__label"
-                                        for="profile1"
+                                        for="1"
                                       >
                                         profile1
                                       </label>
@@ -942,14 +942,14 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                         aria-invalid="false"
                                         checked=""
                                         class="pf-c-check__input"
-                                        id="profile1"
+                                        id="1"
                                         name="policies[0]"
                                         type="checkbox"
                                         value="1"
                                       />
                                       <label
                                         class="pf-c-check__label"
-                                        for="profile1"
+                                        for="1"
                                       >
                                         profile1
                                       </label>
@@ -1620,11 +1620,11 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                           >
                                                             <Checkbox
                                                               className=""
-                                                              id="profile1"
+                                                              id="1"
                                                               isChecked={true}
                                                               isDisabled={false}
                                                               isValid={true}
-                                                              key="profile1"
+                                                              key="1"
                                                               label="profile1"
                                                               name="policies[0]"
                                                               onChange={[Function]}
@@ -1638,7 +1638,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                                   checked={true}
                                                                   className="pf-c-check__input"
                                                                   disabled={false}
-                                                                  id="profile1"
+                                                                  id="1"
                                                                   name="policies[0]"
                                                                   onChange={[Function]}
                                                                   type="checkbox"
@@ -1646,7 +1646,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                                                 />
                                                                 <label
                                                                   className="pf-c-check__label"
-                                                                  htmlFor="profile1"
+                                                                  htmlFor="1"
                                                                 >
                                                                   profile1
                                                                 </label>
