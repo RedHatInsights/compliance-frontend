@@ -6,24 +6,37 @@ Object {
     "calls": Array [
       Array [
         Object {
+          "actions": Array [
+            Object {
+              "onClick": [Function],
+              "title": "Edit policies for this system",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "View in inventory",
+            },
+          ],
           "activeFiltersConfig": Object {
             "filters": Array [],
             "onDelete": [Function],
           },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
+          "children": Array [
+            <ToolbarGroup>
+              <ToolbarItem
+                style={
+                  Object {
+                    "marginLeft": "var(--pf-global--spacer--lg)",
+                  }
                 }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
+              >
+                <UNDEFINED
+                  allSystems={Array []}
+                  selectedRules={Array []}
+                />
+              </ToolbarItem>
+            </ToolbarGroup>,
+            undefined,
+          ],
           "exportConfig": Object {
             "onSelect": [Function],
           },
@@ -148,24 +161,37 @@ Object {
     "calls": Array [
       Array [
         Object {
+          "actions": Array [
+            Object {
+              "onClick": [Function],
+              "title": "Edit policies for this system",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "View in inventory",
+            },
+          ],
           "activeFiltersConfig": Object {
             "filters": Array [],
             "onDelete": [Function],
           },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
+          "children": Array [
+            <ToolbarGroup>
+              <ToolbarItem
+                style={
+                  Object {
+                    "marginLeft": "var(--pf-global--spacer--lg)",
+                  }
                 }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
+              >
+                <UNDEFINED
+                  allSystems={Array []}
+                  selectedRules={Array []}
+                />
+              </ToolbarItem>
+            </ToolbarGroup>,
+            undefined,
+          ],
           "exportConfig": Object {
             "onSelect": [Function],
           },
@@ -289,24 +315,37 @@ Object {
     "calls": Array [
       Array [
         Object {
+          "actions": Array [
+            Object {
+              "onClick": [Function],
+              "title": "Edit policies for this system",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "View in inventory",
+            },
+          ],
           "activeFiltersConfig": Object {
             "filters": Array [],
             "onDelete": [Function],
           },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
+          "children": Array [
+            <ToolbarGroup>
+              <ToolbarItem
+                style={
+                  Object {
+                    "marginLeft": "var(--pf-global--spacer--lg)",
+                  }
                 }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
+              >
+                <UNDEFINED
+                  allSystems={Array []}
+                  selectedRules={Array []}
+                />
+              </ToolbarItem>
+            </ToolbarGroup>,
+            undefined,
+          ],
           "exportConfig": Object {
             "onSelect": [Function],
           },
@@ -420,24 +459,37 @@ Object {
     "calls": Array [
       Array [
         Object {
+          "actions": Array [
+            Object {
+              "onClick": [Function],
+              "title": "Edit policies for this system",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "View in inventory",
+            },
+          ],
           "activeFiltersConfig": Object {
             "filters": Array [],
             "onDelete": [Function],
           },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
+          "children": Array [
+            <ToolbarGroup>
+              <ToolbarItem
+                style={
+                  Object {
+                    "marginLeft": "var(--pf-global--spacer--lg)",
+                  }
                 }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
+              >
+                <UNDEFINED
+                  allSystems={Array []}
+                  selectedRules={Array []}
+                />
+              </ToolbarItem>
+            </ToolbarGroup>,
+            undefined,
+          ],
           "exportConfig": Object {
             "onSelect": [Function],
           },
@@ -562,6 +614,18 @@ Object {
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
 <InventoryCmp
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
   activeFiltersConfig={
     Object {
       "filters": Array [],
@@ -1124,6 +1188,18 @@ exports[`SystemsTable expect to render a loading state 1`] = `
 
 exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] = `
 <mockConstructor
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
   activeFiltersConfig={
     Object {
       "filters": Array [],

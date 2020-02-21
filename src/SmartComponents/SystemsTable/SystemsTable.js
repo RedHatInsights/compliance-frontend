@@ -15,6 +15,9 @@ import {
     ComplianceRemediationButton
 } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import  {
+    AssignPoliciesModal
+} from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
 import { buildFilterString } from 'Utilities/FilterBuilder';
@@ -266,8 +269,9 @@ class SystemsTable extends React.Component {
 
     render() {
         const { remediationsEnabled, compact, enableExport } = this.props;
-        const { page, totalCount, perPage, items, InventoryCmp, filterChips, 
-			selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
+        const {
+            page, totalCount, perPage, items, InventoryCmp, filterChips, allSystems,
+            selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.updateFilter,
             this.state.activeFilters,
@@ -276,7 +280,6 @@ class SystemsTable extends React.Component {
         const exportConfig = enableExport ? { onSelect: this.onExportSelect } : {};
 
         return <InventoryCmp
-            onRefresh={this.onRefresh}
             actions={[
                 {
                     title: 'Edit policies for this system',
@@ -294,22 +297,20 @@ class SystemsTable extends React.Component {
                     }
                 }
             ]}
-            page={page}
-            ref={this.inventory}
-            total={totalCount}
-            perPage={perPage}
-            variant={compact ? pfReactTable.TableVariant.compact : null}
-            items={items.map((edge) => edge.node.id)}
-			filterConfig={ filterConfig }
-            activeFiltersConfig={ activeFiltersConfig }
-            exportConfig={{
-                onSelect: this.onExportSelect
-            }}
+            onRefresh={ this.onRefresh }
+            page={ page }
+            ref={ this.inventory }
+            total={ totalCount }
+            perPage={ perPage }
+            variant={ compact ? pfReactTable.TableVariant.compact : null }
+            items={ allSystems ? undefined : items.map((edge) => edge.node.id) }
+            filterConfig={ filterConfig }
+            exportConfig={ exportConfig }
             activeFiltersConfig={{
                 filters: filterChips,
                 onDelete: this.onFilterDelete
             }}>
-            <reactCore.ToolbarGroup>
+            { !allSystems && <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
@@ -317,7 +318,7 @@ class SystemsTable extends React.Component {
                             selectedRules={ [] } />
                     </reactCore.ToolbarItem>
                 }
-            </reactCore.ToolbarGroup>
+            </reactCore.ToolbarGroup> }
             { selectedSystemId &&
             <AssignPoliciesModal
                 isModalOpen={isAssignPoliciesModalOpen}
@@ -337,14 +338,16 @@ SystemsTable.propTypes = {
     compact: propTypes.bool,
     selectedEntities: propTypes.array,
     exportToCSV: propTypes.func,
-    enableExport: propTypes.bool
+    enableExport: propTypes.bool,
+    allSystems: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
     policyId: '',
     remediationsEnabled: true,
     compact: false,
-    enableExport: true
+    enableExport: true,
+    allSystems: false
 };
 
 const mapStateToProps = state => {
