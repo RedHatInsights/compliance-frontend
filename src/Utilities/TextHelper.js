@@ -11,3 +11,7 @@ export const pluralize = (value, singular, plural) => {
 
     return (value > 1 || value === 0 ? plural : singular);
 };
+
+export const stringToId = (string) => (
+    string.replace(' ', '').toLowerCase()
+);

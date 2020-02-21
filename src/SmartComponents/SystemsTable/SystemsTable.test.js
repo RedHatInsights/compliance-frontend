@@ -116,34 +116,20 @@ describe('SystemsTable', () => {
             });
         });
 
-        describe('#updateSearchFilter', () => {
-            it('set search in state properly', () => {
-                expect(wrapper.state().search).toMatchSnapshot();
-                instance.updateSearchFilter('_event', 'SEARCH TERM');
-                expect(wrapper.state().search).toMatchSnapshot();
-            });
-        });
-
         describe('#updateComplianceFilter', () => {
             it('set search in state properly', () => {
+                expect(wrapper.state().search).toMatchSnapshot();
+                instance.updateComplianceFilter('name', 'SEARCH TERM');
+                expect(wrapper.state().search).toMatchSnapshot();
+            });
+
+            it('set search in state properly', () => {
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
-                instance.updateComplianceFilter('_event',
-                    ['0-49', '50-69', '70-89', '90-100'], '70-89'
+                instance.updateComplianceFilter('compliancescore',
+                    ['0-49', '50-69', '90-100']
                 );
 
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
-            });
-        });
-
-        describe('#deleteSearchFilter', () => {
-            it('set search in state properly', () => {
-                instance.updateSearchFilter('_event', 'Search term');
-                expect(wrapper.state()).toMatchSnapshot();
-                const prevState = wrapper.state();
-                instance.deleteSearchFilter();
-
-                expect(wrapper.state()).not.toEqual(prevState);
-                expect(wrapper.state()).toMatchSnapshot();
             });
         });
 
@@ -153,13 +139,13 @@ describe('SystemsTable', () => {
             });
 
             it('set search in state properly', () => {
-                instance.updateComplianceFilter('_event',
-                    ['0-49', '50-69', '70-89', '90-100'], '70-89'
+                instance.updateComplianceFilter('compliancescore',
+                    ['0-49', '50-69', '70-89', '90-100']
                 );
                 expect(wrapper.state()).toMatchSnapshot();
                 const prevState = wrapper.state();
                 instance.deleteComplianceFilter({
-                    category: 'complianceScores',
+                    category: 'Compliance score',
                     chips: [
                         { name: '70-89' }
                     ]

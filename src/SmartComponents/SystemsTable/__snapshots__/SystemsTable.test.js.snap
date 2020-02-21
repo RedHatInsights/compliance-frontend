@@ -35,6 +35,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
+                "id": "name",
                 "label": "Name",
                 "type": "text",
               },
@@ -80,7 +81,7 @@ Object {
                   "onChange": [Function],
                   "value": Array [],
                 },
-                "id": "complianceScore",
+                "id": "compliancescore",
                 "label": "Compliance score",
                 "type": "checkbox",
               },
@@ -104,33 +105,34 @@ Object {
     ],
   },
   "activeFilters": Object {
-    "chips": Array [
-      Object {
-        "category": "Compliance score",
-        "chips": Array [
-          Object {
-            "name": "Less than 50%",
-          },
-          Object {
-            "name": "50 - 69%",
-          },
-          Object {
-            "name": "70 - 89%",
-          },
-          Object {
-            "name": "90 - 100%",
-          },
-        ],
-      },
-    ],
-    "complianceScores": Array [
+    "compliancescore": Array [
       "0-49",
       "50-69",
       "70-89",
       "90-100",
     ],
-    "complianceStates": Array [],
+    "compliant": Array [],
+    "name": "",
   },
+  "filterChips": Array [
+    Object {
+      "category": "Compliance score",
+      "chips": Array [
+        Object {
+          "name": "Less than 50%",
+        },
+        Object {
+          "name": "50 - 69%",
+        },
+        Object {
+          "name": "70 - 89%",
+        },
+        Object {
+          "name": "90 - 100%",
+        },
+      ],
+    },
+  ],
   "items": Array [
     Object {
       "node": Object {
@@ -142,7 +144,6 @@ Object {
   "page": 1,
   "perPage": 50,
   "policyId": "",
-  "search": "",
   "totalCount": 1,
 }
 `;
@@ -182,6 +183,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
+                "id": "name",
                 "label": "Name",
                 "type": "text",
               },
@@ -227,7 +229,7 @@ Object {
                   "onChange": [Function],
                   "value": Array [],
                 },
-                "id": "complianceScore",
+                "id": "compliancescore",
                 "label": "Compliance score",
                 "type": "checkbox",
               },
@@ -251,32 +253,33 @@ Object {
     ],
   },
   "activeFilters": Object {
-    "chips": Array [
-      Object {
-        "category": "Compliance score",
-        "chips": Array [
-          Object {
-            "name": "Less than 50%",
-          },
-          Object {
-            "name": "50 - 69%",
-          },
-          Object {
-            "name": "70 - 89%",
-          },
-          Object {
-            "name": "90 - 100%",
-          },
-        ],
-      },
-    ],
-    "complianceScores": Array [
+    "compliancescore": Array [
       "0-49",
       "50-69",
       "90-100",
     ],
-    "complianceStates": Array [],
+    "compliant": Array [],
+    "name": "",
   },
+  "filterChips": Array [
+    Object {
+      "category": "Compliance score",
+      "chips": Array [
+        Object {
+          "name": "Less than 50%",
+        },
+        Object {
+          "name": "50 - 69%",
+        },
+        Object {
+          "name": "70 - 89%",
+        },
+        Object {
+          "name": "90 - 100%",
+        },
+      ],
+    },
+  ],
   "items": Array [
     Object {
       "node": Object {
@@ -288,7 +291,6 @@ Object {
   "page": 1,
   "perPage": 50,
   "policyId": "",
-  "search": "",
   "totalCount": 1,
 }
 `;
@@ -328,6 +330,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
+                "id": "name",
                 "label": "Name",
                 "type": "text",
               },
@@ -373,7 +376,7 @@ Object {
                   "onChange": [Function],
                   "value": Array [],
                 },
-                "id": "complianceScore",
+                "id": "compliancescore",
                 "label": "Compliance score",
                 "type": "checkbox",
               },
@@ -397,21 +400,23 @@ Object {
     ],
   },
   "activeFilters": Object {
-    "chips": Array [
-      Object {
-        "category": "Compliant",
-        "chips": Array [
-          Object {
-            "name": "Non-compliant",
-          },
-        ],
-      },
-    ],
-    "complianceScores": Array [],
-    "complianceStates": Array [
+    "_event": Array [
       "false",
     ],
+    "compliancescore": Array [],
+    "compliant": Array [],
+    "name": "",
   },
+  "filterChips": Array [
+    Object {
+      "category": "Compliant",
+      "chips": Array [
+        Object {
+          "name": "Non-compliant",
+        },
+      ],
+    },
+  ],
   "items": Array [
     Object {
       "node": Object {
@@ -423,7 +428,6 @@ Object {
   "page": 1,
   "perPage": 50,
   "policyId": "",
-  "search": "",
   "totalCount": 1,
 }
 `;
@@ -463,6 +467,7 @@ Object {
                   "onSubmit": [Function],
                   "value": "",
                 },
+                "id": "name",
                 "label": "Name",
                 "type": "text",
               },
@@ -508,7 +513,7 @@ Object {
                   "onChange": [Function],
                   "value": Array [],
                 },
-                "id": "complianceScore",
+                "id": "compliancescore",
                 "label": "Compliance score",
                 "type": "checkbox",
               },
@@ -532,12 +537,14 @@ Object {
     ],
   },
   "activeFilters": Object {
-    "chips": Array [],
-    "complianceScores": Array [],
-    "complianceStates": Array [
+    "_event": Array [
       "false",
     ],
+    "compliancescore": Array [],
+    "compliant": Array [],
+    "name": "",
   },
+  "filterChips": Array [],
   "items": Array [
     Object {
       "node": Object {
@@ -549,296 +556,33 @@ Object {
   "page": 1,
   "perPage": 50,
   "policyId": "",
-  "search": "",
   "totalCount": 1,
 }
 `;
 
-exports[`SystemsTable Instance functions #deleteSearchFilter set search in state properly 1`] = `
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 1`] = `undefined`;
+
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 2`] = `undefined`;
+
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 3`] = `
 Object {
-  "InventoryCmp": [MockFunction] {
-    "calls": Array [
-      Array [
-        Object {
-          "activeFiltersConfig": Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
-                }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
-          "exportConfig": Object {
-            "onSelect": [Function],
-          },
-          "filterConfig": Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onSubmit": [Function],
-                  "value": "",
-                },
-                "label": "Name",
-                "type": "text",
-              },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "Compliant",
-                      "value": "true",
-                    },
-                    Object {
-                      "label": "Non-compliant",
-                      "value": "false",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "compliant",
-                "label": "Compliant",
-                "type": "checkbox",
-              },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "90 - 100%",
-                      "value": "90-100",
-                    },
-                    Object {
-                      "label": "70 - 89%",
-                      "value": "70-89",
-                    },
-                    Object {
-                      "label": "50 - 69%",
-                      "value": "50-69",
-                    },
-                    Object {
-                      "label": "Less than 50%",
-                      "value": "0-49",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "complianceScore",
-                "label": "Compliance score",
-                "type": "checkbox",
-              },
-            ],
-          },
-          "items": Array [],
-          "onRefresh": [Function],
-          "page": 1,
-          "perPage": 50,
-          "total": 0,
-          "variant": null,
-        },
-        Object {},
-      ],
-    ],
-    "results": Array [
-      Object {
-        "isThrow": false,
-        "value": "Loading...",
-      },
-    ],
-  },
-  "activeFilters": Object {
-    "chips": Array [
-      Object {
-        "category": "Name",
-        "chips": Array [
-          Object {
-            "name": "Search term",
-          },
-        ],
-      },
-    ],
-    "complianceScores": Array [],
-    "complianceStates": Array [],
-  },
-  "items": Array [],
-  "page": 1,
-  "perPage": 50,
-  "policyId": "",
-  "search": "Search term",
-  "totalCount": 0,
+  "compliancescore": Array [],
+  "compliant": Array [],
+  "name": "",
 }
 `;
 
-exports[`SystemsTable Instance functions #deleteSearchFilter set search in state properly 2`] = `
+exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 4`] = `
 Object {
-  "InventoryCmp": [MockFunction] {
-    "calls": Array [
-      Array [
-        Object {
-          "activeFiltersConfig": Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          },
-          "children": <ToolbarGroup>
-            <ToolbarItem
-              style={
-                Object {
-                  "marginLeft": "var(--pf-global--spacer--lg)",
-                }
-              }
-            >
-              <UNDEFINED
-                allSystems={Array []}
-                selectedRules={Array []}
-              />
-            </ToolbarItem>
-          </ToolbarGroup>,
-          "exportConfig": Object {
-            "onSelect": [Function],
-          },
-          "filterConfig": Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onSubmit": [Function],
-                  "value": "",
-                },
-                "label": "Name",
-                "type": "text",
-              },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "Compliant",
-                      "value": "true",
-                    },
-                    Object {
-                      "label": "Non-compliant",
-                      "value": "false",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "compliant",
-                "label": "Compliant",
-                "type": "checkbox",
-              },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "90 - 100%",
-                      "value": "90-100",
-                    },
-                    Object {
-                      "label": "70 - 89%",
-                      "value": "70-89",
-                    },
-                    Object {
-                      "label": "50 - 69%",
-                      "value": "50-69",
-                    },
-                    Object {
-                      "label": "Less than 50%",
-                      "value": "0-49",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "complianceScore",
-                "label": "Compliance score",
-                "type": "checkbox",
-              },
-            ],
-          },
-          "items": Array [],
-          "onRefresh": [Function],
-          "page": 1,
-          "perPage": 50,
-          "total": 0,
-          "variant": null,
-        },
-        Object {},
-      ],
-    ],
-    "results": Array [
-      Object {
-        "isThrow": false,
-        "value": "Loading...",
-      },
-    ],
-  },
-  "activeFilters": Object {
-    "chips": Array [],
-    "complianceScores": Array [],
-    "complianceStates": Array [],
-  },
-  "items": Array [],
-  "page": 1,
-  "perPage": 50,
-  "policyId": "",
-  "search": "",
-  "totalCount": 0,
-}
-`;
-
-exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 1`] = `
-Object {
-  "chips": Array [],
-  "complianceScores": Array [],
-  "complianceStates": Array [],
-}
-`;
-
-exports[`SystemsTable Instance functions #updateComplianceFilter set search in state properly 2`] = `
-Object {
-  "chips": Array [
-    Object {
-      "category": "Compliance score",
-      "chips": Array [
-        Object {
-          "name": "Less than 50%",
-        },
-        Object {
-          "name": "50 - 69%",
-        },
-        Object {
-          "name": "70 - 89%",
-        },
-        Object {
-          "name": "90 - 100%",
-        },
-      ],
-    },
-  ],
-  "complianceScores": Array [
+  "compliancescore": Array [
     "0-49",
     "50-69",
-    "70-89",
     "90-100",
   ],
-  "complianceStates": Array [],
+  "compliant": Array [],
+  "name": "",
 }
 `;
-
-exports[`SystemsTable Instance functions #updateSearchFilter set search in state properly 1`] = `""`;
-
-exports[`SystemsTable Instance functions #updateSearchFilter set search in state properly 2`] = `"SEARCH TERM"`;
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
 <InventoryCmp
@@ -862,6 +606,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
             "onSubmit": [Function],
             "value": "",
           },
+          "id": "name",
           "label": "Name",
           "type": "text",
         },
@@ -907,7 +652,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
             "onChange": [Function],
             "value": Array [],
           },
-          "id": "complianceScore",
+          "id": "compliancescore",
           "label": "Compliance score",
           "type": "checkbox",
         },
@@ -1423,6 +1168,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
             "onSubmit": [Function],
             "value": "",
           },
+          "id": "name",
           "label": "Name",
           "type": "text",
         },
@@ -1468,7 +1214,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
             "onChange": [Function],
             "value": Array [],
           },
-          "id": "complianceScore",
+          "id": "compliancescore",
           "label": "Compliance score",
           "type": "checkbox",
         },
