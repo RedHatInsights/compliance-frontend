@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     ComplianceTabs,
+    ReportTabs,
     LoadingComplianceCards,
     ReportCard,
     CompliancePoliciesEmptyState,
@@ -34,7 +35,7 @@ const QUERY = gql`
 }
 `;
 
-export const ComplianceReports = () => {
+export const Reports = () => {
     const { data, error, loading } = useQuery(QUERY);
 
     if (error) { return <ErrorPage error={error}/>; }
@@ -64,7 +65,7 @@ export const ComplianceReports = () => {
     if (policies.length) {
         pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
             <PageHeaderTitle title="Compliance reports" />
-            { !beta && <ComplianceTabs/> }
+            { beta ? <ReportTabs/> : <ComplianceTabs/> }
 
         </PageHeader>;
         reportCards = policies.map(
@@ -95,4 +96,4 @@ export const ComplianceReports = () => {
     );
 };
 
-export default routerParams(ComplianceReports);
+export default routerParams(Reports);

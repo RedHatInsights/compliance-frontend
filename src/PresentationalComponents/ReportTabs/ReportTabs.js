@@ -5,13 +5,12 @@ import { paths } from '../../Routes';
 import { Tabs, Tab } from '@patternfly/react-core';
 import invert from 'lodash/invert';
 
-export const ComplianceTabs = (props) => {
+export const ReportTabs = (props) => {
     const { match: { path } } = props;
 
     const tabPaths = {
-        0: paths.Reports,
-        1: paths.compliancePolicies,
-        2: paths.complianceSystems
+        0: paths.reports,
+        1: paths.reportsSystems
     };
 
     const redirect = (_, tabIndex) => {
@@ -21,21 +20,20 @@ export const ComplianceTabs = (props) => {
     let currentKey = Number(invert(tabPaths)[path]);
 
     const tabs = [
-        <Tab title={'Reports'} key={0} eventKey={0}></Tab>,
-        <Tab title={'Policies'} key={1} eventKey={1}></Tab>,
-        <Tab title={'Systems'} key={2} eventKey={2}></Tab>
+        <Tab title={'By policy'} key={0} eventKey={0}></Tab>,
+        <Tab title={'By systems'} key={1} eventKey={1}></Tab>
     ];
 
     return (
-        <Tabs activeKey={currentKey} onSelect={redirect} aria-label="Compliance Tabs">
+        <Tabs activeKey={currentKey} onSelect={redirect} aria-label="Report Tabs">
             { tabs }
         </Tabs>
     );
 };
 
-ComplianceTabs.propTypes = {
+ReportTabs.propTypes = {
     history: propTypes.object,
     match: propTypes.object
 };
 
-export default routerParams(ComplianceTabs);
+export default routerParams(ReportTabs);

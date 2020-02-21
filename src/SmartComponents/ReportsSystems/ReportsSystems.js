@@ -1,13 +1,13 @@
 import React from 'react';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { ComplianceTabs } from 'PresentationalComponents';
+import { ComplianceTabs, ReportTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 
-const ComplianceSystems = () => {
+const ReportsSystems = () => {
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'display_name',
-        title: 'Name',
+        title: 'System name',
         props: {
             width: 40
         }
@@ -30,20 +30,19 @@ const ComplianceSystems = () => {
             width: 10
         }
     }];
-
     const beta = window.location.pathname.split('/')[1] === 'beta';
 
     return (
         <React.Fragment>
             <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
-                <PageHeaderTitle title="Compliance systems" />
-                { !beta && <ComplianceTabs/> }
+                <PageHeaderTitle title="Compliance reports" />
+                { beta ? <ReportTabs/> : <ComplianceTabs/> }
             </PageHeader>
             <Main>
-                <SystemsTable allSystems columns={columns} />
+                <SystemsTable columns={columns} />
             </Main>
         </React.Fragment>
     );
 };
 
-export default ComplianceSystems;
+export default ReportsSystems;

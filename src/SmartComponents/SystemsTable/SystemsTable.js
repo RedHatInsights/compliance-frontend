@@ -300,7 +300,7 @@ class SystemsTable extends React.Component {
             onRefresh={ this.onRefresh }
             page={ page }
             ref={ this.inventory }
-            total={ totalCount }
+            total={totalCount}
             perPage={ perPage }
             variant={ compact ? pfReactTable.TableVariant.compact : null }
             items={ allSystems ? undefined : items.map((edge) => edge.node.id) }
