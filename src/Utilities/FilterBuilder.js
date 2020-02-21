@@ -1,13 +1,15 @@
 const buildBaseFilter = (state) => {
-    const { policyId, search } = state;
+    const { policyId } = state;
+    const name = state.activeFilters ? state.activeFilters.name : [];
+
     let additionalFilter = [];
 
     if (policyId && policyId.length > 0) {
         additionalFilter.push(`profile_id = ${policyId}`);
     }
 
-    if (search && search.length > 0) {
-        additionalFilter.push(`name ~ ${search}`);
+    if (name && name.length > 0) {
+        additionalFilter.push(`name ~ ${name}`);
     }
 
     return [additionalFilter.join(' and ')].filter((f) => (f.length > 0));
@@ -15,7 +17,7 @@ const buildBaseFilter = (state) => {
 
 export const buildFilterString = (state) => {
     const additionalFilter = buildBaseFilter(state);
-    const { complianceStates, complianceScores } = (state.activeFilters || {});
+    const { compliant: complianceStates, compliancescore: complianceScores } = (state.activeFilters || {});
     const compliant = complianceStates ? complianceStates.map((compliant) =>
         `compliant = ${compliant}`
     ) : [];
