@@ -22,7 +22,7 @@ import { FilterConfigBuilder } from 'Utilities/FilterConfigBuilder';
 import { stringToId } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import { FILTER_CONFIGURATION } from '../../constants';
-const DEBOUNCE_TIME = 200;
+const DEBOUNCE_TIME = 600;
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -131,7 +131,7 @@ class SystemsTable extends React.Component {
         });
     }
 
-    updateComplianceFilter = debounce((filter, selectedValues) => {
+    updateComplianceFilter = (filter, selectedValues) => {
         this.setState({
             ...this.state,
             loaded: false,
@@ -142,12 +142,12 @@ class SystemsTable extends React.Component {
                 [filter]: selectedValues
             }
         }, this.filterUpdate);
-    }, DEBOUNCE_TIME)
+    }
 
-    filterUpdate = () => {
+    filterUpdate = debounce(() => {
         this.updateFilterChips();
         this.systemFetch();
-    }
+    }, DEBOUNCE_TIME)
 
     filterChip = (chips) => {
         const chipCategory = chips.category;
@@ -220,20 +220,23 @@ class SystemsTable extends React.Component {
         }, this.systemFetch);
     }
 
-    onFilterDelete = debounce((_event, chips, clearAll = false) => {
+    onFilterDelete = (_event, chips, clearAll = false) => {
         if (clearAll) {
             this.clearAllFilter();
             return;
         }
 
         this.deleteComplianceFilter(chips);
-    }, DEBOUNCE_TIME)
+    }
 
-    clearAllFilter = debounce(() => {
+    clearAllFilter = () => {
         this.setState({
-            activeFilters: this.filterConfig.initialDefaultState()
+            items: [],
+            loaded: false,
+            activeFilters: this.filterConfig.initialDefaultState(),
+            filterChips: []
         }, this.filterUpdate);
-    }, DEBOUNCE_TIME)
+    }
 
     async fetchInventory() {
         const { columns } = this.props;
