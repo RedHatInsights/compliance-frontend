@@ -341,6 +341,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                                      should be a part of. Note: Only policies for this host operating system are shown.
                                   </p>
                                 </div>
+                                <br />
                                 <div
                                   class="pf-c-content"
                                 >
@@ -802,6 +803,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                      should be a part of. Note: Only policies for this host operating system are shown.
                                   </p>
                                 </div>
+                                <br />
                                 <div
                                   class="pf-c-content"
                                 >
@@ -925,6 +927,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                      should be a part of. Note: Only policies for this host operating system are shown.
                                   </p>
                                 </div>
+                                <br />
                                 <div
                                   class="pf-c-content"
                                 >
@@ -1172,6 +1175,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                           </Text>
                                         </div>
                                       </TextContent>
+                                      <br />
                                       <TextContent>
                                         <div
                                           className="pf-c-content"

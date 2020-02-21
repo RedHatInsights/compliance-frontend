@@ -81,6 +81,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
                     host operating system are shown.
                 </Text>
             </TextContent>
+            <br/>
             <TextContent>
                 <Text>
                     <CheckboxGroup name='policies' options={options} />
