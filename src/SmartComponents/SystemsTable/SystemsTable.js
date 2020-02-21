@@ -123,6 +123,8 @@ class SystemsTable extends React.Component {
     updateComplianceFilter = debounce((filter, selectedValues) => {
         this.setState({
             ...this.state,
+            loaded: false,
+            items: [],
             page: 1,
             activeFilters: {
                 ...this.state.activeFilters,
