@@ -24,7 +24,7 @@ describe('buildFilterString', () => {
         expect(buildFilterString(testExampleState)).toMatchSnapshot();
     });
 
-    describe('compliance state and score filter', () => {
+    describe('filter building', () => {
         it('returns a base filter for name when searching', () => {
             const testExampleState = {
                 activeFilters: {

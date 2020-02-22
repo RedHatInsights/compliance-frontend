@@ -74,9 +74,9 @@ export class FilterConfigBuilder {
         const category = this.config.filter((category) => {
             return category.items ?
                 category.items.map((item) => item.value).includes(value) : false;
-        });
+        })[0];
 
-        return category ? category[0].label : value;
+        return category ? category.label : value;
     };
 
     getCategoryForLabel = (query) => (
@@ -84,7 +84,8 @@ export class FilterConfigBuilder {
     )
 
     getItemByLabelOrValue = (query, category) => {
-        const results = this.getCategoryForLabel(category).items.filter((item) => (
+        const items = this.getCategoryForLabel(category).items;
+        const results = (items || []).filter((item) => (
             item.value === query || item.label === query
         ));
 
