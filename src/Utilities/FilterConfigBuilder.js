@@ -2,17 +2,23 @@ import {
     conditionalFilterType
 } from '@redhat-cloud-services/frontend-components';
 import { stringToId } from 'Utilities/TextHelper';
+import { FilterBuilder } from './FilterBuilder';
 import { ChipBuilder } from './ChipBuilder';
 
 export class FilterConfigBuilder {
     chipBuilder = null;
+    filterBuilder = null;
 
     constructor(config) {
         this.config = config;
     }
 
-    getChipBuilder = (callback) => (
-        this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this, callback)
+    getChipBuilder = () => (
+        this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this)
+    )
+
+    getFilterBuilder = () => (
+        this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this)
     )
 
     toTextFilterConfig = (item, handler, value) => ({

@@ -1,36 +1,37 @@
-const buildBaseFilter = (state) => {
-    const { policyId } = state;
-    const name = state.activeFilters ? state.activeFilters.name : [];
+import { stringToId } from 'Utilities/TextHelper';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 
-    let additionalFilter = [];
-
-    if (policyId && policyId.length > 0) {
-        additionalFilter.push(`profile_id = ${policyId}`);
+export class FilterBuilder {
+    constructor(filterConfig) {
+        this.filterConfig = filterConfig;
+        this.config = this.filterConfig.config;
     }
 
-    if (name && name.length > 0) {
-        additionalFilter.push(`name ~ ${name}`);
+    buildFilterFilterString = (configItem, value) => {
+        if (!value) { return []; }
+
+        const { type, filterString } = configItem;
+
+        if (type === conditionalFilterType.text) {
+            return [filterString(value)];
+        } else if (type === conditionalFilterType.checkbox) {
+            return value.map((filter) => (
+                filterString(filter)
+            ));
+        } else {
+            return [];
+        }
     }
 
-    return [additionalFilter.join(' and ')].filter((f) => (f.length > 0));
-};
+    combineFilterStrings = (filterStringArray) => {
+        const moreThanTwo = filterStringArray.map((f) => (f.length)).filter((fl) => (fl > 0)).length >= 2;
+        return filterStringArray.map((fs) => (fs.join(' or '))).join(moreThanTwo ? ' and ' : '');
+    }
 
-export const buildFilterString = (state) => {
-    const additionalFilter = buildBaseFilter(state);
-    const { compliant: complianceStates, compliancescore: complianceScores } = (state.activeFilters || {});
-    const compliant = complianceStates ? complianceStates.map((compliant) =>
-        `compliant = ${compliant}`
-    ) : [];
-    const complianceScore = complianceScores ? complianceScores.map((scoreRange) => {
-        scoreRange = scoreRange.split('-');
-        return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
-    }) : [];
-    const filters = [
-        additionalFilter,
-        compliant,
-        complianceScore
-    ].filter((f) => (f.length > 0));
-    const moreThanTwo = filters.map((f) => (f.length)).filter((fl) => (fl > 0)).length >= 2;
-
-    return filters.map((fs) => (fs.join(' or '))).join(moreThanTwo ? ' and ' : '');
-};
+    buildFilterString = (filters) => {
+        const filterStringArray = this.config.map((configItem) => (
+            this.buildFilterFilterString(configItem, filters[stringToId(configItem.label)])
+        )).filter((f) => (f.length > 0));
+        return this.combineFilterStrings(filterStringArray);
+    }
+}

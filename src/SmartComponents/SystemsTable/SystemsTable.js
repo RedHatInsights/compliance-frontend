@@ -19,7 +19,6 @@ import  {
 } from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
-import { buildFilterString } from 'Utilities/FilterBuilder';
 import { FilterConfigBuilder } from 'Utilities/FilterConfigBuilder';
 import { stringToId } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
@@ -65,6 +64,8 @@ class SystemsTable extends React.Component {
     inventory = React.createRef();
     filterConfig = new FilterConfigBuilder(FILTER_CONFIGURATION);
     chipBuilder = this.filterConfig.getChipBuilder();
+    filterBuilder = this.filterConfig.getFilterBuilder();
+
     state = {
         ...loadingState,
         InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
@@ -85,8 +86,12 @@ class SystemsTable extends React.Component {
 
     systemFetch = () => {
         const { client } = this.props;
-        const { policyId, perPage, page } = this.state;
-        const filter = buildFilterString(this.state);
+        const { policyId, perPage, page, activeFilters } = this.state;
+        let filter = this.filterBuilder.buildFilterString(activeFilters);
+
+        if (policyId && policyId.length > 0) {
+            filter = `profile_id = ${policyId} and ${filter}`;
+        }
 
         return client.query({
             query: GET_SYSTEMS,
