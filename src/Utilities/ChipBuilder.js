@@ -18,7 +18,7 @@ export class ChipBuilder {
         ))
     } : null)
 
-    updatedChips = (filter, currentValue) => {
+    chipFor = (filter, currentValue) => {
         const categoryConfig = this.filterConfig.getCategoryForLabel(filter);
         const { label, type } = categoryConfig ? categoryConfig : { label: filter, type: null };
 
@@ -33,7 +33,7 @@ export class ChipBuilder {
 
     chipsFor = (filters) => {
         let chips = Object.keys(filters).map((filter) => {
-            return this.updatedChips(filter, filters[filter]);
+            return this.chipFor(filter, filters[filter]);
         }).filter((f) => (!!f));
 
         return Promise.resolve(chips);
