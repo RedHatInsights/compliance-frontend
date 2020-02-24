@@ -75,6 +75,17 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const [activeTab, setActiveTab] = useState(0);
     let policy = {};
 
+    const currentTab = (activeTab) => {
+        switch (activeTab) {
+            case 0:
+                return <PolicyDetailsDescription policy={policy} />;
+            case 1:
+                return <PolicyRulesTab policy={policy} loading={loading} />;
+            case 2:
+                return <PolicySystemsTab policy={policy} systemsTableRef={systemsTable} />;
+        }
+    };
+
     if (error) {
         if (error.networkError.statusCode === 401) {
             window.insights.chrome.auth.logout();
@@ -127,9 +138,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                 <PolicyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             </PageHeader>
             <Main>
-                { activeTab === 0 && <PolicyDetailsDescription policy={policy} /> }
-                { activeTab === 1 && <PolicyRulesTab policy={policy} loading={loading} /> }
-                { activeTab === 2 && <PolicySystemsTab policy={policy} systemsTableRef={systemsTable} /> }
+                { currentTab(activeTab) }
             </Main>
         </React.Fragment>
     );

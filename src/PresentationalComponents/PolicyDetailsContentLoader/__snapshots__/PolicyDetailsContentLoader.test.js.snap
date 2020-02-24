@@ -2,8 +2,8 @@
 
 exports[`PolicyDetailsContentLoader expect to render without error 1`] = `
 <Holder
-  backgroundColor="#f3f3f3"
-  foregroundColor="#ecebeb"
+  backgroundcolor="#f3f3f3"
+  foregroundcolor="#ecebeb"
   height={400}
   speed={2}
   viewBox="0 0 1000 400"

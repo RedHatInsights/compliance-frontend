@@ -117,7 +117,7 @@ class ReportCard extends React.Component {
                         <GridItem span={6}>
                             <TextContent>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    <Link to={'/policies/' + id} >
+                                    <Link to={'/reports/' + id} >
                                         View report
                                     </Link>
                                 </Text>

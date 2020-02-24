@@ -1,36 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportDetails expect to render without error 1`] = `
-<div>
+Array [
   <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    className="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
       aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
+      className="pf-c-breadcrumb"
     >
       <ol
-        class="pf-c-breadcrumb__list"
+        className="pf-c-breadcrumb__list"
       >
         <li
-          class="pf-c-breadcrumb__item"
+          className="pf-c-breadcrumb__item"
         >
           <a
-            class="pf-c-breadcrumb__link"
+            className="pf-c-breadcrumb__link"
             href="/rhel/compliance/reports"
+            target={null}
           >
             Reports
           </a>
           <span
-            class="pf-c-breadcrumb__item-divider"
+            className="pf-c-breadcrumb__item-divider"
           >
             <svg
-              aria-hidden="true"
+              aria-hidden={true}
+              aria-labelledby={null}
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
+              style={
+                Object {
+                  "verticalAlign": "-0.125em",
+                }
+              }
               viewBox="0 0 256 512"
               width="1em"
             >
@@ -42,14 +48,14 @@ exports[`ReportDetails expect to render without error 1`] = `
           </span>
         </li>
         <li
-          class="pf-c-breadcrumb__item"
+          className="pf-c-breadcrumb__item"
         >
           profile1
         </li>
       </ol>
     </nav>
     <h1
-      class="pf-c-title pf-m-2xl"
+      className="pf-c-title pf-m-2xl"
       widget-type="InsightsPageHeaderTitle"
     >
        
@@ -57,864 +63,10 @@ exports[`ReportDetails expect to render without error 1`] = `
        
     </h1>
     <div
-      class="pf-l-grid pf-m-gutter"
+      className="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="chart-inline"
-        >
-          <div
-            class="chart-container"
-          >
-            <div
-              class="pf-c-chart"
-              style="pointer-events: none; position: relative; width: 100%; height: auto;"
-            >
-              <svg
-                height="230"
-                role="img"
-                style="pointer-events: all; width: 100%; height: auto;"
-                viewBox="0 0 462 230"
-                width="462"
-              >
-                <g>
-                  <path
-                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                  <path
-                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                </g>
-                <g>
-                  <rect
-                    height="61.809999999999995"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: none;"
-                    vector-effect="non-scaling-stroke"
-                    width="225.29780853517875"
-                    x="209"
-                    y="86.095"
-                  />
-                  <path
-                    d="M 218.128, 104.967
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c;"
-                  />
-                  <path
-                    d="M 218.128, 135.872
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7;"
-                  />
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-0"
-                    x="239.8"
-                    y="100.095"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      1 system compliant
-                    </tspan>
-                  </text>
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-1"
-                    x="239.8"
-                    y="131"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      0 systems non-compliant
-                    </tspan>
-                  </text>
-                </g>
-                <text
-                  direction="inherit"
-                  dx="0"
-                  dy="1.200000000000001"
-                  x="106"
-                  y="115"
-                >
-                  <tspan
-                    dx="0"
-                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    100%
-                  </tspan>
-                  <tspan
-                    dx="0"
-                    dy="19"
-                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    Compliant
-                  </tspan>
-                </text>
-              </svg>
-              <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
-              >
-                <svg
-                  height="230"
-                  style="overflow: visible; width: 100%; height: auto;"
-                  viewBox="0 0 462 230"
-                  width="462"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="pf-c-content policy-details"
-        >
-          <dl
-            class=""
-            data-pf-content="true"
-          >
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              <h2
-                class=""
-                data-pf-content="true"
-              >
-                Policy details
-              </h2>
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              <a
-                href="/policies/1"
-              >
-                View policy
-              </a>
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Operating system
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              RHEL 
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              1.0%
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Business objective
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              BO 1
-            </dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col"
-      >
-        <table>
-          <tr>
-            <td>
-              Systems Table
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
-</div>
-`;
-
-exports[`ReportDetailsQuery expect to render even without policyId 1`] = `
-<div>
-  <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/rhel/compliance/reports"
-          >
-            Reports
-          </a>
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <h1
-      class="pf-c-title pf-m-2xl"
-      widget-type="InsightsPageHeaderTitle"
-    >
-       
-      profile1 report
-       
-    </h1>
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="chart-inline"
-        >
-          <div
-            class="chart-container"
-          >
-            <div
-              class="pf-c-chart"
-              style="pointer-events: none; position: relative; width: 100%; height: auto;"
-            >
-              <svg
-                height="230"
-                role="img"
-                style="pointer-events: all; width: 100%; height: auto;"
-                viewBox="0 0 462 230"
-                width="462"
-              >
-                <g>
-                  <path
-                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                  <path
-                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                </g>
-                <g>
-                  <rect
-                    height="61.809999999999995"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: none;"
-                    vector-effect="non-scaling-stroke"
-                    width="225.29780853517875"
-                    x="209"
-                    y="86.095"
-                  />
-                  <path
-                    d="M 218.128, 104.967
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c;"
-                  />
-                  <path
-                    d="M 218.128, 135.872
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7;"
-                  />
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-0"
-                    x="239.8"
-                    y="100.095"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      1 system compliant
-                    </tspan>
-                  </text>
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-1"
-                    x="239.8"
-                    y="131"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      0 systems non-compliant
-                    </tspan>
-                  </text>
-                </g>
-                <text
-                  direction="inherit"
-                  dx="0"
-                  dy="1.200000000000001"
-                  x="106"
-                  y="115"
-                >
-                  <tspan
-                    dx="0"
-                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    100%
-                  </tspan>
-                  <tspan
-                    dx="0"
-                    dy="19"
-                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    Compliant
-                  </tspan>
-                </text>
-              </svg>
-              <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
-              >
-                <svg
-                  height="230"
-                  style="overflow: visible; width: 100%; height: auto;"
-                  viewBox="0 0 462 230"
-                  width="462"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="pf-c-content policy-details"
-        >
-          <dl
-            class=""
-            data-pf-content="true"
-          >
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              <h2
-                class=""
-                data-pf-content="true"
-              >
-                Policy details
-              </h2>
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              <a
-                href="/policies/1"
-              >
-                View policy
-              </a>
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Operating system
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              RHEL 
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              1.0%
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Business objective
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              BO 1
-            </dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col"
-      >
-        <table>
-          <tr>
-            <td>
-              Systems Table
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
-</div>
-`;
-
-exports[`ReportDetailsQuery expect to render with policyId 1`] = `
-<div>
-  <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/rhel/compliance/reports"
-          >
-            Reports
-          </a>
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <h1
-      class="pf-c-title pf-m-2xl"
-      widget-type="InsightsPageHeaderTitle"
-    >
-       
-      profile1 report
-       
-    </h1>
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="chart-inline"
-        >
-          <div
-            class="chart-container"
-          >
-            <div
-              class="pf-c-chart"
-              style="pointer-events: none; position: relative; width: 100%; height: auto;"
-            >
-              <svg
-                height="230"
-                role="img"
-                style="pointer-events: all; width: 100%; height: auto;"
-                viewBox="0 0 462 230"
-                width="462"
-              >
-                <g>
-                  <path
-                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                  <path
-                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                </g>
-                <g>
-                  <rect
-                    height="61.809999999999995"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: none;"
-                    vector-effect="non-scaling-stroke"
-                    width="225.29780853517875"
-                    x="209"
-                    y="86.095"
-                  />
-                  <path
-                    d="M 218.128, 104.967
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c;"
-                  />
-                  <path
-                    d="M 218.128, 135.872
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7;"
-                  />
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-0"
-                    x="239.8"
-                    y="100.095"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      1 system compliant
-                    </tspan>
-                  </text>
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-1"
-                    x="239.8"
-                    y="131"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      0 systems non-compliant
-                    </tspan>
-                  </text>
-                </g>
-                <text
-                  direction="inherit"
-                  dx="0"
-                  dy="1.200000000000001"
-                  x="106"
-                  y="115"
-                >
-                  <tspan
-                    dx="0"
-                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    100%
-                  </tspan>
-                  <tspan
-                    dx="0"
-                    dy="19"
-                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    Compliant
-                  </tspan>
-                </text>
-              </svg>
-              <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
-              >
-                <svg
-                  height="230"
-                  style="overflow: visible; width: 100%; height: auto;"
-                  viewBox="0 0 462 230"
-                  width="462"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="pf-c-content policy-details"
-        >
-          <dl
-            class=""
-            data-pf-content="true"
-          >
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              <h2
-                class=""
-                data-pf-content="true"
-              >
-                Policy details
-              </h2>
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              <a
-                href="/policies/1"
-              >
-                View policy
-              </a>
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Operating system
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              RHEL 
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              1.0%
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Business objective
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              BO 1
-            </dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col"
-      >
-        <table>
-          <tr>
-            <td>
-              Systems Table
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
-</div>
-`;
-
-exports[`ReportDetailsQuery passes loading on to SystemTable 1`] = `
-<Fragment>
-  <PageHeader>
-    <Component>
-      <BreadcrumbItem
-        onClick={[Function]}
-        to="/rhel/compliance/reports"
-      >
-        Reports
-      </BreadcrumbItem>
-      <BreadcrumbItem
-        isActive={true}
-      >
-        profile1
-      </BreadcrumbItem>
-    </Component>
-    <PageHeaderTitle
-      title="profile1 report"
-    />
-    <Grid
-      gutter="md"
-    >
-      <GridItem
-        lg={12}
-        md={12}
-        sm={12}
-        xl={6}
+        className="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
       >
         <div
           className="chart-inline"
@@ -922,238 +74,83 @@ exports[`ReportDetailsQuery passes loading on to SystemTable 1`] = `
           <div
             className="chart-container"
           >
-            <ChartDonut
-              data={
-                Array [
-                  Object {
-                    "x": "Compliant",
-                    "y": 1,
-                  },
-                  Object {
-                    "x": "Non-compliant",
-                    "y": 0,
-                  },
-                ]
-              }
-              identifier="profile1"
-              innerRadius={88}
-              legendData={
-                Array [
-                  Object {
-                    "name": "1 system compliant",
-                  },
-                  Object {
-                    "name": "0 systems non-compliant",
-                  },
-                ]
-              }
-              legendOrientation="vertical"
-              legendPosition="right"
-              padding={
-                Object {
-                  "bottom": 20,
-                  "left": 0,
-                  "right": 250,
-                  "top": 20,
-                }
-              }
+            <div
+              className="pf-c-chart"
               style={
                 Object {
-                  "fontSize": 20,
+                  "height": "auto",
+                  "pointerEvents": "none",
+                  "position": "relative",
+                  "touchAction": "none",
+                  "width": "100%",
                 }
               }
-              subTitle="Compliant"
-              themeColor="blue"
-              themeVariant="light"
-              title="100%"
-              width={462}
-            />
-          </div>
-        </div>
-      </GridItem>
-      <GridItem
-        lg={12}
-        md={12}
-        sm={12}
-        xl={6}
-      >
-        <ReportDetailsDescription
-          policy={
-            Object {
-              "businessObjective": Object {
-                "id": "1",
-                "title": "BO 1",
-              },
-              "complianceThreshold": 1,
-              "compliantHostCount": 1,
-              "description": "profile description",
-              "id": "1",
-              "name": "profile1",
-              "refId": "121212",
-              "totalHostCount": 1,
-            }
-          }
-        />
-      </GridItem>
-    </Grid>
-  </PageHeader>
-  <Connect(Main)>
-    <Grid
-      gutter="md"
-    >
-      <GridItem
-        span={12}
-      >
-        <SystemsTable
-          columns={
-            Array [
-              Object {
-                "composed": Array [
-                  "facts.os_release",
-                  "display_name",
-                ],
-                "key": "display_name",
-                "props": Object {
-                  "width": 30,
-                },
-                "title": "Name",
-              },
-              Object {
-                "key": "facts.compliance.rules_failed",
-                "props": Object {
-                  "width": 5,
-                },
-                "title": "Rules failed",
-              },
-              Object {
-                "key": "facts.compliance.compliance_score",
-                "props": Object {
-                  "width": 5,
-                },
-                "title": "Compliance score",
-              },
-              Object {
-                "key": "facts.compliance.last_scanned",
-                "props": Object {
-                  "width": 10,
-                },
-                "title": "Last scanned",
-              },
-            ]
-          }
-          policyId="1"
-        />
-      </GridItem>
-    </Grid>
-  </Connect(Main)>
-</Fragment>
-`;
-
-exports[`ReportDetailsQuery renders without error 1`] = `
-<div>
-  <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/rhel/compliance/reports"
-          >
-            Reports
-          </a>
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <h1
-      class="pf-c-title pf-m-2xl"
-      widget-type="InsightsPageHeaderTitle"
-    >
-       
-      profile1 report
-       
-    </h1>
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="chart-inline"
-        >
-          <div
-            class="chart-container"
-          >
-            <div
-              class="pf-c-chart"
-              style="pointer-events: none; position: relative; width: 100%; height: auto;"
             >
               <svg
-                height="230"
+                height={230}
                 role="img"
-                style="pointer-events: all; width: 100%; height: auto;"
+                style={
+                  Object {
+                    "height": "auto",
+                    "pointerEvents": "all",
+                    "width": "100%",
+                  }
+                }
                 viewBox="0 0 462 230"
-                width="462"
+                width={462}
               >
                 <g>
                   <path
                     d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
                     role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#06c",
+                        "padding": 8,
+                        "stroke": "transparent",
+                        "strokeWidth": 1,
+                      }
+                    }
                     transform="translate(106, 115)"
                   />
                   <path
                     d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
                     role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#8bc1f7",
+                        "padding": 8,
+                        "stroke": "transparent",
+                        "strokeWidth": 1,
+                      }
+                    }
                     transform="translate(106, 115)"
                   />
                 </g>
                 <g>
                   <rect
-                    height="61.809999999999995"
+                    height={61.809999999999995}
                     role="presentation"
-                    shape-rendering="auto"
-                    style="fill: none;"
-                    vector-effect="non-scaling-stroke"
-                    width="225.29780853517875"
-                    x="209"
-                    y="86.095"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "none",
+                      }
+                    }
+                    vectorEffect="non-scaling-stroke"
+                    width={225.29780853517875}
+                    x={209}
+                    y={86.095}
                   />
                   <path
                     d="M 218.128, 104.967
@@ -1162,8 +159,13 @@ exports[`ReportDetailsQuery renders without error 1`] = `
       h-9.744000000000028
       z"
                     role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c;"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#06c",
+                        "type": "square",
+                      }
+                    }
                   />
                   <path
                     d="M 218.128, 135.872
@@ -1172,39 +174,62 @@ exports[`ReportDetailsQuery renders without error 1`] = `
       h-9.744000000000028
       z"
                     role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7;"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#8bc1f7",
+                        "type": "square",
+                      }
+                    }
                   />
                   <text
                     direction="inherit"
-                    dx="0"
-                    dy="4.97"
+                    dx={0}
+                    dy={4.97}
                     id="legend-labels-0"
-                    x="239.8"
-                    y="100.095"
+                    x={239.8}
+                    y={100.095}
                   >
                     <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
+                      dx={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "var(--pf-chart-global--FontFamily)",
+                          "fontSize": 14,
+                          "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="start"
+                      x={239.8}
                     >
                       1 system compliant
                     </tspan>
                   </text>
                   <text
                     direction="inherit"
-                    dx="0"
-                    dy="4.97"
+                    dx={0}
+                    dy={4.97}
                     id="legend-labels-1"
-                    x="239.8"
-                    y="131"
+                    x={239.8}
+                    y={131}
                   >
                     <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
+                      dx={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "var(--pf-chart-global--FontFamily)",
+                          "fontSize": 14,
+                          "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="start"
+                      x={239.8}
                     >
                       0 systems non-compliant
                     </tspan>
@@ -1212,38 +237,69 @@ exports[`ReportDetailsQuery renders without error 1`] = `
                 </g>
                 <text
                   direction="inherit"
-                  dx="0"
-                  dy="1.200000000000001"
-                  x="106"
-                  y="115"
+                  dx={0}
+                  dy={1.200000000000001}
+                  x={106}
+                  y={115}
                 >
                   <tspan
-                    dx="0"
-                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
+                    dx={0}
+                    style={
+                      Object {
+                        "fill": "#252525",
+                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                        "fontSize": 24,
+                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                        "stroke": "transparent",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={106}
                   >
                     100%
                   </tspan>
                   <tspan
-                    dx="0"
-                    dy="19"
-                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
+                    dx={0}
+                    dy={19}
+                    style={
+                      Object {
+                        "fill": "#b8bbbe",
+                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                        "fontSize": 14,
+                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                        "stroke": "transparent",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={106}
                   >
                     Compliant
                   </tspan>
                 </text>
               </svg>
               <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
+                style={
+                  Object {
+                    "height": "auto",
+                    "left": 0,
+                    "position": "absolute",
+                    "top": 0,
+                    "width": "100%",
+                    "zIndex": 99,
+                  }
+                }
               >
                 <svg
-                  height="230"
-                  style="overflow: visible; width: 100%; height: auto;"
+                  height={230}
+                  style={
+                    Object {
+                      "height": "auto",
+                      "overflow": "visible",
+                      "width": "100%",
+                    }
+                  }
                   viewBox="0 0 462 230"
-                  width="462"
+                  width={462}
                 />
               </div>
             </div>
@@ -1251,69 +307,70 @@ exports[`ReportDetailsQuery renders without error 1`] = `
         </div>
       </div>
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+        className="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
       >
         <div
-          class="pf-c-content policy-details"
+          className="pf-c-content policy-details"
         >
           <dl
-            class=""
-            data-pf-content="true"
+            className=""
+            data-pf-content={true}
           >
             <dt
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               <h2
-                class=""
-                data-pf-content="true"
+                className=""
+                data-pf-content={true}
               >
                 Policy details
               </h2>
             </dt>
             <dd
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               <a
                 href="/policies/1"
+                onClick={[Function]}
               >
                 View policy
               </a>
             </dd>
             <dt
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               Operating system
             </dt>
             <dd
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               RHEL 
             </dd>
             <dt
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               Compliance threshold
             </dt>
             <dd
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               1.0%
             </dd>
             <dt
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               Business objective
             </dt>
             <dd
-              class=""
-              data-pf-content="true"
+              className=""
+              data-pf-content={true}
             >
               BO 1
             </dd>
@@ -1321,16 +378,16 @@ exports[`ReportDetailsQuery renders without error 1`] = `
         </div>
       </div>
     </div>
-  </section>
+  </section>,
   <section
-    class="pf-l-page__main-section pf-c-page__main-section"
+    className="pf-l-page__main-section pf-c-page__main-section"
     page-type=""
   >
     <div
-      class="pf-l-grid pf-m-gutter"
+      className="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col"
+        className="pf-l-grid__item pf-m-12-col"
       >
         <table>
           <tr>
@@ -1341,302 +398,6 @@ exports[`ReportDetailsQuery renders without error 1`] = `
         </table>
       </div>
     </div>
-  </section>
-</div>
-`;
-
-exports[`ReportDetailsQuery renders without error 2`] = `
-<div>
-  <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/rhel/compliance/reports"
-          >
-            Reports
-          </a>
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <h1
-      class="pf-c-title pf-m-2xl"
-      widget-type="InsightsPageHeaderTitle"
-    >
-       
-      profile1 report
-       
-    </h1>
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="chart-inline"
-        >
-          <div
-            class="chart-container"
-          >
-            <div
-              class="pf-c-chart"
-              style="pointer-events: none; position: relative; width: 100%; height: auto;"
-            >
-              <svg
-                height="230"
-                role="img"
-                style="pointer-events: all; width: 100%; height: auto;"
-                viewBox="0 0 462 230"
-                width="462"
-              >
-                <g>
-                  <path
-                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                  <path
-                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7; padding: 8px; stroke: transparent; stroke-width: 1;"
-                    transform="translate(106, 115)"
-                  />
-                </g>
-                <g>
-                  <rect
-                    height="61.809999999999995"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: none;"
-                    vector-effect="non-scaling-stroke"
-                    width="225.29780853517875"
-                    x="209"
-                    y="86.095"
-                  />
-                  <path
-                    d="M 218.128, 104.967
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #06c;"
-                  />
-                  <path
-                    d="M 218.128, 135.872
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-                    role="presentation"
-                    shape-rendering="auto"
-                    style="fill: #8bc1f7;"
-                  />
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-0"
-                    x="239.8"
-                    y="100.095"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      1 system compliant
-                    </tspan>
-                  </text>
-                  <text
-                    direction="inherit"
-                    dx="0"
-                    dy="4.97"
-                    id="legend-labels-1"
-                    x="239.8"
-                    y="131"
-                  >
-                    <tspan
-                      dx="0"
-                      style="font-family: var(--pf-chart-global--FontFamily); font-size: 14px; letter-spacing: var(--pf-chart-global--letter-spacing); padding: 10px; stroke: transparent; fill: #252525;"
-                      text-anchor="start"
-                      x="239.8"
-                    >
-                      0 systems non-compliant
-                    </tspan>
-                  </text>
-                </g>
-                <text
-                  direction="inherit"
-                  dx="0"
-                  dy="1.200000000000001"
-                  x="106"
-                  y="115"
-                >
-                  <tspan
-                    dx="0"
-                    style="font-size: 24px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    100%
-                  </tspan>
-                  <tspan
-                    dx="0"
-                    dy="19"
-                    style="fill: #b8bbbe; font-size: 14px; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
-                    text-anchor="middle"
-                    x="106"
-                  >
-                    Compliant
-                  </tspan>
-                </text>
-              </svg>
-              <div
-                style="z-index: 99; position: absolute; top: 0px; left: 0px; width: 100%; height: auto;"
-              >
-                <svg
-                  height="230"
-                  style="overflow: visible; width: 100%; height: auto;"
-                  viewBox="0 0 462 230"
-                  width="462"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
-      >
-        <div
-          class="pf-c-content policy-details"
-        >
-          <dl
-            class=""
-            data-pf-content="true"
-          >
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              <h2
-                class=""
-                data-pf-content="true"
-              >
-                Policy details
-              </h2>
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              <a
-                href="/policies/1"
-              >
-                View policy
-              </a>
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Operating system
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              RHEL 
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              1.0%
-            </dd>
-            <dt
-              class=""
-              data-pf-content="true"
-            >
-              Business objective
-            </dt>
-            <dd
-              class=""
-              data-pf-content="true"
-            >
-              BO 1
-            </dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <div
-      class="pf-l-grid pf-m-gutter"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col"
-      >
-        <table>
-          <tr>
-            <td>
-              Systems Table
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </section>
-</div>
+  </section>,
+]
 `;

@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { onNavigate } from '../../Utilities/Breadcrumbs';
 import { fixedPercentage, pluralize } from '../../Utilities/TextHelper';
 import {
     ReportDetailsContentLoader,
@@ -49,9 +48,9 @@ query Profile($policyId: String!){
 }
 `;
 
-export const ReportDetailsQuery = ({ policyId, onNavigateWithProps }) => {
+export const ReportDetails = ({ match }) => {
     const { data, error, loading } = useQuery(QUERY, {
-        variables: { policyId }
+        variables: { policyId: match.params.report_id }
     });
     let systemsTable = useRef();
     let donutValues = [];
@@ -123,7 +122,7 @@ export const ReportDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         <React.Fragment>
             <PageHeader>
                 <Breadcrumb>
-                    <BreadcrumbItem to='/rhel/compliance/reports' onClick={ (event) => onNavigateWithProps(event) }>
+                    <BreadcrumbItem to='/rhel/compliance/reports'>
                         Reports
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
@@ -173,24 +172,6 @@ export const ReportDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         </React.Fragment>
     );
 };
-
-ReportDetailsQuery.propTypes = {
-    policyId: propTypes.string,
-    onNavigateWithProps: propTypes.func
-};
-
-export class ReportDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onNavigate = onNavigate.bind(this);
-    }
-
-    render() {
-        return (
-            <ReportDetailsQuery policyId={this.props.match.params.report_id} onNavigateWithProps={this.onNavigate} />
-        );
-    }
-}
 
 ReportDetails.propTypes = {
     match: propTypes.object

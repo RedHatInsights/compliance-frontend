@@ -1,13 +1,10 @@
 import { init } from '../../store';
-import { Provider } from 'react-redux';
-import ReactDom from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import toJson from 'enzyme-to-json';
+import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import {
     QUERY,
-    ReportDetailsQuery,
     ReportDetails
 } from './ReportDetails';
 
@@ -63,101 +60,6 @@ jest.mock('@apollo/react-hooks', () => ({
     }
 }));
 
-describe('ReportDetailsQuery', () => {
-    const MockComponent = jest.fn(({ children, loaded }) => {
-        return children && loaded ? children : 'Test Loading...';
-    });
-    const defaultProps = {
-        store,
-        policyId: '1234',
-        onNavigateWithProps: jest.fn()
-    };
-    let container;
-
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
-        global.insights = {
-            loadInventory: jest.fn(() => {
-                return Promise.resolve({
-                    inventoryConnector: () => ({
-                        InventoryTable: MockComponent
-                    }),
-                    INVENTORY_ACTION_TYPES: {},
-                    mergeWithEntities: () => ({})
-                });
-            })
-        };
-    });
-
-    afterEach(() => {
-        document.body.removeChild(container);
-        container = null;
-    });
-
-    it('passes loading on to SystemTable', () => {
-        const wrapper = shallow(
-            <ReportDetailsQuery { ...defaultProps } />
-        );
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
-    it('expect to render even without policyId', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <ReportDetailsQuery />
-                    </Provider>
-                </Router>,
-                container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('renders without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <ReportDetailsQuery policyId="1234" />
-                    </Provider>
-                </Router>,
-                container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('renders without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <ReportDetailsQuery policyId="1234" />
-                    </Provider>
-                </Router>,
-                container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('expect to render with policyId', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <ReportDetailsQuery { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-});
-
 describe('ReportDetails', () => {
     const defaultProps = {
         match: {
@@ -166,28 +68,17 @@ describe('ReportDetails', () => {
             }
         }
     };
-    let container;
-
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-        document.body.removeChild(container);
-        container = null;
-    });
 
     it('expect to render without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <ReportDetails { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
-        });
+        global.insights = {};
+        const component = renderer.create(
+            <Router>
+                <Provider store={ store }>
+                    <ReportDetails { ...defaultProps } />
+                </Provider>
+            </Router>
+        );
 
-        expect(container).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 });
