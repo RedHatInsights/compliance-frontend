@@ -10,7 +10,7 @@ describe('mapping systems to inventory entities', () => {
         expect(systemsToInventoryEntities([], entities, false)).toEqual([]);
     });
 
-    it('should return all systems if allSystems is true', () => {
+    it('should return all systems if showAllSystems is true', () => {
         expect(systemsToInventoryEntities([], entities, true).length).toEqual(entities.length);
     });
 
@@ -21,7 +21,7 @@ describe('mapping systems to inventory entities', () => {
         expect(inventoryEntities).toMatchSnapshot();
     });
 
-    it('should only return all systems if all have a matching in the inventory for allSystems=false', () => {
+    it('should only return all systems if all have a matching in the inventory for showAllSystems=false', () => {
         const inventoryEntities = systemsToInventoryEntities(systems, entities, false);
         const systemIds = systems.map(system => system.node.id);
         const systemNames = systems.map(system => system.node.name);
@@ -33,7 +33,7 @@ describe('mapping systems to inventory entities', () => {
         toEqual(systemComplianceScores.sort());
     });
 
-    it('should always return all systems for allSystems=true', () => {
+    it('should always return all systems for showAllSystems=true', () => {
         const inventoryEntities = systemsToInventoryEntities(systems, entities, true);
         const systemComplianceScores = [' 40%', ' N/A', ' N/A', ' N/A'];
         expect(inventoryEntities.length).toBe(entities.length);

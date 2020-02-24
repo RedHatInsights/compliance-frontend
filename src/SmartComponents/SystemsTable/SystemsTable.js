@@ -208,7 +208,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, this.props.allSystems
+                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, this.props.showAllSystems
                 ))
         });
 
@@ -218,7 +218,7 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport, allSystems } = this.props;
+        const { remediationsEnabled, compact, enableExport, showAllSystems } = this.props;
         const {
             page, totalCount, perPage, items, InventoryCmp, filterChips,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
@@ -253,7 +253,7 @@ class SystemsTable extends React.Component {
             exportConfig
         };
 
-        if (!allSystems) {
+        if (!showAllSystems) {
             inventoryTableProps.total = totalCount;
             inventoryTableProps.items = items.map((edge) => edge.node.id);
             inventoryTableProps.filterConfig = filterConfig;
@@ -268,7 +268,7 @@ class SystemsTable extends React.Component {
         }
 
         return <InventoryCmp { ...inventoryTableProps }>
-            { !allSystems && <reactCore.ToolbarGroup>
+            { !showAllSystems && <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
@@ -297,7 +297,7 @@ SystemsTable.propTypes = {
     selectedEntities: propTypes.array,
     exportToCSV: propTypes.func,
     enableExport: propTypes.bool,
-    allSystems: propTypes.bool
+    showAllSystems: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -305,7 +305,7 @@ SystemsTable.defaultProps = {
     remediationsEnabled: true,
     compact: false,
     enableExport: true,
-    allSystems: false
+    showAllSystems: false
 };
 
 const mapStateToProps = state => {
