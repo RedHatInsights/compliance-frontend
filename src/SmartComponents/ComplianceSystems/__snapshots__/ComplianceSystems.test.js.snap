@@ -12,7 +12,6 @@ exports[`ComplianceSystems expect to render without error 1`] = `
   </PageHeader>
   <Connect(Main)>
     <Connect(withApollo(SystemsTable))
-      allSystems={true}
       columns={
         Array [
           Object {
@@ -49,6 +48,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
           },
         ]
       }
+      showAllSystems={true}
     />
   </Connect(Main)>
 </Fragment>

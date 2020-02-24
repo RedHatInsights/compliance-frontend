@@ -26,7 +26,7 @@ export const rulesCount = (system, rulesMethod) => {
     return (rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr)) || 0;
 };
 
-export const systemsToInventoryEntities = (systems, entities, allSystems) =>
+export const systemsToInventoryEntities = (systems, entities, showAllSystems) =>
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -36,7 +36,7 @@ export const systemsToInventoryEntities = (systems, entities, allSystems) =>
             return entity.id === system.id;
         });
         if (matchingSystem === undefined) {
-            if (!allSystems) { return; }
+            if (!showAllSystems) { return; }
 
             matchingSystem = { profiles: [] };
         }
@@ -97,14 +97,14 @@ export const systemsToInventoryEntities = (systems, entities, allSystems) =>
         };
     }).filter(value => value !== undefined);
 
-export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished, allSystems) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished, showAllSystems) => applyReducerHash(
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
             if (!isGraphqlFinished()) {
                 return { ...state, loaded: false };
             }
 
-            state.rows = systemsToInventoryEntities(systems(), state.rows, allSystems);
+            state.rows = systemsToInventoryEntities(systems(), state.rows, showAllSystems);
             state.count = state.rows.length;
             state.total = state.rows.length;
             state.columns = [];
