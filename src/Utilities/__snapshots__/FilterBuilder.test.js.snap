@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildFilterString compliance state and score filter returns a base filter for name when searching 1`] = `"name ~ Name"`;
+
+exports[`buildFilterString compliance state and score filter returns a filter for complianceStates 1`] = `"compliant = true"`;
+
+exports[`buildFilterString compliance state and score filter returns a filter for complianceStates 2`] = `"compliance_score >= 0 and compliance_score <= 49 or compliance_score >= 50 and compliance_score <= 69"`;
+
+exports[`buildFilterString returns a base filter for a policy id 1`] = `"profile_id = exmpleID-1"`;
+
+exports[`buildFilterString returns a filterstring 1`] = `"profile_id = exmpleID-1 and name ~ Name and compliant = true and compliance_score >= 0 and compliance_score <= 49 or compliance_score >= 50 and compliance_score <= 69"`;

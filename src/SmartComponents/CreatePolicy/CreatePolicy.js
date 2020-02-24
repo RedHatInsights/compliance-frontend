@@ -90,6 +90,7 @@ class CreatePolicy extends React.Component {
                         onClose={this.toggleOpen}
                         isFullWidth
                         isFullHeight
+                        isFooterLeftAligned
                         title="Create SCAP policy"
                         description="Create a new policy for managing SCAP compliance"
                         steps={steps}

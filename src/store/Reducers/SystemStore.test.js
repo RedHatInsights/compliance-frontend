@@ -7,7 +7,11 @@ import { systems, entities } from './SystemStore.fixtures';
 
 describe('mapping systems to inventory entities', () => {
     it('should return an empty set if there are no systems', () => {
-        expect(systemsToInventoryEntities([], entities)).toEqual([]);
+        expect(systemsToInventoryEntities([], entities, false)).toEqual([]);
+    });
+
+    it('should return all systems if allSystems is true', () => {
+        expect(systemsToInventoryEntities([], entities, true).length).toEqual(entities.length);
     });
 
     it('should only return systems with a matching inventory entity', () => {
@@ -17,14 +21,24 @@ describe('mapping systems to inventory entities', () => {
         expect(inventoryEntities).toMatchSnapshot();
     });
 
-    it('should only return all systems if all have a matching in the inventory', () => {
-        const inventoryEntities = systemsToInventoryEntities(systems, entities);
+    it('should only return all systems if all have a matching in the inventory for allSystems=false', () => {
+        const inventoryEntities = systemsToInventoryEntities(systems, entities, false);
         const systemIds = systems.map(system => system.node.id);
         const systemNames = systems.map(system => system.node.name);
         const systemComplianceScores = [' 40%', ' N/A'];
         expect(inventoryEntities.length).toBe(2);
         expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(systemIds.sort());
         expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(systemNames.sort());
+        expect(inventoryEntities.map(entity => entity.facts.compliance.compliance_score_text).sort()).
+        toEqual(systemComplianceScores.sort());
+    });
+
+    it('should always return all systems for allSystems=true', () => {
+        const inventoryEntities = systemsToInventoryEntities(systems, entities, true);
+        const systemComplianceScores = [' 40%', ' N/A', ' N/A', ' N/A'];
+        expect(inventoryEntities.length).toBe(entities.length);
+        expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(entities.map(e => e.id).sort());
+        expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(entities.map(e => e.display_name).sort());
         expect(inventoryEntities.map(entity => entity.facts.compliance.compliance_score_text).sort()).
         toEqual(systemComplianceScores.sort());
     });

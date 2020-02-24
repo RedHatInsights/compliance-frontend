@@ -37,6 +37,7 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
             isSmall
             title='Delete policy'
             isOpen={isModalOpen}
+            isFooterLeftAligned
             onClose={toggle}
             actions={[
                 <Button key='destroy'

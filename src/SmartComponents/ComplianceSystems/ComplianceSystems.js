@@ -30,6 +30,7 @@ const ComplianceSystems = () => {
             width: 10
         }
     }];
+
     const beta = window.location.pathname.split('/')[1] === 'beta';
 
     return (
