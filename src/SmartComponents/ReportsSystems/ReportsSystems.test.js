@@ -7,7 +7,23 @@ jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () 
 );
 
 describe('ReportsSystems', () => {
-    it('expect to render without error', () => {
+    it('expect to render without error in beta', () => {
+        window.insights = {
+            chrome: { isBeta: jest.fn(() => true) }
+        };
+
+        const wrapper = shallow(
+            <ReportsSystems />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to render without error in stable', () => {
+        window.insights = {
+            chrome: { isBeta: jest.fn(() => false) }
+        };
+
         const wrapper = shallow(
             <ReportsSystems />
         );

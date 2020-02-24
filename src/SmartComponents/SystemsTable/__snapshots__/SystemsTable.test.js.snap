@@ -105,7 +105,6 @@ Object {
           "page": 1,
           "perPage": 50,
           "total": 0,
-          "variant": null,
         },
         Object {},
       ],
@@ -260,7 +259,6 @@ Object {
           "page": 1,
           "perPage": 50,
           "total": 0,
-          "variant": null,
         },
         Object {},
       ],
@@ -414,7 +412,6 @@ Object {
           "page": 1,
           "perPage": 50,
           "total": 0,
-          "variant": null,
         },
         Object {},
       ],
@@ -558,7 +555,6 @@ Object {
           "page": 1,
           "perPage": 50,
           "total": 0,
-          "variant": null,
         },
         Object {},
       ],
@@ -704,7 +700,6 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
   page={1}
   perPage={50}
   total={0}
-  variant={null}
 >
   <ToolbarGroup>
     <ToolbarItem
@@ -1282,7 +1277,6 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
   page={1}
   perPage={50}
   total={1}
-  variant={null}
 >
   <ToolbarGroup>
     <ToolbarItem
