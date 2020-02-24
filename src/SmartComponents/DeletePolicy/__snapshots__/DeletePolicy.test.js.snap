@@ -93,12 +93,13 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -315,12 +316,13 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -416,12 +418,13 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -541,12 +544,13 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -850,8 +854,9 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                             This cannot be undone.
                           </div>
                         </TextContent>
+                        <br />
                         <Checkbox
-                          aria-label="controlled checkbox example"
+                          aria-label="delete-all-reports-checkbox"
                           className=""
                           id="delete-all-reports-1"
                           isChecked={false}
@@ -865,7 +870,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                           >
                             <input
                               aria-invalid={false}
-                              aria-label="controlled checkbox example"
+                              aria-label="delete-all-reports-checkbox"
                               checked={false}
                               className="pf-c-check__input"
                               disabled={false}
@@ -1125,12 +1130,13 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -1238,12 +1244,13 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
                   <div
                     class="pf-c-check"
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="controlled checkbox example"
+                      aria-label="delete-all-reports-checkbox"
                       class="pf-c-check__input"
                       id="delete-all-reports-1"
                       type="checkbox"
@@ -1465,8 +1472,9 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                             This cannot be undone.
                           </div>
                         </TextContent>
+                        <br />
                         <Checkbox
-                          aria-label="controlled checkbox example"
+                          aria-label="delete-all-reports-checkbox"
                           className=""
                           id="delete-all-reports-1"
                           isChecked={false}
@@ -1480,7 +1488,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                           >
                             <input
                               aria-invalid={false}
-                              aria-label="controlled checkbox example"
+                              aria-label="delete-all-reports-checkbox"
                               checked={false}
                               className="pf-c-check__input"
                               disabled={false}

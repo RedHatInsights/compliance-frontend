@@ -12,7 +12,8 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import { dispatchAction } from '../../Utilities/Dispatcher';
 
 const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
-    const [deleteAllTestResults, setDeleteAll] = useState(false);
+    const defaultDeleteAllState = false;
+    const [deleteAllTestResults, setDeleteAll] = useState(defaultDeleteAllState);
     const [deletePolicy] = useMutation(DELETE_PROFILE, {
         onCompleted: () => {
             dispatchAction(addNotification({
@@ -33,15 +34,9 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
         }
     });
     const { name, id } = policy;
-    const variables = {
-        input: {
-            id,
-            deleteAllTestResults
-        }
-    };
 
     useEffect(() => {
-        setDeleteAll(false);
+        setDeleteAll(defaultDeleteAllState);
     }, [policy]);
 
     return (
@@ -55,7 +50,8 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
                 <Button key='destroy'
                     aria-label="delete"
                     variant='danger'
-                    onClick={() => deletePolicy({ variables }) }>
+                    onClick={() => deletePolicy({ variables: { input: { id, deleteAllTestResults } } })}
+                >
                     Delete policy
                 </Button>,
                 <Button key='cancel' variant='secondary' onClick={toggle}>
@@ -69,11 +65,12 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
             <TextContent>
                 This cannot be undone.
             </TextContent>
+            <br />
             <Checkbox
                 id={ `delete-all-reports-${id}` }
                 isChecked={ deleteAllTestResults }
                 onChange={ () => setDeleteAll(!deleteAllTestResults) }
-                aria-label="controlled checkbox example"
+                aria-label="delete-all-reports-checkbox"
                 label="Delete all reports for this policy" />
         </Modal>
     );
