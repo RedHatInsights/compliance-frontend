@@ -30,7 +30,7 @@ const ReportsSystems = () => {
             width: 10
         }
     }];
-    const beta = window.location.pathname.split('/')[1] === 'beta';
+    const beta = window.insights.chrome.isBeta();
 
     return (
         <React.Fragment>
