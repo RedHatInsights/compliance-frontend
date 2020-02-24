@@ -6,8 +6,8 @@ import * as reactIcons from '@patternfly/react-icons';
 import * as pfReactTable from '@patternfly/react-table';
 import { withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
 import gql from 'graphql-tag';
+import debounce from 'lodash/debounce';
 import {
     SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
@@ -20,12 +20,10 @@ import  {
 } from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
-import { buildFilterString } from 'Utilities/FilterBuilder';
 import { FilterConfigBuilder } from 'Utilities/FilterConfigBuilder';
 import { stringToId } from 'Utilities/TextHelper';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import { FILTER_CONFIGURATION } from '../../constants';
-const DEBOUNCE_TIME = 600;
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -56,16 +54,23 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 }
 `;
 
+const loadingState = {
+    loaded: false,
+    items: [],
+    page: 1
+};
+
 @registry()
 class SystemsTable extends React.Component {
     inventory = React.createRef();
     filterConfig = new FilterConfigBuilder(FILTER_CONFIGURATION);
+    chipBuilder = this.filterConfig.getChipBuilder();
+    filterBuilder = this.filterConfig.getFilterBuilder();
 
     state = {
+        ...loadingState,
         InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
-        items: [],
         policyId: this.props.policyId,
-        page: 1,
         perPage: 50,
         totalCount: 0,
         activeFilters: this.filterConfig.initialDefaultState(),
@@ -82,8 +87,12 @@ class SystemsTable extends React.Component {
 
     systemFetch = () => {
         const { client } = this.props;
-        const { policyId, perPage, page } = this.state;
-        const filter = buildFilterString(this.state);
+        const { policyId, perPage, page, activeFilters } = this.state;
+        let filter = this.filterBuilder.buildFilterString(activeFilters);
+
+        if (policyId && policyId.length > 0) {
+            filter = `profile_id = ${policyId} and ${filter}`;
+        }
 
         return client.query({
             query: GET_SYSTEMS,
@@ -124,122 +133,63 @@ class SystemsTable extends React.Component {
         }
     }
 
-    updateFilter = (filter, selectedValues) => {
-        this.setState({
-            ...this.state,
-            loaded: false,
-            items: []
-        }, () => {
-            this.updateComplianceFilter(filter, selectedValues);
-        });
-    }
+    updateChips = () => (
+        this.chipBuilder.chipsFor(this.state.activeFilters).then((filterChips) => (
+            this.setState({
+                filterChips
+            })
+        ))
+    )
 
-    updateComplianceFilter = (filter, selectedValues) => {
+    filterUpdate = () => (
+        this.updateChips().then(this.systemFetch)
+    )
+
+    onFilterUpdate = debounce((filter, selectedValues) => {
         this.setState({
-            ...this.state,
-            loaded: false,
-            items: [],
-            page: 1,
+            ...loadingState,
             activeFilters: {
                 ...this.state.activeFilters,
                 [filter]: selectedValues
             }
         }, this.filterUpdate);
-    }
+    }, 500)
 
-    filterUpdate = debounce(() => {
-        this.updateFilterChips();
-        this.systemFetch();
-    }, DEBOUNCE_TIME)
+    removeFilterFromFilterState = (currentState, filter) => (
+        (typeof(currentState) === 'string') ? '' :
+            currentState.filter((value) =>
+                value !== filter
+            )
+    )
 
-    filterChip = (chips) => {
+    deleteFilter = (chips) => {
         const chipCategory = chips.category;
-        const chipName = chips.chips[0].name;
-        return this.state.filterChips.map((chips) => {
-            if (chips.category !== chipCategory) {
-                return chips;
-            }
-
-            const freshChips = chips.chips.filter((c) => c.name !== chipName);
-            return freshChips.length > 0 ? { ...chips, chips: freshChips } : null;
-        }).filter((c) => (!!c));
-    }
-
-    updatedChips = (filter) => {
-        const currentFilter = this.state.activeFilters[filter];
-        if (typeof(currentFilter) === 'string' && currentFilter !== '') {
-            return {
-                category: 'Name',
-                chips: [{ name: currentFilter }]
-            };
-        } else if (currentFilter && currentFilter.length > 0) {
-            const category = this.filterConfig.categoryLabelForValue(currentFilter[0]);
-            return {
-                category,
-                chips: currentFilter.map((value) => (
-                    { name: this.filterConfig.labelForValue(value, category) }
-                ))
-            };
-        } else {
-            return null;
-        }
-    }
-
-    updateFilterChips = () => {
-        let newChips = Object.keys(this.state.activeFilters).map((filter) => (
-            this.updatedChips(filter)
-        )).filter((f) => (!!f));
-
-        this.setState({
-            filterChips: newChips
-        });
-    }
-
-    deleteComplianceFilter = (chips) => {
-        const chipCategory = chips.category;
-        const chipName = chips.chips[0].name;
-        const chipValue = this.filterConfig.valueForLabel(chipName, chipCategory);
+        const chipValue = this.filterConfig.valueForLabel(chips.chips[0].name, chipCategory);
         const stateProp = stringToId(chipCategory);
         const currentState = this.state.activeFilters[stateProp];
-        let newFilterState;
-        if (typeof(currentState) === 'string') {
-            newFilterState = '';
-        } else {
-            newFilterState = currentState.filter((value) =>
-                value !== chipValue
-            );
-        }
-
-        const freshChips = this.filterChip(chips);
+        const newFilterState = this.removeFilterFromFilterState(currentState, chipValue);
+        const activeFilters =  {
+            ...this.state.activeFilters,
+            [stateProp]: newFilterState
+        };
 
         this.setState({
-            loaded: false,
-            items: [],
-            activeFilters: {
-                ...this.state.activeFilters,
-                [stateProp]: newFilterState
-            },
-            filterChips: freshChips
-        }, this.systemFetch);
-    }
-
-    onFilterDelete = (_event, chips, clearAll = false) => {
-        if (clearAll) {
-            this.clearAllFilter();
-            return;
-        }
-
-        this.deleteComplianceFilter(chips);
+            ...loadingState,
+            activeFilters
+        }, this.filterUpdate);
     }
 
     clearAllFilter = () => {
         this.setState({
-            items: [],
-            loaded: false,
+            ...loadingState,
             activeFilters: this.filterConfig.initialDefaultState(),
             filterChips: []
         }, this.filterUpdate);
     }
+
+    onFilterDelete = debounce((_event, chips, clearAll = false) => {
+        clearAll ? this.clearAllFilter() : this.deleteFilter(chips);
+    }, 500)
 
     async fetchInventory() {
         const { columns } = this.props;
@@ -273,7 +223,7 @@ class SystemsTable extends React.Component {
             page, totalCount, perPage, items, InventoryCmp, filterChips,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
-            this.updateFilter,
+            this.onFilterUpdate,
             this.state.activeFilters,
             { hideLabel: true }
         );

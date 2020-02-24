@@ -2,11 +2,24 @@ import {
     conditionalFilterType
 } from '@redhat-cloud-services/frontend-components';
 import { stringToId } from 'Utilities/TextHelper';
+import { FilterBuilder } from './FilterBuilder';
+import { ChipBuilder } from './ChipBuilder';
 
 export class FilterConfigBuilder {
+    chipBuilder = null;
+    filterBuilder = null;
+
     constructor(config) {
         this.config = config;
     }
+
+    getChipBuilder = () => (
+        this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this)
+    )
+
+    getFilterBuilder = () => (
+        this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this)
+    )
 
     toTextFilterConfig = (item, handler, value) => ({
         type: conditionalFilterType.text,
@@ -67,32 +80,40 @@ export class FilterConfigBuilder {
         const category = this.config.filter((category) => {
             return category.items ?
                 category.items.map((item) => item.value).includes(value) : false;
-        });
+        })[0];
 
-        return category ? category[0].label : value;
+        return category ? category.label : value;
     };
 
-    labelForValue = (value, category) => {
-        try {
-            return this.config.filter((item) => (item.label === category))[0]
-            .items.filter((item) => (item.value === value))[0].label;
-        }
-        catch (_) {
+    getCategoryForLabel = (query) => (
+        this.config.filter((item) => (stringToId(item.label) === stringToId(query)))[0]
+    )
+
+    getItemByLabelOrValue = (query, category) => {
+        const items = this.getCategoryForLabel(category).items;
+        const results = (items || []).filter((item) => (
+            item.value === query || item.label === query
+        ));
+
+        if (results.length === 1) {
+            return results[0];
+        } else if (results.length > 1) {
             // eslint-disable-next-line no-console
-            console.info('No label found for ' + value + ' in ', category);
-            return value;
+            console.info(`Multiple items found for ${query} in ${category}! Returning first one.`);
+            return results[0];
+        } else {
+            // eslint-disable-next-line no-console
+            console.info('No item found for ' + query + ' in ', category);
         }
+    }
+
+    labelForValue = (value, category) => {
+        const item = this.getItemByLabelOrValue(value, category);
+        return item ? item.label : value;
     };
 
     valueForLabel = (label, category) => {
-        try {
-            return this.config.filter((item) => (item.label === category))[0]
-            .items.filter((item) => (item.label === label))[0].value;
-        }
-        catch (_) {
-            // eslint-disable-next-line no-console
-            console.info('No value found for ' + label + ' in ' + category);
-            return label;
-        }
+        const item = this.getItemByLabelOrValue(label, category);
+        return item ? item.value : label;
     };
 }

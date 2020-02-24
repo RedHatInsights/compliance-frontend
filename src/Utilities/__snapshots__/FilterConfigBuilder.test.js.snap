@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 1`] = `"Compliant"`;
+
+exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 2`] = `"Compliance score"`;
+
+exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 3`] = `"Search term"`;
+
+exports[`FilterConfigBuilder labelForValue to return a matching label 1`] = `"Compliant"`;
+
+exports[`FilterConfigBuilder labelForValue to return a matching label 2`] = `"Less than 50%"`;
+
+exports[`FilterConfigBuilder labelForValue to return a matching label 3`] = `"Search term"`;
+
 exports[`FilterConfigBuilder returns a filterConfig 1`] = `
 Object {
   "compliancescore": Array [],
@@ -64,3 +76,9 @@ Object {
   "name": "",
 }
 `;
+
+exports[`FilterConfigBuilder valueForLabel to return a matching value 1`] = `"false"`;
+
+exports[`FilterConfigBuilder valueForLabel to return a matching value 2`] = `"50-69"`;
+
+exports[`FilterConfigBuilder valueForLabel to return a matching value 3`] = `"Search term"`;

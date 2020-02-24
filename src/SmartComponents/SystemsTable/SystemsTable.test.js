@@ -16,7 +16,6 @@ jest.mock('Utilities/Export', () => ({
 import debounce from 'lodash/debounce';
 jest.mock('lodash/debounce');
 debounce.mockImplementation(fn => fn);
-
 import { SystemsTable } from './SystemsTable';
 
 const items = {
@@ -116,16 +115,16 @@ describe('SystemsTable', () => {
             });
         });
 
-        describe('#updateComplianceFilter', () => {
+        describe('#onFilterUpdate', () => {
             it('set search in state properly', () => {
-                expect(wrapper.state().search).toMatchSnapshot();
-                instance.updateComplianceFilter('name', 'SEARCH TERM');
-                expect(wrapper.state().search).toMatchSnapshot();
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
+                instance.onFilterUpdate('name', 'SEARCH TERM');
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
             });
 
             it('set search in state properly', () => {
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
-                instance.updateComplianceFilter('compliancescore',
+                instance.onFilterUpdate('compliancescore',
                     ['0-49', '50-69', '90-100']
                 );
 
@@ -133,35 +132,35 @@ describe('SystemsTable', () => {
             });
         });
 
-        describe('#deleteComplianceFilter', () => {
+        describe('#deleteFilter', () => {
             beforeEach(() => {
                 instance.clearAllFilter();
             });
 
             it('set search in state properly', () => {
-                instance.updateComplianceFilter('compliancescore',
+                instance.onFilterUpdate('compliancescore',
                     ['0-49', '50-69', '70-89', '90-100']
                 );
-                expect(wrapper.state()).toMatchSnapshot();
-                const prevState = wrapper.state();
-                instance.deleteComplianceFilter({
+                const prevState = wrapper.state().activeFilters;
+                expect(prevState).toMatchSnapshot();
+                instance.deleteFilter({
                     category: 'Compliance score',
                     chips: [
-                        { name: '70-89' }
+                        { name: '70 - 89%' }
                     ]
                 });
 
                 expect(wrapper.state()).not.toEqual(prevState);
-                expect(wrapper.state()).toMatchSnapshot();
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
             });
 
             it('set search in state properly', () => {
-                instance.updateComplianceFilter('_event',
+                instance.onFilterUpdate('compliant',
                     ['false']
                 );
-                expect(wrapper.state()).toMatchSnapshot();
-                const prevState = wrapper.state();
-                instance.deleteComplianceFilter({
+                const prevState = wrapper.state().activeFilters;
+                expect(prevState).toMatchSnapshot();
+                instance.deleteFilter({
                     category: 'Compliant',
                     chips: [
                         { name: 'Non-compliant' }
@@ -169,7 +168,7 @@ describe('SystemsTable', () => {
                 });
 
                 expect(wrapper.state()).not.toEqual(prevState);
-                expect(wrapper.state()).toMatchSnapshot();
+                expect(wrapper.state().activeFilters).toMatchSnapshot();
             });
         });
     });
