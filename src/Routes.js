@@ -29,6 +29,9 @@ const ReportsSystems = asyncComponent(() =>
 const ComplianceSystems = asyncComponent(() =>
     import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
 );
+const ReportDetails = asyncComponent(() =>
+    import(/* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails')
+);
 const PolicyDetails = asyncComponent(() =>
     import(/* webpackChunkName: "PolicyDetails" */ 'SmartComponents/PolicyDetails/PolicyDetails')
 );
@@ -44,6 +47,8 @@ export const paths = {
     complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
     policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
+    reportDetails: '/reports/:report_id',
+    reportDetailsInventoryDetail: '/reports/:report_id/:inventoryId',
     systemDetails: '/systems/:inventoryId'
 };
 
@@ -70,6 +75,7 @@ export const Routes = (props: Props) => {
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
             <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
             <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
+            <Route exact path={paths.reportDetails} component={ReportDetails} />
             <Route exact path={paths.policyDetails} component={PolicyDetails} />
             <Route path={paths.systemDetails} component={SystemDetails} />
 

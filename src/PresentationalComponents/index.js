@@ -5,7 +5,11 @@ export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingP
 export { default as ReportCard } from './ReportCard/ReportCard';
 export { default as CompliancePoliciesEmptyState } from './CompliancePoliciesEmptyState/CompliancePoliciesEmptyState';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
-export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoader/PolicyDetailsContentLoader';
+export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
 export { default as ProfileTypeSelect } from './ProfileTypeSelect/ProfileTypeSelect';
 export { default as ComplianceScore, complianceScoreString } from './ComplianceScore/ComplianceScore';
-export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
+export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoader/PolicyDetailsContentLoader';
+export { default as ReportDetailsContentLoader } from './ReportDetailsContentLoader/ReportDetailsContentLoader';
+export { default as PolicyDetailsDescription } from './PolicyDetailsDescription/PolicyDetailsDescription';
+export { default as ReportDetailsDescription } from './ReportDetailsDescription/ReportDetailsDescription';
+export { default as PolicyTabs } from './PolicyTabs/PolicyTabs';

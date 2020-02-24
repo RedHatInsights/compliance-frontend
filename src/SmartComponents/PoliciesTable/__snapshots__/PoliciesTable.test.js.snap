@@ -189,7 +189,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Array [
         Object {
           "cells": Array [
-            "United States Government Configuration Baseline23",
+            Object {
+              "original": "United States Government Configuration Baseline23",
+              "title": <UNDEFINED
+                to="/policies/b71376fd-015e-4209-99af-4543e82e5dc5"
+              >
+                United States Government Configuration Baseline23
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -198,7 +205,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+            Object {
+              "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+              "title": <UNDEFINED
+                to="/policies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
+              >
+                PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -207,7 +221,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "United States Government Configuration Baseline2",
+            Object {
+              "original": "United States Government Configuration Baseline2",
+              "title": <UNDEFINED
+                to="/policies/dae0487d-3201-4ee0-af5f-b94cde2af818"
+              >
+                United States Government Configuration Baseline2
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -216,7 +237,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "C2S for Red Hat Enterprise Linux 7",
+            Object {
+              "original": "C2S for Red Hat Enterprise Linux 7",
+              "title": <UNDEFINED
+                to="/policies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
+              >
+                C2S for Red Hat Enterprise Linux 7
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -225,7 +253,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "Criminal Justice Information Services (CJIS) Security Policy",
+            Object {
+              "original": "Criminal Justice Information Services (CJIS) Security Policy",
+              "title": <UNDEFINED
+                to="/policies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
+              >
+                Criminal Justice Information Services (CJIS) Security Policy
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -234,7 +269,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            Object {
+              "original": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+              "title": <UNDEFINED
+                to="/policies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
+              >
+                Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -243,7 +285,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+            Object {
+              "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+              "title": <UNDEFINED
+                to="/policies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
+              >
+                PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -252,7 +301,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+            Object {
+              "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+              "title": <UNDEFINED
+                to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+              >
+                Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -261,7 +317,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "Health Insurance Portability and Accountability Act (HIPAA)",
+            Object {
+              "original": "Health Insurance Portability and Accountability Act (HIPAA)",
+              "title": <UNDEFINED
+                to="/policies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
+              >
+                Health Insurance Portability and Accountability Act (HIPAA)
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",
@@ -270,7 +333,14 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "cells": Array [
-            "United States Government Configuration Baseline",
+            Object {
+              "original": "United States Government Configuration Baseline",
+              "title": <UNDEFINED
+                to="/policies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
+              >
+                United States Government Configuration Baseline
+              </UNDEFINED>,
+            },
             "RHEL 7",
             10,
             "--",

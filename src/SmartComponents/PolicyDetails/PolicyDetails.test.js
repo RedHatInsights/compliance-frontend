@@ -2,8 +2,7 @@ import { init } from '../../store';
 import { Provider } from 'react-redux';
 import ReactDom from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import toJson from 'enzyme-to-json';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
     QUERY,
     PolicyDetailsQuery,
@@ -94,19 +93,14 @@ describe('PolicyDetailsQuery', () => {
         container = null;
     });
 
-    it('passes loading on to SystemTable', () => {
-        const wrapper = shallow(
-            <PolicyDetailsQuery { ...defaultProps } />
-        );
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
     it('expect to render even without policyId', () => {
         act(() => {
             ReactDom.render(
-                <Provider store={ store }>
-                    <PolicyDetailsQuery />
-                </Provider>, container);
+                <Router>
+                    <Provider store={ store }>
+                        <PolicyDetailsQuery />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
@@ -115,9 +109,11 @@ describe('PolicyDetailsQuery', () => {
     it('renders without error', () => {
         act(() => {
             ReactDom.render(
-                <Provider store={ store }>
-                    <PolicyDetailsQuery policyId="1234" />
-                </Provider>, container);
+                <Router>
+                    <Provider store={ store }>
+                        <PolicyDetailsQuery policyId="1234" />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
@@ -126,9 +122,11 @@ describe('PolicyDetailsQuery', () => {
     it('renders without error', () => {
         act(() => {
             ReactDom.render(
-                <Provider store={ store }>
-                    <PolicyDetailsQuery policyId="1234" />
-                </Provider>, container);
+                <Router>
+                    <Provider store={ store }>
+                        <PolicyDetailsQuery policyId="1234" />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
@@ -137,9 +135,11 @@ describe('PolicyDetailsQuery', () => {
     it('expect to render with policyId', () => {
         act(() => {
             ReactDom.render(
-                <Provider store={ store }>
-                    <PolicyDetailsQuery { ...defaultProps } />
-                </Provider>, container);
+                <Router>
+                    <Provider store={ store }>
+                        <PolicyDetailsQuery { ...defaultProps } />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();
@@ -169,9 +169,11 @@ describe('PolicyDetails', () => {
     it('expect to render without error', () => {
         act(() => {
             ReactDom.render(
-                <Provider store={ store }>
-                    <PolicyDetails { ...defaultProps } />
-                </Provider>, container);
+                <Router>
+                    <Provider store={ store }>
+                        <PolicyDetails { ...defaultProps } />
+                    </Provider>
+                </Router>, container);
         });
 
         expect(container).toMatchSnapshot();

@@ -4,6 +4,11 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"
+    style={
+      Object {
+        "paddingBottom": "22px",
+      }
+    }
   >
     <PageHeaderTitle
       title="Compliance policies"
@@ -191,6 +196,11 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"
+    style={
+      Object {
+        "paddingBottom": "22px",
+      }
+    }
   >
     <PageHeaderTitle
       title="Compliance policies"
@@ -210,6 +220,11 @@ exports[`CompliancePolicies expect to render loading 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"
+    style={
+      Object {
+        "paddingBottom": "22px",
+      }
+    }
   >
     <PageHeaderTitle
       title="Compliance policies"
@@ -225,6 +240,11 @@ exports[`CompliancePolicies expect to render without error 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"
+    style={
+      Object {
+        "paddingBottom": "22px",
+      }
+    }
   >
     <PageHeaderTitle
       title="Compliance policies"

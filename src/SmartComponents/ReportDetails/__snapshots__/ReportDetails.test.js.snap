@@ -1,0 +1,403 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportDetails expect to render without error 1`] = `
+Array [
+  <section
+    className="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <nav
+      aria-label="Breadcrumb"
+      className="pf-c-breadcrumb"
+    >
+      <ol
+        className="pf-c-breadcrumb__list"
+      >
+        <li
+          className="pf-c-breadcrumb__item"
+        >
+          <a
+            className="pf-c-breadcrumb__link"
+            href="/rhel/compliance/reports"
+            target={null}
+          >
+            Reports
+          </a>
+          <span
+            className="pf-c-breadcrumb__item-divider"
+          >
+            <svg
+              aria-hidden={true}
+              aria-labelledby={null}
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style={
+                Object {
+                  "verticalAlign": "-0.125em",
+                }
+              }
+              viewBox="0 0 256 512"
+              width="1em"
+            >
+              <path
+                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                transform=""
+              />
+            </svg>
+          </span>
+        </li>
+        <li
+          className="pf-c-breadcrumb__item"
+        >
+          profile1
+        </li>
+      </ol>
+    </nav>
+    <h1
+      className="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+       
+      profile1 report
+       
+    </h1>
+    <div
+      className="pf-l-grid pf-m-gutter"
+    >
+      <div
+        className="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          className="chart-inline"
+        >
+          <div
+            className="chart-container"
+          >
+            <div
+              className="pf-c-chart"
+              style={
+                Object {
+                  "height": "auto",
+                  "pointerEvents": "none",
+                  "position": "relative",
+                  "touchAction": "none",
+                  "width": "100%",
+                }
+              }
+            >
+              <svg
+                height={230}
+                role="img"
+                style={
+                  Object {
+                    "height": "auto",
+                    "pointerEvents": "all",
+                    "width": "100%",
+                  }
+                }
+                viewBox="0 0 462 230"
+                width={462}
+              >
+                <g>
+                  <path
+                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    role="presentation"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#06c",
+                        "padding": 8,
+                        "stroke": "transparent",
+                        "strokeWidth": 1,
+                      }
+                    }
+                    transform="translate(106, 115)"
+                  />
+                  <path
+                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    role="presentation"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#8bc1f7",
+                        "padding": 8,
+                        "stroke": "transparent",
+                        "strokeWidth": 1,
+                      }
+                    }
+                    transform="translate(106, 115)"
+                  />
+                </g>
+                <g>
+                  <rect
+                    height={61.809999999999995}
+                    role="presentation"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "none",
+                      }
+                    }
+                    vectorEffect="non-scaling-stroke"
+                    width={225.29780853517875}
+                    x={209}
+                    y={86.095}
+                  />
+                  <path
+                    d="M 218.128, 104.967
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    role="presentation"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#06c",
+                        "type": "square",
+                      }
+                    }
+                  />
+                  <path
+                    d="M 218.128, 135.872
+      h9.744000000000028
+      v-9.744000000000028
+      h-9.744000000000028
+      z"
+                    role="presentation"
+                    shapeRendering="auto"
+                    style={
+                      Object {
+                        "fill": "#8bc1f7",
+                        "type": "square",
+                      }
+                    }
+                  />
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    dy={4.97}
+                    id="legend-labels-0"
+                    x={239.8}
+                    y={100.095}
+                  >
+                    <tspan
+                      dx={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "var(--pf-chart-global--FontFamily)",
+                          "fontSize": 14,
+                          "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="start"
+                      x={239.8}
+                    >
+                      1 system compliant
+                    </tspan>
+                  </text>
+                  <text
+                    direction="inherit"
+                    dx={0}
+                    dy={4.97}
+                    id="legend-labels-1"
+                    x={239.8}
+                    y={131}
+                  >
+                    <tspan
+                      dx={0}
+                      style={
+                        Object {
+                          "fill": "#252525",
+                          "fontFamily": "var(--pf-chart-global--FontFamily)",
+                          "fontSize": 14,
+                          "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                          "padding": 10,
+                          "stroke": "transparent",
+                        }
+                      }
+                      textAnchor="start"
+                      x={239.8}
+                    >
+                      0 systems non-compliant
+                    </tspan>
+                  </text>
+                </g>
+                <text
+                  direction="inherit"
+                  dx={0}
+                  dy={1.200000000000001}
+                  x={106}
+                  y={115}
+                >
+                  <tspan
+                    dx={0}
+                    style={
+                      Object {
+                        "fill": "#252525",
+                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                        "fontSize": 24,
+                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                        "stroke": "transparent",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={106}
+                  >
+                    100%
+                  </tspan>
+                  <tspan
+                    dx={0}
+                    dy={19}
+                    style={
+                      Object {
+                        "fill": "#b8bbbe",
+                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                        "fontSize": 14,
+                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                        "stroke": "transparent",
+                      }
+                    }
+                    textAnchor="middle"
+                    x={106}
+                  >
+                    Compliant
+                  </tspan>
+                </text>
+              </svg>
+              <div
+                style={
+                  Object {
+                    "height": "auto",
+                    "left": 0,
+                    "position": "absolute",
+                    "top": 0,
+                    "width": "100%",
+                    "zIndex": 99,
+                  }
+                }
+              >
+                <svg
+                  height={230}
+                  style={
+                    Object {
+                      "height": "auto",
+                      "overflow": "visible",
+                      "width": "100%",
+                    }
+                  }
+                  viewBox="0 0 462 230"
+                  width={462}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-6-col-on-xl"
+      >
+        <div
+          className="pf-c-content policy-details"
+        >
+          <dl
+            className=""
+            data-pf-content={true}
+          >
+            <dt
+              className=""
+              data-pf-content={true}
+            >
+              <h2
+                className=""
+                data-pf-content={true}
+              >
+                Policy details
+              </h2>
+            </dt>
+            <dd
+              className=""
+              data-pf-content={true}
+            >
+              <a
+                href="/policies/1"
+                onClick={[Function]}
+              >
+                View policy
+              </a>
+            </dd>
+            <dt
+              className=""
+              data-pf-content={true}
+            >
+              Operating system
+            </dt>
+            <dd
+              className=""
+              data-pf-content={true}
+            >
+              RHEL 
+            </dd>
+            <dt
+              className=""
+              data-pf-content={true}
+            >
+              Compliance threshold
+            </dt>
+            <dd
+              className=""
+              data-pf-content={true}
+            >
+              1.0%
+            </dd>
+            <dt
+              className=""
+              data-pf-content={true}
+            >
+              Business objective
+            </dt>
+            <dd
+              className=""
+              data-pf-content={true}
+            >
+              BO 1
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>,
+  <section
+    className="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div
+      className="pf-l-grid pf-m-gutter"
+    >
+      <div
+        className="pf-l-grid__item pf-m-12-col"
+      >
+        <table>
+          <tr>
+            <td>
+              Systems Table
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>,
+]
+`;

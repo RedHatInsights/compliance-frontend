@@ -161,7 +161,7 @@ exports[`ReportCard expect to render without error 1`] = `
             }
           >
             <Link
-              to="/policies/ID"
+              to="/reports/ID"
             >
               View report
             </Link>
