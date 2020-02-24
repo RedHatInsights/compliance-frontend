@@ -85,7 +85,7 @@ exports[`ComplianceReports expect to render without error 1`] = `
           sm={12}
           xl={4}
         >
-          <CompliancePolicyCard
+          <ReportCard
             key="0"
             policy={
               Object {
