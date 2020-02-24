@@ -7,8 +7,8 @@ const PolicyDetailsContentLoader = () => (
         width={1000}
         height={400}
         viewBox='0 0 1000 400'
-        backgroundColor='#f3f3f3'
-        foregroundColor='#ecebeb'
+        backgroundcolor='#f3f3f3'
+        foregroundcolor='#ecebeb'
     >
         <rect x='-3' y='7' rx='3' ry='3' width='760' height='19' />
         <rect x='823' y='3' rx='3' ry='3' width='67' height='29' />

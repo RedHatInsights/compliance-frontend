@@ -7,8 +7,9 @@ import {
     PolicyDetailsContentLoader,
     PolicyTabs
 } from 'PresentationalComponents';
-import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import EditPolicy from '../EditPolicy/EditPolicy';
+import PolicyRulesTab from './PolicyRulesTab';
+import PolicySystemsTab from './PolicySystemsTab';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     PageHeader,
@@ -16,7 +17,6 @@ import {
     Main,
     Spinner
 } from '@redhat-cloud-services/frontend-components';
-import { sortable } from '@patternfly/react-table';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
 import './PolicyDetails.scss';
@@ -30,8 +30,6 @@ import {
 import {
     Link
 } from 'react-router-dom';
-import { Alert } from '@patternfly/react-core';
-import { SystemsTable } from 'SmartComponents';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -96,51 +94,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         policy = data.profile;
     }
 
-    let currentTab;
-    if (activeTab === 0) {
-        currentTab = <PolicyDetailsDescription policy={policy} />;
-    } else if (activeTab === 1) {
-        const columns = [
-            { title: 'Rule', transforms: [sortable] },
-            { title: 'Severity', transforms: [sortable] },
-            { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
-        ];
-        currentTab = <React.Fragment>
-            <Alert variant="info" isInline title="Rule editing coming soon" />
-            <SystemRulesTable
-                remediationsEnabled={false}
-                columns={columns}
-                loading={loading}
-                profileRules={ !loading && [{
-                    profile: { refId: policy.refId, name: policy.name },
-                    rules: policy.rules
-                }]}
-            />
-        </React.Fragment>;
-    } else if (activeTab === 2) {
-        const columns = [{
-            composed: ['facts.os_release', 'display_name'],
-            key: 'display_name',
-            title: 'System name',
-            props: {
-                width: 40
-            }
-        }, {
-            key: 'facts.compliance.compliance_score',
-            title: 'Compliance score',
-            props: {
-                width: 10
-            }
-        }, {
-            key: 'facts.compliance.last_scanned',
-            title: 'Last scanned',
-            props: {
-                width: 10
-            }
-        }];
-        currentTab = <SystemsTable policyId={policy.id} columns={columns} ref={systemsTable} />;
-    }
-
     return (
         <React.Fragment>
             <PageHeader className={ 'beta-page-header'} >
@@ -174,7 +127,9 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                 <PolicyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             </PageHeader>
             <Main>
-                { currentTab }
+                { activeTab === 0 && <PolicyDetailsDescription policy={policy} /> }
+                { activeTab === 1 && <PolicyRulesTab policy={policy} loading={loading} /> }
+                { activeTab === 2 && <PolicySystemsTab policy={policy} systemsTableRef={systemsTable} /> }
             </Main>
         </React.Fragment>
     );
