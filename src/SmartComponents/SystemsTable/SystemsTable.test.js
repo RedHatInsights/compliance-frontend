@@ -12,6 +12,10 @@ jest.mock('Utilities/Export', () => ({
     exportToJson: () => mockExportJsonFunction()
 }));
 
+// We mock the debounce function otherwise we'd have to deal with time.
+import debounce from 'lodash/debounce';
+jest.mock('lodash/debounce');
+debounce.mockImplementation(fn => fn);
 import { SystemsTable } from './SystemsTable';
 
 const items = {

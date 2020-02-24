@@ -7,6 +7,7 @@ import * as pfReactTable from '@patternfly/react-table';
 import { withApollo } from 'react-apollo';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
+import debounce from 'lodash/debounce';
 import {
     SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
@@ -144,7 +145,7 @@ class SystemsTable extends React.Component {
         this.updateChips().then(this.systemFetch)
     )
 
-    onFilterUpdate = (filter, selectedValues) => {
+    onFilterUpdate = debounce((filter, selectedValues) => {
         this.setState({
             ...loadingState,
             activeFilters: {
@@ -152,7 +153,7 @@ class SystemsTable extends React.Component {
                 [filter]: selectedValues
             }
         }, this.filterUpdate);
-    }
+    }, 500)
 
     removeFilterFromFilterState = (currentState, filter) => (
         (typeof(currentState) === 'string') ? '' :
@@ -186,9 +187,9 @@ class SystemsTable extends React.Component {
         }, this.filterUpdate);
     }
 
-    onFilterDelete = (_event, chips, clearAll = false) => {
+    onFilterDelete = debounce((_event, chips, clearAll = false) => {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips);
-    }
+    }, 500)
 
     async fetchInventory() {
         const { columns } = this.props;
