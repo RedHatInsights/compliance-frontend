@@ -268,9 +268,9 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport } = this.props;
+        const { remediationsEnabled, compact, enableExport, allSystems } = this.props;
         const {
-            page, totalCount, perPage, items, InventoryCmp, filterChips, allSystems,
+            page, totalCount, perPage, items, InventoryCmp, filterChips,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.updateFilter,
@@ -278,9 +278,8 @@ class SystemsTable extends React.Component {
             { hideLabel: true }
         );
         const exportConfig = enableExport ? { onSelect: this.onExportSelect } : {};
-
-        return <InventoryCmp
-            actions={[
+        const inventoryTableProps = {
+            actions: [
                 {
                     title: 'Edit policies for this system',
                     onClick: (_event, _index, { id, fqdn }) => {
@@ -296,20 +295,29 @@ class SystemsTable extends React.Component {
                         window.location.href = `${window.location.origin}/rhel/inventory/${id}`;
                     }
                 }
-            ]}
-            onRefresh={ this.onRefresh }
-            page={ page }
-            ref={ this.inventory }
-            total={ totalCount }
-            perPage={ perPage }
-            variant={ compact ? pfReactTable.TableVariant.compact : null }
-            items={ allSystems ? undefined : items.map((edge) => edge.node.id) }
-            filterConfig={ filterConfig }
-            exportConfig={ exportConfig }
-            activeFiltersConfig={{
+            ],
+            onRefresh: this.onRefresh,
+            ref: this.inventory,
+            page,
+            perPage,
+            exportConfig
+        };
+
+        if (!allSystems) {
+            inventoryTableProps.total = totalCount;
+            inventoryTableProps.items = items.map((edge) => edge.node.id);
+            inventoryTableProps.filterConfig = filterConfig;
+            inventoryTableProps.activeFiltersConfig = {
                 filters: filterChips,
                 onDelete: this.onFilterDelete
-            }}>
+            };
+        }
+
+        if (compact) {
+            inventoryTableProps.variant = pfReactTable.TableVariant.compact;
+        }
+
+        return <InventoryCmp { ...inventoryTableProps }>
             { !allSystems && <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>

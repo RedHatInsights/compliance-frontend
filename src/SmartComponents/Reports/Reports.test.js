@@ -1,11 +1,11 @@
 import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
 
-import { ComplianceReports } from './ComplianceReports.js';
+import { Reports } from './Reports.js';
 
 jest.mock('@apollo/react-hooks');
 
-describe('ComplianceReports', () => {
+describe('Reports', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({
             data: {
@@ -25,7 +25,7 @@ describe('ComplianceReports', () => {
             }, error: false, loading: false }));
 
         const wrapper = shallow(
-            <ComplianceReports />
+            <Reports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -38,7 +38,7 @@ describe('ComplianceReports', () => {
             }, error: false, loading: false }));
 
         const wrapper = shallow(
-            <ComplianceReports />
+            <Reports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -51,7 +51,7 @@ describe('ComplianceReports', () => {
         };
         useQuery.mockImplementation(() => ({ data: {}, error, loading: false }));
         const wrapper = shallow(
-            <ComplianceReports />
+            <Reports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -60,7 +60,7 @@ describe('ComplianceReports', () => {
     it('expect to render loading', () => {
         useQuery.mockImplementation(() => ({ data: {}, error: false, loading: true }));
         const wrapper = shallow(
-            <ComplianceReports />
+            <Reports />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

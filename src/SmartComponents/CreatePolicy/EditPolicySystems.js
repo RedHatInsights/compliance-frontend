@@ -48,6 +48,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
                     columns={columns}
                     remediationsEnabled={false}
                     compact={true}
+                    allSystems
                     enableExport={ false }/>
             </Form>
         </React.Fragment>
