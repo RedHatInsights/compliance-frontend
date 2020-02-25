@@ -7,12 +7,13 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import { dispatchAction } from '../../Utilities/Dispatcher';
 import { reset } from 'redux-form';
 
-const SubmitPoliciesButton = ({ policyIds, system, toggle, dispatch }) => {
+const SubmitPoliciesButton = ({ policyIds, systemId, toggle, dispatch }) => {
     const [associateProfilesToSystem] = useMutation(ASSOCIATE_PROFILES_TO_SYSTEM, {
         onCompleted: (data) => {
             dispatchAction(addNotification({
                 variant: 'success',
-                title: `Associated ${data.associateProfiles.system.profiles.map((profile) => profile.name)} to ${system.name}`
+                title: `Associated ${data.associateProfiles.system.profiles.map((profile) => profile.name)} ` +
+                    `to ${data.associateProfiles.system.name}`
             }));
             toggle();
             dispatch(reset('assignPolicies'));
@@ -29,13 +30,13 @@ const SubmitPoliciesButton = ({ policyIds, system, toggle, dispatch }) => {
     });
 
     return <Button type='submit' aria-label='save'
-        onClick={() => associateProfilesToSystem({ variables: { input: { profileIds: policyIds, id: system.id } } })}
+        onClick={() => associateProfilesToSystem({ variables: { input: { profileIds: policyIds, id: systemId } } })}
         variant='primary'>Save</Button>;
 };
 
 SubmitPoliciesButton.propTypes = {
     policyIds: propTypes.arrayOf(propTypes.string).isRequired,
-    system: propTypes.object.isRequired,
+    systemId: propTypes.string.isRequired,
     toggle: propTypes.func.isRequired,
     dispatch: propTypes.func
 };

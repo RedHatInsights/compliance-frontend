@@ -29,20 +29,24 @@ describe('AssignPoliciesModal', () => {
 
         useQuery.mockImplementation(() => ({
             data: {
-                system: {
-                    profiles: [
+                systems: {
+                    nodes: [
                         {
                             id: '1',
-                            name: 'profile1'
+                            fqdn: 'myhost',
+                            profiles: [
+                                {
+                                    id: '1',
+                                    name: 'profile1'
+                                }
+                            ]
                         }
                     ]
                 },
                 profiles: {
-                    edges: [{
-                        node: {
-                            id: '1',
-                            name: 'profile1'
-                        }
+                    nodes: [{
+                        id: '1',
+                        name: 'profile1'
                     }]
                 }
             }, error: false, loading: false }));

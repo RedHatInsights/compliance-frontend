@@ -15,21 +15,21 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 const QUERY = gql`
-query systemWithProfiles($id: String!){
-    system(id: $id) {
-        id
-        name
-        profiles {
+query systemWithProfiles($search: String!){
+    systems(search: $search) {
+        nodes {
             id
             name
-        }
-    }
-    profiles {
-        edges {
-            node {
+            profiles {
                 id
                 name
             }
+        }
+    }
+    profiles {
+        nodes {
+            id
+            name
         }
     }
 }
@@ -41,17 +41,18 @@ const isSystemAssignedToProfile = (system, id) => (
 
 const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds, dispatch }) => {
     // Display all policies with the same OS as host
-    const { data, error, loading } = useQuery(QUERY, { variables: { id } });
+    const { data, error, loading } = useQuery(QUERY, { variables: { search: 'id=' + id } });
 
     if (error) { return <ErrorPage error={error}/>; }
 
     if (loading) { return <React.Fragment/>; }
 
-    const options = data.profiles.edges.map((policy) => (
+    const system = data.systems.nodes.length === 1 && data.systems.nodes[0];
+    const options = data.profiles.nodes.map((policy) => (
         {
-            label: policy.node.name,
-            value: policy.node.id,
-            defaultChecked: isSystemAssignedToProfile(data.system, policy.node.id)
+            label: policy.name,
+            value: policy.id,
+            defaultChecked: system && isSystemAssignedToProfile(system, policy.id)
         }
     ));
 
@@ -66,7 +67,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
                 <SubmitPoliciesButton key='save'
                     aria-label='save'
                     toggle={toggle}
-                    system={data.system}
+                    systemId={id}
                     dispatch={dispatch}
                     policyIds={selectedPolicyIds}
                     variant='primary' />,
