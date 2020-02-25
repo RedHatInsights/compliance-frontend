@@ -1,8 +1,4 @@
 import {
-    Dropdown,
-    DropdownPosition,
-    DropdownToggle,
-    DropdownItem,
     Modal,
     Form,
     Button
@@ -39,37 +35,15 @@ export class EditPolicy extends Component {
         this.props.onClose();
     };
 
-    onToggle = isOpen => {
-        this.setState({
-            isOpen
-        });
-    };
-
-    onSelect = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    };
-
     render() {
-        const { policyId, isOpen, isModalOpen, businessObjective } = this.state;
+        const { policyId, isModalOpen, businessObjective } = this.state;
         const { previousThreshold, editPolicyBusinessObjective, complianceThreshold, dispatch } = this.props;
-        const dropdownItems = [
-            <DropdownItem key="action" onClick={this.handleModalToggle} component="button">
-                Edit policy
-            </DropdownItem>
-        ];
 
         return (
             <React.Fragment>
-                <Dropdown
-                    onSelect={this.onSelect}
-                    className='policy-details-dropdown'
-                    position={DropdownPosition.right}
-                    toggle={<DropdownToggle onToggle={this.onToggle}>Actions</DropdownToggle>}
-                    isOpen={isOpen}
-                    dropdownItems={dropdownItems}
-                />
+                <Button variant='secondary' onClick={this.handleModalToggle}>
+                    Edit policy
+                </Button>
                 <Modal
                     isSmall
                     title="Edit policy details"

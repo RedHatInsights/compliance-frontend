@@ -114,18 +114,18 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                 </Breadcrumb>
-                <Grid>
-                    <GridItem span={10}>
+                <Grid gutter='lg'>
+                    <GridItem xl2={9} xl={8} lg={12} md={12} sm={12}>
                         <PageHeaderTitle title={policy.name} />
                     </GridItem>
-                    <GridItem span={1}>
+                    <GridItem className='policy-details-button' xl2={2} xl={2} lg={2} md={3} sm={3}>
                         <Link to={'/reports/' + policy.id} >
                             <Button variant='primary'>
                                 View reports
                             </Button>
                         </Link>
                     </GridItem>
-                    <GridItem span={1}>
+                    <GridItem className='policy-details-button' xl2={1} xl={2} lg={2} md={3} sm={3}>
                         <EditPolicy policyId={policy.id}
                             previousThreshold={policy.complianceThreshold}
                             businessObjective={policy.businessObjective}

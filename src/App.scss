@@ -19,8 +19,9 @@
     background: white
 }
 
-.policy-details-dropdown {
-    float: right
+.policy-details-button {
+    display: flex;
+    justify-content: right;
 }
 
 .chart-inline tspan {
