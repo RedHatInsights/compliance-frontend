@@ -1,4 +1,4 @@
-/* global require, module */
+/* global module */
 
 const _ = require('lodash');
 const webpackConfig = require('./base.webpack.config');

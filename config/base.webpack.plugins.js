@@ -1,4 +1,4 @@
-/* global require, module, __dirname */
+/* global module, __dirname */
 /* eslint-disable space-unary-ops */
 
 /**
