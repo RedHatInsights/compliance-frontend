@@ -5,7 +5,7 @@ import { FormGroup, Title } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
-import { withApollo } from 'react-apollo';
+import { withApollo } from '@apollo/react-hoc';
 
 const GET_BUSINESS_OBJECTIVES = gql`
 query businessObjectives {
