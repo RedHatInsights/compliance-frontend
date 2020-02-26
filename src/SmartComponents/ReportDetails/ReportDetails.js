@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
@@ -52,7 +52,6 @@ export const ReportDetails = ({ match }) => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId: match.params.report_id }
     });
-    let systemsTable = useRef();
     let donutValues = [];
     let donutId = 'loading-donut';
     let policy = {};
@@ -163,9 +162,7 @@ export const ReportDetails = ({ match }) => {
             <Main>
                 <Grid gutter='md'>
                     <GridItem span={12}>
-                        <SystemsTable policyId={policy.id}
-                            columns={columns}
-                            ref={systemsTable} />
+                        <SystemsTable policyId={policy.id} columns={columns} />
                     </GridItem>
                 </Grid>
             </Main>

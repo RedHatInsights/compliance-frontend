@@ -80,7 +80,7 @@ Object {
 `;
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
-<InventoryCmp
+<ForwardRef
   actions={
     Array [
       Object {
@@ -186,7 +186,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
       />
     </ToolbarItem>
   </ToolbarGroup>
-</InventoryCmp>
+</ForwardRef>
 `;
 
 exports[`SystemsTable expect to render a loading state 1`] = `

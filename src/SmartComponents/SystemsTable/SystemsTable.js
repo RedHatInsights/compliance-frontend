@@ -69,7 +69,7 @@ class SystemsTable extends React.Component {
 
     state = {
         ...loadingState,
-        InventoryCmp: () => <SkeletonTable colSize={2} rowSize={15} />,
+        InventoryCmp: React.forwardRef((_, ref) => <SkeletonTable ref={ref} colSize={2} rowSize={15} />), // eslint-disable-line
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
@@ -79,6 +79,12 @@ class SystemsTable extends React.Component {
 
     componentDidMount = () => {
         this.fetchInventory();
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.complianceThreshold !== this.props.complianceThreshold) {
+            this.systemFetch();
+        }
     }
 
     onRefresh = ({ page, per_page: perPage }) => {
@@ -297,7 +303,8 @@ SystemsTable.propTypes = {
     selectedEntities: propTypes.array,
     exportToCSV: propTypes.func,
     enableExport: propTypes.bool,
-    showAllSystems: propTypes.bool
+    showAllSystems: propTypes.bool,
+    complianceThreshold: propTypes.number
 };
 
 SystemsTable.defaultProps = {
@@ -305,7 +312,8 @@ SystemsTable.defaultProps = {
     remediationsEnabled: true,
     compact: false,
     enableExport: true,
-    showAllSystems: false
+    showAllSystems: false,
+    complianceThreshold: 0
 };
 
 const mapStateToProps = state => {
@@ -327,7 +335,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 export { SystemsTable };
-export const SystemsTableWithApollo = withApollo(SystemsTable, { withRef: true });
+export const SystemsTableWithApollo = withApollo(SystemsTable);
 export default connect(
     mapStateToProps,
     mapDispatchToProps
