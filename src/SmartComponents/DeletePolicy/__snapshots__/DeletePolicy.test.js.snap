@@ -93,6 +93,24 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
+                  </div>
                 </div>
                 <div
                   class="pf-c-modal-box__footer pf-m-align-left"
@@ -298,6 +316,24 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
+                  </div>
                 </div>
                 <div
                   class="pf-c-modal-box__footer pf-m-align-left"
@@ -381,6 +417,24 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     class="pf-c-content"
                   >
                     This cannot be undone.
+                  </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
                   </div>
                 </div>
                 <div
@@ -489,6 +543,24 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     class="pf-c-content"
                   >
                     This cannot be undone.
+                  </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
                   </div>
                 </div>
                 <div
@@ -782,6 +854,38 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                             This cannot be undone.
                           </div>
                         </TextContent>
+                        <br />
+                        <Checkbox
+                          aria-label="delete-all-reports-checkbox"
+                          className=""
+                          id="delete-all-reports-1"
+                          isChecked={false}
+                          isDisabled={false}
+                          isValid={true}
+                          label="Delete all reports for this policy"
+                          onChange={[Function]}
+                        >
+                          <div
+                            className="pf-c-check"
+                          >
+                            <input
+                              aria-invalid={false}
+                              aria-label="delete-all-reports-checkbox"
+                              checked={false}
+                              className="pf-c-check__input"
+                              disabled={false}
+                              id="delete-all-reports-1"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <label
+                              className="pf-c-check__label"
+                              htmlFor="delete-all-reports-1"
+                            >
+                              Delete all reports for this policy
+                            </label>
+                          </div>
+                        </Checkbox>
                       </div>
                     </ModalBoxBody>
                     <ModalBoxFooter
@@ -1026,6 +1130,24 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                   >
                     This cannot be undone.
                   </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
+                  </div>
                 </div>
                 <div
                   class="pf-c-modal-box__footer pf-m-align-left"
@@ -1121,6 +1243,24 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                     class="pf-c-content"
                   >
                     This cannot be undone.
+                  </div>
+                  <br />
+                  <div
+                    class="pf-c-check"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="delete-all-reports-checkbox"
+                      class="pf-c-check__input"
+                      id="delete-all-reports-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="pf-c-check__label"
+                      for="delete-all-reports-1"
+                    >
+                      Delete all reports for this policy
+                    </label>
                   </div>
                 </div>
                 <div
@@ -1332,6 +1472,38 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                             This cannot be undone.
                           </div>
                         </TextContent>
+                        <br />
+                        <Checkbox
+                          aria-label="delete-all-reports-checkbox"
+                          className=""
+                          id="delete-all-reports-1"
+                          isChecked={false}
+                          isDisabled={false}
+                          isValid={true}
+                          label="Delete all reports for this policy"
+                          onChange={[Function]}
+                        >
+                          <div
+                            className="pf-c-check"
+                          >
+                            <input
+                              aria-invalid={false}
+                              aria-label="delete-all-reports-checkbox"
+                              checked={false}
+                              className="pf-c-check__input"
+                              disabled={false}
+                              id="delete-all-reports-1"
+                              onChange={[Function]}
+                              type="checkbox"
+                            />
+                            <label
+                              className="pf-c-check__label"
+                              htmlFor="delete-all-reports-1"
+                            >
+                              Delete all reports for this policy
+                            </label>
+                          </div>
+                        </Checkbox>
                       </div>
                     </ModalBoxBody>
                     <ModalBoxFooter

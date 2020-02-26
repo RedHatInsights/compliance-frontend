@@ -1,16 +1,19 @@
 import {
     Modal,
     TextContent,
-    Button
+    Button,
+    Checkbox
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_PROFILE } from '../../Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import { dispatchAction } from '../../Utilities/Dispatcher';
 
 const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
+    const defaultDeleteAllState = false;
+    const [deleteAllTestResults, setDeleteAll] = useState(defaultDeleteAllState);
     const [deletePolicy] = useMutation(DELETE_PROFILE, {
         onCompleted: () => {
             dispatchAction(addNotification({
@@ -32,6 +35,10 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
     });
     const { name, id } = policy;
 
+    useEffect(() => {
+        setDeleteAll(defaultDeleteAllState);
+    }, [policy]);
+
     return (
         <Modal
             isSmall
@@ -43,7 +50,8 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
                 <Button key='destroy'
                     aria-label="delete"
                     variant='danger'
-                    onClick={() => deletePolicy({ variables: { input: { id } } })}>
+                    onClick={() => deletePolicy({ variables: { input: { id, deleteAllTestResults } } })}
+                >
                     Delete policy
                 </Button>,
                 <Button key='cancel' variant='secondary' onClick={toggle}>
@@ -57,6 +65,13 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
             <TextContent>
                 This cannot be undone.
             </TextContent>
+            <br />
+            <Checkbox
+                id={ `delete-all-reports-${id}` }
+                isChecked={ deleteAllTestResults }
+                onChange={ () => setDeleteAll(!deleteAllTestResults) }
+                aria-label="delete-all-reports-checkbox"
+                label="Delete all reports for this policy" />
         </Modal>
     );
 };
