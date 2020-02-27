@@ -1,13 +1,13 @@
 import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
+import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Link } from 'react-router-dom';
-import { FormattedRelative } from 'react-intl';
 import { EXPORT_TO_CSV } from '../ActionTypes';
 import { downloadCsv } from 'Utilities/Export';
 import {
     ComplianceScore as complianceScore,
     complianceScoreString
-} from '../../PresentationalComponents';
+} from 'PresentationalComponents';
 
 export const lastScanned = (system) => {
     if (system.profiles === undefined) { return 'Never'; }
@@ -88,7 +88,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems) =>
                     compliance_score: complianceScore(matchingSystem),
                     compliance_score_text: complianceScoreString(matchingSystem),
                     last_scanned: (matchingSystem.lastScanned instanceof Date) ?
-                        { title: <FormattedRelative value={Date.parse(matchingSystem.lastScanned)} /> } :
+                        { title: <DateFormat date={Date.parse(matchingSystem.lastScanned)} type='relative' /> } :
                         matchingSystem.lastScanned,
                     last_scanned_text: matchingSystem.lastScanned
                 }
