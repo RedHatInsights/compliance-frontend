@@ -4,7 +4,7 @@ import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
 import * as pfReactTable from '@patternfly/react-table';
-import { withApollo } from 'react-apollo';
+import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import debounce from 'lodash/debounce';

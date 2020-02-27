@@ -62,7 +62,7 @@ Array [
         "last_scanned_text": 2019-11-21T14:32:19.000Z,
         "profiles": "Standard System Security Profile for Red Hat Enterprise Linux 7, DISA STIG for Red Hat Enterprise Linux 7, United States Government Configuration Baseline, C2S for Red Hat Enterprise Linux 7",
         "rules_failed": Object {
-          "title": <ForwardRef
+          "title": <Link
             to={
               Object {
                 "pathname": "/systems/d5bc2459-21ce-4d11-bc0b-03ea7513dfa6",
@@ -73,7 +73,7 @@ Array [
             }
           >
             505
-          </ForwardRef>,
+          </Link>,
         },
         "rules_failed_text": 505,
         "rules_passed": 336,

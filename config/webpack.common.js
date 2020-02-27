@@ -1,4 +1,4 @@
-/* global require, module, __dirname */
+/* global module, __dirname */
 
 const path = require('path');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');

@@ -9,6 +9,7 @@ exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
     }
   }
   loadingMessage="Loading..."
+  menuIsPortal={false}
   onChange={[MockFunction]}
   options={Array []}
   selectVariant="createable"
