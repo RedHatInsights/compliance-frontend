@@ -5,7 +5,9 @@ import { onNavigate } from '../../Utilities/Breadcrumbs';
 import {
     PolicyDetailsDescription,
     PolicyDetailsContentLoader,
-    PolicyTabs
+    PolicyTabs,
+    TabSwitcher,
+    Tab
 } from 'PresentationalComponents';
 import EditPolicy from '../EditPolicy/EditPolicy';
 import PolicyRulesTab from './PolicyRulesTab';
@@ -75,17 +77,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const [activeTab, setActiveTab] = useState(0);
     let policy = {};
 
-    const currentTab = (activeTab) => {
-        switch (activeTab) {
-            case 0:
-                return <PolicyDetailsDescription policy={policy} />;
-            case 1:
-                return <PolicyRulesTab policy={policy} loading={loading} />;
-            case 2:
-                return <PolicySystemsTab policy={policy} systemsTableRef={systemsTable} />;
-        }
-    };
-
     if (error) {
         if (error.networkError.statusCode === 401) {
             window.insights.chrome.auth.logout();
@@ -138,7 +129,17 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                 <PolicyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
             </PageHeader>
             <Main>
-                { currentTab(activeTab) }
+                <TabSwitcher activeTab={activeTab}>
+                    <Tab tabId={0}>
+                        <PolicyDetailsDescription policy={policy} />
+                    </Tab>
+                    <Tab tabId={1}>
+                        <PolicyRulesTab policy={policy} loading={loading} />
+                    </Tab>
+                    <Tab tabId={2}>
+                        <PolicySystemsTab policy={policy} complianceThreshold={policy.complianceThreshold} />
+                    </Tab>
+                </TabSwitcher>
             </Main>
         </React.Fragment>
     );
