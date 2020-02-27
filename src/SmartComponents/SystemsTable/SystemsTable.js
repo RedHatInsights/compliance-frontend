@@ -288,9 +288,11 @@ class SystemsTable extends React.Component {
                 isModalOpen={isAssignPoliciesModalOpen}
                 id={selectedSystemId}
                 fqdn={selectedSystemFqdn}
-                toggle={() => this.setState((prev) => (
-                    { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                ), this.systemFetch)}
+                toggle={(closedOrCanceled) => {
+                    this.setState((prev) => (
+                        { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
+                    ), !closedOrCanceled ? this.systemFetch : null);
+                }}
             /> }
         </InventoryCmp>;
     }

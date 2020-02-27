@@ -62,7 +62,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
             title={`Edit policies for ${fqdn}`}
             isOpen={isModalOpen}
             isFooterLeftAligned
-            onClose={() => { dispatch(reset('assignPolicies')); toggle(); }}
+            onClose={() => { dispatch(reset('assignPolicies')); toggle(true); }}
             actions={[
                 <SubmitPoliciesButton key='save'
                     aria-label='save'
@@ -72,7 +72,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
                     policyIds={selectedPolicyIds}
                     variant='primary' />,
                 <Button key='cancel' aria-label='cancel' variant='secondary'
-                    onClick={() => { dispatch(reset('assignPolicies')); toggle(); }}>
+                    onClick={() => { dispatch(reset('assignPolicies')); toggle(true); }}>
                     Cancel
                 </Button>
             ]}
