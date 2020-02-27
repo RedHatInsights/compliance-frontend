@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { onNavigate } from '../../Utilities/Breadcrumbs';
@@ -66,13 +66,6 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
-    let systemsTable = useRef();
-
-    const forceUpdate = () => {
-        refetch();
-        systemsTable.current.getWrappedInstance().systemFetch();
-        systemsTable.current.getWrappedInstance().forceUpdate();
-    };
 
     const [activeTab, setActiveTab] = useState(0);
     let policy = {};
@@ -120,9 +113,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                         <EditPolicy policyId={policy.id}
                             previousThreshold={policy.complianceThreshold}
                             businessObjective={policy.businessObjective}
-                            onClose={ () => {
-                                forceUpdate();
-                            }}
+                            onClose={ () => refetch() }
                         />
                     </GridItem>
                 </Grid>

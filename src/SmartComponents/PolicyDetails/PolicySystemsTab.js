@@ -2,7 +2,7 @@ import { SystemsTable } from 'SmartComponents';
 import React from 'react';
 import propTypes from 'prop-types';
 
-const PolicySystemsTab = ({ policy, systemsTableRef }) => (
+const PolicySystemsTab = ({ policy, complianceThreshold }) => (
     <SystemsTable policyId={policy.id}
         columns={[{
             composed: ['facts.os_release', 'display_name'],
@@ -24,7 +24,7 @@ const PolicySystemsTab = ({ policy, systemsTableRef }) => (
                 width: 10
             }
         }]}
-        ref={systemsTableRef}
+        complianceThreshold={ complianceThreshold }
     />
 );
 
@@ -32,7 +32,7 @@ PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
         id: propTypes.string.isRequired
     }),
-    systemsTableRef: propTypes.object
+    complianceThreshold: propTypes.number
 };
 
 export default PolicySystemsTab;
