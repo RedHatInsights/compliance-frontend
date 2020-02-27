@@ -54,9 +54,9 @@ Array [
         </React.Fragment>,
         "compliance_score_text": " 40%",
         "last_scanned": Object {
-          "title": <FormattedRelative
-            updateInterval={10000}
-            value={1574346739000}
+          "title": <DateFormat
+            date={1574346739000}
+            type="relative"
           />,
         },
         "last_scanned_text": 2019-11-21T14:32:19.000Z,
