@@ -34,7 +34,8 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 id
                 name
                 profiles {
-                    name,
+                    id
+                    name
                     rulesPassed
                     rulesFailed
                     lastScanned
@@ -198,7 +199,7 @@ class SystemsTable extends React.Component {
     }, 500)
 
     async fetchInventory() {
-        const { columns } = this.props;
+        const { columns, policyId, showAllSystems } = this.props;
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -214,7 +215,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, this.props.showAllSystems
+                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, showAllSystems, policyId
                 ))
         });
 

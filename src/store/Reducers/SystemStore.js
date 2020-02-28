@@ -9,24 +9,39 @@ import {
     complianceScoreString
 } from 'PresentationalComponents';
 
-export const lastScanned = (system) => {
-    if (system.profiles === undefined) { return 'Never'; }
+const findProfiles = (system, defaultReturn, profileIds) => {
+    if (system.profiles === undefined) { return defaultReturn; }
 
-    const dates = system.profiles.map((profile) => new Date(profile.lastScanned));
+    let profiles = system.profiles;
+
+    if (profileIds !== undefined && profileIds !== '') {
+        profiles = profiles.filter((profile) => profileIds.includes(profile.id));
+    }
+
+    return profiles;
+};
+
+export const lastScanned = (system, profileId) => {
+    const profiles = findProfiles(system, 'Never', [profileId]);
+    const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
 
     return result;
 };
 
-export const rulesCount = (system, rulesMethod) => {
-    if (system.profiles === undefined) { return 0; }
-
-    const rulesCount = system.profiles.map((profile) => profile[rulesMethod]);
+export const rulesCount = (system, rulesMethod, profileId) => {
+    const profiles = findProfiles(system, 0, [profileId]);
+    const rulesCount = profiles.map((profile) => profile[rulesMethod]);
     return (rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr)) || 0;
 };
 
-export const systemsToInventoryEntities = (systems, entities, showAllSystems) =>
+export const compliant = (system, profileId) => {
+    const profiles = findProfiles(system, false, [profileId]);
+    return profiles.every(profile => profile.compliant === true);
+};
+
+export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -43,9 +58,10 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems) =>
 
         matchingSystem.profileNames = matchingSystem === {} ? '' :
             matchingSystem.profiles.map((profile) => profile.name).join(', ');
-        matchingSystem.rulesPassed = rulesCount(matchingSystem, 'rulesPassed');
-        matchingSystem.rulesFailed = rulesCount(matchingSystem, 'rulesFailed');
-        matchingSystem.lastScanned = lastScanned(matchingSystem);
+        matchingSystem.rulesPassed = rulesCount(matchingSystem, 'rulesPassed', profileId);
+        matchingSystem.rulesFailed = rulesCount(matchingSystem, 'rulesFailed', profileId);
+        matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
+        matchingSystem.compliant = compliant(matchingSystem, profileId);
 
         return {
             /* eslint-disable camelcase */
@@ -97,14 +113,15 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems) =>
         };
     }).filter(value => value !== undefined);
 
-export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished, showAllSystems) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished, showAllSystems,
+    profileId) => applyReducerHash(
     {
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
             if (!isGraphqlFinished()) {
                 return { ...state, loaded: false };
             }
 
-            state.rows = systemsToInventoryEntities(systems(), state.rows, showAllSystems);
+            state.rows = systemsToInventoryEntities(systems(), state.rows, showAllSystems, profileId);
             state.count = state.rows.length;
             state.total = state.rows.length;
             state.columns = [];

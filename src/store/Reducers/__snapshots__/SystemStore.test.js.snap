@@ -11,6 +11,7 @@ Array [
       "compliance": Object {
         "compliance_score": <React.Fragment>
           <CompliantIcon
+            compliant={false}
             id="d5bc2459-21ce-4d11-bc0b-03ea7513dfa6"
             lastScanned={2019-11-21T14:32:19.000Z}
             name="demo.lobatolan.home"

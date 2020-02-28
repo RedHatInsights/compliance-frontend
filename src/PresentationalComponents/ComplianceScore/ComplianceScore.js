@@ -11,7 +11,7 @@ const CompliantIcon = (system) => (
         {
             ((system.rulesPassed + system.rulesFailed) === 0) ?
                 <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
-                system.profiles.every(profile => profile.compliant === true) ?
+                system.compliant ?
                     <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--100)' }}/> :
                     <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
         }
