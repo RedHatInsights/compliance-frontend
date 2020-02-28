@@ -1,6 +1,7 @@
 import {
     rulesCount,
     lastScanned,
+    compliant,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from './SystemStore.fixtures';
@@ -61,6 +62,17 @@ describe('.rulesCount', () => {
         expect(rulesCount(system, 'rulesPassed')).toEqual(0);
         expect(rulesCount(system, 'rulesFailed')).toEqual(0);
     });
+
+    it('should set rules count for a specific profile', () => {
+        const system = {
+            profiles: [
+                { id: '1', rulesPassed: 3, rulesFailed: 1 },
+                { id: '2', rulesPassed: 10, rulesFailed: 3 }
+            ]
+        };
+        expect(rulesCount(system, 'rulesPassed', '1')).toEqual(3);
+        expect(rulesCount(system, 'rulesFailed', '1')).toEqual(1);
+    });
 });
 
 describe('.lastScanned', () => {
@@ -89,4 +101,49 @@ describe('.lastScanned', () => {
         expect(lastScanned({ profiles: [] })).toEqual('Never');
         expect(lastScanned({ profiles: [{ lastScanned: 'Never' }] })).toEqual('Never');
     });
+
+    it('should find the latest scan date for a specific profile', () => {
+        const system = {
+            profiles: [
+                { id: '1', lastScanned: '2019-10-23T15:59:49Z' },
+                { id: '2', lastScanned: '2018-12-23T17:59:49Z' }
+            ]
+        };
+        expect(lastScanned(system, '1')).toEqual(new Date('2019-10-23T15:59:49Z'));
+        expect(lastScanned(system, '2')).toEqual(new Date('2018-12-23T17:59:49Z'));
+    });
 });
+
+describe('.compliant', () => {
+    it('should set false if there is one non-compliant profile', () => {
+        const system = {
+            profiles: [
+                { compliant: true },
+                { compliant: false }
+            ]
+        };
+        expect(compliant(system)).toEqual(false);
+    });
+
+    it('should set true if all profiles are compliant', () => {
+        const system = {
+            profiles: [
+                { compliant: true },
+                { compliant: true }
+            ]
+        };
+        expect(compliant(system)).toEqual(true);
+    });
+
+    it('should return value for a specific profile', () => {
+        const system = {
+            profiles: [
+                { id: '1', compliant: true },
+                { id: '2', compliant: false }
+            ]
+        };
+        expect(compliant(system, '1')).toEqual(true);
+        expect(compliant(system, '2')).toEqual(false);
+    });
+});
+
