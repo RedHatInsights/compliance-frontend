@@ -9,12 +9,10 @@ import {
     complianceScoreString
 } from 'PresentationalComponents';
 
-const findProfiles = (system, defaultReturn, profileIds) => {
-    if (system.profiles === undefined) { return defaultReturn; }
-
+export const findProfiles = (system, profileIds) => {
     let profiles = system.profiles;
 
-    if (profileIds !== undefined && profileIds !== '') {
+    if (profileIds !== undefined && profileIds.toString() !== '') {
         profiles = profiles.filter((profile) => profileIds.includes(profile.id));
     }
 
@@ -22,7 +20,7 @@ const findProfiles = (system, defaultReturn, profileIds) => {
 };
 
 export const lastScanned = (system, profileId) => {
-    const profiles = findProfiles(system, 'Never', [profileId]);
+    const profiles = findProfiles(system, [profileId]);
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
@@ -31,13 +29,13 @@ export const lastScanned = (system, profileId) => {
 };
 
 export const rulesCount = (system, rulesMethod, profileId) => {
-    const profiles = findProfiles(system, 0, [profileId]);
+    const profiles = findProfiles(system, [profileId]);
     const rulesCount = profiles.map((profile) => profile[rulesMethod]);
     return (rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr)) || 0;
 };
 
 export const compliant = (system, profileId) => {
-    const profiles = findProfiles(system, false, [profileId]);
+    const profiles = findProfiles(system, [profileId]);
     return profiles.every(profile => profile.compliant === true);
 };
 

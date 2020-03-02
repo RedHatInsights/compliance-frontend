@@ -2,6 +2,7 @@ import {
     rulesCount,
     lastScanned,
     compliant,
+    findProfiles,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from './SystemStore.fixtures';
@@ -144,6 +145,29 @@ describe('.compliant', () => {
         };
         expect(compliant(system, '1')).toEqual(true);
         expect(compliant(system, '2')).toEqual(false);
+    });
+});
+
+describe('.findProfiles', () => {
+    it('should return all profiles if empty profileIds is sent', () => {
+        const system = {
+            profiles: [
+                { compliant: true },
+                { compliant: false }
+            ]
+        };
+        expect(findProfiles(system, [''])).toEqual(system.profiles);
+    });
+
+    it('should return a specific profile if profile Id is sent', () => {
+        const system = {
+            profiles: [
+                { id: '1', compliant: true },
+                { id: '2', compliant: true }
+            ]
+        };
+        expect(findProfiles(system, ['1'])).toEqual([system.profiles[0]]);
+        expect(findProfiles(system, ['1', '2'])).toEqual(system.profiles);
     });
 });
 
