@@ -21,7 +21,7 @@ export const ReportTabs = (props) => {
 
     const tabs = [
         <Tab title={'By policy'} key={0} eventKey={0}></Tab>,
-        <Tab title={'By systems'} key={1} eventKey={1}></Tab>
+        <Tab title={'By system'} key={1} eventKey={1}></Tab>
     ];
 
     return (
