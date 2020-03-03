@@ -14,7 +14,7 @@ exports[`ReportTabs expect to render without error 1`] = `
   <Tab
     eventKey={1}
     key="1"
-    title="By systems"
+    title="By system"
   />
 </Component>
 `;
