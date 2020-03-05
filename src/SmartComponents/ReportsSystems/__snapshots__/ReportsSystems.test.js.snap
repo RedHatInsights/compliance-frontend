@@ -15,22 +15,18 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
       columns={
         Array [
           Object {
-            "composed": Array [
-              "facts.os_release",
-              "display_name",
-            ],
-            "key": "display_name",
+            "key": "facts.compliance.display_name",
             "props": Object {
               "width": 40,
             },
             "title": "System name",
           },
           Object {
-            "key": "facts.compliance.profiles",
+            "key": "facts.compliance.policies",
             "props": Object {
               "width": 40,
             },
-            "title": "Profiles",
+            "title": "Policies",
           },
           Object {
             "key": "facts.compliance.compliance_score",
@@ -68,22 +64,18 @@ exports[`ReportsSystems expect to render without error in stable 1`] = `
       columns={
         Array [
           Object {
-            "composed": Array [
-              "facts.os_release",
-              "display_name",
-            ],
-            "key": "display_name",
+            "key": "facts.compliance.display_name",
             "props": Object {
               "width": 40,
             },
             "title": "System name",
           },
           Object {
-            "key": "facts.compliance.profiles",
+            "key": "facts.compliance.policies",
             "props": Object {
               "width": 40,
             },
-            "title": "Profiles",
+            "title": "Policies",
           },
           Object {
             "key": "facts.compliance.compliance_score",

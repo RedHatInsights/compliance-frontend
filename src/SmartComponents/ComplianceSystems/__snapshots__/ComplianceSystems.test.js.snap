@@ -15,10 +15,6 @@ exports[`ComplianceSystems expect to render without error 1`] = `
       columns={
         Array [
           Object {
-            "composed": Array [
-              "facts.os_release",
-              "display_name",
-            ],
             "key": "display_name",
             "props": Object {
               "width": 40,
@@ -26,11 +22,11 @@ exports[`ComplianceSystems expect to render without error 1`] = `
             "title": "Name",
           },
           Object {
-            "key": "facts.compliance.profiles",
+            "key": "facts.compliance.policies",
             "props": Object {
               "width": 40,
             },
-            "title": "Profiles",
+            "title": "Policies",
           },
           Object {
             "key": "facts.compliance.compliance_score",

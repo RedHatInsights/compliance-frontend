@@ -83,9 +83,8 @@ export const ReportDetails = ({ match }) => {
     }
 
     const columns = [{
-        composed: ['facts.os_release', 'display_name'],
-        key: 'display_name',
-        title: 'Name',
+        key: 'facts.compliance.display_name',
+        title: 'System name',
         props: {
             width: 30
         }

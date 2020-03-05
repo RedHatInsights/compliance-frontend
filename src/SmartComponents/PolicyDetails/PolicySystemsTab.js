@@ -5,8 +5,7 @@ import propTypes from 'prop-types';
 const PolicySystemsTab = ({ policy, complianceThreshold }) => (
     <SystemsTable policyId={policy.id}
         columns={[{
-            composed: ['facts.os_release', 'display_name'],
-            key: 'display_name',
+            key: 'facts.compliance.display_name',
             title: 'System name',
             props: {
                 width: 40
