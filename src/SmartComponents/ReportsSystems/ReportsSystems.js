@@ -5,15 +5,14 @@ import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/fronte
 
 const ReportsSystems = () => {
     const columns = [{
-        composed: ['facts.os_release', 'display_name'],
-        key: 'display_name',
+        key: 'facts.compliance.display_name',
         title: 'System name',
         props: {
             width: 40
         }
     }, {
-        key: 'facts.compliance.profiles',
-        title: 'Profiles',
+        key: 'facts.compliance.policies',
+        title: 'Policies',
         props: {
             width: 40
         }

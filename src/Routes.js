@@ -44,11 +44,8 @@ export const paths = {
     reports: '/reports',
     reportsSystems: '/reports/systems',
     complianceSystems: '/systems',
-    complianceSystemsInventoryDetail: '/systems/:inventoryId',
     policyDetails: '/policies/:policy_id',
-    policyDetailsInventoryDetail: '/policies/:policy_id/:inventoryId',
     reportDetails: '/reports/:report_id',
-    reportDetailsInventoryDetail: '/reports/:report_id/:inventoryId',
     systemDetails: '/systems/:inventoryId'
 };
 
@@ -73,8 +70,6 @@ export const Routes = (props: Props) => {
             <Route exact path={paths.reports} component={Reports} />
             <Route exact path={paths.reportsSystems} component={ReportsSystems} />
             <Route exact path={paths.complianceSystems} component={ComplianceSystems} />
-            <Route path={paths.complianceSystemsInventoryDetail} component={SystemDetails} />
-            <Route path={paths.policyDetailsInventoryDetail} component={SystemDetails} />
             <Route exact path={paths.reportDetails} component={ReportDetails} />
             <Route exact path={paths.policyDetails} component={PolicyDetails} />
             <Route path={paths.systemDetails} component={SystemDetails} />

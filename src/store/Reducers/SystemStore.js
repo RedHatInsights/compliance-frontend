@@ -90,7 +90,10 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                         entity.facts.release
                 },
                 compliance: {
-                    profiles: matchingSystem.profileNames,
+                    display_name: { title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
+                        { entity.display_name }
+                    </Link> },
+                    policies: matchingSystem.profileNames,
                     rules_passed: matchingSystem.rulesPassed,
                     rules_failed: { title: <Link to={{
                         pathname: `/systems/${matchingSystem.id}`,
