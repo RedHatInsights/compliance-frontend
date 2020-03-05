@@ -53,7 +53,7 @@ export const EditPolicyRules = ({ profileId, benchmarkId }) => {
 
     // Figure out pre-selected rules by computing the list of data.benchmark.rules - data.profiles.rules
     const unselected = data.benchmark.rules.filter(value => !data.profile.rules.map(rule => rule.refId).includes(value.refId));
-    const selected = data.profile.rules;
+    const selected = data.profile.rules.map((rule) => rule.refId);
 
     return (
         <SystemRulesTable
