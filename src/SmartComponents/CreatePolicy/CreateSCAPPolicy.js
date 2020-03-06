@@ -17,7 +17,7 @@ import propTypes from 'prop-types';
 
 const BENCHMARKS_AND_PROFILES = gql`
 query benchmarksAndProfiles {
-    allBenchmarks {
+    latestBenchmarks {
         id
         title
         version
@@ -52,7 +52,7 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
 
     if (loading) { return <Spinner/>; }
 
-    const benchmarks = data.allBenchmarks;
+    const benchmarks = data.latestBenchmarks;
     let selectedBenchmark;
     let validProfiles;
     if (selectedBenchmarkId) {

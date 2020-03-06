@@ -35,7 +35,7 @@ describe('CreatePolicy', () => {
     });
 
     it('expect to render the wizard', async () => {
-        useQuery.mockImplementation(() => ({ data: { allBenchmarks: benchmarksQuery }, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({ data: { latestBenchmarks: benchmarksQuery }, error: false, loading: false }));
         const wrapper = mount(
             <Provider store={store}>
                 <CreatePolicy isOpen />

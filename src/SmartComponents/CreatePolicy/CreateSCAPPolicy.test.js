@@ -37,7 +37,7 @@ describe('CreateSCAPPolicy', () => {
     });
 
     it('should render benchmarks and no policies until one is selected', () => {
-        useQuery.mockImplementation(() => ({ data: { allBenchmarks: benchmarksQuery }, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({ data: { latestBenchmarks: benchmarksQuery }, error: false, loading: false }));
         component = renderer.create(
             <Provider store={store}>
                 <CreateSCAPPolicy />
@@ -51,7 +51,7 @@ describe('CreateSCAPPolicy', () => {
             values: { benchmark: benchmarksQuery[0].id }
         } } });
         useQuery.mockImplementation(() => ({
-            data: { allBenchmarks: benchmarksQuery, profiles: profileRefIdsQuery }, error: false, loading: false
+            data: { latestBenchmarks: benchmarksQuery, profiles: profileRefIdsQuery }, error: false, loading: false
         }));
         component = renderer.create(
             <Provider store={store}>
