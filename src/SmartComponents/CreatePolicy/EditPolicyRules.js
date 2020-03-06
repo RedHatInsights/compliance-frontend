@@ -51,7 +51,6 @@ export const EditPolicyRules = ({ profileId, benchmarkId }) => {
 
     if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
-    // Figure out pre-selected rules by computing the list of data.benchmark.rules - data.profiles.rules
     const selected = data.profile.rules.map((rule) => rule.refId);
 
     return (
