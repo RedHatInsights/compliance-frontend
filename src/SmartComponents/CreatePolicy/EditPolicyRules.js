@@ -52,18 +52,18 @@ export const EditPolicyRules = ({ profileId, benchmarkId }) => {
     if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
     // Figure out pre-selected rules by computing the list of data.benchmark.rules - data.profiles.rules
-    const unselected = data.benchmark.rules.filter(value => !data.profile.rules.map(rule => rule.refId).includes(value.refId));
     const selected = data.profile.rules.map((rule) => rule.refId);
 
     return (
         <SystemRulesTable
             remediationsEnabled={false}
-            tailoringEnabled={true}
+            tailoringEnabled
+            selectedFilter
             columns={columns}
             loading={loading}
             profileRules={ !loading && [{
                 profile: { refId: data.profile.refId, name: data.profile.name },
-                rules: unselected
+                rules: data.benchmark.rules
             }]}
             selectedRefIds={selected}
         />
