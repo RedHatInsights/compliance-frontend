@@ -27,6 +27,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
       },
     ]
   }
+  handleSelect={[Function]}
   loading={false}
   profileRules={
     Array [
