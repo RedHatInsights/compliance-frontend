@@ -70,10 +70,7 @@ export const Reports = () => {
 
     return (
         <StateViewWithError stateValues={ { error, data, loading } }>
-            <StateViewPart state='loading'>
-                <LoadingState />
-            </StateViewPart>
-            <StateViewPart state='data'>
+            <StateViewPart stateKey='data'>
                 { pageHeader }
                 <Main>
                     <div className="policies-donuts">
@@ -82,6 +79,9 @@ export const Reports = () => {
                         </Grid>
                     </div>
                 </Main>
+            </StateViewPart>
+            <StateViewPart stateKey='loading'>
+                <LoadingState />
             </StateViewPart>
         </StateViewWithError>
     );

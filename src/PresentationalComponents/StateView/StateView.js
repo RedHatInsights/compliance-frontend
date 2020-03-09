@@ -12,16 +12,16 @@ const props = {
 };
 
 export const StateView = ({ stateValues, children }) => (
-    children.flatMap((c) => (c)).map((child) => {
-        return stateValues[child.props.state] ? child : undefined;
-    }).filter((c) => (!!c))
+    children.flatMap((c) => (c)).filter((child) => (
+        stateValues[child.props.stateKey]
+    ))
 );
 
 StateView.propTypes = props;
 
 export const StateViewWithError = ({ stateValues, children }) => (
     <StateView stateValues={ stateValues }>
-        <StateViewPart key='error-state' state='error'>
+        <StateViewPart key='error-state' stateKey='error'>
             <ErrorPage error={ stateValues.error } />
         </StateViewPart>
         { children }
