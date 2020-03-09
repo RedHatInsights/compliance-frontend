@@ -44,7 +44,7 @@ const columns = [
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
 
-export const EditPolicyRules = ({ profileId, benchmarkId }) => {
+export const EditPolicyRules = ({ profileId, benchmarkId, dispatch }) => {
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
 
     if (error) { return error; }
@@ -60,6 +60,16 @@ export const EditPolicyRules = ({ profileId, benchmarkId }) => {
             selectedFilter
             columns={columns}
             loading={loading}
+            handleSelect={((selectedRules) => {
+                dispatch({
+                    type: '@@redux-form/CHANGE',
+                    meta: {
+                        field: 'selectedRules',
+                        form: 'policyForm'
+                    },
+                    payload: selectedRules
+                });
+            })}
             profileRules={ !loading && [{
                 profile: { refId: data.profile.refId, name: data.profile.name },
                 rules: data.benchmark.rules
@@ -71,7 +81,8 @@ export const EditPolicyRules = ({ profileId, benchmarkId }) => {
 
 EditPolicyRules.propTypes = {
     profileId: propTypes.string,
-    benchmarkId: propTypes.string
+    benchmarkId: propTypes.string,
+    dispatch: propTypes.func
 };
 
 const selector = formValueSelector('policyForm');
