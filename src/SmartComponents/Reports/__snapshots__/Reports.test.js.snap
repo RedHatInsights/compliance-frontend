@@ -1,18 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reports expect to render an error 1`] = `
-<ErrorPage
-  error={
-    Object {
-      "error": "Test Error loading",
-      "networkError": Object {
-        "statusCode": 500,
-      },
-    }
-  }
-/>
-`;
-
 exports[`Reports expect to render emptystate 1`] = `
 <StateViewWithError
   stateValues={
@@ -25,6 +12,26 @@ exports[`Reports expect to render emptystate 1`] = `
     }
   }
 >
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        >
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
@@ -51,11 +58,6 @@ exports[`Reports expect to render emptystate 1`] = `
       </div>
     </Connect(Main)>
   </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <LoadingState />
-  </StateViewPart>
 </StateViewWithError>
 `;
 
@@ -63,12 +65,32 @@ exports[`Reports expect to render loading 1`] = `
 <StateViewWithError
   stateValues={
     Object {
-      "data": Object {},
+      "data": undefined,
       "error": false,
       "loading": true,
     }
   }
 >
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        >
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
@@ -81,11 +103,6 @@ exports[`Reports expect to render loading 1`] = `
         />
       </div>
     </Connect(Main)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <LoadingState />
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -116,6 +133,26 @@ exports[`Reports expect to render without error 1`] = `
     }
   }
 >
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        >
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
@@ -163,11 +200,6 @@ exports[`Reports expect to render without error 1`] = `
         </Grid>
       </div>
     </Connect(Main)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <LoadingState />
   </StateViewPart>
 </StateViewWithError>
 `;

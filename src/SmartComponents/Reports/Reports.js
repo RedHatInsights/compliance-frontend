@@ -5,7 +5,6 @@ import {
     LoadingComplianceCards,
     ReportCard,
     CompliancePoliciesEmptyState,
-    ErrorPage,
     StateViewWithError,
     StateViewPart
 } from 'PresentationalComponents';
@@ -17,7 +16,6 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import { LoadingState } from './LoadingState';
 
 const QUERY = gql`
 {
@@ -43,7 +41,7 @@ export const Reports = () => {
     let reportCards;
     let pageHeader;
 
-    if (!loading) {
+    if (!loading && data) {
         const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
         const beta = window.location.pathname.split('/')[1] === 'beta';
 
@@ -68,23 +66,30 @@ export const Reports = () => {
         }
     }
 
-    return (
-        <StateViewWithError stateValues={ { error, data, loading } }>
-            <StateViewPart stateKey='data'>
-                { pageHeader }
-                <Main>
-                    <div className="policies-donuts">
-                        <Grid gutter='md'>
-                            { reportCards }
-                        </Grid>
-                    </div>
-                </Main>
-            </StateViewPart>
-            <StateViewPart stateKey='loading'>
-                <LoadingState />
-            </StateViewPart>
-        </StateViewWithError>
-    );
+    return <StateViewWithError stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey='loading'>
+            <PageHeader>
+                <PageHeaderTitle title="Compliance" />
+            </PageHeader>
+            <Main>
+                <div className="policies-donuts">
+                    <Grid gutter='md'>
+                        <LoadingComplianceCards/>
+                    </Grid>
+                </div>
+            </Main>
+        </StateViewPart>
+        <StateViewPart stateKey='data'>
+            { pageHeader }
+            <Main>
+                <div className="policies-donuts">
+                    <Grid gutter='md'>
+                        { reportCards }
+                    </Grid>
+                </div>
+            </Main>
+        </StateViewPart>
+    </StateViewWithError>;
 };
 
 export default routerParams(Reports);
