@@ -54,14 +54,41 @@ Array [
         </li>
       </ol>
     </nav>
-    <h1
-      className="pf-c-title pf-m-2xl"
-      widget-type="InsightsPageHeaderTitle"
+    <div
+      className="pf-l-grid pf-m-gutter"
     >
-       
-      profile1 report
-       
-    </h1>
+      <div
+        className="pf-l-grid__item pf-m-8-col-on-xl"
+      >
+        <h1
+          className="pf-c-title pf-m-2xl"
+          widget-type="InsightsPageHeaderTitle"
+        >
+           
+          profile1 report
+           
+        </h1>
+      </div>
+      <div
+        className="pf-l-grid__item pf-m-4-col-on-xl report-details-button"
+      >
+        <button
+          aria-disabled={null}
+          aria-label={null}
+          className="pf-c-button pf-m-link pf-m-inline"
+          disabled={false}
+          onClick={[Function]}
+          tabIndex={null}
+          type="button"
+        >
+          <span
+            className="pf-c-button__text"
+          >
+            Delete Report
+          </span>
+        </button>
+      </div>
+    </div>
     <div
       className="pf-l-grid pf-m-gutter"
     >

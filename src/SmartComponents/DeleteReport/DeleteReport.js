@@ -10,8 +10,7 @@ import { DELETE_REPORT } from 'Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
-const DeleteReport = ({ isModalOpen, onClose, onDelete }) => {
-    const { id } = {};
+const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
     const [modalOpen, setModalOpen] = useState(isModalOpen);
     const closeModal = () => {
         setModalOpen(false);
@@ -49,11 +48,17 @@ const DeleteReport = ({ isModalOpen, onClose, onDelete }) => {
             isFooterLeftAligned
             onClose={ closeModal }
             actions={[
-                <Button key='destroy'
+                <Button
+                    key='destroy'
                     aria-label="delete"
                     variant='danger'
-                    onClick={() => deleteReport({ variables: { input: { id } } })}
-                >
+                    onClick={() => deleteReport({
+                        variables: {
+                            input: {
+                                id: policyId
+                            }
+                        }
+                    })}>
                     Delete report
                 </Button>,
                 <Button key='cancel' variant='secondary' onClick={ closeModal }>
@@ -70,7 +75,8 @@ const DeleteReport = ({ isModalOpen, onClose, onDelete }) => {
 DeleteReport.propTypes = {
     onClose: propTypes.func,
     isModalOpen: propTypes.bool,
-    onDelete: propTypes.func
+    onDelete: propTypes.func,
+    policyId: propTypes.string
 };
 
 DeleteReport.defaultProps = {
