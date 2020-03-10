@@ -14,7 +14,7 @@ import {
 
 const ErrorPage = ({ error, ...props }) => {
     if (error.networkError && error.networkError.statusCode === 401) {
-        window.insights.chrome.auth.logout();
+        window.insights.chrome.auth.logout(true);
     }
 
     if (error.networkError && error.networkError.statusCode === 404) {
