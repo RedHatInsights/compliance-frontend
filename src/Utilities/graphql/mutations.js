@@ -67,3 +67,13 @@ mutation DeleteProfile($input: deleteProfileInput!) {
     }
 }
 `;
+
+export const DELETE_REPORT = gql`
+mutation DeleteReport($input: deleteReportInput!) {
+    deleteReport(input: $input) {
+        report {
+            id
+        }
+    }
+}
+`;
