@@ -6,8 +6,10 @@ import SystemsTable from '../SystemsTable/SystemsTable';
 import { fixedPercentage, pluralize } from '../../Utilities/TextHelper';
 import {
     ReportDetailsContentLoader,
-    ReportDetailsDescription
-} from '../../PresentationalComponents';
+    ReportDetailsDescription,
+    StateViewWithError,
+    StateViewPart
+} from 'PresentationalComponents';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     PageHeader,
@@ -55,23 +57,10 @@ export const ReportDetails = ({ match }) => {
     let donutValues = [];
     let donutId = 'loading-donut';
     let policy = {};
+    let legendData;
+    let compliancePercentage;
 
-    if (error) {
-        if (error.networkError.statusCode === 401) {
-            window.insights.chrome.auth.logout();
-        }
-
-        return 'Oops! Error loading Policy data: ' + error;
-    }
-
-    if (loading) {
-        return (
-            <React.Fragment>
-                <PageHeader><ReportDetailsContentLoader/></PageHeader>
-                <Main><EmptyTable><Spinner/></EmptyTable></Main>
-            </React.Fragment>
-        );
-    } else {
+    if (!loading && data) {
         policy = data.profile;
         const compliantHostCount = policy.compliantHostCount;
         const totalHostCount = policy.totalHostCount;
@@ -80,6 +69,12 @@ export const ReportDetails = ({ match }) => {
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
         ];
+        legendData = [
+            { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
+            { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
+        ];
+        compliancePercentage = fixedPercentage(Math.floor(100 *
+                (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
     }
 
     const columns = [{
@@ -108,16 +103,12 @@ export const ReportDetails = ({ match }) => {
         }
     }];
 
-    const legendData = [
-        { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
-        { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
-    ];
-
-    const compliancePercentage = fixedPercentage(Math.floor(100 *
-        (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
-
-    return (
-        <React.Fragment>
+    return <StateViewWithError stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey='loading'>
+            <PageHeader><ReportDetailsContentLoader/></PageHeader>
+            <Main><EmptyTable><Spinner/></EmptyTable></Main>
+        </StateViewPart>
+        <StateViewPart stateKey='data'>
             <PageHeader>
                 <Breadcrumb>
                     <BreadcrumbItem to='/rhel/compliance/reports'>
@@ -165,8 +156,8 @@ export const ReportDetails = ({ match }) => {
                     </GridItem>
                 </Grid>
             </Main>
-        </React.Fragment>
-    );
+        </StateViewPart>
+    </StateViewWithError>;
 };
 
 ReportDetails.propTypes = {
