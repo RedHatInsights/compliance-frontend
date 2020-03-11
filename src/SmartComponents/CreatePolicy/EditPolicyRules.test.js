@@ -12,9 +12,16 @@ jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () 
 
 describe('EditPolicyRules', () => {
     it('expect to render without error', () => {
-        useQuery.mockImplementation(() => ({ data: {
-            profile: { refId: 'refID-test', name: 'test profile' }
-        }, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({
+            data: {
+                profile: {
+                    refId: 'refID-test', name: 'test profile', rules: [{ refId: 'xccdfrefid' }]
+                },
+                benchmark: {
+                    rules: [{ refId: 'xccdfrefid' }]
+                }
+            },
+            error: false, loading: false }));
         const component = shallow(
             <EditPolicyRules />
         );

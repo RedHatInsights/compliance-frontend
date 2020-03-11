@@ -27,6 +27,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
       },
     ]
   }
+  handleSelect={[Function]}
   loading={false}
   profileRules={
     Array [
@@ -35,11 +36,22 @@ exports[`EditPolicyRules expect to render without error 1`] = `
           "name": "test profile",
           "refId": "refID-test",
         },
-        "rules": undefined,
+        "rules": Array [
+          Object {
+            "refId": "xccdfrefid",
+          },
+        ],
       },
     ]
   }
   remediationsEnabled={false}
+  selectedFilter={true}
+  selectedRefIds={
+    Array [
+      "xccdfrefid",
+    ]
+  }
+  tailoringEnabled={true}
 />
 `;
 
