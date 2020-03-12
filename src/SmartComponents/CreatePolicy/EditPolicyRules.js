@@ -60,14 +60,14 @@ export const EditPolicyRules = ({ profileId, benchmarkId, dispatch }) => {
             selectedFilter
             columns={columns}
             loading={loading}
-            handleSelect={((selectedRules) => {
+            handleSelect={((selectedRuleRefIds) => {
                 dispatch({
                     type: '@@redux-form/CHANGE',
                     meta: {
-                        field: 'selectedRules',
+                        field: 'selectedRuleRefIds',
                         form: 'policyForm'
                     },
-                    payload: selectedRules
+                    payload: selectedRuleRefIds
                 });
             })}
             profileRules={ !loading && [{

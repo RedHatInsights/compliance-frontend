@@ -41,11 +41,11 @@ class FinishedCreatePolicy extends React.Component {
 
     createProfile = () => {
         const { benchmarkId, cloneFromProfileId, refId, name, description,
-            complianceThreshold, selectedRules, client } = this.props;
+            complianceThreshold, selectedRuleRefIds, client } = this.props;
         return client.mutate({
             mutation: CREATE_PROFILE,
             variables: {
-                input: { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold, selectedRules }
+                input: { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold, selectedRuleRefIds }
             }
         });
     }
@@ -106,7 +106,7 @@ FinishedCreatePolicy.propTypes = {
     systemIds: propTypes.array,
     complianceThreshold: propTypes.number,
     onWizardFinish: propTypes.func,
-    selectedRules: propTypes.arrayOf(propTypes.string).isRequired
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired
 };
 
 export const selector = formValueSelector('policyForm');
@@ -121,7 +121,7 @@ export default compose(
             description: selector(state, 'description'),
             complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
             systemIds: selector(state, 'systems'),
-            selectedRules: selector(state, 'selectedRules')
+            selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
         })
     ),
     reduxForm({
