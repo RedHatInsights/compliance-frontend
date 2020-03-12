@@ -1,39 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorPage expect to render a 401 error when logged out 1`] = `
-<section
-  className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet"
->
-  <Title
-    size="3xl"
-  >
-    There was an error
-  </Title>
-  <ErrorCircleOIcon
-    color="currentColor"
-    noVerticalAlign={false}
-    size="xl"
-    style={
-      Object {
-        "opacity": "0.5",
-      }
-    }
-    title={null}
-  />
-  <Title
-    className="ins-c-text__sorry"
-    size="xl"
-  >
-    If you need to contact Red Hat Support about this, this is the exact error:
-    <Text />
-  </Title>
-  <Component
-    variant="link"
-  >
-    Go Back
-  </Component>
-</section>
-`;
+exports[`ErrorPage expect to render a 401 error when logged out 1`] = `""`;
 
 exports[`ErrorPage expect to render an invalid object 1`] = `<withRouter(InvalidObject) />`;
 
