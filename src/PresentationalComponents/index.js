@@ -14,3 +14,4 @@ export { default as PolicyDetailsDescription } from './PolicyDetailsDescription/
 export { default as ReportDetailsDescription } from './ReportDetailsDescription/ReportDetailsDescription';
 export { default as PolicyTabs } from './PolicyTabs/PolicyTabs';
 export { default as TabSwitcher, Tab } from './TabSwitcher/TabSwitcher';
+export { StateView, StateViewWithError, StateViewPart } from './StateView/StateView';

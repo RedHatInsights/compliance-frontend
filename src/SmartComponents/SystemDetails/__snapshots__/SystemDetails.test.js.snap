@@ -1,70 +1,222 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SystemDetails expect to render a 401 error when logged out 1`] = `"Oops! Error loading Systems data: [object Object]"`;
-
-exports[`SystemDetails expect to render a 500 error 1`] = `"Oops! Error loading Systems data: [object Object]"`;
+exports[`SystemDetails expect to render a 500 error 1`] = `
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "system": Object {
+          "name": "test.host.local",
+        },
+      },
+      "error": Object {
+        "error": "Test Error loading",
+        "networkError": Object {
+          "statusCode": 500,
+        },
+      },
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Component>
+        <BreadcrumbItem
+          onClick={[Function]}
+          to="/rhel/compliance/systems"
+        >
+          Systems
+        </BreadcrumbItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          test.host.local
+        </BreadcrumbItem>
+      </Component>
+      <[object Object] />
+      <br />
+    </PageHeader>
+    <Connect(Main)>
+      <Component
+        hidePassed={false}
+        inventoryId={1}
+      />
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <Skeleton
+        isDark={false}
+        size="md"
+      />
+    </PageHeader>
+  </StateViewPart>
+</StateViewWithError>
+`;
 
 exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
-<Fragment>
-  <PageHeader>
-    <Component>
-      <BreadcrumbItem
-        onClick={[Function]}
-        to="/rhel/compliance/systems"
-      >
-        Systems
-      </BreadcrumbItem>
-      <BreadcrumbItem
-        isActive={true}
-      >
-        test.host.local
-      </BreadcrumbItem>
-    </Component>
-    <[object Object] />
-    <br />
-  </PageHeader>
-  <Connect(Main)>
-    <Component
-      hidePassed={true}
-      inventoryId={1}
-    />
-  </Connect(Main)>
-</Fragment>
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "system": Object {
+          "name": "test.host.local",
+        },
+      },
+      "error": false,
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Component>
+        <BreadcrumbItem
+          onClick={[Function]}
+          to="/rhel/compliance/systems"
+        >
+          Systems
+        </BreadcrumbItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          test.host.local
+        </BreadcrumbItem>
+      </Component>
+      <[object Object] />
+      <br />
+    </PageHeader>
+    <Connect(Main)>
+      <Component
+        hidePassed={true}
+        inventoryId={1}
+      />
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <Skeleton
+        isDark={false}
+        size="md"
+      />
+    </PageHeader>
+  </StateViewPart>
+</StateViewWithError>
 `;
 
 exports[`SystemDetails expect to render loading 1`] = `
-<PageHeader>
-  <Skeleton
-    isDark={false}
-    size="md"
-  />
-</PageHeader>
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "system": Object {
+          "name": "test.host.local",
+        },
+      },
+      "error": false,
+      "loading": true,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Component>
+        <BreadcrumbItem
+          onClick={[Function]}
+          to="/rhel/compliance/systems"
+        >
+          Systems
+        </BreadcrumbItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          test.host.local
+        </BreadcrumbItem>
+      </Component>
+      <[object Object] />
+      <br />
+    </PageHeader>
+    <Connect(Main)>
+      <Component
+        hidePassed={false}
+        inventoryId={1}
+      />
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <Skeleton
+        isDark={false}
+        size="md"
+      />
+    </PageHeader>
+  </StateViewPart>
+</StateViewWithError>
 `;
 
 exports[`SystemDetails expect to render without error 1`] = `
-<Fragment>
-  <PageHeader>
-    <Component>
-      <BreadcrumbItem
-        onClick={[Function]}
-        to="/rhel/compliance/systems"
-      >
-        Systems
-      </BreadcrumbItem>
-      <BreadcrumbItem
-        isActive={true}
-      >
-        test.host.local
-      </BreadcrumbItem>
-    </Component>
-    <[object Object] />
-    <br />
-  </PageHeader>
-  <Connect(Main)>
-    <Component
-      hidePassed={false}
-      inventoryId={1}
-    />
-  </Connect(Main)>
-</Fragment>
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "system": Object {
+          "name": "test.host.local",
+        },
+      },
+      "error": false,
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Component>
+        <BreadcrumbItem
+          onClick={[Function]}
+          to="/rhel/compliance/systems"
+        >
+          Systems
+        </BreadcrumbItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          test.host.local
+        </BreadcrumbItem>
+      </Component>
+      <[object Object] />
+      <br />
+    </PageHeader>
+    <Connect(Main)>
+      <Component
+        hidePassed={false}
+        inventoryId={1}
+      />
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <Skeleton
+        isDark={false}
+        size="md"
+      />
+    </PageHeader>
+  </StateViewPart>
+</StateViewWithError>
 `;

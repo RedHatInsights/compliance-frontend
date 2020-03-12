@@ -7,7 +7,9 @@ import {
     PolicyDetailsContentLoader,
     PolicyTabs,
     TabSwitcher,
-    Tab
+    Tab,
+    StateViewWithError,
+    StateViewPart
 } from 'PresentationalComponents';
 import EditPolicy from '../EditPolicy/EditPolicy';
 import PolicyRulesTab from './PolicyRulesTab';
@@ -66,31 +68,15 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
-
     const [activeTab, setActiveTab] = useState(0);
-    let policy = {};
+    let policy = data && !loading ? data.profile : {};
 
-    if (error) {
-        if (error.networkError.statusCode === 401) {
-            window.insights.chrome.auth.logout();
-        }
-
-        return 'Oops! Error loading Policy data: ' + error;
-    }
-
-    if (loading) {
-        return (
-            <React.Fragment>
-                <PageHeader><PolicyDetailsContentLoader/></PageHeader>
-                <Main><Spinner/></Main>
-            </React.Fragment>
-        );
-    } else {
-        policy = data.profile;
-    }
-
-    return (
-        <React.Fragment>
+    return <StateViewWithError stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey='loading'>
+            <PageHeader><PolicyDetailsContentLoader/></PageHeader>
+            <Main><Spinner/></Main>
+        </StateViewPart>
+        <StateViewPart stateKey='data'>
             <PageHeader className={ 'beta-page-header'} >
                 <Breadcrumb>
                     <BreadcrumbItem to='/rhel/compliance/policies' onClick={ (event) => onNavigateWithProps(event) }>
@@ -132,8 +118,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                     </Tab>
                 </TabSwitcher>
             </Main>
-        </React.Fragment>
-    );
+        </StateViewPart>
+    </StateViewWithError>;
 };
 
 PolicyDetailsQuery.propTypes = {

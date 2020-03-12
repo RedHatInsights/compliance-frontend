@@ -94,21 +94,4 @@ describe('SystemDetails', () => {
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
-
-    it('expect to render a 401 error when logged out', () => {
-        window.insights = {
-            chrome: { auth: { logout: jest.fn(() => 'Logout') } }
-        };
-        const error = {
-            networkError: { statusCode: 401 },
-            error: 'Test Error loading'
-        };
-        useQuery.mockImplementation(() => ({ ...defaultQuery, error }));
-        const wrapper = shallow(
-            <SystemDetails />
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-        expect(window.insights.chrome.auth.logout).toHaveBeenCalled();
-    });
 });
