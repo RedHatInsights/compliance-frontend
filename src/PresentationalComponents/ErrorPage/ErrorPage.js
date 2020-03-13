@@ -6,11 +6,11 @@ import {
     Text
 } from '@patternfly/react-core';
 import {
-    ErrorCircleOIcon
+    WarningTriangleIcon
 } from '@patternfly/react-icons';
 import {
     InvalidObject
-} from '@redhat-cloud-services/frontend-components';
+} from '@redhat-cloud-services/frontend-components/components/InvalidObject';
 
 const ErrorPage = ({ error, ...props }) => {
     if (error.networkError && error.networkError.statusCode === 401) {
@@ -23,18 +23,18 @@ const ErrorPage = ({ error, ...props }) => {
     }
 
     return <section {...props} className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet">
+        <WarningTriangleIcon size="xl" style={ { opacity: '0.5' } } />
         <Title size='3xl'>There was an error</Title>
-        <ErrorCircleOIcon size="xl" style={ { opacity: '0.5' } } />
-        <Title size='xl' className='ins-c-text__sorry'>
+        <Text>
             If you need to contact Red Hat Support about this, this is the exact error:
             <Text>
                 { error.message }
             </Text>
-        </Title>
+        </Text>
         <Button
             variant="link"
             onClick={ history.goBack }>
-                Go Back
+                Go back
         </Button>
     </section>;
 };
