@@ -44,21 +44,8 @@ describe('Reports', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to render an error', () => {
-        const error = {
-            networkError: { statusCode: 500 },
-            error: 'Test Error loading'
-        };
-        useQuery.mockImplementation(() => ({ data: {}, error, loading: false }));
-        const wrapper = shallow(
-            <Reports />
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
     it('expect to render loading', () => {
-        useQuery.mockImplementation(() => ({ data: {}, error: false, loading: true }));
+        useQuery.mockImplementation(() => ({ data: undefined, error: false, loading: true }));
         const wrapper = shallow(
             <Reports />
         );

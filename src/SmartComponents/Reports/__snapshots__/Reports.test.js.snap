@@ -1,111 +1,205 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Reports expect to render an error 1`] = `
-<ErrorPage
-  error={
+exports[`Reports expect to render emptystate 1`] = `
+<StateViewWithError
+  stateValues={
     Object {
-      "error": "Test Error loading",
-      "networkError": Object {
-        "statusCode": 500,
+      "data": Object {
+        "allProfiles": Array [],
       },
+      "error": false,
+      "loading": false,
     }
   }
-/>
-`;
-
-exports[`Reports expect to render emptystate 1`] = `
-<Fragment>
-  <PageHeader
-    style={
-      Object {
-        "paddingBottom": 22,
-      }
-    }
+>
+  <StateViewPart
+    stateKey="loading"
   >
-    <PageHeaderTitle
-      title="Compliance"
-    />
-  </PageHeader>
-  <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
       >
-        <CompliancePoliciesEmptyState />
-      </Grid>
-    </div>
-  </Connect(Main)>
-</Fragment>
+        <Grid
+          gutter="md"
+        >
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader
+      style={
+        Object {
+          "paddingBottom": 22,
+        }
+      }
+    >
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        >
+          <CompliancePoliciesEmptyState />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
 `;
 
 exports[`Reports expect to render loading 1`] = `
-<Fragment>
-  <PageHeader>
-    <PageHeaderTitle
-      title="Compliance"
-    />
-  </PageHeader>
-  <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": undefined,
+      "error": false,
+      "loading": true,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
       >
-        <LoadingComplianceCards />
-      </Grid>
-    </div>
-  </Connect(Main)>
-</Fragment>
+        <Grid
+          gutter="md"
+        >
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        />
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
 `;
 
 exports[`Reports expect to render without error 1`] = `
-<Fragment>
-  <PageHeader
-    className="stable-page-header"
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "allProfiles": Array [
+          Object {
+            "businessObjective": Object {
+              "id": "1",
+              "title": "BO 1",
+            },
+            "complianceThreshold": 1,
+            "compliantHostCount": 1,
+            "description": "profile description",
+            "id": "1",
+            "name": "profile1",
+            "refId": "121212",
+            "totalHostCount": 1,
+          },
+        ],
+      },
+      "error": false,
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
   >
-    <PageHeaderTitle
-      title="Compliance reports"
-    />
-    <withRouter(Connect(RouterParams)) />
-  </PageHeader>
-  <Connect(Main)>
-    <div
-      className="policies-donuts"
-    >
-      <Grid
-        gutter="md"
+    <PageHeader>
+      <PageHeaderTitle
+        title="Compliance"
+      />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
       >
-        <GridItem
-          key="0"
-          lg={6}
-          md={12}
-          sm={12}
-          xl={4}
+        <Grid
+          gutter="md"
         >
-          <ReportCard
+          <LoadingComplianceCards />
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader
+      className="stable-page-header"
+    >
+      <PageHeaderTitle
+        title="Compliance reports"
+      />
+      <withRouter(Connect(RouterParams)) />
+    </PageHeader>
+    <Connect(Main)>
+      <div
+        className="policies-donuts"
+      >
+        <Grid
+          gutter="md"
+        >
+          <GridItem
             key="0"
-            policy={
-              Object {
-                "businessObjective": Object {
+            lg={6}
+            md={12}
+            sm={12}
+            xl={4}
+          >
+            <ReportCard
+              key="0"
+              policy={
+                Object {
+                  "businessObjective": Object {
+                    "id": "1",
+                    "title": "BO 1",
+                  },
+                  "complianceThreshold": 1,
+                  "compliantHostCount": 1,
+                  "description": "profile description",
                   "id": "1",
-                  "title": "BO 1",
-                },
-                "complianceThreshold": 1,
-                "compliantHostCount": 1,
-                "description": "profile description",
-                "id": "1",
-                "name": "profile1",
-                "refId": "121212",
-                "totalHostCount": 1,
+                  "name": "profile1",
+                  "refId": "121212",
+                  "totalHostCount": 1,
+                }
               }
-            }
-          />
-        </GridItem>
-      </Grid>
-    </div>
-  </Connect(Main)>
-</Fragment>
+            />
+          </GridItem>
+        </Grid>
+      </div>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
 `;
