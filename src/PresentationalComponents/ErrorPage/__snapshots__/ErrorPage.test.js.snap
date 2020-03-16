@@ -8,12 +8,7 @@ exports[`ErrorPage expect to render without error 1`] = `
 <section
   className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet"
 >
-  <Title
-    size="3xl"
-  >
-    There was an error
-  </Title>
-  <ErrorCircleOIcon
+  <WarningTriangleIcon
     color="currentColor"
     noVerticalAlign={false}
     size="xl"
@@ -25,18 +20,20 @@ exports[`ErrorPage expect to render without error 1`] = `
     title={null}
   />
   <Title
-    className="ins-c-text__sorry"
-    size="xl"
+    size="3xl"
   >
+    There was an error
+  </Title>
+  <Text>
     If you need to contact Red Hat Support about this, this is the exact error:
     <Text>
       An error message
     </Text>
-  </Title>
+  </Text>
   <Component
     variant="link"
   >
-    Go Back
+    Go back
   </Component>
 </section>
 `;
