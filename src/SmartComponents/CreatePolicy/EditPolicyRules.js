@@ -59,6 +59,10 @@ export const EditPolicyRules = ({ profileId, benchmarkId, dispatch, change }) =>
 
     selected = data.profile.rules.map((rule) => rule.refId);
 
+    useEffect(() => {
+        change('selectedRuleRefIds', selected);
+    }, [selected]);
+
     return (
         <SystemRulesTable
             remediationsEnabled={false}
