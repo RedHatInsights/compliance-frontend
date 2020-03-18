@@ -47,15 +47,17 @@ const columns = [
 export const EditPolicyRules = ({ profileId, benchmarkId, dispatch, change }) => {
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
 
+    let selected;
+
+    useEffect(() => {
+        change('selectedRuleRefIds', selected);
+    }, [data]);
+
     if (error) { return error; }
 
     if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
-    const selected = data.profile.rules.map((rule) => rule.refId);
-
-    useEffect(() => {
-        change('selectedRuleRefIds', selected);
-    }, [selected]);
+    selected = data.profile.rules.map((rule) => rule.refId);
 
     return (
         <SystemRulesTable
