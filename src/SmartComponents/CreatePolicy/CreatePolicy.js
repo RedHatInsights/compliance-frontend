@@ -10,7 +10,8 @@ import FinishedCreatePolicy from './FinishedCreatePolicy';
 import { connect } from 'react-redux';
 import {
     validateFirstPage,
-    validateSecondPage
+    validateSecondPage,
+    validateThirdPage
 } from './validate';
 import propTypes from 'prop-types';
 
@@ -35,7 +36,7 @@ class CreatePolicy extends React.Component {
 
     render() {
         const { isOpen, stepIdReached } = this.state;
-        const { benchmark, profile, name, refId, onWizardFinish } = this.props;
+        const { benchmark, profile, name, refId, selectedRuleRefIds, onWizardFinish } = this.props;
 
         const steps = [
             {
@@ -55,7 +56,8 @@ class CreatePolicy extends React.Component {
                 id: 3,
                 name: 'Rules',
                 component: <EditPolicyRules/>,
-                canJumpTo: stepIdReached >= 3
+                canJumpTo: stepIdReached >= 3,
+                enableNext: validateThirdPage(selectedRuleRefIds)
             },
             {
                 id: 4,
@@ -107,6 +109,7 @@ CreatePolicy.propTypes = {
     profile: propTypes.string,
     name: propTypes.string,
     refId: propTypes.string,
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
     isOpen: propTypes.bool,
     onWizardFinish: propTypes.func
 };
@@ -121,6 +124,7 @@ export default connect(
         benchmark: selector(state, 'benchmark'),
         profile: selector(state, 'profile'),
         name: selector(state, 'name'),
-        refId: selector(state, 'refId')
+        refId: selector(state, 'refId'),
+        selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
     })
 )(CreatePolicy);
