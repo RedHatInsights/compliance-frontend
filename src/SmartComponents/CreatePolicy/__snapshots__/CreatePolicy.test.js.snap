@@ -57,6 +57,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       Object {
         "canJumpTo": false,
         "component": <UNDEFINED />,
+        "enableNext": false,
         "id": 3,
         "name": "Rules",
       },
@@ -574,6 +575,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                         Object {
                           "canJumpTo": false,
                           "component": <UNDEFINED />,
+                          "enableNext": false,
                           "id": 3,
                           "name": "Rules",
                         },

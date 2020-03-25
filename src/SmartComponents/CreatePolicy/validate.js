@@ -13,3 +13,11 @@ export const validateSecondPage = (name, refId) => {
         return true;
     }
 };
+
+export const validateThirdPage = (selectedRuleRefIds) => {
+    if (!selectedRuleRefIds) {
+        return false;
+    } else {
+        return true;
+    }
+};

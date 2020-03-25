@@ -1,5 +1,5 @@
-import React from 'react';
-import { formValueSelector, reduxForm } from 'redux-form';
+import React, { useEffect } from 'react';
+import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
 import { sortable } from '@patternfly/react-table';
@@ -44,14 +44,20 @@ const columns = [
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
 
-export const EditPolicyRules = ({ profileId, benchmarkId, dispatch }) => {
+export const EditPolicyRules = ({ profileId, benchmarkId, dispatch, change }) => {
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
+
+    let selected;
+
+    useEffect(() => {
+        change('selectedRuleRefIds', selected);
+    }, [data]);
 
     if (error) { return error; }
 
     if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
 
-    const selected = data.profile.rules.map((rule) => rule.refId);
+    selected = data.profile.rules.map((rule) => rule.refId);
 
     return (
         <SystemRulesTable
@@ -82,7 +88,8 @@ export const EditPolicyRules = ({ profileId, benchmarkId, dispatch }) => {
 EditPolicyRules.propTypes = {
     profileId: propTypes.string,
     benchmarkId: propTypes.string,
-    dispatch: propTypes.func
+    dispatch: propTypes.func,
+    change: reduxFormPropTypes.change
 };
 
 const selector = formValueSelector('policyForm');
