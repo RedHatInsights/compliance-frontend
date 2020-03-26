@@ -98,7 +98,7 @@ class SystemsTable extends React.Component {
         let filter = this.filterBuilder.buildFilterString(activeFilters);
 
         if (showOnlySystemsWithTestResults) {
-            filter = `has_test_results = true and ${filter}`;
+            filter = `has_test_results = true and (${filter})`;
         }
 
         if (policyId && policyId.length > 0) {
