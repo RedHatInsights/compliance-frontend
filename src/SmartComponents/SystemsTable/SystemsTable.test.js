@@ -67,7 +67,7 @@ describe('SystemsTable', () => {
 
     it('expect to not render a loading state', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps }  items={ items.data.allSystems } systemsCount= { 1 } />
+            <SystemsTable { ...defaultProps }  items={ items.data.systems } systemsCount= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

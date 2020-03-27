@@ -38,7 +38,7 @@ const ReportsSystems = () => {
                 { beta ? <ReportTabs/> : <ComplianceTabs/> }
             </PageHeader>
             <Main>
-                <SystemsTable columns={columns} />
+                <SystemsTable showOnlySystemsWithTestResults columns={columns} />
             </Main>
         </React.Fragment>
     );

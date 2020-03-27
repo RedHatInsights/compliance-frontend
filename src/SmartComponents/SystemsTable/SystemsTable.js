@@ -28,7 +28,7 @@ import { FILTER_CONFIGURATION } from '../../constants';
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
     systems(search: $filter, limit: $perPage, offset: $page) {
-        totalCount,
+        totalCount
         edges {
             node {
                 id
@@ -42,11 +42,11 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     compliant
                 }
                 ruleObjectsFailed {
-                    refId,
+                    refId
                     profiles {
                         refId
                     }
-                    title,
+                    title
                     remediationAvailable
                 }
             }
@@ -93,9 +93,13 @@ class SystemsTable extends React.Component {
     }
 
     systemFetch = () => {
-        const { client } = this.props;
+        const { client, showOnlySystemsWithTestResults } = this.props;
         const { policyId, perPage, page, activeFilters } = this.state;
         let filter = this.filterBuilder.buildFilterString(activeFilters);
+
+        if (showOnlySystemsWithTestResults) {
+            filter = `has_test_results = true and (${filter})`;
+        }
 
         if (policyId && policyId.length > 0) {
             filter = `profile_id = ${policyId} and ${filter}`;
@@ -309,7 +313,8 @@ SystemsTable.propTypes = {
     exportToCSV: propTypes.func,
     enableExport: propTypes.bool,
     showAllSystems: propTypes.bool,
-    complianceThreshold: propTypes.number
+    complianceThreshold: propTypes.number,
+    showOnlySystemsWithTestResults: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -318,7 +323,8 @@ SystemsTable.defaultProps = {
     compact: false,
     enableExport: true,
     showAllSystems: false,
-    complianceThreshold: 0
+    complianceThreshold: 0,
+    showOnlySystemsWithTestResults: false
 };
 
 const mapStateToProps = state => {

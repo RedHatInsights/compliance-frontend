@@ -44,6 +44,7 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
           },
         ]
       }
+      showOnlySystemsWithTestResults={true}
     />
   </Connect(Main)>
 </Fragment>
@@ -93,6 +94,7 @@ exports[`ReportsSystems expect to render without error in stable 1`] = `
           },
         ]
       }
+      showOnlySystemsWithTestResults={true}
     />
   </Connect(Main)>
 </Fragment>
