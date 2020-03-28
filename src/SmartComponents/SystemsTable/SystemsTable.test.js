@@ -74,6 +74,24 @@ describe('SystemsTable', () => {
         expect(global.insights.loadInventory).toHaveBeenCalled();
     });
 
+    it('expect to not show actions if showActions is false', () => {
+        const wrapper = shallow(
+            <SystemsTable { ...defaultProps } showActions={false} items={ items.data.systems } systemsCount= { 1 } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+        expect(global.insights.loadInventory).toHaveBeenCalled();
+    });
+
+    it('expect to show actions if showActions is true or by default', () => {
+        const wrapper = shallow(
+            <SystemsTable { ...defaultProps } items={ items.data.systems } systemsCount= { 1 } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+        expect(global.insights.loadInventory).toHaveBeenCalled();
+    });
+
     it('expect to set loading state correctly on systemfetch', async () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps } />

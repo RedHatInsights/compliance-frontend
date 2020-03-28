@@ -47,7 +47,8 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
                 <SystemsTable
                     columns={columns}
                     remediationsEnabled={false}
-                    compact={true}
+                    compact
+                    showActions={ false }
                     showAllSystems
                     enableExport={ false }/>
             </Form>
