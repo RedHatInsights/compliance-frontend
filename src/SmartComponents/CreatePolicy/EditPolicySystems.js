@@ -21,7 +21,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
         }
     }, {
         key: 'facts.compliance.profiles',
-        title: 'Profiles',
+        title: 'Policies',
         props: {
             width: 40
         }

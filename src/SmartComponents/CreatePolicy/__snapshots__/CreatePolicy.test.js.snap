@@ -270,7 +270,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                             class=""
                             data-pf-content="true"
                           >
-                            Select the security guide and profile type for this policy.
+                            Select the security guide and policy type
                           </h4>
                         </div>
                         <form
@@ -351,12 +351,12 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                           >
                             <label
                               class="pf-c-form__label"
-                              for="profile-type"
+                              for="policy-type"
                             >
                               <span
                                 class="pf-c-form__label-text"
                               >
-                                Profile type
+                                Policy type
                               </span>
                               <span
                                 aria-hidden="true"
@@ -1023,7 +1023,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                     className=""
                                                     data-pf-content={true}
                                                   >
-                                                    Select the security guide and profile type for this policy.
+                                                    Select the security guide and policy type
                                                   </h4>
                                                 </Text>
                                               </div>
@@ -2488,21 +2488,21 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                   </div>
                                                 </FormGroup>
                                                 <FormGroup
-                                                  fieldId="profile-type"
+                                                  fieldId="policy-type"
                                                   isRequired={true}
-                                                  label="Profile type"
+                                                  label="Policy type"
                                                 >
                                                   <div
                                                     className="pf-c-form__group"
                                                   >
                                                     <label
                                                       className="pf-c-form__label"
-                                                      htmlFor="profile-type"
+                                                      htmlFor="policy-type"
                                                     >
                                                       <span
                                                         className="pf-c-form__label-text"
                                                       >
-                                                        Profile type
+                                                        Policy type
                                                       </span>
                                                       <span
                                                         aria-hidden="true"

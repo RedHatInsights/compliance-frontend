@@ -15,7 +15,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and profile type for this policy.
+      Select the security guide and policy type
     </h4>
   </div>,
   <form
@@ -48,12 +48,12 @@ Array [
     >
       <label
         className="pf-c-form__label"
-        htmlFor="profile-type"
+        htmlFor="policy-type"
       >
         <span
           className="pf-c-form__label-text"
         >
-          Profile type
+          Policy type
         </span>
         <span
           aria-hidden="true"
@@ -99,7 +99,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and profile type for this policy.
+      Select the security guide and policy type
     </h4>
   </div>,
   <form
@@ -204,12 +204,12 @@ Array [
     >
       <label
         className="pf-c-form__label"
-        htmlFor="profile-type"
+        htmlFor="policy-type"
       >
         <span
           className="pf-c-form__label-text"
         >
-          Profile type
+          Policy type
         </span>
         <span
           aria-hidden="true"
@@ -242,7 +242,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and profile type for this policy.
+      Select the security guide and policy type
     </h4>
   </div>,
   <form
@@ -347,12 +347,12 @@ Array [
     >
       <label
         className="pf-c-form__label"
-        htmlFor="profile-type"
+        htmlFor="policy-type"
       >
         <span
           className="pf-c-form__label-text"
         >
-          Profile type
+          Policy type
         </span>
         <span
           aria-hidden="true"
