@@ -8,7 +8,7 @@ import {
     Button
 } from '@patternfly/react-core';
 import { useQuery } from '@apollo/react-hooks';
-import SubmitPoliciesButton from './SubmitPoliciesButton';
+import { SubmitPoliciesButton } from './SubmitPoliciesButton';
 import gql from 'graphql-tag';
 import { reset, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';

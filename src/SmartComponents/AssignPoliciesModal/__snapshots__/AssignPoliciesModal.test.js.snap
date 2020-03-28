@@ -258,6 +258,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                       <SubmitPoliciesButton
                         aria-label="save"
                         dispatch={[Function]}
+                        policyIds={Array []}
                         systemId="1"
                         toggle={[MockFunction]}
                         variant="primary"
@@ -407,6 +408,7 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
                           <SubmitPoliciesButton
                             aria-label="save"
                             dispatch={[Function]}
+                            policyIds={Array []}
                             systemId="1"
                             toggle={[MockFunction]}
                             variant="primary"
@@ -702,6 +704,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                       <SubmitPoliciesButton
                         aria-label="save"
                         dispatch={[Function]}
+                        policyIds={Array []}
                         systemId="1"
                         toggle={[MockFunction]}
                         variant="primary"
@@ -960,6 +963,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                           <SubmitPoliciesButton
                             aria-label="save"
                             dispatch={[Function]}
+                            policyIds={Array []}
                             systemId="1"
                             toggle={[MockFunction]}
                             variant="primary"
@@ -1639,6 +1643,7 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                                         aria-label="save"
                                         dispatch={[Function]}
                                         key="save"
+                                        policyIds={Array []}
                                         systemId="1"
                                         toggle={[MockFunction]}
                                         variant="primary"

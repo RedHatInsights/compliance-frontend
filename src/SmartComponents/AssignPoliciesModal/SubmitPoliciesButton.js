@@ -7,13 +7,24 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import { dispatchAction } from '../../Utilities/Dispatcher';
 import { reset } from 'redux-form';
 
-const SubmitPoliciesButton = ({ policyIds, systemId, toggle, dispatch }) => {
+export const completedMessage = (system) => {
+    const profiles = system.profiles.map((profile) => profile.name);
+    let message;
+    if (profiles.length > 0) {
+        message = `Associated ${profiles} to ${system.name}`;
+    } else {
+        message = `${system.name} is now not associated to any policy`;
+    }
+
+    return message;
+};
+
+export const SubmitPoliciesButton = ({ policyIds, systemId, toggle, dispatch }) => {
     const [associateProfilesToSystem] = useMutation(ASSOCIATE_PROFILES_TO_SYSTEM, {
         onCompleted: (data) => {
             dispatchAction(addNotification({
                 variant: 'success',
-                title: `Associated ${data.associateProfiles.system.profiles.map((profile) => profile.name)} ` +
-                    `to ${data.associateProfiles.system.name}`
+                title: completedMessage(data.associateProfiles.system)
             }));
             toggle();
             dispatch(reset('assignPolicies'));
@@ -41,4 +52,6 @@ SubmitPoliciesButton.propTypes = {
     dispatch: propTypes.func
 };
 
-export default SubmitPoliciesButton;
+SubmitPoliciesButton.defaultProps = {
+    policyIds: []
+};
