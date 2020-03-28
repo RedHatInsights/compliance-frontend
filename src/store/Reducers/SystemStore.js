@@ -123,8 +123,12 @@ export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFin
             }
 
             state.rows = systemsToInventoryEntities(systems(), state.rows, showAllSystems, profileId);
-            state.count = state.rows.length;
-            state.total = state.rows.length;
+
+            if (!showAllSystems) {
+                state.count = state.rows.length;
+                state.total = state.rows.length;
+            }
+
             state.columns = [];
             for (const column of columns) {
                 state.columns.push(column);
