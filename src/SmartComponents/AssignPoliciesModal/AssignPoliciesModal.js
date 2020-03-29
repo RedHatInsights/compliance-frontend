@@ -86,7 +86,10 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
             <br/>
             <TextContent>
                 <Text>
-                    <CheckboxGroup name='policies' options={options} />
+                    { options.length > 0 ?
+                        <CheckboxGroup name='policies' options={options} /> :
+                        'No eligible policies for this system.'
+                    }
                 </Text>
             </TextContent>
         </Modal>
