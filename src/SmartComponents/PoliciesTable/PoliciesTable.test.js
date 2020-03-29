@@ -14,7 +14,7 @@ jest.mock('react-router-dom', () => (
 jest.mock('lodash/debounce');
 debounce.mockImplementation(fn => fn);
 
-import { PoliciesTable, policiesToRows } from './PoliciesTable.js';
+import { PoliciesTable } from './PoliciesTable.js';
 
 describe('PoliciesTable', () => {
     it('expect to render without error', () => {
