@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyRules expect to render without error 1`] = `
-<Component
+<SystemRulesTable
   columns={
     Array [
       Object {
@@ -28,6 +28,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
     ]
   }
   handleSelect={[Function]}
+  hidePassed={false}
   loading={false}
   profileRules={
     Array [

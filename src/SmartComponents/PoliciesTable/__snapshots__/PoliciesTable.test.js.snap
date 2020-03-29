@@ -1,20 +1,352 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PoliciesTable expect to render emptystate 1`] = `
-<CompliancePoliciesEmptyState
-  title="No policies"
-/>
+exports[`PoliciesTable Pagination and search should be able to move to next and previous pages 1`] = `
+Array [
+  Object {
+    "cells": Array [
+      Object {
+        "original": "United States Government Configuration Baseline23",
+        "title": <UNDEFINED
+          to="/policies/b71376fd-015e-4209-99af-4543e82e5dc5"
+        >
+          United States Government Configuration Baseline23
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+        "title": <UNDEFINED
+          to="/policies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
+        >
+          PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "67%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "United States Government Configuration Baseline2",
+        "title": <UNDEFINED
+          to="/policies/dae0487d-3201-4ee0-af5f-b94cde2af818"
+        >
+          United States Government Configuration Baseline2
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "C2S for Red Hat Enterprise Linux 7",
+        "title": <UNDEFINED
+          to="/policies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
+        >
+          C2S for Red Hat Enterprise Linux 7
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "69.5%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Criminal Justice Information Services (CJIS) Security Policy",
+        "title": <UNDEFINED
+          to="/policies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
+        >
+          Criminal Justice Information Services (CJIS) Security Policy
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+        "title": <UNDEFINED
+          to="/policies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
+        >
+          Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+        "title": <UNDEFINED
+          to="/policies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
+        >
+          PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+        "title": <UNDEFINED
+          to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+        >
+          Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Health Insurance Portability and Accountability Act (HIPAA)",
+        "title": <UNDEFINED
+          to="/policies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
+        >
+          Health Insurance Portability and Accountability Act (HIPAA)
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "United States Government Configuration Baseline",
+        "title": <UNDEFINED
+          to="/policies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
+        >
+          United States Government Configuration Baseline
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+]
 `;
 
-exports[`PoliciesTable expect to render without error 1`] = `
+exports[`PoliciesTable Pagination and search should be able to move to next and previous pages 2`] = `
+Array [
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Standard System Security Profile for Red Hat Enterprise Linux 7",
+        "title": <UNDEFINED
+          to="/policies/4c27fe09-9a7f-437c-b38b-e42272d9ccf0"
+        >
+          Standard System Security Profile for Red Hat Enterprise Linux 7
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "DISA STIG for Red Hat Enterprise Linux 7",
+        "title": <UNDEFINED
+          to="/policies/9b034440-e3dd-4c19-8f2c-ca75e813d57d"
+        >
+          DISA STIG for Red Hat Enterprise Linux 7
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+  Object {
+    "cells": Array [
+      Object {
+        "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
+        "title": <UNDEFINED
+          to="/policies/19921ca4-8526-4651-8876-3c8587e8e125"
+        >
+          PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+]
+`;
+
+exports[`PoliciesTable Pagination and search should show only matching results after searching 1`] = `
+Array [
+  Object {
+    "cells": Array [
+      Object {
+        "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+        "title": <UNDEFINED
+          to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+        >
+          Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+        </UNDEFINED>,
+      },
+      "RHEL 7",
+      10,
+      "--",
+      "100%",
+    ],
+  },
+]
+`;
+
+exports[`PoliciesTable expect to render emptystate 1`] = `
 <Fragment>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
+  <PrimaryToolbar
+    activeFiltersConfig={
+      Object {
+        "filters": Array [],
+        "onDelete": [Function],
+      }
+    }
+    filterConfig={
+      Object {
+        "hideLabel": true,
+        "items": Array [
+          Object {
+            "filterValues": Object {
+              "onSubmit": [Function],
+              "value": undefined,
+            },
+            "id": "name",
+            "label": "Name",
+            "type": "text",
+          },
+        ],
+      }
+    }
+    pagination={
+      Object {
+        "dropDirection": "down",
+        "itemCount": 0,
+        "onPerPageSelect": [Function],
+        "onSetPage": [Function],
+        "page": 1,
+        "perPage": 10,
+      }
+    }
+    toggleIsExpanded={[Function]}
+  >
+    <DataToolbarItem>
+      <Connect(CreatePolicy) />
+    </DataToolbarItem>
+    <DataToolbarItem>
+      0
+       results
+    </DataToolbarItem>
+  </PrimaryToolbar>
+  <Component
+    actionResolver={[Function]}
+    aria-label="policies"
+    cells={
+      Array [
+        Object {
+          "title": "Policy name",
+        },
+        Object {
+          "title": "Operating system",
+        },
+        Object {
+          "title": "Systems",
+        },
+        Object {
+          "title": "Business objective",
+        },
+        Object {
+          "title": "Compliance threshold",
+        },
+      ]
+    }
+    className="compliance-policies-table"
+    rows={
+      Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 5,
+              },
+              "title": <EmptyTable>
+                <Bullseye>
+                  <EmptyState
+                    variant="full"
+                  >
+                    <Title
+                      headingLevel="h5"
+                      size="lg"
+                    >
+                      No matching policies found
+                    </Title>
+                    <EmptyStateBody>
+                      This filter criteria matches no policies. 
+                      <br />
+                       Try changing your filter settings.
+                    </EmptyStateBody>
+                  </EmptyState>
+                </Bullseye>
+              </EmptyTable>,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <TableHeader />
+    <TableBody />
+  </Component>
   <TableToolbar
     isFooter={false}
+    className="ins-c-inventory__table--toolbar"
+    isFooter={true}
   >
     <Level
       gutter="md"
@@ -43,12 +375,68 @@ exports[`PoliciesTable expect to render without error 1`] = `
     <Component
       dropDirection="down"
       itemCount={13}
+      dropDirection="up"
+      itemCount={0}
       onPerPageSelect={[Function]}
       onSetPage={[Function]}
       page={1}
       perPage={10}
+      variant="bottom"
     />
   </TableToolbar>
+  <DeletePolicy
+    isModalOpen={false}
+    policy={Object {}}
+    toggle={[Function]}
+  />
+</Fragment>
+`;
+
+exports[`PoliciesTable expect to render without error 1`] = `
+<Fragment>
+  <PrimaryToolbar
+    activeFiltersConfig={
+      Object {
+        "filters": Array [],
+        "onDelete": [Function],
+      }
+    }
+    filterConfig={
+      Object {
+        "hideLabel": true,
+        "items": Array [
+          Object {
+            "filterValues": Object {
+              "onSubmit": [Function],
+              "value": undefined,
+            },
+            "id": "name",
+            "label": "Name",
+            "type": "text",
+          },
+        ],
+      }
+    }
+    pagination={
+      Object {
+        "dropDirection": "down",
+        "itemCount": 10,
+        "onPerPageSelect": [Function],
+        "onSetPage": [Function],
+        "page": 1,
+        "perPage": 10,
+      }
+    }
+    toggleIsExpanded={[Function]}
+  >
+    <DataToolbarItem>
+      <Connect(CreatePolicy) />
+    </DataToolbarItem>
+    <DataToolbarItem>
+      10
+       results
+    </DataToolbarItem>
+  </PrimaryToolbar>
   <Component
     actionResolver={[Function]}
     aria-label="policies"
@@ -246,7 +634,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
   >
     <Component
       dropDirection="up"
-      itemCount={13}
+      itemCount={10}
       onPerPageSelect={[Function]}
       onSetPage={[Function]}
       page={1}
@@ -254,5 +642,10 @@ exports[`PoliciesTable expect to render without error 1`] = `
       variant="bottom"
     />
   </TableToolbar>
+  <DeletePolicy
+    isModalOpen={false}
+    policy={Object {}}
+    toggle={[Function]}
+  />
 </Fragment>
 `;

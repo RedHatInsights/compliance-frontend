@@ -7,11 +7,6 @@ jest.mock('redux-form', () => ({
     formValueSelector: () => () => ('')
 }));
 
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
-
 import { EditPolicyDetails } from './EditPolicyDetails.js';
 
 describe('EditPolicyDetails', () => {

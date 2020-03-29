@@ -5,11 +5,6 @@ jest.mock('@apollo/react-hooks');
 
 import { EditPolicyRules } from './EditPolicyRules.js';
 
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const RulesTable = () => 'Rules Table';
-    return RulesTable;
-});
-
 describe('EditPolicyRules', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({

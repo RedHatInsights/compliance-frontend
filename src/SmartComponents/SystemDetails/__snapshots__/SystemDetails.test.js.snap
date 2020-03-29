@@ -40,7 +40,104 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
       <br />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <SystemDetails
+        client={
+          ApolloClient {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": CacheKeyNode {
+                "children": null,
+                "key": null,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "keyMaker": QueryKeyMaker {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "perQueryKeyMakers": Array [],
+                },
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "clientAwareness": Object {},
+            "defaultOptions": Object {},
+            "disableNetworkFetches": false,
+            "link": ApolloLink {
+              "request": [Function],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "ssrMode": false,
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimistic": Array [],
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "keyMaker": QueryKeyMaker {
+                    "cacheKeyRoot": CacheKeyNode {
+                      "children": null,
+                      "key": null,
+                    },
+                    "perQueryKeyMakers": Array [],
+                  },
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+            },
+            "version": "2.4.8",
+            "watchQuery": [Function],
+          }
+        }
         hidePassed={false}
         inventoryId={1}
       />
@@ -94,7 +191,104 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
       <br />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <SystemDetails
+        client={
+          ApolloClient {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": CacheKeyNode {
+                "children": null,
+                "key": null,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "keyMaker": QueryKeyMaker {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "perQueryKeyMakers": Array [],
+                },
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "clientAwareness": Object {},
+            "defaultOptions": Object {},
+            "disableNetworkFetches": false,
+            "link": ApolloLink {
+              "request": [Function],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "ssrMode": false,
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimistic": Array [],
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "keyMaker": QueryKeyMaker {
+                    "cacheKeyRoot": CacheKeyNode {
+                      "children": null,
+                      "key": null,
+                    },
+                    "perQueryKeyMakers": Array [],
+                  },
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+            },
+            "version": "2.4.8",
+            "watchQuery": [Function],
+          }
+        }
         hidePassed={true}
         inventoryId={1}
       />
@@ -148,7 +342,104 @@ exports[`SystemDetails expect to render loading 1`] = `
       <br />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <SystemDetails
+        client={
+          ApolloClient {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": CacheKeyNode {
+                "children": null,
+                "key": null,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "keyMaker": QueryKeyMaker {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "perQueryKeyMakers": Array [],
+                },
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "clientAwareness": Object {},
+            "defaultOptions": Object {},
+            "disableNetworkFetches": false,
+            "link": ApolloLink {
+              "request": [Function],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "ssrMode": false,
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimistic": Array [],
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "keyMaker": QueryKeyMaker {
+                    "cacheKeyRoot": CacheKeyNode {
+                      "children": null,
+                      "key": null,
+                    },
+                    "perQueryKeyMakers": Array [],
+                  },
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+            },
+            "version": "2.4.8",
+            "watchQuery": [Function],
+          }
+        }
         hidePassed={false}
         inventoryId={1}
       />
@@ -202,7 +493,104 @@ exports[`SystemDetails expect to render without error 1`] = `
       <br />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <SystemDetails
+        client={
+          ApolloClient {
+            "cache": InMemoryCache {
+              "addTypename": true,
+              "cacheKeyRoot": CacheKeyNode {
+                "children": null,
+                "key": null,
+              },
+              "config": Object {
+                "addTypename": true,
+                "dataIdFromObject": [Function],
+                "fragmentMatcher": HeuristicFragmentMatcher {},
+                "resultCaching": true,
+              },
+              "data": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
+              "maybeBroadcastWatch": [Function],
+              "optimistic": Array [],
+              "silenceBroadcast": false,
+              "storeReader": StoreReader {
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "executeSelectionSet": [Function],
+                "executeStoreQuery": [Function],
+                "keyMaker": QueryKeyMaker {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "perQueryKeyMakers": Array [],
+                },
+              },
+              "storeWriter": StoreWriter {},
+              "typenameDocumentCache": Array [],
+              "watches": Array [],
+            },
+            "clientAwareness": Object {},
+            "defaultOptions": Object {},
+            "disableNetworkFetches": false,
+            "link": ApolloLink {
+              "request": [Function],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "ssrMode": false,
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": CacheKeyNode {
+                  "children": null,
+                  "key": null,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimistic": Array [],
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "cacheKeyRoot": CacheKeyNode {
+                    "children": null,
+                    "key": null,
+                  },
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "keyMaker": QueryKeyMaker {
+                    "cacheKeyRoot": CacheKeyNode {
+                      "children": null,
+                      "key": null,
+                    },
+                    "perQueryKeyMakers": Array [],
+                  },
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+            },
+            "version": "2.4.8",
+            "watchQuery": [Function],
+          }
+        }
         hidePassed={false}
         inventoryId={1}
       />

@@ -7,13 +7,6 @@ import { benchmarksQuery } from './fixtures.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 
 import CreatePolicy from './CreatePolicy.js';
 
