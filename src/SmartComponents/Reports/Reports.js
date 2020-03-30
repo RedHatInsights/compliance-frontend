@@ -19,19 +19,24 @@ import {
 
 const QUERY = gql`
 {
-    allProfiles {
-        id
-        name
-        refId
-        description
-        totalHostCount
-        compliantHostCount
-        majorOsVersion
-        complianceThreshold
-        businessObjective {
-            id
-            title
+    profiles(search: "has_test_results = true", limit: "1000"){
+        edges {
+            node {
+                id
+                name
+                refId
+                description
+                totalHostCount
+                compliantHostCount
+                majorOsVersion
+                complianceThreshold
+                businessObjective {
+                    id
+                    title
+                }
+            }
         }
+
     }
 }
 `;
@@ -42,7 +47,7 @@ export const Reports = () => {
     let pageHeader;
 
     if (!loading && data) {
-        const policies = data.allProfiles.filter((profile) => profile.totalHostCount > 0);
+        const policies = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
         const beta = window.location.pathname.split('/')[1] === 'beta';
 
         if (policies.length) {
