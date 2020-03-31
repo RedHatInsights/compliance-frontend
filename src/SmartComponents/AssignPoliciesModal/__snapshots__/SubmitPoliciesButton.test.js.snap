@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SubmitPoliciesButton displays an special message if no profiles are available 1`] = `"foo is no longer associated to any policies"`;
+
 exports[`SubmitPoliciesButton expect to render button without error 1`] = `
 <button
   aria-disabled={null}
