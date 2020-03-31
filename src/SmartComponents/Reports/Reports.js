@@ -19,7 +19,7 @@ import {
 
 const QUERY = gql`
 {
-    profiles(search: "has_test_results = true", limit: "1000"){
+    profiles(search: "has_test_results = true", limit: 1000){
         edges {
             node {
                 id
