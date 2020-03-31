@@ -2,7 +2,7 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import { Button } from '@patternfly/react-core';
 import { dispatchAction } from '../../Utilities/Dispatcher';
 import { MockedProvider } from '@apollo/react-testing';
-import SubmitPoliciesButton from './SubmitPoliciesButton.js';
+import { SubmitPoliciesButton, completedMessage } from './SubmitPoliciesButton.js';
 import renderer, { act } from 'react-test-renderer';
 import { ASSOCIATE_PROFILES_TO_SYSTEM } from '../../Utilities/graphql/mutations';
 
@@ -67,5 +67,10 @@ describe('SubmitPoliciesButton', () => {
         expect(addNotification).toHaveBeenCalled();
         expect(defaultProps.toggle).toHaveBeenCalled();
         expect(defaultProps.dispatch).toHaveBeenCalled();
+    });
+
+    it('displays an special message if no profiles are available', () => {
+        const system = { name: 'foo', profiles: [] };
+        expect(completedMessage(system)).toMatchSnapshot();
     });
 });
