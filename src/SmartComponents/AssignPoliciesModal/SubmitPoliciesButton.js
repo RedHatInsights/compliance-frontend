@@ -13,7 +13,7 @@ export const completedMessage = (system) => {
     if (profiles.length > 0) {
         message = `Associated ${profiles} to ${system.name}`;
     } else {
-        message = `${system.name} is now not associated to any policy`;
+        message = `${system.name} is no longer associated to any policies`;
     }
 
     return message;
