@@ -5,12 +5,12 @@ import {
     Button,
     Bullseye,
     EmptyState,
-    EmptyStateIcon,
-    ClipboardCopy,
-    ClipboardCopyVariant
+    EmptyStateBody,
+    EmptyStateSecondaryActions,
+    EmptyStateIcon
 } from '@patternfly/react-core';
-import emptyStateStyles from '@patternfly/patternfly/components/EmptyState/empty-state.css';
 import { CloudServerIcon } from '@patternfly/react-icons';
+import CreatePolicy from '../../SmartComponents/CreatePolicy/CreatePolicy';
 
 const CompliancePoliciesEmptyState = () => (
     <Bullseye>
@@ -18,35 +18,26 @@ const CompliancePoliciesEmptyState = () => (
             <EmptyStateIcon style={{ fontWeight: '500', color: 'var(--pf-global--primary-color--100)' }}
                 size="xl" title="Compliance" icon={CloudServerIcon} />
             <br/>
-            <Title size="lg">Connect with OpenSCAP to do more with Red Hat Enterprise Linux</Title>
+            <Title size="lg">No policies are reporting</Title>
             <br/>
-            <span className={emptyStateStyles.emptyStateBody}>
+            <EmptyStateBody>
                 <TextContent>
-                    Scan and upload a report on a system with OpenSCAP to see information
-                    about your system&#39;s compliance to policies.
-                    <br/>
-                    Generate a report with OpenSCAP with the following command:
-                    <ClipboardCopy className='upload-instructions'
-                        variant={ClipboardCopyVariant.expansion}>
-                        oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard
-                        --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
-                    </ClipboardCopy>
-                    And upload it using the following command:
-                    <ClipboardCopy className='upload-instructions'
-                        variant={ClipboardCopyVariant.expansion}>
-                        sudo insights-client --verbose --payload scan.xml
-                        --content-type application/vnd.redhat.compliance.something+tgz
-                    </ClipboardCopy>
+                    The Compliance service uses SCAP policies to track your organization&#39;s adherence to
+                    compliance requirements.
                 </TextContent>
-            </span>
-
-            <Button
-                variant="primary"
-                component="a"
-                target="_blank"
-                href="https://www.open-scap.org/getting-started/">
-                Get started with OpenSCAP
-            </Button>
+                <TextContent>
+                    Get started by adding a policy, or read documentation about how to connect OpenSCAP to the
+                    Compliance service.
+                </TextContent>
+            </EmptyStateBody>
+            <CreatePolicy onWizardFinish={() => { location.reload(); }} />
+            <EmptyStateSecondaryActions>
+                <Button
+                    variant="link"
+                    href="https://www.open-scap.org/getting-started/">
+                    Learn about OpenSCAP and Compliance
+                </Button>
+            </EmptyStateSecondaryActions>
         </EmptyState>
     </Bullseye>
 );
