@@ -229,7 +229,7 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport, showAllSystems } = this.props;
+        const { remediationsEnabled, compact, enableExport, showAllSystems, showActions } = this.props;
         const {
             page, totalCount, perPage, items, InventoryCmp, filterChips,
             selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
@@ -240,7 +240,15 @@ class SystemsTable extends React.Component {
         );
         const exportConfig = enableExport ? { onSelect: this.onExportSelect } : {};
         const inventoryTableProps = {
-            actions: [
+            onRefresh: this.onRefresh,
+            ref: this.inventory,
+            page,
+            perPage,
+            exportConfig
+        };
+
+        if (showActions) {
+            inventoryTableProps.actions = [
                 {
                     title: 'Edit policies for this system',
                     onClick: (_event, _index, { id, fqdn }) => {
@@ -256,13 +264,8 @@ class SystemsTable extends React.Component {
                         window.location.href = `${window.location.origin}/rhel/inventory/${id}`;
                     }
                 }
-            ],
-            onRefresh: this.onRefresh,
-            ref: this.inventory,
-            page,
-            perPage,
-            exportConfig
-        };
+            ];
+        }
 
         if (!showAllSystems) {
             inventoryTableProps.total = totalCount;
@@ -314,7 +317,8 @@ SystemsTable.propTypes = {
     enableExport: propTypes.bool,
     showAllSystems: propTypes.bool,
     complianceThreshold: propTypes.number,
-    showOnlySystemsWithTestResults: propTypes.bool
+    showOnlySystemsWithTestResults: propTypes.bool,
+    showActions: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -324,7 +328,8 @@ SystemsTable.defaultProps = {
     enableExport: true,
     showAllSystems: false,
     complianceThreshold: 0,
-    showOnlySystemsWithTestResults: false
+    showOnlySystemsWithTestResults: false,
+    showActions: true
 };
 
 const mapStateToProps = state => {

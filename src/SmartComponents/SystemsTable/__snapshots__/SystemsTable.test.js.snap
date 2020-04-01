@@ -189,6 +189,104 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
 </ForwardRef>
 `;
 
+exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
+<ForwardRef
+  activeFiltersConfig={
+    Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    }
+  }
+  exportConfig={
+    Object {
+      "onSelect": [Function],
+    }
+  }
+  filterConfig={
+    Object {
+      "hideLabel": true,
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onSubmit": [Function],
+            "value": "",
+          },
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "Compliant",
+                "value": "true",
+              },
+              Object {
+                "label": "Non-compliant",
+                "value": "false",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliant",
+          "label": "Compliant",
+          "type": "checkbox",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "90 - 100%",
+                "value": "90-100",
+              },
+              Object {
+                "label": "70 - 89%",
+                "value": "70-89",
+              },
+              Object {
+                "label": "50 - 69%",
+                "value": "50-69",
+              },
+              Object {
+                "label": "Less than 50%",
+                "value": "0-49",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliancescore",
+          "label": "Compliance score",
+          "type": "checkbox",
+        },
+      ],
+    }
+  }
+  items={Array []}
+  onRefresh={[Function]}
+  page={1}
+  perPage={50}
+  total={0}
+>
+  <ToolbarGroup>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--lg)",
+        }
+      }
+    >
+      <Component
+        allSystems={Array []}
+        selectedRules={Array []}
+      />
+    </ToolbarItem>
+  </ToolbarGroup>
+</ForwardRef>
+`;
+
 exports[`SystemsTable expect to render a loading state 1`] = `
 <table
   aria-label="Loading"
@@ -770,4 +868,114 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
     </ToolbarItem>
   </ToolbarGroup>
 </mockConstructor>
+`;
+
+exports[`SystemsTable expect to show actions if showActions is true or by default 1`] = `
+<ForwardRef
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
+  activeFiltersConfig={
+    Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    }
+  }
+  exportConfig={
+    Object {
+      "onSelect": [Function],
+    }
+  }
+  filterConfig={
+    Object {
+      "hideLabel": true,
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onSubmit": [Function],
+            "value": "",
+          },
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "Compliant",
+                "value": "true",
+              },
+              Object {
+                "label": "Non-compliant",
+                "value": "false",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliant",
+          "label": "Compliant",
+          "type": "checkbox",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "90 - 100%",
+                "value": "90-100",
+              },
+              Object {
+                "label": "70 - 89%",
+                "value": "70-89",
+              },
+              Object {
+                "label": "50 - 69%",
+                "value": "50-69",
+              },
+              Object {
+                "label": "Less than 50%",
+                "value": "0-49",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "compliancescore",
+          "label": "Compliance score",
+          "type": "checkbox",
+        },
+      ],
+    }
+  }
+  items={Array []}
+  onRefresh={[Function]}
+  page={1}
+  perPage={50}
+  total={0}
+>
+  <ToolbarGroup>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--lg)",
+        }
+      }
+    >
+      <Component
+        allSystems={Array []}
+        selectedRules={Array []}
+      />
+    </ToolbarItem>
+  </ToolbarGroup>
+</ForwardRef>
 `;
