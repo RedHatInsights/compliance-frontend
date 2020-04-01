@@ -91,7 +91,9 @@ class SystemsTable extends React.Component {
     onRefresh = ({ page, per_page: perPage }) => {
         const { showAllSystems } = this.props;
         if (showAllSystems && this.inventory && this.inventory.current) {
-            this.inventory.current.onRefreshData({ page, perPage });
+            this.setState(
+                { page, perPage }, () => { this.inventory.current.onRefreshData({ page, perPage }); }
+            );
         } else {
             this.setState({ page, perPage }, this.systemFetch);
         }
