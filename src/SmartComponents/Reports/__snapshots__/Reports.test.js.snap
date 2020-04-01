@@ -5,7 +5,9 @@ exports[`Reports expect to render emptystate 1`] = `
   stateValues={
     Object {
       "data": Object {
-        "allProfiles": Array [],
+        "profiles": Object {
+          "edges": Array [],
+        },
       },
       "error": false,
       "loading": false,
@@ -112,21 +114,25 @@ exports[`Reports expect to render without error 1`] = `
   stateValues={
     Object {
       "data": Object {
-        "allProfiles": Array [
-          Object {
-            "businessObjective": Object {
-              "id": "1",
-              "title": "BO 1",
+        "profiles": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "refId": "121212",
+                "totalHostCount": 1,
+              },
             },
-            "complianceThreshold": 1,
-            "compliantHostCount": 1,
-            "description": "profile description",
-            "id": "1",
-            "name": "profile1",
-            "refId": "121212",
-            "totalHostCount": 1,
-          },
-        ],
+          ],
+        },
       },
       "error": false,
       "loading": false,

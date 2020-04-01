@@ -9,20 +9,27 @@ describe('Reports', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({
             data: {
-                allProfiles: [{
-                    id: '1',
-                    refId: '121212',
-                    name: 'profile1',
-                    description: 'profile description',
-                    totalHostCount: 1,
-                    complianceThreshold: 1,
-                    compliantHostCount: 1,
-                    businessObjective: {
-                        id: '1',
-                        title: 'BO 1'
-                    }
-                }]
-            }, error: false, loading: false }));
+                profiles: {
+                    edges: [
+                        {
+                            node: {
+                                id: '1',
+                                refId: '121212',
+                                name: 'profile1',
+                                description: 'profile description',
+                                totalHostCount: 1,
+                                complianceThreshold: 1,
+                                compliantHostCount: 1,
+                                businessObjective: {
+                                    id: '1',
+                                    title: 'BO 1'
+                                }
+                            }
+                        }
+                    ]
+                }
+            }, error: false, loading: false
+        }));
 
         const wrapper = shallow(
             <Reports />
@@ -34,7 +41,7 @@ describe('Reports', () => {
     it('expect to render emptystate', () => {
         useQuery.mockImplementation(() => ({
             data: {
-                allProfiles: []
+                profiles: { edges: [] }
             }, error: false, loading: false }));
 
         const wrapper = shallow(
