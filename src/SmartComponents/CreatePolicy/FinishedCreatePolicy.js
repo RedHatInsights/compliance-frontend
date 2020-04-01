@@ -74,7 +74,7 @@ class FinishedCreatePolicy extends React.Component {
                     <EmptyStateIcon size='xl' icon={CogsIcon} />
                     <br/>
                     <Title size='lg'>
-                        {percent === 100 ? 'Profile creation complete' : 'Profile creation in progress'}
+                        {percent === 100 ? 'Policy creation complete' : 'Policy creation in progress'}
                     </Title>
                     <EmptyStateBody>
                         <Progress

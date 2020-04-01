@@ -68,7 +68,7 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
                     Create SCAP policy
                 </Text>
                 <Text component={TextVariants.h4}>
-                    Select the security guide and profile type for this policy.
+                    Select the security guide and policy type
                 </Text>
             </TextContent>
             <Form>
@@ -91,7 +91,7 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
                         );
                     })}
                 </FormGroup>
-                <FormGroup label="Profile type" isRequired fieldId="profile-type">
+                <FormGroup label="Policy type" isRequired fieldId="policy-type">
                     <ProfileTypeSelect profiles={selectedBenchmark && validProfiles } />
                 </FormGroup>
             </Form>

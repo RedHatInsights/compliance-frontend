@@ -39,7 +39,7 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount }) => {
                 Review
             </Text>
             <Text component={TextVariants.h4}>
-                Review your policy before finishing. SCAP security guide, profile type
+                Review your policy before finishing. SCAP security guide, policy type
                 and name cannot be changed after initial creation. Make sure they are correct!
             </Text>
             <hr/>

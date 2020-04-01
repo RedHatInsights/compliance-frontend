@@ -31,7 +31,7 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
     <h1
       className="pf-c-title pf-m-lg"
     >
-      Profile creation in progress
+      Policy creation in progress
     </h1>
     <div
       className="pf-c-empty-state__body"
