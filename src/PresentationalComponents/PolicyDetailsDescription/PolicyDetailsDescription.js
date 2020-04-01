@@ -44,12 +44,12 @@ const PolicyDetailsDescription = ({ policy }) => (
                         </Text>
                     </span>
                 </Tooltip>
-                { policy.businessObjective &&
                 <React.Fragment>
                     <Text component={TextVariants.h5}>Business objective</Text>
-                    <Text component={TextVariants.p}>{ policy.businessObjective.title }</Text>
+                    <Text component={TextVariants.p}>
+                        { policy.businessObjective && policy.businessObjective.title || '-' }
+                    </Text>
                 </React.Fragment>
-                }
                 <Text component={TextVariants.h5}>Description</Text>
                 <Text component={TextVariants.p}>
                     <Truncate text={linkifyHtml(policy.description || '')} length={380} inline={true} />
