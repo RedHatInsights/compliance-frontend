@@ -51,21 +51,4 @@ describe('DeletePolicy', () => {
         expect(defaultProps.onDelete).toHaveBeenCalled();
         expect(toJson(component)).toMatchSnapshot();
     });
-
-    it('expect to call toggle and onDelete when clicked', () => {
-        const mockMutationReturn = jest.fn();
-        const expectedArguments = { variables: { input: { id: 1, deleteAllTestResults: true } } };
-        useMutation.mockImplementation(() => {
-            return [mockMutationReturn];
-        });
-        const component = mount(
-            <DeletePolicy { ...defaultProps } />
-        );
-        component.find('input[aria-label="delete-all-reports-checkbox"]').simulate('click');
-        // Again, somehow a click doesn't trigger a change, therefore manually
-        component.find('input[aria-label="delete-all-reports-checkbox"]').simulate('change');
-        component.find('button[aria-label="delete"]').simulate('click');
-
-        expect(mockMutationReturn).toHaveBeenCalledWith(expectedArguments);
-    });
 });
