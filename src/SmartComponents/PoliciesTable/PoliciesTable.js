@@ -166,7 +166,7 @@ export class PoliciesTable extends React.Component {
             page, itemsPerPage, policyToDelete, isDeleteModalOpen
         } = this.state;
         const rules = this.filteredPolicies();
-        const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters, true);
+        const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
         const rows = policiesToRows(this.paginatedPolicies(rules));
         const filterConfig = this.filterConfigBuilder.buildConfiguration(
             this.onFilterUpdate,
