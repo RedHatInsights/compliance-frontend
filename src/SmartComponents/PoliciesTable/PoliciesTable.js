@@ -75,28 +75,10 @@ export class PoliciesTable extends React.Component {
     state = {
         page: 1,
         itemsPerPage: 10,
-        rows: [],
         isDeleteModalOpen: false,
         policyToDelete: {},
-        filterChips: [],
         activeFilters: {}
     }
-
-    componentDidMount = () => (
-        this.setInitialCurrentRows()
-    )
-
-    componentDidUpdate = (prevProps) => {
-        if (this.props.policies !== prevProps.policies) {
-            this.setInitialCurrentRows();
-        }
-    }
-
-    setInitialCurrentRows = () => (
-        this.setState({
-            rows: policiesToRows(this.filteredPolicies())
-        })
-    )
 
     setPage = (_event, page) => (
         this.changePage(page, this.state.itemsPerPage)
@@ -109,8 +91,7 @@ export class PoliciesTable extends React.Component {
     changePage = (page, itemsPerPage) => (
         this.setState({
             page,
-            itemsPerPage,
-            rows: policiesToRows(this.filteredPolicies())
+            itemsPerPage
         })
     )
 
@@ -122,29 +103,10 @@ export class PoliciesTable extends React.Component {
     )
 
     filteredPolicies = () => (
-        this.paginatedPolicies(this.filterConfigBuilder.applyFilterToObjectArray(
+        this.filterConfigBuilder.applyFilterToObjectArray(
             this.props.policies, this.state.activeFilters
-        ))
+        )
     )
-
-    updateChips = () => (
-        this.chipBuilder.chipsFor(this.state.activeFilters).then((filterChips) => (
-            this.setState({
-                filterChips
-            })
-        ))
-    )
-
-    updateRows = () => (
-        this.setState({
-            rows: policiesToRows(this.filteredPolicies())
-        })
-    )
-
-    updateTable = () => {
-        this.updateRows();
-        this.updateChips();
-    }
 
     onFilterUpdate = (filter, value) => {
         this.setState({
@@ -153,37 +115,22 @@ export class PoliciesTable extends React.Component {
                 ...this.state.activeFilters,
                 [filter]: value
             }
-        }, this.updateTable);
+        });
     }
 
-    removeFilterFromFilterState = (currentState, filter) => (
-        (typeof(currentState) === 'string') ? '' :
-            currentState.filter((value) =>
-                value !== filter
-            )
-    )
-
     deleteFilter = (chips) => {
-        const chipCategory = chips.category;
-        const chipValue = this.filterConfigBuilder.valueForLabel(chips.chips[0].name, chipCategory);
-        const stateProp = stringToId(chipCategory);
-        const currentState = this.state.activeFilters[stateProp];
-        const newFilterState = this.removeFilterFromFilterState(currentState, chipValue);
-        const activeFilters =  {
-            ...this.state.activeFilters,
-            [stateProp]: newFilterState
-        };
-
+        const activeFilters =  this.filterConfigBuilder.removeFilterWithChip(
+            chips, this.state.activeFilters
+        );
         this.setState({
             activeFilters
-        }, this.updateTable);
+        });
     }
 
     clearAllFilter = () => (
         this.setState({
-            activeFilters: this.filterConfigBuilder.initialDefaultState(),
-            filterChips: []
-        }, this.updateTable)
+            activeFilters: this.filterConfigBuilder.initialDefaultState()
+        })
     )
 
     onFilterDelete = (_event, chips, clearAll = false) => (
@@ -216,8 +163,11 @@ export class PoliciesTable extends React.Component {
     render() {
         const { onWizardFinish } = this.props;
         const {
-            rows, page, itemsPerPage, policyToDelete, isDeleteModalOpen, filterChips
+            page, itemsPerPage, policyToDelete, isDeleteModalOpen
         } = this.state;
+        const rules = this.filteredPolicies();
+        const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters, true);
+        const rows = policiesToRows(this.paginatedPolicies(rules));
         const filterConfig = this.filterConfigBuilder.buildConfiguration(
             this.onFilterUpdate,
             this.state.activeFilters,
@@ -225,7 +175,7 @@ export class PoliciesTable extends React.Component {
         );
         const pagination = {
             page,
-            itemCount: rows.length,
+            itemCount: rules.length,
             dropDirection: 'down',
             onSetPage: this.setPage,
             onPerPageSelect: this.setPerPage,
@@ -247,7 +197,7 @@ export class PoliciesTable extends React.Component {
                     <CreatePolicy onWizardFinish={onWizardFinish} />
                 </DataToolbarItem>
                 <DataToolbarItem>
-                    { rows.length } results
+                    { rules.length } results
                 </DataToolbarItem>
             </PrimaryToolbar>
             <Table

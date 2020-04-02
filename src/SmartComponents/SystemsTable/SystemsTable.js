@@ -175,26 +175,11 @@ class SystemsTable extends React.Component {
         }, this.filterUpdate);
     }, 500)
 
-    removeFilterFromFilterState = (currentState, filter) => (
-        (typeof(currentState) === 'string') ? '' :
-            currentState.filter((value) =>
-                value !== filter
-            )
-    )
-
     deleteFilter = (chips) => {
-        const chipCategory = chips.category;
-        const chipValue = this.filterConfig.valueForLabel(chips.chips[0].name, chipCategory);
-        const stateProp = stringToId(chipCategory);
-        const currentState = this.state.activeFilters[stateProp];
-        const newFilterState = this.removeFilterFromFilterState(currentState, chipValue);
-        const activeFilters =  {
-            ...this.state.activeFilters,
-            [stateProp]: newFilterState
-        };
-
+        const activeFilters =  this.filterConfig.removeFilterWithChip(
+            chips, this.state.activeFilters
+        );
         this.setState({
-            ...loadingState,
             activeFilters
         }, this.filterUpdate);
     }
