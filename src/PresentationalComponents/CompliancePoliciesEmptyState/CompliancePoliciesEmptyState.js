@@ -11,14 +11,15 @@ import {
 } from '@patternfly/react-core';
 import { CloudServerIcon } from '@patternfly/react-icons';
 import CreatePolicy from '../../SmartComponents/CreatePolicy/CreatePolicy';
+import propTypes from 'prop-types';
 
-const CompliancePoliciesEmptyState = () => (
+const CompliancePoliciesEmptyState = ({ title }) => (
     <Bullseye>
         <EmptyState>
             <EmptyStateIcon style={{ fontWeight: '500', color: 'var(--pf-global--primary-color--100)' }}
                 size="xl" title="Compliance" icon={CloudServerIcon} />
             <br/>
-            <Title size="lg">No policies are reporting</Title>
+            <Title size="lg">{ title }</Title>
             <br/>
             <EmptyStateBody>
                 <TextContent>
@@ -41,5 +42,13 @@ const CompliancePoliciesEmptyState = () => (
         </EmptyState>
     </Bullseye>
 );
+
+CompliancePoliciesEmptyState.propTypes = {
+    title: propTypes.string
+};
+
+CompliancePoliciesEmptyState.defaultProps = {
+    title: 'No policies'
+};
 
 export default CompliancePoliciesEmptyState;
