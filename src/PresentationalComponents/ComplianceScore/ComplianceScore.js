@@ -23,7 +23,7 @@ export const complianceScoreString = (system) => {
         return ' N/A';
     }
 
-    return ' ' + fixedPercentage(100 * (system.rulesPassed / (system.rulesPassed + system.rulesFailed)));
+    return ' ' + fixedPercentage(system.score);
 };
 
 const ComplianceScore = (system) => (

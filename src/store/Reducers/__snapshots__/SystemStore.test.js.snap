@@ -24,6 +24,7 @@ Array [
                   "name": "Standard System Security Profile for Red Hat Enterprise Linux 7",
                   "rulesFailed": 34,
                   "rulesPassed": 17,
+                  "score": 40,
                 },
                 Object {
                   "compliant": false,
@@ -31,6 +32,7 @@ Array [
                   "name": "DISA STIG for Red Hat Enterprise Linux 7",
                   "rulesFailed": 152,
                   "rulesPassed": 65,
+                  "score": 0,
                 },
                 Object {
                   "compliant": false,
@@ -38,6 +40,7 @@ Array [
                   "name": "United States Government Configuration Baseline",
                   "rulesFailed": 190,
                   "rulesPassed": 171,
+                  "score": 0,
                 },
                 Object {
                   "compliant": false,
@@ -45,15 +48,17 @@ Array [
                   "name": "C2S for Red Hat Enterprise Linux 7",
                   "rulesFailed": 129,
                   "rulesPassed": 83,
+                  "score": 0,
                 },
               ]
             }
             rulesFailed={505}
             rulesPassed={336}
+            score={10}
           />
-           40%
+           10%
         </React.Fragment>,
-        "compliance_score_text": " 40%",
+        "compliance_score_text": " 10%",
         "display_name": Object {
           "title": <Link
             to={

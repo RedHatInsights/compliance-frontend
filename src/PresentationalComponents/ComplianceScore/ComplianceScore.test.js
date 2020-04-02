@@ -6,6 +6,7 @@ describe('auxiliary functions to reducer', () => {
         const system = {
             rulesPassed: 30,
             rulesFailed: 300,
+            score: 10,
             compliant: false
         };
 
@@ -17,6 +18,7 @@ describe('auxiliary functions to reducer', () => {
         const system = {
             rulesPassed: 30,
             rulesFailed: 3,
+            score: 91,
             profiles: [
                 { compliant: true },
                 { compliant: true }
