@@ -40,6 +40,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     rulesFailed
                     lastScanned
                     compliant
+                    score
                 }
                 ruleObjectsFailed {
                     refId

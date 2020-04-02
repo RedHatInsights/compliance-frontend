@@ -10,28 +10,32 @@ export const systems = [
                     rulesPassed: 17,
                     rulesFailed: 34,
                     lastScanned: '2019-11-21T14:32:19Z',
-                    compliant: false
+                    compliant: false,
+                    score: 40
                 },
                 {
                     name: 'DISA STIG for Red Hat Enterprise Linux 7',
                     rulesPassed: 65,
                     rulesFailed: 152,
                     lastScanned: '2019-11-21T14:32:19Z',
-                    compliant: false
+                    compliant: false,
+                    score: 0
                 },
                 {
                     name: 'United States Government Configuration Baseline',
                     rulesPassed: 171,
                     rulesFailed: 190,
                     lastScanned: '2019-11-21T14:32:19Z',
-                    compliant: false
+                    compliant: false,
+                    score: 0
                 },
                 {
                     name: 'C2S for Red Hat Enterprise Linux 7',
                     rulesPassed: 83,
                     rulesFailed: 129,
                     lastScanned: '2019-11-21T14:32:19Z',
-                    compliant: false
+                    compliant: false,
+                    score: 0
                 }
             ]
         }

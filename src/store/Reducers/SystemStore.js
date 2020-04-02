@@ -39,6 +39,19 @@ export const compliant = (system, profileId) => {
     return profiles.every(profile => profile.compliant === true);
 };
 
+export const score = (system, profileId) => {
+    const profiles = findProfiles(system, [profileId]);
+    const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
+    const numScored = profiles.reduce((acc, profile) => {
+        if (profile.rulesPassed + profile.rulesFailed > 0) { return acc + 1; }
+
+        return acc;
+    }, 0);
+    if (numScored) { return scoreTotal / numScored; }
+
+    return 0;
+};
+
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
     entities.map(entity => {
         // This should compare the inventory ID instead with
@@ -60,6 +73,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         matchingSystem.rulesFailed = rulesCount(matchingSystem, 'rulesFailed', profileId);
         matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
         matchingSystem.compliant = compliant(matchingSystem, profileId);
+        matchingSystem.score = score(matchingSystem, profileId);
 
         return {
             /* eslint-disable camelcase */

@@ -27,7 +27,7 @@ describe('mapping systems to inventory entities', () => {
         const inventoryEntities = systemsToInventoryEntities(systems, entities, false);
         const systemIds = systems.map(system => system.node.id);
         const systemNames = systems.map(system => system.node.name);
-        const systemComplianceScores = [' 40%', ' N/A'];
+        const systemComplianceScores = [' 10%', ' N/A'];
         expect(inventoryEntities.length).toBe(2);
         expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(systemIds.sort());
         expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(systemNames.sort());
@@ -37,7 +37,7 @@ describe('mapping systems to inventory entities', () => {
 
     it('should always return all systems for showAllSystems=true', () => {
         const inventoryEntities = systemsToInventoryEntities(systems, entities, true);
-        const systemComplianceScores = [' 40%', ' N/A', ' N/A', ' N/A'];
+        const systemComplianceScores = [' 10%', ' N/A', ' N/A', ' N/A'];
         expect(inventoryEntities.length).toBe(entities.length);
         expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(entities.map(e => e.id).sort());
         expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(entities.map(e => e.display_name).sort());
