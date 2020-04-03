@@ -270,7 +270,8 @@ class SystemsTable extends React.Component {
                 }, {
                     title: 'View in inventory',
                     onClick: (_event, _index, { id }) => {
-                        window.location.href = `${window.location.origin}/rhel/inventory/${id}`;
+                        const beta = window.location.pathname.split('/')[1] === 'beta';
+                        window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/rhel/inventory/${id}`;
                     }
                 }
             ];
