@@ -40,7 +40,6 @@ Array [
         aria-describedby="name"
         component={[Function]}
         id="name"
-        isDisabled={true}
         isRequired={true}
         name="name"
         type="text"
