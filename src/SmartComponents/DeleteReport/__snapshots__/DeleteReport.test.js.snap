@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteReport expect to render an open modal without error 1`] = `
+<DeleteReport
+  onClose={[Function]}
+  onDelete={[Function]}
+>
+  <Modal
+    actions={
+      Array [
+        <Unknown
+          aria-label="delete"
+          onClick={[Function]}
+          variant="danger"
+        >
+          Delete report
+        </Unknown>,
+        <Unknown
+          onClick={[Function]}
+          variant="secondary"
+        >
+          Cancel
+        </Unknown>,
+      ]
+    }
+    appendTo={
+      <body>
+        <div />
+      </body>
+    }
+    ariaDescribedById=""
+    className=""
+    hideTitle={false}
+    isFooterLeftAligned={true}
+    isLarge={false}
+    isOpen={false}
+    isSmall={true}
+    onClose={[Function]}
+    showClose={true}
+    title="Delete report"
+  >
+    <Portal
+      containerInfo={<div />}
+    >
+      <ModalContent
+        actions={
+          Array [
+            <Unknown
+              aria-label="delete"
+              onClick={[Function]}
+              variant="danger"
+            >
+              Delete report
+            </Unknown>,
+            <Unknown
+              onClick={[Function]}
+              variant="secondary"
+            >
+              Cancel
+            </Unknown>,
+          ]
+        }
+        ariaDescribedById=""
+        className=""
+        hideTitle={false}
+        id="pf-modal-0"
+        isFooterLeftAligned={true}
+        isLarge={false}
+        isOpen={false}
+        isSmall={true}
+        onClose={[Function]}
+        showClose={true}
+        title="Delete report"
+      />
+    </Portal>
+  </Modal>
+</DeleteReport>
+`;
