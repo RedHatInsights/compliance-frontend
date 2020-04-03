@@ -18,67 +18,28 @@ exports[`CompliancePoliciesEmptyState expect to render without error 1`] = `
     <Title
       size="lg"
     >
-      Connect with OpenSCAP to do more with Red Hat Enterprise Linux
+      No policies
     </Title>
     <br />
-    <span
-      className="emptyStateBody"
-    >
+    <EmptyStateBody>
       <TextContent>
-        Scan and upload a report on a system with OpenSCAP to see information about your system's compliance to policies.
-        <br />
-        Generate a report with OpenSCAP with the following command:
-        <ClipboardCopy
-          className="upload-instructions"
-          clickTip="Successfully copied to clipboard!"
-          entryDelay={100}
-          exitDelay={1600}
-          hoverTip="Copy to clipboard"
-          isCode={false}
-          isExpanded={false}
-          isReadOnly={false}
-          maxWidth="150px"
-          onChange={[Function]}
-          onCopy={[Function]}
-          position="top"
-          switchDelay={2000}
-          textAriaLabel="Copyable input"
-          toggleAriaLabel="Show content"
-          variant="expansion"
-        >
-          oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_standard --results scan.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
-        </ClipboardCopy>
-        And upload it using the following command:
-        <ClipboardCopy
-          className="upload-instructions"
-          clickTip="Successfully copied to clipboard!"
-          entryDelay={100}
-          exitDelay={1600}
-          hoverTip="Copy to clipboard"
-          isCode={false}
-          isExpanded={false}
-          isReadOnly={false}
-          maxWidth="150px"
-          onChange={[Function]}
-          onCopy={[Function]}
-          position="top"
-          switchDelay={2000}
-          textAriaLabel="Copyable input"
-          toggleAriaLabel="Show content"
-          variant="expansion"
-        >
-          sudo insights-client --verbose --payload scan.xml --content-type application/vnd.redhat.compliance.something+tgz
-        </ClipboardCopy>
+        The Compliance service uses SCAP policies to track your organization's adherence to compliance requirements.
       </TextContent>
-    </span>
-    <Component
-      component="a"
-      href="https://www.open-scap.org/getting-started/"
-      target="_blank"
-      variant="primary"
-    >
-      Get started with OpenSCAP
-    </Component>
+      <TextContent>
+        Get started by adding a policy, or read documentation about how to connect OpenSCAP to the Compliance service.
+      </TextContent>
+    </EmptyStateBody>
+    <Connect(CreatePolicy)
+      onWizardFinish={[Function]}
+    />
+    <EmptyStateSecondaryActions>
+      <Component
+        href="https://www.open-scap.org/getting-started/"
+        variant="link"
+      >
+        Learn about OpenSCAP and Compliance
+      </Component>
+    </EmptyStateSecondaryActions>
   </EmptyState>
 </Bullseye>
 `;

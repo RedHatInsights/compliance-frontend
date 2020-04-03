@@ -5,6 +5,13 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
+jest.mock('../CreatePolicy/EditPolicyRules', () => {
+    return <p>Rules table</p>;
+});
+jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
+    const ComplianceRemediationButton = () => <button>Remediations</button>;
+    return ComplianceRemediationButton;
+});
 
 import AssignPoliciesModal from './AssignPoliciesModal.js';
 
