@@ -14,6 +14,9 @@ import {
     PaginationVariant,
     Title
 } from '@patternfly/react-core';
+import {
+    CompliancePoliciesEmptyState
+} from 'PresentationalComponents';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
 import DeletePolicy from '../DeletePolicy/DeletePolicy';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
@@ -172,6 +175,10 @@ export class PoliciesTable extends React.Component {
     render() {
         const { onWizardFinish } = this.props;
         const { rows, currentRows, columns, page, itemsPerPage, policyToDelete, isDeleteModalOpen } = this.state;
+        if (rows.length === 0) {
+            return <CompliancePoliciesEmptyState />;
+        }
+
         return (
             <React.Fragment>
                 <DeletePolicy
