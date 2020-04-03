@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
@@ -25,12 +25,13 @@ import {
 } from '@patternfly/react-charts';
 import {
     Breadcrumb,
-    BreadcrumbItem
+    BreadcrumbItem,
+    Button
 } from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import '../../Charts.scss';
 import './ReportDetails.scss';
-
+import DeleteReport from '../DeleteReport/DeleteReport';
 export const QUERY = gql`
 query Profile($policyId: String!){
     profile(id: $policyId) {
@@ -54,6 +55,7 @@ export const ReportDetails = ({ match }) => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId: match.params.report_id }
     });
+    const [deleteModalOpen, setModalOpen] = useState(false);
     let donutValues = [];
     let donutId = 'loading-donut';
     let policy = {};
@@ -116,7 +118,22 @@ export const ReportDetails = ({ match }) => {
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                 </Breadcrumb>
-                <PageHeaderTitle title={policy.name + ' report'} />
+                <Grid gutter='lg'>
+                    <GridItem xl={8}>
+                        <PageHeaderTitle title={policy.name + ' report'} />
+                    </GridItem>
+                    <GridItem className='report-details-button' xl={4}>
+                        <Button
+                            isInline
+                            variant="link"
+                            onClick={() => {
+                                console.log(deleteModalOpen);
+                                setModalOpen(!deleteModalOpen);
+                            }}>
+                            Delete Report
+                        </Button>
+                    </GridItem>
+                </Grid>
                 <Grid gutter='md'>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <div className='chart-inline'>
@@ -156,6 +173,10 @@ export const ReportDetails = ({ match }) => {
                     </GridItem>
                 </Grid>
             </Main>
+            <DeleteReport
+                isModalOpen={ deleteModalOpen }
+                policyId={ policy.id }
+                onClose={ () => setModalOpen(false) } />
         </StateViewPart>
     </StateViewWithError>;
 };

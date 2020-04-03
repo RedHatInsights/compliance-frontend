@@ -57,7 +57,8 @@ jest.mock('../EditPolicy/EditPolicy', () => {
 jest.mock('@apollo/react-hooks', () => ({
     useQuery: () => {
         return { data: mocks[0].result.data, error: false, loading: false };
-    }
+    },
+    useMutation: () => ([() => {}])
 }));
 
 describe('ReportDetails', () => {
