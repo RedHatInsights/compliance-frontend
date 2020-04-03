@@ -1,8 +1,11 @@
 import React from 'react';
 import {
+    CompliancePoliciesEmptyState,
     ComplianceTabs,
     ErrorPage,
-    LoadingPoliciesTable
+    LoadingPoliciesTable,
+    StateView,
+    StateViewPart
 } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
@@ -32,26 +35,39 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
+    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'network-only' });
+    const beta = insights.chrome.isBeta();
+    let policies = [];
 
-    if (error) { return <ErrorPage error={error}/>; }
+    if (data) {
+        policies = data.profiles.edges.map(profile => profile.node);
+    }
 
-    const beta = window.location.pathname.split('/')[1] === 'beta';
-
-    return (
-        <React.Fragment>
+    return <StateView stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey='error'>
+            <ErrorPage error={error}/>
+        </StateViewPart>
+        <StateViewPart stateKey='loading'>
             <PageHeader style={{ paddingBottom: '22px' }} className={ beta ? 'beta-page-header' : 'stable-page-header' } >
                 <PageHeaderTitle title="Compliance policies" />
-                { !loading && !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
-                { loading ?
-                    <LoadingPoliciesTable /> :
-                    <PoliciesTable onWizardFinish={() => refetch()} policies={data.profiles.edges.map(profile => profile.node)} />
+                <LoadingPoliciesTable />
+            </Main>
+        </StateViewPart>
+        <StateViewPart stateKey='data'>
+            <PageHeader style={{ paddingBottom: '22px' }} className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+                <PageHeaderTitle title="Compliance policies" />
+                { !beta && <ComplianceTabs/> }
+            </PageHeader>
+            <Main>
+                { policies.length === 0 ?
+                    <CompliancePoliciesEmptyState /> :
+                    <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
                 }
             </Main>
-        </React.Fragment>
-    );
+        </StateViewPart>
+    </StateView>;
 };
 
 export default routerParams(CompliancePolicies);
