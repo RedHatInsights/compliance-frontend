@@ -87,12 +87,11 @@ class SystemsTable extends React.Component {
         }
     }
 
-    onRefresh = ({ page, per_page: perPage, ...options }) => {
+    onRefresh = ({ page, per_page: perPage }) => {
         const { showAllSystems } = this.props;
         if (showAllSystems && this.inventory && this.inventory.current) {
-            this.setState({ page, perPage }, () => { this.inventory.current.onRefreshData({
-                page, perPage, ...options, per_page: perPage // eslint-disable-line camelcase
-            }); }
+            this.setState(
+                { page, perPage }, () => { this.inventory.current.onRefreshData({ page, perPage }); }
             );
         } else {
             this.setState({ page, perPage }, this.systemFetch);
