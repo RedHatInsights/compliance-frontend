@@ -69,7 +69,7 @@ mutation DeleteProfile($input: deleteProfileInput!) {
 `;
 
 export const DELETE_REPORT = gql`
-mutation DeleteReport($input: deleteReportInput!) {
+mutation DeleteReport($input: deleteTestResultsInput!) {
     deleteTestResults(input: $input) {
         profile {
             id
