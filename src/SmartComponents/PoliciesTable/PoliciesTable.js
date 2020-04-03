@@ -13,7 +13,6 @@ import { conditionalFilterType } from '@redhat-cloud-services/frontend-component
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
 import DeletePolicy from '../DeletePolicy/DeletePolicy';
 import { paths } from '../../Routes';
-import { stringToId } from 'Utilities/TextHelper';
 
 const emptyRows = [{
     cells: [{
