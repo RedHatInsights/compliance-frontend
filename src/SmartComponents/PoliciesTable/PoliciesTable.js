@@ -165,9 +165,9 @@ export class PoliciesTable extends React.Component {
         const {
             page, itemsPerPage, policyToDelete, isDeleteModalOpen
         } = this.state;
-        const rules = this.filteredPolicies();
+        const policies = this.filteredPolicies();
         const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
-        const rows = policiesToRows(this.paginatedPolicies(rules));
+        const rows = policiesToRows(this.paginatedPolicies(policies));
         const filterConfig = this.filterConfigBuilder.buildConfiguration(
             this.onFilterUpdate,
             this.state.activeFilters,
@@ -175,7 +175,7 @@ export class PoliciesTable extends React.Component {
         );
         const pagination = {
             page,
-            itemCount: rules.length,
+            itemCount: policies.length,
             dropDirection: 'down',
             onSetPage: this.setPage,
             onPerPageSelect: this.setPerPage,
@@ -197,7 +197,7 @@ export class PoliciesTable extends React.Component {
                     <CreatePolicy onWizardFinish={onWizardFinish} />
                 </DataToolbarItem>
                 <DataToolbarItem>
-                    { rules.length } results
+                    { policies.length } results
                 </DataToolbarItem>
             </PrimaryToolbar>
             <Table

@@ -278,7 +278,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
         }
       }
     >
-      <Component
+      <Connect(ComplianceRemediationButton)
         allSystems={Array []}
         selectedRules={Array []}
       />
@@ -618,7 +618,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
         }
       }
     >
-      <Component
+      <Connect(ComplianceRemediationButton)
         allSystems={Array []}
         selectedRules={Array []}
       />

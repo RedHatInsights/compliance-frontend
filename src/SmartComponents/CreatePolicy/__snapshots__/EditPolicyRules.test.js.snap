@@ -47,11 +47,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
   }
   remediationsEnabled={false}
   selectedFilter={true}
-  selectedRefIds={
-    Array [
-      "xccdfrefid",
-    ]
-  }
+  selectedRefIds={Array []}
   tailoringEnabled={true}
 />
 `;

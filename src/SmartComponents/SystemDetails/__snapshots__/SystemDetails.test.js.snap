@@ -45,14 +45,14 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
           ApolloClient {
             "cache": InMemoryCache {
               "addTypename": true,
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
               },
               "config": Object {
                 "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
                 "resultCaching": true,
               },
               "data": DepTrackingCache {
@@ -60,51 +60,38 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
                 "depend": [Function],
               },
               "maybeBroadcastWatch": [Function],
-              "optimistic": Array [],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
               "silenceBroadcast": false,
               "storeReader": StoreReader {
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
-                },
                 "executeSelectionSet": [Function],
                 "executeStoreQuery": [Function],
-                "keyMaker": QueryKeyMaker {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
-                  "perQueryKeyMakers": Array [],
-                },
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
               },
               "storeWriter": StoreWriter {},
               "typenameDocumentCache": Array [],
               "watches": Array [],
             },
-            "clientAwareness": Object {},
+            "clearStoreCallbacks": Array [],
             "defaultOptions": Object {},
             "disableNetworkFetches": false,
-            "link": ApolloLink {
+            "link": HttpLink {
               "request": [Function],
             },
-            "mutate": [Function],
-            "query": [Function],
-            "queryDeduplication": true,
-            "reFetchObservableQueries": [Function],
-            "resetStore": [Function],
-            "resetStoreCallbacks": Array [],
-            "ssrMode": false,
-            "store": DataStore {
+            "localState": LocalState {
               "cache": InMemoryCache {
                 "addTypename": true,
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
                 },
                 "config": Object {
                   "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
                   "resultCaching": true,
                 },
                 "data": DepTrackingCache {
@@ -112,29 +99,159 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
                   "depend": [Function],
                 },
                 "maybeBroadcastWatch": [Function],
-                "optimistic": Array [],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
                 "silenceBroadcast": false,
                 "storeReader": StoreReader {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
                   "executeSelectionSet": [Function],
                   "executeStoreQuery": [Function],
-                  "keyMaker": QueryKeyMaker {
-                    "cacheKeyRoot": CacheKeyNode {
-                      "children": null,
-                      "key": null,
-                    },
-                    "perQueryKeyMakers": Array [],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+              "client": [Circular],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "queryManager": QueryManager {
+              "assumeImmutableResults": false,
+              "clientAwareness": Object {
+                "name": undefined,
+                "version": undefined,
+              },
+              "dataStore": DataStore {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
                   },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+              },
+              "fetchQueryRejectFns": Array [],
+              "idCounter": 1,
+              "inFlightLinkObservables": Array [],
+              "link": HttpLink {
+                "request": [Function],
+              },
+              "localState": LocalState {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
+                  },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+                "client": [Circular],
+              },
+              "mutationStore": MutationStore {
+                "store": Object {},
+              },
+              "onBroadcast": [Function],
+              "pollingInfoByQueryId": Array [],
+              "queries": Array [],
+              "queryDeduplication": true,
+              "queryStore": QueryStore {
+                "store": Object {},
+              },
+              "ssrMode": false,
+              "transformCache": WeakMap {},
+            },
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
                 },
                 "storeWriter": StoreWriter {},
                 "typenameDocumentCache": Array [],
                 "watches": Array [],
               },
             },
-            "version": "2.4.8",
+            "typeDefs": undefined,
+            "version": "2.6.8",
             "watchQuery": [Function],
           }
         }
@@ -196,14 +313,14 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
           ApolloClient {
             "cache": InMemoryCache {
               "addTypename": true,
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
               },
               "config": Object {
                 "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
                 "resultCaching": true,
               },
               "data": DepTrackingCache {
@@ -211,51 +328,38 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
                 "depend": [Function],
               },
               "maybeBroadcastWatch": [Function],
-              "optimistic": Array [],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
               "silenceBroadcast": false,
               "storeReader": StoreReader {
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
-                },
                 "executeSelectionSet": [Function],
                 "executeStoreQuery": [Function],
-                "keyMaker": QueryKeyMaker {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
-                  "perQueryKeyMakers": Array [],
-                },
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
               },
               "storeWriter": StoreWriter {},
               "typenameDocumentCache": Array [],
               "watches": Array [],
             },
-            "clientAwareness": Object {},
+            "clearStoreCallbacks": Array [],
             "defaultOptions": Object {},
             "disableNetworkFetches": false,
-            "link": ApolloLink {
+            "link": HttpLink {
               "request": [Function],
             },
-            "mutate": [Function],
-            "query": [Function],
-            "queryDeduplication": true,
-            "reFetchObservableQueries": [Function],
-            "resetStore": [Function],
-            "resetStoreCallbacks": Array [],
-            "ssrMode": false,
-            "store": DataStore {
+            "localState": LocalState {
               "cache": InMemoryCache {
                 "addTypename": true,
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
                 },
                 "config": Object {
                   "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
                   "resultCaching": true,
                 },
                 "data": DepTrackingCache {
@@ -263,29 +367,159 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
                   "depend": [Function],
                 },
                 "maybeBroadcastWatch": [Function],
-                "optimistic": Array [],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
                 "silenceBroadcast": false,
                 "storeReader": StoreReader {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
                   "executeSelectionSet": [Function],
                   "executeStoreQuery": [Function],
-                  "keyMaker": QueryKeyMaker {
-                    "cacheKeyRoot": CacheKeyNode {
-                      "children": null,
-                      "key": null,
-                    },
-                    "perQueryKeyMakers": Array [],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+              "client": [Circular],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "queryManager": QueryManager {
+              "assumeImmutableResults": false,
+              "clientAwareness": Object {
+                "name": undefined,
+                "version": undefined,
+              },
+              "dataStore": DataStore {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
                   },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+              },
+              "fetchQueryRejectFns": Array [],
+              "idCounter": 1,
+              "inFlightLinkObservables": Array [],
+              "link": HttpLink {
+                "request": [Function],
+              },
+              "localState": LocalState {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
+                  },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+                "client": [Circular],
+              },
+              "mutationStore": MutationStore {
+                "store": Object {},
+              },
+              "onBroadcast": [Function],
+              "pollingInfoByQueryId": Array [],
+              "queries": Array [],
+              "queryDeduplication": true,
+              "queryStore": QueryStore {
+                "store": Object {},
+              },
+              "ssrMode": false,
+              "transformCache": WeakMap {},
+            },
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
                 },
                 "storeWriter": StoreWriter {},
                 "typenameDocumentCache": Array [],
                 "watches": Array [],
               },
             },
-            "version": "2.4.8",
+            "typeDefs": undefined,
+            "version": "2.6.8",
             "watchQuery": [Function],
           }
         }
@@ -347,14 +581,14 @@ exports[`SystemDetails expect to render loading 1`] = `
           ApolloClient {
             "cache": InMemoryCache {
               "addTypename": true,
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
               },
               "config": Object {
                 "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
                 "resultCaching": true,
               },
               "data": DepTrackingCache {
@@ -362,51 +596,38 @@ exports[`SystemDetails expect to render loading 1`] = `
                 "depend": [Function],
               },
               "maybeBroadcastWatch": [Function],
-              "optimistic": Array [],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
               "silenceBroadcast": false,
               "storeReader": StoreReader {
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
-                },
                 "executeSelectionSet": [Function],
                 "executeStoreQuery": [Function],
-                "keyMaker": QueryKeyMaker {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
-                  "perQueryKeyMakers": Array [],
-                },
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
               },
               "storeWriter": StoreWriter {},
               "typenameDocumentCache": Array [],
               "watches": Array [],
             },
-            "clientAwareness": Object {},
+            "clearStoreCallbacks": Array [],
             "defaultOptions": Object {},
             "disableNetworkFetches": false,
-            "link": ApolloLink {
+            "link": HttpLink {
               "request": [Function],
             },
-            "mutate": [Function],
-            "query": [Function],
-            "queryDeduplication": true,
-            "reFetchObservableQueries": [Function],
-            "resetStore": [Function],
-            "resetStoreCallbacks": Array [],
-            "ssrMode": false,
-            "store": DataStore {
+            "localState": LocalState {
               "cache": InMemoryCache {
                 "addTypename": true,
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
                 },
                 "config": Object {
                   "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
                   "resultCaching": true,
                 },
                 "data": DepTrackingCache {
@@ -414,29 +635,159 @@ exports[`SystemDetails expect to render loading 1`] = `
                   "depend": [Function],
                 },
                 "maybeBroadcastWatch": [Function],
-                "optimistic": Array [],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
                 "silenceBroadcast": false,
                 "storeReader": StoreReader {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
                   "executeSelectionSet": [Function],
                   "executeStoreQuery": [Function],
-                  "keyMaker": QueryKeyMaker {
-                    "cacheKeyRoot": CacheKeyNode {
-                      "children": null,
-                      "key": null,
-                    },
-                    "perQueryKeyMakers": Array [],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+              "client": [Circular],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "queryManager": QueryManager {
+              "assumeImmutableResults": false,
+              "clientAwareness": Object {
+                "name": undefined,
+                "version": undefined,
+              },
+              "dataStore": DataStore {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
                   },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+              },
+              "fetchQueryRejectFns": Array [],
+              "idCounter": 1,
+              "inFlightLinkObservables": Array [],
+              "link": HttpLink {
+                "request": [Function],
+              },
+              "localState": LocalState {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
+                  },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+                "client": [Circular],
+              },
+              "mutationStore": MutationStore {
+                "store": Object {},
+              },
+              "onBroadcast": [Function],
+              "pollingInfoByQueryId": Array [],
+              "queries": Array [],
+              "queryDeduplication": true,
+              "queryStore": QueryStore {
+                "store": Object {},
+              },
+              "ssrMode": false,
+              "transformCache": WeakMap {},
+            },
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
                 },
                 "storeWriter": StoreWriter {},
                 "typenameDocumentCache": Array [],
                 "watches": Array [],
               },
             },
-            "version": "2.4.8",
+            "typeDefs": undefined,
+            "version": "2.6.8",
             "watchQuery": [Function],
           }
         }
@@ -498,14 +849,14 @@ exports[`SystemDetails expect to render without error 1`] = `
           ApolloClient {
             "cache": InMemoryCache {
               "addTypename": true,
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
+              "cacheKeyRoot": KeyTrie {
+                "weakness": true,
               },
               "config": Object {
                 "addTypename": true,
                 "dataIdFromObject": [Function],
                 "fragmentMatcher": HeuristicFragmentMatcher {},
+                "freezeResults": false,
                 "resultCaching": true,
               },
               "data": DepTrackingCache {
@@ -513,51 +864,38 @@ exports[`SystemDetails expect to render without error 1`] = `
                 "depend": [Function],
               },
               "maybeBroadcastWatch": [Function],
-              "optimistic": Array [],
+              "optimisticData": DepTrackingCache {
+                "data": Object {},
+                "depend": [Function],
+              },
               "silenceBroadcast": false,
               "storeReader": StoreReader {
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
-                },
                 "executeSelectionSet": [Function],
                 "executeStoreQuery": [Function],
-                "keyMaker": QueryKeyMaker {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
-                  "perQueryKeyMakers": Array [],
-                },
+                "executeSubSelectedArray": [Function],
+                "freezeResults": false,
               },
               "storeWriter": StoreWriter {},
               "typenameDocumentCache": Array [],
               "watches": Array [],
             },
-            "clientAwareness": Object {},
+            "clearStoreCallbacks": Array [],
             "defaultOptions": Object {},
             "disableNetworkFetches": false,
-            "link": ApolloLink {
+            "link": HttpLink {
               "request": [Function],
             },
-            "mutate": [Function],
-            "query": [Function],
-            "queryDeduplication": true,
-            "reFetchObservableQueries": [Function],
-            "resetStore": [Function],
-            "resetStoreCallbacks": Array [],
-            "ssrMode": false,
-            "store": DataStore {
+            "localState": LocalState {
               "cache": InMemoryCache {
                 "addTypename": true,
-                "cacheKeyRoot": CacheKeyNode {
-                  "children": null,
-                  "key": null,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
                 },
                 "config": Object {
                   "addTypename": true,
                   "dataIdFromObject": [Function],
                   "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
                   "resultCaching": true,
                 },
                 "data": DepTrackingCache {
@@ -565,29 +903,159 @@ exports[`SystemDetails expect to render without error 1`] = `
                   "depend": [Function],
                 },
                 "maybeBroadcastWatch": [Function],
-                "optimistic": Array [],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
                 "silenceBroadcast": false,
                 "storeReader": StoreReader {
-                  "cacheKeyRoot": CacheKeyNode {
-                    "children": null,
-                    "key": null,
-                  },
                   "executeSelectionSet": [Function],
                   "executeStoreQuery": [Function],
-                  "keyMaker": QueryKeyMaker {
-                    "cacheKeyRoot": CacheKeyNode {
-                      "children": null,
-                      "key": null,
-                    },
-                    "perQueryKeyMakers": Array [],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
+                },
+                "storeWriter": StoreWriter {},
+                "typenameDocumentCache": Array [],
+                "watches": Array [],
+              },
+              "client": [Circular],
+            },
+            "mutate": [Function],
+            "query": [Function],
+            "queryDeduplication": true,
+            "queryManager": QueryManager {
+              "assumeImmutableResults": false,
+              "clientAwareness": Object {
+                "name": undefined,
+                "version": undefined,
+              },
+              "dataStore": DataStore {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
                   },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+              },
+              "fetchQueryRejectFns": Array [],
+              "idCounter": 1,
+              "inFlightLinkObservables": Array [],
+              "link": HttpLink {
+                "request": [Function],
+              },
+              "localState": LocalState {
+                "cache": InMemoryCache {
+                  "addTypename": true,
+                  "cacheKeyRoot": KeyTrie {
+                    "weakness": true,
+                  },
+                  "config": Object {
+                    "addTypename": true,
+                    "dataIdFromObject": [Function],
+                    "fragmentMatcher": HeuristicFragmentMatcher {},
+                    "freezeResults": false,
+                    "resultCaching": true,
+                  },
+                  "data": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "maybeBroadcastWatch": [Function],
+                  "optimisticData": DepTrackingCache {
+                    "data": Object {},
+                    "depend": [Function],
+                  },
+                  "silenceBroadcast": false,
+                  "storeReader": StoreReader {
+                    "executeSelectionSet": [Function],
+                    "executeStoreQuery": [Function],
+                    "executeSubSelectedArray": [Function],
+                    "freezeResults": false,
+                  },
+                  "storeWriter": StoreWriter {},
+                  "typenameDocumentCache": Array [],
+                  "watches": Array [],
+                },
+                "client": [Circular],
+              },
+              "mutationStore": MutationStore {
+                "store": Object {},
+              },
+              "onBroadcast": [Function],
+              "pollingInfoByQueryId": Array [],
+              "queries": Array [],
+              "queryDeduplication": true,
+              "queryStore": QueryStore {
+                "store": Object {},
+              },
+              "ssrMode": false,
+              "transformCache": WeakMap {},
+            },
+            "reFetchObservableQueries": [Function],
+            "resetStore": [Function],
+            "resetStoreCallbacks": Array [],
+            "store": DataStore {
+              "cache": InMemoryCache {
+                "addTypename": true,
+                "cacheKeyRoot": KeyTrie {
+                  "weakness": true,
+                },
+                "config": Object {
+                  "addTypename": true,
+                  "dataIdFromObject": [Function],
+                  "fragmentMatcher": HeuristicFragmentMatcher {},
+                  "freezeResults": false,
+                  "resultCaching": true,
+                },
+                "data": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "maybeBroadcastWatch": [Function],
+                "optimisticData": DepTrackingCache {
+                  "data": Object {},
+                  "depend": [Function],
+                },
+                "silenceBroadcast": false,
+                "storeReader": StoreReader {
+                  "executeSelectionSet": [Function],
+                  "executeStoreQuery": [Function],
+                  "executeSubSelectedArray": [Function],
+                  "freezeResults": false,
                 },
                 "storeWriter": StoreWriter {},
                 "typenameDocumentCache": Array [],
                 "watches": Array [],
               },
             },
-            "version": "2.4.8",
+            "typeDefs": undefined,
+            "version": "2.6.8",
             "watchQuery": [Function],
           }
         }

@@ -37,7 +37,7 @@ const QUERY = gql`
 export const CompliancePolicies = () => {
     const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'network-only' });
     const beta = insights.chrome.isBeta();
-    let policies = [];
+    let policies;
 
     if (data) {
         policies = data.profiles.edges.map(profile => profile.node);
@@ -61,7 +61,7 @@ export const CompliancePolicies = () => {
                 { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
-                { policies.length === 0 ?
+                { policies && policies.length === 0 ?
                     <CompliancePoliciesEmptyState /> :
                     <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
                 }

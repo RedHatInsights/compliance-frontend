@@ -46,15 +46,15 @@ describe('PoliciesTable', () => {
         it('should show only matching results after searching', async () => {
             const instance = wrapper.instance();
             await instance.onFilterUpdate('name', 'CCP');
-            expect(wrapper.state('rows')).toMatchSnapshot();
+            expect(toJson(wrapper)).toMatchSnapshot();
         });
 
         it('should be able to move to next and previous pages', async () => {
             const instance = wrapper.instance();
             await instance.changePage(2, 10);
-            expect(wrapper.state('rows')).toMatchSnapshot();
+            expect(toJson(wrapper)).toMatchSnapshot();
             await instance.changePage(1, 10);
-            expect(wrapper.state('rows')).toMatchSnapshot();
+            expect(toJson(wrapper)).toMatchSnapshot();
         });
 
     });
