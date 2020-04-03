@@ -67,7 +67,7 @@ export const Reports = () => {
             );
         } else {
             pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-            reportCards = <CompliancePoliciesEmptyState />;
+            reportCards = <CompliancePoliciesEmptyState title={'No policies are reporting'} />;
         }
     }
 
