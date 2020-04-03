@@ -55,7 +55,7 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                     onClick={() => deleteReport({
                         variables: {
                             input: {
-                                id: policyId
+                                profileId: policyId
                             }
                         }
                     })}>
