@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Button,
     Form,
     FormGroup,
     Text,
@@ -10,7 +11,7 @@ import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Spinner } from '@redhat-cloud-services/frontend-components';
-import { formValueSelector, Field, reduxForm } from 'redux-form';
+import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
@@ -20,6 +21,7 @@ query benchmarksAndProfiles {
     latestBenchmarks {
         id
         title
+        refId
         version
         profiles {
             id
@@ -41,7 +43,7 @@ query benchmarksAndProfiles {
 }
 `;
 
-const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
+const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES);
 
     const userProfileRefIdsForBenchmarkId = (profiles, benchmarkId) => (
@@ -68,26 +70,23 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
                     Create SCAP policy
                 </Text>
                 <Text component={TextVariants.h4}>
-                    Select the security guide and policy type
+                    Select the operating system and policy type
                 </Text>
             </TextContent>
             <Form>
                 <FormGroup
-                    label="Security guide"
+                    label="Operating system"
                     isRequired
                     fieldId="benchmark">
+                    <br/>
                     { benchmarks && benchmarks.map((benchmark) => {
-                        const { title, version, id } = benchmark;
+                        const { refId, id } = benchmark;
                         return (
-                            <Text key={id}>
-                                <Field component='input'
-                                    name='benchmark'
-                                    type='radio'
-                                    value={id}
-                                    id={id}
-                                />
-                                {` ${title} - ${version}`}
-                            </Text>
+                            <Button key={id} onClick={ () => { change('benchmark', id); } }
+                                style={ { padding: '30px', marginRight: '15px' } }
+                                variant="tertiary">
+                                { refId.split('xccdf_org.ssgproject.content_benchmark_')[1] }
+                            </Button>
                         );
                     })}
                 </FormGroup>
@@ -100,7 +99,8 @@ const CreateSCAPPolicy = ({ selectedBenchmarkId }) => {
 };
 
 CreateSCAPPolicy.propTypes = {
-    selectedBenchmarkId: propTypes.string
+    selectedBenchmarkId: propTypes.string,
+    change: reduxFormPropTypes.change
 };
 
 const selector = formValueSelector('policyForm');

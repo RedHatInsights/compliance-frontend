@@ -15,7 +15,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and policy type
+      Select the operating system and policy type
     </h4>
   </div>,
   <form
@@ -32,7 +32,7 @@ Array [
         <span
           className="pf-c-form__label-text"
         >
-          Security guide
+          Operating system
         </span>
         <span
           aria-hidden="true"
@@ -41,6 +41,7 @@ Array [
           *
         </span>
       </label>
+      <br />
       
     </div>
     <div
