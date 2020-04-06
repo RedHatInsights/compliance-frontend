@@ -42,7 +42,7 @@ const QUERY = gql`
 `;
 
 export const Reports = () => {
-    const { data, error, loading } = useQuery(QUERY);
+    const { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     let reportCards;
     let pageHeader;
 
