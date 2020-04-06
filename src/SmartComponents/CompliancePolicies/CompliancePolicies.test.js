@@ -6,6 +6,9 @@ jest.mock('@apollo/react-hooks');
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
     return <p>Rules table</p>;
 });
+window.insights = {
+    chrome: { isBeta: jest.fn(() => true) }
+};
 
 import { CompliancePolicies } from './CompliancePolicies.js';
 
