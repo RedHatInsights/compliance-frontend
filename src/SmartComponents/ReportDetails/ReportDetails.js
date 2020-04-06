@@ -51,11 +51,16 @@ query Profile($policyId: String!){
 }
 `;
 
-export const ReportDetails = ({ match }) => {
+export const ReportDetails = ({ match, history }) => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId: match.params.report_id }
     });
-    const [deleteModalOpen, setModalOpen] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const redirect = () => {
+        const beta = window.insights.chrome.isBeta();
+        history.push(`${ beta && '/beta' }/rhel/compliance/reports`);
+    };
+
     let donutValues = [];
     let donutId = 'loading-donut';
     let policy = {};
@@ -126,10 +131,9 @@ export const ReportDetails = ({ match }) => {
                         <Button
                             isInline
                             variant="link"
-                            onClick={() => {
-                                console.log(deleteModalOpen);
-                                setModalOpen(!deleteModalOpen);
-                            }}>
+                            onClick={
+                                () => setDeleteModalOpen(true)
+                            }>
                             Delete Report
                         </Button>
                     </GridItem>
@@ -176,13 +180,19 @@ export const ReportDetails = ({ match }) => {
             <DeleteReport
                 isModalOpen={ deleteModalOpen }
                 policyId={ policy.id }
-                onClose={ () => setModalOpen(false) } />
+                onClose={ (removed) => {
+                    setDeleteModalOpen(false);
+                    if (removed) {
+                        redirect();
+                    }
+                } } />
         </StateViewPart>
     </StateViewWithError>;
 };
 
 ReportDetails.propTypes = {
-    match: propTypes.object
+    match: propTypes.object,
+    history: propTypes.object
 };
 
 export default routerParams(ReportDetails);

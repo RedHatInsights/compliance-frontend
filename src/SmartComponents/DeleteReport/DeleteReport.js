@@ -12,9 +12,9 @@ import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
     const [modalOpen, setModalOpen] = useState(isModalOpen);
-    const closeModal = () => {
+    const closeModal = (removed = false) => {
         setModalOpen(false);
-        onClose();
+        onClose(removed);
     };
 
     const [deleteReport] = useMutation(DELETE_REPORT, {
@@ -24,7 +24,7 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                 title: `Removed report`
             }));
             onDelete();
-            closeModal();
+            closeModal(true);
         },
         onError: (error) => {
             dispatchAction(addNotification({
@@ -61,7 +61,7 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                     })}>
                     Delete report
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={ closeModal }>
+                <Button key='cancel' variant='secondary' onClick={ () => closeModal() }>
                     Cancel
                 </Button>
             ]}>
