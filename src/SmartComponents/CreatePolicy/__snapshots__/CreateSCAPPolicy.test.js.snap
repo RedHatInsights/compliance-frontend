@@ -130,7 +130,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -139,7 +139,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -148,7 +148,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -157,7 +157,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -238,7 +238,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary pf-m-active wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button active-wizard-os-button"
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -247,7 +247,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -256,7 +256,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}
@@ -265,7 +265,7 @@ Array [
       <button
         aria-disabled={null}
         aria-label={null}
-        className="pf-c-button pf-m-tertiary wizard-os-button"
+        className="pf-c-button pf-m-tertiary wizard-os-button "
         disabled={false}
         onClick={[Function]}
         tabIndex={null}

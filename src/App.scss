@@ -32,7 +32,18 @@
   color: var(--pf-global--Color--200);
 }
 
-.wizard-os-button {
+button.pf-c-button.pf-m-tertiary {
+  &.wizard-os-button {
     padding: 30px;
     margin-right: 15px;
+    --pf-c-button--m-tertiary--focus--BorderColor: #06c;
+    --pf-c-button--m-tertiary--hover--BorderColor: #06c;
+  }
+
+  &.active-wizard-os-button {
+    font-weight: bold;
+    color: #06c;
+    --pf-c-button--m-tertiary--BorderColor: #06c;
+    --pf-c-button--BorderWidth: 2px;
+  }
 }

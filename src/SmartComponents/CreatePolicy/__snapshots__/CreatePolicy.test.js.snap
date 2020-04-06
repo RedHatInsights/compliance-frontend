@@ -298,19 +298,19 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                             </label>
                             <br />
                             <button
-                              class="pf-c-button pf-m-tertiary wizard-os-button"
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
                             />
                             <button
-                              class="pf-c-button pf-m-tertiary wizard-os-button"
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
                             />
                             <button
-                              class="pf-c-button pf-m-tertiary wizard-os-button"
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
                             />
                             <button
-                              class="pf-c-button pf-m-tertiary wizard-os-button"
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
                             />
                             
@@ -1032,8 +1032,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                     </label>
                                                     <br />
                                                     <Component
-                                                      className="wizard-os-button"
-                                                      isActive={false}
+                                                      className="wizard-os-button "
                                                       key="f1dff140-6649-4060-b0f6-7b1548f9e901"
                                                       onClick={[Function]}
                                                       variant="tertiary"
@@ -1043,8 +1042,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         componentProps={
                                                           Object {
                                                             "children": undefined,
-                                                            "className": "wizard-os-button",
-                                                            "isActive": false,
+                                                            "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
                                                           }
@@ -1052,8 +1050,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         consumerContext={null}
                                                       >
                                                         <Button
-                                                          className="wizard-os-button"
-                                                          isActive={false}
+                                                          className="wizard-os-button "
                                                           onClick={[Function]}
                                                           ouiaContext={
                                                             Object {
@@ -1066,7 +1063,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                           <button
                                                             aria-disabled={null}
                                                             aria-label={null}
-                                                            className="pf-c-button pf-m-tertiary wizard-os-button"
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
                                                             disabled={false}
                                                             onClick={[Function]}
                                                             tabIndex={null}
@@ -1076,8 +1073,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                       </ComponentWithOuia>
                                                     </Component>
                                                     <Component
-                                                      className="wizard-os-button"
-                                                      isActive={false}
+                                                      className="wizard-os-button "
                                                       key="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
                                                       onClick={[Function]}
                                                       variant="tertiary"
@@ -1087,8 +1083,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         componentProps={
                                                           Object {
                                                             "children": undefined,
-                                                            "className": "wizard-os-button",
-                                                            "isActive": false,
+                                                            "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
                                                           }
@@ -1096,8 +1091,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         consumerContext={null}
                                                       >
                                                         <Button
-                                                          className="wizard-os-button"
-                                                          isActive={false}
+                                                          className="wizard-os-button "
                                                           onClick={[Function]}
                                                           ouiaContext={
                                                             Object {
@@ -1110,7 +1104,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                           <button
                                                             aria-disabled={null}
                                                             aria-label={null}
-                                                            className="pf-c-button pf-m-tertiary wizard-os-button"
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
                                                             disabled={false}
                                                             onClick={[Function]}
                                                             tabIndex={null}
@@ -1120,8 +1114,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                       </ComponentWithOuia>
                                                     </Component>
                                                     <Component
-                                                      className="wizard-os-button"
-                                                      isActive={false}
+                                                      className="wizard-os-button "
                                                       key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
                                                       onClick={[Function]}
                                                       variant="tertiary"
@@ -1131,8 +1124,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         componentProps={
                                                           Object {
                                                             "children": undefined,
-                                                            "className": "wizard-os-button",
-                                                            "isActive": false,
+                                                            "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
                                                           }
@@ -1140,8 +1132,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         consumerContext={null}
                                                       >
                                                         <Button
-                                                          className="wizard-os-button"
-                                                          isActive={false}
+                                                          className="wizard-os-button "
                                                           onClick={[Function]}
                                                           ouiaContext={
                                                             Object {
@@ -1154,7 +1145,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                           <button
                                                             aria-disabled={null}
                                                             aria-label={null}
-                                                            className="pf-c-button pf-m-tertiary wizard-os-button"
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
                                                             disabled={false}
                                                             onClick={[Function]}
                                                             tabIndex={null}
@@ -1164,8 +1155,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                       </ComponentWithOuia>
                                                     </Component>
                                                     <Component
-                                                      className="wizard-os-button"
-                                                      isActive={false}
+                                                      className="wizard-os-button "
                                                       key="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
                                                       onClick={[Function]}
                                                       variant="tertiary"
@@ -1175,8 +1165,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         componentProps={
                                                           Object {
                                                             "children": undefined,
-                                                            "className": "wizard-os-button",
-                                                            "isActive": false,
+                                                            "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
                                                           }
@@ -1184,8 +1173,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         consumerContext={null}
                                                       >
                                                         <Button
-                                                          className="wizard-os-button"
-                                                          isActive={false}
+                                                          className="wizard-os-button "
                                                           onClick={[Function]}
                                                           ouiaContext={
                                                             Object {
@@ -1198,7 +1186,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                           <button
                                                             aria-disabled={null}
                                                             aria-label={null}
-                                                            className="pf-c-button pf-m-tertiary wizard-os-button"
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
                                                             disabled={false}
                                                             onClick={[Function]}
                                                             tabIndex={null}
