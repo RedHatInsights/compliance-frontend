@@ -83,9 +83,10 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                         const { refId, id } = benchmark;
                         return (
                             <Button key={id} onClick={ () => { change('benchmark', id); } }
-                                style={ { padding: '30px', marginRight: '15px' } }
+                                className='wizard-os-button'
+                                isActive={ selectedBenchmarkId === id }
                                 variant="tertiary">
-                                { refId.split('xccdf_org.ssgproject.content_benchmark_')[1] }
+                                { refId && refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
                             </Button>
                         );
                     })}
