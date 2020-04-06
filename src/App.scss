@@ -3,14 +3,16 @@
 @import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/_all";
 @import "~@redhat-cloud-services/frontend-components-inventory-compliance/index.css";
 
-.stable-page-header {
-    padding-bottom: 0px;
-}
 
-.beta-page-header {
-    padding-bottom: 0px;
-}
+.pf-c-page__main .pf-c-page-header.pf-c-page__main-section {
+  &.stable-page-header {
+      padding-bottom: 0px;
+  }
 
+  &.beta-page-header {
+      padding-bottom: 0px;
+  }
+}
 .pf-l-tabs, .pf-c-tabs {
     padding-top: 22px;
 }
