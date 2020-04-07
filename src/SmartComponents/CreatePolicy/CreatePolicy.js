@@ -25,7 +25,8 @@ class CreatePolicy extends React.Component {
         const { isOpen } = this.state;
         const { dispatch } = this.props;
         this.setState({
-            isOpen: !isOpen
+            isOpen: !isOpen,
+            stepIdReached: 1
         }, () => dispatch(destroy('policyForm')));
     };
 
