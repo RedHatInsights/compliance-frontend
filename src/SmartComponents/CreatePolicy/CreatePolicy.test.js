@@ -43,4 +43,16 @@ describe('CreatePolicy', () => {
         );
         expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
     });
+
+    it('destroys the form on open', async () => {
+        const wrapper = mount(
+            <Provider store={store}>
+                <CreatePolicy isOpen />
+            </Provider>
+        );
+        await wrapper.find('button.pf-c-wizard__close').simulate('click');
+        const lastAction = store.getActions().pop();
+        expect(lastAction.type).toEqual('@@redux-form/DESTROY');
+        expect(lastAction.meta.form).toEqual(['policyForm']);
+    });
 });
