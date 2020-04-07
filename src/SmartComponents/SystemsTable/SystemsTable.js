@@ -85,7 +85,7 @@ class SystemsTable extends React.Component {
 
     componentDidUpdate = (prevProps) => {
         if (prevProps.complianceThreshold !== this.props.complianceThreshold) {
-            this.systemFetch();
+            this.fetchInventory();
         }
     }
 
