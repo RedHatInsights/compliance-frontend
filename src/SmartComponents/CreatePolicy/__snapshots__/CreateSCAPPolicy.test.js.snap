@@ -15,7 +15,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and policy type
+      Select the operating system and policy type
     </h4>
   </div>,
   <form
@@ -32,7 +32,7 @@ Array [
         <span
           className="pf-c-form__label-text"
         >
-          Security guide
+          Operating system
         </span>
         <span
           aria-hidden="true"
@@ -41,6 +41,7 @@ Array [
           *
         </span>
       </label>
+      <br />
       
     </div>
     <div
@@ -99,7 +100,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and policy type
+      Select the operating system and policy type
     </h4>
   </div>,
   <form
@@ -116,7 +117,7 @@ Array [
         <span
           className="pf-c-form__label-text"
         >
-          Security guide
+          Operating system
         </span>
         <span
           aria-hidden="true"
@@ -125,78 +126,43 @@ Array [
           *
         </span>
       </label>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
-      </p>
+      <br />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
       
     </div>
     <div
@@ -242,7 +208,7 @@ Array [
       className=""
       data-pf-content={true}
     >
-      Select the security guide and policy type
+      Select the operating system and policy type
     </h4>
   </div>,
   <form
@@ -259,7 +225,7 @@ Array [
         <span
           className="pf-c-form__label-text"
         >
-          Security guide
+          Operating system
         </span>
         <span
           aria-hidden="true"
@@ -268,78 +234,43 @@ Array [
           *
         </span>
       </label>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={true}
-          id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
-      </p>
-      <p
-        className=""
-        data-pf-content={true}
-      >
-        <input
-          checked={false}
-          id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-          name="benchmark"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onDragStart={[Function]}
-          onDrop={[Function]}
-          onFocus={[Function]}
-          type="radio"
-          value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-        />
-         Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
-      </p>
+      <br />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button active-wizard-os-button"
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
+      <button
+        aria-disabled={null}
+        aria-label={null}
+        className="pf-c-button pf-m-tertiary wizard-os-button "
+        disabled={false}
+        onClick={[Function]}
+        tabIndex={null}
+        type="button"
+      />
       
     </div>
     <div

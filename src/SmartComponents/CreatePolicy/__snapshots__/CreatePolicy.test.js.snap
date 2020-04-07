@@ -270,7 +270,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                             class=""
                             data-pf-content="true"
                           >
-                            Select the security guide and policy type
+                            Select the operating system and policy type
                           </h4>
                         </div>
                         <form
@@ -287,7 +287,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                               <span
                                 class="pf-c-form__label-text"
                               >
-                                Security guide
+                                Operating system
                               </span>
                               <span
                                 aria-hidden="true"
@@ -296,54 +296,23 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                 *
                               </span>
                             </label>
-                            <p
-                              class=""
-                              data-pf-content="true"
-                            >
-                              <input
-                                id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                name="benchmark"
-                                type="radio"
-                                value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                              />
-                               Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
-                            </p>
-                            <p
-                              class=""
-                              data-pf-content="true"
-                            >
-                              <input
-                                id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                name="benchmark"
-                                type="radio"
-                                value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                              />
-                               Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
-                            </p>
-                            <p
-                              class=""
-                              data-pf-content="true"
-                            >
-                              <input
-                                id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                name="benchmark"
-                                type="radio"
-                                value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                              />
-                               Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
-                            </p>
-                            <p
-                              class=""
-                              data-pf-content="true"
-                            >
-                              <input
-                                id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                name="benchmark"
-                                type="radio"
-                                value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                              />
-                               Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
-                            </p>
+                            <br />
+                            <button
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
+                              type="button"
+                            />
+                            <button
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
+                              type="button"
+                            />
+                            <button
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
+                              type="button"
+                            />
+                            <button
+                              class="pf-c-button pf-m-tertiary wizard-os-button "
+                              type="button"
+                            />
                             
                           </div>
                           <div
@@ -1027,7 +996,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                     className=""
                                                     data-pf-content={true}
                                                   >
-                                                    Select the security guide and policy type
+                                                    Select the operating system and policy type
                                                   </h4>
                                                 </Text>
                                               </div>
@@ -1040,7 +1009,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                 <FormGroup
                                                   fieldId="benchmark"
                                                   isRequired={true}
-                                                  label="Security guide"
+                                                  label="Operating system"
                                                 >
                                                   <div
                                                     className="pf-c-form__group"
@@ -1052,7 +1021,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                       <span
                                                         className="pf-c-form__label-text"
                                                       >
-                                                        Security guide
+                                                        Operating system
                                                       </span>
                                                       <span
                                                         aria-hidden="true"
@@ -1061,1434 +1030,171 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         *
                                                       </span>
                                                     </label>
-                                                    <Text
+                                                    <br />
+                                                    <Component
+                                                      className="wizard-os-button "
                                                       key="f1dff140-6649-4060-b0f6-7b1548f9e901"
+                                                      onClick={[Function]}
+                                                      variant="tertiary"
                                                     >
-                                                      <p
-                                                        className=""
-                                                        data-pf-content={true}
+                                                      <ComponentWithOuia
+                                                        component={[Function]}
+                                                        componentProps={
+                                                          Object {
+                                                            "children": undefined,
+                                                            "className": "wizard-os-button ",
+                                                            "onClick": [Function],
+                                                            "variant": "tertiary",
+                                                          }
+                                                        }
+                                                        consumerContext={null}
                                                       >
-                                                        <Field
-                                                          component="input"
-                                                          id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                          name="benchmark"
-                                                          type="radio"
-                                                          value="f1dff140-6649-4060-b0f6-7b1548f9e901"
+                                                        <Button
+                                                          className="wizard-os-button "
+                                                          onClick={[Function]}
+                                                          ouiaContext={
+                                                            Object {
+                                                              "isOuia": false,
+                                                              "ouiaId": null,
+                                                            }
+                                                          }
+                                                          variant="tertiary"
                                                         >
-                                                          <Hoc
-                                                            component="input"
-                                                            forwardedRef={null}
-                                                            id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                            name="benchmark"
-                                                            type="radio"
-                                                            value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                          >
-                                                            <Field
-                                                              _reduxForm={
-                                                                Object {
-                                                                  "_reduxForm": null,
-                                                                  "anyTouched": false,
-                                                                  "array": Object {
-                                                                    "insert": [Function],
-                                                                    "move": [Function],
-                                                                    "pop": [Function],
-                                                                    "push": [Function],
-                                                                    "remove": [Function],
-                                                                    "removeAll": [Function],
-                                                                    "shift": [Function],
-                                                                    "splice": [Function],
-                                                                    "swap": [Function],
-                                                                    "unshift": [Function],
-                                                                  },
-                                                                  "arrayInsert": [Function],
-                                                                  "arrayMove": [Function],
-                                                                  "arrayPop": [Function],
-                                                                  "arrayPush": [Function],
-                                                                  "arrayRemove": [Function],
-                                                                  "arrayRemoveAll": [Function],
-                                                                  "arrayShift": [Function],
-                                                                  "arraySplice": [Function],
-                                                                  "arraySwap": [Function],
-                                                                  "arrayUnshift": [Function],
-                                                                  "asyncErrors": undefined,
-                                                                  "asyncValidate": [Function],
-                                                                  "asyncValidating": false,
-                                                                  "autofill": [Function],
-                                                                  "blur": [Function],
-                                                                  "change": [Function],
-                                                                  "clearAsyncError": [Function],
-                                                                  "clearFields": [Function],
-                                                                  "clearSubmit": [Function],
-                                                                  "clearSubmitErrors": [Function],
-                                                                  "destroy": [Function],
-                                                                  "destroyOnUnmount": false,
-                                                                  "dirty": false,
-                                                                  "dispatch": [Function],
-                                                                  "enableReinitialize": false,
-                                                                  "error": undefined,
-                                                                  "focus": [Function],
-                                                                  "forceUnregisterOnUnmount": true,
-                                                                  "form": "policyForm",
-                                                                  "getFormState": [Function],
-                                                                  "getValues": [Function],
-                                                                  "initialValues": undefined,
-                                                                  "initialize": [Function],
-                                                                  "initialized": false,
-                                                                  "invalid": false,
-                                                                  "keepDirtyOnReinitialize": false,
-                                                                  "persistentSubmitErrors": false,
-                                                                  "pristine": true,
-                                                                  "pure": true,
-                                                                  "register": [Function],
-                                                                  "registerField": [Function],
-                                                                  "registerInnerOnSubmit": [Function],
-                                                                  "registeredFields": undefined,
-                                                                  "reset": [Function],
-                                                                  "resetSection": [Function],
-                                                                  "sectionPrefix": undefined,
-                                                                  "selectedBenchmarkId": undefined,
-                                                                  "setSubmitFailed": [Function],
-                                                                  "setSubmitSucceeded": [Function],
-                                                                  "shouldAsyncValidate": [Function],
-                                                                  "shouldError": [Function],
-                                                                  "shouldValidate": [Function],
-                                                                  "shouldWarn": [Function],
-                                                                  "startAsyncValidation": [Function],
-                                                                  "startSubmit": [Function],
-                                                                  "stopAsyncValidation": [Function],
-                                                                  "stopSubmit": [Function],
-                                                                  "submit": [Function],
-                                                                  "submitAsSideEffect": false,
-                                                                  "submitFailed": false,
-                                                                  "submitSucceeded": false,
-                                                                  "submitting": false,
-                                                                  "syncErrors": Object {},
-                                                                  "syncWarnings": Object {},
-                                                                  "touch": [Function],
-                                                                  "touchOnBlur": true,
-                                                                  "touchOnChange": false,
-                                                                  "triggerSubmit": undefined,
-                                                                  "unregister": [Function],
-                                                                  "unregisterField": [Function],
-                                                                  "untouch": [Function],
-                                                                  "updateSyncErrors": [Function],
-                                                                  "updateSyncWarnings": [Function],
-                                                                  "updateUnregisteredFields": false,
-                                                                  "valid": true,
-                                                                  "validExceptSubmit": true,
-                                                                  "values": Object {},
-                                                                  "warning": undefined,
-                                                                }
-                                                              }
-                                                              component="input"
-                                                              id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                              name="benchmark"
-                                                              type="radio"
-                                                              value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                            >
-                                                              <Connect(ConnectedField)
-                                                                _reduxForm={
-                                                                  Object {
-                                                                    "_reduxForm": null,
-                                                                    "anyTouched": false,
-                                                                    "array": Object {
-                                                                      "insert": [Function],
-                                                                      "move": [Function],
-                                                                      "pop": [Function],
-                                                                      "push": [Function],
-                                                                      "remove": [Function],
-                                                                      "removeAll": [Function],
-                                                                      "shift": [Function],
-                                                                      "splice": [Function],
-                                                                      "swap": [Function],
-                                                                      "unshift": [Function],
-                                                                    },
-                                                                    "arrayInsert": [Function],
-                                                                    "arrayMove": [Function],
-                                                                    "arrayPop": [Function],
-                                                                    "arrayPush": [Function],
-                                                                    "arrayRemove": [Function],
-                                                                    "arrayRemoveAll": [Function],
-                                                                    "arrayShift": [Function],
-                                                                    "arraySplice": [Function],
-                                                                    "arraySwap": [Function],
-                                                                    "arrayUnshift": [Function],
-                                                                    "asyncErrors": undefined,
-                                                                    "asyncValidate": [Function],
-                                                                    "asyncValidating": false,
-                                                                    "autofill": [Function],
-                                                                    "blur": [Function],
-                                                                    "change": [Function],
-                                                                    "clearAsyncError": [Function],
-                                                                    "clearFields": [Function],
-                                                                    "clearSubmit": [Function],
-                                                                    "clearSubmitErrors": [Function],
-                                                                    "destroy": [Function],
-                                                                    "destroyOnUnmount": false,
-                                                                    "dirty": false,
-                                                                    "dispatch": [Function],
-                                                                    "enableReinitialize": false,
-                                                                    "error": undefined,
-                                                                    "focus": [Function],
-                                                                    "forceUnregisterOnUnmount": true,
-                                                                    "form": "policyForm",
-                                                                    "getFormState": [Function],
-                                                                    "getValues": [Function],
-                                                                    "initialValues": undefined,
-                                                                    "initialize": [Function],
-                                                                    "initialized": false,
-                                                                    "invalid": false,
-                                                                    "keepDirtyOnReinitialize": false,
-                                                                    "persistentSubmitErrors": false,
-                                                                    "pristine": true,
-                                                                    "pure": true,
-                                                                    "register": [Function],
-                                                                    "registerField": [Function],
-                                                                    "registerInnerOnSubmit": [Function],
-                                                                    "registeredFields": undefined,
-                                                                    "reset": [Function],
-                                                                    "resetSection": [Function],
-                                                                    "sectionPrefix": undefined,
-                                                                    "selectedBenchmarkId": undefined,
-                                                                    "setSubmitFailed": [Function],
-                                                                    "setSubmitSucceeded": [Function],
-                                                                    "shouldAsyncValidate": [Function],
-                                                                    "shouldError": [Function],
-                                                                    "shouldValidate": [Function],
-                                                                    "shouldWarn": [Function],
-                                                                    "startAsyncValidation": [Function],
-                                                                    "startSubmit": [Function],
-                                                                    "stopAsyncValidation": [Function],
-                                                                    "stopSubmit": [Function],
-                                                                    "submit": [Function],
-                                                                    "submitAsSideEffect": false,
-                                                                    "submitFailed": false,
-                                                                    "submitSucceeded": false,
-                                                                    "submitting": false,
-                                                                    "syncErrors": Object {},
-                                                                    "syncWarnings": Object {},
-                                                                    "touch": [Function],
-                                                                    "touchOnBlur": true,
-                                                                    "touchOnChange": false,
-                                                                    "triggerSubmit": undefined,
-                                                                    "unregister": [Function],
-                                                                    "unregisterField": [Function],
-                                                                    "untouch": [Function],
-                                                                    "updateSyncErrors": [Function],
-                                                                    "updateSyncWarnings": [Function],
-                                                                    "updateUnregisteredFields": false,
-                                                                    "valid": true,
-                                                                    "validExceptSubmit": true,
-                                                                    "values": Object {},
-                                                                    "warning": undefined,
-                                                                  }
-                                                                }
-                                                                component="input"
-                                                                id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                                name="benchmark"
-                                                                normalize={[Function]}
-                                                                type="radio"
-                                                                value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                              >
-                                                                <ConnectedField
-                                                                  _reduxForm={
-                                                                    Object {
-                                                                      "_reduxForm": null,
-                                                                      "anyTouched": false,
-                                                                      "array": Object {
-                                                                        "insert": [Function],
-                                                                        "move": [Function],
-                                                                        "pop": [Function],
-                                                                        "push": [Function],
-                                                                        "remove": [Function],
-                                                                        "removeAll": [Function],
-                                                                        "shift": [Function],
-                                                                        "splice": [Function],
-                                                                        "swap": [Function],
-                                                                        "unshift": [Function],
-                                                                      },
-                                                                      "arrayInsert": [Function],
-                                                                      "arrayMove": [Function],
-                                                                      "arrayPop": [Function],
-                                                                      "arrayPush": [Function],
-                                                                      "arrayRemove": [Function],
-                                                                      "arrayRemoveAll": [Function],
-                                                                      "arrayShift": [Function],
-                                                                      "arraySplice": [Function],
-                                                                      "arraySwap": [Function],
-                                                                      "arrayUnshift": [Function],
-                                                                      "asyncErrors": undefined,
-                                                                      "asyncValidate": [Function],
-                                                                      "asyncValidating": false,
-                                                                      "autofill": [Function],
-                                                                      "blur": [Function],
-                                                                      "change": [Function],
-                                                                      "clearAsyncError": [Function],
-                                                                      "clearFields": [Function],
-                                                                      "clearSubmit": [Function],
-                                                                      "clearSubmitErrors": [Function],
-                                                                      "destroy": [Function],
-                                                                      "destroyOnUnmount": false,
-                                                                      "dirty": false,
-                                                                      "dispatch": [Function],
-                                                                      "enableReinitialize": false,
-                                                                      "error": undefined,
-                                                                      "focus": [Function],
-                                                                      "forceUnregisterOnUnmount": true,
-                                                                      "form": "policyForm",
-                                                                      "getFormState": [Function],
-                                                                      "getValues": [Function],
-                                                                      "initialValues": undefined,
-                                                                      "initialize": [Function],
-                                                                      "initialized": false,
-                                                                      "invalid": false,
-                                                                      "keepDirtyOnReinitialize": false,
-                                                                      "persistentSubmitErrors": false,
-                                                                      "pristine": true,
-                                                                      "pure": true,
-                                                                      "register": [Function],
-                                                                      "registerField": [Function],
-                                                                      "registerInnerOnSubmit": [Function],
-                                                                      "registeredFields": undefined,
-                                                                      "reset": [Function],
-                                                                      "resetSection": [Function],
-                                                                      "sectionPrefix": undefined,
-                                                                      "selectedBenchmarkId": undefined,
-                                                                      "setSubmitFailed": [Function],
-                                                                      "setSubmitSucceeded": [Function],
-                                                                      "shouldAsyncValidate": [Function],
-                                                                      "shouldError": [Function],
-                                                                      "shouldValidate": [Function],
-                                                                      "shouldWarn": [Function],
-                                                                      "startAsyncValidation": [Function],
-                                                                      "startSubmit": [Function],
-                                                                      "stopAsyncValidation": [Function],
-                                                                      "stopSubmit": [Function],
-                                                                      "submit": [Function],
-                                                                      "submitAsSideEffect": false,
-                                                                      "submitFailed": false,
-                                                                      "submitSucceeded": false,
-                                                                      "submitting": false,
-                                                                      "syncErrors": Object {},
-                                                                      "syncWarnings": Object {},
-                                                                      "touch": [Function],
-                                                                      "touchOnBlur": true,
-                                                                      "touchOnChange": false,
-                                                                      "triggerSubmit": undefined,
-                                                                      "unregister": [Function],
-                                                                      "unregisterField": [Function],
-                                                                      "untouch": [Function],
-                                                                      "updateSyncErrors": [Function],
-                                                                      "updateSyncWarnings": [Function],
-                                                                      "updateUnregisteredFields": false,
-                                                                      "valid": true,
-                                                                      "validExceptSubmit": true,
-                                                                      "values": Object {},
-                                                                      "warning": undefined,
-                                                                    }
-                                                                  }
-                                                                  _value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                                  asyncValidating={false}
-                                                                  component="input"
-                                                                  dirty={false}
-                                                                  dispatch={[Function]}
-                                                                  id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                                  name="benchmark"
-                                                                  normalize={[Function]}
-                                                                  pristine={true}
-                                                                  type="radio"
-                                                                >
-                                                                  <input
-                                                                    checked={false}
-                                                                    id="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                                    name="benchmark"
-                                                                    onBlur={[Function]}
-                                                                    onChange={[Function]}
-                                                                    onDragStart={[Function]}
-                                                                    onDrop={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    type="radio"
-                                                                    value="f1dff140-6649-4060-b0f6-7b1548f9e901"
-                                                                  />
-                                                                </ConnectedField>
-                                                              </Connect(ConnectedField)>
-                                                            </Field>
-                                                          </Hoc>
-                                                        </Field>
-                                                         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.40
-                                                      </p>
-                                                    </Text>
-                                                    <Text
+                                                          <button
+                                                            aria-disabled={null}
+                                                            aria-label={null}
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
+                                                            disabled={false}
+                                                            onClick={[Function]}
+                                                            tabIndex={null}
+                                                            type="button"
+                                                          />
+                                                        </Button>
+                                                      </ComponentWithOuia>
+                                                    </Component>
+                                                    <Component
+                                                      className="wizard-os-button "
                                                       key="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+                                                      onClick={[Function]}
+                                                      variant="tertiary"
                                                     >
-                                                      <p
-                                                        className=""
-                                                        data-pf-content={true}
+                                                      <ComponentWithOuia
+                                                        component={[Function]}
+                                                        componentProps={
+                                                          Object {
+                                                            "children": undefined,
+                                                            "className": "wizard-os-button ",
+                                                            "onClick": [Function],
+                                                            "variant": "tertiary",
+                                                          }
+                                                        }
+                                                        consumerContext={null}
                                                       >
-                                                        <Field
-                                                          component="input"
-                                                          id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                          name="benchmark"
-                                                          type="radio"
-                                                          value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+                                                        <Button
+                                                          className="wizard-os-button "
+                                                          onClick={[Function]}
+                                                          ouiaContext={
+                                                            Object {
+                                                              "isOuia": false,
+                                                              "ouiaId": null,
+                                                            }
+                                                          }
+                                                          variant="tertiary"
                                                         >
-                                                          <Hoc
-                                                            component="input"
-                                                            forwardedRef={null}
-                                                            id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                            name="benchmark"
-                                                            type="radio"
-                                                            value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                          >
-                                                            <Field
-                                                              _reduxForm={
-                                                                Object {
-                                                                  "_reduxForm": null,
-                                                                  "anyTouched": false,
-                                                                  "array": Object {
-                                                                    "insert": [Function],
-                                                                    "move": [Function],
-                                                                    "pop": [Function],
-                                                                    "push": [Function],
-                                                                    "remove": [Function],
-                                                                    "removeAll": [Function],
-                                                                    "shift": [Function],
-                                                                    "splice": [Function],
-                                                                    "swap": [Function],
-                                                                    "unshift": [Function],
-                                                                  },
-                                                                  "arrayInsert": [Function],
-                                                                  "arrayMove": [Function],
-                                                                  "arrayPop": [Function],
-                                                                  "arrayPush": [Function],
-                                                                  "arrayRemove": [Function],
-                                                                  "arrayRemoveAll": [Function],
-                                                                  "arrayShift": [Function],
-                                                                  "arraySplice": [Function],
-                                                                  "arraySwap": [Function],
-                                                                  "arrayUnshift": [Function],
-                                                                  "asyncErrors": undefined,
-                                                                  "asyncValidate": [Function],
-                                                                  "asyncValidating": false,
-                                                                  "autofill": [Function],
-                                                                  "blur": [Function],
-                                                                  "change": [Function],
-                                                                  "clearAsyncError": [Function],
-                                                                  "clearFields": [Function],
-                                                                  "clearSubmit": [Function],
-                                                                  "clearSubmitErrors": [Function],
-                                                                  "destroy": [Function],
-                                                                  "destroyOnUnmount": false,
-                                                                  "dirty": false,
-                                                                  "dispatch": [Function],
-                                                                  "enableReinitialize": false,
-                                                                  "error": undefined,
-                                                                  "focus": [Function],
-                                                                  "forceUnregisterOnUnmount": true,
-                                                                  "form": "policyForm",
-                                                                  "getFormState": [Function],
-                                                                  "getValues": [Function],
-                                                                  "initialValues": undefined,
-                                                                  "initialize": [Function],
-                                                                  "initialized": false,
-                                                                  "invalid": false,
-                                                                  "keepDirtyOnReinitialize": false,
-                                                                  "persistentSubmitErrors": false,
-                                                                  "pristine": true,
-                                                                  "pure": true,
-                                                                  "register": [Function],
-                                                                  "registerField": [Function],
-                                                                  "registerInnerOnSubmit": [Function],
-                                                                  "registeredFields": undefined,
-                                                                  "reset": [Function],
-                                                                  "resetSection": [Function],
-                                                                  "sectionPrefix": undefined,
-                                                                  "selectedBenchmarkId": undefined,
-                                                                  "setSubmitFailed": [Function],
-                                                                  "setSubmitSucceeded": [Function],
-                                                                  "shouldAsyncValidate": [Function],
-                                                                  "shouldError": [Function],
-                                                                  "shouldValidate": [Function],
-                                                                  "shouldWarn": [Function],
-                                                                  "startAsyncValidation": [Function],
-                                                                  "startSubmit": [Function],
-                                                                  "stopAsyncValidation": [Function],
-                                                                  "stopSubmit": [Function],
-                                                                  "submit": [Function],
-                                                                  "submitAsSideEffect": false,
-                                                                  "submitFailed": false,
-                                                                  "submitSucceeded": false,
-                                                                  "submitting": false,
-                                                                  "syncErrors": Object {},
-                                                                  "syncWarnings": Object {},
-                                                                  "touch": [Function],
-                                                                  "touchOnBlur": true,
-                                                                  "touchOnChange": false,
-                                                                  "triggerSubmit": undefined,
-                                                                  "unregister": [Function],
-                                                                  "unregisterField": [Function],
-                                                                  "untouch": [Function],
-                                                                  "updateSyncErrors": [Function],
-                                                                  "updateSyncWarnings": [Function],
-                                                                  "updateUnregisteredFields": false,
-                                                                  "valid": true,
-                                                                  "validExceptSubmit": true,
-                                                                  "values": Object {},
-                                                                  "warning": undefined,
-                                                                }
-                                                              }
-                                                              component="input"
-                                                              id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                              name="benchmark"
-                                                              type="radio"
-                                                              value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                            >
-                                                              <Connect(ConnectedField)
-                                                                _reduxForm={
-                                                                  Object {
-                                                                    "_reduxForm": null,
-                                                                    "anyTouched": false,
-                                                                    "array": Object {
-                                                                      "insert": [Function],
-                                                                      "move": [Function],
-                                                                      "pop": [Function],
-                                                                      "push": [Function],
-                                                                      "remove": [Function],
-                                                                      "removeAll": [Function],
-                                                                      "shift": [Function],
-                                                                      "splice": [Function],
-                                                                      "swap": [Function],
-                                                                      "unshift": [Function],
-                                                                    },
-                                                                    "arrayInsert": [Function],
-                                                                    "arrayMove": [Function],
-                                                                    "arrayPop": [Function],
-                                                                    "arrayPush": [Function],
-                                                                    "arrayRemove": [Function],
-                                                                    "arrayRemoveAll": [Function],
-                                                                    "arrayShift": [Function],
-                                                                    "arraySplice": [Function],
-                                                                    "arraySwap": [Function],
-                                                                    "arrayUnshift": [Function],
-                                                                    "asyncErrors": undefined,
-                                                                    "asyncValidate": [Function],
-                                                                    "asyncValidating": false,
-                                                                    "autofill": [Function],
-                                                                    "blur": [Function],
-                                                                    "change": [Function],
-                                                                    "clearAsyncError": [Function],
-                                                                    "clearFields": [Function],
-                                                                    "clearSubmit": [Function],
-                                                                    "clearSubmitErrors": [Function],
-                                                                    "destroy": [Function],
-                                                                    "destroyOnUnmount": false,
-                                                                    "dirty": false,
-                                                                    "dispatch": [Function],
-                                                                    "enableReinitialize": false,
-                                                                    "error": undefined,
-                                                                    "focus": [Function],
-                                                                    "forceUnregisterOnUnmount": true,
-                                                                    "form": "policyForm",
-                                                                    "getFormState": [Function],
-                                                                    "getValues": [Function],
-                                                                    "initialValues": undefined,
-                                                                    "initialize": [Function],
-                                                                    "initialized": false,
-                                                                    "invalid": false,
-                                                                    "keepDirtyOnReinitialize": false,
-                                                                    "persistentSubmitErrors": false,
-                                                                    "pristine": true,
-                                                                    "pure": true,
-                                                                    "register": [Function],
-                                                                    "registerField": [Function],
-                                                                    "registerInnerOnSubmit": [Function],
-                                                                    "registeredFields": undefined,
-                                                                    "reset": [Function],
-                                                                    "resetSection": [Function],
-                                                                    "sectionPrefix": undefined,
-                                                                    "selectedBenchmarkId": undefined,
-                                                                    "setSubmitFailed": [Function],
-                                                                    "setSubmitSucceeded": [Function],
-                                                                    "shouldAsyncValidate": [Function],
-                                                                    "shouldError": [Function],
-                                                                    "shouldValidate": [Function],
-                                                                    "shouldWarn": [Function],
-                                                                    "startAsyncValidation": [Function],
-                                                                    "startSubmit": [Function],
-                                                                    "stopAsyncValidation": [Function],
-                                                                    "stopSubmit": [Function],
-                                                                    "submit": [Function],
-                                                                    "submitAsSideEffect": false,
-                                                                    "submitFailed": false,
-                                                                    "submitSucceeded": false,
-                                                                    "submitting": false,
-                                                                    "syncErrors": Object {},
-                                                                    "syncWarnings": Object {},
-                                                                    "touch": [Function],
-                                                                    "touchOnBlur": true,
-                                                                    "touchOnChange": false,
-                                                                    "triggerSubmit": undefined,
-                                                                    "unregister": [Function],
-                                                                    "unregisterField": [Function],
-                                                                    "untouch": [Function],
-                                                                    "updateSyncErrors": [Function],
-                                                                    "updateSyncWarnings": [Function],
-                                                                    "updateUnregisteredFields": false,
-                                                                    "valid": true,
-                                                                    "validExceptSubmit": true,
-                                                                    "values": Object {},
-                                                                    "warning": undefined,
-                                                                  }
-                                                                }
-                                                                component="input"
-                                                                id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                                name="benchmark"
-                                                                normalize={[Function]}
-                                                                type="radio"
-                                                                value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                              >
-                                                                <ConnectedField
-                                                                  _reduxForm={
-                                                                    Object {
-                                                                      "_reduxForm": null,
-                                                                      "anyTouched": false,
-                                                                      "array": Object {
-                                                                        "insert": [Function],
-                                                                        "move": [Function],
-                                                                        "pop": [Function],
-                                                                        "push": [Function],
-                                                                        "remove": [Function],
-                                                                        "removeAll": [Function],
-                                                                        "shift": [Function],
-                                                                        "splice": [Function],
-                                                                        "swap": [Function],
-                                                                        "unshift": [Function],
-                                                                      },
-                                                                      "arrayInsert": [Function],
-                                                                      "arrayMove": [Function],
-                                                                      "arrayPop": [Function],
-                                                                      "arrayPush": [Function],
-                                                                      "arrayRemove": [Function],
-                                                                      "arrayRemoveAll": [Function],
-                                                                      "arrayShift": [Function],
-                                                                      "arraySplice": [Function],
-                                                                      "arraySwap": [Function],
-                                                                      "arrayUnshift": [Function],
-                                                                      "asyncErrors": undefined,
-                                                                      "asyncValidate": [Function],
-                                                                      "asyncValidating": false,
-                                                                      "autofill": [Function],
-                                                                      "blur": [Function],
-                                                                      "change": [Function],
-                                                                      "clearAsyncError": [Function],
-                                                                      "clearFields": [Function],
-                                                                      "clearSubmit": [Function],
-                                                                      "clearSubmitErrors": [Function],
-                                                                      "destroy": [Function],
-                                                                      "destroyOnUnmount": false,
-                                                                      "dirty": false,
-                                                                      "dispatch": [Function],
-                                                                      "enableReinitialize": false,
-                                                                      "error": undefined,
-                                                                      "focus": [Function],
-                                                                      "forceUnregisterOnUnmount": true,
-                                                                      "form": "policyForm",
-                                                                      "getFormState": [Function],
-                                                                      "getValues": [Function],
-                                                                      "initialValues": undefined,
-                                                                      "initialize": [Function],
-                                                                      "initialized": false,
-                                                                      "invalid": false,
-                                                                      "keepDirtyOnReinitialize": false,
-                                                                      "persistentSubmitErrors": false,
-                                                                      "pristine": true,
-                                                                      "pure": true,
-                                                                      "register": [Function],
-                                                                      "registerField": [Function],
-                                                                      "registerInnerOnSubmit": [Function],
-                                                                      "registeredFields": undefined,
-                                                                      "reset": [Function],
-                                                                      "resetSection": [Function],
-                                                                      "sectionPrefix": undefined,
-                                                                      "selectedBenchmarkId": undefined,
-                                                                      "setSubmitFailed": [Function],
-                                                                      "setSubmitSucceeded": [Function],
-                                                                      "shouldAsyncValidate": [Function],
-                                                                      "shouldError": [Function],
-                                                                      "shouldValidate": [Function],
-                                                                      "shouldWarn": [Function],
-                                                                      "startAsyncValidation": [Function],
-                                                                      "startSubmit": [Function],
-                                                                      "stopAsyncValidation": [Function],
-                                                                      "stopSubmit": [Function],
-                                                                      "submit": [Function],
-                                                                      "submitAsSideEffect": false,
-                                                                      "submitFailed": false,
-                                                                      "submitSucceeded": false,
-                                                                      "submitting": false,
-                                                                      "syncErrors": Object {},
-                                                                      "syncWarnings": Object {},
-                                                                      "touch": [Function],
-                                                                      "touchOnBlur": true,
-                                                                      "touchOnChange": false,
-                                                                      "triggerSubmit": undefined,
-                                                                      "unregister": [Function],
-                                                                      "unregisterField": [Function],
-                                                                      "untouch": [Function],
-                                                                      "updateSyncErrors": [Function],
-                                                                      "updateSyncWarnings": [Function],
-                                                                      "updateUnregisteredFields": false,
-                                                                      "valid": true,
-                                                                      "validExceptSubmit": true,
-                                                                      "values": Object {},
-                                                                      "warning": undefined,
-                                                                    }
-                                                                  }
-                                                                  _value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                                  asyncValidating={false}
-                                                                  component="input"
-                                                                  dirty={false}
-                                                                  dispatch={[Function]}
-                                                                  id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                                  name="benchmark"
-                                                                  normalize={[Function]}
-                                                                  pristine={true}
-                                                                  type="radio"
-                                                                >
-                                                                  <input
-                                                                    checked={false}
-                                                                    id="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                                    name="benchmark"
-                                                                    onBlur={[Function]}
-                                                                    onChange={[Function]}
-                                                                    onDragStart={[Function]}
-                                                                    onDrop={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    type="radio"
-                                                                    value="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-                                                                  />
-                                                                </ConnectedField>
-                                                              </Connect(ConnectedField)>
-                                                            </Field>
-                                                          </Hoc>
-                                                        </Field>
-                                                         Guide to the Secure Configuration of Red Hat Enterprise Linux 7 - 0.1.43
-                                                      </p>
-                                                    </Text>
-                                                    <Text
+                                                          <button
+                                                            aria-disabled={null}
+                                                            aria-label={null}
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
+                                                            disabled={false}
+                                                            onClick={[Function]}
+                                                            tabIndex={null}
+                                                            type="button"
+                                                          />
+                                                        </Button>
+                                                      </ComponentWithOuia>
+                                                    </Component>
+                                                    <Component
+                                                      className="wizard-os-button "
                                                       key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+                                                      onClick={[Function]}
+                                                      variant="tertiary"
                                                     >
-                                                      <p
-                                                        className=""
-                                                        data-pf-content={true}
+                                                      <ComponentWithOuia
+                                                        component={[Function]}
+                                                        componentProps={
+                                                          Object {
+                                                            "children": undefined,
+                                                            "className": "wizard-os-button ",
+                                                            "onClick": [Function],
+                                                            "variant": "tertiary",
+                                                          }
+                                                        }
+                                                        consumerContext={null}
                                                       >
-                                                        <Field
-                                                          component="input"
-                                                          id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                          name="benchmark"
-                                                          type="radio"
-                                                          value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+                                                        <Button
+                                                          className="wizard-os-button "
+                                                          onClick={[Function]}
+                                                          ouiaContext={
+                                                            Object {
+                                                              "isOuia": false,
+                                                              "ouiaId": null,
+                                                            }
+                                                          }
+                                                          variant="tertiary"
                                                         >
-                                                          <Hoc
-                                                            component="input"
-                                                            forwardedRef={null}
-                                                            id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                            name="benchmark"
-                                                            type="radio"
-                                                            value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                          >
-                                                            <Field
-                                                              _reduxForm={
-                                                                Object {
-                                                                  "_reduxForm": null,
-                                                                  "anyTouched": false,
-                                                                  "array": Object {
-                                                                    "insert": [Function],
-                                                                    "move": [Function],
-                                                                    "pop": [Function],
-                                                                    "push": [Function],
-                                                                    "remove": [Function],
-                                                                    "removeAll": [Function],
-                                                                    "shift": [Function],
-                                                                    "splice": [Function],
-                                                                    "swap": [Function],
-                                                                    "unshift": [Function],
-                                                                  },
-                                                                  "arrayInsert": [Function],
-                                                                  "arrayMove": [Function],
-                                                                  "arrayPop": [Function],
-                                                                  "arrayPush": [Function],
-                                                                  "arrayRemove": [Function],
-                                                                  "arrayRemoveAll": [Function],
-                                                                  "arrayShift": [Function],
-                                                                  "arraySplice": [Function],
-                                                                  "arraySwap": [Function],
-                                                                  "arrayUnshift": [Function],
-                                                                  "asyncErrors": undefined,
-                                                                  "asyncValidate": [Function],
-                                                                  "asyncValidating": false,
-                                                                  "autofill": [Function],
-                                                                  "blur": [Function],
-                                                                  "change": [Function],
-                                                                  "clearAsyncError": [Function],
-                                                                  "clearFields": [Function],
-                                                                  "clearSubmit": [Function],
-                                                                  "clearSubmitErrors": [Function],
-                                                                  "destroy": [Function],
-                                                                  "destroyOnUnmount": false,
-                                                                  "dirty": false,
-                                                                  "dispatch": [Function],
-                                                                  "enableReinitialize": false,
-                                                                  "error": undefined,
-                                                                  "focus": [Function],
-                                                                  "forceUnregisterOnUnmount": true,
-                                                                  "form": "policyForm",
-                                                                  "getFormState": [Function],
-                                                                  "getValues": [Function],
-                                                                  "initialValues": undefined,
-                                                                  "initialize": [Function],
-                                                                  "initialized": false,
-                                                                  "invalid": false,
-                                                                  "keepDirtyOnReinitialize": false,
-                                                                  "persistentSubmitErrors": false,
-                                                                  "pristine": true,
-                                                                  "pure": true,
-                                                                  "register": [Function],
-                                                                  "registerField": [Function],
-                                                                  "registerInnerOnSubmit": [Function],
-                                                                  "registeredFields": undefined,
-                                                                  "reset": [Function],
-                                                                  "resetSection": [Function],
-                                                                  "sectionPrefix": undefined,
-                                                                  "selectedBenchmarkId": undefined,
-                                                                  "setSubmitFailed": [Function],
-                                                                  "setSubmitSucceeded": [Function],
-                                                                  "shouldAsyncValidate": [Function],
-                                                                  "shouldError": [Function],
-                                                                  "shouldValidate": [Function],
-                                                                  "shouldWarn": [Function],
-                                                                  "startAsyncValidation": [Function],
-                                                                  "startSubmit": [Function],
-                                                                  "stopAsyncValidation": [Function],
-                                                                  "stopSubmit": [Function],
-                                                                  "submit": [Function],
-                                                                  "submitAsSideEffect": false,
-                                                                  "submitFailed": false,
-                                                                  "submitSucceeded": false,
-                                                                  "submitting": false,
-                                                                  "syncErrors": Object {},
-                                                                  "syncWarnings": Object {},
-                                                                  "touch": [Function],
-                                                                  "touchOnBlur": true,
-                                                                  "touchOnChange": false,
-                                                                  "triggerSubmit": undefined,
-                                                                  "unregister": [Function],
-                                                                  "unregisterField": [Function],
-                                                                  "untouch": [Function],
-                                                                  "updateSyncErrors": [Function],
-                                                                  "updateSyncWarnings": [Function],
-                                                                  "updateUnregisteredFields": false,
-                                                                  "valid": true,
-                                                                  "validExceptSubmit": true,
-                                                                  "values": Object {},
-                                                                  "warning": undefined,
-                                                                }
-                                                              }
-                                                              component="input"
-                                                              id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                              name="benchmark"
-                                                              type="radio"
-                                                              value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                            >
-                                                              <Connect(ConnectedField)
-                                                                _reduxForm={
-                                                                  Object {
-                                                                    "_reduxForm": null,
-                                                                    "anyTouched": false,
-                                                                    "array": Object {
-                                                                      "insert": [Function],
-                                                                      "move": [Function],
-                                                                      "pop": [Function],
-                                                                      "push": [Function],
-                                                                      "remove": [Function],
-                                                                      "removeAll": [Function],
-                                                                      "shift": [Function],
-                                                                      "splice": [Function],
-                                                                      "swap": [Function],
-                                                                      "unshift": [Function],
-                                                                    },
-                                                                    "arrayInsert": [Function],
-                                                                    "arrayMove": [Function],
-                                                                    "arrayPop": [Function],
-                                                                    "arrayPush": [Function],
-                                                                    "arrayRemove": [Function],
-                                                                    "arrayRemoveAll": [Function],
-                                                                    "arrayShift": [Function],
-                                                                    "arraySplice": [Function],
-                                                                    "arraySwap": [Function],
-                                                                    "arrayUnshift": [Function],
-                                                                    "asyncErrors": undefined,
-                                                                    "asyncValidate": [Function],
-                                                                    "asyncValidating": false,
-                                                                    "autofill": [Function],
-                                                                    "blur": [Function],
-                                                                    "change": [Function],
-                                                                    "clearAsyncError": [Function],
-                                                                    "clearFields": [Function],
-                                                                    "clearSubmit": [Function],
-                                                                    "clearSubmitErrors": [Function],
-                                                                    "destroy": [Function],
-                                                                    "destroyOnUnmount": false,
-                                                                    "dirty": false,
-                                                                    "dispatch": [Function],
-                                                                    "enableReinitialize": false,
-                                                                    "error": undefined,
-                                                                    "focus": [Function],
-                                                                    "forceUnregisterOnUnmount": true,
-                                                                    "form": "policyForm",
-                                                                    "getFormState": [Function],
-                                                                    "getValues": [Function],
-                                                                    "initialValues": undefined,
-                                                                    "initialize": [Function],
-                                                                    "initialized": false,
-                                                                    "invalid": false,
-                                                                    "keepDirtyOnReinitialize": false,
-                                                                    "persistentSubmitErrors": false,
-                                                                    "pristine": true,
-                                                                    "pure": true,
-                                                                    "register": [Function],
-                                                                    "registerField": [Function],
-                                                                    "registerInnerOnSubmit": [Function],
-                                                                    "registeredFields": undefined,
-                                                                    "reset": [Function],
-                                                                    "resetSection": [Function],
-                                                                    "sectionPrefix": undefined,
-                                                                    "selectedBenchmarkId": undefined,
-                                                                    "setSubmitFailed": [Function],
-                                                                    "setSubmitSucceeded": [Function],
-                                                                    "shouldAsyncValidate": [Function],
-                                                                    "shouldError": [Function],
-                                                                    "shouldValidate": [Function],
-                                                                    "shouldWarn": [Function],
-                                                                    "startAsyncValidation": [Function],
-                                                                    "startSubmit": [Function],
-                                                                    "stopAsyncValidation": [Function],
-                                                                    "stopSubmit": [Function],
-                                                                    "submit": [Function],
-                                                                    "submitAsSideEffect": false,
-                                                                    "submitFailed": false,
-                                                                    "submitSucceeded": false,
-                                                                    "submitting": false,
-                                                                    "syncErrors": Object {},
-                                                                    "syncWarnings": Object {},
-                                                                    "touch": [Function],
-                                                                    "touchOnBlur": true,
-                                                                    "touchOnChange": false,
-                                                                    "triggerSubmit": undefined,
-                                                                    "unregister": [Function],
-                                                                    "unregisterField": [Function],
-                                                                    "untouch": [Function],
-                                                                    "updateSyncErrors": [Function],
-                                                                    "updateSyncWarnings": [Function],
-                                                                    "updateUnregisteredFields": false,
-                                                                    "valid": true,
-                                                                    "validExceptSubmit": true,
-                                                                    "values": Object {},
-                                                                    "warning": undefined,
-                                                                  }
-                                                                }
-                                                                component="input"
-                                                                id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                                name="benchmark"
-                                                                normalize={[Function]}
-                                                                type="radio"
-                                                                value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                              >
-                                                                <ConnectedField
-                                                                  _reduxForm={
-                                                                    Object {
-                                                                      "_reduxForm": null,
-                                                                      "anyTouched": false,
-                                                                      "array": Object {
-                                                                        "insert": [Function],
-                                                                        "move": [Function],
-                                                                        "pop": [Function],
-                                                                        "push": [Function],
-                                                                        "remove": [Function],
-                                                                        "removeAll": [Function],
-                                                                        "shift": [Function],
-                                                                        "splice": [Function],
-                                                                        "swap": [Function],
-                                                                        "unshift": [Function],
-                                                                      },
-                                                                      "arrayInsert": [Function],
-                                                                      "arrayMove": [Function],
-                                                                      "arrayPop": [Function],
-                                                                      "arrayPush": [Function],
-                                                                      "arrayRemove": [Function],
-                                                                      "arrayRemoveAll": [Function],
-                                                                      "arrayShift": [Function],
-                                                                      "arraySplice": [Function],
-                                                                      "arraySwap": [Function],
-                                                                      "arrayUnshift": [Function],
-                                                                      "asyncErrors": undefined,
-                                                                      "asyncValidate": [Function],
-                                                                      "asyncValidating": false,
-                                                                      "autofill": [Function],
-                                                                      "blur": [Function],
-                                                                      "change": [Function],
-                                                                      "clearAsyncError": [Function],
-                                                                      "clearFields": [Function],
-                                                                      "clearSubmit": [Function],
-                                                                      "clearSubmitErrors": [Function],
-                                                                      "destroy": [Function],
-                                                                      "destroyOnUnmount": false,
-                                                                      "dirty": false,
-                                                                      "dispatch": [Function],
-                                                                      "enableReinitialize": false,
-                                                                      "error": undefined,
-                                                                      "focus": [Function],
-                                                                      "forceUnregisterOnUnmount": true,
-                                                                      "form": "policyForm",
-                                                                      "getFormState": [Function],
-                                                                      "getValues": [Function],
-                                                                      "initialValues": undefined,
-                                                                      "initialize": [Function],
-                                                                      "initialized": false,
-                                                                      "invalid": false,
-                                                                      "keepDirtyOnReinitialize": false,
-                                                                      "persistentSubmitErrors": false,
-                                                                      "pristine": true,
-                                                                      "pure": true,
-                                                                      "register": [Function],
-                                                                      "registerField": [Function],
-                                                                      "registerInnerOnSubmit": [Function],
-                                                                      "registeredFields": undefined,
-                                                                      "reset": [Function],
-                                                                      "resetSection": [Function],
-                                                                      "sectionPrefix": undefined,
-                                                                      "selectedBenchmarkId": undefined,
-                                                                      "setSubmitFailed": [Function],
-                                                                      "setSubmitSucceeded": [Function],
-                                                                      "shouldAsyncValidate": [Function],
-                                                                      "shouldError": [Function],
-                                                                      "shouldValidate": [Function],
-                                                                      "shouldWarn": [Function],
-                                                                      "startAsyncValidation": [Function],
-                                                                      "startSubmit": [Function],
-                                                                      "stopAsyncValidation": [Function],
-                                                                      "stopSubmit": [Function],
-                                                                      "submit": [Function],
-                                                                      "submitAsSideEffect": false,
-                                                                      "submitFailed": false,
-                                                                      "submitSucceeded": false,
-                                                                      "submitting": false,
-                                                                      "syncErrors": Object {},
-                                                                      "syncWarnings": Object {},
-                                                                      "touch": [Function],
-                                                                      "touchOnBlur": true,
-                                                                      "touchOnChange": false,
-                                                                      "triggerSubmit": undefined,
-                                                                      "unregister": [Function],
-                                                                      "unregisterField": [Function],
-                                                                      "untouch": [Function],
-                                                                      "updateSyncErrors": [Function],
-                                                                      "updateSyncWarnings": [Function],
-                                                                      "updateUnregisteredFields": false,
-                                                                      "valid": true,
-                                                                      "validExceptSubmit": true,
-                                                                      "values": Object {},
-                                                                      "warning": undefined,
-                                                                    }
-                                                                  }
-                                                                  _value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                                  asyncValidating={false}
-                                                                  component="input"
-                                                                  dirty={false}
-                                                                  dispatch={[Function]}
-                                                                  id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                                  name="benchmark"
-                                                                  normalize={[Function]}
-                                                                  pristine={true}
-                                                                  type="radio"
-                                                                >
-                                                                  <input
-                                                                    checked={false}
-                                                                    id="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                                    name="benchmark"
-                                                                    onBlur={[Function]}
-                                                                    onChange={[Function]}
-                                                                    onDragStart={[Function]}
-                                                                    onDrop={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    type="radio"
-                                                                    value="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                                  />
-                                                                </ConnectedField>
-                                                              </Connect(ConnectedField)>
-                                                            </Field>
-                                                          </Hoc>
-                                                        </Field>
-                                                         Guide to the Secure Configuration of Red Hat Enterprise Linux 6 - 0.1.28
-                                                      </p>
-                                                    </Text>
-                                                    <Text
+                                                          <button
+                                                            aria-disabled={null}
+                                                            aria-label={null}
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
+                                                            disabled={false}
+                                                            onClick={[Function]}
+                                                            tabIndex={null}
+                                                            type="button"
+                                                          />
+                                                        </Button>
+                                                      </ComponentWithOuia>
+                                                    </Component>
+                                                    <Component
+                                                      className="wizard-os-button "
                                                       key="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+                                                      onClick={[Function]}
+                                                      variant="tertiary"
                                                     >
-                                                      <p
-                                                        className=""
-                                                        data-pf-content={true}
+                                                      <ComponentWithOuia
+                                                        component={[Function]}
+                                                        componentProps={
+                                                          Object {
+                                                            "children": undefined,
+                                                            "className": "wizard-os-button ",
+                                                            "onClick": [Function],
+                                                            "variant": "tertiary",
+                                                          }
+                                                        }
+                                                        consumerContext={null}
                                                       >
-                                                        <Field
-                                                          component="input"
-                                                          id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                          name="benchmark"
-                                                          type="radio"
-                                                          value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+                                                        <Button
+                                                          className="wizard-os-button "
+                                                          onClick={[Function]}
+                                                          ouiaContext={
+                                                            Object {
+                                                              "isOuia": false,
+                                                              "ouiaId": null,
+                                                            }
+                                                          }
+                                                          variant="tertiary"
                                                         >
-                                                          <Hoc
-                                                            component="input"
-                                                            forwardedRef={null}
-                                                            id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                            name="benchmark"
-                                                            type="radio"
-                                                            value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                          >
-                                                            <Field
-                                                              _reduxForm={
-                                                                Object {
-                                                                  "_reduxForm": null,
-                                                                  "anyTouched": false,
-                                                                  "array": Object {
-                                                                    "insert": [Function],
-                                                                    "move": [Function],
-                                                                    "pop": [Function],
-                                                                    "push": [Function],
-                                                                    "remove": [Function],
-                                                                    "removeAll": [Function],
-                                                                    "shift": [Function],
-                                                                    "splice": [Function],
-                                                                    "swap": [Function],
-                                                                    "unshift": [Function],
-                                                                  },
-                                                                  "arrayInsert": [Function],
-                                                                  "arrayMove": [Function],
-                                                                  "arrayPop": [Function],
-                                                                  "arrayPush": [Function],
-                                                                  "arrayRemove": [Function],
-                                                                  "arrayRemoveAll": [Function],
-                                                                  "arrayShift": [Function],
-                                                                  "arraySplice": [Function],
-                                                                  "arraySwap": [Function],
-                                                                  "arrayUnshift": [Function],
-                                                                  "asyncErrors": undefined,
-                                                                  "asyncValidate": [Function],
-                                                                  "asyncValidating": false,
-                                                                  "autofill": [Function],
-                                                                  "blur": [Function],
-                                                                  "change": [Function],
-                                                                  "clearAsyncError": [Function],
-                                                                  "clearFields": [Function],
-                                                                  "clearSubmit": [Function],
-                                                                  "clearSubmitErrors": [Function],
-                                                                  "destroy": [Function],
-                                                                  "destroyOnUnmount": false,
-                                                                  "dirty": false,
-                                                                  "dispatch": [Function],
-                                                                  "enableReinitialize": false,
-                                                                  "error": undefined,
-                                                                  "focus": [Function],
-                                                                  "forceUnregisterOnUnmount": true,
-                                                                  "form": "policyForm",
-                                                                  "getFormState": [Function],
-                                                                  "getValues": [Function],
-                                                                  "initialValues": undefined,
-                                                                  "initialize": [Function],
-                                                                  "initialized": false,
-                                                                  "invalid": false,
-                                                                  "keepDirtyOnReinitialize": false,
-                                                                  "persistentSubmitErrors": false,
-                                                                  "pristine": true,
-                                                                  "pure": true,
-                                                                  "register": [Function],
-                                                                  "registerField": [Function],
-                                                                  "registerInnerOnSubmit": [Function],
-                                                                  "registeredFields": undefined,
-                                                                  "reset": [Function],
-                                                                  "resetSection": [Function],
-                                                                  "sectionPrefix": undefined,
-                                                                  "selectedBenchmarkId": undefined,
-                                                                  "setSubmitFailed": [Function],
-                                                                  "setSubmitSucceeded": [Function],
-                                                                  "shouldAsyncValidate": [Function],
-                                                                  "shouldError": [Function],
-                                                                  "shouldValidate": [Function],
-                                                                  "shouldWarn": [Function],
-                                                                  "startAsyncValidation": [Function],
-                                                                  "startSubmit": [Function],
-                                                                  "stopAsyncValidation": [Function],
-                                                                  "stopSubmit": [Function],
-                                                                  "submit": [Function],
-                                                                  "submitAsSideEffect": false,
-                                                                  "submitFailed": false,
-                                                                  "submitSucceeded": false,
-                                                                  "submitting": false,
-                                                                  "syncErrors": Object {},
-                                                                  "syncWarnings": Object {},
-                                                                  "touch": [Function],
-                                                                  "touchOnBlur": true,
-                                                                  "touchOnChange": false,
-                                                                  "triggerSubmit": undefined,
-                                                                  "unregister": [Function],
-                                                                  "unregisterField": [Function],
-                                                                  "untouch": [Function],
-                                                                  "updateSyncErrors": [Function],
-                                                                  "updateSyncWarnings": [Function],
-                                                                  "updateUnregisteredFields": false,
-                                                                  "valid": true,
-                                                                  "validExceptSubmit": true,
-                                                                  "values": Object {},
-                                                                  "warning": undefined,
-                                                                }
-                                                              }
-                                                              component="input"
-                                                              id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                              name="benchmark"
-                                                              type="radio"
-                                                              value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                            >
-                                                              <Connect(ConnectedField)
-                                                                _reduxForm={
-                                                                  Object {
-                                                                    "_reduxForm": null,
-                                                                    "anyTouched": false,
-                                                                    "array": Object {
-                                                                      "insert": [Function],
-                                                                      "move": [Function],
-                                                                      "pop": [Function],
-                                                                      "push": [Function],
-                                                                      "remove": [Function],
-                                                                      "removeAll": [Function],
-                                                                      "shift": [Function],
-                                                                      "splice": [Function],
-                                                                      "swap": [Function],
-                                                                      "unshift": [Function],
-                                                                    },
-                                                                    "arrayInsert": [Function],
-                                                                    "arrayMove": [Function],
-                                                                    "arrayPop": [Function],
-                                                                    "arrayPush": [Function],
-                                                                    "arrayRemove": [Function],
-                                                                    "arrayRemoveAll": [Function],
-                                                                    "arrayShift": [Function],
-                                                                    "arraySplice": [Function],
-                                                                    "arraySwap": [Function],
-                                                                    "arrayUnshift": [Function],
-                                                                    "asyncErrors": undefined,
-                                                                    "asyncValidate": [Function],
-                                                                    "asyncValidating": false,
-                                                                    "autofill": [Function],
-                                                                    "blur": [Function],
-                                                                    "change": [Function],
-                                                                    "clearAsyncError": [Function],
-                                                                    "clearFields": [Function],
-                                                                    "clearSubmit": [Function],
-                                                                    "clearSubmitErrors": [Function],
-                                                                    "destroy": [Function],
-                                                                    "destroyOnUnmount": false,
-                                                                    "dirty": false,
-                                                                    "dispatch": [Function],
-                                                                    "enableReinitialize": false,
-                                                                    "error": undefined,
-                                                                    "focus": [Function],
-                                                                    "forceUnregisterOnUnmount": true,
-                                                                    "form": "policyForm",
-                                                                    "getFormState": [Function],
-                                                                    "getValues": [Function],
-                                                                    "initialValues": undefined,
-                                                                    "initialize": [Function],
-                                                                    "initialized": false,
-                                                                    "invalid": false,
-                                                                    "keepDirtyOnReinitialize": false,
-                                                                    "persistentSubmitErrors": false,
-                                                                    "pristine": true,
-                                                                    "pure": true,
-                                                                    "register": [Function],
-                                                                    "registerField": [Function],
-                                                                    "registerInnerOnSubmit": [Function],
-                                                                    "registeredFields": undefined,
-                                                                    "reset": [Function],
-                                                                    "resetSection": [Function],
-                                                                    "sectionPrefix": undefined,
-                                                                    "selectedBenchmarkId": undefined,
-                                                                    "setSubmitFailed": [Function],
-                                                                    "setSubmitSucceeded": [Function],
-                                                                    "shouldAsyncValidate": [Function],
-                                                                    "shouldError": [Function],
-                                                                    "shouldValidate": [Function],
-                                                                    "shouldWarn": [Function],
-                                                                    "startAsyncValidation": [Function],
-                                                                    "startSubmit": [Function],
-                                                                    "stopAsyncValidation": [Function],
-                                                                    "stopSubmit": [Function],
-                                                                    "submit": [Function],
-                                                                    "submitAsSideEffect": false,
-                                                                    "submitFailed": false,
-                                                                    "submitSucceeded": false,
-                                                                    "submitting": false,
-                                                                    "syncErrors": Object {},
-                                                                    "syncWarnings": Object {},
-                                                                    "touch": [Function],
-                                                                    "touchOnBlur": true,
-                                                                    "touchOnChange": false,
-                                                                    "triggerSubmit": undefined,
-                                                                    "unregister": [Function],
-                                                                    "unregisterField": [Function],
-                                                                    "untouch": [Function],
-                                                                    "updateSyncErrors": [Function],
-                                                                    "updateSyncWarnings": [Function],
-                                                                    "updateUnregisteredFields": false,
-                                                                    "valid": true,
-                                                                    "validExceptSubmit": true,
-                                                                    "values": Object {},
-                                                                    "warning": undefined,
-                                                                  }
-                                                                }
-                                                                component="input"
-                                                                id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                                name="benchmark"
-                                                                normalize={[Function]}
-                                                                type="radio"
-                                                                value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                              >
-                                                                <ConnectedField
-                                                                  _reduxForm={
-                                                                    Object {
-                                                                      "_reduxForm": null,
-                                                                      "anyTouched": false,
-                                                                      "array": Object {
-                                                                        "insert": [Function],
-                                                                        "move": [Function],
-                                                                        "pop": [Function],
-                                                                        "push": [Function],
-                                                                        "remove": [Function],
-                                                                        "removeAll": [Function],
-                                                                        "shift": [Function],
-                                                                        "splice": [Function],
-                                                                        "swap": [Function],
-                                                                        "unshift": [Function],
-                                                                      },
-                                                                      "arrayInsert": [Function],
-                                                                      "arrayMove": [Function],
-                                                                      "arrayPop": [Function],
-                                                                      "arrayPush": [Function],
-                                                                      "arrayRemove": [Function],
-                                                                      "arrayRemoveAll": [Function],
-                                                                      "arrayShift": [Function],
-                                                                      "arraySplice": [Function],
-                                                                      "arraySwap": [Function],
-                                                                      "arrayUnshift": [Function],
-                                                                      "asyncErrors": undefined,
-                                                                      "asyncValidate": [Function],
-                                                                      "asyncValidating": false,
-                                                                      "autofill": [Function],
-                                                                      "blur": [Function],
-                                                                      "change": [Function],
-                                                                      "clearAsyncError": [Function],
-                                                                      "clearFields": [Function],
-                                                                      "clearSubmit": [Function],
-                                                                      "clearSubmitErrors": [Function],
-                                                                      "destroy": [Function],
-                                                                      "destroyOnUnmount": false,
-                                                                      "dirty": false,
-                                                                      "dispatch": [Function],
-                                                                      "enableReinitialize": false,
-                                                                      "error": undefined,
-                                                                      "focus": [Function],
-                                                                      "forceUnregisterOnUnmount": true,
-                                                                      "form": "policyForm",
-                                                                      "getFormState": [Function],
-                                                                      "getValues": [Function],
-                                                                      "initialValues": undefined,
-                                                                      "initialize": [Function],
-                                                                      "initialized": false,
-                                                                      "invalid": false,
-                                                                      "keepDirtyOnReinitialize": false,
-                                                                      "persistentSubmitErrors": false,
-                                                                      "pristine": true,
-                                                                      "pure": true,
-                                                                      "register": [Function],
-                                                                      "registerField": [Function],
-                                                                      "registerInnerOnSubmit": [Function],
-                                                                      "registeredFields": undefined,
-                                                                      "reset": [Function],
-                                                                      "resetSection": [Function],
-                                                                      "sectionPrefix": undefined,
-                                                                      "selectedBenchmarkId": undefined,
-                                                                      "setSubmitFailed": [Function],
-                                                                      "setSubmitSucceeded": [Function],
-                                                                      "shouldAsyncValidate": [Function],
-                                                                      "shouldError": [Function],
-                                                                      "shouldValidate": [Function],
-                                                                      "shouldWarn": [Function],
-                                                                      "startAsyncValidation": [Function],
-                                                                      "startSubmit": [Function],
-                                                                      "stopAsyncValidation": [Function],
-                                                                      "stopSubmit": [Function],
-                                                                      "submit": [Function],
-                                                                      "submitAsSideEffect": false,
-                                                                      "submitFailed": false,
-                                                                      "submitSucceeded": false,
-                                                                      "submitting": false,
-                                                                      "syncErrors": Object {},
-                                                                      "syncWarnings": Object {},
-                                                                      "touch": [Function],
-                                                                      "touchOnBlur": true,
-                                                                      "touchOnChange": false,
-                                                                      "triggerSubmit": undefined,
-                                                                      "unregister": [Function],
-                                                                      "unregisterField": [Function],
-                                                                      "untouch": [Function],
-                                                                      "updateSyncErrors": [Function],
-                                                                      "updateSyncWarnings": [Function],
-                                                                      "updateUnregisteredFields": false,
-                                                                      "valid": true,
-                                                                      "validExceptSubmit": true,
-                                                                      "values": Object {},
-                                                                      "warning": undefined,
-                                                                    }
-                                                                  }
-                                                                  _value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                                  asyncValidating={false}
-                                                                  component="input"
-                                                                  dirty={false}
-                                                                  dispatch={[Function]}
-                                                                  id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                                  name="benchmark"
-                                                                  normalize={[Function]}
-                                                                  pristine={true}
-                                                                  type="radio"
-                                                                >
-                                                                  <input
-                                                                    checked={false}
-                                                                    id="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                                    name="benchmark"
-                                                                    onBlur={[Function]}
-                                                                    onChange={[Function]}
-                                                                    onDragStart={[Function]}
-                                                                    onDrop={[Function]}
-                                                                    onFocus={[Function]}
-                                                                    type="radio"
-                                                                    value="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
-                                                                  />
-                                                                </ConnectedField>
-                                                              </Connect(ConnectedField)>
-                                                            </Field>
-                                                          </Hoc>
-                                                        </Field>
-                                                         Guide to the Secure Configuration of Red Hat Enterprise Linux 8 - 0.1.42
-                                                      </p>
-                                                    </Text>
+                                                          <button
+                                                            aria-disabled={null}
+                                                            aria-label={null}
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
+                                                            disabled={false}
+                                                            onClick={[Function]}
+                                                            tabIndex={null}
+                                                            type="button"
+                                                          />
+                                                        </Button>
+                                                      </ComponentWithOuia>
+                                                    </Component>
                                                   </div>
                                                 </FormGroup>
                                                 <FormGroup
