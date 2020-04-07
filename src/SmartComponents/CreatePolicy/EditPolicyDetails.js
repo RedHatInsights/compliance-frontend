@@ -36,7 +36,6 @@ const EditPolicyDetails = ({ profile }) => {
                     <Field
                         type="text"
                         component={ReduxFormTextInput}
-                        isDisabled
                         id="refId"
                         name="refId"
                         aria-describedby="refId"

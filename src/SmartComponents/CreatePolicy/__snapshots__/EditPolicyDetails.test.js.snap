@@ -69,7 +69,6 @@ Array [
         aria-describedby="refId"
         component={[Function]}
         id="refId"
-        isDisabled={true}
         name="refId"
         type="text"
       />
