@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Wizard } from '@patternfly/react-core';
-import { formValueSelector } from 'redux-form';
+import { formValueSelector, destroy } from 'redux-form';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import EditPolicyRules from './EditPolicyRules';
 import EditPolicySystems from './EditPolicySystems';
@@ -23,9 +23,11 @@ class CreatePolicy extends React.Component {
 
     toggleOpen = () => {
         const { isOpen } = this.state;
+        const { dispatch } = this.props;
         this.setState({
-            isOpen: !isOpen
-        });
+            isOpen: !isOpen,
+            stepIdReached: 1
+        }, () => dispatch(destroy('policyForm')));
     };
 
     onNext = ({ id }) => {
@@ -111,7 +113,8 @@ CreatePolicy.propTypes = {
     refId: propTypes.string,
     selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
     isOpen: propTypes.bool,
-    onWizardFinish: propTypes.func
+    onWizardFinish: propTypes.func,
+    dispatch: propTypes.func
 };
 
 CreatePolicy.defaultProps = {
