@@ -3,15 +3,15 @@ import { useQuery } from '@apollo/react-hooks';
 import { profiles } from './fixtures.js';
 
 jest.mock('@apollo/react-hooks');
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 jest.mock('../CreatePolicy/EditPolicyRules', () => {
     return <p>Rules table</p>;
 });
 
 import { CompliancePolicies } from './CompliancePolicies.js';
+
+window.insights = {
+    chrome: { isBeta: jest.fn(() => true) }
+};
 
 describe('CompliancePolicies', () => {
     it('expect to render without error', () => {
@@ -29,7 +29,7 @@ describe('CompliancePolicies', () => {
                         }
                     }]
                 }
-            }, error: false, loading: false }));
+            }, error: undefined, loading: undefined }));
 
         const wrapper = shallow(
             <CompliancePolicies />
@@ -44,7 +44,7 @@ describe('CompliancePolicies', () => {
                 profiles: {
                     edges: []
                 }
-            }, error: false, loading: false }));
+            }, error: undefined, loading: undefined }));
 
         const wrapper = shallow(
             <CompliancePolicies />
@@ -58,7 +58,7 @@ describe('CompliancePolicies', () => {
             networkError: { statusCode: 500 },
             error: 'Test Error loading'
         };
-        useQuery.mockImplementation(() => ({ data: {}, error, loading: false }));
+        useQuery.mockImplementation(() => ({ data: undefined, error, loading: undefined }));
         const wrapper = shallow(
             <CompliancePolicies />
         );
@@ -67,7 +67,7 @@ describe('CompliancePolicies', () => {
     });
 
     it('expect to render loading', () => {
-        useQuery.mockImplementation(() => ({ data: {}, error: false, loading: true }));
+        useQuery.mockImplementation(() => ({ data: undefined, error: undefined, loading: true }));
         const wrapper = shallow(
             <CompliancePolicies />
         );
@@ -76,7 +76,7 @@ describe('CompliancePolicies', () => {
     });
 
     it('expect to render a policies table', () => {
-        useQuery.mockImplementation(() => ({ data: profiles, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({ data: profiles, error: undefined, loading: undefined }));
         const wrapper = shallow(
             <CompliancePolicies />
         );

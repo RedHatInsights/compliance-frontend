@@ -37,11 +37,6 @@ const mocks = [
 ];
 const store = init().getStore();
 
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
-
 jest.mock('../SystemsTable/SystemsTable', () => {
     const SystemsTable = () => <table><tr><td>Systems Table</td></tr></table>;
     return SystemsTable;

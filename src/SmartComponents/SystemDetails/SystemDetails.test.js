@@ -9,10 +9,6 @@ jest.mock('SmartComponents', () => ({
     InventoryDetails: () => 'MockedInventoryDetails'
 }));
 
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () =>
-    () => 'MockedComplianceSystemDetails'
-);
-
 jest.mock('@apollo/react-hooks');
 
 jest.mock('react-router-dom', () => ({

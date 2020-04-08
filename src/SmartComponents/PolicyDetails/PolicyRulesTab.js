@@ -13,8 +13,8 @@ const PolicyRulesTab = ({ loading, policy }) => (<React.Fragment>
             { title: 'Severity', transforms: [sortable] },
             { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
         ]}
-        loading={loading}
-        profileRules={ !loading && [{
+        loading={ loading }
+        profileRules={[{
             profile: { refId: policy.refId, name: policy.name },
             rules: policy.rules
         }]}

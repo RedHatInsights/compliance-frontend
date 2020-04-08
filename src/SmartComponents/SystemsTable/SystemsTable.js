@@ -20,8 +20,7 @@ import  {
 } from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
-import { FilterConfigBuilder } from 'Utilities/FilterConfigBuilder';
-import { stringToId } from 'Utilities/TextHelper';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import { FILTER_CONFIGURATION } from '../../constants';
 
@@ -75,8 +74,7 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
-        activeFilters: this.filterConfig.initialDefaultState(),
-        filterChips: []
+        activeFilters: this.filterConfig.initialDefaultState()
     }
 
     componentDidMount = () => {
@@ -153,18 +151,6 @@ class SystemsTable extends React.Component {
         }
     }
 
-    updateChips = () => (
-        this.chipBuilder.chipsFor(this.state.activeFilters).then((filterChips) => (
-            this.setState({
-                filterChips
-            })
-        ))
-    )
-
-    filterUpdate = () => (
-        this.updateChips().then(this.systemFetch)
-    )
-
     onFilterUpdate = debounce((filter, selectedValues) => {
         this.setState({
             ...loadingState,
@@ -172,39 +158,23 @@ class SystemsTable extends React.Component {
                 ...this.state.activeFilters,
                 [filter]: selectedValues
             }
-        }, this.filterUpdate);
+        }, this.systemFetch);
     }, 500)
 
-    removeFilterFromFilterState = (currentState, filter) => (
-        (typeof(currentState) === 'string') ? '' :
-            currentState.filter((value) =>
-                value !== filter
-            )
-    )
-
     deleteFilter = (chips) => {
-        const chipCategory = chips.category;
-        const chipValue = this.filterConfig.valueForLabel(chips.chips[0].name, chipCategory);
-        const stateProp = stringToId(chipCategory);
-        const currentState = this.state.activeFilters[stateProp];
-        const newFilterState = this.removeFilterFromFilterState(currentState, chipValue);
-        const activeFilters =  {
-            ...this.state.activeFilters,
-            [stateProp]: newFilterState
-        };
-
+        const activeFilters =  this.filterConfig.removeFilterWithChip(
+            chips, this.state.activeFilters
+        );
         this.setState({
-            ...loadingState,
             activeFilters
-        }, this.filterUpdate);
+        }, this.systemFetch);
     }
 
     clearAllFilter = () => {
         this.setState({
             ...loadingState,
-            activeFilters: this.filterConfig.initialDefaultState(),
-            filterChips: []
-        }, this.filterUpdate);
+            activeFilters: this.filterConfig.initialDefaultState()
+        }, this.systemFetch);
     }
 
     onFilterDelete = debounce((_event, chips, clearAll = false) => {
@@ -240,13 +210,15 @@ class SystemsTable extends React.Component {
     render() {
         const { remediationsEnabled, compact, enableExport, showAllSystems, showActions } = this.props;
         const {
-            page, totalCount, perPage, items, InventoryCmp, filterChips,
-            selectedSystemId, selectedSystemFqdn, isAssignPoliciesModalOpen } = this.state;
+            page, totalCount, perPage, items, InventoryCmp, selectedSystemId,
+            selectedSystemFqdn, isAssignPoliciesModalOpen
+        } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.onFilterUpdate,
             this.state.activeFilters,
             { hideLabel: true }
         );
+        const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
         const exportConfig = enableExport ? { onSelect: this.onExportSelect } : {};
         const inventoryTableProps = {
             onRefresh: this.onRefresh,

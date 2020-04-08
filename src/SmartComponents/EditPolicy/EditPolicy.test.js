@@ -1,10 +1,4 @@
 import toJson from 'enzyme-to-json';
-
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
-
 import { EditPolicy } from './EditPolicy.js';
 
 describe('EditPolicy', () => {

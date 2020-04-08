@@ -1,30 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { EmptyTable, SimpleTableFilter, TableToolbar } from '@redhat-cloud-services/frontend-components';
+import { Link } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
-    Bullseye,
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateVariant,
-    InputGroup,
-    Level,
-    LevelItem,
-    Pagination,
-    PaginationVariant,
-    Title
+    Bullseye, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
+    DataToolbarItem
 } from '@patternfly/react-core';
-import {
-    CompliancePoliciesEmptyState
-} from 'PresentationalComponents';
+import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
 import DeletePolicy from '../DeletePolicy/DeletePolicy';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { paths } from '../../Routes';
-import debounce from 'lodash/debounce';
-import {
-    Link
-} from 'react-router-dom';
 
 const emptyRows = [{
     cells: [{
@@ -62,7 +50,20 @@ const policiesToRows = (policies) => (
     ))
 );
 
+const FILTER_CONFIGURATION = [
+    {
+        type: conditionalFilterType.text,
+        label: 'Name',
+        filter: (policies, value) => (
+            policies.filter((policy) => policy.name.includes(value))
+        )
+    }
+];
+
 export class PoliciesTable extends React.Component {
+    filterConfigBuilder = new FilterConfigBuilder(FILTER_CONFIGURATION);
+    chipBuilder = this.filterConfigBuilder.getChipBuilder();
+    filterBuilder = this.filterConfigBuilder.getFilterBuilder();
     columns = [
         { title: 'Policy name' },
         { title: 'Operating system' },
@@ -71,83 +72,69 @@ export class PoliciesTable extends React.Component {
         { title: 'Compliance threshold' }
     ]
     state = {
-        columns: this.columns,
         page: 1,
         itemsPerPage: 10,
-        search: '',
-        rows: [],
-        currentRows: [],
         isDeleteModalOpen: false,
-        policyToDelete: {}
+        policyToDelete: {},
+        activeFilters: {}
     }
 
-    componentDidMount = () => {
-        this.setInitialCurrentRows();
-    }
+    setPage = (_event, page) => (
+        this.changePage(page, this.state.itemsPerPage)
+    )
 
-    componentDidUpdate = (prevProps) => {
-        const { policies } = this.props;
-        if (policies !== prevProps.policies) {
-            this.setInitialCurrentRows();
-        }
-    }
+    setPerPage = (_event, itemsPerPage) => (
+        this.changePage(this.state.page, itemsPerPage)
+    )
 
-    setInitialCurrentRows = () => {
-        const { policies } = this.props;
-        const { itemsPerPage } = this.state;
-        const policyRows = policiesToRows(policies);
-
+    changePage = (page, itemsPerPage) => (
         this.setState({
-            currentRows: policyRows.slice(0, itemsPerPage),
-            rows: policyRows,
-            allRows: policyRows
-        });
-    }
-
-    currentRows = (page, itemsPerPage, policyRows) => {
-        const { rows } = (policyRows) ? policyRows : this.state;
-
-        if (!rows.length) {
-            return [];
-        }
-
-        if (rows.length < itemsPerPage) { itemsPerPage = rows.length; }
-
-        const firstIndex = (page - 1) * itemsPerPage;
-        const lastIndex = page * itemsPerPage;
-        const newRows = rows.slice(firstIndex, lastIndex);
-
-        return newRows;
-    }
-
-    setPage = (_event, page) => {
-        const { itemsPerPage } = this.state;
-        this.changePage(page, itemsPerPage);
-    }
-
-    setPerPage = (_event, itemsPerPage) => {
-        const { page } = this.state;
-        this.changePage(page, itemsPerPage);
-    }
-
-    changePage = (page, itemsPerPage) => {
-        this.setState({
-            currentRows: this.currentRows(page, itemsPerPage),
             page,
             itemsPerPage
+        })
+    )
+
+    paginatedPolicies = (policies) => (
+        policies.slice(
+            (this.state.page - 1) * this.state.itemsPerPage,
+            this.state.page * this.state.itemsPerPage
+        )
+    )
+
+    filteredPolicies = () => (
+        this.filterConfigBuilder.applyFilterToObjectArray(
+            this.props.policies, this.state.activeFilters
+        )
+    )
+
+    onFilterUpdate = (filter, value) => {
+        this.setState({
+            page: 1,
+            activeFilters: {
+                ...this.state.activeFilters,
+                [filter]: value
+            }
         });
     }
 
-    handleSearch = debounce(search => {
-        const { itemsPerPage, allRows } = this.state;
-        const filteredRows = allRows.filter(row => row.cells[0].original.match(search));
+    deleteFilter = (chips) => {
+        const activeFilters =  this.filterConfigBuilder.removeFilterWithChip(
+            chips, this.state.activeFilters
+        );
         this.setState({
-            search,
-            page: 1,
-            rows: filteredRows,
-            currentRows: filteredRows.slice(0, itemsPerPage)
+            activeFilters
         });
-    }, 500)
+    }
+
+    clearAllFilter = () => (
+        this.setState({
+            activeFilters: this.filterConfigBuilder.initialDefaultState()
+        })
+    )
+
+    onFilterDelete = (_event, chips, clearAll = false) => (
+        clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0])
+    )
 
     actionResolver = (rowData) => {
         const { history, policies } = this.props;
@@ -174,66 +161,67 @@ export class PoliciesTable extends React.Component {
 
     render() {
         const { onWizardFinish } = this.props;
-        const { rows, currentRows, columns, page, itemsPerPage, policyToDelete, isDeleteModalOpen } = this.state;
-        if (rows.length === 0) {
-            return <CompliancePoliciesEmptyState />;
-        }
-
-        return (
-            <React.Fragment>
-                <DeletePolicy
-                    isModalOpen={isDeleteModalOpen}
-                    policy={policyToDelete}
-                    onDelete={onWizardFinish}
-                    toggle={() => this.setState((prev) => ({ isDeleteModalOpen: !prev.isDeleteModalOpen }))}
-                />
-                <TableToolbar>
-                    <Level gutter='md'>
-                        <LevelItem>
-                            <InputGroup>
-                                <SimpleTableFilter buttonTitle={ null }
-                                    onFilterChange={ this.handleSearch }
-                                    placeholder="Search" />
-                            </InputGroup>
-                        </LevelItem>
-                        <LevelItem>
-                            { rows.length } results
-                        </LevelItem>
-                        <LevelItem>
-                            <CreatePolicy onWizardFinish={onWizardFinish} />
-                        </LevelItem>
-                    </Level>
-                    <Pagination
-                        page={ page }
-                        itemCount={ rows.length }
-                        dropDirection='down'
-                        onSetPage={ this.setPage }
-                        onPerPageSelect={ this.setPerPage }
-                        perPage={ itemsPerPage }
-                    />
-                </TableToolbar>
-                <Table
-                    aria-label='policies'
-                    className='compliance-policies-table'
-                    cells={ columns }
-                    actionResolver={this.actionResolver}
-                    rows={ (currentRows.length === 0) ? emptyRows : currentRows }>
-                    <TableHeader />
-                    <TableBody />
-                </Table>
-                <TableToolbar isFooter className="ins-c-inventory__table--toolbar">
-                    <Pagination
-                        page={ page }
-                        itemCount={ rows.length }
-                        dropDirection='up'
-                        onSetPage={ this.setPage }
-                        onPerPageSelect={ this.setPerPage }
-                        perPage={ itemsPerPage }
-                        variant={ PaginationVariant.bottom }
-                    />
-                </TableToolbar>
-            </React.Fragment>
+        const {
+            page, itemsPerPage, policyToDelete, isDeleteModalOpen
+        } = this.state;
+        const policies = this.filteredPolicies();
+        const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
+        const rows = policiesToRows(this.paginatedPolicies(policies));
+        const filterConfig = this.filterConfigBuilder.buildConfiguration(
+            this.onFilterUpdate,
+            this.state.activeFilters,
+            { hideLabel: true }
         );
+        const pagination = {
+            page,
+            itemCount: policies.length,
+            dropDirection: 'down',
+            onSetPage: this.setPage,
+            onPerPageSelect: this.setPerPage,
+            perPage: itemsPerPage
+        };
+
+        return <React.Fragment>
+            <PrimaryToolbar
+                filterConfig={ filterConfig }
+                activeFiltersConfig={{
+                    filters: filterChips,
+                    onDelete: this.onFilterDelete
+                }}
+                pagination={{
+                    ...pagination,
+                    dropDirection: 'down'
+                }}>
+                <DataToolbarItem>
+                    <CreatePolicy onWizardFinish={onWizardFinish} />
+                </DataToolbarItem>
+                <DataToolbarItem>
+                    { policies.length } results
+                </DataToolbarItem>
+            </PrimaryToolbar>
+            <Table
+                aria-label='policies'
+                className='compliance-policies-table'
+                cells={ this.columns }
+                actionResolver={this.actionResolver}
+                rows={ (rows.length === 0) ? emptyRows : rows }>
+                <TableHeader />
+                <TableBody />
+            </Table>
+            <TableToolbar isFooter className="ins-c-inventory__table--toolbar">
+                <Pagination
+                    { ...pagination }
+                    dropDirection='up'
+                    variant={ PaginationVariant.bottom }
+                />
+            </TableToolbar>
+            <DeletePolicy
+                isModalOpen={isDeleteModalOpen}
+                policy={policyToDelete}
+                onDelete={onWizardFinish}
+                toggle={() => this.setState((prev) => ({ isDeleteModalOpen: !prev.isDeleteModalOpen }))}
+            />
+        </React.Fragment>;
     }
 }
 

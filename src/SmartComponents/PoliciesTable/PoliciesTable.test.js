@@ -11,19 +11,10 @@ jest.mock('react-router-dom', () => (
         withRouter: jest.fn()
     }
 ));
-
 jest.mock('lodash/debounce');
-jest.mock('@apollo/react-hooks');
 debounce.mockImplementation(fn => fn);
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 
-import { PoliciesTable, policiesToRows } from './PoliciesTable.js';
+import { PoliciesTable } from './PoliciesTable.js';
 
 describe('PoliciesTable', () => {
     it('expect to render without error', () => {
@@ -53,25 +44,17 @@ describe('PoliciesTable', () => {
         });
 
         it('should show only matching results after searching', async () => {
-            const filteredProfiles = policies.edges.filter(row => row.node.name.match(/CCP/)).map(profile => profile.node);
-            const searchResults = policiesToRows(filteredProfiles);
             const instance = wrapper.instance();
-            await instance.handleSearch('CCP');
-            expect(wrapper.state('currentRows')).toEqual(searchResults);
+            await instance.onFilterUpdate('name', 'CCP');
+            expect(toJson(wrapper)).toMatchSnapshot();
         });
 
         it('should be able to move to next and previous pages', async () => {
-            const pageOnePolicies = policiesToRows(
-                policies.edges.slice(0, 10).map(profile => profile.node)
-            );
-            const pageTwoPolicies = policiesToRows(
-                policies.edges.slice(10, 20).map(profile => profile.node)
-            );
             const instance = wrapper.instance();
             await instance.changePage(2, 10);
-            expect(wrapper.state('currentRows')).toEqual(pageTwoPolicies);
+            expect(toJson(wrapper)).toMatchSnapshot();
             await instance.changePage(1, 10);
-            expect(wrapper.state('currentRows')).toEqual(pageOnePolicies);
+            expect(toJson(wrapper)).toMatchSnapshot();
         });
 
     });

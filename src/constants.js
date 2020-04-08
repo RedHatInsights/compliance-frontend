@@ -17,6 +17,7 @@ export const FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.text,
         label: 'Name',
+        event: 'onSubmit',
         filterString: (value) => (`name ~ ${value}`)
     },
     {
