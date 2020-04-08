@@ -42,6 +42,17 @@ describe('PoliciesTable', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
+    it('expect not to render emptystate if rows are empty but initial policies were not', async () => {
+        const wrapper = shallow(
+            <PoliciesTable policies={policies.edges.map(profile => profile.node)} />
+        );
+        expect(toJson(wrapper)).toMatchSnapshot();
+        const instance = wrapper.instance();
+        await instance.handleSearch('impossiblesearch');
+        expect(wrapper.state('currentRows')).toEqual([]);
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
     describe('Pagination and search', () => {
         let wrapper;
 

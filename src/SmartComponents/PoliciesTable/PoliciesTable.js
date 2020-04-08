@@ -173,9 +173,9 @@ export class PoliciesTable extends React.Component {
     }
 
     render() {
-        const { onWizardFinish } = this.props;
+        const { policies, onWizardFinish } = this.props;
         const { rows, currentRows, columns, page, itemsPerPage, policyToDelete, isDeleteModalOpen } = this.state;
-        if (rows.length === 0) {
+        if (policies.length === 0) {
             return <CompliancePoliciesEmptyState />;
         }
 
