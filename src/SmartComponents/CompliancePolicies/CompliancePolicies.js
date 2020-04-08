@@ -35,7 +35,7 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'network-only' });
+    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     const beta = insights.chrome.isBeta();
     let policies;
 
