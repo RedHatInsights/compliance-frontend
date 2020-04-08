@@ -84,7 +84,7 @@ export class PoliciesTable extends React.Component {
     )
 
     setPerPage = (_event, itemsPerPage) => (
-        this.changePage(this.state.page, itemsPerPage)
+        this.changePage(1, itemsPerPage)
     )
 
     changePage = (page, itemsPerPage) => (
