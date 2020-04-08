@@ -34,6 +34,8 @@ export class UpdateProfileButton extends React.Component {
                 return result.data.createBusinessObjective.businessObjective.id;
             });
         }
+
+        return Promise.resolve();
     }
 
     onClick = () => {
