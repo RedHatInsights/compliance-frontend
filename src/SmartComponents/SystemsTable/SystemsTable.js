@@ -178,7 +178,7 @@ class SystemsTable extends React.Component {
     }
 
     onFilterDelete = debounce((_event, chips, clearAll = false) => {
-        clearAll ? this.clearAllFilter() : this.deleteFilter(chips);
+        clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0]);
     }, 500)
 
     async fetchInventory() {
