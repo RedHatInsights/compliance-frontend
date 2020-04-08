@@ -135,7 +135,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 6
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -144,7 +146,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 7
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -153,7 +157,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 7
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -162,7 +168,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 8
+      </button>
       
     </div>
     <div
@@ -243,7 +251,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 6
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -252,7 +262,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 7
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -261,7 +273,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 7
+      </button>
       <button
         aria-disabled={null}
         aria-label={null}
@@ -270,7 +284,9 @@ Array [
         onClick={[Function]}
         tabIndex={null}
         type="button"
-      />
+      >
+        RHEL 8
+      </button>
       
     </div>
     <div
@@ -311,9 +327,9 @@ Array [
               onDrop={[Function]}
               onFocus={[Function]}
               type="radio"
-              value="{\\"id\\":\\"7d674214-ad7f-4f37-8b54-0825f7e81b42\\",\\"name\\":\\"OSPP - Protection Profile for General Purpose Operating Systems v. 4.2\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_ospp42\\",\\"description\\":\\"This profile reflects mandatory configuration controls identified in the\\\\nNIAP Configuration Annex to the Protection Profile for General Purpose\\\\nOperating Systems (Protection Profile Version 4.2).\\\\n\\\\nThis Annex is consistent with CNSSI-1253, which requires US National Security\\\\nSystems to adhere to certain configuration parameters. Accordingly, configuration\\\\nguidance produced according to the requirements of this Annex is suitable for use\\\\nin US National Security Systems.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+              value="{\\"id\\":\\"4a271e9e-6e84-4038-941b-6b265d9b1727\\",\\"name\\":\\"Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_rht-ccp\\",\\"description\\":\\"This is a *draft* SCAP profile for Red Hat Certified Cloud Providers\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
             />
-             OSPP - Protection Profile for General Purpose Operating Systems v. 4.2
+             Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
           </p>
           <div
             className="pf-c-content"
@@ -332,14 +348,7 @@ Array [
               >
                 <span />
                 <span>
-                  This profile reflects mandatory configuration controls identified in the
-NIAP Configuration Annex to the Protection Profile for General Purpose
-Operating Systems (Protection Profile Version 4.2).
-
-This Annex is consistent with CNSSI-1253, which requires US National Security
-Systems to adhere to certain configuration parameters. Accordingly, configuration
-guidance produced according to the requirements of this Annex is suitable for use
-in US National Security Systems.
+                  This is a *draft* SCAP profile for Red Hat Certified Cloud Providers
                 </span>
                 <span
                   style={
@@ -373,9 +382,9 @@ in US National Security Systems.
               onDrop={[Function]}
               onFocus={[Function]}
               type="radio"
-              value="{\\"id\\":\\"d6f099f4-9ff9-4315-9904-60e21aab1176\\",\\"name\\":\\"DISA STIG for Red Hat Enterprise Linux 7\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel7-disa\\",\\"description\\":\\"This profile contains configuration checks that align to the \\\\n  DISA STIG for Red Hat Enterprise Linux V1R4. \\\\n  \\\\n  In addition to being applicable to RHEL7, DISA recognizes this \\\\n  configuration baseline as applicable to the operating system tier of \\\\n  Red Hat technologies that are based off RHEL7, such as: \\\\n  - Red Hat Enterprise Linux Server \\\\n  - Red Hat Enterprise Linux Workstation and Desktop \\\\n  - Red Hat Virtualization Hypervisor (RHV-H) \\\\n  - Red Hat Enterprise Linux for HPC \\\\n  - Red Hat Storage\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+              value="{\\"id\\":\\"2c9ef707-bb58-4f80-9ce4-c20ebd4248a8\\",\\"name\\":\\"CSCF RHEL6 MLS Core Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS\\",\\"description\\":\\" This profile reflects the Centralized Super Computing Facility \\\\n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \\\\ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \\\\ndomain overlay. This profile should be considered in active development. \\\\nAdditional tailoring will be needed, such as the creation of RBAC roles \\\\nfor production deployment.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
             />
-             DISA STIG for Red Hat Enterprise Linux 7
+             CSCF RHEL6 MLS Core Baseline
           </p>
           <div
             className="pf-c-content"
@@ -394,17 +403,12 @@ in US National Security Systems.
               >
                 <span />
                 <span>
-                  This profile contains configuration checks that align to the 
-  DISA STIG for Red Hat Enterprise Linux V1R4. 
-  
-  In addition to being applicable to RHEL7, DISA recognizes this 
-  configuration baseline as applicable to the operating system tier of 
-  Red Hat technologies that are based off RHEL7, such as: 
-  - Red Hat Enterprise Linux Server 
-  - Red Hat Enterprise Linux Workstation and Desktop 
-  - Red Hat Virtualization Hypervisor (RHV-H) 
-  - Red Hat Enterprise Linux for HPC 
-  - Red Hat Storage
+                   This profile reflects the Centralized Super Computing Facility 
+(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received 
+government ATO through the ICD 503 process, utilizing the CNSSI 1253 cross 
+domain overlay. This profile should be considered in active development. 
+Additional tailoring will be needed, such as the creation of RBAC roles 
+for production deployment.
                 </span>
                 <span
                   style={
@@ -438,9 +442,9 @@ in US National Security Systems.
               onDrop={[Function]}
               onFocus={[Function]}
               type="radio"
-              value="{\\"id\\":\\"edac5bce-98d5-43b9-a8e7-189347083125\\",\\"name\\":\\"Health Insurance Portability and Accountability Act (HIPAA)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_hipaa\\",\\"description\\":\\"The HIPAA Security Rule establishes U.S. national standards to protect individuals’\\\\nelectronic personal health information that is created, received, used, or\\\\nmaintained by a covered entity. The Security Rule requires appropriate\\\\nadministrative, physical and technical safeguards to ensure the\\\\nconfidentiality, integrity, and security of electronic protected health\\\\ninformation.\\\\n\\\\nThis profile configures Red Hat Enterprise Linux 7 to the HIPAA Security\\\\nRule identified for securing of electronic protected health information.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+              value="{\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\",\\"description\\":\\"This profile demonstrates compliance against the \\\\nU.S. Government Commercial Cloud Services (C2S) baseline.\\\\n\\\\nThis baseline was inspired by the Center for Internet Security\\\\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\\\\nFor the SCAP Security Guide project to remain in compliance with\\\\nCIS' terms and conditions, specifically Restrictions(8), note \\\\nthere is no representation or claim that the C2S profile will\\\\nensure a system is in compliance or consistency with the CIS\\\\nbaseline. \\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
             />
-             Health Insurance Portability and Accountability Act (HIPAA)
+             C2S for Red Hat Enterprise Linux 6
           </p>
           <div
             className="pf-c-content"
@@ -459,15 +463,17 @@ in US National Security Systems.
               >
                 <span />
                 <span>
-                  The HIPAA Security Rule establishes U.S. national standards to protect individuals’
-electronic personal health information that is created, received, used, or
-maintained by a covered entity. The Security Rule requires appropriate
-administrative, physical and technical safeguards to ensure the
-confidentiality, integrity, and security of electronic protected health
-information.
+                  This profile demonstrates compliance against the 
+U.S. Government Commercial Cloud Services (C2S) baseline.
 
-This profile configures Red Hat Enterprise Linux 7 to the HIPAA Security
-Rule identified for securing of electronic protected health information.
+This baseline was inspired by the Center for Internet Security
+(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.
+For the SCAP Security Guide project to remain in compliance with
+CIS' terms and conditions, specifically Restrictions(8), note 
+there is no representation or claim that the C2S profile will
+ensure a system is in compliance or consistency with the CIS
+baseline. 
+
                 </span>
                 <span
                   style={
@@ -501,9 +507,9 @@ Rule identified for securing of electronic protected health information.
               onDrop={[Function]}
               onFocus={[Function]}
               type="radio"
-              value="{\\"id\\":\\"0c8bd8ed-622a-4bd6-849a-0a80b0721427\\",\\"name\\":\\"United States Government Configuration Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_ospp\\",\\"description\\":\\"This compliance profile reflects the core set of security\\\\nrelated configuration settings for deployment of Red Hat Enterprise\\\\nLinux 7.x into U.S. Defense, Intelligence, and Civilian agencies.\\\\nDevelopment partners and sponsors include the U.S. National Institute\\\\nof Standards and Technology (NIST), U.S. Department of Defense,\\\\nthe National Security Agency, and Red Hat.\\\\n\\\\nThis baseline implements configuration requirements from the following\\\\nsources:\\\\n\\\\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\\\\n- NIST Controlled Unclassified Information (NIST 800-171)\\\\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\\\\n- U.S. Government Configuration Baseline (USGCB)\\\\n- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)\\\\n- DISA Operating System Security Requirements Guide (OS SRG)\\\\n\\\\nFor any differing configuration requirements, e.g. password lengths, the stricter\\\\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\\\\nsample System Security Configuration Guides are provided via the\\\\nscap-security-guide-docs package.\\\\n\\\\nThis profile reflects U.S. Government consensus content and is developed through\\\\nthe OpenSCAP/SCAP Security Guide initiative, championed by the National\\\\nSecurity Agency. Except for differences in formatting to accommodate\\\\npublishing processes, this profile mirrors OpenSCAP/SCAP Security Guide\\\\ncontent as minor divergences, such as bugfixes, work through the\\\\nconsensus and release processes.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+              value="{\\"id\\":\\"7f501f8b-be3b-4105-a7d4-aa7cfa61d823\\",\\"name\\":\\"Standard System Security Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\\\\nRegardless of your system's workload all of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
             />
-             United States Government Configuration Baseline
+             Standard System Security Profile
           </p>
           <div
             className="pf-c-content"
@@ -522,34 +528,8 @@ Rule identified for securing of electronic protected health information.
               >
                 <span />
                 <span>
-                  This compliance profile reflects the core set of security
-related configuration settings for deployment of Red Hat Enterprise
-Linux 7.x into U.S. Defense, Intelligence, and Civilian agencies.
-Development partners and sponsors include the U.S. National Institute
-of Standards and Technology (NIST), U.S. Department of Defense,
-the National Security Agency, and Red Hat.
-
-This baseline implements configuration requirements from the following
-sources:
-
-- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)
-- NIST Controlled Unclassified Information (NIST 800-171)
-- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)
-- U.S. Government Configuration Baseline (USGCB)
-- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)
-- DISA Operating System Security Requirements Guide (OS SRG)
-
-For any differing configuration requirements, e.g. password lengths, the stricter
-security setting was chosen. Security Requirement Traceability Guides (RTMs) and
-sample System Security Configuration Guides are provided via the
-scap-security-guide-docs package.
-
-This profile reflects U.S. Government consensus content and is developed through
-the OpenSCAP/SCAP Security Guide initiative, championed by the National
-Security Agency. Except for differences in formatting to accommodate
-publishing processes, this profile mirrors OpenSCAP/SCAP Security Guide
-content as minor divergences, such as bugfixes, work through the
-consensus and release processes.
+                  This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.
+Regardless of your system's workload all of these checks should pass.
                 </span>
                 <span
                   style={
@@ -583,9 +563,9 @@ consensus and release processes.
               onDrop={[Function]}
               onFocus={[Function]}
               type="radio"
-              value="{\\"id\\":\\"f4bbc861-4dd5-44d3-8437-61a36d1177b6\\",\\"name\\":\\"Standard System Security Profile for Red Hat Enterprise Linux 7\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security baseline\\\\nof a Red Hat Enterprise Linux 7 system. Regardless of your system's workload\\\\nall of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+              value="{\\"id\\":\\"074277c6-3f32-4758-86f6-30da5b99c404\\",\\"name\\":\\"Example Server Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CS2\\",\\"description\\":\\"This profile is an example of a customized server profile.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
             />
-             Standard System Security Profile for Red Hat Enterprise Linux 7
+             Example Server Profile
           </p>
           <div
             className="pf-c-content"
@@ -604,9 +584,352 @@ consensus and release processes.
               >
                 <span />
                 <span>
-                  This profile contains rules to ensure standard security baseline
-of a Red Hat Enterprise Linux 7 system. Regardless of your system's workload
-all of these checks should pass.
+                  This profile is an example of a customized server profile.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"f8f4b1ca-44ec-48cb-bfbf-2fca69663e10\\",\\"name\\":\\"Common Profile for General-Purpose Systems\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_common\\",\\"description\\":\\"This profile contains items common to general-purpose desktop and server installations.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             Common Profile for General-Purpose Systems
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile contains items common to general-purpose desktop and server installations.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"11efa871-3514-4931-95fb-c44f546b303d\\",\\"name\\":\\"Server Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_server\\",\\"description\\":\\"This profile is for Red Hat Enterprise Linux 6 acting as a server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             Server Baseline
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile is for Red Hat Enterprise Linux 6 acting as a server.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"efedd0fe-7bcd-490e-b8c9-416122533ce5\\",\\"name\\":\\"Upstream STIG for Red Hat Enterprise Linux 6 Server\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream\\",\\"description\\":\\"This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\\\\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\\\\n\\\\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \\\\nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\\\\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\\\\n\\\\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \\\\nthat commercial support of this SCAP content is NOT available. This profile is provided as example \\\\nSCAP content with no endorsement for suitability or production readiness. Support for this \\\\nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\\\\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             Upstream STIG for Red Hat Enterprise Linux 6 Server
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,
+serving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.
+
+As a result of the upstream/downstream relationship between the SCAP Security Guide project 
+and the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.
+For official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.
+
+While this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note 
+that commercial support of this SCAP content is NOT available. This profile is provided as example 
+SCAP content with no endorsement for suitability or production readiness. Support for this 
+profile is provided by the upstream SCAP Security Guide community on a best-effort basis. The
+upstream project homepage is https://fedorahosted.org/scap-security-guide/.
+
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"91ffca63-accc-4698-ba93-84d147c80271\\",\\"name\\":\\"United States Government Configuration Baseline (USGCB)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_usgcb-rhel6-server\\",\\"description\\":\\"This profile is a working draft for a USGCB submission against RHEL6 Server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             United States Government Configuration Baseline (USGCB)
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile is a working draft for a USGCB submission against RHEL6 Server.
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb\\",\\"name\\":\\"PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_pci-dss\\",\\"description\\":\\"This is a *draft* profile for PCI-DSS v3\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This is a *draft* profile for PCI-DSS v3
+                </span>
+                <span
+                  style={
+                    Object {
+                      "left": 0,
+                      "position": "fixed",
+                      "top": 0,
+                      "visibility": "hidden",
+                    }
+                  }
+                >
+                  …
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="pf-l-grid__item pf-m-8-col pf-m-2-row"
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <input
+              checked={false}
+              name="profile"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              onFocus={[Function]}
+              type="radio"
+              value="{\\"id\\":\\"f839edeb-c32f-425c-bbd2-1b807806393b\\",\\"name\\":\\"CNSSI 1253 Low/Low/Low\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_nist-cl-il-al\\",\\"description\\":\\"This profile follows the Committee on National Security Systems Instruction\\\\n(CNSSI) No. 1253, \\\\\\"Security Categorization and Control Selection for National Security\\\\nSystems\\\\\\" on security controls to meet low confidentiality, low integrity, and low\\\\nassurance.\\\\\\"\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
+            />
+             CNSSI 1253 Low/Low/Low
+          </p>
+          <div
+            className="pf-c-content"
+            style={
+              Object {
+                "color": "var(--pf-c-content--blockquote--Color)",
+              }
+            }
+          >
+            <p
+              className=""
+              data-pf-content={true}
+            >
+              <span
+                width={0}
+              >
+                <span />
+                <span>
+                  This profile follows the Committee on National Security Systems Instruction
+(CNSSI) No. 1253, "Security Categorization and Control Selection for National Security
+Systems" on security controls to meet low confidentiality, low integrity, and low
+assurance."
                 </span>
                 <span
                   style={
