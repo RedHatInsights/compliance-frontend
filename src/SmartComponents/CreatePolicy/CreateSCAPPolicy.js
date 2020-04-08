@@ -79,7 +79,7 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     isRequired
                     fieldId="benchmark">
                     <br/>
-                    { benchmarks && benchmarks.map((benchmark) => {
+                    { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
                         const { refId, id } = benchmark;
                         return (
                             <Button key={id} onClick={ () => { change('benchmark', id); } }

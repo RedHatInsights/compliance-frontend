@@ -300,19 +300,27 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                             <button
                               class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
-                            />
+                            >
+                              RHEL 6
+                            </button>
                             <button
                               class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
-                            />
+                            >
+                              RHEL 7
+                            </button>
                             <button
                               class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
-                            />
+                            >
+                              RHEL 7
+                            </button>
                             <button
                               class="pf-c-button pf-m-tertiary wizard-os-button "
                               type="button"
-                            />
+                            >
+                              RHEL 8
+                            </button>
                             
                           </div>
                           <div
@@ -1033,7 +1041,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                     <br />
                                                     <Component
                                                       className="wizard-os-button "
-                                                      key="f1dff140-6649-4060-b0f6-7b1548f9e901"
+                                                      key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
                                                       onClick={[Function]}
                                                       variant="tertiary"
                                                     >
@@ -1041,7 +1049,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         component={[Function]}
                                                         componentProps={
                                                           Object {
-                                                            "children": undefined,
+                                                            "children": "RHEL 6",
                                                             "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
@@ -1068,7 +1076,52 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                             onClick={[Function]}
                                                             tabIndex={null}
                                                             type="button"
-                                                          />
+                                                          >
+                                                            RHEL 6
+                                                          </button>
+                                                        </Button>
+                                                      </ComponentWithOuia>
+                                                    </Component>
+                                                    <Component
+                                                      className="wizard-os-button "
+                                                      key="f1dff140-6649-4060-b0f6-7b1548f9e901"
+                                                      onClick={[Function]}
+                                                      variant="tertiary"
+                                                    >
+                                                      <ComponentWithOuia
+                                                        component={[Function]}
+                                                        componentProps={
+                                                          Object {
+                                                            "children": "RHEL 7",
+                                                            "className": "wizard-os-button ",
+                                                            "onClick": [Function],
+                                                            "variant": "tertiary",
+                                                          }
+                                                        }
+                                                        consumerContext={null}
+                                                      >
+                                                        <Button
+                                                          className="wizard-os-button "
+                                                          onClick={[Function]}
+                                                          ouiaContext={
+                                                            Object {
+                                                              "isOuia": false,
+                                                              "ouiaId": null,
+                                                            }
+                                                          }
+                                                          variant="tertiary"
+                                                        >
+                                                          <button
+                                                            aria-disabled={null}
+                                                            aria-label={null}
+                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
+                                                            disabled={false}
+                                                            onClick={[Function]}
+                                                            tabIndex={null}
+                                                            type="button"
+                                                          >
+                                                            RHEL 7
+                                                          </button>
                                                         </Button>
                                                       </ComponentWithOuia>
                                                     </Component>
@@ -1082,7 +1135,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         component={[Function]}
                                                         componentProps={
                                                           Object {
-                                                            "children": undefined,
+                                                            "children": "RHEL 7",
                                                             "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
@@ -1109,48 +1162,9 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                             onClick={[Function]}
                                                             tabIndex={null}
                                                             type="button"
-                                                          />
-                                                        </Button>
-                                                      </ComponentWithOuia>
-                                                    </Component>
-                                                    <Component
-                                                      className="wizard-os-button "
-                                                      key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-                                                      onClick={[Function]}
-                                                      variant="tertiary"
-                                                    >
-                                                      <ComponentWithOuia
-                                                        component={[Function]}
-                                                        componentProps={
-                                                          Object {
-                                                            "children": undefined,
-                                                            "className": "wizard-os-button ",
-                                                            "onClick": [Function],
-                                                            "variant": "tertiary",
-                                                          }
-                                                        }
-                                                        consumerContext={null}
-                                                      >
-                                                        <Button
-                                                          className="wizard-os-button "
-                                                          onClick={[Function]}
-                                                          ouiaContext={
-                                                            Object {
-                                                              "isOuia": false,
-                                                              "ouiaId": null,
-                                                            }
-                                                          }
-                                                          variant="tertiary"
-                                                        >
-                                                          <button
-                                                            aria-disabled={null}
-                                                            aria-label={null}
-                                                            className="pf-c-button pf-m-tertiary wizard-os-button "
-                                                            disabled={false}
-                                                            onClick={[Function]}
-                                                            tabIndex={null}
-                                                            type="button"
-                                                          />
+                                                          >
+                                                            RHEL 7
+                                                          </button>
                                                         </Button>
                                                       </ComponentWithOuia>
                                                     </Component>
@@ -1164,7 +1178,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                         component={[Function]}
                                                         componentProps={
                                                           Object {
-                                                            "children": undefined,
+                                                            "children": "RHEL 8",
                                                             "className": "wizard-os-button ",
                                                             "onClick": [Function],
                                                             "variant": "tertiary",
@@ -1191,7 +1205,9 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                                                             onClick={[Function]}
                                                             tabIndex={null}
                                                             type="button"
-                                                          />
+                                                          >
+                                                            RHEL 8
+                                                          </button>
                                                         </Button>
                                                       </ComponentWithOuia>
                                                     </Component>

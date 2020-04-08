@@ -19,6 +19,7 @@ export const benchmarksQuery = [
     {
         id: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
         title: 'Guide to the Secure Configuration of Red Hat Enterprise Linux 7',
+        refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7',
         version: '0.1.40',
         profiles: [
             {
@@ -107,6 +108,7 @@ export const benchmarksQuery = [
     {
         id: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
         title: 'Guide to the Secure Configuration of Red Hat Enterprise Linux 7',
+        refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7',
         version: '0.1.43',
         profiles: [
             {
@@ -203,6 +205,7 @@ export const benchmarksQuery = [
     {
         id: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
         title: 'Guide to the Secure Configuration of Red Hat Enterprise Linux 6',
+        refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-6',
         version: '0.1.28',
         profiles: [
             {
@@ -299,6 +302,7 @@ export const benchmarksQuery = [
     {
         id: '6a02b217-c9e9-4a4d-93a9-c77b5ea7967a',
         title: 'Guide to the Secure Configuration of Red Hat Enterprise Linux 8',
+        refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-8',
         version: '0.1.42',
         profiles: [
             {
