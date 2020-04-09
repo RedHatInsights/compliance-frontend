@@ -28,8 +28,8 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   height={null}
   isCompactNav={false}
   isFooterLeftAligned={true}
-  isFullHeight={true}
-  isFullWidth={true}
+  isFullHeight={false}
+  isFullWidth={false}
   isInPage={false}
   isOpen={true}
   nextButtonText="Next"
@@ -102,7 +102,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                 aria-describedby="pf-wizard-description-0"
                 aria-labelledby="pf-wizard-title-0"
                 aria-modal="true"
-                class="pf-c-wizard pf-m-full-width pf-m-full-height"
+                class="pf-c-wizard"
                 role="dialog"
               >
                 <div
@@ -410,7 +410,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
                   aria-describedby="pf-wizard-description-0"
                   aria-labelledby="pf-wizard-title-0"
                   aria-modal="true"
-                  className="pf-c-wizard pf-m-full-width pf-m-full-height"
+                  className="pf-c-wizard"
                   isFooterLeftAligned={true}
                   role="dialog"
                 >
