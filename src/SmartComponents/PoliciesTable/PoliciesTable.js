@@ -203,7 +203,7 @@ export class PoliciesTable extends React.Component {
                 aria-label='policies'
                 className='compliance-policies-table'
                 cells={ this.columns }
-                actionResolver={this.actionResolver}
+                actionResolver={ rows.length > 0 && this.actionResolver}
                 rows={ (rows.length === 0) ? emptyRows : rows }>
                 <TableHeader />
                 <TableBody />
