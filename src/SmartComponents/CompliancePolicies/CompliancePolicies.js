@@ -24,6 +24,10 @@ const QUERY = gql`
                 complianceThreshold
                 totalHostCount
                 majorOsVersion
+                benchmark {
+                    title
+                    version
+                }
                 businessObjective {
                     id
                     title

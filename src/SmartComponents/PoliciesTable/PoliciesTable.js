@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
     Bullseye, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
-    DataToolbarItem
+    DataToolbarItem, Tooltip
 } from '@patternfly/react-core';
 import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
@@ -41,7 +41,18 @@ const policiesToRows = (policies) => (
         {
             cells: [
                 { title: <Link to={'/scappolicies/' + policy.id}>{policy.name}</Link>, original: policy.name },
-                `RHEL ${policy.majorOsVersion}`,
+                {
+                    title: <Tooltip key={policy.id}
+                        position='right'
+                        content={
+                            <span>SCAP Security Guide (SSG): {policy.benchmark.title} - {policy.benchmark.version}</span>
+                        }
+                    >
+                        <span>
+                            RHEL {policy.majorOsVersion} (SSG {policy.benchmark.version})
+                        </span>
+                    </Tooltip>
+                },
                 policy.totalHostCount,
                 policy.businessObjective && policy.businessObjective.title || '--',
                 `${policy.complianceThreshold}%`
