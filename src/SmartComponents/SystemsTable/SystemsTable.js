@@ -208,7 +208,7 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport, showAllSystems, showActions } = this.props;
+        const { remediationsEnabled, compact, enableExport, showAllSystems, showActions, selectedEntities } = this.props;
         const {
             page, totalCount, perPage, items, InventoryCmp, selectedSystemId,
             selectedSystemFqdn, isAssignPoliciesModalOpen
@@ -268,7 +268,7 @@ class SystemsTable extends React.Component {
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
-                            allSystems={ items.map((edge) => edge.node) }
+                            allSystems={ items.map((edge) => edge.node).filter(system => selectedEntities.includes(system.id)) }
                             selectedRules={ [] } />
                     </reactCore.ToolbarItem>
                 }
@@ -311,7 +311,8 @@ SystemsTable.defaultProps = {
     showAllSystems: false,
     complianceThreshold: 0,
     showOnlySystemsWithTestResults: false,
-    showActions: true
+    showActions: true,
+    selectedEntities: []
 };
 
 const mapStateToProps = state => {

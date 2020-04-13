@@ -84,7 +84,7 @@ export class PoliciesTable extends React.Component {
     )
 
     setPerPage = (_event, itemsPerPage) => (
-        this.changePage(this.state.page, itemsPerPage)
+        this.changePage(1, itemsPerPage)
     )
 
     changePage = (page, itemsPerPage) => (
@@ -203,7 +203,7 @@ export class PoliciesTable extends React.Component {
                 aria-label='policies'
                 className='compliance-policies-table'
                 cells={ this.columns }
-                actionResolver={this.actionResolver}
+                actionResolver={ rows.length > 0 && this.actionResolver}
                 rows={ (rows.length === 0) ? emptyRows : rows }>
                 <TableHeader />
                 <TableBody />

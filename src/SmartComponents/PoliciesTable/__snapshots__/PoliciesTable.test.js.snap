@@ -573,7 +573,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     </DataToolbarItem>
   </PrimaryToolbar>
   <Component
-    actionResolver={[Function]}
+    actionResolver={false}
     aria-label="policies"
     cells={
       Array [
