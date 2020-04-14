@@ -80,7 +80,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 Standard System Security Profile for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -96,7 +143,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 DISA STIG for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -112,7 +206,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -226,7 +367,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 United States Government Configuration Baseline23
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -242,7 +430,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "67%",
@@ -258,7 +493,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 United States Government Configuration Baseline2
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -274,7 +556,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 C2S for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "69.5%",
@@ -290,7 +619,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 Criminal Justice Information Services (CJIS) Security Policy
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -306,7 +682,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -322,7 +745,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -338,7 +808,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -354,7 +871,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 Health Insurance Portability and Accountability Act (HIPAA)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -370,7 +934,54 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 United States Government Configuration Baseline
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -493,7 +1104,54 @@ exports[`PoliciesTable Pagination and search should show only matching results a
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -733,7 +1391,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 United States Government Configuration Baseline23
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -749,7 +1454,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "67%",
@@ -765,7 +1517,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 United States Government Configuration Baseline2
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -781,7 +1580,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 C2S for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "69.5%",
@@ -797,7 +1643,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 Criminal Justice Information Services (CJIS) Security Policy
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -813,7 +1706,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -829,7 +1769,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -845,7 +1832,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -861,7 +1895,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 Health Insurance Portability and Accountability Act (HIPAA)
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",
@@ -877,7 +1958,54 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 United States Government Configuration Baseline
               </UNDEFINED>,
             },
-            "RHEL 7",
+            Object {
+              "title": <Tooltip
+                appendTo={[Function]}
+                aria="describedby"
+                boundary="window"
+                className=""
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                distance={15}
+                enableFlip={true}
+                entryDelay={500}
+                exitDelay={500}
+                flipBehavior={
+                  Array [
+                    "top",
+                    "right",
+                    "bottom",
+                    "left",
+                    "top",
+                    "right",
+                    "bottom",
+                  ]
+                }
+                id=""
+                isAppLauncher={false}
+                isContentLeftAligned={false}
+                isVisible={false}
+                maxWidth="18.75rem"
+                position="right"
+                tippyProps={Object {}}
+                trigger="mouseenter focus"
+                zIndex={9999}
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
             10,
             "--",
             "100%",

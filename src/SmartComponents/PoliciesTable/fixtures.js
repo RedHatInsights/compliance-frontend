@@ -9,6 +9,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -22,6 +26,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -35,6 +43,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -48,6 +60,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -61,6 +77,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -74,6 +94,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -87,6 +111,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -100,6 +128,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -113,6 +145,10 @@ export const policies = {
                 totalHostCount: 10,
                 businessObjective: null,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -126,6 +162,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -139,6 +179,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -152,6 +196,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -165,6 +213,10 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 majorOsVersion: 7,
+                benchmark: {
+                    title: 'Guide to the Secure Configuration of RHEL 7',
+                    version: '0.1.49'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
