@@ -175,7 +175,7 @@ exports[`ReportCard expect to render without error 1`] = `
             }
           >
             <Link
-              to="/policies/ID"
+              to="/scappolicies/ID"
             >
               View policy
             </Link>

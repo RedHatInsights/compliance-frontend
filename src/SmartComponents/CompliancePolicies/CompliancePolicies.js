@@ -49,7 +49,7 @@ export const CompliancePolicies = () => {
         </StateViewPart>
         <StateViewPart stateKey='loading'>
             <PageHeader style={{ paddingBottom: '22px' }} className={ beta ? 'beta-page-header' : 'stable-page-header' } >
-                <PageHeaderTitle title="Compliance policies" />
+                <PageHeaderTitle title="SCAP policies" />
             </PageHeader>
             <Main>
                 <LoadingPoliciesTable />
@@ -57,7 +57,7 @@ export const CompliancePolicies = () => {
         </StateViewPart>
         <StateViewPart stateKey='data'>
             <PageHeader style={{ paddingBottom: '22px' }} className={ beta ? 'beta-page-header' : 'stable-page-header' } >
-                <PageHeaderTitle title="Compliance policies" />
+                <PageHeaderTitle title="SCAP policies" />
                 { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>

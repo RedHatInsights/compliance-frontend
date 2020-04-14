@@ -122,7 +122,7 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    <Link to={'/policies/' + id} >
+                                    <Link to={'/scappolicies/' + id} >
                                         View policy
                                     </Link>
                                 </Text>

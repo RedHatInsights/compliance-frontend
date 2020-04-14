@@ -40,7 +40,7 @@ const policiesToRows = (policies) => (
     policies.map((policy) => (
         {
             cells: [
-                { title: <Link to={'/policies/' + policy.id}>{policy.name}</Link>, original: policy.name },
+                { title: <Link to={'/scappolicies/' + policy.id}>{policy.name}</Link>, original: policy.name },
                 `RHEL ${policy.majorOsVersion}`,
                 policy.totalHostCount,
                 policy.businessObjective && policy.businessObjective.title || '--',
