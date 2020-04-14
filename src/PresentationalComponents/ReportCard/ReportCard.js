@@ -45,7 +45,7 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+            external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
         } = this.policy;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
@@ -61,8 +61,8 @@ class ReportCard extends React.Component {
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
                             { cardTitleTruncated ?
-                                <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate> :
-                                <React.Fragment>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment> }
+                                <Truncate lines={1}>{name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate> :
+                                <React.Fragment>{name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
@@ -122,9 +122,11 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    <Link to={'/scappolicies/' + id} >
-                                        View policy
-                                    </Link>
+                                    { external ? 'External policy' :
+                                        <Link to={'/scappolicies/' + id} >
+                                            View policy
+                                        </Link>
+                                    }
                                 </Text>
                             </TextContent>
                         </GridItem>

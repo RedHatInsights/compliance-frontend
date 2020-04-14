@@ -21,9 +21,11 @@ const ReportDetailsDescription = ({ policy }) => (
                 <Text component={TextVariants.h2}>Policy details</Text>
             </TextListItem>
             <TextListItem component={TextListItemVariants.dd}>
-                <Link to={'/policies/' + policy.id} >
-                    View policy
-                </Link>
+                { external ? 'External policy' :
+                    <Link to={'/scappolicies/' + policy.id} >
+                        View policy
+                    </Link>
+                }
             </TextListItem>
             <TextListItem component={TextListItemVariants.dt}>
                 Operating system

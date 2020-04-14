@@ -13,15 +13,15 @@ import {
 import propTypes from 'prop-types';
 
 const PolicyPopover = ({ policy }) => {
-    const { name, id, complianceThreshold, majorOsVersion, businessObjective } = policy;
+    const { name, external, id, complianceThreshold, majorOsVersion, businessObjective } = policy;
+    const footerContent = external ? 'External policy' :
+        <Link to={'/scappolicies/' + id} >
+            View policy
+        </Link>;
     return (
         <Popover
             headerContent={name}
-            footerContent={
-                <Link to={'/scappolicies/' + id} >
-                    View policy
-                </Link>
-            }
+            footerContent={footerContent}
             bodyContent={
                 <TextContent className='policy-details'>
                     <TextListItem component={TextListItemVariants.dt}>

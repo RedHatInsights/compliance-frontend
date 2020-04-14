@@ -28,6 +28,7 @@ const QUERY = gql`
                 description
                 totalHostCount
                 compliantHostCount
+                external
                 majorOsVersion
                 complianceThreshold
                 businessObjective {
