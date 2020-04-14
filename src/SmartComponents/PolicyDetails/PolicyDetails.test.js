@@ -66,6 +66,7 @@ describe('PolicyDetailsQuery', () => {
         container = document.createElement('div');
         document.body.appendChild(container);
         global.insights = {
+            chrome: { isBeta: jest.fn(() => true) },
             loadInventory: jest.fn(() => {
                 return Promise.resolve({
                     inventoryConnector: () => ({

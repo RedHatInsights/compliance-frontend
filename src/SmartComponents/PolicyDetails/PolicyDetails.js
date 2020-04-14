@@ -70,6 +70,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     });
     const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
+    const beta = window.insights.chrome.isBeta();
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
@@ -79,7 +80,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         <StateViewPart stateKey='data'>
             <PageHeader className={ 'beta-page-header'} >
                 <Breadcrumb>
-                    <BreadcrumbItem to='/rhel/compliance/policies' onClick={ (event) => onNavigateWithProps(event) }>
+                    <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/scappolicies`}
+                        onClick={ (event) => onNavigateWithProps(event) }>
                       Policies
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>

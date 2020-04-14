@@ -66,7 +66,10 @@ describe('ReportDetails', () => {
     };
 
     it('expect to render without error', () => {
-        global.insights = {};
+        window.insights = {
+            chrome: { isBeta: jest.fn(() => true) }
+        };
+
         const component = renderer.create(
             <Router>
                 <Provider store={ store }>
