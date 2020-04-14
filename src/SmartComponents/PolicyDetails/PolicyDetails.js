@@ -41,6 +41,7 @@ query Profile($policyId: String!){
         id
         name
         refId
+        external
         description
         totalHostCount
         compliantHostCount
@@ -65,11 +66,14 @@ query Profile($policyId: String!){
 `;
 
 export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
-    const { data, error, loading, refetch } = useQuery(QUERY, {
+    let { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
     const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
+    if (policy.external) {
+        error = { message: 'This is an external policy.' };
+    }
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
