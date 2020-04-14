@@ -242,7 +242,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -261,7 +261,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -470,7 +470,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -489,7 +489,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -532,7 +532,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -551,7 +551,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -590,7 +590,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -609,7 +609,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -663,7 +663,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>
@@ -682,7 +682,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       }
     >
       <PageHeaderTitle
-        title="Compliance policies"
+        title="SCAP policies"
       />
     </PageHeader>
     <Connect(Main)>

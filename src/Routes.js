@@ -40,11 +40,11 @@ const SystemDetails = asyncComponent(() =>
 );
 
 export const paths = {
-    compliancePolicies: '/policies',
+    compliancePolicies: '/scappolicies',
     reports: '/reports',
     reportsSystems: '/reports/systems',
     complianceSystems: '/systems',
-    policyDetails: '/policies/:policy_id',
+    policyDetails: '/scappolicies/:policy_id',
     reportDetails: '/reports/:report_id',
     systemDetails: '/systems/:inventoryId'
 };
