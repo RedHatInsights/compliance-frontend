@@ -18,7 +18,7 @@ const PolicyPopover = ({ policy }) => {
         <Popover
             headerContent={name}
             footerContent={
-                <Link to={'/policies/' + id} >
+                <Link to={'/scappolicies/' + id} >
                     View policy
                 </Link>
             }

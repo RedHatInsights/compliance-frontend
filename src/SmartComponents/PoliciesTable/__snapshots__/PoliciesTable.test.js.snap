@@ -75,7 +75,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "Standard System Security Profile for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/4c27fe09-9a7f-437c-b38b-e42272d9ccf0"
+                to="/scappolicies/4c27fe09-9a7f-437c-b38b-e42272d9ccf0"
               >
                 Standard System Security Profile for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -91,7 +91,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "DISA STIG for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/9b034440-e3dd-4c19-8f2c-ca75e813d57d"
+                to="/scappolicies/9b034440-e3dd-4c19-8f2c-ca75e813d57d"
               >
                 DISA STIG for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -107,7 +107,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
               "title": <UNDEFINED
-                to="/policies/19921ca4-8526-4651-8876-3c8587e8e125"
+                to="/scappolicies/19921ca4-8526-4651-8876-3c8587e8e125"
               >
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72
               </UNDEFINED>,
@@ -221,7 +221,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "United States Government Configuration Baseline23",
               "title": <UNDEFINED
-                to="/policies/b71376fd-015e-4209-99af-4543e82e5dc5"
+                to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5"
               >
                 United States Government Configuration Baseline23
               </UNDEFINED>,
@@ -237,7 +237,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
               "title": <UNDEFINED
-                to="/policies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
+                to="/scappolicies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
               >
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
               </UNDEFINED>,
@@ -253,7 +253,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "United States Government Configuration Baseline2",
               "title": <UNDEFINED
-                to="/policies/dae0487d-3201-4ee0-af5f-b94cde2af818"
+                to="/scappolicies/dae0487d-3201-4ee0-af5f-b94cde2af818"
               >
                 United States Government Configuration Baseline2
               </UNDEFINED>,
@@ -269,7 +269,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "C2S for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
+                to="/scappolicies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
               >
                 C2S for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -285,7 +285,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "Criminal Justice Information Services (CJIS) Security Policy",
               "title": <UNDEFINED
-                to="/policies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
+                to="/scappolicies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
               >
                 Criminal Justice Information Services (CJIS) Security Policy
               </UNDEFINED>,
@@ -301,7 +301,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
               "title": <UNDEFINED
-                to="/policies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
+                to="/scappolicies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
               >
                 Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
               </UNDEFINED>,
@@ -317,7 +317,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
+                to="/scappolicies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
               >
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -333,7 +333,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
               "title": <UNDEFINED
-                to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+                to="/scappolicies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
               >
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
@@ -349,7 +349,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "Health Insurance Portability and Accountability Act (HIPAA)",
               "title": <UNDEFINED
-                to="/policies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
+                to="/scappolicies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
               >
                 Health Insurance Portability and Accountability Act (HIPAA)
               </UNDEFINED>,
@@ -365,7 +365,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
             Object {
               "original": "United States Government Configuration Baseline",
               "title": <UNDEFINED
-                to="/policies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
+                to="/scappolicies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
               >
                 United States Government Configuration Baseline
               </UNDEFINED>,
@@ -488,7 +488,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
             Object {
               "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
               "title": <UNDEFINED
-                to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+                to="/scappolicies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
               >
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
@@ -728,7 +728,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "United States Government Configuration Baseline23",
               "title": <UNDEFINED
-                to="/policies/b71376fd-015e-4209-99af-4543e82e5dc5"
+                to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5"
               >
                 United States Government Configuration Baseline23
               </UNDEFINED>,
@@ -744,7 +744,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
               "title": <UNDEFINED
-                to="/policies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
+                to="/scappolicies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
               >
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
               </UNDEFINED>,
@@ -760,7 +760,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "United States Government Configuration Baseline2",
               "title": <UNDEFINED
-                to="/policies/dae0487d-3201-4ee0-af5f-b94cde2af818"
+                to="/scappolicies/dae0487d-3201-4ee0-af5f-b94cde2af818"
               >
                 United States Government Configuration Baseline2
               </UNDEFINED>,
@@ -776,7 +776,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "C2S for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
+                to="/scappolicies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
               >
                 C2S for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -792,7 +792,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "Criminal Justice Information Services (CJIS) Security Policy",
               "title": <UNDEFINED
-                to="/policies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
+                to="/scappolicies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
               >
                 Criminal Justice Information Services (CJIS) Security Policy
               </UNDEFINED>,
@@ -808,7 +808,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
               "title": <UNDEFINED
-                to="/policies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
+                to="/scappolicies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
               >
                 Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
               </UNDEFINED>,
@@ -824,7 +824,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
               "title": <UNDEFINED
-                to="/policies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
+                to="/scappolicies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
               >
                 PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
               </UNDEFINED>,
@@ -840,7 +840,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
               "title": <UNDEFINED
-                to="/policies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
+                to="/scappolicies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
               >
                 Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
               </UNDEFINED>,
@@ -856,7 +856,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "Health Insurance Portability and Accountability Act (HIPAA)",
               "title": <UNDEFINED
-                to="/policies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
+                to="/scappolicies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
               >
                 Health Insurance Portability and Accountability Act (HIPAA)
               </UNDEFINED>,
@@ -872,7 +872,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
             Object {
               "original": "United States Government Configuration Baseline",
               "title": <UNDEFINED
-                to="/policies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
+                to="/scappolicies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
               >
                 United States Government Configuration Baseline
               </UNDEFINED>,
