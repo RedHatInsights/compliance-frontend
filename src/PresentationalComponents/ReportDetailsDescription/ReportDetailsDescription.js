@@ -16,7 +16,7 @@ import {
 
 const ReportDetailsDescription = ({ policy }) => (
     <TextContent className='policy-details'>
-        { external ? <React.Fragment>
+        { policy.external ? <React.Fragment>
             <Text component={TextVariants.h2}>Policy details</Text><br/>
             <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
             <Text component={TextVariants.p}>

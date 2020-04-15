@@ -38,6 +38,7 @@ query Profile($policyId: String!){
         id
         name
         refId
+        external
         totalHostCount
         compliantHostCount
         complianceThreshold
