@@ -387,7 +387,6 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
     }
   >
     <FocusTrap
-      _createFocusTrap={[Function]}
       active={true}
       focusTrapOptions={
         Object {
@@ -395,7 +394,6 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
         }
       }
       paused={false}
-      tag="div"
     >
       <div>
         <Backdrop>

@@ -573,7 +573,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
             className="pf-c-backdrop"
           >
             <FocusTrap
-              _createFocusTrap={[Function]}
               active={true}
               className="pf-l-bullseye"
               focusTrapOptions={
@@ -582,7 +581,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                 }
               }
               paused={false}
-              tag="div"
             >
               <div
                 className="pf-l-bullseye"
@@ -1181,7 +1179,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
             className="pf-c-backdrop"
           >
             <FocusTrap
-              _createFocusTrap={[Function]}
               active={true}
               className="pf-l-bullseye"
               focusTrapOptions={
@@ -1190,7 +1187,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                 }
               }
               paused={false}
-              tag="div"
             >
               <div
                 className="pf-l-bullseye"

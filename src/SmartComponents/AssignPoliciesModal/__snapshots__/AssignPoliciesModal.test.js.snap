@@ -994,7 +994,6 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                           className="pf-c-backdrop"
                         >
                           <FocusTrap
-                            _createFocusTrap={[Function]}
                             active={true}
                             className="pf-l-bullseye"
                             focusTrapOptions={
@@ -1003,7 +1002,6 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
                               }
                             }
                             paused={false}
-                            tag="div"
                           >
                             <div
                               className="pf-l-bullseye"
@@ -2384,7 +2382,6 @@ exports[`AssignPoliciesModal renders empty state if no OS is matching the system
                           className="pf-c-backdrop"
                         >
                           <FocusTrap
-                            _createFocusTrap={[Function]}
                             active={true}
                             className="pf-l-bullseye"
                             focusTrapOptions={
@@ -2393,7 +2390,6 @@ exports[`AssignPoliciesModal renders empty state if no OS is matching the system
                               }
                             }
                             paused={false}
-                            tag="div"
                           >
                             <div
                               className="pf-l-bullseye"
