@@ -44,6 +44,9 @@ query Profile($policyId: String!){
         complianceThreshold
         majorOsVersion
         lastScanned
+        benchmark {
+            version
+        }
         businessObjective {
             id
             title
