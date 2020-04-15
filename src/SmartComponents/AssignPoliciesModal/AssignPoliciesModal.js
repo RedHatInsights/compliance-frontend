@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { CheckboxGroup, ErrorPage } from 'PresentationalComponents';
 import {
@@ -13,6 +13,7 @@ import gql from 'graphql-tag';
 import { reset, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { getSystemProfile } from 'Utilities/InventoryApi';
 
 const QUERY = gql`
 query systemWithProfiles($search: String!){
@@ -30,6 +31,7 @@ query systemWithProfiles($search: String!){
         nodes {
             id
             name
+            majorOsVersion
         }
     }
 }
@@ -40,15 +42,33 @@ const isSystemAssignedToProfile = (system, id) => (
 );
 
 const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds, dispatch }) => {
-    // Display all policies with the same OS as host
+    const [systemOs, setSystemOs] = useState(null);
+    const [loadingSystemOs, setLoadingSystemOs] = useState(true);
+    const [errorSystemOs, setErrorSystemOs] = useState(null);
+
+    useEffect(() => {
+        getSystemProfile(id).then(response => {
+            if (response.results[0].system_profile && response.results[0].system_profile.os_release) {
+                const osMajor = response.results[0].system_profile.os_release.split('.')[0];
+                setSystemOs(osMajor);
+            }
+
+            setLoadingSystemOs(false);
+        }).catch(error => {
+            setErrorSystemOs(error);
+        });
+    }, [id]);
+
     const { data, error, loading } = useQuery(QUERY, { variables: { search: 'id=' + id } });
 
-    if (error) { return <ErrorPage error={error}/>; }
+    if (error || errorSystemOs) { return <ErrorPage error={error}/>; }
 
-    if (loading) { return <React.Fragment/>; }
+    if (loading || loadingSystemOs) { return <React.Fragment/>; }
 
     const system = data.systems.nodes.length === 1 && data.systems.nodes[0];
-    const options = data.profiles.nodes.map((policy) => (
+    const options = data.profiles.nodes.filter(
+        policy => (!systemOs || policy.majorOsVersion === systemOs)
+    ).map(policy => (
         {
             label: policy.name,
             value: policy.id,
