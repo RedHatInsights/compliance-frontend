@@ -27,7 +27,7 @@ query systemWithProfiles($search: String!){
             }
         }
     }
-    profiles {
+    profiles(search: "external = false") {
         nodes {
             id
             name

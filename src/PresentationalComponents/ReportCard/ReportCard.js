@@ -12,6 +12,7 @@ import {
     Text,
     TextContent,
     TextVariants,
+    Tooltip,
     Grid,
     GridItem
 } from '@patternfly/react-core';
@@ -21,6 +22,7 @@ import {
     ChartThemeColor,
     ChartThemeVariant
 } from '@patternfly/react-charts';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
@@ -103,7 +105,7 @@ class ReportCard extends React.Component {
                                         themeColor={ChartThemeColor.blue}
                                         themeVariant={ChartThemeVariant.light}
                                         title={compliancePercentage}
-                                        subTitle="Systems above threshold"
+                                        subTitle="Compliant"
                                         height={300}
                                         width={300}
                                     />
@@ -122,7 +124,15 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    { external ? 'External policy' :
+                                    { external ? <Tooltip position='bottom' content={
+                                        <span>This policy report was uploaded into the Compliance application.
+                                        If you would like to manage your policy inside the Compliance application,
+                                        use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
+                                    }>
+                                        <span>
+                                            External policy <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                        </span>
+                                    </Tooltip> :
                                         <Link to={'/scappolicies/' + id} >
                                             View policy
                                         </Link>

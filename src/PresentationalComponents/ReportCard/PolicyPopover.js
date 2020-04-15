@@ -30,21 +30,25 @@ const PolicyPopover = ({ policy }) => {
                     <TextListItem component={TextListItemVariants.dd}>
                         RHEL { majorOsVersion }
                     </TextListItem>
-                    <TextListItem component={TextListItemVariants.dt}>
-                        Compliance threshold
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dd}>
-                        { fixedPercentage(complianceThreshold, 1) }
-                    </TextListItem>
-                    { businessObjective &&
-                    <React.Fragment>
-                        <TextListItem component={TextListItemVariants.dt}>
-                            Business objective
-                        </TextListItem>
-                        <TextListItem component={TextListItemVariants.dd}>
-                            { businessObjective.title }
-                        </TextListItem>
-                    </React.Fragment> }
+                    { !external &&
+                        <React.Fragment>
+                            <TextListItem component={TextListItemVariants.dt}>
+                                Compliance threshold
+                            </TextListItem>
+                            <TextListItem component={TextListItemVariants.dd}>
+                                { fixedPercentage(complianceThreshold, 1) }
+                            </TextListItem>
+                            { businessObjective &&
+                            <React.Fragment>
+                                <TextListItem component={TextListItemVariants.dt}>
+                                    Business objective
+                                </TextListItem>
+                                <TextListItem component={TextListItemVariants.dd}>
+                                    { businessObjective.title }
+                                </TextListItem>
+                            </React.Fragment> }
+                        </React.Fragment>
+                    }
                 </TextContent>
             }
         >
