@@ -11,6 +11,9 @@ const defaultProps = {
         totalHostCount: 15,
         businessObjective: {
             title: 'BO'
+        },
+        benchmark: {
+            version: '0.1.5'
         }
     }
 };

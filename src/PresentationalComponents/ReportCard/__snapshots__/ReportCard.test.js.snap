@@ -27,6 +27,9 @@ exports[`ReportCard expect to render without error 1`] = `
           <PolicyPopover
             policy={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.5",
+                },
                 "businessObjective": Object {
                   "title": "BO",
                 },
@@ -46,6 +49,9 @@ exports[`ReportCard expect to render without error 1`] = `
         >
           <Text>
             Operating system: RHEL 
+             (SSG 
+            0.1.5
+            )
           </Text>
         </GridItem>
         <GridItem
@@ -135,7 +141,7 @@ exports[`ReportCard expect to render without error 1`] = `
               height={300}
               identifier="TestPolicy"
               innerRadius={122}
-              subTitle="Systems above threshold"
+              subTitle="Compliant"
               themeColor="blue"
               themeVariant="light"
               title="66%"

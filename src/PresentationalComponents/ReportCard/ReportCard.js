@@ -12,6 +12,7 @@ import {
     Text,
     TextContent,
     TextVariants,
+    Tooltip,
     Grid,
     GridItem
 } from '@patternfly/react-core';
@@ -21,6 +22,7 @@ import {
     ChartThemeColor,
     ChartThemeVariant
 } from '@patternfly/react-charts';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
@@ -45,7 +47,7 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+            benchmark, external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
         } = this.policy;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
@@ -60,14 +62,16 @@ class ReportCard extends React.Component {
                     <TextContent>
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
-                            { cardTitleTruncated ?
-                                <Truncate lines={1}>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate> :
-                                <React.Fragment>{this.policy.name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment> }
+                            { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;
+                                { !external && <PolicyPopover policy={this.policy} />}</Truncate> :
+                                <React.Fragment>{name}&nbsp;
+                                    { !external && <PolicyPopover policy={this.policy} />}
+                                </React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
                                 <Text>
-                                    Operating system: RHEL { majorOsVersion }
+                                    Operating system: RHEL { majorOsVersion } (SSG { benchmark.version })
                                 </Text>
                             </GridItem>
                             <GridItem className='pf-u-m-sm'/>
@@ -103,7 +107,7 @@ class ReportCard extends React.Component {
                                         themeColor={ChartThemeColor.blue}
                                         themeVariant={ChartThemeVariant.light}
                                         title={compliancePercentage}
-                                        subTitle="Systems above threshold"
+                                        subTitle="Compliant"
                                         height={300}
                                         width={300}
                                     />
@@ -122,9 +126,19 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    <Link to={'/scappolicies/' + id} >
-                                        View policy
-                                    </Link>
+                                    { external ? <Tooltip position='bottom' content={
+                                        <span>This policy report was uploaded into the Compliance application.
+                                        If you would like to manage your policy inside the Compliance application,
+                                        use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
+                                    }>
+                                        <span>
+                                            External SCAP policy <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                        </span>
+                                    </Tooltip> :
+                                        <Link to={'/scappolicies/' + id} >
+                                            View policy
+                                        </Link>
+                                    }
                                 </Text>
                             </TextContent>
                         </GridItem>

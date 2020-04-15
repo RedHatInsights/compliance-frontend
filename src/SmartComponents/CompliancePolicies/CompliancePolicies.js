@@ -15,7 +15,7 @@ import PoliciesTable from '../PoliciesTable/PoliciesTable';
 
 const QUERY = gql`
 {
-    profiles {
+    profiles(search: "external = false") {
         edges {
             node {
                 id

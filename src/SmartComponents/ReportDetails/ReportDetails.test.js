@@ -23,12 +23,16 @@ const mocks = [
                     refId: '121212',
                     name: 'profile1',
                     description: 'profile description',
+                    external: false,
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
                     businessObjective: {
                         id: '1',
                         title: 'BO 1'
+                    },
+                    benchmark: {
+                        version: '0.1.4'
                     }
                 }
             }
