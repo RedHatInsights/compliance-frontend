@@ -73,6 +73,8 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     let policy = data && !loading ? data.profile : {};
     if (policy.external) {
         error = { message: 'This is an external policy.' };
+        data = {};
+        loading = true;
     }
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
