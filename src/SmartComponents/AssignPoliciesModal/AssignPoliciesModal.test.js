@@ -13,7 +13,7 @@ const waitForComponentToPaint = async (wrapper: any) => {
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
-jest.mock('../../Utilities/InventoryApi', () => (
+jest.mock('Utilities/InventoryApi', () => (
     {
         /* eslint-disable camelcase */
         getSystemProfile: () => Promise.resolve({ results: [{ system_profile: { os_release: '8.1' } }] })

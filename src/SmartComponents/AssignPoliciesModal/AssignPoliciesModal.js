@@ -13,7 +13,7 @@ import gql from 'graphql-tag';
 import { reset, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getSystemProfile } from '../../Utilities/InventoryApi';
+import { getSystemProfile } from 'Utilities/InventoryApi';
 
 const QUERY = gql`
 query systemWithProfiles($search: String!){
