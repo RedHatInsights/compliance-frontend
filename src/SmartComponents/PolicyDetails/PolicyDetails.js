@@ -61,6 +61,9 @@ query Profile($policyId: String!){
             remediationAvailable
             identifier
         }
+        benchmark {
+            version
+        }
     }
 }
 `;

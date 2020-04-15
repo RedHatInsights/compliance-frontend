@@ -35,6 +35,9 @@ const QUERY = gql`
                     id
                     title
                 }
+                benchmark {
+                    version
+                }
             }
         }
 

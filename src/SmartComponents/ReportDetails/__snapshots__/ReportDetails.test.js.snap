@@ -376,6 +376,9 @@ Array [
               data-pf-content={true}
             >
               RHEL 
+               (SSG 
+              0.1.4
+              )
             </dd>
             <dt
               className=""

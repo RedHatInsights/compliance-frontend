@@ -47,7 +47,7 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+            benchmark, external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
         } = this.policy;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
@@ -62,14 +62,16 @@ class ReportCard extends React.Component {
                     <TextContent>
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
-                            { cardTitleTruncated ?
-                                <Truncate lines={1}>{name}&nbsp;<PolicyPopover policy={this.policy} /></Truncate> :
-                                <React.Fragment>{name}&nbsp;<PolicyPopover policy={this.policy} /></React.Fragment> }
+                            { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;
+                                { !external && <PolicyPopover policy={this.policy} />}</Truncate> :
+                                <React.Fragment>{name}&nbsp;
+                                    { !external && <PolicyPopover policy={this.policy} />}
+                                </React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
                                 <Text>
-                                    Operating system: RHEL { majorOsVersion }
+                                    Operating system: RHEL { majorOsVersion } (SSG { benchmark.version })
                                 </Text>
                             </GridItem>
                             <GridItem className='pf-u-m-sm'/>

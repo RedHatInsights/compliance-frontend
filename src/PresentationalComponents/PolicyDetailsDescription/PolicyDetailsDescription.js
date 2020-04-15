@@ -56,7 +56,7 @@ const PolicyDetailsDescription = ({ policy }) => (
                     Operating system
                 </Text>
                 <Text component={TextVariants.p}>
-                    RHEL { policy.majorOsVersion }
+                    RHEL { policy.majorOsVersion } (SSG { policy.benchmark.version })
                 </Text>
                 <Text component={TextVariants.h5}>Reference ID</Text>
                 <Text component={TextVariants.p}>{ policy.refId }</Text>

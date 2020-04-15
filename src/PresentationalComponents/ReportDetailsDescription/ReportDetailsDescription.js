@@ -38,7 +38,7 @@ const ReportDetailsDescription = ({ policy }) => (
                     Operating system
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    RHEL { policy.majorOsVersion }
+                    RHEL { policy.majorOsVersion } (SSG { policy.benchmark.version })
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>
                     Compliance threshold
@@ -67,7 +67,10 @@ ReportDetailsDescription.propTypes = {
         complianceThreshold: propTypes.number,
         businessObjective: propTypes.object,
         majorOsVersion: propTypes.number,
-        external: propTypes.bool
+        external: propTypes.bool,
+        benchmark: propTypes.shape({
+            version: propTypes.string
+        })
     })
 };
 

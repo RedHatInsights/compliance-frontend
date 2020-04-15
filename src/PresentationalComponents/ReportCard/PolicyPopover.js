@@ -13,14 +13,15 @@ import {
 import propTypes from 'prop-types';
 
 const PolicyPopover = ({ policy }) => {
-    const { name, external, id, complianceThreshold, majorOsVersion, businessObjective } = policy;
+    const { name, id, complianceThreshold, majorOsVersion, businessObjective } = policy;
     return (
         <Popover
             headerContent={name}
-            footerContent={external &&
-            <Link to={'/scappolicies/' + id} >
-                View policy
-            </Link>}
+            footerContent={
+                <Link to={'/scappolicies/' + id} >
+                    View policy
+                </Link>
+            }
             bodyContent={
                 <TextContent className='policy-details'>
                     <TextListItem component={TextListItemVariants.dt}>
@@ -29,25 +30,21 @@ const PolicyPopover = ({ policy }) => {
                     <TextListItem component={TextListItemVariants.dd}>
                         RHEL { majorOsVersion }
                     </TextListItem>
-                    { !external &&
-                        <React.Fragment>
-                            <TextListItem component={TextListItemVariants.dt}>
-                                Compliance threshold
-                            </TextListItem>
-                            <TextListItem component={TextListItemVariants.dd}>
-                                { fixedPercentage(complianceThreshold, 1) }
-                            </TextListItem>
-                            { businessObjective &&
-                            <React.Fragment>
-                                <TextListItem component={TextListItemVariants.dt}>
-                                    Business objective
-                                </TextListItem>
-                                <TextListItem component={TextListItemVariants.dd}>
-                                    { businessObjective.title }
-                                </TextListItem>
-                            </React.Fragment> }
-                        </React.Fragment>
-                    }
+                    <TextListItem component={TextListItemVariants.dt}>
+                        Compliance threshold
+                    </TextListItem>
+                    <TextListItem component={TextListItemVariants.dd}>
+                        { fixedPercentage(complianceThreshold, 1) }
+                    </TextListItem>
+                    { businessObjective &&
+                    <React.Fragment>
+                        <TextListItem component={TextListItemVariants.dt}>
+                            Business objective
+                        </TextListItem>
+                        <TextListItem component={TextListItemVariants.dd}>
+                            { businessObjective.title }
+                        </TextListItem>
+                    </React.Fragment> }
                 </TextContent>
             }
         >
