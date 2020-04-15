@@ -72,7 +72,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
     if (policy.external) {
-        error = { message: 'This is an external policy.' };
+        error = { message: 'This is an external SCAP policy.' };
         data = undefined;
         loading = undefined;
     }

@@ -130,7 +130,7 @@ class ReportCard extends React.Component {
                                         use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
                                     }>
                                         <span>
-                                            External policy <OutlinedQuestionCircleIcon className='grey-icon'/>
+                                            External SCAP policy <OutlinedQuestionCircleIcon className='grey-icon'/>
                                         </span>
                                     </Tooltip> :
                                         <Link to={'/scappolicies/' + id} >
