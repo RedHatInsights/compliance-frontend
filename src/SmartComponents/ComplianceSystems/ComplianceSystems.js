@@ -39,7 +39,7 @@ const ComplianceSystems = () => {
                 { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
-                <SystemsTable showAllSystems columns={columns} />
+                <SystemsTable showAllSystems remediationsEnabled={false} columns={columns} />
             </Main>
         </React.Fragment>
     );
