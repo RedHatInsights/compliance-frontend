@@ -155,10 +155,6 @@ export class PoliciesTable extends React.Component {
 
         return [
             {
-                title: 'View latest results',
-                onClick: () => history.push(`${paths.reports}/${policies[currentRowIndex].id}`)
-            },
-            {
                 title: 'Delete policy',
                 onClick: () => {
                     this.setState((prev) => ({
