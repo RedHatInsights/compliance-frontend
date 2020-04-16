@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 
 const PolicySystemsTab = ({ policy, complianceThreshold }) => (
     <SystemsTable policyId={policy.id}
+        remediationsEnabled={false}
         columns={[{
             key: 'facts.compliance.display_name',
             title: 'System name',
