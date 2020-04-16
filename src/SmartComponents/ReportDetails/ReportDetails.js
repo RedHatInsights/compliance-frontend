@@ -38,12 +38,14 @@ query Profile($policyId: String!){
         id
         name
         refId
-        external
         totalHostCount
         compliantHostCount
         complianceThreshold
         majorOsVersion
         lastScanned
+        policy {
+            id
+        }
         benchmark {
             version
         }
@@ -67,15 +69,15 @@ export const ReportDetails = ({ match, history }) => {
 
     let donutValues = [];
     let donutId = 'loading-donut';
-    let policy = {};
+    let profile = {};
     let legendData;
     let compliancePercentage;
 
     if (!loading && data) {
-        policy = data.profile;
-        const compliantHostCount = policy.compliantHostCount;
-        const totalHostCount = policy.totalHostCount;
-        donutId = policy.name.replace(/ /g, '');
+        profile = data.profile;
+        const compliantHostCount = profile.compliantHostCount;
+        const totalHostCount = profile.totalHostCount;
+        donutId = profile.name.replace(/ /g, '');
         donutValues = [
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
@@ -125,11 +127,11 @@ export const ReportDetails = ({ match, history }) => {
                     <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/reports`}>
                         Reports
                     </BreadcrumbItem>
-                    <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
+                    <BreadcrumbItem isActive>{profile.name}</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid gutter='lg'>
                     <GridItem xl={8}>
-                        <PageHeaderTitle title={policy.name + ' report'} />
+                        <PageHeaderTitle title={profile.name + ' report'} />
                     </GridItem>
                     <GridItem className='report-details-button' xl={4}>
                         <Button
@@ -170,20 +172,20 @@ export const ReportDetails = ({ match, history }) => {
 
                     </GridItem>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
-                        <ReportDetailsDescription policy={policy} />
+                        <ReportDetailsDescription profile={profile} />
                     </GridItem>
                 </Grid>
             </PageHeader>
             <Main>
                 <Grid gutter='md'>
                     <GridItem span={12}>
-                        <SystemsTable showOnlySystemsWithTestResults policyId={policy.id} columns={columns} />
+                        <SystemsTable showOnlySystemsWithTestResults policyId={profile.id} columns={columns} />
                     </GridItem>
                 </Grid>
             </Main>
             <DeleteReport
                 isModalOpen={ deleteModalOpen }
-                policyId={ policy.id }
+                policyId={ profile.id }
                 onClose={ (removed) => {
                     setDeleteModalOpen(false);
                     if (removed) {

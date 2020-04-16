@@ -339,72 +339,30 @@ Array [
         <div
           className="pf-c-content policy-details"
         >
-          <dl
+          <h2
             className=""
             data-pf-content={true}
           >
-            <dt
-              className=""
-              data-pf-content={true}
+            Policy details
+          </h2>
+          <br />
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            Policy not managed in cloud.redhat.com
+          </p>
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            <a
+              href="/https://access.redhat.com/products/cloud_management_services_for_rhel"
+              onClick={[Function]}
             >
-              <h2
-                className=""
-                data-pf-content={true}
-              >
-                Policy details
-              </h2>
-            </dt>
-            <dd
-              className=""
-              data-pf-content={true}
-            >
-              <a
-                href="/scappolicies/1"
-                onClick={[Function]}
-              >
-                View policy
-              </a>
-            </dd>
-            <dt
-              className=""
-              data-pf-content={true}
-            >
-              Operating system
-            </dt>
-            <dd
-              className=""
-              data-pf-content={true}
-            >
-              RHEL 
-               (SSG 
-              0.1.4
-              )
-            </dd>
-            <dt
-              className=""
-              data-pf-content={true}
-            >
-              Compliance threshold
-            </dt>
-            <dd
-              className=""
-              data-pf-content={true}
-            >
-              1.0%
-            </dd>
-            <dt
-              className=""
-              data-pf-content={true}
-            >
-              Business objective
-            </dt>
-            <dd
-              className=""
-              data-pf-content={true}
-            >
-              BO 1
-            </dd>
-          </dl>
+              Learn to manage your policies in cloud.redhat.com
+            </a>
+          </p>
         </div>
       </div>
     </div>
