@@ -55,6 +55,29 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 }
 `;
 
+export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
+query getSystems($filter: String!, $perPage: Int, $page: Int) {
+    systems(search: $filter, limit: $perPage, offset: $page) {
+        totalCount
+        edges {
+            node {
+                id
+                name
+                profiles {
+                    id
+                    name
+                    rulesPassed
+                    rulesFailed
+                    lastScanned
+                    compliant
+                    score
+                }
+            }
+        }
+    }
+}
+`;
+
 const loadingState = {
     loaded: false,
     items: [],
@@ -100,7 +123,7 @@ class SystemsTable extends React.Component {
     }
 
     systemFetch = () => {
-        const { client, showOnlySystemsWithTestResults } = this.props;
+        const { client, showOnlySystemsWithTestResults, remediationsEnabled } = this.props;
         const { policyId, perPage, page, activeFilters } = this.state;
         let filter = this.filterBuilder.buildFilterString(activeFilters);
 
@@ -113,7 +136,7 @@ class SystemsTable extends React.Component {
         }
 
         return client.query({
-            query: GET_SYSTEMS,
+            query: remediationsEnabled ? GET_SYSTEMS : GET_SYSTEMS_WITHOUT_FAILED_RULES,
             fetchResults: true,
             fetchPolicy: 'no-cache',
             variables: { filter, perPage, page, policyId }

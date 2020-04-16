@@ -44,6 +44,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
           },
         ]
       }
+      remediationsEnabled={false}
       showAllSystems={true}
     />
   </Connect(Main)>
