@@ -81,7 +81,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
             account: entity.account,
             bios_uuid: entity.bios_uuid,
             created: entity.created,
-            display_name: entity.display_name,
+            display_name: entity.display_name || matchingSystem.name,
             fqdn: entity.fqdn,
             insights_id: entity.insights_id,
             ip_addresses: entity.ip_addresses,
@@ -105,7 +105,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                 },
                 compliance: {
                     display_name: { title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
-                        { entity.display_name }
+                        { entity.display_name || matchingSystem.name }
                     </Link> },
                     policies: matchingSystem.profileNames,
                     rules_passed: matchingSystem.rulesPassed,
