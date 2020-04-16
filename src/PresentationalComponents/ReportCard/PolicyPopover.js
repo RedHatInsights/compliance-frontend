@@ -13,7 +13,7 @@ import {
 import propTypes from 'prop-types';
 
 const PolicyPopover = ({ profile }) => {
-    const { policy, complianceThreshold, majorOsVersion, businessObjective } = profile;
+    const { name, policy, complianceThreshold, majorOsVersion, businessObjective } = profile;
     return (
         <Popover
             headerContent={name}
@@ -34,7 +34,7 @@ const PolicyPopover = ({ profile }) => {
                         Policy SSG version
                     </TextListItem>
                     <TextListItem component={TextListItemVariants.dd}>
-                        { policy.benchmark.version }
+                        { policy && policy.benchmark && policy.benchmark.version }
                     </TextListItem>
                     <TextListItem component={TextListItemVariants.dt}>
                         Compliance threshold

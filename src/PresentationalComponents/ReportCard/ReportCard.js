@@ -62,10 +62,10 @@ class ReportCard extends React.Component {
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
                             { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;
-                                { policy && <PolicyPopover profile={this.props.profile} />}</Truncate> :
-                                <React.Fragment>{name}&nbsp;
-                                    { policy && <PolicyPopover profile={this.props.profile} />}
-                                </React.Fragment> }
+                                { policy && <PolicyPopover profile={this.props.profile} />}
+                            </Truncate> : <React.Fragment>{name}&nbsp;
+                                { policy && <PolicyPopover profile={this.props.profile} />}
+                            </React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
