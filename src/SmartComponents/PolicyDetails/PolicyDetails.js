@@ -27,13 +27,9 @@ import './PolicyDetails.scss';
 import {
     Breadcrumb,
     BreadcrumbItem,
-    Button,
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import {
-    Link
-} from 'react-router-dom';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -101,11 +97,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                         <PageHeaderTitle title={policy.name} />
                     </GridItem>
                     <GridItem className='policy-details-button' xl2={2} xl={2} lg={2} md={3} sm={3}>
-                        <Link to={'/reports/' + policy.id} >
-                            <Button variant='primary'>
-                                View reports
-                            </Button>
-                        </Link>
+                        &nbsp;
                     </GridItem>
                     <GridItem className='policy-details-button' xl2={1} xl={2} lg={2} md={3} sm={3}>
                         <EditPolicy policyId={policy.id}
