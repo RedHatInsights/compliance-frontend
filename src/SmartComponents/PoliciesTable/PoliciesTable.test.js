@@ -1,7 +1,6 @@
 import toJson from 'enzyme-to-json';
 import { policies } from './fixtures.js';
 import debounce from 'lodash/debounce';
-import { history } from 'react-router-dom';
 
 jest.mock('react-router-dom', () => (
     {
@@ -57,28 +56,5 @@ describe('PoliciesTable', () => {
             expect(toJson(wrapper)).toMatchSnapshot();
         });
 
-    });
-
-    it('should lead to the right page when clicking on View latest results', async () => {
-        const policyRows = policies.edges.map(profile => profile.node);
-        const wrapper = shallow(
-            <PoliciesTable
-                history={history}
-                policies={policyRows}
-            />);
-        const instance = wrapper.instance();
-        await instance.setState({ page: 1, perPage: 10 });
-        await instance.actionResolver({ id: 1 })[0].onClick();
-        expect(history.push).toHaveBeenNthCalledWith(1, `/reports/${policyRows[1].id}`);
-        history.push.mockReset();
-        await instance.actionResolver({ id: 4 })[0].onClick();
-        expect(history.push).toHaveBeenNthCalledWith(1, `/reports/${policyRows[4].id}`);
-        history.push.mockReset();
-        await instance.setState({ page: 2, perPage: 10 });
-        await instance.actionResolver({ id: 0 })[0].onClick();
-        expect(history.push).toHaveBeenNthCalledWith(1, `/reports/${policyRows[10].id}`);
-        history.push.mockReset();
-        await instance.actionResolver({ id: 2 })[0].onClick();
-        expect(history.push).toHaveBeenNthCalledWith(1, `/reports/${policyRows[12].id}`);
     });
 });
