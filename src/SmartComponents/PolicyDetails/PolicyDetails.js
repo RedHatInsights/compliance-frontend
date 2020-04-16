@@ -41,6 +41,7 @@ query Profile($policyId: String!){
         id
         name
         refId
+        external
         description
         totalHostCount
         compliantHostCount
@@ -60,17 +61,26 @@ query Profile($policyId: String!){
             remediationAvailable
             identifier
         }
+        benchmark {
+            version
+        }
     }
 }
 `;
 
 export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
-    const { data, error, loading, refetch } = useQuery(QUERY, {
+    let { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
     const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
     const beta = window.insights.chrome.isBeta();
+
+    if (policy.external) {
+        error = { message: 'This is an external SCAP policy.' };
+        data = undefined;
+        loading = undefined;
+    }
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>

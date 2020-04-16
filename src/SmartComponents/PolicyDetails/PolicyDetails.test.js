@@ -30,6 +30,9 @@ const mocks = [
                     businessObjective: {
                         id: '1',
                         title: 'BO 1'
+                    },
+                    benchmark: {
+                        version: '0.1.5'
                     }
                 }
             }

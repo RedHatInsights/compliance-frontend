@@ -192,12 +192,13 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <div
           class="pf-c-content"
         >
-          <span>
-            <h5
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold  
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Compliance threshold
+            <span>
+               
               <svg
                 aria-hidden="true"
                 class="grey-icon"
@@ -213,14 +214,14 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   transform=""
                 />
               </svg>
-            </h5>
-            <p
-              class="threshold-tooltip"
-              data-pf-content="true"
-            >
-              1.0%
-            </p>
-          </span>
+            </span>
+          </h5>
+          <p
+            class="threshold-tooltip"
+            data-pf-content="true"
+          >
+            1.0%
+          </p>
           <h5
             class=""
             data-pf-content="true"
@@ -261,6 +262,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
             data-pf-content="true"
           >
             RHEL 
+             (SSG 
+            0.1.5
+            )
           </p>
           <h5
             class=""
@@ -473,12 +477,13 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
         <div
           class="pf-c-content"
         >
-          <span>
-            <h5
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold  
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Compliance threshold
+            <span>
+               
               <svg
                 aria-hidden="true"
                 class="grey-icon"
@@ -494,14 +499,14 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
                   transform=""
                 />
               </svg>
-            </h5>
-            <p
-              class="threshold-tooltip"
-              data-pf-content="true"
-            >
-              1.0%
-            </p>
-          </span>
+            </span>
+          </h5>
+          <p
+            class="threshold-tooltip"
+            data-pf-content="true"
+          >
+            1.0%
+          </p>
           <h5
             class=""
             data-pf-content="true"
@@ -542,6 +547,9 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
             data-pf-content="true"
           >
             RHEL 
+             (SSG 
+            0.1.5
+            )
           </p>
           <h5
             class=""
@@ -754,12 +762,13 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
         <div
           class="pf-c-content"
         >
-          <span>
-            <h5
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold  
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Compliance threshold
+            <span>
+               
               <svg
                 aria-hidden="true"
                 class="grey-icon"
@@ -775,14 +784,14 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
                   transform=""
                 />
               </svg>
-            </h5>
-            <p
-              class="threshold-tooltip"
-              data-pf-content="true"
-            >
-              1.0%
-            </p>
-          </span>
+            </span>
+          </h5>
+          <p
+            class="threshold-tooltip"
+            data-pf-content="true"
+          >
+            1.0%
+          </p>
           <h5
             class=""
             data-pf-content="true"
@@ -823,6 +832,9 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
             data-pf-content="true"
           >
             RHEL 
+             (SSG 
+            0.1.5
+            )
           </p>
           <h5
             class=""
@@ -1035,12 +1047,13 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
         <div
           class="pf-c-content"
         >
-          <span>
-            <h5
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold  
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Compliance threshold
+            <span>
+               
               <svg
                 aria-hidden="true"
                 class="grey-icon"
@@ -1056,14 +1069,14 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
                   transform=""
                 />
               </svg>
-            </h5>
-            <p
-              class="threshold-tooltip"
-              data-pf-content="true"
-            >
-              1.0%
-            </p>
-          </span>
+            </span>
+          </h5>
+          <p
+            class="threshold-tooltip"
+            data-pf-content="true"
+          >
+            1.0%
+          </p>
           <h5
             class=""
             data-pf-content="true"
@@ -1104,6 +1117,9 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
             data-pf-content="true"
           >
             RHEL 
+             (SSG 
+            0.1.5
+            )
           </p>
           <h5
             class=""
@@ -1316,12 +1332,13 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
         <div
           class="pf-c-content"
         >
-          <span>
-            <h5
-              class=""
-              data-pf-content="true"
-            >
-              Compliance threshold  
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Compliance threshold
+            <span>
+               
               <svg
                 aria-hidden="true"
                 class="grey-icon"
@@ -1337,14 +1354,14 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
                   transform=""
                 />
               </svg>
-            </h5>
-            <p
-              class="threshold-tooltip"
-              data-pf-content="true"
-            >
-              1.0%
-            </p>
-          </span>
+            </span>
+          </h5>
+          <p
+            class="threshold-tooltip"
+            data-pf-content="true"
+          >
+            1.0%
+          </p>
           <h5
             class=""
             data-pf-content="true"
@@ -1385,6 +1402,9 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
             data-pf-content="true"
           >
             RHEL 
+             (SSG 
+            0.1.5
+            )
           </p>
           <h5
             class=""

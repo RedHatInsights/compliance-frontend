@@ -38,11 +38,15 @@ query Profile($policyId: String!){
         id
         name
         refId
+        external
         totalHostCount
         compliantHostCount
         complianceThreshold
         majorOsVersion
         lastScanned
+        benchmark {
+            version
+        }
         businessObjective {
             id
             title

@@ -23,33 +23,31 @@ const PolicyDetailsDescription = ({ policy }) => (
         </CardHeader>
         <CardBody>
             <TextContent>
-                <Tooltip
-                    position='right'
-                    content={
+                <Text component={TextVariants.h5}>
+                    Compliance threshold
+                    <Tooltip
+                        position='right'
+                        content={
+                            <span>
+                                The threshold for compliance is a value set by your organization for
+                                each policy.
+                                This defines the percentage of passed rules that must be met in order
+                                for a system to be determined &quot;compliant&quot;.
+                            </span>
+                        }
+                    >
                         <span>
-                            The threshold for compliance is a value set by your organization for
-                            each policy.
-                            This defines the percentage of passed rules that must be met in order
-                            for a system to be determined &quot;compliant&quot;.
-                        </span>
-                    }
-                >
-                    <span>
-                        <Text component={TextVariants.h5}>
-                            Compliance threshold
                             &nbsp;<OutlinedQuestionCircleIcon className='grey-icon'/>
-                        </Text>
-                        <Text className='threshold-tooltip' component={TextVariants.p}>
-                            { fixedPercentage(policy.complianceThreshold, 1) }
-                        </Text>
-                    </span>
-                </Tooltip>
-                <React.Fragment>
-                    <Text component={TextVariants.h5}>Business objective</Text>
-                    <Text component={TextVariants.p}>
-                        { policy.businessObjective && policy.businessObjective.title || '-' }
-                    </Text>
-                </React.Fragment>
+                        </span>
+                    </Tooltip>
+                </Text>
+                <Text className='threshold-tooltip' component={TextVariants.p}>
+                    { fixedPercentage(policy.complianceThreshold, 1) }
+                </Text>
+                <Text component={TextVariants.h5}>Business objective</Text>
+                <Text component={TextVariants.p}>
+                    { policy.businessObjective && policy.businessObjective.title || '-' }
+                </Text>
                 <Text component={TextVariants.h5}>Description</Text>
                 <Text component={TextVariants.p}>
                     <Truncate text={linkifyHtml(policy.description || '')} length={380} inline={true} />
@@ -58,7 +56,7 @@ const PolicyDetailsDescription = ({ policy }) => (
                     Operating system
                 </Text>
                 <Text component={TextVariants.p}>
-                    RHEL { policy.majorOsVersion }
+                    RHEL { policy.majorOsVersion } (SSG { policy.benchmark.version })
                 </Text>
                 <Text component={TextVariants.h5}>Reference ID</Text>
                 <Text component={TextVariants.p}>{ policy.refId }</Text>
