@@ -27,7 +27,6 @@ import '../../Charts.scss';
 import { fixedPercentage } from '../../Utilities/TextHelper';
 
 class ReportCard extends React.Component {
-    policy = this.props.policy;
     state = {
         cardTitleTruncated: true
     }
@@ -47,8 +46,8 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            benchmark, external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
-        } = this.policy;
+            policy, benchmark, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+        } = this.props.profile;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
@@ -63,15 +62,20 @@ class ReportCard extends React.Component {
                         <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                             style={{ fontWeight: '500' }} component={TextVariants.h2}>
                             { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;
-                                { !external && <PolicyPopover policy={this.policy} />}</Truncate> :
-                                <React.Fragment>{name}&nbsp;
-                                    { !external && <PolicyPopover policy={this.policy} />}
-                                </React.Fragment> }
+                                { policy && <PolicyPopover profile={this.props.profile} />}
+                            </Truncate> : <React.Fragment>{name}&nbsp;
+                                { policy && <PolicyPopover profile={this.props.profile} />}
+                            </React.Fragment> }
                         </Text>
                         <Grid>
                             <GridItem span={12}>
                                 <Text>
-                                    Operating system: RHEL { majorOsVersion } (SSG { benchmark.version })
+                                    Operating system: RHEL { majorOsVersion }
+                                </Text>
+                            </GridItem>
+                            <GridItem span={12}>
+                                <Text>
+                                    SSG version: { benchmark.version }
                                 </Text>
                             </GridItem>
                             <GridItem className='pf-u-m-sm'/>
@@ -126,7 +130,7 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    { external ? <Tooltip position='bottom' content={
+                                    { !policy ? <Tooltip position='bottom' content={
                                         <span>This policy report was uploaded into the Compliance application.
                                         If you would like to manage your policy inside the Compliance application,
                                         use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
@@ -135,7 +139,7 @@ class ReportCard extends React.Component {
                                             External SCAP policy <OutlinedQuestionCircleIcon className='grey-icon'/>
                                         </span>
                                     </Tooltip> :
-                                        <Link to={'/scappolicies/' + id} >
+                                        <Link to={'/scappolicies/' + policy.id} >
                                             View policy
                                         </Link>
                                     }
@@ -150,7 +154,7 @@ class ReportCard extends React.Component {
 };
 
 ReportCard.propTypes = {
-    policy: propTypes.object
+    profile: propTypes.object
 };
 
 export default ReportCard;

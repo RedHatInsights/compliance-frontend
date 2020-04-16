@@ -188,7 +188,7 @@ exports[`Reports expect to render without error 1`] = `
           >
             <ReportCard
               key="0"
-              policy={
+              profile={
                 Object {
                   "businessObjective": Object {
                     "id": "1",

@@ -12,13 +12,13 @@ import {
 } from 'react-router-dom';
 import propTypes from 'prop-types';
 
-const PolicyPopover = ({ policy }) => {
-    const { name, id, complianceThreshold, majorOsVersion, businessObjective } = policy;
+const PolicyPopover = ({ profile }) => {
+    const { name, policy, complianceThreshold, majorOsVersion, businessObjective } = profile;
     return (
         <Popover
             headerContent={name}
             footerContent={
-                <Link to={'/scappolicies/' + id} >
+                <Link to={'/scappolicies/' + policy.id} >
                     View policy
                 </Link>
             }
@@ -29,6 +29,12 @@ const PolicyPopover = ({ policy }) => {
                     </TextListItem>
                     <TextListItem component={TextListItemVariants.dd}>
                         RHEL { majorOsVersion }
+                    </TextListItem>
+                    <TextListItem component={TextListItemVariants.dt}>
+                        Policy SSG version
+                    </TextListItem>
+                    <TextListItem component={TextListItemVariants.dd}>
+                        { policy && policy.benchmark && policy.benchmark.version }
                     </TextListItem>
                     <TextListItem component={TextListItemVariants.dt}>
                         Compliance threshold
@@ -54,7 +60,7 @@ const PolicyPopover = ({ policy }) => {
 };
 
 PolicyPopover.propTypes = {
-    policy: propTypes.object
+    profile: propTypes.object
 };
 
 export default PolicyPopover;

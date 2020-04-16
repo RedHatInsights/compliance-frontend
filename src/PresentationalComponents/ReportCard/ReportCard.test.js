@@ -3,12 +3,18 @@ import toJson from 'enzyme-to-json';
 import ReportCard from './ReportCard';
 
 const defaultProps = {
-    policy: {
+    profile: {
         id: 'ID',
         refId: 'REF_ID',
         name: 'Test Policy',
         compliantHostCount: 10,
         totalHostCount: 15,
+        policy: {
+            id: 'policyid',
+            benchmark: {
+                version: '0.1.4'
+            }
+        },
         businessObjective: {
             title: 'BO'
         },

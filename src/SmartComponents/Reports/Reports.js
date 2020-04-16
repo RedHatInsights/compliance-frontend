@@ -28,12 +28,17 @@ const QUERY = gql`
                 description
                 totalHostCount
                 compliantHostCount
-                external
                 majorOsVersion
                 complianceThreshold
                 businessObjective {
                     id
                     title
+                }
+                policy {
+                    id
+                    benchmark {
+                        version
+                    }
                 }
                 benchmark {
                     version
@@ -51,21 +56,21 @@ export const Reports = () => {
     let pageHeader;
 
     if (!loading && data) {
-        const policies = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
+        const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
         const beta = window.location.pathname.split('/')[1] === 'beta';
 
-        if (policies.length) {
+        if (profiles.length) {
             pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
                 <PageHeaderTitle title="Compliance reports" />
                 { beta ? <ReportTabs/> : <ComplianceTabs/> }
 
             </PageHeader>;
-            reportCards = policies.map(
-                (policy, i) =>
+            reportCards = profiles.map(
+                (profile, i) =>
                     <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
                         <ReportCard
                             key={i}
-                            policy={policy}
+                            profile={profile}
                         />
                     </GridItem>
             );
