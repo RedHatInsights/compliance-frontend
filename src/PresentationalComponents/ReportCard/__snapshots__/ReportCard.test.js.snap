@@ -25,7 +25,7 @@ exports[`ReportCard expect to render without error 1`] = `
           Test Policy
            
           <PolicyPopover
-            policy={
+            profile={
               Object {
                 "benchmark": Object {
                   "version": "0.1.5",
@@ -36,6 +36,12 @@ exports[`ReportCard expect to render without error 1`] = `
                 "compliantHostCount": 10,
                 "id": "ID",
                 "name": "Test Policy",
+                "policy": Object {
+                  "benchmark": Object {
+                    "version": "0.1.4",
+                  },
+                  "id": "policyid",
+                },
                 "refId": "REF_ID",
                 "totalHostCount": 15,
               }
@@ -49,9 +55,14 @@ exports[`ReportCard expect to render without error 1`] = `
         >
           <Text>
             Operating system: RHEL 
-             (SSG 
+          </Text>
+        </GridItem>
+        <GridItem
+          span={12}
+        >
+          <Text>
+            SSG version: 
             0.1.5
-            )
           </Text>
         </GridItem>
         <GridItem
@@ -181,7 +192,7 @@ exports[`ReportCard expect to render without error 1`] = `
             }
           >
             <Link
-              to="/scappolicies/ID"
+              to="/scappolicies/policyid"
             >
               View policy
             </Link>
