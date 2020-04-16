@@ -27,13 +27,9 @@ import './PolicyDetails.scss';
 import {
     Breadcrumb,
     BreadcrumbItem,
-    Button,
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import {
-    Link
-} from 'react-router-dom';
 
 export const QUERY = gql`
 query Profile($policyId: String!){

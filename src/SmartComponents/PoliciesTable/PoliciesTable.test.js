@@ -1,7 +1,6 @@
 import toJson from 'enzyme-to-json';
 import { policies } from './fixtures.js';
 import debounce from 'lodash/debounce';
-import { history } from 'react-router-dom';
 
 jest.mock('react-router-dom', () => (
     {

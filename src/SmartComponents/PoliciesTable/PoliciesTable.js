@@ -12,7 +12,6 @@ import routerParams from '@redhat-cloud-services/frontend-components-utilities/f
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 import CreatePolicy from '../CreatePolicy/CreatePolicy';
 import DeletePolicy from '../DeletePolicy/DeletePolicy';
-import { paths } from '../../Routes';
 
 const emptyRows = [{
     cells: [{
@@ -148,7 +147,7 @@ export class PoliciesTable extends React.Component {
     )
 
     actionResolver = (rowData) => {
-        const { history, policies } = this.props;
+        const { policies } = this.props;
         const { itemsPerPage, page } = this.state;
 
         const currentRowIndex = rowData.id + (page - 1) * itemsPerPage;
