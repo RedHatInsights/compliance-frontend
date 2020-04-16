@@ -126,7 +126,7 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    { external ? <Tooltip position='bottom' content={
+                                    { external && refId !== benchmark.refId ? <Tooltip position='bottom' content={
                                         <span>This policy report was uploaded into the Compliance application.
                                         If you would like to manage your policy inside the Compliance application,
                                         use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
