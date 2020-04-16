@@ -60,9 +60,9 @@ export const ReportDetails = ({ match, history }) => {
         variables: { policyId: match.params.report_id }
     });
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const beta = window.insights.chrome.isBeta();
     const redirect = () => {
-        const beta = window.insights.chrome.isBeta();
-        history.push(`${ beta && '/beta' }/rhel/compliance/reports`);
+        history.push(`${ beta ? '/beta/insights' : '/rhel' }/compliance/reports`);
     };
 
     let donutValues = [];
@@ -122,7 +122,7 @@ export const ReportDetails = ({ match, history }) => {
         <StateViewPart stateKey='data'>
             <PageHeader>
                 <Breadcrumb>
-                    <BreadcrumbItem to='/rhel/compliance/reports'>
+                    <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/reports`}>
                         Reports
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
