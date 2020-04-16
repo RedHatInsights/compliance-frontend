@@ -27,6 +27,9 @@ const mocks = [
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
+                    policy: {
+                        id: 'thepolicyid'
+                    },
                     businessObjective: {
                         id: '1',
                         title: 'BO 1'

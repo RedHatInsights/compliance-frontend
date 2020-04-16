@@ -359,7 +359,7 @@ Array [
               data-pf-content={true}
             >
               <a
-                href="/scappolicies/1"
+                href="/scappolicies/thepolicyid"
                 onClick={[Function]}
               >
                 View policy

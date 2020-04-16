@@ -14,9 +14,9 @@ import {
     Link
 } from 'react-router-dom';
 
-const ReportDetailsDescription = ({ policy }) => (
+const ReportDetailsDescription = ({ profile }) => (
     <TextContent className='policy-details'>
-        { policy.external ? <React.Fragment>
+        { !profile.policy ? <React.Fragment>
             <Text component={TextVariants.h2}>Policy details</Text><br/>
             <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
             <Text component={TextVariants.p}>
@@ -30,7 +30,7 @@ const ReportDetailsDescription = ({ policy }) => (
                     <Text component={TextVariants.h2}>Policy details</Text>
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    <Link to={'/scappolicies/' + policy.id} >
+                    <Link to={'/scappolicies/' + profile.policy.id} >
                         View policy
                     </Link>
                 </TextListItem>
@@ -38,21 +38,21 @@ const ReportDetailsDescription = ({ policy }) => (
                     Operating system
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    RHEL { policy.majorOsVersion } (SSG { policy.benchmark.version })
+                    RHEL { profile.majorOsVersion } (SSG { profile.benchmark.version })
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>
                     Compliance threshold
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    { fixedPercentage(policy.complianceThreshold, 1) }
+                    { fixedPercentage(profile.complianceThreshold, 1) }
                 </TextListItem>
-                { policy.businessObjective &&
+                { profile.businessObjective &&
                 <React.Fragment>
                     <TextListItem component={TextListItemVariants.dt}>
                         Business objective
                     </TextListItem>
                     <TextListItem component={TextListItemVariants.dd}>
-                        { policy.businessObjective.title }
+                        { profile.businessObjective.title }
                     </TextListItem>
                 </React.Fragment>
                 }
@@ -62,12 +62,14 @@ const ReportDetailsDescription = ({ policy }) => (
 );
 
 ReportDetailsDescription.propTypes = {
-    policy: propTypes.shape({
+    profile: propTypes.shape({
         id: propTypes.string,
         complianceThreshold: propTypes.number,
         businessObjective: propTypes.object,
         majorOsVersion: propTypes.number,
-        external: propTypes.bool,
+        policy: propTypes.shape({
+            id: propTypes.string
+        }),
         benchmark: propTypes.shape({
             version: propTypes.string
         })
