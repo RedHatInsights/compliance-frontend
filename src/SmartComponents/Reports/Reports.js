@@ -31,12 +31,14 @@ const QUERY = gql`
                 external
                 majorOsVersion
                 complianceThreshold
+                policy
                 businessObjective {
                     id
                     title
                 }
                 benchmark {
                     version
+                    refId
                 }
             }
         }

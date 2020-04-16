@@ -47,7 +47,7 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            benchmark, external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+            benchmark, external, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id, policy
         } = this.policy;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
@@ -135,7 +135,7 @@ class ReportCard extends React.Component {
                                             External SCAP policy <OutlinedQuestionCircleIcon className='grey-icon'/>
                                         </span>
                                     </Tooltip> :
-                                        <Link to={'/scappolicies/' + id} >
+                                        <Link to={'/scappolicies/' + policy.id} >
                                             View policy
                                         </Link>
                                     }
