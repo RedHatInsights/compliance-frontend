@@ -11,18 +11,6 @@ const PolicySystemsTab = ({ policy, complianceThreshold }) => (
             props: {
                 width: 40
             }
-        }, {
-            key: 'facts.compliance.compliance_score',
-            title: 'Compliance score',
-            props: {
-                width: 10
-            }
-        }, {
-            key: 'facts.compliance.last_scanned',
-            title: 'Last scanned',
-            props: {
-                width: 10
-            }
         }]}
         complianceThreshold={ complianceThreshold }
     />
