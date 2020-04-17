@@ -4,6 +4,11 @@ exports[`ComplianceSystems expect to render without error 1`] = `
 <Fragment>
   <PageHeader
     className="stable-page-header"
+    style={
+      Object {
+        "paddingBottom": "20px",
+      }
+    }
   >
     <PageHeaderTitle
       title="Compliance systems"
