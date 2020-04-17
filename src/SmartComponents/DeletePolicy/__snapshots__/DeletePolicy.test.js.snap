@@ -87,10 +87,7 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -292,10 +289,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -376,10 +370,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -484,10 +475,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -771,12 +759,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                               foo
                             </b>
                             ?
-                          </div>
-                        </TextContent>
-                        <TextContent>
-                          <div
-                            className="pf-c-content"
-                          >
+                            <br />
                             This cannot be undone.
                           </div>
                         </TextContent>
@@ -1018,10 +1001,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -1114,10 +1094,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                       foo
                     </b>
                     ?
-                  </div>
-                  <div
-                    class="pf-c-content"
-                  >
+                    <br />
                     This cannot be undone.
                   </div>
                 </div>
@@ -1319,12 +1296,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                               foo
                             </b>
                             ?
-                          </div>
-                        </TextContent>
-                        <TextContent>
-                          <div
-                            className="pf-c-content"
-                          >
+                            <br />
                             This cannot be undone.
                           </div>
                         </TextContent>
