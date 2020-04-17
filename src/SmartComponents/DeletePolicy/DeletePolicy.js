@@ -53,8 +53,7 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
         >
             <TextContent>
                 Are you sure you want to delete <b>{ name }</b>?
-            </TextContent>
-            <TextContent>
+                <br/>
                 This cannot be undone.
             </TextContent>
         </Modal>
