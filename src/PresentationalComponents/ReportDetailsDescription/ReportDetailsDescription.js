@@ -46,16 +46,12 @@ const ReportDetailsDescription = ({ profile }) => (
                 <TextListItem component={TextListItemVariants.dd}>
                     { fixedPercentage(profile.complianceThreshold, 1) }
                 </TextListItem>
-                { profile.businessObjective &&
-                <React.Fragment>
-                    <TextListItem component={TextListItemVariants.dt}>
-                        Business objective
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dd}>
-                        { profile.businessObjective.title }
-                    </TextListItem>
-                </React.Fragment>
-                }
+                <TextListItem component={TextListItemVariants.dt}>
+                    Business objective
+                </TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>
+                    { profile.businessObjective ? profile.businessObjective.title : '--' }
+                </TextListItem>
             </TextList>
         }
     </TextContent>
