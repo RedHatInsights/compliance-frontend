@@ -59,14 +59,20 @@ class ReportCard extends React.Component {
             <Card widget-id={refId}>
                 <CardHeader>
                     <TextContent>
-                        <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
-                            style={{ fontWeight: '500' }} component={TextVariants.h2}>
-                            { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;
-                                { policy && <PolicyPopover profile={this.props.profile} />}
-                            </Truncate> : <React.Fragment>{name}&nbsp;
-                                { policy && <PolicyPopover profile={this.props.profile} />}
-                            </React.Fragment> }
-                        </Text>
+                        <Grid>
+                            <GridItem span={11}>
+                                <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
+                                    style={{ fontWeight: '500' }} component={TextVariants.h2}>
+                                    { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;</Truncate> :
+                                        <React.Fragment>{name}&nbsp;</React.Fragment> }
+                                </Text>
+                            </GridItem>
+                            <GridItem span={1}>
+                                <Text style={{ fontWeight: '500' }} component={TextVariants.h2}>
+                                    { policy && <PolicyPopover profile={this.props.profile} />}
+                                </Text>
+                            </GridItem>
+                        </Grid>
                         <Grid>
                             <GridItem span={12}>
                                 <Text>

@@ -6,49 +6,68 @@ exports[`ReportCard expect to render without error 1`] = `
 >
   <CardHeader>
     <TextContent>
-      <Text
-        component="h2"
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-        style={
-          Object {
-            "fontWeight": "500",
-          }
-        }
-      >
-        <Truncate
-          ellipsis="…"
-          lines={1}
-          trimWhitespace={false}
-          width={0}
+      <Grid>
+        <GridItem
+          span={11}
         >
-          Test Policy
-           
-          <PolicyPopover
-            profile={
+          <Text
+            component="h2"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
               Object {
-                "benchmark": Object {
-                  "version": "0.1.5",
-                },
-                "businessObjective": Object {
-                  "title": "BO",
-                },
-                "compliantHostCount": 10,
-                "id": "ID",
-                "name": "Test Policy",
-                "policy": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "id": "policyid",
-                },
-                "refId": "REF_ID",
-                "totalHostCount": 15,
+                "fontWeight": "500",
               }
             }
-          />
-        </Truncate>
-      </Text>
+          >
+            <Truncate
+              ellipsis="…"
+              lines={1}
+              trimWhitespace={false}
+              width={0}
+            >
+              Test Policy
+               
+            </Truncate>
+          </Text>
+        </GridItem>
+        <GridItem
+          span={1}
+        >
+          <Text
+            component="h2"
+            style={
+              Object {
+                "fontWeight": "500",
+              }
+            }
+          >
+            <PolicyPopover
+              profile={
+                Object {
+                  "benchmark": Object {
+                    "version": "0.1.5",
+                  },
+                  "businessObjective": Object {
+                    "title": "BO",
+                  },
+                  "compliantHostCount": 10,
+                  "id": "ID",
+                  "name": "Test Policy",
+                  "policy": Object {
+                    "benchmark": Object {
+                      "version": "0.1.4",
+                    },
+                    "id": "policyid",
+                  },
+                  "refId": "REF_ID",
+                  "totalHostCount": 15,
+                }
+              }
+            />
+          </Text>
+        </GridItem>
+      </Grid>
       <Grid>
         <GridItem
           span={12}
