@@ -10,10 +10,10 @@ const CompliantIcon = (system) => (
     <React.Fragment>
         {
             ((system.rulesPassed + system.rulesFailed) === 0) ?
-                <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--200)' }}/> :
+                <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
                 system.compliant ?
                     <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--200)' }}/> :
-                    <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--200)' }}/>
+                    <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
         }
     </React.Fragment>
 );

@@ -10,7 +10,7 @@ Array [
     role="img"
     style={
       Object {
-        "color": "var(--pf-global--danger-color--200)",
+        "color": "var(--pf-global--danger-color--100)",
       }
     }
     viewBox="0 0 512 512"
@@ -35,7 +35,7 @@ Array [
     role="img"
     style={
       Object {
-        "color": "var(--pf-global--disabled-color--200)",
+        "color": "var(--pf-global--disabled-color--100)",
       }
     }
     viewBox="0 0 512 512"
@@ -60,7 +60,7 @@ Array [
     role="img"
     style={
       Object {
-        "color": "var(--pf-global--danger-color--200)",
+        "color": "var(--pf-global--danger-color--100)",
       }
     }
     viewBox="0 0 512 512"
