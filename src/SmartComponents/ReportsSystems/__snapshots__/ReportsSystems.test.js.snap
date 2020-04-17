@@ -19,7 +19,7 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
             "props": Object {
               "width": 40,
             },
-            "title": "System name",
+            "title": "Name",
           },
           Object {
             "key": "facts.compliance.policies",
@@ -40,7 +40,7 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
             "props": Object {
               "width": 10,
             },
-            "title": "Last scanned",
+            "title": "Scan date",
           },
         ]
       }
@@ -69,7 +69,7 @@ exports[`ReportsSystems expect to render without error in stable 1`] = `
             "props": Object {
               "width": 40,
             },
-            "title": "System name",
+            "title": "Name",
           },
           Object {
             "key": "facts.compliance.policies",
@@ -90,7 +90,7 @@ exports[`ReportsSystems expect to render without error in stable 1`] = `
             "props": Object {
               "width": 10,
             },
-            "title": "Last scanned",
+            "title": "Scan date",
           },
         ]
       }
