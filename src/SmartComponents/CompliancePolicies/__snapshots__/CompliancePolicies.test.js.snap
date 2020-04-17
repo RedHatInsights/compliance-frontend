@@ -234,7 +234,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
     stateKey="loading"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -248,7 +248,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -452,7 +452,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
     stateKey="loading"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -466,7 +466,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -504,7 +504,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
     stateKey="loading"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -518,7 +518,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -552,7 +552,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
     stateKey="loading"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -566,7 +566,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -615,7 +615,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
     stateKey="loading"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"
@@ -629,7 +629,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="beta-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="SCAP policies"

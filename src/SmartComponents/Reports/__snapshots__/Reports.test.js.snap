@@ -165,7 +165,7 @@ exports[`Reports expect to render without error 1`] = `
     stateKey="data"
   >
     <PageHeader
-      className="stable-page-header"
+      className="page-header"
     >
       <PageHeaderTitle
         title="Compliance reports"

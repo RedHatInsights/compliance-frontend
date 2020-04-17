@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    ComplianceTabs,
     ReportTabs,
     LoadingComplianceCards,
     ReportCard,
@@ -57,13 +56,11 @@ export const Reports = () => {
 
     if (!loading && data) {
         const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
-        const beta = window.location.pathname.split('/')[1] === 'beta';
 
         if (profiles.length) {
-            pageHeader = <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' }>
+            pageHeader = <PageHeader className='page-header'>
                 <PageHeaderTitle title="Compliance reports" />
-                { beta ? <ReportTabs/> : <ComplianceTabs/> }
-
+                <ReportTabs/>
             </PageHeader>;
             reportCards = profiles.map(
                 (profile, i) =>
