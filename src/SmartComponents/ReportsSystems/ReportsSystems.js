@@ -6,7 +6,7 @@ import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/fronte
 const ReportsSystems = () => {
     const columns = [{
         key: 'facts.compliance.display_name',
-        title: 'System name',
+        title: 'Name',
         props: {
             width: 40
         }
@@ -24,7 +24,7 @@ const ReportsSystems = () => {
         }
     }, {
         key: 'facts.compliance.last_scanned',
-        title: 'Last scanned',
+        title: 'Scan date',
         props: {
             width: 10
         }
