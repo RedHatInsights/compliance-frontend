@@ -8,25 +8,19 @@ const ComplianceSystems = () => {
         key: 'display_name',
         title: 'Name',
         props: {
-            width: 40
+            width: 40, isStatic: true
         }
     }, {
         key: 'facts.compliance.policies',
         title: 'Policies',
         props: {
-            width: 40
+            width: 40, isStatic: true
         }
     }, {
-        key: 'facts.compliance.compliance_score',
-        title: 'Compliance score',
+        key: 'facts.compliance.details_link',
+        title: '',
         props: {
-            width: 10
-        }
-    }, {
-        key: 'facts.compliance.last_scanned',
-        title: 'Last scanned',
-        props: {
-            width: 10
+            width: 20, isStatic: true
         }
     }];
 
@@ -37,6 +31,7 @@ const ComplianceSystems = () => {
             <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
                 <PageHeaderTitle title="Compliance systems" />
                 { !beta && <ComplianceTabs/> }
+                <br/>
             </PageHeader>
             <Main>
                 <SystemsTable showAllSystems remediationsEnabled={false} columns={columns} />

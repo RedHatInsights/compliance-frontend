@@ -8,6 +8,7 @@ import {
     ComplianceScore as complianceScore,
     complianceScoreString
 } from 'PresentationalComponents';
+import { Text } from '@patternfly/react-core';
 
 export const findProfiles = (system, profileIds) => {
     let profiles = system.profiles;
@@ -107,7 +108,14 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                     display_name: { title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
                         { entity.display_name || matchingSystem.name }
                     </Link> },
-                    policies: matchingSystem.profileNames,
+                    policies: matchingSystem.profileNames || {
+                        title: <Text className='grey-icon'>No policies</Text>
+                    },
+                    details_link: matchingSystem.profileNames && {
+                        title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
+                            View report
+                        </Link>
+                    },
                     rules_passed: matchingSystem.rulesPassed,
                     rules_failed: { title: <Link to={{
                         pathname: `/systems/${matchingSystem.id}`,
