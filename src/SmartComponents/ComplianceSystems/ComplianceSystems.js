@@ -31,7 +31,6 @@ const ComplianceSystems = () => {
             <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
                 <PageHeaderTitle title="Compliance systems" />
                 { !beta && <ComplianceTabs/> }
-                <br/>
             </PageHeader>
             <Main>
                 <SystemsTable showAllSystems remediationsEnabled={false} columns={columns} />

@@ -17,6 +17,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
           Object {
             "key": "display_name",
             "props": Object {
+              "isStatic": true,
               "width": 40,
             },
             "title": "Name",
@@ -24,23 +25,18 @@ exports[`ComplianceSystems expect to render without error 1`] = `
           Object {
             "key": "facts.compliance.policies",
             "props": Object {
+              "isStatic": true,
               "width": 40,
             },
             "title": "Policies",
           },
           Object {
-            "key": "facts.compliance.compliance_score",
+            "key": "facts.compliance.details_link",
             "props": Object {
-              "width": 10,
+              "isStatic": true,
+              "width": 20,
             },
-            "title": "Compliance score",
-          },
-          Object {
-            "key": "facts.compliance.last_scanned",
-            "props": Object {
-              "width": 10,
-            },
-            "title": "Last scanned",
+            "title": "",
           },
         ]
       }
