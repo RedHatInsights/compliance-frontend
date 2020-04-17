@@ -28,7 +28,10 @@ const ComplianceSystems = () => {
 
     return (
         <React.Fragment>
-            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+            <PageHeader
+                className={ beta ? 'beta-page-header' : 'stable-page-header' }
+                style={ { paddingBottom: '20px' } }
+            >
                 <PageHeaderTitle title="Compliance systems" />
                 { !beta && <ComplianceTabs/> }
             </PageHeader>
