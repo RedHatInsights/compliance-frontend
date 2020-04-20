@@ -20,9 +20,10 @@ const ReportDetailsDescription = ({ profile }) => (
             <Text component={TextVariants.h2}>Policy details</Text><br/>
             <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
             <Text component={TextVariants.p}>
-                <Link to='https://access.redhat.com/products/cloud_management_services_for_rhel'>
+                <a target='_blank' rel='noopener noreferrer'
+                    href='https://access.redhat.com/products/cloud_management_services_for_rhel'>
                     Learn to manage your policies in cloud.redhat.com
-                </Link>
+                </a>
             </Text>
         </React.Fragment>
             : <TextList component={TextListVariants.dl}>
