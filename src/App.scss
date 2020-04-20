@@ -6,7 +6,11 @@
 
 .pf-c-page__main .pf-c-page-header.pf-c-page__main-section {
   &.page-header {
-      padding-bottom: 22px;
+      padding-bottom: 0px !important;
+  }
+
+  .pf-l-tabs, .pf-c-tabs {
+      padding-top: 22px;
   }
 }
 
