@@ -1,6 +1,5 @@
 import React from 'react';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { ComplianceTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 
 const ComplianceSystems = () => {
@@ -24,16 +23,10 @@ const ComplianceSystems = () => {
         }
     }];
 
-    const beta = window.location.pathname.split('/')[1] === 'beta';
-
     return (
         <React.Fragment>
-            <PageHeader
-                className={ beta ? 'beta-page-header' : 'stable-page-header' }
-                style={ { paddingBottom: '20px' } }
-            >
+            <PageHeader className='page-header'>
                 <PageHeaderTitle title="Compliance systems" />
-                { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
                 <SystemsTable showAllSystems remediationsEnabled={false} columns={columns} />

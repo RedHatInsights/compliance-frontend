@@ -1,6 +1,6 @@
 import React from 'react';
 import SystemsTable from '../SystemsTable/SystemsTable';
-import { ComplianceTabs, ReportTabs } from 'PresentationalComponents';
+import { ReportTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 
 const ReportsSystems = () => {
@@ -29,13 +29,12 @@ const ReportsSystems = () => {
             width: 10
         }
     }];
-    const beta = window.insights.chrome.isBeta();
 
     return (
         <React.Fragment>
-            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+            <PageHeader className='page-header'>
                 <PageHeaderTitle title="Compliance reports" />
-                { beta ? <ReportTabs/> : <ComplianceTabs/> }
+                <ReportTabs/>
             </PageHeader>
             <Main>
                 <SystemsTable showOnlySystemsWithTestResults columns={columns} />

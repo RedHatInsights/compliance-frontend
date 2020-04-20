@@ -1,4 +1,3 @@
-export { default as ComplianceTabs } from './ComplianceTabs/ComplianceTabs';
 export { default as ReportTabs } from './ReportTabs/ReportTabs';
 export { default as LoadingComplianceCards } from './LoadingComplianceCards/LoadingComplianceCards';
 export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingPoliciesTable';

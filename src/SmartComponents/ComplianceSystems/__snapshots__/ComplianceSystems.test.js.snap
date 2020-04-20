@@ -3,17 +3,11 @@
 exports[`ComplianceSystems expect to render without error 1`] = `
 <Fragment>
   <PageHeader
-    className="stable-page-header"
-    style={
-      Object {
-        "paddingBottom": "20px",
-      }
-    }
+    className="page-header"
   >
     <PageHeaderTitle
       title="Compliance systems"
     />
-    <withRouter(Connect(RouterParams)) />
   </PageHeader>
   <Connect(Main)>
     <Connect(withApollo(SystemsTable))

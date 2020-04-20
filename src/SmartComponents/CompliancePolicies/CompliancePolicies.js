@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     CompliancePoliciesEmptyState,
-    ComplianceTabs,
     ErrorPage,
     LoadingPoliciesTable,
     StateView,
@@ -40,7 +39,6 @@ const QUERY = gql`
 
 export const CompliancePolicies = () => {
     const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
-    const beta = insights.chrome.isBeta();
     let policies;
 
     if (data) {
@@ -52,7 +50,7 @@ export const CompliancePolicies = () => {
             <ErrorPage error={error}/>
         </StateViewPart>
         <StateViewPart stateKey='loading'>
-            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+            <PageHeader className='page-header'>
                 <PageHeaderTitle title="SCAP policies" />
             </PageHeader>
             <Main>
@@ -60,9 +58,8 @@ export const CompliancePolicies = () => {
             </Main>
         </StateViewPart>
         <StateViewPart stateKey='data'>
-            <PageHeader className={ beta ? 'beta-page-header' : 'stable-page-header' } >
+            <PageHeader className='page-header'>
                 <PageHeaderTitle title="SCAP policies" />
-                { !beta && <ComplianceTabs/> }
             </PageHeader>
             <Main>
                 { policies && policies.length === 0 ?
