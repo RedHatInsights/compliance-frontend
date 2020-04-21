@@ -38,6 +38,7 @@ const emptyRows = [{
 const policiesToRows = (policies) => (
     policies.map((policy) => (
         {
+            policyId: policy.id,
             cells: [
                 { title: <Link to={'/scappolicies/' + policy.id}>{policy.name}</Link>, original: policy.name },
                 {
@@ -148,16 +149,14 @@ export class PoliciesTable extends React.Component {
 
     actionResolver = (rowData) => {
         const { policies } = this.props;
-        const { itemsPerPage, page } = this.state;
-
-        const currentRowIndex = rowData.id + (page - 1) * itemsPerPage;
+        const policy = policies.find((p) => p.id === rowData.policyId);
 
         return [
             {
                 title: 'Delete policy',
                 onClick: () => {
                     this.setState((prev) => ({
-                        policyToDelete: policies[currentRowIndex],
+                        policyToDelete: policy,
                         isDeleteModalOpen: !prev.isDeleteModalOpen
                     }));
                 }
