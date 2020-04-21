@@ -14,9 +14,8 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
     className=""
     data-pf-content={true}
   >
-    Review your policy before finishing. SCAP security guide, policy type and name cannot be changed after initial creation. Make sure they are correct!
+    Review your policy before finishing.
   </h4>
-  <hr />
   <dl
     className=""
     data-pf-content={true}
@@ -25,7 +24,19 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       className=""
       data-pf-content={true}
     >
-      SCAP security guide
+      Operating system
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      RHEL 7
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      Security guide
     </dt>
     <dd
       className=""
@@ -49,7 +60,19 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       className=""
       data-pf-content={true}
     >
-      Generated ID
+      Policy name
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      C2S for Red Hat Enterprise Linux 6
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      Reference ID
     </dt>
     <dd
       className=""
@@ -61,7 +84,32 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       className=""
       data-pf-content={true}
     >
-      Number of systems
+      Compliance threshold
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      100
+      %
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      No. of rules
+    </dt>
+    <dd
+      className=""
+      data-pf-content={true}
+    >
+      1
+    </dd>
+    <dt
+      className=""
+      data-pf-content={true}
+    >
+      No. of systems
     </dt>
     <dd
       className=""

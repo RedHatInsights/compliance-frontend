@@ -18,13 +18,14 @@ import { useQuery } from '@apollo/react-hooks';
 const REVIEW = gql`
 query review($benchmarkId: String!) {
     benchmark(id: $benchmarkId) {
-        title,
+        title
+        refId
         version
     }
 }
 `;
 
-const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount }) => {
+const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCount, complianceThreshold, parentProfileName }) => {
     const { data, error, loading } = useQuery(REVIEW, { variables: { benchmarkId } });
 
     if (error) { return error; }
@@ -39,20 +40,28 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount }) => {
                 Review
             </Text>
             <Text component={TextVariants.h4}>
-                Review your policy before finishing. SCAP security guide, policy type
-                and name cannot be changed after initial creation. Make sure they are correct!
+                Review your policy before finishing.
             </Text>
-            <hr/>
             <TextList component={TextListVariants.dl}>
-                <TextListItem component={TextListItemVariants.dt}>SCAP security guide</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Operating system</TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>
+                    { benchmark.refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
+                </TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Security guide</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
                     {` ${benchmark.title} - ${benchmark.version}`}
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>Policy type</TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>{ parentProfileName }</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Policy name</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ name }</TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>Generated ID</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Reference ID</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ refId }</TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>Number of systems</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>Compliance threshold</TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>{ complianceThreshold }%</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>No. of rules</TextListItem>
+                <TextListItem component={TextListItemVariants.dd}>{ rulesCount }</TextListItem>
+                <TextListItem component={TextListItemVariants.dt}>No. of systems</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ systemsCount }</TextListItem>
             </TextList>
         </TextContent>
@@ -63,7 +72,10 @@ ReviewCreatedPolicy.propTypes = {
     benchmarkId: propTypes.string,
     refId: propTypes.string,
     name: propTypes.string,
-    systemsCount: propTypes.number
+    systemsCount: propTypes.number,
+    rulesCount: propTypes.number,
+    complianceThreshold: propTypes.number,
+    parentProfileName: propTypes.string
 };
 
 const selector = formValueSelector('policyForm');
@@ -73,6 +85,9 @@ export default connect(
         benchmarkId: selector(state, 'benchmark'),
         refId: selector(state, 'refId'),
         name: selector(state, 'name'),
-        systemsCount: selector(state, 'systems').length
+        systemsCount: selector(state, 'systems').length,
+        complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
+        parentProfileName: JSON.parse(selector(state, 'profile')).name,
+        rulesCount: selector(state, 'selectedRuleRefIds').length
     })
 )(ReviewCreatedPolicy);
