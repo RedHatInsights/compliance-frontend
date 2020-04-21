@@ -26,13 +26,7 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
         name
         refId
         rules {
-            title
-            severity
-            rationale
             refId
-            description
-            remediationAvailable
-            identifier
         }
     }
 }
