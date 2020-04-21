@@ -12,7 +12,8 @@ export const policyFormValues = {
         refId: 'xccdf_org.ssgproject.content_profile_C2S'
     }),
     refId: 'xccdf_org.ssgproject.content_profile_C2S',
-    systems: []
+    systems: [],
+    selectedRuleRefIds: ['myrulefrefid']
 };
 
 export const benchmarksQuery = [
