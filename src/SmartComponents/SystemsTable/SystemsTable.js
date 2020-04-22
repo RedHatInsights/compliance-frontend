@@ -242,7 +242,10 @@ class SystemsTable extends React.Component {
             { hideLabel: true }
         );
         const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
-        const exportConfig = enableExport ? { onSelect: this.onExportSelect } : {};
+        const exportConfig = enableExport ? {
+            isDisabled: items.length === 0,
+            onSelect: this.onExportSelect
+        } : {};
         const inventoryTableProps = {
             onRefresh: this.onRefresh,
             ref: this.inventory,

@@ -101,6 +101,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
   }
   exportConfig={
     Object {
+      "isDisabled": true,
       "onSelect": [Function],
     }
   }
@@ -199,6 +200,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
   }
   exportConfig={
     Object {
+      "isDisabled": true,
       "onSelect": [Function],
     }
   }
@@ -309,6 +311,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
   }
   exportConfig={
     Object {
+      "isDisabled": true,
       "onSelect": [Function],
     }
   }
@@ -419,6 +422,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
   }
   exportConfig={
     Object {
+      "isDisabled": false,
       "onSelect": [Function],
     }
   }
@@ -533,6 +537,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
   }
   exportConfig={
     Object {
+      "isDisabled": true,
       "onSelect": [Function],
     }
   }
