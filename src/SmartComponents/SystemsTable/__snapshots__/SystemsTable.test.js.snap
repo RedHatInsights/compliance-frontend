@@ -211,6 +211,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
   }
   exportConfig={
     Object {
+      "isDisabled": true,
       "onSelect": [Function],
     }
   }
