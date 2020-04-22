@@ -22,7 +22,9 @@ import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
-import { FILTER_CONFIGURATION } from '../../constants';
+import {
+    DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION
+} from '../../constants';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -87,7 +89,10 @@ const loadingState = {
 @registry()
 class SystemsTable extends React.Component {
     inventory = React.createRef();
-    filterConfig = new FilterConfigBuilder(FILTER_CONFIGURATION);
+    filterConfig = new FilterConfigBuilder([
+        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
+        ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : [])
+    ]);
     chipBuilder = this.filterConfig.getChipBuilder();
     filterBuilder = this.filterConfig.getFilterBuilder();
 
@@ -326,7 +331,8 @@ SystemsTable.propTypes = {
     showAllSystems: propTypes.bool,
     complianceThreshold: propTypes.number,
     showOnlySystemsWithTestResults: propTypes.bool,
-    showActions: propTypes.bool
+    showActions: propTypes.bool,
+    compliantFilter: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -338,7 +344,8 @@ SystemsTable.defaultProps = {
     complianceThreshold: 0,
     showOnlySystemsWithTestResults: false,
     showActions: true,
-    selectedEntities: []
+    selectedEntities: [],
+    compliantFilter: false
 };
 
 const mapStateToProps = state => {

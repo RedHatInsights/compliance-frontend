@@ -8,7 +8,6 @@ Object {
     "70-89",
     "90-100",
   ],
-  "compliant": Array [],
   "name": "",
 }
 `;
@@ -18,16 +17,15 @@ Object {
   "compliancescore": Array [
     "0-49",
     "50-69",
+    "70-89",
     "90-100",
   ],
-  "compliant": Array [],
   "name": "",
 }
 `;
 
 exports[`SystemsTable Instance functions #deleteFilter set search in state properly 3`] = `
 Object {
-  "compliancescore": Array [],
   "compliant": Array [
     "false",
   ],
@@ -37,32 +35,27 @@ Object {
 
 exports[`SystemsTable Instance functions #deleteFilter set search in state properly 4`] = `
 Object {
-  "compliancescore": Array [],
-  "compliant": Array [],
+  "compliant": Array [
+    "false",
+  ],
   "name": "",
 }
 `;
 
 exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 1`] = `
 Object {
-  "compliancescore": Array [],
-  "compliant": Array [],
   "name": "",
 }
 `;
 
 exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 2`] = `
 Object {
-  "compliancescore": Array [],
-  "compliant": Array [],
   "name": "SEARCH TERM",
 }
 `;
 
 exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 3`] = `
 Object {
-  "compliancescore": Array [],
-  "compliant": Array [],
   "name": "",
 }
 `;
@@ -74,7 +67,6 @@ Object {
     "50-69",
     "90-100",
   ],
-  "compliant": Array [],
   "name": "",
 }
 `;
@@ -117,52 +109,6 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
           "id": "name",
           "label": "Name",
           "type": "text",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "Compliant",
-                "value": "true",
-              },
-              Object {
-                "label": "Non-compliant",
-                "value": "false",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliant",
-          "label": "Compliant",
-          "type": "checkbox",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "90 - 100%",
-                "value": "90-100",
-              },
-              Object {
-                "label": "70 - 89%",
-                "value": "70-89",
-              },
-              Object {
-                "label": "50 - 69%",
-                "value": "50-69",
-              },
-              Object {
-                "label": "Less than 50%",
-                "value": "0-49",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliancescore",
-          "label": "Compliance score",
-          "type": "checkbox",
         },
       ],
     }
@@ -217,52 +163,6 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
           "label": "Name",
           "type": "text",
         },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "Compliant",
-                "value": "true",
-              },
-              Object {
-                "label": "Non-compliant",
-                "value": "false",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliant",
-          "label": "Compliant",
-          "type": "checkbox",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "90 - 100%",
-                "value": "90-100",
-              },
-              Object {
-                "label": "70 - 89%",
-                "value": "70-89",
-              },
-              Object {
-                "label": "50 - 69%",
-                "value": "50-69",
-              },
-              Object {
-                "label": "Less than 50%",
-                "value": "0-49",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliancescore",
-          "label": "Compliance score",
-          "type": "checkbox",
-        },
       ],
     }
   }
@@ -290,6 +190,70 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
 `;
 
 exports[`SystemsTable expect to render a loading state 1`] = `
+<ForwardRef
+  actions={
+    Array [
+      Object {
+        "onClick": [Function],
+        "title": "Edit policies for this system",
+      },
+      Object {
+        "onClick": [Function],
+        "title": "View in inventory",
+      },
+    ]
+  }
+  activeFiltersConfig={
+    Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    }
+  }
+  exportConfig={
+    Object {
+      "onSelect": [Function],
+    }
+  }
+  filterConfig={
+    Object {
+      "hideLabel": true,
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onSubmit": [Function],
+            "value": "",
+          },
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+        },
+      ],
+    }
+  }
+  items={Array []}
+  onRefresh={[Function]}
+  page={1}
+  perPage={50}
+  total={0}
+>
+  <ToolbarGroup>
+    <ToolbarItem
+      style={
+        Object {
+          "marginLeft": "var(--pf-global--spacer--lg)",
+        }
+      }
+    >
+      <Connect(ComplianceRemediationButton)
+        allSystems={Array []}
+        selectedRules={Array []}
+      />
+    </ToolbarItem>
+  </ToolbarGroup>
+</ForwardRef>
+`;
+
+exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
 <ForwardRef
   actions={
     Array [
@@ -439,52 +403,6 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
           "label": "Name",
           "type": "text",
         },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "Compliant",
-                "value": "true",
-              },
-              Object {
-                "label": "Non-compliant",
-                "value": "false",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliant",
-          "label": "Compliant",
-          "type": "checkbox",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "90 - 100%",
-                "value": "90-100",
-              },
-              Object {
-                "label": "70 - 89%",
-                "value": "70-89",
-              },
-              Object {
-                "label": "50 - 69%",
-                "value": "50-69",
-              },
-              Object {
-                "label": "Less than 50%",
-                "value": "0-49",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliancescore",
-          "label": "Compliance score",
-          "type": "checkbox",
-        },
       ],
     }
   }
@@ -553,52 +471,6 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
           "id": "name",
           "label": "Name",
           "type": "text",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "Compliant",
-                "value": "true",
-              },
-              Object {
-                "label": "Non-compliant",
-                "value": "false",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliant",
-          "label": "Compliant",
-          "type": "checkbox",
-        },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
-                "label": "90 - 100%",
-                "value": "90-100",
-              },
-              Object {
-                "label": "70 - 89%",
-                "value": "70-89",
-              },
-              Object {
-                "label": "50 - 69%",
-                "value": "50-69",
-              },
-              Object {
-                "label": "Less than 50%",
-                "value": "0-49",
-              },
-            ],
-            "onChange": [Function],
-            "value": Array [],
-          },
-          "id": "compliancescore",
-          "label": "Compliance score",
-          "type": "checkbox",
         },
       ],
     }

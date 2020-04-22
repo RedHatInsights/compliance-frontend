@@ -179,7 +179,11 @@ export const ReportDetails = ({ match, history }) => {
             <Main>
                 <Grid gutter='md'>
                     <GridItem span={12}>
-                        <SystemsTable showOnlySystemsWithTestResults policyId={profile.id} columns={columns} />
+                        <SystemsTable
+                            showOnlySystemsWithTestResults
+                            compliantFilter
+                            policyId={profile.id}
+                            columns={columns} />
                     </GridItem>
                 </Grid>
             </Main>
