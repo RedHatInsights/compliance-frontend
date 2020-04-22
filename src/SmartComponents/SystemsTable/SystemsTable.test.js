@@ -60,7 +60,7 @@ describe('SystemsTable', () => {
 
     it('expect to not render a loading state', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } items={ items.data.systems } systemsCount= { 1 } />
+            <SystemsTable { ...defaultProps } items={ items.data.systems } entityCount= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -69,7 +69,7 @@ describe('SystemsTable', () => {
 
     it('expect to not show actions if showActions is false', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } showActions={false} items={ items.data.systems } systemsCount= { 1 } />
+            <SystemsTable { ...defaultProps } showActions={false} items={ items.data.systems } entityCount= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -78,7 +78,7 @@ describe('SystemsTable', () => {
 
     it('expect to show actions if showActions is true or by default', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } items={ items.data.systems } systemsCount= { 1 } />
+            <SystemsTable { ...defaultProps } items={ items.data.systems } entityCount= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -89,12 +89,32 @@ describe('SystemsTable', () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps }
                 items={ items.data.systems }
-                systemsCount= { 1 }
+                entityCount= { 1 }
                 compliantFilter={ true } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-        expect(global.insights.loadInventory).toHaveBeenCalled();
+    });
+
+    it('expect to set isDisable on export config to true entityCount is 0', () => {
+        const wrapper = shallow(
+            <SystemsTable { ...defaultProps }
+                items={ items.data.systems }
+                entityCount= { 0 } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to set isDisable on export config to false entityCount is 0 but selected is not', () => {
+        const wrapper = shallow(
+            <SystemsTable { ...defaultProps }
+                items={ items.data.systems }
+                entityCount= { 0 }
+                selectedEntities={ 1 } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
     });
 
     it('expect to set loading state correctly on systemfetch', async () => {
