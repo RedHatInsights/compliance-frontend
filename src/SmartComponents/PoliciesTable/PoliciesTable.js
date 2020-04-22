@@ -147,19 +147,22 @@ export class PoliciesTable extends React.Component {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0])
     )
 
-    actionResolver = (rowData) => {
-        const { policies } = this.props;
-        const policy = policies.find((p) => p.id === rowData.policyId);
+    setAndDeletePolicy = (policyId) => (
+        this.setState((prev) => ({
+            policyToDelete: this.props.policies.find((policy) => (
+                policy.id === policyId
+            )),
+            isDeleteModalOpen: !prev.isDeleteModalOpen
+        }))
+    )
 
+    actionResolver = () => {
         return [
             {
                 title: 'Delete policy',
-                onClick: () => {
-                    this.setState((prev) => ({
-                        policyToDelete: policy,
-                        isDeleteModalOpen: !prev.isDeleteModalOpen
-                    }));
-                }
+                onClick: (_event, _index, { policyId }) => (
+                    this.setAndDeletePolicy(policyId)
+                )
             }
         ];
     }
@@ -208,7 +211,7 @@ export class PoliciesTable extends React.Component {
                 aria-label='policies'
                 className='compliance-policies-table'
                 cells={ this.columns }
-                actionResolver={ rows.length > 0 && this.actionResolver}
+                actionResolver={ rows.length > 0 && this.actionResolver }
                 rows={ (rows.length === 0) ? emptyRows : rows }>
                 <TableHeader />
                 <TableBody />
