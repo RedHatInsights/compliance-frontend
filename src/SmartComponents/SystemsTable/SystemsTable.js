@@ -223,6 +223,8 @@ class SystemsTable extends React.Component {
             pfReactTable
         });
 
+        this.props.clearInventoryFilter();
+
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
@@ -332,7 +334,8 @@ SystemsTable.propTypes = {
     complianceThreshold: propTypes.number,
     showOnlySystemsWithTestResults: propTypes.bool,
     showActions: propTypes.bool,
-    compliantFilter: propTypes.bool
+    compliantFilter: propTypes.bool,
+    clearInventoryFilter: propTypes.func
 };
 
 SystemsTable.defaultProps = {
@@ -362,6 +365,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        clearInventoryFilter: () => dispatch({ type: 'CLEAR_FILTERS' }),
         exportToCSV: event => dispatch(exportToCSV(event))
     };
 };
