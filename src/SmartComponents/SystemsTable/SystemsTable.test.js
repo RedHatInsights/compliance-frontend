@@ -85,6 +85,18 @@ describe('SystemsTable', () => {
         expect(global.insights.loadInventory).toHaveBeenCalled();
     });
 
+    it('expect to set compliant filters when enabled', () => {
+        const wrapper = shallow(
+            <SystemsTable { ...defaultProps }
+                items={ items.data.systems }
+                systemsCount= { 1 }
+                compliantFilter={ true } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+        expect(global.insights.loadInventory).toHaveBeenCalled();
+    });
+
     it('expect to set loading state correctly on systemfetch', async () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps } />

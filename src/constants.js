@@ -14,13 +14,16 @@ export const API_HEADERS = {
     Accept: 'application/json'
 };
 
-export const FILTER_CONFIGURATION = [
+export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.text,
         label: 'Name',
         event: 'onSubmit',
         filterString: (value) => (`name ~ ${value}`)
-    },
+    }
+];
+
+export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.checkbox,
         label: 'Compliant',
@@ -45,4 +48,3 @@ export const FILTER_CONFIGURATION = [
         ]
     }
 ];
-
