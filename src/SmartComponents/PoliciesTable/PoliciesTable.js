@@ -38,6 +38,7 @@ const emptyRows = [{
 const policiesToRows = (policies) => (
     policies.map((policy) => (
         {
+            policyId: policy.id,
             cells: [
                 { title: <Link to={'/scappolicies/' + policy.id}>{policy.name}</Link>, original: policy.name },
                 {
@@ -146,21 +147,22 @@ export class PoliciesTable extends React.Component {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0])
     )
 
-    actionResolver = (rowData) => {
-        const { policies } = this.props;
-        const { itemsPerPage, page } = this.state;
+    setAndDeletePolicy = (policyId) => (
+        this.setState((prev) => ({
+            policyToDelete: this.props.policies.find((policy) => (
+                policy.id === policyId
+            )),
+            isDeleteModalOpen: !prev.isDeleteModalOpen
+        }))
+    )
 
-        const currentRowIndex = rowData.id + (page - 1) * itemsPerPage;
-
+    actionResolver = () => {
         return [
             {
                 title: 'Delete policy',
-                onClick: () => {
-                    this.setState((prev) => ({
-                        policyToDelete: policies[currentRowIndex],
-                        isDeleteModalOpen: !prev.isDeleteModalOpen
-                    }));
-                }
+                onClick: (_event, _index, { policyId }) => (
+                    this.setAndDeletePolicy(policyId)
+                )
             }
         ];
     }
@@ -209,7 +211,7 @@ export class PoliciesTable extends React.Component {
                 aria-label='policies'
                 className='compliance-policies-table'
                 cells={ this.columns }
-                actionResolver={ rows.length > 0 && this.actionResolver}
+                actionResolver={ rows.length > 0 && this.actionResolver }
                 rows={ (rows.length === 0) ? emptyRows : rows }>
                 <TableHeader />
                 <TableBody />
