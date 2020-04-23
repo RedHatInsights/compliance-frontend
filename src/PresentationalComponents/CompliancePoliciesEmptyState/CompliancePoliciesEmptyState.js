@@ -33,11 +33,10 @@ const CompliancePoliciesEmptyState = ({ title }) => (
             </EmptyStateBody>
             <CreatePolicy onWizardFinish={() => { location.reload(); }} />
             <EmptyStateSecondaryActions>
-                <a target='_blank' rel='noopener noreferrer' href='https://www.open-scap.org/getting-started/'>
-                    <Button variant='link'>
-                        Learn about OpenSCAP and Compliance
-                    </Button>
-                </a>
+                <Button variant='link' component='a' target='_blank' rel='noopener noreferrer'
+                    href='https://www.open-scap.org/getting-started/' >
+                    Learn about OpenSCAP and Compliance
+                </Button>
             </EmptyStateSecondaryActions>
         </EmptyState>
     </Bullseye>

@@ -33,17 +33,15 @@ exports[`CompliancePoliciesEmptyState expect to render without error 1`] = `
       onWizardFinish={[Function]}
     />
     <EmptyStateSecondaryActions>
-      <a
+      <Component
+        component="a"
         href="https://www.open-scap.org/getting-started/"
         rel="noopener noreferrer"
         target="_blank"
+        variant="link"
       >
-        <Component
-          variant="link"
-        >
-          Learn about OpenSCAP and Compliance
-        </Component>
-      </a>
+        Learn about OpenSCAP and Compliance
+      </Component>
     </EmptyStateSecondaryActions>
   </EmptyState>
 </Bullseye>
