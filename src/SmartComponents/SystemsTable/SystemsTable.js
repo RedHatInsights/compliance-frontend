@@ -209,6 +209,11 @@ class SystemsTable extends React.Component {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0]);
     }, 500)
 
+    isExportDisabled = () => {
+        const { entityCount, selectedEntities } = this.props;
+        return (entityCount || 0) === 0 && selectedEntities.length === 0;
+    }
+
     async fetchInventory() {
         const { columns, policyId, showAllSystems, clearInventoryFilter } = this.props;
         const {
@@ -238,7 +243,9 @@ class SystemsTable extends React.Component {
     }
 
     render() {
-        const { remediationsEnabled, compact, enableExport, showAllSystems, showActions, selectedEntities } = this.props;
+        const {
+            remediationsEnabled, compact, enableExport, showAllSystems, showActions, selectedEntities
+        } = this.props;
         const {
             page, totalCount, perPage, items, InventoryCmp, selectedSystemId,
             selectedSystemFqdn, isAssignPoliciesModalOpen
@@ -250,7 +257,7 @@ class SystemsTable extends React.Component {
         );
         const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
         const exportConfig = enableExport ? {
-            isDisabled: items.length === 0,
+            isDisabled: this.isExportDisabled(),
             onSelect: this.onExportSelect
         } : {};
         const inventoryTableProps = {
@@ -335,6 +342,7 @@ SystemsTable.propTypes = {
     showOnlySystemsWithTestResults: propTypes.bool,
     showActions: propTypes.bool,
     compliantFilter: propTypes.bool,
+    entityCount: propTypes.number,
     clearInventoryFilter: propTypes.func
 };
 
@@ -357,6 +365,7 @@ const mapStateToProps = state => {
     }
 
     return {
+        entityCount: state.entities.count,
         selectedEntities: state.entities.rows.
         filter(entity => entity.selected).
         map(entity => entity.id)
