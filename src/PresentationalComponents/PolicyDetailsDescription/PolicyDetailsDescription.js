@@ -48,7 +48,7 @@ const PolicyDetailsDescription = ({ policy }) => (
                 <Text component={TextVariants.p}>
                     { policy.businessObjective && policy.businessObjective.title || '-' }
                 </Text>
-                <Text component={TextVariants.h5}>Description</Text>
+                <Text component={TextVariants.h5}>Policy description</Text>
                 <Text component={TextVariants.p}>
                     <Truncate text={linkifyHtml(policy.description || '')} length={380} inline={true} />
                 </Text>
@@ -56,8 +56,16 @@ const PolicyDetailsDescription = ({ policy }) => (
                     Operating system
                 </Text>
                 <Text component={TextVariants.p}>
-                    RHEL { policy.majorOsVersion } (SSG { policy.benchmark.version })
+                    RHEL { policy.majorOsVersion }
                 </Text>
+                <Text component={TextVariants.h5}>
+                    Security guide (SSG) version
+                </Text>
+                <Text component={TextVariants.p}>
+                    { policy.benchmark.title } { policy.benchmark.version }
+                </Text>
+                <Text component={TextVariants.h5}>Policy type </Text>
+                <Text component={TextVariants.p}>{ policy.policy.name }</Text>
                 <Text component={TextVariants.h5}>Reference ID</Text>
                 <Text component={TextVariants.p}>{ policy.refId }</Text>
             </TextContent>

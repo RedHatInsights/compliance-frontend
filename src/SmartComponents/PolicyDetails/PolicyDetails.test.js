@@ -27,11 +27,15 @@ const mocks = [
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
+                    policy: {
+                        name: 'parentpolicy'
+                    },
                     businessObjective: {
                         id: '1',
                         title: 'BO 1'
                     },
                     benchmark: {
+                        title: 'benchmark',
                         version: '0.1.5'
                     }
                 }

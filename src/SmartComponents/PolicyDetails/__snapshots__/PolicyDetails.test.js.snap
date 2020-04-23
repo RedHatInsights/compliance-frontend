@@ -229,7 +229,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
             class=""
             data-pf-content="true"
           >
-            Description
+            Policy description
           </h5>
           <p
             class=""
@@ -253,9 +253,32 @@ exports[`PolicyDetails expect to render without error 1`] = `
             data-pf-content="true"
           >
             RHEL 
-             (SSG 
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Security guide (SSG) version
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            benchmark
+             
             0.1.5
-            )
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Policy type 
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            parentpolicy
           </p>
           <h5
             class=""
@@ -505,7 +528,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
             class=""
             data-pf-content="true"
           >
-            Description
+            Policy description
           </h5>
           <p
             class=""
@@ -529,9 +552,32 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
             data-pf-content="true"
           >
             RHEL 
-             (SSG 
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Security guide (SSG) version
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            benchmark
+             
             0.1.5
-            )
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Policy type 
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            parentpolicy
           </p>
           <h5
             class=""
@@ -781,7 +827,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
             class=""
             data-pf-content="true"
           >
-            Description
+            Policy description
           </h5>
           <p
             class=""
@@ -805,9 +851,32 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
             data-pf-content="true"
           >
             RHEL 
-             (SSG 
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Security guide (SSG) version
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            benchmark
+             
             0.1.5
-            )
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Policy type 
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            parentpolicy
           </p>
           <h5
             class=""
@@ -1057,7 +1126,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
             class=""
             data-pf-content="true"
           >
-            Description
+            Policy description
           </h5>
           <p
             class=""
@@ -1081,9 +1150,32 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
             data-pf-content="true"
           >
             RHEL 
-             (SSG 
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Security guide (SSG) version
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            benchmark
+             
             0.1.5
-            )
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Policy type 
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            parentpolicy
           </p>
           <h5
             class=""
@@ -1333,7 +1425,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
             class=""
             data-pf-content="true"
           >
-            Description
+            Policy description
           </h5>
           <p
             class=""
@@ -1357,9 +1449,32 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
             data-pf-content="true"
           >
             RHEL 
-             (SSG 
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Security guide (SSG) version
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            benchmark
+             
             0.1.5
-            )
+          </p>
+          <h5
+            class=""
+            data-pf-content="true"
+          >
+            Policy type 
+          </h5>
+          <p
+            class=""
+            data-pf-content="true"
+          >
+            parentpolicy
           </p>
           <h5
             class=""
