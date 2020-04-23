@@ -86,9 +86,7 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -288,9 +286,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -369,9 +365,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -474,9 +468,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -758,9 +750,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                             <b>
                               foo
                             </b>
-                            ?
-                            <br />
-                            This cannot be undone.
+                            ? This cannot be undone.
                           </div>
                         </TextContent>
                       </div>
@@ -1000,9 +990,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -1093,9 +1081,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                     <b>
                       foo
                     </b>
-                    ?
-                    <br />
-                    This cannot be undone.
+                    ? This cannot be undone.
                   </div>
                 </div>
                 <div
@@ -1295,9 +1281,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                             <b>
                               foo
                             </b>
-                            ?
-                            <br />
-                            This cannot be undone.
+                            ? This cannot be undone.
                           </div>
                         </TextContent>
                       </div>
