@@ -37,7 +37,10 @@ const ReportsSystems = () => {
                 <ReportTabs/>
             </PageHeader>
             <Main>
-                <SystemsTable showOnlySystemsWithTestResults columns={columns} />
+                <SystemsTable
+                    compliantFilter
+                    showOnlySystemsWithTestResults
+                    columns={columns} />
             </Main>
         </React.Fragment>
     );

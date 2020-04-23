@@ -44,6 +44,7 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
           },
         ]
       }
+      compliantFilter={true}
       showOnlySystemsWithTestResults={true}
     />
   </Connect(Main)>
@@ -94,6 +95,7 @@ exports[`ReportsSystems expect to render without error in stable 1`] = `
           },
         ]
       }
+      compliantFilter={true}
       showOnlySystemsWithTestResults={true}
     />
   </Connect(Main)>
