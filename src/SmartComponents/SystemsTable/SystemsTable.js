@@ -210,7 +210,7 @@ class SystemsTable extends React.Component {
     }, 500)
 
     async fetchInventory() {
-        const { columns, policyId, showAllSystems } = this.props;
+        const { columns, policyId, showAllSystems, clearInventoryFilter } = this.props;
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -223,7 +223,7 @@ class SystemsTable extends React.Component {
             pfReactTable
         });
 
-        this.props.clearInventoryFilter();
+        clearInventoryFilter();
 
         this.getRegistry().register({
             ...mergeWithEntities(
