@@ -366,7 +366,7 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
 `;
 
 exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] = `
-<mockConstructor
+<ForwardRef
   actions={
     Array [
       Object {
@@ -431,7 +431,7 @@ exports[`SystemsTable expect to set loading state correctly on systemfetch 1`] =
       />
     </ToolbarItem>
   </ToolbarGroup>
-</mockConstructor>
+</ForwardRef>
 `;
 
 exports[`SystemsTable expect to show actions if showActions is true or by default 1`] = `
