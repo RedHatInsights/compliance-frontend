@@ -45,7 +45,6 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                         refId
                         title
                         compliant
-                        remediationAvailable
                     }
                 }
             }

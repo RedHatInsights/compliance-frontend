@@ -7,11 +7,11 @@ export const profilesRulesPassed = (profiles) => (
 );
 
 export const systemRulesPassed = (system) => (
-    profilesRulesPassed(system.profiles)
+    system.profiles ? profilesRulesPassed(system.profiles) : []
 );
 
 export const systemRulesFailed = (system) => (
-    profilesRulesFailed(system.profiles)
+    system.profiles ? profilesRulesFailed(system.profiles) : []
 );
 
 export const systemsWithRuleObjectsFailed = (systems) => (
