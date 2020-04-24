@@ -47,6 +47,7 @@ query Profile($policyId: String!){
             id
         }
         benchmark {
+            id
             version
         }
         businessObjective {

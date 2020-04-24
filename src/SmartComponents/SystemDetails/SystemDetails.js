@@ -31,6 +31,7 @@ import InventoryDetails from 'SmartComponents';
 const QUERY = gql`
 query System($inventoryId: String!){
     system(id: $inventoryId) {
+        id
         name
     }
 }

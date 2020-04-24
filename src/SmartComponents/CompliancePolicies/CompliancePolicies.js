@@ -24,6 +24,7 @@ const QUERY = gql`
                 totalHostCount
                 majorOsVersion
                 benchmark {
+                    id
                     title
                     version
                 }
