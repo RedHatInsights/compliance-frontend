@@ -38,6 +38,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 profiles {
                     id
                     name
+                    refId
                     lastScanned
                     compliant
                     score
@@ -45,6 +46,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                         refId
                         title
                         compliant
+                        remediationAvailable
                     }
                 }
             }
