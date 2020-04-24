@@ -18,7 +18,7 @@
     "@patternfly/react-table": "^2.28.29",
     "@patternfly/react-tokens": "^2.8.13",
     "@redhat-cloud-services/frontend-components": "^1.0.20",
-    "@redhat-cloud-services/frontend-components-inventory-compliance": "^1.0.9",
+    "@redhat-cloud-services/frontend-components-inventory-compliance": "^1.0.10",
     "@redhat-cloud-services/frontend-components-notifications": "^1.0.2",
     "@redhat-cloud-services/frontend-components-remediations": "^1.0.2",
     "@redhat-cloud-services/frontend-components-utilities": "^1.0.1",
