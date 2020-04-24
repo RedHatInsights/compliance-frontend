@@ -3,6 +3,7 @@ import {
     lastScanned,
     compliant,
     findProfiles,
+    profileNames,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from './SystemStore.fixtures';
@@ -175,6 +176,18 @@ describe('.findProfiles', () => {
         };
         expect(findProfiles(system, ['1'])).toEqual([system.profiles[0]]);
         expect(findProfiles(system, ['1', '2'])).toEqual(system.profiles);
+    });
+});
+
+describe('.profileNames', () => {
+    it('should include external if profile is external', () => {
+        const system = {
+            profiles: [
+                { external: true, name: 'HIPAA' },
+                { external: false, name: 'PCI' }
+            ]
+        };
+        expect(profileNames(system)).toEqual('(External) HIPAA, PCI');
     });
 });
 

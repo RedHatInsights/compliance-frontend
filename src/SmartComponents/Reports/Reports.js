@@ -58,7 +58,7 @@ export const Reports = () => {
         const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
 
         if (profiles.length) {
-            pageHeader = <PageHeader className='page-header'>
+            pageHeader = <PageHeader className='page-header-tabs'>
                 <PageHeaderTitle title="Compliance reports" />
                 <ReportTabs/>
             </PageHeader>;

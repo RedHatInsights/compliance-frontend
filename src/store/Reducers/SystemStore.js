@@ -53,6 +53,14 @@ export const score = (system, profileId) => {
     return 0;
 };
 
+export const profileNames = (system) => {
+    if (system === {}) { return ''; }
+
+    return system.profiles.map(
+        (profile) => `${profile.external ? '(External) ' : '' }${profile.name}`
+    ).join(', ');
+};
+
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
     entities.map(entity => {
         // This should compare the inventory ID instead with
@@ -68,8 +76,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
             matchingSystem = { profiles: [] };
         }
 
-        matchingSystem.profileNames = matchingSystem === {} ? '' :
-            matchingSystem.profiles.map((profile) => profile.name).join(', ');
+        matchingSystem.profileNames = profileNames(matchingSystem);
         matchingSystem.rulesPassed = rulesCount(matchingSystem, 'rulesPassed', profileId);
         matchingSystem.rulesFailed = rulesCount(matchingSystem, 'rulesFailed', profileId);
         matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);

@@ -88,7 +88,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
             <Main><Spinner/></Main>
         </StateViewPart>
         <StateViewPart stateKey='data'>
-            <PageHeader className='page-header'>
+            <PageHeader className='page-header-tabs'>
                 <Breadcrumb>
                     <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/scappolicies`}
                         onClick={ (event) => onNavigateWithProps(event) }>

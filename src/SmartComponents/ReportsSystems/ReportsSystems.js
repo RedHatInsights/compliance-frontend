@@ -32,7 +32,7 @@ const ReportsSystems = () => {
 
     return (
         <React.Fragment>
-            <PageHeader className='page-header'>
+            <PageHeader className='page-header-tabs'>
                 <PageHeaderTitle title="Compliance reports" />
                 <ReportTabs/>
             </PageHeader>

@@ -3,7 +3,7 @@
 exports[`ReportsSystems expect to render without error in beta 1`] = `
 <Fragment>
   <PageHeader
-    className="page-header"
+    className="page-header-tabs"
   >
     <PageHeaderTitle
       title="Compliance reports"
@@ -54,7 +54,7 @@ exports[`ReportsSystems expect to render without error in beta 1`] = `
 exports[`ReportsSystems expect to render without error in stable 1`] = `
 <Fragment>
   <PageHeader
-    className="page-header"
+    className="page-header-tabs"
   >
     <PageHeaderTitle
       title="Compliance reports"

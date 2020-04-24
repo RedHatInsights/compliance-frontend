@@ -3,7 +3,7 @@
 exports[`PolicyDetails expect to render without error 1`] = `
 <div>
   <section
-    class="page-header pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
@@ -302,7 +302,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
 exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
 <div>
   <section
-    class="page-header pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
@@ -601,7 +601,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
 exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
 <div>
   <section
-    class="page-header pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
@@ -900,7 +900,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
 exports[`PolicyDetailsQuery renders without error 1`] = `
 <div>
   <section
-    class="page-header pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
@@ -1199,7 +1199,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
 exports[`PolicyDetailsQuery renders without error 2`] = `
 <div>
   <section
-    class="page-header pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <nav
