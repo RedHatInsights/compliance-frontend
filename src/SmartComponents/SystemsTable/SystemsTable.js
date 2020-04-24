@@ -20,7 +20,7 @@ import  {
 } from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
-import { systemsWithRuleObjectsFailed } from 'Utilities/RuleRemediationsFinder';
+import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import {

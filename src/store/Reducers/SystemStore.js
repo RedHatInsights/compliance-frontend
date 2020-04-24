@@ -9,7 +9,10 @@ import {
     complianceScoreString
 } from 'PresentationalComponents';
 import { Text } from '@patternfly/react-core';
-import { profileRulesPassed, profileRulesFailed } from 'Utilities/RuleRemediationsFinder';
+import {
+    profilesRulesPassed,
+    profilesRulesFailed
+} from 'Utilities/ruleHelpers';
 
 export const findProfiles = (system, profileIds) => {
     let profiles = system.profiles;
@@ -30,12 +33,6 @@ export const lastScanned = (system, profileId) => {
     return result;
 };
 
-export const rulesCount = (system, rulesMethod, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
-    const rulesCount = profiles.map((profile) => profile[rulesMethod]);
-    return (rulesCount.length > 0 && rulesCount.reduce((acc, curr) => acc + curr)) || 0;
-};
-
 export const compliant = (system, profileId) => {
     const profiles = findProfiles(system, [profileId]);
     return profiles.every(profile => profile.compliant === true);
@@ -45,7 +42,7 @@ export const score = (system, profileId) => {
     const profiles = findProfiles(system, [profileId]);
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
-        if (profileRulesPassed(profile).length + profileRulesFailed(profile).length > 0) { return acc + 1; }
+        if (profilesRulesPassed([profile]).length + profilesRulesFailed([profile]).length > 0) { return acc + 1; }
 
         return acc;
     }, 0);
@@ -78,8 +75,8 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         }
 
         matchingSystem.profileNames = profileNames(matchingSystem);
-        matchingSystem.rulesPassed = profileRulesPassed(findProfiles(matchingSystem, [profileId])[0]).length;
-        matchingSystem.rulesFailed = profileRulesFailed(findProfiles(matchingSystem, [profileId])[0]).length;
+        matchingSystem.rulesPassed = profilesRulesPassed(findProfiles(matchingSystem, [profileId])).length;
+        matchingSystem.rulesFailed = profilesRulesFailed(findProfiles(matchingSystem, [profileId])).length;
         matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
         matchingSystem.compliant = compliant(matchingSystem, profileId);
         matchingSystem.score = score(matchingSystem, profileId);
