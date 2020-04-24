@@ -1,5 +1,4 @@
 import {
-    rulesCount,
     lastScanned,
     compliant,
     findProfiles,
@@ -51,36 +50,6 @@ describe('mapping systems to inventory entities', () => {
         expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(entities.map(e => e.display_name).sort());
         expect(inventoryEntities.map(entity => entity.facts.compliance.compliance_score_text).sort()).
         toEqual(systemComplianceScores.sort());
-    });
-});
-
-describe('.rulesCount', () => {
-    it('should set rules count as the sum over all profiles', () => {
-        const system = {
-            profiles: [
-                { rulesPassed: 3, rulesFailed: 1 },
-                { rulesPassed: 10, rulesFailed: 3 }
-            ]
-        };
-        expect(rulesCount(system, 'rulesPassed')).toEqual(13);
-        expect(rulesCount(system, 'rulesFailed')).toEqual(4);
-    });
-
-    it('should set rules count even if profiles is an empty array', () => {
-        const system = { profiles: [] };
-        expect(rulesCount(system, 'rulesPassed')).toEqual(0);
-        expect(rulesCount(system, 'rulesFailed')).toEqual(0);
-    });
-
-    it('should set rules count for a specific profile', () => {
-        const system = {
-            profiles: [
-                { id: '1', rulesPassed: 3, rulesFailed: 1 },
-                { id: '2', rulesPassed: 10, rulesFailed: 3 }
-            ]
-        };
-        expect(rulesCount(system, 'rulesPassed', '1')).toEqual(3);
-        expect(rulesCount(system, 'rulesFailed', '1')).toEqual(1);
     });
 });
 

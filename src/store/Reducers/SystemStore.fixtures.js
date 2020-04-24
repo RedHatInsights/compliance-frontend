@@ -7,34 +7,294 @@ export const systems = [
             profiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
-                    rulesPassed: 17,
-                    rulesFailed: 34,
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    rules: [
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
+                            title: 'Ensure Software Patches Installed',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_owner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg User Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_groupowner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg Group Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action',
+                            title: 'Configure auditd max_log_file_action Upon Reaching Maximum Log Size',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_login_events',
+                            title: 'Record Attempts to Alter Logon and Logout Events',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_stime',
+                            title: 'Record Attempts to Alter Time Through stime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_settimeofday',
+                            title: 'Record attempts to alter time through settimeofday',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
+                            title: 'Record Attempts to Alter the localtime File',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime',
+                            title: 'Record Attempts to Alter Time Through clock_settime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_networkconfig_modification',
+                            title: 'Record Events that Modify the System\'s Network Environment',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_usergroup_modification',
+                            title: 'Record Events that Modify User/Group Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_session_events',
+                            title: 'Record Attempts to Alter Process and Session Initiation Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_immutable',
+                            title: 'Make the auditd Configuration Immutable',
+                            compliant: false
+                        }
+                    ],
                     score: 40
                 },
                 {
                     name: 'DISA STIG for Red Hat Enterprise Linux 7',
-                    rulesPassed: 65,
-                    rulesFailed: 152,
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    rules: [
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
+                            title: 'Ensure Software Patches Installed',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_owner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg User Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_groupowner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg Group Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action',
+                            title: 'Configure auditd max_log_file_action Upon Reaching Maximum Log Size',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_login_events',
+                            title: 'Record Attempts to Alter Logon and Logout Events',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_stime',
+                            title: 'Record Attempts to Alter Time Through stime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_settimeofday',
+                            title: 'Record attempts to alter time through settimeofday',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
+                            title: 'Record Attempts to Alter the localtime File',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime',
+                            title: 'Record Attempts to Alter Time Through clock_settime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_networkconfig_modification',
+                            title: 'Record Events that Modify the System\'s Network Environment',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_usergroup_modification',
+                            title: 'Record Events that Modify User/Group Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_session_events',
+                            title: 'Record Attempts to Alter Process and Session Initiation Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_immutable',
+                            title: 'Make the auditd Configuration Immutable',
+                            compliant: false
+                        }
+                    ],
                     score: 0
                 },
                 {
                     name: 'United States Government Configuration Baseline',
-                    rulesPassed: 171,
-                    rulesFailed: 190,
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    rules: [
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
+                            title: 'Ensure Software Patches Installed',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_owner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg User Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_groupowner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg Group Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action',
+                            title: 'Configure auditd max_log_file_action Upon Reaching Maximum Log Size',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_login_events',
+                            title: 'Record Attempts to Alter Logon and Logout Events',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_stime',
+                            title: 'Record Attempts to Alter Time Through stime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_settimeofday',
+                            title: 'Record attempts to alter time through settimeofday',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
+                            title: 'Record Attempts to Alter the localtime File',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime',
+                            title: 'Record Attempts to Alter Time Through clock_settime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_networkconfig_modification',
+                            title: 'Record Events that Modify the System\'s Network Environment',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_usergroup_modification',
+                            title: 'Record Events that Modify User/Group Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_session_events',
+                            title: 'Record Attempts to Alter Process and Session Initiation Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_immutable',
+                            title: 'Make the auditd Configuration Immutable',
+                            compliant: false
+                        }
+                    ],
                     score: 0
                 },
                 {
                     name: 'C2S for Red Hat Enterprise Linux 7',
-                    rulesPassed: 83,
-                    rulesFailed: 129,
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    rules: [
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
+                            title: 'Ensure Software Patches Installed',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_owner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg User Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_file_groupowner_grub2_cfg',
+                            title: 'Verify /boot/grub2/grub.cfg Group Ownership',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action',
+                            title: 'Configure auditd max_log_file_action Upon Reaching Maximum Log Size',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_login_events',
+                            title: 'Record Attempts to Alter Logon and Logout Events',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_stime',
+                            title: 'Record Attempts to Alter Time Through stime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_settimeofday',
+                            title: 'Record attempts to alter time through settimeofday',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
+                            title: 'Record Attempts to Alter the localtime File',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime',
+                            title: 'Record Attempts to Alter Time Through clock_settime',
+                            compliant: true
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_networkconfig_modification',
+                            title: 'Record Events that Modify the System\'s Network Environment',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_usergroup_modification',
+                            title: 'Record Events that Modify User/Group Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_session_events',
+                            title: 'Record Attempts to Alter Process and Session Initiation Information',
+                            compliant: false
+                        },
+                        {
+                            refId: 'xccdf_org.ssgproject.content_rule_audit_rules_immutable',
+                            title: 'Make the auditd Configuration Immutable',
+                            compliant: false
+                        }
+                    ],
                     score: 0
                 }
             ]
@@ -47,9 +307,9 @@ export const systems = [
             profiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
-                    rulesPassed: 0,
-                    rulesFailed: 0,
                     lastScanned: 'Never',
+                    rules: [],
+                    score: 0,
                     compliant: false
                 }
             ]

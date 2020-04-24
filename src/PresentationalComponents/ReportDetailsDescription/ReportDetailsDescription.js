@@ -63,7 +63,7 @@ ReportDetailsDescription.propTypes = {
         id: propTypes.string,
         complianceThreshold: propTypes.number,
         businessObjective: propTypes.object,
-        majorOsVersion: propTypes.number,
+        majorOsVersion: propTypes.string,
         policy: propTypes.shape({
             id: propTypes.string
         }),
