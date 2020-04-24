@@ -34,7 +34,10 @@ exports[`CompliancePoliciesEmptyState expect to render without error 1`] = `
     />
     <EmptyStateSecondaryActions>
       <Component
+        component="a"
         href="https://www.open-scap.org/getting-started/"
+        rel="noopener noreferrer"
+        target="_blank"
         variant="link"
       >
         Learn about OpenSCAP and Compliance
