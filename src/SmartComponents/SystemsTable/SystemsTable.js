@@ -299,16 +299,14 @@ class SystemsTable extends React.Component {
             inventoryTableProps.variant = pfReactTable.TableVariant.compact;
         }
 
-        const remediationSystems = systemsWithRuleObjectsFailed(items.filter(
-            edge => selectedEntities.includes(edge.node.id)
-        ).map(edge => edge.node));
-
         return <InventoryCmp { ...inventoryTableProps }>
             { !showAllSystems && <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
-                            allSystems={ remediationSystems }
+                            allSystems={ systemsWithRuleObjectsFailed(
+                                items.filter(edge => selectedEntities.includes(edge.node.id)
+                                ).map(edge => edge.node))}
                             selectedRules={ [] } />
                     </reactCore.ToolbarItem>
                 }
