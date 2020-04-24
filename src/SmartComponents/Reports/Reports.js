@@ -36,10 +36,12 @@ const QUERY = gql`
                 policy {
                     id
                     benchmark {
+                        id
                         version
                     }
                 }
                 benchmark {
+                    id
                     version
                 }
             }

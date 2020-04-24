@@ -18,6 +18,7 @@ import { useQuery } from '@apollo/react-hooks';
 const REVIEW = gql`
 query review($benchmarkId: String!) {
     benchmark(id: $benchmarkId) {
+        id
         title
         refId
         version
