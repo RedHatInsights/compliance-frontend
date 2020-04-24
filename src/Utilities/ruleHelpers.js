@@ -1,9 +1,9 @@
 export const profilesRulesFailed = (profiles) => (
-    profiles.flatMap(profile => profile.rules.filter(rule => !rule.compliant))
+    profiles.flatMap(profile => profile.rules && profile.rules.filter(rule => !rule.compliant))
 );
 
 export const profilesRulesPassed = (profiles) => (
-    profiles.flatMap(profile => profile.rules.filter(rule => rule.compliant))
+    profiles.flatMap(profile => profile.rules && profile.rules.filter(rule => rule.compliant))
 );
 
 export const systemRulesPassed = (system) => (
