@@ -9,6 +9,7 @@ import {
     complianceScoreString
 } from 'PresentationalComponents';
 import { Text } from '@patternfly/react-core';
+import { profileRulesPassed, profileRulesFailed } from 'Utilities/RuleRemediationsFinder';
 
 export const findProfiles = (system, profileIds) => {
     let profiles = system.profiles;
@@ -44,7 +45,7 @@ export const score = (system, profileId) => {
     const profiles = findProfiles(system, [profileId]);
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
-        if (profile.rulesPassed + profile.rulesFailed > 0) { return acc + 1; }
+        if (profileRulesPassed(profile).length + profileRulesFailed(profile).length > 0) { return acc + 1; }
 
         return acc;
     }, 0);
@@ -77,8 +78,8 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         }
 
         matchingSystem.profileNames = profileNames(matchingSystem);
-        matchingSystem.rulesPassed = rulesCount(matchingSystem, 'rulesPassed', profileId);
-        matchingSystem.rulesFailed = rulesCount(matchingSystem, 'rulesFailed', profileId);
+        matchingSystem.rulesPassed = profileRulesPassed(findProfiles(matchingSystem, [profileId])[0]).length;
+        matchingSystem.rulesFailed = profileRulesFailed(findProfiles(matchingSystem, [profileId])[0]).length;
         matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
         matchingSystem.compliant = compliant(matchingSystem, profileId);
         matchingSystem.score = score(matchingSystem, profileId);

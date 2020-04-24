@@ -20,6 +20,7 @@ import  {
 } from '../../SmartComponents';
 import { exportToCSV } from '../../store/ActionTypes.js';
 import { exportToJson } from 'Utilities/Export';
+import { systemsWithRuleObjectsFailed } from 'Utilities/RuleRemediationsFinder';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from '../../store/Reducers/SystemStore';
 import {
@@ -37,19 +38,15 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 profiles {
                     id
                     name
-                    rulesPassed
-                    rulesFailed
                     lastScanned
                     compliant
                     score
-                }
-                ruleObjectsFailed {
-                    refId
-                    profiles {
+                    rules {
                         refId
+                        title
+                        compliant
+                        remediationAvailable
                     }
-                    title
-                    remediationAvailable
                 }
             }
         }
@@ -68,8 +65,6 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 profiles {
                     id
                     name
-                    rulesPassed
-                    rulesFailed
                     lastScanned
                     compliant
                     score
@@ -303,12 +298,16 @@ class SystemsTable extends React.Component {
             inventoryTableProps.variant = pfReactTable.TableVariant.compact;
         }
 
+        const remediationSystems = systemsWithRuleObjectsFailed(items.filter(
+            edge => selectedEntities.includes(edge.node.id)
+        ).map(edge => edge.node));
+
         return <InventoryCmp { ...inventoryTableProps }>
             { !showAllSystems && <reactCore.ToolbarGroup>
                 { remediationsEnabled &&
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
-                            allSystems={ items.map((edge) => edge.node).filter(system => selectedEntities.includes(system.id)) }
+                            allSystems={ remediationSystems }
                             selectedRules={ [] } />
                     </reactCore.ToolbarItem>
                 }
