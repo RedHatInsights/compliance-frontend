@@ -1,9 +1,11 @@
+import flatten from 'lodash/flatten';
+
 export const profilesRulesFailed = (profiles) => (
-    profiles.map(profile => profile.rules.filter(rule => !rule.compliant)).flat()
+    flatten(profiles.map(profile => profile.rules.filter(rule => !rule.compliant)))
 );
 
 export const profilesRulesPassed = (profiles) => (
-    profiles.map(profile => profile.rules.filter(rule => rule.compliant)).flat()
+    flatten(profiles.map(profile => profile.rules.filter(rule => rule.compliant)))
 );
 
 export const systemRulesPassed = (system) => (
