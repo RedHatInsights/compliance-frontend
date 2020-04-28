@@ -348,7 +348,48 @@ Array [
           />,
         },
         "last_scanned_text": 2019-11-21T14:32:19.000Z,
-        "policies": "Standard System Security Profile for Red Hat Enterprise Linux 7, DISA STIG for Red Hat Enterprise Linux 7, United States Government Configuration Baseline, C2S for Red Hat Enterprise Linux 7",
+        "policies": Object {
+          "title": <Tooltip
+            appendTo={[Function]}
+            aria="describedby"
+            boundary="window"
+            className=""
+            content="Standard System Security Profile for Red Hat Enterprise Linux 7, DISA STIG for Red Hat Enterprise Linux 7, United States Government Configuration Baseline, C2S for Red Hat Enterprise Linux 7"
+            distance={15}
+            enableFlip={true}
+            entryDelay={500}
+            exitDelay={500}
+            flipBehavior={
+              Array [
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top",
+                "right",
+                "bottom",
+              ]
+            }
+            id=""
+            isAppLauncher={false}
+            isContentLeftAligned={false}
+            isVisible={false}
+            maxWidth="18.75rem"
+            position="top"
+            tippyProps={Object {}}
+            trigger="mouseenter focus"
+            zIndex={9999}
+          >
+            <Truncate
+              ellipsis="…"
+              lines={2}
+              trimWhitespace={false}
+              width={540}
+            >
+              Standard System Security Profile for Red Hat Enterprise Linux 7, DISA STIG for Red Hat Enterprise Linux 7, United States Government Configuration Baseline, C2S for Red Hat Enterprise Linux 7
+            </Truncate>
+          </Tooltip>,
+        },
         "rules_failed": Object {
           "title": <Link
             to={

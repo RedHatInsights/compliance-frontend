@@ -8,11 +8,12 @@ import {
     ComplianceScore as complianceScore,
     complianceScoreString
 } from 'PresentationalComponents';
-import { Text } from '@patternfly/react-core';
+import { Tooltip, Text } from '@patternfly/react-core';
 import {
     profilesRulesPassed,
     profilesRulesFailed
 } from 'Utilities/ruleHelpers';
+import Truncate from 'react-truncate';
 
 export const findProfiles = (system, profileIds) => {
     let profiles = system.profiles;
@@ -57,6 +58,19 @@ export const profileNames = (system) => {
     return system.profiles.map(
         (profile) => `${profile.external ? '(External) ' : '' }${profile.name}`
     ).join(', ');
+};
+
+export const policiesColumn = (system) => {
+    let title;
+    if (system.profileNames) {
+        title = <Tooltip content={system.profileNames}>
+            <Truncate lines={2} width={540}>{system.profileNames}</Truncate>
+        </Tooltip>;
+    } else {
+        title = <Text className='grey-icon'>No policies</Text>;
+    }
+
+    return { title };
 };
 
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
@@ -113,9 +127,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                     display_name: { title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
                         { entity.display_name || matchingSystem.name }
                     </Link> },
-                    policies: matchingSystem.profileNames || {
-                        title: <Text className='grey-icon'>No policies</Text>
-                    },
+                    policies: policiesColumn(matchingSystem),
                     details_link: matchingSystem.profileNames && {
                         title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
                             View report
