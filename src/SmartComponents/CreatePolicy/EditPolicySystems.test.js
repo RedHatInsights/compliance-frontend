@@ -2,6 +2,7 @@ import { policyFormValues } from './fixtures.js';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
+import { Provider as ReduxProvider } from 'react-redux';
 
 const mockStore = configureStore();
 
@@ -17,9 +18,11 @@ describe('EditPolicySystems', () => {
 
     it('expect to render without error', () => {
         component = renderer.create(
-            <MockedProvider>
-                <EditPolicySystems store={store} />
-            </MockedProvider>
+            <ReduxProvider store={store}>
+                <MockedProvider>
+                    <EditPolicySystems />
+                </MockedProvider>
+            </ReduxProvider>
         );
         expect(component.toJSON()).toMatchSnapshot();
     });

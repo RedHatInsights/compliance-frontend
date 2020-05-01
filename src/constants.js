@@ -18,7 +18,6 @@ export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.text,
         label: 'Name',
-        event: 'onSubmit',
         filterString: (value) => (`name ~ ${value}`)
     }
 ];
