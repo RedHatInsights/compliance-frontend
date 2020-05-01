@@ -11,9 +11,12 @@ import {
     ErrorPage,
     LoadingPoliciesTable,
     StateView,
-    StateViewPart,
-    PoliciesTable
+    StateViewPart
 } from 'PresentationalComponents';
+
+import {
+    PoliciesTable
+} from 'SmartComponents';
 
 const QUERY = gql`
 {

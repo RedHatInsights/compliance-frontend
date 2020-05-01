@@ -255,7 +255,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <withRouter(Connect(RouterParams))
         onWizardFinish={[Function]}
         policies={
           Array [
@@ -473,7 +473,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <withRouter(Connect(RouterParams))
         onWizardFinish={[Function]}
       />
     </Connect(Main)>
@@ -577,7 +577,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <withRouter(Connect(RouterParams))
         onWizardFinish={[Function]}
       />
     </Connect(Main)>
@@ -640,7 +640,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <Component
+      <withRouter(Connect(RouterParams))
         onWizardFinish={[Function]}
         policies={
           Array [
