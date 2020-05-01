@@ -170,7 +170,7 @@ class SystemsTable extends React.Component {
         this.props.updateSystems({
             systems: [],
             systemsCount: 0
-        })
+        });
         this.setState({
             ...initialState,
             activeFilters: {
