@@ -2,8 +2,8 @@ import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Link } from 'react-router-dom';
-import { EXPORT_TO_CSV } from 'Store/ActionTypes';
-import { downloadCsv } from 'Utilities/Export';
+import { EXPORT } from 'Store/ActionTypes';
+import { exportFromState } from 'Utilities/Export';
 import {
     ComplianceScore as complianceScore,
     complianceScoreString
@@ -60,7 +60,7 @@ export const profileNames = (system) => {
     ).join(', ');
 };
 
-export const policiesColumn = (system) => {
+export const policiesCell = (system) => {
     let title;
     if (system.profileNames) {
         title = <Tooltip content={system.profileNames}>
@@ -70,8 +70,18 @@ export const policiesColumn = (system) => {
         title = <Text className='grey-icon'>No policies</Text>;
     }
 
-    return { title };
+    return {
+        title,
+        exportValue: system.profileNames
+    };
 };
+
+const displayNameCell = (system, matchingSystem) =>  ({
+    title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
+        { system.display_name || matchingSystem.name }
+    </Link>,
+    exportValue: system.display_name || matchingSystem.name
+});
 
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
     entities.map(entity => {
@@ -124,10 +134,8 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                         entity.facts.release
                 },
                 compliance: {
-                    display_name: { title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
-                        { entity.display_name || matchingSystem.name }
-                    </Link> },
-                    policies: policiesColumn(matchingSystem),
+                    display_name: displayNameCell(systems, matchingSystem),
+                    policies: policiesCell(matchingSystem),
                     details_link: matchingSystem.profileNames && {
                         title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
                             View report
@@ -181,8 +189,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
             total: !showAllSystems ? state.systemsCount : state.total,
             columns
         }),
-        [EXPORT_TO_CSV]: (state) => {
-            downloadCsv(state);
+        [EXPORT]: (state, { payload: { format } }) => {
+            exportFromState(state, format);
             return state;
         }
     }
