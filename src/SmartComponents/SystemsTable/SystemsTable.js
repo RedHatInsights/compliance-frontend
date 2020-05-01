@@ -7,7 +7,6 @@ import * as pfReactTable from '@patternfly/react-table';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
-import debounce from 'lodash/debounce';
 import {
     SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
@@ -76,9 +75,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 }
 `;
 
-const loadingState = {
-    loaded: false,
-    items: [],
+const initialState = {
     page: 1
 };
 
@@ -93,7 +90,7 @@ class SystemsTable extends React.Component {
     filterBuilder = this.filterConfig.getFilterBuilder();
 
     state = {
-        ...loadingState,
+        ...initialState,
         InventoryCmp: React.forwardRef((_, ref) => <SkeletonTable ref={ref} colSize={2} rowSize={15} />), // eslint-disable-line
         policyId: this.props.policyId,
         perPage: 50,
@@ -101,13 +98,13 @@ class SystemsTable extends React.Component {
         activeFilters: this.filterConfig.initialDefaultState()
     }
 
-    componentDidMount = () => {
-        this.fetchInventory();
-    }
+    componentDidMount = () => (
+        this.updateSystems().then(() => this.fetchInventory())
+    )
 
     componentDidUpdate = (prevProps) => {
         if (prevProps.complianceThreshold !== this.props.complianceThreshold) {
-            this.systemFetch();
+            this.updateSystems();
         }
     }
 
@@ -119,11 +116,11 @@ class SystemsTable extends React.Component {
             }); }
             );
         } else {
-            this.setState({ page, perPage }, this.systemFetch);
+            this.setState({ page, perPage }, this.updateSystems);
         }
     }
 
-    systemFetch = () => {
+    fetchSystems = () => {
         const { client, showOnlySystemsWithTestResults, remediationsEnabled } = this.props;
         const { policyId, perPage, page, activeFilters } = this.state;
         let filter = this.filterBuilder.buildFilterString(activeFilters);
@@ -141,29 +138,23 @@ class SystemsTable extends React.Component {
             fetchResults: true,
             fetchPolicy: 'no-cache',
             variables: { filter, perPage, page, policyId }
-        }).then((items) => {
-            this.setState({
-                page,
-                perPage,
-                items: items.data.systems.edges,
-                totalCount: items.data.systems.totalCount,
-                loaded: true
-            }, () => {
-                // If the items in the table are the same after two GQL calls,
-                // e.g: if you try to load 19 items for a perPage of 20 items, then
-                // change perPage to 50 items - the Inventory will not trigger a call
-                // to the Inventory API, and the table will remain on a loading state.
-                // To avoid this, we call refresh manually on such cases.
-                if (items.data.systems.totalCount <= perPage) {
-                    this.inventory.current && this.inventory.current.onRefreshData();
-                }
-            });
         });
     }
 
-    isGraphqlFinished = () => (
-        this.state.loaded
-    )
+    updateSystems = () => {
+        const prevSystems = this.props.systems.map((s) => s.node.id).sort();
+        return this.fetchSystems().then((items) => (
+            this.props.updateSystems({
+                systems: items.data.systems.edges,
+                systemsCount: items.data.systems.totalCount
+            })
+        )).then(() => {
+            const newSystems = this.props.systems.map((s) => s.node.id).sort();
+            if (JSON.stringify(newSystems) === JSON.stringify(prevSystems)) {
+                this.props.updateRows();
+            }
+        });
+    }
 
     onExportSelect = (_, format) => {
         const { exportToCSV, selectedEntities } = this.props;
@@ -175,39 +166,40 @@ class SystemsTable extends React.Component {
         }
     }
 
-    onFilterUpdate = debounce((filter, selectedValues) => {
+    onFilterUpdate = (filter, selectedValues) => {
         this.setState({
-            ...loadingState,
+            ...initialState,
             activeFilters: {
                 ...this.state.activeFilters,
                 [filter]: selectedValues
             }
-        }, this.systemFetch);
-    }, 500)
+        }, this.updateSystems);
+    }
 
     deleteFilter = (chips) => {
         const activeFilters =  this.filterConfig.removeFilterWithChip(
             chips, this.state.activeFilters
         );
         this.setState({
+            ...initialState,
             activeFilters
-        }, this.systemFetch);
+        }, this.updateSystems);
     }
 
     clearAllFilter = () => {
         this.setState({
-            ...loadingState,
+            ...initialState,
             activeFilters: this.filterConfig.initialDefaultState()
-        }, this.systemFetch);
+        }, this.updateSystems);
     }
 
-    onFilterDelete = debounce((_event, chips, clearAll = false) => {
+    onFilterDelete = (_event, chips, clearAll = false) => {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0]);
-    }, 500)
+    }
 
     isExportDisabled = () => {
-        const { entityCount, selectedEntities } = this.props;
-        return (entityCount || 0) === 0 && selectedEntities.length === 0;
+        const { total, selectedEntities } = this.props;
+        return (total || 0) === 0 && selectedEntities.length === 0;
     }
 
     async fetchInventory() {
@@ -229,7 +221,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, () => this.state.items, columns, this.isGraphqlFinished, showAllSystems, policyId
+                    INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
                 ))
         });
 
@@ -240,10 +232,11 @@ class SystemsTable extends React.Component {
 
     render() {
         const {
-            remediationsEnabled, compact, enableExport, showAllSystems, showActions, selectedEntities
+            remediationsEnabled, compact, enableExport, showAllSystems, showActions,
+            selectedEntities, systems, total
         } = this.props;
         const {
-            page, totalCount, perPage, items, InventoryCmp, selectedSystemId,
+            page, perPage, InventoryCmp, selectedSystemId,
             selectedSystemFqdn, isAssignPoliciesModalOpen
         } = this.state;
         const filterConfig = this.filterConfig.buildConfiguration(
@@ -286,8 +279,8 @@ class SystemsTable extends React.Component {
         }
 
         if (!showAllSystems) {
-            inventoryTableProps.total = totalCount;
-            inventoryTableProps.items = items.map((edge) => edge.node.id);
+            inventoryTableProps.total = total;
+            inventoryTableProps.items = systems.map((edge) => edge.node.id);
             inventoryTableProps.filterConfig = filterConfig;
             inventoryTableProps.activeFiltersConfig = {
                 filters: filterChips,
@@ -305,7 +298,7 @@ class SystemsTable extends React.Component {
                     <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                         <ComplianceRemediationButton
                             allSystems={ systemsWithRuleObjectsFailed(
-                                items.filter(edge => selectedEntities.includes(edge.node.id)
+                                systems.filter(edge => selectedEntities.includes(edge.node.id)
                                 ).map(edge => edge.node))}
                             selectedRules={ [] } />
                     </reactCore.ToolbarItem>
@@ -319,7 +312,7 @@ class SystemsTable extends React.Component {
                 toggle={(closedOrCanceled) => {
                     this.setState((prev) => (
                         { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                    ), !closedOrCanceled ? this.systemFetch : null);
+                    ), !closedOrCanceled ? this.updateSystems : null);
                 }}
             /> }
         </InventoryCmp>;
@@ -340,8 +333,11 @@ SystemsTable.propTypes = {
     showOnlySystemsWithTestResults: propTypes.bool,
     showActions: propTypes.bool,
     compliantFilter: propTypes.bool,
-    entityCount: propTypes.number,
-    clearInventoryFilter: propTypes.func
+    total: propTypes.number,
+    clearInventoryFilter: propTypes.func,
+    systems: propTypes.array,
+    updateRows: propTypes.func,
+    updateSystems: propTypes.func
 };
 
 SystemsTable.defaultProps = {
@@ -354,26 +350,35 @@ SystemsTable.defaultProps = {
     showOnlySystemsWithTestResults: false,
     showActions: true,
     selectedEntities: [],
-    compliantFilter: false
+    compliantFilter: false,
+    systems: []
 };
 
 const mapStateToProps = state => {
     if (state.entities === undefined || state.entities.rows === undefined) {
-        return { selectedEntities: [] };
+        return { selectedEntities: [], systems: [] };
     }
 
     return {
-        entityCount: state.entities.count,
         selectedEntities: state.entities.rows.
         filter(entity => entity.selected).
-        map(entity => entity.id)
+        map(entity => entity.id),
+        systems: state.entities.systems,
+        total: state.entities.total
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         clearInventoryFilter: () => dispatch({ type: 'CLEAR_FILTERS' }),
-        exportToCSV: event => dispatch(exportToCSV(event))
+        exportToCSV: event => dispatch(exportToCSV(event)),
+        updateSystems: (args) => {
+            dispatch({
+                type: 'UPDATE_SYSTEMS',
+                ...args
+            });
+        },
+        updateRows: () => dispatch({ type: 'UPDATE_ROWS' })
     };
 };
 

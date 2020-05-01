@@ -1,6 +1,5 @@
 import toJson from 'enzyme-to-json';
 import { policies as rawPolicies } from './fixtures.js';
-import debounce from 'lodash/debounce';
 
 jest.mock('react-router-dom', () => (
     {
@@ -10,8 +9,6 @@ jest.mock('react-router-dom', () => (
         withRouter: jest.fn()
     }
 ));
-jest.mock('lodash/debounce');
-debounce.mockImplementation(fn => fn);
 
 import { PoliciesTable } from './PoliciesTable.js';
 const policies = rawPolicies.edges.map(profile => profile.node);

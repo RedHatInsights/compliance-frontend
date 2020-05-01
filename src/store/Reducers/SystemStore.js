@@ -153,28 +153,34 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         };
     }).filter(value => value !== undefined);
 
-export const entitiesReducer = (INVENTORY_ACTION, systems, columns, isGraphqlFinished, showAllSystems,
-    profileId) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId) => applyReducerHash(
     {
-        [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => {
-            if (!isGraphqlFinished()) {
-                return { ...state, loaded: false };
-            }
-
-            state.rows = systemsToInventoryEntities(systems(), state.rows, showAllSystems, profileId);
-
-            if (!showAllSystems) {
-                state.count = state.rows.length;
-                state.total = state.rows.length;
-            }
-
-            state.columns = [];
-            for (const column of columns) {
-                state.columns.push(column);
-            }
-
-            return { ...state };
-        },
+        ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
+            ...state,
+            systems,
+            systemsCount
+        }),
+        ['UPDATE_ROWS']: (state) => ({
+            ...state,
+            loaded: true,
+            rows: systemsToInventoryEntities(
+                state.systems || [],
+                state.rows || [],
+                showAllSystems,
+                profileId
+            )
+        }),
+        [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
+            ...state,
+            rows: systemsToInventoryEntities(
+                state.systems || [],
+                state.rows,
+                showAllSystems,
+                profileId
+            ),
+            total: !showAllSystems ? state.systemsCount : state.total,
+            columns
+        }),
         [EXPORT_TO_CSV]: (state) => {
             downloadCsv(state);
             return state;

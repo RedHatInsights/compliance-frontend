@@ -6,7 +6,7 @@ import {
     TextContent,
     TextVariants
 } from '@patternfly/react-core';
-import { SystemsTableWithApollo as SystemsTable } from '../SystemsTable/SystemsTable';
+import SystemsTable from '../SystemsTable/SystemsTable';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';

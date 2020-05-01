@@ -7,10 +7,6 @@ jest.mock('Utilities/Export', () => ({
     exportToJson: () => mockExportJsonFunction()
 }));
 
-// We mock the debounce function otherwise we'd have to deal with time.
-import debounce from 'lodash/debounce';
-jest.mock('lodash/debounce');
-debounce.mockImplementation(fn => fn);
 import { SystemsTable } from './SystemsTable';
 
 const items = {
@@ -31,7 +27,14 @@ const items = {
 describe('SystemsTable', () => {
     const store = init(logger).getStore();
     const client = { query: jest.fn(() => Promise.resolve(items)) };
-    const defaultProps = { store, client };
+    const updateSystemsFunction = jest.fn(jest.fn(() => Promise.resolve(items)));
+    const updateRowsFunction = jest.fn(jest.fn(() => Promise.resolve(items)));
+    const defaultProps = {
+        store,
+        client,
+        updateSystems: updateSystemsFunction,
+        updateRows: updateRowsFunction
+    };
     const MockComponent = jest.fn(({ children, loaded }) => {
         return children && loaded ? children : 'Loading...';
     });
@@ -52,7 +55,7 @@ describe('SystemsTable', () => {
 
     it('expect to render a loading state', () => {
         const component = shallow(
-            <SystemsTable />
+            <SystemsTable client={ client } />
         );
 
         expect(toJson(component)).toMatchSnapshot();
@@ -60,79 +63,66 @@ describe('SystemsTable', () => {
 
     it('expect to not render a loading state', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } items={ items.data.systems } entityCount= { 1 } />
+            <SystemsTable { ...defaultProps } systems={ items.data.systems.edges } total= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-        expect(global.insights.loadInventory).toHaveBeenCalled();
     });
 
     it('expect to not show actions if showActions is false', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } showActions={false} items={ items.data.systems } entityCount= { 1 } />
+            <SystemsTable { ...defaultProps } showActions={false} systems={ items.data.systems.edges } total= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-        expect(global.insights.loadInventory).toHaveBeenCalled();
     });
 
     it('expect to show actions if showActions is true or by default', () => {
         const wrapper = shallow(
-            <SystemsTable { ...defaultProps } items={ items.data.systems } entityCount= { 1 } />
+            <SystemsTable { ...defaultProps } systems={ items.data.systems.edges } total= { 1 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-        expect(global.insights.loadInventory).toHaveBeenCalled();
     });
 
     it('expect to set compliant filters when enabled', () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps }
-                items={ items.data.systems }
-                entityCount= { 1 }
+                systems={ items.data.systems.edges }
+                total= { 1 }
                 compliantFilter={ true } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to set isDisable on export config to true entityCount is 0', () => {
+    it('expect to set isDisable on export config to true total is 0', () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps }
-                items={ items.data.systems }
-                entityCount= { 0 } />
+                systems={ items.data.systems.edges }
+                total= { 0 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to set isDisable on export config to false entityCount is 0 but selected is not', () => {
+    it('expect to set isDisable on export config to false total is 0 but selected is not', () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps }
-                items={ items.data.systems }
-                entityCount= { 0 }
-                selectedEntities={ 1 } />
+                systems={ items.data.systems.edges }
+                total= { 0 }
+                selectedEntities={ [1] } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to set loading state correctly on systemfetch', async () => {
+    it('expect to set loading state correctly on updateSystems', async () => {
         const wrapper = shallow(
             <SystemsTable { ...defaultProps } />
         );
-        const instance = wrapper.instance();
-        instance.setState({
-            loading: false,
-            items: [],
-            totalCount: 0
-        });
-        expect(instance.state.loading).toBe(false);
-        expect(instance.state.totalCount).toBe(0);
-        await wrapper.instance().systemFetch();
-        expect(instance.state.loading).toBe(false);
-        expect(instance.state.totalCount).toBe(1);
-        expect(instance.state.items).toBe(items.data.systems.edges);
+
+        await wrapper.instance().updateSystems();
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
