@@ -1,4 +1,11 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import {
+    Grid
+} from '@patternfly/react-core';
+import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     CompliancePoliciesEmptyState,
     ErrorPage,
@@ -6,11 +13,10 @@ import {
     StateView,
     StateViewPart
 } from 'PresentationalComponents';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import PoliciesTable from '../PoliciesTable/PoliciesTable';
+
+import {
+    PoliciesTable
+} from 'SmartComponents';
 
 const QUERY = gql`
 {
@@ -39,10 +45,11 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
+    let { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     let policies;
 
     if (data) {
+        error = undefined; loading = undefined;
         policies = data.profiles.edges.map(profile => profile.node);
     }
 
@@ -64,7 +71,7 @@ export const CompliancePolicies = () => {
             </PageHeader>
             <Main>
                 { policies && policies.length === 0 ?
-                    <CompliancePoliciesEmptyState /> :
+                    <Grid gutter='md'><CompliancePoliciesEmptyState /></Grid> :
                     <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
                 }
             </Main>

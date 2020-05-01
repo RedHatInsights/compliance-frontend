@@ -4,3 +4,4 @@ export { default as ComplianceSystems } from './ComplianceSystems/ComplianceSyst
 export { default as AssignPoliciesModal } from './AssignPoliciesModal/AssignPoliciesModal';
 export { default } from './InventoryDetails/InventoryDetails';
 export { default as SystemsTable } from './SystemsTable/SystemsTable';
+export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';

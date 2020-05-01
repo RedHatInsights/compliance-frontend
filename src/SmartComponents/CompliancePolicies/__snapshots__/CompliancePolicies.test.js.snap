@@ -525,9 +525,13 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <CompliancePoliciesEmptyState
-        title="No policies"
-      />
+      <Grid
+        gutter="md"
+      >
+        <CompliancePoliciesEmptyState
+          title="No policies"
+        />
+      </Grid>
     </Connect(Main)>
   </StateViewPart>
 </StateView>
