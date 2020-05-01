@@ -39,10 +39,11 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    const { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
+    let { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     let policies;
 
     if (data) {
+        error = undefined; loading = undefined;
         policies = data.profiles.edges.map(profile => profile.node);
     }
 
