@@ -255,7 +255,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <withRouter(Connect(RouterParams))
+      <Component
         onWizardFinish={[Function]}
         policies={
           Array [
@@ -473,7 +473,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <withRouter(Connect(RouterParams))
+      <Component
         onWizardFinish={[Function]}
       />
     </Connect(Main)>
@@ -525,9 +525,13 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <CompliancePoliciesEmptyState
-        title="No policies"
-      />
+      <Grid
+        gutter="md"
+      >
+        <CompliancePoliciesEmptyState
+          title="No policies"
+        />
+      </Grid>
     </Connect(Main)>
   </StateViewPart>
 </StateView>
@@ -573,7 +577,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <withRouter(Connect(RouterParams))
+      <Component
         onWizardFinish={[Function]}
       />
     </Connect(Main)>
@@ -636,7 +640,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       />
     </PageHeader>
     <Connect(Main)>
-      <withRouter(Connect(RouterParams))
+      <Component
         onWizardFinish={[Function]}
         policies={
           Array [
