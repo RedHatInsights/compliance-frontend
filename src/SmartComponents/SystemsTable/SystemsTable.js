@@ -167,6 +167,10 @@ class SystemsTable extends React.Component {
     }
 
     onFilterUpdate = (filter, selectedValues) => {
+        this.props.updateSystems({
+            systems: [],
+            systemsCount: 0
+        })
         this.setState({
             ...initialState,
             activeFilters: {
