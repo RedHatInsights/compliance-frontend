@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import { paths } from '../../Routes';
 
 import { ReportTabs } from './ReportTabs';

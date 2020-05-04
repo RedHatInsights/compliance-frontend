@@ -26,6 +26,7 @@ globals:
   shallow: true
   React: true
   Promise: true
+  toJson: true
 rules:
   array-bracket-spacing: 2
   comma-dangle: 2

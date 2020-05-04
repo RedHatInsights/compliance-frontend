@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import TabSwitcher, { Tab } from './TabSwitcher';
 
 describe('TabSwitcher', () => {

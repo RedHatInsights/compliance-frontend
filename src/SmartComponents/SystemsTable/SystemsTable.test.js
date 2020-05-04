@@ -1,6 +1,5 @@
 import { init } from '../../store';
 import logger from 'redux-logger';
-import toJson from 'enzyme-to-json';
 
 const mockExportJsonFunction = jest.fn();
 jest.mock('Utilities/Export', () => ({

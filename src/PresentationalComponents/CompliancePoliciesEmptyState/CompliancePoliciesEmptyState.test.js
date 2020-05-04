@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import CompliancePoliciesEmptyState from './CompliancePoliciesEmptyState';
 jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
     const ComplianceRemediationButton = () => <button>Remediations</button>;

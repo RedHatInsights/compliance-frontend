@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import ComplianceSystems from './ComplianceSystems.js';
 
 describe('ComplianceSystems', () => {

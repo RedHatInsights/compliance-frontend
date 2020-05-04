@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import { policies as rawPolicies } from './fixtures.js';
 
 jest.mock('react-router-dom', () => (

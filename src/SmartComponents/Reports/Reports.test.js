@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
 
 import { Reports } from './Reports.js';

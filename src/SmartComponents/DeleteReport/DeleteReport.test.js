@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 jest.mock('@apollo/react-hooks');
 jest.mock('../../Utilities/Dispatcher');
 

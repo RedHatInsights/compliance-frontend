@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import { EditPolicy } from './EditPolicy.js';
 
 describe('EditPolicy', () => {

@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 import { onNavigate } from 'Utilities/Breadcrumbs';
