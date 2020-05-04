@@ -26,7 +26,7 @@ import {
     StateViewWithError,
     StateViewPart
 } from 'PresentationalComponents';
-import InventoryDetails from 'SmartComponents';
+import { InventoryDetails } from 'SmartComponents';
 
 const QUERY = gql`
 query System($inventoryId: String!){

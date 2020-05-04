@@ -1,146 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetails expect to render without error 1`] = `
-Array [
-  <div
-    className="pf-c-content"
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <EditPolicyDetails
+    profile={
+      Object {
+        "complianceThreshold": 100,
+        "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
+        "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
+        "name": "C2S for Red Hat Enterprise Linux 6",
+        "refId": "xccdf_org.ssgproject.content_profile_C2S",
+      }
+    }
   >
-    <h1
-      className=""
-      data-pf-content={true}
-    >
-      Policy details
-    </h1>
-  </div>,
-  <form
-    className="pf-c-form"
-    id="editpolicydetails"
-    noValidate={true}
-  >
-    <div
-      className="pf-c-form__group"
-    >
-      <label
-        className="pf-c-form__label"
-        htmlFor="name"
-      >
-        <span
-          className="pf-c-form__label-text"
-        >
-          Policy name
-        </span>
-        <span
-          aria-hidden="true"
-          className="pf-c-form__label-required"
-        >
-          *
-        </span>
-      </label>
-      <Field
-        aria-describedby="name"
-        component={[Function]}
-        id="name"
-        isRequired={true}
-        name="name"
-        type="text"
-      />
-      
-    </div>
-    <div
-      className="pf-c-form__group"
-    >
-      <label
-        className="pf-c-form__label"
-        htmlFor="refId"
-      >
-        <span
-          className="pf-c-form__label-text"
-        >
-          Reference ID
-        </span>
-        <span
-          aria-hidden="true"
-          className="pf-c-form__label-required"
-        >
-          *
-        </span>
-      </label>
-      <Field
-        aria-describedby="refId"
-        component={[Function]}
-        id="refId"
-        isDisabled={true}
-        name="refId"
-        type="text"
-      />
-      
-    </div>
-    <div
-      className="pf-c-form__group"
-    >
-      <label
-        className="pf-c-form__label"
-        htmlFor="description"
-      >
-        <span
-          className="pf-c-form__label-text"
-        >
-          Description
-        </span>
-      </label>
-      <Field
-        aria-describedby="description"
-        component={[Function]}
-        id="description"
-        name="description"
-        type="text"
-      />
-      
-    </div>
-    <h3
-      className="pf-c-title pf-m-xl"
-    >
-      Compliance threshold
-    </h3>
-    The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-    <div
-      className="pf-c-form__group"
-    >
-      <label
-        className="pf-c-form__label"
-        htmlFor="policy-threshold"
-      >
-        <span
-          className="pf-c-form__label-text"
-        >
-          Compliance threshold (%)
-        </span>
-      </label>
-      <Field
-        aria-label="compliance threshold"
-        component={[Function]}
-        defaultValue={100}
-        id="complianceThreshold"
-        isRequired={true}
-        isValid={true}
-        name="complianceThreshold"
-        onChange={[Function]}
-        style={
-          Object {
-            "display": "block",
-            "width": "60%",
-          }
-        }
-        type="number"
-      />
+    <TextContent>
       <div
-        aria-live="polite"
-        className="pf-c-form__helper-text"
-        id="policy-threshold-helper"
+        className="pf-c-content"
       >
-        A value of 95% or higher is recommended
+        <Text
+          component="h1"
+        >
+          <h1
+            className=""
+            data-pf-content={true}
+          >
+            Policy details
+          </h1>
+        </Text>
       </div>
-    </div>
-  </form>,
-]
+    </TextContent>
+    <Form
+      id="editpolicydetails"
+    >
+      <form
+        className="pf-c-form"
+        id="editpolicydetails"
+        noValidate={true}
+      >
+        <FormGroup
+          fieldId="name"
+          isRequired={true}
+          label="Policy name"
+        >
+          <div
+            className="pf-c-form__group"
+          >
+            <label
+              className="pf-c-form__label"
+              htmlFor="name"
+            >
+              <span
+                className="pf-c-form__label-text"
+              >
+                Policy name
+              </span>
+              <span
+                aria-hidden="true"
+                className="pf-c-form__label-required"
+              >
+                *
+              </span>
+            </label>
+            <Field
+              aria-describedby="name"
+              component={[Function]}
+              id="name"
+              isRequired={true}
+              name="name"
+              type="text"
+            />
+          </div>
+        </FormGroup>
+        <FormGroup
+          fieldId="refId"
+          isRequired={true}
+          label="Reference ID"
+        >
+          <div
+            className="pf-c-form__group"
+          >
+            <label
+              className="pf-c-form__label"
+              htmlFor="refId"
+            >
+              <span
+                className="pf-c-form__label-text"
+              >
+                Reference ID
+              </span>
+              <span
+                aria-hidden="true"
+                className="pf-c-form__label-required"
+              >
+                *
+              </span>
+            </label>
+            <Field
+              aria-describedby="refId"
+              component={[Function]}
+              id="refId"
+              isDisabled={true}
+              name="refId"
+              type="text"
+            />
+          </div>
+        </FormGroup>
+        <FormGroup
+          fieldId="description"
+          label="Description"
+        >
+          <div
+            className="pf-c-form__group"
+          >
+            <label
+              className="pf-c-form__label"
+              htmlFor="description"
+            >
+              <span
+                className="pf-c-form__label-text"
+              >
+                Description
+              </span>
+            </label>
+            <Field
+              aria-describedby="description"
+              component={[Function]}
+              id="description"
+              name="description"
+              type="text"
+            />
+          </div>
+        </FormGroup>
+        <ProfileThresholdField
+          previousThreshold={100}
+          showTitle={true}
+        >
+          <Title
+            headingLevel="h3"
+            size="xl"
+          >
+            <h3
+              className="pf-c-title pf-m-xl"
+            >
+              Compliance threshold
+            </h3>
+          </Title>
+          The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
+          <FormGroup
+            fieldId="policy-threshold"
+            helperText="A value of 95% or higher is recommended"
+            helperTextInvalid="Threshold has to be a number between 0 and 100"
+            isValid={true}
+            label="Compliance threshold (%)"
+          >
+            <div
+              className="pf-c-form__group"
+            >
+              <label
+                className="pf-c-form__label"
+                htmlFor="policy-threshold"
+              >
+                <span
+                  className="pf-c-form__label-text"
+                >
+                  Compliance threshold (%)
+                </span>
+              </label>
+              <Field
+                aria-label="compliance threshold"
+                component={[Function]}
+                defaultValue={100}
+                id="complianceThreshold"
+                isRequired={true}
+                isValid={true}
+                name="complianceThreshold"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "block",
+                    "width": "60%",
+                  }
+                }
+                type="number"
+              />
+              <div
+                aria-live="polite"
+                className="pf-c-form__helper-text"
+                id="policy-threshold-helper"
+              >
+                A value of 95% or higher is recommended
+              </div>
+            </div>
+          </FormGroup>
+        </ProfileThresholdField>
+      </form>
+    </Form>
+  </EditPolicyDetails>
+</Provider>
 `;

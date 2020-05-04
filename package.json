@@ -70,7 +70,9 @@
       "^PresentationalComponents$": "<rootDir>/src/PresentationalComponents",
       "^PresentationalComponents/(.*)": "<rootDir>/src/PresentationalComponents/$1",
       "^Utilities/(.*)": "<rootDir>/src/Utilities/$1",
-      "^Store/(.*)": "<rootDir>/src/store/$1"
+      "^Store/(.*)": "<rootDir>/src/store/$1",
+      "^Store$": "<rootDir>/src/store",
+      "^@\/(.*)$": "<rootDir>/src/$1"
     }
   },
   "devDependencies": {

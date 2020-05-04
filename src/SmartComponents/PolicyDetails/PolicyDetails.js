@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { onNavigate } from '../../Utilities/Breadcrumbs';
-import {
-    PolicyDetailsDescription,
-    PolicyDetailsContentLoader,
-    PolicyTabs,
-    TabSwitcher,
-    Tab,
-    StateViewWithError,
-    StateViewPart
-} from 'PresentationalComponents';
-import EditPolicy from '../EditPolicy/EditPolicy';
-import PolicyRulesTab from './PolicyRulesTab';
-import PolicySystemsTab from './PolicySystemsTab';
+import { Breadcrumb, BreadcrumbItem, Grid, GridItem } from '@patternfly/react-core';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
-    PageHeader,
-    PageHeaderTitle,
-    Main,
-    Spinner
+    PageHeader, PageHeaderTitle, Main, Spinner
 } from '@redhat-cloud-services/frontend-components';
-import gql from 'graphql-tag';
-import '../../Charts.scss';
-import './PolicyDetails.scss';
+import { onNavigate } from 'Utilities/Breadcrumbs';
 import {
-    Breadcrumb,
-    BreadcrumbItem,
-    Grid,
-    GridItem
-} from '@patternfly/react-core';
+    PolicyDetailsDescription, PolicyDetailsContentLoader, PolicyTabs, TabSwitcher, Tab,
+    StateViewWithError, StateViewPart
+} from 'PresentationalComponents';
+import { EditPolicy } from 'SmartComponents';
+import '@/Charts.scss';
+
+import PolicyRulesTab from './PolicyRulesTab';
+import PolicySystemsTab from './PolicySystemsTab';
+import './PolicyDetails.scss';
 
 export const QUERY = gql`
 query Profile($policyId: String!){

@@ -6,7 +6,7 @@ import {
     TextListItemVariants,
     TextContent
 } from '@patternfly/react-core';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import { fixedPercentage } from 'Utilities/TextHelper';
 import {
     Link
 } from 'react-router-dom';

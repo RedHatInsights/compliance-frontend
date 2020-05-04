@@ -1,5 +1,5 @@
 import React from 'react';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import { fixedPercentage } from 'Utilities/TextHelper';
 import propTypes from 'prop-types';
 import {
     Text,

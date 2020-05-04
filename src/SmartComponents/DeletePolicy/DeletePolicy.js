@@ -6,9 +6,9 @@ import {
 import propTypes from 'prop-types';
 import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { DELETE_PROFILE } from '../../Utilities/graphql/mutations';
+import { DELETE_PROFILE } from 'Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
-import { dispatchAction } from '../../Utilities/Dispatcher';
+import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
     const [deletePolicy] = useMutation(DELETE_PROFILE, {

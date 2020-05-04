@@ -1,5 +1,4 @@
-import { init } from '../../store';
-import renderer from 'react-test-renderer';
+import { init } from 'Store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -77,7 +76,7 @@ describe('ReportDetails', () => {
             chrome: { isBeta: jest.fn(() => true) }
         };
 
-        const component = renderer.create(
+        const component = mount(
             <Router>
                 <Provider store={ store }>
                     <ReportDetails { ...defaultProps } />
@@ -85,6 +84,6 @@ describe('ReportDetails', () => {
             </Router>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(toJson(component)).toMatchSnapshot();
     });
 });

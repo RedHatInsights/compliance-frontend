@@ -1,19 +1,28 @@
-import { policyFormValues } from './fixtures.js';
-import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
-jest.mock('redux-form', () => ({
-    Field: 'Field',
-    reduxForm: () => component => component,
-    formValueSelector: () => () => ('')
-}));
+import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 
 import { EditPolicyDetails } from './EditPolicyDetails.js';
 
+const mockStore = configureStore();
+const store = mockStore({});
+jest.mock('redux-form', () => ({
+    Field: 'Field',
+    reduxForm: () => component => component,
+    formValueSelector: () => () => (''),
+    propTypes: {
+        change: jest.fn()
+    }
+}));
+
 describe('EditPolicyDetails', () => {
     it('expect to render without error', () => {
-        const component = renderer.create(
-            <EditPolicyDetails profile={JSON.parse(policyFormValues.profile)}/>
+        const component = mount(
+            <Provider store={ store }>
+                <EditPolicyDetails profile={JSON.parse(policyFormValues.profile)}/>
+            </Provider>
         );
-        expect(component.toJSON()).toMatchSnapshot();
+        expect(toJson(component)).toMatchSnapshot();
     });
 });

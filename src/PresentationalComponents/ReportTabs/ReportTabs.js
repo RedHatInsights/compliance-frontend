@@ -1,7 +1,7 @@
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import propTypes from 'prop-types';
 import React from 'react';
-import { paths } from '../../Routes';
+import { paths } from '@/Routes';
 import { Tabs, Tab } from '@patternfly/react-core';
 import invert from 'lodash/invert';
 

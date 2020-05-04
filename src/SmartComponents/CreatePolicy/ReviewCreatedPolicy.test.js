@@ -1,6 +1,6 @@
 import ReviewCreatedPolicy from './ReviewCreatedPolicy.js';
 import configureStore from 'redux-mock-store';
-import { policyFormValues } from './fixtures.js';
+import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import { useQuery } from '@apollo/react-hooks';

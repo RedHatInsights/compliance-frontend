@@ -35,7 +35,8 @@ const webpackConfig = {
             PresentationalComponents: path.join(__dirname, '../src/PresentationalComponents'),
             SmartComponents: path.join(__dirname, '../src/SmartComponents'),
             Utilities: path.join(__dirname, '../src/Utilities'),
-            Store: path.join(__dirname, '../src/store')
+            Store: path.join(__dirname, '../src/store'),
+            '@': path.join(__dirname, '..', 'src')
         }
     },
     module: {

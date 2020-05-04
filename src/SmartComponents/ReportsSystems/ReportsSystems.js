@@ -1,5 +1,5 @@
 import React from 'react';
-import SystemsTable from '../SystemsTable/SystemsTable';
+import { SystemsTable } from 'SmartComponents';
 import { ReportTabs } from 'PresentationalComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 

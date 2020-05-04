@@ -1,4 +1,4 @@
-import { policyFormValues } from './fixtures.js';
+import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';

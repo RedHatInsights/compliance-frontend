@@ -4,9 +4,9 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { init } from './store';
+import { init } from 'Store';
 import App from './App';
-import { COMPLIANCE_API_ROOT } from './constants';
+import { COMPLIANCE_API_ROOT } from '@/constants';
 import { IntlProvider } from 'react-intl';
 
 const client = new ApolloClient({

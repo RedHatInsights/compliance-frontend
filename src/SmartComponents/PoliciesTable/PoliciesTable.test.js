@@ -1,5 +1,3 @@
-import { policies as rawPolicies } from './fixtures.js';
-
 jest.mock('react-router-dom', () => (
     {
         history: {
@@ -8,8 +6,10 @@ jest.mock('react-router-dom', () => (
         withRouter: jest.fn()
     }
 ));
+import { policies as rawPolicies  } from '@/__fixtures__/policies.js';
 
 import { PoliciesTable } from './PoliciesTable.js';
+
 const policies = rawPolicies.edges.map(profile => profile.node);
 
 describe('PoliciesTable', () => {

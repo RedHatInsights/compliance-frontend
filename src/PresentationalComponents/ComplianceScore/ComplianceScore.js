@@ -4,7 +4,7 @@ import {
     CheckCircleIcon,
     ExclamationCircleIcon
 } from '@patternfly/react-icons';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => (
     <React.Fragment>

@@ -1,6 +1,7 @@
-import { SystemsTable } from 'SmartComponents';
 import React from 'react';
 import propTypes from 'prop-types';
+
+import { SystemsTable } from 'SmartComponents';
 
 const PolicySystemsTab = ({ policy, complianceThreshold }) => (
     <SystemsTable policyId={policy.id}

@@ -1,4 +1,4 @@
-import { init } from '../../store';
+import { init } from 'Store';
 import { Provider } from 'react-redux';
 import ReactDom from 'react-dom';
 import { act } from 'react-dom/test-utils';

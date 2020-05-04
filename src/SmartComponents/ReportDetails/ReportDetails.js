@@ -1,37 +1,25 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { Grid, GridItem } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import SystemsTable from '../SystemsTable/SystemsTable';
-import { fixedPercentage, pluralize } from '../../Utilities/TextHelper';
-import {
-    ReportDetailsContentLoader,
-    ReportDetailsDescription,
-    StateViewWithError,
-    StateViewPart
-} from 'PresentationalComponents';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
-import {
-    PageHeader,
-    PageHeaderTitle,
-    Main,
-    EmptyTable,
-    Spinner
-} from '@redhat-cloud-services/frontend-components';
-import {
-    ChartDonut,
-    ChartThemeColor,
-    ChartThemeVariant
-} from '@patternfly/react-charts';
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    Button
-} from '@patternfly/react-core';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import '../../Charts.scss';
+
+import { ChartDonut, ChartThemeColor, ChartThemeVariant } from '@patternfly/react-charts';
+import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem } from '@patternfly/react-core';
+
+import {
+    PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner
+} from '@redhat-cloud-services/frontend-components';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+
+import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
+import {
+    ReportDetailsContentLoader, ReportDetailsDescription, StateViewWithError, StateViewPart
+} from 'PresentationalComponents';
+import { DeleteReport, SystemsTable } from 'SmartComponents';
+
+import '@/Charts.scss';
 import './ReportDetails.scss';
-import DeleteReport from '../DeleteReport/DeleteReport';
+
 export const QUERY = gql`
 query Profile($policyId: String!){
     profile(id: $policyId) {

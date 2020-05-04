@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import {
     Title,
     TextContent,
@@ -10,8 +11,7 @@ import {
     EmptyStateIcon
 } from '@patternfly/react-core';
 import { CloudServerIcon } from '@patternfly/react-icons';
-import CreatePolicy from '../../SmartComponents/CreatePolicy/CreatePolicy';
-import propTypes from 'prop-types';
+import { CreatePolicy } from 'SmartComponents';
 
 const CompliancePoliciesEmptyState = ({ title }) => (
     <Bullseye>

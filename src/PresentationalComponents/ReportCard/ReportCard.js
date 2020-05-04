@@ -23,8 +23,8 @@ import {
     ChartThemeVariant
 } from '@patternfly/react-charts';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import '../../Charts.scss';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import '@/Charts.scss';
+import { fixedPercentage } from 'Utilities/TextHelper';
 
 class ReportCard extends React.Component {
     state = {

@@ -1,4 +1,4 @@
-import { COMPLIANCE_API_ROOT } from '../constants';
+import { COMPLIANCE_API_ROOT } from '@/constants';
 
 const CSV_FILE_PREFIX = 'compliance-export';
 

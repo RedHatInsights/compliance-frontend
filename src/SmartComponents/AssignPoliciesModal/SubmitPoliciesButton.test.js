@@ -1,12 +1,12 @@
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import { Button } from '@patternfly/react-core';
-import { dispatchAction } from '../../Utilities/Dispatcher';
+import { dispatchAction } from 'Utilities/Dispatcher';
 import { MockedProvider } from '@apollo/react-testing';
 import { SubmitPoliciesButton, completedMessage } from './SubmitPoliciesButton.js';
 import renderer, { act } from 'react-test-renderer';
-import { ASSOCIATE_PROFILES_TO_SYSTEM } from '../../Utilities/graphql/mutations';
+import { ASSOCIATE_PROFILES_TO_SYSTEM } from 'Utilities/graphql/mutations';
 
-jest.mock('../../Utilities/Dispatcher');
+jest.mock('Utilities/Dispatcher');
 jest.mock('@redhat-cloud-services/frontend-components-notifications');
 
 describe('SubmitPoliciesButton', () => {

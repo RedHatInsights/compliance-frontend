@@ -1,9 +1,8 @@
-import toJson from 'enzyme-to-json';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import { useQuery } from '@apollo/react-hooks';
-import { benchmarksQuery } from './fixtures.js';
+import { benchmarksQuery } from '@/__fixtures__/benchmarks_rules.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');

@@ -2,7 +2,7 @@ import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Link } from 'react-router-dom';
-import { EXPORT_TO_CSV } from '../ActionTypes';
+import { EXPORT_TO_CSV } from 'Store/ActionTypes';
 import { downloadCsv } from 'Utilities/Export';
 import {
     ComplianceScore as complianceScore,
