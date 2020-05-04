@@ -2,9 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { profiles } from '@/__fixtures__/profiles.js';
 
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
+
 window.insights = {
     chrome: { isBeta: jest.fn(() => true) }
 };

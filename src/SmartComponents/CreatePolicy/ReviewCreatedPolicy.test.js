@@ -7,9 +7,6 @@ import { useQuery } from '@apollo/react-hooks';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Systems table</p>;
-});
 
 describe('ReviewCreatedPolicy', () => {
     let store;

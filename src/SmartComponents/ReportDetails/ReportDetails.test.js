@@ -48,11 +48,6 @@ jest.mock('../SystemsTable/SystemsTable', () => {
     return SystemsTable;
 });
 
-jest.mock('../EditPolicy/EditPolicy', () => {
-    const EditPolicy = () => <div>Edit Policy</div>;
-    return EditPolicy;
-});
-
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
 jest.mock('@apollo/react-hooks', () => ({

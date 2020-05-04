@@ -19,13 +19,6 @@ jest.mock('Utilities/InventoryApi', () => (
         /* eslint-enable camelcase */
     }
 ));
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 
 import AssignPoliciesModal from './AssignPoliciesModal.js';
 

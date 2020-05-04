@@ -6,9 +6,6 @@ import renderer from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 
 const mockStore = configureStore();
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Systems table</p>;
-});
 
 describe('FinishedCreatePolicy', () => {
     let store;

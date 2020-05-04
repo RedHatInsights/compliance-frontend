@@ -1,11 +1,3 @@
-jest.mock('react-router-dom', () => (
-    {
-        history: {
-            push: jest.fn()
-        },
-        withRouter: jest.fn()
-    }
-));
 import { policies as rawPolicies  } from '@/__fixtures__/policies.js';
 
 import { PoliciesTable } from './PoliciesTable.js';

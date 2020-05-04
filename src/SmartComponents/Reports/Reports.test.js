@@ -3,13 +3,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { Reports } from './Reports.js';
 
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 
 describe('Reports', () => {
     it('expect to render without error', () => {
