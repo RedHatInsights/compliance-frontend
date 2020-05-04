@@ -1,95 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxFieldArray expect to render with default checked fields 1`] = `
-Array [
-  <div
-    className="pf-c-check"
-  >
-    <input
-      aria-invalid={false}
-      checked={false}
-      className="pf-c-check__input"
-      disabled={false}
-      id="12345"
-      name="policies[0]"
-      onChange={[Function]}
-      type="checkbox"
-      value="12345"
-    />
-    <label
-      className="pf-c-check__label"
-      htmlFor="12345"
-    >
-      pci
-    </label>
-  </div>,
-  <div
-    className="pf-c-check"
-  >
-    <input
-      aria-invalid={false}
-      checked={true}
-      className="pf-c-check__input"
-      disabled={false}
-      id="1111"
-      name="policies[1]"
-      onChange={[Function]}
-      type="checkbox"
-      value="1111"
-    />
-    <label
-      className="pf-c-check__label"
-      htmlFor="1111"
-    >
-      hipaa
-    </label>
-  </div>,
-]
+<Fragment>
+  <Checkbox
+    className=""
+    id="12345"
+    isChecked={false}
+    isDisabled={false}
+    isValid={true}
+    key="12345"
+    label="pci"
+    name="policies[0]"
+    onChange={[Function]}
+    value="12345"
+  />
+  <Checkbox
+    className=""
+    id="1111"
+    isChecked={true}
+    isDisabled={false}
+    isValid={true}
+    key="1111"
+    label="hipaa"
+    name="policies[1]"
+    onChange={[Function]}
+    value="1111"
+  />
+</Fragment>
 `;
 
 exports[`CheckboxFieldArray expect to render without default checked fields 1`] = `
-Array [
-  <div
-    className="pf-c-check"
-  >
-    <input
-      aria-invalid={false}
-      checked={false}
-      className="pf-c-check__input"
-      disabled={false}
-      id="12345"
-      name="policies[0]"
-      onChange={[Function]}
-      type="checkbox"
-      value="12345"
-    />
-    <label
-      className="pf-c-check__label"
-      htmlFor="12345"
-    >
-      pci
-    </label>
-  </div>,
-  <div
-    className="pf-c-check"
-  >
-    <input
-      aria-invalid={false}
-      checked={false}
-      className="pf-c-check__input"
-      disabled={false}
-      id="1111"
-      name="policies[1]"
-      onChange={[Function]}
-      type="checkbox"
-      value="1111"
-    />
-    <label
-      className="pf-c-check__label"
-      htmlFor="1111"
-    >
-      hipaa
-    </label>
-  </div>,
-]
+<Fragment>
+  <Checkbox
+    className=""
+    id="12345"
+    isChecked={false}
+    isDisabled={false}
+    isValid={true}
+    key="12345"
+    label="pci"
+    name="policies[0]"
+    onChange={[Function]}
+    value="12345"
+  />
+  <Checkbox
+    className=""
+    id="1111"
+    isChecked={false}
+    isDisabled={false}
+    isValid={true}
+    key="1111"
+    label="hipaa"
+    name="policies[1]"
+    onChange={[Function]}
+    value="1111"
+  />
+</Fragment>
 `;

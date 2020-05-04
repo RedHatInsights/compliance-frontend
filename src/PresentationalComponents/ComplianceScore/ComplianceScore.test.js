@@ -1,5 +1,4 @@
 import ComplianceScore from './ComplianceScore';
-import renderer from 'react-test-renderer';
 
 describe('auxiliary functions to reducer', () => {
     it('should show a danger icon if the host is not compliant', () => {
@@ -10,8 +9,8 @@ describe('auxiliary functions to reducer', () => {
             compliant: false
         };
 
-        const dangerIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
-        expect(dangerIcon).toMatchSnapshot();
+        const dangerIcon = mount(<ComplianceScore { ...system } />);
+        expect(toJson(dangerIcon)).toMatchSnapshot();
     });
 
     it('should show a success icon if the host is compliant', () => {
@@ -25,8 +24,8 @@ describe('auxiliary functions to reducer', () => {
             ]
         };
 
-        const checkIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
-        expect(checkIcon).toMatchSnapshot();
+        const checkIcon = mount(<ComplianceScore { ...system } />);
+        expect(toJson(checkIcon)).toMatchSnapshot();
     });
 
     it('should show a question mark icon if the host has no rules passed or failed', () => {
@@ -35,7 +34,7 @@ describe('auxiliary functions to reducer', () => {
             rulesFailed: 0
         };
 
-        const questionMarkIcon = renderer.create(<ComplianceScore { ...system } />).toJSON();
-        expect(questionMarkIcon).toMatchSnapshot();
+        const questionMarkIcon = mount(<ComplianceScore { ...system } />);
+        expect(toJson(questionMarkIcon)).toMatchSnapshot();
     });
 });
