@@ -9,7 +9,7 @@ const PolicySystemsTab = ({ policy, complianceThreshold }) => (
             key: 'facts.compliance.display_name',
             title: 'System name',
             props: {
-                width: 40
+                width: 40, isStatic: true
             }
         }]}
         complianceThreshold={ complianceThreshold }
