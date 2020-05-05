@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from '@apollo/react-hoc';
 import { Button } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE } from '../../Utilities/graphql/mutations';
+import { CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE } from 'Utilities/graphql/mutations';
 
 export class UpdateProfileButton extends React.Component {
     handleBusinessObjective = () => {

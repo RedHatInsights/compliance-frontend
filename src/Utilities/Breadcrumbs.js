@@ -1,4 +1,4 @@
-import { COMPLIANCE_UI_ROOT } from '../constants';
+import { COMPLIANCE_UI_ROOT } from '@/constants';
 
 export function onNavigate(event, history) {
     event.preventDefault();

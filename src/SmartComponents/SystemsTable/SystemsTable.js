@@ -16,15 +16,15 @@ import {
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import  {
     AssignPoliciesModal
-} from '../../SmartComponents';
-import { exportToCSV } from '../../store/ActionTypes.js';
+} from 'SmartComponents';
+import { exportToCSV } from 'Store/ActionTypes';
 import { exportToJson } from 'Utilities/Export';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { entitiesReducer } from '../../store/Reducers/SystemStore';
+import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
     DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION
-} from '../../constants';
+} from '@/constants';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {

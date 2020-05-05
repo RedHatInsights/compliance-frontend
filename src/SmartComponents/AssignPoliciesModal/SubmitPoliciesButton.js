@@ -1,11 +1,12 @@
 import React from 'react';
+import propTypes from 'prop-types';
+import { reset } from 'redux-form';
 import { useMutation } from '@apollo/react-hooks';
 import { Button } from '@patternfly/react-core';
-import propTypes from 'prop-types';
-import { ASSOCIATE_PROFILES_TO_SYSTEM } from '../../Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
-import { dispatchAction } from '../../Utilities/Dispatcher';
-import { reset } from 'redux-form';
+
+import { dispatchAction } from 'Utilities/Dispatcher';
+import { ASSOCIATE_PROFILES_TO_SYSTEM } from 'Utilities/graphql/mutations';
 
 export const completedMessage = (system) => {
     const profiles = system.profiles.map((profile) => profile.name);

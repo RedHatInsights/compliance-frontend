@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import { UpdateProfileButton } from './UpdateProfileButton';
 
 describe('UpdateProfileButton', () => {

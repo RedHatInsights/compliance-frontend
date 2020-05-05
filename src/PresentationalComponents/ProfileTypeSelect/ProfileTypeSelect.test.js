@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import ProfileTypeSelect from './ProfileTypeSelect';
 
 describe('ProfileTypeSelect', () => {

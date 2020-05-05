@@ -10,8 +10,8 @@ import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
-import CreatePolicy from '../CreatePolicy/CreatePolicy';
-import DeletePolicy from '../DeletePolicy/DeletePolicy';
+
+import { CreatePolicy, DeletePolicy } from 'SmartComponents';
 
 const emptyRows = [{
     cells: [{

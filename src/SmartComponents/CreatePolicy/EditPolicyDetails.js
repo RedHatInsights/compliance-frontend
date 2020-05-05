@@ -1,17 +1,12 @@
 import React from 'react';
 import { compose } from 'redux';
-import {
-    Form,
-    FormGroup,
-    Text,
-    TextContent,
-    TextVariants
-} from '@patternfly/react-core';
-import ProfileThresholdField from '../ProfileThresholdField/ProfileThresholdField';
-import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
+
+import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
+import { ProfileThresholdField } from 'SmartComponents';
 
 const EditPolicyDetails = ({ profile }) => {
     return (

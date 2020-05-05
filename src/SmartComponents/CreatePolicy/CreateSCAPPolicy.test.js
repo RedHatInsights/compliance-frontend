@@ -3,18 +3,10 @@ import configureStore from 'redux-mock-store';
 import { useQuery } from '@apollo/react-hooks';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import { benchmarksQuery, profileRefIdsQuery } from './fixtures.js';
-import toJson from 'enzyme-to-json';
+import { benchmarksQuery, profileRefIdsQuery } from '@/__fixtures__/benchmarks_rules.js';
 
 const mockStore = configureStore();
 jest.mock('@apollo/react-hooks');
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
 
 describe('CreateSCAPPolicy', () => {
     let store;

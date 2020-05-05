@@ -1,4 +1,4 @@
-import { init } from '../../store';
+import { init } from 'Store';
 import { Provider } from 'react-redux';
 import ReactDom from 'react-dom';
 import { act } from 'react-dom/test-utils';
@@ -45,13 +45,6 @@ const mocks = [
 ];
 const store = init().getStore();
 
-jest.mock('../EditPolicy/EditPolicy', () => {
-    const EditPolicy = () => <div>Edit Policy</div>;
-    return EditPolicy;
-});
-
-// Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
-// This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
 jest.mock('@apollo/react-hooks', () => ({
     useQuery: () => {
         return { data: mocks[0].result.data, error: false, loading: false };

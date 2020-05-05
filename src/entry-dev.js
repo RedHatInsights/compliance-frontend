@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import logger from 'redux-logger';
+import { IntlProvider } from 'react-intl';
+
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { init } from './store';
+import { init } from 'Store';
 import App from './App';
-import logger from 'redux-logger';
-import { COMPLIANCE_API_ROOT } from './constants';
-import { IntlProvider } from 'react-intl';
+
+import { COMPLIANCE_API_ROOT } from '@/constants';
 
 const client = new ApolloClient({
     link: new HttpLink({ credentials: 'include', uri: COMPLIANCE_API_ROOT + '/graphql' }),

@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import LoadingPoliciesTable from './LoadingPoliciesTable';
 
 describe('LoadingPoliciesTable', () => {

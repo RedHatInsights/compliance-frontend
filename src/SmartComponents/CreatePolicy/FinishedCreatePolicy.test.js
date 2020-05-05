@@ -1,13 +1,11 @@
 import FinishedCreatePolicy from './FinishedCreatePolicy.js';
 import configureStore from 'redux-mock-store';
-import { policyFormValues, mutateCreateProfileMock } from './fixtures.js';
+import { policyFormValues, mutateCreateProfileMock } from '@/__fixtures__/benchmarks_rules.js';
+
 import renderer from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 
 const mockStore = configureStore();
-jest.mock('../CreatePolicy/EditPolicyRules', () => {
-    return <p>Systems table</p>;
-});
 
 describe('FinishedCreatePolicy', () => {
     let store;

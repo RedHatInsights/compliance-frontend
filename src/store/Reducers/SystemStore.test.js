@@ -5,14 +5,7 @@ import {
     profileNames,
     systemsToInventoryEntities
 } from './SystemStore';
-import { systems, entities } from './SystemStore.fixtures';
-jest.mock('../../SmartComponents/CreatePolicy/EditPolicyRules', () => {
-    return <p>Rules table</p>;
-});
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance', () => {
-    const ComplianceRemediationButton = () => <button>Remediations</button>;
-    return ComplianceRemediationButton;
-});
+import { systems, entities } from '@/__fixtures__/systems.js';
 
 describe('mapping systems to inventory entities', () => {
     it('should return an empty set if there are no systems', () => {

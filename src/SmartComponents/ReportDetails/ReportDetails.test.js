@@ -1,5 +1,4 @@
-import { init } from '../../store';
-import renderer from 'react-test-renderer';
+import { init } from 'Store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -49,11 +48,6 @@ jest.mock('../SystemsTable/SystemsTable', () => {
     return SystemsTable;
 });
 
-jest.mock('../EditPolicy/EditPolicy', () => {
-    const EditPolicy = () => <div>Edit Policy</div>;
-    return EditPolicy;
-});
-
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
 jest.mock('@apollo/react-hooks', () => ({
@@ -77,7 +71,7 @@ describe('ReportDetails', () => {
             chrome: { isBeta: jest.fn(() => true) }
         };
 
-        const component = renderer.create(
+        const component = mount(
             <Router>
                 <Provider store={ store }>
                     <ReportDetails { ...defaultProps } />
@@ -85,6 +79,6 @@ describe('ReportDetails', () => {
             </Router>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(toJson(component)).toMatchSnapshot();
     });
 });

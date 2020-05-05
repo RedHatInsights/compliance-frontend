@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import { fixedPercentage } from '../../Utilities/TextHelper';
+import { fixedPercentage } from 'Utilities/TextHelper';
 import {
     Card,
     CardHeader,

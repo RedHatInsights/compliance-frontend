@@ -1,23 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-    Title,
-    Button,
-    Bullseye,
-    EmptyState,
-    EmptyStateBody,
-    EmptyStateSecondaryActions,
-    EmptyStateVariant,
-    Progress,
-    ProgressMeasureLocation,
-    EmptyStateIcon
+    Title, Button, Bullseye, EmptyState, EmptyStateBody, EmptyStateSecondaryActions,
+    EmptyStateVariant, Progress, ProgressMeasureLocation, EmptyStateIcon
 } from '@patternfly/react-core';
 import { CogsIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
-import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from '../../Utilities/graphql/mutations';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
 
 class FinishedCreatePolicy extends React.Component {
     state = {

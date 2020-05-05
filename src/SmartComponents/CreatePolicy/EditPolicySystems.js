@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm } from 'redux-form';
-import {
-    Form,
-    Text,
-    TextContent,
-    TextVariants
-} from '@patternfly/react-core';
-import SystemsTable from '../SystemsTable/SystemsTable';
+import { Form, Text, TextContent, TextVariants } from '@patternfly/react-core';
+import { SystemsTable } from 'SmartComponents';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';

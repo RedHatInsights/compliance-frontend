@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import { BusinessObjectiveField } from './BusinessObjectiveField';
 const businessObjective = {
     title: 'BO title',

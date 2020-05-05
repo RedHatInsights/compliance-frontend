@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import { ProfileThresholdField } from './ProfileThresholdField';
 
 describe('ProfileThresholdField', () => {

@@ -1,16 +1,7 @@
-import toJson from 'enzyme-to-json';
-import { policies as rawPolicies } from './fixtures.js';
-
-jest.mock('react-router-dom', () => (
-    {
-        history: {
-            push: jest.fn()
-        },
-        withRouter: jest.fn()
-    }
-));
+import { policies as rawPolicies  } from '@/__fixtures__/policies.js';
 
 import { PoliciesTable } from './PoliciesTable.js';
+
 const policies = rawPolicies.edges.map(profile => profile.node);
 
 describe('PoliciesTable', () => {

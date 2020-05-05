@@ -1,9 +1,4 @@
-import renderer from 'react-test-renderer';
 import { CheckboxFieldArray } from './CheckboxGroup';
-
-jest.mock('redux-form', () => ({
-    Field: 'Field'
-}));
 
 describe('CheckboxFieldArray', () => {
     let input;
@@ -22,21 +17,21 @@ describe('CheckboxFieldArray', () => {
     });
 
     it('expect to render with default checked fields', () => {
-        const component = renderer.create(
+        const component = shallow(
             <CheckboxFieldArray input={input} options={options} />
         );
 
-        expect(component.toJSON()).toMatchSnapshot();
+        expect(toJson(component)).toMatchSnapshot();
     });
 
     it('expect to render without default checked fields', () => {
         options[0].defaultChecked = undefined;
         options[1].defaultChecked = undefined;
 
-        const component = renderer.create(
+        const component = shallow(
             <CheckboxFieldArray input={input} options={options}/>
         );
 
-        expect(component.toJSON()).toMatchSnapshot();
+        expect(toJson(component)).toMatchSnapshot();
     });
 });

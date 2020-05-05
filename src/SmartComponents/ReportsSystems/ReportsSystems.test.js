@@ -1,4 +1,3 @@
-import toJson from 'enzyme-to-json';
 import ReportsSystems from './ReportsSystems.js';
 
 describe('ReportsSystems', () => {

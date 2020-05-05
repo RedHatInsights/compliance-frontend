@@ -1,10 +1,8 @@
-import toJson from 'enzyme-to-json';
-
 jest.mock('@apollo/react-hooks');
-jest.mock('../../Utilities/Dispatcher');
+jest.mock('Utilities/Dispatcher');
 
 import { useMutation } from '@apollo/react-hooks';
-import { dispatchAction } from '../../Utilities/Dispatcher';
+import { dispatchAction } from 'Utilities/Dispatcher';
 
 import DeletePolicy from './DeletePolicy.js';
 

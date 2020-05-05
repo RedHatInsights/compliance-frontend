@@ -1,5 +1,3 @@
-import toJson from 'enzyme-to-json';
-
 import InventoryDetails from './InventoryDetails';
 
 const MockComponent = jest.fn(({ children, loaded }) => {
