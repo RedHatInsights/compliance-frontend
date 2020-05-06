@@ -6,8 +6,8 @@ import {
 } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import {
-    CompliancePoliciesEmptyState,
     ErrorPage,
     LoadingPoliciesTable,
     StateView,
@@ -15,7 +15,8 @@ import {
 } from 'PresentationalComponents';
 
 import {
-    PoliciesTable
+    PoliciesTable,
+    CreatePolicy
 } from 'SmartComponents';
 
 const QUERY = gql`
@@ -71,7 +72,8 @@ export const CompliancePolicies = () => {
             </PageHeader>
             <Main>
                 { policies && policies.length === 0 ?
-                    <Grid gutter='md'><CompliancePoliciesEmptyState /></Grid> :
+                    <Grid gutter='md'><ComplianceEmptyState title='No policies'
+                        mainButton={<CreatePolicy onWizardFinish={() => { location.reload(); }} />} /></Grid> :
                     <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
                 }
             </Main>
