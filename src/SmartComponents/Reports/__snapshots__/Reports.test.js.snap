@@ -55,7 +55,12 @@ exports[`Reports expect to render emptystate 1`] = `
         <Grid
           gutter="md"
         >
-          <CompliancePoliciesEmptyState
+          <Component
+            mainButton={
+              <Connect(CreatePolicy)
+                onWizardFinish={[Function]}
+              />
+            }
             title="No policies are reporting"
           />
         </Grid>
