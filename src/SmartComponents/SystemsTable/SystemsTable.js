@@ -40,6 +40,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     refId
                     lastScanned
                     compliant
+                    external
                     score
                     rules {
                         refId
@@ -66,6 +67,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     id
                     name
                     lastScanned
+                    external
                     compliant
                     score
                 }
