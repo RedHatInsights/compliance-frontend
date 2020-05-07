@@ -3,10 +3,11 @@ import {
     ReportTabs,
     LoadingComplianceCards,
     ReportCard,
-    CompliancePoliciesEmptyState,
     StateViewWithError,
     StateViewPart
 } from 'PresentationalComponents';
+import { CreatePolicy } from 'SmartComponents';
+import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { useQuery } from '@apollo/react-hooks';
@@ -75,7 +76,9 @@ export const Reports = () => {
             );
         } else {
             pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
-            reportCards = <CompliancePoliciesEmptyState title={'No policies are reporting'} />;
+            reportCards = <ComplianceEmptyState title={'No policies are reporting'}
+                mainButton={<CreatePolicy onWizardFinish={() => { location.reload(); }} />}
+            />;
         }
     }
 
