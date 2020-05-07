@@ -2,7 +2,6 @@ export { default as ReportTabs } from './ReportTabs/ReportTabs';
 export { default as LoadingComplianceCards } from './LoadingComplianceCards/LoadingComplianceCards';
 export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingPoliciesTable';
 export { default as ReportCard } from './ReportCard/ReportCard';
-export { default as CompliancePoliciesEmptyState } from './CompliancePoliciesEmptyState/CompliancePoliciesEmptyState';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
 export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
 export { default as ProfileTypeSelect } from './ProfileTypeSelect/ProfileTypeSelect';
