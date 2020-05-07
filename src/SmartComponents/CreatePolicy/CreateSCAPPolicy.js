@@ -49,7 +49,7 @@ query benchmarksAndProfiles {
 `;
 
 const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
-    const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES);
+    const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES, { fetchPolicy: 'no-cache' });
 
     const userProfileRefIdsForBenchmarkId = (profiles, benchmarkId) => (
         profiles.filter(profile => benchmarkId === profile.node.benchmarkId).map(profile => profile.node.refId)
