@@ -23,6 +23,18 @@ describe('ErrorPage', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
+    it('expect to render a 403 error', () => {
+        const error = {
+            networkError: { statusCode: 403 },
+            error: 'Not authorized'
+        };
+        const wrapper = shallow(
+            <ErrorPage error={ error } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
     it('expect to render a 401 error when logged out', () => {
         window.insights = {
             chrome: { auth: { logout: jest.fn(() => 'Logout') } }

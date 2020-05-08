@@ -54,31 +54,28 @@ export const CompliancePolicies = () => {
         policies = data.profiles.edges.map(profile => profile.node);
     }
 
-    return <StateView stateValues={ { error, data, loading } }>
-        <StateViewPart stateKey='error'>
-            <ErrorPage error={error}/>
-        </StateViewPart>
-        <StateViewPart stateKey='loading'>
-            <PageHeader className='page-header'>
-                <PageHeaderTitle title="SCAP policies" />
-            </PageHeader>
-            <Main>
-                <LoadingPoliciesTable />
-            </Main>
-        </StateViewPart>
-        <StateViewPart stateKey='data'>
-            <PageHeader className='page-header'>
-                <PageHeaderTitle title="SCAP policies" />
-            </PageHeader>
-            <Main>
-                { policies && policies.length === 0 ?
-                    <Grid gutter='md'><ComplianceEmptyState title='No policies'
-                        mainButton={<CreatePolicy onWizardFinish={() => refetch()} />} /></Grid> :
-                    <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
-                }
-            </Main>
-        </StateViewPart>
-    </StateView>;
+    return <React.Fragment>
+        <PageHeader className='page-header'>
+            <PageHeaderTitle title="SCAP policies" />
+        </PageHeader>
+        <Main>
+            <StateView stateValues={ { error, data, loading } }>
+                <StateViewPart stateKey='error'>
+                    <ErrorPage error={error}/>
+                </StateViewPart>
+                <StateViewPart stateKey='loading'>
+                    <LoadingPoliciesTable />
+                </StateViewPart>
+                <StateViewPart stateKey='data'>
+                    { policies && policies.length === 0 ?
+                        <Grid gutter='md'><ComplianceEmptyState title='No policies'
+                            mainButton={<CreatePolicy onWizardFinish={() => { refetch(); }} />} /></Grid> :
+                        <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
+                    }
+                </StateViewPart>
+            </StateView>
+        </Main>
+    </React.Fragment>;
 };
 
 export default routerParams(CompliancePolicies);

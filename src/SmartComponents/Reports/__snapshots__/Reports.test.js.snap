@@ -1,218 +1,214 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Reports expect to render emptystate 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "profiles": Object {
-          "edges": Array [],
-        },
-      },
-      "error": false,
-      "loading": false,
+<Fragment>
+  <PageHeader
+    style={
+      Object {
+        "paddingBottom": 22,
+      }
     }
-  }
->
-  <StateViewPart
-    stateKey="loading"
   >
-    <PageHeader>
-      <PageHeaderTitle
-        title="Compliance"
-      />
-    </PageHeader>
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
-      >
-        <Grid
-          gutter="md"
-        >
-          <LoadingComplianceCards />
-        </Grid>
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader
-      style={
+    <PageHeaderTitle
+      title="Compliance"
+    />
+  </PageHeader>
+  <Connect(Main)>
+    <StateViewWithError
+      stateValues={
         Object {
-          "paddingBottom": 22,
+          "data": Object {
+            "profiles": Object {
+              "edges": Array [],
+            },
+          },
+          "error": false,
+          "loading": false,
         }
       }
     >
-      <PageHeaderTitle
-        title="Compliance"
-      />
-    </PageHeader>
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
+      <StateViewPart
+        stateKey="loading"
       >
-        <Grid
-          gutter="md"
+        <div
+          className="policies-donuts"
         >
-          <ComplianceEmptyState
-            mainButton={
-              <Connect(CreatePolicy)
-                onWizardFinish={[Function]}
-              />
-            }
-            title="No policies are reporting"
-          />
-        </Grid>
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-</StateViewWithError>
+          <Grid
+            gutter="md"
+          >
+            <LoadingComplianceCards />
+          </Grid>
+        </div>
+      </StateViewPart>
+      <StateViewPart
+        stateKey="data"
+      >
+        <div
+          className="policies-donuts"
+        >
+          <Grid
+            gutter="md"
+          >
+            <ComplianceEmptyState
+              mainButton={
+                <Connect(CreatePolicy)
+                  onWizardFinish={[Function]}
+                />
+              }
+              title="No policies are reporting"
+            />
+          </Grid>
+        </div>
+      </StateViewPart>
+    </StateViewWithError>
+  </Connect(Main)>
+</Fragment>
 `;
 
 exports[`Reports expect to render loading 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": undefined,
-      "error": false,
-      "loading": true,
+<Fragment>
+  <PageHeader
+    style={
+      Object {
+        "paddingBottom": 22,
+      }
     }
-  }
->
-  <StateViewPart
-    stateKey="loading"
   >
-    <PageHeader>
-      <PageHeaderTitle
-        title="Compliance"
-      />
-    </PageHeader>
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
+    <PageHeaderTitle
+      title="Compliance"
+    />
+  </PageHeader>
+  <Connect(Main)>
+    <StateViewWithError
+      stateValues={
+        Object {
+          "data": undefined,
+          "error": false,
+          "loading": true,
+        }
+      }
+    >
+      <StateViewPart
+        stateKey="loading"
       >
-        <Grid
-          gutter="md"
+        <div
+          className="policies-donuts"
         >
-          <LoadingComplianceCards />
-        </Grid>
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
-  >
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
+          <Grid
+            gutter="md"
+          >
+            <LoadingComplianceCards />
+          </Grid>
+        </div>
+      </StateViewPart>
+      <StateViewPart
+        stateKey="data"
       >
-        <Grid
-          gutter="md"
-        />
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-</StateViewWithError>
+        <div
+          className="policies-donuts"
+        >
+          <Grid
+            gutter="md"
+          />
+        </div>
+      </StateViewPart>
+    </StateViewWithError>
+  </Connect(Main)>
+</Fragment>
 `;
 
 exports[`Reports expect to render without error 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "profiles": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "businessObjective": Object {
-                  "id": "1",
-                  "title": "BO 1",
-                },
-                "complianceThreshold": 1,
-                "compliantHostCount": 1,
-                "description": "profile description",
-                "id": "1",
-                "name": "profile1",
-                "refId": "121212",
-                "totalHostCount": 1,
-              },
-            },
-          ],
-        },
-      },
-      "error": false,
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="loading"
+<Fragment>
+  <PageHeader
+    className="page-header-tabs"
   >
-    <PageHeader>
-      <PageHeaderTitle
-        title="Compliance"
-      />
-    </PageHeader>
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
-      >
-        <Grid
-          gutter="md"
-        >
-          <LoadingComplianceCards />
-        </Grid>
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader
-      className="page-header-tabs"
-    >
-      <PageHeaderTitle
-        title="Compliance reports"
-      />
-      <withRouter(Connect(RouterParams)) />
-    </PageHeader>
-    <Connect(Main)>
-      <div
-        className="policies-donuts"
-      >
-        <Grid
-          gutter="md"
-        >
-          <GridItem
-            key="0"
-            lg={6}
-            md={12}
-            sm={12}
-            xl={4}
-          >
-            <ReportCard
-              key="0"
-              profile={
+    <PageHeaderTitle
+      title="Compliance reports"
+    />
+    <withRouter(Connect(RouterParams)) />
+  </PageHeader>
+  <Connect(Main)>
+    <StateViewWithError
+      stateValues={
+        Object {
+          "data": Object {
+            "profiles": Object {
+              "edges": Array [
                 Object {
-                  "businessObjective": Object {
+                  "node": Object {
+                    "businessObjective": Object {
+                      "id": "1",
+                      "title": "BO 1",
+                    },
+                    "complianceThreshold": 1,
+                    "compliantHostCount": 1,
+                    "description": "profile description",
                     "id": "1",
-                    "title": "BO 1",
+                    "name": "profile1",
+                    "refId": "121212",
+                    "totalHostCount": 1,
                   },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 1,
-                  "description": "profile description",
-                  "id": "1",
-                  "name": "profile1",
-                  "refId": "121212",
-                  "totalHostCount": 1,
+                },
+              ],
+            },
+          },
+          "error": false,
+          "loading": false,
+        }
+      }
+    >
+      <StateViewPart
+        stateKey="loading"
+      >
+        <div
+          className="policies-donuts"
+        >
+          <Grid
+            gutter="md"
+          >
+            <LoadingComplianceCards />
+          </Grid>
+        </div>
+      </StateViewPart>
+      <StateViewPart
+        stateKey="data"
+      >
+        <div
+          className="policies-donuts"
+        >
+          <Grid
+            gutter="md"
+          >
+            <GridItem
+              key="0"
+              lg={6}
+              md={12}
+              sm={12}
+              xl={4}
+            >
+              <ReportCard
+                key="0"
+                profile={
+                  Object {
+                    "businessObjective": Object {
+                      "id": "1",
+                      "title": "BO 1",
+                    },
+                    "complianceThreshold": 1,
+                    "compliantHostCount": 1,
+                    "description": "profile description",
+                    "id": "1",
+                    "name": "profile1",
+                    "refId": "121212",
+                    "totalHostCount": 1,
+                  }
                 }
-              }
-            />
-          </GridItem>
-        </Grid>
-      </div>
-    </Connect(Main)>
-  </StateViewPart>
-</StateViewWithError>
+              />
+            </GridItem>
+          </Grid>
+        </div>
+      </StateViewPart>
+    </StateViewWithError>
+  </Connect(Main)>
+</Fragment>
 `;
