@@ -2,6 +2,8 @@ import React from 'react';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
     Popover,
+    TextList,
+    TextListVariants,
     TextListItem,
     TextListItemVariants,
     TextContent
@@ -24,33 +26,35 @@ const PolicyPopover = ({ profile }) => {
             }
             bodyContent={
                 <TextContent className='policy-details'>
-                    <TextListItem component={TextListItemVariants.dt}>
-                        Operating system
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dd}>
-                        RHEL { majorOsVersion }
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dt}>
-                        Policy SSG version
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dd}>
-                        { policy && policy.benchmark && policy.benchmark.version }
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dt}>
-                        Compliance threshold
-                    </TextListItem>
-                    <TextListItem component={TextListItemVariants.dd}>
-                        { fixedPercentage(complianceThreshold, 1) }
-                    </TextListItem>
-                    { businessObjective &&
-                    <React.Fragment>
+                    <TextList component={TextListVariants.dl}>
                         <TextListItem component={TextListItemVariants.dt}>
-                            Business objective
+                            Operating system
                         </TextListItem>
                         <TextListItem component={TextListItemVariants.dd}>
-                            { businessObjective.title }
+                            RHEL { majorOsVersion }
                         </TextListItem>
-                    </React.Fragment> }
+                        <TextListItem component={TextListItemVariants.dt}>
+                            Policy SSG version
+                        </TextListItem>
+                        <TextListItem component={TextListItemVariants.dd}>
+                            { policy && policy.benchmark && policy.benchmark.version }
+                        </TextListItem>
+                        <TextListItem component={TextListItemVariants.dt}>
+                            Compliance threshold
+                        </TextListItem>
+                        <TextListItem component={TextListItemVariants.dd}>
+                            { fixedPercentage(complianceThreshold, 1) }
+                        </TextListItem>
+                        { businessObjective &&
+                        <React.Fragment>
+                            <TextListItem component={TextListItemVariants.dt}>
+                                Business objective
+                            </TextListItem>
+                            <TextListItem component={TextListItemVariants.dd}>
+                                { businessObjective.title }
+                            </TextListItem>
+                        </React.Fragment> }
+                    </TextList>
                 </TextContent>
             }
         >
