@@ -32,11 +32,6 @@
     width: var(--pf-global--breakpoint--sm);
 }
 
-.pf-c-progress.pf-m-success {
-    --pf-c-progress__bar--before--BackgroundColor: #3e8635;
-    --pf-c-progress__status-icon--Color: #3e8635;
-}
-
 .wizard-failed-message {
     color: var(--pf-global--danger-color--100);
     font-weight: bold;
