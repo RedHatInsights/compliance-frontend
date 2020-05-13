@@ -6,8 +6,13 @@ import {
     TextList,
     TextListVariants,
     TextListItem,
-    TextListItemVariants
+    TextListItemVariants,
+    Tooltip,
+    TooltipPosition
 } from '@patternfly/react-core';
+import {
+    ExclamationTriangleIcon
+} from '@patternfly/react-icons';
 import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
@@ -25,6 +30,21 @@ query review($benchmarkId: String!) {
     }
 }
 `;
+
+const SystemsCount = ({ count }) => (
+    count > 0 ? count : <Tooltip
+        position={TooltipPosition.bottom}
+        content="Policies without systems will not have reports.">
+        <ExclamationTriangleIcon className='ins-u-warning'/>
+        <Text component="span" className='ins-u-warning'>
+            &nbsp;No systems
+        </Text>
+    </Tooltip>
+);
+
+SystemsCount.propTypes = {
+    count: propTypes.number
+};
 
 const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCount, complianceThreshold, parentProfileName }) => {
     const { data, error, loading } = useQuery(REVIEW, { variables: { benchmarkId } });
@@ -63,7 +83,7 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCoun
                 <TextListItem component={TextListItemVariants.dt}>No. of rules</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ rulesCount }</TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>No. of systems</TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>{ systemsCount }</TextListItem>
+                <TextListItem component={TextListItemVariants.dd}><SystemsCount count={ systemsCount } /></TextListItem>
             </TextList>
         </TextContent>
     );
