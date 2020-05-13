@@ -13,4 +13,4 @@ export const selectAll = () => ({
 export const clearSelection = () => ({
     type: SELECT_ENTITY,
     payload: { id: 0, selected: false }
-})
+});
