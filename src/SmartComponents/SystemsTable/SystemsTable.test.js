@@ -1,11 +1,6 @@
 import { init } from 'Store';
 import logger from 'redux-logger';
 
-const mockExportJsonFunction = jest.fn();
-jest.mock('Utilities/Export', () => ({
-    exportToJson: () => mockExportJsonFunction()
-}));
-
 import { SystemsTable } from './SystemsTable';
 
 const items = {
@@ -126,24 +121,24 @@ describe('SystemsTable', () => {
     });
 
     describe('Instance functions', () => {
-        const exportCsvFunction = jest.fn();
+        const exportFunction = jest.fn();
         let wrapper;
         let instance;
 
         beforeEach(() =>{
             wrapper = shallow(
-                <SystemsTable { ...defaultProps } exportToCSV={ exportCsvFunction } />
+                <SystemsTable { ...defaultProps } exportFromState={ exportFunction } />
             );
             instance = wrapper.instance();
         });
 
         describe('#onExportSelect', () => {
             it('expect to dispatch calls to export functions per arguments', () => {
-                instance.onExportSelect('_event', 'csv');
-                expect(exportCsvFunction).toHaveBeenCalled();
+                instance.onExportSelect('_', 'csv');
+                expect(exportFunction).toHaveBeenCalledWith('csv');
 
-                instance.onExportSelect('_event', 'json');
-                expect(mockExportJsonFunction).toHaveBeenCalled();
+                instance.onExportSelect('_', 'json');
+                expect(exportFunction).toHaveBeenCalledWith('json');
             });
         });
 

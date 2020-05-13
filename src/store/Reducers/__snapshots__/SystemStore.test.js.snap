@@ -331,6 +331,7 @@ Array [
           </Link>,
         },
         "display_name": Object {
+          "exportValue": "demo.lobatolan.home",
           "title": <Link
             to={
               Object {
@@ -349,6 +350,7 @@ Array [
         },
         "last_scanned_text": 2019-11-21T14:32:19.000Z,
         "policies": Object {
+          "exportValue": "Standard System Security Profile for Red Hat Enterprise Linux 7, DISA STIG for Red Hat Enterprise Linux 7, United States Government Configuration Baseline, C2S for Red Hat Enterprise Linux 7",
           "title": <Tooltip
             appendTo={[Function]}
             aria="describedby"
@@ -420,6 +422,7 @@ Array [
     "mac_addresses": undefined,
     "rhel_machine_id": undefined,
     "satellite_id": undefined,
+    "selected": false,
     "subscription_manager_id": undefined,
     "tags": undefined,
     "updated": undefined,

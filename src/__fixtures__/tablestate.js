@@ -67,7 +67,10 @@ export const tableState = {
       "facts": {
         "inventory": {},
         "compliance": {
-          "profiles": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7, Criminal Justice Information Services (CJIS) Security Policy",
+          "profiles": {
+              title: "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7, Criminal Justice Information Services (CJIS) Security Policy",
+              exportValue: 'EXPORT VALUE PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7'
+          },
           "rules_passed": 38,
           "rules_failed": {
             "title": {

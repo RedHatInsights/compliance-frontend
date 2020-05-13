@@ -1,8 +1,11 @@
-import { COMPLIANCE_API_ROOT } from '@/constants';
-
 const CSV_FILE_PREFIX = 'compliance-export';
+const CSV_DELIMITER = ',';
 
-export const linkAndDownload = (data, filename) => {
+const linkAndDownload = (data, filename) => {
+    if (!data) {
+        return;
+    }
+
     let link = document.createElement('a');
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
@@ -18,6 +21,10 @@ const getNestedObject = (nestedObj, path) => {
 const textCsvCell = (row, key) => {
     let cell = getNestedObject(row, key);
 
+    if (cell.exportValue) {
+        cell = cell.exportValue;
+    }
+
     if (typeof(cell) === 'object') {
         cell = getNestedObject(row, key + '_text');
     }
@@ -30,31 +37,51 @@ const textCsvCell = (row, key) => {
 };
 
 export const csvFromState = (state) => {
-    if (state.rows) {
-        const CELL_DELIMITER = ',';
-        let csvRows = [state.columns.map((column) => column.title).join(CELL_DELIMITER)];
-        csvRows = csvRows.concat(state.rows.map((row) => {
-            return state.columns.map((column) => textCsvCell(row, column.key)).join(CELL_DELIMITER);
-        }));
+    const { rows, columns, selectedEntities } = state;
+
+    if (rows) {
+        let csvRows = [columns.map((column) => column.title).join(CSV_DELIMITER)];
+        csvRows = csvRows.concat((selectedEntities || rows).map((row) => (
+            state.columns.map((column) => textCsvCell(row, column.key)).join(CSV_DELIMITER)
+        )));
+
         return encodeURI('data:text/csv;charset=utf-8,' + csvRows.join('\n'));
     }
 };
 
-export const filename = (format = 'csv') => {
-    return CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format;
-};
+export const jsonFromState = (state) => {
+    const { rows, columns, selectedEntities } = state;
+    let result;
 
-export const downloadCsv = (state) => {
-    const csv = csvFromState(state);
-    if (csv) {
-        linkAndDownload(csv, filename());
+    if (rows) {
+        result = (selectedEntities || rows).map((row) => {
+            let object = {};
+            columns.forEach((column) => {
+                const keys = column.key.split('.');
+                const key = keys[keys.length - 1];
+                object[key] = textCsvCell(row, column.key);
+            });
+
+            return object;
+        });
+
+        return encodeURI('data:application/json;charset=utf-8,' + JSON.stringify(result));
     }
 };
 
-export const exportToJson = (selectedEntities) => {
-    const url = (selectedEntities.length > 0) ?
-        COMPLIANCE_API_ROOT + '/systems.json' + '?search=(id ^ (' + selectedEntities.join(',') + '))' :
-        COMPLIANCE_API_ROOT + '/systems.json';
+const filename = (format) => (
+    CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format
+);
 
-    linkAndDownload(url, filename('json'));
+export const exportFromState = (state, format) => {
+    let content;
+
+    if (format === 'csv') {
+        content = csvFromState(state);
+    } else if (format === 'json') {
+        content = jsonFromState(state);
+    }
+
+    linkAndDownload(content, filename(format));
 };
+
