@@ -2,7 +2,7 @@ import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/ReducerRegistry';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { Link } from 'react-router-dom';
-import { EXPORT } from 'Store/ActionTypes';
+import { EXPORT, SELECT_ENTITY } from 'Store/ActionTypes';
 import { exportFromState } from 'Utilities/Export';
 import {
     ComplianceScore as complianceScore,
@@ -83,7 +83,11 @@ const displayNameCell = (system, matchingSystem) =>  ({
     exportValue: system.display_name || matchingSystem.name
 });
 
-export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId) =>
+const isSelected = (id, selectedEntities) => (
+    !!(selectedEntities || []).find((entity) => (entity.id === id))
+);
+
+export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities) =>(
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -108,6 +112,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         return {
             /* eslint-disable camelcase */
             id: entity.id,
+            selected: isSelected(entity.id, selectedEntities),
             account: entity.account,
             bios_uuid: entity.bios_uuid,
             created: entity.created,
@@ -159,7 +164,40 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
             }
             /* eslint-enable camelcase */
         };
-    }).filter(value => value !== undefined);
+    }).filter(value => value !== undefined)
+);
+
+const selectRowsByIds = (state, ids) => {
+    const rowsToSelect = state.rows.filter((row) => (
+        ids.includes(row.id) && !(state.selectedEntities || []).map((e) => (e.id)).includes(row.id)
+    ));
+
+    return {
+        ...state,
+        selectedEntities: (state.selectedEntities || []).concat(rowsToSelect)
+    };
+};
+
+const deselectRowsByIds = (state, ids) => ({
+    ...state,
+    selectedEntities: state.selectedEntities.filter((row) => !ids.includes(row.id))
+});
+
+const selectAllRows = (state) => (
+    selectRowsByIds(state, state.rows.map((row) => (row.id)))
+);
+
+const deselectAllRows = (state) => (
+    deselectRowsByIds(state, state.rows.map((row) => (row.id)))
+);
+
+const selectRow = (state, id) => (
+    selectRowsByIds(state, [id])
+);
+
+const deselectRow = (state, id) => (
+    deselectRowsByIds(state, [id])
+);
 
 export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId) => applyReducerHash(
     {
@@ -175,7 +213,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.systems || [],
                 state.rows || [],
                 showAllSystems,
-                profileId
+                profileId,
+                state.selectedEntities
             )
         }),
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
@@ -184,7 +223,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.systems || [],
                 state.rows,
                 showAllSystems,
-                profileId
+                profileId,
+                state.selectedEntities
             ),
             total: !showAllSystems ? state.systemsCount : state.total,
             columns
@@ -192,6 +232,21 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
         [EXPORT]: (state, { payload: { format } }) => {
             exportFromState(state, format);
             return state;
+        },
+        [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
+            let newState;
+
+            if (id === 0) {
+                newState = selected ? selectAllRows(state) : deselectAllRows(state);
+            } else {
+                newState = selected ? selectRow(state, id) : deselectRow(state, id);
+            }
+
+            if (newState.selectedEntities.length === 0 || clearAll) {
+                newState.selectedEntities = undefined;
+            }
+
+            return newState;
         }
     }
 );

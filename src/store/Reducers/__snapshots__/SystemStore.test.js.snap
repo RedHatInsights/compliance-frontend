@@ -422,6 +422,7 @@ Array [
     "mac_addresses": undefined,
     "rhel_machine_id": undefined,
     "satellite_id": undefined,
+    "selected": false,
     "subscription_manager_id": undefined,
     "tags": undefined,
     "updated": undefined,

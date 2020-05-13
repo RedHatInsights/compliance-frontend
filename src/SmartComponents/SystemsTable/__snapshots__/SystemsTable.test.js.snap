@@ -91,6 +91,13 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": false,
@@ -121,6 +128,11 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={1}
 >
   <ToolbarGroup>
@@ -148,6 +160,13 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": false,
@@ -178,6 +197,11 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={1}
 >
   <ToolbarGroup>
@@ -217,6 +241,13 @@ exports[`SystemsTable expect to render a loading state 1`] = `
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": true,
@@ -243,6 +274,11 @@ exports[`SystemsTable expect to render a loading state 1`] = `
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
 >
   <ToolbarGroup>
     <ToolbarItem
@@ -279,6 +315,13 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
     Object {
       "filters": Array [],
       "onDelete": [Function],
+    }
+  }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
     }
   }
   exportConfig={
@@ -357,6 +400,11 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={1}
 >
   <ToolbarGroup>
@@ -396,6 +444,13 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": null,
+      "count": 1,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": false,
@@ -426,6 +481,11 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={0}
 >
   <ToolbarGroup>
@@ -472,6 +532,13 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": true,
@@ -502,6 +569,11 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={0}
 >
   <ToolbarGroup>
@@ -541,6 +613,13 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": true,
@@ -567,6 +646,11 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
 >
   <ToolbarGroup>
     <ToolbarItem
@@ -605,6 +689,13 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
       "onDelete": [Function],
     }
   }
+  bulkSelect={
+    Object {
+      "checked": false,
+      "count": 0,
+      "onSelect": [Function],
+    }
+  }
   exportConfig={
     Object {
       "isDisabled": false,
@@ -635,6 +726,11 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
   onRefresh={[Function]}
   page={1}
   perPage={50}
+  tableProps={
+    Object {
+      "canSelectAll": false,
+    }
+  }
   total={1}
 >
   <ToolbarGroup>

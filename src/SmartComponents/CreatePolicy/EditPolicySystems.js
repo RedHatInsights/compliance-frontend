@@ -61,9 +61,7 @@ EditPolicySystems.defaultProps = {
 };
 
 const mapStateToProps = ({ entities }) => ({
-    selectedSystemIds: entities && entities.rows ?
-        entities.rows.filter(entity => entity.selected).map(entity => entity.id) :
-        []
+    selectedSystemIds: (entities?.selectedEntities || []).map((e) => (e.id))
 });
 
 export default compose(

@@ -17,7 +17,7 @@ import registry from '@redhat-cloud-services/frontend-components-utilities/files
 import  {
     AssignPoliciesModal
 } from 'SmartComponents';
-import { exportFromState } from 'Store/ActionTypes';
+import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
@@ -99,9 +99,10 @@ class SystemsTable extends React.Component {
         activeFilters: this.filterConfig.initialDefaultState()
     }
 
-    componentDidMount = () => (
-        this.updateSystems().then(() => this.fetchInventory())
-    )
+    componentDidMount = () => {
+        this.props.clearAll();
+        this.updateSystems().then(() => this.fetchInventory());
+    }
 
     componentDidUpdate = (prevProps) => {
         if (prevProps.complianceThreshold !== this.props.complianceThreshold) {
@@ -196,6 +197,17 @@ class SystemsTable extends React.Component {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0]);
     }
 
+    onBulkSelect = () => {
+        const { selectedEntities, selectAll, clearSelection, allSelectedOnPage } = this.props;
+
+        if (selectedEntities.length === 0 ||
+            (selectedEntities.length > 0 && !allSelectedOnPage)) {
+            selectAll();
+        } else {
+            clearSelection();
+        }
+    }
+
     isExportDisabled = () => {
         const { total, selectedEntities } = this.props;
         return (total || 0) === 0 && selectedEntities.length === 0;
@@ -253,7 +265,17 @@ class SystemsTable extends React.Component {
             ref: this.inventory,
             page,
             perPage,
-            exportConfig
+            exportConfig,
+            tableProps: {
+                canSelectAll: false
+            },
+            bulkSelect: {
+                checked: selectedEntities.length > 0 ?
+                    (this.props.allSelectedOnPage ? true : null)
+                    : false,
+                onSelect: this.onBulkSelect,
+                count: selectedEntities.length
+            }
         };
 
         if (showActions) {
@@ -336,7 +358,11 @@ SystemsTable.propTypes = {
     clearInventoryFilter: propTypes.func,
     systems: propTypes.array,
     updateRows: propTypes.func,
-    updateSystems: propTypes.func
+    updateSystems: propTypes.func,
+    clearSelection: propTypes.func,
+    allSelectedOnPage: propTypes.bool,
+    selectAll: propTypes.func,
+    clearAll: propTypes.func
 };
 
 SystemsTable.defaultProps = {
@@ -348,9 +374,10 @@ SystemsTable.defaultProps = {
     complianceThreshold: 0,
     showOnlySystemsWithTestResults: false,
     showActions: true,
-    selectedEntities: [],
     compliantFilter: false,
-    systems: []
+    selectedEntities: [],
+    systems: [],
+    clearAll: () => ({}),
     exportFromState: () => ({})
 };
 
@@ -359,10 +386,13 @@ const mapStateToProps = state => {
         return { selectedEntities: [], systems: [] };
     }
 
+    const allSelectedOnPage = state.entities.rows.filter((row) => (
+        !(state.entities.selectedEntities || []).map((e) => e.id).includes(row.id)
+    )).length === 0;
+
     return {
-        selectedEntities: state.entities.rows.
-        filter(entity => entity.selected).
-        map(entity => entity.id),
+        allSelectedOnPage,
+        selectedEntities: state.entities.selectedEntities,
         systems: state.entities.systems,
         total: state.entities.total
     };
@@ -378,7 +408,13 @@ const mapDispatchToProps = dispatch => {
                 ...args
             });
         },
-        updateRows: () => dispatch({ type: 'UPDATE_ROWS' })
+        updateRows: () => dispatch({ type: 'UPDATE_ROWS' }),
+        selectAll: () => dispatch(selectAll()),
+        clearSelection: () => dispatch(clearSelection()),
+        clearAll: () => dispatch({
+            type: SELECT_ENTITY,
+            payload: { clearAll: true }
+        })
     };
 };
 
