@@ -180,7 +180,7 @@ const selectRowsByIds = (state, ids) => {
 
 const deselectRowsByIds = (state, ids) => ({
     ...state,
-    selectedEntities: state.selectedEntities.filter((row) => !ids.includes(row.id))
+    selectedEntities: (state.selectedEntities || []).filter((row) => !ids.includes(row.id))
 });
 
 const selectAllRows = (state) => (

@@ -274,7 +274,8 @@ class SystemsTable extends React.Component {
                     (this.props.allSelectedOnPage ? true : null)
                     : false,
                 onSelect: this.onBulkSelect,
-                count: selectedEntities.length
+                count: selectedEntities.length,
+                label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
             }
         };
 
