@@ -27,6 +27,7 @@ import {
     StateViewPart
 } from 'PresentationalComponents';
 import { InventoryDetails } from 'SmartComponents';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 const QUERY = gql`
 query System($inventoryId: String!){
@@ -72,4 +73,4 @@ const SystemDetails = () => {
     </StateViewWithError>;
 };
 
-export default SystemDetails;
+export default routerParams(SystemDetails);

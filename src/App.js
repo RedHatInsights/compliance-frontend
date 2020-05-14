@@ -8,15 +8,15 @@ import './App.scss';
 
 const App = (props) => {
     const appNavClick = {
-        reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect  }); },
-        scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect  }); },
+        reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect }); },
+        scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect }); },
         systems(redirect) { insights.chrome.appNavClick({ id: 'systems', redirect }); }
     };
 
     useEffect(() => {
         insights.chrome.init();
         insights.chrome.identifyApp('compliance');
-        const baseComponentUrl = props.location.pathname.split('/')[1];
+        const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
         const unregister = insights.chrome.on('APP_NAVIGATION', event => {
             if (event.domEvent) {
                 props.history.push(`/${event.navId}`);
