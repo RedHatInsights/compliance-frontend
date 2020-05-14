@@ -2,9 +2,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {
     Title, Button, Bullseye, EmptyState, EmptyStateBody, EmptyStateSecondaryActions,
-    EmptyStateVariant, Progress, ProgressMeasureLocation, EmptyStateIcon
+    EmptyStateVariant, EmptyStateIcon
 } from '@patternfly/react-core';
-import { CogsIcon } from '@patternfly/react-icons';
+import { ProgressBar } from 'PresentationalComponents';
+import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -14,19 +15,20 @@ import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql
 class FinishedCreatePolicy extends React.Component {
     state = {
         percent: 0,
-        message: 'Your Compliance policy is being created. After this is created, you may assign it to hosts and customize it.'
+        message: 'This usually takes a minute or two.',
+        failed: false
     };
 
     componentDidMount() {
         this.createProfile().then((result) => {
             this.setState(prevState => ({
-                message: 'Your Compliance policy has been created. Associating systems to it...',
                 percent: prevState.percent + 50,
                 profileId: result.data.createProfile.profile.id
             }), this.associateSystems);
         }).catch((error) => {
             this.setState({
-                message: error.networkError.message
+                message: error.networkError.message,
+                failed: true
             });
         });
     }
@@ -53,33 +55,36 @@ class FinishedCreatePolicy extends React.Component {
         }).then(() => {
             this.setState(prevState => ({
                 percent: prevState.percent + 50,
-                message: 'Your Compliance policy has been created and systems have been associated to it.'
+                message: ''
             }), onWizardFinish);
-        });
+        }).catch((error) => {
+            this.setState({
+                message: error.networkError.message,
+                failed: true
+            });
+        });;
     }
 
     render() {
-        const { percent, message } = this.state;
+        const { percent, message, failed } = this.state;
         return (
             <Bullseye>
                 <EmptyState variant={EmptyStateVariant.full}>
-                    <EmptyStateIcon size='xl' icon={CogsIcon} />
+                    <EmptyStateIcon icon={WrenchIcon} />
                     <br/>
                     <Title size='lg'>
-                        {percent === 100 ? 'Policy creation complete' : 'Policy creation in progress'}
+                        Creating policy
                     </Title>
                     <EmptyStateBody>
-                        <Progress
-                            id={'finished-create-policy'}
-                            value={percent}
-                            measureLocation={ProgressMeasureLocation.outside}
-                        />
+                        <ProgressBar percent={percent} failed={failed} />
                     </EmptyStateBody>
-                    <EmptyStateBody>
+                    <EmptyStateBody className={failed && 'wizard-failed-message'}>
                         { message }
                     </EmptyStateBody>
                     <EmptyStateSecondaryActions>
-                        {percent === 100 ? <Button variant={'primary'} onClick={this.props.onClose}>Close</Button> : ''}
+                        { percent === 100 ?
+                            <Button variant={'primary'} onClick={this.props.onClose}>Return to application</Button> :
+                            '' }
                     </EmptyStateSecondaryActions>
                 </EmptyState>
             </Bullseye>

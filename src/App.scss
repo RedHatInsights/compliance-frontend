@@ -27,6 +27,17 @@
   font-family: inherit !important;
 }
 
+.wizard-progress-bar {
+    text-align: left;
+    width: var(--pf-global--breakpoint--sm);
+}
+
+.wizard-failed-message {
+    color: var(--pf-global--danger-color--100);
+    font-weight: bold;
+    text-align: left;
+}
+
 .grey-icon {
   color: var(--pf-global--Color--200);
 }
