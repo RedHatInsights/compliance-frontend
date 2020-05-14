@@ -28,7 +28,7 @@ const App = (props) => {
     }, []);
 
     useEffect(() => {
-        const baseComponentUrl = props.location.pathname.split('/')[1];
+        const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
         insights && insights.chrome && baseComponentUrl && appNavClick[baseComponentUrl](false);
     }, [appNavClick, props.location]);
 
