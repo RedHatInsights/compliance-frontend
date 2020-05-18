@@ -1,6 +1,6 @@
 /*global module*/
 
-const SECTION = 'rhel';
+const SECTION = 'insights';
 const BETA_SECTION = 'insights';
 const APP_ID = 'compliance';
 const FRONTEND_PORT = 8002;
