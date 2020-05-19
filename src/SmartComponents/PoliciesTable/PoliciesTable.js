@@ -11,6 +11,9 @@ import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 
+import {
+    SystemsCountWarning
+} from 'PresentationalComponents';
 import { CreatePolicy, DeletePolicy } from 'SmartComponents';
 
 const emptyRows = [{
@@ -53,7 +56,8 @@ const policiesToRows = (policies) => (
                         </span>
                     </Tooltip>
                 },
-                policy.totalHostCount,
+                { title: policy.totalHostCount > 0 ? policy.totalHostCount :
+                    <SystemsCountWarning count={ policy.totalHostCount } variant='count' /> },
                 policy.businessObjective && policy.businessObjective.title || '--',
                 `${policy.complianceThreshold}%`
             ]

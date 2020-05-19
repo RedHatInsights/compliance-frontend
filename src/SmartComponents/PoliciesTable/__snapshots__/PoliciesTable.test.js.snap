@@ -128,7 +128,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -192,7 +194,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -256,7 +260,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -418,7 +424,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -482,7 +490,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "67%",
           ],
@@ -546,7 +556,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -610,7 +622,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "69.5%",
           ],
@@ -674,7 +688,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -738,7 +754,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -802,7 +820,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -866,7 +886,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -930,7 +952,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -994,7 +1018,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1165,7 +1191,9 @@ exports[`PoliciesTable Pagination and search should show only matching results a
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1453,7 +1481,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1517,7 +1547,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "67%",
           ],
@@ -1581,7 +1613,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1645,7 +1679,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "69.5%",
           ],
@@ -1709,7 +1745,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1773,7 +1811,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1837,7 +1877,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1901,7 +1943,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -1965,7 +2009,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2029,7 +2075,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2214,7 +2262,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2278,7 +2328,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "67%",
           ],
@@ -2342,7 +2394,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2406,7 +2460,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "69.5%",
           ],
@@ -2470,7 +2526,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2534,7 +2592,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2598,7 +2658,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2662,7 +2724,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2726,7 +2790,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
@@ -2790,7 +2856,9 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
                 </span>
               </Tooltip>,
             },
-            10,
+            Object {
+              "title": 10,
+            },
             "--",
             "100%",
           ],
