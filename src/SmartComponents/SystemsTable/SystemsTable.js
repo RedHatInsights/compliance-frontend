@@ -17,6 +17,10 @@ import registry from '@redhat-cloud-services/frontend-components-utilities/files
 import  {
     AssignPoliciesModal
 } from 'SmartComponents';
+import {
+    WARNING_TEXT
+} from 'PresentationalComponents';
+
 import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
@@ -317,30 +321,37 @@ class SystemsTable extends React.Component {
             inventoryTableProps.variant = pfReactTable.TableVariant.compact;
         }
 
-        return <InventoryCmp { ...inventoryTableProps }>
-            { !showAllSystems && <reactCore.ToolbarGroup>
-                { remediationsEnabled &&
-                    <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                        <ComplianceRemediationButton
-                            allSystems={ systemsWithRuleObjectsFailed(
-                                systems.filter(edge => selectedEntities.includes(edge.node.id)
-                                ).map(edge => edge.node))}
-                            selectedRules={ [] } />
-                    </reactCore.ToolbarItem>
-                }
-            </reactCore.ToolbarGroup> }
-            { selectedSystemId &&
-            <AssignPoliciesModal
-                isModalOpen={isAssignPoliciesModalOpen}
-                id={selectedSystemId}
-                fqdn={selectedSystemFqdn}
-                toggle={(closedOrCanceled) => {
-                    this.setState((prev) => (
-                        { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                    ), !closedOrCanceled ? this.updateSystems : null);
-                }}
-            /> }
-        </InventoryCmp>;
+        return <React.Fragment>
+            { !showAllSystems && total === 0 &&
+                <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT }>
+                    Add systems to this policy via the &quot;Edit Policy&quot; action, or by adding them from the systems page.
+                </reactCore.Alert>
+            }
+            <InventoryCmp { ...inventoryTableProps }>
+                { !showAllSystems && <reactCore.ToolbarGroup>
+                    { remediationsEnabled &&
+                        <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                            <ComplianceRemediationButton
+                                allSystems={ systemsWithRuleObjectsFailed(
+                                    systems.filter(edge => selectedEntities.includes(edge.node.id)
+                                    ).map(edge => edge.node))}
+                                selectedRules={ [] } />
+                        </reactCore.ToolbarItem>
+                    }
+                </reactCore.ToolbarGroup> }
+                { selectedSystemId &&
+                <AssignPoliciesModal
+                    isModalOpen={isAssignPoliciesModalOpen}
+                    id={selectedSystemId}
+                    fqdn={selectedSystemFqdn}
+                    toggle={(closedOrCanceled) => {
+                        this.setState((prev) => (
+                            { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
+                        ), !closedOrCanceled ? this.updateSystems : null);
+                    }}
+                /> }
+            </InventoryCmp>
+        </React.Fragment>;
     }
 }
 
