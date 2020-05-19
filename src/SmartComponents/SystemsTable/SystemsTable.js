@@ -323,9 +323,7 @@ class SystemsTable extends React.Component {
 
         return <React.Fragment>
             { !showAllSystems && total === 0 &&
-                <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT }>
-                    Add systems to this policy via the &quot;Edit Policy&quot; action, or by adding them from the systems page.
-                </reactCore.Alert>
+                <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT } />
             }
             <InventoryCmp { ...inventoryTableProps }>
                 { !showAllSystems && <reactCore.ToolbarGroup>

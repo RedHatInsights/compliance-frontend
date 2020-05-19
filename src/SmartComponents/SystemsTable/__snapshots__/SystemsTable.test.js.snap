@@ -442,9 +442,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
     isInline={true}
     title="Policies without systems will not have reports."
     variant="warning"
-  >
-    Add systems to this policy via the "Edit Policy" action, or by adding them from the systems page.
-  </Component>
+  />
   <ForwardRef
     actions={
       Array [
@@ -540,9 +538,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
     isInline={true}
     title="Policies without systems will not have reports."
     variant="warning"
-  >
-    Add systems to this policy via the "Edit Policy" action, or by adding them from the systems page.
-  </Component>
+  />
   <ForwardRef
     actions={
       Array [
