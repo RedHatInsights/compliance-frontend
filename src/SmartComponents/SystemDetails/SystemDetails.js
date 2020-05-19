@@ -38,7 +38,7 @@ query System($inventoryId: String!){
 }
 `;
 
-const SystemDetails = () => {
+export const SystemDetails = () => {
     const { inventoryId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { inventoryId }

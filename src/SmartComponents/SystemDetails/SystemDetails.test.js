@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 import { onNavigate } from 'Utilities/Breadcrumbs';
 
-import SystemDetails from './SystemDetails.js';
+import { SystemDetails } from './SystemDetails.js';
 
 jest.mock('SmartComponents', () => ({
     InventoryDetails: () => 'MockedInventoryDetails'

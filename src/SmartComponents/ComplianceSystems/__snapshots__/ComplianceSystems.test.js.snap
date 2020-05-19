@@ -1,7 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ComplianceSystems expect to render without error 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<Fragment>
+  <PageHeader
+    className="page-header"
+  >
+    <PageHeaderTitle
+      title="Compliance systems"
+    />
+  </PageHeader>
+  <Connect(Main)>
+    <Connect(withApollo(SystemsTable))
+      columns={
+        Array [
+          Object {
+            "key": "display_name",
+            "props": Object {
+              "isStatic": true,
+              "width": 40,
+            },
+            "title": "Name",
+          },
+          Object {
+            "key": "facts.compliance.policies",
+            "props": Object {
+              "isStatic": true,
+              "width": 40,
+            },
+            "title": "Policies",
+          },
+          Object {
+            "key": "facts.compliance.details_link",
+            "props": Object {
+              "isStatic": true,
+              "width": 20,
+            },
+            "title": "",
+          },
+        ]
+      }
+      remediationsEnabled={false}
+      showAllSystems={true}
+    />
+  </Connect(Main)>
+</Fragment>
 `;
