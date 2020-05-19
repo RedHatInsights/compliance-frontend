@@ -67,7 +67,7 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCoun
                 <TextListItem component={TextListItemVariants.dd}>{ rulesCount }</TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>No. of systems</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    <SystemsCountWarning variant="compact" count={ systemsCount } />
+                    { systemsCount > 0 ? systemsCount : <SystemsCountWarning variant="compact" count={ systemsCount } /> }
                 </TextListItem>
             </TextList>
         </TextContent>
