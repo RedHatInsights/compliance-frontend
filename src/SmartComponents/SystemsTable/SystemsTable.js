@@ -100,7 +100,10 @@ class SystemsTable extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.clearAll();
+        if (this.props.selectedEntities && this.props.selectedEntities.length > 0) {
+            this.props.clearAll();
+        }
+
         this.updateSystems().then(() => this.fetchInventory());
     }
 
