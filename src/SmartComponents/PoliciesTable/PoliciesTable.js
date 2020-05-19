@@ -56,7 +56,8 @@ const policiesToRows = (policies) => (
                         </span>
                     </Tooltip>
                 },
-                { title: policy.totalHostCount > 0 ? policy.totalHostCount : <SystemsCountWarning count={ policy.totalHostCount } variant='count' /> },
+                { title: policy.totalHostCount > 0 ? policy.totalHostCount :
+                    <SystemsCountWarning count={ policy.totalHostCount } variant='count' /> },
                 policy.businessObjective && policy.businessObjective.title || '--',
                 `${policy.complianceThreshold}%`
             ]
