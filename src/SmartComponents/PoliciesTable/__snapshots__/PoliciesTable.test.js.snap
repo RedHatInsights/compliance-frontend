@@ -129,10 +129,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -198,10 +195,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -267,10 +261,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -434,10 +425,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -503,10 +491,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "67%",
@@ -572,10 +557,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -641,10 +623,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "69.5%",
@@ -710,10 +689,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -779,10 +755,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -848,10 +821,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -917,10 +887,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -986,10 +953,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1055,10 +1019,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1231,10 +1192,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1524,10 +1482,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1593,10 +1548,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "67%",
@@ -1662,10 +1614,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1731,10 +1680,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "69.5%",
@@ -1800,10 +1746,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1869,10 +1812,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -1938,10 +1878,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2007,10 +1944,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2076,10 +2010,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2145,10 +2076,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2335,10 +2263,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2404,10 +2329,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "67%",
@@ -2473,10 +2395,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2542,10 +2461,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "69.5%",
@@ -2611,10 +2527,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2680,10 +2593,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2749,10 +2659,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2818,10 +2725,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2887,10 +2791,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
@@ -2956,10 +2857,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
               </Tooltip>,
             },
             Object {
-              "title": <SystemsCountWarning
-                count={10}
-                variant="count"
-              />,
+              "title": 10,
             },
             "--",
             "100%",
