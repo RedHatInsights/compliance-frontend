@@ -1,4 +1,4 @@
-import ComplianceSystems from './ComplianceSystems.js';
+import { ComplianceSystems } from './ComplianceSystems.js';
 
 describe('ComplianceSystems', () => {
     it('expect to render without error', () => {
