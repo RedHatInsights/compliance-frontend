@@ -45,7 +45,7 @@ class FinishedCreatePolicy extends React.Component {
     }
 
     associateSystems = () => {
-        const { systemIds, client, onWizardFinish } = this.props;
+        const { systemIds, client } = this.props;
         const { profileId: id } = this.state;
         return client.mutate({
             mutation: ASSOCIATE_SYSTEMS_TO_PROFILES,
@@ -56,7 +56,7 @@ class FinishedCreatePolicy extends React.Component {
             this.setState(prevState => ({
                 percent: prevState.percent + 50,
                 message: ''
-            }), onWizardFinish);
+            }));
         }).catch((error) => {
             this.setState({
                 message: error.networkError.message,
@@ -67,6 +67,7 @@ class FinishedCreatePolicy extends React.Component {
 
     render() {
         const { percent, message, failed } = this.state;
+        const { onClose, onWizardFinish } = this.props;
         return (
             <Bullseye>
                 <EmptyState variant={EmptyStateVariant.full}>
@@ -83,7 +84,12 @@ class FinishedCreatePolicy extends React.Component {
                     </EmptyStateBody>
                     <EmptyStateSecondaryActions>
                         { percent === 100 ?
-                            <Button variant={'primary'} onClick={this.props.onClose}>Return to application</Button> :
+                            <Button
+                                variant={'primary'}
+                                onClick={() => { onWizardFinish(); onClose(); }}
+                            >
+                                Return to application
+                            </Button> :
                             '' }
                     </EmptyStateSecondaryActions>
                 </EmptyState>
