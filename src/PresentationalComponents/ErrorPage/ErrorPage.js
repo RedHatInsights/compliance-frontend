@@ -11,11 +11,18 @@ import {
 import {
     InvalidObject
 } from '@redhat-cloud-services/frontend-components/components/InvalidObject';
+import {
+    NotAuthorized
+} from '@redhat-cloud-services/frontend-components/components/NotAuthorized';
 
 const ErrorPage = ({ error, ...props }) => {
     if (error.networkError && error.networkError.statusCode === 401) {
         window.insights.chrome.auth.logout(true);
         return false;
+    }
+
+    if (error.networkError && error.networkError.statusCode === 403) {
+        return <NotAuthorized serviceName='Compliance' />;
     }
 
     if (error.networkError && error.networkError.statusCode === 404) {

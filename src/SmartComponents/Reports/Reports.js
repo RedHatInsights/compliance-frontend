@@ -55,7 +55,7 @@ const QUERY = gql`
 export const Reports = () => {
     const { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     let reportCards;
-    let pageHeader;
+    let pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
 
     if (!loading && data) {
         const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
@@ -75,37 +75,33 @@ export const Reports = () => {
                     </GridItem>
             );
         } else {
-            pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
             reportCards = <ComplianceEmptyState title={'No policies are reporting'}
                 mainButton={<CreatePolicy onWizardFinish={() => { location.reload(); }} />}
             />;
         }
     }
 
-    return <StateViewWithError stateValues={ { error, data, loading } }>
-        <StateViewPart stateKey='loading'>
-            <PageHeader>
-                <PageHeaderTitle title="Compliance" />
-            </PageHeader>
-            <Main>
-                <div className="policies-donuts">
-                    <Grid gutter='md'>
-                        <LoadingComplianceCards/>
-                    </Grid>
-                </div>
-            </Main>
-        </StateViewPart>
-        <StateViewPart stateKey='data'>
-            { pageHeader }
-            <Main>
-                <div className="policies-donuts">
-                    <Grid gutter='md'>
-                        { reportCards }
-                    </Grid>
-                </div>
-            </Main>
-        </StateViewPart>
-    </StateViewWithError>;
+    return <React.Fragment>
+        { pageHeader }
+        <Main>
+            <StateViewWithError stateValues={ { error, data, loading } }>
+                <StateViewPart stateKey='loading'>
+                    <div className="policies-donuts">
+                        <Grid gutter='md'>
+                            <LoadingComplianceCards/>
+                        </Grid>
+                    </div>
+                </StateViewPart>
+                <StateViewPart stateKey='data'>
+                    <div className="policies-donuts">
+                        <Grid gutter='md'>
+                            { reportCards }
+                        </Grid>
+                    </div>
+                </StateViewPart>
+            </StateViewWithError>
+        </Main>
+    </React.Fragment>;
 };
 
 export default routerParams(Reports);

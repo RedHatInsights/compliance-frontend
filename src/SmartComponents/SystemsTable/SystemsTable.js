@@ -28,6 +28,11 @@ import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
     DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION
 } from '@/constants';
+import {
+    ErrorPage,
+    StateView,
+    StateViewPart
+} from 'PresentationalComponents';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -162,6 +167,8 @@ class SystemsTable extends React.Component {
             if (JSON.stringify(newSystems) === JSON.stringify(prevSystems)) {
                 this.props.updateRows();
             }
+        }).catch((error) => {
+            this.setState(prevState => ({ ...prevState, error }));
         });
     }
 
@@ -255,8 +262,9 @@ class SystemsTable extends React.Component {
         } = this.props;
         const {
             page, perPage, InventoryCmp, selectedSystemId,
-            selectedSystemFqdn, isAssignPoliciesModalOpen
+            selectedSystemFqdn, isAssignPoliciesModalOpen, error
         } = this.state;
+        let noError;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.onFilterUpdate,
             this.state.activeFilters,
@@ -321,34 +329,45 @@ class SystemsTable extends React.Component {
             inventoryTableProps.variant = pfReactTable.TableVariant.compact;
         }
 
+        if (error === undefined) {
+            noError = true;
+        }
+
         return <React.Fragment>
-            { !showAllSystems && total === 0 &&
-                <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT } />
-            }
-            <InventoryCmp { ...inventoryTableProps }>
-                { !showAllSystems && <reactCore.ToolbarGroup>
-                    { remediationsEnabled &&
-                        <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                            <ComplianceRemediationButton
-                                allSystems={ systemsWithRuleObjectsFailed(
-                                    systems.filter(edge => selectedEntities.includes(edge.node.id)
-                                    ).map(edge => edge.node))}
-                                selectedRules={ [] } />
-                        </reactCore.ToolbarItem>
+            <StateView stateValues={{ error, noError }}>
+                <StateViewPart stateKey='error'>
+                    <ErrorPage error={error}/>
+                </StateViewPart>
+                <StateViewPart stateKey='noError'>
+                    { !showAllSystems && total === 0 &&
+                        <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT } />
                     }
-                </reactCore.ToolbarGroup> }
-                { selectedSystemId &&
-                <AssignPoliciesModal
-                    isModalOpen={isAssignPoliciesModalOpen}
-                    id={selectedSystemId}
-                    fqdn={selectedSystemFqdn}
-                    toggle={(closedOrCanceled) => {
-                        this.setState((prev) => (
-                            { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                        ), !closedOrCanceled ? this.updateSystems : null);
-                    }}
-                /> }
-            </InventoryCmp>
+                    <InventoryCmp { ...inventoryTableProps }>
+                        { !showAllSystems && <reactCore.ToolbarGroup>
+                            { remediationsEnabled &&
+                                <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                                    <ComplianceRemediationButton
+                                        allSystems={ systemsWithRuleObjectsFailed(
+                                            systems.filter(edge => selectedEntities.includes(edge.node.id)
+                                            ).map(edge => edge.node))}
+                                        selectedRules={ [] } />
+                                </reactCore.ToolbarItem>
+                            }
+                        </reactCore.ToolbarGroup> }
+                        { selectedSystemId &&
+                        <AssignPoliciesModal
+                            isModalOpen={isAssignPoliciesModalOpen}
+                            id={selectedSystemId}
+                            fqdn={selectedSystemFqdn}
+                            toggle={(closedOrCanceled) => {
+                                this.setState((prev) => (
+                                    { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
+                                ), !closedOrCanceled ? this.updateSystems : null);
+                            }}
+                        /> }
+                    </InventoryCmp>
+                </StateViewPart>
+            </StateView>
         </React.Fragment>;
     }
 }
@@ -375,6 +394,7 @@ SystemsTable.propTypes = {
     clearSelection: propTypes.func,
     allSelectedOnPage: propTypes.bool,
     selectAll: propTypes.func,
+    error: propTypes.object,
     clearAll: propTypes.func
 };
 
