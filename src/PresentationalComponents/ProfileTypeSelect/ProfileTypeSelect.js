@@ -10,7 +10,7 @@ import {
     Text
 } from '@patternfly/react-core';
 
-const ProfileTypeSelect  = ({ profiles }) => (
+const ProfileTypeSelect  = ({ profiles, onClick }) => (
     <React.Fragment>
         <Grid gutter="md">
             { profiles.map((profile) => {
@@ -23,6 +23,7 @@ const ProfileTypeSelect  = ({ profiles }) => (
                                     type='radio'
                                     name='profile'
                                     value={JSON.stringify(profile)}
+                                    onClick={ () => onClick(JSON.stringify(profile)) }
                                 />
                                 { ` ${name}` }
                             </Text>
@@ -39,11 +40,13 @@ const ProfileTypeSelect  = ({ profiles }) => (
 );
 
 ProfileTypeSelect.propTypes = {
-    profiles: propTypes.array
+    profiles: propTypes.array,
+    onClick: propTypes.func
 };
 
 ProfileTypeSelect.defaultProps = {
-    profiles: []
+    profiles: [],
+    onClick: () => ({})
 };
 
 export default ProfileTypeSelect;

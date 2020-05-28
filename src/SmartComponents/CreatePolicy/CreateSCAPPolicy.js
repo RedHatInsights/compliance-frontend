@@ -106,7 +106,11 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                 </Text>
                 }
                 <FormGroup label="Policy type" isRequired fieldId="policy-type">
-                    <ProfileTypeSelect profiles={selectedBenchmark && validProfiles } />
+                    <ProfileTypeSelect
+                        profiles={selectedBenchmark && validProfiles }
+                        onClick={ () => {
+                            change('selectedRuleRefIds', null);
+                        }}/>
                 </FormGroup>
             </Form>
         </React.Fragment>

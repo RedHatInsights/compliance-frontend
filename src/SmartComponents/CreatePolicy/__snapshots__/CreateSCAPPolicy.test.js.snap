@@ -603,6 +603,7 @@ exports[`CreateSCAPPolicy should render policies from the selected benchmark onl
           </span>
         </label>
         <ProfileTypeSelect
+          onClick={[Function]}
           profiles={
             Array [
               Object {
@@ -748,6 +749,7 @@ assurance.\\"",
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"4a271e9e-6e84-4038-941b-6b265d9b1727\\",\\"name\\":\\"Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_rht-ccp\\",\\"description\\":\\"This is a *draft* SCAP profile for Red Hat Certified Cloud Providers\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -755,6 +757,7 @@ assurance.\\"",
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"4a271e9e-6e84-4038-941b-6b265d9b1727\\",\\"name\\":\\"Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_rht-ccp\\",\\"description\\":\\"This is a *draft* SCAP profile for Red Hat Certified Cloud Providers\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -859,6 +862,7 @@ assurance.\\"",
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"4a271e9e-6e84-4038-941b-6b265d9b1727\\",\\"name\\":\\"Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_rht-ccp\\",\\"description\\":\\"This is a *draft* SCAP profile for Red Hat Certified Cloud Providers\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -964,6 +968,7 @@ assurance.\\"",
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"4a271e9e-6e84-4038-941b-6b265d9b1727\\",\\"name\\":\\"Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_rht-ccp\\",\\"description\\":\\"This is a *draft* SCAP profile for Red Hat Certified Cloud Providers\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -1073,6 +1078,7 @@ assurance.\\"",
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -1081,6 +1087,7 @@ assurance.\\"",
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -1166,6 +1173,7 @@ assurance.\\"",
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"2c9ef707-bb58-4f80-9ce4-c20ebd4248a8\\",\\"name\\":\\"CSCF RHEL6 MLS Core Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS\\",\\"description\\":\\" This profile reflects the Centralized Super Computing Facility \\\\n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \\\\ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \\\\ndomain overlay. This profile should be considered in active development. \\\\nAdditional tailoring will be needed, such as the creation of RBAC roles \\\\nfor production deployment.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -1173,6 +1181,7 @@ assurance.\\"",
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"2c9ef707-bb58-4f80-9ce4-c20ebd4248a8\\",\\"name\\":\\"CSCF RHEL6 MLS Core Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS\\",\\"description\\":\\" This profile reflects the Centralized Super Computing Facility \\\\n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \\\\ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \\\\ndomain overlay. This profile should be considered in active development. \\\\nAdditional tailoring will be needed, such as the creation of RBAC roles \\\\nfor production deployment.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -1277,6 +1286,7 @@ assurance.\\"",
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"2c9ef707-bb58-4f80-9ce4-c20ebd4248a8\\",\\"name\\":\\"CSCF RHEL6 MLS Core Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS\\",\\"description\\":\\" This profile reflects the Centralized Super Computing Facility \\\\n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \\\\ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \\\\ndomain overlay. This profile should be considered in active development. \\\\nAdditional tailoring will be needed, such as the creation of RBAC roles \\\\nfor production deployment.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -1382,6 +1392,7 @@ assurance.\\"",
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"2c9ef707-bb58-4f80-9ce4-c20ebd4248a8\\",\\"name\\":\\"CSCF RHEL6 MLS Core Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS\\",\\"description\\":\\" This profile reflects the Centralized Super Computing Facility \\\\n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \\\\ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \\\\ndomain overlay. This profile should be considered in active development. \\\\nAdditional tailoring will be needed, such as the creation of RBAC roles \\\\nfor production deployment.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -1491,6 +1502,7 @@ assurance.\\"",
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -1499,6 +1511,7 @@ assurance.\\"",
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -1589,6 +1602,7 @@ for production deployment.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\",\\"description\\":\\"This profile demonstrates compliance against the \\\\nU.S. Government Commercial Cloud Services (C2S) baseline.\\\\n\\\\nThis baseline was inspired by the Center for Internet Security\\\\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\\\\nFor the SCAP Security Guide project to remain in compliance with\\\\nCIS' terms and conditions, specifically Restrictions(8), note \\\\nthere is no representation or claim that the C2S profile will\\\\nensure a system is in compliance or consistency with the CIS\\\\nbaseline. \\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -1596,6 +1610,7 @@ for production deployment.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\",\\"description\\":\\"This profile demonstrates compliance against the \\\\nU.S. Government Commercial Cloud Services (C2S) baseline.\\\\n\\\\nThis baseline was inspired by the Center for Internet Security\\\\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\\\\nFor the SCAP Security Guide project to remain in compliance with\\\\nCIS' terms and conditions, specifically Restrictions(8), note \\\\nthere is no representation or claim that the C2S profile will\\\\nensure a system is in compliance or consistency with the CIS\\\\nbaseline. \\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -1700,6 +1715,7 @@ for production deployment.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\",\\"description\\":\\"This profile demonstrates compliance against the \\\\nU.S. Government Commercial Cloud Services (C2S) baseline.\\\\n\\\\nThis baseline was inspired by the Center for Internet Security\\\\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\\\\nFor the SCAP Security Guide project to remain in compliance with\\\\nCIS' terms and conditions, specifically Restrictions(8), note \\\\nthere is no representation or claim that the C2S profile will\\\\nensure a system is in compliance or consistency with the CIS\\\\nbaseline. \\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -1805,6 +1821,7 @@ for production deployment.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"197eb783-7bca-45c5-978d-c1e89b0118da\\",\\"name\\":\\"C2S for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_C2S\\",\\"description\\":\\"This profile demonstrates compliance against the \\\\nU.S. Government Commercial Cloud Services (C2S) baseline.\\\\n\\\\nThis baseline was inspired by the Center for Internet Security\\\\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\\\\nFor the SCAP Security Guide project to remain in compliance with\\\\nCIS' terms and conditions, specifically Restrictions(8), note \\\\nthere is no representation or claim that the C2S profile will\\\\nensure a system is in compliance or consistency with the CIS\\\\nbaseline. \\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -1914,6 +1931,7 @@ for production deployment.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -1922,6 +1940,7 @@ for production deployment.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -2017,6 +2036,7 @@ baseline.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"7f501f8b-be3b-4105-a7d4-aa7cfa61d823\\",\\"name\\":\\"Standard System Security Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\\\\nRegardless of your system's workload all of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -2024,6 +2044,7 @@ baseline.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"7f501f8b-be3b-4105-a7d4-aa7cfa61d823\\",\\"name\\":\\"Standard System Security Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\\\\nRegardless of your system's workload all of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -2128,6 +2149,7 @@ baseline.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"7f501f8b-be3b-4105-a7d4-aa7cfa61d823\\",\\"name\\":\\"Standard System Security Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\\\\nRegardless of your system's workload all of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -2233,6 +2255,7 @@ baseline.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"7f501f8b-be3b-4105-a7d4-aa7cfa61d823\\",\\"name\\":\\"Standard System Security Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_standard\\",\\"description\\":\\"This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\\\\nRegardless of your system's workload all of these checks should pass.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -2342,6 +2365,7 @@ baseline.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -2350,6 +2374,7 @@ baseline.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -2436,6 +2461,7 @@ Regardless of your system's workload all of these checks should pass.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"074277c6-3f32-4758-86f6-30da5b99c404\\",\\"name\\":\\"Example Server Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CS2\\",\\"description\\":\\"This profile is an example of a customized server profile.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -2443,6 +2469,7 @@ Regardless of your system's workload all of these checks should pass.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"074277c6-3f32-4758-86f6-30da5b99c404\\",\\"name\\":\\"Example Server Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CS2\\",\\"description\\":\\"This profile is an example of a customized server profile.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -2547,6 +2574,7 @@ Regardless of your system's workload all of these checks should pass.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"074277c6-3f32-4758-86f6-30da5b99c404\\",\\"name\\":\\"Example Server Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CS2\\",\\"description\\":\\"This profile is an example of a customized server profile.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -2652,6 +2680,7 @@ Regardless of your system's workload all of these checks should pass.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"074277c6-3f32-4758-86f6-30da5b99c404\\",\\"name\\":\\"Example Server Profile\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_CS2\\",\\"description\\":\\"This profile is an example of a customized server profile.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -2761,6 +2790,7 @@ Regardless of your system's workload all of these checks should pass.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -2769,6 +2799,7 @@ Regardless of your system's workload all of these checks should pass.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -2854,6 +2885,7 @@ Regardless of your system's workload all of these checks should pass.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"f8f4b1ca-44ec-48cb-bfbf-2fca69663e10\\",\\"name\\":\\"Common Profile for General-Purpose Systems\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_common\\",\\"description\\":\\"This profile contains items common to general-purpose desktop and server installations.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -2861,6 +2893,7 @@ Regardless of your system's workload all of these checks should pass.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"f8f4b1ca-44ec-48cb-bfbf-2fca69663e10\\",\\"name\\":\\"Common Profile for General-Purpose Systems\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_common\\",\\"description\\":\\"This profile contains items common to general-purpose desktop and server installations.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -2965,6 +2998,7 @@ Regardless of your system's workload all of these checks should pass.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"f8f4b1ca-44ec-48cb-bfbf-2fca69663e10\\",\\"name\\":\\"Common Profile for General-Purpose Systems\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_common\\",\\"description\\":\\"This profile contains items common to general-purpose desktop and server installations.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -3070,6 +3104,7 @@ Regardless of your system's workload all of these checks should pass.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"f8f4b1ca-44ec-48cb-bfbf-2fca69663e10\\",\\"name\\":\\"Common Profile for General-Purpose Systems\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_common\\",\\"description\\":\\"This profile contains items common to general-purpose desktop and server installations.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -3179,6 +3214,7 @@ Regardless of your system's workload all of these checks should pass.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -3187,6 +3223,7 @@ Regardless of your system's workload all of these checks should pass.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -3272,6 +3309,7 @@ Regardless of your system's workload all of these checks should pass.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"11efa871-3514-4931-95fb-c44f546b303d\\",\\"name\\":\\"Server Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_server\\",\\"description\\":\\"This profile is for Red Hat Enterprise Linux 6 acting as a server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -3279,6 +3317,7 @@ Regardless of your system's workload all of these checks should pass.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"11efa871-3514-4931-95fb-c44f546b303d\\",\\"name\\":\\"Server Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_server\\",\\"description\\":\\"This profile is for Red Hat Enterprise Linux 6 acting as a server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -3383,6 +3422,7 @@ Regardless of your system's workload all of these checks should pass.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"11efa871-3514-4931-95fb-c44f546b303d\\",\\"name\\":\\"Server Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_server\\",\\"description\\":\\"This profile is for Red Hat Enterprise Linux 6 acting as a server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -3488,6 +3528,7 @@ Regardless of your system's workload all of these checks should pass.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"11efa871-3514-4931-95fb-c44f546b303d\\",\\"name\\":\\"Server Baseline\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_server\\",\\"description\\":\\"This profile is for Red Hat Enterprise Linux 6 acting as a server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -3597,6 +3638,7 @@ Regardless of your system's workload all of these checks should pass.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -3605,6 +3647,7 @@ Regardless of your system's workload all of these checks should pass.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -3690,6 +3733,7 @@ Regardless of your system's workload all of these checks should pass.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"efedd0fe-7bcd-490e-b8c9-416122533ce5\\",\\"name\\":\\"Upstream STIG for Red Hat Enterprise Linux 6 Server\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream\\",\\"description\\":\\"This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\\\\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\\\\n\\\\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \\\\nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\\\\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\\\\n\\\\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \\\\nthat commercial support of this SCAP content is NOT available. This profile is provided as example \\\\nSCAP content with no endorsement for suitability or production readiness. Support for this \\\\nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\\\\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -3697,6 +3741,7 @@ Regardless of your system's workload all of these checks should pass.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"efedd0fe-7bcd-490e-b8c9-416122533ce5\\",\\"name\\":\\"Upstream STIG for Red Hat Enterprise Linux 6 Server\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream\\",\\"description\\":\\"This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\\\\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\\\\n\\\\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \\\\nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\\\\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\\\\n\\\\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \\\\nthat commercial support of this SCAP content is NOT available. This profile is provided as example \\\\nSCAP content with no endorsement for suitability or production readiness. Support for this \\\\nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\\\\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -3801,6 +3846,7 @@ Regardless of your system's workload all of these checks should pass.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"efedd0fe-7bcd-490e-b8c9-416122533ce5\\",\\"name\\":\\"Upstream STIG for Red Hat Enterprise Linux 6 Server\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream\\",\\"description\\":\\"This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\\\\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\\\\n\\\\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \\\\nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\\\\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\\\\n\\\\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \\\\nthat commercial support of this SCAP content is NOT available. This profile is provided as example \\\\nSCAP content with no endorsement for suitability or production readiness. Support for this \\\\nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\\\\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -3906,6 +3952,7 @@ Regardless of your system's workload all of these checks should pass.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"efedd0fe-7bcd-490e-b8c9-416122533ce5\\",\\"name\\":\\"Upstream STIG for Red Hat Enterprise Linux 6 Server\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream\\",\\"description\\":\\"This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\\\\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\\\\n\\\\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \\\\nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\\\\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\\\\n\\\\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \\\\nthat commercial support of this SCAP content is NOT available. This profile is provided as example \\\\nSCAP content with no endorsement for suitability or production readiness. Support for this \\\\nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\\\\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\\\\n\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -4015,6 +4062,7 @@ Regardless of your system's workload all of these checks should pass.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -4023,6 +4071,7 @@ Regardless of your system's workload all of these checks should pass.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -4120,6 +4169,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"91ffca63-accc-4698-ba93-84d147c80271\\",\\"name\\":\\"United States Government Configuration Baseline (USGCB)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_usgcb-rhel6-server\\",\\"description\\":\\"This profile is a working draft for a USGCB submission against RHEL6 Server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -4127,6 +4177,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"91ffca63-accc-4698-ba93-84d147c80271\\",\\"name\\":\\"United States Government Configuration Baseline (USGCB)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_usgcb-rhel6-server\\",\\"description\\":\\"This profile is a working draft for a USGCB submission against RHEL6 Server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -4231,6 +4282,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"91ffca63-accc-4698-ba93-84d147c80271\\",\\"name\\":\\"United States Government Configuration Baseline (USGCB)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_usgcb-rhel6-server\\",\\"description\\":\\"This profile is a working draft for a USGCB submission against RHEL6 Server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -4336,6 +4388,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"91ffca63-accc-4698-ba93-84d147c80271\\",\\"name\\":\\"United States Government Configuration Baseline (USGCB)\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_usgcb-rhel6-server\\",\\"description\\":\\"This profile is a working draft for a USGCB submission against RHEL6 Server.\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -4445,6 +4498,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -4453,6 +4507,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -4538,6 +4593,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb\\",\\"name\\":\\"PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_pci-dss\\",\\"description\\":\\"This is a *draft* profile for PCI-DSS v3\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -4545,6 +4601,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb\\",\\"name\\":\\"PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_pci-dss\\",\\"description\\":\\"This is a *draft* profile for PCI-DSS v3\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -4649,6 +4706,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb\\",\\"name\\":\\"PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_pci-dss\\",\\"description\\":\\"This is a *draft* profile for PCI-DSS v3\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -4754,6 +4812,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb\\",\\"name\\":\\"PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_pci-dss\\",\\"description\\":\\"This is a *draft* profile for PCI-DSS v3\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -4863,6 +4922,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -4871,6 +4931,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
@@ -4956,6 +5017,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                       <Field
                         component="input"
                         name="profile"
+                        onClick={[Function]}
                         type="radio"
                         value="{\\"id\\":\\"f839edeb-c32f-425c-bbd2-1b807806393b\\",\\"name\\":\\"CNSSI 1253 Low/Low/Low\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_nist-cl-il-al\\",\\"description\\":\\"This profile follows the Committee on National Security Systems Instruction\\\\n(CNSSI) No. 1253, \\\\\\"Security Categorization and Control Selection for National Security\\\\nSystems\\\\\\" on security controls to meet low confidentiality, low integrity, and low\\\\nassurance.\\\\\\"\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                       >
@@ -4963,6 +5025,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                           component="input"
                           forwardedRef={null}
                           name="profile"
+                          onClick={[Function]}
                           type="radio"
                           value="{\\"id\\":\\"f839edeb-c32f-425c-bbd2-1b807806393b\\",\\"name\\":\\"CNSSI 1253 Low/Low/Low\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_nist-cl-il-al\\",\\"description\\":\\"This profile follows the Committee on National Security Systems Instruction\\\\n(CNSSI) No. 1253, \\\\\\"Security Categorization and Control Selection for National Security\\\\nSystems\\\\\\" on security controls to meet low confidentiality, low integrity, and low\\\\nassurance.\\\\\\"\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                         >
@@ -5067,6 +5130,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                             }
                             component="input"
                             name="profile"
+                            onClick={[Function]}
                             type="radio"
                             value="{\\"id\\":\\"f839edeb-c32f-425c-bbd2-1b807806393b\\",\\"name\\":\\"CNSSI 1253 Low/Low/Low\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_nist-cl-il-al\\",\\"description\\":\\"This profile follows the Committee on National Security Systems Instruction\\\\n(CNSSI) No. 1253, \\\\\\"Security Categorization and Control Selection for National Security\\\\nSystems\\\\\\" on security controls to meet low confidentiality, low integrity, and low\\\\nassurance.\\\\\\"\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                           >
@@ -5172,6 +5236,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                               component="input"
                               name="profile"
                               normalize={[Function]}
+                              onClick={[Function]}
                               type="radio"
                               value="{\\"id\\":\\"f839edeb-c32f-425c-bbd2-1b807806393b\\",\\"name\\":\\"CNSSI 1253 Low/Low/Low\\",\\"refId\\":\\"xccdf_org.ssgproject.content_profile_nist-cl-il-al\\",\\"description\\":\\"This profile follows the Committee on National Security Systems Instruction\\\\n(CNSSI) No. 1253, \\\\\\"Security Categorization and Control Selection for National Security\\\\nSystems\\\\\\" on security controls to meet low confidentiality, low integrity, and low\\\\nassurance.\\\\\\"\\",\\"complianceThreshold\\":100,\\"__typename\\":\\"Profile\\"}"
                             >
@@ -5281,6 +5346,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                 dispatch={[Function]}
                                 name="profile"
                                 normalize={[Function]}
+                                onClick={[Function]}
                                 pristine={true}
                                 type="radio"
                               >
@@ -5289,6 +5355,7 @@ upstream project homepage is https://fedorahosted.org/scap-security-guide/.
                                   name="profile"
                                   onBlur={[Function]}
                                   onChange={[Function]}
+                                  onClick={[Function]}
                                   onDragStart={[Function]}
                                   onDrop={[Function]}
                                   onFocus={[Function]}
