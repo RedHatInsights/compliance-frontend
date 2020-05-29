@@ -13,6 +13,7 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
         <Field
           component="input"
           name="profile"
+          onClick={[Function]}
           type="radio"
           value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
         />

@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
+import { Button, Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { sortable } from '@patternfly/react-table';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
+import {
+    StateViewWithError, StateViewPart
+} from 'PresentationalComponents';
 
 const QUERY = gql`
 query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
@@ -38,49 +42,71 @@ const columns = [
     { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
 ];
 
-export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, dispatch, change }) => {
+export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, change }) => {
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
+    const [defaultSelection, setDefaultSelection] = useState(null);
+    const profileRules = data && [{
+        profile: { refId: data.profile.refId, name: data.profile.name },
+        rules: data.benchmark.rules
+    }];
+    const resetToDefaultSelection = () => (
+        change('selectedRuleRefIds', defaultSelection)
+    );
+    const isDefaultSelection = (ruleIds) => {
+        const filteredRules = ruleIds?.filter((ruleId) => (defaultSelection?.includes(ruleId)));
+        return ruleIds && defaultSelection && filteredRules.length === defaultSelection.length;
+    };
 
     useEffect(() => {
         if (data) {
-            change('selectedRuleRefIds', data.profile.rules.map((rule) => rule.refId));
+            const ruleIds = data.profile.rules.map((rule) => rule.refId);
+            setDefaultSelection(ruleIds);
+            if (!selectedRuleRefIds) {
+                change('selectedRuleRefIds', ruleIds);
+            }
         }
     }, [data]);
 
-    if (error) { return error; }
-
-    if (loading) { return <EmptyTable><Spinner/></EmptyTable>; }
-
-    return (
-        <SystemRulesTable
-            remediationsEnabled={false}
-            tailoringEnabled
-            selectedFilter
-            columns={columns}
-            loading={loading}
-            handleSelect={((selectedRuleRefIds) => {
-                dispatch({
-                    type: '@@redux-form/CHANGE',
-                    meta: {
-                        field: 'selectedRuleRefIds',
-                        form: 'policyForm'
-                    },
-                    payload: selectedRuleRefIds
-                });
-            })}
-            profileRules={ !loading && [{
-                profile: { refId: data.profile.refId, name: data.profile.name },
-                rules: data.benchmark.rules
-            }]}
-            selectedRefIds={ selectedRuleRefIds }
-        />
-    );
+    return <StateViewWithError stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey="loading">
+            <EmptyTable><Spinner/></EmptyTable>
+        </StateViewPart>
+        <StateViewPart stateKey="data">
+            <TextContent>
+                <Text component={TextVariants.h1}>
+                    Rules
+                </Text>
+            </TextContent>
+            <TextContent>
+                <Text>
+                    Edit your policy by including and excluding rules.
+                </Text>
+                <Text>
+                    Selected policy type <strong>{ data?.profile.name }</strong> has { defaultSelection?.length } rules.&ensp;
+                    { selectedRuleRefIds && !isDefaultSelection(selectedRuleRefIds) &&
+                        <Button variant="link" isInline onClick={ () => resetToDefaultSelection() }>
+                          Reset to default selection
+                        </Button>
+                    }
+                </Text>
+            </TextContent>
+            <SystemRulesTable
+                remediationsEnabled={ false }
+                tailoringEnabled
+                selectedFilter
+                columns={ columns }
+                loading={ loading }
+                handleSelect={ (selectedRuleRefIds) => change('selectedRuleRefIds', selectedRuleRefIds) }
+                profileRules={ profileRules }
+                selectedRefIds={ selectedRuleRefIds || [] }
+            />
+        </StateViewPart>
+    </StateViewWithError>;
 };
 
 EditPolicyRules.propTypes = {
     profileId: propTypes.string,
     benchmarkId: propTypes.string,
-    dispatch: propTypes.func,
     change: reduxFormPropTypes.change,
     selectedRuleRefIds: propTypes.array
 };
