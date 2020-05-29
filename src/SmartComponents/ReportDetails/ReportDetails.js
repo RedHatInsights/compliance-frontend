@@ -53,7 +53,7 @@ export const ReportDetails = ({ match, history }) => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const beta = window.insights.chrome.isBeta();
     const redirect = () => {
-        history.push(`${ beta ? '/beta/insights' : '/rhel' }/compliance/reports`);
+        history.push('insights/compliance/reports');
     };
 
     let donutValues = [];
