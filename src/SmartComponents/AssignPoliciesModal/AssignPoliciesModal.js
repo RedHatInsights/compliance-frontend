@@ -59,7 +59,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
         });
     }, [id]);
 
-    const { data, error, loading } = useQuery(QUERY, { variables: { search: 'id=' + id } });
+    const { data, error, loading } = useQuery(QUERY, { variables: { search: 'id=' + id }, fetchPolicy: 'cache-and-network' });
 
     if (error || errorSystemOs) { return <ErrorPage error={error}/>; }
 
