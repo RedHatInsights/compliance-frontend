@@ -204,6 +204,10 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
             </div>
           </FormGroup>
         </ProfileThresholdField>
+        <withApollo(BusinessObjectiveField)
+          businessObjective={Object {}}
+          policyId="197eb783-7bca-45c5-978d-c1e89b0118da"
+        />
       </form>
     </Form>
   </EditPolicyDetails>

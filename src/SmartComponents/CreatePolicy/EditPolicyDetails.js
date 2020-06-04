@@ -6,9 +6,12 @@ import propTypes from 'prop-types';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
 
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
-import { ProfileThresholdField } from 'SmartComponents';
+import {
+    ProfileThresholdField,
+    BusinessObjectiveField
+} from 'SmartComponents';
 
-const EditPolicyDetails = ({ profile }) => {
+const EditPolicyDetails = ({ profile, dispatch }) => {
     return (
         <React.Fragment>
             <TextContent>
@@ -47,6 +50,11 @@ const EditPolicyDetails = ({ profile }) => {
                     />
                 </FormGroup>
                 <ProfileThresholdField previousThreshold={profile.complianceThreshold} />
+                <BusinessObjectiveField
+                    businessObjective={{}}
+                    policyId={profile.id}
+                    dispatch={dispatch}
+                />
             </Form>
         </React.Fragment>
     );
@@ -55,7 +63,8 @@ const EditPolicyDetails = ({ profile }) => {
 const selector = formValueSelector('policyForm');
 
 EditPolicyDetails.propTypes = {
-    profile: propTypes.object
+    profile: propTypes.object,
+    dispatch: propTypes.func
 };
 
 export default compose(

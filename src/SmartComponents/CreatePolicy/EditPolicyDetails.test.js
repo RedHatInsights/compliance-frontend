@@ -7,6 +7,7 @@ import { EditPolicyDetails } from './EditPolicyDetails.js';
 
 const mockStore = configureStore();
 const store = mockStore({});
+jest.mock('../BusinessObjectiveField/BusinessObjectiveField');
 jest.mock('redux-form', () => ({
     Field: 'Field',
     reduxForm: () => component => component,

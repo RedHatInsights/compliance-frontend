@@ -111,6 +111,8 @@ BusinessObjectiveField.defaultProps = {
 export default compose(
     withApollo,
     reduxForm({
-        form: 'policyForm'
+        form: 'policyForm',
+        destroyOnUnmount: false,
+        forceUnregisterOnUnmount: true
     })
 )(BusinessObjectiveField);
