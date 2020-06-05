@@ -214,10 +214,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                       className="pf-l-grid pf-m-gutter"
                     >
                       <GridItem
-                        xl={8}
+                        lg={9}
+                        md={9}
+                        sm={9}
+                        xl={9}
                       >
                         <div
-                          className="pf-l-grid__item pf-m-8-col-on-xl"
+                          className="pf-l-grid__item pf-m-9-col-on-sm pf-m-9-col-on-md pf-m-9-col-on-lg pf-m-9-col-on-xl"
                         >
                           <PageHeaderTitle
                             title="profile1 report"
@@ -241,10 +244,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                       </GridItem>
                       <GridItem
                         className="report-details-button"
-                        xl={4}
+                        lg={3}
+                        md={3}
+                        sm={3}
+                        xl={3}
                       >
                         <div
-                          className="pf-l-grid__item pf-m-4-col-on-xl report-details-button"
+                          className="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-3-col-on-lg pf-m-3-col-on-xl report-details-button"
                         >
                           <Component
                             isInline={true}

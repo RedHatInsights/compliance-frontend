@@ -119,10 +119,10 @@ export const ReportDetails = ({ match, history }) => {
                     <BreadcrumbItem isActive>{profile.name}</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid gutter='lg'>
-                    <GridItem xl={8}>
+                    <GridItem sm={9} md={9} lg={9} xl={9}>
                         <PageHeaderTitle title={profile.name + ' report'} />
                     </GridItem>
-                    <GridItem className='report-details-button' xl={4}>
+                    <GridItem className='report-details-button' sm={3} md={3} lg={3} xl={3}>
                         <Button
                             isInline
                             variant="link"
