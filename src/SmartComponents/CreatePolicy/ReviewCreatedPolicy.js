@@ -29,7 +29,9 @@ query review($benchmarkId: String!) {
 }
 `;
 
-const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCount, complianceThreshold, parentProfileName }) => {
+const ReviewCreatedPolicy = ({
+    benchmarkId, name, refId, businessObjective, systemsCount, rulesCount, complianceThreshold, parentProfileName
+}) => {
     const { data, error, loading } = useQuery(REVIEW, { variables: { benchmarkId } });
 
     if (error) { return error; }
@@ -63,6 +65,12 @@ const ReviewCreatedPolicy = ({ benchmarkId, name, refId, systemsCount, rulesCoun
                 <TextListItem component={TextListItemVariants.dd}>{ refId }</TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>Compliance threshold</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ complianceThreshold }%</TextListItem>
+                { businessObjective &&
+                    <React.Fragment>
+                        <TextListItem component={TextListItemVariants.dt}>Business objective</TextListItem>
+                        <TextListItem component={TextListItemVariants.dd}>{ businessObjective }</TextListItem>
+                    </React.Fragment>
+                }
                 <TextListItem component={TextListItemVariants.dt}>No. of rules</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ rulesCount }</TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>No. of systems</TextListItem>
@@ -78,6 +86,7 @@ ReviewCreatedPolicy.propTypes = {
     benchmarkId: propTypes.string,
     refId: propTypes.string,
     name: propTypes.string,
+    businessObjective: propTypes.string,
     systemsCount: propTypes.number,
     rulesCount: propTypes.number,
     complianceThreshold: propTypes.number,
@@ -91,6 +100,7 @@ export default connect(
         benchmarkId: selector(state, 'benchmark'),
         refId: selector(state, 'refId'),
         name: selector(state, 'name'),
+        businessObjective: selector(state, 'businessObjective') && selector(state, 'businessObjective').label,
         systemsCount: selector(state, 'systems').length,
         complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
         parentProfileName: JSON.parse(selector(state, 'profile')).name,

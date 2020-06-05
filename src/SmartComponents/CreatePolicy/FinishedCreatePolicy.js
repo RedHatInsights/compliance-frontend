@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
 import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
+import businessObjectiveMutation from 'Utilities/businessObjectiveMutation';
 
 class FinishedCreatePolicy extends React.Component {
     state = {
@@ -34,14 +35,25 @@ class FinishedCreatePolicy extends React.Component {
     }
 
     createProfile = () => {
-        const { benchmarkId, cloneFromProfileId, refId, name, description,
-            complianceThreshold, selectedRuleRefIds, client } = this.props;
-        return client.mutate({
-            mutation: CREATE_PROFILE,
-            variables: {
-                input: { benchmarkId, cloneFromProfileId, refId, name, description, complianceThreshold, selectedRuleRefIds }
+        const { businessObjective, benchmarkId, cloneFromProfileId, refId, name,
+            description, complianceThreshold, selectedRuleRefIds, client } = this.props;
+        return businessObjectiveMutation(null, businessObjective, client.mutate).then(
+            businessObjectiveId => {
+                let input = { benchmarkId, cloneFromProfileId, refId, name,
+                    description, complianceThreshold, selectedRuleRefIds };
+
+                if (businessObjectiveId) {
+                    input.businessObjectiveId = businessObjectiveId;
+                }
+
+                return client.mutate({
+                    mutation: CREATE_PROFILE,
+                    variables: {
+                        input
+                    }
+                });
             }
-        });
+        );
     }
 
     associateSystems = () => {
@@ -101,6 +113,7 @@ class FinishedCreatePolicy extends React.Component {
 FinishedCreatePolicy.propTypes = {
     benchmarkId: propTypes.string.isRequired,
     client: propTypes.object.isRequired,
+    businessObjective: propTypes.object,
     cloneFromProfileId: propTypes.string.isRequired,
     onClose: propTypes.func.isRequired,
     refId: propTypes.string.isRequired,
@@ -118,6 +131,7 @@ export default compose(
     connect(
         state => ({
             benchmarkId: selector(state, 'benchmark'),
+            businessObjective: selector(state, 'businessObjective'),
             cloneFromProfileId: JSON.parse(selector(state, 'profile')).id,
             refId: selector(state, 'refId'),
             name: selector(state, 'name'),
