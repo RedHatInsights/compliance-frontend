@@ -45,9 +45,11 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={[Function]}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -68,6 +70,13 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -270,10 +279,11 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
@@ -341,9 +351,11 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={[Function]}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -364,6 +376,13 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -1028,10 +1047,11 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
@@ -1108,9 +1128,11 @@ exports[`PoliciesTable Pagination and search should show only matching results a
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={[Function]}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -1131,6 +1153,13 @@ exports[`PoliciesTable Pagination and search should show only matching results a
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -1201,10 +1230,11 @@ exports[`PoliciesTable Pagination and search should show only matching results a
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
@@ -1272,9 +1302,11 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={false}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -1295,6 +1327,13 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -1327,10 +1366,11 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
@@ -1398,9 +1438,11 @@ exports[`PoliciesTable expect to render without error 1`] = `
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={[Function]}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -1421,6 +1463,13 @@ exports[`PoliciesTable expect to render without error 1`] = `
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -2085,10 +2134,11 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
@@ -2179,9 +2229,11 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
        results
     </DataToolbarItem>
   </PrimaryToolbar>
-  <Component
+  <Table
     actionResolver={[Function]}
     aria-label="policies"
+    borders={true}
+    canSelectAll={true}
     cells={
       Array [
         Object {
@@ -2202,6 +2254,13 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
       ]
     }
     className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    role="grid"
+    rowLabeledBy="simple-node"
     rows={
       Array [
         Object {
@@ -2866,10 +2925,11 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
         },
       ]
     }
+    variant={null}
   >
-    <TableHeader />
-    <TableBody />
-  </Component>
+    <Component />
+    <Component />
+  </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}

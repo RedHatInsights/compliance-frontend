@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoadingPoliciesTable expect to render without error 1`] = `
-<Component
+<Table
   aria-label="policies-table"
+  borders={true}
+  canSelectAll={true}
   cells={
     Array [
       Object {
@@ -22,6 +24,14 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
       },
     ]
   }
+  className=""
+  contentId="expanded-content"
+  dropdownDirection="down"
+  dropdownPosition="right"
+  expandId="expandable-toggle"
+  gridBreakPoint="grid-md"
+  role="grid"
+  rowLabeledBy="simple-node"
   rows={
     Array [
       Object {
@@ -66,8 +76,9 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
       },
     ]
   }
+  variant={null}
 >
-  <TableHeader />
-  <TableBody />
-</Component>
+  <Component />
+  <Component />
+</Table>
 `;

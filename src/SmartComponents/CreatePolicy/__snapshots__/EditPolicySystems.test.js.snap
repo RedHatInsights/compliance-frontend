@@ -25,6 +25,9 @@ Array [
     <table
       aria-label="Loading"
       className="pf-c-table pf-m-grid-md"
+      data-ouia-component-id={0}
+      data-ouia-component-type="PF4/Table"
+      data-ouia-safe={true}
       role="grid"
     >
       <thead
@@ -35,6 +38,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
             scope="col"
           >
             <div
@@ -47,6 +51,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
             scope="col"
           >
             <div
@@ -62,6 +67,9 @@ Array [
       >
         <tr
           className=""
+          data-ouia-component-id={1}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -69,6 +77,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -80,6 +89,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -90,6 +100,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={2}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -97,6 +110,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -108,6 +122,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -118,6 +133,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={3}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -125,6 +143,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -136,6 +155,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -146,6 +166,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={4}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -153,6 +176,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -164,6 +188,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -174,6 +199,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={5}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -181,6 +209,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -192,6 +221,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -202,6 +232,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={6}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -209,6 +242,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -220,6 +254,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -230,6 +265,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={7}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -237,6 +275,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -248,6 +287,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -258,6 +298,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={8}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -265,6 +308,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -276,6 +320,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -286,6 +331,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={9}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -293,6 +341,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -304,6 +353,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -314,6 +364,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={10}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -321,6 +374,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -332,6 +386,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -342,6 +397,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={11}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -349,6 +407,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -360,6 +419,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -370,6 +430,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={12}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -377,6 +440,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -388,6 +452,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -398,6 +463,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={13}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -405,6 +473,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -416,6 +485,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -426,6 +496,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={14}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -433,6 +506,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -444,6 +518,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -454,6 +529,9 @@ Array [
         </tr>
         <tr
           className=""
+          data-ouia-component-id={15}
+          data-ouia-component-type="PF4/TableRow"
+          data-ouia-safe={true}
           hidden={false}
           onMouseDown={[Function]}
         >
@@ -461,6 +539,7 @@ Array [
             className=""
             data-key={0}
             data-label="column-0"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
@@ -472,6 +551,7 @@ Array [
             className=""
             data-key={1}
             data-label="column-1"
+            onMouseEnter={[Function]}
           >
             <div
               className="ins-c-skeleton ins-c-skeleton__md"
