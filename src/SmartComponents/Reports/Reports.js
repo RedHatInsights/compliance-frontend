@@ -55,7 +55,7 @@ const QUERY = gql`
 export const Reports = () => {
     const { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
     let reportCards;
-    let pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance" /></PageHeader>;
+    let pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance reports" /></PageHeader>;
 
     if (!loading && data) {
         const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
