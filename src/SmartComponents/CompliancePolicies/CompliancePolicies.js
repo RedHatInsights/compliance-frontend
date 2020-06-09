@@ -21,7 +21,7 @@ import {
 
 const QUERY = gql`
 {
-    profiles(search: "external = false") {
+    profiles(search: "external = false and canonical = false") {
         edges {
             node {
                 id
