@@ -10,7 +10,7 @@ exports[`Reports expect to render emptystate 1`] = `
     }
   >
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance reports"
     />
   </PageHeader>
   <Connect(Main)>
@@ -289,7 +289,7 @@ exports[`Reports expect to render loading 1`] = `
     }
   >
     <PageHeaderTitle
-      title="Compliance"
+      title="Compliance reports"
     />
   </PageHeader>
   <Connect(Main)>
