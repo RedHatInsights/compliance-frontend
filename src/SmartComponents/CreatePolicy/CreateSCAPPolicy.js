@@ -36,7 +36,7 @@ query benchmarksAndProfiles {
             complianceThreshold
         }
     }
-    profiles {
+    profiles(search: "external = false and canonical = false") {
         edges {
             node {
                 id
