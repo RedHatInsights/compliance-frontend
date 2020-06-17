@@ -7,7 +7,6 @@ exports[`WarningText expect to render without error 1`] = `
     color="currentColor"
     noVerticalAlign={false}
     size="sm"
-    title={null}
   />
   <Text
     className="ins-c-warning-text"

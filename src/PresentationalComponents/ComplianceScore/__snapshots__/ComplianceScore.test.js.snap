@@ -23,7 +23,6 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
           "color": "var(--pf-global--danger-color--100)",
         }
       }
-      title={null}
     >
       <svg
         aria-hidden={true}
@@ -69,7 +68,6 @@ exports[`auxiliary functions to reducer should show a question mark icon if the 
           "color": "var(--pf-global--disabled-color--100)",
         }
       }
-      title={null}
     >
       <svg
         aria-hidden={true}
@@ -137,7 +135,6 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
           "color": "var(--pf-global--danger-color--100)",
         }
       }
-      title={null}
     >
       <svg
         aria-hidden={true}

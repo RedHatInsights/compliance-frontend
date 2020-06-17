@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PolicyDetailsContentLoader expect to render without error 1`] = `
-<Holder
+<ContentLoader
   backgroundcolor="#f3f3f3"
   foregroundcolor="#ecebeb"
   height={400}
@@ -121,5 +121,5 @@ exports[`PolicyDetailsContentLoader expect to render without error 1`] = `
     x="-8"
     y="381"
   />
-</Holder>
+</ContentLoader>
 `;

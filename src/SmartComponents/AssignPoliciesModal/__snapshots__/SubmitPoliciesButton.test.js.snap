@@ -4,12 +4,14 @@ exports[`SubmitPoliciesButton displays an special message if no profiles are ava
 
 exports[`SubmitPoliciesButton expect to render button without error 1`] = `
 <button
-  aria-disabled={null}
+  aria-disabled={false}
   aria-label="save"
   className="pf-c-button pf-m-primary"
+  data-ouia-component-id={0}
+  data-ouia-component-type="PF4/Button"
+  data-ouia-safe={true}
   disabled={false}
   onClick={[Function]}
-  tabIndex={null}
   type="submit"
 >
   Save

@@ -85,7 +85,7 @@ class FinishedCreatePolicy extends React.Component {
                 <EmptyState variant={EmptyStateVariant.full}>
                     <EmptyStateIcon icon={WrenchIcon} />
                     <br/>
-                    <Title size='lg'>
+                    <Title headingLevel="h1" size='lg'>
                         Creating policy
                     </Title>
                     <EmptyStateBody>

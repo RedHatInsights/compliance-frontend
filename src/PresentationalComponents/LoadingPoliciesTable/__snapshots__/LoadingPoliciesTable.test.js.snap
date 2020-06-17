@@ -30,6 +30,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   dropdownPosition="right"
   expandId="expandable-toggle"
   gridBreakPoint="grid-md"
+  ouiaSafe={true}
   role="grid"
   rowLabeledBy="simple-node"
   rows={
@@ -78,7 +79,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   }
   variant={null}
 >
-  <Component />
+  <TableHeader />
   <Component />
 </Table>
 `;

@@ -31,7 +31,7 @@ const ErrorPage = ({ error, ...props }) => {
 
     return <section {...props} className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet">
         <WarningTriangleIcon size="xl" style={ { opacity: '0.5' } } />
-        <Title size='3xl'>There was an error</Title>
+        <Title headingLevel='h1'>There was an error</Title>
         <Text>
             If you need to contact Red Hat Support about this, this is the exact error:
             <Text>

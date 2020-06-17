@@ -8,7 +8,7 @@ import ContentLoader from 'react-content-loader';
 import _ from 'lodash';
 
 const LoadingComplianceCards = () => (
-    <Grid gutter='md'>
+    <Grid hasGutter>
         { _.range(3).map((_, key) => {
             return <GridItem sm={12} md={12} lg={6} xl={4} key={key}>
                 <Card>

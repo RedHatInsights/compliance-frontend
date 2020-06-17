@@ -2,21 +2,21 @@
 
 exports[`EditPolicy expect to render without error 1`] = `
 <Fragment>
-  <Component
+  <Button
     onClick={[Function]}
     variant="secondary"
   >
     Edit policy
-  </Component>
+  </Button>
   <Modal
     actions={
       Array [
-        <Unknown
+        <Button
           onClick={[Function]}
           variant="secondary"
         >
           Cancel
-        </Unknown>,
+        </Button>,
         <Apollo(UpdateProfileButton)
           businessObjective={
             Object {
@@ -31,16 +31,19 @@ exports[`EditPolicy expect to render without error 1`] = `
       ]
     }
     appendTo={<body />}
-    ariaDescribedById=""
+    aria-describedby=""
+    aria-label=""
+    aria-labelledby=""
     className=""
-    hideTitle={false}
+    hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
-    isLarge={false}
     isOpen={false}
     isSmall={true}
     onClose={[Function]}
+    ouiaSafe={true}
     showClose={true}
     title="Edit policy details"
+    variant="default"
   >
     <Form>
       <withApollo(ReduxForm)

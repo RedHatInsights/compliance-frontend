@@ -2,18 +2,18 @@
 
 exports[`ProgressBar expect to render failed bar without error 1`] = `
 <div
-  aria-describedby="finished-create-policy-description"
   className="pf-c-progress pf-m-danger wizard-progress-bar"
   id="finished-create-policy"
-  role="progressbar"
 >
   <div
+    aria-hidden="true"
     className="pf-c-progress__description"
     id="finished-create-policy-description"
   >
     Error
   </div>
   <div
+    aria-hidden="true"
     className="pf-c-progress__status"
   >
     <span
@@ -46,11 +46,12 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
     </span>
   </div>
   <div
-    aria-describedby="finished-create-policy-description"
+    aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={50}
     className="pf-c-progress__bar"
+    role="progressbar"
   >
     <div
       className="pf-c-progress__indicator"
@@ -70,18 +71,18 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
 
 exports[`ProgressBar expect to render progress bar without error 1`] = `
 <div
-  aria-describedby="finished-create-policy-description"
   className="pf-c-progress wizard-progress-bar"
   id="finished-create-policy"
-  role="progressbar"
 >
   <div
+    aria-hidden="true"
     className="pf-c-progress__description"
     id="finished-create-policy-description"
   >
     Progress
   </div>
   <div
+    aria-hidden="true"
     className="pf-c-progress__status"
   >
     <span
@@ -91,11 +92,12 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
     </span>
   </div>
   <div
-    aria-describedby="finished-create-policy-description"
+    aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={0}
     className="pf-c-progress__bar"
+    role="progressbar"
   >
     <div
       className="pf-c-progress__indicator"
@@ -115,18 +117,18 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
 
 exports[`ProgressBar expect to render success bar without error 1`] = `
 <div
-  aria-describedby="finished-create-policy-description"
   className="pf-c-progress pf-m-success wizard-progress-bar"
   id="finished-create-policy"
-  role="progressbar"
 >
   <div
+    aria-hidden="true"
     className="pf-c-progress__description"
     id="finished-create-policy-description"
   >
     Success
   </div>
   <div
+    aria-hidden="true"
     className="pf-c-progress__status"
   >
     <span
@@ -159,11 +161,12 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
     </span>
   </div>
   <div
-    aria-describedby="finished-create-policy-description"
+    aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
     aria-valuenow={100}
     className="pf-c-progress__bar"
+    role="progressbar"
   >
     <div
       className="pf-c-progress__indicator"

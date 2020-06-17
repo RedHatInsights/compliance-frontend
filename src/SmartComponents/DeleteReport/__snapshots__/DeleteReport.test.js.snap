@@ -8,19 +8,19 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
   <Modal
     actions={
       Array [
-        <Unknown
+        <Button
           aria-label="delete"
           onClick={[Function]}
           variant="danger"
         >
           Delete report
-        </Unknown>,
-        <Unknown
+        </Button>,
+        <Button
           onClick={[Function]}
           variant="secondary"
         >
           Cancel
-        </Unknown>,
+        </Button>,
       ]
     }
     appendTo={
@@ -28,16 +28,19 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
         <div />
       </body>
     }
-    ariaDescribedById=""
+    aria-describedby=""
+    aria-label=""
+    aria-labelledby=""
     className=""
-    hideTitle={false}
+    hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
-    isLarge={false}
     isOpen={false}
     isSmall={true}
     onClose={[Function]}
+    ouiaSafe={true}
     showClose={true}
     title="Delete report"
+    variant="default"
   >
     <Portal
       containerInfo={<div />}
@@ -45,32 +48,37 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
       <ModalContent
         actions={
           Array [
-            <Unknown
+            <Button
               aria-label="delete"
               onClick={[Function]}
               variant="danger"
             >
               Delete report
-            </Unknown>,
-            <Unknown
+            </Button>,
+            <Button
               onClick={[Function]}
               variant="secondary"
             >
               Cancel
-            </Unknown>,
+            </Button>,
           ]
         }
-        ariaDescribedById=""
+        aria-describedby=""
+        aria-label=""
+        aria-labelledby=""
+        boxId="pf-modal-part-0"
         className=""
-        hideTitle={false}
-        id="pf-modal-0"
+        descriptorId="pf-modal-part-2"
+        hasNoBodyWrapper={false}
         isFooterLeftAligned={true}
-        isLarge={false}
         isOpen={false}
         isSmall={true}
+        labelId="pf-modal-part-1"
         onClose={[Function]}
+        ouiaSafe={true}
         showClose={true}
         title="Delete report"
+        variant="default"
       />
     </Portal>
   </Modal>

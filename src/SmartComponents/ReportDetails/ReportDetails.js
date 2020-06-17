@@ -118,7 +118,7 @@ export const ReportDetails = ({ match, history }) => {
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{profile.name}</BreadcrumbItem>
                 </Breadcrumb>
-                <Grid gutter='lg'>
+                <Grid hasGutter>
                     <GridItem sm={9} md={9} lg={9} xl={9}>
                         <PageHeaderTitle title={profile.name + ' report'} />
                     </GridItem>
@@ -133,7 +133,7 @@ export const ReportDetails = ({ match, history }) => {
                         </Button>
                     </GridItem>
                 </Grid>
-                <Grid gutter='md'>
+                <Grid hasGutter>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <div className='chart-inline'>
                             <div className='chart-container'>
@@ -166,7 +166,7 @@ export const ReportDetails = ({ match, history }) => {
                 </Grid>
             </PageHeader>
             <Main>
-                <Grid gutter='md'>
+                <Grid hasGutter>
                     <GridItem span={12}>
                         <SystemsTable
                             showOnlySystemsWithTestResults

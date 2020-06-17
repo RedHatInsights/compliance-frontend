@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
     Bullseye, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
-    DataToolbarItem, Tooltip
+    ToolbarItem, Tooltip
 } from '@patternfly/react-core';
 import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
@@ -204,12 +204,12 @@ export class PoliciesTable extends React.Component {
                     ...pagination,
                     dropDirection: 'down'
                 }}>
-                <DataToolbarItem>
+                <ToolbarItem>
                     <CreatePolicy onWizardFinish={onWizardFinish} />
-                </DataToolbarItem>
-                <DataToolbarItem>
+                </ToolbarItem>
+                <ToolbarItem>
                     { policies.length } results
-                </DataToolbarItem>
+                </ToolbarItem>
             </PrimaryToolbar>
             <Table
                 aria-label='policies'

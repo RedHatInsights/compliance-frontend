@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm } from 'redux-form';
-import { Form, Text, TextContent, TextVariants } from '@patternfly/react-core';
+import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { SystemsTable } from 'SmartComponents';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
@@ -39,13 +39,15 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
                 </Text>
             </TextContent>
             <Form>
-                <SystemsTable
-                    columns={columns}
-                    remediationsEnabled={false}
-                    compact
-                    showActions={ false }
-                    showAllSystems
-                    enableExport={ false }/>
+                <FormGroup>
+                    <SystemsTable
+                        columns={columns}
+                        remediationsEnabled={false}
+                        compact
+                        showActions={ false }
+                        showAllSystems
+                        enableExport={ false }/>
+                </FormGroup>
             </Form>
         </React.Fragment>
     );

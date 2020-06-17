@@ -87,14 +87,14 @@ export const Reports = () => {
             <StateViewWithError stateValues={ { error, data, loading } }>
                 <StateViewPart stateKey='loading'>
                     <div className="policies-donuts">
-                        <Grid gutter='md'>
+                        <Grid hasGutter>
                             <LoadingComplianceCards/>
                         </Grid>
                     </div>
                 </StateViewPart>
                 <StateViewPart stateKey='data'>
                     <div className="policies-donuts">
-                        <Grid gutter='md'>
+                        <Grid hasGutter>
                             { reportCards }
                         </Grid>
                     </div>

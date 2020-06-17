@@ -34,7 +34,7 @@ exports[`Reports expect to render emptystate 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           >
             <LoadingComplianceCards />
           </Grid>
@@ -47,7 +47,7 @@ exports[`Reports expect to render emptystate 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           >
             <ComplianceEmptyState
               client={
@@ -260,7 +260,7 @@ exports[`Reports expect to render emptystate 1`] = `
                     },
                   },
                   "typeDefs": undefined,
-                  "version": "2.6.8",
+                  "version": "2.6.10",
                   "watchQuery": [Function],
                 }
               }
@@ -309,7 +309,7 @@ exports[`Reports expect to render loading 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           >
             <LoadingComplianceCards />
           </Grid>
@@ -322,7 +322,7 @@ exports[`Reports expect to render loading 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           />
         </div>
       </StateViewPart>
@@ -378,7 +378,7 @@ exports[`Reports expect to render without error 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           >
             <LoadingComplianceCards />
           </Grid>
@@ -391,7 +391,7 @@ exports[`Reports expect to render without error 1`] = `
           className="policies-donuts"
         >
           <Grid
-            gutter="md"
+            hasGutter={true}
           >
             <GridItem
               key="0"

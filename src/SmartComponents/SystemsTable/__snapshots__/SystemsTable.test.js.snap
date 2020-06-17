@@ -153,7 +153,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
         }
         total={1}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -166,7 +166,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -243,7 +243,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
         }
         total={1}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -256,7 +256,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -340,7 +340,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
           }
         }
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -353,7 +353,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -488,7 +488,7 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
         }
         total={1}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -501,7 +501,7 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -526,7 +526,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
     <StateViewPart
       stateKey="noError"
     >
-      <Component
+      <Alert
         isInline={true}
         title="Policies without systems will not have reports."
         variant="warning"
@@ -595,7 +595,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
         }
         total={0}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -615,7 +615,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -640,7 +640,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
     <StateViewPart
       stateKey="noError"
     >
-      <Component
+      <Alert
         isInline={true}
         title="Policies without systems will not have reports."
         variant="warning"
@@ -709,7 +709,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
         }
         total={0}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -722,7 +722,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -806,7 +806,7 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
           }
         }
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -819,7 +819,7 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>
@@ -908,7 +908,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
         }
         total={1}
       >
-        <ToolbarGroup>
+        <ForwardRef>
           <ToolbarItem
             style={
               Object {
@@ -921,7 +921,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
               selectedRules={Array []}
             />
           </ToolbarItem>
-        </ToolbarGroup>
+        </ForwardRef>
       </ForwardRef>
     </StateViewPart>
   </StateView>

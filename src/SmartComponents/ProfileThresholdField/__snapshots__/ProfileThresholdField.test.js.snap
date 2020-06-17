@@ -107,7 +107,7 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
           }
           hideOnOutsideClick={true}
           isVisible={null}
-          maxWidth="calc(2rem + 18.75rem)"
+          maxWidth="calc(1rem + 1rem + 18.75rem)"
           onHidden={[Function]}
           onHide={[Function]}
           onMount={[Function]}
@@ -122,7 +122,6 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
             color="currentColor"
             noVerticalAlign={false}
             size="sm"
-            title={null}
           />
         </Popover>
       </React.Fragment>

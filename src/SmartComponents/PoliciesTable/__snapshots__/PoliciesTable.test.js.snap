@@ -37,13 +37,13 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       13
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={[Function]}
@@ -75,6 +75,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -281,21 +282,72 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={13}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={2}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy
@@ -343,13 +395,13 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       13
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={[Function]}
@@ -381,6 +433,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -1049,21 +1102,72 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={13}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy
@@ -1120,13 +1224,13 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       1
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={[Function]}
@@ -1158,6 +1262,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -1232,21 +1337,72 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={1}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy
@@ -1294,13 +1450,13 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       0
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={false}
@@ -1332,6 +1488,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -1368,21 +1525,72 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={0}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy
@@ -1430,13 +1638,13 @@ exports[`PoliciesTable expect to render without error 1`] = `
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       13
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={[Function]}
@@ -1468,6 +1676,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -2136,21 +2345,72 @@ exports[`PoliciesTable expect to render without error 1`] = `
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={13}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy
@@ -2221,13 +2481,13 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
     }
     toggleIsExpanded={[Function]}
   >
-    <DataToolbarItem>
+    <ToolbarItem>
       <Connect(CreatePolicy) />
-    </DataToolbarItem>
-    <DataToolbarItem>
+    </ToolbarItem>
+    <ToolbarItem>
       13
        results
-    </DataToolbarItem>
+    </ToolbarItem>
   </PrimaryToolbar>
   <Table
     actionResolver={[Function]}
@@ -2259,6 +2519,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
     rows={
@@ -2927,21 +3188,72 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
     }
     variant={null}
   >
-    <Component />
+    <TableHeader />
     <Component />
   </Table>
   <TableToolbar
     className="ins-c-inventory__table--toolbar"
     isFooter={true}
   >
-    <Component
+    <Pagination
+      className=""
+      defaultToFullPage={false}
       dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
       itemCount={13}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
       onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
       variant="bottom"
+      widgetId="pagination-options-menu"
     />
   </TableToolbar>
   <DeletePolicy

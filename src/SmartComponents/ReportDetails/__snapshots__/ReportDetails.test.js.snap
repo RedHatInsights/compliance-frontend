@@ -112,103 +112,79 @@ exports[`ReportDetails expect to render without error 1`] = `
                   className="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
                   widget-type="InsightsPageHeader"
                 >
-                  <Component>
-                    <ComponentWithOuia
-                      component={[Function]}
-                      componentProps={
-                        Object {
-                          "children": Array [
-                            <BreadcrumbItem
-                              to="/beta/insights/compliance/reports"
+                  <Breadcrumb>
+                    <nav
+                      aria-label="Breadcrumb"
+                      className="pf-c-breadcrumb"
+                      data-ouia-component-id={0}
+                      data-ouia-component-type="PF4/Breadcrumb"
+                      data-ouia-safe={true}
+                    >
+                      <ol
+                        className="pf-c-breadcrumb__list"
+                      >
+                        <BreadcrumbItem
+                          key=".0"
+                          showDivider={false}
+                          to="/beta/insights/compliance/reports"
+                        >
+                          <li
+                            className="pf-c-breadcrumb__item"
+                          >
+                            <a
+                              className="pf-c-breadcrumb__link"
+                              href="/beta/insights/compliance/reports"
+                              target={null}
                             >
                               Reports
-                            </BreadcrumbItem>,
-                            <BreadcrumbItem
-                              isActive={true}
-                            >
-                              profile1
-                            </BreadcrumbItem>,
-                          ],
-                        }
-                      }
-                      consumerContext={null}
-                    >
-                      <Breadcrumb
-                        ouiaContext={
-                          Object {
-                            "isOuia": false,
-                            "ouiaId": null,
-                          }
-                        }
-                      >
-                        <nav
-                          aria-label="Breadcrumb"
-                          className="pf-c-breadcrumb"
+                            </a>
+                          </li>
+                        </BreadcrumbItem>
+                        <BreadcrumbItem
+                          isActive={true}
+                          key=".1"
+                          showDivider={true}
                         >
-                          <ol
-                            className="pf-c-breadcrumb__list"
+                          <li
+                            className="pf-c-breadcrumb__item"
                           >
-                            <BreadcrumbItem
-                              to="/beta/insights/compliance/reports"
+                            <span
+                              className="pf-c-breadcrumb__item-divider"
                             >
-                              <li
-                                className="pf-c-breadcrumb__item"
+                              <AngleRightIcon
+                                color="currentColor"
+                                noVerticalAlign={false}
+                                size="sm"
                               >
-                                <a
-                                  className="pf-c-breadcrumb__link"
-                                  href="/beta/insights/compliance/reports"
-                                  target={null}
+                                <svg
+                                  aria-hidden={true}
+                                  aria-labelledby={null}
+                                  fill="currentColor"
+                                  height="1em"
+                                  role="img"
+                                  style={
+                                    Object {
+                                      "verticalAlign": "-0.125em",
+                                    }
+                                  }
+                                  viewBox="0 0 256 512"
+                                  width="1em"
                                 >
-                                  Reports
-                                </a>
-                                <span
-                                  className="pf-c-breadcrumb__item-divider"
-                                >
-                                  <AngleRightIcon
-                                    color="currentColor"
-                                    noVerticalAlign={false}
-                                    size="sm"
-                                    title={null}
-                                  >
-                                    <svg
-                                      aria-hidden={true}
-                                      aria-labelledby={null}
-                                      fill="currentColor"
-                                      height="1em"
-                                      role="img"
-                                      style={
-                                        Object {
-                                          "verticalAlign": "-0.125em",
-                                        }
-                                      }
-                                      viewBox="0 0 256 512"
-                                      width="1em"
-                                    >
-                                      <path
-                                        d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                                        transform=""
-                                      />
-                                    </svg>
-                                  </AngleRightIcon>
-                                </span>
-                              </li>
-                            </BreadcrumbItem>
-                            <BreadcrumbItem
-                              isActive={true}
-                            >
-                              <li
-                                className="pf-c-breadcrumb__item"
-                              >
-                                profile1
-                              </li>
-                            </BreadcrumbItem>
-                          </ol>
-                        </nav>
-                      </Breadcrumb>
-                    </ComponentWithOuia>
-                  </Component>
+                                  <path
+                                    d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
+                                    transform=""
+                                  />
+                                </svg>
+                              </AngleRightIcon>
+                            </span>
+                            profile1
+                          </li>
+                        </BreadcrumbItem>
+                      </ol>
+                    </nav>
+                  </Breadcrumb>
                   <Grid
-                    gutter="lg"
+                    hasGutter={true}
                   >
                     <div
                       className="pf-l-grid pf-m-gutter"
@@ -227,6 +203,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                           >
                             <Title
                               className=""
+                              headingLevel="h1"
                               size="2xl"
                               widget-type="InsightsPageHeaderTitle"
                             >
@@ -252,58 +229,31 @@ exports[`ReportDetails expect to render without error 1`] = `
                         <div
                           className="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-3-col-on-lg pf-m-3-col-on-xl report-details-button"
                         >
-                          <Component
+                          <Button
                             isInline={true}
                             onClick={[Function]}
                             variant="link"
                           >
-                            <ComponentWithOuia
-                              component={[Function]}
-                              componentProps={
-                                Object {
-                                  "children": "Delete Report",
-                                  "isInline": true,
-                                  "onClick": [Function],
-                                  "variant": "link",
-                                }
-                              }
-                              consumerContext={null}
+                            <button
+                              aria-disabled={false}
+                              aria-label={null}
+                              className="pf-c-button pf-m-link pf-m-inline"
+                              data-ouia-component-id={1}
+                              data-ouia-component-type="PF4/Button"
+                              data-ouia-safe={true}
+                              disabled={false}
+                              onClick={[Function]}
+                              type="button"
                             >
-                              <Button
-                                isInline={true}
-                                onClick={[Function]}
-                                ouiaContext={
-                                  Object {
-                                    "isOuia": false,
-                                    "ouiaId": null,
-                                  }
-                                }
-                                variant="link"
-                              >
-                                <button
-                                  aria-disabled={null}
-                                  aria-label={null}
-                                  className="pf-c-button pf-m-link pf-m-inline"
-                                  disabled={false}
-                                  onClick={[Function]}
-                                  tabIndex={null}
-                                  type="button"
-                                >
-                                  <span
-                                    className="pf-c-button__text"
-                                  >
-                                    Delete Report
-                                  </span>
-                                </button>
-                              </Button>
-                            </ComponentWithOuia>
-                          </Component>
+                              Delete Report
+                            </button>
+                          </Button>
                         </div>
                       </GridItem>
                     </div>
                   </Grid>
                   <Grid
-                    gutter="md"
+                    hasGutter={true}
                   >
                     <div
                       className="pf-l-grid pf-m-gutter"
@@ -323,7 +273,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                             <div
                               className="chart-container"
                             >
-                              <Component
+                              <ChartDonut
                                 data={
                                   Array [
                                     Object {
@@ -369,7 +319,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 title="100%"
                                 width={462}
                               >
-                                <Component
+                                <ChartContainer
                                   height={230}
                                   theme={
                                     Object {
@@ -1306,7 +1256,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         viewBox="0 0 462 230"
                                         width={462}
                                       >
-                                        <Component
+                                        <ChartPie
                                           allowTooltip={true}
                                           data={
                                             Array [
@@ -1837,7 +1787,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             innerRadius={88}
                                             key="pf-chart-pie"
                                             labelComponent={
-                                              <Unknown
+                                              <ChartTooltip
                                                 constrainToVisibleArea={false}
                                                 theme={
                                                   Object {
@@ -2996,7 +2946,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   />
                                                 </Path>
                                               </Slice>
-                                              <Component
+                                              <ChartTooltip
                                                 constrainToVisibleArea={false}
                                                 data={
                                                   Array [
@@ -3561,7 +3511,460 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   height={230}
                                                   id="pie-labels-0"
                                                   index={0}
-                                                  labelComponent={<Unknown />}
+                                                  labelComponent={
+                                                    <ChartLabel
+                                                      theme={
+                                                        Object {
+                                                          "area": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#06c",
+                                                                "fillOpacity": 0.3,
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "axis": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "axis": Object {
+                                                                "fill": "transparent",
+                                                                "stroke": "#d2d2d2",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "axisLabel": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 40,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                              "grid": Object {
+                                                                "fill": "none",
+                                                                "pointerEvents": "painted",
+                                                                "stroke": "none",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                              },
+                                                              "tickLabels": Object {
+                                                                "fill": "#4f5255",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "ticks": Object {
+                                                                "fill": "transparent",
+                                                                "size": 5,
+                                                                "stroke": "#d2d2d2",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "bar": Object {
+                                                            "barWidth": 10,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#06c",
+                                                                "padding": 8,
+                                                                "stroke": "none",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "boxplot": Object {
+                                                            "boxWidth": 20,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "max": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "maxLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "median": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "medianLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "min": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "minLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "q1": Object {
+                                                                "fill": "#8a8d90",
+                                                                "padding": 8,
+                                                              },
+                                                              "q1Labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "q3": Object {
+                                                                "fill": "#8a8d90",
+                                                                "padding": 8,
+                                                              },
+                                                              "q3Labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "candlestick": Object {
+                                                            "candleColors": Object {
+                                                              "negative": "#151515",
+                                                              "positive": "#fff",
+                                                            },
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "chart": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "width": 450,
+                                                          },
+                                                          "errorbar": Object {
+                                                            "borderWidth": 8,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "opacity": 1,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "group": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "width": 450,
+                                                          },
+                                                          "legend": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "gutter": 20,
+                                                            "orientation": "horizontal",
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "type": "square",
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "title": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 2,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "titleOrientation": "top",
+                                                          },
+                                                          "line": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "opacity": 1,
+                                                                "stroke": "#06c",
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "pie": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 230,
+                                                            "padAngle": 1,
+                                                            "padding": 20,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "padding": 8,
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 8,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 230,
+                                                          },
+                                                          "scatter": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#151515",
+                                                                "opacity": 1,
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "stack": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "strokeWidth": 1,
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "tooltip": Object {
+                                                            "cornerRadius": 0,
+                                                            "flyoutStyle": Object {
+                                                              "cornerRadius": 0,
+                                                              "fill": "#151515",
+                                                              "pointerEvents": "none",
+                                                              "stroke": "#151515",
+                                                              "strokeWidth": 0,
+                                                            },
+                                                            "pointerLength": 10,
+                                                            "pointerWidth": 20,
+                                                            "style": Object {
+                                                              "fill": "#f0f0f0",
+                                                              "padding": 16,
+                                                              "pointerEvents": "none",
+                                                            },
+                                                          },
+                                                          "voronoi": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "flyout": Object {
+                                                                "fill": "#151515",
+                                                                "pointerEvents": "none",
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fill": "#f0f0f0",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 8,
+                                                                "pointerEvents": "none",
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                        }
+                                                      }
+                                                    />
+                                                  }
                                                   orientation="bottom"
                                                   renderInPortal={true}
                                                   slice={
@@ -4050,8 +4453,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     groupComponent={<g />}
                                                   />
                                                 </VictoryTooltip>
-                                              </Component>
-                                              <Component
+                                              </ChartTooltip>
+                                              <ChartTooltip
                                                 constrainToVisibleArea={false}
                                                 data={
                                                   Array [
@@ -4616,7 +5019,460 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   height={230}
                                                   id="pie-labels-1"
                                                   index={1}
-                                                  labelComponent={<Unknown />}
+                                                  labelComponent={
+                                                    <ChartLabel
+                                                      theme={
+                                                        Object {
+                                                          "area": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#06c",
+                                                                "fillOpacity": 0.3,
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "axis": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "axis": Object {
+                                                                "fill": "transparent",
+                                                                "stroke": "#d2d2d2",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "axisLabel": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 40,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                              "grid": Object {
+                                                                "fill": "none",
+                                                                "pointerEvents": "painted",
+                                                                "stroke": "none",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                              },
+                                                              "tickLabels": Object {
+                                                                "fill": "#4f5255",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "ticks": Object {
+                                                                "fill": "transparent",
+                                                                "size": 5,
+                                                                "stroke": "#d2d2d2",
+                                                                "strokeLinecap": "round",
+                                                                "strokeLinejoin": "round",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "bar": Object {
+                                                            "barWidth": 10,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#06c",
+                                                                "padding": 8,
+                                                                "stroke": "none",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "boxplot": Object {
+                                                            "boxWidth": 20,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "max": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "maxLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "median": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "medianLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "min": Object {
+                                                                "padding": 8,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "minLabels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "q1": Object {
+                                                                "fill": "#8a8d90",
+                                                                "padding": 8,
+                                                              },
+                                                              "q1Labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "q3": Object {
+                                                                "fill": "#8a8d90",
+                                                                "padding": 8,
+                                                              },
+                                                              "q3Labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "candlestick": Object {
+                                                            "candleColors": Object {
+                                                              "negative": "#151515",
+                                                              "positive": "#fff",
+                                                            },
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "chart": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "width": 450,
+                                                          },
+                                                          "errorbar": Object {
+                                                            "borderWidth": 8,
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "opacity": 1,
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "group": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "width": 450,
+                                                          },
+                                                          "legend": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "gutter": 20,
+                                                            "orientation": "horizontal",
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "type": "square",
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                              },
+                                                              "title": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 2,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "titleOrientation": "top",
+                                                          },
+                                                          "line": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "opacity": 1,
+                                                                "stroke": "#06c",
+                                                                "strokeWidth": 2,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "pie": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 230,
+                                                            "padAngle": 1,
+                                                            "padding": 20,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "padding": 8,
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 8,
+                                                                "stroke": "transparent",
+                                                              },
+                                                            },
+                                                            "width": 230,
+                                                          },
+                                                          "scatter": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "#151515",
+                                                                "opacity": 1,
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "labels": Object {
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "stack": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "strokeWidth": 1,
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                          "tooltip": Object {
+                                                            "cornerRadius": 0,
+                                                            "flyoutStyle": Object {
+                                                              "cornerRadius": 0,
+                                                              "fill": "#151515",
+                                                              "pointerEvents": "none",
+                                                              "stroke": "#151515",
+                                                              "strokeWidth": 0,
+                                                            },
+                                                            "pointerLength": 10,
+                                                            "pointerWidth": 20,
+                                                            "style": Object {
+                                                              "fill": "#f0f0f0",
+                                                              "padding": 16,
+                                                              "pointerEvents": "none",
+                                                            },
+                                                          },
+                                                          "voronoi": Object {
+                                                            "colorScale": Array [
+                                                              "#06c",
+                                                              "#8bc1f7",
+                                                              "#002f5d",
+                                                              "#519de9",
+                                                              "#004b95",
+                                                            ],
+                                                            "height": 300,
+                                                            "padding": 50,
+                                                            "style": Object {
+                                                              "data": Object {
+                                                                "fill": "transparent",
+                                                                "stroke": "transparent",
+                                                                "strokeWidth": 0,
+                                                              },
+                                                              "flyout": Object {
+                                                                "fill": "#151515",
+                                                                "pointerEvents": "none",
+                                                                "stroke": "#151515",
+                                                                "strokeWidth": 1,
+                                                              },
+                                                              "labels": Object {
+                                                                "fill": "#f0f0f0",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 8,
+                                                                "pointerEvents": "none",
+                                                                "stroke": "transparent",
+                                                                "textAnchor": "middle",
+                                                              },
+                                                            },
+                                                            "width": 450,
+                                                          },
+                                                        }
+                                                      }
+                                                    />
+                                                  }
                                                   orientation="top"
                                                   renderInPortal={true}
                                                   slice={
@@ -5105,10 +5961,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     groupComponent={<g />}
                                                   />
                                                 </VictoryTooltip>
-                                              </Component>
+                                              </ChartTooltip>
                                             </g>
                                           </VictoryPie>
-                                          <Component
+                                          <ChartLegend
                                             data={
                                               Array [
                                                 Object {
@@ -5584,7 +6440,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 />
                                               }
                                               containerComponent={
-                                                <Unknown
+                                                <ChartContainer
                                                   responsive={true}
                                                   theme={
                                                     Object {
@@ -6048,17 +6904,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   },
                                                 ]
                                               }
-                                              dataComponent={<Unknown />}
+                                              dataComponent={<ChartPoint />}
                                               groupComponent={<g />}
-                                              labelComponent={
-                                                <VictoryLabel
-                                                  capHeight={0.71}
-                                                  direction="inherit"
-                                                  lineHeight={1}
-                                                  textComponent={<Text />}
-                                                  tspanComponent={<TSpan />}
-                                                />
-                                              }
+                                              labelComponent={<ChartLabel />}
                                               orientation="vertical"
                                               standalone={false}
                                               theme={
@@ -6511,15 +7359,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   },
                                                 }
                                               }
-                                              titleComponent={
-                                                <VictoryLabel
-                                                  capHeight={0.71}
-                                                  direction="inherit"
-                                                  lineHeight={1}
-                                                  textComponent={<Text />}
-                                                  tspanComponent={<TSpan />}
-                                                />
-                                              }
+                                              titleComponent={<ChartLabel />}
                                               x={209}
                                               y={86.095}
                                             >
@@ -6570,7 +7410,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     />
                                                   </Rect>
                                                 </Border>
-                                                <Component
+                                                <ChartPoint
                                                   data={
                                                     Array [
                                                       Object {
@@ -6640,8 +7480,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       }
                                                     />
                                                   </Path>
-                                                </Component>
-                                                <Component
+                                                </ChartPoint>
+                                                <ChartPoint
                                                   data={
                                                     Array [
                                                       Object {
@@ -6711,9 +7551,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       }
                                                     />
                                                   </Path>
-                                                </Component>
-                                                <VictoryLabel
-                                                  capHeight={0.71}
+                                                </ChartPoint>
+                                                <ChartLabel
                                                   data={
                                                     Array [
                                                       Object {
@@ -6738,11 +7577,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                     }
                                                   }
-                                                  direction="inherit"
                                                   id="legend-labels-0"
                                                   index={0}
                                                   key="legend-labels-0"
-                                                  lineHeight={1}
                                                   style={
                                                     Object {
                                                       "fontFamily": "var(--pf-chart-global--FontFamily)",
@@ -6753,45 +7590,76 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     }
                                                   }
                                                   text="1 system compliant"
-                                                  textComponent={<Text />}
-                                                  tspanComponent={<TSpan />}
                                                   x={239.8}
                                                   y={100.095}
                                                 >
-                                                  <Text
+                                                  <VictoryLabel
+                                                    backgroundComponent={<Rect />}
+                                                    capHeight={0.71}
+                                                    data={
+                                                      Array [
+                                                        Object {
+                                                          "name": "1 system compliant",
+                                                        },
+                                                        Object {
+                                                          "name": "0 systems non-compliant",
+                                                        },
+                                                      ]
+                                                    }
+                                                    datum={
+                                                      Object {
+                                                        "column": 0,
+                                                        "fontSize": 14,
+                                                        "name": "1 system compliant",
+                                                        "row": 0,
+                                                        "size": 5.6,
+                                                        "symbolSpacer": 14,
+                                                        "textSize": Object {
+                                                          "height": 16.904999999999998,
+                                                          "width": 145.32871972318338,
+                                                        },
+                                                      }
+                                                    }
                                                     direction="inherit"
-                                                    dx={0}
-                                                    dy={4.97}
+                                                    groupComponent={<g />}
                                                     id="legend-labels-0"
+                                                    index={0}
+                                                    lineHeight={1}
+                                                    style={
+                                                      Object {
+                                                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                        "fontSize": 14,
+                                                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                        "padding": 10,
+                                                        "stroke": "transparent",
+                                                        "textAnchor": undefined,
+                                                      }
+                                                    }
+                                                    text="1 system compliant"
+                                                    textComponent={<Text />}
+                                                    tspanComponent={<TSpan />}
                                                     x={239.8}
                                                     y={100.095}
                                                   >
-                                                    <text
+                                                    <Text
                                                       direction="inherit"
                                                       dx={0}
-                                                      dy={4.97}
                                                       id="legend-labels-0"
+                                                      key="text"
                                                       x={239.8}
-                                                      y={100.095}
+                                                      y={105.065}
                                                     >
-                                                      <TSpan
+                                                      <text
+                                                        direction="inherit"
                                                         dx={0}
-                                                        key="legend-labels-0-key-0"
-                                                        style={
-                                                          Object {
-                                                            "fill": "#252525",
-                                                            "fontFamily": "var(--pf-chart-global--FontFamily)",
-                                                            "fontSize": 14,
-                                                            "letterSpacing": "var(--pf-chart-global--letter-spacing)",
-                                                            "padding": 10,
-                                                            "stroke": "transparent",
-                                                          }
-                                                        }
-                                                        textAnchor="start"
+                                                        id="legend-labels-0"
                                                         x={239.8}
+                                                        y={105.065}
                                                       >
-                                                        <tspan
+                                                        <TSpan
                                                           dx={0}
+                                                          dy={0}
+                                                          key="legend-labels-0-key-0"
                                                           style={
                                                             Object {
                                                               "fill": "#252525",
@@ -6800,19 +7668,37 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                               "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                               "padding": 10,
                                                               "stroke": "transparent",
+                                                              "textAnchor": undefined,
                                                             }
                                                           }
                                                           textAnchor="start"
                                                           x={239.8}
                                                         >
-                                                          1 system compliant
-                                                        </tspan>
-                                                      </TSpan>
-                                                    </text>
-                                                  </Text>
-                                                </VictoryLabel>
-                                                <VictoryLabel
-                                                  capHeight={0.71}
+                                                          <tspan
+                                                            dx={0}
+                                                            dy={0}
+                                                            style={
+                                                              Object {
+                                                                "fill": "#252525",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": undefined,
+                                                              }
+                                                            }
+                                                            textAnchor="start"
+                                                            x={239.8}
+                                                          >
+                                                            1 system compliant
+                                                          </tspan>
+                                                        </TSpan>
+                                                      </text>
+                                                    </Text>
+                                                  </VictoryLabel>
+                                                </ChartLabel>
+                                                <ChartLabel
                                                   data={
                                                     Array [
                                                       Object {
@@ -6837,11 +7723,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                     }
                                                   }
-                                                  direction="inherit"
                                                   id="legend-labels-1"
                                                   index={1}
                                                   key="legend-labels-1"
-                                                  lineHeight={1}
                                                   style={
                                                     Object {
                                                       "fontFamily": "var(--pf-chart-global--FontFamily)",
@@ -6852,45 +7736,76 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     }
                                                   }
                                                   text="0 systems non-compliant"
-                                                  textComponent={<Text />}
-                                                  tspanComponent={<TSpan />}
                                                   x={239.8}
                                                   y={131}
                                                 >
-                                                  <Text
+                                                  <VictoryLabel
+                                                    backgroundComponent={<Rect />}
+                                                    capHeight={0.71}
+                                                    data={
+                                                      Array [
+                                                        Object {
+                                                          "name": "1 system compliant",
+                                                        },
+                                                        Object {
+                                                          "name": "0 systems non-compliant",
+                                                        },
+                                                      ]
+                                                    }
+                                                    datum={
+                                                      Object {
+                                                        "column": 0,
+                                                        "fontSize": 14,
+                                                        "name": "0 systems non-compliant",
+                                                        "row": 1,
+                                                        "size": 5.6,
+                                                        "symbolSpacer": 14,
+                                                        "textSize": Object {
+                                                          "height": 16.904999999999998,
+                                                          "width": 185.69780853517875,
+                                                        },
+                                                      }
+                                                    }
                                                     direction="inherit"
-                                                    dx={0}
-                                                    dy={4.97}
+                                                    groupComponent={<g />}
                                                     id="legend-labels-1"
+                                                    index={1}
+                                                    lineHeight={1}
+                                                    style={
+                                                      Object {
+                                                        "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                        "fontSize": 14,
+                                                        "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                        "padding": 10,
+                                                        "stroke": "transparent",
+                                                        "textAnchor": undefined,
+                                                      }
+                                                    }
+                                                    text="0 systems non-compliant"
+                                                    textComponent={<Text />}
+                                                    tspanComponent={<TSpan />}
                                                     x={239.8}
                                                     y={131}
                                                   >
-                                                    <text
+                                                    <Text
                                                       direction="inherit"
                                                       dx={0}
-                                                      dy={4.97}
                                                       id="legend-labels-1"
+                                                      key="text"
                                                       x={239.8}
-                                                      y={131}
+                                                      y={135.97}
                                                     >
-                                                      <TSpan
+                                                      <text
+                                                        direction="inherit"
                                                         dx={0}
-                                                        key="legend-labels-1-key-0"
-                                                        style={
-                                                          Object {
-                                                            "fill": "#252525",
-                                                            "fontFamily": "var(--pf-chart-global--FontFamily)",
-                                                            "fontSize": 14,
-                                                            "letterSpacing": "var(--pf-chart-global--letter-spacing)",
-                                                            "padding": 10,
-                                                            "stroke": "transparent",
-                                                          }
-                                                        }
-                                                        textAnchor="start"
+                                                        id="legend-labels-1"
                                                         x={239.8}
+                                                        y={135.97}
                                                       >
-                                                        <tspan
+                                                        <TSpan
                                                           dx={0}
+                                                          dy={0}
+                                                          key="legend-labels-1-key-0"
                                                           style={
                                                             Object {
                                                               "fill": "#252525",
@@ -6899,36 +7814,51 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                               "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                               "padding": 10,
                                                               "stroke": "transparent",
+                                                              "textAnchor": undefined,
                                                             }
                                                           }
                                                           textAnchor="start"
                                                           x={239.8}
                                                         >
-                                                          0 systems non-compliant
-                                                        </tspan>
-                                                      </TSpan>
-                                                    </text>
-                                                  </Text>
-                                                </VictoryLabel>
+                                                          <tspan
+                                                            dx={0}
+                                                            dy={0}
+                                                            style={
+                                                              Object {
+                                                                "fill": "#252525",
+                                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
+                                                                "fontSize": 14,
+                                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                                "padding": 10,
+                                                                "stroke": "transparent",
+                                                                "textAnchor": undefined,
+                                                              }
+                                                            }
+                                                            textAnchor="start"
+                                                            x={239.8}
+                                                          >
+                                                            0 systems non-compliant
+                                                          </tspan>
+                                                        </TSpan>
+                                                      </text>
+                                                    </Text>
+                                                  </VictoryLabel>
+                                                </ChartLabel>
                                               </g>
                                             </VictoryLegend>
-                                          </Component>
-                                        </Component>
-                                        <Component
+                                          </ChartLegend>
+                                        </ChartPie>
+                                        <ChartLabel
                                           capHeight={1.1}
                                           key="pf-chart-donut-title"
                                           style={
                                             Array [
                                               Object {
-                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                 "fontSize": 24,
-                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                               },
                                               Object {
                                                 "fill": "#b8bbbe",
-                                                "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                 "fontSize": 14,
-                                                "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                               },
                                             ]
                                           }
@@ -6944,8 +7874,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           y={115}
                                         >
                                           <VictoryLabel
+                                            backgroundComponent={<Rect />}
                                             capHeight={1.1}
                                             direction="inherit"
+                                            groupComponent={<g />}
                                             lineHeight={1}
                                             style={
                                               Array [
@@ -6953,12 +7885,14 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                   "fontSize": 24,
                                                   "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                  "textAnchor": "middle",
                                                 },
                                                 Object {
                                                   "fill": "#b8bbbe",
                                                   "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                   "fontSize": 14,
                                                   "letterSpacing": "var(--pf-chart-global--letter-spacing)",
+                                                  "textAnchor": "middle",
                                                 },
                                               ]
                                             }
@@ -6978,19 +7912,19 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             <Text
                                               direction="inherit"
                                               dx={0}
-                                              dy={1.200000000000001}
+                                              key="text"
                                               x={106}
-                                              y={115}
+                                              y={116.2}
                                             >
                                               <text
                                                 direction="inherit"
                                                 dx={0}
-                                                dy={1.200000000000001}
                                                 x={106}
-                                                y={115}
+                                                y={116.2}
                                               >
                                                 <TSpan
                                                   dx={0}
+                                                  dy={0}
                                                   key="undefined-key-0"
                                                   style={
                                                     Object {
@@ -6999,6 +7933,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "fontSize": 24,
                                                       "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                       "stroke": "transparent",
+                                                      "textAnchor": "middle",
                                                     }
                                                   }
                                                   textAnchor="middle"
@@ -7006,6 +7941,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 >
                                                   <tspan
                                                     dx={0}
+                                                    dy={0}
                                                     style={
                                                       Object {
                                                         "fill": "#252525",
@@ -7013,6 +7949,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "fontSize": 24,
                                                         "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                         "stroke": "transparent",
+                                                        "textAnchor": "middle",
                                                       }
                                                     }
                                                     textAnchor="middle"
@@ -7023,7 +7960,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 </TSpan>
                                                 <TSpan
                                                   dx={0}
-                                                  dy={19}
+                                                  dy={13.5}
                                                   key="undefined-key-1"
                                                   style={
                                                     Object {
@@ -7032,6 +7969,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "fontSize": 14,
                                                       "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                       "stroke": "transparent",
+                                                      "textAnchor": "middle",
                                                     }
                                                   }
                                                   textAnchor="middle"
@@ -7039,7 +7977,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 >
                                                   <tspan
                                                     dx={0}
-                                                    dy={19}
+                                                    dy={13.5}
                                                     style={
                                                       Object {
                                                         "fill": "#b8bbbe",
@@ -7047,6 +7985,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "fontSize": 14,
                                                         "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                         "stroke": "transparent",
+                                                        "textAnchor": "middle",
                                                       }
                                                     }
                                                     textAnchor="middle"
@@ -7058,7 +7997,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               </text>
                                             </Text>
                                           </VictoryLabel>
-                                        </Component>
+                                        </ChartLabel>
                                       </svg>
                                       <div
                                         style={
@@ -7100,8 +8039,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       </div>
                                     </div>
                                   </VictoryContainer>
-                                </Component>
-                              </Component>
+                                </ChartContainer>
+                              </ChartDonut>
                             </div>
                           </div>
                         </div>
@@ -7276,7 +8215,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     page-type=""
                   >
                     <Grid
-                      gutter="md"
+                      hasGutter={true}
                     >
                       <div
                         className="pf-l-grid pf-m-gutter"
@@ -7348,19 +8287,19 @@ exports[`ReportDetails expect to render without error 1`] = `
                 <Modal
                   actions={
                     Array [
-                      <Unknown
+                      <Button
                         aria-label="delete"
                         onClick={[Function]}
                         variant="danger"
                       >
                         Delete report
-                      </Unknown>,
-                      <Unknown
+                      </Button>,
+                      <Button
                         onClick={[Function]}
                         variant="secondary"
                       >
                         Cancel
-                      </Unknown>,
+                      </Button>,
                     ]
                   }
                   appendTo={
@@ -7368,16 +8307,19 @@ exports[`ReportDetails expect to render without error 1`] = `
                       <div />
                     </body>
                   }
-                  ariaDescribedById=""
+                  aria-describedby=""
+                  aria-label=""
+                  aria-labelledby=""
                   className=""
-                  hideTitle={false}
+                  hasNoBodyWrapper={false}
                   isFooterLeftAligned={true}
-                  isLarge={false}
                   isOpen={false}
                   isSmall={true}
                   onClose={[Function]}
+                  ouiaSafe={true}
                   showClose={true}
                   title="Delete report"
+                  variant="default"
                 >
                   <Portal
                     containerInfo={<div />}
@@ -7385,32 +8327,37 @@ exports[`ReportDetails expect to render without error 1`] = `
                     <ModalContent
                       actions={
                         Array [
-                          <Unknown
+                          <Button
                             aria-label="delete"
                             onClick={[Function]}
                             variant="danger"
                           >
                             Delete report
-                          </Unknown>,
-                          <Unknown
+                          </Button>,
+                          <Button
                             onClick={[Function]}
                             variant="secondary"
                           >
                             Cancel
-                          </Unknown>,
+                          </Button>,
                         ]
                       }
-                      ariaDescribedById=""
+                      aria-describedby=""
+                      aria-label=""
+                      aria-labelledby=""
+                      boxId="pf-modal-part-0"
                       className=""
-                      hideTitle={false}
-                      id="pf-modal-0"
+                      descriptorId="pf-modal-part-2"
+                      hasNoBodyWrapper={false}
                       isFooterLeftAligned={true}
-                      isLarge={false}
                       isOpen={false}
                       isSmall={true}
+                      labelId="pf-modal-part-1"
                       onClose={[Function]}
+                      ouiaSafe={true}
                       showClose={true}
                       title="Delete report"
+                      variant="default"
                     />
                   </Portal>
                 </Modal>
