@@ -1,7 +1,8 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup, Title } from '@patternfly/react-core';
+import { FormGroup, Title, Popover, PopoverPosition } from '@patternfly/react-core';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import { ReduxFormCreatableSelectInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import gql from 'graphql-tag';
@@ -65,19 +66,20 @@ export class BusinessObjectiveField extends React.Component {
 
     render() {
         const { selected } = this.state;
-        const { showTitle } = this.props;
         const titleId = 'business-objective-typeahead';
-        const title = <React.Fragment>
-            <Title headingLevel='h3' size='xl'>Business objective</Title>
-            This is an optional field that can be used to label policies that are related to
-            specific business objectives.
-        </React.Fragment>;
+        const popover = <Popover
+            position={PopoverPosition.top}
+            headerContent={<Title headingLevel='h3' size='xl'>Business objective</Title>}
+            bodyContent={<div>This is an optional field that can be used to label policies that are related to
+            specific business objectives.</div>}
+        >
+            <OutlinedQuestionCircleIcon />
+        </Popover>;
 
         return (
             <React.Fragment>
-                { showTitle && title }
                 <FormGroup fieldId='edit-policy-business-objective'
-                    label="Business objective"
+                    label={<React.Fragment>Business objective {popover}</React.Fragment>}
                     helperText='e.g Project Gemini'>
                     <Field name='businessObjective'
                         id='businessObjective'
@@ -100,12 +102,7 @@ export class BusinessObjectiveField extends React.Component {
 BusinessObjectiveField.propTypes = {
     businessObjective: propTypes.object,
     client: propTypes.object,
-    dispatch: propTypes.func,
-    showTitle: propTypes.bool
-};
-
-BusinessObjectiveField.defaultProps = {
-    showTitle: true
+    dispatch: propTypes.func
 };
 
 export default compose(
