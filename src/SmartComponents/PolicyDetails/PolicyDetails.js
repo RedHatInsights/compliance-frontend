@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { Breadcrumb, BreadcrumbItem, Grid, GridItem } from '@patternfly/react-core';
+import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem } from '@patternfly/react-core';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import {
     PageHeader, PageHeaderTitle, Main, Spinner
@@ -12,8 +12,10 @@ import {
     PolicyDetailsDescription, PolicyDetailsContentLoader, PolicyTabs, TabSwitcher, Tab,
     StateViewWithError, StateViewPart
 } from 'PresentationalComponents';
-import { EditPolicy } from 'SmartComponents';
+import { CreatePolicy } from 'SmartComponents';
 import '@/Charts.scss';
+import { reduxForm } from 'redux-form';
+import { compose } from 'redux';
 
 import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
@@ -54,13 +56,16 @@ query Profile($policyId: String!){
             title
             version
         }
+        hosts {
+            id
+        }
     }
 }
 `;
 
-export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
+const PolicyDetails = ({ dispatch, match }) => {
     let { data, error, loading, refetch } = useQuery(QUERY, {
-        variables: { policyId }
+        variables: { policyId: match.params.policy_id }
     });
     const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
@@ -72,6 +77,25 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         loading = undefined;
     }
 
+    const initializeForm = () => (
+        dispatch({
+            type: '@@redux-form/INITIALIZE',
+            meta: {
+                form: 'policyForm'
+            },
+            payload: {
+                benchmark: policy.benchmark.id,
+                description: policy.description,
+                name: policy.name,
+                refId: policy.refId,
+                selectedRuleRefIds: policy.rules.map(rule => rule.refId),
+                systems: policy.hosts.map(host => host.id),
+                editPolicyId: policy.id,
+                profile: JSON.stringify(policy)
+            }
+        })
+    );
+
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
             <PageHeader><PolicyDetailsContentLoader/></PageHeader>
@@ -81,7 +105,7 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
             <PageHeader className='page-header-tabs'>
                 <Breadcrumb>
                     <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/scappolicies`}
-                        onClick={ (event) => onNavigateWithProps(event) }>
+                        onClick={ (event) => onNavigate(event) }>
                       Policies
                     </BreadcrumbItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
@@ -91,10 +115,9 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                         <PageHeaderTitle title={policy.name} />
                     </GridItem>
                     <GridItem className='policy-details-button' xl2={1} xl={2} lg={2} md={3} sm={3}>
-                        <EditPolicy policyId={policy.id}
-                            previousThreshold={policy.complianceThreshold}
-                            businessObjective={policy.businessObjective}
-                            onClose={ () => refetch() }
+                        <Button onClick={initializeForm}>DISPATCH</Button>
+                        <CreatePolicy edit startAtStep={2} benchmark={policy.benchmark}
+                            profile={policy} onWizardFinish={() => refetch()}
                         />
                     </GridItem>
                 </Grid>
@@ -117,26 +140,19 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
     </StateViewWithError>;
 };
 
-PolicyDetailsQuery.propTypes = {
-    policyId: propTypes.string,
-    onNavigateWithProps: propTypes.func
-};
-
-export class PolicyDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onNavigate = onNavigate.bind(this);
-    }
-
-    render() {
-        return (
-            <PolicyDetailsQuery policyId={this.props.match.params.policy_id} onNavigateWithProps={this.onNavigate} />
-        );
-    }
-}
-
 PolicyDetails.propTypes = {
+    onNavigateWithProps: propTypes.func,
+    dispatch: propTypes.func,
     match: propTypes.object
 };
 
-export default routerParams(PolicyDetails);
+export default compose(
+    reduxForm({
+        form: 'policyForm',
+        destroyOnUnmount: false,
+        forceUnregisterOnUnmount: true
+    }),
+    routerParams
+)(PolicyDetails);
+
+export { PolicyDetails };

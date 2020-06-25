@@ -18,16 +18,19 @@ import propTypes from 'prop-types';
 class CreatePolicy extends React.Component {
     state = {
         isOpen: this.props.isOpen,
-        stepIdReached: 1
+        startAtStep: this.props.startAtStep,
+        stepIdReached: this.props.startAtStep
     };
 
     toggleOpen = () => {
         const { isOpen } = this.state;
-        const { dispatch } = this.props;
+        const { dispatch, startAtStep, edit } = this.props;
         this.setState({
             isOpen: !isOpen,
-            stepIdReached: 1
-        }, () => dispatch(destroy('policyForm')));
+            stepIdReached: startAtStep
+        }, () => {
+            if (!edit) { dispatch(destroy('policyForm')); }
+        });
     };
 
     onNext = ({ id }) => {
@@ -37,7 +40,7 @@ class CreatePolicy extends React.Component {
     };
 
     render() {
-        const { isOpen, stepIdReached } = this.state;
+        const { isOpen, stepIdReached, startAtStep } = this.state;
         const { benchmark, profile, name, refId, selectedRuleRefIds, onWizardFinish } = this.props;
 
         const steps = [
@@ -77,7 +80,7 @@ class CreatePolicy extends React.Component {
             {
                 id: 6,
                 name: 'Finished',
-                component: <FinishedCreatePolicy onWizardFinish={onWizardFinish} onClose={this.toggleOpen}/>,
+                component: <FinishedCreatePolicy edit onWizardFinish={onWizardFinish} onClose={this.toggleOpen}/>,
                 isFinishedStep: true,
                 canJumpTo: stepIdReached >= 6
             }
@@ -91,6 +94,7 @@ class CreatePolicy extends React.Component {
                 {isOpen && (
                     <Wizard
                         isOpen={isOpen}
+                        startAtStep={startAtStep}
                         onClose={this.toggleOpen}
                         isFooterLeftAligned
                         title="Create SCAP policy"
@@ -112,11 +116,15 @@ CreatePolicy.propTypes = {
     selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
     isOpen: propTypes.bool,
     onWizardFinish: propTypes.func,
-    dispatch: propTypes.func
+    dispatch: propTypes.func,
+    startAtStep: propTypes.number,
+    edit: propTypes.bool
 };
 
 CreatePolicy.defaultProps = {
-    isOpen: false
+    isOpen: false,
+    startAtStep: 1,
+    edit: false
 };
 
 const selector = formValueSelector('policyForm');

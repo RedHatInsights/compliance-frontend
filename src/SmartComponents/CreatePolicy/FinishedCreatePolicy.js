@@ -10,7 +10,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
-import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES, UPDATE_PROFILE } from 'Utilities/graphql/mutations';
 import businessObjectiveMutation from 'Utilities/businessObjectiveMutation';
 
 class FinishedCreatePolicy extends React.Component {
@@ -21,10 +21,11 @@ class FinishedCreatePolicy extends React.Component {
     };
 
     componentDidMount() {
-        this.createProfile().then((result) => {
+        const { edit } = this.props;
+        this.mutateProfile().then((result) => {
             this.setState(prevState => ({
                 percent: prevState.percent + 50,
-                profileId: result.data.createProfile.profile.id
+                profileId: edit ? result.data.updateProfile.profile.id : result.data.createProfile.profile.id
             }), this.associateSystems);
         }).catch((error) => {
             this.setState({
@@ -34,24 +35,28 @@ class FinishedCreatePolicy extends React.Component {
         });
     }
 
-    createProfile = () => {
-        const { businessObjective, benchmarkId, cloneFromProfileId, refId, name,
-            description, complianceThreshold, selectedRuleRefIds, client } = this.props;
+    mutateProfile = () => {
+        const { businessObjective, benchmarkId, cloneFromProfileId, refId, name, editPolicyId,
+            description, complianceThreshold, selectedRuleRefIds, client, edit } = this.props;
         return businessObjectiveMutation(null, businessObjective, client.mutate).then(
             businessObjectiveId => {
-                let input = { benchmarkId, cloneFromProfileId, refId, name,
-                    description, complianceThreshold, selectedRuleRefIds };
+                let input;
+                let mutation;
+
+                if (edit) {
+                    input = { id: editPolicyId, name, description, complianceThreshold, selectedRuleRefIds };
+                    mutation = UPDATE_PROFILE;
+                } else {
+                    input = { benchmarkId, cloneFromProfileId, refId, name,
+                        description, complianceThreshold, selectedRuleRefIds };
+                    mutation = CREATE_PROFILE;
+                }
 
                 if (businessObjectiveId) {
                     input.businessObjectiveId = businessObjectiveId;
                 }
 
-                return client.mutate({
-                    mutation: CREATE_PROFILE,
-                    variables: {
-                        input
-                    }
-                });
+                return client.mutate({ mutation, variables: { input } });
             }
         );
     }
@@ -122,7 +127,9 @@ FinishedCreatePolicy.propTypes = {
     systemIds: propTypes.array,
     complianceThreshold: propTypes.number,
     onWizardFinish: propTypes.func,
-    selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired
+    edit: propTypes.bool,
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
+    editPolicyId: propTypes.string
 };
 
 export const selector = formValueSelector('policyForm');
@@ -138,7 +145,8 @@ export default compose(
             description: selector(state, 'description'),
             complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
             systemIds: selector(state, 'systems'),
-            selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
+            selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
+            editPolicyId: selector(state, 'editPolicyId')
         })
     ),
     reduxForm({
