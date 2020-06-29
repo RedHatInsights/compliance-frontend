@@ -15,7 +15,8 @@ import {
 } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import  {
-    AssignPoliciesModal
+    AssignPoliciesModal,
+    EditSystems
 } from 'SmartComponents';
 import {
     WARNING_TEXT
@@ -257,7 +258,7 @@ class SystemsTable extends React.Component {
 
     render() {
         const {
-            remediationsEnabled, compact, enableExport, showAllSystems, showActions,
+            editSystemsEnabled, remediationsEnabled, compact, enableExport, showAllSystems, showActions,
             selectedEntities, systems, total
         } = this.props;
         const {
@@ -353,6 +354,11 @@ class SystemsTable extends React.Component {
                                         selectedRules={ [] } />
                                 </reactCore.ToolbarItem>
                             }
+                            { editSystemsEnabled &&
+                                <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                                    <EditSystems />
+                                </reactCore.ToolbarItem>
+                            }
                         </reactCore.ToolbarGroup> }
                         { selectedSystemId &&
                         <AssignPoliciesModal
@@ -377,6 +383,7 @@ SystemsTable.propTypes = {
     policyId: propTypes.string,
     columns: propTypes.array,
     remediationsEnabled: propTypes.bool,
+    editSystemsEnabled: propTypes.bool,
     compact: propTypes.bool,
     selectedEntities: propTypes.array,
     exportFromState: propTypes.func,
@@ -401,6 +408,7 @@ SystemsTable.propTypes = {
 SystemsTable.defaultProps = {
     policyId: '',
     remediationsEnabled: true,
+    editSystemsEnabled: false,
     compact: false,
     enableExport: true,
     showAllSystems: false,

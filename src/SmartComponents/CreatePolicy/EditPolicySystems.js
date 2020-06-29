@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const EditPolicySystems = ({ change, selectedSystemIds }) => {
+const EditPolicySystems = ({ showHeader, change, selectedSystemIds }) => {
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'facts.compliance.display_name',
@@ -30,14 +30,16 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
 
     return (
         <React.Fragment>
-            <TextContent>
-                <Text component={TextVariants.h1}>
-                    Systems
-                </Text>
-                <Text component={TextVariants.h4}>
-                    Choose systems to scan with this policy. You can add and remove systems later.
-                </Text>
-            </TextContent>
+            { showHeader &&
+                <TextContent>
+                    <Text component={TextVariants.h1}>
+                        Systems
+                    </Text>
+                    <Text component={TextVariants.h4}>
+                        Choose systems to scan with this policy. You can add and remove systems later.
+                    </Text>
+                </TextContent>
+            }
             <Form>
                 <SystemsTable
                     columns={columns}
@@ -53,11 +55,13 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
 
 EditPolicySystems.propTypes = {
     selectedSystemIds: propTypes.array,
-    change: reduxFormPropTypes.change
+    change: reduxFormPropTypes.change,
+    showHeader: propTypes.bool
 };
 
 EditPolicySystems.defaultProps = {
-    selectedSystemIds: []
+    selectedSystemIds: [],
+    showHeader: true
 };
 
 const mapStateToProps = ({ entities }) => ({

@@ -6,6 +6,7 @@ import { SystemsTable } from 'SmartComponents';
 const PolicySystemsTab = ({ policy, complianceThreshold }) => (
     <SystemsTable policyId={policy.id}
         remediationsEnabled={false}
+        editSystemsEnabled
         columns={[{
             key: 'facts.compliance.display_name',
             title: 'System name',
