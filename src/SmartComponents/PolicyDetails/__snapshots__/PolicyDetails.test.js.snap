@@ -52,7 +52,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
       class="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-8-col-on-xl pf-m-9-col-on-2xl"
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
       >
         <h1
           class="pf-c-title pf-m-2xl"
@@ -62,11 +62,6 @@ exports[`PolicyDetails expect to render without error 1`] = `
           profile1
            
         </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-2-col-on-2xl policy-details-button"
-      >
-         
       </div>
       <div
         class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
@@ -354,7 +349,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
       class="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-8-col-on-xl pf-m-9-col-on-2xl"
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
       >
         <h1
           class="pf-c-title pf-m-2xl"
@@ -364,11 +359,6 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
           profile1
            
         </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-2-col-on-2xl policy-details-button"
-      >
-         
       </div>
       <div
         class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
@@ -656,7 +646,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
       class="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-8-col-on-xl pf-m-9-col-on-2xl"
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
       >
         <h1
           class="pf-c-title pf-m-2xl"
@@ -666,11 +656,6 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
           profile1
            
         </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-2-col-on-2xl policy-details-button"
-      >
-         
       </div>
       <div
         class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
@@ -958,7 +943,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
       class="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-8-col-on-xl pf-m-9-col-on-2xl"
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
       >
         <h1
           class="pf-c-title pf-m-2xl"
@@ -968,11 +953,6 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
           profile1
            
         </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-2-col-on-2xl policy-details-button"
-      >
-         
       </div>
       <div
         class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
@@ -1260,7 +1240,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
       class="pf-l-grid pf-m-gutter"
     >
       <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-8-col-on-xl pf-m-9-col-on-2xl"
+        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
       >
         <h1
           class="pf-c-title pf-m-2xl"
@@ -1270,11 +1250,6 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
           profile1
            
         </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-2-col-on-2xl policy-details-button"
-      >
-         
       </div>
       <div
         class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
