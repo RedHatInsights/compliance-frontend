@@ -259,7 +259,7 @@ class SystemsTable extends React.Component {
     render() {
         const {
             editSystemsEnabled, remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, systems, total
+            selectedEntities, systems, total, policyId
         } = this.props;
         const {
             page, perPage, InventoryCmp, selectedSystemId,
@@ -356,7 +356,7 @@ class SystemsTable extends React.Component {
                             }
                             { editSystemsEnabled &&
                                 <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                                    <EditSystems />
+                                    <EditSystems policyId={policyId} />
                                 </reactCore.ToolbarItem>
                             }
                         </reactCore.ToolbarGroup> }
