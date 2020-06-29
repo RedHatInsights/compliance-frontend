@@ -6,25 +6,14 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import { dispatchAction } from 'Utilities/Dispatcher';
 import { ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
 
-export const completedMessage = (profile) => {
-    const systems = profile.systems.map(system => system.name);
-    let message;
-    if (systems.length > 0) {
-        message = `Associated ${systems} to ${profile.name}`;
-    } else {
-        message = `${profile.name} is no longer associated to any policies`;
-    }
-
-    return message;
-};
-
-export const SubmitEditSystemsButton = ({ systemIds, policyId }) => {
+export const SubmitEditSystemsButton = ({ systemIds, policyId, onComplete }) => {
     const [associateSystemsToProfile] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES, {
-        onCompleted: (data) => {
+        onCompleted: () => {
             dispatchAction(addNotification({
                 variant: 'success',
-                title: completedMessage(data.associateSystems.profile)
+                title: 'Success associating systems to profile'
             }));
+            onComplete();
         },
         onError: (error) => {
             dispatchAction(addNotification({
@@ -42,7 +31,8 @@ export const SubmitEditSystemsButton = ({ systemIds, policyId }) => {
 
 SubmitEditSystemsButton.propTypes = {
     systemIds: propTypes.arrayOf(propTypes.string).isRequired,
-    policyId: propTypes.string.isRequired
+    policyId: propTypes.string.isRequired,
+    onComplete: propTypes.func
 };
 
 SubmitEditSystemsButton.defaultProps = {

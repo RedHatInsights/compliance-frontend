@@ -42,6 +42,7 @@ class EditSystems extends React.Component {
                         <SubmitEditSystemsButton key='save'
                             aria-label='save'
                             policyId={policyId}
+                            onComplete={this.toggleOpen}
                             systemIds={selectedSystemIds}
                             variant='primary'/>,
                         <Button key="cancel" variant="secondary" onClick={this.toggleOpen}>
