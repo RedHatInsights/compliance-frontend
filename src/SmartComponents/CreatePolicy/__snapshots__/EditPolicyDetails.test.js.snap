@@ -163,9 +163,9 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
                   appendTo={[Function]}
                   aria-label=""
                   bodyContent={
-                    <div>
+                    <React.Fragment>
                       The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-                    </div>
+                    </React.Fragment>
                   }
                   boundary="window"
                   className=""
@@ -230,9 +230,9 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
                     appendTo={[Function]}
                     aria-label=""
                     bodyContent={
-                      <div>
+                      <React.Fragment>
                         The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-                      </div>
+                      </React.Fragment>
                     }
                     boundary="window"
                     className=""

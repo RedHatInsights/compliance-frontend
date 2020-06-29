@@ -25,22 +25,30 @@ export class ProfileThresholdField extends React.Component {
 
     render() {
         const { threshold, validThreshold } = this.state;
+        const { showTitle } = this.props;
+        const explanation = <React.Fragment>The compliance threshold defines what percentage of rules
+            must be met in order for a system to be determined &quot;compliant&quot;.</React.Fragment>;
+        const titleHeader = <Title headingLevel="h3" size="xl">Compliance threshold</Title>;
+        const title = <React.Fragment>
+            { titleHeader }
+            { explanation }
+        </React.Fragment>;
         const popover = <Popover
             position={PopoverPosition.top}
-            headerContent={<Title headingLevel="h3" size="xl">Compliance threshold</Title>}
-            bodyContent={<div>The compliance threshold defines what percentage of rules must be met in order for a system to
-            be determined &quot;compliant&quot;.</div>}
+            headerContent={titleHeader}
+            bodyContent={explanation}
         >
             <OutlinedQuestionCircleIcon />
         </Popover>;
 
         return (
             <React.Fragment>
+                { showTitle && title }
                 <FormGroup fieldId='policy-threshold'
                     isValid={validThreshold}
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
                     helperText="A value of 95% or higher is recommended"
-                    label={<React.Fragment>Compliance threshold (%) {popover}</React.Fragment>}>
+                    label={<React.Fragment>Compliance threshold (%) {!showTitle && popover}</React.Fragment>}>
                     <Field name='complianceThreshold' id='complianceThreshold' isRequired={true}
                         onChange={this.handleThresholdChange}
                         isValid={validThreshold}
@@ -55,7 +63,8 @@ export class ProfileThresholdField extends React.Component {
 }
 
 ProfileThresholdField.propTypes = {
-    previousThreshold: propTypes.number
+    previousThreshold: propTypes.number,
+    showTitle: propTypes.bool
 };
 
 export default reduxForm({

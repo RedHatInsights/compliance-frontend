@@ -52,6 +52,7 @@ exports[`EditPolicy expect to render without error 1`] = `
         }
         dispatch={[MockFunction]}
         policyId="POLICY_ID"
+        showTitle={true}
       />
       <ReduxForm
         destroyOnUnmount={false}
@@ -66,6 +67,7 @@ exports[`EditPolicy expect to render without error 1`] = `
         shouldError={[Function]}
         shouldValidate={[Function]}
         shouldWarn={[Function]}
+        showTitle={true}
         submitAsSideEffect={false}
         touchOnBlur={true}
         touchOnChange={false}

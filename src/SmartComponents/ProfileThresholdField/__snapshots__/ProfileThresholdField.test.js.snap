@@ -21,8 +21,15 @@ Object {
 }
 `;
 
-exports[`ProfileThresholdField expect to render without error 1`] = `
+exports[`ProfileThresholdField expect to render with title 1`] = `
 <Fragment>
+  <Title
+    headingLevel="h3"
+    size="xl"
+  >
+    Compliance threshold
+  </Title>
+  The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
   <FormGroup
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
@@ -31,59 +38,6 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
     label={
       <React.Fragment>
         Compliance threshold (%) 
-        <Popover
-          appendTo={[Function]}
-          aria-label=""
-          bodyContent={
-            <div>
-              The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-            </div>
-          }
-          boundary="window"
-          className=""
-          closeBtnAriaLabel="Close"
-          distance={25}
-          enableFlip={true}
-          flipBehavior={
-            Array [
-              "top",
-              "right",
-              "bottom",
-              "left",
-              "top",
-              "right",
-              "bottom",
-            ]
-          }
-          footerContent={null}
-          headerContent={
-            <Title
-              headingLevel="h3"
-              size="xl"
-            >
-              Compliance threshold
-            </Title>
-          }
-          hideOnOutsideClick={true}
-          isVisible={null}
-          maxWidth="calc(2rem + 18.75rem)"
-          onHidden={[Function]}
-          onHide={[Function]}
-          onMount={[Function]}
-          onShow={[Function]}
-          onShown={[Function]}
-          position="top"
-          shouldClose={[Function]}
-          tippyProps={Object {}}
-          zIndex={9999}
-        >
-          <OutlinedQuestionCircleIcon
-            color="currentColor"
-            noVerticalAlign={false}
-            size="sm"
-            title={null}
-          />
-        </Popover>
       </React.Fragment>
     }
   >
@@ -108,7 +62,7 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
 </Fragment>
 `;
 
-exports[`ProfileThresholdField expect to render without title 1`] = `
+exports[`ProfileThresholdField expect to render without error 1`] = `
 <Fragment>
   <FormGroup
     fieldId="policy-threshold"
@@ -122,9 +76,9 @@ exports[`ProfileThresholdField expect to render without title 1`] = `
           appendTo={[Function]}
           aria-label=""
           bodyContent={
-            <div>
+            <React.Fragment>
               The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-            </div>
+            </React.Fragment>
           }
           boundary="window"
           className=""

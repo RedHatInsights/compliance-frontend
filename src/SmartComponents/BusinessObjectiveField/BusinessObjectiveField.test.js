@@ -30,9 +30,9 @@ describe('BusinessObjectiveField', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to render without title', () => {
+    it('expect to render with title', () => {
         const wrapper = shallow(
-            <BusinessObjectiveField showTitle={false} { ...defaultProps }/>
+            <BusinessObjectiveField showTitle { ...defaultProps }/>
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

@@ -66,20 +66,28 @@ export class BusinessObjectiveField extends React.Component {
 
     render() {
         const { selected } = this.state;
+        const { showTitle } = this.props;
         const titleId = 'business-objective-typeahead';
+        const titleHeader = <Title headingLevel='h3' size='xl'>Business objective</Title>;
+        const explanation = <React.Fragment>This is an optional field that can be used to label policies that are related to
+            specific business objectives.</React.Fragment>;
+        const title = <React.Fragment>
+            { titleHeader }
+            { explanation }
+        </React.Fragment>;
         const popover = <Popover
             position={PopoverPosition.top}
-            headerContent={<Title headingLevel='h3' size='xl'>Business objective</Title>}
-            bodyContent={<div>This is an optional field that can be used to label policies that are related to
-            specific business objectives.</div>}
+            headerContent={titleHeader}
+            bodyContent={explanation}
         >
             <OutlinedQuestionCircleIcon />
         </Popover>;
 
         return (
             <React.Fragment>
+                { showTitle && title }
                 <FormGroup fieldId='edit-policy-business-objective'
-                    label={<React.Fragment>Business objective {popover}</React.Fragment>}
+                    label={<React.Fragment>Business objective {!showTitle && popover}</React.Fragment>}
                     helperText='e.g Project Gemini'>
                     <Field name='businessObjective'
                         id='businessObjective'
@@ -102,7 +110,8 @@ export class BusinessObjectiveField extends React.Component {
 BusinessObjectiveField.propTypes = {
     businessObjective: propTypes.object,
     client: propTypes.object,
-    dispatch: propTypes.func
+    dispatch: propTypes.func,
+    showTitle: propTypes.bool
 };
 
 export default compose(

@@ -69,8 +69,9 @@ export class EditPolicy extends Component {
                             businessObjective={businessObjective}
                             policyId={policyId}
                             dispatch={dispatch}
+                            showTitle
                         />
-                        <ProfileThresholdField previousThreshold={previousThreshold} />
+                        <ProfileThresholdField showTitle previousThreshold={previousThreshold} />
                     </Form>
                 </Modal>
             </React.Fragment>
