@@ -19,6 +19,7 @@ const EditPolicyDetails = ({ profile, dispatch }) => {
                     Policy details
                 </Text>
             </TextContent>
+            <br/>
             <Form id='editpolicydetails'>
                 <FormGroup label="Policy name" isRequired fieldId="name">
                     <Field
@@ -49,12 +50,12 @@ const EditPolicyDetails = ({ profile, dispatch }) => {
                         aria-describedby="description"
                     />
                 </FormGroup>
-                <ProfileThresholdField previousThreshold={profile.complianceThreshold} />
                 <BusinessObjectiveField
                     businessObjective={{}}
                     policyId={profile.id}
                     dispatch={dispatch}
                 />
+                <ProfileThresholdField showTitle={false} previousThreshold={profile.complianceThreshold} />
             </Form>
         </React.Fragment>
     );

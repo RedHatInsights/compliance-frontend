@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BusinessObjectiveField expect to render without error 1`] = `
+exports[`BusinessObjectiveField expect to render with title 1`] = `
 <Fragment>
   <Title
     headingLevel="h3"
@@ -12,7 +12,11 @@ exports[`BusinessObjectiveField expect to render without error 1`] = `
   <FormGroup
     fieldId="edit-policy-business-objective"
     helperText="e.g Project Gemini"
-    label="Business objective"
+    label={
+      <React.Fragment>
+        Business objective 
+      </React.Fragment>
+    }
   >
     <Field
       aria-label="Select a business objective"
@@ -36,12 +40,69 @@ exports[`BusinessObjectiveField expect to render without error 1`] = `
 </Fragment>
 `;
 
-exports[`BusinessObjectiveField expect to render without title 1`] = `
+exports[`BusinessObjectiveField expect to render without error 1`] = `
 <Fragment>
   <FormGroup
     fieldId="edit-policy-business-objective"
     helperText="e.g Project Gemini"
-    label="Business objective"
+    label={
+      <React.Fragment>
+        Business objective 
+        <Popover
+          appendTo={[Function]}
+          aria-label=""
+          bodyContent={
+            <React.Fragment>
+              This is an optional field that can be used to label policies that are related to specific business objectives.
+            </React.Fragment>
+          }
+          boundary="window"
+          className=""
+          closeBtnAriaLabel="Close"
+          distance={25}
+          enableFlip={true}
+          flipBehavior={
+            Array [
+              "top",
+              "right",
+              "bottom",
+              "left",
+              "top",
+              "right",
+              "bottom",
+            ]
+          }
+          footerContent={null}
+          headerContent={
+            <Title
+              headingLevel="h3"
+              size="xl"
+            >
+              Business objective
+            </Title>
+          }
+          hideOnOutsideClick={true}
+          isVisible={null}
+          maxWidth="calc(2rem + 18.75rem)"
+          onHidden={[Function]}
+          onHide={[Function]}
+          onMount={[Function]}
+          onShow={[Function]}
+          onShown={[Function]}
+          position="top"
+          shouldClose={[Function]}
+          tippyProps={Object {}}
+          zIndex={9999}
+        >
+          <OutlinedQuestionCircleIcon
+            color="currentColor"
+            noVerticalAlign={false}
+            size="sm"
+            title={null}
+          />
+        </Popover>
+      </React.Fragment>
+    }
   >
     <Field
       aria-label="Select a business objective"
