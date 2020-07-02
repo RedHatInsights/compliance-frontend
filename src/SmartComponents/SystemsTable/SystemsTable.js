@@ -42,6 +42,8 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
             node {
                 id
                 name
+                osMajorVersion
+                osMinorVersion
                 profiles {
                     id
                     name
@@ -71,6 +73,8 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
             node {
                 id
                 name
+                osMajorVersion
+                osMinorVersion
                 profiles {
                     id
                     name
