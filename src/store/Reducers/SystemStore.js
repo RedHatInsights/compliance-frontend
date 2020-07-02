@@ -8,7 +8,12 @@ import {
     ComplianceScore as complianceScore,
     complianceScoreString
 } from 'PresentationalComponents';
-import { Tooltip, Text } from '@patternfly/react-core';
+import {
+    Tooltip,
+    Text,
+    TextContent,
+    TextVariants
+} from '@patternfly/react-core';
 import {
     profilesRulesPassed,
     profilesRulesFailed
@@ -77,9 +82,13 @@ export const policiesCell = (system) => {
 };
 
 const displayNameCell = (system, matchingSystem) =>  ({
-    title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
-        { system.display_name || matchingSystem.name }
-    </Link>,
+    title: <TextContent>
+        <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
+            { system.display_name || matchingSystem.name }
+        </Link>
+        { matchingSystem.osMajorVersion && matchingSystem.osMinorVersion &&
+            <Text component={TextVariants.small}>RHEL {matchingSystem.osMajorVersion}.{matchingSystem.osMinorVersion}</Text> }
+    </TextContent>,
     exportValue: system.display_name || matchingSystem.name
 });
 
