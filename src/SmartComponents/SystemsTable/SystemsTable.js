@@ -4,6 +4,7 @@ import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
 import * as reactIcons from '@patternfly/react-icons';
 import * as pfReactTable from '@patternfly/react-table';
+import * as ReactRedux from 'react-redux';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
@@ -238,6 +239,7 @@ class SystemsTable extends React.Component {
             INVENTORY_ACTION_TYPES,
             mergeWithEntities
         } = await insights.loadInventory({
+            ReactRedux,
             react: React,
             reactRouterDom,
             reactCore,
