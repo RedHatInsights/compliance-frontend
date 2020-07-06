@@ -23,7 +23,7 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Component>
+      <Breadcrumb>
         <BreadcrumbItem
           onClick={[Function]}
           to="/rhel/compliance/systems"
@@ -35,7 +35,7 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
         >
           test.host.local
         </BreadcrumbItem>
-      </Component>
+      </Breadcrumb>
       <InventoryDetails />
       <br />
     </PageHeader>
@@ -251,7 +251,7 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
               },
             },
             "typeDefs": undefined,
-            "version": "2.6.8",
+            "version": "2.6.10",
             "watchQuery": [Function],
           }
         }
@@ -291,7 +291,7 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Component>
+      <Breadcrumb>
         <BreadcrumbItem
           onClick={[Function]}
           to="/rhel/compliance/systems"
@@ -303,7 +303,7 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
         >
           test.host.local
         </BreadcrumbItem>
-      </Component>
+      </Breadcrumb>
       <InventoryDetails />
       <br />
     </PageHeader>
@@ -519,7 +519,7 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
               },
             },
             "typeDefs": undefined,
-            "version": "2.6.8",
+            "version": "2.6.10",
             "watchQuery": [Function],
           }
         }
@@ -559,7 +559,7 @@ exports[`SystemDetails expect to render loading 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Component>
+      <Breadcrumb>
         <BreadcrumbItem
           onClick={[Function]}
           to="/rhel/compliance/systems"
@@ -571,7 +571,7 @@ exports[`SystemDetails expect to render loading 1`] = `
         >
           test.host.local
         </BreadcrumbItem>
-      </Component>
+      </Breadcrumb>
       <InventoryDetails />
       <br />
     </PageHeader>
@@ -787,7 +787,7 @@ exports[`SystemDetails expect to render loading 1`] = `
               },
             },
             "typeDefs": undefined,
-            "version": "2.6.8",
+            "version": "2.6.10",
             "watchQuery": [Function],
           }
         }
@@ -827,7 +827,7 @@ exports[`SystemDetails expect to render without error 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Component>
+      <Breadcrumb>
         <BreadcrumbItem
           onClick={[Function]}
           to="/rhel/compliance/systems"
@@ -839,7 +839,7 @@ exports[`SystemDetails expect to render without error 1`] = `
         >
           test.host.local
         </BreadcrumbItem>
-      </Component>
+      </Breadcrumb>
       <InventoryDetails />
       <br />
     </PageHeader>
@@ -1055,7 +1055,7 @@ exports[`SystemDetails expect to render without error 1`] = `
               },
             },
             "typeDefs": undefined,
-            "version": "2.6.8",
+            "version": "2.6.10",
             "watchQuery": [Function],
           }
         }

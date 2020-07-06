@@ -246,13 +246,13 @@ exports[`EditPolicyRules expect to render without error 2`] = `
         </strong>
          has 
          rules. 
-        <Component
+        <Button
           isInline={true}
           onClick={[Function]}
           variant="link"
         >
           Reset to default selection
-        </Component>
+        </Button>
       </Text>
     </TextContent>
     <SystemRulesTable

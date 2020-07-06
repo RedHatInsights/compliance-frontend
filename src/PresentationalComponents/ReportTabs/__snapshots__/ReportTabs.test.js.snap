@@ -1,10 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportTabs expect to render without error 1`] = `
-<Component
+<Tabs
   activeKey={NaN}
   aria-label="Report Tabs"
+  component="div"
+  isBox={false}
+  isFilled={false}
+  isSecondary={false}
+  isVertical={false}
+  leftScrollAriaLabel="Scroll left"
+  mountOnEnter={false}
   onSelect={[Function]}
+  ouiaSafe={true}
+  rightScrollAriaLabel="Scroll right"
+  unmountOnExit={false}
 >
   <Tab
     eventKey={0}
@@ -16,5 +26,5 @@ exports[`ReportTabs expect to render without error 1`] = `
     key="1"
     title="By system"
   />
-</Component>
+</Tabs>
 `;

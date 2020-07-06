@@ -315,7 +315,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                               color="currentColor"
                               noVerticalAlign={false}
                               size="sm"
-                              title={null}
                             >
                               <svg
                                 aria-hidden={true}

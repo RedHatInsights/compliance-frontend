@@ -23,10 +23,9 @@ exports[`ErrorPage expect to render without error 1`] = `
         "opacity": "0.5",
       }
     }
-    title={null}
   />
   <Title
-    size="3xl"
+    headingLevel="h1"
   >
     There was an error
   </Title>
@@ -36,10 +35,10 @@ exports[`ErrorPage expect to render without error 1`] = `
       An error message
     </Text>
   </Text>
-  <Component
+  <Button
     variant="link"
   >
     Go back
-  </Component>
+  </Button>
 </section>
 `;

@@ -68,7 +68,7 @@ export const CompliancePolicies = () => {
                 </StateViewPart>
                 <StateViewPart stateKey='data'>
                     { policies && policies.length === 0 ?
-                        <Grid gutter='md'><ComplianceEmptyState title='No policies'
+                        <Grid hasGutter><ComplianceEmptyState title='No policies'
                             mainButton={<CreatePolicy onWizardFinish={() => { refetch(); }} />} /></Grid> :
                         <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
                     }

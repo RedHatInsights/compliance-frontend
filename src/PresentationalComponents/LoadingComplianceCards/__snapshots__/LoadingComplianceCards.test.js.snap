@@ -2,7 +2,7 @@
 
 exports[`LoadingComplianceCards expect to render without error 1`] = `
 <Grid
-  gutter="md"
+  hasGutter={true}
 >
   <GridItem
     key="0"
@@ -12,7 +12,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
     xl={4}
   >
     <Card>
-      <Holder
+      <ContentLoader
         height={400}
         primaryColor="#f3f3f3"
         secondaryColor="#ecebeb"
@@ -72,7 +72,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
           x="36"
           y="77"
         />
-      </Holder>
+      </ContentLoader>
     </Card>
   </GridItem>
   <GridItem
@@ -83,7 +83,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
     xl={4}
   >
     <Card>
-      <Holder
+      <ContentLoader
         height={400}
         primaryColor="#f3f3f3"
         secondaryColor="#ecebeb"
@@ -143,7 +143,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
           x="36"
           y="77"
         />
-      </Holder>
+      </ContentLoader>
     </Card>
   </GridItem>
   <GridItem
@@ -154,7 +154,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
     xl={4}
   >
     <Card>
-      <Holder
+      <ContentLoader
         height={400}
         primaryColor="#f3f3f3"
         secondaryColor="#ecebeb"
@@ -214,7 +214,7 @@ exports[`LoadingComplianceCards expect to render without error 1`] = `
           x="36"
           y="77"
         />
-      </Holder>
+      </ContentLoader>
     </Card>
   </GridItem>
 </Grid>

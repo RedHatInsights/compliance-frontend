@@ -504,7 +504,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
         stateKey="data"
       >
         <Grid
-          gutter="md"
+          hasGutter={true}
         >
           <ComplianceEmptyState
             client={
@@ -717,7 +717,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                   },
                 },
                 "typeDefs": undefined,
-                "version": "2.6.8",
+                "version": "2.6.10",
                 "watchQuery": [Function],
               }
             }

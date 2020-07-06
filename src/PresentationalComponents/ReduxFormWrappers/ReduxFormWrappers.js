@@ -17,7 +17,7 @@ export const ReduxFormTextArea = field => (
 );
 
 export const ReduxFormCreatableSelectInput = field => (
-    <rawComponents.Select selectVariant="createable"
+    <rawComponents.RawSelect selectVariant="createable"
         value={field.selected}
         onChange={field.input.onChange}
         {...field} />

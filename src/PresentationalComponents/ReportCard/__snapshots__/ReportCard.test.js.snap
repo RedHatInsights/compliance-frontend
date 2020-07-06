@@ -155,7 +155,7 @@ exports[`ReportCard expect to render without error 1`] = `
           <div
             className="card-chart-container"
           >
-            <Component
+            <ChartDonut
               data={
                 Array [
                   Object {

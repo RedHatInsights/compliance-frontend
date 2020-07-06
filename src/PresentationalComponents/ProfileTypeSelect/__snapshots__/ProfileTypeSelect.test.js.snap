@@ -3,7 +3,7 @@
 exports[`ProfileTypeSelect expect to render without error 1`] = `
 <Fragment>
   <Grid
-    gutter="md"
+    hasGutter={true}
   >
     <GridItem
       rowSpan={2}

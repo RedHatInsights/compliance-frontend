@@ -12,7 +12,7 @@ import {
 
 const ProfileTypeSelect  = ({ profiles, onClick }) => (
     <React.Fragment>
-        <Grid gutter="md">
+        <Grid hasGutter>
             { profiles.map((profile) => {
                 const { description, name, id } = profile;
                 return (
