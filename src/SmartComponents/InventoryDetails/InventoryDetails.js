@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
+import * as ReactRedux from 'react-redux';
 import * as reactIcons from '@patternfly/react-icons';
 import { Skeleton, SkeletonSize } from '@redhat-cloud-services/frontend-components';
 import registryDecorator from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
@@ -23,6 +24,7 @@ class InventoryDetails extends React.Component {
             inventoryConnector,
             mergeWithDetail
         } = await insights.loadInventory({
+            ReactRedux,
             react: React,
             reactRouterDom,
             reactCore,
