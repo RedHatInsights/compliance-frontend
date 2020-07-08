@@ -45,7 +45,7 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
                 aria-describedby="pf-modal-part-2"
                 aria-labelledby="pf-modal-part-1"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="0"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -139,12 +139,11 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
     hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
     isOpen={false}
-    isSmall={true}
     onClose={[MockFunction]}
     ouiaSafe={true}
     showClose={true}
     title="Delete policy"
-    variant="default"
+    variant="small"
   >
     <Portal
       containerInfo={<div />}
@@ -176,13 +175,12 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
         hasNoBodyWrapper={false}
         isFooterLeftAligned={true}
         isOpen={false}
-        isSmall={true}
         labelId="pf-modal-part-2"
         onClose={[MockFunction]}
         ouiaSafe={true}
         showClose={true}
         title="Delete policy"
-        variant="default"
+        variant="small"
       />
     </Portal>
   </Modal>
@@ -272,7 +270,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                 aria-describedby="pf-modal-part-2"
                 aria-labelledby="pf-modal-part-1"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="0"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -370,7 +368,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                 aria-describedby="pf-modal-part-4"
                 aria-labelledby="pf-modal-part-3"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="4"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -463,7 +461,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
     hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
     isOpen={true}
-    isSmall={true}
     onClose={
       [MockFunction] {
         "calls": Array [
@@ -480,7 +477,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
     ouiaSafe={true}
     showClose={true}
     title="Delete policy"
-    variant="default"
+    variant="small"
   >
     <Portal
       containerInfo={
@@ -495,7 +492,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                 aria-describedby="pf-modal-part-4"
                 aria-labelledby="pf-modal-part-3"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="4"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -620,7 +617,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
         hasNoBodyWrapper={false}
         isFooterLeftAligned={true}
         isOpen={true}
-        isSmall={true}
         labelId="pf-modal-part-3"
         onClose={
           [MockFunction] {
@@ -638,7 +634,7 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
         ouiaSafe={true}
         showClose={true}
         title="Delete policy"
-        variant="default"
+        variant="small"
       >
         <Backdrop>
           <div
@@ -667,14 +663,14 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                   data-ouia-safe={true}
                   id="pf-modal-part-2"
                   style={Object {}}
-                  variant="default"
+                  variant="small"
                 >
                   <div
                     aria-describedby="pf-modal-part-4"
                     aria-label={null}
                     aria-labelledby="pf-modal-part-3"
                     aria-modal="true"
-                    className="pf-c-modal-box"
+                    className="pf-c-modal-box pf-m-sm"
                     data-ouia-component-id={4}
                     data-ouia-component-type="PF4/ModalContent"
                     data-ouia-safe={true}
@@ -787,13 +783,11 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     <ModalBoxBody
                       id="pf-modal-part-4"
                       isFooterLeftAligned={true}
-                      isSmall={true}
                     >
                       <div
                         className="pf-c-modal-box__body"
                         id="pf-modal-part-4"
                         isFooterLeftAligned={true}
-                        isSmall={true}
                       >
                         <TextContent>
                           <div
@@ -934,7 +928,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                 aria-describedby="pf-modal-part-2"
                 aria-labelledby="pf-modal-part-1"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="0"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -1027,12 +1021,11 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
     hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
     isOpen={true}
-    isSmall={true}
     onClose={[MockFunction]}
     ouiaSafe={true}
     showClose={true}
     title="Delete policy"
-    variant="default"
+    variant="small"
   >
     <Portal
       containerInfo={
@@ -1047,7 +1040,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                 aria-describedby="pf-modal-part-2"
                 aria-labelledby="pf-modal-part-1"
                 aria-modal="true"
-                class="pf-c-modal-box"
+                class="pf-c-modal-box pf-m-sm"
                 data-ouia-component-id="0"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
@@ -1160,13 +1153,12 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
         hasNoBodyWrapper={false}
         isFooterLeftAligned={true}
         isOpen={true}
-        isSmall={true}
         labelId="pf-modal-part-1"
         onClose={[MockFunction]}
         ouiaSafe={true}
         showClose={true}
         title="Delete policy"
-        variant="default"
+        variant="small"
       >
         <Backdrop>
           <div
@@ -1195,14 +1187,14 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                   data-ouia-safe={true}
                   id="pf-modal-part-0"
                   style={Object {}}
-                  variant="default"
+                  variant="small"
                 >
                   <div
                     aria-describedby="pf-modal-part-2"
                     aria-label={null}
                     aria-labelledby="pf-modal-part-1"
                     aria-modal="true"
-                    className="pf-c-modal-box"
+                    className="pf-c-modal-box pf-m-sm"
                     data-ouia-component-id={0}
                     data-ouia-component-type="PF4/ModalContent"
                     data-ouia-safe={true}
@@ -1279,13 +1271,11 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                     <ModalBoxBody
                       id="pf-modal-part-2"
                       isFooterLeftAligned={true}
-                      isSmall={true}
                     >
                       <div
                         className="pf-c-modal-box__body"
                         id="pf-modal-part-2"
                         isFooterLeftAligned={true}
-                        isSmall={true}
                       >
                         <TextContent>
                           <div

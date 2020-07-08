@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { CheckboxGroup, ErrorPage } from 'PresentationalComponents';
 import {
+    Button,
     Modal,
+    ModalVariant,
     Text,
-    TextContent,
-    Button
+    TextContent
 } from '@patternfly/react-core';
 import { useQuery } from '@apollo/react-hooks';
 import { SubmitPoliciesButton } from './SubmitPoliciesButton';
@@ -78,7 +79,7 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
 
     return (
         <Modal
-            isSmall
+            variant={ ModalVariant.small }
             title={`Edit policies for ${fqdn}`}
             isOpen={isModalOpen}
             isFooterLeftAligned

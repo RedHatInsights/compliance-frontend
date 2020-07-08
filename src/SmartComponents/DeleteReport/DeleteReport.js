@@ -1,7 +1,8 @@
 import {
+    Button,
     Modal,
-    TextContent,
-    Button
+    ModalVariant,
+    TextContent
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
@@ -42,7 +43,7 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
 
     return (
         <Modal
-            isSmall
+            variant={ ModalVariant.small }
             title='Delete report'
             isOpen={ modalOpen }
             isFooterLeftAligned

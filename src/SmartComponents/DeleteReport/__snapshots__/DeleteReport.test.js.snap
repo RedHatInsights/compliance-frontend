@@ -35,12 +35,11 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
     hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
     isOpen={false}
-    isSmall={true}
     onClose={[Function]}
     ouiaSafe={true}
     showClose={true}
     title="Delete report"
-    variant="default"
+    variant="small"
   >
     <Portal
       containerInfo={<div />}
@@ -72,13 +71,12 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
         hasNoBodyWrapper={false}
         isFooterLeftAligned={true}
         isOpen={false}
-        isSmall={true}
         labelId="pf-modal-part-1"
         onClose={[Function]}
         ouiaSafe={true}
         showClose={true}
         title="Delete report"
-        variant="default"
+        variant="small"
       />
     </Portal>
   </Modal>

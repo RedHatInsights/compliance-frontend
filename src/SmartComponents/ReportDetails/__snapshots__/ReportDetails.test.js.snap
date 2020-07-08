@@ -8314,12 +8314,11 @@ exports[`ReportDetails expect to render without error 1`] = `
                   hasNoBodyWrapper={false}
                   isFooterLeftAligned={true}
                   isOpen={false}
-                  isSmall={true}
                   onClose={[Function]}
                   ouiaSafe={true}
                   showClose={true}
                   title="Delete report"
-                  variant="default"
+                  variant="small"
                 >
                   <Portal
                     containerInfo={<div />}
@@ -8351,13 +8350,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                       hasNoBodyWrapper={false}
                       isFooterLeftAligned={true}
                       isOpen={false}
-                      isSmall={true}
                       labelId="pf-modal-part-1"
                       onClose={[Function]}
                       ouiaSafe={true}
                       showClose={true}
                       title="Delete report"
-                      variant="default"
+                      variant="small"
                     />
                   </Portal>
                 </Modal>
