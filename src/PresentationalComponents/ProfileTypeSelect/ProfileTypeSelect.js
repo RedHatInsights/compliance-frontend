@@ -22,10 +22,11 @@ const ProfileTypeSelect  = ({ profiles, onClick }) => (
                                 <Field component='input'
                                     type='radio'
                                     name='profile'
+                                    disabled={profile.disabled}
                                     value={JSON.stringify(profile)}
                                     onClick={ () => onClick(JSON.stringify(profile)) }
                                 />
-                                { ` ${name}` }
+                                { ` ${name}` }{ profile.disabled && ' - disabled' }
                             </Text>
                             <TextContent style={{ color: 'var(--pf-c-content--blockquote--Color)' }}>
                                 <Text component={TextVariants.p}>

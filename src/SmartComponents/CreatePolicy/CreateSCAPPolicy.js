@@ -65,7 +65,13 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     if (selectedBenchmarkId) {
         selectedBenchmark = benchmarks.find(benchmark => benchmark.id === selectedBenchmarkId);
         const userProfileRefIds = userProfileRefIdsForBenchmarkId(data.profiles.edges, selectedBenchmarkId);
-        validProfiles = selectedBenchmark.profiles.filter((profile) => !userProfileRefIds.includes(profile.refId));
+        validProfiles = selectedBenchmark.profiles.map((profile) => {
+            if (!userProfileRefIds.includes(profile.refId)) {
+                return { ...profile };
+            } else {
+                return { disabled: true, ...profile };
+            }
+        });
     }
 
     return (
