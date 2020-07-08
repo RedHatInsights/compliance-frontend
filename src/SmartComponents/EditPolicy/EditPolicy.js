@@ -1,7 +1,8 @@
 import {
-    Modal,
+    Button,
     Form,
-    Button
+    Modal,
+    ModalVariant
 } from '@patternfly/react-core';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
@@ -45,7 +46,7 @@ export class EditPolicy extends Component {
                     Edit policy
                 </Button>
                 <Modal
-                    isSmall
+                    variant={ ModalVariant.small }
                     title="Edit policy details"
                     isOpen={isModalOpen}
                     onClose={this.handleModalToggle}

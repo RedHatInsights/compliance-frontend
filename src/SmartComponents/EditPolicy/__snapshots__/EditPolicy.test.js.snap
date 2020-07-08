@@ -38,12 +38,11 @@ exports[`EditPolicy expect to render without error 1`] = `
     hasNoBodyWrapper={false}
     isFooterLeftAligned={true}
     isOpen={false}
-    isSmall={true}
     onClose={[Function]}
     ouiaSafe={true}
     showClose={true}
     title="Edit policy details"
-    variant="default"
+    variant="small"
   >
     <Form>
       <withApollo(ReduxForm)
