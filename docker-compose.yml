@@ -22,7 +22,7 @@ services:
           - PLATFORM=linux
           - PORT=8002
           # Comment out to use a local backend
-          - LOCAL_API=false
+          # - LOCAL_API=false
           # - LOCAL_API_SCHEME=http
           # - LOCAL_API_PORT=3000
           - UI_HOST=frontend
