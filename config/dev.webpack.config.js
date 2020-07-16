@@ -10,6 +10,7 @@ webpackConfig.devServer = {
     serveIndex: false,
     hot: process.env.HOT === 'false' ? false : true,
     allowedHosts: [
+        'frontend',
         'ci.foo.redhat.com',
         'qa.foo.redhat.com',
         'stage.foo.redhat.com',
