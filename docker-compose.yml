@@ -1,38 +1,18 @@
 version: '3'
 services:
     frontend:
+        env_file: .env
         build: .
         ports:
             - 8002:8002
-        environment:
-            - HOST=0.0.0.0
         volumes:
             - .:/frontend:z
-            - node_modules:/frontend/node_modules
+            - /frontend/node_modules
 
     proxy:
+        env_file: .env
         image: docker.io/redhatinsights/insights-proxy
         ports:
-          - "1337:1337"
-        depends_on:
-          - frontend
-        links:
-          - frontend
-        environment:
-          - PLATFORM=linux
-          - PORT=8002
-          # Comment out to use a local backend
-          # - LOCAL_API=false
-          # - LOCAL_API_SCHEME=http
-          # - LOCAL_API_PORT=3000
-          - UI_HOST=frontend
+          - 1337:1337
         volumes:
           - ./config/spandx.config.js:/config/spandx.config.js:z
-
-networks:
-    default:
-        external:
-            name: docker_default # should match insights-upload's network name
-
-volumes:
-    node_modules:
