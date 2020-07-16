@@ -49,11 +49,4 @@ if (LOCAL_INVENTORY) {
     routes[`/api/inventory/v1`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
 }
 
-module.exports = {
-    routes,
-    esi: {
-        allowedHosts: [
-            /^https:\/\/.*redhat.com/
-        ]
-    },
-};
+module.exports = { routes };
