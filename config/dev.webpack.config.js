@@ -12,7 +12,7 @@ if (process.env.DEFAULT_HOST) {
 
 // Hot reloading will not work at the moment within a container because of CORS issues.
 const hotReload = function () {
-    process.env.HOT_RELOAD && process.env.HOT_RELOAD === 'true' ? true : false
+    return process.env.HOT_RELOAD && process.env.HOT_RELOAD === 'true' ? true : false
 }
 
 webpackConfig.devServer = {
