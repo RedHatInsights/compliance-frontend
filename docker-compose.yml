@@ -1,0 +1,18 @@
+version: '3'
+services:
+    frontend:
+        env_file: .env
+        build: .
+        ports:
+            - 8002:8002
+        volumes:
+            - .:/frontend:z
+            - /frontend/node_modules
+
+    proxy:
+        env_file: .env
+        image: docker.io/redhatinsights/insights-proxy
+        ports:
+          - 1337:1337
+        volumes:
+          - ./config/spandx.config.js:/config/spandx.config.js:z
