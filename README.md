@@ -17,6 +17,7 @@ Both will require to have hostnames like `ci.foo.redhat.com` resolve to the loca
 To run the container setup either Podman or Docker and their compose commands can be used to
 
 ```shell
+  $ touch .env  # Can be used to enable a local backend and other services (see .env.example)
   $ podman-compose up
 ```
 
