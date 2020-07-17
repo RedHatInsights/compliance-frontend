@@ -9,7 +9,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <nav
       aria-label="Breadcrumb"
       class="pf-c-breadcrumb"
-      data-ouia-component-id="16"
+      data-ouia-component-id="20"
       data-ouia-component-type="PF4/Breadcrumb"
       data-ouia-safe="true"
     >
@@ -73,7 +73,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <button
           aria-disabled="false"
           class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="17"
+          data-ouia-component-id="21"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -85,7 +85,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <div
       aria-label="Policy Tabs"
       class="pf-c-tabs"
-      data-ouia-component-id="19"
+      data-ouia-component-id="24"
       data-ouia-component-type="PF4/Tabs"
       data-ouia-safe="true"
     >
@@ -176,6 +176,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
   >
     <article
       class="pf-c-card"
+      data-ouia-component-id="23"
+      data-ouia-component-type="PF4/Card"
+      data-ouia-safe="true"
     >
       <div
         class="pf-c-card__header"
@@ -201,7 +204,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
             data-pf-content="true"
           >
             Compliance threshold
-            <span>
+            <span
+              aria-describedby="pf-tooltip-5"
+            >
                
               <svg
                 aria-hidden="true"
@@ -397,7 +402,7 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
     <div
       aria-label="Policy Tabs"
       class="pf-c-tabs"
-      data-ouia-component-id="3"
+      data-ouia-component-id="4"
       data-ouia-component-type="PF4/Tabs"
       data-ouia-safe="true"
     >
@@ -488,6 +493,9 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
   >
     <article
       class="pf-c-card"
+      data-ouia-component-id="3"
+      data-ouia-component-type="PF4/Card"
+      data-ouia-safe="true"
     >
       <div
         class="pf-c-card__header"
@@ -513,7 +521,9 @@ exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
             data-pf-content="true"
           >
             Compliance threshold
-            <span>
+            <span
+              aria-describedby="pf-tooltip-1"
+            >
                
               <svg
                 aria-hidden="true"
@@ -633,7 +643,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
     <nav
       aria-label="Breadcrumb"
       class="pf-c-breadcrumb"
-      data-ouia-component-id="12"
+      data-ouia-component-id="15"
       data-ouia-component-type="PF4/Breadcrumb"
       data-ouia-safe="true"
     >
@@ -697,7 +707,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
         <button
           aria-disabled="false"
           class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="13"
+          data-ouia-component-id="16"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -709,7 +719,7 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
     <div
       aria-label="Policy Tabs"
       class="pf-c-tabs"
-      data-ouia-component-id="15"
+      data-ouia-component-id="19"
       data-ouia-component-type="PF4/Tabs"
       data-ouia-safe="true"
     >
@@ -800,6 +810,9 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
   >
     <article
       class="pf-c-card"
+      data-ouia-component-id="18"
+      data-ouia-component-type="PF4/Card"
+      data-ouia-safe="true"
     >
       <div
         class="pf-c-card__header"
@@ -825,7 +838,9 @@ exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
             data-pf-content="true"
           >
             Compliance threshold
-            <span>
+            <span
+              aria-describedby="pf-tooltip-4"
+            >
                
               <svg
                 aria-hidden="true"
@@ -945,7 +960,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
     <nav
       aria-label="Breadcrumb"
       class="pf-c-breadcrumb"
-      data-ouia-component-id="4"
+      data-ouia-component-id="5"
       data-ouia-component-type="PF4/Breadcrumb"
       data-ouia-safe="true"
     >
@@ -1009,7 +1024,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
         <button
           aria-disabled="false"
           class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="5"
+          data-ouia-component-id="6"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -1021,7 +1036,7 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
     <div
       aria-label="Policy Tabs"
       class="pf-c-tabs"
-      data-ouia-component-id="7"
+      data-ouia-component-id="9"
       data-ouia-component-type="PF4/Tabs"
       data-ouia-safe="true"
     >
@@ -1112,6 +1127,9 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
   >
     <article
       class="pf-c-card"
+      data-ouia-component-id="8"
+      data-ouia-component-type="PF4/Card"
+      data-ouia-safe="true"
     >
       <div
         class="pf-c-card__header"
@@ -1137,7 +1155,9 @@ exports[`PolicyDetailsQuery renders without error 1`] = `
             data-pf-content="true"
           >
             Compliance threshold
-            <span>
+            <span
+              aria-describedby="pf-tooltip-2"
+            >
                
               <svg
                 aria-hidden="true"
@@ -1257,7 +1277,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
     <nav
       aria-label="Breadcrumb"
       class="pf-c-breadcrumb"
-      data-ouia-component-id="8"
+      data-ouia-component-id="10"
       data-ouia-component-type="PF4/Breadcrumb"
       data-ouia-safe="true"
     >
@@ -1321,7 +1341,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
         <button
           aria-disabled="false"
           class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="9"
+          data-ouia-component-id="11"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -1333,7 +1353,7 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
     <div
       aria-label="Policy Tabs"
       class="pf-c-tabs"
-      data-ouia-component-id="11"
+      data-ouia-component-id="14"
       data-ouia-component-type="PF4/Tabs"
       data-ouia-safe="true"
     >
@@ -1424,6 +1444,9 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
   >
     <article
       class="pf-c-card"
+      data-ouia-component-id="13"
+      data-ouia-component-type="PF4/Card"
+      data-ouia-safe="true"
     >
       <div
         class="pf-c-card__header"
@@ -1449,7 +1472,9 @@ exports[`PolicyDetailsQuery renders without error 2`] = `
             data-pf-content="true"
           >
             Compliance threshold
-            <span>
+            <span
+              aria-describedby="pf-tooltip-3"
+            >
                
               <svg
                 aria-hidden="true"
