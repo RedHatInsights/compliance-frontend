@@ -19,7 +19,7 @@ jest.mock('redux-form', () => ({
 
 describe('EditPolicyDetails', () => {
     it('expect to render without error', () => {
-        const component = mount(
+        const component = shallow(
             <Provider store={ store }>
                 <EditPolicyDetails profile={JSON.parse(policyFormValues.profile)}/>
             </Provider>
