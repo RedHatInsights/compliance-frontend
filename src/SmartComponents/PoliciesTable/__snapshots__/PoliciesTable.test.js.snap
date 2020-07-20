@@ -75,6 +75,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -352,6 +353,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -911,6 +913,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1110,6 +1113,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1298,6 +1302,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1871,6 +1876,7 @@ exports[`PoliciesTable setAndDeletePolicy should set the policy in state and ope
     dropdownPosition="right"
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
+    isStickyHeader={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
