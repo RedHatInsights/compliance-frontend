@@ -28,7 +28,7 @@ const INGRESS_PORT = envWithDefault('INGRESS_PORT', 8080);
 
 const LOCAL_INVENTORY = envWithDefault('LOCAL_INVENTORY', false);
 const INVENTORY_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
-const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8888);
+const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8081);
 
 const routes = {};
 routes[`/beta/${BETA_SECTION}/${APP_ID}`] = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
@@ -42,11 +42,11 @@ if (LOCAL_API) {
 }
 
 if (LOCAL_INGRESS) {
-    routes[`/api/ingress/v1`] = { host: `http://${INGRESS_HOST}:${INGRESS_PORT}` };
+    routes[`/api/ingress`] = { host: `http://${INGRESS_HOST}:${INGRESS_PORT}` };
 }
 
 if (LOCAL_INVENTORY) {
-    routes[`/api/inventory/v1`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
+    routes[`/api/inventory/v1/hosts`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
 }
 
 module.exports = { routes };
