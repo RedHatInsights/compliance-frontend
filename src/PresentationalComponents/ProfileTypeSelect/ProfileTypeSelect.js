@@ -5,31 +5,55 @@ import Truncate from 'react-truncate';
 import {
     Grid,
     GridItem,
+    Label,
     TextContent,
     TextVariants,
-    Text
+    Text,
+    Tooltip
 } from '@patternfly/react-core';
+
+const InUseProfileLabel = () => (
+    <Tooltip
+        position="right"
+        content="A policy of this type is already in use.
+        Only one policy per policy type can be created for a major release of RHEL."
+    >
+        <Label style={ { lineHeight: '1.5em' } }>In use</Label>
+    </Tooltip>
+);
 
 const ProfileTypeSelect  = ({ profiles, onClick }) => (
     <React.Fragment>
         <Grid hasGutter>
             { profiles.map((profile) => {
-                const { description, name, id } = profile;
+                const { description, name, id, disabled } = profile;
                 return (
-                    <React.Fragment key={id}>
+                    <React.Fragment key={`profile-select-${id}`}>
                         <GridItem span={8} rowSpan={2}>
-                            <Text>
-                                <Field component='input'
-                                    type='radio'
-                                    name='profile'
-                                    value={JSON.stringify(profile)}
-                                    onClick={ () => onClick(JSON.stringify(profile)) }
-                                />
-                                { ` ${name}` }
-                            </Text>
-                            <TextContent style={{ color: 'var(--pf-c-content--blockquote--Color)' }}>
-                                <Text component={TextVariants.p}>
-                                    <Truncate key={id} lines={3}>{description}</Truncate>
+                            <TextContent
+                                style={ {
+                                    lineHeight: '2em',
+                                    color: disabled ? 'var(--pf-c-content--blockquote--Color)' : ''
+                                } }>
+                                <Text >
+                                    <Field component='input'
+                                        type='radio'
+                                        name='profile'
+                                        value={JSON.stringify(profile)}
+                                        onClick={ () => onClick(JSON.stringify(profile)) }
+                                        disabled={ disabled }
+                                    />
+                                    { ` ${name} ` }
+                                    { disabled && <InUseProfileLabel /> }
+                                </Text>
+                            </TextContent>
+                            <TextContent style={ { color: 'var(--pf-c-content--blockquote--Color)' } }>
+                                <Text component={ TextVariants.p }>
+                                    <Truncate
+                                        key={`profile-select-text-${id}`}
+                                        lines={3}>
+                                        { description }
+                                    </Truncate>
                                 </Text>
                             </TextContent>
                         </GridItem>
