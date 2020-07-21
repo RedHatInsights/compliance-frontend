@@ -18,7 +18,7 @@ To run the container setup either Podman or Docker and their compose commands ca
 
 ```shell
   $ touch .env  # Can be used to enable a local backend and other services (see .env.example)
-  $ podman-compose up
+  $ podman-compose up # Starts up the insights-proxy and the compliance frontend
 ```
 
 This will build the image if it is not yet available locally and run the containers to make the frontend available at [https://ci.foo.redhat.com:1337/insights/compliance/](https://ci.foo.redhat.com:1337/insights/compliance/)
@@ -28,8 +28,8 @@ This will build the image if it is not yet available locally and run the contain
 To run tests or lint your code you might want to run a shell container, this can be done via:
 
 ```shell
-  $ podman-compose up # Only required if no frontend container is running yet
-  $ podman-compose run frontend bash # # Opens bash within the container
+  $ podman-compose up                # Only required if no frontend container is running yet
+  $ podman-compose run frontend bash # Opens bash within the container to run tests and other tasks
 ```
 
 ### Running other dependent services locally
@@ -53,16 +53,6 @@ The frontend itself can be started with `npm run start` once all dependencies ar
   $ npm run start # starts webpack bundler and serves the files with webpack dev server
 ```
 
-## Code standards
-
-Travis also lints the code, this can also be done locally with `npm run lint`.
-The rules to follow are found in `eslintrc.yml`.
-
-## Testing
-
-Tests are run using [jest](https://jestjs.io/) and are located in a components `_COMPONENT_NAME_.test.js` file.
-They run on Travis and can locally be executed via `npm run test`.
-
 ## Code Notes
 
 * This project uses [Patternfly](https://github.com/patternfly/patternfly-react) components and should be preferred.
@@ -70,7 +60,52 @@ They run on Travis and can locally be executed via `npm run test`.
 * Header and sidebar are provided by  [insights-proxy](https://github.com/RedHatInsights/insights-chrome)
 * "Inventory Components" (like the SystemsTable) are loaded **via** the chrome.
 
-## Deploying
+### Code standards
+
+Travis also lints the code, this can also be done locally with `npm run lint`.
+The rules to follow are found in `eslintrc.yml`.
+
+### File organisation
+
+ * **Presentational Components:**
+   These are components that have no side effects. They may handle state internally, but do not require a store or external data source.
+
+ * **Smart Components:**
+   If a component works with any store or makes requests to an API, they are Smart Components
+
+ * **store:**
+  Contains primarily a reducer and actions for working with the [inventory](https://github.com/RedHatInsights/frontend-components/blob/master/packages/inventory/doc/inventory.md) component.
+
+ * **Utilities:**
+  Any part that isn't a component or store, should be put here.
+
+### Testing
+
+Tests use [jest](https://jestjs.io/) and [enzyme](https://github.com/enzymejs/enzyme).
+Each component should have at least on test to verify it still renders correctly with changes.
+The tests for an component should be in a file  referencing the component filename and have `.test` appended (`_COMPONENT_NAME_.test.js`).
+
+
+They run on every PR and can locally be executed with:
+
+```shell
+$ npm run test
+```
+
+#### Snapshot testing
+
+Most tests are "snapshot" tests, which verify that current test output matches a snapshot taken before. If these changes are legitimate the snapshots need to be updated with:
+
+```shell
+$ npm run test -- -u
+ ```
+
+## Updating dependencies
+
+This repository has [dependabot](https://dependabot.com/) configured in order to update (some) packages automatically via a pull request.
+Occasionally these updates will fail snapshot tests and require to update the snapshots as mentioned in the "Testing " section.
+
+### Deploying
 
 - Pushing to 'master' will deploy the app in qa-beta, ci-beta, and prod-beta.
 - Pushing to 'stable' will deploy the app in qa-stable, ci-stable, and prod-stable.
