@@ -9,16 +9,25 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
       rowSpan={2}
       span={8}
     >
-      <Text>
-        <Field
-          component="input"
-          name="profile"
-          onClick={[Function]}
-          type="radio"
-          value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
-        />
-         fooname
-      </Text>
+      <TextContent
+        style={
+          Object {
+            "color": "",
+            "lineHeight": "2em",
+          }
+        }
+      >
+        <Text>
+          <Field
+            component="input"
+            name="profile"
+            onClick={[Function]}
+            type="radio"
+            value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
+          />
+           fooname 
+        </Text>
+      </TextContent>
       <TextContent
         style={
           Object {
@@ -31,7 +40,7 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
         >
           <Truncate
             ellipsis="…"
-            key="fooid"
+            key="profile-select-text-fooid"
             lines={3}
             trimWhitespace={false}
             width={0}
