@@ -65,6 +65,20 @@ The frontend itself can be started with `npm run start` once all dependencies ar
 Travis also lints the code, this can also be done locally with `npm run lint`.
 The rules to follow are found in `eslintrc.yml`.
 
+### File organisation
+
+ * **Presentational Components:**
+   These are components that have no side effects. They may handle state internally, but do not require a store or external data source.
+
+ * **Smart Components:**
+   If a component works with any store or makes requests to an API, they are Smart Components
+
+ * **store:**
+  Contains primarily a reducer and actions for working with the [inventory](https://github.com/RedHatInsights/frontend-components/blob/master/packages/inventory/doc/inventory.md) component.
+
+ * **Utilities:**
+  Any part that isn't a component or store, should be put here.
+
 ### Testing
 
 Tests use [jest](https://jestjs.io/) and [enzyme](https://github.com/enzymejs/enzyme).
