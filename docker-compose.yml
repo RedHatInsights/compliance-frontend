@@ -12,7 +12,6 @@ services:
     proxy:
         env_file: .env
         image: docker.io/redhatinsights/insights-proxy
-        ports:
-          - 1337:1337
+        network_mode: host
         volumes:
           - ./config/spandx.config.js:/config/spandx.config.js:z
