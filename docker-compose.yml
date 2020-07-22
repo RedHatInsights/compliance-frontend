@@ -17,7 +17,7 @@ services:
     #     working_dir: /insights-chrome
     #     entrypoint: /bin/sh
     #     command: -c '
-    #         npm ci;
+    #         npm i;
     #         npm run start'
     #     volumes:
     #         - ${CHROME_DIR}:/insights-chrome:z
