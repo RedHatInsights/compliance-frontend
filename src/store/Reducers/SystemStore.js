@@ -236,7 +236,7 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.selectedEntities
             ),
             total: !showAllSystems ? state.systemsCount : state.total,
-            columns
+            columns: state.total > 0 ? columns : [{ title: '' }]
         }),
         [EXPORT]: (state, { payload: { format } }) => {
             exportFromState(state, format);

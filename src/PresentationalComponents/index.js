@@ -16,3 +16,4 @@ export { default as TabSwitcher, Tab } from './TabSwitcher/TabSwitcher';
 export { StateView, StateViewWithError, StateViewPart } from './StateView/StateView';
 export { default as SystemsCountWarning, WARNING_TEXT } from './SystemsCountWarning/SystemsCountWarning';
 export { default as WarningText } from './WarningText/WarningText';
+export { default as NoSystemsTableBody } from './NoSystemsTableBody/NoSystemsTableBody';

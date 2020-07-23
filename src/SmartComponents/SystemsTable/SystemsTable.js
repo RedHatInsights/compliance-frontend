@@ -19,7 +19,7 @@ import  {
     AssignPoliciesModal
 } from 'SmartComponents';
 import {
-    WARNING_TEXT
+    NoSystemsTableBody
 } from 'PresentationalComponents';
 
 import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
@@ -345,15 +345,19 @@ class SystemsTable extends React.Component {
             noError = true;
         }
 
+        if (!showAllSystems && total === 0) {
+            inventoryTableProps.tableProps.rows = [{ cells: [{ title: <NoSystemsTableBody /> }] }];
+            inventoryTableProps.tableProps.columns = [];
+            inventoryTableProps.hasItems = false;
+            inventoryTableProps.hasCheckbox = false;
+        }
+
         return <React.Fragment>
             <StateView stateValues={{ error, noError }}>
                 <StateViewPart stateKey='error'>
                     <ErrorPage error={error}/>
                 </StateViewPart>
                 <StateViewPart stateKey='noError'>
-                    { !showAllSystems && total === 0 &&
-                        <reactCore.Alert variant="warning" isInline title={ WARNING_TEXT } />
-                    }
                     <InventoryCmp { ...inventoryTableProps }>
                         { !showAllSystems && <reactCore.ToolbarGroup>
                             { remediationsEnabled &&
