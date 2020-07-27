@@ -256,9 +256,9 @@ class SystemsTable extends React.Component {
                 ))
         });
 
-        this.setState({
+        this.setState(() => ({
             InventoryCmp: inventoryConnector(this.props.store).InventoryTable
-        });
+        }));
     }
 
     render() {

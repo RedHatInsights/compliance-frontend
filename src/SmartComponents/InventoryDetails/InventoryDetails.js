@@ -35,9 +35,9 @@ class InventoryDetails extends React.Component {
             ...mergeWithDetail()
         });
 
-        this.setState({
+        this.setState(() => ({
             InventoryCmp: inventoryConnector(this.props.store).InventoryDetail
-        });
+        }));
     }
 
     render() {
