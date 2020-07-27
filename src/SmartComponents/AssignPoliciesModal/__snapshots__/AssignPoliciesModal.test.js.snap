@@ -1,2666 +1,627 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <Connect(ReduxForm)
-    fqdn="myhost"
-    id="1"
-    isModalOpen={false}
-    toggle={[MockFunction]}
-  >
-    <ReduxForm
-      destroyOnUnmount={true}
-      dispatch={[Function]}
-      enableReinitialize={false}
-      forceUnregisterOnUnmount={false}
-      form="assignPolicies"
-      fqdn="myhost"
-      getFormState={[Function]}
-      id="1"
-      isModalOpen={false}
-      keepDirtyOnReinitialize={false}
-      persistentSubmitErrors={false}
-      pure={true}
-      shouldAsyncValidate={[Function]}
-      shouldError={[Function]}
-      shouldValidate={[Function]}
-      shouldWarn={[Function]}
-      submitAsSideEffect={false}
-      toggle={[MockFunction]}
-      touchOnBlur={true}
-      touchOnChange={false}
-      updateUnregisteredFields={false}
-    >
-      <Hoc
-        destroyOnUnmount={true}
+<Modal
+  actions={
+    Array [
+      <SubmitPoliciesButton
+        aria-label="save"
         dispatch={[Function]}
-        enableReinitialize={false}
-        forceUnregisterOnUnmount={false}
-        form="assignPolicies"
-        forwardedRef={null}
-        fqdn="myhost"
-        getFormState={[Function]}
-        id="1"
-        isModalOpen={false}
-        keepDirtyOnReinitialize={false}
-        persistentSubmitErrors={false}
-        pure={true}
-        shouldAsyncValidate={[Function]}
-        shouldError={[Function]}
-        shouldValidate={[Function]}
-        shouldWarn={[Function]}
-        submitAsSideEffect={false}
+        policyIds={Array []}
+        systemId="1"
         toggle={[MockFunction]}
-        touchOnBlur={true}
-        touchOnChange={false}
-        updateUnregisteredFields={false}
+        variant="primary"
+      />,
+      <Button
+        aria-label="cancel"
+        onClick={[Function]}
+        variant="secondary"
       >
-        <ReduxForm
-          _reduxForm={null}
-          destroyOnUnmount={true}
-          dispatch={[Function]}
-          enableReinitialize={false}
-          forceUnregisterOnUnmount={false}
-          form="assignPolicies"
-          fqdn="myhost"
-          getFormState={[Function]}
-          id="1"
-          isModalOpen={false}
-          keepDirtyOnReinitialize={false}
-          persistentSubmitErrors={false}
-          pure={true}
-          shouldAsyncValidate={[Function]}
-          shouldError={[Function]}
-          shouldValidate={[Function]}
-          shouldWarn={[Function]}
-          submitAsSideEffect={false}
-          toggle={[MockFunction]}
-          touchOnBlur={true}
-          touchOnChange={false}
-          updateUnregisteredFields={false}
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={
+    <body
+      class=""
+    >
+      <div>
+        <div
+          class="pf-c-backdrop"
         >
-          <Connect(Form(AssignPoliciesModal))
-            _reduxForm={null}
-            destroyOnUnmount={true}
-            dispatch={[Function]}
-            enableReinitialize={false}
-            forceUnregisterOnUnmount={false}
-            form="assignPolicies"
-            fqdn="myhost"
-            getFormState={[Function]}
-            id="1"
-            isModalOpen={false}
-            keepDirtyOnReinitialize={false}
-            persistentSubmitErrors={false}
-            pure={true}
-            shouldAsyncValidate={[Function]}
-            shouldError={[Function]}
-            shouldValidate={[Function]}
-            shouldWarn={[Function]}
-            submitAsSideEffect={false}
-            toggle={[MockFunction]}
-            touchOnBlur={true}
-            touchOnChange={false}
-            updateUnregisteredFields={false}
+          <div
+            class="pf-l-bullseye"
           >
-            <Form(AssignPoliciesModal)
-              _reduxForm={null}
-              anyTouched={false}
-              array={
-                Object {
-                  "insert": [Function],
-                  "move": [Function],
-                  "pop": [Function],
-                  "push": [Function],
-                  "remove": [Function],
-                  "removeAll": [Function],
-                  "shift": [Function],
-                  "splice": [Function],
-                  "swap": [Function],
-                  "unshift": [Function],
-                }
-              }
-              arrayInsert={[Function]}
-              arrayMove={[Function]}
-              arrayPop={[Function]}
-              arrayPush={[Function]}
-              arrayRemove={[Function]}
-              arrayRemoveAll={[Function]}
-              arrayShift={[Function]}
-              arraySplice={[Function]}
-              arraySwap={[Function]}
-              arrayUnshift={[Function]}
-              asyncValidating={false}
-              autofill={[Function]}
-              blur={[Function]}
-              change={[Function]}
-              clearAsyncError={[Function]}
-              clearFields={[Function]}
-              clearSubmit={[Function]}
-              clearSubmitErrors={[Function]}
-              destroy={[Function]}
-              destroyOnUnmount={true}
-              dirty={false}
-              dispatch={[Function]}
-              enableReinitialize={false}
-              focus={[Function]}
-              forceUnregisterOnUnmount={false}
-              form="assignPolicies"
-              fqdn="myhost"
-              getFormState={[Function]}
-              id="1"
-              initialize={[Function]}
-              initialized={false}
-              invalid={false}
-              isModalOpen={false}
-              keepDirtyOnReinitialize={false}
-              persistentSubmitErrors={false}
-              pristine={true}
-              pure={true}
-              registerField={[Function]}
-              reset={[Function]}
-              resetSection={[Function]}
-              setSubmitFailed={[Function]}
-              setSubmitSucceeded={[Function]}
-              shouldAsyncValidate={[Function]}
-              shouldError={[Function]}
-              shouldValidate={[Function]}
-              shouldWarn={[Function]}
-              startAsyncValidation={[Function]}
-              startSubmit={[Function]}
-              stopAsyncValidation={[Function]}
-              stopSubmit={[Function]}
-              submit={[Function]}
-              submitAsSideEffect={false}
-              submitFailed={false}
-              submitSucceeded={false}
-              submitting={false}
-              syncErrors={Object {}}
-              syncWarnings={Object {}}
-              toggle={[MockFunction]}
-              touch={[Function]}
-              touchOnBlur={true}
-              touchOnChange={false}
-              unregisterField={[Function]}
-              untouch={[Function]}
-              updateSyncErrors={[Function]}
-              updateSyncWarnings={[Function]}
-              updateUnregisteredFields={false}
-              valid={true}
-              validExceptSubmit={true}
-              values={Object {}}
+            <div
+              aria-describedby="pf-modal-part-2"
+              aria-labelledby="pf-modal-part-1"
+              aria-modal="true"
+              class="pf-c-modal-box pf-m-sm"
+              data-ouia-component-id="0"
+              data-ouia-component-type="PF4/ModalContent"
+              data-ouia-safe="true"
+              id="pf-modal-part-0"
+              role="dialog"
             >
-              <AssignPoliciesModal
-                _reduxForm={null}
-                anyTouched={false}
-                array={
-                  Object {
-                    "insert": [Function],
-                    "move": [Function],
-                    "pop": [Function],
-                    "push": [Function],
-                    "remove": [Function],
-                    "removeAll": [Function],
-                    "shift": [Function],
-                    "splice": [Function],
-                    "swap": [Function],
-                    "unshift": [Function],
-                  }
-                }
-                asyncValidate={[Function]}
-                asyncValidating={false}
-                autofill={[Function]}
-                blur={[Function]}
-                change={[Function]}
-                clearAsyncError={[Function]}
-                clearFields={[Function]}
-                clearSubmit={[Function]}
-                clearSubmitErrors={[Function]}
-                destroy={[Function]}
-                dirty={false}
-                dispatch={[Function]}
-                form="assignPolicies"
-                fqdn="myhost"
-                handleSubmit={[Function]}
-                id="1"
-                initialize={[Function]}
-                initialized={false}
-                invalid={false}
-                isModalOpen={false}
-                pristine={true}
-                pure={true}
-                reset={[Function]}
-                resetSection={[Function]}
-                submit={[Function]}
-                submitAsSideEffect={false}
-                submitFailed={false}
-                submitSucceeded={false}
-                submitting={false}
-                toggle={[MockFunction]}
-                touch={[Function]}
-                untouch={[Function]}
-                valid={true}
+              <button
+                aria-disabled="false"
+                aria-label="Close"
+                class="pf-c-button pf-m-plain"
+                data-ouia-component-id="1"
+                data-ouia-component-type="PF4/Button"
+                data-ouia-safe="true"
+                type="button"
               >
-                <Modal
-                  actions={
-                    Array [
-                      <SubmitPoliciesButton
-                        aria-label="save"
-                        dispatch={[Function]}
-                        policyIds={Array []}
-                        systemId="1"
-                        toggle={[MockFunction]}
-                        variant="primary"
-                      />,
-                      <Button
-                        aria-label="cancel"
-                        onClick={[Function]}
-                        variant="secondary"
-                      >
-                        Cancel
-                      </Button>,
-                    ]
-                  }
-                  appendTo={
-                    <body
-                      class=""
-                    >
-                      <div>
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-2"
-                              aria-labelledby="pf-modal-part-1"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="0"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-0"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="1"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-1"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-2"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    <div
-                                      class="pf-c-check"
-                                    >
-                                      <input
-                                        aria-invalid="false"
-                                        checked=""
-                                        class="pf-c-check__input"
-                                        id="1"
-                                        name="policies[0]"
-                                        type="checkbox"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="pf-c-check__label"
-                                        for="1"
-                                      >
-                                        profile1
-                                      </label>
-                                    </div>
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="2"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="3"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div />
-                    </body>
-                  }
-                  aria-describedby=""
-                  aria-label=""
-                  aria-labelledby=""
-                  className=""
-                  hasNoBodyWrapper={false}
-                  isFooterLeftAligned={true}
-                  isOpen={false}
-                  onClose={[Function]}
-                  ouiaSafe={true}
-                  showClose={true}
-                  title="Edit policies for myhost"
-                  variant="small"
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style="vertical-align: -0.125em;"
+                  viewBox="0 0 352 512"
+                  width="1em"
                 >
-                  <Portal
-                    containerInfo={<div />}
+                  <path
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                    transform=""
+                  />
+                </svg>
+              </button>
+              <header
+                class="pf-c-modal-box__header"
+              >
+                <h1
+                  class="pf-c-modal-box__title pf-c-modal-box__title"
+                  id="pf-modal-part-1"
+                >
+                  Edit policies for myhost
+                </h1>
+              </header>
+              <div
+                class="pf-c-modal-box__body"
+                id="pf-modal-part-2"
+              >
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
                   >
-                    <ModalContent
-                      actions={
-                        Array [
-                          <SubmitPoliciesButton
-                            aria-label="save"
-                            dispatch={[Function]}
-                            policyIds={Array []}
-                            systemId="1"
-                            toggle={[MockFunction]}
-                            variant="primary"
-                          />,
-                          <Button
-                            aria-label="cancel"
-                            onClick={[Function]}
-                            variant="secondary"
-                          >
-                            Cancel
-                          </Button>,
-                        ]
-                      }
-                      aria-describedby=""
-                      aria-label=""
-                      aria-labelledby=""
-                      boxId="pf-modal-part-1"
-                      className=""
-                      descriptorId="pf-modal-part-3"
-                      hasNoBodyWrapper={false}
-                      isFooterLeftAligned={true}
-                      isOpen={false}
-                      labelId="pf-modal-part-2"
-                      onClose={[Function]}
-                      ouiaSafe={true}
-                      showClose={true}
-                      title="Edit policies for myhost"
-                      variant="small"
-                    />
-                  </Portal>
-                </Modal>
-              </AssignPoliciesModal>
-            </Form(AssignPoliciesModal)>
-          </Connect(Form(AssignPoliciesModal))>
-        </ReduxForm>
-      </Hoc>
-    </ReduxForm>
-  </Connect(ReduxForm)>
-</Provider>
+                    Choose which policies 
+                    myhost
+                     should be a part of. Note: Only policies for this host operating system are shown.
+                  </p>
+                </div>
+                <br />
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
+                  >
+                    <div
+                      class="pf-c-check"
+                    >
+                      <input
+                        aria-invalid="false"
+                        checked=""
+                        class="pf-c-check__input"
+                        id="1"
+                        name="policies[0]"
+                        type="checkbox"
+                        value="1"
+                      />
+                      <label
+                        class="pf-c-check__label"
+                        for="1"
+                      >
+                        profile1
+                      </label>
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <footer
+                class="pf-c-modal-box__footer"
+              >
+                <button
+                  aria-disabled="false"
+                  aria-label="save"
+                  class="pf-c-button pf-m-primary"
+                  data-ouia-component-id="2"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  aria-disabled="false"
+                  aria-label="cancel"
+                  class="pf-c-button pf-m-secondary"
+                  data-ouia-component-id="3"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div />
+    </body>
+  }
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  hasNoBodyWrapper={false}
+  isFooterLeftAligned={true}
+  isOpen={false}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  title="Edit policies for myhost"
+  variant="small"
+/>
 `;
 
 exports[`AssignPoliciesModal expect to render an open modal without error 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <Connect(ReduxForm)
-    fqdn="myhost"
-    id="1"
-    isModalOpen={true}
-    toggle={[MockFunction]}
-  >
-    <ReduxForm
-      destroyOnUnmount={true}
-      dispatch={[Function]}
-      enableReinitialize={false}
-      forceUnregisterOnUnmount={false}
-      form="assignPolicies"
-      fqdn="myhost"
-      getFormState={[Function]}
-      id="1"
-      isModalOpen={true}
-      keepDirtyOnReinitialize={false}
-      persistentSubmitErrors={false}
-      pure={true}
-      shouldAsyncValidate={[Function]}
-      shouldError={[Function]}
-      shouldValidate={[Function]}
-      shouldWarn={[Function]}
-      submitAsSideEffect={false}
-      toggle={[MockFunction]}
-      touchOnBlur={true}
-      touchOnChange={false}
-      updateUnregisteredFields={false}
-    >
-      <Hoc
-        destroyOnUnmount={true}
+<Modal
+  actions={
+    Array [
+      <SubmitPoliciesButton
+        aria-label="save"
         dispatch={[Function]}
-        enableReinitialize={false}
-        forceUnregisterOnUnmount={false}
-        form="assignPolicies"
-        forwardedRef={null}
-        fqdn="myhost"
-        getFormState={[Function]}
-        id="1"
-        isModalOpen={true}
-        keepDirtyOnReinitialize={false}
-        persistentSubmitErrors={false}
-        pure={true}
-        shouldAsyncValidate={[Function]}
-        shouldError={[Function]}
-        shouldValidate={[Function]}
-        shouldWarn={[Function]}
-        submitAsSideEffect={false}
+        policyIds={Array []}
+        systemId="1"
         toggle={[MockFunction]}
-        touchOnBlur={true}
-        touchOnChange={false}
-        updateUnregisteredFields={false}
+        variant="primary"
+      />,
+      <Button
+        aria-label="cancel"
+        onClick={[Function]}
+        variant="secondary"
       >
-        <ReduxForm
-          _reduxForm={null}
-          destroyOnUnmount={true}
-          dispatch={[Function]}
-          enableReinitialize={false}
-          forceUnregisterOnUnmount={false}
-          form="assignPolicies"
-          fqdn="myhost"
-          getFormState={[Function]}
-          id="1"
-          isModalOpen={true}
-          keepDirtyOnReinitialize={false}
-          persistentSubmitErrors={false}
-          pure={true}
-          shouldAsyncValidate={[Function]}
-          shouldError={[Function]}
-          shouldValidate={[Function]}
-          shouldWarn={[Function]}
-          submitAsSideEffect={false}
-          toggle={[MockFunction]}
-          touchOnBlur={true}
-          touchOnChange={false}
-          updateUnregisteredFields={false}
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={
+    <body
+      class="pf-c-backdrop__open"
+    >
+      <div>
+        <div
+          class="pf-c-backdrop"
         >
-          <Connect(Form(AssignPoliciesModal))
-            _reduxForm={null}
-            destroyOnUnmount={true}
-            dispatch={[Function]}
-            enableReinitialize={false}
-            forceUnregisterOnUnmount={false}
-            form="assignPolicies"
-            fqdn="myhost"
-            getFormState={[Function]}
-            id="1"
-            isModalOpen={true}
-            keepDirtyOnReinitialize={false}
-            persistentSubmitErrors={false}
-            pure={true}
-            shouldAsyncValidate={[Function]}
-            shouldError={[Function]}
-            shouldValidate={[Function]}
-            shouldWarn={[Function]}
-            submitAsSideEffect={false}
-            toggle={[MockFunction]}
-            touchOnBlur={true}
-            touchOnChange={false}
-            updateUnregisteredFields={false}
+          <div
+            class="pf-l-bullseye"
           >
-            <Form(AssignPoliciesModal)
-              _reduxForm={null}
-              anyTouched={false}
-              array={
-                Object {
-                  "insert": [Function],
-                  "move": [Function],
-                  "pop": [Function],
-                  "push": [Function],
-                  "remove": [Function],
-                  "removeAll": [Function],
-                  "shift": [Function],
-                  "splice": [Function],
-                  "swap": [Function],
-                  "unshift": [Function],
-                }
-              }
-              arrayInsert={[Function]}
-              arrayMove={[Function]}
-              arrayPop={[Function]}
-              arrayPush={[Function]}
-              arrayRemove={[Function]}
-              arrayRemoveAll={[Function]}
-              arrayShift={[Function]}
-              arraySplice={[Function]}
-              arraySwap={[Function]}
-              arrayUnshift={[Function]}
-              asyncValidating={false}
-              autofill={[Function]}
-              blur={[Function]}
-              change={[Function]}
-              clearAsyncError={[Function]}
-              clearFields={[Function]}
-              clearSubmit={[Function]}
-              clearSubmitErrors={[Function]}
-              destroy={[Function]}
-              destroyOnUnmount={true}
-              dirty={false}
-              dispatch={[Function]}
-              enableReinitialize={false}
-              focus={[Function]}
-              forceUnregisterOnUnmount={false}
-              form="assignPolicies"
-              fqdn="myhost"
-              getFormState={[Function]}
-              id="1"
-              initialize={[Function]}
-              initialized={false}
-              invalid={false}
-              isModalOpen={true}
-              keepDirtyOnReinitialize={false}
-              persistentSubmitErrors={false}
-              pristine={true}
-              pure={true}
-              registerField={[Function]}
-              reset={[Function]}
-              resetSection={[Function]}
-              setSubmitFailed={[Function]}
-              setSubmitSucceeded={[Function]}
-              shouldAsyncValidate={[Function]}
-              shouldError={[Function]}
-              shouldValidate={[Function]}
-              shouldWarn={[Function]}
-              startAsyncValidation={[Function]}
-              startSubmit={[Function]}
-              stopAsyncValidation={[Function]}
-              stopSubmit={[Function]}
-              submit={[Function]}
-              submitAsSideEffect={false}
-              submitFailed={false}
-              submitSucceeded={false}
-              submitting={false}
-              syncErrors={Object {}}
-              syncWarnings={Object {}}
-              toggle={[MockFunction]}
-              touch={[Function]}
-              touchOnBlur={true}
-              touchOnChange={false}
-              unregisterField={[Function]}
-              untouch={[Function]}
-              updateSyncErrors={[Function]}
-              updateSyncWarnings={[Function]}
-              updateUnregisteredFields={false}
-              valid={true}
-              validExceptSubmit={true}
-              values={Object {}}
+            <div
+              aria-describedby="pf-modal-part-2"
+              aria-labelledby="pf-modal-part-1"
+              aria-modal="true"
+              class="pf-c-modal-box pf-m-sm"
+              data-ouia-component-id="0"
+              data-ouia-component-type="PF4/ModalContent"
+              data-ouia-safe="true"
+              id="pf-modal-part-0"
+              role="dialog"
             >
-              <AssignPoliciesModal
-                _reduxForm={null}
-                anyTouched={false}
-                array={
-                  Object {
-                    "insert": [Function],
-                    "move": [Function],
-                    "pop": [Function],
-                    "push": [Function],
-                    "remove": [Function],
-                    "removeAll": [Function],
-                    "shift": [Function],
-                    "splice": [Function],
-                    "swap": [Function],
-                    "unshift": [Function],
-                  }
-                }
-                asyncValidate={[Function]}
-                asyncValidating={false}
-                autofill={[Function]}
-                blur={[Function]}
-                change={[Function]}
-                clearAsyncError={[Function]}
-                clearFields={[Function]}
-                clearSubmit={[Function]}
-                clearSubmitErrors={[Function]}
-                destroy={[Function]}
-                dirty={false}
-                dispatch={[Function]}
-                form="assignPolicies"
-                fqdn="myhost"
-                handleSubmit={[Function]}
-                id="1"
-                initialize={[Function]}
-                initialized={false}
-                invalid={false}
-                isModalOpen={true}
-                pristine={true}
-                pure={true}
-                reset={[Function]}
-                resetSection={[Function]}
-                submit={[Function]}
-                submitAsSideEffect={false}
-                submitFailed={false}
-                submitSucceeded={false}
-                submitting={false}
-                toggle={[MockFunction]}
-                touch={[Function]}
-                untouch={[Function]}
-                valid={true}
+              <button
+                aria-disabled="false"
+                aria-label="Close"
+                class="pf-c-button pf-m-plain"
+                data-ouia-component-id="1"
+                data-ouia-component-type="PF4/Button"
+                data-ouia-safe="true"
+                type="button"
               >
-                <Modal
-                  actions={
-                    Array [
-                      <SubmitPoliciesButton
-                        aria-label="save"
-                        dispatch={[Function]}
-                        policyIds={Array []}
-                        systemId="1"
-                        toggle={[MockFunction]}
-                        variant="primary"
-                      />,
-                      <Button
-                        aria-label="cancel"
-                        onClick={[Function]}
-                        variant="secondary"
-                      >
-                        Cancel
-                      </Button>,
-                    ]
-                  }
-                  appendTo={
-                    <body
-                      class="pf-c-backdrop__open"
-                    >
-                      <div>
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-2"
-                              aria-labelledby="pf-modal-part-1"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="0"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-0"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="1"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-1"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-2"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    <div
-                                      class="pf-c-check"
-                                    >
-                                      <input
-                                        aria-invalid="false"
-                                        checked=""
-                                        class="pf-c-check__input"
-                                        id="1"
-                                        name="policies[0]"
-                                        type="checkbox"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="pf-c-check__label"
-                                        for="1"
-                                      >
-                                        profile1
-                                      </label>
-                                    </div>
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="2"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="3"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </body>
-                  }
-                  aria-describedby=""
-                  aria-label=""
-                  aria-labelledby=""
-                  className=""
-                  hasNoBodyWrapper={false}
-                  isFooterLeftAligned={true}
-                  isOpen={true}
-                  onClose={[Function]}
-                  ouiaSafe={true}
-                  showClose={true}
-                  title="Edit policies for myhost"
-                  variant="small"
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style="vertical-align: -0.125em;"
+                  viewBox="0 0 352 512"
+                  width="1em"
                 >
-                  <Portal
-                    containerInfo={
-                      <div>
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-2"
-                              aria-labelledby="pf-modal-part-1"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="0"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-0"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="1"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-1"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-2"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    <div
-                                      class="pf-c-check"
-                                    >
-                                      <input
-                                        aria-invalid="false"
-                                        checked=""
-                                        class="pf-c-check__input"
-                                        id="1"
-                                        name="policies[0]"
-                                        type="checkbox"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="pf-c-check__label"
-                                        for="1"
-                                      >
-                                        profile1
-                                      </label>
-                                    </div>
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="2"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="3"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    }
+                  <path
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                    transform=""
+                  />
+                </svg>
+              </button>
+              <header
+                class="pf-c-modal-box__header"
+              >
+                <h1
+                  class="pf-c-modal-box__title pf-c-modal-box__title"
+                  id="pf-modal-part-1"
+                >
+                  Edit policies for myhost
+                </h1>
+              </header>
+              <div
+                class="pf-c-modal-box__body"
+                id="pf-modal-part-2"
+              >
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
                   >
-                    <ModalContent
-                      actions={
-                        Array [
-                          <SubmitPoliciesButton
-                            aria-label="save"
-                            dispatch={[Function]}
-                            policyIds={Array []}
-                            systemId="1"
-                            toggle={[MockFunction]}
-                            variant="primary"
-                          />,
-                          <Button
-                            aria-label="cancel"
-                            onClick={[Function]}
-                            variant="secondary"
-                          >
-                            Cancel
-                          </Button>,
-                        ]
-                      }
-                      aria-describedby=""
-                      aria-label=""
-                      aria-labelledby=""
-                      boxId="pf-modal-part-0"
-                      className=""
-                      descriptorId="pf-modal-part-2"
-                      hasNoBodyWrapper={false}
-                      isFooterLeftAligned={true}
-                      isOpen={true}
-                      labelId="pf-modal-part-1"
-                      onClose={[Function]}
-                      ouiaSafe={true}
-                      showClose={true}
-                      title="Edit policies for myhost"
-                      variant="small"
+                    Choose which policies 
+                    myhost
+                     should be a part of. Note: Only policies for this host operating system are shown.
+                  </p>
+                </div>
+                <br />
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
+                  >
+                    <div
+                      class="pf-c-check"
                     >
-                      <Backdrop>
-                        <div
-                          className="pf-c-backdrop"
-                        >
-                          <FocusTrap
-                            active={true}
-                            className="pf-l-bullseye"
-                            focusTrapOptions={
-                              Object {
-                                "clickOutsideDeactivates": true,
-                              }
-                            }
-                            paused={false}
-                          >
-                            <div
-                              className="pf-l-bullseye"
-                            >
-                              <ModalBox
-                                aria-describedby="pf-modal-part-2"
-                                aria-label=""
-                                aria-labelledby="pf-modal-part-1"
-                                className=""
-                                data-ouia-component-id={0}
-                                data-ouia-component-type="PF4/ModalContent"
-                                data-ouia-safe={true}
-                                id="pf-modal-part-0"
-                                style={Object {}}
-                                variant="small"
-                              >
-                                <div
-                                  aria-describedby="pf-modal-part-2"
-                                  aria-label={null}
-                                  aria-labelledby="pf-modal-part-1"
-                                  aria-modal="true"
-                                  className="pf-c-modal-box pf-m-sm"
-                                  data-ouia-component-id={0}
-                                  data-ouia-component-type="PF4/ModalContent"
-                                  data-ouia-safe={true}
-                                  id="pf-modal-part-0"
-                                  role="dialog"
-                                  style={Object {}}
-                                >
-                                  <ModalBoxCloseButton
-                                    onClose={[Function]}
-                                  >
-                                    <Button
-                                      aria-label="Close"
-                                      className=""
-                                      onClick={[Function]}
-                                      variant="plain"
-                                    >
-                                      <button
-                                        aria-disabled={false}
-                                        aria-label="Close"
-                                        className="pf-c-button pf-m-plain"
-                                        data-ouia-component-id={1}
-                                        data-ouia-component-type="PF4/Button"
-                                        data-ouia-safe={true}
-                                        disabled={false}
-                                        onClick={[Function]}
-                                        type="button"
-                                      >
-                                        <TimesIcon
-                                          color="currentColor"
-                                          noVerticalAlign={false}
-                                          size="sm"
-                                        >
-                                          <svg
-                                            aria-hidden={true}
-                                            aria-labelledby={null}
-                                            fill="currentColor"
-                                            height="1em"
-                                            role="img"
-                                            style={
-                                              Object {
-                                                "verticalAlign": "-0.125em",
-                                              }
-                                            }
-                                            viewBox="0 0 352 512"
-                                            width="1em"
-                                          >
-                                            <path
-                                              d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                              transform=""
-                                            />
-                                          </svg>
-                                        </TimesIcon>
-                                      </button>
-                                    </Button>
-                                  </ModalBoxCloseButton>
-                                  <ModalBoxHeader>
-                                    <header
-                                      className="pf-c-modal-box__header"
-                                    >
-                                      <ModalBoxTitle
-                                        className="pf-c-modal-box__title"
-                                        id="pf-modal-part-1"
-                                        title="Edit policies for myhost"
-                                      >
-                                        <h1
-                                          className="pf-c-modal-box__title pf-c-modal-box__title"
-                                          id="pf-modal-part-1"
-                                        >
-                                          Edit policies for myhost
-                                        </h1>
-                                      </ModalBoxTitle>
-                                    </header>
-                                  </ModalBoxHeader>
-                                  <ModalBoxBody
-                                    id="pf-modal-part-2"
-                                    isFooterLeftAligned={true}
-                                  >
-                                    <div
-                                      className="pf-c-modal-box__body"
-                                      id="pf-modal-part-2"
-                                      isFooterLeftAligned={true}
-                                    >
-                                      <TextContent>
-                                        <div
-                                          className="pf-c-content"
-                                        >
-                                          <Text>
-                                            <p
-                                              className=""
-                                              data-pf-content={true}
-                                            >
-                                              Choose which policies 
-                                              myhost
-                                               should be a part of. Note: Only policies for this host operating system are shown.
-                                            </p>
-                                          </Text>
-                                        </div>
-                                      </TextContent>
-                                      <br />
-                                      <TextContent>
-                                        <div
-                                          className="pf-c-content"
-                                        >
-                                          <Text>
-                                            <p
-                                              className=""
-                                              data-pf-content={true}
-                                            >
-                                              <CheckboxGroup
-                                                name="policies"
-                                                options={
-                                                  Array [
-                                                    Object {
-                                                      "defaultChecked": true,
-                                                      "label": "profile1",
-                                                      "value": "1",
-                                                    },
-                                                  ]
-                                                }
-                                              >
-                                                <Field
-                                                  component={[Function]}
-                                                  name="policies"
-                                                  options={
-                                                    Array [
-                                                      Object {
-                                                        "defaultChecked": true,
-                                                        "label": "profile1",
-                                                        "value": "1",
-                                                      },
-                                                    ]
-                                                  }
-                                                  type="checkbox"
-                                                >
-                                                  <Hoc
-                                                    component={[Function]}
-                                                    forwardedRef={null}
-                                                    name="policies"
-                                                    options={
-                                                      Array [
-                                                        Object {
-                                                          "defaultChecked": true,
-                                                          "label": "profile1",
-                                                          "value": "1",
-                                                        },
-                                                      ]
-                                                    }
-                                                    type="checkbox"
-                                                  >
-                                                    <Field
-                                                      _reduxForm={
-                                                        Object {
-                                                          "_reduxForm": null,
-                                                          "anyTouched": false,
-                                                          "array": Object {
-                                                            "insert": [Function],
-                                                            "move": [Function],
-                                                            "pop": [Function],
-                                                            "push": [Function],
-                                                            "remove": [Function],
-                                                            "removeAll": [Function],
-                                                            "shift": [Function],
-                                                            "splice": [Function],
-                                                            "swap": [Function],
-                                                            "unshift": [Function],
-                                                          },
-                                                          "arrayInsert": [Function],
-                                                          "arrayMove": [Function],
-                                                          "arrayPop": [Function],
-                                                          "arrayPush": [Function],
-                                                          "arrayRemove": [Function],
-                                                          "arrayRemoveAll": [Function],
-                                                          "arrayShift": [Function],
-                                                          "arraySplice": [Function],
-                                                          "arraySwap": [Function],
-                                                          "arrayUnshift": [Function],
-                                                          "asyncErrors": undefined,
-                                                          "asyncValidate": [Function],
-                                                          "asyncValidating": false,
-                                                          "autofill": [Function],
-                                                          "blur": [Function],
-                                                          "change": [Function],
-                                                          "clearAsyncError": [Function],
-                                                          "clearFields": [Function],
-                                                          "clearSubmit": [Function],
-                                                          "clearSubmitErrors": [Function],
-                                                          "destroy": [Function],
-                                                          "destroyOnUnmount": true,
-                                                          "dirty": false,
-                                                          "dispatch": [Function],
-                                                          "enableReinitialize": false,
-                                                          "error": undefined,
-                                                          "focus": [Function],
-                                                          "forceUnregisterOnUnmount": false,
-                                                          "form": "assignPolicies",
-                                                          "fqdn": "myhost",
-                                                          "getFormState": [Function],
-                                                          "getValues": [Function],
-                                                          "id": "1",
-                                                          "initialValues": undefined,
-                                                          "initialize": [Function],
-                                                          "initialized": false,
-                                                          "invalid": false,
-                                                          "isModalOpen": true,
-                                                          "keepDirtyOnReinitialize": false,
-                                                          "persistentSubmitErrors": false,
-                                                          "pristine": true,
-                                                          "pure": true,
-                                                          "register": [Function],
-                                                          "registerField": [Function],
-                                                          "registerInnerOnSubmit": [Function],
-                                                          "registeredFields": undefined,
-                                                          "reset": [Function],
-                                                          "resetSection": [Function],
-                                                          "sectionPrefix": undefined,
-                                                          "selectedPolicyIds": undefined,
-                                                          "setSubmitFailed": [Function],
-                                                          "setSubmitSucceeded": [Function],
-                                                          "shouldAsyncValidate": [Function],
-                                                          "shouldError": [Function],
-                                                          "shouldValidate": [Function],
-                                                          "shouldWarn": [Function],
-                                                          "startAsyncValidation": [Function],
-                                                          "startSubmit": [Function],
-                                                          "stopAsyncValidation": [Function],
-                                                          "stopSubmit": [Function],
-                                                          "submit": [Function],
-                                                          "submitAsSideEffect": false,
-                                                          "submitFailed": false,
-                                                          "submitSucceeded": false,
-                                                          "submitting": false,
-                                                          "syncErrors": Object {},
-                                                          "syncWarnings": Object {},
-                                                          "toggle": [MockFunction],
-                                                          "touch": [Function],
-                                                          "touchOnBlur": true,
-                                                          "touchOnChange": false,
-                                                          "triggerSubmit": undefined,
-                                                          "unregister": [Function],
-                                                          "unregisterField": [Function],
-                                                          "untouch": [Function],
-                                                          "updateSyncErrors": [Function],
-                                                          "updateSyncWarnings": [Function],
-                                                          "updateUnregisteredFields": false,
-                                                          "valid": true,
-                                                          "validExceptSubmit": true,
-                                                          "values": Object {},
-                                                          "warning": undefined,
-                                                        }
-                                                      }
-                                                      component={[Function]}
-                                                      name="policies"
-                                                      options={
-                                                        Array [
-                                                          Object {
-                                                            "defaultChecked": true,
-                                                            "label": "profile1",
-                                                            "value": "1",
-                                                          },
-                                                        ]
-                                                      }
-                                                      type="checkbox"
-                                                    >
-                                                      <Connect(ConnectedField)
-                                                        _reduxForm={
-                                                          Object {
-                                                            "_reduxForm": null,
-                                                            "anyTouched": false,
-                                                            "array": Object {
-                                                              "insert": [Function],
-                                                              "move": [Function],
-                                                              "pop": [Function],
-                                                              "push": [Function],
-                                                              "remove": [Function],
-                                                              "removeAll": [Function],
-                                                              "shift": [Function],
-                                                              "splice": [Function],
-                                                              "swap": [Function],
-                                                              "unshift": [Function],
-                                                            },
-                                                            "arrayInsert": [Function],
-                                                            "arrayMove": [Function],
-                                                            "arrayPop": [Function],
-                                                            "arrayPush": [Function],
-                                                            "arrayRemove": [Function],
-                                                            "arrayRemoveAll": [Function],
-                                                            "arrayShift": [Function],
-                                                            "arraySplice": [Function],
-                                                            "arraySwap": [Function],
-                                                            "arrayUnshift": [Function],
-                                                            "asyncErrors": undefined,
-                                                            "asyncValidate": [Function],
-                                                            "asyncValidating": false,
-                                                            "autofill": [Function],
-                                                            "blur": [Function],
-                                                            "change": [Function],
-                                                            "clearAsyncError": [Function],
-                                                            "clearFields": [Function],
-                                                            "clearSubmit": [Function],
-                                                            "clearSubmitErrors": [Function],
-                                                            "destroy": [Function],
-                                                            "destroyOnUnmount": true,
-                                                            "dirty": false,
-                                                            "dispatch": [Function],
-                                                            "enableReinitialize": false,
-                                                            "error": undefined,
-                                                            "focus": [Function],
-                                                            "forceUnregisterOnUnmount": false,
-                                                            "form": "assignPolicies",
-                                                            "fqdn": "myhost",
-                                                            "getFormState": [Function],
-                                                            "getValues": [Function],
-                                                            "id": "1",
-                                                            "initialValues": undefined,
-                                                            "initialize": [Function],
-                                                            "initialized": false,
-                                                            "invalid": false,
-                                                            "isModalOpen": true,
-                                                            "keepDirtyOnReinitialize": false,
-                                                            "persistentSubmitErrors": false,
-                                                            "pristine": true,
-                                                            "pure": true,
-                                                            "register": [Function],
-                                                            "registerField": [Function],
-                                                            "registerInnerOnSubmit": [Function],
-                                                            "registeredFields": undefined,
-                                                            "reset": [Function],
-                                                            "resetSection": [Function],
-                                                            "sectionPrefix": undefined,
-                                                            "selectedPolicyIds": undefined,
-                                                            "setSubmitFailed": [Function],
-                                                            "setSubmitSucceeded": [Function],
-                                                            "shouldAsyncValidate": [Function],
-                                                            "shouldError": [Function],
-                                                            "shouldValidate": [Function],
-                                                            "shouldWarn": [Function],
-                                                            "startAsyncValidation": [Function],
-                                                            "startSubmit": [Function],
-                                                            "stopAsyncValidation": [Function],
-                                                            "stopSubmit": [Function],
-                                                            "submit": [Function],
-                                                            "submitAsSideEffect": false,
-                                                            "submitFailed": false,
-                                                            "submitSucceeded": false,
-                                                            "submitting": false,
-                                                            "syncErrors": Object {},
-                                                            "syncWarnings": Object {},
-                                                            "toggle": [MockFunction],
-                                                            "touch": [Function],
-                                                            "touchOnBlur": true,
-                                                            "touchOnChange": false,
-                                                            "triggerSubmit": undefined,
-                                                            "unregister": [Function],
-                                                            "unregisterField": [Function],
-                                                            "untouch": [Function],
-                                                            "updateSyncErrors": [Function],
-                                                            "updateSyncWarnings": [Function],
-                                                            "updateUnregisteredFields": false,
-                                                            "valid": true,
-                                                            "validExceptSubmit": true,
-                                                            "values": Object {},
-                                                            "warning": undefined,
-                                                          }
-                                                        }
-                                                        component={[Function]}
-                                                        name="policies"
-                                                        normalize={[Function]}
-                                                        options={
-                                                          Array [
-                                                            Object {
-                                                              "defaultChecked": true,
-                                                              "label": "profile1",
-                                                              "value": "1",
-                                                            },
-                                                          ]
-                                                        }
-                                                        type="checkbox"
-                                                      >
-                                                        <ConnectedField
-                                                          _reduxForm={
-                                                            Object {
-                                                              "_reduxForm": null,
-                                                              "anyTouched": false,
-                                                              "array": Object {
-                                                                "insert": [Function],
-                                                                "move": [Function],
-                                                                "pop": [Function],
-                                                                "push": [Function],
-                                                                "remove": [Function],
-                                                                "removeAll": [Function],
-                                                                "shift": [Function],
-                                                                "splice": [Function],
-                                                                "swap": [Function],
-                                                                "unshift": [Function],
-                                                              },
-                                                              "arrayInsert": [Function],
-                                                              "arrayMove": [Function],
-                                                              "arrayPop": [Function],
-                                                              "arrayPush": [Function],
-                                                              "arrayRemove": [Function],
-                                                              "arrayRemoveAll": [Function],
-                                                              "arrayShift": [Function],
-                                                              "arraySplice": [Function],
-                                                              "arraySwap": [Function],
-                                                              "arrayUnshift": [Function],
-                                                              "asyncErrors": undefined,
-                                                              "asyncValidate": [Function],
-                                                              "asyncValidating": false,
-                                                              "autofill": [Function],
-                                                              "blur": [Function],
-                                                              "change": [Function],
-                                                              "clearAsyncError": [Function],
-                                                              "clearFields": [Function],
-                                                              "clearSubmit": [Function],
-                                                              "clearSubmitErrors": [Function],
-                                                              "destroy": [Function],
-                                                              "destroyOnUnmount": true,
-                                                              "dirty": false,
-                                                              "dispatch": [Function],
-                                                              "enableReinitialize": false,
-                                                              "error": undefined,
-                                                              "focus": [Function],
-                                                              "forceUnregisterOnUnmount": false,
-                                                              "form": "assignPolicies",
-                                                              "fqdn": "myhost",
-                                                              "getFormState": [Function],
-                                                              "getValues": [Function],
-                                                              "id": "1",
-                                                              "initialValues": undefined,
-                                                              "initialize": [Function],
-                                                              "initialized": false,
-                                                              "invalid": false,
-                                                              "isModalOpen": true,
-                                                              "keepDirtyOnReinitialize": false,
-                                                              "persistentSubmitErrors": false,
-                                                              "pristine": true,
-                                                              "pure": true,
-                                                              "register": [Function],
-                                                              "registerField": [Function],
-                                                              "registerInnerOnSubmit": [Function],
-                                                              "registeredFields": undefined,
-                                                              "reset": [Function],
-                                                              "resetSection": [Function],
-                                                              "sectionPrefix": undefined,
-                                                              "selectedPolicyIds": undefined,
-                                                              "setSubmitFailed": [Function],
-                                                              "setSubmitSucceeded": [Function],
-                                                              "shouldAsyncValidate": [Function],
-                                                              "shouldError": [Function],
-                                                              "shouldValidate": [Function],
-                                                              "shouldWarn": [Function],
-                                                              "startAsyncValidation": [Function],
-                                                              "startSubmit": [Function],
-                                                              "stopAsyncValidation": [Function],
-                                                              "stopSubmit": [Function],
-                                                              "submit": [Function],
-                                                              "submitAsSideEffect": false,
-                                                              "submitFailed": false,
-                                                              "submitSucceeded": false,
-                                                              "submitting": false,
-                                                              "syncErrors": Object {},
-                                                              "syncWarnings": Object {},
-                                                              "toggle": [MockFunction],
-                                                              "touch": [Function],
-                                                              "touchOnBlur": true,
-                                                              "touchOnChange": false,
-                                                              "triggerSubmit": undefined,
-                                                              "unregister": [Function],
-                                                              "unregisterField": [Function],
-                                                              "untouch": [Function],
-                                                              "updateSyncErrors": [Function],
-                                                              "updateSyncWarnings": [Function],
-                                                              "updateUnregisteredFields": false,
-                                                              "valid": true,
-                                                              "validExceptSubmit": true,
-                                                              "values": Object {},
-                                                              "warning": undefined,
-                                                            }
-                                                          }
-                                                          asyncValidating={false}
-                                                          component={[Function]}
-                                                          dirty={false}
-                                                          dispatch={[Function]}
-                                                          name="policies"
-                                                          normalize={[Function]}
-                                                          options={
-                                                            Array [
-                                                              Object {
-                                                                "defaultChecked": true,
-                                                                "label": "profile1",
-                                                                "value": "1",
-                                                              },
-                                                            ]
-                                                          }
-                                                          pristine={true}
-                                                          type="checkbox"
-                                                        >
-                                                          <CheckboxFieldArray
-                                                            input={
-                                                              Object {
-                                                                "checked": false,
-                                                                "name": "policies",
-                                                                "onBlur": [Function],
-                                                                "onChange": [Function],
-                                                                "onDragStart": [Function],
-                                                                "onDrop": [Function],
-                                                                "onFocus": [Function],
-                                                                "value": "",
-                                                              }
-                                                            }
-                                                            meta={
-                                                              Object {
-                                                                "active": false,
-                                                                "asyncValidating": false,
-                                                                "autofilled": false,
-                                                                "dirty": false,
-                                                                "dispatch": [Function],
-                                                                "error": undefined,
-                                                                "form": "assignPolicies",
-                                                                "initial": undefined,
-                                                                "invalid": false,
-                                                                "pristine": true,
-                                                                "submitFailed": false,
-                                                                "submitting": false,
-                                                                "touched": false,
-                                                                "valid": true,
-                                                                "visited": false,
-                                                                "warning": undefined,
-                                                              }
-                                                            }
-                                                            options={
-                                                              Array [
-                                                                Object {
-                                                                  "defaultChecked": true,
-                                                                  "label": "profile1",
-                                                                  "value": "1",
-                                                                },
-                                                              ]
-                                                            }
-                                                            type="checkbox"
-                                                          >
-                                                            <Checkbox
-                                                              className=""
-                                                              id="1"
-                                                              isChecked={true}
-                                                              isDisabled={false}
-                                                              isValid={true}
-                                                              key="1"
-                                                              label="profile1"
-                                                              name="policies[0]"
-                                                              onChange={[Function]}
-                                                              value="1"
-                                                            >
-                                                              <div
-                                                                className="pf-c-check"
-                                                              >
-                                                                <input
-                                                                  aria-invalid={false}
-                                                                  checked={true}
-                                                                  className="pf-c-check__input"
-                                                                  disabled={false}
-                                                                  id="1"
-                                                                  name="policies[0]"
-                                                                  onChange={[Function]}
-                                                                  type="checkbox"
-                                                                  value="1"
-                                                                />
-                                                                <label
-                                                                  className="pf-c-check__label"
-                                                                  htmlFor="1"
-                                                                >
-                                                                  profile1
-                                                                </label>
-                                                              </div>
-                                                            </Checkbox>
-                                                          </CheckboxFieldArray>
-                                                        </ConnectedField>
-                                                      </Connect(ConnectedField)>
-                                                    </Field>
-                                                  </Hoc>
-                                                </Field>
-                                              </CheckboxGroup>
-                                            </p>
-                                          </Text>
-                                        </div>
-                                      </TextContent>
-                                    </div>
-                                  </ModalBoxBody>
-                                  <ModalBoxFooter>
-                                    <footer
-                                      className="pf-c-modal-box__footer"
-                                    >
-                                      <SubmitPoliciesButton
-                                        aria-label="save"
-                                        dispatch={[Function]}
-                                        key="save"
-                                        policyIds={Array []}
-                                        systemId="1"
-                                        toggle={[MockFunction]}
-                                        variant="primary"
-                                      >
-                                        <Button
-                                          aria-label="save"
-                                          onClick={[Function]}
-                                          type="submit"
-                                          variant="primary"
-                                        >
-                                          <button
-                                            aria-disabled={false}
-                                            aria-label="save"
-                                            className="pf-c-button pf-m-primary"
-                                            data-ouia-component-id={2}
-                                            data-ouia-component-type="PF4/Button"
-                                            data-ouia-safe={true}
-                                            disabled={false}
-                                            onClick={[Function]}
-                                            type="submit"
-                                          >
-                                            Save
-                                          </button>
-                                        </Button>
-                                      </SubmitPoliciesButton>
-                                      <Button
-                                        aria-label="cancel"
-                                        key="cancel"
-                                        onClick={[Function]}
-                                        variant="secondary"
-                                      >
-                                        <button
-                                          aria-disabled={false}
-                                          aria-label="cancel"
-                                          className="pf-c-button pf-m-secondary"
-                                          data-ouia-component-id={3}
-                                          data-ouia-component-type="PF4/Button"
-                                          data-ouia-safe={true}
-                                          disabled={false}
-                                          onClick={[Function]}
-                                          type="button"
-                                        >
-                                          Cancel
-                                        </button>
-                                      </Button>
-                                    </footer>
-                                  </ModalBoxFooter>
-                                </div>
-                              </ModalBox>
-                            </div>
-                          </FocusTrap>
-                        </div>
-                      </Backdrop>
-                    </ModalContent>
-                  </Portal>
-                </Modal>
-              </AssignPoliciesModal>
-            </Form(AssignPoliciesModal)>
-          </Connect(Form(AssignPoliciesModal))>
-        </ReduxForm>
-      </Hoc>
-    </ReduxForm>
-  </Connect(ReduxForm)>
-</Provider>
+                      <input
+                        aria-invalid="false"
+                        checked=""
+                        class="pf-c-check__input"
+                        id="1"
+                        name="policies[0]"
+                        type="checkbox"
+                        value="1"
+                      />
+                      <label
+                        class="pf-c-check__label"
+                        for="1"
+                      >
+                        profile1
+                      </label>
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <footer
+                class="pf-c-modal-box__footer"
+              >
+                <button
+                  aria-disabled="false"
+                  aria-label="save"
+                  class="pf-c-button pf-m-primary"
+                  data-ouia-component-id="2"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  aria-disabled="false"
+                  aria-label="cancel"
+                  class="pf-c-button pf-m-secondary"
+                  data-ouia-component-id="3"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  }
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  hasNoBodyWrapper={false}
+  isFooterLeftAligned={true}
+  isOpen={true}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  title="Edit policies for myhost"
+  variant="small"
+/>
 `;
 
 exports[`AssignPoliciesModal renders empty state if no OS is matching the system 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <Connect(ReduxForm)
-    fqdn="myhost"
-    id="1"
-    isModalOpen={[Function]}
-    toggle={[MockFunction]}
-  >
-    <ReduxForm
-      destroyOnUnmount={true}
-      dispatch={[Function]}
-      enableReinitialize={false}
-      forceUnregisterOnUnmount={false}
-      form="assignPolicies"
-      fqdn="myhost"
-      getFormState={[Function]}
-      id="1"
-      isModalOpen={[Function]}
-      keepDirtyOnReinitialize={false}
-      persistentSubmitErrors={false}
-      pure={true}
-      shouldAsyncValidate={[Function]}
-      shouldError={[Function]}
-      shouldValidate={[Function]}
-      shouldWarn={[Function]}
-      submitAsSideEffect={false}
-      toggle={[MockFunction]}
-      touchOnBlur={true}
-      touchOnChange={false}
-      updateUnregisteredFields={false}
-    >
-      <Hoc
-        destroyOnUnmount={true}
+<Modal
+  actions={
+    Array [
+      <SubmitPoliciesButton
+        aria-label="save"
         dispatch={[Function]}
-        enableReinitialize={false}
-        forceUnregisterOnUnmount={false}
-        form="assignPolicies"
-        forwardedRef={null}
-        fqdn="myhost"
-        getFormState={[Function]}
-        id="1"
-        isModalOpen={[Function]}
-        keepDirtyOnReinitialize={false}
-        persistentSubmitErrors={false}
-        pure={true}
-        shouldAsyncValidate={[Function]}
-        shouldError={[Function]}
-        shouldValidate={[Function]}
-        shouldWarn={[Function]}
-        submitAsSideEffect={false}
+        policyIds={Array []}
+        systemId="1"
         toggle={[MockFunction]}
-        touchOnBlur={true}
-        touchOnChange={false}
-        updateUnregisteredFields={false}
+        variant="primary"
+      />,
+      <Button
+        aria-label="cancel"
+        onClick={[Function]}
+        variant="secondary"
       >
-        <ReduxForm
-          _reduxForm={null}
-          destroyOnUnmount={true}
-          dispatch={[Function]}
-          enableReinitialize={false}
-          forceUnregisterOnUnmount={false}
-          form="assignPolicies"
-          fqdn="myhost"
-          getFormState={[Function]}
-          id="1"
-          isModalOpen={[Function]}
-          keepDirtyOnReinitialize={false}
-          persistentSubmitErrors={false}
-          pure={true}
-          shouldAsyncValidate={[Function]}
-          shouldError={[Function]}
-          shouldValidate={[Function]}
-          shouldWarn={[Function]}
-          submitAsSideEffect={false}
-          toggle={[MockFunction]}
-          touchOnBlur={true}
-          touchOnChange={false}
-          updateUnregisteredFields={false}
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={
+    <body
+      class="pf-c-backdrop__open"
+    >
+      <div
+        aria-hidden="true"
+      >
+        <div
+          class="pf-c-backdrop"
         >
-          <Connect(Form(AssignPoliciesModal))
-            _reduxForm={null}
-            destroyOnUnmount={true}
-            dispatch={[Function]}
-            enableReinitialize={false}
-            forceUnregisterOnUnmount={false}
-            form="assignPolicies"
-            fqdn="myhost"
-            getFormState={[Function]}
-            id="1"
-            isModalOpen={[Function]}
-            keepDirtyOnReinitialize={false}
-            persistentSubmitErrors={false}
-            pure={true}
-            shouldAsyncValidate={[Function]}
-            shouldError={[Function]}
-            shouldValidate={[Function]}
-            shouldWarn={[Function]}
-            submitAsSideEffect={false}
-            toggle={[MockFunction]}
-            touchOnBlur={true}
-            touchOnChange={false}
-            updateUnregisteredFields={false}
+          <div
+            class="pf-l-bullseye"
           >
-            <Form(AssignPoliciesModal)
-              _reduxForm={null}
-              anyTouched={false}
-              array={
-                Object {
-                  "insert": [Function],
-                  "move": [Function],
-                  "pop": [Function],
-                  "push": [Function],
-                  "remove": [Function],
-                  "removeAll": [Function],
-                  "shift": [Function],
-                  "splice": [Function],
-                  "swap": [Function],
-                  "unshift": [Function],
-                }
-              }
-              arrayInsert={[Function]}
-              arrayMove={[Function]}
-              arrayPop={[Function]}
-              arrayPush={[Function]}
-              arrayRemove={[Function]}
-              arrayRemoveAll={[Function]}
-              arrayShift={[Function]}
-              arraySplice={[Function]}
-              arraySwap={[Function]}
-              arrayUnshift={[Function]}
-              asyncValidating={false}
-              autofill={[Function]}
-              blur={[Function]}
-              change={[Function]}
-              clearAsyncError={[Function]}
-              clearFields={[Function]}
-              clearSubmit={[Function]}
-              clearSubmitErrors={[Function]}
-              destroy={[Function]}
-              destroyOnUnmount={true}
-              dirty={false}
-              dispatch={[Function]}
-              enableReinitialize={false}
-              focus={[Function]}
-              forceUnregisterOnUnmount={false}
-              form="assignPolicies"
-              fqdn="myhost"
-              getFormState={[Function]}
-              id="1"
-              initialize={[Function]}
-              initialized={false}
-              invalid={false}
-              isModalOpen={[Function]}
-              keepDirtyOnReinitialize={false}
-              persistentSubmitErrors={false}
-              pristine={true}
-              pure={true}
-              registerField={[Function]}
-              reset={[Function]}
-              resetSection={[Function]}
-              setSubmitFailed={[Function]}
-              setSubmitSucceeded={[Function]}
-              shouldAsyncValidate={[Function]}
-              shouldError={[Function]}
-              shouldValidate={[Function]}
-              shouldWarn={[Function]}
-              startAsyncValidation={[Function]}
-              startSubmit={[Function]}
-              stopAsyncValidation={[Function]}
-              stopSubmit={[Function]}
-              submit={[Function]}
-              submitAsSideEffect={false}
-              submitFailed={false}
-              submitSucceeded={false}
-              submitting={false}
-              syncErrors={Object {}}
-              syncWarnings={Object {}}
-              toggle={[MockFunction]}
-              touch={[Function]}
-              touchOnBlur={true}
-              touchOnChange={false}
-              unregisterField={[Function]}
-              untouch={[Function]}
-              updateSyncErrors={[Function]}
-              updateSyncWarnings={[Function]}
-              updateUnregisteredFields={false}
-              valid={true}
-              validExceptSubmit={true}
-              values={Object {}}
+            <div
+              aria-describedby="pf-modal-part-2"
+              aria-labelledby="pf-modal-part-1"
+              aria-modal="true"
+              class="pf-c-modal-box pf-m-sm"
+              data-ouia-component-id="0"
+              data-ouia-component-type="PF4/ModalContent"
+              data-ouia-safe="true"
+              id="pf-modal-part-0"
+              role="dialog"
             >
-              <AssignPoliciesModal
-                _reduxForm={null}
-                anyTouched={false}
-                array={
-                  Object {
-                    "insert": [Function],
-                    "move": [Function],
-                    "pop": [Function],
-                    "push": [Function],
-                    "remove": [Function],
-                    "removeAll": [Function],
-                    "shift": [Function],
-                    "splice": [Function],
-                    "swap": [Function],
-                    "unshift": [Function],
-                  }
-                }
-                asyncValidate={[Function]}
-                asyncValidating={false}
-                autofill={[Function]}
-                blur={[Function]}
-                change={[Function]}
-                clearAsyncError={[Function]}
-                clearFields={[Function]}
-                clearSubmit={[Function]}
-                clearSubmitErrors={[Function]}
-                destroy={[Function]}
-                dirty={false}
-                dispatch={[Function]}
-                form="assignPolicies"
-                fqdn="myhost"
-                handleSubmit={[Function]}
-                id="1"
-                initialize={[Function]}
-                initialized={false}
-                invalid={false}
-                isModalOpen={[Function]}
-                pristine={true}
-                pure={true}
-                reset={[Function]}
-                resetSection={[Function]}
-                submit={[Function]}
-                submitAsSideEffect={false}
-                submitFailed={false}
-                submitSucceeded={false}
-                submitting={false}
-                toggle={[MockFunction]}
-                touch={[Function]}
-                untouch={[Function]}
-                valid={true}
+              <button
+                aria-disabled="false"
+                aria-label="Close"
+                class="pf-c-button pf-m-plain"
+                data-ouia-component-id="1"
+                data-ouia-component-type="PF4/Button"
+                data-ouia-safe="true"
+                type="button"
               >
-                <Modal
-                  actions={
-                    Array [
-                      <SubmitPoliciesButton
-                        aria-label="save"
-                        dispatch={[Function]}
-                        policyIds={Array []}
-                        systemId="1"
-                        toggle={[MockFunction]}
-                        variant="primary"
-                      />,
-                      <Button
-                        aria-label="cancel"
-                        onClick={[Function]}
-                        variant="secondary"
-                      >
-                        Cancel
-                      </Button>,
-                    ]
-                  }
-                  appendTo={
-                    <body
-                      class="pf-c-backdrop__open"
-                    >
-                      <div
-                        aria-hidden="true"
-                      >
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-2"
-                              aria-labelledby="pf-modal-part-1"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="0"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-0"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="1"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-1"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-2"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    <div
-                                      class="pf-c-check"
-                                    >
-                                      <input
-                                        aria-invalid="false"
-                                        checked=""
-                                        class="pf-c-check__input"
-                                        id="1"
-                                        name="policies[0]"
-                                        type="checkbox"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="pf-c-check__label"
-                                        for="1"
-                                      >
-                                        profile1
-                                      </label>
-                                    </div>
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="2"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="3"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        aria-hidden="true"
-                      />
-                      <div>
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-4"
-                              aria-labelledby="pf-modal-part-3"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="4"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-2"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="5"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-3"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-4"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    No eligible policies for this system.
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="6"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="7"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </body>
-                  }
-                  aria-describedby=""
-                  aria-label=""
-                  aria-labelledby=""
-                  className=""
-                  hasNoBodyWrapper={false}
-                  isFooterLeftAligned={true}
-                  isOpen={[Function]}
-                  onClose={[Function]}
-                  ouiaSafe={true}
-                  showClose={true}
-                  title="Edit policies for myhost"
-                  variant="small"
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style="vertical-align: -0.125em;"
+                  viewBox="0 0 352 512"
+                  width="1em"
                 >
-                  <Portal
-                    containerInfo={
-                      <div>
-                        <div
-                          class="pf-c-backdrop"
-                        >
-                          <div
-                            class="pf-l-bullseye"
-                          >
-                            <div
-                              aria-describedby="pf-modal-part-4"
-                              aria-labelledby="pf-modal-part-3"
-                              aria-modal="true"
-                              class="pf-c-modal-box pf-m-sm"
-                              data-ouia-component-id="4"
-                              data-ouia-component-type="PF4/ModalContent"
-                              data-ouia-safe="true"
-                              id="pf-modal-part-2"
-                              role="dialog"
-                            >
-                              <button
-                                aria-disabled="false"
-                                aria-label="Close"
-                                class="pf-c-button pf-m-plain"
-                                data-ouia-component-id="5"
-                                data-ouia-component-type="PF4/Button"
-                                data-ouia-safe="true"
-                                type="button"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style="vertical-align: -0.125em;"
-                                  viewBox="0 0 352 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                    transform=""
-                                  />
-                                </svg>
-                              </button>
-                              <header
-                                class="pf-c-modal-box__header"
-                              >
-                                <h1
-                                  class="pf-c-modal-box__title pf-c-modal-box__title"
-                                  id="pf-modal-part-3"
-                                >
-                                  Edit policies for myhost
-                                </h1>
-                              </header>
-                              <div
-                                class="pf-c-modal-box__body"
-                                id="pf-modal-part-4"
-                              >
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    Choose which policies 
-                                    myhost
-                                     should be a part of. Note: Only policies for this host operating system are shown.
-                                  </p>
-                                </div>
-                                <br />
-                                <div
-                                  class="pf-c-content"
-                                >
-                                  <p
-                                    class=""
-                                    data-pf-content="true"
-                                  >
-                                    No eligible policies for this system.
-                                  </p>
-                                </div>
-                              </div>
-                              <footer
-                                class="pf-c-modal-box__footer"
-                              >
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="save"
-                                  class="pf-c-button pf-m-primary"
-                                  data-ouia-component-id="6"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="submit"
-                                >
-                                  Save
-                                </button>
-                                <button
-                                  aria-disabled="false"
-                                  aria-label="cancel"
-                                  class="pf-c-button pf-m-secondary"
-                                  data-ouia-component-id="7"
-                                  data-ouia-component-type="PF4/Button"
-                                  data-ouia-safe="true"
-                                  type="button"
-                                >
-                                  Cancel
-                                </button>
-                              </footer>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    }
+                  <path
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                    transform=""
+                  />
+                </svg>
+              </button>
+              <header
+                class="pf-c-modal-box__header"
+              >
+                <h1
+                  class="pf-c-modal-box__title pf-c-modal-box__title"
+                  id="pf-modal-part-1"
+                >
+                  Edit policies for myhost
+                </h1>
+              </header>
+              <div
+                class="pf-c-modal-box__body"
+                id="pf-modal-part-2"
+              >
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
                   >
-                    <ModalContent
-                      actions={
-                        Array [
-                          <SubmitPoliciesButton
-                            aria-label="save"
-                            dispatch={[Function]}
-                            policyIds={Array []}
-                            systemId="1"
-                            toggle={[MockFunction]}
-                            variant="primary"
-                          />,
-                          <Button
-                            aria-label="cancel"
-                            onClick={[Function]}
-                            variant="secondary"
-                          >
-                            Cancel
-                          </Button>,
-                        ]
-                      }
-                      aria-describedby=""
-                      aria-label=""
-                      aria-labelledby=""
-                      boxId="pf-modal-part-2"
-                      className=""
-                      descriptorId="pf-modal-part-4"
-                      hasNoBodyWrapper={false}
-                      isFooterLeftAligned={true}
-                      isOpen={[Function]}
-                      labelId="pf-modal-part-3"
-                      onClose={[Function]}
-                      ouiaSafe={true}
-                      showClose={true}
-                      title="Edit policies for myhost"
-                      variant="small"
+                    Choose which policies 
+                    myhost
+                     should be a part of. Note: Only policies for this host operating system are shown.
+                  </p>
+                </div>
+                <br />
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
+                  >
+                    <div
+                      class="pf-c-check"
                     >
-                      <Backdrop>
-                        <div
-                          className="pf-c-backdrop"
-                        >
-                          <FocusTrap
-                            active={true}
-                            className="pf-l-bullseye"
-                            focusTrapOptions={
-                              Object {
-                                "clickOutsideDeactivates": true,
-                              }
-                            }
-                            paused={false}
-                          >
-                            <div
-                              className="pf-l-bullseye"
-                            >
-                              <ModalBox
-                                aria-describedby="pf-modal-part-4"
-                                aria-label=""
-                                aria-labelledby="pf-modal-part-3"
-                                className=""
-                                data-ouia-component-id={4}
-                                data-ouia-component-type="PF4/ModalContent"
-                                data-ouia-safe={true}
-                                id="pf-modal-part-2"
-                                style={Object {}}
-                                variant="small"
-                              >
-                                <div
-                                  aria-describedby="pf-modal-part-4"
-                                  aria-label={null}
-                                  aria-labelledby="pf-modal-part-3"
-                                  aria-modal="true"
-                                  className="pf-c-modal-box pf-m-sm"
-                                  data-ouia-component-id={4}
-                                  data-ouia-component-type="PF4/ModalContent"
-                                  data-ouia-safe={true}
-                                  id="pf-modal-part-2"
-                                  role="dialog"
-                                  style={Object {}}
-                                >
-                                  <ModalBoxCloseButton
-                                    onClose={[Function]}
-                                  >
-                                    <Button
-                                      aria-label="Close"
-                                      className=""
-                                      onClick={[Function]}
-                                      variant="plain"
-                                    >
-                                      <button
-                                        aria-disabled={false}
-                                        aria-label="Close"
-                                        className="pf-c-button pf-m-plain"
-                                        data-ouia-component-id={5}
-                                        data-ouia-component-type="PF4/Button"
-                                        data-ouia-safe={true}
-                                        disabled={false}
-                                        onClick={[Function]}
-                                        type="button"
-                                      >
-                                        <TimesIcon
-                                          color="currentColor"
-                                          noVerticalAlign={false}
-                                          size="sm"
-                                        >
-                                          <svg
-                                            aria-hidden={true}
-                                            aria-labelledby={null}
-                                            fill="currentColor"
-                                            height="1em"
-                                            role="img"
-                                            style={
-                                              Object {
-                                                "verticalAlign": "-0.125em",
-                                              }
-                                            }
-                                            viewBox="0 0 352 512"
-                                            width="1em"
-                                          >
-                                            <path
-                                              d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                                              transform=""
-                                            />
-                                          </svg>
-                                        </TimesIcon>
-                                      </button>
-                                    </Button>
-                                  </ModalBoxCloseButton>
-                                  <ModalBoxHeader>
-                                    <header
-                                      className="pf-c-modal-box__header"
-                                    >
-                                      <ModalBoxTitle
-                                        className="pf-c-modal-box__title"
-                                        id="pf-modal-part-3"
-                                        title="Edit policies for myhost"
-                                      >
-                                        <h1
-                                          className="pf-c-modal-box__title pf-c-modal-box__title"
-                                          id="pf-modal-part-3"
-                                        >
-                                          Edit policies for myhost
-                                        </h1>
-                                      </ModalBoxTitle>
-                                    </header>
-                                  </ModalBoxHeader>
-                                  <ModalBoxBody
-                                    id="pf-modal-part-4"
-                                    isFooterLeftAligned={true}
-                                  >
-                                    <div
-                                      className="pf-c-modal-box__body"
-                                      id="pf-modal-part-4"
-                                      isFooterLeftAligned={true}
-                                    >
-                                      <TextContent>
-                                        <div
-                                          className="pf-c-content"
-                                        >
-                                          <Text>
-                                            <p
-                                              className=""
-                                              data-pf-content={true}
-                                            >
-                                              Choose which policies 
-                                              myhost
-                                               should be a part of. Note: Only policies for this host operating system are shown.
-                                            </p>
-                                          </Text>
-                                        </div>
-                                      </TextContent>
-                                      <br />
-                                      <TextContent>
-                                        <div
-                                          className="pf-c-content"
-                                        >
-                                          <Text>
-                                            <p
-                                              className=""
-                                              data-pf-content={true}
-                                            >
-                                              No eligible policies for this system.
-                                            </p>
-                                          </Text>
-                                        </div>
-                                      </TextContent>
-                                    </div>
-                                  </ModalBoxBody>
-                                  <ModalBoxFooter>
-                                    <footer
-                                      className="pf-c-modal-box__footer"
-                                    >
-                                      <SubmitPoliciesButton
-                                        aria-label="save"
-                                        dispatch={[Function]}
-                                        key="save"
-                                        policyIds={Array []}
-                                        systemId="1"
-                                        toggle={[MockFunction]}
-                                        variant="primary"
-                                      >
-                                        <Button
-                                          aria-label="save"
-                                          onClick={[Function]}
-                                          type="submit"
-                                          variant="primary"
-                                        >
-                                          <button
-                                            aria-disabled={false}
-                                            aria-label="save"
-                                            className="pf-c-button pf-m-primary"
-                                            data-ouia-component-id={6}
-                                            data-ouia-component-type="PF4/Button"
-                                            data-ouia-safe={true}
-                                            disabled={false}
-                                            onClick={[Function]}
-                                            type="submit"
-                                          >
-                                            Save
-                                          </button>
-                                        </Button>
-                                      </SubmitPoliciesButton>
-                                      <Button
-                                        aria-label="cancel"
-                                        key="cancel"
-                                        onClick={[Function]}
-                                        variant="secondary"
-                                      >
-                                        <button
-                                          aria-disabled={false}
-                                          aria-label="cancel"
-                                          className="pf-c-button pf-m-secondary"
-                                          data-ouia-component-id={7}
-                                          data-ouia-component-type="PF4/Button"
-                                          data-ouia-safe={true}
-                                          disabled={false}
-                                          onClick={[Function]}
-                                          type="button"
-                                        >
-                                          Cancel
-                                        </button>
-                                      </Button>
-                                    </footer>
-                                  </ModalBoxFooter>
-                                </div>
-                              </ModalBox>
-                            </div>
-                          </FocusTrap>
-                        </div>
-                      </Backdrop>
-                    </ModalContent>
-                  </Portal>
-                </Modal>
-              </AssignPoliciesModal>
-            </Form(AssignPoliciesModal)>
-          </Connect(Form(AssignPoliciesModal))>
-        </ReduxForm>
-      </Hoc>
-    </ReduxForm>
-  </Connect(ReduxForm)>
-</Provider>
+                      <input
+                        aria-invalid="false"
+                        checked=""
+                        class="pf-c-check__input"
+                        id="1"
+                        name="policies[0]"
+                        type="checkbox"
+                        value="1"
+                      />
+                      <label
+                        class="pf-c-check__label"
+                        for="1"
+                      >
+                        profile1
+                      </label>
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <footer
+                class="pf-c-modal-box__footer"
+              >
+                <button
+                  aria-disabled="false"
+                  aria-label="save"
+                  class="pf-c-button pf-m-primary"
+                  data-ouia-component-id="2"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  aria-disabled="false"
+                  aria-label="cancel"
+                  class="pf-c-button pf-m-secondary"
+                  data-ouia-component-id="3"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+      />
+      <div>
+        <div
+          class="pf-c-backdrop"
+        >
+          <div
+            class="pf-l-bullseye"
+          >
+            <div
+              aria-describedby="pf-modal-part-4"
+              aria-labelledby="pf-modal-part-3"
+              aria-modal="true"
+              class="pf-c-modal-box pf-m-sm"
+              data-ouia-component-id="4"
+              data-ouia-component-type="PF4/ModalContent"
+              data-ouia-safe="true"
+              id="pf-modal-part-2"
+              role="dialog"
+            >
+              <button
+                aria-disabled="false"
+                aria-label="Close"
+                class="pf-c-button pf-m-plain"
+                data-ouia-component-id="5"
+                data-ouia-component-type="PF4/Button"
+                data-ouia-safe="true"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  style="vertical-align: -0.125em;"
+                  viewBox="0 0 352 512"
+                  width="1em"
+                >
+                  <path
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                    transform=""
+                  />
+                </svg>
+              </button>
+              <header
+                class="pf-c-modal-box__header"
+              >
+                <h1
+                  class="pf-c-modal-box__title pf-c-modal-box__title"
+                  id="pf-modal-part-3"
+                >
+                  Edit policies for myhost
+                </h1>
+              </header>
+              <div
+                class="pf-c-modal-box__body"
+                id="pf-modal-part-4"
+              >
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
+                  >
+                    Choose which policies 
+                    myhost
+                     should be a part of. Note: Only policies for this host operating system are shown.
+                  </p>
+                </div>
+                <br />
+                <div
+                  class="pf-c-content"
+                >
+                  <p
+                    class=""
+                    data-pf-content="true"
+                  >
+                    No eligible policies for this system.
+                  </p>
+                </div>
+              </div>
+              <footer
+                class="pf-c-modal-box__footer"
+              >
+                <button
+                  aria-disabled="false"
+                  aria-label="save"
+                  class="pf-c-button pf-m-primary"
+                  data-ouia-component-id="6"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="submit"
+                >
+                  Save
+                </button>
+                <button
+                  aria-disabled="false"
+                  aria-label="cancel"
+                  class="pf-c-button pf-m-secondary"
+                  data-ouia-component-id="7"
+                  data-ouia-component-type="PF4/Button"
+                  data-ouia-safe="true"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  }
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  hasNoBodyWrapper={false}
+  isFooterLeftAligned={true}
+  isOpen={[Function]}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  title="Edit policies for myhost"
+  variant="small"
+/>
 `;

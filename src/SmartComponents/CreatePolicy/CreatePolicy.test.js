@@ -33,7 +33,7 @@ describe('CreatePolicy', () => {
                 <CreatePolicy isOpen />
             </Provider>
         );
-        expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
+        expect(toJson(wrapper.find('Wizard'), { mode: 'shallow' })).toMatchSnapshot();
     });
 
     it('destroys the form on close', async () => {

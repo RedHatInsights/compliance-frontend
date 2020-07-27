@@ -58,6 +58,8 @@ describe('CreateSCAPPolicy', () => {
                 <CreateSCAPPolicy />
             </Provider>
         );
-        expect(toJson(wrapper.find('Form'))).toMatchSnapshot();
+        expect(toJson(wrapper.find('Form Text small'))).toMatchSnapshot();
+        expect(toJson(wrapper.find('Button'), { mode: 'deep' })).toMatchSnapshot();
+        expect(toJson(wrapper.find('ProfileTypeSelect'), { mode: 'shallow' })).toMatchSnapshot();
     });
 });

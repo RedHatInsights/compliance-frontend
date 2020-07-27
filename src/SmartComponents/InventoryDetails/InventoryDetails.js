@@ -54,8 +54,4 @@ InventoryDetails.propTypes = {
     entity: propTypes.object
 };
 
-const ConnectedInventoryDetails = (props) => {
-    return <InventoryDetails {...props} store={ReactRedux.useStore()} />;
-};
-
-export default ConnectedInventoryDetails;
+export default InventoryDetails;

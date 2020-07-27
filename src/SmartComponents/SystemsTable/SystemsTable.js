@@ -457,10 +457,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-// const ConnectedSystemsTable = (props) => {
-//     return <SystemsTable {...props} store={ReactRedux.useStore()} />;
-// };
-
 export { SystemsTable };
 export const SystemsTableWithApollo = withApollo(SystemsTable);
 export default connect(
