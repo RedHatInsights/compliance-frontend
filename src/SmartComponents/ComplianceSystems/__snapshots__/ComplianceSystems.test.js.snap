@@ -10,7 +10,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
     />
   </PageHeader>
   <Connect(Main)>
-    <Connect(withApollo(SystemsTable))
+    <Connect(withApollo(ConnectedSystemsTable))
       columns={
         Array [
           Object {

@@ -1,8 +1,12 @@
 import InventoryDetails from './InventoryDetails';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
 const MockComponent = jest.fn(({ children, loaded }) => {
     return children && loaded ? children : 'Loading...';
 });
+
+const mockStore = configureStore();
 
 describe('InventoryDetails', () => {
     const defaultProps = {
@@ -24,10 +28,12 @@ describe('InventoryDetails', () => {
     });
 
     it('expect to render without error', () => {
-        const wrapper = shallow(
-            <InventoryDetails { ...defaultProps }/>
+        const wrapper = mount(
+            <Provider store={mockStore()}>
+                <InventoryDetails { ...defaultProps }/>
+            </Provider>
         );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
+        expect(toJson(wrapper.find('InventoryCmp'), { mode: 'shallow' })).toMatchSnapshot();
     });
 });
