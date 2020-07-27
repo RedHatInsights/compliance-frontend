@@ -265,7 +265,7 @@ exports[`Reports expect to render emptystate 1`] = `
                 }
               }
               mainButton={
-                <Connect(CreatePolicy)
+                <Memo(Connect(CreatePolicy))
                   onWizardFinish={[Function]}
                 />
               }

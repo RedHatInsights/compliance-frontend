@@ -79,7 +79,7 @@ describe('AssignPoliciesModal', () => {
             </Provider>
         );
         await waitForComponentToPaint(component);
-        expect(toJson(component)).toMatchSnapshot();
+        expect(toJson(component.find('Modal'), { mode: 'shallow' })).toMatchSnapshot();
     });
 
     it('expect not to render anything for a closed modal', async () => {
@@ -115,7 +115,7 @@ describe('AssignPoliciesModal', () => {
             </Provider>
         );
         await waitForComponentToPaint(component);
-        expect(toJson(component)).toMatchSnapshot();
+        expect(toJson(component.find('Modal'), { mode: 'shallow' })).toMatchSnapshot();
     });
 
     it('renders empty state if no OS is matching the system', async () => {
@@ -148,6 +148,6 @@ describe('AssignPoliciesModal', () => {
             </Provider>
         );
         await waitForComponentToPaint(component);
-        expect(toJson(component)).toMatchSnapshot();
+        expect(toJson(component.find('Modal'), { mode: 'shallow' })).toMatchSnapshot();
     });
 });

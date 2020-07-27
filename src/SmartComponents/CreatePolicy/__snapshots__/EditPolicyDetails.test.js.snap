@@ -1,15 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetails expect to render without error 1`] = `
-<EditPolicyDetails
-  profile={
+<ContextProvider
+  value={
     Object {
-      "complianceThreshold": 100,
-      "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
-      "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
-      "name": "C2S for Red Hat Enterprise Linux 6",
-      "refId": "xccdf_org.ssgproject.content_profile_C2S",
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "notify": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        },
+        "unsubscribe": null,
+      },
     }
   }
-/>
+>
+  <EditPolicyDetails
+    profile={
+      Object {
+        "complianceThreshold": 100,
+        "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
+        "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
+        "name": "C2S for Red Hat Enterprise Linux 6",
+        "refId": "xccdf_org.ssgproject.content_profile_C2S",
+      }
+    }
+  />
+</ContextProvider>
 `;
