@@ -12,6 +12,7 @@ after_success:
 - curl -sSL https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master/src/bootstrap.sh | bash -s
 env:
     global:
+    - NODE_OPTIONS=–max_old_space_size=6144
     - REPO="git@github.com:RedHatInsights/compliance-frontend-build"
     - REPO_DIR="compliance-frontend-build"
     - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
