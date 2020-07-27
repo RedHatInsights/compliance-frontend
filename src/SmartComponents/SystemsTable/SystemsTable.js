@@ -257,7 +257,7 @@ class SystemsTable extends React.Component {
         });
 
         this.setState({
-            InventoryCmp: inventoryConnector().InventoryTable
+            InventoryCmp: inventoryConnector(this.props.store).InventoryTable
         });
     }
 
@@ -379,6 +379,7 @@ class SystemsTable extends React.Component {
 }
 
 SystemsTable.propTypes = {
+    store: propTypes.object,
     client: propTypes.object,
     policyId: propTypes.string,
     columns: propTypes.array,

@@ -36,7 +36,7 @@ class InventoryDetails extends React.Component {
         });
 
         this.setState({
-            InventoryCmp: inventoryConnector().InventoryDetail
+            InventoryCmp: inventoryConnector(this.props.store).InventoryDetail
         });
     }
 
@@ -51,7 +51,8 @@ class InventoryDetails extends React.Component {
 }
 
 InventoryDetails.propTypes = {
-    entity: propTypes.object
+    entity: propTypes.object,
+    store: propTypes.object
 };
 
 const ConnectedInventoryDetails = (props) => {
