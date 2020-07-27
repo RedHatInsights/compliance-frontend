@@ -135,7 +135,13 @@ class SystemsTable extends React.Component {
             }); }
             );
         } else {
-            this.setState({ page, perPage }, this.updateSystems);
+            this.setState({ page, perPage }, () => this.updateSystems().then(() => {
+                if (this.inventory && this.inventory.current) {
+                    this.inventory.current.onRefreshData({
+                        page, perPage, ...options, per_page: perPage // eslint-disable-line camelcase
+                    });
+                }
+            }));
         }
     }
 
