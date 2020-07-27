@@ -135,7 +135,13 @@ class SystemsTable extends React.Component {
             }); }
             );
         } else {
-            this.setState({ page, perPage }, this.updateSystems);
+            this.setState({ page, perPage }, () => this.updateSystems().then(() => {
+                if (this.inventory && this.inventory.current) {
+                    this.inventory.current.onRefreshData({
+                        page, perPage, ...options, per_page: perPage // eslint-disable-line camelcase
+                    });
+                }
+            }));
         }
     }
 
@@ -256,9 +262,9 @@ class SystemsTable extends React.Component {
                 ))
         });
 
-        this.setState({
-            InventoryCmp: inventoryConnector().InventoryTable
-        });
+        this.setState(() => ({
+            InventoryCmp: inventoryConnector(this.props.store).InventoryTable
+        }));
     }
 
     render() {
@@ -379,6 +385,7 @@ class SystemsTable extends React.Component {
 }
 
 SystemsTable.propTypes = {
+    store: propTypes.object,
     client: propTypes.object,
     policyId: propTypes.string,
     columns: propTypes.array,
@@ -457,8 +464,12 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
+const ConnectedSystemsTable = (props) => {
+    return <SystemsTable {...props} store={ReactRedux.useStore()} />;
+};
+
 export { SystemsTable };
-export const SystemsTableWithApollo = withApollo(SystemsTable);
+export const SystemsTableWithApollo = withApollo(ConnectedSystemsTable);
 export default connect(
     mapStateToProps,
     mapDispatchToProps

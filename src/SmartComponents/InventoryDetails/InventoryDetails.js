@@ -35,9 +35,9 @@ class InventoryDetails extends React.Component {
             ...mergeWithDetail()
         });
 
-        this.setState({
-            InventoryCmp: inventoryConnector().InventoryDetail
-        });
+        this.setState(() => ({
+            InventoryCmp: inventoryConnector(this.props.store).InventoryDetail
+        }));
     }
 
     render() {
@@ -51,7 +51,12 @@ class InventoryDetails extends React.Component {
 }
 
 InventoryDetails.propTypes = {
-    entity: propTypes.object
+    entity: propTypes.object,
+    store: propTypes.object
 };
 
-export default InventoryDetails;
+const ConnectedInventoryDetails = (props) => {
+    return <InventoryDetails {...props} store={ReactRedux.useStore()} />;
+};
+
+export default ConnectedInventoryDetails;
