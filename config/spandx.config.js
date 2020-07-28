@@ -1,5 +1,8 @@
 /*global module*/
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const goodGuyLib = require('good-guy-http');
+
 const envWithDefault = function (envVar, defaultVar) {
     return process.env[envVar] ? process.env[envVar] : defaultVar;
 };
@@ -49,4 +52,12 @@ if (LOCAL_INVENTORY) {
     routes[`/api/inventory/v1/hosts`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
 }
 
-module.exports = { routes };
+const esi = {
+    // Increases the default (2s) timeout which can be a pain sometimes.
+    // https://github.com/Schibsted-Tech-Polska/good-guy-http/blob/master/lib/index.js#L55
+    httpClient: goodGuyLib({
+        timeout: 5000
+    })
+};
+
+module.exports = { routes, esi };
