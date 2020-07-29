@@ -575,8 +575,6 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
             ],
           }
         }
-        hasCheckbox={false}
-        hasItems={false}
         items={
           Array [
             1,
@@ -588,16 +586,6 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
         tableProps={
           Object {
             "canSelectAll": false,
-            "columns": Array [],
-            "rows": Array [
-              Object {
-                "cells": Array [
-                  Object {
-                    "title": <NoSystemsTableBody />,
-                  },
-                ],
-              },
-            ],
           }
         }
         total={0}
@@ -696,8 +684,6 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
             ],
           }
         }
-        hasCheckbox={false}
-        hasItems={false}
         items={
           Array [
             1,
@@ -709,16 +695,6 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
         tableProps={
           Object {
             "canSelectAll": false,
-            "columns": Array [],
-            "rows": Array [
-              Object {
-                "cells": Array [
-                  Object {
-                    "title": <NoSystemsTableBody />,
-                  },
-                ],
-              },
-            ],
           }
         }
         total={0}

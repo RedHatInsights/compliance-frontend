@@ -270,7 +270,7 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, systems, total
+            selectedEntities, systems, total, policyId
         } = this.props;
         const {
             page, perPage, InventoryCmp, selectedSystemId,
@@ -345,7 +345,7 @@ class SystemsTable extends React.Component {
             noError = true;
         }
 
-        if (!showAllSystems && total === 0) {
+        if (policyId && total === 0) {
             inventoryTableProps.tableProps.rows = [{ cells: [{ title: <NoSystemsTableBody /> }] }];
             inventoryTableProps.tableProps.columns = [];
             inventoryTableProps.hasItems = false;
