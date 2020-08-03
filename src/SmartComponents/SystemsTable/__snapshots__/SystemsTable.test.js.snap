@@ -8,7 +8,6 @@ Object {
     "70-89",
     "90-100",
   ],
-  "name": "",
 }
 `;
 
@@ -20,7 +19,6 @@ Object {
     "70-89",
     "90-100",
   ],
-  "name": "",
 }
 `;
 
@@ -29,7 +27,6 @@ Object {
   "compliant": Array [
     "false",
   ],
-  "name": "",
 }
 `;
 
@@ -38,15 +35,10 @@ Object {
   "compliant": Array [
     "false",
   ],
-  "name": "",
 }
 `;
 
-exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 1`] = `
-Object {
-  "name": "",
-}
-`;
+exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 1`] = `Object {}`;
 
 exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 2`] = `
 Object {
@@ -54,11 +46,7 @@ Object {
 }
 `;
 
-exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 3`] = `
-Object {
-  "name": "",
-}
-`;
+exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 3`] = `Object {}`;
 
 exports[`SystemsTable Instance functions #onFilterUpdate set search in state properly 4`] = `
 Object {
@@ -67,7 +55,6 @@ Object {
     "50-69",
     "90-100",
   ],
-  "name": "",
 }
 `;
 
@@ -129,7 +116,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -219,7 +206,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -321,7 +308,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -418,7 +405,7 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -566,7 +553,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -575,8 +562,6 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
             ],
           }
         }
-        hasCheckbox={false}
-        hasItems={false}
         items={
           Array [
             1,
@@ -588,16 +573,6 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
         tableProps={
           Object {
             "canSelectAll": false,
-            "columns": Array [],
-            "rows": Array [
-              Object {
-                "cells": Array [
-                  Object {
-                    "title": <NoSystemsTableBody />,
-                  },
-                ],
-              },
-            ],
           }
         }
         total={0}
@@ -687,7 +662,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -696,8 +671,6 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
             ],
           }
         }
-        hasCheckbox={false}
-        hasItems={false}
         items={
           Array [
             1,
@@ -709,16 +682,6 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
         tableProps={
           Object {
             "canSelectAll": false,
-            "columns": Array [],
-            "rows": Array [
-              Object {
-                "cells": Array [
-                  Object {
-                    "title": <NoSystemsTableBody />,
-                  },
-                ],
-              },
-            ],
           }
         }
         total={0}
@@ -801,7 +764,7 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",
@@ -898,7 +861,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
               Object {
                 "filterValues": Object {
                   "onChange": [Function],
-                  "value": "",
+                  "value": undefined,
                 },
                 "id": "name",
                 "label": "Name",

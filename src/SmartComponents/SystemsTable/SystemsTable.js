@@ -8,6 +8,7 @@ import * as ReactRedux from 'react-redux';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
+import { pickBy } from 'lodash';
 import {
     SkeletonTable
 } from '@redhat-cloud-services/frontend-components';
@@ -90,6 +91,10 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 }
 `;
 
+const initFilterState = (filterConfig) => (
+    pickBy(filterConfig.initialDefaultState(), (value) => (!!value))
+);
+
 const initialState = {
     page: 1
 };
@@ -110,7 +115,7 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
-        activeFilters: this.filterConfig.initialDefaultState()
+        activeFilters: initFilterState(this.filterConfig)
     }
 
     componentDidMount = () => {
@@ -214,7 +219,7 @@ class SystemsTable extends React.Component {
     clearAllFilter = () => {
         this.setState({
             ...initialState,
-            activeFilters: this.filterConfig.initialDefaultState()
+            activeFilters: initFilterState(this.filterConfig)
         }, this.updateSystems);
     }
 
@@ -270,16 +275,16 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, systems, total
+            selectedEntities, systems, total, policyId
         } = this.props;
         const {
-            page, perPage, InventoryCmp, selectedSystemId,
+            page, perPage, InventoryCmp, selectedSystemId, activeFilters,
             selectedSystemFqdn, isAssignPoliciesModalOpen, error
         } = this.state;
         let noError;
         const filterConfig = this.filterConfig.buildConfiguration(
             this.onFilterUpdate,
-            this.state.activeFilters,
+            activeFilters,
             { hideLabel: true }
         );
         const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
@@ -345,7 +350,7 @@ class SystemsTable extends React.Component {
             noError = true;
         }
 
-        if (!showAllSystems && total === 0) {
+        if (policyId && total === 0 && Object.keys(activeFilters).length === 0) {
             inventoryTableProps.tableProps.rows = [{ cells: [{ title: <NoSystemsTableBody /> }] }];
             inventoryTableProps.tableProps.columns = [];
             inventoryTableProps.hasItems = false;
