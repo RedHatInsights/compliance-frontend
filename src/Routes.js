@@ -38,8 +38,13 @@ const policiesRoutes = [
         component: asyncComponent(() =>
             import(/* webpackChunkName: "PolicyDetails" */ 'SmartComponents/PolicyDetails/PolicyDetails')
         )
-    },
-    {
+    }, {
+        path: '/scappolicies/:policy_id/edit',
+        component: asyncComponent(() =>
+            import(/* webpackChunkName: "EditPolicy" */ 'SmartComponents/EditPolicy/EditPolicy')
+        ),
+        modal: true
+    }, {
         path: '/scappolicies/:policy_id/delete',
         component: asyncComponent(() =>
             import(/* webpackChunkName: "DeletePolicy" */ 'SmartComponents/DeletePolicy/DeletePolicy')
@@ -54,8 +59,7 @@ const systemsRoutes = [
         component: asyncComponent(() =>
             import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
         )
-    },
-    {
+    }, {
         path: '/systems/:inventoryId',
         component: asyncComponent(() =>
             import(/* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails')

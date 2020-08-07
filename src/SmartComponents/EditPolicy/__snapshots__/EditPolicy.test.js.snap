@@ -1,80 +1,223 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EditPolicy expect to render without error 1`] = `
-<Fragment>
-  <Button
-    onClick={[Function]}
-    variant="secondary"
-  >
-    Edit policy
-  </Button>
-  <Modal
-    actions={
-      Array [
-        <Button
-          onClick={[Function]}
-          variant="secondary"
-        >
-          Cancel
-        </Button>,
-        <Apollo(UpdateProfileButton)
-          businessObjective={
+exports[`EditPolicy expect to render with active tab open 1`] = `
+<Modal
+  actions={
+    Array [
+      <Button
+        isDisabled={null}
+        onClick={[Function]}
+        variant="primary"
+      >
+        Save
+      </Button>,
+      <Button
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={<body />}
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  hasNoBodyWrapper={false}
+  isOpen={true}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  style={
+    Object {
+      "height": "400px",
+    }
+  }
+  title="Edit Policy Name"
+  variant="default"
+  width={1000}
+>
+  <Form>
+    <RoutedTabs
+      defaultTab="details"
+    >
+      <Tab
+        eventKey="details"
+        title={
+          <TabTitleText>
+            Details
+          </TabTitleText>
+        }
+      >
+        <EditPolicyDetailsTab
+          policy={
             Object {
-              "id": 1,
-              "title": "BO title",
+              "businessObjective": Object {
+                "id": 1,
+                "title": "BO title",
+              },
+              "complianceThreshold": "30",
+              "hosts": Array [],
+              "id": "POLICY_ID",
+              "name": "Policy Name",
             }
           }
-          onClick={[Function]}
-          policyId="POLICY_ID"
-          threshold={30}
-        />,
-      ]
-    }
-    appendTo={<body />}
-    aria-describedby=""
-    aria-label=""
-    aria-labelledby=""
-    className=""
-    hasNoBodyWrapper={false}
-    isOpen={false}
-    onClose={[Function]}
-    ouiaSafe={true}
-    showClose={true}
-    title="Edit policy details"
-    variant="small"
-  >
-    <Form>
-      <withApollo(ReduxForm)
-        businessObjective={
-          Object {
-            "id": 1,
-            "title": "BO title",
-          }
+          setUpdatedPolicy={[Function]}
+        />
+      </Tab>
+      <Tab
+        eventKey="rules"
+        title={
+          <TabTitleText>
+            Rules
+          </TabTitleText>
         }
-        dispatch={[MockFunction]}
-        policyId="POLICY_ID"
-        showTitle={true}
-      />
-      <ReduxForm
-        destroyOnUnmount={false}
-        enableReinitialize={false}
-        forceUnregisterOnUnmount={true}
-        form="policyForm"
-        getFormState={[Function]}
-        keepDirtyOnReinitialize={false}
-        persistentSubmitErrors={false}
-        pure={true}
-        shouldAsyncValidate={[Function]}
-        shouldError={[Function]}
-        shouldValidate={[Function]}
-        shouldWarn={[Function]}
-        showTitle={true}
-        submitAsSideEffect={false}
-        touchOnBlur={true}
-        touchOnChange={false}
-        updateUnregisteredFields={false}
-      />
-    </Form>
-  </Modal>
-</Fragment>
+      >
+        Rule editing coming soon
+      </Tab>
+      <Tab
+        eventKey="systems"
+        title={
+          <TabTitleText>
+            Systems
+          </TabTitleText>
+        }
+      >
+        <Connect(withApollo(ConnectedSystemsTable))
+          columns={
+            Array [
+              Object {
+                "key": "facts.compliance.display_name",
+                "props": Object {
+                  "isStatic": true,
+                  "width": 40,
+                },
+                "title": "System name",
+              },
+            ]
+          }
+          compact={true}
+          enableExport={false}
+          policyId="POLICY_ID"
+          preselectedSystems={Array []}
+          remediationsEnabled={false}
+          showActions={false}
+          showAllSystems={true}
+        />
+      </Tab>
+    </RoutedTabs>
+  </Form>
+</Modal>
+`;
+
+exports[`EditPolicy expect to render without error 1`] = `
+<Modal
+  actions={
+    Array [
+      <Button
+        isDisabled={null}
+        onClick={[Function]}
+        variant="primary"
+      >
+        Save
+      </Button>,
+      <Button
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={<body />}
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  hasNoBodyWrapper={false}
+  isOpen={true}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  style={
+    Object {
+      "height": "400px",
+    }
+  }
+  title="Edit Policy Name"
+  variant="default"
+  width={1000}
+>
+  <Form>
+    <RoutedTabs
+      defaultTab="details"
+    >
+      <Tab
+        eventKey="details"
+        title={
+          <TabTitleText>
+            Details
+          </TabTitleText>
+        }
+      >
+        <EditPolicyDetailsTab
+          policy={
+            Object {
+              "businessObjective": Object {
+                "id": 1,
+                "title": "BO title",
+              },
+              "complianceThreshold": "30",
+              "hosts": Array [],
+              "id": "POLICY_ID",
+              "name": "Policy Name",
+            }
+          }
+          setUpdatedPolicy={[Function]}
+        />
+      </Tab>
+      <Tab
+        eventKey="rules"
+        title={
+          <TabTitleText>
+            Rules
+          </TabTitleText>
+        }
+      >
+        Rule editing coming soon
+      </Tab>
+      <Tab
+        eventKey="systems"
+        title={
+          <TabTitleText>
+            Systems
+          </TabTitleText>
+        }
+      >
+        <Connect(withApollo(ConnectedSystemsTable))
+          columns={
+            Array [
+              Object {
+                "key": "facts.compliance.display_name",
+                "props": Object {
+                  "isStatic": true,
+                  "width": 40,
+                },
+                "title": "System name",
+              },
+            ]
+          }
+          compact={true}
+          enableExport={false}
+          policyId="POLICY_ID"
+          preselectedSystems={Array []}
+          remediationsEnabled={false}
+          showActions={false}
+          showAllSystems={true}
+        />
+      </Tab>
+    </RoutedTabs>
+  </Form>
+</Modal>
 `;

@@ -40,8 +40,10 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
     updateProfile(input: $input) {
         profile {
             id,
+            name,
             complianceThreshold,
-            businessObjectiveId
+            businessObjectiveId,
+            description
         }
     }
 }

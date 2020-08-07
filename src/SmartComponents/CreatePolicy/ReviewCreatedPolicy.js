@@ -100,7 +100,7 @@ export default connect(
         benchmarkId: selector(state, 'benchmark'),
         refId: selector(state, 'refId'),
         name: selector(state, 'name'),
-        businessObjective: selector(state, 'businessObjective') && selector(state, 'businessObjective').label,
+        businessObjective: selector(state, 'businessObjective'),
         systemsCount: selector(state, 'systems').length,
         complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
         parentProfileName: JSON.parse(selector(state, 'profile')).name,

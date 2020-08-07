@@ -160,6 +160,19 @@ export class PoliciesTable extends React.Component {
                     background: this.props.location
                 });
             }
+        },
+        {
+            title: 'Edit policy',
+            onClick: (_event, _index, { policyId }) => {
+                const policy = this.props.policies.find((policy) => (
+                    policy.id === policyId
+                ));
+                this.props.history.push(`/scappolicies/${ policyId }/edit`, {
+                    policy,
+                    background: this.props.location,
+                    state: { policy }
+                });
+            }
         }
     ]);
 

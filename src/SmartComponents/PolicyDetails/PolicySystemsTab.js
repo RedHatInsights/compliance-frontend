@@ -1,11 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
-
 import { SystemsTable } from 'SmartComponents';
 
-const PolicySystemsTab = ({ policy, complianceThreshold }) => (
-    <SystemsTable policyId={policy.id}
-        remediationsEnabled={false}
+const PolicySystemsTab = ({ policy, systemTableProps }) => (
+    <SystemsTable
+        policyId={ policy.id }
+        remediationsEnabled={ false }
         columns={[{
             key: 'facts.compliance.display_name',
             title: 'System name',
@@ -13,15 +13,17 @@ const PolicySystemsTab = ({ policy, complianceThreshold }) => (
                 width: 40, isStatic: true
             }
         }]}
-        complianceThreshold={ complianceThreshold }
+        complianceThreshold={ policy.complianceThreshold }
+        { ...systemTableProps }
     />
 );
 
 PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
-        id: propTypes.string.isRequired
+        id: propTypes.string.isRequired,
+        complianceThreshold: propTypes.number.isRequired
     }),
-    complianceThreshold: propTypes.number
+    systemTableProps: propTypes.object
 };
 
 export default PolicySystemsTab;

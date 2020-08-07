@@ -83,9 +83,9 @@ export const policiesCell = (system) => {
 
 const displayNameCell = (system, matchingSystem) =>  ({
     title: <TextContent>
-        <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
-            { system.display_name || matchingSystem.name }
-        </Link>
+        { matchingSystem.name ? <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
+            { matchingSystem.name }
+        </Link> : system.display_name }
         { matchingSystem.osMajorVersion && matchingSystem.osMinorVersion &&
             <Text component={TextVariants.small}>RHEL {matchingSystem.osMajorVersion}.{matchingSystem.osMinorVersion}</Text> }
     </TextContent>,
@@ -96,7 +96,7 @@ const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
 );
 
-export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities) =>(
+export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities) => (
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -148,7 +148,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
                         entity.facts.release
                 },
                 compliance: {
-                    display_name: displayNameCell(systems, matchingSystem),
+                    display_name: displayNameCell(entity, matchingSystem),
                     policies: policiesCell(matchingSystem),
                     details_link: matchingSystem.profileNames && {
                         title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
@@ -173,7 +173,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
             }
             /* eslint-enable camelcase */
         };
-    }).filter(value => value !== undefined)
+    }).filter((value) => (!!value))
 );
 
 const selectRowsByIds = (state, ids) => {
@@ -256,6 +256,9 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
             }
 
             return newState;
-        }
+        },
+        ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
+            selectedEntities: ids
+        })
     }
 );

@@ -47,7 +47,10 @@ jest.mock('@apollo/react-hooks', () => ({
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
-    useParams: jest.fn().mockReturnValue({ policy_id: '1' }) // eslint-disable-line
+    useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
+    useLocation: jest.fn(() => ({
+        hash: ''
+    }))
 }));
 
 describe('PolicyDetails', () => {

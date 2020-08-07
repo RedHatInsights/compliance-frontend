@@ -81,17 +81,45 @@ exports[`PolicyDetails expect to render without error 1`] = `
           xl={2}
           xl2={1}
         >
-          <Connect(EditPolicy)
-            businessObjective={
+          <BackgroundLink
+            backgroundLocation={
               Object {
-                "id": "1",
-                "title": "BO 1",
+                "hash": "details",
               }
             }
-            onClose={[Function]}
-            policyId="1"
-            previousThreshold={1}
-          />
+            hash=""
+            state={
+              Object {
+                "policy": Object {
+                  "benchmark": Object {
+                    "title": "benchmark",
+                    "version": "0.1.5",
+                  },
+                  "businessObjective": Object {
+                    "id": "1",
+                    "title": "BO 1",
+                  },
+                  "complianceThreshold": 1,
+                  "compliantHostCount": 1,
+                  "description": "profile description",
+                  "id": "1",
+                  "name": "profile1",
+                  "policy": Object {
+                    "name": "parentpolicy",
+                  },
+                  "refId": "121212",
+                  "totalHostCount": 1,
+                },
+              }
+            }
+            to="/scappolicies/1/edit"
+          >
+            <Button
+              variant="secondary"
+            >
+              Edit policy
+            </Button>
+          </BackgroundLink>
         </GridItem>
       </Grid>
       <RoutedTabs
@@ -179,7 +207,6 @@ exports[`PolicyDetails expect to render without error 1`] = `
           eventKey="systems"
         >
           <PolicySystemsTab
-            complianceThreshold={1}
             policy={
               Object {
                 "benchmark": Object {

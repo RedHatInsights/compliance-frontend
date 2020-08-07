@@ -2,21 +2,26 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 
-const BackgroundLink = ({ to, children }) => {
-    const location = useLocation();
+const BackgroundLink = ({
+    to, hash, children, state: desiredState, backgroundLocation, ...props
+}) => {
+    const currentLocation = useLocation();
+    const background = { ...currentLocation, ...backgroundLocation };
+    const state = { ...desiredState, background };
 
     return <Link
-        to={{
-            pathname: to,
-            state: { background: location }
-        }}>
+        to={{ pathname: to, state, hash }}
+        { ...props }>
         { children }
     </Link>;
 };
 
 BackgroundLink.propTypes = {
-    to: propTypes.string.isRequired,
-    children: propTypes.node
+    backgroundLocation: propTypes.object,
+    children: propTypes.node,
+    hash: propTypes.string,
+    state: propTypes.object,
+    to: propTypes.string.isRequired
 };
 
 export default BackgroundLink;
