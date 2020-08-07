@@ -9,11 +9,6 @@ const reportsRoutes = [
             import(/* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports')
         )
     }, {
-        path: '/reports/systems',
-        component: asyncComponent(() =>
-            import(/* webpackChunkName: "ReportsSystems" */ 'SmartComponents/ReportsSystems/ReportsSystems')
-        )
-    }, {
         path: '/reports/:report_id',
         component: asyncComponent(() =>
             import(/* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails')

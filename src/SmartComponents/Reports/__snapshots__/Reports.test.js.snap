@@ -2,13 +2,7 @@
 
 exports[`Reports expect to render emptystate 1`] = `
 <Fragment>
-  <PageHeader
-    style={
-      Object {
-        "paddingBottom": 22,
-      }
-    }
-  >
+  <PageHeader>
     <PageHeaderTitle
       title="Compliance reports"
     />
@@ -22,8 +16,8 @@ exports[`Reports expect to render emptystate 1`] = `
               "edges": Array [],
             },
           },
-          "error": false,
-          "loading": false,
+          "error": undefined,
+          "loading": undefined,
         }
       }
     >
@@ -49,233 +43,8 @@ exports[`Reports expect to render emptystate 1`] = `
           <Grid
             hasGutter={true}
           >
-            <ComplianceEmptyState
-              client={
-                ApolloClient {
-                  "cache": InMemoryCache {
-                    "addTypename": true,
-                    "cacheKeyRoot": KeyTrie {
-                      "weakness": true,
-                    },
-                    "config": Object {
-                      "addTypename": true,
-                      "dataIdFromObject": [Function],
-                      "fragmentMatcher": HeuristicFragmentMatcher {},
-                      "freezeResults": false,
-                      "resultCaching": true,
-                    },
-                    "data": DepTrackingCache {
-                      "data": Object {},
-                      "depend": [Function],
-                    },
-                    "maybeBroadcastWatch": [Function],
-                    "optimisticData": DepTrackingCache {
-                      "data": Object {},
-                      "depend": [Function],
-                    },
-                    "silenceBroadcast": false,
-                    "storeReader": StoreReader {
-                      "executeSelectionSet": [Function],
-                      "executeStoreQuery": [Function],
-                      "executeSubSelectedArray": [Function],
-                      "freezeResults": false,
-                    },
-                    "storeWriter": StoreWriter {},
-                    "typenameDocumentCache": Array [],
-                    "watches": Array [],
-                  },
-                  "clearStoreCallbacks": Array [],
-                  "defaultOptions": Object {},
-                  "disableNetworkFetches": false,
-                  "link": HttpLink {
-                    "request": [Function],
-                  },
-                  "localState": LocalState {
-                    "cache": InMemoryCache {
-                      "addTypename": true,
-                      "cacheKeyRoot": KeyTrie {
-                        "weakness": true,
-                      },
-                      "config": Object {
-                        "addTypename": true,
-                        "dataIdFromObject": [Function],
-                        "fragmentMatcher": HeuristicFragmentMatcher {},
-                        "freezeResults": false,
-                        "resultCaching": true,
-                      },
-                      "data": DepTrackingCache {
-                        "data": Object {},
-                        "depend": [Function],
-                      },
-                      "maybeBroadcastWatch": [Function],
-                      "optimisticData": DepTrackingCache {
-                        "data": Object {},
-                        "depend": [Function],
-                      },
-                      "silenceBroadcast": false,
-                      "storeReader": StoreReader {
-                        "executeSelectionSet": [Function],
-                        "executeStoreQuery": [Function],
-                        "executeSubSelectedArray": [Function],
-                        "freezeResults": false,
-                      },
-                      "storeWriter": StoreWriter {},
-                      "typenameDocumentCache": Array [],
-                      "watches": Array [],
-                    },
-                    "client": [Circular],
-                  },
-                  "mutate": [Function],
-                  "query": [Function],
-                  "queryDeduplication": true,
-                  "queryManager": QueryManager {
-                    "assumeImmutableResults": false,
-                    "clientAwareness": Object {
-                      "name": undefined,
-                      "version": undefined,
-                    },
-                    "dataStore": DataStore {
-                      "cache": InMemoryCache {
-                        "addTypename": true,
-                        "cacheKeyRoot": KeyTrie {
-                          "weakness": true,
-                        },
-                        "config": Object {
-                          "addTypename": true,
-                          "dataIdFromObject": [Function],
-                          "fragmentMatcher": HeuristicFragmentMatcher {},
-                          "freezeResults": false,
-                          "resultCaching": true,
-                        },
-                        "data": DepTrackingCache {
-                          "data": Object {},
-                          "depend": [Function],
-                        },
-                        "maybeBroadcastWatch": [Function],
-                        "optimisticData": DepTrackingCache {
-                          "data": Object {},
-                          "depend": [Function],
-                        },
-                        "silenceBroadcast": false,
-                        "storeReader": StoreReader {
-                          "executeSelectionSet": [Function],
-                          "executeStoreQuery": [Function],
-                          "executeSubSelectedArray": [Function],
-                          "freezeResults": false,
-                        },
-                        "storeWriter": StoreWriter {},
-                        "typenameDocumentCache": Array [],
-                        "watches": Array [],
-                      },
-                    },
-                    "fetchQueryRejectFns": Array [],
-                    "idCounter": 1,
-                    "inFlightLinkObservables": Array [],
-                    "link": HttpLink {
-                      "request": [Function],
-                    },
-                    "localState": LocalState {
-                      "cache": InMemoryCache {
-                        "addTypename": true,
-                        "cacheKeyRoot": KeyTrie {
-                          "weakness": true,
-                        },
-                        "config": Object {
-                          "addTypename": true,
-                          "dataIdFromObject": [Function],
-                          "fragmentMatcher": HeuristicFragmentMatcher {},
-                          "freezeResults": false,
-                          "resultCaching": true,
-                        },
-                        "data": DepTrackingCache {
-                          "data": Object {},
-                          "depend": [Function],
-                        },
-                        "maybeBroadcastWatch": [Function],
-                        "optimisticData": DepTrackingCache {
-                          "data": Object {},
-                          "depend": [Function],
-                        },
-                        "silenceBroadcast": false,
-                        "storeReader": StoreReader {
-                          "executeSelectionSet": [Function],
-                          "executeStoreQuery": [Function],
-                          "executeSubSelectedArray": [Function],
-                          "freezeResults": false,
-                        },
-                        "storeWriter": StoreWriter {},
-                        "typenameDocumentCache": Array [],
-                        "watches": Array [],
-                      },
-                      "client": [Circular],
-                    },
-                    "mutationStore": MutationStore {
-                      "store": Object {},
-                    },
-                    "onBroadcast": [Function],
-                    "pollingInfoByQueryId": Array [],
-                    "queries": Array [],
-                    "queryDeduplication": true,
-                    "queryStore": QueryStore {
-                      "store": Object {},
-                    },
-                    "ssrMode": false,
-                    "transformCache": WeakMap {},
-                  },
-                  "reFetchObservableQueries": [Function],
-                  "resetStore": [Function],
-                  "resetStoreCallbacks": Array [],
-                  "store": DataStore {
-                    "cache": InMemoryCache {
-                      "addTypename": true,
-                      "cacheKeyRoot": KeyTrie {
-                        "weakness": true,
-                      },
-                      "config": Object {
-                        "addTypename": true,
-                        "dataIdFromObject": [Function],
-                        "fragmentMatcher": HeuristicFragmentMatcher {},
-                        "freezeResults": false,
-                        "resultCaching": true,
-                      },
-                      "data": DepTrackingCache {
-                        "data": Object {},
-                        "depend": [Function],
-                      },
-                      "maybeBroadcastWatch": [Function],
-                      "optimisticData": DepTrackingCache {
-                        "data": Object {},
-                        "depend": [Function],
-                      },
-                      "silenceBroadcast": false,
-                      "storeReader": StoreReader {
-                        "executeSelectionSet": [Function],
-                        "executeStoreQuery": [Function],
-                        "executeSubSelectedArray": [Function],
-                        "freezeResults": false,
-                      },
-                      "storeWriter": StoreWriter {},
-                      "typenameDocumentCache": Array [],
-                      "watches": Array [],
-                    },
-                  },
-                  "typeDefs": undefined,
-                  "version": "2.6.10",
-                  "watchQuery": [Function],
-                }
-              }
-              mainButton={
-                <BackgroundLink
-                  to="/scappolicies/new"
-                >
-                  <Button
-                    variant="primary"
-                  >
-                    Create new policy
-                  </Button>
-                </BackgroundLink>
-              }
-              title="No policies are reporting"
+            <ReportCardGrid
+              profiles={Array []}
             />
           </Grid>
         </div>
@@ -287,13 +56,7 @@ exports[`Reports expect to render emptystate 1`] = `
 
 exports[`Reports expect to render loading 1`] = `
 <Fragment>
-  <PageHeader
-    style={
-      Object {
-        "paddingBottom": 22,
-      }
-    }
-  >
+  <PageHeader>
     <PageHeaderTitle
       title="Compliance reports"
     />
@@ -329,7 +92,9 @@ exports[`Reports expect to render loading 1`] = `
         >
           <Grid
             hasGutter={true}
-          />
+          >
+            <ReportCardGrid />
+          </Grid>
         </div>
       </StateViewPart>
     </StateViewWithError>
@@ -339,13 +104,10 @@ exports[`Reports expect to render loading 1`] = `
 
 exports[`Reports expect to render without error 1`] = `
 <Fragment>
-  <PageHeader
-    className="page-header-tabs"
-  >
+  <PageHeader>
     <PageHeaderTitle
       title="Compliance reports"
     />
-    <withRouter(Connect(RouterParams)) />
   </PageHeader>
   <Connect(Main)>
     <StateViewWithError
@@ -372,8 +134,8 @@ exports[`Reports expect to render without error 1`] = `
               ],
             },
           },
-          "error": false,
-          "loading": false,
+          "error": undefined,
+          "loading": undefined,
         }
       }
     >
@@ -399,16 +161,9 @@ exports[`Reports expect to render without error 1`] = `
           <Grid
             hasGutter={true}
           >
-            <GridItem
-              key="0"
-              lg={6}
-              md={12}
-              sm={12}
-              xl={4}
-            >
-              <ReportCard
-                key="0"
-                profile={
+            <ReportCardGrid
+              profiles={
+                Array [
                   Object {
                     "businessObjective": Object {
                       "id": "1",
@@ -421,10 +176,10 @@ exports[`Reports expect to render without error 1`] = `
                     "name": "profile1",
                     "refId": "121212",
                     "totalHostCount": 1,
-                  }
-                }
-              />
-            </GridItem>
+                  },
+                ]
+              }
+            />
           </Grid>
         </div>
       </StateViewPart>
