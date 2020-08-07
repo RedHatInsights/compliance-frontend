@@ -4,19 +4,18 @@ import {
     CheckCircleIcon,
     ExclamationCircleIcon
 } from '@patternfly/react-icons';
+import { Tooltip } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
-const CompliantIcon = (system) => (
-    <React.Fragment>
-        {
-            ((system.rulesPassed + system.rulesFailed) === 0) ?
-                <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/> :
-                system.compliant ?
-                    <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--200)' }}/> :
-                    <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>
-        }
-    </React.Fragment>
-);
+const CompliantIcon = (system) => {
+    if ((system.rulesPassed + system.rulesFailed) === 0) {
+        return <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/>;
+    } else {
+        return system.compliant ?
+            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--200)' }}/> :
+            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>;
+    }
+};
 
 export const complianceScoreString = (system) => {
     if ((system.rulesPassed + system.rulesFailed) === 0) {
@@ -28,8 +27,13 @@ export const complianceScoreString = (system) => {
 
 const ComplianceScore = (system) => (
     <React.Fragment>
-        <CompliantIcon key={ `system-compliance-icon-${system.id}` } { ...system } />
-        { complianceScoreString(system) }
+        <Tooltip content={
+            'The system compliance score is calculated by OpenSCAP and ' +
+            'is a normalized weighted sum of rules selected for this policy.'
+        }>
+            <CompliantIcon key={ `system-compliance-icon-${system.id}` } { ...system } />
+            { complianceScoreString(system) }
+        </Tooltip>
     </React.Fragment>
 );
 
