@@ -1,8 +1,26 @@
 import React from 'react';
-import { SystemsTable } from 'SmartComponents';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
+import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
+import { SystemsTable } from 'SmartComponents';
+
+const QUERY = gql`
+{
+    profiles(search: "external = false and canonical = false") {
+        edges {
+            node {
+                id
+                name
+                refId
+            }
+        }
+    }
+}
+`;
 
 export const ComplianceSystems = () => {
+    const { data, error, loading } = useQuery(QUERY);
     const columns = [{
         key: 'display_name',
         title: 'Name',
@@ -22,6 +40,10 @@ export const ComplianceSystems = () => {
             width: 20, isStatic: true
         }
     }];
+    let policies;
+    if (data) {
+        policies = data?.profiles?.edges.map((e) => (e.node));
+    }
 
     return (
         <React.Fragment>
@@ -29,7 +51,14 @@ export const ComplianceSystems = () => {
                 <PageHeaderTitle title="Compliance systems" />
             </PageHeader>
             <Main>
-                <SystemsTable showAllSystems remediationsEnabled={false} columns={columns} />
+                <StateViewWithError stateValues={ { error, data, loading } }>
+                    <StateViewPart stateKey="data">
+                        { policies && <SystemsTable
+                            remediationsEnabled={ false }
+                            columns={ columns }
+                            policies={ policies } /> }
+                    </StateViewPart>
+                </StateViewWithError>
             </Main>
         </React.Fragment>
     );

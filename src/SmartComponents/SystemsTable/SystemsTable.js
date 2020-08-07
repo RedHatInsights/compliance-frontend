@@ -28,7 +28,8 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
-    DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION
+    DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
+    systemsPolicyFilterConfiguration
 } from '@/constants';
 import {
     ErrorPage,
@@ -104,7 +105,8 @@ class SystemsTable extends React.Component {
     inventory = React.createRef();
     filterConfig = new FilterConfigBuilder([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-        ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : [])
+        ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
+        ...(this.props.policies ? systemsPolicyFilterConfiguration(this.props.policies) : [])
     ]);
     chipBuilder = this.filterConfig.getChipBuilder();
     filterBuilder = this.filterConfig.getFilterBuilder();
@@ -412,6 +414,7 @@ SystemsTable.propTypes = {
     enableExport: propTypes.bool,
     error: propTypes.object,
     exportFromState: propTypes.func,
+	policies: propTypes.array,
     policyId: propTypes.string,
     preselectedSystems: propTypes.array,
     remediationsEnabled: propTypes.bool,
