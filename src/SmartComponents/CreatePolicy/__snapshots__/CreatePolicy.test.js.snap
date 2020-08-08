@@ -1,21 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreatePolicy expect to render the create button 1`] = `
-<button
-  aria-disabled={false}
-  aria-label={null}
-  className="pf-c-button pf-m-primary"
-  data-ouia-component-id={0}
-  data-ouia-component-type="PF4/Button"
-  data-ouia-safe={true}
-  disabled={false}
-  onClick={[Function]}
-  type="button"
->
-  Create new policy
-</button>
-`;
-
 exports[`CreatePolicy expect to render the wizard 1`] = `
 <Wizard
   appendTo={null}
@@ -39,7 +23,6 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   steps={
     Array [
       Object {
-        "canJumpTo": true,
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 1,
@@ -75,7 +58,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       Object {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm))
-          onClose={[Function]}
+          onWizardFinish={[Function]}
         />,
         "id": 6,
         "isFinishedStep": true,

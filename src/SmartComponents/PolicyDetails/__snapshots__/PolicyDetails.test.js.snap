@@ -1,1586 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PolicyDetails expect to render without error 1`] = `
-<div>
-  <section
-    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "profile": Object {
+          "benchmark": Object {
+            "title": "benchmark",
+            "version": "0.1.5",
+          },
+          "businessObjective": Object {
+            "id": "1",
+            "title": "BO 1",
+          },
+          "complianceThreshold": 1,
+          "compliantHostCount": 1,
+          "description": "profile description",
+          "id": "1",
+          "name": "profile1",
+          "policy": Object {
+            "name": "parentpolicy",
+          },
+          "refId": "121212",
+          "totalHostCount": 1,
+        },
+      },
+      "error": undefined,
+      "loading": undefined,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
   >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-      data-ouia-component-id="20"
-      data-ouia-component-type="PF4/Breadcrumb"
-      data-ouia-safe="true"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/beta/insights/compliance/scappolicies"
-          >
-            Policies
-          </a>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <div
-      class="pf-l-grid"
-      gutter="lg"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
-      >
-        <h1
-          class="pf-c-title pf-m-2xl"
-          widget-type="InsightsPageHeaderTitle"
-        >
-           
-          profile1
-           
-        </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
-      >
-        <button
-          aria-disabled="false"
-          class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="21"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe="true"
-          type="button"
-        >
-          Edit policy
-        </button>
-      </div>
-    </div>
-    <div
-      aria-label="Policy Tabs"
-      class="pf-c-tabs"
-      data-ouia-component-id="24"
-      data-ouia-component-type="PF4/Tabs"
-      data-ouia-safe="true"
-    >
-      <button
-        aria-hidden="true"
-        aria-label="Scroll left"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
-            transform=""
-          />
-        </svg>
-      </button>
-      <ul
-        class="pf-c-tabs__list"
-      >
-        <li
-          class="pf-c-tabs__item pf-m-current"
-        >
-          <button
-            aria-controls="pf-tab-section-0-policy-details"
-            class="pf-c-tabs__link"
-            id="pf-tab-0-policy-details"
-          >
-            Details
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-1-policy-rules"
-            class="pf-c-tabs__link"
-            id="pf-tab-1-policy-rules"
-          >
-            Rules
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-2-policy-systems"
-            class="pf-c-tabs__link"
-            id="pf-tab-2-policy-systems"
-          >
-            Systems
-          </button>
-        </li>
-      </ul>
-      <button
-        aria-hidden="true"
-        aria-label="Scroll right"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-            transform=""
-          />
-        </svg>
-      </button>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
+    <PageHeader>
+      <PolicyDetailsContentLoader />
+    </PageHeader>
+    <Connect(Main)>
+      <Spinner />
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
   >
-    <article
-      class="pf-c-card"
-      data-ouia-component-id="23"
-      data-ouia-component-type="PF4/Card"
-      data-ouia-safe="true"
+    <PageHeader
+      className="page-header-tabs"
     >
-      <div
-        class="pf-c-card__header"
-      >
-        <p
-          class=""
-          data-pf-content="true"
-          style="font-size: 20px;"
+      <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/scappolicies"
         >
-          <b>
-            Policy details
-          </b>
-        </p>
-      </div>
-      <div
-        class="pf-c-card__body"
-      >
-        <div
-          class="pf-c-content"
+          Policies
+        </BreadcrumbLinkItem>
+        <BreadcrumbItem
+          isActive={true}
         >
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Compliance threshold
-            <span
-              aria-describedby="pf-tooltip-5"
-            >
-               
-              <svg
-                aria-hidden="true"
-                class="grey-icon"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                  transform=""
-                />
-              </svg>
-            </span>
-          </h5>
-          <p
-            class="threshold-tooltip"
-            data-pf-content="true"
-          >
-            1.0%
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Business objective
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            BO 1
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy description
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            <span
-              class="ins-c-truncate is-inline"
-              widget-type="InsightsTruncateInline"
-            >
-              profile description
-            </span>
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Operating system
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            RHEL 
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Security guide (SSG) version
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            benchmark
-             
-            0.1.5
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy type 
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            parentpolicy
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Reference ID
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            121212
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-</div>
-`;
-
-exports[`PolicyDetailsQuery expect to render even without policyId 1`] = `
-<div>
-  <section
-    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-      data-ouia-component-id="0"
-      data-ouia-component-type="PF4/Breadcrumb"
-      data-ouia-safe="true"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/beta/insights/compliance/scappolicies"
-          >
-            Policies
-          </a>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
           profile1
-        </li>
-      </ol>
-    </nav>
-    <div
-      class="pf-l-grid"
-      gutter="lg"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
+        </BreadcrumbItem>
+      </Breadcrumb>
+      <Grid
+        gutter="lg"
       >
-        <h1
-          class="pf-c-title pf-m-2xl"
-          widget-type="InsightsPageHeaderTitle"
+        <GridItem
+          lg={12}
+          md={12}
+          sm={12}
+          xl={10}
+          xl2={11}
         >
-           
-          profile1
-           
-        </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
-      >
-        <button
-          aria-disabled="false"
-          class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="1"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe="true"
-          type="button"
-        >
-          Edit policy
-        </button>
-      </div>
-    </div>
-    <div
-      aria-label="Policy Tabs"
-      class="pf-c-tabs"
-      data-ouia-component-id="4"
-      data-ouia-component-type="PF4/Tabs"
-      data-ouia-safe="true"
-    >
-      <button
-        aria-hidden="true"
-        aria-label="Scroll left"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
-            transform=""
+          <PageHeaderTitle
+            title="profile1"
           />
-        </svg>
-      </button>
-      <ul
-        class="pf-c-tabs__list"
-      >
-        <li
-          class="pf-c-tabs__item pf-m-current"
+        </GridItem>
+        <GridItem
+          className="policy-details-button"
+          lg={2}
+          md={3}
+          sm={3}
+          xl={2}
+          xl2={1}
         >
-          <button
-            aria-controls="pf-tab-section-0-policy-details"
-            class="pf-c-tabs__link"
-            id="pf-tab-0-policy-details"
-          >
-            Details
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-1-policy-rules"
-            class="pf-c-tabs__link"
-            id="pf-tab-1-policy-rules"
-          >
-            Rules
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-2-policy-systems"
-            class="pf-c-tabs__link"
-            id="pf-tab-2-policy-systems"
-          >
-            Systems
-          </button>
-        </li>
-      </ul>
-      <button
-        aria-hidden="true"
-        aria-label="Scroll right"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-            transform=""
+          <Connect(EditPolicy)
+            businessObjective={
+              Object {
+                "id": "1",
+                "title": "BO 1",
+              }
+            }
+            onClose={[Function]}
+            policyId="1"
+            previousThreshold={1}
           />
-        </svg>
-      </button>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <article
-      class="pf-c-card"
-      data-ouia-component-id="3"
-      data-ouia-component-type="PF4/Card"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-card__header"
+        </GridItem>
+      </Grid>
+      <RoutedTabs
+        aria-label="Policy Tabs"
+        defaultTab="details"
       >
-        <p
-          class=""
-          data-pf-content="true"
-          style="font-size: 20px;"
-        >
-          <b>
-            Policy details
-          </b>
-        </p>
-      </div>
-      <div
-        class="pf-c-card__body"
+        <Tab
+          eventKey="details"
+          id="policy-details"
+          title="Details"
+        />
+        <Tab
+          eventKey="rules"
+          id="policy-rules"
+          title="Rules"
+        />
+        <Tab
+          eventKey="systems"
+          id="policy-systems"
+          title="Systems"
+        />
+      </RoutedTabs>
+    </PageHeader>
+    <Connect(Main)>
+      <RouteredTabSwitcher
+        defaultTab="details"
       >
-        <div
-          class="pf-c-content"
+        <ContentTab
+          eventKey="details"
         >
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Compliance threshold
-            <span
-              aria-describedby="pf-tooltip-1"
-            >
-               
-              <svg
-                aria-hidden="true"
-                class="grey-icon"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                  transform=""
-                />
-              </svg>
-            </span>
-          </h5>
-          <p
-            class="threshold-tooltip"
-            data-pf-content="true"
-          >
-            1.0%
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Business objective
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            BO 1
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy description
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            <span
-              class="ins-c-truncate is-inline"
-              widget-type="InsightsTruncateInline"
-            >
-              profile description
-            </span>
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Operating system
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            RHEL 
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Security guide (SSG) version
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            benchmark
-             
-            0.1.5
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy type 
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            parentpolicy
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Reference ID
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            121212
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-</div>
-`;
-
-exports[`PolicyDetailsQuery expect to render with policyId 1`] = `
-<div>
-  <section
-    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-      data-ouia-component-id="15"
-      data-ouia-component-type="PF4/Breadcrumb"
-      data-ouia-safe="true"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/beta/insights/compliance/scappolicies"
-          >
-            Policies
-          </a>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <div
-      class="pf-l-grid"
-      gutter="lg"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
-      >
-        <h1
-          class="pf-c-title pf-m-2xl"
-          widget-type="InsightsPageHeaderTitle"
-        >
-           
-          profile1
-           
-        </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
-      >
-        <button
-          aria-disabled="false"
-          class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="16"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe="true"
-          type="button"
-        >
-          Edit policy
-        </button>
-      </div>
-    </div>
-    <div
-      aria-label="Policy Tabs"
-      class="pf-c-tabs"
-      data-ouia-component-id="19"
-      data-ouia-component-type="PF4/Tabs"
-      data-ouia-safe="true"
-    >
-      <button
-        aria-hidden="true"
-        aria-label="Scroll left"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
-            transform=""
+          <PolicyDetailsDescription
+            policy={
+              Object {
+                "benchmark": Object {
+                  "title": "benchmark",
+                  "version": "0.1.5",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "policy": Object {
+                  "name": "parentpolicy",
+                },
+                "refId": "121212",
+                "totalHostCount": 1,
+              }
+            }
           />
-        </svg>
-      </button>
-      <ul
-        class="pf-c-tabs__list"
-      >
-        <li
-          class="pf-c-tabs__item pf-m-current"
+        </ContentTab>
+        <ContentTab
+          eventKey="rules"
         >
-          <button
-            aria-controls="pf-tab-section-0-policy-details"
-            class="pf-c-tabs__link"
-            id="pf-tab-0-policy-details"
-          >
-            Details
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-1-policy-rules"
-            class="pf-c-tabs__link"
-            id="pf-tab-1-policy-rules"
-          >
-            Rules
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-2-policy-systems"
-            class="pf-c-tabs__link"
-            id="pf-tab-2-policy-systems"
-          >
-            Systems
-          </button>
-        </li>
-      </ul>
-      <button
-        aria-hidden="true"
-        aria-label="Scroll right"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-            transform=""
+          <PolicyRulesTab
+            policy={
+              Object {
+                "benchmark": Object {
+                  "title": "benchmark",
+                  "version": "0.1.5",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "policy": Object {
+                  "name": "parentpolicy",
+                },
+                "refId": "121212",
+                "totalHostCount": 1,
+              }
+            }
           />
-        </svg>
-      </button>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <article
-      class="pf-c-card"
-      data-ouia-component-id="18"
-      data-ouia-component-type="PF4/Card"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-card__header"
-      >
-        <p
-          class=""
-          data-pf-content="true"
-          style="font-size: 20px;"
+        </ContentTab>
+        <ContentTab
+          eventKey="systems"
         >
-          <b>
-            Policy details
-          </b>
-        </p>
-      </div>
-      <div
-        class="pf-c-card__body"
-      >
-        <div
-          class="pf-c-content"
-        >
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Compliance threshold
-            <span
-              aria-describedby="pf-tooltip-4"
-            >
-               
-              <svg
-                aria-hidden="true"
-                class="grey-icon"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                  transform=""
-                />
-              </svg>
-            </span>
-          </h5>
-          <p
-            class="threshold-tooltip"
-            data-pf-content="true"
-          >
-            1.0%
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Business objective
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            BO 1
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy description
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            <span
-              class="ins-c-truncate is-inline"
-              widget-type="InsightsTruncateInline"
-            >
-              profile description
-            </span>
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Operating system
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            RHEL 
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Security guide (SSG) version
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            benchmark
-             
-            0.1.5
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy type 
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            parentpolicy
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Reference ID
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            121212
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-</div>
-`;
-
-exports[`PolicyDetailsQuery renders without error 1`] = `
-<div>
-  <section
-    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-      data-ouia-component-id="5"
-      data-ouia-component-type="PF4/Breadcrumb"
-      data-ouia-safe="true"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/beta/insights/compliance/scappolicies"
-          >
-            Policies
-          </a>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <div
-      class="pf-l-grid"
-      gutter="lg"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
-      >
-        <h1
-          class="pf-c-title pf-m-2xl"
-          widget-type="InsightsPageHeaderTitle"
-        >
-           
-          profile1
-           
-        </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
-      >
-        <button
-          aria-disabled="false"
-          class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="6"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe="true"
-          type="button"
-        >
-          Edit policy
-        </button>
-      </div>
-    </div>
-    <div
-      aria-label="Policy Tabs"
-      class="pf-c-tabs"
-      data-ouia-component-id="9"
-      data-ouia-component-type="PF4/Tabs"
-      data-ouia-safe="true"
-    >
-      <button
-        aria-hidden="true"
-        aria-label="Scroll left"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
-            transform=""
+          <PolicySystemsTab
+            complianceThreshold={1}
+            policy={
+              Object {
+                "benchmark": Object {
+                  "title": "benchmark",
+                  "version": "0.1.5",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "policy": Object {
+                  "name": "parentpolicy",
+                },
+                "refId": "121212",
+                "totalHostCount": 1,
+              }
+            }
           />
-        </svg>
-      </button>
-      <ul
-        class="pf-c-tabs__list"
-      >
-        <li
-          class="pf-c-tabs__item pf-m-current"
-        >
-          <button
-            aria-controls="pf-tab-section-0-policy-details"
-            class="pf-c-tabs__link"
-            id="pf-tab-0-policy-details"
-          >
-            Details
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-1-policy-rules"
-            class="pf-c-tabs__link"
-            id="pf-tab-1-policy-rules"
-          >
-            Rules
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-2-policy-systems"
-            class="pf-c-tabs__link"
-            id="pf-tab-2-policy-systems"
-          >
-            Systems
-          </button>
-        </li>
-      </ul>
-      <button
-        aria-hidden="true"
-        aria-label="Scroll right"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-            transform=""
-          />
-        </svg>
-      </button>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <article
-      class="pf-c-card"
-      data-ouia-component-id="8"
-      data-ouia-component-type="PF4/Card"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-card__header"
-      >
-        <p
-          class=""
-          data-pf-content="true"
-          style="font-size: 20px;"
-        >
-          <b>
-            Policy details
-          </b>
-        </p>
-      </div>
-      <div
-        class="pf-c-card__body"
-      >
-        <div
-          class="pf-c-content"
-        >
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Compliance threshold
-            <span
-              aria-describedby="pf-tooltip-2"
-            >
-               
-              <svg
-                aria-hidden="true"
-                class="grey-icon"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                  transform=""
-                />
-              </svg>
-            </span>
-          </h5>
-          <p
-            class="threshold-tooltip"
-            data-pf-content="true"
-          >
-            1.0%
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Business objective
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            BO 1
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy description
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            <span
-              class="ins-c-truncate is-inline"
-              widget-type="InsightsTruncateInline"
-            >
-              profile description
-            </span>
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Operating system
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            RHEL 
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Security guide (SSG) version
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            benchmark
-             
-            0.1.5
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy type 
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            parentpolicy
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Reference ID
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            121212
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-</div>
-`;
-
-exports[`PolicyDetailsQuery renders without error 2`] = `
-<div>
-  <section
-    class="page-header-tabs pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
-    widget-type="InsightsPageHeader"
-  >
-    <nav
-      aria-label="Breadcrumb"
-      class="pf-c-breadcrumb"
-      data-ouia-component-id="10"
-      data-ouia-component-type="PF4/Breadcrumb"
-      data-ouia-safe="true"
-    >
-      <ol
-        class="pf-c-breadcrumb__list"
-      >
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <a
-            class="pf-c-breadcrumb__link"
-            href="/beta/insights/compliance/scappolicies"
-          >
-            Policies
-          </a>
-        </li>
-        <li
-          class="pf-c-breadcrumb__item"
-        >
-          <span
-            class="pf-c-breadcrumb__item-divider"
-          >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 256 512"
-              width="1em"
-            >
-              <path
-                d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-                transform=""
-              />
-            </svg>
-          </span>
-          profile1
-        </li>
-      </ol>
-    </nav>
-    <div
-      class="pf-l-grid"
-      gutter="lg"
-    >
-      <div
-        class="pf-l-grid__item pf-m-12-col-on-sm pf-m-12-col-on-md pf-m-12-col-on-lg pf-m-10-col-on-xl pf-m-11-col-on-2xl"
-      >
-        <h1
-          class="pf-c-title pf-m-2xl"
-          widget-type="InsightsPageHeaderTitle"
-        >
-           
-          profile1
-           
-        </h1>
-      </div>
-      <div
-        class="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-2-col-on-lg pf-m-2-col-on-xl pf-m-1-col-on-2xl policy-details-button"
-      >
-        <button
-          aria-disabled="false"
-          class="pf-c-button pf-m-secondary"
-          data-ouia-component-id="11"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe="true"
-          type="button"
-        >
-          Edit policy
-        </button>
-      </div>
-    </div>
-    <div
-      aria-label="Policy Tabs"
-      class="pf-c-tabs"
-      data-ouia-component-id="14"
-      data-ouia-component-type="PF4/Tabs"
-      data-ouia-safe="true"
-    >
-      <button
-        aria-hidden="true"
-        aria-label="Scroll left"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"
-            transform=""
-          />
-        </svg>
-      </button>
-      <ul
-        class="pf-c-tabs__list"
-      >
-        <li
-          class="pf-c-tabs__item pf-m-current"
-        >
-          <button
-            aria-controls="pf-tab-section-0-policy-details"
-            class="pf-c-tabs__link"
-            id="pf-tab-0-policy-details"
-          >
-            Details
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-1-policy-rules"
-            class="pf-c-tabs__link"
-            id="pf-tab-1-policy-rules"
-          >
-            Rules
-          </button>
-        </li>
-        <li
-          class="pf-c-tabs__item"
-        >
-          <button
-            aria-controls="pf-tab-section-2-policy-systems"
-            class="pf-c-tabs__link"
-            id="pf-tab-2-policy-systems"
-          >
-            Systems
-          </button>
-        </li>
-      </ul>
-      <button
-        aria-hidden="true"
-        aria-label="Scroll right"
-        class="pf-c-tabs__scroll-button"
-        disabled=""
-      >
-        <svg
-          aria-hidden="true"
-          fill="currentColor"
-          height="1em"
-          role="img"
-          style="vertical-align: -0.125em;"
-          viewBox="0 0 256 512"
-          width="1em"
-        >
-          <path
-            d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"
-            transform=""
-          />
-        </svg>
-      </button>
-    </div>
-  </section>
-  <section
-    class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
-  >
-    <article
-      class="pf-c-card"
-      data-ouia-component-id="13"
-      data-ouia-component-type="PF4/Card"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-card__header"
-      >
-        <p
-          class=""
-          data-pf-content="true"
-          style="font-size: 20px;"
-        >
-          <b>
-            Policy details
-          </b>
-        </p>
-      </div>
-      <div
-        class="pf-c-card__body"
-      >
-        <div
-          class="pf-c-content"
-        >
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Compliance threshold
-            <span
-              aria-describedby="pf-tooltip-3"
-            >
-               
-              <svg
-                aria-hidden="true"
-                class="grey-icon"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                  transform=""
-                />
-              </svg>
-            </span>
-          </h5>
-          <p
-            class="threshold-tooltip"
-            data-pf-content="true"
-          >
-            1.0%
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Business objective
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            BO 1
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy description
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            <span
-              class="ins-c-truncate is-inline"
-              widget-type="InsightsTruncateInline"
-            >
-              profile description
-            </span>
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Operating system
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            RHEL 
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Security guide (SSG) version
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            benchmark
-             
-            0.1.5
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Policy type 
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            parentpolicy
-          </p>
-          <h5
-            class=""
-            data-pf-content="true"
-          >
-            Reference ID
-          </h5>
-          <p
-            class=""
-            data-pf-content="true"
-          >
-            121212
-          </p>
-        </div>
-      </div>
-    </article>
-  </section>
-</div>
+        </ContentTab>
+      </RouteredTabSwitcher>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
 `;

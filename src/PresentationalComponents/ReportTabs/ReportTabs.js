@@ -1,7 +1,6 @@
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import propTypes from 'prop-types';
 import React from 'react';
-import { paths } from '@/Routes';
 import { Tabs, Tab } from '@patternfly/react-core';
 import invert from 'lodash/invert';
 
@@ -9,8 +8,8 @@ export const ReportTabs = (props) => {
     const { match: { path } } = props;
 
     const tabPaths = {
-        0: paths.reports,
-        1: paths.reportsSystems
+        0: '/reports',
+        1: '/reports/systems'
     };
 
     const redirect = (_, tabIndex) => {

@@ -123,23 +123,49 @@ exports[`ReportDetails expect to render without error 1`] = `
                       <ol
                         className="pf-c-breadcrumb__list"
                       >
-                        <BreadcrumbItem
+                        <BreadcrumbLinkItem
                           key=".0"
                           showDivider={false}
-                          to="/beta/insights/compliance/reports"
+                          to="/reports"
                         >
-                          <li
-                            className="pf-c-breadcrumb__item"
+                          <BreadcrumbItem
+                            component={[Function]}
+                            showDivider={false}
+                            to="/reports"
                           >
-                            <a
-                              className="pf-c-breadcrumb__link"
-                              href="/beta/insights/compliance/reports"
-                              target={null}
+                            <li
+                              className="pf-c-breadcrumb__item"
                             >
-                              Reports
-                            </a>
-                          </li>
-                        </BreadcrumbItem>
+                              <RouterLink
+                                className="pf-c-breadcrumb__link"
+                                href="/reports"
+                                target={null}
+                              >
+                                <Link
+                                  className="pf-c-breadcrumb__link"
+                                  target={null}
+                                  to="/reports"
+                                >
+                                  <LinkAnchor
+                                    className="pf-c-breadcrumb__link"
+                                    href="/reports"
+                                    navigate={[Function]}
+                                    target={null}
+                                  >
+                                    <a
+                                      className="pf-c-breadcrumb__link"
+                                      href="/reports"
+                                      onClick={[Function]}
+                                      target={null}
+                                    >
+                                      Reports
+                                    </a>
+                                  </LinkAnchor>
+                                </Link>
+                              </RouterLink>
+                            </li>
+                          </BreadcrumbItem>
+                        </BreadcrumbLinkItem>
                         <BreadcrumbItem
                           isActive={true}
                           key=".1"

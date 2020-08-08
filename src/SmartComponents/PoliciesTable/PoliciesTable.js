@@ -1,20 +1,19 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
-    Bullseye, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
+    Bullseye, Button, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
     ToolbarItem, Tooltip
 } from '@patternfly/react-core';
 import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 
 import {
+    BackgroundLink,
     SystemsCountWarning
 } from 'PresentationalComponents';
-import { CreatePolicy, DeletePolicy } from 'SmartComponents';
 
 const emptyRows = [{
     cells: [{
@@ -89,8 +88,6 @@ export class PoliciesTable extends React.Component {
     state = {
         page: 1,
         itemsPerPage: 10,
-        isDeleteModalOpen: false,
-        policyToDelete: {},
         activeFilters: {}
     }
 
@@ -151,31 +148,23 @@ export class PoliciesTable extends React.Component {
         clearAll ? this.clearAllFilter() : this.deleteFilter(chips[0])
     )
 
-    setAndDeletePolicy = (policyId) => (
-        this.setState((prev) => ({
-            policyToDelete: this.props.policies.find((policy) => (
-                policy.id === policyId
-            )),
-            isDeleteModalOpen: !prev.isDeleteModalOpen
-        }))
-    )
-
-    actionResolver = () => {
-        return [
-            {
-                title: 'Delete policy',
-                onClick: (_event, _index, { policyId }) => (
-                    this.setAndDeletePolicy(policyId)
-                )
+    actionResolver = () => ([
+        {
+            title: 'Delete policy',
+            onClick: (_event, _index, { policyId }) => {
+                const policy = this.props.policies.find((policy) => (
+                    policy.id === policyId
+                ));
+                this.props.history.push(`/scappolicies/${ policyId }/delete`, {
+                    policy,
+                    background: this.props.location
+                });
             }
-        ];
-    }
+        }
+    ]);
 
     render() {
-        const { onWizardFinish } = this.props;
-        const {
-            page, itemsPerPage, policyToDelete, isDeleteModalOpen
-        } = this.state;
+        const { page, itemsPerPage } = this.state;
         const policies = this.filteredPolicies();
         const filterChips = this.chipBuilder.chipsFor(this.state.activeFilters);
         const rows = policiesToRows(this.paginatedPolicies(policies));
@@ -205,7 +194,9 @@ export class PoliciesTable extends React.Component {
                     dropDirection: 'down'
                 }}>
                 <ToolbarItem>
-                    <CreatePolicy onWizardFinish={onWizardFinish} />
+                    <BackgroundLink to='/scappolicies/new'>
+                        <Button variant='primary'>Create new policy</Button>
+                    </BackgroundLink>
                 </ToolbarItem>
                 <ToolbarItem>
                     { policies.length } results
@@ -227,20 +218,14 @@ export class PoliciesTable extends React.Component {
                     variant={ PaginationVariant.bottom }
                 />
             </TableToolbar>
-            <DeletePolicy
-                isModalOpen={isDeleteModalOpen}
-                policy={policyToDelete}
-                onDelete={onWizardFinish}
-                toggle={() => this.setState((prev) => ({ isDeleteModalOpen: !prev.isDeleteModalOpen }))}
-            />
         </React.Fragment>;
     }
 }
 
 PoliciesTable.propTypes = {
     policies: propTypes.array.isRequired,
-    history: propTypes.object,
-    onWizardFinish: propTypes.func
+    history: propTypes.object.isRequired,
+    location: propTypes.object.isRequired
 };
 
 PoliciesTable.defaultProps = {
@@ -249,4 +234,4 @@ PoliciesTable.defaultProps = {
 
 export { policiesToRows };
 
-export default routerParams(PoliciesTable);
+export default withRouter(PoliciesTable);

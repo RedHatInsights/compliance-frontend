@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import {
     Grid
 } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import {
+    BackgroundLink,
     ErrorPage,
     LoadingPoliciesTable,
     StateView,
@@ -15,8 +16,7 @@ import {
 } from 'PresentationalComponents';
 
 import {
-    PoliciesTable,
-    CreatePolicy
+    PoliciesTable
 } from 'SmartComponents';
 
 const QUERY = gql`
@@ -46,7 +46,10 @@ const QUERY = gql`
 `;
 
 export const CompliancePolicies = () => {
-    let { data, error, loading, refetch } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
+    const location = useLocation();
+    const createLink = <BackgroundLink to='/scappolicies/new'>Create new policy</BackgroundLink>;
+    let { data, error, loading, refetch } = useQuery(QUERY);
+    useEffect(() => { refetch(); }, [location]);
     let policies;
 
     if (data) {
@@ -69,8 +72,8 @@ export const CompliancePolicies = () => {
                 <StateViewPart stateKey='data'>
                     { policies && policies.length === 0 ?
                         <Grid hasGutter><ComplianceEmptyState title='No policies'
-                            mainButton={<CreatePolicy onWizardFinish={() => { refetch(); }} />} /></Grid> :
-                        <PoliciesTable onWizardFinish={() => refetch()} policies={ policies } />
+                            mainButton={ createLink } /></Grid> :
+                        <PoliciesTable policies={ policies } />
                     }
                 </StateViewPart>
             </StateView>
@@ -78,4 +81,4 @@ export const CompliancePolicies = () => {
     </React.Fragment>;
 };
 
-export default routerParams(CompliancePolicies);
+export default CompliancePolicies;

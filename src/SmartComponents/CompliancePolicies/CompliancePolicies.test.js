@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { profiles } from '@/__fixtures__/profiles.js';
 
 jest.mock('@apollo/react-hooks');
+jest.mock('react-router-dom');
 
 window.insights = {
     chrome: { isBeta: jest.fn(() => true) }
@@ -12,6 +13,11 @@ import { CompliancePolicies } from './CompliancePolicies.js';
 window.insights = {
     chrome: { isBeta: jest.fn(() => true) }
 };
+
+jest.mock('react-router-dom', () => ({
+    ...require.requireActual('react-router-dom'),
+    useLocation: jest.fn(() => ({}))
+}));
 
 describe('CompliancePolicies', () => {
     it('expect to render without error', () => {

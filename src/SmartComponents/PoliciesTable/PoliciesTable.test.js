@@ -45,20 +45,4 @@ describe('PoliciesTable', () => {
             expect(toJson(wrapper)).toMatchSnapshot();
         });
     });
-
-    describe('setAndDeletePolicy', () => {
-        beforeEach(() => {
-            wrapper = shallow(
-                <PoliciesTable
-                    policies={ policies }
-                />);
-            instance = wrapper.instance();
-        });
-
-        it('should set the policy in state and open modal', async () => {
-            await instance.setAndDeletePolicy(policies[0].id);
-            expect(wrapper.state()).toMatchSnapshot();
-            expect(toJson(wrapper)).toMatchSnapshot();
-        });
-    });
 });

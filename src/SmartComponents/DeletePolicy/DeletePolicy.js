@@ -6,20 +6,27 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_PROFILE } from 'Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
-const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
+const DeletePolicy = () => {
+    const location = useLocation();
+    const history = useHistory();
+    const { name, id } = location.state.policy;
+    const onClose = () => {
+        history.push('/scappolicies');
+    };
+
     const [deletePolicy] = useMutation(DELETE_PROFILE, {
         onCompleted: () => {
             dispatchAction(addNotification({
                 variant: 'success',
-                title: `Removed policy ${policy.name}`
+                title: `Removed policy ${ name }`
             }));
-            onDelete();
-            toggle();
+            onClose();
         },
         onError: (error) => {
             dispatchAction(addNotification({
@@ -27,18 +34,16 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
                 title: 'Error removing policy',
                 description: error.message
             }));
-            onDelete();
-            toggle();
+            onClose();
         }
     });
-    const { name, id } = policy;
 
     return (
         <Modal
             variant={ ModalVariant.small }
             title='Delete policy'
-            isOpen={isModalOpen}
-            onClose={toggle}
+            isOpen
+            onClose={ onClose }
             actions={[
                 <Button key='destroy'
                     aria-label="delete"
@@ -46,7 +51,7 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
                     onClick={() => deletePolicy({ variables: { input: { id } } })}>
                     Delete policy
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={toggle}>
+                <Button key='cancel' variant='secondary' onClick={ onClose }>
                     Cancel
                 </Button>
             ]}
@@ -60,10 +65,7 @@ const DeletePolicy = ({ isModalOpen, policy, toggle, onDelete }) => {
 };
 
 DeletePolicy.propTypes = {
-    policy: propTypes.object,
-    toggle: propTypes.func,
-    isModalOpen: propTypes.bool,
-    onDelete: propTypes.func
+    policy: propTypes.object
 };
 
 export default DeletePolicy;

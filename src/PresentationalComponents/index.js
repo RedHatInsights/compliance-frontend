@@ -10,10 +10,11 @@ export { default as PolicyDetailsContentLoader } from './PolicyDetailsContentLoa
 export { default as ReportDetailsContentLoader } from './ReportDetailsContentLoader/ReportDetailsContentLoader';
 export { default as PolicyDetailsDescription } from './PolicyDetailsDescription/PolicyDetailsDescription';
 export { default as ReportDetailsDescription } from './ReportDetailsDescription/ReportDetailsDescription';
-export { default as PolicyTabs } from './PolicyTabs/PolicyTabs';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
-export { default as TabSwitcher, Tab } from './TabSwitcher/TabSwitcher';
+export { default as TabSwitcher, ContentTab, RouteredTabSwitcher, RoutedTabs } from './TabSwitcher/TabSwitcher';
 export { StateView, StateViewWithError, StateViewPart } from './StateView/StateView';
 export { default as SystemsCountWarning, WARNING_TEXT } from './SystemsCountWarning/SystemsCountWarning';
 export { default as WarningText } from './WarningText/WarningText';
 export { default as NoSystemsTableBody } from './NoSystemsTableBody/NoSystemsTableBody';
+export { default as BackgroundLink } from './BackgroundLink/BackgroundLink';
+export { default as BreadcrumbLinkItem } from './BreadcrumbLinkItem/BreadcrumbLinkItem';

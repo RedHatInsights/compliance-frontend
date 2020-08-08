@@ -1,7 +1,6 @@
 import React from 'react';
 import { SystemsTable } from 'SmartComponents';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 export const ComplianceSystems = () => {
     const columns = [{
@@ -36,4 +35,4 @@ export const ComplianceSystems = () => {
     );
 };
 
-export default routerParams(ComplianceSystems);
+export default ComplianceSystems;

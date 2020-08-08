@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
-import { onNavigate } from 'Utilities/Breadcrumbs';
 
 import { SystemDetails } from './SystemDetails.js';
 
@@ -17,10 +16,6 @@ jest.mock('react-router-dom', () => ({
     useParams: jest.fn(() => ({
         inventoryId: 1
     }))
-}));
-
-jest.mock('Utilities/Breadcrumbs', () => ({
-    onNavigate: jest.fn()
 }));
 
 describe('SystemDetails', () => {
@@ -49,14 +44,6 @@ describe('SystemDetails', () => {
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
-    it('expect to call onNavigate on breadcrumb click', () => {
-        const wrapper = shallow(
-            <SystemDetails />
-        );
-        wrapper.find('BreadcrumbItem[to="/rhel/compliance/systems"]').simulate('click');
-        expect(onNavigate).toHaveBeenCalled();
     });
 
     it('expect to render loading', () => {
