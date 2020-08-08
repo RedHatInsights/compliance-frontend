@@ -265,9 +265,15 @@ exports[`Reports expect to render emptystate 1`] = `
                 }
               }
               mainButton={
-                <Memo(Connect(CreatePolicy))
-                  onWizardFinish={[Function]}
-                />
+                <BackgroundLink
+                  to="/scappolicies/new"
+                >
+                  <Button
+                    variant="primary"
+                  >
+                    Create new policy
+                  </Button>
+                </BackgroundLink>
               }
               title="No policies are reporting"
             />

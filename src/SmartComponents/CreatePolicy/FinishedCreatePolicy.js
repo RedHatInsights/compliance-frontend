@@ -79,7 +79,7 @@ class FinishedCreatePolicy extends React.Component {
 
     render() {
         const { percent, message, failed } = this.state;
-        const { onClose, onWizardFinish } = this.props;
+        const { onWizardFinish } = this.props;
         return (
             <Bullseye>
                 <EmptyState variant={EmptyStateVariant.full}>
@@ -98,7 +98,7 @@ class FinishedCreatePolicy extends React.Component {
                         { percent === 100 ?
                             <Button
                                 variant={'primary'}
-                                onClick={() => { onWizardFinish(); onClose(); }}
+                                onClick={() => { onWizardFinish(); }}
                             >
                                 Return to application
                             </Button> :
@@ -115,7 +115,6 @@ FinishedCreatePolicy.propTypes = {
     client: propTypes.object.isRequired,
     businessObjective: propTypes.object,
     cloneFromProfileId: propTypes.string.isRequired,
-    onClose: propTypes.func.isRequired,
     refId: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     description: propTypes.string,

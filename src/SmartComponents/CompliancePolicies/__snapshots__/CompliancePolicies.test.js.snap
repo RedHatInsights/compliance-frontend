@@ -247,8 +247,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <withRouter(Connect(RouterParams))
-          onWizardFinish={[Function]}
+        <withRouter(PoliciesTable)
           policies={
             Array [
               Object {
@@ -458,9 +457,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <withRouter(Connect(RouterParams))
-          onWizardFinish={[Function]}
-        />
+        <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
   </Connect(Main)>
@@ -722,9 +719,11 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
               }
             }
             mainButton={
-              <Memo(Connect(CreatePolicy))
-                onWizardFinish={[Function]}
-              />
+              <BackgroundLink
+                to="/scappolicies/new"
+              >
+                Create new policy
+              </BackgroundLink>
             }
             title="No policies"
           />
@@ -767,9 +766,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <withRouter(Connect(RouterParams))
-          onWizardFinish={[Function]}
-        />
+        <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
   </Connect(Main)>
@@ -823,8 +820,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <withRouter(Connect(RouterParams))
-          onWizardFinish={[Function]}
+        <withRouter(PoliciesTable)
           policies={
             Array [
               undefined,

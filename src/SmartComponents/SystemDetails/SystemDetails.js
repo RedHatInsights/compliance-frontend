@@ -4,7 +4,6 @@ import {
     useQuery
 } from '@apollo/react-hooks';
 import {
-    useHistory,
     useLocation,
     useParams
 } from 'react-router-dom';
@@ -20,14 +19,11 @@ import {
 } from '@patternfly/react-core';
 import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import {
-    onNavigate
-} from 'Utilities/Breadcrumbs';
-import {
+    BreadcrumbLinkItem,
     StateViewWithError,
     StateViewPart
 } from 'PresentationalComponents';
 import { InventoryDetails } from 'SmartComponents';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 const QUERY = gql`
 query System($inventoryId: String!){
@@ -43,19 +39,17 @@ export const SystemDetails = () => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { inventoryId }
     });
-    const history = useHistory();
     const location = useLocation();
     const hidePassed = location.query && location.query.hidePassed;
-    const onClick = (event) => onNavigate(event, history);
     const systemName = data?.system?.name;
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='data'>
             <PageHeader>
                 <Breadcrumb>
-                    <BreadcrumbItem to='/rhel/compliance/systems' onClick={ onClick }>
+                    <BreadcrumbLinkItem to='/systems'>
                         Systems
-                    </BreadcrumbItem>
+                    </BreadcrumbLinkItem>
                     <BreadcrumbItem isActive>{ systemName }</BreadcrumbItem>
                 </Breadcrumb>
                 <InventoryDetails />
@@ -73,4 +67,4 @@ export const SystemDetails = () => {
     </StateViewWithError>;
 };
 
-export default routerParams(SystemDetails);
+export default SystemDetails;

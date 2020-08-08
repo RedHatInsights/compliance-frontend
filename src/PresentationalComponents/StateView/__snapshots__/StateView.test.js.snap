@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatView expect to render data 1`] = `
+<StateViewPart
+  stateKey="data"
+>
+  DATA
+</StateViewPart>
+`;
+
+exports[`StatView expect to render error 1`] = `
+<StateViewPart
+  stateKey="error"
+>
+  ERROR
+</StateViewPart>
+`;
+
+exports[`StatView expect to render loading 1`] = `
+<StateViewPart
+  stateKey="loading"
+>
+  LOADING
+</StateViewPart>
+`;
+
+exports[`StatViewWithError expect to render error page 1`] = `
+<StateView
+  stateValues={
+    Object {
+      "data": undefined,
+      "error": Object {
+        "error": "ERROR",
+      },
+      "loading": undefined,
+    }
+  }
+>
+  <StateViewPart
+    key="error-state"
+    stateKey="error"
+  >
+    <ErrorPage
+      error={
+        Object {
+          "error": "ERROR",
+        }
+      }
+    />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="loading"
+  >
+    LOADING
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    DATA
+  </StateViewPart>
+</StateView>
+`;

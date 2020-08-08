@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import propTypes from 'prop-types';
+import React from 'react';
 import gql from 'graphql-tag';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { Breadcrumb, BreadcrumbItem, Grid, GridItem } from '@patternfly/react-core';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import { Breadcrumb, BreadcrumbItem, Grid, GridItem, Tab } from '@patternfly/react-core';
 import {
     PageHeader, PageHeaderTitle, Main, Spinner
 } from '@redhat-cloud-services/frontend-components';
-import { onNavigate } from 'Utilities/Breadcrumbs';
 import {
-    PolicyDetailsDescription, PolicyDetailsContentLoader, PolicyTabs, TabSwitcher, Tab,
-    StateViewWithError, StateViewPart
+    PolicyDetailsDescription, PolicyDetailsContentLoader, RouteredTabSwitcher as TabSwitcher, ContentTab,
+    StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem
 } from 'PresentationalComponents';
 import { EditPolicy } from 'SmartComponents';
 import '@/Charts.scss';
@@ -58,13 +56,13 @@ query Profile($policyId: String!){
 }
 `;
 
-export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
+export const PolicyDetails = () => {
+    const defaultTab = 'details';
+    const { policy_id: policyId } = useParams();
     let { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
-    const [activeTab, setActiveTab] = useState(0);
     let policy = data && !loading ? data.profile : {};
-    const beta = window.insights.chrome.isBeta();
 
     if (policy.external) {
         error = { message: 'This is an external SCAP policy.' };
@@ -80,10 +78,9 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
         <StateViewPart stateKey='data'>
             <PageHeader className='page-header-tabs'>
                 <Breadcrumb>
-                    <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/scappolicies`}
-                        onClick={ (event) => onNavigateWithProps(event) }>
-                      Policies
-                    </BreadcrumbItem>
+                    <BreadcrumbLinkItem to='/scappolicies'>
+                          Policies
+                    </BreadcrumbLinkItem>
                     <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid gutter='lg'>
@@ -98,45 +95,27 @@ export const PolicyDetailsQuery = ({ policyId, onNavigateWithProps }) => {
                         />
                     </GridItem>
                 </Grid>
-                <PolicyTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+                <RoutedTabs aria-label="Policy Tabs" defaultTab={ defaultTab }>
+                    <Tab title='Details' id='policy-details' eventKey='details' />
+                    <Tab title='Rules' id='policy-rules' eventKey='rules' />
+                    <Tab title='Systems' id='policy-systems' eventKey='systems' />
+                </RoutedTabs>
             </PageHeader>
             <Main>
-                <TabSwitcher activeTab={activeTab}>
-                    <Tab tabId={0}>
+                <TabSwitcher defaultTab={ defaultTab }>
+                    <ContentTab eventKey='details'>
                         <PolicyDetailsDescription policy={policy} />
-                    </Tab>
-                    <Tab tabId={1}>
-                        <PolicyRulesTab policy={policy} loading={loading} />
-                    </Tab>
-                    <Tab tabId={2}>
+                    </ContentTab>
+                    <ContentTab eventKey='rules'>
+                        <PolicyRulesTab policy={policy} />
+                    </ContentTab>
+                    <ContentTab eventKey='systems'>
                         <PolicySystemsTab policy={policy} complianceThreshold={policy.complianceThreshold} />
-                    </Tab>
+                    </ContentTab>
                 </TabSwitcher>
             </Main>
         </StateViewPart>
     </StateViewWithError>;
 };
 
-PolicyDetailsQuery.propTypes = {
-    policyId: propTypes.string,
-    onNavigateWithProps: propTypes.func
-};
-
-export class PolicyDetails extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onNavigate = onNavigate.bind(this);
-    }
-
-    render() {
-        return (
-            <PolicyDetailsQuery policyId={this.props.match.params.policy_id} onNavigateWithProps={this.onNavigate} />
-        );
-    }
-}
-
-PolicyDetails.propTypes = {
-    match: propTypes.object
-};
-
-export default routerParams(PolicyDetails);
+export default PolicyDetails;

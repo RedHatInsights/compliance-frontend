@@ -38,7 +38,15 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     toggleIsExpanded={[Function]}
   >
     <ToolbarItem>
-      <Connect(CreatePolicy) />
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
     </ToolbarItem>
     <ToolbarItem>
       13
@@ -270,11 +278,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       widgetId="pagination-options-menu"
     />
   </TableToolbar>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
 </Fragment>
 `;
 
@@ -316,7 +319,15 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     toggleIsExpanded={[Function]}
   >
     <ToolbarItem>
-      <Connect(CreatePolicy) />
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
     </ToolbarItem>
     <ToolbarItem>
       13
@@ -821,11 +832,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       widgetId="pagination-options-menu"
     />
   </TableToolbar>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
 </Fragment>
 `;
 
@@ -876,7 +882,15 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     toggleIsExpanded={[Function]}
   >
     <ToolbarItem>
-      <Connect(CreatePolicy) />
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
     </ToolbarItem>
     <ToolbarItem>
       1
@@ -1030,11 +1044,6 @@ exports[`PoliciesTable Pagination and search should show only matching results a
       widgetId="pagination-options-menu"
     />
   </TableToolbar>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
 </Fragment>
 `;
 
@@ -1076,7 +1085,15 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     toggleIsExpanded={[Function]}
   >
     <ToolbarItem>
-      <Connect(CreatePolicy) />
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
     </ToolbarItem>
     <ToolbarItem>
       0
@@ -1219,11 +1236,6 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
       widgetId="pagination-options-menu"
     />
   </TableToolbar>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
 </Fragment>
 `;
 
@@ -1265,7 +1277,15 @@ exports[`PoliciesTable expect to render without error 1`] = `
     toggleIsExpanded={[Function]}
   >
     <ToolbarItem>
-      <Connect(CreatePolicy) />
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
     </ToolbarItem>
     <ToolbarItem>
       13
@@ -1770,599 +1790,5 @@ exports[`PoliciesTable expect to render without error 1`] = `
       widgetId="pagination-options-menu"
     />
   </TableToolbar>
-  <DeletePolicy
-    isModalOpen={false}
-    policy={Object {}}
-    toggle={[Function]}
-  />
-</Fragment>
-`;
-
-exports[`PoliciesTable setAndDeletePolicy should set the policy in state and open modal 1`] = `
-Object {
-  "activeFilters": Object {},
-  "isDeleteModalOpen": true,
-  "itemsPerPage": 10,
-  "page": 1,
-  "policyToDelete": Object {
-    "__typename": "Profile",
-    "benchmark": Object {
-      "title": "Guide to the Secure Configuration of RHEL 7",
-      "version": "0.1.49",
-    },
-    "businessObjective": null,
-    "complianceThreshold": 100,
-    "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
-    "majorOsVersion": 7,
-    "name": "United States Government Configuration Baseline23",
-    "refId": "xccdf_org.ssgproject.content_profile_ospp23",
-    "totalHostCount": 10,
-  },
-}
-`;
-
-exports[`PoliciesTable setAndDeletePolicy should set the policy in state and open modal 2`] = `
-<Fragment>
-  <PrimaryToolbar
-    activeFiltersConfig={
-      Object {
-        "filters": Array [],
-        "onDelete": [Function],
-      }
-    }
-    filterConfig={
-      Object {
-        "hideLabel": true,
-        "items": Array [
-          Object {
-            "filterValues": Object {
-              "onChange": [Function],
-              "value": undefined,
-            },
-            "id": "name",
-            "label": "Name",
-            "type": "text",
-          },
-        ],
-      }
-    }
-    pagination={
-      Object {
-        "dropDirection": "down",
-        "itemCount": 13,
-        "onPerPageSelect": [Function],
-        "onSetPage": [Function],
-        "page": 1,
-        "perPage": 10,
-      }
-    }
-    toggleIsExpanded={[Function]}
-  >
-    <ToolbarItem>
-      <Connect(CreatePolicy) />
-    </ToolbarItem>
-    <ToolbarItem>
-      13
-       results
-    </ToolbarItem>
-  </PrimaryToolbar>
-  <Table
-    actionResolver={[Function]}
-    aria-label="policies"
-    borders={true}
-    canSelectAll={true}
-    cells={
-      Array [
-        Object {
-          "title": "Policy name",
-        },
-        Object {
-          "title": "Operating system",
-        },
-        Object {
-          "title": "Systems",
-        },
-        Object {
-          "title": "Business objective",
-        },
-        Object {
-          "title": "Compliance threshold",
-        },
-      ]
-    }
-    className="compliance-policies-table"
-    contentId="expanded-content"
-    dropdownDirection="down"
-    dropdownPosition="right"
-    expandId="expandable-toggle"
-    gridBreakPoint="grid-md"
-    isStickyHeader={false}
-    ouiaSafe={true}
-    role="grid"
-    rowLabeledBy="simple-node"
-    rows={
-      Array [
-        Object {
-          "cells": Array [
-            Object {
-              "original": "United States Government Configuration Baseline23",
-              "title": <Link
-                to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5"
-              >
-                United States Government Configuration Baseline23
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "b71376fd-015e-4209-99af-4543e82e5dc5",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
-              "title": <Link
-                to="/scappolicies/719999b6-d230-4ba5-8dba-7ab3dc6561e0"
-              >
-                PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "67%",
-          ],
-          "policyId": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "United States Government Configuration Baseline2",
-              "title": <Link
-                to="/scappolicies/dae0487d-3201-4ee0-af5f-b94cde2af818"
-              >
-                United States Government Configuration Baseline2
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "dae0487d-3201-4ee0-af5f-b94cde2af818",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "C2S for Red Hat Enterprise Linux 7",
-              "title": <Link
-                to="/scappolicies/20a9d997-62a6-40cc-a5f3-19d466eb975e"
-              >
-                C2S for Red Hat Enterprise Linux 7
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "69.5%",
-          ],
-          "policyId": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "Criminal Justice Information Services (CJIS) Security Policy",
-              "title": <Link
-                to="/scappolicies/6d345bd2-d597-4df8-9bcf-71c41155b42c"
-              >
-                Criminal Justice Information Services (CJIS) Security Policy
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
-              "title": <Link
-                to="/scappolicies/c8e15347-9c2b-495d-8e54-503c2f9582b6"
-              >
-                Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
-              "title": <Link
-                to="/scappolicies/3c4823a1-2c16-46ae-b2fe-0cebf5a03931"
-              >
-                PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
-              "title": <Link
-                to="/scappolicies/f7b7977a-403b-4cd1-ab90-20b6f9a5a359"
-              >
-                Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "Health Insurance Portability and Accountability Act (HIPAA)",
-              "title": <Link
-                to="/scappolicies/36abc364-6dc3-4e35-94f4-d10fa77e866e"
-              >
-                Health Insurance Portability and Accountability Act (HIPAA)
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
-        },
-        Object {
-          "cells": Array [
-            Object {
-              "original": "United States Government Configuration Baseline",
-              "title": <Link
-                to="/scappolicies/d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220"
-              >
-                United States Government Configuration Baseline
-              </Link>,
-            },
-            Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
-            },
-            Object {
-              "title": 10,
-            },
-            "--",
-            "100%",
-          ],
-          "policyId": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
-        },
-      ]
-    }
-    variant={null}
-  >
-    <TableHeader />
-    <Component />
-  </Table>
-  <TableToolbar
-    className="ins-c-inventory__table--toolbar"
-    isFooter={true}
-  >
-    <Pagination
-      className=""
-      defaultToFullPage={false}
-      dropDirection="up"
-      firstPage={1}
-      isCompact={false}
-      isDisabled={false}
-      itemCount={13}
-      itemsEnd={null}
-      itemsStart={null}
-      offset={0}
-      onFirstClick={[Function]}
-      onLastClick={[Function]}
-      onNextClick={[Function]}
-      onPageInput={[Function]}
-      onPerPageSelect={[Function]}
-      onPreviousClick={[Function]}
-      onSetPage={[Function]}
-      ouiaSafe={true}
-      page={1}
-      perPage={10}
-      perPageOptions={
-        Array [
-          Object {
-            "title": "10",
-            "value": 10,
-          },
-          Object {
-            "title": "20",
-            "value": 20,
-          },
-          Object {
-            "title": "50",
-            "value": 50,
-          },
-          Object {
-            "title": "100",
-            "value": 100,
-          },
-        ]
-      }
-      titles={
-        Object {
-          "currPage": "Current page",
-          "items": "",
-          "itemsPerPage": "Items per page",
-          "optionsToggle": "Items per page",
-          "page": "",
-          "paginationTitle": "Pagination",
-          "perPageSuffix": "per page",
-          "toFirstPage": "Go to first page",
-          "toLastPage": "Go to last page",
-          "toNextPage": "Go to next page",
-          "toPreviousPage": "Go to previous page",
-        }
-      }
-      toggleTemplate={[Function]}
-      variant="bottom"
-      widgetId="pagination-options-menu"
-    />
-  </TableToolbar>
-  <DeletePolicy
-    isModalOpen={true}
-    policy={
-      Object {
-        "__typename": "Profile",
-        "benchmark": Object {
-          "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
-        },
-        "businessObjective": null,
-        "complianceThreshold": 100,
-        "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
-        "majorOsVersion": 7,
-        "name": "United States Government Configuration Baseline23",
-        "refId": "xccdf_org.ssgproject.content_profile_ospp23",
-        "totalHostCount": 10,
-      }
-    }
-    toggle={[Function]}
-  />
 </Fragment>
 `;

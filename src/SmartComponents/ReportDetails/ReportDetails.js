@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import propTypes from 'prop-types';
+import { useHistory, useParams } from 'react-router-dom';
+
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -9,11 +10,10 @@ import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem } from '@patternfly/
 import {
     PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner
 } from '@redhat-cloud-services/frontend-components';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import {
-    ReportDetailsContentLoader, ReportDetailsDescription, StateViewWithError, StateViewPart
+    BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription, StateViewWithError, StateViewPart
 } from 'PresentationalComponents';
 import { DeleteReport, SystemsTable } from 'SmartComponents';
 
@@ -46,14 +46,15 @@ query Profile($policyId: String!){
 }
 `;
 
-export const ReportDetails = ({ match, history }) => {
+export const ReportDetails = () => {
+    const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
-        variables: { policyId: match.params.report_id }
+        variables: { policyId }
     });
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const beta = window.insights.chrome.isBeta();
+    const history = useHistory();
     const redirect = () => {
-        history.push('insights/compliance/reports');
+        history.push('/reports');
     };
 
     let donutValues = [];
@@ -113,9 +114,9 @@ export const ReportDetails = ({ match, history }) => {
         <StateViewPart stateKey='data'>
             <PageHeader>
                 <Breadcrumb>
-                    <BreadcrumbItem to={`${ beta ? '/beta/insights' : '/rhel' }/compliance/reports`}>
+                    <BreadcrumbLinkItem to='/reports'>
                         Reports
-                    </BreadcrumbItem>
+                    </BreadcrumbLinkItem>
                     <BreadcrumbItem isActive>{profile.name}</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid hasGutter>
@@ -189,9 +190,4 @@ export const ReportDetails = ({ match, history }) => {
     </StateViewWithError>;
 };
 
-ReportDetails.propTypes = {
-    match: propTypes.object,
-    history: propTypes.object
-};
-
-export default routerParams(ReportDetails);
+export default ReportDetails;

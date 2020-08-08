@@ -1,11 +1,6 @@
-import { init } from 'Store';
-import { Provider } from 'react-redux';
-import ReactDom from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
 import {
     QUERY,
-    PolicyDetailsQuery,
     PolicyDetails
 } from './PolicyDetails';
 
@@ -43,130 +38,22 @@ const mocks = [
         }
     }
 ];
-const store = init().getStore();
 
 jest.mock('@apollo/react-hooks', () => ({
-    useQuery: () => {
-        return { data: mocks[0].result.data, error: false, loading: false };
-    }
+    useQuery: () => (
+        { data: mocks[0].result.data, error: undefined, loading: undefined }
+    )
 }));
 
-describe('PolicyDetailsQuery', () => {
-    const MockComponent = jest.fn(({ children, loaded }) => {
-        return children && loaded ? children : 'Test Loading...';
-    });
-    const defaultProps = {
-        store,
-        policyId: '1234',
-        onNavigateWithProps: jest.fn()
-    };
-    let container;
-
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
-        global.insights = {
-            chrome: { isBeta: jest.fn(() => true) },
-            loadInventory: jest.fn(() => {
-                return Promise.resolve({
-                    inventoryConnector: () => ({
-                        InventoryTable: MockComponent
-                    }),
-                    INVENTORY_ACTION_TYPES: {},
-                    mergeWithEntities: () => ({})
-                });
-            })
-        };
-    });
-
-    afterEach(() => {
-        document.body.removeChild(container);
-        container = null;
-    });
-
-    it('expect to render even without policyId', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <PolicyDetailsQuery />
-                    </Provider>
-                </Router>, container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('renders without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <PolicyDetailsQuery policyId="1234" />
-                    </Provider>
-                </Router>, container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('renders without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <PolicyDetailsQuery policyId="1234" />
-                    </Provider>
-                </Router>, container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-
-    it('expect to render with policyId', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <PolicyDetailsQuery { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
-        });
-
-        expect(container).toMatchSnapshot();
-    });
-});
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useParams: jest.fn().mockReturnValue({ policy_id: '1' }) // eslint-disable-line
+}));
 
 describe('PolicyDetails', () => {
-    const defaultProps = {
-        match: {
-            params: {
-                policyId: '123'
-            }
-        }
-    };
-    let container;
-
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-        document.body.removeChild(container);
-        container = null;
-    });
-
     it('expect to render without error', () => {
-        act(() => {
-            ReactDom.render(
-                <Router>
-                    <Provider store={ store }>
-                        <PolicyDetails { ...defaultProps } />
-                    </Provider>
-                </Router>, container);
-        });
+        const wrapper = shallow(<PolicyDetails />);
 
-        expect(container).toMatchSnapshot();
+        expect(toJson(wrapper)).toMatchSnapshot();
     });
 });

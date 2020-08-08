@@ -1,12 +1,10 @@
-import { paths } from '@/Routes';
-
 import { ReportTabs } from './ReportTabs';
 
 describe('ReportTabs', () => {
     const defaultProps = {
         history: {},
         match: {
-            path: paths.complianceSystems
+            path: '/systems'
         }
     };
 

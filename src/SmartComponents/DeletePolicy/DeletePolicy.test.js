@@ -1,18 +1,26 @@
-jest.mock('@apollo/react-hooks');
-jest.mock('Utilities/Dispatcher');
-
+import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 import DeletePolicy from './DeletePolicy.js';
 
+jest.mock('Utilities/Dispatcher');
+
+jest.mock('@apollo/react-hooks', () => ({
+    ...require.requireActual('@apollo/react-hooks'),
+    useMutation: jest.fn(() => ({}))
+}));
+
+jest.mock('react-router-dom', () => ({
+    ...require.requireActual('react-router-dom'),
+    useLocation: jest.fn(() => ({})),
+    useHistory: jest.fn(() => ({
+        push: jest.fn()
+    }))
+}));
+
 describe('DeletePolicy', () => {
-    const defaultProps = {
-        isModalOpen: true,
-        toggle: jest.fn(),
-        onDelete: jest.fn(),
-        policy: { id: 1, name: 'foo' }
-    };
+    const policy = { id: 1, name: 'foo' };
 
     beforeEach(() => {
         useMutation.mockImplementation((query, options) => {
@@ -20,33 +28,19 @@ describe('DeletePolicy', () => {
                 options.onCompleted();
             }];
         });
+        useLocation.mockImplementation(() => ({
+            state: {
+                policy
+            }
+        }));
         dispatchAction.mockImplementation(() => {});
     });
 
     it('expect to render an open modal without error', () => {
-        const component = mount(
-            <DeletePolicy { ...defaultProps } />
+        const component = shallow(
+            <DeletePolicy />
         );
 
-        expect(toJson(component)).toMatchSnapshot();
-    });
-
-    it('expect not to render anything for a closed modal', () => {
-        const component = mount(
-            <DeletePolicy { ...defaultProps } isModalOpen={ false } />
-        );
-
-        expect(toJson(component)).toMatchSnapshot();
-    });
-
-    it('expect to call toggle and onDelete when clicked', () => {
-        const component = mount(
-            <DeletePolicy { ...defaultProps } />
-        );
-
-        component.find('button[aria-label="delete"]').simulate('click');
-        expect(defaultProps.toggle).toHaveBeenCalled();
-        expect(defaultProps.onDelete).toHaveBeenCalled();
         expect(toJson(component)).toMatchSnapshot();
     });
 });
