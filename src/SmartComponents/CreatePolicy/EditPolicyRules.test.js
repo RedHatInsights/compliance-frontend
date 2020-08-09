@@ -4,6 +4,9 @@ jest.mock('@apollo/react-hooks');
 import { EditPolicyRules } from './EditPolicyRules.js';
 
 describe('EditPolicyRules', () => {
+    const defaultProps = {
+        change: jest.fn()
+    };
     const data = {
         profile: {
             refId: 'refID-test', name: 'test profile', rules: [{ refId: 'xccdfrefid' }]
@@ -16,7 +19,7 @@ describe('EditPolicyRules', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({ data, error: undefined, loading: undefined }));
         const component = shallow(
-            <EditPolicyRules />
+            <EditPolicyRules { ...defaultProps } />
         );
         expect(toJson(component)).toMatchSnapshot();
     });
@@ -24,7 +27,7 @@ describe('EditPolicyRules', () => {
     it('expect to render with error on error', () => {
         useQuery.mockImplementation(() => ({ data: undefined, error: true, loading: undefined }));
         const component = shallow(
-            <EditPolicyRules />
+            <EditPolicyRules { ...defaultProps } />
         );
         expect(toJson(component)).toMatchSnapshot();
     });
@@ -32,7 +35,7 @@ describe('EditPolicyRules', () => {
     it('expect to render without error on loading', () => {
         useQuery.mockImplementation(() => ({ data: undefined, error: undefined, loading: true }));
         const component = shallow(
-            <EditPolicyRules />
+            <EditPolicyRules { ...defaultProps } />
         );
         expect(toJson(component)).toMatchSnapshot();
     });
@@ -40,7 +43,7 @@ describe('EditPolicyRules', () => {
     it('expect to render without error', () => {
         useQuery.mockImplementation(() => ({ data, error: undefined, loading: undefined }));
         const component = shallow(
-            <EditPolicyRules selectedRuleRefIds={ ['xccdfrefid'] } />
+            <EditPolicyRules { ...defaultProps } selectedRuleRefIds={ ['xccdfrefid'] } />
         );
         expect(toJson(component)).toMatchSnapshot();
     });
