@@ -26,7 +26,8 @@ describe('AssignPoliciesModal', () => {
     const defaultProps = {
         fqdn: 'myhost',
         id: '1',
-        toggle: jest.fn()
+        toggle: jest.fn(),
+        isModalOpen: true
     };
 
     let store;
