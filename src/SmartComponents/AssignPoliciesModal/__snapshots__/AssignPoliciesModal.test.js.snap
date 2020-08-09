@@ -161,7 +161,6 @@ exports[`AssignPoliciesModal expect not to render anything for a closed modal 1`
   aria-labelledby=""
   className=""
   hasNoBodyWrapper={false}
-  isFooterLeftAligned={true}
   isOpen={false}
   onClose={[Function]}
   ouiaSafe={true}
@@ -331,7 +330,6 @@ exports[`AssignPoliciesModal expect to render an open modal without error 1`] = 
   aria-labelledby=""
   className=""
   hasNoBodyWrapper={false}
-  isFooterLeftAligned={true}
   isOpen={true}
   onClose={[Function]}
   ouiaSafe={true}
@@ -616,7 +614,6 @@ exports[`AssignPoliciesModal renders empty state if no OS is matching the system
   aria-labelledby=""
   className=""
   hasNoBodyWrapper={false}
-  isFooterLeftAligned={true}
   isOpen={[Function]}
   onClose={[Function]}
   ouiaSafe={true}

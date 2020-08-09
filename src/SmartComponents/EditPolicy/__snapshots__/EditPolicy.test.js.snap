@@ -36,7 +36,6 @@ exports[`EditPolicy expect to render without error 1`] = `
     aria-labelledby=""
     className=""
     hasNoBodyWrapper={false}
-    isFooterLeftAligned={true}
     isOpen={false}
     onClose={[Function]}
     ouiaSafe={true}

@@ -46,7 +46,6 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
             variant={ ModalVariant.small }
             title='Delete report'
             isOpen={ modalOpen }
-            isFooterLeftAligned
             onClose={ closeModal }
             actions={[
                 <Button
