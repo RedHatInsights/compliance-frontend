@@ -92,7 +92,6 @@ class CreatePolicy extends React.Component {
                     <Wizard
                         isOpen={isOpen}
                         onClose={this.toggleOpen}
-                        isFooterLeftAligned
                         title="Create SCAP policy"
                         description="Create a new policy for managing SCAP compliance"
                         steps={steps}
@@ -109,7 +108,7 @@ CreatePolicy.propTypes = {
     profile: propTypes.string,
     name: propTypes.string,
     refId: propTypes.string,
-    selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
     isOpen: propTypes.bool,
     onWizardFinish: propTypes.func,
     dispatch: propTypes.func

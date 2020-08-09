@@ -28,7 +28,6 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   hasNoBodyPadding={false}
   height={null}
   hideClose={false}
-  isFooterLeftAligned={true}
   isOpen={true}
   navAriaLabel="Steps"
   nextButtonText="Next"

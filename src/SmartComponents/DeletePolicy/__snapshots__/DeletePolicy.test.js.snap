@@ -137,7 +137,6 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
     aria-labelledby=""
     className=""
     hasNoBodyWrapper={false}
-    isFooterLeftAligned={true}
     isOpen={false}
     onClose={[MockFunction]}
     ouiaSafe={true}
@@ -173,7 +172,6 @@ exports[`DeletePolicy expect not to render anything for a closed modal 1`] = `
         className=""
         descriptorId="pf-modal-part-3"
         hasNoBodyWrapper={false}
-        isFooterLeftAligned={true}
         isOpen={false}
         labelId="pf-modal-part-2"
         onClose={[MockFunction]}
@@ -459,7 +457,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
     aria-labelledby=""
     className=""
     hasNoBodyWrapper={false}
-    isFooterLeftAligned={true}
     isOpen={true}
     onClose={
       [MockFunction] {
@@ -615,7 +612,6 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
         className=""
         descriptorId="pf-modal-part-4"
         hasNoBodyWrapper={false}
-        isFooterLeftAligned={true}
         isOpen={true}
         labelId="pf-modal-part-3"
         onClose={
@@ -782,12 +778,10 @@ exports[`DeletePolicy expect to call toggle and onDelete when clicked 1`] = `
                     </ModalBoxHeader>
                     <ModalBoxBody
                       id="pf-modal-part-4"
-                      isFooterLeftAligned={true}
                     >
                       <div
                         className="pf-c-modal-box__body"
                         id="pf-modal-part-4"
-                        isFooterLeftAligned={true}
                       >
                         <TextContent>
                           <div
@@ -1019,7 +1013,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
     aria-labelledby=""
     className=""
     hasNoBodyWrapper={false}
-    isFooterLeftAligned={true}
     isOpen={true}
     onClose={[MockFunction]}
     ouiaSafe={true}
@@ -1151,7 +1144,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
         className=""
         descriptorId="pf-modal-part-2"
         hasNoBodyWrapper={false}
-        isFooterLeftAligned={true}
         isOpen={true}
         labelId="pf-modal-part-1"
         onClose={[MockFunction]}
@@ -1270,12 +1262,10 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
                     </ModalBoxHeader>
                     <ModalBoxBody
                       id="pf-modal-part-2"
-                      isFooterLeftAligned={true}
                     >
                       <div
                         className="pf-c-modal-box__body"
                         id="pf-modal-part-2"
-                        isFooterLeftAligned={true}
                       >
                         <TextContent>
                           <div
