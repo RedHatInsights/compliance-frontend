@@ -12,7 +12,8 @@ class InventoryDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            InventoryCmp: () => <Skeleton size={ SkeletonSize.md } />
+            InventoryCmp: () => <Skeleton size={ SkeletonSize.md } />,
+            InvWrapper: React.Fragment
         };
 
         this.fetchInventory = this.fetchInventory.bind(this);
@@ -27,7 +28,7 @@ class InventoryDetails extends React.Component {
             ReactRedux,
             react: React,
             reactRouterDom,
-            reactCore,
+            pfReact: reactCore,
             reactIcons
         });
 
@@ -36,16 +37,18 @@ class InventoryDetails extends React.Component {
         });
 
         this.setState(() => ({
-            InventoryCmp: inventoryConnector(this.props.store).InventoryDetail
+            InventoryCmp: inventoryConnector(this.props.store).InventoryDetail,
+            InvWrapper: inventoryConnector(this.props.store).DetailWrapper
         }));
     }
 
     render() {
-        const { InventoryCmp } = this.state;
+        const { InventoryCmp, InvWrapper } = this.state;
+        const Wrapper = InvWrapper || React.Fragment;
         return (
-            <React.Fragment>
+            <Wrapper>
                 <InventoryCmp hideBack />
-            </React.Fragment>
+            </Wrapper>
         );
     }
 }

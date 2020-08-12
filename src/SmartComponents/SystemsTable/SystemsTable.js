@@ -253,7 +253,7 @@ class SystemsTable extends React.Component {
             ReactRedux,
             react: React,
             reactRouterDom,
-            reactCore,
+            pfReact: reactCore,
             reactIcons,
             pfReactTable
         });
