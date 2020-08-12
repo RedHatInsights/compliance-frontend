@@ -82,7 +82,6 @@ const AssignPoliciesModal = ({ isModalOpen, toggle, fqdn, id, selectedPolicyIds,
             variant={ ModalVariant.small }
             title={`Edit policies for ${fqdn}`}
             isOpen={isModalOpen}
-            isFooterLeftAligned
             onClose={() => { dispatch(reset('assignPolicies')); toggle(true); }}
             actions={[
                 <SubmitPoliciesButton key='save'

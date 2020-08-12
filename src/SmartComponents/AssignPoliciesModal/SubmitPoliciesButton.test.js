@@ -14,7 +14,7 @@ describe('SubmitPoliciesButton', () => {
         toggle: jest.fn(),
         dispatch: jest.fn(),
         policyIds: ['1', '2', '3'],
-        system: { id: '1', name: 'foo' }
+        systemId: '1'
     };
 
     beforeEach(() => {

@@ -27,7 +27,8 @@ describe('SystemsTable', () => {
         store,
         client,
         updateSystems: updateSystemsFunction,
-        updateRows: updateRowsFunction
+        updateRows: updateRowsFunction,
+        clearInventoryFilter: jest.fn()
     };
     const MockComponent = jest.fn(({ children, loaded }) => {
         return children && loaded ? children : 'Loading...';
