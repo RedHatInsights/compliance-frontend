@@ -1,5 +1,5 @@
 import { version } from './../package.json';
-import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/components/cjs/ConditionalFilter';
 
 export const COMPLIANCE_API_ROOT = '/api/compliance';
 export const COMPLIANCE_UI_ROOT = '/rhel/compliance';

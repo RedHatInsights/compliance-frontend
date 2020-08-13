@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store';
 import { act } from 'react-dom/test-utils';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
-const waitForComponentToPaint = async (wrapper: any) => {
+const waitForComponentToPaint = async (wrapper) => {
     await act(async () => {
         await new Promise(resolve => setTimeout(resolve, 0));
         wrapper.update();

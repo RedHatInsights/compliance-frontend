@@ -32,6 +32,9 @@ const webpackConfig = {
     },
     resolve: {
         alias: {
+            customReact: 'react',
+            PFReactCore: '@patternfly/react-core',
+            PFReactTable: '@patternfly/react-table',
             PresentationalComponents: path.join(__dirname, '../src/PresentationalComponents'),
             SmartComponents: path.join(__dirname, '../src/SmartComponents'),
             Utilities: path.join(__dirname, '../src/Utilities'),
