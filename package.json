@@ -13,7 +13,7 @@
     "@data-driven-forms/react-form-renderer": "^2.6.1",
     "@patternfly/patternfly": "^4.23.3",
     "@patternfly/react-charts": "^6.6.0",
-    "@patternfly/react-core": "^4.32.1",
+    "@patternfly/react-core": "^4.40.3",
     "@patternfly/react-icons": "^4.5.0",
     "@patternfly/react-table": "^4.12.1",
     "@patternfly/react-tokens": "^4.6.0",
