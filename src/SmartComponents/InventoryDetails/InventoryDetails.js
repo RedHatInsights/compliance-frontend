@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import * as reactRouterDom from 'react-router-dom';
 import * as reactCore from '@patternfly/react-core';
+import * as pfReactTable from '@patternfly/react-table';
 import * as ReactRedux from 'react-redux';
 import * as reactIcons from '@patternfly/react-icons';
 import { Skeleton, SkeletonSize } from '@redhat-cloud-services/frontend-components';
@@ -29,7 +30,8 @@ class InventoryDetails extends React.Component {
             react: React,
             reactRouterDom,
             pfReact: reactCore,
-            reactIcons
+            reactIcons,
+            pfReactTable
         });
 
         this.getRegistry().register({

@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {
     Progress, ProgressVariant
-} from '@patternfly/react-core';
+} from '@patternfly/react-core/dist/js/components/Progress';
 
 const ProgressBar = ({ percent, failed }) => {
     let variant;
