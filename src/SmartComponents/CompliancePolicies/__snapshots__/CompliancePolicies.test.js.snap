@@ -722,7 +722,11 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
               <BackgroundLink
                 to="/scappolicies/new"
               >
-                Create new policy
+                <Button
+                  variant="primary"
+                >
+                  Create new policy
+                </Button>
               </BackgroundLink>
             }
             title="No policies"
