@@ -25,10 +25,10 @@ const webpackConfig = {
         App: config.paths.entry
     },
     output: {
-        filename: 'js/[name].js',
+        filename: 'js/[name]-[contenthash].js',
         path: config.paths.public,
         publicPath: config.paths.publicPath,
-        chunkFilename: 'js/[name].js'
+        chunkFilename: 'js/[name]-[contenthash].js'
     },
     resolve: {
         alias: {
@@ -70,7 +70,7 @@ const webpackConfig = {
             use: [{
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]',
+                    name: '[name]-[contenthash].[ext]',
                     outputPath: 'fonts/'
                 }
             }]
