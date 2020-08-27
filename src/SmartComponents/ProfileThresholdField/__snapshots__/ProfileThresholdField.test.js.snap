@@ -16,7 +16,7 @@ Object {
 
 exports[`ProfileThresholdField expect to handle ThresholdChange 3`] = `
 Object {
-  "threshold": 0,
+  "threshold": -10,
   "validThreshold": false,
 }
 `;
@@ -34,12 +34,12 @@ exports[`ProfileThresholdField expect to render with title 1`] = `
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
     helperTextInvalid="Threshold has to be a number between 0 and 100"
-    isValid={true}
     label={
       <React.Fragment>
         Compliance threshold (%) 
       </React.Fragment>
     }
+    validated="default"
   >
     <Field
       aria-label="compliance threshold"
@@ -47,7 +47,6 @@ exports[`ProfileThresholdField expect to render with title 1`] = `
       defaultValue={10}
       id="complianceThreshold"
       isRequired={true}
-      isValid={true}
       name="complianceThreshold"
       onChange={[Function]}
       style={
@@ -57,6 +56,7 @@ exports[`ProfileThresholdField expect to render with title 1`] = `
         }
       }
       type="number"
+      validated="default"
     />
   </FormGroup>
 </Fragment>
@@ -68,7 +68,6 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
     helperTextInvalid="Threshold has to be a number between 0 and 100"
-    isValid={true}
     label={
       <React.Fragment>
         Compliance threshold (%) 
@@ -96,6 +95,7 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
         </Popover>
       </React.Fragment>
     }
+    validated="default"
   >
     <Field
       aria-label="compliance threshold"
@@ -103,7 +103,6 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
       defaultValue={10}
       id="complianceThreshold"
       isRequired={true}
-      isValid={true}
       name="complianceThreshold"
       onChange={[Function]}
       style={
@@ -113,6 +112,7 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
         }
       }
       type="number"
+      validated="default"
     />
   </FormGroup>
 </Fragment>

@@ -18,15 +18,19 @@ describe('validations', () => {
     });
 
     it('expect not to validate the second page if name or refId are not set', () => {
-        expect(validateSecondPage(null, null)).toBe(false);
+        expect(validateSecondPage(null, null, 100)).toBe(false);
     });
 
     it('expect to validate the second page if name and refId are set', () => {
-        expect(validateSecondPage('a', 'b')).toBe(true);
+        expect(validateSecondPage('a', 'b', 100)).toBe(true);
+    });
+
+    it('expect not to validate the second page if threshold to high', () => {
+        expect(validateSecondPage('a', 'b', 300)).toBe(false);
     });
 
     it('expect not to validate the second page if one of name and refId are not set', () => {
-        expect(validateSecondPage('a', null)).toBe(false);
-        expect(validateSecondPage(null, 'b')).toBe(false);
+        expect(validateSecondPage('a', null, 100)).toBe(false);
+        expect(validateSecondPage(null, 'b', 100)).toBe(false);
     });
 });
