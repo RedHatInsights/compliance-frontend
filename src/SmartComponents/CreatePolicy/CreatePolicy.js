@@ -12,7 +12,9 @@ import ReviewCreatedPolicy from './ReviewCreatedPolicy';
 import FinishedCreatePolicy from './FinishedCreatePolicy';
 import { validateFirstPage, validateSecondPage, validateThirdPage } from './validate';
 
-export const CreatePolicy = ({ benchmark, profile, name, refId, selectedRuleRefIds }) => {
+export const CreatePolicy = ({
+    benchmark, complianceThreshold, name, profile, refId, selectedRuleRefIds
+}) => {
     const history = useHistory();
     const [stepIdReached, setStepIdReached] = useState(1);
     const onNext = ({ id }) => {
@@ -35,7 +37,7 @@ export const CreatePolicy = ({ benchmark, profile, name, refId, selectedRuleRefI
             name: 'Details',
             component: <EditPolicyDetails/>,
             canJumpTo: stepIdReached >= 2,
-            enableNext: validateSecondPage(name, refId)
+            enableNext: validateSecondPage(name, refId, complianceThreshold)
         },
         {
             id: 3,
@@ -82,13 +84,15 @@ export const CreatePolicy = ({ benchmark, profile, name, refId, selectedRuleRefI
 
 CreatePolicy.propTypes = {
     benchmark: propTypes.string,
-    profile: propTypes.string,
-    name: propTypes.string,
-    refId: propTypes.string,
-    selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
+    complianceThreshold: propTypes.string,
+    businessObjective: propTypes.object,
+    dispatch: propTypes.func,
     isOpen: propTypes.bool,
+    name: propTypes.string,
     onWizardFinish: propTypes.func,
-    dispatch: propTypes.func
+    profile: propTypes.string,
+    refId: propTypes.string,
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string)
 };
 
 CreatePolicy.defaultProps = {
@@ -99,9 +103,11 @@ const selector = formValueSelector('policyForm');
 export default connect(
     state => ({
         benchmark: selector(state, 'benchmark'),
-        profile: selector(state, 'profile'),
+        businessObjective: selector(state, 'businessObjective'),
+        complianceThreshold: selector(state, 'complianceThreshold') || 100.0,
         name: selector(state, 'name'),
+        profile: selector(state, 'profile'),
         refId: selector(state, 'refId'),
-        selectedRuleRefIds: selector(state, 'selectedRuleRefIds') || []
+        selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
     })
 )(CreatePolicy);

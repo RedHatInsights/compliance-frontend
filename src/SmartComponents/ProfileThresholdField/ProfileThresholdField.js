@@ -5,23 +5,20 @@ import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
 import round from 'lodash/round';
+import { thresholdValid } from '../CreatePolicy/validate';
 
 export class ProfileThresholdField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            validThreshold: true,
-            threshold: round(props.previousThreshold, 1)
-        };
-    }
-
-    handleThresholdChange = threshold => {
-        if (threshold > 100 || threshold < 0) {
-            this.setState({ validThreshold: false });
-        } else {
-            this.setState({ validThreshold: true, threshold: round(threshold, 1) });
-        }
+    state = {
+        validThreshold: thresholdValid(this.props.previousThreshold),
+        threshold: round(this.props.previousThreshold || 100, 1)
     };
+
+    handleThresholdChange = (threshold) => (
+        this.setState({
+            validThreshold: thresholdValid(threshold),
+            threshold: round(threshold, 1)
+        })
+    )
 
     render() {
         const { threshold, validThreshold } = this.state;
@@ -45,13 +42,13 @@ export class ProfileThresholdField extends React.Component {
             <React.Fragment>
                 { showTitle && title }
                 <FormGroup fieldId='policy-threshold'
-                    isValid={validThreshold}
+                    validated={ validThreshold ? 'default' : 'error' }
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
                     helperText="A value of 95% or higher is recommended"
                     label={<React.Fragment>Compliance threshold (%) {!showTitle && popover}</React.Fragment>}>
                     <Field name='complianceThreshold' id='complianceThreshold' isRequired={true}
                         onChange={this.handleThresholdChange}
-                        isValid={validThreshold}
+                        validated={ validThreshold ? 'default' : 'error' }
                         defaultValue={threshold}
                         aria-label="compliance threshold"
                         component={ReduxFormTextInput} type='number'
