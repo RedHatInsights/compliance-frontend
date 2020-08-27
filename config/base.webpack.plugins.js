@@ -37,7 +37,7 @@ plugins.push(HtmlWebpackPlugin);
 const SourceMapsPlugin = new webpack.SourceMapDevToolPlugin({
     test: /\.js/i,
     exclude: /(node_modules|bower_components)/i,
-    filename: `sourcemaps/[name]-[contenthash].js.map`
+    filename: process.env.NODE_ENV === 'production' ? `sourcemaps/[name]-[contenthash].js.map` : `sourcemaps/[name].js.map`
 });
 plugins.push(SourceMapsPlugin);
 
@@ -76,8 +76,8 @@ plugins.push(LodashWebpackPlugin);
  * Writes final css to file
  */
 const ExtractCssWebpackPlugin = new (require('mini-css-extract-plugin'))({
-    chunkFilename: 'css/[name]-[contenthash].css',
-    filename: 'css/[name]-[contenthash].css'
+    chunkFilename: process.env.NODE_ENV === 'production' ? 'css/[name]-[contenthash].css' : 'css/[name].css',
+    filename: process.env.NODE_ENV === 'production' ? 'css/[name]-[contenthash].css' : 'css/[name].css'
 });
 plugins.push(ExtractCssWebpackPlugin);
 
