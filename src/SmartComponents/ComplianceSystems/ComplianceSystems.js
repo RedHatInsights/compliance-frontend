@@ -13,6 +13,7 @@ const QUERY = gql`
                 id
                 name
                 refId
+                majorOsVersion
             }
         }
     }
@@ -54,6 +55,7 @@ export const ComplianceSystems = () => {
                 <StateViewWithError stateValues={ { error, data, loading } }>
                     <StateViewPart stateKey="data">
                         { policies && <SystemsTable
+                            showOsFilter
                             remediationsEnabled={ false }
                             columns={ columns }
                             policies={ policies } /> }

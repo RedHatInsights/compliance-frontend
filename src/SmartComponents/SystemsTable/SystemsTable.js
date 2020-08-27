@@ -29,7 +29,7 @@ import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
     DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
-    systemsPolicyFilterConfiguration
+    systemsPolicyFilterConfiguration, systemsOsFilterConfiguration
 } from '@/constants';
 import {
     ErrorPage,
@@ -106,7 +106,8 @@ class SystemsTable extends React.Component {
     filterConfig = new FilterConfigBuilder([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(this.props.policies ? systemsPolicyFilterConfiguration(this.props.policies) : [])
+        ...(this.props.policies ? systemsPolicyFilterConfiguration(this.props.policies) : []),
+        ...(this.props.policies && this.props.showOsFilter ? systemsOsFilterConfiguration(this.props.policies) : [])
     ]);
     chipBuilder = this.filterConfig.getChipBuilder();
     filterBuilder = this.filterConfig.getFilterBuilder();
@@ -414,7 +415,7 @@ SystemsTable.propTypes = {
     enableExport: propTypes.bool,
     error: propTypes.object,
     exportFromState: propTypes.func,
-	policies: propTypes.array,
+    policies: propTypes.array,
     policyId: propTypes.string,
     preselectedSystems: propTypes.array,
     remediationsEnabled: propTypes.bool,
@@ -424,6 +425,7 @@ SystemsTable.propTypes = {
     showActions: propTypes.bool,
     showAllSystems: propTypes.bool,
     showOnlySystemsWithTestResults: propTypes.bool,
+    showOsFilter: propTypes.bool,
     store: propTypes.object,
     systems: propTypes.array,
     total: propTypes.number,
