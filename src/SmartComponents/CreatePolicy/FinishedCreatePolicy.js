@@ -10,8 +10,9 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
-import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
-import businessObjectiveMutation from 'Utilities/businessObjectiveMutation';
+import {
+    CREATE_BUSINESS_OBJECTIVE, CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES
+} from 'Utilities/graphql/mutations';
 
 class FinishedCreatePolicy extends React.Component {
     state = {
@@ -34,26 +35,36 @@ class FinishedCreatePolicy extends React.Component {
         });
     }
 
-    createProfile = () => {
-        const { businessObjective, benchmarkId, cloneFromProfileId, refId, name,
-            description, complianceThreshold, selectedRuleRefIds, client } = this.props;
-        return businessObjectiveMutation(null, businessObjective, client.mutate).then(
-            businessObjectiveId => {
-                let input = { benchmarkId, cloneFromProfileId, refId, name,
-                    description, complianceThreshold, selectedRuleRefIds };
+    createProfile = async () => {
+        const {
+            businessObjective, benchmarkId, cloneFromProfileId, refId, name,
+            description, complianceThreshold, selectedRuleRefIds, client
+        } = this.props;
+        let input = {
+            benchmarkId,
+            cloneFromProfileId,
+            complianceThreshold,
+            description,
+            name,
+            refId,
+            selectedRuleRefIds
+        };
 
-                if (businessObjectiveId) {
-                    input.businessObjectiveId = businessObjectiveId;
-                }
+        if (businessObjective) {
+            const businessObjectiveIdResult = await client.mutate({
+                mutation: CREATE_BUSINESS_OBJECTIVE,
+                variables: { input: { title: businessObjective } }
+            });
+            input.businessObjectiveId = businessObjectiveIdResult.data
+            .createBusinessObjective.businessObjective.id;
+        }
 
-                return client.mutate({
-                    mutation: CREATE_PROFILE,
-                    variables: {
-                        input
-                    }
-                });
+        return client.mutate({
+            mutation: CREATE_PROFILE,
+            variables: {
+                input
             }
-        );
+        });
     }
 
     associateSystems = () => {

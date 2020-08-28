@@ -59,848 +59,832 @@ Object {
 `;
 
 exports[`SystemsTable expect to not render a loading state 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": false,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": false,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={1}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={1}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
         }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
         }
-        exportConfig={
-          Object {
-            "isDisabled": false,
-            "onSelect": [Function],
-          }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": false,
+          "onSelect": [Function],
         }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
+            Object {
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={1}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={1}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to render a loading state 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": true,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": true,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={Array []}
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
+      }
+      items={Array []}
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": false,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
+              },
+              "id": "name",
+              "label": "Name",
+              "type": "text",
             },
             Object {
-              "onClick": [Function],
-              "title": "View in inventory",
+              "filterValues": Object {
+                "items": Array [
+                  Object {
+                    "label": "Compliant",
+                    "value": "true",
+                  },
+                  Object {
+                    "label": "Non-compliant",
+                    "value": "false",
+                  },
+                ],
+                "onChange": [Function],
+                "value": Array [],
+              },
+              "id": "compliant",
+              "label": "Compliant",
+              "type": "checkbox",
             },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": false,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+            Object {
+              "filterValues": Object {
+                "items": Array [
+                  Object {
+                    "label": "90 - 100%",
+                    "value": "90-100",
+                  },
+                  Object {
+                    "label": "70 - 89%",
+                    "value": "70-89",
+                  },
+                  Object {
+                    "label": "50 - 69%",
+                    "value": "50-69",
+                  },
+                  Object {
+                    "label": "Less than 50%",
+                    "value": "0-49",
+                  },
+                ],
+                "onChange": [Function],
+                "value": Array [],
               },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "Compliant",
-                      "value": "true",
-                    },
-                    Object {
-                      "label": "Non-compliant",
-                      "value": "false",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "compliant",
-                "label": "Compliant",
-                "type": "checkbox",
-              },
-              Object {
-                "filterValues": Object {
-                  "items": Array [
-                    Object {
-                      "label": "90 - 100%",
-                      "value": "90-100",
-                    },
-                    Object {
-                      "label": "70 - 89%",
-                      "value": "70-89",
-                    },
-                    Object {
-                      "label": "50 - 69%",
-                      "value": "50-69",
-                    },
-                    Object {
-                      "label": "Less than 50%",
-                      "value": "0-49",
-                    },
-                  ],
-                  "onChange": [Function],
-                  "value": Array [],
-                },
-                "id": "compliancescore",
-                "label": "Compliance score",
-                "type": "checkbox",
-              },
-            ],
-          }
+              "id": "compliancescore",
+              "label": "Compliance score",
+              "type": "checkbox",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={1}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={1}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to set isDisable on export config to false total is 0 but selected is not 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": null,
+          "count": 1,
+          "label": "1 Selected",
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": false,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": null,
-            "count": 1,
-            "label": "1 Selected",
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": false,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={0}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={0}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={
-                Array [
-                  Object {
-                    "id": 1,
-                    "ruleObjectsFailed": Array [],
-                  },
-                ]
-              }
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={
+              Array [
+                Object {
+                  "id": 1,
+                  "ruleObjectsFailed": Array [],
+                },
+              ]
+            }
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to set isDisable on export config to true total is 0 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": true,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": true,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={0}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={0}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to set loading state correctly on updateSystems 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": true,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": true,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={Array []}
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
+      }
+      items={Array []}
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;
 
 exports[`SystemsTable expect to show actions if showActions is true or by default 1`] = `
-<Fragment>
-  <StateView
-    stateValues={
-      Object {
-        "error": undefined,
-        "noError": true,
-      }
+<StateView
+  stateValues={
+    Object {
+      "error": undefined,
+      "noError": true,
     }
+  }
+>
+  <StateViewPart
+    stateKey="error"
   >
-    <StateViewPart
-      stateKey="error"
-    >
-      <ErrorPage />
-    </StateViewPart>
-    <StateViewPart
-      stateKey="noError"
-    >
-      <ForwardRef
-        actions={
-          Array [
+    <ErrorPage />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="noError"
+  >
+    <ForwardRef
+      actions={
+        Array [
+          Object {
+            "onClick": [Function],
+            "title": "Edit policies for this system",
+          },
+          Object {
+            "onClick": [Function],
+            "title": "View in inventory",
+          },
+        ]
+      }
+      activeFiltersConfig={
+        Object {
+          "filters": Array [],
+          "onDelete": [Function],
+        }
+      }
+      bulkSelect={
+        Object {
+          "checked": false,
+          "count": 0,
+          "label": undefined,
+          "onSelect": [Function],
+        }
+      }
+      exportConfig={
+        Object {
+          "isDisabled": false,
+          "onSelect": [Function],
+        }
+      }
+      filterConfig={
+        Object {
+          "hideLabel": true,
+          "items": Array [
             Object {
-              "onClick": [Function],
-              "title": "Edit policies for this system",
-            },
-            Object {
-              "onClick": [Function],
-              "title": "View in inventory",
-            },
-          ]
-        }
-        activeFiltersConfig={
-          Object {
-            "filters": Array [],
-            "onDelete": [Function],
-          }
-        }
-        bulkSelect={
-          Object {
-            "checked": false,
-            "count": 0,
-            "label": undefined,
-            "onSelect": [Function],
-          }
-        }
-        exportConfig={
-          Object {
-            "isDisabled": false,
-            "onSelect": [Function],
-          }
-        }
-        filterConfig={
-          Object {
-            "hideLabel": true,
-            "items": Array [
-              Object {
-                "filterValues": Object {
-                  "onChange": [Function],
-                  "value": undefined,
-                },
-                "id": "name",
-                "label": "Name",
-                "type": "text",
+              "filterValues": Object {
+                "onChange": [Function],
+                "value": undefined,
               },
-            ],
-          }
+              "id": "name",
+              "label": "Name",
+              "type": "text",
+            },
+          ],
         }
-        items={
-          Array [
-            1,
-          ]
+      }
+      items={
+        Array [
+          1,
+        ]
+      }
+      onRefresh={[Function]}
+      page={1}
+      perPage={50}
+      tableProps={
+        Object {
+          "canSelectAll": false,
         }
-        onRefresh={[Function]}
-        page={1}
-        perPage={50}
-        tableProps={
-          Object {
-            "canSelectAll": false,
-          }
-        }
-        total={1}
-      >
-        <ForwardRef>
-          <ToolbarItem
-            style={
-              Object {
-                "marginLeft": "var(--pf-global--spacer--lg)",
-              }
+      }
+      total={1}
+    >
+      <ForwardRef>
+        <ToolbarItem
+          style={
+            Object {
+              "marginLeft": "var(--pf-global--spacer--lg)",
             }
-          >
-            <Connect(ComplianceRemediationButton)
-              allSystems={Array []}
-              selectedRules={Array []}
-            />
-          </ToolbarItem>
-        </ForwardRef>
+          }
+        >
+          <Connect(ComplianceRemediationButton)
+            allSystems={Array []}
+            selectedRules={Array []}
+          />
+        </ToolbarItem>
       </ForwardRef>
-    </StateViewPart>
-  </StateView>
-</Fragment>
+    </ForwardRef>
+  </StateViewPart>
+</StateView>
 `;

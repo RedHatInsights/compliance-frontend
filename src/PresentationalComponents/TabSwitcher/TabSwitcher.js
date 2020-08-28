@@ -2,12 +2,7 @@ import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { Tabs } from '@patternfly/react-core';
-
-const useAnchor = (defaultAnchor) => {
-    const location = useLocation();
-    const hash = location.hash && location.hash.length > 0 ? location.hash : undefined;
-    return (hash || defaultAnchor).replace('#', '');
-};
+import { useAnchor } from 'Utilities/Router';
 
 export const ContentTab = ({ children }) => (children);
 
@@ -36,10 +31,17 @@ RouteredTabSwitcher.propTypes = {
 };
 
 export const RoutedTabs = ({ children, defaultTab, ...props }) => {
-    const history = useHistory();
+    const { push } = useHistory();
+    const { pathname, state } = useLocation();
     const currentAnchor = useAnchor(defaultTab);
-    const handleTabSelect = (_, eventKey) => {
-        history.push({ hash: eventKey });
+    const handleTabSelect = (e, eventKey) => {
+        e.preventDefault();
+
+        push({
+            state,
+            to: pathname,
+            hash: eventKey.replace('#', '')
+        });
     };
 
     return <Tabs

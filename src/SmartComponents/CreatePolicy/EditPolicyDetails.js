@@ -7,11 +7,10 @@ import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/re
 
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import {
-    ProfileThresholdField,
-    BusinessObjectiveField
+    ProfileThresholdField
 } from 'SmartComponents';
 
-const EditPolicyDetails = ({ profile, dispatch }) => {
+const EditPolicyDetails = ({ profile: policy }) => {
     return (
         <React.Fragment>
             <TextContent>
@@ -28,8 +27,7 @@ const EditPolicyDetails = ({ profile, dispatch }) => {
                         isRequired={true}
                         id="name"
                         name="name"
-                        aria-describedby="name"
-                    />
+                        aria-describedby="name" />
                 </FormGroup>
                 <FormGroup label="Reference ID" isRequired fieldId="refId">
                     <Field
@@ -38,8 +36,7 @@ const EditPolicyDetails = ({ profile, dispatch }) => {
                         isDisabled
                         id="refId"
                         name="refId"
-                        aria-describedby="refId"
-                    />
+                        aria-describedby="refId" />
                 </FormGroup>
                 <FormGroup label="Description" fieldId="description">
                     <Field
@@ -47,15 +44,20 @@ const EditPolicyDetails = ({ profile, dispatch }) => {
                         component={ReduxFormTextArea}
                         id="description"
                         name="description"
-                        aria-describedby="description"
-                    />
+                        aria-describedby="description" />
                 </FormGroup>
-                <BusinessObjectiveField
-                    businessObjective={{}}
-                    policyId={profile.id}
-                    dispatch={dispatch}
-                />
-                <ProfileThresholdField showTitle={false} previousThreshold={profile.complianceThreshold} />
+                <FormGroup label="Business objective" fieldId="businessObjective">
+                    <Field
+                        type="text"
+                        component={ ReduxFormTextInput }
+                        id="businessObjective"
+                        name="businessObjective"
+                        aria-describedby="businessObjective"
+                        defaultValue={ policy.businessObjective } />
+                </FormGroup>
+                <ProfileThresholdField
+                    showTitle={ false }
+                    previousThreshold={ policy.complianceThreshold } />
             </Form>
         </React.Fragment>
     );

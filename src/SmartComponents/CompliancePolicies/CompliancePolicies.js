@@ -27,6 +27,7 @@ const QUERY = gql`
             node {
                 id
                 name
+                description
                 refId
                 complianceThreshold
                 totalHostCount
@@ -35,6 +36,9 @@ const QUERY = gql`
                     id
                     title
                     version
+                }
+                hosts {
+                    id
                 }
                 businessObjective {
                     id

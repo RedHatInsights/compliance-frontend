@@ -119,11 +119,16 @@ class SystemsTable extends React.Component {
     }
 
     componentDidMount = () => {
-        if (this.props.selectedEntities && this.props.selectedEntities.length > 0) {
-            this.props.clearAll();
+        const { clearAll, selectedEntities } = this.props;
+        if (selectedEntities && selectedEntities.length > 0) {
+            clearAll();
         }
 
-        this.updateSystems().then(() => this.fetchInventory());
+        (this.props.preselectedSystems ?
+            Promise.resolve(this.props.selectEntities(this.props.preselectedSystems)) : Promise.resolve())
+        .then(() => {
+            this.updateSystems().then(() => this.fetchInventory());
+        });
     }
 
     componentDidUpdate = (prevProps) => {
@@ -357,67 +362,70 @@ class SystemsTable extends React.Component {
             inventoryTableProps.hasCheckbox = false;
         }
 
-        return <React.Fragment>
-            <StateView stateValues={{ error, noError }}>
-                <StateViewPart stateKey='error'>
-                    <ErrorPage error={error}/>
-                </StateViewPart>
-                <StateViewPart stateKey='noError'>
-                    <InventoryCmp { ...inventoryTableProps }>
-                        { !showAllSystems && <reactCore.ToolbarGroup>
-                            { remediationsEnabled &&
-                                <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                                    <ComplianceRemediationButton
-                                        allSystems={ systemsWithRuleObjectsFailed(
-                                            systems.filter(edge => selectedEntities.includes(edge.node.id)
-                                            ).map(edge => edge.node))}
-                                        selectedRules={ [] } />
-                                </reactCore.ToolbarItem>
-                            }
-                        </reactCore.ToolbarGroup> }
-                        { selectedSystemId &&
-                        <AssignPoliciesModal
-                            isModalOpen={isAssignPoliciesModalOpen}
-                            id={selectedSystemId}
-                            fqdn={selectedSystemFqdn}
-                            toggle={(closedOrCanceled) => {
-                                this.setState((prev) => (
-                                    { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                                ), !closedOrCanceled ? this.updateSystems : null);
-                            }}
-                        /> }
-                    </InventoryCmp>
-                </StateViewPart>
-            </StateView>
-        </React.Fragment>;
+        return <StateView stateValues={{ error, noError }}>
+            <StateViewPart stateKey='error'>
+                <ErrorPage error={error}/>
+            </StateViewPart>
+            <StateViewPart stateKey='noError'>
+                <InventoryCmp { ...inventoryTableProps }>
+
+                    { !showAllSystems && <reactCore.ToolbarGroup>
+                        { remediationsEnabled &&
+                            <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
+                                <ComplianceRemediationButton
+                                    allSystems={ systemsWithRuleObjectsFailed(
+                                        systems.filter(edge => selectedEntities.includes(edge.node.id)
+                                        ).map(edge => edge.node))}
+                                    selectedRules={ [] } />
+                            </reactCore.ToolbarItem>
+                        }
+                    </reactCore.ToolbarGroup> }
+
+                    { selectedSystemId &&
+                    <AssignPoliciesModal
+                        isModalOpen={isAssignPoliciesModalOpen}
+                        id={selectedSystemId}
+                        fqdn={selectedSystemFqdn}
+                        toggle={(closedOrCanceled) => {
+                            this.setState((prev) => (
+                                { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
+                            ), !closedOrCanceled ? this.updateSystems : null);
+                        }}
+                    /> }
+
+                </InventoryCmp>
+            </StateViewPart>
+        </StateView>;
     }
 }
 
 SystemsTable.propTypes = {
-    store: propTypes.object,
-    client: propTypes.object,
-    policyId: propTypes.string,
-    columns: propTypes.array,
-    remediationsEnabled: propTypes.bool,
-    compact: propTypes.bool,
-    selectedEntities: propTypes.array,
-    exportFromState: propTypes.func,
-    enableExport: propTypes.bool,
-    showAllSystems: propTypes.bool,
-    complianceThreshold: propTypes.number,
-    showOnlySystemsWithTestResults: propTypes.bool,
-    showActions: propTypes.bool,
-    compliantFilter: propTypes.bool,
-    total: propTypes.number,
-    clearInventoryFilter: propTypes.func,
-    systems: propTypes.array,
-    updateRows: propTypes.func,
-    updateSystems: propTypes.func,
-    clearSelection: propTypes.func,
     allSelectedOnPage: propTypes.bool,
-    selectAll: propTypes.func,
+    clearAll: propTypes.func,
+    clearInventoryFilter: propTypes.func,
+    clearSelection: propTypes.func,
+    client: propTypes.object,
+    columns: propTypes.array,
+    compact: propTypes.bool,
+    complianceThreshold: propTypes.number,
+    compliantFilter: propTypes.bool,
+    enableExport: propTypes.bool,
     error: propTypes.object,
-    clearAll: propTypes.func
+    exportFromState: propTypes.func,
+    policyId: propTypes.string,
+    preselectedSystems: propTypes.array,
+    remediationsEnabled: propTypes.bool,
+    selectAll: propTypes.func,
+    selectEntities: propTypes.func,
+    selectedEntities: propTypes.array,
+    showActions: propTypes.bool,
+    showAllSystems: propTypes.bool,
+    showOnlySystemsWithTestResults: propTypes.bool,
+    store: propTypes.object,
+    systems: propTypes.array,
+    total: propTypes.number,
+    updateRows: propTypes.func,
+    updateSystems: propTypes.func
 };
 
 SystemsTable.defaultProps = {
@@ -469,6 +477,10 @@ const mapDispatchToProps = dispatch => {
         clearAll: () => dispatch({
             type: SELECT_ENTITY,
             payload: { clearAll: true }
+        }),
+        selectEntities: (ids) => dispatch({
+            type: 'SELECT_ENTITIES',
+            payload: { ids }
         })
     };
 };
