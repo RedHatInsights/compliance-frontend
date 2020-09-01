@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-    BackgroundLink,
-    LoadingComplianceCards,
-    ReportCard,
-    ReportTabs,
-    StateViewWithError,
-    StateViewPart
-} from 'PresentationalComponents';
-import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { Grid } from '@patternfly/react-core';
+import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import {
-    Button,
-    Grid,
-    GridItem
-} from '@patternfly/react-core';
+    LoadingComplianceCards, ReportCardGrid, StateViewPart, StateViewWithError
+} from 'PresentationalComponents';
 
 const QUERY = gql`
 {
@@ -53,52 +43,36 @@ const QUERY = gql`
 `;
 
 export const Reports = () => {
-    const { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
-    let reportCards;
-    let pageHeader = <PageHeader style={{ paddingBottom: 22 }}><PageHeaderTitle title="Compliance reports" /></PageHeader>;
-    const createPolicyLink = <BackgroundLink to='/scappolicies/new'>
-        <Button variant='primary'>Create new policy</Button>
-    </BackgroundLink>;
+    let { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
+    let profiles;
 
-    if (!loading && data) {
-        const profiles = data.profiles.edges.map(profile => profile.node).filter((profile) => profile.totalHostCount > 0);
-
-        if (profiles.length) {
-            pageHeader = <PageHeader className='page-header-tabs'>
-                <PageHeaderTitle title="Compliance reports" />
-                <ReportTabs />
-            </PageHeader>;
-            reportCards = profiles.map(
-                (profile, i) =>
-                    <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
-                        <ReportCard
-                            key={i}
-                            profile={profile}
-                        />
-                    </GridItem>
-            );
-        } else {
-            reportCards = <ComplianceEmptyState
-                title={'No policies are reporting'}
-                mainButton={ createPolicyLink } />;
-        }
+    if (data) {
+        profiles = data.profiles.edges.map((profile) => (
+            profile.node
+        )).filter((profile) => (
+            profile.totalHostCount > 0
+        ));
+        error = undefined;
+        loading = undefined;
     }
 
     return <React.Fragment>
-        { pageHeader }
+        <PageHeader>
+            <PageHeaderTitle title="Compliance reports" />
+        </PageHeader>
         <Main>
             <StateViewWithError stateValues={ { error, data, loading } }>
                 <StateViewPart stateKey='loading'>
                     <div className="policies-donuts">
                         <Grid hasGutter>
-                            <LoadingComplianceCards/>
+                            <LoadingComplianceCards />
                         </Grid>
                     </div>
                 </StateViewPart>
                 <StateViewPart stateKey='data'>
                     <div className="policies-donuts">
                         <Grid hasGutter>
-                            { reportCards }
+                            <ReportCardGrid profiles={ profiles } />
                         </Grid>
                     </div>
                 </StateViewPart>
