@@ -23,7 +23,7 @@ const QUERY = gql`
 export const ComplianceSystems = () => {
     const { data, error, loading } = useQuery(QUERY);
     const columns = [{
-        key: 'display_name',
+        key: 'facts.compliance.display_name',
         title: 'Name',
         props: {
             width: 40, isStatic: true
