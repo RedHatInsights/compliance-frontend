@@ -100,14 +100,19 @@ const initialState = {
     page: 1
 };
 
+const policyFilter = (policies, osFilter) => ([
+    ...systemsPolicyFilterConfiguration(policies),
+    ...(osFilter ? systemsOsFilterConfiguration(policies) : [])
+]);
+
 @registry()
 class SystemsTable extends React.Component {
     inventory = React.createRef();
     filterConfig = new FilterConfigBuilder([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(this.props.policies ? systemsPolicyFilterConfiguration(this.props.policies) : []),
-        ...(this.props.policies && this.props.showOsFilter ? systemsOsFilterConfiguration(this.props.policies) : [])
+        ...(this.props.policies && this.props.policies.length > 0 ?
+            policyFilter(this.props.policies, this.props.showOsFilter) : [])
     ]);
     chipBuilder = this.filterConfig.getChipBuilder();
     filterBuilder = this.filterConfig.getFilterBuilder();
