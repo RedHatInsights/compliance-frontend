@@ -19,7 +19,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
       </Button>,
     ]
   }
-  appendTo={<body />}
+  appendTo={[Function]}
   aria-describedby=""
   aria-label=""
   aria-labelledby=""
@@ -130,7 +130,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       </Button>,
     ]
   }
-  appendTo={<body />}
+  appendTo={[Function]}
   aria-describedby=""
   aria-label=""
   aria-labelledby=""
