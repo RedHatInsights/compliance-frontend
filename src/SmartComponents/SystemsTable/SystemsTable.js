@@ -288,7 +288,7 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, systems, total, policyId
+            selectedEntities, systems, total, policyId, enableEditPolicy
         } = this.props;
         const {
             page, perPage, InventoryCmp, selectedSystemId, activeFilters,
@@ -326,7 +326,7 @@ class SystemsTable extends React.Component {
 
         if (showActions) {
             inventoryTableProps.actions = [
-                {
+                ...(enableEditPolicy ? [{
                     title: 'Edit policies for this system',
                     onClick: (_event, _index, { id, fqdn }) => {
                         this.setState((prev) => ({
@@ -335,7 +335,7 @@ class SystemsTable extends React.Component {
                             selectedSystemId: id
                         }));
                     }
-                }, {
+                }] : []), {
                     title: 'View in inventory',
                     onClick: (_event, _index, { id }) => {
                         const beta = window.location.pathname.split('/')[1] === 'beta';
@@ -417,6 +417,7 @@ SystemsTable.propTypes = {
     compact: propTypes.bool,
     complianceThreshold: propTypes.number,
     compliantFilter: propTypes.bool,
+    enableEditPolicy: propTypes.bool,
     enableExport: propTypes.bool,
     error: propTypes.object,
     exportFromState: propTypes.func,
@@ -442,6 +443,7 @@ SystemsTable.defaultProps = {
     policyId: '',
     remediationsEnabled: true,
     compact: false,
+    enableEditPolicy: true,
     enableExport: true,
     showAllSystems: false,
     complianceThreshold: 0,

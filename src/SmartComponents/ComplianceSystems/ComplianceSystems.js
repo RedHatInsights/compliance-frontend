@@ -56,6 +56,7 @@ export const ComplianceSystems = () => {
                     <StateViewPart stateKey="data">
                         { policies && <SystemsTable
                             showOsFilter
+                            enableEditPolicy={ false }
                             remediationsEnabled={ false }
                             columns={ columns }
                             policies={ policies } /> }
