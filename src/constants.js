@@ -19,6 +19,32 @@ export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
     }
 ];
 
+export const systemsPolicyFilterConfiguration = (policies) => ([{
+    type: conditionalFilterType.checkbox,
+    label: 'Policy',
+    filterString: (value) => (`profile_id = ${value}`),
+    items: policies.map((policy) => ({
+        label: policy.name,
+        value: policy.id
+    }))
+}]);
+
+const majorOsVersionsFromProfiles = (policies) => (
+    Array.from(new Set(policies.map((profile) => (
+        profile.majorOsVersion
+    ))))
+);
+
+export const systemsOsFilterConfiguration = (policies) => ([{
+    type: conditionalFilterType.checkbox,
+    label: 'Operating system',
+    filterString: (value) => (`os_major_version = ${value}`),
+    items: majorOsVersionsFromProfiles(policies).map(osVersion => ({
+        label: `RHEL ${osVersion}`,
+        value: osVersion
+    }))
+}]);
+
 export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.checkbox,
