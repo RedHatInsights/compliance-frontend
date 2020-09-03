@@ -1,7 +1,8 @@
 import {
-    lastScanned,
     compliant,
     findProfiles,
+    hasOsInfo,
+    lastScanned,
     profileNames,
     systemsToInventoryEntities
 } from './SystemStore';
@@ -153,3 +154,36 @@ describe('.profileNames', () => {
     });
 });
 
+describe('hasOsInfo', () => {
+    it('return true for 7.3', () => {
+        const result = hasOsInfo({
+            osMajorVersion: 7,
+            osMinorVersion: 3
+        });
+        expect(result).toEqual(true);
+    });
+
+    it('return true for 8.0', () => {
+        const result = hasOsInfo({
+            osMajorVersion: 8,
+            osMinorVersion: 0
+        });
+        expect(result).toEqual(true);
+    });
+
+    it('return false for both versions being 0', () => {
+        const result = hasOsInfo({
+            osMajorVersion: 0,
+            osMinorVersion: 0
+        });
+        expect(result).toEqual(false);
+    });
+
+    it('return false for version being null', () => {
+        const result = hasOsInfo({
+            osMajorVersion: null,
+            osMinorVersion: null
+        });
+        expect(result).toEqual(false);
+    });
+});
