@@ -37,12 +37,10 @@ export const EditPolicy = () => {
     ];
 
     useEffect(() => {
-        if (selectedEntities) {
-            setUpdatedPolicy({
-                ...updatedPolicy,
-                hosts: selectedEntities
-            });
-        }
+        setUpdatedPolicy({
+            ...updatedPolicy,
+            hosts: selectedEntities ? selectedEntities : []
+        });
     }, [selectedEntities]);
 
     useEffect(() => {
