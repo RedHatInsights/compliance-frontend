@@ -81,12 +81,18 @@ export const policiesCell = (system) => {
     };
 };
 
+export const hasOsInfo = (matchingSystem) => (
+    typeof(matchingSystem.osMajorVersion) !== 'undefined' && typeof(matchingSystem.osMinorVersion) !== 'undefined' &&
+        matchingSystem.osMajorVersion !== null && matchingSystem.osMinorVersion !== null &&
+        !(matchingSystem.osMajorVersion === 0 && matchingSystem.osMinorVersion === 0)
+);
+
 const displayNameCell = (system, matchingSystem) =>  ({
     title: <TextContent>
         { matchingSystem.name ? <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
             { matchingSystem.name }
         </Link> : system.display_name }
-        { matchingSystem.osMajorVersion && matchingSystem.osMinorVersion &&
+        { hasOsInfo(matchingSystem) &&
             <Text component={TextVariants.small}>RHEL {matchingSystem.osMajorVersion}.{matchingSystem.osMinorVersion}</Text> }
     </TextContent>,
     exportValue: system.display_name || matchingSystem.name
