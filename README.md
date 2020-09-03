@@ -1,29 +1,31 @@
-[![Build Status](https://travis-ci.org/RedHatInsights/compliance-frontend.svg?branch=master)](https://travis-ci.org/RedHatInsights/compliance-frontend)
-
 # compliance-frontend
 
-React.js app for Red Hat Insights Compliance.
+[![Build Status](https://travis-ci.org/RedHatInsights/compliance-frontend.svg?branch=master)](https://travis-ci.org/RedHatInsights/compliance-frontend)
 
-## Getting Started
+UI application for Red Hat Insights Compliance.
+
+## Running the frontend
 
 This application requires the use of [Insights Proxy](https://github.com/RedHatInsights/insights-proxy), which is configured with default routes that proxy a staging environment for services that are not available locally.
-The frontend itself will run via the `webpack-dev-server`. Both can be run either manually and separately or in a container setup.
+The frontend itself will run via the `webpack-dev-server`.
+
+Both can be run either manually and separately or in a container setup.
 
 Both will require to have hostnames like `ci.foo.redhat.com` resolve to the local host.
 [Insights Proxy](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh) provides a script to patch the `/etc/hosts` file for this purpose.
 
-## Running in containers
+### In containers (recommended)
 
 To run the container setup either Podman or Docker and their compose commands can be used to
 
 ```shell
-  $ touch .env  # Can be used to enable a local backend and other services (see .env.example)
+  $ cp .env.example .env # Can be used to enable a local backend and other services
   $ podman-compose up # Starts up the insights-proxy and the compliance frontend
 ```
 
 This will build the image if it is not yet available locally and run the containers to make the frontend available at [https://ci.foo.redhat.com:1337/insights/compliance/](https://ci.foo.redhat.com:1337/insights/compliance/)
 
-### Opening a shell
+#### Opening a shell
 
 To run tests or lint your code you might want to run a shell container, this can be done via:
 
@@ -32,11 +34,11 @@ To run tests or lint your code you might want to run a shell container, this can
   $ podman-compose run frontend bash # Opens bash within the container to run tests and other tasks
 ```
 
-### Running other dependent services locally
+#### Running other dependent services locally
 
 To configure the proxy to use local services the `.env` contains a few `LOCAL_` variables that can be uncommented and adjusted.
 
-## Running on localhost
+### Running on localhost
 
 To run a [insights-proxy](https://github.com/RedHatInsights/insights-proxy) follow the preparation steps, to then be able and run the following **within** this repositories directory.
 
@@ -55,15 +57,34 @@ The frontend itself can be started with `npm run start` once all dependencies ar
 
 ## Code Notes
 
-* This project uses [Patternfly](https://github.com/patternfly/patternfly-react) components and should be preferred.
-* The [insights-frontend-components](https://www.npmjs.com/package/@red-hat-insights/insights-frontend-components) package is included to provide components shared across the Insights Platform.
-* Header and sidebar are provided by  [insights-proxy](https://github.com/RedHatInsights/insights-chrome)
-* "Inventory Components" (like the SystemsTable) are loaded **via** the chrome.
+### Technology stack
+
+  * [React](https://reactjs.org)
+  * [Patternfly](https://github.com/patternfly/patternfly-react)
+  * [Jest](https://jestjs.io) & [enzyme](https://enzymejs.github.io/enzyme/)
+  * GraphQL (using [Apollo](https://www.apollographql.com/docs/react/))
 
 ### Code standards
 
-Travis also lints the code, this can also be done locally with `npm run lint`.
-The rules to follow are found in `eslintrc.yml`.
+ESlint is configured with standards to follow and can be checked via:
+
+```shell
+$ npm run lint
+```
+
+The CI pipeline is also setup to validate pull requests.
+
+### Components
+
+* Patternfly (based) components should always be preferred
+* Prefer functional components and [hooks](https://reactjs.org/docs/hooks-intro.html) over class components
+* The [insights-frontend-components](https://www.npmjs.com/package/@red-hat-insights/insights-frontend-components) package is included to provide components shared across the Insights Platform.
+* [Insights Chrome](https://github.com/RedHatInsights/insights-chrome) which provides header and sidebar, as well as authentication and related functions, which is injected/included via
+[insights-proxy](https://github.com/RedHatInsights/insights-chrome)
+
+#### Inventory Components
+
+Some components are "hot loaded" via [Insights Chrome](https://github.com/RedHatInsights/insights-chrome). These are known as "Inventory Components" and are used for systems tables and systems details. The source for these components can be found in [insights-frontend-components](https://github.com/RedHatInsights/frontend-components/tree/master/packages/inventory#readme). With the frontend-components repository resides the [inventory-compliance](https://github.com/RedHatInsights/frontend-components/tree/master/packages/inventory-compliance) package, which implements wrapper components for these inventory components to add compliance specific behaviour.
 
 ### File organisation
 
@@ -100,12 +121,8 @@ Most tests are "snapshot" tests, which verify that current test output matches a
 $ npm run test -- -u
  ```
 
-## Updating dependencies
+### Updating dependencies
 
 This repository has [dependabot](https://dependabot.com/) configured in order to update (some) packages automatically via a pull request.
-Occasionally these updates will fail snapshot tests and require to update the snapshots as mentioned in the "Testing " section.
+Occasionally these updates will fail snapshot tests and require to update the snapshots as mentioned in the "Testing" section.
 
-### Deploying
-
-- Pushing to 'master' will deploy the app in qa-beta, ci-beta, and prod-beta.
-- Pushing to 'stable' will deploy the app in qa-stable, ci-stable, and prod-stable.
