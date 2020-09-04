@@ -288,7 +288,7 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, systems, total, policyId, enableEditPolicy
+            selectedEntities, selectedEntitiesIds, systems, total, policyId, enableEditPolicy
         } = this.props;
         const {
             page, perPage, InventoryCmp, selectedSystemId, activeFilters,
@@ -381,9 +381,9 @@ class SystemsTable extends React.Component {
                         { remediationsEnabled &&
                             <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
                                 <ComplianceRemediationButton
-                                    allSystems={ systemsWithRuleObjectsFailed(
-                                        systems.filter(edge => selectedEntities.includes(edge.node.id)
-                                        ).map(edge => edge.node))}
+                                    allSystems={ systemsWithRuleObjectsFailed(systems.filter((edge) => (
+                                        selectedEntitiesIds.includes(edge.node.id)
+                                    )).map(edge => edge.node)) }
                                     selectedRules={ [] } />
                             </reactCore.ToolbarItem>
                         }
@@ -428,6 +428,7 @@ SystemsTable.propTypes = {
     selectAll: propTypes.func,
     selectEntities: propTypes.func,
     selectedEntities: propTypes.array,
+    selectedEntitiesIds: propTypes.array,
     showActions: propTypes.bool,
     showAllSystems: propTypes.bool,
     showOnlySystemsWithTestResults: propTypes.bool,
@@ -451,6 +452,7 @@ SystemsTable.defaultProps = {
     showActions: true,
     compliantFilter: false,
     selectedEntities: [],
+    selectedEntitiesIds: [],
     systems: [],
     clearAll: () => ({}),
     exportFromState: () => ({})
@@ -468,6 +470,7 @@ const mapStateToProps = state => {
     return {
         allSelectedOnPage,
         selectedEntities: state.entities.selectedEntities,
+        selectedEntitiesIds: (state.entities.selectedEntities || []).map((e) => (e.id)),
         systems: state.entities.systems,
         total: state.entities.total
     };
