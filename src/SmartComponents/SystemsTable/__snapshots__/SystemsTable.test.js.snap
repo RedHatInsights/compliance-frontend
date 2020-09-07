@@ -577,14 +577,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
           }
         >
           <Connect(ComplianceRemediationButton)
-            allSystems={
-              Array [
-                Object {
-                  "id": 1,
-                  "ruleObjectsFailed": Array [],
-                },
-              ]
-            }
+            allSystems={Array []}
             selectedRules={Array []}
           />
         </ToolbarItem>
