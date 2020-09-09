@@ -15,6 +15,7 @@ const App = (props) => {
 
     useEffect(() => {
         insights.chrome.init();
+        insights.chrome?.hideGlobalFilter?.();
         insights.chrome.identifyApp('compliance');
         const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
         const unregister = insights.chrome.on('APP_NAVIGATION', event => {
