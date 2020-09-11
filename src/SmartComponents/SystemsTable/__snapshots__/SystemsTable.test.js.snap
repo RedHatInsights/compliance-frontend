@@ -80,10 +80,6 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
         Array [
           Object {
             "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
-          Object {
-            "onClick": [Function],
             "title": "View in inventory",
           },
         ]
@@ -268,10 +264,6 @@ exports[`SystemsTable expect to render a loading state 1`] = `
         Array [
           Object {
             "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
-          Object {
-            "onClick": [Function],
             "title": "View in inventory",
           },
         ]
@@ -361,10 +353,6 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
     <ForwardRef
       actions={
         Array [
-          Object {
-            "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
           Object {
             "onClick": [Function],
             "title": "View in inventory",
@@ -509,10 +497,6 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
         Array [
           Object {
             "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
-          Object {
-            "onClick": [Function],
             "title": "View in inventory",
           },
         ]
@@ -607,10 +591,6 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
     <ForwardRef
       actions={
         Array [
-          Object {
-            "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
           Object {
             "onClick": [Function],
             "title": "View in inventory",
@@ -709,10 +689,6 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
         Array [
           Object {
             "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
-          Object {
-            "onClick": [Function],
             "title": "View in inventory",
           },
         ]
@@ -802,10 +778,6 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
     <ForwardRef
       actions={
         Array [
-          Object {
-            "onClick": [Function],
-            "title": "Edit policies for this system",
-          },
           Object {
             "onClick": [Function],
             "title": "View in inventory",

@@ -16,9 +16,6 @@ import {
     ComplianceRemediationButton
 } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
-import  {
-    AssignPoliciesModal
-} from 'SmartComponents';
 import {
     NoSystemsTableBody
 } from 'PresentationalComponents';
@@ -288,11 +285,10 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, selectedEntitiesIds, systems, total, policyId, enableEditPolicy
+            selectedEntities, selectedEntitiesIds, systems, total, policyId
         } = this.props;
         const {
-            page, perPage, InventoryCmp, selectedSystemId, activeFilters,
-            selectedSystemFqdn, isAssignPoliciesModalOpen, error
+            page, perPage, InventoryCmp, activeFilters, error
         } = this.state;
         let noError;
         const filterConfig = this.filterConfig.buildConfiguration(
@@ -325,24 +321,13 @@ class SystemsTable extends React.Component {
         };
 
         if (showActions) {
-            inventoryTableProps.actions = [
-                ...(enableEditPolicy ? [{
-                    title: 'Edit policies for this system',
-                    onClick: (_event, _index, { id, fqdn }) => {
-                        this.setState((prev) => ({
-                            isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen,
-                            selectedSystemFqdn: fqdn,
-                            selectedSystemId: id
-                        }));
-                    }
-                }] : []), {
-                    title: 'View in inventory',
-                    onClick: (_event, _index, { id }) => {
-                        const beta = window.location.pathname.split('/')[1] === 'beta';
-                        window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
-                    }
+            inventoryTableProps.actions = [{
+                title: 'View in inventory',
+                onClick: (_event, _index, { id }) => {
+                    const beta = window.location.pathname.split('/')[1] === 'beta';
+                    window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
                 }
-            ];
+            }];
         }
 
         if (!showAllSystems) {
@@ -389,18 +374,6 @@ class SystemsTable extends React.Component {
                         }
                     </reactCore.ToolbarGroup> }
 
-                    { selectedSystemId &&
-                    <AssignPoliciesModal
-                        isModalOpen={isAssignPoliciesModalOpen}
-                        id={selectedSystemId}
-                        fqdn={selectedSystemFqdn}
-                        toggle={(closedOrCanceled) => {
-                            this.setState((prev) => (
-                                { isAssignPoliciesModalOpen: !prev.isAssignPoliciesModalOpen }
-                            ), !closedOrCanceled ? this.updateSystems : null);
-                        }}
-                    /> }
-
                 </InventoryCmp>
             </StateViewPart>
         </StateView>;
@@ -417,7 +390,6 @@ SystemsTable.propTypes = {
     compact: propTypes.bool,
     complianceThreshold: propTypes.number,
     compliantFilter: propTypes.bool,
-    enableEditPolicy: propTypes.bool,
     enableExport: propTypes.bool,
     error: propTypes.object,
     exportFromState: propTypes.func,
@@ -444,7 +416,6 @@ SystemsTable.defaultProps = {
     policyId: '',
     remediationsEnabled: true,
     compact: false,
-    enableEditPolicy: true,
     enableExport: true,
     showAllSystems: false,
     complianceThreshold: 0,
