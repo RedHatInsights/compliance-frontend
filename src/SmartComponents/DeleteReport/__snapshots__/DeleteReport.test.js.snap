@@ -23,11 +23,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
         </Button>,
       ]
     }
-    appendTo={
-      <body>
-        <div />
-      </body>
-    }
+    appendTo={[Function]}
     aria-describedby=""
     aria-label=""
     aria-labelledby=""

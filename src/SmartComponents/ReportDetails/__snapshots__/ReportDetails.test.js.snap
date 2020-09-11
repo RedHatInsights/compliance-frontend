@@ -745,6 +745,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       },
                                       "tooltip": Object {
                                         "cornerRadius": 0,
+                                        "flyoutPadding": 8,
                                         "flyoutStyle": Object {
                                           "cornerRadius": 0,
                                           "fill": "#151515",
@@ -756,7 +757,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         "pointerWidth": 20,
                                         "style": Object {
                                           "fill": "#f0f0f0",
-                                          "padding": 16,
                                           "pointerEvents": "none",
                                         },
                                       },
@@ -1203,6 +1203,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         },
                                         "tooltip": Object {
                                           "cornerRadius": 0,
+                                          "flyoutPadding": 8,
                                           "flyoutStyle": Object {
                                             "cornerRadius": 0,
                                             "fill": "#151515",
@@ -1214,7 +1215,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           "pointerWidth": 20,
                                           "style": Object {
                                             "fill": "#f0f0f0",
-                                            "padding": 16,
                                             "pointerEvents": "none",
                                           },
                                         },
@@ -1725,6 +1725,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               },
                                               "tooltip": Object {
                                                 "cornerRadius": 0,
+                                                "flyoutPadding": 8,
                                                 "flyoutStyle": Object {
                                                   "cornerRadius": 0,
                                                   "fill": "#151515",
@@ -1736,7 +1737,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 "pointerWidth": 20,
                                                 "style": Object {
                                                   "fill": "#f0f0f0",
-                                                  "padding": 16,
                                                   "pointerEvents": "none",
                                                 },
                                               },
@@ -2213,6 +2213,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     },
                                                     "tooltip": Object {
                                                       "cornerRadius": 0,
+                                                      "flyoutPadding": 8,
                                                       "flyoutStyle": Object {
                                                         "cornerRadius": 0,
                                                         "fill": "#151515",
@@ -2224,7 +2225,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "pointerWidth": 20,
                                                       "style": Object {
                                                         "fill": "#f0f0f0",
-                                                        "padding": 16,
                                                         "pointerEvents": "none",
                                                       },
                                                     },
@@ -2681,6 +2681,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 },
                                                 "tooltip": Object {
                                                   "cornerRadius": 0,
+                                                  "flyoutPadding": 8,
                                                   "flyoutStyle": Object {
                                                     "cornerRadius": 0,
                                                     "fill": "#151515",
@@ -2692,7 +2693,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   "pointerWidth": 20,
                                                   "style": Object {
                                                     "fill": "#f0f0f0",
-                                                    "padding": 16,
                                                     "pointerEvents": "none",
                                                   },
                                                 },
@@ -2973,7 +2973,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 </Path>
                                               </Slice>
                                               <ChartTooltip
+                                                angle={0}
                                                 constrainToVisibleArea={false}
+                                                cornerRadius={0}
                                                 data={
                                                   Array [
                                                     Object {
@@ -3005,11 +3007,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                 }
                                                 events={Object {}}
+                                                flyoutPadding={8}
+                                                flyoutStyle={
+                                                  Object {
+                                                    "cornerRadius": 0,
+                                                    "fill": "#151515",
+                                                    "pointerEvents": "none",
+                                                    "stroke": "#151515",
+                                                    "strokeWidth": 0,
+                                                  }
+                                                }
                                                 height={230}
                                                 id="pie-labels-0"
                                                 index={0}
                                                 key="pie-labels-0"
                                                 orientation="bottom"
+                                                pointerLength={10}
+                                                pointerWidth={20}
                                                 slice={
                                                   Object {
                                                     "data": Object {
@@ -3028,10 +3042,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                                 style={
                                                   Object {
+                                                    "fill": "#f0f0f0",
                                                     "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                     "fontSize": 14,
                                                     "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                     "padding": 8,
+                                                    "pointerEvents": "none",
                                                     "stroke": "transparent",
                                                   }
                                                 }
@@ -3435,6 +3451,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     },
                                                     "tooltip": Object {
                                                       "cornerRadius": 0,
+                                                      "flyoutPadding": 8,
                                                       "flyoutStyle": Object {
                                                         "cornerRadius": 0,
                                                         "fill": "#151515",
@@ -3446,7 +3463,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "pointerWidth": 20,
                                                       "style": Object {
                                                         "fill": "#f0f0f0",
-                                                        "padding": 16,
                                                         "pointerEvents": "none",
                                                       },
                                                     },
@@ -3494,7 +3510,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               >
                                                 <VictoryTooltip
                                                   active={false}
+                                                  angle={0}
                                                   constrainToVisibleArea={false}
+                                                  cornerRadius={0}
                                                   data={
                                                     Array [
                                                       Object {
@@ -3532,6 +3550,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       role="presentation"
                                                       shapeRendering="auto"
                                                     />
+                                                  }
+                                                  flyoutPadding={8}
+                                                  flyoutStyle={
+                                                    Object {
+                                                      "cornerRadius": 0,
+                                                      "fill": "#151515",
+                                                      "pointerEvents": "none",
+                                                      "stroke": "#151515",
+                                                      "strokeWidth": 0,
+                                                    }
                                                   }
                                                   groupComponent={<g />}
                                                   height={230}
@@ -3937,6 +3965,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                           },
                                                           "tooltip": Object {
                                                             "cornerRadius": 0,
+                                                            "flyoutPadding": 8,
                                                             "flyoutStyle": Object {
                                                               "cornerRadius": 0,
                                                               "fill": "#151515",
@@ -3948,7 +3977,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                             "pointerWidth": 20,
                                                             "style": Object {
                                                               "fill": "#f0f0f0",
-                                                              "padding": 16,
                                                               "pointerEvents": "none",
                                                             },
                                                           },
@@ -3992,6 +4020,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     />
                                                   }
                                                   orientation="bottom"
+                                                  pointerLength={10}
+                                                  pointerWidth={20}
                                                   renderInPortal={true}
                                                   slice={
                                                     Object {
@@ -4011,10 +4041,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                   style={
                                                     Object {
+                                                      "fill": "#f0f0f0",
                                                       "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                       "fontSize": 14,
                                                       "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                       "padding": 8,
+                                                      "pointerEvents": "none",
                                                       "stroke": "transparent",
                                                     }
                                                   }
@@ -4418,6 +4450,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                       "tooltip": Object {
                                                         "cornerRadius": 0,
+                                                        "flyoutPadding": 8,
                                                         "flyoutStyle": Object {
                                                           "cornerRadius": 0,
                                                           "fill": "#151515",
@@ -4429,7 +4462,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "pointerWidth": 20,
                                                         "style": Object {
                                                           "fill": "#f0f0f0",
-                                                          "padding": 16,
                                                           "pointerEvents": "none",
                                                         },
                                                       },
@@ -4481,7 +4513,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 </VictoryTooltip>
                                               </ChartTooltip>
                                               <ChartTooltip
+                                                angle={0}
                                                 constrainToVisibleArea={false}
+                                                cornerRadius={0}
                                                 data={
                                                   Array [
                                                     Object {
@@ -4513,11 +4547,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                 }
                                                 events={Object {}}
+                                                flyoutPadding={8}
+                                                flyoutStyle={
+                                                  Object {
+                                                    "cornerRadius": 0,
+                                                    "fill": "#151515",
+                                                    "pointerEvents": "none",
+                                                    "stroke": "#151515",
+                                                    "strokeWidth": 0,
+                                                  }
+                                                }
                                                 height={230}
                                                 id="pie-labels-1"
                                                 index={1}
                                                 key="pie-labels-1"
                                                 orientation="top"
+                                                pointerLength={10}
+                                                pointerWidth={20}
                                                 slice={
                                                   Object {
                                                     "data": Object {
@@ -4536,10 +4582,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                                 style={
                                                   Object {
+                                                    "fill": "#f0f0f0",
                                                     "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                     "fontSize": 14,
                                                     "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                     "padding": 8,
+                                                    "pointerEvents": "none",
                                                     "stroke": "transparent",
                                                   }
                                                 }
@@ -4943,6 +4991,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     },
                                                     "tooltip": Object {
                                                       "cornerRadius": 0,
+                                                      "flyoutPadding": 8,
                                                       "flyoutStyle": Object {
                                                         "cornerRadius": 0,
                                                         "fill": "#151515",
@@ -4954,7 +5003,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "pointerWidth": 20,
                                                       "style": Object {
                                                         "fill": "#f0f0f0",
-                                                        "padding": 16,
                                                         "pointerEvents": "none",
                                                       },
                                                     },
@@ -5002,7 +5050,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               >
                                                 <VictoryTooltip
                                                   active={false}
+                                                  angle={0}
                                                   constrainToVisibleArea={false}
+                                                  cornerRadius={0}
                                                   data={
                                                     Array [
                                                       Object {
@@ -5040,6 +5090,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       role="presentation"
                                                       shapeRendering="auto"
                                                     />
+                                                  }
+                                                  flyoutPadding={8}
+                                                  flyoutStyle={
+                                                    Object {
+                                                      "cornerRadius": 0,
+                                                      "fill": "#151515",
+                                                      "pointerEvents": "none",
+                                                      "stroke": "#151515",
+                                                      "strokeWidth": 0,
+                                                    }
                                                   }
                                                   groupComponent={<g />}
                                                   height={230}
@@ -5445,6 +5505,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                           },
                                                           "tooltip": Object {
                                                             "cornerRadius": 0,
+                                                            "flyoutPadding": 8,
                                                             "flyoutStyle": Object {
                                                               "cornerRadius": 0,
                                                               "fill": "#151515",
@@ -5456,7 +5517,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                             "pointerWidth": 20,
                                                             "style": Object {
                                                               "fill": "#f0f0f0",
-                                                              "padding": 16,
                                                               "pointerEvents": "none",
                                                             },
                                                           },
@@ -5500,6 +5560,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     />
                                                   }
                                                   orientation="top"
+                                                  pointerLength={10}
+                                                  pointerWidth={20}
                                                   renderInPortal={true}
                                                   slice={
                                                     Object {
@@ -5519,10 +5581,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                   style={
                                                     Object {
+                                                      "fill": "#f0f0f0",
                                                       "fontFamily": "var(--pf-chart-global--FontFamily)",
                                                       "fontSize": 14,
                                                       "letterSpacing": "var(--pf-chart-global--letter-spacing)",
                                                       "padding": 8,
+                                                      "pointerEvents": "none",
                                                       "stroke": "transparent",
                                                     }
                                                   }
@@ -5926,6 +5990,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                       "tooltip": Object {
                                                         "cornerRadius": 0,
+                                                        "flyoutPadding": 8,
                                                         "flyoutStyle": Object {
                                                           "cornerRadius": 0,
                                                           "fill": "#151515",
@@ -5937,7 +6002,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "pointerWidth": 20,
                                                         "style": Object {
                                                           "fill": "#f0f0f0",
-                                                          "padding": 16,
                                                           "pointerEvents": "none",
                                                         },
                                                       },
@@ -6402,6 +6466,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 },
                                                 "tooltip": Object {
                                                   "cornerRadius": 0,
+                                                  "flyoutPadding": 8,
                                                   "flyoutStyle": Object {
                                                     "cornerRadius": 0,
                                                     "fill": "#151515",
@@ -6413,7 +6478,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   "pointerWidth": 20,
                                                   "style": Object {
                                                     "fill": "#f0f0f0",
-                                                    "padding": 16,
                                                     "pointerEvents": "none",
                                                   },
                                                 },
@@ -6866,6 +6930,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                       "tooltip": Object {
                                                         "cornerRadius": 0,
+                                                        "flyoutPadding": 8,
                                                         "flyoutStyle": Object {
                                                           "cornerRadius": 0,
                                                           "fill": "#151515",
@@ -6877,7 +6942,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "pointerWidth": 20,
                                                         "style": Object {
                                                           "fill": "#f0f0f0",
-                                                          "padding": 16,
                                                           "pointerEvents": "none",
                                                         },
                                                       },
@@ -7333,6 +7397,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   },
                                                   "tooltip": Object {
                                                     "cornerRadius": 0,
+                                                    "flyoutPadding": 8,
                                                     "flyoutStyle": Object {
                                                       "cornerRadius": 0,
                                                       "fill": "#151515",
@@ -7344,7 +7409,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     "pointerWidth": 20,
                                                     "style": Object {
                                                       "fill": "#f0f0f0",
-                                                      "padding": 16,
                                                       "pointerEvents": "none",
                                                     },
                                                   },
@@ -7403,7 +7467,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "fill": "none",
                                                     }
                                                   }
-                                                  width={225.29780853517875}
+                                                  width={194.25625000000002}
                                                   x={209}
                                                   y={86.095}
                                                 >
@@ -7416,7 +7480,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "fill": "none",
                                                       }
                                                     }
-                                                    width={225.29780853517875}
+                                                    width={194.25625000000002}
                                                     x={209}
                                                     y={86.095}
                                                   >
@@ -7430,7 +7494,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         }
                                                       }
                                                       vectorEffect="non-scaling-stroke"
-                                                      width={225.29780853517875}
+                                                      width={194.25625000000002}
                                                       x={209}
                                                       y={86.095}
                                                     />
@@ -7457,7 +7521,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 145.32871972318338,
+                                                        "width": 119.70000000000002,
                                                       },
                                                     }
                                                   }
@@ -7528,7 +7592,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 185.69780853517875,
+                                                        "width": 154.65625000000003,
                                                       },
                                                     }
                                                   }
@@ -7599,7 +7663,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 145.32871972318338,
+                                                        "width": 119.70000000000002,
                                                       },
                                                     }
                                                   }
@@ -7642,7 +7706,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "symbolSpacer": 14,
                                                         "textSize": Object {
                                                           "height": 16.904999999999998,
-                                                          "width": 145.32871972318338,
+                                                          "width": 119.70000000000002,
                                                         },
                                                       }
                                                     }
@@ -7745,7 +7809,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 185.69780853517875,
+                                                        "width": 154.65625000000003,
                                                       },
                                                     }
                                                   }
@@ -7788,7 +7852,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "symbolSpacer": 14,
                                                         "textSize": Object {
                                                           "height": 16.904999999999998,
-                                                          "width": 185.69780853517875,
+                                                          "width": 154.65625000000003,
                                                         },
                                                       }
                                                     }
@@ -7940,13 +8004,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               dx={0}
                                               key="text"
                                               x={106}
-                                              y={116.2}
+                                              y={114.15}
                                             >
                                               <text
                                                 direction="inherit"
                                                 dx={0}
                                                 x={106}
-                                                y={116.2}
+                                                y={114.15}
                                               >
                                                 <TSpan
                                                   dx={0}
@@ -8328,11 +8392,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                       </Button>,
                     ]
                   }
-                  appendTo={
-                    <body>
-                      <div />
-                    </body>
-                  }
+                  appendTo={[Function]}
                   aria-describedby=""
                   aria-label=""
                   aria-labelledby=""
