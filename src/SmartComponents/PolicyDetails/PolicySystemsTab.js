@@ -5,6 +5,7 @@ import { SystemsTable } from 'SmartComponents';
 const PolicySystemsTab = ({ policy, systemTableProps }) => (
     <SystemsTable
         policyId={ policy.id }
+        showActions={ false }
         remediationsEnabled={ false }
         columns={[{
             key: 'facts.compliance.display_name',
