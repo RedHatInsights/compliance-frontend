@@ -40,7 +40,7 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
     </PageHeader>
     <Connect(Main)>
       <WrappedSystemDetails
-        hidePassed={false}
+        hidePassed={true}
         inventoryId={1}
       />
     </Connect(Main)>
@@ -146,7 +146,7 @@ exports[`SystemDetails expect to render loading 1`] = `
     </PageHeader>
     <Connect(Main)>
       <WrappedSystemDetails
-        hidePassed={false}
+        hidePassed={true}
         inventoryId={1}
       />
     </Connect(Main)>
@@ -199,7 +199,7 @@ exports[`SystemDetails expect to render without error 1`] = `
     </PageHeader>
     <Connect(Main)>
       <WrappedSystemDetails
-        hidePassed={false}
+        hidePassed={true}
         inventoryId={1}
       />
     </Connect(Main)>
