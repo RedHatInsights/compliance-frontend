@@ -4,7 +4,6 @@ import {
     useQuery
 } from '@apollo/react-hooks';
 import {
-    useLocation,
     useParams
 } from 'react-router-dom';
 import {
@@ -39,8 +38,6 @@ export const SystemDetails = () => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { inventoryId }
     });
-    const location = useLocation();
-    const hidePassed = location.query && location.query.hidePassed;
     const systemName = data?.system?.name;
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
@@ -56,7 +53,7 @@ export const SystemDetails = () => {
                 <br/>
             </PageHeader>
             <Main>
-                <ComplianceSystemDetails hidePassed={ hidePassed } inventoryId={ inventoryId } />
+                <ComplianceSystemDetails hidePassed inventoryId={ inventoryId } />
             </Main>
         </StateViewPart>
         <StateViewPart stateKey='loading'>
