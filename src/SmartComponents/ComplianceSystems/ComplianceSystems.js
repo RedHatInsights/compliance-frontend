@@ -55,6 +55,9 @@ export const ComplianceSystems = () => {
                 <StateViewWithError stateValues={ { error, data, loading } }>
                     <StateViewPart stateKey="data">
                         { policies && <SystemsTable
+                            systemProps={{
+                                isFullView: true
+                            }}
                             showOsFilter
                             enableEditPolicy={ false }
                             remediationsEnabled={ false }
