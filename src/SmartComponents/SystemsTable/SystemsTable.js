@@ -285,7 +285,7 @@ class SystemsTable extends React.Component {
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions,
-            selectedEntities, selectedEntitiesIds, systems, total, policyId
+            selectedEntities, selectedEntitiesIds, systems, total, policyId, systemProps
         } = this.props;
         const {
             page, perPage, InventoryCmp, activeFilters, error
@@ -302,6 +302,7 @@ class SystemsTable extends React.Component {
             onSelect: this.onExportSelect
         } : {};
         const inventoryTableProps = {
+            ...systemProps,
             onRefresh: this.onRefresh,
             ref: this.inventory,
             page,
@@ -409,7 +410,10 @@ SystemsTable.propTypes = {
     systems: propTypes.array,
     total: propTypes.number,
     updateRows: propTypes.func,
-    updateSystems: propTypes.func
+    updateSystems: propTypes.func,
+    systemProps: propTypes.shape({
+        isFullView: propTypes.bool
+    })
 };
 
 SystemsTable.defaultProps = {
@@ -426,7 +430,8 @@ SystemsTable.defaultProps = {
     selectedEntitiesIds: [],
     systems: [],
     clearAll: () => ({}),
-    exportFromState: () => ({})
+    exportFromState: () => ({}),
+    systemProps: {}
 };
 
 const mapStateToProps = state => {
