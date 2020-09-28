@@ -120,7 +120,8 @@ class SystemsTable extends React.Component {
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
-        activeFilters: initFilterState(this.filterConfig)
+        activeFilters: initFilterState(this.filterConfig),
+        showInfoAlert: !(localStorage.getItem('insights:compliance:hidesystemsinfoalert') === 'true')
     }
 
     componentDidMount = () => {
@@ -253,6 +254,13 @@ class SystemsTable extends React.Component {
         return (total || 0) === 0 && selectedEntities.length === 0;
     }
 
+    dismissInfoAlert = () => (
+        Promise.all([
+            localStorage.setItem('insights:compliance:hidesystemsinfoalert', true),
+            this.setState({ showInfoAlert: false })
+        ])
+    )
+
     async fetchInventory() {
         const { columns, policyId, showAllSystems, clearInventoryFilter } = this.props;
         const {
@@ -284,11 +292,11 @@ class SystemsTable extends React.Component {
 
     render() {
         const {
-            remediationsEnabled, compact, enableExport, showAllSystems, showActions,
+            remediationsEnabled, compact, enableExport, showAllSystems, showActions, showComplianceSystemsInfo,
             selectedEntities, selectedEntitiesIds, systems, total, policyId, systemProps
         } = this.props;
         const {
-            page, perPage, InventoryCmp, activeFilters, error
+            page, perPage, InventoryCmp, activeFilters, error, showInfoAlert
         } = this.state;
         let noError;
         const filterConfig = this.filterConfig.buildConfiguration(
@@ -361,6 +369,13 @@ class SystemsTable extends React.Component {
                 <ErrorPage error={error}/>
             </StateViewPart>
             <StateViewPart stateKey='noError'>
+                { (showComplianceSystemsInfo && showInfoAlert) && <reactCore.Alert
+                    isInline
+                    variant="info"
+                    actionClose={ <reactCore.AlertActionCloseButton onClose={ () => this.dismissInfoAlert() } /> }
+                    title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
+                            'Only systems previously or currently associated with compliance policies are displayed.' } /> }
+
                 <InventoryCmp { ...inventoryTableProps }>
 
                     { !showAllSystems && <reactCore.ToolbarGroup>
@@ -413,7 +428,8 @@ SystemsTable.propTypes = {
     updateSystems: propTypes.func,
     systemProps: propTypes.shape({
         isFullView: propTypes.bool
-    })
+    }),
+    showComplianceSystemsInfo: propTypes.bool
 };
 
 SystemsTable.defaultProps = {
@@ -431,7 +447,8 @@ SystemsTable.defaultProps = {
     systems: [],
     clearAll: () => ({}),
     exportFromState: () => ({}),
-    systemProps: {}
+    systemProps: {},
+    showComplianceSystemsInfo: false
 };
 
 const mapStateToProps = state => {

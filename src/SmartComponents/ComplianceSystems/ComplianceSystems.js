@@ -59,6 +59,7 @@ export const ComplianceSystems = () => {
                                 isFullView: true
                             }}
                             showOsFilter
+                            showComplianceSystemsInfo
                             enableEditPolicy={ false }
                             remediationsEnabled={ false }
                             columns={ columns }
