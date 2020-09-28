@@ -21,7 +21,7 @@
     "@redhat-cloud-services/frontend-components-inventory-compliance": "^2.2.7",
     "@redhat-cloud-services/frontend-components-notifications": "^2.2.1",
     "@redhat-cloud-services/frontend-components-remediations": "^2.2.2",
-    "@redhat-cloud-services/frontend-components-utilities": "^2.2.1",
+    "@redhat-cloud-services/frontend-components-utilities": "^2.2.3",
     "@redhat-cloud-services/host-inventory-client": "^1.0.72",
     "@types/react": "^16.9.34",
     "apollo-boost": "^0.4.7",
