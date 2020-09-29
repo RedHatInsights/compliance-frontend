@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CompliantSystems expect to render without error 1`] = `
+<Fragment>
+  <Progress
+    className=""
+    id=""
+    label={null}
+    max={100}
+    measureLocation="outside"
+    min={0}
+    size={null}
+    title=""
+    value={90}
+    valueText={null}
+    variant={null}
+  />
+  <GreySmallText>
+    9 of 10 systems
+  </GreySmallText>
+</Fragment>
+`;
+
+exports[`GreySmallText expect to render without error 1`] = `
+<Text
+  component="small"
+  style={
+    Object {
+      "color": "var(--pf-global--Color--200)",
+    }
+  }
+>
+  <span>
+    THIS IS A TEST
+  </span>
+</Text>
+`;
+
+exports[`Name expect to render without error 1`] = `
+<TextContent>
+  <Link
+    style={
+      Object {
+        "marginRight": ".5rem",
+      }
+    }
+    to="/reports/ID"
+  >
+    NAME
+  </Link>
+  <PolicyPopover
+    position="right"
+    profile={
+      Object {
+        "id": "ID",
+        "name": "NAME",
+        "policy": Object {
+          "id": "POLICY_ID",
+          "name": "POLICY_NAME",
+        },
+      }
+    }
+  />
+  <GreySmallText>
+    POLICY_NAME
+  </GreySmallText>
+</TextContent>
+`;
+
+exports[`OperatingSystem expect to render without error 1`] = `
+<Label
+  color="cyan"
+>
+  RHEL 
+  7
+</Label>
+`;

@@ -16,7 +16,7 @@ import {
     Grid,
     GridItem
 } from '@patternfly/react-core';
-import PolicyPopover from './PolicyPopover';
+import { PolicyPopover } from 'PresentationalComponents';
 import {
     ChartDonut,
     ChartThemeColor,

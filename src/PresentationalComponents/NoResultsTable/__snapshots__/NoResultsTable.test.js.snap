@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoResultsTable expect to render without error 1`] = `
+<EmptyTable>
+  <Bullseye>
+    <EmptyState
+      variant="full"
+    >
+      <Title
+        headingLevel="h5"
+        size="lg"
+      >
+        No matching policies found
+      </Title>
+      <EmptyStateBody>
+        This filter criteria matches no policies. 
+        <br />
+         Try changing your filter settings.
+      </EmptyStateBody>
+    </EmptyState>
+  </Bullseye>
+</EmptyTable>
+`;
+
+exports[`emptyRows expect to render without error 1`] = `
+Array [
+  Object {
+    "cells": Array [
+      Object {
+        "props": Object {
+          "colSpan": 3,
+        },
+        "title": [Function],
+      },
+    ],
+  },
+]
+`;

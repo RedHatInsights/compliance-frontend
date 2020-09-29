@@ -3,6 +3,10 @@ import { useQuery } from '@apollo/react-hooks';
 import { Reports } from './Reports.js';
 
 jest.mock('@apollo/react-hooks');
+jest.mock('react-router-dom', () => ({
+    ...require.requireActual('react-router-dom'),
+    useLocation: jest.fn(() => ({}))
+}));
 
 describe('Reports', () => {
     it('expect to render without error', () => {

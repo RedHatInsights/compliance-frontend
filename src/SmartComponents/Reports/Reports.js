@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import propTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Grid } from '@patternfly/react-core';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
+import { PageHeader, PageHeaderTitle, Main, SkeletonTable } from '@redhat-cloud-services/frontend-components';
 import {
-    LoadingComplianceCards, ReportCardGrid, StateViewPart, StateViewWithError
+    ReportCardGrid, ReportsTable, StateViewPart, StateViewWithError, ReportsEmptyState, LoadingComplianceCards
 } from 'PresentationalComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
 {
@@ -26,6 +28,7 @@ const QUERY = gql`
                 }
                 policy {
                     id
+                    name
                     benchmark {
                         id
                         version
@@ -42,43 +45,61 @@ const QUERY = gql`
 }
 `;
 
+const profilesFromEdges = (data) => (
+    (data?.profiles?.edges || []).map((profile) => (
+        profile.node
+    )).filter((profile) => (
+        profile.totalHostCount > 0
+    ))
+);
+
+const LoadingView = ({ showTableView }) => (
+    showTableView ? <SkeletonTable colSize={ 3 } rowSize={ 10 } /> : <LoadingComplianceCards />
+);
+
+LoadingView.propTypes = {
+    showTableView: propTypes.bool
+};
+
+const ReportsHeader = () => (
+    <PageHeader>
+        <PageHeaderTitle title="Reports" />
+    </PageHeader>
+);
+
 export const Reports = () => {
-    let { data, error, loading } = useQuery(QUERY, { fetchPolicy: 'cache-and-network' });
-    let profiles;
+    let profiles = [];
+    let showView = false;
+    const location = useLocation();
+    let { data, error, loading, refetch } = useQuery(QUERY);
+    const showTableView = useFeature('reportsTableView');
+    const View = showTableView ? ReportsTable : ReportCardGrid;
+
+    useEffect(() => {
+        refetch();
+    }, [location]);
 
     if (data) {
-        profiles = data.profiles.edges.map((profile) => (
-            profile.node
-        )).filter((profile) => (
-            profile.totalHostCount > 0
-        ));
+        profiles = profilesFromEdges(data);
         error = undefined;
         loading = undefined;
+        showView = profiles && profiles.length > 0;
     }
 
-    return <React.Fragment>
-        <PageHeader>
-            <PageHeaderTitle title="Compliance reports" />
-        </PageHeader>
-        <Main>
-            <StateViewWithError stateValues={ { error, data, loading } }>
-                <StateViewPart stateKey='loading'>
-                    <div className="policies-donuts">
-                        <Grid hasGutter>
-                            <LoadingComplianceCards />
-                        </Grid>
-                    </div>
-                </StateViewPart>
-                <StateViewPart stateKey='data'>
-                    <div className="policies-donuts">
-                        <Grid hasGutter>
-                            <ReportCardGrid profiles={ profiles } />
-                        </Grid>
-                    </div>
-                </StateViewPart>
-            </StateViewWithError>
-        </Main>
-    </React.Fragment>;
+    return <StateViewWithError stateValues={ { error, data, loading } }>
+        <StateViewPart stateKey='loading'>
+            <ReportsHeader />
+            <Main>
+                <LoadingView { ...{ showTableView } } />
+            </Main>
+        </StateViewPart>
+        <StateViewPart stateKey='data'>
+            <ReportsHeader />
+            <Main>
+                { showView ? <View { ...{ profiles } } /> : <ReportsEmptyState /> }
+            </Main>
+        </StateViewPart>
+    </StateViewWithError>;
 };
 
 export default Reports;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
+    Button,
     Popover,
     TextList,
     TextListVariants,
@@ -14,10 +15,11 @@ import {
 } from 'react-router-dom';
 import propTypes from 'prop-types';
 
-const PolicyPopover = ({ profile }) => {
+const PolicyPopover = ({ profile, position = 'top' }) => {
     const { name, policy, complianceThreshold, majorOsVersion, businessObjective } = profile;
     return (
         <Popover
+            { ...{ position } }
             headerContent={name}
             footerContent={
                 <Link to={'/scappolicies/' + policy.id} >
@@ -58,13 +60,16 @@ const PolicyPopover = ({ profile }) => {
                 </TextContent>
             }
         >
-            <OutlinedQuestionCircleIcon className='grey-icon'/>
+            <Button variant="link" isInline>
+                <OutlinedQuestionCircleIcon className='grey-icon'/>
+            </Button>
         </Popover>
     );
 };
 
 PolicyPopover.propTypes = {
-    profile: propTypes.object
+    profile: propTypes.object,
+    position: propTypes.string
 };
 
 export default PolicyPopover;
