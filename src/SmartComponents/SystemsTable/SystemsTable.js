@@ -57,6 +57,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                         title
                         compliant
                         remediationAvailable
+                        remediationIssueId
                     }
                 }
             }
