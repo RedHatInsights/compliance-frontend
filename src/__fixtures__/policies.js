@@ -8,10 +8,16 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                compliantHostCount: 4,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'b71376fd-015e-4209-99af-4543e82e5dc5-policy',
+                    name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73',
+                    __typename: 'Profile'
                 },
                 __typename: 'Profile'
             },

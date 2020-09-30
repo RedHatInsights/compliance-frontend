@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PolicyPopover expect to render without error 1`] = `
+<Popover
+  bodyContent={
+    <TextContent
+      className="policy-details"
+    >
+      <TextList
+        component="dl"
+      >
+        <TextListItem
+          component="dt"
+        >
+          Operating system
+        </TextListItem>
+        <TextListItem
+          component="dd"
+        >
+          RHEL 
+          7
+        </TextListItem>
+        <TextListItem
+          component="dt"
+        >
+          Policy SSG version
+        </TextListItem>
+        <TextListItem
+          component="dd"
+        />
+        <TextListItem
+          component="dt"
+        >
+          Compliance threshold
+        </TextListItem>
+        <TextListItem
+          component="dd"
+        >
+          100.0%
+        </TextListItem>
+      </TextList>
+    </TextContent>
+  }
+  footerContent={
+    <Link
+      to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5-policy"
+    >
+      View policy
+    </Link>
+  }
+  headerContent="United States Government Configuration Baseline23"
+  position="top"
+>
+  <Button
+    isInline={true}
+    variant="link"
+  >
+    <OutlinedQuestionCircleIcon
+      className="grey-icon"
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+    />
+  </Button>
+</Popover>
+`;
