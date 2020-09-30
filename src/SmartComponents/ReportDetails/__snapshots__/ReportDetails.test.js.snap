@@ -1261,7 +1261,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       className="pf-c-chart"
                                       style={
                                         Object {
-                                          "height": "auto",
+                                          "height": "100%",
                                           "pointerEvents": "none",
                                           "position": "relative",
                                           "touchAction": "none",
@@ -1274,7 +1274,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         role="img"
                                         style={
                                           Object {
-                                            "height": "auto",
+                                            "height": "100%",
                                             "pointerEvents": "all",
                                             "width": "100%",
                                           }
@@ -8004,13 +8004,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               dx={0}
                                               key="text"
                                               x={106}
-                                              y={114.15}
+                                              y={113.675}
                                             >
                                               <text
                                                 direction="inherit"
                                                 dx={0}
                                                 x={106}
-                                                y={114.15}
+                                                y={113.675}
                                               >
                                                 <TSpan
                                                   dx={0}
@@ -8092,7 +8092,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       <div
                                         style={
                                           Object {
-                                            "height": "auto",
+                                            "height": "100%",
                                             "left": 0,
                                             "position": "absolute",
                                             "top": 0,
@@ -8105,7 +8105,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           height={230}
                                           style={
                                             Object {
-                                              "height": "auto",
+                                              "height": "100%",
                                               "overflow": "visible",
                                               "width": "100%",
                                             }
@@ -8117,7 +8117,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             height={230}
                                             style={
                                               Object {
-                                                "height": "auto",
+                                                "height": "100%",
                                                 "overflow": "visible",
                                                 "width": "100%",
                                               }
