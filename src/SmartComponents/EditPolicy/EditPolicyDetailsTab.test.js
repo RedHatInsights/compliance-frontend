@@ -25,7 +25,7 @@ describe('EditPolicyDetailsTab', () => {
 
 describe('useThresholdValidate', () => {
     it('expect to render without error', () => {
-        const [_, validator] = useThresholdValidate();
+        const [_, validator] = useThresholdValidate(); // eslint-disable-line
         expect(validator(100)).toBe(true);
     });
 });
