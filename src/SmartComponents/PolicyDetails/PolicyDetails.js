@@ -7,7 +7,7 @@ import {
     PageHeader, PageHeaderTitle, Main, Spinner
 } from '@redhat-cloud-services/frontend-components';
 import {
-    PolicyDetailsDescription, PolicyDetailsContentLoader, RouteredTabSwitcher as TabSwitcher, ContentTab,
+    PolicyDetailsDescription, PolicyDetailsContentLoader, RoutedTabSwitcher as TabSwitcher, ContentTab,
     StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem, BackgroundLink
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';

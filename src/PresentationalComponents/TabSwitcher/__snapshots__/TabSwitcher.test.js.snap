@@ -1,17 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RoutedTabs expect to render first tab 1`] = `
+<Tabs
+  activeKey="rules"
+  component="div"
+  isBox={false}
+  isFilled={false}
+  isSecondary={false}
+  isVertical={false}
+  leftScrollAriaLabel="Scroll left"
+  mountOnEnter={false}
+  onSelect={[Function]}
+  ouiaSafe={true}
+  rightScrollAriaLabel="Scroll right"
+  unmountOnExit={false}
+>
+  <Tab
+    eventKey="details"
+    id="policy-details"
+    title="Details"
+  />
+  <Tab
+    eventKey="rules"
+    id="policy-rules"
+    title="Rules"
+  />
+  <Tab
+    eventKey="systems"
+    id="policy-systems"
+    title="Systems"
+  />
+</Tabs>
+`;
+
+exports[`RoutedTabs expect to render second tab 1`] = `
+<Tabs
+  activeKey="rules"
+  component="div"
+  isBox={false}
+  isFilled={false}
+  isSecondary={false}
+  isVertical={false}
+  leftScrollAriaLabel="Scroll left"
+  mountOnEnter={false}
+  onSelect={[Function]}
+  ouiaSafe={true}
+  rightScrollAriaLabel="Scroll right"
+  unmountOnExit={false}
+>
+  <Tab
+    eventKey="details"
+    id="policy-details"
+    title="Details"
+  />
+  <Tab
+    eventKey="rules"
+    id="policy-rules"
+    title="Rules"
+  />
+  <Tab
+    eventKey="systems"
+    id="policy-systems"
+    title="Systems"
+  />
+</Tabs>
+`;
+
 exports[`TabSwitcher expect to render first tab 1`] = `
-<Component
+<Tab
   eventKey={0}
 >
   First Tab
-</Component>
+</Tab>
 `;
 
+exports[`TabSwitcher expect to render first tab 2`] = `null`;
+
 exports[`TabSwitcher expect to render second tab 1`] = `
-<Component
+<Tab
   eventKey={1}
 >
   Second Tab
-</Component>
+</Tab>
+`;
+
+exports[`TabSwitcher expect to render second tab 2`] = `
+<Tab
+  eventKey={1}
+>
+  Second Tab
+</Tab>
 `;

@@ -11,7 +11,7 @@ export { default as ReportDetailsContentLoader } from './ReportDetailsContentLoa
 export { default as PolicyDetailsDescription } from './PolicyDetailsDescription/PolicyDetailsDescription';
 export { default as ReportDetailsDescription } from './ReportDetailsDescription/ReportDetailsDescription';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
-export { default as TabSwitcher, ContentTab, RouteredTabSwitcher, RoutedTabs } from './TabSwitcher/TabSwitcher';
+export { default as TabSwitcher, ContentTab, RoutedTabSwitcher, RoutedTabs } from './TabSwitcher/TabSwitcher';
 export { StateView, StateViewWithError, StateViewPart } from './StateView/StateView';
 export { default as SystemsCountWarning, WARNING_TEXT } from './SystemsCountWarning/SystemsCountWarning';
 export { default as WarningText } from './WarningText/WarningText';
