@@ -4,7 +4,9 @@ exports[`ErrorPage expect to render a 401 error when logged out 1`] = `""`;
 
 exports[`ErrorPage expect to render a 403 error 1`] = `
 <NotAuthorized
+  icon={[Function]}
   serviceName="Compliance"
+  showReturnButton={true}
 />
 `;
 
