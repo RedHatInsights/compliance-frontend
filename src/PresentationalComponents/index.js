@@ -22,3 +22,5 @@ export { default as ReportsTable } from './ReportsTable/ReportsTable';
 export { default as ReportsEmptyState } from './ReportsEmptyState/ReportsEmptyState';
 export { default as PolicyPopover } from './PolicyPopover/PolicyPopover';
 export { default as NoResultsTable, emptyRows } from './NoResultsTable/NoResultsTable';
+export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
+export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
