@@ -1,4 +1,9 @@
-import EditPolicyDetailsTab from './EditPolicyDetailsTab';
+import EditPolicyDetailsTab, { useThresholdValidate } from './EditPolicyDetailsTab';
+
+jest.mock('react', () => ({
+    ...require.requireActual('react'),
+    useState: () => (['state', () => ({})])
+}));
 
 describe('EditPolicyDetailsTab', () => {
     it('expect to render without error', () => {
@@ -15,5 +20,12 @@ describe('EditPolicyDetailsTab', () => {
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
+    });
+});
+
+describe('useThresholdValidate', () => {
+    it('expect to render without error', () => {
+        const [_, validator] = useThresholdValidate();
+        expect(validator(100)).toBe(true);
     });
 });
