@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyDetailsTab expect to render without error 1`] = `
+<Fragment>
+  <FormGroup
+    fieldId="description"
+    isRequired={true}
+    label="Policy description"
+  >
+    <TextArea
+      aria-describedby="description"
+      aria-label={null}
+      className=""
+      id="description"
+      isRequired={true}
+      name="description"
+      onChange={[Function]}
+      resizeOrientation="both"
+      style={
+        Object {
+          "height": 110,
+          "width": 800,
+        }
+      }
+      type="text"
+      validated="default"
+    />
+  </FormGroup>
+  <FormGroup
+    fieldId="business-objective"
+    label="Business objective"
+  >
+    <ForwardRef
+      aria-describedby="business-objective"
+      defaultValue="BO title"
+      id="business-objective"
+      name="business-objective"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": 300,
+        }
+      }
+      type="text"
+    />
+  </FormGroup>
+  <FormGroup
+    fieldId="policy-threshold"
+    helperText="A value of 95% or higher is recommended"
+    helperTextInvalid="Threshold has to be a number between 0 and 100"
+    label="Compliance threshold (%)"
+    validated="default"
+  >
+    <ForwardRef
+      aria-describedby="policy-threshold"
+      defaultValue="30"
+      id="compliance-threshold"
+      name="compliance-threshold"
+      onChange={[Function]}
+      style={
+        Object {
+          "width": 150,
+        }
+      }
+      type="number"
+    />
+  </FormGroup>
+</Fragment>
+`;

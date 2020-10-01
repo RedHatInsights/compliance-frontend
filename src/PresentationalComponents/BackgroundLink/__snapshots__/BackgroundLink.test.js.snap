@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundLink expect to render without error 1`] = `
+<Link
+  to={
+    Object {
+      "hash": undefined,
+      "pathname": "/test/location",
+      "state": Object {
+        "background": Object {
+          "hash": "#anchor",
+          "path": "/current/location",
+        },
+      },
+    }
+  }
+>
+  Test background link
+</Link>
+`;
