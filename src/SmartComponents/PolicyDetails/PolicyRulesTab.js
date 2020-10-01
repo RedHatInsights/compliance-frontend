@@ -1,7 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import { SystemRulesTable, ANSIBLE_ICON } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { AnsibeTowerIcon } from '@patternfly/react-icons';
+import { SystemRulesTable } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { sortable } from '@patternfly/react-table';
 
 const PolicyRulesTab = ({ loading, policy }) => (
@@ -20,7 +21,8 @@ const PolicyRulesTab = ({ loading, policy }) => (
             columns={[
                 { title: 'Rule', transforms: [sortable] },
                 { title: 'Severity', transforms: [sortable] },
-                { title: <React.Fragment>{ ANSIBLE_ICON } Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
+                { title: <React.Fragment><AnsibeTowerIcon /> Ansible</React.Fragment>,
+                    transforms: [sortable], original: 'Ansible' }
             ]}
             loading={ loading }
             profileRules={[{
