@@ -17,6 +17,7 @@ const QUERY = gql`
 query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
     benchmark(id: $benchmarkId) {
         rules {
+            id
             title
             severity
             rationale
@@ -27,6 +28,7 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
         }
     }
     profile(id: $profileId) {
+        id
         name
         refId
         rules {
