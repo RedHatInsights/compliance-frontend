@@ -13,6 +13,12 @@ const reportsRoutes = [
         component: asyncComponent(() =>
             import(/* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails')
         )
+    }, {
+        path: '/reports/:report_id/delete',
+        component: asyncComponent(() =>
+            import(/* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport')
+        ),
+        modal: true
     }
 ];
 

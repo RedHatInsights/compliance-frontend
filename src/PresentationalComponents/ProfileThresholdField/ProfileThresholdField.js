@@ -5,7 +5,7 @@ import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
 import round from 'lodash/round';
-import { thresholdValid } from '../CreatePolicy/validate';
+import { thresholdValid } from '../../SmartComponents/CreatePolicy/validate';
 
 export class ProfileThresholdField extends React.Component {
     state = {

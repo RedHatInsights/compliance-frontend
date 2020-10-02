@@ -1,41 +1,19 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
-    Bullseye, Button, EmptyState, EmptyStateBody, EmptyStateVariant, Pagination, PaginationVariant, Title,
-    ToolbarItem, Tooltip
+    Button, Pagination, PaginationVariant, ToolbarItem, Tooltip
 } from '@patternfly/react-core';
-import { EmptyTable, PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
+import { PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 
 import {
     BackgroundLink,
-    SystemsCountWarning
+    SystemsCountWarning,
+    emptyRows
 } from 'PresentationalComponents';
-
-const emptyRows = [{
-    cells: [{
-        title: (
-            <EmptyTable>
-                <Bullseye>
-                    <EmptyState variant={ EmptyStateVariant.full }>
-                        <Title headingLevel="h5" size="lg">
-                                No matching policies found
-                        </Title>
-                        <EmptyStateBody>
-                                This filter criteria matches no policies. <br /> Try changing your filter settings.
-                        </EmptyStateBody>
-                    </EmptyState>
-                </Bullseye>
-            </EmptyTable>
-        ),
-        props: {
-            colSpan: 5
-        }
-    }]
-}];
 
 const policiesToRows = (policies) => (
     policies.map((policy) => (
@@ -247,4 +225,4 @@ PoliciesTable.defaultProps = {
 
 export { policiesToRows };
 
-export default withRouter(PoliciesTable);
+export default PoliciesTable;

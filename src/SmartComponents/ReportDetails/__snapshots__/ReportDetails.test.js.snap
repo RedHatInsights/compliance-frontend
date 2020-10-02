@@ -255,25 +255,98 @@ exports[`ReportDetails expect to render without error 1`] = `
                         <div
                           className="pf-l-grid__item pf-m-3-col-on-sm pf-m-3-col-on-md pf-m-3-col-on-lg pf-m-3-col-on-xl report-details-button"
                         >
-                          <Button
-                            isInline={true}
-                            onClick={[Function]}
-                            variant="link"
+                          <BackgroundLink
+                            state={
+                              Object {
+                                "profile": Object {
+                                  "benchmark": Object {
+                                    "version": "0.1.4",
+                                  },
+                                  "businessObjective": Object {
+                                    "id": "1",
+                                    "title": "BO 1",
+                                  },
+                                  "complianceThreshold": 1,
+                                  "compliantHostCount": 1,
+                                  "description": "profile description",
+                                  "external": false,
+                                  "id": "1",
+                                  "name": "profile1",
+                                  "policy": Object {
+                                    "id": "thepolicyid",
+                                  },
+                                  "refId": "121212",
+                                  "totalHostCount": 1,
+                                },
+                              }
+                            }
+                            to="/reports/1/delete"
                           >
-                            <button
-                              aria-disabled={false}
-                              aria-label={null}
-                              className="pf-c-button pf-m-link pf-m-inline"
-                              data-ouia-component-id={1}
-                              data-ouia-component-type="PF4/Button"
-                              data-ouia-safe={true}
-                              disabled={false}
-                              onClick={[Function]}
-                              type="button"
+                            <Link
+                              to={
+                                Object {
+                                  "hash": undefined,
+                                  "pathname": "/reports/1/delete",
+                                  "state": Object {
+                                    "background": Object {
+                                      "hash": "",
+                                      "pathname": "/",
+                                      "search": "",
+                                      "state": undefined,
+                                    },
+                                    "profile": Object {
+                                      "benchmark": Object {
+                                        "version": "0.1.4",
+                                      },
+                                      "businessObjective": Object {
+                                        "id": "1",
+                                        "title": "BO 1",
+                                      },
+                                      "complianceThreshold": 1,
+                                      "compliantHostCount": 1,
+                                      "description": "profile description",
+                                      "external": false,
+                                      "id": "1",
+                                      "name": "profile1",
+                                      "policy": Object {
+                                        "id": "thepolicyid",
+                                      },
+                                      "refId": "121212",
+                                      "totalHostCount": 1,
+                                    },
+                                  },
+                                }
+                              }
                             >
-                              Delete Report
-                            </button>
-                          </Button>
+                              <LinkAnchor
+                                href="/reports/1/delete"
+                                navigate={[Function]}
+                              >
+                                <a
+                                  href="/reports/1/delete"
+                                  onClick={[Function]}
+                                >
+                                  <Button
+                                    isInline={true}
+                                    variant="link"
+                                  >
+                                    <button
+                                      aria-disabled={false}
+                                      aria-label={null}
+                                      className="pf-c-button pf-m-link pf-m-inline"
+                                      data-ouia-component-id={1}
+                                      data-ouia-component-type="PF4/Button"
+                                      data-ouia-safe={true}
+                                      disabled={false}
+                                      type="button"
+                                    >
+                                      Delete report
+                                    </button>
+                                  </Button>
+                                </a>
+                              </LinkAnchor>
+                            </Link>
+                          </BackgroundLink>
                         </div>
                       </GridItem>
                     </div>
@@ -8368,82 +8441,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                   </section>
                 </Main>
               </Connect(Main)>
-              <DeleteReport
-                isModalOpen={false}
-                onClose={[Function]}
-                onDelete={[Function]}
-                policyId="1"
-              >
-                <Modal
-                  actions={
-                    Array [
-                      <Button
-                        aria-label="delete"
-                        onClick={[Function]}
-                        variant="danger"
-                      >
-                        Delete report
-                      </Button>,
-                      <Button
-                        onClick={[Function]}
-                        variant="secondary"
-                      >
-                        Cancel
-                      </Button>,
-                    ]
-                  }
-                  appendTo={[Function]}
-                  aria-describedby=""
-                  aria-label=""
-                  aria-labelledby=""
-                  className=""
-                  hasNoBodyWrapper={false}
-                  isOpen={false}
-                  onClose={[Function]}
-                  ouiaSafe={true}
-                  showClose={true}
-                  title="Delete report"
-                  variant="small"
-                >
-                  <Portal
-                    containerInfo={<div />}
-                  >
-                    <ModalContent
-                      actions={
-                        Array [
-                          <Button
-                            aria-label="delete"
-                            onClick={[Function]}
-                            variant="danger"
-                          >
-                            Delete report
-                          </Button>,
-                          <Button
-                            onClick={[Function]}
-                            variant="secondary"
-                          >
-                            Cancel
-                          </Button>,
-                        ]
-                      }
-                      aria-describedby=""
-                      aria-label=""
-                      aria-labelledby=""
-                      boxId="pf-modal-part-0"
-                      className=""
-                      descriptorId="pf-modal-part-2"
-                      hasNoBodyWrapper={false}
-                      isOpen={false}
-                      labelId="pf-modal-part-1"
-                      onClose={[Function]}
-                      ouiaSafe={true}
-                      showClose={true}
-                      title="Delete report"
-                      variant="small"
-                    />
-                  </Portal>
-                </Modal>
-              </DeleteReport>
             </StateViewPart>
           </StateView>
         </StateViewWithError>

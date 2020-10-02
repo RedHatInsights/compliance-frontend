@@ -17,7 +17,7 @@ TabSwitcher.propTypes = {
     children: propTypes.node
 };
 
-export const RouteredTabSwitcher = ({ children, defaultTab }) => {
+export const RoutedTabSwitcher = ({ children, defaultTab }) => {
     const currentAnchor = useAnchor(defaultTab);
 
     return children.map((tab) => (
@@ -25,7 +25,7 @@ export const RouteredTabSwitcher = ({ children, defaultTab }) => {
     )).filter((c) => (!!c));
 };
 
-RouteredTabSwitcher.propTypes = {
+RoutedTabSwitcher.propTypes = {
     children: propTypes.node,
     defaultTab: propTypes.string
 };

@@ -116,7 +116,7 @@ class SystemsTable extends React.Component {
 
     state = {
         ...initialState,
-        InventoryCmp: React.forwardRef((_, ref) => <SkeletonTable ref={ref} colSize={2} rowSize={15} />), // eslint-disable-line
+        InventoryCmp: null,
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
@@ -356,32 +356,30 @@ class SystemsTable extends React.Component {
             inventoryTableProps.hasCheckbox = false;
         }
 
+        if (!showAllSystems && remediationsEnabled) {
+            inventoryTableProps.dedicatedAction = <ComplianceRemediationButton
+                allSystems={ systemsWithRuleObjectsFailed(systems.filter((edge) => (
+                    selectedEntitiesIds.includes(edge.node.id)
+                )).map(edge => edge.node)) }
+                selectedRules={ [] } />;
+        }
+
         return <StateView stateValues={{ error, noError }}>
             <StateViewPart stateKey='error'>
                 <ErrorPage error={error}/>
             </StateViewPart>
             <StateViewPart stateKey='noError'>
+
                 { showComplianceSystemsInfo && <reactCore.Alert
                     isInline
                     variant="info"
                     title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                             'Only systems previously or currently associated with compliance policies are displayed.' } /> }
 
-                <InventoryCmp { ...inventoryTableProps }>
+                { InventoryCmp ?
+                    <InventoryCmp { ...inventoryTableProps } /> :
+                    <SkeletonTable colSize={2} rowSize={15} /> }
 
-                    { !showAllSystems && <reactCore.ToolbarGroup>
-                        { remediationsEnabled &&
-                            <reactCore.ToolbarItem style={{ marginLeft: 'var(--pf-global--spacer--lg)' }}>
-                                <ComplianceRemediationButton
-                                    allSystems={ systemsWithRuleObjectsFailed(systems.filter((edge) => (
-                                        selectedEntitiesIds.includes(edge.node.id)
-                                    )).map(edge => edge.node)) }
-                                    selectedRules={ [] } />
-                            </reactCore.ToolbarItem>
-                        }
-                    </reactCore.ToolbarGroup> }
-
-                </InventoryCmp>
             </StateViewPart>
         </StateView>;
     }

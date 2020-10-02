@@ -4,11 +4,8 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
-
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
-import {
-    ProfileThresholdField
-} from 'SmartComponents';
+import { ProfileThresholdField } from 'PresentationalComponents';
 
 const EditPolicyDetails = ({ profile: policy }) => {
     return (

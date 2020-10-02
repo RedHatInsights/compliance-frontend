@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -13,9 +13,10 @@ import {
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import {
-    BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription, StateViewWithError, StateViewPart
+    BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
+    StateViewWithError, StateViewPart
 } from 'PresentationalComponents';
-import { DeleteReport, SystemsTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -51,12 +52,6 @@ export const ReportDetails = () => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
     });
-    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const history = useHistory();
-    const redirect = () => {
-        history.push('/reports');
-    };
-
     let donutValues = [];
     let donutId = 'loading-donut';
     let profile = {};
@@ -124,14 +119,11 @@ export const ReportDetails = () => {
                         <PageHeaderTitle title={profile.name + ' report'} />
                     </GridItem>
                     <GridItem className='report-details-button' sm={3} md={3} lg={3} xl={3}>
-                        <Button
-                            isInline
-                            variant="link"
-                            onClick={
-                                () => setDeleteModalOpen(true)
-                            }>
-                            Delete Report
-                        </Button>
+                        <BackgroundLink
+                            state={ { profile } }
+                            to={ `/reports/${ profile.id }/delete` }>
+                            <Button variant='link' isInline>Delete report</Button>
+                        </BackgroundLink>
                     </GridItem>
                 </Grid>
                 <Grid hasGutter>
@@ -159,7 +151,6 @@ export const ReportDetails = () => {
                                 />
                             </div>
                         </div>
-
                     </GridItem>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <ReportDetailsDescription profile={profile} />
@@ -177,15 +168,6 @@ export const ReportDetails = () => {
                     </GridItem>
                 </Grid>
             </Main>
-            <DeleteReport
-                isModalOpen={ deleteModalOpen }
-                policyId={ profile.id }
-                onClose={ (removed) => {
-                    setDeleteModalOpen(false);
-                    if (removed) {
-                        redirect();
-                    }
-                } } />
         </StateViewPart>
     </StateViewWithError>;
 };

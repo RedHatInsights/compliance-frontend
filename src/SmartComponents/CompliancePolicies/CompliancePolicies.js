@@ -12,13 +12,10 @@ import {
     BackgroundLink,
     ErrorPage,
     LoadingPoliciesTable,
+    PoliciesTable,
     StateView,
     StateViewPart
 } from 'PresentationalComponents';
-
-import {
-    PoliciesTable
-} from 'SmartComponents';
 
 const QUERY = gql`
 {

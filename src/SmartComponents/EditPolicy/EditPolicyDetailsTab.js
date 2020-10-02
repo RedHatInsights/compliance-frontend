@@ -5,7 +5,7 @@ import {
 } from '@patternfly/react-core';
 import { thresholdValid } from '../CreatePolicy/validate';
 
-const useThresholdValidate = () => {
+export const useThresholdValidate = () => {
     const [validThreshold, setValidThreshold] = useState(true);
     return [validThreshold, (threshold) => {
         const valid = thresholdValid(threshold);

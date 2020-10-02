@@ -1140,27 +1140,9 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
           "cells": Array [
             Object {
               "props": Object {
-                "colSpan": 5,
+                "colSpan": 3,
               },
-              "title": <EmptyTable>
-                <Bullseye>
-                  <EmptyState
-                    variant="full"
-                  >
-                    <Title
-                      headingLevel="h5"
-                      size="lg"
-                    >
-                      No matching policies found
-                    </Title>
-                    <EmptyStateBody>
-                      This filter criteria matches no policies. 
-                      <br />
-                       Try changing your filter settings.
-                    </EmptyStateBody>
-                  </EmptyState>
-                </Bullseye>
-              </EmptyTable>,
+              "title": [Function],
             },
           ],
         },

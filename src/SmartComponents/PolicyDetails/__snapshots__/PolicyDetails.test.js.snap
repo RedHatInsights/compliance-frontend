@@ -144,7 +144,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
       </RoutedTabs>
     </PageHeader>
     <Connect(Main)>
-      <RouteredTabSwitcher
+      <RoutedTabSwitcher
         defaultTab="details"
       >
         <ContentTab
@@ -231,7 +231,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
             }
           />
         </ContentTab>
-      </RouteredTabSwitcher>
+      </RoutedTabSwitcher>
     </Connect(Main)>
   </StateViewPart>
 </StateViewWithError>

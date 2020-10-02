@@ -5,17 +5,19 @@ import {
     TextContent
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { DELETE_REPORT } from 'Utilities/graphql/mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
-const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
-    const [modalOpen, setModalOpen] = useState(isModalOpen);
-    const closeModal = (removed = false) => {
-        setModalOpen(false);
-        onClose(removed);
+const DeleteReport = () => {
+    const history = useHistory();
+    const location = useLocation();
+    const { id } = location.state?.profile;
+    const onClose = () => {
+        history.push(location.state.background);
     };
 
     const [deleteReport] = useMutation(DELETE_REPORT, {
@@ -24,8 +26,6 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                 variant: 'success',
                 title: `Removed report`
             }));
-            onDelete();
-            closeModal(true);
         },
         onError: (error) => {
             dispatchAction(addNotification({
@@ -33,20 +33,14 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                 title: 'Error removing report',
                 description: error.message
             }));
-            closeModal();
         }
     });
-
-    useEffect(() => {
-        setModalOpen(isModalOpen);
-    }, [isModalOpen]);
-
     return (
         <Modal
+            isOpen
             variant={ ModalVariant.small }
             title='Delete report'
-            isOpen={ modalOpen }
-            onClose={ closeModal }
+            onClose={ onClose }
             actions={[
                 <Button
                     key='destroy'
@@ -55,13 +49,13 @@ const DeleteReport = ({ policyId, isModalOpen, onClose, onDelete }) => {
                     onClick={() => deleteReport({
                         variables: {
                             input: {
-                                profileId: policyId
+                                profileId: id
                             }
                         }
                     })}>
                     Delete report
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={ () => closeModal() }>
+                <Button key='cancel' variant='secondary' onClick={ () => onClose() }>
                     Cancel
                 </Button>
             ]}>
