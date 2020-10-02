@@ -43,6 +43,10 @@ const frontendComponentsMappe = {
     TableFooter: 'Table'
 };
 
+const IconMapper = {
+    AnsibeTowerIcon: 'ansibeTower-icon'
+};
+
 module.exports = {
     presets: [
         [
@@ -89,10 +93,14 @@ module.exports = {
             },
             'react-core'
         ], [
-            'transform-imports',
-            {
+            'transform-imports', {
                 '@patternfly/react-icons': {
-                    transform: (importName, matches) => `@patternfly/react-icons/dist/js/icons/${importName.split(/(?=[A-Z])/).join('-').toLowerCase()}.js`,
+                    transform: (importName) => (
+                        `@patternfly/react-icons/dist/js/icons/${IconMapper[importName] || importName
+                        .split(/(?=[A-Z])/)
+                        .join('-')
+                        .toLowerCase()}.js`
+                    )
                 }
             },
             'react-icons'

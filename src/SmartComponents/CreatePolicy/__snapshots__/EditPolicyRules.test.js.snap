@@ -56,6 +56,11 @@ exports[`EditPolicyRules expect to render with error on error 1`] = `
           Object {
             "original": "Ansible",
             "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
                Ansible
             </React.Fragment>,
             "transforms": Array [
@@ -157,6 +162,11 @@ exports[`EditPolicyRules expect to render without error 1`] = `
           Object {
             "original": "Ansible",
             "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
                Ansible
             </React.Fragment>,
             "transforms": Array [
@@ -273,6 +283,11 @@ exports[`EditPolicyRules expect to render without error 2`] = `
           Object {
             "original": "Ansible",
             "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
                Ansible
             </React.Fragment>,
             "transforms": Array [
@@ -367,6 +382,11 @@ exports[`EditPolicyRules expect to render without error on loading 1`] = `
           Object {
             "original": "Ansible",
             "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
                Ansible
             </React.Fragment>,
             "transforms": Array [
