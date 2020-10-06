@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import { SystemRulesTable } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { SystemRulesTable, selectRulesTableColumns } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
 import { Button, Text, TextContent, TextVariants } from '@patternfly/react-core';
-import { sortable } from '@patternfly/react-table';
-import { AnsibeTowerIcon } from '@patternfly/react-icons';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -41,13 +39,8 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
 }
 `;
 
-const columns = [
-    { title: 'Rule', transforms: [sortable] },
-    { title: 'Severity', transforms: [sortable] },
-    { title: <React.Fragment><AnsibeTowerIcon /> Ansible</React.Fragment>, transforms: [sortable], original: 'Ansible' }
-];
-
 export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, change }) => {
+    const columns = selectRulesTableColumns(['Rule', 'Severity', 'Ansible']);
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
     const [defaultSelection, setDefaultSelection] = useState(null);
     const profileRules = data && [{

@@ -51,10 +51,14 @@ exports[`EditPolicyRules expect to render with error on error 1`] = `
             "title": "Severity",
             "transforms": Array [
               [Function],
+              [Function],
             ],
           },
           Object {
             "original": "Ansible",
+            "props": Object {
+              "tooltip": "Ansible",
+            },
             "title": <React.Fragment>
               <AnsibeTowerIcon
                 color="currentColor"
@@ -64,6 +68,7 @@ exports[`EditPolicyRules expect to render with error on error 1`] = `
                Ansible
             </React.Fragment>,
             "transforms": Array [
+              [Function],
               [Function],
             ],
           },
@@ -157,10 +162,14 @@ exports[`EditPolicyRules expect to render without error 1`] = `
             "title": "Severity",
             "transforms": Array [
               [Function],
+              [Function],
             ],
           },
           Object {
             "original": "Ansible",
+            "props": Object {
+              "tooltip": "Ansible",
+            },
             "title": <React.Fragment>
               <AnsibeTowerIcon
                 color="currentColor"
@@ -170,6 +179,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
                Ansible
             </React.Fragment>,
             "transforms": Array [
+              [Function],
               [Function],
             ],
           },
@@ -278,10 +288,14 @@ exports[`EditPolicyRules expect to render without error 2`] = `
             "title": "Severity",
             "transforms": Array [
               [Function],
+              [Function],
             ],
           },
           Object {
             "original": "Ansible",
+            "props": Object {
+              "tooltip": "Ansible",
+            },
             "title": <React.Fragment>
               <AnsibeTowerIcon
                 color="currentColor"
@@ -291,6 +305,7 @@ exports[`EditPolicyRules expect to render without error 2`] = `
                Ansible
             </React.Fragment>,
             "transforms": Array [
+              [Function],
               [Function],
             ],
           },
@@ -377,10 +392,14 @@ exports[`EditPolicyRules expect to render without error on loading 1`] = `
             "title": "Severity",
             "transforms": Array [
               [Function],
+              [Function],
             ],
           },
           Object {
             "original": "Ansible",
+            "props": Object {
+              "tooltip": "Ansible",
+            },
             "title": <React.Fragment>
               <AnsibeTowerIcon
                 color="currentColor"
@@ -390,6 +409,7 @@ exports[`EditPolicyRules expect to render without error on loading 1`] = `
                Ansible
             </React.Fragment>,
             "transforms": Array [
+              [Function],
               [Function],
             ],
           },
