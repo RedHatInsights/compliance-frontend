@@ -48,7 +48,16 @@ exports[`PolicyPopover expect to render without error 1`] = `
       View policy
     </Link>
   }
-  headerContent="United States Government Configuration Baseline23"
+  headerContent={
+    <TextContent>
+      PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73
+      <Text
+        component="small"
+      >
+        United States Government Configuration Baseline23
+      </Text>
+    </TextContent>
+  }
   position="top"
 >
   <Button

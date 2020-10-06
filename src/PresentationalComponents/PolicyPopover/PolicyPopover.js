@@ -3,11 +3,13 @@ import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
     Button,
     Popover,
+    Text,
     TextList,
     TextListVariants,
     TextListItem,
     TextListItemVariants,
-    TextContent
+    TextContent,
+    TextVariants
 } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import {
@@ -20,7 +22,12 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
     return (
         <Popover
             { ...{ position } }
-            headerContent={name}
+            headerContent={
+                <TextContent>
+                    { policy.name }
+                    <Text component={ TextVariants.small }>{ name }</Text>
+                </TextContent>
+            }
             footerContent={
                 <Link to={'/scappolicies/' + policy.id} >
                     View policy
