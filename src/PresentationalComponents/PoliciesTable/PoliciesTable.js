@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
     Button, Pagination, PaginationVariant, ToolbarItem, Tooltip
@@ -225,4 +225,4 @@ PoliciesTable.defaultProps = {
 
 export { policiesToRows };
 
-export default PoliciesTable;
+export default withRouter(PoliciesTable);
