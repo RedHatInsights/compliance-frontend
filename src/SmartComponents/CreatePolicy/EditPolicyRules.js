@@ -17,6 +17,7 @@ import {
 const QUERY = gql`
 query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
     benchmark(id: $benchmarkId) {
+        id
         rules {
             id
             title
@@ -33,6 +34,7 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
         name
         refId
         rules {
+            id
             refId
         }
     }
