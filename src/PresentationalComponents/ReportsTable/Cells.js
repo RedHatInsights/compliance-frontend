@@ -17,13 +17,13 @@ GreySmallText.propTypes = {
 export const Name = (profile) => (
     <TextContent>
         <Link to={'/reports/' + profile.id} style={ { marginRight: '.5rem' }}>
-            { profile.name }
+            { profile.policy ? profile.policy.name : profile.name }
         </Link>
         { profile.policy && <PolicyPopover { ...{ profile, position: 'right' } } /> }
         { !profile.policy && <Label color="red">
             External
         </Label> }
-        { profile.policy && <GreySmallText>{ profile.policy.name }</GreySmallText> }
+        { profile.policy && <GreySmallText>{ profile.name }</GreySmallText> }
     </TextContent>
 );
 

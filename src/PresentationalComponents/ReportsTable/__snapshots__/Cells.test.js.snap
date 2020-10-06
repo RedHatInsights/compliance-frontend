@@ -46,7 +46,7 @@ exports[`Name expect to render without error 1`] = `
     }
     to="/reports/ID"
   >
-    NAME
+    POLICY_NAME
   </Link>
   <PolicyPopover
     position="right"
@@ -62,7 +62,7 @@ exports[`Name expect to render without error 1`] = `
     }
   />
   <GreySmallText>
-    POLICY_NAME
+    NAME
   </GreySmallText>
 </TextContent>
 `;
