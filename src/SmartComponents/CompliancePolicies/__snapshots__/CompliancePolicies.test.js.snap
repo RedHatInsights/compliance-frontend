@@ -247,7 +247,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <PoliciesTable
+        <withRouter(PoliciesTable)
           policies={
             Array [
               Object {
@@ -457,9 +457,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <PoliciesTable
-          policies={Array []}
-        />
+        <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
   </Connect(Main)>
@@ -772,9 +770,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <PoliciesTable
-          policies={Array []}
-        />
+        <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
   </Connect(Main)>
@@ -828,7 +824,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       <StateViewPart
         stateKey="data"
       >
-        <PoliciesTable
+        <withRouter(PoliciesTable)
           policies={
             Array [
               undefined,
