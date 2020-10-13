@@ -20,12 +20,17 @@ const DeleteReport = () => {
         history.push(location.state.background);
     };
 
+    const onDelete = () => {
+        history.push('/reports');
+    };
+
     const [deleteReport] = useMutation(DELETE_REPORT, {
         onCompleted: () => {
             dispatchAction(addNotification({
                 variant: 'success',
                 title: `Removed report`
             }));
+            onDelete();
         },
         onError: (error) => {
             dispatchAction(addNotification({
@@ -33,6 +38,7 @@ const DeleteReport = () => {
                 title: 'Error removing report',
                 description: error.message
             }));
+            onClose();
         }
     });
     return (
