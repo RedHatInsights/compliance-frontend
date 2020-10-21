@@ -146,8 +146,8 @@ describe('.profileNames', () => {
     it('should include external if profile is external', () => {
         const system = {
             profiles: [
-                { external: true, name: 'HIPAA' },
-                { external: false, name: 'PCI' }
+                { name: 'HIPAA' },
+                { policy: {}, name: 'PCI' }
             ]
         };
         expect(profileNames(system)).toEqual('(External) HIPAA, PCI');

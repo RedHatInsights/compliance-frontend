@@ -61,7 +61,7 @@ export const profileNames = (system) => {
     if (system === {}) { return ''; }
 
     return system.profiles.map(
-        (profile) => `${profile.external ? '(External) ' : '' }${profile.name}`
+        (profile) => `${profile.policy ? '' : '(External) ' }${profile.name}`
     ).join(', ');
 };
 
