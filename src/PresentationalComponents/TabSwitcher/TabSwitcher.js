@@ -6,6 +6,17 @@ import { useAnchor } from 'Utilities/Router';
 
 export const ContentTab = ({ children }) => (children);
 
+const useAnchorLevels = (defaultAnchor, level) => {
+    const anchor = useAnchor(defaultAnchor);
+    const levels = anchor.split('|');
+    const currentAnchor = levels[level] || defaultAnchor;
+
+    return {
+        levels,
+        currentAnchor
+    };
+};
+
 const TabSwitcher = (props) => (
     props.children.map((tab) => (
         tab.props.eventKey === props.activeKey ? tab : undefined
@@ -17,8 +28,8 @@ TabSwitcher.propTypes = {
     children: propTypes.node
 };
 
-export const RoutedTabSwitcher = ({ children, defaultTab }) => {
-    const currentAnchor = useAnchor(defaultTab);
+export const RoutedTabSwitcher = ({ children, defaultTab, level }) => {
+    const { currentAnchor } = useAnchorLevels(defaultTab, level);
 
     return children.map((tab) => (
         tab.props.eventKey === currentAnchor ? tab : undefined
@@ -27,20 +38,28 @@ export const RoutedTabSwitcher = ({ children, defaultTab }) => {
 
 RoutedTabSwitcher.propTypes = {
     children: propTypes.node,
-    defaultTab: propTypes.string
+    defaultTab: propTypes.string,
+    level: propTypes.number
 };
 
-export const RoutedTabs = ({ children, defaultTab, ...props }) => {
+RoutedTabSwitcher.defaultProps = {
+    level: 0
+};
+
+export const RoutedTabs = ({ children, defaultTab, level, ...props }) => {
     const { push } = useHistory();
     const { pathname, state } = useLocation();
-    const currentAnchor = useAnchor(defaultTab);
+    const { currentAnchor, levels } = useAnchorLevels(defaultTab, level);
     const handleTabSelect = (e, eventKey) => {
         e.preventDefault();
+        const tabToActivate = eventKey.replace('#', '');
+        let tabAnchor = levels;
+        tabAnchor[level] = tabToActivate;
 
         push({
             state,
             to: pathname,
-            hash: eventKey.replace('#', '')
+            hash: tabAnchor.slice(0, (level + 1)).join('|')
         });
     };
 
@@ -52,9 +71,14 @@ export const RoutedTabs = ({ children, defaultTab, ...props }) => {
     </Tabs>;
 };
 
+RoutedTabs.defaultProps = {
+    level: 0
+};
+
 RoutedTabs.propTypes = {
     children: propTypes.node,
-    defaultTab: propTypes.string
+    defaultTab: propTypes.string,
+    level: propTypes.number
 };
 
 export default TabSwitcher;
