@@ -173,7 +173,7 @@ class SystemsTable extends React.Component {
         }
 
         if (policyId && policyId.length > 0) {
-            filter = `profile_id = ${policyId} and ${filter}`;
+            filter = `policy_id = ${policyId} and ${filter}`;
         }
 
         return client.query({
