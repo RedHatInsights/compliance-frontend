@@ -125,6 +125,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
       <RoutedTabs
         aria-label="Policy Tabs"
         defaultTab="details"
+        level={0}
       >
         <Tab
           eventKey="details"
@@ -146,6 +147,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <Connect(Main)>
       <RoutedTabSwitcher
         defaultTab="details"
+        level={0}
       >
         <ContentTab
           eventKey="details"

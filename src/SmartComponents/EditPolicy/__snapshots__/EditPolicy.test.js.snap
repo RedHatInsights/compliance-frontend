@@ -41,6 +41,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
   <Form>
     <RoutedTabs
       defaultTab="details"
+      level={0}
     >
       <Tab
         eventKey="details"
@@ -152,6 +153,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   <Form>
     <RoutedTabs
       defaultTab="details"
+      level={0}
     >
       <Tab
         eventKey="details"

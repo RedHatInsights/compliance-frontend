@@ -11,10 +11,60 @@ import {
     StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem, BackgroundLink
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
+import useFeature from 'Utilities/hooks/useFeature';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
+import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
+
+export const MULTIVERSION_QUERY = gql`
+query Profile($policyId: String!){
+    profile(id: $policyId) {
+        id
+        name
+        refId
+        external
+        description
+        totalHostCount
+        compliantHostCount
+        complianceThreshold
+        majorOsVersion
+        lastScanned
+        policy {
+            id
+            name
+            refId
+            profiles {
+                ssgVersion
+                name
+                refId
+                rules {
+                    title
+                    severity
+                    rationale
+                    refId
+                    description
+                    remediationAvailable
+                    identifier
+                }
+            }
+        }
+        businessObjective {
+            id
+            title
+        }
+        hosts {
+            id
+        }
+        benchmark {
+            id
+            title
+            version
+        }
+    }
+}
+`;
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -60,10 +110,11 @@ query Profile($policyId: String!){
 
 export const PolicyDetails = () => {
     const defaultTab = 'details';
+    const multiversionTabs = useFeature('multiversionTabs');
     const { policy_id: policyId } = useParams();
     const location = useLocation();
     const anchor = useAnchor();
-    let { data, error, loading, refetch } = useQuery(QUERY, {
+    let { data, error, loading, refetch } = useQuery((multiversionTabs ? MULTIVERSION_QUERY : QUERY), {
         variables: { policyId }
     });
     let policy = data && !loading ? data.profile : undefined;
@@ -118,7 +169,9 @@ export const PolicyDetails = () => {
                             <PolicyDetailsDescription policy={ policy } />
                         </ContentTab>
                         <ContentTab eventKey='rules'>
-                            <PolicyRulesTab policy={ policy } />
+                            { multiversionTabs ?
+                                <PolicyMultiversionRules policy={ policy } /> :
+                                <PolicyRulesTab policy={ policy } /> }
                         </ContentTab>
                         <ContentTab eventKey='systems'>
                             <PolicySystemsTab policy={ policy } />
