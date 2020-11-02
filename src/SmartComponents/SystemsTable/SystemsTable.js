@@ -33,6 +33,8 @@ import {
     StateView,
     StateViewPart
 } from 'PresentationalComponents';
+import { InventorySystemsTable } from 'SmartComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $perPage: Int, $page: Int) {
@@ -108,6 +110,8 @@ const policyFilter = (policies, osFilter) => ([
 @registry()
 class SystemsTable extends React.Component {
     inventory = React.createRef();
+    // This builds the filter configuration for when we control and filter items via the compliance API
+    // We have different filters for different uses
     filterConfig = new FilterConfigBuilder([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(this.props.compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
@@ -132,6 +136,7 @@ class SystemsTable extends React.Component {
             clearAll();
         }
 
+        // For the "Edit Policy" modal we need to be able and preselect hosts, // but still show all systems in the inventory
         (this.props.preselectedSystems ?
             Promise.resolve(this.props.selectEntities(this.props.preselectedSystems)) : Promise.resolve())
         .then(() => {
@@ -139,12 +144,15 @@ class SystemsTable extends React.Component {
         });
     }
 
+    // When we list systems with a "compliant" column we refresh the list when the threshold of a policy changes
     componentDidUpdate = (prevProps) => {
         if (prevProps.complianceThreshold !== this.props.complianceThreshold) {
             this.updateSystems();
         }
     }
 
+    // This was introduced in order to fix issues with keeping the inventory table and states in compliance aligned
+    // Hopefully this can be made easier or redundant
     onRefresh = ({ page, per_page: perPage, ...options }) => {
         const { showAllSystems } = this.props;
         if (showAllSystems && this.inventory && this.inventory.current) {
@@ -163,11 +171,15 @@ class SystemsTable extends React.Component {
         }
     }
 
+    // This executes the the calls to the compliance graphql API (via Apollo)
+    // There is a `useQuery` hook that can be used for functional components
     fetchSystems = () => {
         const { client, showOnlySystemsWithTestResults, remediationsEnabled } = this.props;
         const { policyId, perPage, page, activeFilters } = this.state;
+        // Filters configured in constants.js have function to build a "filter string" out the active filters for the GraphQL api
         let filter = this.filterBuilder.buildFilterString(activeFilters);
 
+        // Additional filters
         if (showOnlySystemsWithTestResults) {
             filter = `has_test_results = true ${filter.length > 0 ? `and ${filter}` : ''}`;
         }
@@ -177,13 +189,16 @@ class SystemsTable extends React.Component {
         }
 
         return client.query({
+            // In cases where we show no compliant column we don't need rules in the response
             query: remediationsEnabled ? GET_SYSTEMS : GET_SYSTEMS_WITHOUT_FAILED_RULES,
+            // This is redundant code to cause updating systems from the compliance API
             fetchResults: true,
             fetchPolicy: 'no-cache',
             variables: { filter, perPage, page, policyId }
         });
     }
 
+    // We keep systems fetched from the compliance API in redux separately from the inventory entities
     updateSystems = () => {
         const prevSystems = this.props.systems.map((s) => s.node.id).sort();
         return this.fetchSystems().then((items) => (
@@ -201,10 +216,13 @@ class SystemsTable extends React.Component {
         });
     }
 
+    // This exports inventory either all rows or rows from "selectedEntities"
     onExportSelect = (_, format) => (
         this.props.exportFromState(format)
     )
 
+    // These are the filter update handlers passed in for the filter configuration
+    // With the available hook most of this would not be needed, but not sure if the filter config helpers would be useful at all.
     onFilterUpdate = (filter, selectedValues) => {
         this.props.updateSystems({
             systems: [],
@@ -251,6 +269,7 @@ class SystemsTable extends React.Component {
         }
     }
 
+    // Export should only be available when there is a selection
     isExportDisabled = () => {
         const { total, selectedEntities } = this.props;
         return (total || 0) === 0 && selectedEntities.length === 0;
@@ -486,7 +505,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const ConnectedSystemsTable = (props) => {
-    return <SystemsTable {...props} store={ReactRedux.useStore()} />;
+    const inventoryTable = useFeature('inventoryTable');
+    const Component = inventoryTable ? InventorySystemsTable : SystemsTable;
+
+    return <Component {...props} store={ReactRedux.useStore()} />;
 };
 
 export { SystemsTable };

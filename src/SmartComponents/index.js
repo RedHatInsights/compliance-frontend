@@ -5,4 +5,4 @@ export { default as CreatePolicy } from './CreatePolicy/CreatePolicy';
 export { default as DeleteReport } from './DeleteReport/DeleteReport';
 export { default as EditPolicy } from './EditPolicy/EditPolicy';
 export { default as DeletePolicy } from './DeletePolicy/DeletePolicy';
-
+export { default as InventorySystemsTable } from './InventorySystemsTable/InventorySystemsTable';
