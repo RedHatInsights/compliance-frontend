@@ -22,6 +22,7 @@ import {
 
 import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
+import useFeature from 'Utilities/hooks/useFeature';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
@@ -57,6 +58,9 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                         title
                         compliant
                         remediationAvailable
+                    }
+                    policy {
+                        id
                     }
                 }
             }
@@ -257,7 +261,7 @@ class SystemsTable extends React.Component {
     }
 
     async fetchInventory() {
-        const { columns, policyId, showAllSystems, clearInventoryFilter } = this.props;
+        const { columns, policyId, showAllSystems, clearInventoryFilter, profilesGroupedByPolicy } = this.props;
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -276,7 +280,8 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
+                    INVENTORY_ACTION_TYPES, columns, showAllSystems,
+                    policyId, profilesGroupedByPolicy
                 ))
         });
 
@@ -403,6 +408,7 @@ SystemsTable.propTypes = {
     exportFromState: propTypes.func,
     policies: propTypes.array,
     policyId: propTypes.string,
+    profilesGroupedByPolicy: propTypes.bool,
     preselectedSystems: propTypes.array,
     remediationsEnabled: propTypes.bool,
     selectAll: propTypes.func,
@@ -426,6 +432,7 @@ SystemsTable.propTypes = {
 
 SystemsTable.defaultProps = {
     policyId: '',
+    profilesGroupedByPolicy: false,
     remediationsEnabled: true,
     compact: false,
     enableExport: true,
@@ -486,7 +493,12 @@ const mapDispatchToProps = dispatch => {
 };
 
 const ConnectedSystemsTable = (props) => {
-    return <SystemsTable {...props} store={ReactRedux.useStore()} />;
+    const profilesGroupedByPolicy = useFeature('profilesGroupedByPolicy');
+    props = {
+        ...{ profilesGroupedByPolicy: profilesGroupedByPolicy },
+        ...props
+    };
+    return <SystemsTable {  ...props } store={ReactRedux.useStore()} />;
 };
 
 export { SystemsTable };

@@ -6,6 +6,13 @@ import { Provider as ReduxProvider } from 'react-redux';
 
 const mockStore = configureStore();
 
+jest.mock('react-router-dom', () => ({
+    ...require.requireActual('react-router-dom'),
+    useLocation: jest.fn(() => ({})),
+    useHistory: jest.fn(() => ({
+        push: jest.fn()
+    }))
+}));
 import EditPolicySystems from './EditPolicySystems.js';
 
 describe('EditPolicySystems', () => {

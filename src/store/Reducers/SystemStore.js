@@ -20,18 +20,21 @@ import {
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
 
-export const findProfiles = (system, profileIds) => {
+export const findProfiles = (system, profileIds, lookupPolicy) => {
     let profiles = system.profiles;
 
     if (profileIds !== undefined && profileIds.toString() !== '') {
-        profiles = profiles.filter((profile) => profileIds.includes(profile.id));
+        profiles = profiles.filter((profile) => {
+            return profileIds.includes(profile.id) ||
+                  (lookupPolicy && profile.policy && profileIds.includes(profile.policy.id));
+        });
     }
 
     return profiles;
 };
 
-export const lastScanned = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
+export const lastScanned = (system, profileId, lookupPolicy) => {
+    const profiles = findProfiles(system, [profileId], lookupPolicy);
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
@@ -39,13 +42,13 @@ export const lastScanned = (system, profileId) => {
     return result;
 };
 
-export const compliant = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
+export const compliant = (system, profileId, lookupPolicy) => {
+    const profiles = findProfiles(system, [profileId], lookupPolicy);
     return profiles.every(profile => profile.compliant === true);
 };
 
-export const score = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
+export const score = (system, profileId, lookupPolicy) => {
+    const profiles = findProfiles(system, [profileId], lookupPolicy);
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
         if (profilesRulesPassed([profile]).length + profilesRulesFailed([profile]).length > 0) { return acc + 1; }
@@ -102,7 +105,7 @@ const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
 );
 
-export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities) => (
+export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities, lookupPolicy) => (
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -117,9 +120,10 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
             matchingSystem = { profiles: [] };
         }
 
+        const foundProfiles = findProfiles(matchingSystem, [profileId], lookupPolicy);
         matchingSystem.profileNames = profileNames(matchingSystem);
-        matchingSystem.rulesPassed = profilesRulesPassed(findProfiles(matchingSystem, [profileId])).length;
-        matchingSystem.rulesFailed = profilesRulesFailed(findProfiles(matchingSystem, [profileId])).length;
+        matchingSystem.rulesPassed = profilesRulesPassed(foundProfiles).length;
+        matchingSystem.rulesFailed = profilesRulesFailed(foundProfiles).length;
         matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
         matchingSystem.compliant = compliant(matchingSystem, profileId);
         matchingSystem.score = score(matchingSystem, profileId);
@@ -214,7 +218,7 @@ const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
 
-export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId, lookupPolicy) => applyReducerHash(
     {
         ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
             ...state,
@@ -229,7 +233,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.rows || [],
                 showAllSystems,
                 profileId,
-                state.selectedEntities
+                state.selectedEntities,
+                lookupPolicy
             )
         }),
         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
@@ -239,7 +244,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.rows,
                 showAllSystems,
                 profileId,
-                state.selectedEntities
+                state.selectedEntities,
+                lookupPolicy
             ),
             total: !showAllSystems ? state.systemsCount : state.total,
             columns: state.total > 0 ? columns : [{ title: '' }]
