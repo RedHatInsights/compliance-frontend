@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm } from 'redux-form';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
-import { SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 const EditPolicySystems = ({ change, selectedSystemIds }) => {
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
-        key: 'facts.compliance.display_name',
+        key: 'display_name',
         title: 'System name',
         props: {
             width: 40, isStatic: true
         }
     }, {
-        key: 'facts.compliance.profiles',
+        key: 'profiles',
         title: 'Policies',
         props: {
             width: 40, isStatic: true
@@ -40,7 +40,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
             </TextContent>
             <Form>
                 <FormGroup>
-                    <SystemsTable
+                    <InventoryTable
                         columns={columns}
                         remediationsEnabled={false}
                         compact

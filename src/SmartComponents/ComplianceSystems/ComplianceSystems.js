@@ -1,9 +1,13 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import { SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
+import { GET_SYSTEMS } from '../SystemsTable/constants';
+import { systemName, policiesCell } from 'Store/Reducers/SystemStore';
+import { Link } from 'react-router-dom';
 
 const QUERY = gql`
 {
@@ -23,28 +27,31 @@ const QUERY = gql`
 export const ComplianceSystems = () => {
     const { data, error, loading } = useQuery(QUERY);
     const columns = [{
-        key: 'facts.compliance.display_name',
+        key: 'display_name',
         title: 'Name',
+        renderFunc: systemName,
         props: {
             width: 40, isStatic: true
         }
     }, {
-        key: 'facts.compliance.policies',
+        key: 'policyNames',
         title: 'Policies',
+        renderFunc: (policyNames) => policiesCell({ policyNames })?.title,
         props: {
             width: 40, isStatic: true
         }
     }, {
-        key: 'facts.compliance.details_link',
+        key: 'profileNames',
         title: '',
+        renderFunc: (profileNames, id) => (
+            profileNames ? <Link to={{ pathname: `/systems/${id}` }}> View report </Link> : ''
+        ),
+        noExport: true,
         props: {
             width: 20, isStatic: true
         }
     }];
-    let policies;
-    if (data) {
-        policies = data?.profiles?.edges.map((e) => (e.node));
-    }
+    const policies = data?.profiles?.edges.map(({ node }) => node);
 
     return (
         <React.Fragment>
@@ -54,7 +61,8 @@ export const ComplianceSystems = () => {
             <Main>
                 <StateViewWithError stateValues={ { error, data, loading } }>
                     <StateViewPart stateKey="data">
-                        { policies && <SystemsTable
+                        { policies && <InventoryTable
+                            query={GET_SYSTEMS}
                             systemProps={{
                                 isFullView: true
                             }}

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import { SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
@@ -76,7 +76,7 @@ export const EditPolicy = ({ route }) => {
                 </Tab>
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
-                    <SystemsTable
+                    <InventoryTable
                         compact
                         showActions={ false }
                         enableExport={ false }
@@ -85,7 +85,7 @@ export const EditPolicy = ({ route }) => {
                         policyId={ policy.id }
                         defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
-                            key: 'facts.compliance.display_name',
+                            key: 'display_name',
                             title: 'System name',
                             props: {
                                 width: 40, isStatic: true

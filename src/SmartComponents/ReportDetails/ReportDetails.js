@@ -23,10 +23,12 @@ import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
     StateViewWithError, StateViewPart, UnsupportedSSGVersion, SubPageTitle
 } from 'PresentationalComponents';
-import SystemsTable, { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
+import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
+import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -96,13 +98,13 @@ export const ReportDetails = ({ route }) => {
     }
 
     const columns = [{
-        key: 'facts.compliance.display_name',
+        key: 'display_name',
         title: 'System name',
         props: {
             width: 30
         }
     }, ...showSsgVersions ? [{
-        key: 'facts.compliance',
+        key: 'ssgVersion',
         title: 'SSG version',
         props: {
             width: 5
@@ -123,7 +125,7 @@ export const ReportDetails = ({ route }) => {
             width: 5
         }
     }, {
-        key: 'facts.compliance.last_scanned',
+        key: 'last_scanned',
         title: 'Last scanned',
         props: {
             width: 10
@@ -201,7 +203,8 @@ export const ReportDetails = ({ route }) => {
             <Main>
                 <Grid hasGutter>
                     <GridItem span={12}>
-                        <SystemsTable
+                        <InventoryTable
+                            query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
                             showOnlySystemsWithTestResults
                             compliantFilter
                             defaultFilter={`with_results_for_policy_id = ${profile.id}`}
