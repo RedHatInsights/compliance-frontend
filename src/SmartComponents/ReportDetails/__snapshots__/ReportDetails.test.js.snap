@@ -2843,6 +2843,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                                 events={
                                                   Object {
+                                                    "onBlur": [Function],
+                                                    "onFocus": [Function],
                                                     "onMouseOut": [Function],
                                                     "onMouseOver": [Function],
                                                     "onTouchEnd": [Function],
@@ -2891,6 +2893,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               >
                                                 <Path
                                                   d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                                                  onBlur={[Function]}
+                                                  onFocus={[Function]}
                                                   onMouseOut={[Function]}
                                                   onMouseOver={[Function]}
                                                   onTouchEnd={[Function]}
@@ -2909,6 +2913,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 >
                                                   <path
                                                     d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                                                    onBlur={[Function]}
+                                                    onFocus={[Function]}
                                                     onMouseOut={[Function]}
                                                     onMouseOver={[Function]}
                                                     onTouchEnd={[Function]}
@@ -2961,6 +2967,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                                 events={
                                                   Object {
+                                                    "onBlur": [Function],
+                                                    "onFocus": [Function],
                                                     "onMouseOut": [Function],
                                                     "onMouseOver": [Function],
                                                     "onTouchEnd": [Function],
@@ -3009,6 +3017,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               >
                                                 <Path
                                                   d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                                                  onBlur={[Function]}
+                                                  onFocus={[Function]}
                                                   onMouseOut={[Function]}
                                                   onMouseOver={[Function]}
                                                   onTouchEnd={[Function]}
@@ -3027,6 +3037,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 >
                                                   <path
                                                     d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                                                    onBlur={[Function]}
+                                                    onFocus={[Function]}
                                                     onMouseOut={[Function]}
                                                     onMouseOver={[Function]}
                                                     onTouchEnd={[Function]}
