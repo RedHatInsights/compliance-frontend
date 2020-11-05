@@ -78,7 +78,6 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
       },
     ]
   }
-  selectVariant="checkbox"
   variant={null}
 >
   <TableHeader />

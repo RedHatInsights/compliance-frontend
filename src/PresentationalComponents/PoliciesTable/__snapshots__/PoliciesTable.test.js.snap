@@ -250,7 +250,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
       ]
     }
-    selectVariant="checkbox"
     variant={null}
   >
     <TableHeader />
@@ -1083,7 +1082,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
       ]
     }
-    selectVariant="checkbox"
     variant={null}
   >
     <TableHeader />
@@ -1311,7 +1309,6 @@ exports[`PoliciesTable Pagination and search should show only matching results a
         },
       ]
     }
-    selectVariant="checkbox"
     variant={null}
   >
     <TableHeader />
@@ -1487,7 +1484,6 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         },
       ]
     }
-    selectVariant="checkbox"
     variant={null}
   >
     <TableHeader />
@@ -2320,7 +2316,6 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
       ]
     }
-    selectVariant="checkbox"
     variant={null}
   >
     <TableHeader />
