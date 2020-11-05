@@ -99,10 +99,10 @@ const displayNameCell = (system, matchingSystem) =>  ({
     exportValue: system.display_name || matchingSystem.name
 });
 
-export const systemName = (displayName, id, { osMajorVersion, osMinorVersion }) => (
+export const systemName = (displayName, id, { osMajorVersion, osMinorVersion, name }) => (
     <TextContent>
         <Link to={{ pathname: `/systems/${id}` }}>
-            { displayName }
+            { displayName || name }
         </Link>
         { hasOsInfo({ osMajorVersion, osMinorVersion }) &&
             <Text component={TextVariants.small}>RHEL {osMajorVersion}.{osMinorVersion}</Text> }

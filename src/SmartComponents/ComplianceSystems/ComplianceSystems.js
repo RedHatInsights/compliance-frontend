@@ -4,10 +4,11 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import { InventoryTable } from 'SmartComponents';
+import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
 import { systemName, policiesCell } from 'Store/Reducers/SystemStore';
 import { Link } from 'react-router-dom';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
 {
@@ -25,33 +26,45 @@ const QUERY = gql`
 `;
 
 export const ComplianceSystems = () => {
+    const newInventory = useFeature('newInventory');
     const { data, error, loading } = useQuery(QUERY);
     const columns = [{
-        key: 'display_name',
+        key: 'facts.compliance.display_name',
         title: 'Name',
-        renderFunc: systemName,
         props: {
             width: 40, isStatic: true
+        },
+        ...newInventory && {
+            key: 'display_name',
+            renderFunc: systemName
         }
     }, {
-        key: 'policyNames',
+        key: 'facts.compliance.policies',
         title: 'Policies',
-        renderFunc: (policyNames) => policiesCell({ policyNames })?.title,
         props: {
             width: 40, isStatic: true
+        },
+        ...newInventory && {
+            key: 'policyNames',
+            renderFunc: (policyNames) => policiesCell({ policyNames })?.title
         }
     }, {
-        key: 'profileNames',
+        key: 'facts.compliance.details_link',
         title: '',
-        renderFunc: (profileNames, id) => (
-            profileNames ? <Link to={{ pathname: `/systems/${id}` }}> View report </Link> : ''
-        ),
-        noExport: true,
         props: {
             width: 20, isStatic: true
+        },
+        ...newInventory && {
+            key: 'profileNames',
+            renderFunc: (profileNames, id) => (
+                profileNames ? <Link to={{ pathname: `/systems/${id}` }}> View report </Link> : ''
+            ),
+            noExport: true
         }
     }];
     const policies = data?.profiles?.edges.map(({ node }) => node);
+
+    const InvComponent = newInventory ? InventoryTable : SystemsTable;
 
     return (
         <React.Fragment>
@@ -61,7 +74,7 @@ export const ComplianceSystems = () => {
             <Main>
                 <StateViewWithError stateValues={ { error, data, loading } }>
                     <StateViewPart stateKey="data">
-                        { policies && <InventoryTable
+                        { policies && <InvComponent
                             query={GET_SYSTEMS}
                             systemProps={{
                                 isFullView: true

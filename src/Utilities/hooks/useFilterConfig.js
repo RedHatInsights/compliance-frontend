@@ -39,7 +39,9 @@ const useFilterConfig = (initialConfig, arrayToFilter) => {
                 onDelete: onFilterDelete
             }
         },
-        filtered: filteredArray
+        filtered: filteredArray,
+        activeFilters,
+        buildFilterString: () => filterConfigBuilder.getFilterBuilder().buildFilterString(activeFilters)
     };
 };
 

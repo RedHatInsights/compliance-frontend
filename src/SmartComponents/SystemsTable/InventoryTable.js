@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
 import { SkeletonTable } from '@redhat-cloud-services/frontend-components';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { asyncInventoryLoader, policyFilter, initFilterState } from './constants';
+import { asyncInventoryLoader, policyFilter } from './constants';
 import { systemsReducer } from 'Store/Reducers/SystemStore';
 import { selectAll, clearSelection } from 'Store/ActionTypes';
 import { exportFromState } from 'Utilities/Export';
@@ -22,6 +21,7 @@ import {
     ComplianceRemediationButton
 } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
+import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 
 const InventoryTable = ({
     columns,
@@ -38,34 +38,34 @@ const InventoryTable = ({
     error,
     showComplianceSystemsInfo,
     compact,
-    remediationsEnabled
+    remediationsEnabled,
+    systemProps
 }) => {
     const store = useStore();
+    const dispatch = useDispatch();
     const inventory = useRef(null);
     const [pagination, setPagination] = useState({
         perPage: 50,
         page: 1
     });
-    const [activeFilters, setActiveFilters] = useState();
-    const [filterConfig, setFilterConfig] = useState();
     const [ConnectedInventory, setInventory] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
+    const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
+        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
+        ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
+        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : [])
+    ]);
     const total = useSelector(({ entities }) => entities?.systemsCount) || 0;
     const items = useSelector(({ entities } = {}) => (entities?.systems?.map((system) => (
         system?.node?.id
     )) || []), shallowEqual);
     const selectedEntities = useSelector(({ entities } = {}) => (entities?.selectedEntities || []), shallowEqual);
-    const dispatch = useDispatch();
     const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
-    const onFilterUpdate = (filter, selectedValues) => setActiveFilters({
-        ...activeFilters,
-        [filter]: selectedValues
-    });
 
-    const fetchSystems = (perPage = 50, page = 1, activeFilters = {}) => {
+    const fetchSystems = (perPage = 50, page = 1) => {
         setIsLoaded(false);
 
-        const filter = filterConfig.getFilterBuilder().buildFilterString(activeFilters);
+        const filter = buildFilterString();
         return client.query({
             query,
             fetchResults: true,
@@ -92,7 +92,10 @@ const InventoryTable = ({
         });
     };
 
-    const debounceFetchSystems = useCallback(debounce(fetchSystems, 800), [filterConfig]);
+    const debounceFetchSystems = useCallback(
+        debounce(fetchSystems, 800),
+        [conditionalFilter.activeFiltersConfig.filters]
+    );
 
     useEffect(() => {
         (async () => {
@@ -113,21 +116,13 @@ const InventoryTable = ({
     }, []);
 
     useEffect(() => {
-        setFilterConfig(new FilterConfigBuilder([
-            ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-            ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-            ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : [])
-        ]));
-    }, [compliantFilter, policies]);
-
-    useEffect(() => {
-        if (activeFilters) {
-            debounceFetchSystems(pagination.perPage, 1, activeFilters);
+        if (conditionalFilter.activeFiltersConfig.filters) {
+            debounceFetchSystems(pagination.perPage, 1);
         }
     }, [activeFilters]);
 
     const onRefresh = (options, callback) => {
-        query && fetchSystems(options.per_page, options.page, activeFilters);
+        query && fetchSystems(options.per_page, options.page);
         if (!callback && inventory && inventory.current) {
             inventory.current.onRefreshData(options);
         } else if (callback) {
@@ -148,11 +143,11 @@ const InventoryTable = ({
                     'Only systems previously or currently associated with compliance policies are displayed.' } /> }
             {ConnectedInventory ?
                 <ConnectedInventory
+                    { ...systemProps }
                     tableProps={{
                         canSelectAll: false
                     }}
                     variant={compact ? TableVariant.compact : ''}
-                    isLoaded={isLoaded}
                     ref={inventory}
                     onRefresh={onRefresh}
                     bulkSelect={{
@@ -168,17 +163,7 @@ const InventoryTable = ({
                         isLoaded,
                         items,
                         total,
-                        filterConfig: filterConfig.buildConfiguration(
-                            onFilterUpdate,
-                            activeFilters || {},
-                            { hideLabel: true }
-                        ),
-                        activeFiltersConfig: {
-                            filters: filterConfig.getChipBuilder().chipsFor(activeFilters || {}),
-                            onDelete: (_event, chips, clearAll = false) => setActiveFilters(() => clearAll ?
-                                initFilterState(filterConfig) :
-                                filterConfig.removeFilterWithChip(chips[0], activeFilters))
-                        },
+                        ...conditionalFilter,
                         ...remediationsEnabled && {
                             dedicatedAction: <ComplianceRemediationButton
                                 allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
@@ -221,7 +206,10 @@ InventoryTable.propTypes = {
     showComplianceSystemsInfo: PropTypes.bool,
     error: PropTypes.object,
     compact: PropTypes.bool,
-    remediationsEnabled: PropTypes.bool
+    remediationsEnabled: PropTypes.bool,
+    systemProps: PropTypes.shape({
+        isFullView: PropTypes.bool
+    })
 };
 
 InventoryTable.defaultProps = {

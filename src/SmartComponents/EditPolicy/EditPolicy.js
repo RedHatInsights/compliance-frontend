@@ -4,13 +4,15 @@ import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import { InventoryTable } from 'SmartComponents';
+import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import usePolicyUpdate from './usePolicyUpdate';
+import useFeature from 'Utilities/hooks/useFeature';
 
 export const EditPolicy = ({ route }) => {
+    const newInventory = useFeature('newInventory');
     const location = useLocation();
     const dispatch = useDispatch();
     const policy = location?.state?.policy;
@@ -22,7 +24,7 @@ export const EditPolicy = ({ route }) => {
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        dispatch({
+        newInventory && dispatch({
             type: 'SELECT_ENTITIES',
             payload: { ids: [] }
         });
@@ -67,7 +69,8 @@ export const EditPolicy = ({ route }) => {
         });
     }, [policy]);
 
-    useTitleEntity(route, policy?.name);
+    const InvCmp = newInventory ? InventoryTable : SystemsTable;
+	useTitleEntity(route, policy?.name);
 
     return policy && <Modal
         isOpen
@@ -89,7 +92,7 @@ export const EditPolicy = ({ route }) => {
                 </Tab>
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
-                    <InventoryTable
+                    <InvCmp
                         compact
                         showActions={ false }
                         enableExport={ false }
@@ -98,10 +101,13 @@ export const EditPolicy = ({ route }) => {
                         policyId={ policy.id }
                         defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
-                            key: 'display_name',
+                            key: 'facts.compliance.display_name',
                             title: 'System name',
                             props: {
                                 width: 40, isStatic: true
+                            },
+                            ...newInventory && {
+                                key: 'display_name'
                             }
                         }]}
                         preselectedSystems={ policy?.hosts.map((h) => ({ id: h.id })) || [] } />

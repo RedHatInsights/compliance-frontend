@@ -25,13 +25,14 @@ import {
 } from 'PresentationalComponents';
 import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import { InventoryTable } from 'SmartComponents';
+import { InventoryTable, SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { systemName } from 'Store/Reducers/SystemStore';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { ComplianceScore as complianceScore } from 'PresentationalComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -65,6 +66,7 @@ query Profile($policyId: String!){
 export const ReportDetails = ({ route }) => {
     let showSsgVersions;
     let showSsgVersionsFeature = useFeature('showSsgVersions');
+    const newInventory = useFeature('newInventory');
     const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
@@ -101,14 +103,17 @@ export const ReportDetails = ({ route }) => {
     }
 
     const columns = [{
-        key: 'display_name',
+        key: 'facts.compliance.display_name',
         title: 'System name',
-        renderFunc: systemName,
         props: {
             width: 30
+        },
+        ...newInventory && {
+            key: 'display_name',
+            renderFunc: systemName
         }
     }, ...showSsgVersions ? [{
-        key: 'ssgVersion',
+        key: 'facts.compliance.ssg_version',
         title: 'SSG version',
         props: {
             width: 5
@@ -125,22 +130,29 @@ export const ReportDetails = ({ route }) => {
     }, {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score',
-        renderFunc: (_score, _id, system) => complianceScore(system),
         props: {
             width: 5
+        },
+        ...newInventory && {
+            key: 'score',
+            renderFunc: (_score, _id, system) => complianceScore(system)
         }
     }, {
-        key: 'lastScanned',
+        key: 'facts.compliance.last_scanned',
         title: 'Last scanned',
-        renderFunc: (lastScanned) => (lastScanned instanceof Date) ?
-            <DateFormat date={Date.parse(lastScanned)} type='relative' />
-            : lastScanned,
         props: {
             width: 10
+        },
+        ...newInventory && {
+            key: 'lastScanned',
+            renderFunc: (lastScanned) => (lastScanned instanceof Date) ?
+                <DateFormat date={Date.parse(lastScanned)} type='relative' />
+                : lastScanned
         }
     }];
 
-    useTitleEntity(route, policyName);
+    const InvCmp = newInventory ? InventoryTable : SystemsTable;
+	useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
@@ -211,7 +223,7 @@ export const ReportDetails = ({ route }) => {
             <Main>
                 <Grid hasGutter>
                     <GridItem span={12}>
-                        <InventoryTable
+                        <InvCmp
                             query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
                             showOnlySystemsWithTestResults
                             compliantFilter
