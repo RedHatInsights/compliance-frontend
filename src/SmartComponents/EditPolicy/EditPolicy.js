@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
 import { InventoryTable } from 'SmartComponents';
@@ -12,14 +12,23 @@ import usePolicyUpdate from './usePolicyUpdate';
 
 export const EditPolicy = ({ route }) => {
     const location = useLocation();
+    const dispatch = useDispatch();
     const policy = location?.state?.policy;
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const updatePolicy = usePolicyUpdate();
     const linkToBackground = useLinkToBackground('/scappolicies');
-    const linkToBackgroundWithHash = () => (linkToBackground({ hash: anchor }));
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
+
+    const linkToBackgroundWithHash = () => {
+        dispatch({
+            type: 'SELECT_ENTITIES',
+            payload: { ids: [] }
+        });
+        linkToBackground({ hash: anchor });
+    };
+
     const actions = [
         <Button
             isDisabled={ saveEnabled }
@@ -51,6 +60,10 @@ export const EditPolicy = ({ route }) => {
         setUpdatedPolicy({
             ...policy,
             complianceThresholdValid
+        });
+        dispatch({
+            type: 'SELECT_ENTITIES',
+            payload: { ids: policy?.hosts?.map(({ id }) => ({ id })) || [] }
         });
     }, [policy]);
 

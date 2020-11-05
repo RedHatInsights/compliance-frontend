@@ -237,10 +237,13 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems, profil
     [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
         ...state,
         total: !showAllSystems ? state.systemsCount : state.total,
-        rows: mergeArraysByKey([state.rows, state.systems?.map(({ node }) => {
-            return {
+        rows: mergeArraysByKey([
+            state.rows.map((row) => ({
+                ...row,
+                selected: isSelected(row.id, state.selectedEntities)
+            })),
+            state.systems?.map(({ node }) => ({
                 ...node,
-                selected: isSelected(node.id, state.selectedEntities),
                 ...showAllSystems && { profiles: node.profiles || [] },
                 policyNames: policiesCell(node),
                 rulesPassed: profilesRulesPassed(node.profiles).length,
@@ -249,8 +252,8 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems, profil
                 compliant: compliant(node, profileId),
                 score: score(node, profileId),
                 ssgVersion: profilesSsgVersions(node.profiles)
-            };
-        })]),
+            })
+        )]),
         columns: state.total > 0 ? columns : [{ title: '' }]
     }),
     [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
@@ -267,7 +270,10 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems, profil
         }
 
         return newState;
-    }
+    },
+    ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
+        selectedEntities: ids
+    })
 });
 
 export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash(

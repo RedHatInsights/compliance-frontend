@@ -85,6 +85,10 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     external
                     compliant
                     score
+                    rules {
+                        id
+                        compliant
+                    }
                     policy {
                         id
                     }

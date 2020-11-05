@@ -6,7 +6,7 @@ import {
     chart_color_blue_300 as blue300
 } from '@patternfly/react-tokens';
 import propTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -29,6 +29,9 @@ import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
+import { systemName } from 'Store/Reducers/SystemStore';
+import { DateFormat } from '@redhat-cloud-services/frontend-components';
+import { ComplianceScore as complianceScore } from 'PresentationalComponents';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -100,6 +103,7 @@ export const ReportDetails = ({ route }) => {
     const columns = [{
         key: 'display_name',
         title: 'System name',
+        renderFunc: systemName,
         props: {
             width: 30
         }
@@ -121,12 +125,16 @@ export const ReportDetails = ({ route }) => {
     }, {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score',
+        renderFunc: (_score, _id, system) => complianceScore(system),
         props: {
             width: 5
         }
     }, {
-        key: 'last_scanned',
+        key: 'lastScanned',
         title: 'Last scanned',
+        renderFunc: (lastScanned) => (lastScanned instanceof Date) ?
+            <DateFormat date={Date.parse(lastScanned)} type='relative' />
+            : lastScanned,
         props: {
             width: 10
         }

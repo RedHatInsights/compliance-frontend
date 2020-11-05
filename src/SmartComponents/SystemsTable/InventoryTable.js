@@ -18,6 +18,10 @@ import {
 } from 'PresentationalComponents';
 import { Alert } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
+import {
+    ComplianceRemediationButton
+} from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 
 const InventoryTable = ({
     columns,
@@ -33,7 +37,8 @@ const InventoryTable = ({
     showOsFilter,
     error,
     showComplianceSystemsInfo,
-    compact
+    compact,
+    remediationsEnabled
 }) => {
     const store = useStore();
     const inventory = useRef(null);
@@ -173,6 +178,11 @@ const InventoryTable = ({
                             onDelete: (_event, chips, clearAll = false) => setActiveFilters(() => clearAll ?
                                 initFilterState(filterConfig) :
                                 filterConfig.removeFilterWithChip(chips[0], activeFilters))
+                        },
+                        ...remediationsEnabled && {
+                            dedicatedAction: <ComplianceRemediationButton
+                                allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
+                                selectedRules={ [] } />
                         }
                     }}
                     {...enableExport && {
@@ -210,7 +220,8 @@ InventoryTable.propTypes = {
     showOsFilter: PropTypes.bool,
     showComplianceSystemsInfo: PropTypes.bool,
     error: PropTypes.object,
-    compact: PropTypes.bool
+    compact: PropTypes.bool,
+    remediationsEnabled: PropTypes.bool
 };
 
 InventoryTable.defaultProps = {
@@ -220,7 +231,8 @@ InventoryTable.defaultProps = {
     compliantFilter: false,
     showOnlySystemsWithTestResults: false,
     showComplianceSystemsInfo: false,
-    compact: false
+    compact: false,
+    remediationsEnabled: true
 };
 
 export default withApollo(InventoryTable);
