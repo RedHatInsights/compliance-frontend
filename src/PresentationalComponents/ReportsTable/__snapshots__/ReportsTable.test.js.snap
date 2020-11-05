@@ -1308,6 +1308,7 @@ exports[`ReportsTable expect to render without error 1`] = `
         },
       ]
     }
+    selectVariant="checkbox"
     sortBy={
       Object {
         "direction": "desc",
