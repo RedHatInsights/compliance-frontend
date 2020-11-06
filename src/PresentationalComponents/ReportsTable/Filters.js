@@ -42,7 +42,7 @@ export const operatingSystemFilter = (operatingSystems) => ([{
 
 export const policyComplianceFilter = [{
     type: conditionalFilterType.checkbox,
-    label: 'Systemsmeetingcompliance', // FIX in FC: The filterconfig helper can't handle two much space...
+    label: 'Systems meeting compliance',
     filter: (profiles, values) => (
         profiles.filter(({ totalHostCount, compliantHostCount }) => {
             const compliantHostsPercent = Math.round((100 / totalHostCount) * compliantHostCount);

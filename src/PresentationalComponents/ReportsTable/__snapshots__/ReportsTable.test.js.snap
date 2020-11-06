@@ -79,7 +79,7 @@ exports[`ReportsTable expect to render without error 1`] = `
               "value": Array [],
             },
             "id": "systemsmeetingcompliance",
-            "label": "Systemsmeetingcompliance",
+            "label": "Systems meeting compliance",
             "type": "checkbox",
           },
         ],
