@@ -29,6 +29,7 @@ const QUERY = gql`
                 complianceThreshold
                 totalHostCount
                 majorOsVersion
+                policyType
                 benchmark {
                     id
                     title

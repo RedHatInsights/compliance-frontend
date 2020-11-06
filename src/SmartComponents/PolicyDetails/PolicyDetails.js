@@ -31,6 +31,7 @@ query Profile($policyId: String!){
         complianceThreshold
         majorOsVersion
         lastScanned
+        policyType
         policy {
             id
             name
@@ -79,6 +80,7 @@ query Profile($policyId: String!){
         complianceThreshold
         majorOsVersion
         lastScanned
+        policyType
         policy {
             id
             name
