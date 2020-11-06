@@ -65,7 +65,7 @@ const PolicyDetailsDescription = ({ policy }) => (
                     { policy.benchmark.title } { policy.benchmark.version }
                 </Text>
                 <Text component={TextVariants.h5}>Policy type </Text>
-                <Text component={TextVariants.p}>{ policy.policy.name }</Text>
+                <Text component={TextVariants.p}>{ policy.policyType }</Text>
                 <Text component={TextVariants.h5}>Reference ID</Text>
                 <Text component={TextVariants.p}>{ policy.refId }</Text>
             </TextContent>
