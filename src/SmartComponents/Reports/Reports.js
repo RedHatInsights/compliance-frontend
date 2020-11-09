@@ -11,8 +11,8 @@ import {
 import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
-{
-    profiles(search: "has_test_results = true", limit: 1000){
+query Profiles($filter: String!) {
+    profiles(search: $filter, limit: 1000){
         edges {
             node {
                 id
@@ -84,9 +84,14 @@ export const Reports = () => {
     let profiles = [];
     let showView = false;
     const location = useLocation();
-    let { data, error, loading, refetch } = useQuery(QUERY);
     const showTableView = useFeature('reportsTableView');
     const View = showTableView ? ReportsTable : ReportCardGrid;
+    const filter = `(has_policy_test_results = true AND external = false)
+                    OR (has_policy = false AND has_test_results = true)`;
+
+    let { data, error, loading, refetch } = useQuery(QUERY, {
+        variables: { filter }
+    });
 
     useEffect(() => {
         refetch();
