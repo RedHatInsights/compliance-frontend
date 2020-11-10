@@ -35,7 +35,7 @@ import {
 } from 'PresentationalComponents';
 
 export const GET_SYSTEMS = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
     systems(search: $filter, limit: $perPage, offset: $page) {
         totalCount
         edges {
@@ -44,7 +44,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles {
+                profiles(policyId: $policyId) {
                     id
                     name
                     refId
@@ -67,7 +67,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 `;
 
 export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
     systems(search: $filter, limit: $perPage, offset: $page) {
         totalCount
         edges {
@@ -76,7 +76,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles {
+                profiles(policyId: $policyId) {
                     id
                     name
                     lastScanned
@@ -173,15 +173,17 @@ class SystemsTable extends React.Component {
             filter = `has_test_results = true ${filter.length > 0 ? `and ${filter}` : ''}`;
         }
 
-        if (policyId && policyId.length > 0) {
+        let variables = { filter, perPage, page };
+        if (policyId) {
             filter = `policy_id = ${policyId} and ${filter}`;
+            variables = { ...variables, filter, policyId };
         }
 
         return client.query({
             query: remediationsEnabled ? GET_SYSTEMS : GET_SYSTEMS_WITHOUT_FAILED_RULES,
             fetchResults: true,
             fetchPolicy: 'no-cache',
-            variables: { filter, perPage, page, policyId }
+            variables
         });
     }
 
@@ -258,7 +260,7 @@ class SystemsTable extends React.Component {
     }
 
     async fetchInventory() {
-        const { columns, policyId, showAllSystems, clearInventoryFilter } = this.props;
+        const { columns, showAllSystems, clearInventoryFilter } = this.props;
         const {
             inventoryConnector,
             INVENTORY_ACTION_TYPES,
@@ -277,7 +279,7 @@ class SystemsTable extends React.Component {
         this.getRegistry().register({
             ...mergeWithEntities(
                 entitiesReducer(
-                    INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
+                    INVENTORY_ACTION_TYPES, columns, showAllSystems
                 ))
         });
 
@@ -426,7 +428,6 @@ SystemsTable.propTypes = {
 };
 
 SystemsTable.defaultProps = {
-    policyId: '',
     remediationsEnabled: true,
     compact: false,
     enableExport: true,

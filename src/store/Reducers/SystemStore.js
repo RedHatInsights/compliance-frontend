@@ -20,18 +20,7 @@ import {
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
 
-export const findProfiles = (system, profileIds) => {
-    let profiles = system.profiles;
-
-    if (profileIds !== undefined && profileIds.toString() !== '') {
-        profiles = profiles.filter((profile) => profileIds.includes(profile.id));
-    }
-
-    return profiles;
-};
-
-export const lastScanned = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
+export const lastScanned = ({ profiles = [] }) => {
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
@@ -39,13 +28,11 @@ export const lastScanned = (system, profileId) => {
     return result;
 };
 
-export const compliant = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
-    return profiles.every(profile => profile.compliant === true);
-};
+export const compliant = ({ profiles = [] }) => (
+    profiles.every(profile => profile.compliant === true)
+);
 
-export const score = (system, profileId) => {
-    const profiles = findProfiles(system, [profileId]);
+export const score = ({ profiles = [] }) => {
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
         if (profilesRulesPassed([profile]).length + profilesRulesFailed([profile]).length > 0) { return acc + 1; }
@@ -106,7 +93,7 @@ const profilesSsgVersions = (profiles) => (
     profiles.map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
 );
 
-export const systemsToInventoryEntities = (systems, entities, showAllSystems, profileId, selectedEntities) => (
+export const systemsToInventoryEntities = (systems, entities, showAllSystems, selectedEntities) => (
     entities.map(entity => {
         // This should compare the inventory ID instead with
         // the ID in compliance
@@ -122,11 +109,11 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, pr
         }
 
         matchingSystem.profileNames = profileNames(matchingSystem);
-        matchingSystem.rulesPassed = profilesRulesPassed(findProfiles(matchingSystem, [profileId])).length;
-        matchingSystem.rulesFailed = profilesRulesFailed(findProfiles(matchingSystem, [profileId])).length;
-        matchingSystem.lastScanned = lastScanned(matchingSystem, profileId);
-        matchingSystem.compliant = compliant(matchingSystem, profileId);
-        matchingSystem.score = score(matchingSystem, profileId);
+        matchingSystem.rulesPassed = profilesRulesPassed(matchingSystem.profiles).length;
+        matchingSystem.rulesFailed = profilesRulesFailed(matchingSystem.profiles).length;
+        matchingSystem.lastScanned = lastScanned(matchingSystem);
+        matchingSystem.compliant = compliant(matchingSystem);
+        matchingSystem.score = score(matchingSystem);
 
         return {
             /* eslint-disable camelcase */
@@ -219,7 +206,7 @@ const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
 
-export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId) => applyReducerHash(
+export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash(
     {
         ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
             ...state,
@@ -233,7 +220,6 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.systems || [],
                 state.rows || [],
                 showAllSystems,
-                profileId,
                 state.selectedEntities
             )
         }),
@@ -243,7 +229,6 @@ export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems, profi
                 state.systems || [],
                 state.rows,
                 showAllSystems,
-                profileId,
                 state.selectedEntities
             ),
             total: !showAllSystems ? state.systemsCount : state.total,
