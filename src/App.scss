@@ -3,6 +3,9 @@
 @import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/_all";
 @import "~@redhat-cloud-services/frontend-components-inventory-compliance/index.css";
 
+.pf-c-page__main .pf-c-page-header .pf-c-title.pad-bottom {
+  padding-bottom: inherit;
+}
 
 .pf-c-page__main .pf-c-page-header.pf-c-page__main-section {
   &.page-header-tabs {

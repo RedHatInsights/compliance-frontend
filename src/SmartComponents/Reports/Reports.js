@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { Alert, Text } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main, SkeletonTable } from '@redhat-cloud-services/frontend-components';
 import {
     ReportCardGrid, ReportsTable, StateViewPart, StateViewWithError, ReportsEmptyState, LoadingComplianceCards
@@ -63,7 +64,19 @@ LoadingView.propTypes = {
 
 const ReportsHeader = () => (
     <PageHeader>
-        <PageHeaderTitle title="Reports" />
+        <PageHeaderTitle title="Reports" className="pad-bottom" />
+        <Alert
+            variant="info"
+            isInline
+            title= "Support for external reports will be removed in December 2020."
+            actionLinks={
+                <a href="https://access.redhat.com/solutions/5249481">Learn more</a>
+            }>
+            <Text variant="p">
+                As of December 2020 users will no longer be able to upload reports for SCAP policies not defined within Insights.
+                Create a SCAP policy within Insights to continue reporting on your systems.
+            </Text>
+        </Alert>
     </PageHeader>
 );
 
