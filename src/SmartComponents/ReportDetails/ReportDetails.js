@@ -12,6 +12,7 @@ import {
 } from '@redhat-cloud-services/frontend-components';
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
+import useFeature from 'Utilities/hooks/useFeature';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
     StateViewWithError, StateViewPart
@@ -48,6 +49,8 @@ query Profile($policyId: String!){
 `;
 
 export const ReportDetails = () => {
+    let showSsgVersions;
+    let showSsgVersionsFeature = useFeature('showSsgVersions');
     const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
@@ -60,6 +63,7 @@ export const ReportDetails = () => {
 
     if (!loading && data) {
         profile = data.profile;
+        showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
         const compliantHostCount = profile.compliantHostCount;
         const totalHostCount = profile.totalHostCount;
         donutId = profile.name.replace(/ /g, '');
@@ -87,7 +91,13 @@ export const ReportDetails = () => {
         props: {
             width: 5
         }
-    }, {
+    }, ...showSsgVersions ? [{
+        key: 'facts.compliance.ssg_version',
+        title: 'SSG version',
+        props: {
+            width: 5
+        }
+    }] : [], {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score',
         props: {

@@ -93,6 +93,7 @@ Array [
                       },
                     ],
                     "score": 40,
+                    "ssgVersion": "0.14.3",
                   },
                   Object {
                     "compliant": false,
@@ -166,6 +167,7 @@ Array [
                       },
                     ],
                     "score": 0,
+                    "ssgVersion": "0.14.2",
                   },
                   Object {
                     "compliant": false,
@@ -386,6 +388,7 @@ Array [
         },
         "rules_failed_text": 28,
         "rules_passed": 24,
+        "ssg_version": "0.14.3, 0.14.2",
       },
       "inventory": Object {
         "hostname": undefined,

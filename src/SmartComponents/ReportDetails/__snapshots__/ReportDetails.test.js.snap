@@ -8461,3 +8461,530 @@ exports[`ReportDetails expect to render without error 1`] = `
   </Router>
 </BrowserRouter>
 `;
+
+exports[`ReportDetails expect to render without error and ssg Version 1`] = `
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "profile": Object {
+          "benchmark": Object {
+            "version": "0.1.4",
+          },
+          "businessObjective": Object {
+            "id": "1",
+            "title": "BO 1",
+          },
+          "complianceThreshold": 1,
+          "compliantHostCount": 1,
+          "description": "profile description",
+          "external": false,
+          "id": "1",
+          "name": "profile1",
+          "policy": Object {
+            "id": "thepolicyid",
+          },
+          "refId": "121212",
+          "totalHostCount": 1,
+        },
+      },
+      "error": false,
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <ReportDetailsContentLoader />
+    </PageHeader>
+    <Connect(Main)>
+      <EmptyTable>
+        <Spinner />
+      </EmptyTable>
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/reports"
+        >
+          Reports
+        </BreadcrumbLinkItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          profile1
+        </BreadcrumbItem>
+      </Breadcrumb>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          lg={9}
+          md={9}
+          sm={9}
+          xl={9}
+        >
+          <PageHeaderTitle
+            title="profile1 report"
+          />
+        </GridItem>
+        <GridItem
+          className="report-details-button"
+          lg={3}
+          md={3}
+          sm={3}
+          xl={3}
+        >
+          <BackgroundLink
+            state={
+              Object {
+                "profile": Object {
+                  "benchmark": Object {
+                    "version": "0.1.4",
+                  },
+                  "businessObjective": Object {
+                    "id": "1",
+                    "title": "BO 1",
+                  },
+                  "complianceThreshold": 1,
+                  "compliantHostCount": 1,
+                  "description": "profile description",
+                  "external": false,
+                  "id": "1",
+                  "name": "profile1",
+                  "policy": Object {
+                    "id": "thepolicyid",
+                  },
+                  "refId": "121212",
+                  "totalHostCount": 1,
+                },
+              }
+            }
+            to="/reports/1/delete"
+          >
+            <Button
+              isInline={true}
+              variant="link"
+            >
+              Delete report
+            </Button>
+          </BackgroundLink>
+        </GridItem>
+      </Grid>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          lg={12}
+          md={12}
+          sm={12}
+          xl={6}
+        >
+          <div
+            className="chart-inline"
+          >
+            <div
+              className="chart-container"
+            >
+              <ChartDonut
+                data={
+                  Array [
+                    Object {
+                      "x": "Compliant",
+                      "y": 1,
+                    },
+                    Object {
+                      "x": "Non-compliant",
+                      "y": 0,
+                    },
+                  ]
+                }
+                identifier="profile1"
+                innerRadius={88}
+                legendData={
+                  Array [
+                    Object {
+                      "name": "1 system compliant",
+                    },
+                    Object {
+                      "name": "0 systems non-compliant",
+                    },
+                  ]
+                }
+                legendOrientation="vertical"
+                legendPosition="right"
+                padding={
+                  Object {
+                    "bottom": 20,
+                    "left": 0,
+                    "right": 250,
+                    "top": 20,
+                  }
+                }
+                style={
+                  Object {
+                    "fontSize": 20,
+                  }
+                }
+                subTitle="Compliant"
+                themeColor="blue"
+                themeVariant="light"
+                title="100%"
+                width={462}
+              />
+            </div>
+          </div>
+        </GridItem>
+        <GridItem
+          lg={12}
+          md={12}
+          sm={12}
+          xl={6}
+        >
+          <ReportDetailsDescription
+            profile={
+              Object {
+                "benchmark": Object {
+                  "version": "0.1.4",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "external": false,
+                "id": "1",
+                "name": "profile1",
+                "policy": Object {
+                  "id": "thepolicyid",
+                },
+                "refId": "121212",
+                "totalHostCount": 1,
+              }
+            }
+          />
+        </GridItem>
+      </Grid>
+    </PageHeader>
+    <Connect(Main)>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          span={12}
+        >
+          <SystemsTable
+            columns={
+              Array [
+                Object {
+                  "key": "facts.compliance.display_name",
+                  "props": Object {
+                    "width": 30,
+                  },
+                  "title": "System name",
+                },
+                Object {
+                  "key": "facts.compliance.rules_failed",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "Rules failed",
+                },
+                Object {
+                  "key": "facts.compliance.ssg_version",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "SSG version",
+                },
+                Object {
+                  "key": "facts.compliance.compliance_score",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "Compliance score",
+                },
+                Object {
+                  "key": "facts.compliance.last_scanned",
+                  "props": Object {
+                    "width": 10,
+                  },
+                  "title": "Last scanned",
+                },
+              ]
+            }
+            compliantFilter={true}
+            policyId="1"
+            showOnlySystemsWithTestResults={true}
+          />
+        </GridItem>
+      </Grid>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
+`;
+
+exports[`ReportDetails expect to render without ssg version for external profiles 1`] = `
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": Object {
+        "profile": Object {
+          "benchmark": Object {
+            "version": "0.1.4",
+          },
+          "businessObjective": Object {
+            "id": "1",
+            "title": "BO 1",
+          },
+          "complianceThreshold": 1,
+          "compliantHostCount": 1,
+          "description": "profile description",
+          "external": false,
+          "id": "1",
+          "name": "profile1",
+          "policy": null,
+          "refId": "121212",
+          "totalHostCount": 1,
+        },
+      },
+      "error": false,
+      "loading": false,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <PageHeader>
+      <ReportDetailsContentLoader />
+    </PageHeader>
+    <Connect(Main)>
+      <EmptyTable>
+        <Spinner />
+      </EmptyTable>
+    </Connect(Main)>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <PageHeader>
+      <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/reports"
+        >
+          Reports
+        </BreadcrumbLinkItem>
+        <BreadcrumbItem
+          isActive={true}
+        >
+          profile1
+        </BreadcrumbItem>
+      </Breadcrumb>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          lg={9}
+          md={9}
+          sm={9}
+          xl={9}
+        >
+          <PageHeaderTitle
+            title="profile1 report"
+          />
+        </GridItem>
+        <GridItem
+          className="report-details-button"
+          lg={3}
+          md={3}
+          sm={3}
+          xl={3}
+        >
+          <BackgroundLink
+            state={
+              Object {
+                "profile": Object {
+                  "benchmark": Object {
+                    "version": "0.1.4",
+                  },
+                  "businessObjective": Object {
+                    "id": "1",
+                    "title": "BO 1",
+                  },
+                  "complianceThreshold": 1,
+                  "compliantHostCount": 1,
+                  "description": "profile description",
+                  "external": false,
+                  "id": "1",
+                  "name": "profile1",
+                  "policy": null,
+                  "refId": "121212",
+                  "totalHostCount": 1,
+                },
+              }
+            }
+            to="/reports/1/delete"
+          >
+            <Button
+              isInline={true}
+              variant="link"
+            >
+              Delete report
+            </Button>
+          </BackgroundLink>
+        </GridItem>
+      </Grid>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          lg={12}
+          md={12}
+          sm={12}
+          xl={6}
+        >
+          <div
+            className="chart-inline"
+          >
+            <div
+              className="chart-container"
+            >
+              <ChartDonut
+                data={
+                  Array [
+                    Object {
+                      "x": "Compliant",
+                      "y": 1,
+                    },
+                    Object {
+                      "x": "Non-compliant",
+                      "y": 0,
+                    },
+                  ]
+                }
+                identifier="profile1"
+                innerRadius={88}
+                legendData={
+                  Array [
+                    Object {
+                      "name": "1 system compliant",
+                    },
+                    Object {
+                      "name": "0 systems non-compliant",
+                    },
+                  ]
+                }
+                legendOrientation="vertical"
+                legendPosition="right"
+                padding={
+                  Object {
+                    "bottom": 20,
+                    "left": 0,
+                    "right": 250,
+                    "top": 20,
+                  }
+                }
+                style={
+                  Object {
+                    "fontSize": 20,
+                  }
+                }
+                subTitle="Compliant"
+                themeColor="blue"
+                themeVariant="light"
+                title="100%"
+                width={462}
+              />
+            </div>
+          </div>
+        </GridItem>
+        <GridItem
+          lg={12}
+          md={12}
+          sm={12}
+          xl={6}
+        >
+          <ReportDetailsDescription
+            profile={
+              Object {
+                "benchmark": Object {
+                  "version": "0.1.4",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 1,
+                "description": "profile description",
+                "external": false,
+                "id": "1",
+                "name": "profile1",
+                "policy": null,
+                "refId": "121212",
+                "totalHostCount": 1,
+              }
+            }
+          />
+        </GridItem>
+      </Grid>
+    </PageHeader>
+    <Connect(Main)>
+      <Grid
+        hasGutter={true}
+      >
+        <GridItem
+          span={12}
+        >
+          <SystemsTable
+            columns={
+              Array [
+                Object {
+                  "key": "facts.compliance.display_name",
+                  "props": Object {
+                    "width": 30,
+                  },
+                  "title": "System name",
+                },
+                Object {
+                  "key": "facts.compliance.rules_failed",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "Rules failed",
+                },
+                Object {
+                  "key": "facts.compliance.compliance_score",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "Compliance score",
+                },
+                Object {
+                  "key": "facts.compliance.last_scanned",
+                  "props": Object {
+                    "width": 10,
+                  },
+                  "title": "Last scanned",
+                },
+              ]
+            }
+            compliantFilter={true}
+            policyId="1"
+            showOnlySystemsWithTestResults={true}
+          />
+        </GridItem>
+      </Grid>
+    </Connect(Main)>
+  </StateViewPart>
+</StateViewWithError>
+`;

@@ -9,6 +9,7 @@ export const systems = [
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    ssgVersion: '0.14.3',
                     rules: [
                         {
                             refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
@@ -82,6 +83,7 @@ export const systems = [
                     name: 'DISA STIG for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
                     compliant: false,
+                    ssgVersion: '0.14.2',
                     rules: [
                         {
                             refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
@@ -310,7 +312,8 @@ export const systems = [
                     lastScanned: 'Never',
                     rules: [],
                     score: 0,
-                    compliant: false
+                    compliant: false,
+                    ssgVersion: '0.14.5'
                 }
             ]
         }
