@@ -23,13 +23,15 @@ const mocks = [
                     id: '1',
                     refId: '121212',
                     name: 'profile1',
+                    policyType: 'policy type',
                     description: 'profile description',
                     external: false,
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
                     policy: {
-                        id: 'thepolicyid'
+                        id: 'thepolicyid',
+                        name: 'the policy name'
                     },
                     businessObjective: {
                         id: '1',

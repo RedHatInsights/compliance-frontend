@@ -64,7 +64,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
+                    "name": "the policy name",
                   },
+                  "policyType": "policy type",
                   "refId": "121212",
                   "totalHostCount": 1,
                 },
@@ -94,7 +96,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "name": "profile1",
                     "policy": Object {
                       "id": "thepolicyid",
+                      "name": "the policy name",
                     },
+                    "policyType": "policy type",
                     "refId": "121212",
                     "totalHostCount": 1,
                   },
@@ -203,7 +207,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 </svg>
                               </AngleRightIcon>
                             </span>
-                            profile1
+                            the policy name
                           </li>
                         </BreadcrumbItem>
                       </ol>
@@ -225,7 +229,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                           className="pf-l-grid__item pf-m-9-col-on-sm pf-m-9-col-on-md pf-m-9-col-on-lg pf-m-9-col-on-xl"
                         >
                           <PageHeaderTitle
-                            title="profile1 report"
+                            title="the policy name report"
                           >
                             <Title
                               className=""
@@ -238,7 +242,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 widget-type="InsightsPageHeaderTitle"
                               >
                                  
-                                profile1 report
+                                the policy name report
                                  
                               </h1>
                             </Title>
@@ -274,7 +278,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   "name": "profile1",
                                   "policy": Object {
                                     "id": "thepolicyid",
+                                    "name": "the policy name",
                                   },
+                                  "policyType": "policy type",
                                   "refId": "121212",
                                   "totalHostCount": 1,
                                 },
@@ -310,7 +316,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       "name": "profile1",
                                       "policy": Object {
                                         "id": "thepolicyid",
+                                        "name": "the policy name",
                                       },
+                                      "policyType": "policy type",
                                       "refId": "121212",
                                       "totalHostCount": 1,
                                     },
@@ -8247,7 +8255,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 "name": "profile1",
                                 "policy": Object {
                                   "id": "thepolicyid",
+                                  "name": "the policy name",
                                 },
+                                "policyType": "policy type",
                                 "refId": "121212",
                                 "totalHostCount": 1,
                               }
@@ -8483,7 +8493,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "name": "profile1",
           "policy": Object {
             "id": "thepolicyid",
+            "name": "the policy name",
           },
+          "policyType": "policy type",
           "refId": "121212",
           "totalHostCount": 1,
         },
@@ -8518,7 +8530,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         <BreadcrumbItem
           isActive={true}
         >
-          profile1
+          the policy name
         </BreadcrumbItem>
       </Breadcrumb>
       <Grid
@@ -8531,7 +8543,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           xl={9}
         >
           <PageHeaderTitle
-            title="profile1 report"
+            title="the policy name report"
           />
         </GridItem>
         <GridItem
@@ -8560,7 +8572,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
+                    "name": "the policy name",
                   },
+                  "policyType": "policy type",
                   "refId": "121212",
                   "totalHostCount": 1,
                 },
@@ -8665,7 +8679,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "name": "profile1",
                 "policy": Object {
                   "id": "thepolicyid",
+                  "name": "the policy name",
                 },
+                "policyType": "policy type",
                 "refId": "121212",
                 "totalHostCount": 1,
               }
@@ -8752,6 +8768,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
           "id": "1",
           "name": "profile1",
           "policy": null,
+          "policyType": "policy type",
           "refId": "121212",
           "totalHostCount": 1,
         },
@@ -8827,6 +8844,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "id": "1",
                   "name": "profile1",
                   "policy": null,
+                  "policyType": "policy type",
                   "refId": "121212",
                   "totalHostCount": 1,
                 },
@@ -8930,6 +8948,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 "id": "1",
                 "name": "profile1",
                 "policy": null,
+                "policyType": "policy type",
                 "refId": "121212",
                 "totalHostCount": 1,
               }
