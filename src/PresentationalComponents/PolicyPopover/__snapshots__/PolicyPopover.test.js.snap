@@ -54,7 +54,7 @@ exports[`PolicyPopover expect to render without error 1`] = `
       <Text
         component="small"
       >
-        United States Government Configuration Baseline23
+        United States Government Standard
       </Text>
     </TextContent>
   }

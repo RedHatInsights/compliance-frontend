@@ -5,6 +5,7 @@ export const policies = {
                 id: 'b71376fd-015e-4209-99af-4543e82e5dc5',
                 name: 'United States Government Configuration Baseline23',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp23',
+                policyType: 'United States Government Standard',
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
