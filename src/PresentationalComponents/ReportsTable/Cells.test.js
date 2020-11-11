@@ -18,6 +18,7 @@ describe('Name', () => {
             <Name { ...{
                 id: 'ID',
                 name: 'NAME',
+                policyType: 'POLICY_TYPE',
                 policy: {
                     id: 'POLICY_ID',
                     name: 'POLICY_NAME'

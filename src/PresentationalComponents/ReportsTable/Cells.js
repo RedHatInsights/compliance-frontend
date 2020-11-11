@@ -19,11 +19,14 @@ export const Name = (profile) => (
         <Link to={'/reports/' + profile.id} style={ { marginRight: '.5rem' }}>
             { profile.policy ? profile.policy.name : profile.name }
         </Link>
-        { profile.policy && <PolicyPopover { ...{ profile, position: 'right' } } /> }
-        { !profile.policy && <Label color="red">
-            External
-        </Label> }
-        { profile.policy && <GreySmallText>{ profile.name }</GreySmallText> }
+        { profile.policy
+            ? <React.Fragment>
+                <PolicyPopover { ...{ profile, position: 'right' } } />
+                <GreySmallText>{ profile.policyType }</GreySmallText>
+            </React.Fragment>
+
+            : <Label color="red">External</Label>
+        }
     </TextContent>
 );
 
