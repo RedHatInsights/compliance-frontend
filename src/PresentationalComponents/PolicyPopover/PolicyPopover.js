@@ -18,14 +18,14 @@ import {
 import propTypes from 'prop-types';
 
 const PolicyPopover = ({ profile, position = 'top' }) => {
-    const { name, policy, complianceThreshold, majorOsVersion, businessObjective } = profile;
+    const { policy, policyType, complianceThreshold, majorOsVersion, businessObjective } = profile;
     return (
         <Popover
             { ...{ position } }
             headerContent={
                 <TextContent>
                     { policy.name }
-                    <Text component={ TextVariants.small }>{ name }</Text>
+                    <Text component={ TextVariants.small }>{ policyType }</Text>
                 </TextContent>
             }
             footerContent={
