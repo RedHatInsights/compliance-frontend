@@ -35,6 +35,7 @@ query Profile($policyId: String!){
         lastScanned
         policy {
             id
+            name
         }
         benchmark {
             id
@@ -58,11 +59,13 @@ export const ReportDetails = () => {
     let donutValues = [];
     let donutId = 'loading-donut';
     let profile = {};
+    let policyName;
     let legendData;
     let compliancePercentage;
 
     if (!loading && data) {
         profile = data.profile;
+        policyName = profile.policy ? profile.policy.name : profile.name;
         showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
         const compliantHostCount = profile.compliantHostCount;
         const totalHostCount = profile.totalHostCount;
@@ -122,11 +125,11 @@ export const ReportDetails = () => {
                     <BreadcrumbLinkItem to='/reports'>
                         Reports
                     </BreadcrumbLinkItem>
-                    <BreadcrumbItem isActive>{profile.name}</BreadcrumbItem>
+                    <BreadcrumbItem isActive>{policyName}</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid hasGutter>
                     <GridItem sm={9} md={9} lg={9} xl={9}>
-                        <PageHeaderTitle title={profile.name + ' report'} />
+                        <PageHeaderTitle title={policyName + ' report'} />
                     </GridItem>
                     <GridItem className='report-details-button' sm={3} md={3} lg={3} xl={3}>
                         <BackgroundLink
