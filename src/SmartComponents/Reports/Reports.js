@@ -19,6 +19,7 @@ query Profiles($filter: String!) {
                 name
                 refId
                 description
+                policyType
                 totalHostCount
                 compliantHostCount
                 majorOsVersion

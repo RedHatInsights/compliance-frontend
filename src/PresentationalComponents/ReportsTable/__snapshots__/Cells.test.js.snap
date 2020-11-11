@@ -58,11 +58,12 @@ exports[`Name expect to render without error 1`] = `
           "id": "POLICY_ID",
           "name": "POLICY_NAME",
         },
+        "policyType": "POLICY_TYPE",
       }
     }
   />
   <GreySmallText>
-    NAME
+    POLICY_TYPE
   </GreySmallText>
 </TextContent>
 `;
