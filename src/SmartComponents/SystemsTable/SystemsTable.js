@@ -52,6 +52,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     compliant
                     external
                     score
+                    ssgVersion
                     rules {
                         refId
                         title
