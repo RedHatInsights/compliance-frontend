@@ -48,6 +48,7 @@ class ReportCard extends React.Component {
         const {
             policy, benchmark, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
         } = this.props.profile;
+        const policyName = policy ? policy.name : name;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
             { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
@@ -63,8 +64,8 @@ class ReportCard extends React.Component {
                             <GridItem span={11}>
                                 <Text onMouseEnter={this.onMouseover.bind(this)} onMouseLeave={this.onMouseout.bind(this)}
                                     style={{ fontWeight: '500' }} component={TextVariants.h2}>
-                                    { cardTitleTruncated ? <Truncate lines={1}>{name}&nbsp;</Truncate> :
-                                        <React.Fragment>{name}&nbsp;</React.Fragment> }
+                                    { cardTitleTruncated ? <Truncate lines={1}>{policyName}&nbsp;</Truncate> :
+                                        <React.Fragment>{policyName}&nbsp;</React.Fragment> }
                                 </Text>
                             </GridItem>
                             <GridItem span={1}>
