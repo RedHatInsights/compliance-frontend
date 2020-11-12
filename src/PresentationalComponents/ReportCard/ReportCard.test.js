@@ -9,6 +9,7 @@ const defaultProps = {
         totalHostCount: 15,
         policy: {
             id: 'policyid',
+            name: 'Policy Name',
             benchmark: {
                 version: '0.1.4'
             }
