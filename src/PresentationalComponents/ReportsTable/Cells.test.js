@@ -1,16 +1,4 @@
-import { GreySmallText, Name, OperatingSystem, CompliantSystems } from './Cells';
-
-describe('GreySmallText', () => {
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <GreySmallText>
-                <span>THIS IS A TEST</span>
-            </GreySmallText>
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-});
+import { Name, OperatingSystem, CompliantSystems } from './Cells';
 
 describe('Name', () => {
     it('expect to render without error', () => {

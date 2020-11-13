@@ -3,6 +3,7 @@ export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingP
 export { default as ReportCard } from './ReportCard/ReportCard';
 export { default as ReportCardGrid } from './ReportCardGrid/ReportCardGrid';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
+export { default as GreySmallText } from './GreySmallText/GreySmallText';
 export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
 export { default as ProfileTypeSelect } from './ProfileTypeSelect/ProfileTypeSelect';
 export { default as ComplianceScore, complianceScoreString } from './ComplianceScore/ComplianceScore';

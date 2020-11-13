@@ -1,18 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Label, Text, TextContent, TextVariants, Progress } from '@patternfly/react-core';
+import { Label, TextContent, Progress } from '@patternfly/react-core';
 import { Link } from 'react-router-dom';
-import { PolicyPopover } from 'PresentationalComponents';
-
-export const GreySmallText = ({ children }) => (
-    <Text
-        style={{ color: 'var(--pf-global--Color--200)' }}
-        component={ TextVariants.small }>{ children }</Text>
-);
-
-GreySmallText.propTypes = {
-    children: propTypes.node
-};
+import { PolicyPopover, GreySmallText } from 'PresentationalComponents';
 
 export const Name = (profile) => (
     <TextContent>
