@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
 import {
-    Button, Pagination, PaginationVariant, ToolbarItem, Tooltip
+    Button, Pagination, PaginationVariant, ToolbarItem, Tooltip, TextContent
 } from '@patternfly/react-core';
 import { PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
@@ -11,16 +11,28 @@ import { conditionalFilterType } from '@redhat-cloud-services/frontend-component
 
 import {
     BackgroundLink,
+    GreySmallText,
     SystemsCountWarning,
     emptyRows
 } from 'PresentationalComponents';
+
+export const PolicyNameCell = ({ profile }) => (
+    <TextContent>
+        <Link to={'/scappolicies/' + profile.id}>{profile.policy && profile.policy.name || profile.name}</Link>
+        <GreySmallText>{ profile.policyType }</GreySmallText>
+    </TextContent>
+);
+
+PolicyNameCell.propTypes = {
+    profile: propTypes.object
+};
 
 const policiesToRows = (policies) => (
     policies.map((policy) => (
         {
             policyId: policy.id,
             cells: [
-                { title: <Link to={'/scappolicies/' + policy.id}>{policy.name}</Link>, original: policy.name },
+                { title: <PolicyNameCell profile={policy} /> },
                 {
                     title: <Tooltip key={policy.id}
                         position='right'
