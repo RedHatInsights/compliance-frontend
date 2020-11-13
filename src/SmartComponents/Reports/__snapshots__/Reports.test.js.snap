@@ -19,7 +19,9 @@ exports[`Reports expect to render emptystate 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView />
+      <LoadingView
+        showTableView={false}
+      />
     </Connect(Main)>
   </StateViewPart>
   <StateViewPart
@@ -48,7 +50,9 @@ exports[`Reports expect to render loading 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView />
+      <LoadingView
+        showTableView={false}
+      />
     </Connect(Main)>
   </StateViewPart>
   <StateViewPart
@@ -97,7 +101,9 @@ exports[`Reports expect to render without error 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView />
+      <LoadingView
+        showTableView={false}
+      />
     </Connect(Main)>
   </StateViewPart>
   <StateViewPart

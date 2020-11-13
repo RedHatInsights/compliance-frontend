@@ -5,6 +5,7 @@ import { Routes } from './Routes';
 import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
 import '@redhat-cloud-services/frontend-components-notifications/index.css';
 import './App.scss';
+import { EnabledFeatures } from './Utilities/EnabledFeatures';
 
 const App = (props) => {
     const appNavClick = {
@@ -36,7 +37,9 @@ const App = (props) => {
     return (
         <React.Fragment>
             <NotificationsPortal />
-            <Routes childProps={props} />
+            <EnabledFeatures>
+                <Routes childProps={props} />
+            </EnabledFeatures>
         </React.Fragment>
     );
 };

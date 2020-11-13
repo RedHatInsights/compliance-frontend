@@ -14,3 +14,27 @@ global.mount = mount;
 global.React = React;
 global.fetch = fetch;
 global.toJson = toJson;
+
+// https://github.com/facebook/jest/issues/2098#issuecomment-260733457
+const localStorageMock = (() => {
+    let store = {};
+
+    return {
+        getItem(key) {
+            return store[key] || null;
+        },
+        setItem(key, value) {
+            store[key] = value.toString();
+        },
+        clear() {
+            store = {};
+        }
+    };
+
+})();
+
+global.localStorageMock = localStorageMock;
+
+Object.defineProperty(window, 'localStorage', {
+    value: localStorageMock
+});
