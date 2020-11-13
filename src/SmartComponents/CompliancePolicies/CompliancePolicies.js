@@ -30,6 +30,9 @@ const QUERY = gql`
                 totalHostCount
                 majorOsVersion
                 policyType
+                policy {
+                    name
+                }
                 benchmark {
                     id
                     title
