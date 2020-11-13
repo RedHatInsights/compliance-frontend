@@ -30,7 +30,7 @@ const setFlagsFromUrl = () => {
 
 // Queries the local storage for feature flag values
 const getLocatStateFlag = (feature) => (
-    localStorage.getItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`)
+    !!localStorage.getItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`)
 );
 
 // A hook to query feature values
