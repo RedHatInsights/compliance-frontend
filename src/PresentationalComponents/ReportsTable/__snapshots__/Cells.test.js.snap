@@ -21,21 +21,6 @@ exports[`CompliantSystems expect to render without error 1`] = `
 </Fragment>
 `;
 
-exports[`GreySmallText expect to render without error 1`] = `
-<Text
-  component="small"
-  style={
-    Object {
-      "color": "var(--pf-global--Color--200)",
-    }
-  }
->
-  <span>
-    THIS IS A TEST
-  </span>
-</Text>
-`;
-
 exports[`Name expect to render without error 1`] = `
 <TextContent>
   <Link
