@@ -25,3 +25,4 @@ export { default as PolicyPopover } from './PolicyPopover/PolicyPopover';
 export { default as NoResultsTable, emptyRows } from './NoResultsTable/NoResultsTable';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
 export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
+export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';

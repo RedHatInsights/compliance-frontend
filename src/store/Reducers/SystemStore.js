@@ -178,7 +178,8 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                         { title: <DateFormat date={Date.parse(matchingSystem.lastScanned)} type='relative' /> } :
                         matchingSystem.lastScanned,
                     last_scanned_text: matchingSystem.lastScanned,
-                    ssg_version: profilesSsgVersions(matchingSystem)
+                    ssg_version: profilesSsgVersions(matchingSystem),
+                    profiles: matchingSystem.profiles
                 }
             }
             /* eslint-enable camelcase */

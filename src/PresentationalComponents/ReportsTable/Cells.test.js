@@ -19,9 +19,29 @@ describe('Name', () => {
 });
 
 describe('OperatingSystem', () => {
+    const defaultProps = {
+        majorOsVersion: 7
+    };
+
     it('expect to render without error', () => {
         const wrapper = shallow(
-            <OperatingSystem majorOsVersion="7" />
+            <OperatingSystem { ...defaultProps } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to render with SSG version', () => {
+        const wrapper = shallow(
+            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to render with unsupported warning', () => {
+        const wrapper = shallow(
+            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' unsupported={ true } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -29,9 +49,22 @@ describe('OperatingSystem', () => {
 });
 
 describe('CompliantSystems', () => {
+    const deftaultProps = {
+        testResultHostCount: 10,
+        compliantHostCount: 9
+    };
+
     it('expect to render without error', () => {
         const wrapper = shallow(
-            <CompliantSystems testResultHostCount={ 10 } compliantHostCount={ 9 } />
+            <CompliantSystems { ...deftaultProps } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to render with unsupported hosts', () => {
+        const wrapper = shallow(
+            <CompliantSystems { ...deftaultProps } unsupportedSystems={ 42 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

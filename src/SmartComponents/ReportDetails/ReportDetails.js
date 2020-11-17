@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -5,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { ChartDonut, ChartThemeColor, ChartThemeVariant } from '@patternfly/react-charts';
-import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem } from '@patternfly/react-core';
+import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
 
 import {
     PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner
@@ -15,9 +16,9 @@ import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import useFeature from 'Utilities/hooks/useFeature';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
-    StateViewWithError, StateViewPart
+    StateViewWithError, StateViewPart, UnsupportedSSGVersion
 } from 'PresentationalComponents';
-import { SystemsTable } from 'SmartComponents';
+import SystemsTable, { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -95,11 +96,14 @@ export const ReportDetails = () => {
             width: 5
         }
     }, ...showSsgVersions ? [{
-        key: 'facts.compliance.ssg_version',
+        key: 'facts.compliance.profiles',
         title: 'SSG version',
         props: {
             width: 5
-        }
+        },
+        renderFunc: (profiles) => (
+            <Cells.SSGVersion { ...{ profiles } } />
+        )
     }] : [], {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score',
@@ -164,6 +168,13 @@ export const ReportDetails = () => {
                                 />
                             </div>
                         </div>
+                        {  profile.unsupportedSystems > 0 && <Text>
+                            <UnsupportedSSGVersion>
+                                <strong className='ins-u-warning'>
+                                    { profile.unsupportedSystems } systems not supported
+                                </strong>
+                            </UnsupportedSSGVersion>
+                        </Text> }
                     </GridItem>
                     <GridItem sm={12} md={12} lg={12} xl={6}>
                         <ReportDetailsDescription profile={profile} />

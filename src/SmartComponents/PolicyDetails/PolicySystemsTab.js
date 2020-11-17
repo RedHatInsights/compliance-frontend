@@ -1,9 +1,13 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import propTypes from 'prop-types';
-import { SystemsTable } from 'SmartComponents';
+import SystemsTable, { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
+import useFeature from 'Utilities/hooks/useFeature';
 
-const PolicySystemsTab = ({ policy, systemTableProps }) => (
-    <SystemsTable
+const PolicySystemsTab = ({ policy, systemTableProps }) => {
+    let showSsgVersions = useFeature('showSsgVersions');
+
+    return <SystemsTable
         policyId={ policy.id }
         showActions={ false }
         remediationsEnabled={ false }
@@ -13,11 +17,17 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => (
             props: {
                 width: 40, isStatic: true
             }
-        }]}
+        }, ...showSsgVersions ? [{
+            key: 'facts.compliance.profiles',
+            title: 'SSG version',
+            renderFunc: (profiles) => (
+                <Cells.SSGVersion { ...{ profiles } } />
+            )
+        }] : []]}
         complianceThreshold={ policy.complianceThreshold }
         { ...systemTableProps }
-    />
-);
+    />;
+};
 
 PolicySystemsTab.propTypes = {
     policy: propTypes.shape({

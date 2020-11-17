@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Table, TableBody, TableHeader, sortable } from '@patternfly/react-table';
+import { Table, TableBody, TableHeader, sortable, fitContent } from '@patternfly/react-table';
 import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components';
 import { emptyRows } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
@@ -24,7 +24,7 @@ const ReportsTable = ({ profiles }) => {
         },
         {
             title: 'Systems meeting compliance',
-            transforms: [sortable],
+            transforms: [sortable, fitContent],
             sortByFunction: ({ testResultHostCount, compliantHostCount }) => (
                 (100 / testResultHostCount) * compliantHostCount
             )

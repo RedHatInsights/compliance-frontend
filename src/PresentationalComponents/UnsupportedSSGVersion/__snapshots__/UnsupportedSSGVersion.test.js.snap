@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  <TooltipOrPopover
+    tooltipProps={
+      Object {
+        "content": <div />,
+      }
+    }
+    variant="popover"
+  >
+    <ExclamationTriangleIcon
+      className="ins-u-warning"
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      style={
+        Object {
+          "cursor": "pointer",
+          "marginRight": ".25em",
+        }
+      }
+    />
+  </TooltipOrPopover>
+  Unsupported text
+  <TooltipOrPopover
+    tooltipProps={
+      Object {
+        "content": <div />,
+      }
+    }
+    variant="popover"
+  >
+    <QuestionCircleIcon
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      style={
+        Object {
+          "cursor": "pointer",
+          "marginLeft": ".25em",
+        }
+      }
+    />
+  </TooltipOrPopover>
+</span>
+`;
+
+exports[`UnsupportedSSGVersion expect to render no warning sign 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  Unsupported text
+</span>
+`;
+
+exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  <TooltipOrPopover
+    tooltipProps={
+      Object {
+        "content": <div>
+          TOOLTIP TEXT
+        </div>,
+      }
+    }
+    variant="tooltip"
+  >
+    <ExclamationTriangleIcon
+      className="ins-u-warning"
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      style={
+        Object {
+          "marginRight": ".25em",
+        }
+      }
+    />
+  </TooltipOrPopover>
+  Unsupported text
+</span>
+`;
+
+exports[`UnsupportedSSGVersion expect to render without error 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  <TooltipOrPopover
+    tooltipProps={
+      Object {
+        "content": <div />,
+      }
+    }
+    variant="popover"
+  >
+    <ExclamationTriangleIcon
+      className="ins-u-warning"
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      style={
+        Object {
+          "cursor": "pointer",
+          "marginRight": ".25em",
+        }
+      }
+    />
+  </TooltipOrPopover>
+  Unsupported text
+</span>
+`;
