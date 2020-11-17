@@ -26,9 +26,10 @@ const mocks = [
                     policyType: 'policy type',
                     description: 'profile description',
                     external: false,
-                    testResultHostCount: 1,
+                    testResultHostCount: 10,
                     complianceThreshold: 1,
-                    compliantHostCount: 1,
+                    compliantHostCount: 5,
+                    unsupported: 5,
                     policy: {
                         id: 'thepolicyid',
                         name: 'the policy name'

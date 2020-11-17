@@ -1,25 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CompliantSystems expect to render without error 1`] = `
-<Fragment>
-  <Progress
-    className=""
-    id=""
-    label={null}
-    max={100}
-    measureLocation="outside"
-    min={0}
-    size={null}
-    title=""
-    value={90}
-    valueText={null}
-    variant={null}
-  />
-  <GreySmallText>
-    9 of 10 systems
-  </GreySmallText>
-</Fragment>
-`;
+exports[`CompliantSystems expect to render with unsupported hosts 1`] = `""`;
+
+exports[`CompliantSystems expect to render without error 1`] = `""`;
 
 exports[`Name expect to render without error 1`] = `
 <TextContent>
@@ -53,11 +36,47 @@ exports[`Name expect to render without error 1`] = `
 </TextContent>
 `;
 
+exports[`OperatingSystem expect to render with SSG version 1`] = `
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+  <Text>
+    <GreySmallText>
+      1.2.3
+    </GreySmallText>
+  </Text>
+</Fragment>
+`;
+
+exports[`OperatingSystem expect to render with unsupported warning 1`] = `
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+  <Text>
+    <GreySmallText>
+      <UnsupportedSSGVersion>
+        1.2.3
+      </UnsupportedSSGVersion>
+    </GreySmallText>
+  </Text>
+</Fragment>
+`;
+
 exports[`OperatingSystem expect to render without error 1`] = `
-<Label
-  color="cyan"
->
-  RHEL 
-  7
-</Label>
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+</Fragment>
 `;

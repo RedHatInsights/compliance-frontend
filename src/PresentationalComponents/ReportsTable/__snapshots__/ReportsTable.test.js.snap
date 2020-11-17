@@ -112,6 +112,7 @@ exports[`ReportsTable expect to render without error 1`] = `
           "title": "Systems meeting compliance",
           "transforms": Array [
             [Function],
+            [Function],
           ],
         },
       ]
