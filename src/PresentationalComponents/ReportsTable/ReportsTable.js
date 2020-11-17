@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Table, TableBody, TableHeader, sortable } from '@patternfly/react-table';
+import { Table, TableBody, TableHeader, sortable, fitContent } from '@patternfly/react-table';
 import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components';
 import { emptyRows } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
@@ -19,12 +19,12 @@ const ReportsTable = ({ profiles }) => {
         },
         {
             title: 'Operating system',
-            transforms: [sortable],
+            transforms: [sortable, fitContent],
             sortByProperty: 'majorOsVersion'
         },
         {
             title: 'Systems meeting compliance',
-            transforms: [sortable],
+            transforms: [sortable, fitContent],
             sortByFunction: ({ totalHostCount, compliantHostCount }) => (
                 (100 / totalHostCount) * compliantHostCount
             )
@@ -44,7 +44,7 @@ const ReportsTable = ({ profiles }) => {
     const rows = sortedProfiles.length > 0 ? sortedProfiles.map((profile) => ({
         cells: [
             { title: <Name { ...profile } /> },
-            { title: <OperatingSystem { ...profile } /> },
+            { title: <OperatingSystem { ...profile } />, props: { textCenter: true } },
             { title: <CompliantSystems { ...profile } /> }
         ]
     })) : emptyRows;

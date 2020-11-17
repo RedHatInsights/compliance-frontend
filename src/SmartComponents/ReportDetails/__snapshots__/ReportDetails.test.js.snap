@@ -57,7 +57,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "title": "BO 1",
                   },
                   "complianceThreshold": 1,
-                  "compliantHostCount": 1,
+                  "compliantHostCount": 5,
                   "description": "profile description",
                   "external": false,
                   "id": "1",
@@ -68,7 +68,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                   },
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "totalHostCount": 10,
+                  "unsupportedSystems": 5,
                 },
               },
               "error": false,
@@ -89,7 +90,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                       "title": "BO 1",
                     },
                     "complianceThreshold": 1,
-                    "compliantHostCount": 1,
+                    "compliantHostCount": 5,
                     "description": "profile description",
                     "external": false,
                     "id": "1",
@@ -100,7 +101,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                     },
                     "policyType": "policy type",
                     "refId": "121212",
-                    "totalHostCount": 1,
+                    "totalHostCount": 10,
+                    "unsupportedSystems": 5,
                   },
                 },
                 "error": false,
@@ -271,7 +273,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                     "title": "BO 1",
                                   },
                                   "complianceThreshold": 1,
-                                  "compliantHostCount": 1,
+                                  "compliantHostCount": 5,
                                   "description": "profile description",
                                   "external": false,
                                   "id": "1",
@@ -282,7 +284,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   },
                                   "policyType": "policy type",
                                   "refId": "121212",
-                                  "totalHostCount": 1,
+                                  "totalHostCount": 10,
+                                  "unsupportedSystems": 5,
                                 },
                               }
                             }
@@ -309,7 +312,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         "title": "BO 1",
                                       },
                                       "complianceThreshold": 1,
-                                      "compliantHostCount": 1,
+                                      "compliantHostCount": 5,
                                       "description": "profile description",
                                       "external": false,
                                       "id": "1",
@@ -320,7 +323,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       },
                                       "policyType": "policy type",
                                       "refId": "121212",
-                                      "totalHostCount": 1,
+                                      "totalHostCount": 10,
+                                      "unsupportedSystems": 5,
                                     },
                                   },
                                 }
@@ -385,11 +389,11 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   Array [
                                     Object {
                                       "x": "Compliant",
-                                      "y": 1,
+                                      "y": 5,
                                     },
                                     Object {
                                       "x": "Non-compliant",
-                                      "y": 0,
+                                      "y": 5,
                                     },
                                   ]
                                 }
@@ -398,10 +402,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 legendData={
                                   Array [
                                     Object {
-                                      "name": "1 system compliant",
+                                      "name": "5 systems compliant",
                                     },
                                     Object {
-                                      "name": "0 systems non-compliant",
+                                      "name": "5 systems non-compliant",
                                     },
                                   ]
                                 }
@@ -423,7 +427,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 subTitle="Compliant"
                                 themeColor="blue"
                                 themeVariant="light"
-                                title="100%"
+                                title="50%"
                                 width={462}
                               >
                                 <ChartContainer
@@ -1369,11 +1373,11 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             Array [
                                               Object {
                                                 "x": "Compliant",
-                                                "y": 1,
+                                                "y": 5,
                                               },
                                               Object {
                                                 "x": "Non-compliant",
-                                                "y": 0,
+                                                "y": 5,
                                               },
                                             ]
                                           }
@@ -1384,10 +1388,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           legendData={
                                             Array [
                                               Object {
-                                                "name": "1 system compliant",
+                                                "name": "5 systems compliant",
                                               },
                                               Object {
-                                                "name": "0 systems non-compliant",
+                                                "name": "5 systems non-compliant",
                                               },
                                             ]
                                           }
@@ -1873,11 +1877,11 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               Array [
                                                 Object {
                                                   "x": "Compliant",
-                                                  "y": 1,
+                                                  "y": 5,
                                                 },
                                                 Object {
                                                   "x": "Non-compliant",
-                                                  "y": 0,
+                                                  "y": 5,
                                                 },
                                               ]
                                             }
@@ -2823,30 +2827,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Array [
                                                     Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
                                                     Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                   ]
                                                 }
                                                 datum={
                                                   Object {
                                                     "_x": 1,
-                                                    "_y": 1,
-                                                    "endAngle": 359,
+                                                    "_y": 5,
+                                                    "endAngle": 180,
                                                     "padAngle": 1,
                                                     "startAngle": 0,
                                                     "x": "Compliant",
                                                     "xName": "Compliant",
-                                                    "y": 1,
+                                                    "y": 5,
                                                   }
                                                 }
                                                 events={
@@ -2878,16 +2882,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Object {
                                                     "data": Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
-                                                    "endAngle": 6.265732014659643,
+                                                    "endAngle": 3.141592653589793,
                                                     "index": 0,
                                                     "padAngle": 0.017453292519943295,
                                                     "startAngle": 0,
-                                                    "value": 1,
+                                                    "value": 5,
                                                   }
                                                 }
                                                 style={
@@ -2900,7 +2904,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                               >
                                                 <Path
-                                                  d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                                                  d="M1.130044229770525,-94.99327870980537A95,95,0,0,1,1.130044229770525,94.99327870980537L1.1300442297705258,87.99274401925855A88,88,0,0,0,1.1300442297705258,-87.99274401925855Z"
                                                   onBlur={[Function]}
                                                   onFocus={[Function]}
                                                   onMouseOut={[Function]}
@@ -2920,7 +2924,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   transform="translate(106, 115)"
                                                 >
                                                   <path
-                                                    d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-2.787733427414506,-94.95908878215752L-2.6655572507167618,-87.95962030695193A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
+                                                    d="M1.130044229770525,-94.99327870980537A95,95,0,0,1,1.130044229770525,94.99327870980537L1.1300442297705258,87.99274401925855A88,88,0,0,0,1.1300442297705258,-87.99274401925855Z"
                                                     onBlur={[Function]}
                                                     onFocus={[Function]}
                                                     onMouseOut={[Function]}
@@ -2947,30 +2951,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Array [
                                                     Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
                                                     Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                   ]
                                                 }
                                                 datum={
                                                   Object {
                                                     "_x": 2,
-                                                    "_y": 0,
+                                                    "_y": 5,
                                                     "endAngle": 360,
                                                     "padAngle": 1,
-                                                    "startAngle": 359,
+                                                    "startAngle": 180,
                                                     "x": "Non-compliant",
                                                     "xName": "Non-compliant",
-                                                    "y": 0,
+                                                    "y": 5,
                                                   }
                                                 }
                                                 events={
@@ -3002,16 +3006,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Object {
                                                     "data": Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                     "endAngle": 6.283185307179586,
                                                     "index": 1,
                                                     "padAngle": 0.017453292519943295,
-                                                    "startAngle": 6.265732014659643,
-                                                    "value": 0,
+                                                    "startAngle": 3.141592653589793,
+                                                    "value": 5,
                                                   }
                                                 }
                                                 style={
@@ -3024,7 +3028,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                               >
                                                 <Path
-                                                  d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                                                  d="M-1.1300442297705133,94.99327870980537A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-1.1300442297705149,87.99274401925855Z"
                                                   onBlur={[Function]}
                                                   onFocus={[Function]}
                                                   onMouseOut={[Function]}
@@ -3044,7 +3048,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   transform="translate(106, 115)"
                                                 >
                                                   <path
-                                                    d="M-0.8290208723454897,-94.99638269109627L-0.7679351238568747,-87.99664922964708Z"
+                                                    d="M-1.1300442297705133,94.99327870980537A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-1.1300442297705149,87.99274401925855Z"
                                                     onBlur={[Function]}
                                                     onFocus={[Function]}
                                                     onMouseOut={[Function]}
@@ -3073,30 +3077,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Array [
                                                     Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
                                                     Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                   ]
                                                 }
                                                 datum={
                                                   Object {
                                                     "_x": 1,
-                                                    "_y": 1,
-                                                    "endAngle": 359,
+                                                    "_y": 5,
+                                                    "endAngle": 180,
                                                     "padAngle": 1,
                                                     "startAngle": 0,
                                                     "x": "Compliant",
                                                     "xName": "Compliant",
-                                                    "y": 1,
+                                                    "y": 5,
                                                   }
                                                 }
                                                 events={Object {}}
@@ -3114,23 +3118,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 id="pie-labels-0"
                                                 index={0}
                                                 key="pie-labels-0"
-                                                orientation="bottom"
+                                                orientation="right"
                                                 pointerLength={10}
                                                 pointerWidth={20}
                                                 slice={
                                                   Object {
                                                     "data": Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
-                                                    "endAngle": 6.265732014659643,
+                                                    "endAngle": 3.141592653589793,
                                                     "index": 0,
                                                     "padAngle": 0.017453292519943295,
                                                     "startAngle": 0,
-                                                    "value": 1,
+                                                    "value": 5,
                                                   }
                                                 }
                                                 style={
@@ -3145,7 +3149,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                 }
                                                 text="Compliant"
-                                                textAnchor="middle"
+                                                textAnchor="start"
                                                 theme={
                                                   Object {
                                                     "area": Object {
@@ -3596,10 +3600,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     },
                                                   }
                                                 }
-                                                verticalAnchor="start"
+                                                verticalAnchor="middle"
                                                 width={462}
-                                                x={107}
-                                                y={218}
+                                                x={209}
+                                                y={115}
                                               >
                                                 <VictoryTooltip
                                                   active={false}
@@ -3610,30 +3614,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Array [
                                                       Object {
                                                         "_x": 1,
-                                                        "_y": 1,
+                                                        "_y": 5,
                                                         "x": "Compliant",
                                                         "xName": "Compliant",
-                                                        "y": 1,
+                                                        "y": 5,
                                                       },
                                                       Object {
                                                         "_x": 2,
-                                                        "_y": 0,
+                                                        "_y": 5,
                                                         "x": "Non-compliant",
                                                         "xName": "Non-compliant",
-                                                        "y": 0,
+                                                        "y": 5,
                                                       },
                                                     ]
                                                   }
                                                   datum={
                                                     Object {
                                                       "_x": 1,
-                                                      "_y": 1,
-                                                      "endAngle": 359,
+                                                      "_y": 5,
+                                                      "endAngle": 180,
                                                       "padAngle": 1,
                                                       "startAngle": 0,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     }
                                                   }
                                                   events={Object {}}
@@ -4112,7 +4116,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       }
                                                     />
                                                   }
-                                                  orientation="bottom"
+                                                  orientation="right"
                                                   pointerLength={10}
                                                   pointerWidth={20}
                                                   renderInPortal={true}
@@ -4120,16 +4124,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "data": Object {
                                                         "_x": 1,
-                                                        "_y": 1,
+                                                        "_y": 5,
                                                         "x": "Compliant",
                                                         "xName": "Compliant",
-                                                        "y": 1,
+                                                        "y": 5,
                                                       },
-                                                      "endAngle": 6.265732014659643,
+                                                      "endAngle": 3.141592653589793,
                                                       "index": 0,
                                                       "padAngle": 0.017453292519943295,
                                                       "startAngle": 0,
-                                                      "value": 1,
+                                                      "value": 5,
                                                     }
                                                   }
                                                   style={
@@ -4144,7 +4148,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     }
                                                   }
                                                   text="Compliant"
-                                                  textAnchor="middle"
+                                                  textAnchor="start"
                                                   theme={
                                                     Object {
                                                       "area": Object {
@@ -4595,10 +4599,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                     }
                                                   }
-                                                  verticalAnchor="start"
+                                                  verticalAnchor="middle"
                                                   width={462}
-                                                  x={107}
-                                                  y={218}
+                                                  x={209}
+                                                  y={115}
                                                 >
                                                   <VictoryPortal
                                                     groupComponent={<g />}
@@ -4613,30 +4617,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   Array [
                                                     Object {
                                                       "_x": 1,
-                                                      "_y": 1,
+                                                      "_y": 5,
                                                       "x": "Compliant",
                                                       "xName": "Compliant",
-                                                      "y": 1,
+                                                      "y": 5,
                                                     },
                                                     Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                   ]
                                                 }
                                                 datum={
                                                   Object {
                                                     "_x": 2,
-                                                    "_y": 0,
+                                                    "_y": 5,
                                                     "endAngle": 360,
                                                     "padAngle": 1,
-                                                    "startAngle": 359,
+                                                    "startAngle": 180,
                                                     "x": "Non-compliant",
                                                     "xName": "Non-compliant",
-                                                    "y": 0,
+                                                    "y": 5,
                                                   }
                                                 }
                                                 events={Object {}}
@@ -4654,23 +4658,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 id="pie-labels-1"
                                                 index={1}
                                                 key="pie-labels-1"
-                                                orientation="top"
+                                                orientation="left"
                                                 pointerLength={10}
                                                 pointerWidth={20}
                                                 slice={
                                                   Object {
                                                     "data": Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     },
                                                     "endAngle": 6.283185307179586,
                                                     "index": 1,
                                                     "padAngle": 0.017453292519943295,
-                                                    "startAngle": 6.265732014659643,
-                                                    "value": 0,
+                                                    "startAngle": 3.141592653589793,
+                                                    "value": 5,
                                                   }
                                                 }
                                                 style={
@@ -4685,7 +4689,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   }
                                                 }
                                                 text="Non-compliant"
-                                                textAnchor="middle"
+                                                textAnchor="end"
                                                 theme={
                                                   Object {
                                                     "area": Object {
@@ -5136,10 +5140,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     },
                                                   }
                                                 }
-                                                verticalAnchor="end"
+                                                verticalAnchor="middle"
                                                 width={462}
-                                                x={105}
-                                                y={12}
+                                                x={3}
+                                                y={115}
                                               >
                                                 <VictoryTooltip
                                                   active={false}
@@ -5150,30 +5154,30 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Array [
                                                       Object {
                                                         "_x": 1,
-                                                        "_y": 1,
+                                                        "_y": 5,
                                                         "x": "Compliant",
                                                         "xName": "Compliant",
-                                                        "y": 1,
+                                                        "y": 5,
                                                       },
                                                       Object {
                                                         "_x": 2,
-                                                        "_y": 0,
+                                                        "_y": 5,
                                                         "x": "Non-compliant",
                                                         "xName": "Non-compliant",
-                                                        "y": 0,
+                                                        "y": 5,
                                                       },
                                                     ]
                                                   }
                                                   datum={
                                                     Object {
                                                       "_x": 2,
-                                                      "_y": 0,
+                                                      "_y": 5,
                                                       "endAngle": 360,
                                                       "padAngle": 1,
-                                                      "startAngle": 359,
+                                                      "startAngle": 180,
                                                       "x": "Non-compliant",
                                                       "xName": "Non-compliant",
-                                                      "y": 0,
+                                                      "y": 5,
                                                     }
                                                   }
                                                   events={Object {}}
@@ -5652,7 +5656,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       }
                                                     />
                                                   }
-                                                  orientation="top"
+                                                  orientation="left"
                                                   pointerLength={10}
                                                   pointerWidth={20}
                                                   renderInPortal={true}
@@ -5660,16 +5664,16 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "data": Object {
                                                         "_x": 2,
-                                                        "_y": 0,
+                                                        "_y": 5,
                                                         "x": "Non-compliant",
                                                         "xName": "Non-compliant",
-                                                        "y": 0,
+                                                        "y": 5,
                                                       },
                                                       "endAngle": 6.283185307179586,
                                                       "index": 1,
                                                       "padAngle": 0.017453292519943295,
-                                                      "startAngle": 6.265732014659643,
-                                                      "value": 0,
+                                                      "startAngle": 3.141592653589793,
+                                                      "value": 5,
                                                     }
                                                   }
                                                   style={
@@ -5684,7 +5688,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     }
                                                   }
                                                   text="Non-compliant"
-                                                  textAnchor="middle"
+                                                  textAnchor="end"
                                                   theme={
                                                     Object {
                                                       "area": Object {
@@ -6135,10 +6139,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       },
                                                     }
                                                   }
-                                                  verticalAnchor="end"
+                                                  verticalAnchor="middle"
                                                   width={462}
-                                                  x={105}
-                                                  y={12}
+                                                  x={3}
+                                                  y={115}
                                                 >
                                                   <VictoryPortal
                                                     groupComponent={<g />}
@@ -6151,10 +6155,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             data={
                                               Array [
                                                 Object {
-                                                  "name": "1 system compliant",
+                                                  "name": "5 systems compliant",
                                                 },
                                                 Object {
-                                                  "name": "0 systems non-compliant",
+                                                  "name": "5 systems non-compliant",
                                                 },
                                               ]
                                             }
@@ -7080,10 +7084,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               data={
                                                 Array [
                                                   Object {
-                                                    "name": "1 system compliant",
+                                                    "name": "5 systems compliant",
                                                   },
                                                   Object {
-                                                    "name": "0 systems non-compliant",
+                                                    "name": "5 systems non-compliant",
                                                   },
                                                 ]
                                               }
@@ -7597,10 +7601,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   data={
                                                     Array [
                                                       Object {
-                                                        "name": "1 system compliant",
+                                                        "name": "5 systems compliant",
                                                       },
                                                       Object {
-                                                        "name": "0 systems non-compliant",
+                                                        "name": "5 systems non-compliant",
                                                       },
                                                     ]
                                                   }
@@ -7608,13 +7612,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "column": 0,
                                                       "fontSize": 14,
-                                                      "name": "1 system compliant",
+                                                      "name": "5 systems compliant",
                                                       "row": 0,
                                                       "size": 5.6,
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 119.70000000000002,
+                                                        "width": 126.70000000000002,
                                                       },
                                                     }
                                                   }
@@ -7668,10 +7672,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   data={
                                                     Array [
                                                       Object {
-                                                        "name": "1 system compliant",
+                                                        "name": "5 systems compliant",
                                                       },
                                                       Object {
-                                                        "name": "0 systems non-compliant",
+                                                        "name": "5 systems non-compliant",
                                                       },
                                                     ]
                                                   }
@@ -7679,7 +7683,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "column": 0,
                                                       "fontSize": 14,
-                                                      "name": "0 systems non-compliant",
+                                                      "name": "5 systems non-compliant",
                                                       "row": 1,
                                                       "size": 5.6,
                                                       "symbolSpacer": 14,
@@ -7739,10 +7743,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   data={
                                                     Array [
                                                       Object {
-                                                        "name": "1 system compliant",
+                                                        "name": "5 systems compliant",
                                                       },
                                                       Object {
-                                                        "name": "0 systems non-compliant",
+                                                        "name": "5 systems non-compliant",
                                                       },
                                                     ]
                                                   }
@@ -7750,13 +7754,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "column": 0,
                                                       "fontSize": 14,
-                                                      "name": "1 system compliant",
+                                                      "name": "5 systems compliant",
                                                       "row": 0,
                                                       "size": 5.6,
                                                       "symbolSpacer": 14,
                                                       "textSize": Object {
                                                         "height": 16.904999999999998,
-                                                        "width": 119.70000000000002,
+                                                        "width": 126.70000000000002,
                                                       },
                                                     }
                                                   }
@@ -7772,7 +7776,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "stroke": "transparent",
                                                     }
                                                   }
-                                                  text="1 system compliant"
+                                                  text="5 systems compliant"
                                                   x={239.8}
                                                   y={100.095}
                                                 >
@@ -7782,10 +7786,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     data={
                                                       Array [
                                                         Object {
-                                                          "name": "1 system compliant",
+                                                          "name": "5 systems compliant",
                                                         },
                                                         Object {
-                                                          "name": "0 systems non-compliant",
+                                                          "name": "5 systems non-compliant",
                                                         },
                                                       ]
                                                     }
@@ -7793,13 +7797,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       Object {
                                                         "column": 0,
                                                         "fontSize": 14,
-                                                        "name": "1 system compliant",
+                                                        "name": "5 systems compliant",
                                                         "row": 0,
                                                         "size": 5.6,
                                                         "symbolSpacer": 14,
                                                         "textSize": Object {
                                                           "height": 16.904999999999998,
-                                                          "width": 119.70000000000002,
+                                                          "width": 126.70000000000002,
                                                         },
                                                       }
                                                     }
@@ -7818,7 +7822,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "textAnchor": undefined,
                                                       }
                                                     }
-                                                    text="1 system compliant"
+                                                    text="5 systems compliant"
                                                     textComponent={<Text />}
                                                     tspanComponent={<TSpan />}
                                                     x={239.8}
@@ -7874,7 +7878,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                             textAnchor="start"
                                                             x={239.8}
                                                           >
-                                                            1 system compliant
+                                                            5 systems compliant
                                                           </tspan>
                                                         </TSpan>
                                                       </text>
@@ -7885,10 +7889,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   data={
                                                     Array [
                                                       Object {
-                                                        "name": "1 system compliant",
+                                                        "name": "5 systems compliant",
                                                       },
                                                       Object {
-                                                        "name": "0 systems non-compliant",
+                                                        "name": "5 systems non-compliant",
                                                       },
                                                     ]
                                                   }
@@ -7896,7 +7900,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     Object {
                                                       "column": 0,
                                                       "fontSize": 14,
-                                                      "name": "0 systems non-compliant",
+                                                      "name": "5 systems non-compliant",
                                                       "row": 1,
                                                       "size": 5.6,
                                                       "symbolSpacer": 14,
@@ -7918,7 +7922,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       "stroke": "transparent",
                                                     }
                                                   }
-                                                  text="0 systems non-compliant"
+                                                  text="5 systems non-compliant"
                                                   x={239.8}
                                                   y={131}
                                                 >
@@ -7928,10 +7932,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     data={
                                                       Array [
                                                         Object {
-                                                          "name": "1 system compliant",
+                                                          "name": "5 systems compliant",
                                                         },
                                                         Object {
-                                                          "name": "0 systems non-compliant",
+                                                          "name": "5 systems non-compliant",
                                                         },
                                                       ]
                                                     }
@@ -7939,7 +7943,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                       Object {
                                                         "column": 0,
                                                         "fontSize": 14,
-                                                        "name": "0 systems non-compliant",
+                                                        "name": "5 systems non-compliant",
                                                         "row": 1,
                                                         "size": 5.6,
                                                         "symbolSpacer": 14,
@@ -7964,7 +7968,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                         "textAnchor": undefined,
                                                       }
                                                     }
-                                                    text="0 systems non-compliant"
+                                                    text="5 systems non-compliant"
                                                     textComponent={<Text />}
                                                     tspanComponent={<TSpan />}
                                                     x={239.8}
@@ -8020,7 +8024,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                             textAnchor="start"
                                                             x={239.8}
                                                           >
-                                                            0 systems non-compliant
+                                                            5 systems non-compliant
                                                           </tspan>
                                                         </TSpan>
                                                       </text>
@@ -8047,7 +8051,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           }
                                           text={
                                             Array [
-                                              "100%",
+                                              "50%",
                                               "Compliant",
                                             ]
                                           }
@@ -8081,7 +8085,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             }
                                             text={
                                               Array [
-                                                "100%",
+                                                "50%",
                                                 "Compliant",
                                               ]
                                             }
@@ -8138,7 +8142,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     textAnchor="middle"
                                                     x={106}
                                                   >
-                                                    100%
+                                                    50%
                                                   </tspan>
                                                 </TSpan>
                                                 <TSpan
@@ -8226,6 +8230,31 @@ exports[`ReportDetails expect to render without error 1`] = `
                               </ChartDonut>
                             </div>
                           </div>
+                          <Text>
+                            <p
+                              className=""
+                              data-pf-content={true}
+                            >
+                              <SSGVersionWarning
+                                unsupported={true}
+                              >
+                                <span
+                                  style={
+                                    Object {
+                                      "display": "inline-block",
+                                    }
+                                  }
+                                >
+                                  <strong
+                                    className="ins-u-warning"
+                                  >
+                                    5
+                                     systems not supported
+                                  </strong>
+                                </span>
+                              </SSGVersionWarning>
+                            </p>
+                          </Text>
                         </div>
                       </GridItem>
                       <GridItem
@@ -8248,7 +8277,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   "title": "BO 1",
                                 },
                                 "complianceThreshold": 1,
-                                "compliantHostCount": 1,
+                                "compliantHostCount": 5,
                                 "description": "profile description",
                                 "external": false,
                                 "id": "1",
@@ -8259,7 +8288,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 },
                                 "policyType": "policy type",
                                 "refId": "121212",
-                                "totalHostCount": 1,
+                                "totalHostCount": 10,
+                                "unsupportedSystems": 5,
                               }
                             }
                           >
@@ -8486,7 +8516,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             "title": "BO 1",
           },
           "complianceThreshold": 1,
-          "compliantHostCount": 1,
+          "compliantHostCount": 5,
           "description": "profile description",
           "external": false,
           "id": "1",
@@ -8497,7 +8527,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           },
           "policyType": "policy type",
           "refId": "121212",
-          "totalHostCount": 1,
+          "totalHostCount": 10,
+          "unsupportedSystems": 5,
         },
       },
       "error": false,
@@ -8565,7 +8596,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "title": "BO 1",
                   },
                   "complianceThreshold": 1,
-                  "compliantHostCount": 1,
+                  "compliantHostCount": 5,
                   "description": "profile description",
                   "external": false,
                   "id": "1",
@@ -8576,7 +8607,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   },
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "totalHostCount": 10,
+                  "unsupportedSystems": 5,
                 },
               }
             }
@@ -8611,11 +8643,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   Array [
                     Object {
                       "x": "Compliant",
-                      "y": 1,
+                      "y": 5,
                     },
                     Object {
                       "x": "Non-compliant",
-                      "y": 0,
+                      "y": 5,
                     },
                   ]
                 }
@@ -8624,10 +8656,10 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 legendData={
                   Array [
                     Object {
-                      "name": "1 system compliant",
+                      "name": "5 systems compliant",
                     },
                     Object {
-                      "name": "0 systems non-compliant",
+                      "name": "5 systems non-compliant",
                     },
                   ]
                 }
@@ -8649,11 +8681,23 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 subTitle="Compliant"
                 themeColor="blue"
                 themeVariant="light"
-                title="100%"
+                title="50%"
                 width={462}
               />
             </div>
           </div>
+          <Text>
+            <SSGVersionWarning
+              unsupported={true}
+            >
+              <strong
+                className="ins-u-warning"
+              >
+                5
+                 systems not supported
+              </strong>
+            </SSGVersionWarning>
+          </Text>
         </GridItem>
         <GridItem
           lg={12}
@@ -8672,7 +8716,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "title": "BO 1",
                 },
                 "complianceThreshold": 1,
-                "compliantHostCount": 1,
+                "compliantHostCount": 5,
                 "description": "profile description",
                 "external": false,
                 "id": "1",
@@ -8683,7 +8727,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 },
                 "policyType": "policy type",
                 "refId": "121212",
-                "totalHostCount": 1,
+                "totalHostCount": 10,
+                "unsupportedSystems": 5,
               }
             }
           />
@@ -8715,10 +8760,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "title": "Rules failed",
                 },
                 Object {
-                  "key": "facts.compliance.ssg_version",
+                  "key": "facts.compliance.profiles",
                   "props": Object {
                     "width": 5,
                   },
+                  "renderFunc": [Function],
                   "title": "SSG version",
                 },
                 Object {
@@ -8762,7 +8808,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
             "title": "BO 1",
           },
           "complianceThreshold": 1,
-          "compliantHostCount": 1,
+          "compliantHostCount": 5,
           "description": "profile description",
           "external": false,
           "id": "1",
@@ -8770,7 +8816,8 @@ exports[`ReportDetails expect to render without ssg version for external profile
           "policy": null,
           "policyType": "policy type",
           "refId": "121212",
-          "totalHostCount": 1,
+          "totalHostCount": 10,
+          "unsupportedSystems": 5,
         },
       },
       "error": false,
@@ -8838,7 +8885,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                     "title": "BO 1",
                   },
                   "complianceThreshold": 1,
-                  "compliantHostCount": 1,
+                  "compliantHostCount": 5,
                   "description": "profile description",
                   "external": false,
                   "id": "1",
@@ -8846,7 +8893,8 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "policy": null,
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "totalHostCount": 10,
+                  "unsupportedSystems": 5,
                 },
               }
             }
@@ -8881,11 +8929,11 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   Array [
                     Object {
                       "x": "Compliant",
-                      "y": 1,
+                      "y": 5,
                     },
                     Object {
                       "x": "Non-compliant",
-                      "y": 0,
+                      "y": 5,
                     },
                   ]
                 }
@@ -8894,10 +8942,10 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 legendData={
                   Array [
                     Object {
-                      "name": "1 system compliant",
+                      "name": "5 systems compliant",
                     },
                     Object {
-                      "name": "0 systems non-compliant",
+                      "name": "5 systems non-compliant",
                     },
                   ]
                 }
@@ -8919,11 +8967,23 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 subTitle="Compliant"
                 themeColor="blue"
                 themeVariant="light"
-                title="100%"
+                title="50%"
                 width={462}
               />
             </div>
           </div>
+          <Text>
+            <SSGVersionWarning
+              unsupported={true}
+            >
+              <strong
+                className="ins-u-warning"
+              >
+                5
+                 systems not supported
+              </strong>
+            </SSGVersionWarning>
+          </Text>
         </GridItem>
         <GridItem
           lg={12}
@@ -8942,7 +9002,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "title": "BO 1",
                 },
                 "complianceThreshold": 1,
-                "compliantHostCount": 1,
+                "compliantHostCount": 5,
                 "description": "profile description",
                 "external": false,
                 "id": "1",
@@ -8950,7 +9010,8 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 "policy": null,
                 "policyType": "policy type",
                 "refId": "121212",
-                "totalHostCount": 1,
+                "totalHostCount": 10,
+                "unsupportedSystems": 5,
               }
             }
           />

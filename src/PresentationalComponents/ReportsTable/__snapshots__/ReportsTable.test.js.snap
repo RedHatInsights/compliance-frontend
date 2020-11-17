@@ -105,12 +105,14 @@ exports[`ReportsTable expect to render without error 1`] = `
           "title": "Operating system",
           "transforms": Array [
             [Function],
+            [Function],
           ],
         },
         Object {
           "sortByFunction": [Function],
           "title": "Systems meeting compliance",
           "transforms": Array [
+            [Function],
             [Function],
           ],
         },
@@ -239,6 +241,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -475,6 +480,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -533,6 +541,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -591,6 +602,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -649,6 +663,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -707,6 +724,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -818,6 +838,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -982,6 +1005,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -1040,6 +1066,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -1098,6 +1127,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -1156,6 +1188,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -1214,6 +1249,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={
@@ -1272,6 +1310,9 @@ exports[`ReportsTable expect to render without error 1`] = `
               />,
             },
             Object {
+              "props": Object {
+                "textCenter": true,
+              },
               "title": <OperatingSystem
                 __typename="Profile"
                 benchmark={

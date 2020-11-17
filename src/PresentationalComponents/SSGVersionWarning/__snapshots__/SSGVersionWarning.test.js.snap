@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSGVersionWarning expect to render help sign 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  Warning text
+</span>
+`;
+
+exports[`SSGVersionWarning expect to render no warning sign 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  Warning text
+</span>
+`;
+
+exports[`SSGVersionWarning expect to render tooltip 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  Warning text
+</span>
+`;
+
+exports[`SSGVersionWarning expect to render without error 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  Warning text
+</span>
+`;

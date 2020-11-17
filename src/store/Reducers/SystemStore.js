@@ -89,10 +89,6 @@ const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
 );
 
-const profilesSsgVersions = (profiles) => (
-    profiles.map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
-);
-
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, selectedEntities) => (
     entities.map(entity => {
         // This should compare the inventory ID instead with
@@ -166,7 +162,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                         { title: <DateFormat date={Date.parse(matchingSystem.lastScanned)} type='relative' /> } :
                         matchingSystem.lastScanned,
                     last_scanned_text: matchingSystem.lastScanned,
-                    ssg_version: profilesSsgVersions(matchingSystem.profiles)
+                    profiles: matchingSystem.profiles
                 }
             }
             /* eslint-enable camelcase */

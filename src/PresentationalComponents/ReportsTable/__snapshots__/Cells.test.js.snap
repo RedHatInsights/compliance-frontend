@@ -1,5 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
+<Fragment>
+  <Progress
+    className=""
+    id=""
+    label={null}
+    max={100}
+    measureLocation="outside"
+    min={0}
+    size={null}
+    title=""
+    value={90}
+    valueText={null}
+    variant={null}
+  />
+  <GreySmallText>
+    9 of 10 systems 
+    <SSGVersionWarning
+      style={
+        Object {
+          "marginLeft": ".5em",
+        }
+      }
+      supported={false}
+      tooltipText="Insights cannot provide a compliance score for systems running an unsupported version of the SSG at the time this report was created, as the SSG version was not supported by RHEL."
+    >
+      <strong
+        className="ins-u-warning"
+      >
+        42
+         unsupported
+      </strong>
+    </SSGVersionWarning>
+  </GreySmallText>
+</Fragment>
+`;
+
 exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
   <Progress
@@ -16,7 +53,7 @@ exports[`CompliantSystems expect to render without error 1`] = `
     variant={null}
   />
   <GreySmallText>
-    9 of 10 systems
+    9 of 10 systems 
   </GreySmallText>
 </Fragment>
 `;
@@ -53,11 +90,51 @@ exports[`Name expect to render without error 1`] = `
 </TextContent>
 `;
 
+exports[`OperatingSystem expect to render with SSG version 1`] = `
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+  <Text>
+    <GreySmallText>
+      <SSGVersionWarning>
+        1.2.3
+      </SSGVersionWarning>
+    </GreySmallText>
+  </Text>
+</Fragment>
+`;
+
+exports[`OperatingSystem expect to render with unsupported warning 1`] = `
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+  <Text>
+    <GreySmallText>
+      <SSGVersionWarning
+        supported={false}
+      >
+        1.2.3
+      </SSGVersionWarning>
+    </GreySmallText>
+  </Text>
+</Fragment>
+`;
+
 exports[`OperatingSystem expect to render without error 1`] = `
-<Label
-  color="cyan"
->
-  RHEL 
-  7
-</Label>
+<Fragment>
+  <Label
+    color="cyan"
+  >
+    RHEL 
+    7
+  </Label>
+</Fragment>
 `;

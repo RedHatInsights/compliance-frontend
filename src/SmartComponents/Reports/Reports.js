@@ -23,7 +23,7 @@ query Profiles($filter: String!) {
                 totalHostCount
                 compliantHostCount
                 majorOsVersion
-                complianceThreshold
+                ssgVersion
                 businessObjective {
                     id
                     title
@@ -31,6 +31,7 @@ query Profiles($filter: String!) {
                 policy {
                     id
                     name
+                    complianceThreshold
                     benchmark {
                         id
                         version

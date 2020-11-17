@@ -83,6 +83,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     external
                     compliant
                     score
+                    ssgVersion
                     policy {
                         id
                     }
@@ -491,6 +492,7 @@ const ConnectedSystemsTable = (props) => {
     return <SystemsTable {...props} store={ReactRedux.useStore()} />;
 };
 
+export { default as Cells } from './Cells';
 export { SystemsTable };
 export const SystemsTableWithApollo = withApollo(ConnectedSystemsTable);
 export default connect(
