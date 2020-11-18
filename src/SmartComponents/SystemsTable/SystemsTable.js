@@ -53,6 +53,10 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     external
                     score
                     ssgVersion
+                    policy {
+                        id
+                        name
+                    }
                     rules {
                         refId
                         title
@@ -85,6 +89,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     score
                     policy {
                         id
+                        name
                     }
                 }
             }

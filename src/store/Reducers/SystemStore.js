@@ -47,9 +47,13 @@ export const score = ({ profiles = [] }) => {
 export const profileNames = (system) => {
     if (system === {}) { return ''; }
 
-    return system.profiles.map(
-        (profile) => `${profile.policy ? '' : '(External) ' }${profile.name}`
-    ).join(', ');
+    let names = system.profiles.map(
+        (profile) => (
+            profile.policy ? profile.policy.name : `(External) ${profile.name}`
+        )
+    );
+
+    return [...new Set(names)].sort().join(', ');
 };
 
 export const policiesCell = (system) => {
