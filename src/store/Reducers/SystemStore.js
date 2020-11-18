@@ -228,7 +228,7 @@ const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
 
-export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems, profileId) => applyReducerHash({
+export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash({
     ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
         ...state,
         systems,
