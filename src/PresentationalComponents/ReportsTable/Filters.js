@@ -44,8 +44,8 @@ export const policyComplianceFilter = [{
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
     filter: (profiles, values) => (
-        profiles.filter(({ totalHostCount, compliantHostCount }) => {
-            const compliantHostsPercent = Math.round((100 / totalHostCount) * compliantHostCount);
+        profiles.filter(({ testResultHostCount, compliantHostCount }) => {
+            const compliantHostsPercent = Math.round((100 / testResultHostCount) * compliantHostCount);
             const matching = values.map((value) => {
                 const [min, max] = value.split('-');
                 return compliantHostsPercent >= min && compliantHostsPercent <= max;

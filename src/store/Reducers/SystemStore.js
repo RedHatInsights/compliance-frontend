@@ -20,16 +20,18 @@ import {
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
 
+const NEVER = 'Never';
+
 export const lastScanned = ({ profiles = [] }) => {
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
-    const result = (last instanceof Date && isFinite(last)) ? last : 'Never';
+    const result = (last instanceof Date && isFinite(last)) ? last : NEVER;
 
     return result;
 };
 
 export const compliant = ({ profiles = [] }) => (
-    profiles.every(profile => profile.compliant === true)
+    profiles.every(profile => profile.lastScanned === NEVER || profile.compliant === true)
 );
 
 export const score = ({ profiles = [] }) => {

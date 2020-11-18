@@ -9,6 +9,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 compliantHostCount: 4,
                 majorOsVersion: 7,
                 benchmark: {
@@ -112,6 +113,7 @@ export const policies = {
                 complianceThreshold: 67,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 policy: {
                     id: 'b71376fd-015e-4209-99af-4543e82e5dc5-policy',
@@ -180,6 +182,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -197,6 +200,7 @@ export const policies = {
                 complianceThreshold: 69.5,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -214,6 +218,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -231,6 +236,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -248,6 +254,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -265,6 +272,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -281,6 +289,7 @@ export const policies = {
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
                 complianceThreshold: 100,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 businessObjective: null,
                 majorOsVersion: 7,
                 benchmark: {
@@ -299,6 +308,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -316,6 +326,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -333,6 +344,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
@@ -350,6 +362,7 @@ export const policies = {
                 complianceThreshold: 100,
                 businessObjective: null,
                 totalHostCount: 10,
+                testResultHostCount: 8,
                 majorOsVersion: 7,
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',

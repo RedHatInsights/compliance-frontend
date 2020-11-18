@@ -20,7 +20,7 @@ describe('Reports', () => {
                                 refId: '121212',
                                 name: 'profile1',
                                 description: 'profile description',
-                                totalHostCount: 1,
+                                testResultHostCount: 1,
                                 complianceThreshold: 1,
                                 compliantHostCount: 1,
                                 businessObjective: {
