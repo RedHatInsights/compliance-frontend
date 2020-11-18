@@ -26,13 +26,13 @@ import {
 import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { systemName } from 'Store/Reducers/SystemStore';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { ComplianceScore as complianceScore } from 'PresentationalComponents';
-import useFeature from 'Utilities/hooks/useFeature';
 
 export const QUERY = gql`
 query Profile($policyId: String!){

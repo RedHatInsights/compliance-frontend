@@ -1,12 +1,14 @@
 import { useLocation } from 'react-router-dom';
 jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest.fn(() => ({}))
+    ...require.requireActual('react-redux'),
+    useSelector: jest.fn(() => ({})),
+    useDispatch: jest.fn(() => ({}))
 }));
 jest.mock('./usePolicyUpdate', () => (() => {}));
 jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useLocation: jest.fn()
+    ...require.requireActual('react-router-dom'),
+    useLocation: jest.fn(),
+    useHistory: jest.fn(() => ({}))
 }));
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
     useTitleEntity: () => ({}),
@@ -16,6 +18,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
 import { EditPolicy } from './EditPolicy.js';
 
 describe('EditPolicy', () => {
+
     const defaultProps = {
         onClose: jest.fn(),
         dispatch: jest.fn(),

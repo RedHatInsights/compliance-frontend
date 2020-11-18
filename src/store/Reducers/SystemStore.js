@@ -248,9 +248,9 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems, profil
                 policyNames: policiesCell(node),
                 rulesPassed: profilesRulesPassed(node.profiles).length,
                 rulesFailed: profilesRulesFailed(node.profiles).length,
-                lastScanned: lastScanned(node, profileId),
-                compliant: compliant(node, profileId),
-                score: score(node, profileId),
+                lastScanned: lastScanned(node),
+                compliant: compliant(node),
+                score: score(node),
                 ssgVersion: profilesSsgVersions(node.profiles)
             })
         )]),
