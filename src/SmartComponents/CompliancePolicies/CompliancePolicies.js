@@ -31,6 +31,7 @@ const QUERY = gql`
                 majorOsVersion
                 policyType
                 policy {
+                    id
                     name
                 }
                 benchmark {
