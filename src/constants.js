@@ -72,8 +72,7 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
 ];
 
 export const features = {
-    // Enable via /insights/compliance/reports?reportsTableView=enable (or disable)
-    reportTableView: false,
+    reportsTableView: true,
     multiversionTabs: false,
     showSsgVersions: false
 };
