@@ -31,7 +31,7 @@ describe('OperatingSystem', () => {
 describe('CompliantSystems', () => {
     it('expect to render without error', () => {
         const wrapper = shallow(
-            <CompliantSystems totalHostCount={ 10 } compliantHostCount={ 9 } />
+            <CompliantSystems testResultHostCount={ 10 } compliantHostCount={ 9 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

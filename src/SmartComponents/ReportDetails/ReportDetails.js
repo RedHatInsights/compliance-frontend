@@ -28,7 +28,7 @@ query Profile($policyId: String!){
         id
         name
         refId
-        totalHostCount
+        testResultHostCount
         compliantHostCount
         complianceThreshold
         majorOsVersion
@@ -68,11 +68,11 @@ export const ReportDetails = () => {
         policyName = profile.policy ? profile.policy.name : profile.name;
         showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
         const compliantHostCount = profile.compliantHostCount;
-        const totalHostCount = profile.totalHostCount;
+        const testResultHostCount = profile.testResultHostCount;
         donutId = profile.name.replace(/ /g, '');
         donutValues = [
             { x: 'Compliant', y: compliantHostCount },
-            { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
+            { x: 'Non-compliant', y: testResultHostCount - compliantHostCount }
         ];
         legendData = [
             { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },

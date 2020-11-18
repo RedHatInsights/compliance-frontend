@@ -68,7 +68,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   },
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "testResultHostCount": 1,
                 },
               },
               "error": false,
@@ -100,7 +100,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     },
                     "policyType": "policy type",
                     "refId": "121212",
-                    "totalHostCount": 1,
+                    "testResultHostCount": 1,
                   },
                 },
                 "error": false,
@@ -282,7 +282,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   },
                                   "policyType": "policy type",
                                   "refId": "121212",
-                                  "totalHostCount": 1,
+                                  "testResultHostCount": 1,
                                 },
                               }
                             }
@@ -320,7 +320,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       },
                                       "policyType": "policy type",
                                       "refId": "121212",
-                                      "totalHostCount": 1,
+                                      "testResultHostCount": 1,
                                     },
                                   },
                                 }
@@ -8259,7 +8259,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 },
                                 "policyType": "policy type",
                                 "refId": "121212",
-                                "totalHostCount": 1,
+                                "testResultHostCount": 1,
                               }
                             }
                           >
@@ -8497,7 +8497,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           },
           "policyType": "policy type",
           "refId": "121212",
-          "totalHostCount": 1,
+          "testResultHostCount": 1,
         },
       },
       "error": false,
@@ -8576,7 +8576,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   },
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "testResultHostCount": 1,
                 },
               }
             }
@@ -8683,7 +8683,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 },
                 "policyType": "policy type",
                 "refId": "121212",
-                "totalHostCount": 1,
+                "testResultHostCount": 1,
               }
             }
           />
@@ -8770,7 +8770,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
           "policy": null,
           "policyType": "policy type",
           "refId": "121212",
-          "totalHostCount": 1,
+          "testResultHostCount": 1,
         },
       },
       "error": false,
@@ -8846,7 +8846,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "policy": null,
                   "policyType": "policy type",
                   "refId": "121212",
-                  "totalHostCount": 1,
+                  "testResultHostCount": 1,
                 },
               }
             }
@@ -8950,7 +8950,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 "policy": null,
                 "policyType": "policy type",
                 "refId": "121212",
-                "totalHostCount": 1,
+                "testResultHostCount": 1,
               }
             }
           />

@@ -21,6 +21,7 @@ query Profiles($filter: String!) {
                 description
                 policyType
                 totalHostCount
+                testResultHostCount
                 compliantHostCount
                 majorOsVersion
                 complianceThreshold
@@ -50,8 +51,6 @@ query Profiles($filter: String!) {
 const profilesFromEdges = (data) => (
     (data?.profiles?.edges || []).map((profile) => (
         profile.node
-    )).filter((profile) => (
-        profile.totalHostCount > 0
     ))
 );
 

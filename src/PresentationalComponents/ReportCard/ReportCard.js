@@ -46,12 +46,12 @@ class ReportCard extends React.Component {
     render() {
         const { cardTitleTruncated } = this.state;
         const {
-            policy, benchmark, majorOsVersion, compliantHostCount, totalHostCount, refId, name, id
+            policy, benchmark, majorOsVersion, compliantHostCount, testResultHostCount, refId, name, id
         } = this.props.profile;
         const policyName = policy ? policy.name : name;
         let donutValues = [
             { x: 'Compliant', y: compliantHostCount },
-            { x: 'Non-compliant', y: totalHostCount - compliantHostCount }
+            { x: 'Non-compliant', y: testResultHostCount - compliantHostCount }
         ];
         const compliancePercentage = fixedPercentage(Math.floor(100 *
             (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
@@ -95,7 +95,7 @@ class ReportCard extends React.Component {
                                         {' '}of{' '}
                                     </span>
                                     <span style={{ fontSize: '30px', fontWeight: 'bold' }}>
-                                        { totalHostCount }
+                                        { testResultHostCount }
                                     </span>
                                 </TextContent>
                             </GridItem>

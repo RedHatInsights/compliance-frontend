@@ -6,7 +6,7 @@ const defaultProps = {
         refId: 'REF_ID',
         name: 'Test Policy',
         compliantHostCount: 10,
-        totalHostCount: 15,
+        testResultHostCount: 15,
         policy: {
             id: 'policyid',
             name: 'Policy Name',

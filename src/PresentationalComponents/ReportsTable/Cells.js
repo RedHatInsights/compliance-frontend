@@ -38,16 +38,16 @@ OperatingSystem.propTypes = {
     majorOsVersion: propTypes.string
 };
 
-export const CompliantSystems = ({ totalHostCount = 0, compliantHostCount = 0 }) => (
+export const CompliantSystems = ({ testResultHostCount = 0, compliantHostCount = 0 }) => (
     <React.Fragment>
         <Progress
             measureLocation={ 'outside' }
-            value={ (100 / totalHostCount) * compliantHostCount } />
-        <GreySmallText>{ `${ compliantHostCount } of ${ totalHostCount } systems` }</GreySmallText>
+            value={ (100 / testResultHostCount) * compliantHostCount } />
+        <GreySmallText>{ `${ compliantHostCount } of ${ testResultHostCount } systems` }</GreySmallText>
     </React.Fragment>
 );
 
 CompliantSystems.propTypes = {
-    totalHostCount: propTypes.number,
+    testResultHostCount: propTypes.number,
     compliantHostCount: propTypes.number
 };

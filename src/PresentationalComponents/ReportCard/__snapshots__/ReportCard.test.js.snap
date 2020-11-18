@@ -62,7 +62,7 @@ exports[`ReportCard expect to render without error 1`] = `
                     "name": "Policy Name",
                   },
                   "refId": "REF_ID",
-                  "totalHostCount": 15,
+                  "testResultHostCount": 15,
                 }
               }
             />

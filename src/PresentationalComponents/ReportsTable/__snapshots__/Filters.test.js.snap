@@ -101,6 +101,7 @@ Array [
     },
     "policyType": "United States Government Standard",
     "refId": "xccdf_org.ssgproject.content_profile_ospp23",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -166,6 +167,7 @@ Array [
       ],
     },
     "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -180,6 +182,7 @@ Array [
     "majorOsVersion": 7,
     "name": "United States Government Configuration Baseline2",
     "refId": "xccdf_org.ssgproject.content_profile_ospp2",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -194,6 +197,7 @@ Array [
     "majorOsVersion": 7,
     "name": "C2S for Red Hat Enterprise Linux 7",
     "refId": "xccdf_org.ssgproject.content_profile_C2S",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -208,6 +212,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Criminal Justice Information Services (CJIS) Security Policy",
     "refId": "xccdf_org.ssgproject.content_profile_cjis",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -222,6 +227,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
     "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -236,6 +242,7 @@ Array [
     "majorOsVersion": 7,
     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
     "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -250,6 +257,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
     "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -264,6 +272,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Health Insurance Portability and Accountability Act (HIPAA)",
     "refId": "xccdf_org.ssgproject.content_profile_hipaa",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -278,6 +287,7 @@ Array [
     "majorOsVersion": 7,
     "name": "United States Government Configuration Baseline",
     "refId": "xccdf_org.ssgproject.content_profile_ospp",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -292,6 +302,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Standard System Security Profile for Red Hat Enterprise Linux 7",
     "refId": "xccdf_org.ssgproject.content_profile_standard",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -306,6 +317,7 @@ Array [
     "majorOsVersion": 7,
     "name": "DISA STIG for Red Hat Enterprise Linux 7",
     "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -320,116 +332,13 @@ Array [
     "majorOsVersion": 7,
     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
     "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
 ]
 `;
 
-exports[`policyComplianceFilter expect to return results 1`] = `
-Array [
-  Object {
-    "__typename": "Profile",
-    "benchmark": Object {
-      "title": "Guide to the Secure Configuration of RHEL 7",
-      "version": "0.1.49",
-    },
-    "businessObjective": null,
-    "complianceThreshold": 100,
-    "compliantHostCount": 4,
-    "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
-    "majorOsVersion": 7,
-    "name": "United States Government Configuration Baseline23",
-    "policy": Object {
-      "__typename": "Profile",
-      "id": "b71376fd-015e-4209-99af-4543e82e5dc5-policy",
-      "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
-      "profiles": Array [
-        Object {
-          "id": "b71376fd-015e-4209-99af",
-          "name": "United States Government Configuration Baseline123",
-          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-          "rules": Array [
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter the localtime File",
-            },
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter Time Through clock_settime",
-            },
-          ],
-          "ssgVersion": "0.1.49",
-        },
-        Object {
-          "id": "b71376fd-015e-4209-99af",
-          "name": "United States Government Configuration Baseline123",
-          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-          "rules": Array [
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter the localtime File",
-            },
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter Time Through clock_settime",
-            },
-          ],
-          "ssgVersion": "0.1.45",
-        },
-        Object {
-          "id": "b71376fd-015e-4209-99af",
-          "name": "United States Government Configuration Baseline123",
-          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-          "rules": Array [
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter the localtime File",
-            },
-            Object {
-              "__typename": "Rule",
-              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-              "remediationAvailable": false,
-              "severity": "medium",
-              "title": "Record Attempts to Alter Time Through clock_settime",
-            },
-          ],
-          "ssgVersion": "0.1.46",
-        },
-      ],
-    },
-    "policyType": "United States Government Standard",
-    "refId": "xccdf_org.ssgproject.content_profile_ospp23",
-    "totalHostCount": 10,
-  },
-]
-`;
+exports[`policyComplianceFilter expect to return results 1`] = `Array []`;
 
 exports[`policyNameFilter expect to return results 1`] = `
 Array [
@@ -445,6 +354,7 @@ Array [
     "majorOsVersion": 7,
     "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
     "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
 ]
@@ -551,6 +461,7 @@ Array [
     },
     "policyType": "United States Government Standard",
     "refId": "xccdf_org.ssgproject.content_profile_ospp23",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
   Object {
@@ -616,6 +527,7 @@ Array [
       ],
     },
     "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
+    "testResultHostCount": 8,
     "totalHostCount": 10,
   },
 ]

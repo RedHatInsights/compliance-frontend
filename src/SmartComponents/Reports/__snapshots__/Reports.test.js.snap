@@ -85,7 +85,7 @@ exports[`Reports expect to render without error 1`] = `
                 "id": "1",
                 "name": "profile1",
                 "refId": "121212",
-                "totalHostCount": 1,
+                "testResultHostCount": 1,
               },
             },
           ],
@@ -125,7 +125,7 @@ exports[`Reports expect to render without error 1`] = `
               "id": "1",
               "name": "profile1",
               "refId": "121212",
-              "totalHostCount": 1,
+              "testResultHostCount": 1,
             },
           ]
         }

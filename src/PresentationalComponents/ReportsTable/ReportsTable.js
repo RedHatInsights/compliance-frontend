@@ -25,8 +25,8 @@ const ReportsTable = ({ profiles }) => {
         {
             title: 'Systems meeting compliance',
             transforms: [sortable],
-            sortByFunction: ({ totalHostCount, compliantHostCount }) => (
-                (100 / totalHostCount) * compliantHostCount
+            sortByFunction: ({ testResultHostCount, compliantHostCount }) => (
+                (100 / testResultHostCount) * compliantHostCount
             )
         }
     ];
