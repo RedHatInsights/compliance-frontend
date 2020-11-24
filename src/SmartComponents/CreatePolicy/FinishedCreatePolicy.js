@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import {
     Title, Button, Bullseye, EmptyState, EmptyStateBody, EmptyStateSecondaryActions,
-    EmptyStateVariant, EmptyStateIcon
+    EmptyStateVariant, EmptyStateIcon, List, ListItem
 } from '@patternfly/react-core';
 import { ProgressBar } from 'PresentationalComponents';
 import { WrenchIcon } from '@patternfly/react-icons';
@@ -18,6 +18,7 @@ class FinishedCreatePolicy extends React.Component {
     state = {
         percent: 0,
         message: 'This usually takes a minute or two.',
+        errors: null,
         failed: false
     };
 
@@ -30,6 +31,7 @@ class FinishedCreatePolicy extends React.Component {
         }).catch((error) => {
             this.setState({
                 message: error.networkError.message,
+                errors: error.networkError.result.errors,
                 failed: true
             });
         });
@@ -83,14 +85,23 @@ class FinishedCreatePolicy extends React.Component {
         }).catch((error) => {
             this.setState({
                 message: error.networkError.message,
+                errors: error.networkError.result.errors,
                 failed: true
             });
         });;
     }
 
     render() {
-        const { percent, message, failed } = this.state;
+        const { percent, message, failed, errors } = this.state;
         const { onWizardFinish } = this.props;
+
+        let listErrors;
+        if (errors && Array.isArray(errors) && errors.length > 0) {
+            listErrors = errors.map((error) => (
+                <ListItem key={ error }>{ error }</ListItem>
+            ));
+        }
+
         return (
             <Bullseye>
                 <EmptyState variant={EmptyStateVariant.full}>
@@ -105,6 +116,11 @@ class FinishedCreatePolicy extends React.Component {
                     <EmptyStateBody className={failed && 'wizard-failed-message'}>
                         { message }
                     </EmptyStateBody>
+                    { listErrors &&
+                        <EmptyStateBody className='wizard-failed-errors'>
+                            <List>{ listErrors }</List>
+                        </EmptyStateBody>
+                    }
                     <EmptyStateSecondaryActions>
                         { percent === 100 ?
                             <Button

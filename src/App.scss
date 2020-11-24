@@ -39,6 +39,14 @@
     color: var(--pf-global--danger-color--100);
     font-weight: bold;
     text-align: left;
+    width: var(--pf-global--breakpoint--sm);
+}
+
+.wizard-failed-errors {
+    color: var(--pf-global--danger-color--100);
+    font-weight: normal;
+    text-align: left;
+    width: var(--pf-global--breakpoint--sm);
 }
 
 .grey-icon {
