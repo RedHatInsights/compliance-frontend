@@ -1,4 +1,4 @@
-import { CREATE_PROFILE } from 'Utilities/graphql/mutations';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
 
 export const policyFormValues = {
     benchmark: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
@@ -499,6 +499,7 @@ export const mutateCreateProfileMock =  {
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 name: 'C2S for Red Hat Enterprise Linux 6',
                 description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
+                selectedRuleRefIds: ['myrulefrefid'],
                 complianceThreshold: 100
             }
         }
@@ -507,12 +508,33 @@ export const mutateCreateProfileMock =  {
         data: {
             createProfile: {
                 profile: {
-                    id: 'foo'
+                    id: 'aeb578f9-c8e8-4d26-add7-e5017c9ec79a'
                 }
             }
         }
     }
 };
+
+export const mutateAssociateSystemsToProfile = {
+    request: {
+        query: ASSOCIATE_SYSTEMS_TO_PROFILES,
+        variables: {
+            input: {
+                id: 'aeb578f9-c8e8-4d26-add7-e5017c9ec79a',
+                systemIds: []
+            }
+        }
+    },
+    result: {
+        data: {
+            associateSystems: {
+                profile: {
+                    id: 'aeb578f9-c8e8-4d26-add7-e5017c9ec79a'
+                }
+            }
+        }
+    }
+}
 
 export const profileRefIdsQuery = {
     edges: [
