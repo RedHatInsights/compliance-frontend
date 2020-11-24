@@ -536,6 +536,29 @@ export const mutateAssociateSystemsToProfile = {
     }
 }
 
+export const mutateCreateProfileErrorMock =  {
+    request: {
+        query: CREATE_PROFILE,
+        variables: {
+            input: {
+                benchmarkId: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
+                description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
+                name: 'C2S for Red Hat Enterprise Linux 6',
+                refId: 'xccdf_org.ssgproject.content_profile_C2S',
+                selectedRuleRefIds: ['myrulefrefid'],
+                cloneFromProfileId: '197eb783-7bca-45c5-978d-c1e89b0118da',
+                complianceThreshold:100
+            }
+        }
+    },
+    error: {
+        message: 'Response not successful: Received status code 406',
+        result: {
+            errors: ['Error reason']
+        }
+    }
+};
+
 export const profileRefIdsQuery = {
     edges: [
         {
