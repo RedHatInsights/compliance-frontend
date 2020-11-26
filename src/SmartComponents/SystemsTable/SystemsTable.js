@@ -60,6 +60,10 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                         remediationAvailable
                     }
                 }
+                policies(policyId: $policyId) {
+                    id
+                    name
+                }
             }
         }
     }
@@ -86,6 +90,10 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     policy {
                         id
                     }
+                }
+                policies(policyId: $policyId) {
+                    id
+                    name
                 }
             }
         }

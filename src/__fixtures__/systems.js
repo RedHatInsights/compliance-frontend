@@ -299,6 +299,9 @@ export const systems = [
                     ],
                     score: 0
                 }
+            ],
+            policies: [
+                { name: 'HIPAA Policy' }
             ]
         }
     },
@@ -315,6 +318,9 @@ export const systems = [
                     compliant: false,
                     ssgVersion: '0.14.5'
                 }
+            ],
+            policies: [
+                { name: 'Standard System Security Profile Policy' }
             ]
         }
     }
