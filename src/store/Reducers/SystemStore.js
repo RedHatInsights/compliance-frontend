@@ -46,19 +46,21 @@ export const score = ({ profiles = [] }) => {
     return 0;
 };
 
-export const profileNames = (system) => {
+export const policyNames = (system) => {
     if (system === {}) { return ''; }
 
-    return system.profiles.map(
-        (profile) => `${profile.policy ? '' : '(External) ' }${profile.name}`
-    ).join(', ');
+    let policyNames = system.policies.map(({ name }) => name);
+    let externalPolicyNames = system.profiles.filter(p => !p.policy).map(({ name }) => (
+        `(External) ${name}`
+    ));
+    return [...policyNames, ...externalPolicyNames].join(', ');
 };
 
 export const policiesCell = (system) => {
     let title;
-    if (system.profileNames) {
-        title = <Tooltip content={system.profileNames}>
-            <Truncate lines={2} width={540}>{system.profileNames}</Truncate>
+    if (system.policyNames) {
+        title = <Tooltip content={system.policyNames}>
+            <Truncate lines={2} width={540}>{system.policyNames}</Truncate>
         </Tooltip>;
     } else {
         title = <Text className='grey-icon'>No policies</Text>;
@@ -66,7 +68,7 @@ export const policiesCell = (system) => {
 
     return {
         title,
-        exportValue: system.profileNames
+        exportValue: system.policyNames
     };
 };
 
@@ -107,10 +109,10 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
         if (matchingSystem === undefined) {
             if (!showAllSystems) { return; }
 
-            matchingSystem = { profiles: [] };
+            matchingSystem = { profiles: [], policies: [] };
         }
 
-        matchingSystem.profileNames = profileNames(matchingSystem);
+        matchingSystem.policyNames = policyNames(matchingSystem);
         matchingSystem.rulesPassed = profilesRulesPassed(matchingSystem.profiles).length;
         matchingSystem.rulesFailed = profilesRulesFailed(matchingSystem.profiles).length;
         matchingSystem.lastScanned = lastScanned(matchingSystem);
@@ -149,7 +151,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                 compliance: {
                     display_name: displayNameCell(entity, matchingSystem),
                     policies: policiesCell(matchingSystem),
-                    details_link: matchingSystem.profileNames && {
+                    details_link: matchingSystem.profiles && matchingSystem.profiles.length > 0 && {
                         title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
                             View report
                         </Link>
