@@ -2,7 +2,7 @@ import {
     compliant,
     hasOsInfo,
     lastScanned,
-    profileNames,
+    policyNames,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from '@/__fixtures__/systems.js';
@@ -96,15 +96,20 @@ describe('.compliant', () => {
     });
 });
 
-describe('.profileNames', () => {
-    it('should include external if profile is external', () => {
+describe('.policyNames', () => {
+    it('should return all system policies', () => {
         const system = {
             profiles: [
+                { name: 'HIPAA Profile', policy: {} },
+                { name: 'PCI-DSS Profile', policy: {} },
+                { name: 'CIS', policy: null }
+            ],
+            policies: [
                 { name: 'HIPAA' },
-                { policy: {}, name: 'PCI' }
+                { name: 'PCI Policy' }
             ]
         };
-        expect(profileNames(system)).toEqual('(External) HIPAA, PCI');
+        expect(policyNames(system)).toEqual('HIPAA, PCI Policy, (External) CIS');
     });
 });
 
