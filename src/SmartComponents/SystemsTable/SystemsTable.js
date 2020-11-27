@@ -44,7 +44,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles(policyId: $policyId) {
+                testResultProfiles(policyId: $policyId) {
                     id
                     name
                     refId
@@ -80,7 +80,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles(policyId: $policyId) {
+                testResultProfiles(policyId: $policyId) {
                     id
                     name
                     lastScanned

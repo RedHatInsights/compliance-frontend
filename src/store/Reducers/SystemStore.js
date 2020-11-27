@@ -22,7 +22,7 @@ import Truncate from 'react-truncate';
 
 const NEVER = 'Never';
 
-export const lastScanned = ({ profiles = [] }) => {
+export const lastScanned = ({ testResultProfiles: profiles = [] }) => {
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : NEVER;
@@ -30,11 +30,11 @@ export const lastScanned = ({ profiles = [] }) => {
     return result;
 };
 
-export const compliant = ({ profiles = [] }) => (
+export const compliant = ({ testResultProfiles: profiles = [] }) => (
     profiles.every(profile => profile.lastScanned === NEVER || profile.compliant === true)
 );
 
-export const score = ({ profiles = [] }) => {
+export const score = ({ testResultProfiles: profiles = [] }) => {
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
         if (profilesRulesPassed([profile]).length + profilesRulesFailed([profile]).length > 0) { return acc + 1; }
@@ -50,7 +50,7 @@ export const policyNames = (system) => {
     if (system === {}) { return ''; }
 
     let policyNames = system.policies.map(({ name }) => name);
-    let externalPolicyNames = system.profiles.filter(p => !p.policy).map(({ name }) => (
+    let externalPolicyNames = system.testResultProfiles.filter(p => !p.policy).map(({ name }) => (
         `(External) ${name}`
     ));
     return [...policyNames, ...externalPolicyNames].join(', ');
@@ -70,6 +70,18 @@ export const policiesCell = (system) => {
         title,
         exportValue: system.policyNames
     };
+};
+
+export const detailsLink = (system) => {
+    if (system.testResultProfiles && system.testResultProfiles.length > 0) {
+        return {
+            title: (
+                <Link to={{ pathname: `/systems/${system.id}` }}>
+                    View report
+                </Link>
+            )
+        };
+    }
 };
 
 export const hasOsInfo = (matchingSystem) => (
@@ -93,7 +105,7 @@ const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
 );
 
-const profilesSsgVersions = (profiles) => (
+const profilesSsgVersions = ({ testResultProfiles: profiles = [] }) => (
     profiles.map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
 );
 
@@ -109,12 +121,12 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
         if (matchingSystem === undefined) {
             if (!showAllSystems) { return; }
 
-            matchingSystem = { profiles: [], policies: [] };
+            matchingSystem = { testResultProfiles: [], policies: [] };
         }
 
         matchingSystem.policyNames = policyNames(matchingSystem);
-        matchingSystem.rulesPassed = profilesRulesPassed(matchingSystem.profiles).length;
-        matchingSystem.rulesFailed = profilesRulesFailed(matchingSystem.profiles).length;
+        matchingSystem.rulesPassed = profilesRulesPassed(matchingSystem.testResultProfiles).length;
+        matchingSystem.rulesFailed = profilesRulesFailed(matchingSystem.testResultProfiles).length;
         matchingSystem.lastScanned = lastScanned(matchingSystem);
         matchingSystem.compliant = compliant(matchingSystem);
         matchingSystem.score = score(matchingSystem);
@@ -151,11 +163,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                 compliance: {
                     display_name: displayNameCell(entity, matchingSystem),
                     policies: policiesCell(matchingSystem),
-                    details_link: matchingSystem.profiles && matchingSystem.profiles.length > 0 && {
-                        title: <Link to={{ pathname: `/systems/${matchingSystem.id}` }}>
-                            View report
-                        </Link>
-                    },
+                    details_link: detailsLink(matchingSystem),
                     rules_passed: matchingSystem.rulesPassed,
                     rules_failed: { title: <Link to={{
                         pathname: `/systems/${matchingSystem.id}`,
@@ -170,7 +178,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                         { title: <DateFormat date={Date.parse(matchingSystem.lastScanned)} type='relative' /> } :
                         matchingSystem.lastScanned,
                     last_scanned_text: matchingSystem.lastScanned,
-                    ssg_version: profilesSsgVersions(matchingSystem.profiles)
+                    ssg_version: profilesSsgVersions(matchingSystem)
                 }
             }
             /* eslint-enable camelcase */

@@ -49,7 +49,7 @@ describe('mapping systems to inventory entities', () => {
 describe('.lastScanned', () => {
     it('should find the latest scan date', () => {
         const system = {
-            profiles: [
+            testResultProfiles: [
                 { lastScanned: '2019-10-25T15:59:49Z' },
                 { lastScanned: '2019-10-23T15:59:49Z' },
                 { lastScanned: '2018-12-23T17:59:49Z' }
@@ -60,7 +60,7 @@ describe('.lastScanned', () => {
 
     it('should print the latest scan date even if one profile was never scanned', () => {
         const system = {
-            profiles: [
+            testResultProfiles: [
                 { lastScanned: '2019-10-25T15:59:49Z' },
                 { lastScanned: 'Never' }
             ]
@@ -69,15 +69,15 @@ describe('.lastScanned', () => {
     });
 
     it('should print Never if the scan date cannot be ascertained', () => {
-        expect(lastScanned({ profiles: [] })).toEqual('Never');
-        expect(lastScanned({ profiles: [{ lastScanned: 'Never' }] })).toEqual('Never');
+        expect(lastScanned({ testResultProfiles: [] })).toEqual('Never');
+        expect(lastScanned({ testResultProfiles: [{ lastScanned: 'Never' }] })).toEqual('Never');
     });
 });
 
 describe('.compliant', () => {
     it('should set false if there is one non-compliant profile', () => {
         const system = {
-            profiles: [
+            testResultProfiles: [
                 { compliant: true },
                 { compliant: false }
             ]
@@ -87,7 +87,7 @@ describe('.compliant', () => {
 
     it('should set true if all profiles are compliant', () => {
         const system = {
-            profiles: [
+            testResultProfiles: [
                 { compliant: true },
                 { compliant: true }
             ]
@@ -99,7 +99,7 @@ describe('.compliant', () => {
 describe('.policyNames', () => {
     it('should return all system policies', () => {
         const system = {
-            profiles: [
+            testResultProfiles: [
                 { name: 'HIPAA Profile', policy: {} },
                 { name: 'PCI-DSS Profile', policy: {} },
                 { name: 'CIS', policy: null }

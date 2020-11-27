@@ -4,7 +4,7 @@ export const systems = [
         node: {
             id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6',
             name: 'demo.lobatolan.home',
-            profiles: [
+            testResultProfiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
@@ -309,7 +309,7 @@ export const systems = [
         node: {
             id: 'c1f0aef3-66fd-4abc-aa33-ec6755dd39d9',
             name: 'hellofromlobatolan',
-            profiles: [
+            testResultProfiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                     lastScanned: 'Never',
