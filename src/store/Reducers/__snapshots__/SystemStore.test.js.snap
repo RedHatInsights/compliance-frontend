@@ -26,7 +26,10 @@ Array [
                 ]
               }
               policyNames="HIPAA Policy, (External) Standard System Security Profile for Red Hat Enterprise Linux 7, (External) DISA STIG for Red Hat Enterprise Linux 7, (External) United States Government Configuration Baseline, (External) C2S for Red Hat Enterprise Linux 7"
-              profiles={
+              rulesFailed={28}
+              rulesPassed={24}
+              score={10}
+              testResultProfiles={
                 Array [
                   Object {
                     "compliant": false,
@@ -324,9 +327,6 @@ Array [
                   },
                 ]
               }
-              rulesFailed={28}
-              rulesPassed={24}
-              score={10}
             />
              10%
           </Tooltip>
