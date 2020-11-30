@@ -18,10 +18,10 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
                 width: 40, isStatic: true
             }
         }, ...showSsgVersions ? [{
-            key: 'facts.compliance.profiles',
+            key: 'facts.compliance',
             title: 'SSG version',
-            renderFunc: (profiles) => (
-                <Cells.SSGVersion { ...{ profiles } } />
+            renderFunc: (profile) => (
+                <Cells.SSGVersion { ...{ profile } } />
             )
         }] : []]}
         complianceThreshold={ policy.complianceThreshold }

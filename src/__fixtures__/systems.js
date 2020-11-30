@@ -8,6 +8,7 @@ export const systems = [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
+                    supported: true,
                     compliant: false,
                     ssgVersion: '0.14.3',
                     rules: [
@@ -82,6 +83,7 @@ export const systems = [
                 {
                     name: 'DISA STIG for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
+                    supported: true,
                     compliant: false,
                     ssgVersion: '0.14.2',
                     rules: [
@@ -156,6 +158,7 @@ export const systems = [
                 {
                     name: 'United States Government Configuration Baseline',
                     lastScanned: '2019-11-21T14:32:19Z',
+                    supported: true,
                     compliant: false,
                     rules: [
                         {
@@ -229,6 +232,7 @@ export const systems = [
                 {
                     name: 'C2S for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
+                    supported: true,
                     compliant: false,
                     rules: [
                         {
@@ -316,7 +320,8 @@ export const systems = [
                     rules: [],
                     score: 0,
                     compliant: false,
-                    ssgVersion: '0.14.5'
+                    ssgVersion: '0.14.5',
+                    supported: true
                 }
             ],
             policies: [

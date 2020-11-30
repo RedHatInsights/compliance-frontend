@@ -2,16 +2,15 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { UnsupportedSSGVersion } from 'PresentationalComponents';
 
-const SSGVersion = ({ profiles }) => (
-    profiles.map((p) => (
-        p.unsupported ? <UnsupportedSSGVersion>
-            { p.ssgVersion }
-        </UnsupportedSSGVersion> : p.ssgVersion
-    )).filter((version) => (!!version)).reduce((prev, curr) => [prev, ', ', curr], [])
+const SSGVersion = ({ profile }) => (
+    profile.supported && profile.ssg_version ||
+    <UnsupportedSSGVersion>
+        { profile.ssg_version }
+    </UnsupportedSSGVersion>
 );
 
 SSGVersion.propTypes = {
-    profiles: propTypes.array
+    profile: propTypes.object
 };
 
 export default {

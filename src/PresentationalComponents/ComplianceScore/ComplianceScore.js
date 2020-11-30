@@ -18,7 +18,9 @@ const CompliantIcon = (system) => {
 };
 
 export const complianceScoreString = (system) => {
-    if ((system.rulesPassed + system.rulesFailed) === 0) {
+    if (system.supported === false) {
+        return ' Unsupported';
+    } else if ((system.rulesPassed + system.rulesFailed) === 0) {
         return ' N/A';
     }
 
@@ -27,13 +29,16 @@ export const complianceScoreString = (system) => {
 
 const ComplianceScore = (system) => (
     <React.Fragment>
-        <Tooltip content={
-            'The system compliance score is calculated by OpenSCAP and ' +
-            'is a normalized weighted sum of rules selected for this policy.'
-        }>
-            <CompliantIcon key={ `system-compliance-icon-${system.id}` } { ...system } />
-            { complianceScoreString(system) }
-        </Tooltip>
+        { system.supported ?
+            <Tooltip content={
+                'The system compliance score is calculated by OpenSCAP and ' +
+                'is a normalized weighted sum of rules selected for this policy.'
+            }>
+                <CompliantIcon key={ `system-compliance-icon-${system.id}` } { ...system } />
+                { complianceScoreString(system) }
+            </Tooltip>
+            :
+            complianceScoreString(system) }
     </React.Fragment>
 );
 

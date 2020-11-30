@@ -46,6 +46,10 @@ export const score = ({ testResultProfiles: profiles = [] }) => {
     return 0;
 };
 
+export const supported = ({ testResultProfiles: profiles = [] }) => (
+    profiles.reduce((acc, profile) => acc && profile.supported, true)
+);
+
 export const policyNames = (system) => {
     if (system === {}) { return ''; }
 
@@ -130,6 +134,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
         matchingSystem.lastScanned = lastScanned(matchingSystem);
         matchingSystem.compliant = compliant(matchingSystem);
         matchingSystem.score = score(matchingSystem);
+        matchingSystem.supported = supported(matchingSystem);
 
         return {
             /* eslint-disable camelcase */
@@ -179,7 +184,7 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
                         matchingSystem.lastScanned,
                     last_scanned_text: matchingSystem.lastScanned,
                     ssg_version: profilesSsgVersions(matchingSystem),
-                    profiles: matchingSystem.profiles
+                    supported: matchingSystem.supported
                 }
             }
             /* eslint-enable camelcase */

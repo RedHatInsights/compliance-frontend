@@ -24,19 +24,21 @@ Name.propTypes = {
     profile: propTypes.object
 };
 
-export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupported }) => {
+export const OperatingSystem = ({ majorOsVersion, ssgVersion, totalHostCount, policy }) => {
     const rhelColorMap = {
         7: 'cyan',
         8: 'purple',
         default: 'var(--pf-global--disabled-color--200)'
     };
     const color = rhelColorMap[majorOsVersion] || rhelColorMap.default;
+    const supported = totalHostCount > 0;
+    ssgVersion = 'SSG: ' + ssgVersion;
 
     return <React.Fragment>
         <Label { ...{ color } }>RHEL { majorOsVersion }</Label>
-        { ssgVersion && <Text>
+        { policy === null && ssgVersion && <Text>
             <GreySmallText>
-                { unsupported ? <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> : ssgVersion }
+                { supported ? <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> : ssgVersion }
             </GreySmallText>
         </Text> }
     </React.Fragment>;
@@ -45,21 +47,22 @@ export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupported }) => 
 OperatingSystem.propTypes = {
     majorOsVersion: propTypes.string,
     ssgVersion: propTypes.string,
-    unsupported: propTypes.bool
+    totalHostCount: propTypes.number,
+    policy: propTypes.object
 };
 
-export const CompliantSystems = ({ testResultHostCount = 0, compliantHostCount = 0, unsupportedSystems = 0 }) => {
+export const CompliantSystems = ({ testResultHostCount = 0, compliantHostCount = 0, unsupportedHostCount = 0 }) => {
     const tooltipText = 'Insights cannot provide a compliance score for systems running an unsupported ' +
         'version of the SSG at the time this report was created, as the SSG version was not supported by RHEL.';
     return <React.Fragment>
         <Progress
             measureLocation={ 'outside' }
-            value={ (100 / testResultHostCount) * compliantHostCount } />
+            value={ testResultHostCount ? (100 / testResultHostCount) * compliantHostCount : 0 } />
         <GreySmallText>
             { `${ compliantHostCount } of ${ testResultHostCount } systems ` }
 
-            { unsupportedSystems > 0 && <UnsupportedSSGVersion { ...{ tooltipText } } style={ { marginLeft: '.5em' } }>
-                <strong className='ins-u-warning'>{ unsupportedSystems } unsupported</strong>
+            { unsupportedHostCount > 0 && <UnsupportedSSGVersion { ...{ tooltipText } } style={ { marginLeft: '.5em' } }>
+                <strong className='ins-u-warning'>{ unsupportedHostCount } unsupported</strong>
             </UnsupportedSSGVersion> }
         </GreySmallText>
     </React.Fragment>;
@@ -68,5 +71,5 @@ export const CompliantSystems = ({ testResultHostCount = 0, compliantHostCount =
 CompliantSystems.propTypes = {
     testResultHostCount: propTypes.number,
     compliantHostCount: propTypes.number,
-    unsupportedSystems: propTypes.number
+    unsupportedHostCount: propTypes.number
 };
