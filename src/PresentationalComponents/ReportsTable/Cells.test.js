@@ -41,7 +41,7 @@ describe('OperatingSystem', () => {
 
     it('expect to render with unsupported warning', () => {
         const wrapper = shallow(
-            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' unsupported={ true } />
+            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' supported={ false } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -64,7 +64,7 @@ describe('CompliantSystems', () => {
 
     it('expect to render with unsupported hosts', () => {
         const wrapper = shallow(
-            <CompliantSystems { ...deftaultProps } unsupportedSystems={ 42 } />
+            <CompliantSystems { ...deftaultProps } unsupportedHostCount={ 42 } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

@@ -31,6 +31,7 @@ query Profile($policyId: String!){
         refId
         testResultHostCount
         compliantHostCount
+        unsupportedHostCount
         complianceThreshold
         majorOsVersion
         lastScanned
@@ -79,8 +80,8 @@ export const ReportDetails = () => {
             { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
             { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
         ];
-        compliancePercentage = fixedPercentage(Math.floor(100 *
-                (donutValues[0].y / (donutValues[0].y + donutValues[1].y))));
+        compliancePercentage = testResultHostCount ? fixedPercentage(Math.floor(100 *
+                (donutValues[0].y / (donutValues[0].y + donutValues[1].y)))) : 0;
     }
 
     const columns = [{
@@ -96,13 +97,13 @@ export const ReportDetails = () => {
             width: 5
         }
     }, ...showSsgVersions ? [{
-        key: 'facts.compliance.profiles',
+        key: 'facts.compliance',
         title: 'SSG version',
         props: {
             width: 5
         },
-        renderFunc: (profiles) => (
-            <Cells.SSGVersion { ...{ profiles } } />
+        renderFunc: (profile) => (
+            profile && <Cells.SSGVersion { ...{ profile } } />
         )
     }] : [], {
         key: 'facts.compliance.compliance_score',
@@ -168,10 +169,10 @@ export const ReportDetails = () => {
                                 />
                             </div>
                         </div>
-                        {  profile.unsupportedSystems > 0 && <Text>
-                            <UnsupportedSSGVersion>
+                        {  profile.unsupportedHostCount > 0 && <Text>
+                            <UnsupportedSSGVersion showHelpIcon>
                                 <strong className='ins-u-warning'>
-                                    { profile.unsupportedSystems } systems not supported
+                                    { profile.unsupportedHostCount } systems not supported
                                 </strong>
                             </UnsupportedSSGVersion>
                         </Text> }

@@ -52,6 +52,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     compliant
                     external
                     score
+                    supported
                     ssgVersion
                     rules {
                         refId
@@ -87,6 +88,8 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     external
                     compliant
                     score
+                    supported
+                    ssgVersion
                     policy {
                         id
                     }

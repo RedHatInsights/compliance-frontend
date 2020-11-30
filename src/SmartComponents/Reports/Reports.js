@@ -23,7 +23,9 @@ query Profiles($filter: String!) {
                 totalHostCount
                 testResultHostCount
                 compliantHostCount
+                unsupportedHostCount
                 majorOsVersion
+                ssgVersion
                 complianceThreshold
                 businessObjective {
                     id

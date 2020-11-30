@@ -6,6 +6,7 @@ describe('auxiliary functions to reducer', () => {
             rulesPassed: 30,
             rulesFailed: 300,
             score: 10,
+            supported: true,
             compliant: false
         };
 
