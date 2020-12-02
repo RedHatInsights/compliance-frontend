@@ -73,8 +73,9 @@ const ReportsHeader = () => (
                 <a href="https://access.redhat.com/solutions/5249481">Learn more</a>
             }>
             <Text variant="p">
-                As of December 2020 users will no longer be able to upload reports for SCAP policies not defined within Insights.
-                Create a SCAP policy within Insights to continue reporting on your systems.
+                Support for SCAP policies NOT defined within Compliance has been removed. The associated reports for
+                these policies will be removed from Insights by Jan 11th, 2020. Create a policy within the Compliance
+                service for compliance reporting.
             </Text>
         </Alert>
     </PageHeader>
