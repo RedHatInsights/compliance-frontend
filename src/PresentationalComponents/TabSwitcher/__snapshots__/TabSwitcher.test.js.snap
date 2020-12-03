@@ -14,6 +14,7 @@ exports[`RoutedTabs expect to render first tab 1`] = `
   ouiaSafe={true}
   rightScrollAriaLabel="Scroll right"
   unmountOnExit={false}
+  variant="default"
 >
   <Tab
     eventKey="details"
@@ -47,6 +48,7 @@ exports[`RoutedTabs expect to render second tab 1`] = `
   ouiaSafe={true}
   rightScrollAriaLabel="Scroll right"
   unmountOnExit={false}
+  variant="default"
 >
   <Tab
     eventKey="details"

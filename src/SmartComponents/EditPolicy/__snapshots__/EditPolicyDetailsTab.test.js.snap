@@ -9,13 +9,10 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
   >
     <TextArea
       aria-describedby="description"
-      aria-label={null}
-      className=""
       id="description"
       isRequired={true}
       name="description"
       onChange={[Function]}
-      resizeOrientation="both"
       style={
         Object {
           "height": 110,
@@ -23,14 +20,13 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
         }
       }
       type="text"
-      validated="default"
     />
   </FormGroup>
   <FormGroup
     fieldId="business-objective"
     label="Business objective"
   >
-    <ForwardRef
+    <TextInput
       aria-describedby="business-objective"
       defaultValue="BO title"
       id="business-objective"
@@ -51,7 +47,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
     label="Compliance threshold (%)"
     validated="default"
   >
-    <ForwardRef
+    <TextInput
       aria-describedby="policy-threshold"
       defaultValue="30"
       id="compliance-threshold"

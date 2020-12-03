@@ -30,23 +30,18 @@ exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
 exports[`ReduxFormTextArea expect to render without error 1`] = `
 <TextArea
   additionalProp="Prop1"
-  aria-label={null}
-  className=""
   input={
     Object {
       "onChange": [MockFunction],
     }
   }
-  isRequired={false}
   onChange={[MockFunction]}
-  resizeOrientation="both"
   selected="SELECTED_VALUE"
-  validated="default"
 />
 `;
 
 exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
-<ForwardRef
+<TextInput
   additionalProp="Prop1"
   defaultValue="Default Value"
   input={
@@ -60,7 +55,7 @@ exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
 `;
 
 exports[`ReduxFormTextInput expect to render without error 1`] = `
-<ForwardRef
+<TextInput
   additionalProp="Prop1"
   input={
     Object {
