@@ -2,7 +2,7 @@ import BackgroundLink from './BackgroundLink';
 import { useLocation } from 'react-router-dom';
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn()
 }));
 

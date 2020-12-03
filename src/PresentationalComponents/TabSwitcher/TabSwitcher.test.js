@@ -2,7 +2,7 @@ import TabSwitcher, { ContentTab, RoutedTabSwitcher, RoutedTabs } from './TabSwi
 import { Tab } from '@patternfly/react-core';
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(() =>({
         pathname: '/path/name',
         state: {}

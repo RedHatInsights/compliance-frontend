@@ -15,7 +15,7 @@ window.insights = {
 };
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(() => ({}))
 }));
 

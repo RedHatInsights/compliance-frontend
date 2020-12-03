@@ -5,12 +5,14 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
   <Progress
     className=""
     id=""
+    isTitleTruncated={false}
     label={null}
     max={100}
     measureLocation="outside"
     min={0}
     size={null}
     title=""
+    tooltipPosition="top"
     value={90}
     valueText={null}
     variant={null}
