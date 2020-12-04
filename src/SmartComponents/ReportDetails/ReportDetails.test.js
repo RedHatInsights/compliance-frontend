@@ -9,6 +9,11 @@ import {
     ReportDetails
 } from './ReportDetails';
 
+jest.mock('Utilities/hooks/useDocumentTitle', () => ({
+    useTitleEntity: () => ({}),
+    setTitle: () => ({})
+}));
+
 const mocks = [
     {
         request: {

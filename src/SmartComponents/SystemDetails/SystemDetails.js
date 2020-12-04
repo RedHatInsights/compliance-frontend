@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {
     useQuery
@@ -23,6 +24,7 @@ import {
     StateViewPart
 } from 'PresentationalComponents';
 import { InventoryDetails } from 'SmartComponents';
+import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 
 const QUERY = gql`
 query System($inventoryId: String!){
@@ -33,12 +35,14 @@ query System($inventoryId: String!){
 }
 `;
 
-export const SystemDetails = () => {
+export const SystemDetails = ({ route }) => {
     const { inventoryId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { inventoryId }
     });
     const systemName = data?.system?.name;
+
+    useTitleEntity(route, systemName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='data'>
@@ -62,6 +66,10 @@ export const SystemDetails = () => {
             </PageHeader>
         </StateViewPart>
     </StateViewWithError>;
+};
+
+SystemDetails.propTypes = {
+    route: propTypes.object
 };
 
 export default SystemDetails;
