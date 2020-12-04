@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn()
 }));
 jest.mock('@apollo/react-hooks');

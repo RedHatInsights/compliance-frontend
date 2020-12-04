@@ -35,6 +35,8 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
     }
   }
   title="Edit Policy Name"
+  titleIconVariant={null}
+  titleLabel=""
   variant="default"
   width={1000}
 >
@@ -147,6 +149,8 @@ exports[`EditPolicy expect to render without error 1`] = `
     }
   }
   title="Edit Policy Name"
+  titleIconVariant={null}
+  titleLabel=""
   variant="default"
   width={1000}
 >

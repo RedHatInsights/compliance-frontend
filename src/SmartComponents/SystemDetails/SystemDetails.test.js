@@ -10,7 +10,7 @@ jest.mock('SmartComponents', () => ({
 jest.mock('@apollo/react-hooks');
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useHistory: jest.fn(),
     useLocation: jest.fn(),
     useParams: jest.fn(() => ({

@@ -7,12 +7,12 @@ import DeletePolicy from './DeletePolicy.js';
 jest.mock('Utilities/Dispatcher');
 
 jest.mock('@apollo/react-hooks', () => ({
-    ...require.requireActual('@apollo/react-hooks'),
+    ...jest.requireActual('@apollo/react-hooks'),
     useMutation: jest.fn(() => ({}))
 }));
 
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(() => ({})),
     useHistory: jest.fn(() => ({
         push: jest.fn()

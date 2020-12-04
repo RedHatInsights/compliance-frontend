@@ -30,6 +30,8 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   ouiaSafe={true}
   showClose={true}
   title="Delete policy"
+  titleIconVariant={null}
+  titleLabel=""
   variant="small"
 >
   <TextContent>

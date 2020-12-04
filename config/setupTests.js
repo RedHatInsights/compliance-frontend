@@ -1,4 +1,3 @@
-import fetch from 'cross-fetch';
 import { configure, mount, render, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
@@ -12,5 +11,5 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 global.React = React;
-global.fetch = fetch;
 global.toJson = toJson;
+global.fetch = function () {};

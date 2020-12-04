@@ -1,7 +1,7 @@
 import EditPolicyDetailsTab, { useThresholdValidate } from './EditPolicyDetailsTab';
 
 jest.mock('react', () => ({
-    ...require.requireActual('react'),
+    ...jest.requireActual('react'),
     useState: () => (['state', () => ({})])
 }));
 
