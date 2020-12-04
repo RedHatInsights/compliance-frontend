@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import Router from './Utilities/Router';
-import asyncComponent from './Utilities/asyncComponent';
 
 const reportsRoutes = [
     {
         path: '/reports',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports')
         )
     }, {
         path: '/reports/:report_id',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails')
         )
     }, {
         path: '/reports/:report_id/delete',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport')
         ),
         modal: true
@@ -25,29 +24,29 @@ const reportsRoutes = [
 const policiesRoutes = [
     {
         path: '/scappolicies',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies')
         )
     }, {
         path: '/scappolicies/new',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy')
         ),
         modal: true
     }, {
         path: '/scappolicies/:policy_id',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "PolicyDetails" */ 'SmartComponents/PolicyDetails/PolicyDetails')
         )
     }, {
         path: '/scappolicies/:policy_id/edit',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "EditPolicy" */ 'SmartComponents/EditPolicy/EditPolicy')
         ),
         modal: true
     }, {
         path: '/scappolicies/:policy_id/delete',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "DeletePolicy" */ 'SmartComponents/DeletePolicy/DeletePolicy')
         ),
         modal: true
@@ -57,12 +56,12 @@ const policiesRoutes = [
 const systemsRoutes = [
     {
         path: '/systems',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems')
         )
     }, {
         path: '/systems/:inventoryId',
-        component: asyncComponent(() =>
+        component: lazy(() =>
             import(/* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails')
         )
     }

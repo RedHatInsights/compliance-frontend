@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, Suspense } from 'react';
 import propTypes from 'prop-types';
 import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import some from 'lodash/some';
@@ -11,7 +11,7 @@ const Router = ({ routes }) => {
     const modalRoutes = routes.filter((route) => (route.modal));
     const paths = routes.map((route) => (route.path));
 
-    return <React.Fragment>
+    return <Suspense fallback={ Fragment }>
         <Switch location={ background || location }>
             {
                 fullPageRoutes.map((route) => (
@@ -37,7 +37,7 @@ const Router = ({ routes }) => {
             ))
         }
 
-    </React.Fragment>;
+    </Suspense>;
 };
 
 Router.propTypes = {
