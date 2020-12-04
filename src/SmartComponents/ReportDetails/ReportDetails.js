@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -19,7 +19,7 @@ import {
     StateViewWithError, StateViewPart, UnsupportedSSGVersion
 } from 'PresentationalComponents';
 import SystemsTable, { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
-
+import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 
@@ -51,7 +51,7 @@ query Profile($policyId: String!){
 }
 `;
 
-export const ReportDetails = () => {
+export const ReportDetails = ({ route }) => {
     let showSsgVersions;
     let showSsgVersionsFeature = useFeature('showSsgVersions');
     const { report_id: policyId } = useParams();
@@ -118,6 +118,8 @@ export const ReportDetails = () => {
             width: 10
         }
     }];
+
+    useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
@@ -195,6 +197,10 @@ export const ReportDetails = () => {
             </Main>
         </StateViewPart>
     </StateViewWithError>;
+};
+
+ReportDetails.propTypes = {
+    route: propTypes.object
 };
 
 export default ReportDetails;

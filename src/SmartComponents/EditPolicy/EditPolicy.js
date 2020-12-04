@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
+import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import usePolicyUpdate from './usePolicyUpdate';
 
-export const EditPolicy = () => {
+export const EditPolicy = ({ route }) => {
     const location = useLocation();
     const policy = location?.state?.policy;
     const anchor = useAnchor();
@@ -52,6 +54,8 @@ export const EditPolicy = () => {
         });
     }, [policy]);
 
+    useTitleEntity(route, policy?.name);
+
     return policy && <Modal
         isOpen
         style={ { height: '400px' } }
@@ -91,6 +95,10 @@ export const EditPolicy = () => {
             </RoutedTabs>
         </Form>
     </Modal>;
+};
+
+EditPolicy.propTypes = {
+    route: propTypes.object
 };
 
 export default EditPolicy;

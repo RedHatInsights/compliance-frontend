@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import propTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -12,6 +13,7 @@ import {
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
 import useFeature from 'Utilities/hooks/useFeature';
+import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
@@ -110,7 +112,7 @@ query Profile($policyId: String!){
 }
 `;
 
-export const PolicyDetails = () => {
+export const PolicyDetails = ({ route }) => {
     const defaultTab = 'details';
     const multiversionTabs = useFeature('multiversionTabs');
     const { policy_id: policyId } = useParams();
@@ -130,6 +132,8 @@ export const PolicyDetails = () => {
     useEffect(() => {
         refetch();
     }, [location]);
+
+    useTitleEntity(route, policy?.name);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>
@@ -183,6 +187,10 @@ export const PolicyDetails = () => {
             </Fragment> }
         </StateViewPart>
     </StateViewWithError>;
+};
+
+PolicyDetails.propTypes = {
+    route: propTypes.object
 };
 
 export default PolicyDetails;

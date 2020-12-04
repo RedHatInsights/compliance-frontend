@@ -53,6 +53,11 @@ jest.mock('react-router-dom', () => ({
     }))
 }));
 
+jest.mock('Utilities/hooks/useDocumentTitle', () => ({
+    useTitleEntity: () => ({}),
+    setTitle: () => ({})
+}));
+
 describe('PolicyDetails', () => {
     it('expect to render without error', () => {
         const wrapper = shallow(<PolicyDetails />);

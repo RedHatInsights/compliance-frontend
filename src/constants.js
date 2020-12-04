@@ -1,6 +1,9 @@
 import { version } from './../package.json';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/components/cjs/ConditionalFilter';
 
+export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
+export const DEFAULT_TITLE_SUFFIX = ` - ${ DEFAULT_TITLE }`;
+
 export const COMPLIANCE_API_ROOT = '/api/compliance';
 export const COMPLIANCE_UI_ROOT = '/rhel/compliance';
 export const INVENTORY_API_ROOT = '/api/inventory/v1';

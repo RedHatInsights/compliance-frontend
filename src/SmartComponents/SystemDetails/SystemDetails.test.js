@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
-
 import { SystemDetails } from './SystemDetails.js';
 
 jest.mock('SmartComponents', () => ({
@@ -16,6 +15,11 @@ jest.mock('react-router-dom', () => ({
     useParams: jest.fn(() => ({
         inventoryId: 1
     }))
+}));
+
+jest.mock('Utilities/hooks/useDocumentTitle', () => ({
+    useTitleEntity: () => ({}),
+    setTitle: () => ({})
 }));
 
 describe('SystemDetails', () => {
