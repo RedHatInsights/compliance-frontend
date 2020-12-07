@@ -7,15 +7,19 @@ export const profilesRulesPassed = (profiles) => (
 );
 
 export const systemRulesPassed = (system) => (
-    system.profiles ? profilesRulesPassed(system.profiles) : []
+    system.testResultProfiles ? profilesRulesPassed(system.testResultProfiles) : []
 );
 
 export const systemRulesFailed = (system) => (
-    system.profiles ? profilesRulesFailed(system.profiles) : []
+    system.testResultProfiles ? profilesRulesFailed(system.testResultProfiles) : []
 );
 
 export const systemsWithRuleObjectsFailed = (systems) => (
     systems.map(system => (
-        { ruleObjectsFailed: systemRulesFailed(system), ...system }
+        {
+            ...system,
+            ruleObjectsFailed: systemRulesFailed(system),
+            profiles: system.testResultProfiles
+        }
     ))
 );
