@@ -18,7 +18,8 @@ const mapper = {
     PopoverPosition: 'Popover',
     PageSectionVariants: 'PageSection',
     getOUIAProps: 'ouia',
-    getDefaultOUIAId: 'ouia'
+    getDefaultOUIAId: 'ouia',
+    useOUIAProps: 'ouia'
 };
 
 const frontendComponentsMappe = {

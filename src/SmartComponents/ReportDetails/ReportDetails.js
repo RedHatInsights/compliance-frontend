@@ -6,7 +6,7 @@ import {
     chart_color_blue_300 as blue300
 } from '@patternfly/react-tokens';
 import propTypes from 'prop-types';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -26,7 +26,6 @@ import {
 import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
-import useFeature from 'Utilities/hooks/useFeature';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
@@ -152,7 +151,7 @@ export const ReportDetails = ({ route }) => {
     }];
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
-	useTitleEntity(route, policyName);
+    useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='loading'>

@@ -1,12 +1,12 @@
 import { useLocation } from 'react-router-dom';
 jest.mock('react-redux', () => ({
-    ...require.requireActual('react-redux'),
+    ...jest.requireActual('react-redux'),
     useSelector: jest.fn(() => ({})),
     useDispatch: jest.fn(() => ({}))
 }));
 jest.mock('./usePolicyUpdate', () => (() => {}));
 jest.mock('react-router-dom', () => ({
-    ...require.requireActual('react-router-dom'),
+    ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(),
     useHistory: jest.fn(() => ({}))
 }));

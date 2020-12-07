@@ -252,8 +252,8 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => app
                 compliant: compliant(node),
                 score: score(node),
                 ssgVersion: profilesSsgVersions(node.profiles)
-            })
-        )]),
+            }))
+        ]),
         columns: state.total > 0 ? columns : [{ title: '' }]
     }),
     [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {

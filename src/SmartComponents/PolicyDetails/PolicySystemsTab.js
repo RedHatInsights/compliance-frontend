@@ -10,8 +10,8 @@ import useFeature from 'Utilities/hooks/useFeature';
 const PolicySystemsTab = ({ policy, systemTableProps }) => {
     const newInventory = useFeature('newInventory');
     let showSsgVersions = useFeature('showSsgVersions');
-	const InvCmp = newInventory ? InventoryTable : SystemsTable;
-	
+    const InvCmp = newInventory ? InventoryTable : SystemsTable;
+
     return (
         <InvCmp
             query={GET_SYSTEMS}
@@ -30,12 +30,12 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
                     renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
                 }
             }, ...showSsgVersions ? [{
-            	key: 'facts.compliance',
-            	title: 'SSG version',
-            	renderFunc: (profile) => (
-               		<Cells.SSGVersion { ...{ profile } } />
-            	)
-        	}] : []]}
+                key: 'facts.compliance',
+                title: 'SSG version',
+                renderFunc: (profile) => (
+                    <Cells.SSGVersion { ...{ profile } } />
+                )
+            }] : []]}
             complianceThreshold={ policy.complianceThreshold }
             { ...systemTableProps }
         />

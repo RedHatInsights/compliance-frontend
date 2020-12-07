@@ -70,7 +70,7 @@ export const EditPolicy = ({ route }) => {
     }, [policy]);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
-	useTitleEntity(route, policy?.name);
+    useTitleEntity(route, policy?.name);
 
     return policy && <Modal
         isOpen
