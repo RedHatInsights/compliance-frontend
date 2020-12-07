@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`simulate ruleObjectsFailed creates a system with ruleObjectsFailed based on profile failing rules 1`] = `
+Array [
+  Object {
+    "profiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+      },
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": false,
+            "title": "c",
+          },
+          Object {
+            "compliant": false,
+            "title": "d",
+          },
+          Object {
+            "compliant": true,
+            "title": "e",
+          },
+        ],
+      },
+    ],
+    "ruleObjectsFailed": Array [
+      Object {
+        "compliant": false,
+        "title": "b",
+      },
+      Object {
+        "compliant": false,
+        "title": "c",
+      },
+      Object {
+        "compliant": false,
+        "title": "d",
+      },
+    ],
+    "testResultProfiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+      },
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": false,
+            "title": "c",
+          },
+          Object {
+            "compliant": false,
+            "title": "d",
+          },
+          Object {
+            "compliant": true,
+            "title": "e",
+          },
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`simulate ruleObjectsFailed should set rule objects failed even if some have no profiles or rules 1`] = `
+Array [
+  Object {
+    "profiles": Array [],
+    "ruleObjectsFailed": Array [],
+    "testResultProfiles": Array [],
+  },
+  Object {
+    "profiles": Array [
+      Object {
+        "rules": Array [],
+      },
+    ],
+    "ruleObjectsFailed": Array [],
+    "testResultProfiles": Array [
+      Object {
+        "rules": Array [],
+      },
+    ],
+  },
+  Object {
+    "profiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+      },
+    ],
+    "ruleObjectsFailed": Array [
+      Object {
+        "compliant": false,
+        "title": "b",
+      },
+    ],
+    "testResultProfiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+      },
+    ],
+  },
+]
+`;
