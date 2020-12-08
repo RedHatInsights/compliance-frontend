@@ -1,11 +1,16 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import {
+    global_palette_black_300 as black300,
+    chart_color_blue_200 as blue200,
+    chart_color_blue_300 as blue300
+} from '@patternfly/react-tokens';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { ChartDonut, ChartThemeColor, ChartThemeVariant } from '@patternfly/react-charts';
+import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
 
 import {
@@ -60,6 +65,7 @@ export const ReportDetails = ({ route }) => {
     });
     let donutValues = [];
     let donutId = 'loading-donut';
+    let chartColorScale;
     let profile = {};
     let policyName;
     let legendData;
@@ -73,9 +79,11 @@ export const ReportDetails = ({ route }) => {
         const testResultHostCount = profile.testResultHostCount;
         donutId = profile.name.replace(/ /g, '');
         donutValues = [
-            { x: 'Compliant', y: compliantHostCount },
+            { x: 'Compliant', y: testResultHostCount ? compliantHostCount : '0' },
             { x: 'Non-compliant', y: testResultHostCount - compliantHostCount }
         ];
+        chartColorScale = testResultHostCount === 0 && [black300.value] ||
+            [blue300.value, blue200.value];
         legendData = [
             { name: donutValues[0].y + ' ' + pluralize(donutValues[0].y, 'system') + ' compliant' },
             { name: donutValues[1].y + ' ' + pluralize(donutValues[1].y, 'system') + ' non-compliant' }
@@ -154,8 +162,8 @@ export const ReportDetails = ({ route }) => {
                                     identifier={donutId}
                                     title={compliancePercentage}
                                     subTitle="Compliant"
-                                    themeColor={ChartThemeColor.blue}
                                     themeVariant={ChartThemeVariant.light}
+                                    colorScale={chartColorScale}
                                     style={{ fontSize: 20 }}
                                     innerRadius={88}
                                     width={462}
