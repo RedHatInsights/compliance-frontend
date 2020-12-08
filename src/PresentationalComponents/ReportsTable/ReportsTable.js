@@ -6,6 +6,7 @@ import { emptyRows } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import useTableSort from 'Utilities/hooks/useTableSort';
 import { Name, OperatingSystem, CompliantSystems } from './Cells';
+import { uniq } from 'Utilities/helpers';
 import {
     policyNameFilter, policyTypeFilter, operatingSystemFilter, policyComplianceFilter
 } from './Filters';
@@ -30,10 +31,8 @@ const ReportsTable = ({ profiles }) => {
             )
         }
     ];
-    const policyTypes = profiles.map(({ policy }) => (policy)).filter((i) => (!!i));
-    const operatingSystems = [...new Set(
-        profiles.map(({ majorOsVersion }) => (majorOsVersion)).filter((i) => (!!i))
-    )];
+    const policyTypes = uniq(profiles.map(({ policyType }) => (policyType)).filter((i) => (!!i)));
+    const operatingSystems = uniq(profiles.map(({ majorOsVersion }) => (majorOsVersion)).filter((i) => (!!i)));
     const { conditionalFilter, filtered: filteredProfiles } = useFilterConfig([
         ...policyNameFilter,
         ...policyTypes.length > 0 && policyTypeFilter(policyTypes) || [],
