@@ -385,6 +385,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                               className="chart-container"
                             >
                               <ChartDonut
+                                colorScale={
+                                  Array [
+                                    "#06c",
+                                    "#519de9",
+                                  ]
+                                }
                                 data={
                                   Array [
                                     Object {
@@ -425,7 +431,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   }
                                 }
                                 subTitle="Compliant"
-                                themeColor="blue"
                                 themeVariant="light"
                                 title="50%"
                                 width={462}
@@ -1370,6 +1375,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                       >
                                         <ChartPie
                                           allowTooltip={true}
+                                          colorScale={
+                                            Array [
+                                              "#06c",
+                                              "#519de9",
+                                            ]
+                                          }
                                           data={
                                             Array [
                                               Object {
@@ -1866,6 +1877,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           width={462}
                                         >
                                           <VictoryPie
+                                            colorScale={
+                                              Array [
+                                                "#06c",
+                                                "#519de9",
+                                              ]
+                                            }
                                             containerComponent={
                                               <VictoryContainer
                                                 className="VictoryContainer"
@@ -3022,7 +3039,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 }
                                                 style={
                                                   Object {
-                                                    "fill": "#8bc1f7",
+                                                    "fill": "#519de9",
                                                     "padding": 8,
                                                     "stroke": "transparent",
                                                     "strokeWidth": 1,
@@ -3041,7 +3058,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   shapeRendering="auto"
                                                   style={
                                                     Object {
-                                                      "fill": "#8bc1f7",
+                                                      "fill": "#519de9",
                                                       "padding": 8,
                                                       "stroke": "transparent",
                                                       "strokeWidth": 1,
@@ -3061,7 +3078,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     shapeRendering="auto"
                                                     style={
                                                       Object {
-                                                        "fill": "#8bc1f7",
+                                                        "fill": "#519de9",
                                                         "padding": 8,
                                                         "stroke": "transparent",
                                                         "strokeWidth": 1,
@@ -8968,6 +8985,12 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               className="chart-container"
             >
               <ChartDonut
+                colorScale={
+                  Array [
+                    "#06c",
+                    "#519de9",
+                  ]
+                }
                 data={
                   Array [
                     Object {
@@ -9008,7 +9031,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   }
                 }
                 subTitle="Compliant"
-                themeColor="blue"
                 themeVariant="light"
                 title="50%"
                 width={462}
@@ -9254,6 +9276,12 @@ exports[`ReportDetails expect to render without ssg version for external profile
               className="chart-container"
             >
               <ChartDonut
+                colorScale={
+                  Array [
+                    "#06c",
+                    "#519de9",
+                  ]
+                }
                 data={
                   Array [
                     Object {
@@ -9294,7 +9322,6 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   }
                 }
                 subTitle="Compliant"
-                themeColor="blue"
                 themeVariant="light"
                 title="50%"
                 width={462}
