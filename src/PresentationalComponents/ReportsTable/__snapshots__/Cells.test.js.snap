@@ -101,6 +101,11 @@ exports[`OperatingSystem expect to render with SSG version 1`] = `
     RHEL 
     7
   </Label>
+  <Text>
+    <GreySmallText>
+      SSG: 1.2.3
+    </GreySmallText>
+  </Text>
 </Fragment>
 `;
 
@@ -112,6 +117,13 @@ exports[`OperatingSystem expect to render with unsupported warning 1`] = `
     RHEL 
     7
   </Label>
+  <Text>
+    <GreySmallText>
+      <UnsupportedSSGVersion>
+        SSG: 1.2.3
+      </UnsupportedSSGVersion>
+    </GreySmallText>
+  </Text>
 </Fragment>
 `;
 
