@@ -8821,6 +8821,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 ]
                               }
                               compliantFilter={true}
+                              defaultFilter="with_results_for_policy_id = 1"
                               policyId="1"
                               showOnlySystemsWithTestResults={true}
                             >
@@ -9135,6 +9136,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               ]
             }
             compliantFilter={true}
+            defaultFilter="with_results_for_policy_id = 1"
             policyId="1"
             showOnlySystemsWithTestResults={true}
           />
@@ -9415,6 +9417,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
               ]
             }
             compliantFilter={true}
+            defaultFilter="with_results_for_policy_id = 1"
             policyId="1"
             showOnlySystemsWithTestResults={true}
           />

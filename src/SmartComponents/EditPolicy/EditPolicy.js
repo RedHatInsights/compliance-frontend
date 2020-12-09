@@ -83,6 +83,7 @@ export const EditPolicy = ({ route }) => {
                         showAllSystems
                         remediationsEnabled={ false }
                         policyId={ policy.id }
+                        defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
                             key: 'facts.compliance.display_name',
                             title: 'System name',

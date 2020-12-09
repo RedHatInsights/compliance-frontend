@@ -101,6 +101,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
             ]
           }
           compact={true}
+          defaultFilter="policy_id = POLICY_ID"
           enableExport={false}
           policyId="POLICY_ID"
           preselectedSystems={Array []}
@@ -215,6 +216,7 @@ exports[`EditPolicy expect to render without error 1`] = `
             ]
           }
           compact={true}
+          defaultFilter="policy_id = POLICY_ID"
           enableExport={false}
           policyId="POLICY_ID"
           preselectedSystems={Array []}
