@@ -9,6 +9,7 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
 
     return <SystemsTable
         policyId={ policy.id }
+        defaultFilter={`policy_id = ${policy.id}`}
         showActions={ false }
         remediationsEnabled={ false }
         columns={[{

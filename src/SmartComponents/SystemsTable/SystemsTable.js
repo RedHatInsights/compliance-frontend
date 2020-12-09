@@ -176,19 +176,15 @@ class SystemsTable extends React.Component {
     }
 
     fetchSystems = () => {
-        const { client, showOnlySystemsWithTestResults, remediationsEnabled } = this.props;
+        const { defaultFilter, client, showOnlySystemsWithTestResults, remediationsEnabled } = this.props;
         const { policyId, perPage, page, activeFilters } = this.state;
-        let filter = this.filterBuilder.buildFilterString(activeFilters);
+        let filter = [
+            defaultFilter,
+            showOnlySystemsWithTestResults && 'has_test_results = true',
+            this.filterBuilder.buildFilterString(activeFilters)
+        ].filter((e)=>!!e).join(' and ');
 
-        if (showOnlySystemsWithTestResults) {
-            filter = `has_test_results = true ${filter.length > 0 ? `and ${filter}` : ''}`;
-        }
-
-        let variables = { filter, perPage, page };
-        if (policyId) {
-            filter = `policy_id = ${policyId} and ${filter}`;
-            variables = { ...variables, filter, policyId };
-        }
+        let variables = { filter, perPage, page, policyId };
 
         return client.query({
             query: remediationsEnabled ? GET_SYSTEMS : GET_SYSTEMS_WITHOUT_FAILED_RULES,
@@ -417,6 +413,7 @@ SystemsTable.propTypes = {
     exportFromState: propTypes.func,
     policies: propTypes.array,
     policyId: propTypes.string,
+    defaultFilter: propTypes.string,
     preselectedSystems: propTypes.array,
     remediationsEnabled: propTypes.bool,
     selectAll: propTypes.func,

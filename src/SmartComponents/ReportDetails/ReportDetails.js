@@ -198,6 +198,7 @@ export const ReportDetails = ({ route }) => {
                         <SystemsTable
                             showOnlySystemsWithTestResults
                             compliantFilter
+                            defaultFilter={`with_results_for_policy_id = ${profile.id}`}
                             policyId={profile.id}
                             columns={columns} />
                     </GridItem>
