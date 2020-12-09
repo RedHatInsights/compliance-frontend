@@ -24,21 +24,21 @@ Name.propTypes = {
     profile: propTypes.object
 };
 
-export const OperatingSystem = ({ majorOsVersion, ssgVersion, totalHostCount, policy }) => {
+export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupportedHostCount, policy }) => {
     const rhelColorMap = {
         7: 'cyan',
         8: 'purple',
         default: 'var(--pf-global--disabled-color--200)'
     };
     const color = rhelColorMap[majorOsVersion] || rhelColorMap.default;
-    const supported = totalHostCount > 0;
+    const supported = unsupportedHostCount === 0;
     ssgVersion = 'SSG: ' + ssgVersion;
 
     return <React.Fragment>
         <Label { ...{ color } }>RHEL { majorOsVersion }</Label>
         { policy === null && ssgVersion && <Text>
             <GreySmallText>
-                { supported ? <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> : ssgVersion }
+                { supported ? ssgVersion : <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> }
             </GreySmallText>
         </Text> }
     </React.Fragment>;
@@ -47,7 +47,7 @@ export const OperatingSystem = ({ majorOsVersion, ssgVersion, totalHostCount, po
 OperatingSystem.propTypes = {
     majorOsVersion: propTypes.string,
     ssgVersion: propTypes.string,
-    totalHostCount: propTypes.number,
+    unsupportedHostCount: propTypes.number,
     policy: propTypes.object
 };
 
