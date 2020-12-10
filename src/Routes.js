@@ -11,7 +11,7 @@ const reportsRoutes = [
         )
     }, {
         path: '/reports/:report_id',
-        title: `$entityTitle - ${ defaultReportTitle }`,
+        title: `Report: $entityTitle - ${ defaultReportTitle }`,
         defaultTitle: defaultReportTitle,
         component: lazy(() =>
             import(/* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDetails/ReportDetails')

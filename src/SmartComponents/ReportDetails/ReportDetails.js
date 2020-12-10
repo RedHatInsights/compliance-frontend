@@ -70,11 +70,13 @@ export const ReportDetails = ({ route }) => {
     let policyName;
     let legendData;
     let compliancePercentage;
+    let pageTitle;
 
     if (!loading && data) {
         profile = data.profile;
         policyName = profile.policy ? profile.policy.name : profile.name;
         showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
+        pageTitle = `Report: ${ policyName }`;
         const compliantHostCount = profile.compliantHostCount;
         const testResultHostCount = profile.testResultHostCount;
         donutId = profile.name.replace(/ /g, '');
@@ -140,11 +142,11 @@ export const ReportDetails = ({ route }) => {
                     <BreadcrumbLinkItem to='/reports'>
                         Reports
                     </BreadcrumbLinkItem>
-                    <BreadcrumbItem isActive>{policyName}</BreadcrumbItem>
+                    <BreadcrumbItem isActive>{ pageTitle }</BreadcrumbItem>
                 </Breadcrumb>
                 <Grid hasGutter>
                     <GridItem sm={9} md={9} lg={9} xl={9}>
-                        <PageHeaderTitle title={policyName + ' report'} />
+                        <PageHeaderTitle title={ pageTitle } />
                     </GridItem>
                     <GridItem className='report-details-button' sm={3} md={3} lg={3} xl={3}>
                         <BackgroundLink
