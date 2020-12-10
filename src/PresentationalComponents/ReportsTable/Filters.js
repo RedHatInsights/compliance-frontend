@@ -14,15 +14,15 @@ export const policyNameFilter = [{
     }
 }];
 
-export const policyTypeFilter = (policies) => ([{
+export const policyTypeFilter = (policyTypes) => ([{
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
     filter: (profiles, values) => (
-        profiles.filter(({ policy }) => values.includes(policy?.id))
+        profiles.filter(({ policyType }) => values.includes(policyType))
     ),
-    items: policies.map((policy) => ({
-        label: policy.name,
-        value: policy.id
+    items: policyTypes.map((policyType) => ({
+        label: policyType,
+        value: policyType
     }))
 }]);
 
