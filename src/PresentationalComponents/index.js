@@ -26,3 +26,4 @@ export { default as NoResultsTable, emptyRows } from './NoResultsTable/NoResults
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
 export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
+export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
