@@ -21,7 +21,7 @@ import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import useFeature from 'Utilities/hooks/useFeature';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
-    StateViewWithError, StateViewPart, UnsupportedSSGVersion
+    StateViewWithError, StateViewPart, UnsupportedSSGVersion, SubPageTitle
 } from 'PresentationalComponents';
 import SystemsTable, { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
@@ -40,6 +40,7 @@ query Profile($policyId: String!){
         complianceThreshold
         majorOsVersion
         lastScanned
+        policyType
         policy {
             id
             name
@@ -147,6 +148,9 @@ export const ReportDetails = ({ route }) => {
                 <Grid hasGutter>
                     <GridItem sm={9} md={9} lg={9} xl={9}>
                         <PageHeaderTitle title={ pageTitle } />
+                        <SubPageTitle>
+                            { profile.policyType }
+                        </SubPageTitle>
                     </GridItem>
                     <GridItem className='report-details-button' sm={3} md={3} lg={3} xl={3}>
                         <BackgroundLink
