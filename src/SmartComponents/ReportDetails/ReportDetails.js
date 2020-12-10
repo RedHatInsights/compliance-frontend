@@ -101,12 +101,6 @@ export const ReportDetails = ({ route }) => {
         props: {
             width: 30
         }
-    }, {
-        key: 'facts.compliance.rules_failed',
-        title: 'Rules failed',
-        props: {
-            width: 5
-        }
     }, ...showSsgVersions ? [{
         key: 'facts.compliance',
         title: 'SSG version',
@@ -117,6 +111,12 @@ export const ReportDetails = ({ route }) => {
             profile && <Cells.SSGVersion { ...{ profile } } />
         )
     }] : [], {
+        key: 'facts.compliance.rules_failed',
+        title: 'Failed rules',
+        props: {
+            width: 5
+        }
+    }, {
         key: 'facts.compliance.compliance_score',
         title: 'Compliance score',
         props: {
