@@ -208,7 +208,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 </svg>
                               </AngleRightIcon>
                             </span>
-                            the policy name
+                            Report: the policy name
                           </li>
                         </BreadcrumbItem>
                       </ol>
@@ -230,7 +230,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                           className="pf-l-grid__item pf-m-9-col-on-sm pf-m-9-col-on-md pf-m-9-col-on-lg pf-m-9-col-on-xl"
                         >
                           <PageHeaderTitle
-                            title="the policy name report"
+                            title="Report: the policy name"
                           >
                             <Title
                               className=""
@@ -243,11 +243,35 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 widget-type="InsightsPageHeaderTitle"
                               >
                                  
-                                the policy name report
+                                Report: the policy name
                                  
                               </h1>
                             </Title>
                           </PageHeaderTitle>
+                          <SubPageTitle>
+                            <Text
+                              component="h2"
+                              style={
+                                Object {
+                                  "color": "var(--pf-global--Color--200)",
+                                  "lineHeight": "2rem",
+                                }
+                              }
+                            >
+                              <h2
+                                className=""
+                                data-pf-content={true}
+                                style={
+                                  Object {
+                                    "color": "var(--pf-global--Color--200)",
+                                    "lineHeight": "2rem",
+                                  }
+                                }
+                              >
+                                policy type
+                              </h2>
+                            </Text>
+                          </SubPageTitle>
                         </div>
                       </GridItem>
                       <GridItem
@@ -8802,7 +8826,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                     "props": Object {
                                       "width": 5,
                                     },
-                                    "title": "Rules failed",
+                                    "title": "Failed rules",
                                   },
                                   Object {
                                     "key": "facts.compliance.compliance_score",
@@ -8908,7 +8932,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         <BreadcrumbItem
           isActive={true}
         >
-          the policy name
+          Report: the policy name
         </BreadcrumbItem>
       </Breadcrumb>
       <Grid
@@ -8921,8 +8945,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           xl={9}
         >
           <PageHeaderTitle
-            title="the policy name report"
+            title="Report: the policy name"
           />
+          <SubPageTitle>
+            policy type
+          </SubPageTitle>
         </GridItem>
         <GridItem
           className="report-details-button"
@@ -9105,19 +9132,19 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "title": "System name",
                 },
                 Object {
-                  "key": "facts.compliance.rules_failed",
-                  "props": Object {
-                    "width": 5,
-                  },
-                  "title": "Rules failed",
-                },
-                Object {
                   "key": "facts.compliance",
                   "props": Object {
                     "width": 5,
                   },
                   "renderFunc": [Function],
                   "title": "SSG version",
+                },
+                Object {
+                  "key": "facts.compliance.rules_failed",
+                  "props": Object {
+                    "width": 5,
+                  },
+                  "title": "Failed rules",
                 },
                 Object {
                   "key": "facts.compliance.compliance_score",
@@ -9203,7 +9230,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
         <BreadcrumbItem
           isActive={true}
         >
-          profile1
+          Report: profile1
         </BreadcrumbItem>
       </Breadcrumb>
       <Grid
@@ -9216,8 +9243,11 @@ exports[`ReportDetails expect to render without ssg version for external profile
           xl={9}
         >
           <PageHeaderTitle
-            title="profile1 report"
+            title="Report: profile1"
           />
+          <SubPageTitle>
+            policy type
+          </SubPageTitle>
         </GridItem>
         <GridItem
           className="report-details-button"
@@ -9398,7 +9428,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "props": Object {
                     "width": 5,
                   },
-                  "title": "Rules failed",
+                  "title": "Failed rules",
                 },
                 Object {
                   "key": "facts.compliance.compliance_score",
