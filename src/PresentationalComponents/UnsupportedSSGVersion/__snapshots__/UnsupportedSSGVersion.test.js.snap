@@ -13,6 +13,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     tooltipProps={
       Object {
         "content": <div />,
+        "messageVariant": undefined,
       }
     }
     variant="popover"
@@ -35,6 +36,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     tooltipProps={
       Object {
         "content": <div />,
+        "messageVariant": undefined,
       }
     }
     variant="popover"
@@ -67,6 +69,41 @@ exports[`UnsupportedSSGVersion expect to render no warning sign 1`] = `
 </span>
 `;
 
+exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
+<span
+  style={
+    Object {
+      "display": "inline-block",
+      "margin": "1em",
+    }
+  }
+>
+  <TooltipOrPopover
+    tooltipProps={
+      Object {
+        "content": <div />,
+        "messageVariant": "singular",
+      }
+    }
+    variant="popover"
+  >
+    <ExclamationTriangleIcon
+      className="ins-u-warning"
+      color="currentColor"
+      noVerticalAlign={false}
+      size="sm"
+      style={
+        Object {
+          "cursor": "pointer",
+          "marginRight": ".25em",
+        }
+      }
+    />
+  </TooltipOrPopover>
+  Unsupported text
+</span>
+`;
+
 exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
 <span
   style={
@@ -82,6 +119,7 @@ exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
         "content": <div>
           TOOLTIP TEXT
         </div>,
+        "messageVariant": undefined,
       }
     }
     variant="tooltip"
@@ -115,6 +153,7 @@ exports[`UnsupportedSSGVersion expect to render without error 1`] = `
     tooltipProps={
       Object {
         "content": <div />,
+        "messageVariant": undefined,
       }
     }
     variant="popover"

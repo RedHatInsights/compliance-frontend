@@ -4,7 +4,7 @@ import { UnsupportedSSGVersion } from 'PresentationalComponents';
 
 const SSGVersion = ({ profile }) => (
     profile.supported && profile.ssg_version ||
-    <UnsupportedSSGVersion>
+    <UnsupportedSSGVersion messageVariant='singular'>
         { profile.ssg_version }
     </UnsupportedSSGVersion>
 );
