@@ -8292,13 +8292,32 @@ exports[`ReportDetails expect to render without error 1`] = `
                                     tooltipProps={
                                       Object {
                                         "content": <div />,
+                                        "messageVariant": undefined,
                                       }
                                     }
                                     variant="popover"
                                   >
-                                    <WarningWithPopup>
+                                    <WarningWithPopover>
                                       <Popover
-                                        bodyContent="This system is running an unsupported version of the SCAP Security Guide (SSG).This information is based on the last report uploaded for this system to the Compliance service."
+                                        bodyContent={
+                                          <React.Fragment>
+                                            <Text
+                                              style={
+                                                Object {
+                                                  "marginBottom": "1rem",
+                                                }
+                                              }
+                                              variant="p"
+                                            >
+                                              These systems are running unsupported versions of the SCAP Security Guide (SSG) for the version of RHEL installed on them. Assessment of rules failed/passed on these systems is a best-guess effort and may not be accurate.
+                                            </Text>
+                                            <Text
+                                              variant="p"
+                                            >
+                                              The policy's compliance score excludes these systems.
+                                            </Text>
+                                          </React.Fragment>
+                                        }
                                         footerContent={
                                           <a
                                             href="https://access.redhat.com/documentation/en-us/red_hat_insights/2020-10/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compl-assess-overview-con#compl-assess-supported-configurations-con"
@@ -8310,6 +8329,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         }
                                         headerContent="Unsupported SSG versions"
                                         id="unsupported-popover"
+                                        maxWidth="25rem"
                                       >
                                         <Popper
                                           appendTo={[Function]}
@@ -8350,7 +8370,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               role="dialog"
                                               style={
                                                 Object {
-                                                  "maxWidth": null,
+                                                  "maxWidth": "25rem",
                                                   "minWidth": null,
                                                   "opacity": 0,
                                                   "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -8371,7 +8391,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 <PopoverBody
                                                   id="popover-unsupported-popover-body"
                                                 >
-                                                  This system is running an unsupported version of the SCAP Security Guide (SSG).This information is based on the last report uploaded for this system to the Compliance service.
+                                                  <React.Fragment>
+                                                    <Text
+                                                      style={
+                                                        Object {
+                                                          "marginBottom": "1rem",
+                                                        }
+                                                      }
+                                                      variant="p"
+                                                    >
+                                                      These systems are running unsupported versions of the SCAP Security Guide (SSG) for the version of RHEL installed on them. Assessment of rules failed/passed on these systems is a best-guess effort and may not be accurate.
+                                                    </Text>
+                                                    <Text
+                                                      variant="p"
+                                                    >
+                                                      The policy's compliance score excludes these systems.
+                                                    </Text>
+                                                  </React.Fragment>
                                                 </PopoverBody>
                                                 <PopoverFooter
                                                   id="popover-unsupported-popover-footer"
@@ -8451,7 +8487,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           </FindRefWrapper>
                                         </Popper>
                                       </Popover>
-                                    </WarningWithPopup>
+                                    </WarningWithPopover>
                                   </TooltipOrPopover>
                                   <strong
                                     className="ins-u-warning"
@@ -8463,13 +8499,32 @@ exports[`ReportDetails expect to render without error 1`] = `
                                     tooltipProps={
                                       Object {
                                         "content": <div />,
+                                        "messageVariant": undefined,
                                       }
                                     }
                                     variant="popover"
                                   >
-                                    <WarningWithPopup>
+                                    <WarningWithPopover>
                                       <Popover
-                                        bodyContent="This system is running an unsupported version of the SCAP Security Guide (SSG).This information is based on the last report uploaded for this system to the Compliance service."
+                                        bodyContent={
+                                          <React.Fragment>
+                                            <Text
+                                              style={
+                                                Object {
+                                                  "marginBottom": "1rem",
+                                                }
+                                              }
+                                              variant="p"
+                                            >
+                                              These systems are running unsupported versions of the SCAP Security Guide (SSG) for the version of RHEL installed on them. Assessment of rules failed/passed on these systems is a best-guess effort and may not be accurate.
+                                            </Text>
+                                            <Text
+                                              variant="p"
+                                            >
+                                              The policy's compliance score excludes these systems.
+                                            </Text>
+                                          </React.Fragment>
+                                        }
                                         footerContent={
                                           <a
                                             href="https://access.redhat.com/documentation/en-us/red_hat_insights/2020-10/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/compl-assess-overview-con#compl-assess-supported-configurations-con"
@@ -8481,6 +8536,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                         }
                                         headerContent="Unsupported SSG versions"
                                         id="unsupported-popover"
+                                        maxWidth="25rem"
                                       >
                                         <Popper
                                           appendTo={[Function]}
@@ -8521,7 +8577,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               role="dialog"
                                               style={
                                                 Object {
-                                                  "maxWidth": null,
+                                                  "maxWidth": "25rem",
                                                   "minWidth": null,
                                                   "opacity": 0,
                                                   "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -8542,7 +8598,23 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                 <PopoverBody
                                                   id="popover-unsupported-popover-body"
                                                 >
-                                                  This system is running an unsupported version of the SCAP Security Guide (SSG).This information is based on the last report uploaded for this system to the Compliance service.
+                                                  <React.Fragment>
+                                                    <Text
+                                                      style={
+                                                        Object {
+                                                          "marginBottom": "1rem",
+                                                        }
+                                                      }
+                                                      variant="p"
+                                                    >
+                                                      These systems are running unsupported versions of the SCAP Security Guide (SSG) for the version of RHEL installed on them. Assessment of rules failed/passed on these systems is a best-guess effort and may not be accurate.
+                                                    </Text>
+                                                    <Text
+                                                      variant="p"
+                                                    >
+                                                      The policy's compliance score excludes these systems.
+                                                    </Text>
+                                                  </React.Fragment>
                                                 </PopoverBody>
                                                 <PopoverFooter
                                                   id="popover-unsupported-popover-footer"
@@ -8619,7 +8691,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           </FindRefWrapper>
                                         </Popper>
                                       </Popover>
-                                    </WarningWithPopup>
+                                    </WarningWithPopover>
                                   </TooltipOrPopover>
                                 </span>
                               </UnsupportedSSGVersion>

@@ -44,4 +44,14 @@ describe('UnsupportedSSGVersion', () => {
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
+
+    it('expect to render singular message', () => {
+        const wrapper = shallow(
+            <UnsupportedSSGVersion { ...defaultProps } messageVariant='singular'>
+                Unsupported text
+            </UnsupportedSSGVersion>
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 });
