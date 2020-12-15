@@ -77,7 +77,7 @@ describe('ReportDetails', () => {
     };
 
     beforeEach(() => {
-        useFeature.mockImplementation(() => (false));
+        useFeature.mockImplementation(() => (true));
         useMutation.mockImplementation(() => ([() => {}]));
         useQuery.mockImplementation(() => ({ data: mocks[0].result.data, error: false, loading: false }));
         window.insights = {
