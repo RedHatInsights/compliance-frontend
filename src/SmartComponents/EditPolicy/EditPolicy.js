@@ -10,6 +10,8 @@ import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import usePolicyUpdate from './usePolicyUpdate';
 import useFeature from 'Utilities/hooks/useFeature';
+import { systemName } from 'Store/Reducers/SystemStore';
+import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 
 export const EditPolicy = ({ route }) => {
     const newInventory = useFeature('newInventory');
@@ -99,6 +101,7 @@ export const EditPolicy = ({ route }) => {
                         showAllSystems
                         remediationsEnabled={ false }
                         policyId={ policy.id }
+                        query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
                         defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
                             key: 'facts.compliance.display_name',
@@ -107,7 +110,10 @@ export const EditPolicy = ({ route }) => {
                                 width: 40, isStatic: true
                             },
                             ...newInventory && {
-                                key: 'display_name'
+                                key: 'display_name',
+                                renderFunc: (displayName, id, extra) => {
+                                    return extra?.lastScanned ? systemName(displayName, id, extra) : displayName;
+                                }
                             }
                         }]}
                         preselectedSystems={ policy?.hosts.map((h) => ({ id: h.id })) || [] } />

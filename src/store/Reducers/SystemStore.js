@@ -244,14 +244,16 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => app
             })),
             state.systems?.map(({ node }) => ({
                 ...node,
-                ...showAllSystems && { profiles: node.profiles || [] },
-                policyNames: policiesCell(node),
-                rulesPassed: profilesRulesPassed(node.profiles).length,
-                rulesFailed: profilesRulesFailed(node.profiles).length,
+                ...showAllSystems && { testResultProfiles: [], policies: [] },
+                policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
+                rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
+                rulesFailed: profilesRulesFailed(node.testResultProfiles).length,
                 lastScanned: lastScanned(node),
                 compliant: compliant(node),
                 score: score(node),
-                ssgVersion: profilesSsgVersions(node.profiles)
+                supported: supported(node),
+                ssgVersion: profilesSsgVersions(node),
+                detailsLink: detailsLink(node)
             }))
         ]),
         columns: state.total > 0 ? columns : [{ title: '' }]

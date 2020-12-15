@@ -6,7 +6,7 @@ import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/fronte
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
-import { systemName } from 'Store/Reducers/SystemStore';
+import { systemName, detailsLink, policiesCell } from 'Store/Reducers/SystemStore';
 import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
@@ -42,12 +42,26 @@ export const ComplianceSystems = () => {
         title: 'Policies',
         props: {
             width: 40, isStatic: true
+        },
+        ...newInventory && {
+            key: 'policyNames',
+            renderFunc: (policyNames) => {
+                const { title } = policiesCell({ policyNames }) || { title: '' };
+                return title;
+            }
         }
     }, {
         key: 'facts.compliance.details_link',
         title: '',
         props: {
             width: 20, isStatic: true
+        },
+        ...newInventory && {
+            key: 'testResultProfiles',
+            renderFunc: (data, id) => {
+                const { title } = detailsLink({ testResultProfiles: data, id }) || { title: '' };
+                return title;
+            }
         }
     }];
     const policies = data?.profiles?.edges.map(({ node }) => node);

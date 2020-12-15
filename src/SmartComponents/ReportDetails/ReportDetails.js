@@ -6,7 +6,7 @@ import {
     chart_color_blue_300 as blue300
 } from '@patternfly/react-tokens';
 import propTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -28,7 +28,7 @@ import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
+import { GET_SYSTEMS } from '../SystemsTable/constants';
 import { systemName } from 'Store/Reducers/SystemStore';
 import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { ComplianceScore as complianceScore } from 'PresentationalComponents';
@@ -125,6 +125,10 @@ export const ReportDetails = ({ route }) => {
         title: 'Failed rules',
         props: {
             width: 5
+        },
+        ...newInventory && {
+            key: 'rulesFailed',
+            renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
         }
     }, {
         key: 'facts.compliance.compliance_score',
@@ -223,7 +227,7 @@ export const ReportDetails = ({ route }) => {
                 <Grid hasGutter>
                     <GridItem span={12}>
                         <InvCmp
-                            query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
+                            query={GET_SYSTEMS}
                             showOnlySystemsWithTestResults
                             compliantFilter
                             defaultFilter={`with_results_for_policy_id = ${profile.id}`}

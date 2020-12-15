@@ -38,7 +38,7 @@ export const asyncInventoryLoader = () => insights.loadInventory({
 });
 
 export const GET_SYSTEMS = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
     systems(search: $filter, limit: $perPage, offset: $page) {
         totalCount
         edges {
@@ -47,7 +47,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles {
+                testResultProfiles(policyId: $policyId) {
                     id
                     name
                     refId
@@ -55,12 +55,18 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                     compliant
                     external
                     score
+                    supported
+                    ssgVersion
                     rules {
                         refId
                         title
                         compliant
                         remediationAvailable
                     }
+                }
+                policies(policyId: $policyId) {
+                    id
+                    name
                 }
             }
         }
@@ -69,7 +75,7 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
 `;
 
 export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
-query getSystems($filter: String!, $perPage: Int, $page: Int) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
     systems(search: $filter, limit: $perPage, offset: $page) {
         totalCount
         edges {
@@ -78,20 +84,22 @@ query getSystems($filter: String!, $perPage: Int, $page: Int) {
                 name
                 osMajorVersion
                 osMinorVersion
-                profiles {
+                testResultProfiles(policyId: $policyId) {
                     id
                     name
                     lastScanned
                     external
                     compliant
                     score
-                    rules {
-                        id
-                        compliant
-                    }
+                    supported
+                    ssgVersion
                     policy {
                         id
                     }
+                }
+                policies(policyId: $policyId) {
+                    id
+                    name
                 }
             }
         }

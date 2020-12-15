@@ -20,13 +20,13 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
             key: 'display_name'
         }
     }, {
-        key: 'facts.compliance.profiles',
+        key: 'facts.compliance.policies',
         title: 'Policies',
         props: {
             width: 40, isStatic: true
         },
         ...newInventory && {
-            key: 'profiles'
+            key: 'policies'
         }
     }];
 

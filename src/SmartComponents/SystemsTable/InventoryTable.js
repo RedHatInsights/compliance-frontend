@@ -39,7 +39,8 @@ const InventoryTable = ({
     showComplianceSystemsInfo,
     compact,
     remediationsEnabled,
-    systemProps
+    systemProps,
+    defaultFilter
 }) => {
     const store = useStore();
     const dispatch = useDispatch();
@@ -72,13 +73,13 @@ const InventoryTable = ({
             fetchPolicy: 'no-cache',
             variables: {
                 filter: [
+                    ...defaultFilter ? [defaultFilter] : [],
                     ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
-                    ...filter?.length > 0 ? [filter] : [],
-                    ...policyId?.length > 0 ? [`policy_id = ${policyId}`] : []
+                    ...filter?.length > 0 ? [filter] : []
                 ].join(' and '),
                 perPage,
                 page,
-                policyId
+                ...policyId && { policyId }
             }
         }).then(({ data, loading }) => {
             dispatch({
@@ -207,6 +208,7 @@ InventoryTable.propTypes = {
     error: PropTypes.object,
     compact: PropTypes.bool,
     remediationsEnabled: PropTypes.bool,
+    defaultFilter: PropTypes.string,
     systemProps: PropTypes.shape({
         isFullView: PropTypes.bool
     })
