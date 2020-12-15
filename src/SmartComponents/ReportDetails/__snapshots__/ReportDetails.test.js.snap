@@ -9077,12 +9077,27 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                             },
                                                             Object {
                                                               "alias": undefined,
-                                                              "arguments": Array [],
+                                                              "arguments": Array [
+                                                                Object {
+                                                                  "kind": "Argument",
+                                                                  "name": Object {
+                                                                    "kind": "Name",
+                                                                    "value": "policyId",
+                                                                  },
+                                                                  "value": Object {
+                                                                    "kind": "Variable",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
+                                                                      "value": "policyId",
+                                                                    },
+                                                                  },
+                                                                },
+                                                              ],
                                                               "directives": Array [],
                                                               "kind": "Field",
                                                               "name": Object {
                                                                 "kind": "Name",
-                                                                "value": "profiles",
+                                                                "value": "testResultProfiles",
                                                               },
                                                               "selectionSet": Object {
                                                                 "kind": "SelectionSet",
@@ -9116,7 +9131,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                     "kind": "Field",
                                                                     "name": Object {
                                                                       "kind": "Name",
-                                                                      "value": "lastScanned",
+                                                                      "value": "refId",
                                                                     },
                                                                     "selectionSet": undefined,
                                                                   },
@@ -9127,7 +9142,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                     "kind": "Field",
                                                                     "name": Object {
                                                                       "kind": "Name",
-                                                                      "value": "external",
+                                                                      "value": "lastScanned",
                                                                     },
                                                                     "selectionSet": undefined,
                                                                   },
@@ -9149,7 +9164,40 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                     "kind": "Field",
                                                                     "name": Object {
                                                                       "kind": "Name",
+                                                                      "value": "external",
+                                                                    },
+                                                                    "selectionSet": undefined,
+                                                                  },
+                                                                  Object {
+                                                                    "alias": undefined,
+                                                                    "arguments": Array [],
+                                                                    "directives": Array [],
+                                                                    "kind": "Field",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
                                                                       "value": "score",
+                                                                    },
+                                                                    "selectionSet": undefined,
+                                                                  },
+                                                                  Object {
+                                                                    "alias": undefined,
+                                                                    "arguments": Array [],
+                                                                    "directives": Array [],
+                                                                    "kind": "Field",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
+                                                                      "value": "supported",
+                                                                    },
+                                                                    "selectionSet": undefined,
+                                                                  },
+                                                                  Object {
+                                                                    "alias": undefined,
+                                                                    "arguments": Array [],
+                                                                    "directives": Array [],
+                                                                    "kind": "Field",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
+                                                                      "value": "ssgVersion",
                                                                     },
                                                                     "selectionSet": undefined,
                                                                   },
@@ -9172,7 +9220,18 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                           "kind": "Field",
                                                                           "name": Object {
                                                                             "kind": "Name",
-                                                                            "value": "id",
+                                                                            "value": "refId",
+                                                                          },
+                                                                          "selectionSet": undefined,
+                                                                        },
+                                                                        Object {
+                                                                          "alias": undefined,
+                                                                          "arguments": Array [],
+                                                                          "directives": Array [],
+                                                                          "kind": "Field",
+                                                                          "name": Object {
+                                                                            "kind": "Name",
+                                                                            "value": "title",
                                                                           },
                                                                           "selectionSet": undefined,
                                                                         },
@@ -9187,8 +9246,60 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                           },
                                                                           "selectionSet": undefined,
                                                                         },
+                                                                        Object {
+                                                                          "alias": undefined,
+                                                                          "arguments": Array [],
+                                                                          "directives": Array [],
+                                                                          "kind": "Field",
+                                                                          "name": Object {
+                                                                            "kind": "Name",
+                                                                            "value": "remediationAvailable",
+                                                                          },
+                                                                          "selectionSet": undefined,
+                                                                        },
                                                                       ],
                                                                     },
+                                                                  },
+                                                                ],
+                                                              },
+                                                            },
+                                                            Object {
+                                                              "alias": undefined,
+                                                              "arguments": Array [
+                                                                Object {
+                                                                  "kind": "Argument",
+                                                                  "name": Object {
+                                                                    "kind": "Name",
+                                                                    "value": "policyId",
+                                                                  },
+                                                                  "value": Object {
+                                                                    "kind": "Variable",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
+                                                                      "value": "policyId",
+                                                                    },
+                                                                  },
+                                                                },
+                                                              ],
+                                                              "directives": Array [],
+                                                              "kind": "Field",
+                                                              "name": Object {
+                                                                "kind": "Name",
+                                                                "value": "policies",
+                                                              },
+                                                              "selectionSet": Object {
+                                                                "kind": "SelectionSet",
+                                                                "selections": Array [
+                                                                  Object {
+                                                                    "alias": undefined,
+                                                                    "arguments": Array [],
+                                                                    "directives": Array [],
+                                                                    "kind": "Field",
+                                                                    "name": Object {
+                                                                      "kind": "Name",
+                                                                      "value": "id",
+                                                                    },
+                                                                    "selectionSet": undefined,
                                                                   },
                                                                   Object {
                                                                     "alias": undefined,
@@ -9197,24 +9308,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                                     "kind": "Field",
                                                                     "name": Object {
                                                                       "kind": "Name",
-                                                                      "value": "policy",
+                                                                      "value": "name",
                                                                     },
-                                                                    "selectionSet": Object {
-                                                                      "kind": "SelectionSet",
-                                                                      "selections": Array [
-                                                                        Object {
-                                                                          "alias": undefined,
-                                                                          "arguments": Array [],
-                                                                          "directives": Array [],
-                                                                          "kind": "Field",
-                                                                          "name": Object {
-                                                                            "kind": "Name",
-                                                                            "value": "id",
-                                                                          },
-                                                                          "selectionSet": undefined,
-                                                                        },
-                                                                      ],
-                                                                    },
+                                                                    "selectionSet": undefined,
                                                                   },
                                                                 ],
                                                               },
@@ -9261,6 +9357,25 @@ exports[`ReportDetails expect to render without error 1`] = `
                                             "kind": "NamedType",
                                             "name": Object {
                                               "kind": "Name",
+                                              "value": "ID",
+                                            },
+                                          },
+                                          "variable": Object {
+                                            "kind": "Variable",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "policyId",
+                                            },
+                                          },
+                                        },
+                                        Object {
+                                          "defaultValue": undefined,
+                                          "directives": Array [],
+                                          "kind": "VariableDefinition",
+                                          "type": Object {
+                                            "kind": "NamedType",
+                                            "name": Object {
+                                              "kind": "Name",
                                               "value": "Int",
                                             },
                                           },
@@ -9296,7 +9411,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                   ],
                                   "kind": "Document",
                                   "loc": Object {
-                                    "end": 715,
+                                    "end": 962,
                                     "start": 0,
                                   },
                                 }
@@ -9595,10 +9710,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "title": "SSG version",
                 },
                 Object {
-                  "key": "facts.compliance.rules_failed",
+                  "key": "rulesFailed",
                   "props": Object {
                     "width": 5,
                   },
+                  "renderFunc": [Function],
                   "title": "Failed rules",
                 },
                 Object {
@@ -9772,12 +9888,27 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                           },
                                           Object {
                                             "alias": undefined,
-                                            "arguments": Array [],
+                                            "arguments": Array [
+                                              Object {
+                                                "kind": "Argument",
+                                                "name": Object {
+                                                  "kind": "Name",
+                                                  "value": "policyId",
+                                                },
+                                                "value": Object {
+                                                  "kind": "Variable",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "policyId",
+                                                  },
+                                                },
+                                              },
+                                            ],
                                             "directives": Array [],
                                             "kind": "Field",
                                             "name": Object {
                                               "kind": "Name",
-                                              "value": "profiles",
+                                              "value": "testResultProfiles",
                                             },
                                             "selectionSet": Object {
                                               "kind": "SelectionSet",
@@ -9811,7 +9942,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "lastScanned",
+                                                    "value": "refId",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -9822,7 +9953,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "external",
+                                                    "value": "lastScanned",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -9844,7 +9975,40 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
+                                                    "value": "external",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
                                                     "value": "score",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "supported",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "ssgVersion",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -9867,7 +10031,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                         "kind": "Field",
                                                         "name": Object {
                                                           "kind": "Name",
-                                                          "value": "id",
+                                                          "value": "refId",
+                                                        },
+                                                        "selectionSet": undefined,
+                                                      },
+                                                      Object {
+                                                        "alias": undefined,
+                                                        "arguments": Array [],
+                                                        "directives": Array [],
+                                                        "kind": "Field",
+                                                        "name": Object {
+                                                          "kind": "Name",
+                                                          "value": "title",
                                                         },
                                                         "selectionSet": undefined,
                                                       },
@@ -9882,8 +10057,60 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                         },
                                                         "selectionSet": undefined,
                                                       },
+                                                      Object {
+                                                        "alias": undefined,
+                                                        "arguments": Array [],
+                                                        "directives": Array [],
+                                                        "kind": "Field",
+                                                        "name": Object {
+                                                          "kind": "Name",
+                                                          "value": "remediationAvailable",
+                                                        },
+                                                        "selectionSet": undefined,
+                                                      },
                                                     ],
                                                   },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [
+                                              Object {
+                                                "kind": "Argument",
+                                                "name": Object {
+                                                  "kind": "Name",
+                                                  "value": "policyId",
+                                                },
+                                                "value": Object {
+                                                  "kind": "Variable",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "policyId",
+                                                  },
+                                                },
+                                              },
+                                            ],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "policies",
+                                            },
+                                            "selectionSet": Object {
+                                              "kind": "SelectionSet",
+                                              "selections": Array [
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "id",
+                                                  },
+                                                  "selectionSet": undefined,
                                                 },
                                                 Object {
                                                   "alias": undefined,
@@ -9892,24 +10119,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "policy",
+                                                    "value": "name",
                                                   },
-                                                  "selectionSet": Object {
-                                                    "kind": "SelectionSet",
-                                                    "selections": Array [
-                                                      Object {
-                                                        "alias": undefined,
-                                                        "arguments": Array [],
-                                                        "directives": Array [],
-                                                        "kind": "Field",
-                                                        "name": Object {
-                                                          "kind": "Name",
-                                                          "value": "id",
-                                                        },
-                                                        "selectionSet": undefined,
-                                                      },
-                                                    ],
-                                                  },
+                                                  "selectionSet": undefined,
                                                 },
                                               ],
                                             },
@@ -9956,6 +10168,25 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                           "kind": "NamedType",
                           "name": Object {
                             "kind": "Name",
+                            "value": "ID",
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "policyId",
+                          },
+                        },
+                      },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "NamedType",
+                          "name": Object {
+                            "kind": "Name",
                             "value": "Int",
                           },
                         },
@@ -9991,7 +10222,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 715,
+                  "end": 962,
                   "start": 0,
                 },
               }
@@ -10256,10 +10487,11 @@ exports[`ReportDetails expect to render without ssg version for external profile
                   "title": "System name",
                 },
                 Object {
-                  "key": "facts.compliance.rules_failed",
+                  "key": "rulesFailed",
                   "props": Object {
                     "width": 5,
                   },
+                  "renderFunc": [Function],
                   "title": "Failed rules",
                 },
                 Object {
@@ -10433,12 +10665,27 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                           },
                                           Object {
                                             "alias": undefined,
-                                            "arguments": Array [],
+                                            "arguments": Array [
+                                              Object {
+                                                "kind": "Argument",
+                                                "name": Object {
+                                                  "kind": "Name",
+                                                  "value": "policyId",
+                                                },
+                                                "value": Object {
+                                                  "kind": "Variable",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "policyId",
+                                                  },
+                                                },
+                                              },
+                                            ],
                                             "directives": Array [],
                                             "kind": "Field",
                                             "name": Object {
                                               "kind": "Name",
-                                              "value": "profiles",
+                                              "value": "testResultProfiles",
                                             },
                                             "selectionSet": Object {
                                               "kind": "SelectionSet",
@@ -10472,7 +10719,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "lastScanned",
+                                                    "value": "refId",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -10483,7 +10730,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "external",
+                                                    "value": "lastScanned",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -10505,7 +10752,40 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
+                                                    "value": "external",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
                                                     "value": "score",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "supported",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "ssgVersion",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -10528,7 +10808,18 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                         "kind": "Field",
                                                         "name": Object {
                                                           "kind": "Name",
-                                                          "value": "id",
+                                                          "value": "refId",
+                                                        },
+                                                        "selectionSet": undefined,
+                                                      },
+                                                      Object {
+                                                        "alias": undefined,
+                                                        "arguments": Array [],
+                                                        "directives": Array [],
+                                                        "kind": "Field",
+                                                        "name": Object {
+                                                          "kind": "Name",
+                                                          "value": "title",
                                                         },
                                                         "selectionSet": undefined,
                                                       },
@@ -10543,8 +10834,60 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                         },
                                                         "selectionSet": undefined,
                                                       },
+                                                      Object {
+                                                        "alias": undefined,
+                                                        "arguments": Array [],
+                                                        "directives": Array [],
+                                                        "kind": "Field",
+                                                        "name": Object {
+                                                          "kind": "Name",
+                                                          "value": "remediationAvailable",
+                                                        },
+                                                        "selectionSet": undefined,
+                                                      },
                                                     ],
                                                   },
+                                                },
+                                              ],
+                                            },
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [
+                                              Object {
+                                                "kind": "Argument",
+                                                "name": Object {
+                                                  "kind": "Name",
+                                                  "value": "policyId",
+                                                },
+                                                "value": Object {
+                                                  "kind": "Variable",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "policyId",
+                                                  },
+                                                },
+                                              },
+                                            ],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "policies",
+                                            },
+                                            "selectionSet": Object {
+                                              "kind": "SelectionSet",
+                                              "selections": Array [
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "id",
+                                                  },
+                                                  "selectionSet": undefined,
                                                 },
                                                 Object {
                                                   "alias": undefined,
@@ -10553,24 +10896,9 @@ exports[`ReportDetails expect to render without ssg version for external profile
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "policy",
+                                                    "value": "name",
                                                   },
-                                                  "selectionSet": Object {
-                                                    "kind": "SelectionSet",
-                                                    "selections": Array [
-                                                      Object {
-                                                        "alias": undefined,
-                                                        "arguments": Array [],
-                                                        "directives": Array [],
-                                                        "kind": "Field",
-                                                        "name": Object {
-                                                          "kind": "Name",
-                                                          "value": "id",
-                                                        },
-                                                        "selectionSet": undefined,
-                                                      },
-                                                    ],
-                                                  },
+                                                  "selectionSet": undefined,
                                                 },
                                               ],
                                             },
@@ -10617,6 +10945,25 @@ exports[`ReportDetails expect to render without ssg version for external profile
                           "kind": "NamedType",
                           "name": Object {
                             "kind": "Name",
+                            "value": "ID",
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "policyId",
+                          },
+                        },
+                      },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "NamedType",
+                          "name": Object {
+                            "kind": "Name",
                             "value": "Int",
                           },
                         },
@@ -10652,7 +10999,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 715,
+                  "end": 962,
                   "start": 0,
                 },
               }
