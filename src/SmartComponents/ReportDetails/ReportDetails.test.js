@@ -1,6 +1,4 @@
 import { init } from 'Store';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import useFeature from 'Utilities/hooks/useFeature';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -86,12 +84,8 @@ describe('ReportDetails', () => {
     });
 
     it('expect to render without error', () => {
-        const component = mount(
-            <Router>
-                <Provider store={ store }>
-                    <ReportDetails { ...defaultProps } />
-                </Provider>
-            </Router>
+        const component = shallow(
+            <ReportDetails { ...defaultProps } />
         );
 
         expect(toJson(component)).toMatchSnapshot();
