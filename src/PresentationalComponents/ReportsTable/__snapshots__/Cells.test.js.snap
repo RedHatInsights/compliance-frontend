@@ -28,7 +28,7 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
       tooltipText="Insights cannot provide a compliance score for systems running an unsupported version of the SSG at the time this report was created, as the SSG version was not supported by RHEL."
     >
       <strong
-        className="ins-u-warning"
+        className="ins-c-warning-text"
       >
         42
          unsupported

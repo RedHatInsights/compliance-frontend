@@ -8490,7 +8490,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                     </WarningWithPopover>
                                   </TooltipOrPopover>
                                   <strong
-                                    className="ins-u-warning"
+                                    className="ins-c-warning-text"
                                   >
                                     5
                                      systems not supported
@@ -9150,7 +9150,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               showHelpIcon={true}
             >
               <strong
-                className="ins-u-warning"
+                className="ins-c-warning-text"
               >
                 5
                  systems not supported
@@ -9445,7 +9445,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
               showHelpIcon={true}
             >
               <strong
-                className="ins-u-warning"
+                className="ins-c-warning-text"
               >
                 5
                  systems not supported
