@@ -187,7 +187,7 @@ export const ReportDetails = ({ route }) => {
                         </div>
                         {  profile.unsupportedHostCount > 0 && <Text>
                             <UnsupportedSSGVersion showHelpIcon>
-                                <strong className='ins-u-warning'>
+                                <strong className='ins-c-warning-text'>
                                     { profile.unsupportedHostCount } systems not supported
                                 </strong>
                             </UnsupportedSSGVersion>

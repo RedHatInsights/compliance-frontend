@@ -62,7 +62,7 @@ export const CompliantSystems = ({ testResultHostCount = 0, compliantHostCount =
             { `${ compliantHostCount } of ${ testResultHostCount } systems ` }
 
             { unsupportedHostCount > 0 && <UnsupportedSSGVersion { ...{ tooltipText } } style={ { marginLeft: '.5em' } }>
-                <strong className='ins-u-warning'>{ unsupportedHostCount } unsupported</strong>
+                <strong className='ins-c-warning-text'>{ unsupportedHostCount } unsupported</strong>
             </UnsupportedSSGVersion> }
         </GreySmallText>
     </React.Fragment>;
