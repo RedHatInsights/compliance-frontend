@@ -112,12 +112,12 @@ export const ReportDetails = ({ route }) => {
             renderFunc: systemName
         }
     }, ...showSsgVersions ? [{
-        key: 'facts.compliance.ssg_version',
+        key: 'facts.compliance',
         title: 'SSG version',
         props: {
             width: 5
         },
-        renderFunc: (profile) => (
+        renderFunc: (_name, _id, profile) => (
             profile && <Cells.SSGVersion { ...{ profile } } />
         )
     }] : [], {

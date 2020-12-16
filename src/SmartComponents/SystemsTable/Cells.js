@@ -3,9 +3,9 @@ import propTypes from 'prop-types';
 import { UnsupportedSSGVersion } from 'PresentationalComponents';
 
 const SSGVersion = ({ profile }) => (
-    profile.supported && profile.ssg_version ||
+    profile.supported && profile.ssgVersion ||
     <UnsupportedSSGVersion messageVariant='singular'>
-        { profile.ssg_version }
+        { profile.ssgVersion }
     </UnsupportedSSGVersion>
 );
 

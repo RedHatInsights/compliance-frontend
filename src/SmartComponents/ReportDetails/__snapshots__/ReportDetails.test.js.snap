@@ -260,7 +260,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "title": "System name",
                 },
                 Object {
-                  "key": "facts.compliance.ssg_version",
+                  "key": "facts.compliance",
                   "props": Object {
                     "width": 5,
                   },
@@ -1054,7 +1054,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "title": "System name",
                 },
                 Object {
-                  "key": "facts.compliance.ssg_version",
+                  "key": "facts.compliance",
                   "props": Object {
                     "width": 5,
                   },

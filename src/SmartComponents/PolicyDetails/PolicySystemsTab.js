@@ -32,7 +32,7 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
             }, ...showSsgVersions ? [{
                 key: 'facts.compliance',
                 title: 'SSG version',
-                renderFunc: (profile) => (
+                renderFunc: (_name, _id, profile) => (
                     <Cells.SSGVersion { ...{ profile } } />
                 )
             }] : []]}
