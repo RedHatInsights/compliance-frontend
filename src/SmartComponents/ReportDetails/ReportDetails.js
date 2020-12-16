@@ -117,8 +117,8 @@ export const ReportDetails = ({ route }) => {
         props: {
             width: 5
         },
-        renderFunc: (_name, _id, profile) => (
-            profile && <Cells.SSGVersion { ...{ profile } } />
+        renderFunc: (profile) => (
+            profile && <Cells.SSGVersion supported={ profile.supported } ssgVersion={ profile.ssg_version } />
         )
     }] : [], {
         key: 'facts.compliance.rules_failed',
