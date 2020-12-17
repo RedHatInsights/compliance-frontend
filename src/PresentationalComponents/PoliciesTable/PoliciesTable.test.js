@@ -5,12 +5,18 @@ import { PoliciesTable, PolicyNameCell } from './PoliciesTable.js';
 const policies = rawPolicies.edges.map(profile => profile.node);
 
 describe('PoliciesTable', () => {
+    const defaultProps = {
+        history: { push: jest.fn() },
+        location: {}
+    };
     let wrapper;
     let instance;
 
     it('expect to render without error', () => {
         wrapper = shallow(
-            <PoliciesTable policies={ policies } />
+            <PoliciesTable
+                { ...defaultProps }
+                policies={ policies } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -18,7 +24,9 @@ describe('PoliciesTable', () => {
 
     it('expect to render emptystate', () => {
         wrapper = shallow(
-            <PoliciesTable policies={[]} />
+            <PoliciesTable
+                { ...defaultProps }
+                policies={[]} />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -28,6 +36,7 @@ describe('PoliciesTable', () => {
         beforeEach(() => {
             wrapper = shallow(
                 <PoliciesTable
+                    { ...defaultProps }
                     policies={ policies }
                 />);
             instance = wrapper.instance();
