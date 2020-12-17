@@ -45,7 +45,7 @@ export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupportedHostCou
 };
 
 OperatingSystem.propTypes = {
-    majorOsVersion: propTypes.string,
+    majorOsVersion: propTypes.number,
     ssgVersion: propTypes.string,
     unsupportedHostCount: propTypes.number,
     policy: propTypes.object
