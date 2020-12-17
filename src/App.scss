@@ -72,3 +72,8 @@ button.pf-c-button.pf-m-tertiary {
 .ins-c-warning-text {
     color: var(--pf-global--warning-color--200);
 }
+
+.ins-c-non-bold-h2 {
+  font-size: var(--pf-c-content--h2--FontSize);
+  font-weight: normal;
+}

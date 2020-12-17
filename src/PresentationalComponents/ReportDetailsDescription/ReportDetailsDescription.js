@@ -14,51 +14,71 @@ import {
     Link
 } from 'react-router-dom';
 
-const ReportDetailsDescription = ({ profile }) => (
-    <TextContent className='policy-details'>
-        { !profile.policy ? <React.Fragment>
-            <Text component={TextVariants.h2}>Policy details</Text><br/>
-            <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
-            <Text component={TextVariants.p}>
-                <a target='_blank' rel='noopener noreferrer'
-                    href='https://access.redhat.com/products/cloud_management_services_for_rhel'>
-                    Learn to manage your policies in cloud.redhat.com
-                </a>
-            </Text>
-        </React.Fragment>
-            : <TextList component={TextListVariants.dl}>
-                <TextListItem component={TextListItemVariants.dt}>
-                    <Text component={TextVariants.h2}>Policy details</Text>
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>
-                    <Link to={'/scappolicies/' + profile.policy.id} >
-                        View policy
-                    </Link>
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>
-                    Operating system
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>
-                    RHEL { profile.majorOsVersion } (SSG { profile.benchmark.version })
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>
-                    Compliance threshold
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>
-                    { fixedPercentage(profile.complianceThreshold, 1) }
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dt}>
-                    Business objective
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>
-                    { profile.businessObjective ? profile.businessObjective.title : '--' }
-                </TextListItem>
-            </TextList>
-        }
-    </TextContent>
+const PropTypes = {
+    children: propTypes.node
+};
+
+const Dt = ({ children, ...props }) => (
+    <TextListItem { ...props } component={ TextListItemVariants.dt }>
+        { children }
+    </TextListItem>
+);
+Dt.propTypes = PropTypes;
+
+const Dd = ({ children, ...props }) => (
+    <TextListItem { ...props } component={ TextListItemVariants.dd }>
+        { children }
+    </TextListItem>
+);
+Dd.propTypes = PropTypes;
+
+const ExternalPolicyDescription = () => (
+    <React.Fragment>
+        <Text component={TextVariants.h2}>Policy details</Text><br/>
+        <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
+        <Text component={TextVariants.p}>
+            <a target='_blank' rel='noopener noreferrer'
+                href='https://access.redhat.com/products/cloud_management_services_for_rhel'>
+                Learn to manage your policies in cloud.redhat.com
+            </a>
+        </Text>
+    </React.Fragment>
 );
 
-ReportDetailsDescription.propTypes = {
+const PolicyDescription = ({ profile }) => (
+    <React.Fragment>
+        <TextList component={TextListVariants.dl}>
+            <Dt>
+                <Text className='ins-c-non-bold-h2'>
+                    Policy details
+                </Text>
+            </Dt>
+            <Dt>
+                Operating system
+            </Dt>
+            <Dd>
+                RHEL { profile.majorOsVersion }
+            </Dd>
+            <Dt>
+                Compliance threshold
+            </Dt>
+            <Dd>
+                { fixedPercentage(profile.complianceThreshold, 1) }
+            </Dd>
+            <Dt>
+                Business objective
+            </Dt>
+            <Dd>
+                { profile.businessObjective ? profile.businessObjective.title : '--' }
+            </Dd>
+        </TextList>
+        <Link to={'/scappolicies/' + profile.policy.id} >
+            View policy
+        </Link>
+    </React.Fragment>
+);
+
+PolicyDescription.propTypes = {
     profile: propTypes.shape({
         id: propTypes.string,
         complianceThreshold: propTypes.number,
@@ -71,6 +91,16 @@ ReportDetailsDescription.propTypes = {
             version: propTypes.string
         })
     })
+};
+
+const ReportDetailsDescription = ({ profile }) => (
+    <TextContent className='policy-details'>
+        { !profile.policy ? <ExternalPolicyDescription /> : <PolicyDescription { ...{ profile }} /> }
+    </TextContent>
+);
+
+ReportDetailsDescription.propTypes = {
+    profile: propTypes.object
 };
 
 export default ReportDetailsDescription;
