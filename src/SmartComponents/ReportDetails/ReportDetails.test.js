@@ -52,7 +52,7 @@ const mocks = [
 const store = init().getStore();
 
 jest.mock('../SystemsTable/SystemsTable', () => {
-    const SystemsTable = () => <table><tr><td>Systems Table</td></tr></table>;
+    const SystemsTable = () => <table><tbody><tr><td>Systems Table</td></tr></tbody></table>;
     return SystemsTable;
 });
 
