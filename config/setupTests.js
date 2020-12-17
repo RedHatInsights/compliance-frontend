@@ -1,3 +1,4 @@
+import 'jest-canvas-mock';
 import { configure, mount, render, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
