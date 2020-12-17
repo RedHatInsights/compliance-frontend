@@ -32,6 +32,16 @@ describe('PoliciesTable', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
+    it('expect to render SystemsCountWarning', () => {
+        wrapper = shallow(
+            <PoliciesTable
+                { ...defaultProps }
+                policies={ policies.map((p) => ({ ...p, totalHostCount: 0 })) } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
     describe('Pagination and search', () => {
         beforeEach(() => {
             wrapper = shallow(
