@@ -12,7 +12,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'facts.compliance.display_name',
-        title: 'System name',
+        title: 'Name',
         props: {
             width: 40, isStatic: true
         },

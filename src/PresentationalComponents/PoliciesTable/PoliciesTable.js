@@ -69,7 +69,7 @@ export class PoliciesTable extends React.Component {
     chipBuilder = this.filterConfigBuilder.getChipBuilder();
     filterBuilder = this.filterConfigBuilder.getFilterBuilder();
     columns = [
-        { title: 'Policy name' },
+        { title: 'Name' },
         { title: 'Operating system' },
         { title: 'Systems' },
         { title: 'Business objective' },

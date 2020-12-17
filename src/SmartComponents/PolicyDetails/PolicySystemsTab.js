@@ -21,7 +21,7 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
             remediationsEnabled={ false }
             columns={[{
                 key: 'facts.compliance.display_name',
-                title: 'System name',
+                title: 'Name',
                 props: {
                     width: 40, isStatic: true
                 },
@@ -32,8 +32,8 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
             }, ...showSsgVersions ? [{
                 key: 'facts.compliance',
                 title: 'SSG version',
-                renderFunc: (_name, _id, profile) => (
-                    <Cells.SSGVersion { ...{ profile } } />
+                renderFunc: (profile) => (
+                    <Cells.SSGVersion supported={ profile.supported } ssgVersion={ profile.ssg_version } />
                 )
             }] : []]}
             complianceThreshold={ policy.complianceThreshold }

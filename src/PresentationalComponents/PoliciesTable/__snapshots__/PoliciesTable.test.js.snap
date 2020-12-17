@@ -61,7 +61,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
@@ -386,7 +386,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
@@ -1228,7 +1228,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
@@ -1447,7 +1447,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
@@ -1623,7 +1623,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
