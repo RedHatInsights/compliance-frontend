@@ -96,7 +96,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
                   "isStatic": true,
                   "width": 40,
                 },
-                "title": "System name",
+                "title": "Name",
               },
             ]
           }
@@ -656,7 +656,7 @@ exports[`EditPolicy expect to render without error 1`] = `
                   "isStatic": true,
                   "width": 40,
                 },
-                "title": "System name",
+                "title": "Name",
               },
             ]
           }

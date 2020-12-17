@@ -257,7 +257,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "width": 30,
                   },
                   "renderFunc": [Function],
-                  "title": "System name",
+                  "title": "Name",
                 },
                 Object {
                   "key": "facts.compliance",
@@ -1051,7 +1051,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "width": 30,
                   },
                   "renderFunc": [Function],
-                  "title": "System name",
+                  "title": "Name",
                 },
                 Object {
                   "key": "facts.compliance",
@@ -1836,7 +1836,7 @@ exports[`ReportDetails expect to render without ssg version for external profile
                     "width": 30,
                   },
                   "renderFunc": [Function],
-                  "title": "System name",
+                  "title": "Name",
                 },
                 Object {
                   "key": "rulesFailed",

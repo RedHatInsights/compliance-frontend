@@ -105,7 +105,7 @@ export const EditPolicy = ({ route }) => {
                         defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
                             key: 'facts.compliance.display_name',
-                            title: 'System name',
+                            title: 'Name',
                             props: {
                                 width: 40, isStatic: true
                             },
