@@ -5,6 +5,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   aria-label="policies-table"
   borders={true}
   canSelectAll={true}
+  canSortFavorites={true}
   cells={
     Array [
       Object {

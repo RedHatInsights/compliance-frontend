@@ -58,6 +58,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
@@ -341,6 +342,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
@@ -1029,6 +1031,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
@@ -1238,6 +1241,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
@@ -1947,6 +1951,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
@@ -2129,6 +2134,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     aria-label="policies"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
