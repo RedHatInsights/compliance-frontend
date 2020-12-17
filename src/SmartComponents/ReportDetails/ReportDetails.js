@@ -103,7 +103,7 @@ export const ReportDetails = ({ route }) => {
 
     const columns = [{
         key: 'facts.compliance.display_name',
-        title: 'System name',
+        title: 'Name',
         props: {
             width: 30
         },

@@ -21,7 +21,7 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
             remediationsEnabled={ false }
             columns={[{
                 key: 'facts.compliance.display_name',
-                title: 'System name',
+                title: 'Name',
                 props: {
                     width: 40, isStatic: true
                 },
