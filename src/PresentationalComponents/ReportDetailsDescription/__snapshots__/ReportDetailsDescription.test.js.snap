@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportDetailsDescription expect to render without error 1`] = `
+<TextContent
+  className="policy-details"
+>
+  <TextList
+    component="dl"
+  >
+    <TextListItem
+      component="dt"
+    >
+      <Text
+        component="h2"
+      >
+        Policy details
+      </Text>
+    </TextListItem>
+    <TextListItem
+      component="dd"
+    >
+      <Link
+        to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5-policy"
+      >
+        View policy
+      </Link>
+    </TextListItem>
+    <TextListItem
+      component="dt"
+    >
+      Operating system
+    </TextListItem>
+    <TextListItem
+      component="dd"
+    >
+      RHEL 
+      7
+       (SSG 
+      0.1.49
+      )
+    </TextListItem>
+    <TextListItem
+      component="dt"
+    >
+      Compliance threshold
+    </TextListItem>
+    <TextListItem
+      component="dd"
+    >
+      100.0%
+    </TextListItem>
+    <TextListItem
+      component="dt"
+    >
+      Business objective
+    </TextListItem>
+    <TextListItem
+      component="dd"
+    >
+      --
+    </TextListItem>
+  </TextList>
+</TextContent>
+`;
