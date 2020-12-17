@@ -1,24 +1,32 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm } from 'redux-form';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
-import { SystemsTable } from 'SmartComponents';
+import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const EditPolicySystems = ({ change, selectedSystemIds }) => {
+    const newInventory = useFeature('newInventory');
     const columns = [{
         composed: ['facts.os_release', 'display_name'],
         key: 'facts.compliance.display_name',
         title: 'System name',
         props: {
             width: 40, isStatic: true
+        },
+        ...newInventory && {
+            key: 'display_name'
         }
     }, {
-        key: 'facts.compliance.profiles',
+        key: 'facts.compliance.policies',
         title: 'Policies',
         props: {
             width: 40, isStatic: true
+        },
+        ...newInventory && {
+            key: 'policies'
         }
     }];
 
@@ -27,6 +35,8 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
             change('systems', selectedSystemIds);
         }
     }, [selectedSystemIds]);
+
+    const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
         <React.Fragment>
@@ -40,7 +50,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
             </TextContent>
             <Form>
                 <FormGroup>
-                    <SystemsTable
+                    <InvCmp
                         columns={columns}
                         remediationsEnabled={false}
                         compact

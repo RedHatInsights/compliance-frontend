@@ -42,7 +42,7 @@ export const csvFromState = (state) => {
     if (rows) {
         let csvRows = [columns.map((column) => column.title).join(CSV_DELIMITER)];
         csvRows = csvRows.concat((selectedEntities || rows).map((row) => (
-            state.columns.map((column) => textCsvCell(row, column.key)).join(CSV_DELIMITER)
+            state.columns.map((column) => !column.noExport ? textCsvCell(row, column.key) : '').join(CSV_DELIMITER)
         )));
 
         return encodeURI('data:text/csv;charset=utf-8,' + csvRows.join('\n'));

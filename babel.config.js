@@ -16,7 +16,10 @@ const mapper = {
     ModalVariant: 'Modal',
     ProgressVariant: 'Progress',
     PopoverPosition: 'Popover',
-    PageSectionVariants: 'PageSection'
+    PageSectionVariants: 'PageSection',
+    getOUIAProps: 'ouia',
+    getDefaultOUIAId: 'ouia',
+    useOUIAProps: 'ouia'
 };
 
 const frontendComponentsMappe = {

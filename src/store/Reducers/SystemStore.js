@@ -19,6 +19,7 @@ import {
     profilesRulesFailed
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
+import { mergeArraysByKey } from '@redhat-cloud-services/frontend-components-utilities/files/helpers';
 
 const NEVER = 'Never';
 
@@ -60,21 +61,14 @@ export const policyNames = (system) => {
     return [...policyNames, ...externalPolicyNames].join(', ');
 };
 
-export const policiesCell = (system) => {
-    let title;
-    if (system.policyNames) {
-        title = <Tooltip content={system.policyNames}>
-            <Truncate lines={2} width={540}>{system.policyNames}</Truncate>
-        </Tooltip>;
-    } else {
-        title = <Text className='grey-icon'>No policies</Text>;
-    }
-
-    return {
-        title,
-        exportValue: system.policyNames
-    };
-};
+export const policiesCell = ({ policyNames }) => ({
+    title: policyNames ? (
+        <Tooltip content={policyNames}>
+            <Truncate lines={2} width={540}>{policyNames}</Truncate>
+        </Tooltip>
+    ) : <Text className='grey-icon'>No policies</Text>,
+    exportValue: policyNames
+});
 
 export const detailsLink = (system) => {
     if (system.testResultProfiles && system.testResultProfiles.length > 0) {
@@ -104,6 +98,16 @@ const displayNameCell = (system, matchingSystem) =>  ({
     </TextContent>,
     exportValue: system.display_name || matchingSystem.name
 });
+
+export const systemName = (displayName, id, { osMajorVersion, osMinorVersion, name }) => (
+    <TextContent>
+        <Link to={{ pathname: `/systems/${id}` }}>
+            { displayName || name }
+        </Link>
+        { hasOsInfo({ osMajorVersion, osMinorVersion }) &&
+            <Text component={TextVariants.small}>RHEL {osMajorVersion}.{osMinorVersion}</Text> }
+    </TextContent>
+);
 
 const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
@@ -223,6 +227,56 @@ const selectRow = (state, id) => (
 const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
+
+export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash({
+    ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
+        ...state,
+        systems,
+        systemsCount
+    }),
+    [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
+        ...state,
+        total: !showAllSystems ? state.systemsCount : state.total,
+        rows: mergeArraysByKey([
+            state.rows.map((row) => ({
+                ...row,
+                selected: isSelected(row.id, state.selectedEntities)
+            })),
+            state.systems?.map(({ node }) => ({
+                ...node,
+                ...showAllSystems && { testResultProfiles: [], policies: [] },
+                policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
+                rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
+                rulesFailed: profilesRulesFailed(node.testResultProfiles).length,
+                lastScanned: lastScanned(node),
+                compliant: compliant(node),
+                score: score(node),
+                supported: supported(node),
+                ssgVersion: profilesSsgVersions(node),
+                detailsLink: detailsLink(node)
+            }))
+        ]),
+        columns: state.total > 0 ? columns : [{ title: '' }]
+    }),
+    [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
+        let newState;
+
+        if (id === 0) {
+            newState = selected ? selectAllRows(state) : deselectAllRows(state);
+        } else {
+            newState = selected ? selectRow(state, id) : deselectRow(state, id);
+        }
+
+        if (newState.selectedEntities.length === 0 || clearAll) {
+            newState.selectedEntities = undefined;
+        }
+
+        return newState;
+    },
+    ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
+        selectedEntities: ids
+    })
+});
 
 export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash(
     {
