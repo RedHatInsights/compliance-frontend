@@ -138,6 +138,9 @@ exports[`ReportsTable expect to render without error 1`] = `
     cells={
       Array [
         Object {
+          "props": Object {
+            "width": 55,
+          },
           "sortByProperty": "name",
           "title": "Policy",
           "transforms": Array [
@@ -145,13 +148,20 @@ exports[`ReportsTable expect to render without error 1`] = `
           ],
         },
         Object {
+          "props": Object {
+            "width": 20,
+          },
           "sortByProperty": "majorOsVersion",
           "title": "Operating system",
           "transforms": Array [
             [Function],
+            [Function],
           ],
         },
         Object {
+          "props": Object {
+            "width": 25,
+          },
           "sortByFunction": [Function],
           "title": "Systems meeting compliance",
           "transforms": Array [
