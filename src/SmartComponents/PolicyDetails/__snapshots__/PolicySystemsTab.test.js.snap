@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PolicySystemsTab expect to render without error 1`] = `
+<Connect(withApollo(ConnectedSystemsTable))
+  columns={
+    Array [
+      Object {
+        "key": "facts.compliance.display_name",
+        "props": Object {
+          "isStatic": true,
+          "width": 40,
+        },
+        "title": "System name",
+      },
+      Object {
+        "key": "facts.compliance",
+        "renderFunc": [Function],
+        "title": "SSG version",
+      },
+    ]
+  }
+  complianceThreshold={100}
+  defaultFilter="policy_id = b71376fd-015e-4209-99af-4543e82e5dc5"
+  policyId="b71376fd-015e-4209-99af-4543e82e5dc5"
+  remediationsEnabled={false}
+  showActions={false}
+/>
+`;
