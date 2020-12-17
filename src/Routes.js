@@ -84,7 +84,7 @@ const systemsRoutes = [
     }
 ];
 
-const routes = [
+export const routes = [
     ...policiesRoutes,
     ...reportsRoutes,
     ...systemsRoutes

@@ -1,0 +1,359 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Router expect to render without error 1`] = `
+<Suspense
+  fallback={Symbol(react.fragment)}
+  routes={
+    Array [
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "path": "/scappolicies",
+        "title": "SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "modal": true,
+        "path": "/scappolicies/new",
+        "title": "SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "defaultTitle": "SCAP policies",
+        "path": "/scappolicies/:policy_id",
+        "title": "$entityTitle - SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "defaultTitle": "SCAP policies",
+        "modal": true,
+        "path": "/scappolicies/:policy_id/edit",
+        "title": "$entityTitle - SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "modal": true,
+        "path": "/scappolicies/:policy_id/delete",
+        "title": "Delete policy - SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "path": "/reports",
+        "title": "Reports",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "defaultTitle": "Reports",
+        "path": "/reports/:report_id",
+        "title": "Report: $entityTitle - Reports",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "modal": true,
+        "path": "/reports/:report_id/delete",
+        "title": "Delete report - Reports",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "path": "/systems",
+        "title": "Systems",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_ctor": [Function],
+          "_result": null,
+          "_status": -1,
+        },
+        "defaultTitle": "Systems",
+        "path": "/systems/:inventoryId",
+        "title": "$entityTitle - Systems",
+      },
+    ]
+  }
+>
+  <Switch
+    location={
+      Object {
+        "pathname": "/reports",
+      }
+    }
+  >
+    <Route
+      exact={true}
+      key="fullpage-route--scappolicies"
+      path="/scappolicies"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "isCurrent": false,
+            "path": "/scappolicies",
+            "setTitle": [Function],
+            "title": "SCAP policies",
+          }
+        }
+      />
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--scappolicies/:policy_id"
+      path="/scappolicies/:policy_id"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "defaultTitle": "SCAP policies",
+            "isCurrent": false,
+            "path": "/scappolicies/:policy_id",
+            "setTitle": [Function],
+            "title": "$entityTitle - SCAP policies",
+          }
+        }
+      />
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--reports"
+      path="/reports"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "isCurrent": true,
+            "path": "/reports",
+            "setTitle": [Function],
+            "title": "Reports",
+          }
+        }
+      />
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--reports/:report_id"
+      path="/reports/:report_id"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "defaultTitle": "Reports",
+            "isCurrent": false,
+            "path": "/reports/:report_id",
+            "setTitle": [Function],
+            "title": "Report: $entityTitle - Reports",
+          }
+        }
+      />
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--systems"
+      path="/systems"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "isCurrent": false,
+            "path": "/systems",
+            "setTitle": [Function],
+            "title": "Systems",
+          }
+        }
+      />
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--systems/:inventoryId"
+      path="/systems/:inventoryId"
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_ctor": [Function],
+              "_result": null,
+              "_status": -1,
+            },
+            "defaultTitle": "Systems",
+            "isCurrent": false,
+            "path": "/systems/:inventoryId",
+            "setTitle": [Function],
+            "title": "$entityTitle - Systems",
+          }
+        }
+      />
+    </Route>
+    <Route
+      render={[Function]}
+    />
+  </Switch>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/new"
+    path="/scappolicies/new"
+  >
+    <lazy
+      route={
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          },
+          "isCurrent": false,
+          "modal": true,
+          "path": "/scappolicies/new",
+          "setTitle": [Function],
+          "title": "SCAP policies",
+        }
+      }
+    />
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/:policy_id/edit"
+    path="/scappolicies/:policy_id/edit"
+  >
+    <lazy
+      route={
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          },
+          "defaultTitle": "SCAP policies",
+          "isCurrent": false,
+          "modal": true,
+          "path": "/scappolicies/:policy_id/edit",
+          "setTitle": [Function],
+          "title": "$entityTitle - SCAP policies",
+        }
+      }
+    />
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/:policy_id/delete"
+    path="/scappolicies/:policy_id/delete"
+  >
+    <lazy
+      route={
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          },
+          "isCurrent": false,
+          "modal": true,
+          "path": "/scappolicies/:policy_id/delete",
+          "setTitle": [Function],
+          "title": "Delete policy - SCAP policies",
+        }
+      }
+    />
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--reports/:report_id/delete"
+    path="/reports/:report_id/delete"
+  >
+    <lazy
+      route={
+        Object {
+          "component": Object {
+            "$$typeof": Symbol(react.lazy),
+            "_ctor": [Function],
+            "_result": null,
+            "_status": -1,
+          },
+          "isCurrent": false,
+          "modal": true,
+          "path": "/reports/:report_id/delete",
+          "setTitle": [Function],
+          "title": "Delete report - Reports",
+        }
+      }
+    />
+  </Route>
+</Suspense>
+`;
