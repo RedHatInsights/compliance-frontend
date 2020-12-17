@@ -77,7 +77,7 @@ describe('ReportDetails', () => {
     beforeEach(() => {
         useFeature.mockImplementation(() => (true));
         useMutation.mockImplementation(() => ([() => {}]));
-        useQuery.mockImplementation(() => ({ data: mocks[0].result.data, error: false, loading: false }));
+        useQuery.mockImplementation(() => ({ data: mocks[0].result.data }));
         window.insights = {
             chrome: { isBeta: jest.fn(() => true) }
         };
@@ -109,7 +109,7 @@ describe('ReportDetails', () => {
             }
         };
         useQuery.mockImplementation(() => {
-            return { data, error: false, loading: false };
+            return { data };
         });
         const component = shallow(
             <ReportDetails { ...defaultProps } store={ store } />
