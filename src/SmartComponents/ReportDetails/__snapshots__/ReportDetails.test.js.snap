@@ -52,6 +52,11 @@ exports[`ReportDetails expect to render without error 1`] = `
     <PageHeader>
       <Breadcrumb>
         <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
+        <BreadcrumbLinkItem
           to="/reports"
         >
           Reports
@@ -846,6 +851,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
     <PageHeader>
       <Breadcrumb>
         <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
+        <BreadcrumbLinkItem
           to="/reports"
         >
           Reports
@@ -1636,6 +1646,11 @@ exports[`ReportDetails expect to render without ssg version for external profile
   >
     <PageHeader>
       <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
         <BreadcrumbLinkItem
           to="/reports"
         >

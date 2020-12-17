@@ -48,6 +48,9 @@ export const SystemDetails = ({ route }) => {
         <StateViewPart stateKey='data'>
             <PageHeader>
                 <Breadcrumb>
+                    <BreadcrumbLinkItem to='/'>
+                        Compliance
+                    </BreadcrumbLinkItem>
                     <BreadcrumbLinkItem to='/systems'>
                         Systems
                     </BreadcrumbLinkItem>
