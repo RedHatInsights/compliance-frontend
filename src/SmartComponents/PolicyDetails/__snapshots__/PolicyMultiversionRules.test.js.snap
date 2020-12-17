@@ -16,6 +16,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
     >
       <Tab
         eventKey="0.1.49"
+        key="ssgversion-tab-0.1.49"
         title={
           <TabTitleText>
             <span>
@@ -127,6 +128,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
       </Tab>
       <Tab
         eventKey="0.1.45"
+        key="ssgversion-tab-0.1.45"
         title={
           <TabTitleText>
             <span>
@@ -238,6 +240,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
       </Tab>
       <Tab
         eventKey="0.1.46"
+        key="ssgversion-tab-0.1.46"
         title={
           <TabTitleText>
             <span>
