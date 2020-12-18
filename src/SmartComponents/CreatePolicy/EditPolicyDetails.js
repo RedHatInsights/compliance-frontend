@@ -12,7 +12,7 @@ const EditPolicyDetails = ({ profile: policy }) => {
         <React.Fragment>
             <TextContent>
                 <Text component={TextVariants.h1}>
-                    Policy details
+                    Details
                 </Text>
             </TextContent>
             <br/>
