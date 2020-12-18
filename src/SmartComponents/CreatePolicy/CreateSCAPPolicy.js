@@ -41,7 +41,9 @@ query benchmarksAndProfiles {
             node {
                 id
                 refId
-                benchmarkId
+                benchmark {
+                    refId
+                }
             }
         }
     }
@@ -51,8 +53,8 @@ query benchmarksAndProfiles {
 const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES, { fetchPolicy: 'no-cache' });
 
-    const userProfileRefIdsForBenchmarkId = (profiles, benchmarkId) => (
-        profiles.filter(profile => benchmarkId === profile.node.benchmarkId).map(profile => profile.node.refId)
+    const inUseProfileRefIds = (profiles, benchmark) => (
+        profiles.filter(profile => benchmark.refId === profile.node.benchmark.refId).map(profile => profile.node.refId)
     );
 
     if (error) { return error; }
@@ -64,7 +66,7 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     let validProfiles;
     if (selectedBenchmarkId) {
         selectedBenchmark = benchmarks.find(benchmark => benchmark.id === selectedBenchmarkId);
-        const userProfileRefIds = userProfileRefIdsForBenchmarkId(data.profiles.edges, selectedBenchmarkId);
+        const userProfileRefIds = inUseProfileRefIds(data.profiles.edges, selectedBenchmark);
         validProfiles = selectedBenchmark.profiles.map((profile) => ({
             ...profile,
             disabled: userProfileRefIds.includes(profile.refId)
