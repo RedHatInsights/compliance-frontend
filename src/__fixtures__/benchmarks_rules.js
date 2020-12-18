@@ -565,7 +565,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '719999b6-d230-4ba5-8dba-7ab3dc6561e0',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss3',
-                benchmarkId: '6a02b217-c9e9-4a4d-93a9-c77b5ea7967a',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-8'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -574,7 +576,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: 'dae0487d-3201-4ee0-af5f-b94cde2af818',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp2',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -583,7 +587,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '8ed49cf9-16d4-4e49-9892-331b3c30919b',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss_customized',
-                benchmarkId: '6a02b217-c9e9-4a4d-93a9-c77b5ea7967a',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-8'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -592,7 +598,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '20a9d997-62a6-40cc-a5f3-19d466eb975e',
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -601,7 +609,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: 'e4fe9d96-cf78-4f71-9831-db8240fe6477',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp - customized',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -610,7 +620,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '6d345bd2-d597-4df8-9bcf-71c41155b42c',
                 refId: 'xccdf_org.ssgproject.content_profile_cjis',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -619,7 +631,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: 'c8e15347-9c2b-495d-8e54-503c2f9582b6',
                 refId: 'xccdf_org.ssgproject.content_profile_nist-800-171-cui',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -628,7 +642,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '3c4823a1-2c16-46ae-b2fe-0cebf5a03931',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -637,7 +653,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: 'f7b7977a-403b-4cd1-ab90-20b6f9a5a359',
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -646,7 +664,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '36abc364-6dc3-4e35-94f4-d10fa77e866e',
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -655,7 +675,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: 'd35c8aad-8fc8-49e8-bff0-4d9d3dc8f220',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -664,7 +686,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '4c27fe09-9a7f-437c-b38b-e42272d9ccf0',
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -673,7 +697,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '9b034440-e3dd-4c19-8f2c-ca75e813d57d',
                 refId: 'xccdf_org.ssgproject.content_profile_stig-rhel7-disa',
-                benchmarkId: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -682,7 +708,9 @@ export const profileRefIdsQuery = {
             node: {
                 id: '19921ca4-8526-4651-8876-3c8587e8e125',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss2',
-                benchmarkId: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                benchmark: {
+                    refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
