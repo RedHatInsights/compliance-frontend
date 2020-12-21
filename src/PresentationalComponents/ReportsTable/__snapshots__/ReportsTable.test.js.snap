@@ -135,6 +135,7 @@ exports[`ReportsTable expect to render without error 1`] = `
     aria-label="Reports"
     borders={true}
     canSelectAll={true}
+    canSortFavorites={true}
     cells={
       Array [
         Object {
