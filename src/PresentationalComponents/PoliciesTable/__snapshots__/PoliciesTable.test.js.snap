@@ -1447,7 +1447,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
     cells={
       Array [
         Object {
-          "title": "Policy name",
+          "title": "Name",
         },
         Object {
           "title": "Operating system",
