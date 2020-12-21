@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Label, TextContent, Text, Progress } from '@patternfly/react-core';
 import { Link } from 'react-router-dom';
-import { PolicyPopover, GreySmallText, UnsupportedSSGVersion } from 'PresentationalComponents';
+import { PolicyPopover, GreySmallText, UnsupportedSSGVersion, OperatingSystemBadge } from 'PresentationalComponents';
 
 export const Name = (profile) => (
     <TextContent>
@@ -25,17 +25,11 @@ Name.propTypes = {
 };
 
 export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupportedHostCount, policy }) => {
-    const rhelColorMap = {
-        7: 'cyan',
-        8: 'purple',
-        default: 'var(--pf-global--disabled-color--200)'
-    };
-    const color = rhelColorMap[majorOsVersion] || rhelColorMap.default;
     const supported = unsupportedHostCount === 0;
     ssgVersion = 'SSG: ' + ssgVersion;
 
     return <React.Fragment>
-        <Label { ...{ color } }>RHEL { majorOsVersion }</Label>
+        <OperatingSystemBadge { ...{ majorOsVersion } } />
         { policy === null && ssgVersion && <Text>
             <GreySmallText>
                 { supported ? ssgVersion : <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> }

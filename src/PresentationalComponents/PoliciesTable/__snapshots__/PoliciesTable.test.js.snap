@@ -71,9 +71,15 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -114,25 +120,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -167,25 +157,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -220,25 +194,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -396,9 +354,15 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -525,25 +489,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -629,25 +577,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -682,25 +614,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -735,25 +651,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -788,25 +688,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -841,25 +725,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -894,25 +762,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -947,25 +799,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -1000,25 +836,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -1053,25 +873,9 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -1238,9 +1042,15 @@ exports[`PoliciesTable Pagination and search should show only matching results a
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -1281,25 +1091,9 @@ exports[`PoliciesTable Pagination and search should show only matching results a
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -1457,9 +1251,15 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -1586,25 +1386,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1693,25 +1477,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1749,25 +1517,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1805,25 +1557,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1861,25 +1597,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1917,25 +1637,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -1973,25 +1677,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -2029,25 +1717,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -2085,25 +1757,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -2141,25 +1797,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": <SystemsCountWarning
@@ -2320,9 +1960,15 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -2496,9 +2142,15 @@ exports[`PoliciesTable expect to render without error 1`] = `
         },
         Object {
           "title": "Business objective",
+          "transforms": Array [
+            [Function],
+          ],
         },
         Object {
           "title": "Compliance threshold",
+          "transforms": Array [
+            [Function],
+          ],
         },
       ]
     }
@@ -2625,25 +2277,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2729,25 +2365,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2782,25 +2402,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2835,25 +2439,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2888,25 +2476,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2941,25 +2513,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -2994,25 +2550,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -3047,25 +2587,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -3100,25 +2624,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,
@@ -3153,25 +2661,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <Tooltip
-                content={
-                  <span>
-                    SCAP Security Guide (SSG): 
-                    Guide to the Secure Configuration of RHEL 7
-                     - 
-                    0.1.49
-                  </span>
-                }
-                position="right"
-              >
-                <span>
-                  RHEL 
-                  7
-                   (SSG 
-                  0.1.49
-                  )
-                </span>
-              </Tooltip>,
+              "title": <OperatingSystemBadge
+                majorOsVersion={7}
+              />,
             },
             Object {
               "title": 10,

@@ -1,19 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Table, TableHeader, TableBody } from '@patternfly/react-table';
-import {
-    Button, Pagination, PaginationVariant, ToolbarItem, Tooltip, TextContent
-} from '@patternfly/react-core';
+import { Table, TableHeader, TableBody, fitContent } from '@patternfly/react-table';
+import { Button, Pagination, PaginationVariant, ToolbarItem, TextContent } from '@patternfly/react-core';
 import { PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
-
 import {
-    BackgroundLink,
-    GreySmallText,
-    SystemsCountWarning,
-    emptyRows
+    BackgroundLink, GreySmallText, SystemsCountWarning, emptyRows, OperatingSystemBadge
 } from 'PresentationalComponents';
 
 export const PolicyNameCell = ({ profile }) => (
@@ -33,18 +27,7 @@ const policiesToRows = (policies) => (
             policyId: policy.id,
             cells: [
                 { title: <PolicyNameCell profile={policy} /> },
-                {
-                    title: <Tooltip key={policy.id}
-                        position='right'
-                        content={
-                            <span>SCAP Security Guide (SSG): {policy.benchmark.title} - {policy.benchmark.version}</span>
-                        }
-                    >
-                        <span>
-                            RHEL {policy.majorOsVersion} (SSG {policy.benchmark.version})
-                        </span>
-                    </Tooltip>
-                },
+                { title: <OperatingSystemBadge majorOsVersion={ policy.majorOsVersion } /> },
                 { title: policy.totalHostCount > 0 ? policy.totalHostCount :
                     <SystemsCountWarning count={ policy.totalHostCount } variant='count' /> },
                 policy.businessObjective && policy.businessObjective.title || '--',
@@ -72,8 +55,8 @@ export class PoliciesTable extends React.Component {
         { title: 'Name' },
         { title: 'Operating system' },
         { title: 'Systems' },
-        { title: 'Business objective' },
-        { title: 'Compliance threshold' }
+        { title: 'Business objective', transforms: [fitContent] },
+        { title: 'Compliance threshold', transforms: [fitContent] }
     ]
     state = {
         page: 1,

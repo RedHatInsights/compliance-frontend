@@ -95,12 +95,9 @@ exports[`Name expect to render without error 1`] = `
 
 exports[`OperatingSystem expect to render with SSG version 1`] = `
 <Fragment>
-  <Label
-    color="cyan"
-  >
-    RHEL 
-    7
-  </Label>
+  <OperatingSystemBadge
+    majorOsVersion={7}
+  />
   <Text>
     <GreySmallText>
       SSG: 1.2.3
@@ -111,12 +108,9 @@ exports[`OperatingSystem expect to render with SSG version 1`] = `
 
 exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 <Fragment>
-  <Label
-    color="cyan"
-  >
-    RHEL 
-    7
-  </Label>
+  <OperatingSystemBadge
+    majorOsVersion={7}
+  />
   <Text>
     <GreySmallText>
       <UnsupportedSSGVersion>
@@ -129,11 +123,8 @@ exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 
 exports[`OperatingSystem expect to render without error 1`] = `
 <Fragment>
-  <Label
-    color="cyan"
-  >
-    RHEL 
-    7
-  </Label>
+  <OperatingSystemBadge
+    majorOsVersion={7}
+  />
 </Fragment>
 `;
