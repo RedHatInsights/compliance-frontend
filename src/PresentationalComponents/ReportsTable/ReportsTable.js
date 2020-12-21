@@ -16,19 +16,28 @@ const ReportsTable = ({ profiles }) => {
         {
             title: 'Policy',
             transforms: [sortable],
-            sortByProperty: 'name'
+            sortByProperty: 'name',
+            props: {
+                width: 55
+            }
         },
         {
             title: 'Operating system',
-            transforms: [sortable],
-            sortByProperty: 'majorOsVersion'
+            transforms: [sortable, fitContent],
+            sortByProperty: 'majorOsVersion',
+            props: {
+                width: 20
+            }
         },
         {
             title: 'Systems meeting compliance',
             transforms: [sortable, fitContent],
             sortByFunction: ({ testResultHostCount, compliantHostCount }) => (
                 (100 / testResultHostCount) * compliantHostCount
-            )
+            ),
+            props: {
+                width: 25
+            }
         }
     ];
     const policyTypes = uniq(profiles.map(({ policyType }) => (policyType)).filter((i) => (!!i)));
