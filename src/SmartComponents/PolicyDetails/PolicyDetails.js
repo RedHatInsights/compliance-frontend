@@ -144,8 +144,11 @@ export const PolicyDetails = ({ route }) => {
             { policy && <Fragment>
                 <PageHeader className='page-header-tabs'>
                     <Breadcrumb>
+                        <BreadcrumbLinkItem to='/'>
+                            Compliance
+                        </BreadcrumbLinkItem>
                         <BreadcrumbLinkItem to='/scappolicies'>
-                              Policies
+                            SCAP Policies
                         </BreadcrumbLinkItem>
                         <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                     </Breadcrumb>

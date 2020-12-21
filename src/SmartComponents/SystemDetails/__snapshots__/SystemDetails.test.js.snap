@@ -25,6 +25,11 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
     <PageHeader>
       <Breadcrumb>
         <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
+        <BreadcrumbLinkItem
           to="/systems"
         >
           Systems
@@ -77,6 +82,11 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
   >
     <PageHeader>
       <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
         <BreadcrumbLinkItem
           to="/systems"
         >
@@ -131,6 +141,11 @@ exports[`SystemDetails expect to render loading 1`] = `
     <PageHeader>
       <Breadcrumb>
         <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
+        <BreadcrumbLinkItem
           to="/systems"
         >
           Systems
@@ -183,6 +198,11 @@ exports[`SystemDetails expect to render without error 1`] = `
   >
     <PageHeader>
       <Breadcrumb>
+        <BreadcrumbLinkItem
+          to="/"
+        >
+          Compliance
+        </BreadcrumbLinkItem>
         <BreadcrumbLinkItem
           to="/systems"
         >
