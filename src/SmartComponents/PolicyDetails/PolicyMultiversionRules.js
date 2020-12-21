@@ -12,7 +12,7 @@ const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => (
                 {
                     profiles.map((profile) => (
                         <Tab
-                            key={ profile.ssg_version }
+                            key={ `ssgversion-tab-${ profile.ssgVersion }` }
                             title={
                                 <TabTitleText>
                                     <span>SSG { profile.ssgVersion + ' ' }</span>

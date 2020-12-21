@@ -37,7 +37,7 @@ CheckboxFieldArray.propTypes = {
     input: propTypes.shape({
         name: propTypes.string.isRequired,
         onChange: propTypes.func,
-        value: propTypes.array
+        value: propTypes.string
     }),
     options: propTypes.arrayOf(propTypes.shape({
         label: propTypes.string.isRequired,

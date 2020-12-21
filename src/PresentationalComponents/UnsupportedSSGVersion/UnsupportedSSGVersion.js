@@ -76,7 +76,7 @@ const UnsupportedSSGVersion = ({
     children, showWarningIcon = true, showHelpIcon = false, style, tooltipText, messageVariant
 }) => {
     const tooltipProps = {
-        content: <div>{ tooltipText }</div>,
+        ...tooltipText && { content: <div>{ tooltipText }</div> },
         messageVariant
     };
     const variant = tooltipText ? 'tooltip' : 'popover';

@@ -1386,6 +1386,869 @@ exports[`PoliciesTable Pagination and search should show only matching results a
 </Fragment>
 `;
 
+exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
+<Fragment>
+  <PrimaryToolbar
+    activeFiltersConfig={
+      Object {
+        "filters": Array [],
+        "onDelete": [Function],
+      }
+    }
+    filterConfig={
+      Object {
+        "hideLabel": true,
+        "items": Array [
+          Object {
+            "filterValues": Object {
+              "onChange": [Function],
+              "value": undefined,
+            },
+            "id": "name",
+            "label": "Name",
+            "type": "text",
+          },
+        ],
+      }
+    }
+    pagination={
+      Object {
+        "dropDirection": "down",
+        "itemCount": 13,
+        "onPerPageSelect": [Function],
+        "onSetPage": [Function],
+        "page": 1,
+        "perPage": 10,
+      }
+    }
+    toggleIsExpanded={[Function]}
+  >
+    <ToolbarItem>
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
+    </ToolbarItem>
+    <ToolbarItem>
+      13
+       results
+    </ToolbarItem>
+  </PrimaryToolbar>
+  <Table
+    actionResolver={[Function]}
+    aria-label="policies"
+    borders={true}
+    canSelectAll={true}
+    cells={
+      Array [
+        Object {
+          "title": "Name",
+        },
+        Object {
+          "title": "Operating system",
+        },
+        Object {
+          "title": "Systems",
+        },
+        Object {
+          "title": "Business objective",
+        },
+        Object {
+          "title": "Compliance threshold",
+        },
+      ]
+    }
+    className="compliance-policies-table"
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    isStickyHeader={false}
+    ouiaSafe={true}
+    role="grid"
+    rowLabeledBy="simple-node"
+    rows={
+      Array [
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "compliantHostCount": 4,
+                    "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
+                    "majorOsVersion": 7,
+                    "name": "United States Government Configuration Baseline23",
+                    "policy": Object {
+                      "__typename": "Profile",
+                      "id": "b71376fd-015e-4209-99af-4543e82e5dc5-policy",
+                      "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+                      "profiles": Array [
+                        Object {
+                          "id": "b71376fd-015e-4209-99af",
+                          "name": "United States Government Configuration Baseline123",
+                          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                          "rules": Array [
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter the localtime File",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                          ],
+                          "ssgVersion": "0.1.49",
+                        },
+                        Object {
+                          "id": "b71376fd-015e-4209-99af",
+                          "name": "United States Government Configuration Baseline123",
+                          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                          "rules": Array [
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter the localtime File",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                          ],
+                          "ssgVersion": "0.1.45",
+                        },
+                        Object {
+                          "id": "b71376fd-015e-4209-99af",
+                          "name": "United States Government Configuration Baseline123",
+                          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                          "rules": Array [
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter the localtime File",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                          ],
+                          "ssgVersion": "0.1.46",
+                        },
+                      ],
+                    },
+                    "policyType": "United States Government Standard",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp23",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "b71376fd-015e-4209-99af-4543e82e5dc5",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 67,
+                    "id": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
+                    "majorOsVersion": 7,
+                    "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+                    "policy": Object {
+                      "__typename": "Profile",
+                      "id": "b71376fd-015e-4209-99af-4543e82e5dc5-policy",
+                      "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+                      "profiles": Array [
+                        Object {
+                          "id": "b71376fd-015e-4209-99af",
+                          "name": "United States Government Configuration Baseline123",
+                          "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                          "rules": Array [
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter the localtime File",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                            Object {
+                              "__typename": "Rule",
+                              "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                              "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                              "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                              "remediationAvailable": false,
+                              "severity": "medium",
+                              "title": "Record Attempts to Alter Time Through clock_settime",
+                            },
+                          ],
+                          "ssg_version": "0.1.45",
+                        },
+                      ],
+                    },
+                    "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+                    "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "67%",
+          ],
+          "policyId": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "dae0487d-3201-4ee0-af5f-b94cde2af818",
+                    "majorOsVersion": 7,
+                    "name": "United States Government Configuration Baseline2",
+                    "policyType": "United States Government Configuration Baseline2",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp2",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "dae0487d-3201-4ee0-af5f-b94cde2af818",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 69.5,
+                    "id": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
+                    "majorOsVersion": 7,
+                    "name": "C2S for Red Hat Enterprise Linux 7",
+                    "policyType": "C2S for Red Hat Enterprise Linux 7",
+                    "refId": "xccdf_org.ssgproject.content_profile_C2S",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "69.5%",
+          ],
+          "policyId": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
+                    "majorOsVersion": 7,
+                    "name": "Criminal Justice Information Services (CJIS) Security Policy",
+                    "policyType": "Criminal Justice Information Services (CJIS) Security Policy",
+                    "refId": "xccdf_org.ssgproject.content_profile_cjis",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
+                    "majorOsVersion": 7,
+                    "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+                    "policyType": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+                    "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
+                    "majorOsVersion": 7,
+                    "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                    "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                    "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
+                    "majorOsVersion": 7,
+                    "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+                    "policyType": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+                    "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
+                    "majorOsVersion": 7,
+                    "name": "Health Insurance Portability and Accountability Act (HIPAA)",
+                    "policyType": "Health Insurance Portability and Accountability Act (HIPAA)",
+                    "refId": "xccdf_org.ssgproject.content_profile_hipaa",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": <PolicyNameCell
+                profile={
+                  Object {
+                    "__typename": "Profile",
+                    "benchmark": Object {
+                      "title": "Guide to the Secure Configuration of RHEL 7",
+                      "version": "0.1.49",
+                    },
+                    "businessObjective": null,
+                    "complianceThreshold": 100,
+                    "id": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
+                    "majorOsVersion": 7,
+                    "name": "United States Government Configuration Baseline",
+                    "policyType": "United States Government Configuration Baseline",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp",
+                    "testResultHostCount": 8,
+                    "totalHostCount": 0,
+                  }
+                }
+              />,
+            },
+            Object {
+              "title": <Tooltip
+                content={
+                  <span>
+                    SCAP Security Guide (SSG): 
+                    Guide to the Secure Configuration of RHEL 7
+                     - 
+                    0.1.49
+                  </span>
+                }
+                position="right"
+              >
+                <span>
+                  RHEL 
+                  7
+                   (SSG 
+                  0.1.49
+                  )
+                </span>
+              </Tooltip>,
+            },
+            Object {
+              "title": <SystemsCountWarning
+                count={0}
+                variant="count"
+              />,
+            },
+            "--",
+            "100%",
+          ],
+          "policyId": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
+        },
+      ]
+    }
+    selectVariant="checkbox"
+    variant={null}
+  >
+    <TableHeader />
+    <Component />
+  </Table>
+  <TableToolbar
+    className="ins-c-inventory__table--toolbar"
+    isFooter={true}
+  >
+    <Pagination
+      className=""
+      defaultToFullPage={false}
+      dropDirection="up"
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
+      isSticky={false}
+      itemCount={13}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
+      onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
+      onSetPage={[Function]}
+      ouiaSafe={true}
+      page={1}
+      perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
+      variant="bottom"
+      widgetId="pagination-options-menu"
+    />
+  </TableToolbar>
+</Fragment>
+`;
+
 exports[`PoliciesTable expect to render emptystate 1`] = `
 <Fragment>
   <PrimaryToolbar

@@ -83,7 +83,7 @@ PolicyDescription.propTypes = {
         id: propTypes.string,
         complianceThreshold: propTypes.number,
         businessObjective: propTypes.object,
-        majorOsVersion: propTypes.string,
+        majorOsVersion: propTypes.number,
         policy: propTypes.shape({
             id: propTypes.string
         }),

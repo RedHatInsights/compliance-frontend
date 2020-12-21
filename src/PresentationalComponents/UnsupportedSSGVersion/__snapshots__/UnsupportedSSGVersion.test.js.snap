@@ -12,7 +12,6 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
   <TooltipOrPopover
     tooltipProps={
       Object {
-        "content": <div />,
         "messageVariant": undefined,
       }
     }
@@ -35,7 +34,6 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
   <TooltipOrPopover
     tooltipProps={
       Object {
-        "content": <div />,
         "messageVariant": undefined,
       }
     }
@@ -81,7 +79,6 @@ exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
   <TooltipOrPopover
     tooltipProps={
       Object {
-        "content": <div />,
         "messageVariant": "singular",
       }
     }
@@ -152,7 +149,6 @@ exports[`UnsupportedSSGVersion expect to render without error 1`] = `
   <TooltipOrPopover
     tooltipProps={
       Object {
-        "content": <div />,
         "messageVariant": undefined,
       }
     }
