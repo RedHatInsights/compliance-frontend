@@ -7,8 +7,8 @@ services:
         ports:
             - 8002:8002
         volumes:
-            - .:/frontend:z
-            - /frontend/node_modules
+            - .:/compliance:z
+            - /compliance/node_modules
 
     # Enable/uncomment this if you want to run chrome locally
     # chrome:
