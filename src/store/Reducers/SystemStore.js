@@ -23,7 +23,8 @@ import { mergeArraysByKey } from '@redhat-cloud-services/frontend-components-uti
 
 const NEVER = 'Never';
 
-export const lastScanned = ({ testResultProfiles: profiles = [] }) => {
+export const lastScanned = (host) => {
+    const profiles = host?.testResultProfiles || [];
     const dates = profiles.map((profile) => new Date(profile.lastScanned));
     const last = new Date(Math.max.apply(null, dates.filter((date) => isFinite(date))));
     const result = (last instanceof Date && isFinite(last)) ? last : NEVER;
@@ -31,11 +32,12 @@ export const lastScanned = ({ testResultProfiles: profiles = [] }) => {
     return result;
 };
 
-export const compliant = ({ testResultProfiles: profiles = [] }) => (
-    profiles.every(profile => profile.lastScanned === NEVER || profile.compliant === true)
+export const compliant = (host) => (
+    (host?.testResultProfiles || []).every(profile => profile.lastScanned === NEVER || profile.compliant === true)
 );
 
-export const score = ({ testResultProfiles: profiles = [] }) => {
+export const score = (host) => {
+    const profiles = host?.testResultProfiles || [];
     const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
     const numScored = profiles.reduce((acc, profile) => {
         if (profilesRulesPassed([profile]).length + profilesRulesFailed([profile]).length > 0) { return acc + 1; }
@@ -47,15 +49,15 @@ export const score = ({ testResultProfiles: profiles = [] }) => {
     return 0;
 };
 
-export const supported = ({ testResultProfiles: profiles = [] }) => (
-    profiles.reduce((acc, profile) => acc && profile.supported, true)
+export const supported = (host) => (
+    (host?.testResultProfiles || []).reduce((acc, profile) => acc && profile.supported, true)
 );
 
 export const policyNames = (system) => {
     if (system === {}) { return ''; }
 
-    let policyNames = system.policies.map(({ name }) => name);
-    let externalPolicyNames = system.testResultProfiles.filter(p => !p.policy).map(({ name }) => (
+    let policyNames = (system?.policies || []).map(({ name }) => name);
+    let externalPolicyNames = (system?.testResultProfiles || []).filter(p => !p.policy).map(({ name }) => (
         `(External) ${name}`
     ));
     return [...policyNames, ...externalPolicyNames].join(', ');
@@ -71,7 +73,7 @@ export const policiesCell = ({ policyNames }) => ({
 });
 
 export const detailsLink = (system) => {
-    if (system.testResultProfiles && system.testResultProfiles.length > 0) {
+    if ((system?.testResultProfiles || []).length > 0) {
         return {
             title: (
                 <Link to={{ pathname: `/systems/${system.id}` }}>
@@ -113,8 +115,8 @@ const isSelected = (id, selectedEntities) => (
     !!(selectedEntities || []).find((entity) => (entity.id === id))
 );
 
-const profilesSsgVersions = ({ testResultProfiles: profiles = [] }) => (
-    profiles.map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
+const profilesSsgVersions = (host) => (
+    (host?.testResultProfiles || []).map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
 );
 
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, selectedEntities) => (
@@ -246,8 +248,8 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => app
                 ...node,
                 ...showAllSystems && { testResultProfiles: [], policies: [] },
                 policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
-                rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
-                rulesFailed: profilesRulesFailed(node.testResultProfiles).length,
+                rulesPassed: profilesRulesPassed(node?.testResultProfiles || []).length,
+                rulesFailed: profilesRulesFailed(node?.testResultProfiles || []).length,
                 lastScanned: lastScanned(node),
                 compliant: compliant(node),
                 score: score(node),

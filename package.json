@@ -26,6 +26,7 @@
     "classnames": "^2.2.6",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "json-api-normalizer": "^1.0.1",
     "linkifyjs": "^2.1.9",
     "react": "^17.0.1",
     "react-content-loader": "^5.1.2",

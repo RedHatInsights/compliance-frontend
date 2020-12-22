@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApiClient returns an instance 1`] = `
+ApiClient {
+  "apiBase": "/api/compliance",
+  "authenticate": [Function],
+  "defaultHeaders": Object {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+  },
+}
+`;
