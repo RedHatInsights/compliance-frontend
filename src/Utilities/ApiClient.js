@@ -14,13 +14,10 @@ class ApiClient {
 
     async request(path, apiProps, method, options = {}) {
         return await this.callAuthenticate()
-        .then(() => this.fetch(path, apiProps, method))
+        .then(() => this.fetch(path, apiProps, method, options))
         .then(this.checkForEmptyResponse)
         .then((response) => this.checkForErrors(response, options))
-        .then((response) => {
-            const json = (async () => await response.json());
-            return json();
-        })
+        .then((response) => response.json())
         .catch(this.finalCatch);
     }
 
@@ -32,19 +29,27 @@ class ApiClient {
         }
     }
 
-    fetch(path, apiProps, method) {
+    fetch(path, apiProps, method, options) {
         let params = {
             method: method || 'get',
             headers: this.defaultHeaders,
             credentials: 'include'
         };
+        const fullPath = `${ this.apiBase }${ this.path ? this.path : '' }${ path ? path : '' }`;
+        let url = new URL(fullPath, window.location.origin);
+        if (options.params) {
+            const params = Object.keys(options.params).map((key) => (
+                encodeURIComponent(key) + '=' + encodeURIComponent(options.params[key])
+            )).join('&');
+            url.search = new URLSearchParams(params);
+        }
 
         if (apiProps) {
             params.body = JSON.stringify(apiProps);
         }
 
         return fetch(
-            `${ this.apiBase }${ this.path ? this.path : '' }${ path ? path : '' }`, params
+            url, params
         );
     }
 
