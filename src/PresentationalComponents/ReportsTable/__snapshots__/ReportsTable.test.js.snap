@@ -19,6 +19,7 @@ exports[`ReportsTable expect to render without error 1`] = `
             },
             "id": "policyname",
             "label": "Policy name",
+            "placeholder": "Filter by policy name",
             "type": "text",
           },
           Object {
@@ -82,6 +83,7 @@ exports[`ReportsTable expect to render without error 1`] = `
             },
             "id": "policytype",
             "label": "Policy type",
+            "placeholder": "Filter by policy type",
             "type": "checkbox",
           },
           Object {
@@ -97,6 +99,7 @@ exports[`ReportsTable expect to render without error 1`] = `
             },
             "id": "operatingsystem",
             "label": "Operating system",
+            "placeholder": "Filter by operating system",
             "type": "checkbox",
           },
           Object {
@@ -124,6 +127,7 @@ exports[`ReportsTable expect to render without error 1`] = `
             },
             "id": "systemsmeetingcompliance",
             "label": "Systems meeting compliance",
+            "placeholder": "Filter by systems meeting compliance",
             "type": "checkbox",
           },
         ],
