@@ -76,7 +76,7 @@ const ReportsHeader = () => (
             }>
             <Text variant="p">
                 Support for SCAP policies NOT defined within Compliance has been removed. The associated reports for
-                these policies will be removed from Insights by Jan 11th, 2020. Create a policy within the Compliance
+                these policies will be removed from Insights by Jan 11th, 2021. Create a policy within the Compliance
                 service for compliance reporting.
             </Text>
         </Alert>
