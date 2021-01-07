@@ -56,7 +56,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <BreadcrumbLinkItem
           to="/scappolicies"
         >
-          SCAP Policies
+          SCAP policies
         </BreadcrumbLinkItem>
         <BreadcrumbItem
           isActive={true}

@@ -148,7 +148,7 @@ export const PolicyDetails = ({ route }) => {
                             Compliance
                         </BreadcrumbLinkItem>
                         <BreadcrumbLinkItem to='/scappolicies'>
-                            SCAP Policies
+                            SCAP policies
                         </BreadcrumbLinkItem>
                         <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
                     </Breadcrumb>
