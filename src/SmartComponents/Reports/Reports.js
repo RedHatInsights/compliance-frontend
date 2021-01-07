@@ -70,7 +70,7 @@ const ReportsHeader = () => (
         <Alert
             variant="info"
             isInline
-            title= "Support for external reports will be removed in December 2020."
+            title="Support for external reports has been removed."
             actionLinks={
                 <a href="https://access.redhat.com/solutions/5249481">Learn more</a>
             }>
