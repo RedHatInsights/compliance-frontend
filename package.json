@@ -20,7 +20,7 @@
     "@redhat-cloud-services/frontend-components": "^2.5.5",
     "@redhat-cloud-services/frontend-components-inventory-compliance": "^2.2.22",
     "@redhat-cloud-services/frontend-components-notifications": "^2.2.4",
-    "@redhat-cloud-services/frontend-components-remediations": "^2.3.4",
+    "@redhat-cloud-services/frontend-components-remediations": "^2.3.5",
     "@redhat-cloud-services/frontend-components-utilities": "^2.2.8",
     "@redhat-cloud-services/host-inventory-client": "^1.0.89",
     "@types/react": "^17.0.0",
