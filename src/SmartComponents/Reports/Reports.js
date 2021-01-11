@@ -75,9 +75,9 @@ const ReportsHeader = () => (
                 <a href="https://access.redhat.com/solutions/5249481">Learn more</a>
             }>
             <Text variant="p">
-                Support for SCAP policies NOT defined within Compliance has been removed. The associated reports for
-                these policies will be removed from Insights by Jan 11th, 2021. Create a policy within the Compliance
-                service for compliance reporting.
+                Support for SCAP policies not defined within Compliance has been removed. The associated reports for
+                these policies have also been removed from Insights as of Jan 11th, 2021. Create a policy within the
+                Compliance service for compliance reporting.
             </Text>
         </Alert>
     </PageHeader>
