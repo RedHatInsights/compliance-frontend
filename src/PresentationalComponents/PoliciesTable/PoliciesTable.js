@@ -3,9 +3,8 @@ import propTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Table, TableHeader, TableBody, fitContent } from '@patternfly/react-table';
 import { Button, Pagination, PaginationVariant, ToolbarItem, TextContent } from '@patternfly/react-core';
-import { PrimaryToolbar, TableToolbar } from '@redhat-cloud-services/frontend-components';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
+import { PrimaryToolbar, TableToolbar, conditionalFilterType } from '@redhat-cloud-services/frontend-components';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 import {
     BackgroundLink, GreySmallText, SystemsCountWarning, emptyRows, OperatingSystemBadge
 } from 'PresentationalComponents';

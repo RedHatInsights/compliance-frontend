@@ -17,7 +17,7 @@ import {
     Breadcrumb,
     BreadcrumbItem
 } from '@patternfly/react-core';
-import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 import {
     BreadcrumbLinkItem,
     StateViewWithError,

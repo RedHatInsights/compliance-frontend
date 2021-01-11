@@ -1,5 +1,5 @@
 import React from 'react';
-import { rawComponents } from '@data-driven-forms/pf4-component-mapper';
+import { InternalSelect } from '@data-driven-forms/pf4-component-mapper/dist/esm/select';
 import { TextInput, TextArea } from '@patternfly/react-core';
 
 export const ReduxFormTextInput = field => (
@@ -17,7 +17,7 @@ export const ReduxFormTextArea = field => (
 );
 
 export const ReduxFormCreatableSelectInput = field => (
-    <rawComponents.RawSelect selectVariant="createable"
+    <InternalSelect selectVariant="createable"
         value={field.selected}
         onChange={field.input.onChange}
         {...field} />
