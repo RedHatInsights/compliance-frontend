@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { withApollo } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
 import { SkeletonTable } from '@redhat-cloud-services/frontend-components';
-import { asyncInventoryLoader, policyFilter } from './constants';
+import { policyFilter } from './constants';
 import { systemsReducer } from 'Store/Reducers/SystemStore';
 import { selectAll, clearSelection } from 'Store/ActionTypes';
 import { exportFromState } from 'Utilities/Export';
@@ -19,9 +19,10 @@ import { Alert } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 import {
     ComplianceRemediationButton
-} from '@redhat-cloud-services/frontend-components-inventory-compliance';
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
+import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/components/esm/Inventory';
 
 const InventoryTable = ({
     columns,
@@ -49,7 +50,6 @@ const InventoryTable = ({
         perPage: 50,
         page: 1
     });
-    const [ConnectedInventory, setInventory] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
@@ -99,24 +99,6 @@ const InventoryTable = ({
     );
 
     useEffect(() => {
-        (async () => {
-            const {
-                INVENTORY_ACTION_TYPES,
-                inventoryConnector,
-                mergeWithEntities
-            } = await asyncInventoryLoader();
-            getRegistry().register({
-                ...mergeWithEntities(
-                    systemsReducer(
-                        INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
-                    ))
-            });
-            const { InventoryTable } = inventoryConnector(store);
-            setInventory(() => InventoryTable);
-        })();
-    }, []);
-
-    useEffect(() => {
         if (conditionalFilter.activeFiltersConfig.filters) {
             debounceFetchSystems(pagination.perPage, 1);
         }
@@ -142,52 +124,61 @@ const InventoryTable = ({
                 variant="info"
                 title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                     'Only systems previously or currently associated with compliance policies are displayed.' } /> }
-            {ConnectedInventory ?
-                <ConnectedInventory
-                    { ...systemProps }
-                    tableProps={{
-                        canSelectAll: false
-                    }}
-                    variant={compact ? TableVariant.compact : ''}
-                    ref={inventory}
-                    onRefresh={onRefresh}
-                    bulkSelect={{
-                        checked: selectedEntities.length > 0 ?
-                            (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
-                            : false,
-                        onSelect: onBulkSelect,
-                        count: selectedEntities.length,
-                        label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
-                    }}
-                    {...!showAllSystems && {
-                        ...pagination,
-                        isLoaded,
-                        items,
-                        total,
-                        ...conditionalFilter,
-                        ...remediationsEnabled && {
-                            dedicatedAction: <ComplianceRemediationButton
-                                allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
-                                selectedRules={ [] } />
+            <FECInventoryTable
+                { ...systemProps }
+                onLoad={({
+                    INVENTORY_ACTION_TYPES,
+                    mergeWithEntities }) => {
+                    getRegistry().register({
+                        ...mergeWithEntities(
+                            systemsReducer(
+                                INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
+                            ))
+                    });
+                }}
+                fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                tableProps={{
+                    canSelectAll: false
+                }}
+                variant={compact ? TableVariant.compact : ''}
+                ref={inventory}
+                onRefresh={onRefresh}
+                bulkSelect={{
+                    checked: selectedEntities.length > 0 ?
+                        (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
+                        : false,
+                    onSelect: onBulkSelect,
+                    count: selectedEntities.length,
+                    label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
+                }}
+                {...!showAllSystems && {
+                    ...pagination,
+                    isLoaded,
+                    items,
+                    total,
+                    ...conditionalFilter,
+                    ...remediationsEnabled && {
+                        dedicatedAction: <ComplianceRemediationButton
+                            allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
+                            selectedRules={ [] } />
+                    }
+                }}
+                {...enableExport && {
+                    exportConfig: {
+                        isDisabled: total === 0 && selectedEntities.length === 0,
+                        onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
+                    }
+                }}
+                {...showActions && {
+                    actions: [{
+                        title: 'View in inventory',
+                        onClick: (_event, _index, { id }) => {
+                            const beta = window.location.pathname.split('/')[1] === 'beta';
+                            window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
                         }
-                    }}
-                    {...enableExport && {
-                        exportConfig: {
-                            isDisabled: total === 0 && selectedEntities.length === 0,
-                            onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
-                        }
-                    }}
-                    {...showActions && {
-                        actions: [{
-                            title: 'View in inventory',
-                            onClick: (_event, _index, { id }) => {
-                                const beta = window.location.pathname.split('/')[1] === 'beta';
-                                window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
-                            }
-                        }]
-                    }}
-                /> :
-                <SkeletonTable colSize={2} rowSize={15} />}
+                    }]
+                }}
+            />
         </StateViewPart>
     </StateView>;
 };
