@@ -1,4 +1,4 @@
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
 import { notifications } from '@redhat-cloud-services/frontend-components-notifications';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reducer as form } from 'redux-form';
@@ -8,7 +8,7 @@ let registry;
 export function init (...middleware) {
     registry = getRegistry({}, [
         promiseMiddleware(),
-        ...middleware
+        ...middleware.filter(item => typeof item !== 'undefined')
     ]);
 
     registry.register({ form, notifications });
