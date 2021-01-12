@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InventoryDetails expect to render without error 1`] = `
-<InventoryCmp
-  hideBack={true}
-/>
-`;
+exports[`InventoryDetails expect to render without error 1`] = `null`;

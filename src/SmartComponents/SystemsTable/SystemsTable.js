@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { withApollo } from '@apollo/react-hoc';
-import { connect, useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { pickBy } from 'lodash';
 import {
@@ -144,7 +144,7 @@ class SystemsTable extends React.Component {
         (this.props.preselectedSystems ?
             Promise.resolve(this.props.selectEntities(this.props.preselectedSystems)) : Promise.resolve())
         .then(() => {
-            this.updateSystems().then(() => this.fetchInventory());
+            this.updateSystems();
         });
     }
 
@@ -263,11 +263,6 @@ class SystemsTable extends React.Component {
         return (total || 0) === 0 && selectedEntities.length === 0;
     }
 
-    async fetchInventory() {
-        const { clearInventoryFilter } = this.props;
-        clearInventoryFilter();
-    }
-
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions, showComplianceSystemsInfo,
@@ -289,12 +284,6 @@ class SystemsTable extends React.Component {
         } : {};
         const inventoryTableProps = {
             ...systemProps,
-            onLoad: ({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => this.getRegistry().register({
-                ...mergeWithEntities(
-                    entitiesReducer(
-                        INVENTORY_ACTION_TYPES, columns, showAllSystems
-                    ))
-            }),
             onRefresh: this.onRefresh,
             ref: this.inventory,
             page,
@@ -356,22 +345,34 @@ class SystemsTable extends React.Component {
                 selectedRules={ [] } />;
         }
 
-        return <StateView stateValues={{ error, noError }}>
-            <StateViewPart stateKey='error'>
-                <ErrorPage error={error}/>
-            </StateViewPart>
-            <StateViewPart stateKey='noError'>
+        return (
+            <StateView stateValues={{ error, noError }}>
+                <StateViewPart stateKey='error'>
+                    <ErrorPage error={error}/>
+                </StateViewPart>
+                <StateViewPart stateKey='noError'>
 
-                { showComplianceSystemsInfo && <Alert
-                    isInline
-                    variant="info"
-                    title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
+                    { showComplianceSystemsInfo && <Alert
+                        isInline
+                        variant="info"
+                        title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                             'Only systems previously or currently associated with compliance policies are displayed.' } /> }
-
-                <InventoryTable fallback={<SkeletonTable colSize={2} rowSize={15} />} { ...inventoryTableProps } />
-
-            </StateViewPart>
-        </StateView>;
+                    <InventoryTable
+                        { ...inventoryTableProps }
+                        fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                        onLoad={({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
+                            this.props.clearInventoryFilter();
+                            this.getRegistry().register({
+                                ...mergeWithEntities(
+                                    entitiesReducer(
+                                        INVENTORY_ACTION_TYPES, columns, showAllSystems
+                                    ))
+                            });
+                        }}
+                    />
+                </StateViewPart>
+            </StateView>
+        );
     }
 }
 
@@ -401,7 +402,6 @@ SystemsTable.propTypes = {
     showAllSystems: propTypes.bool,
     showOnlySystemsWithTestResults: propTypes.bool,
     showOsFilter: propTypes.bool,
-    store: propTypes.object,
     systems: propTypes.array,
     total: propTypes.number,
     updateRows: propTypes.func,
@@ -473,8 +473,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const ConnectedSystemsTable = (props) => {
-    const store = useStore();
-    return <SystemsTable {...props} store={store} />;
+    return <SystemsTable {...props} />;
 };
 
 export { default as Cells } from './Cells';

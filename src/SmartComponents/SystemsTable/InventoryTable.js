@@ -128,7 +128,8 @@ const InventoryTable = ({
                 { ...systemProps }
                 onLoad={({
                     INVENTORY_ACTION_TYPES,
-                    mergeWithEntities }) => {
+                    mergeWithEntities
+                }) => {
                     getRegistry().register({
                         ...mergeWithEntities(
                             systemsReducer(

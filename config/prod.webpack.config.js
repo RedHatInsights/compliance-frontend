@@ -10,7 +10,7 @@ const { config: webpackConfig, plugins } = config({
 });
 
 webpackConfig.devServer = {
-    ...webpackConfig.devServer,
+    ...webpackConfig.devServer
 };
 
 webpackConfig.performance = {
@@ -35,6 +35,7 @@ plugins.push(
 /**
  * Use for build optimizations
  */
+// eslint-disable-next-line no-unused-vars
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // plugins.push(new BundleAnalyzerPlugin());
