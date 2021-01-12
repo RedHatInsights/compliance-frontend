@@ -1,6 +1,6 @@
 import { features } from '@/constants';
 import { useLocation, useHistory } from 'react-router-dom';
-const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
+export const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
 
 const setFeatureFlag = (featureValue, feature) => {
     const value = featureValue === 'enable';

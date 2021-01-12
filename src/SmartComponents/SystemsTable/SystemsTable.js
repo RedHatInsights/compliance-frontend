@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import propTypes from 'prop-types';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
@@ -193,12 +193,12 @@ class SystemsTable extends React.Component {
 
     updateSystems = () => {
         const prevSystems = this.props.systems.map((s) => s.node.id).sort();
-        return this.fetchSystems().then((items) => (
-            this.props.updateSystems({
+        return this.fetchSystems().then((items) => {
+            return this.props.updateSystems({
                 systems: items.data.systems.edges,
                 systemsCount: items.data.systems.totalCount
-            })
-        )).then(() => {
+            });
+        }).then(() => {
             const newSystems = this.props.systems.map((s) => s.node.id).sort();
             if (JSON.stringify(newSystems) === JSON.stringify(prevSystems)) {
                 this.props.updateRows();
@@ -361,7 +361,6 @@ class SystemsTable extends React.Component {
                         { ...inventoryTableProps }
                         fallback={<SkeletonTable colSize={2} rowSize={15} />}
                         onLoad={({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
-                            this.props.clearInventoryFilter();
                             this.getRegistry().register({
                                 ...mergeWithEntities(
                                     entitiesReducer(
@@ -472,9 +471,10 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const ConnectedSystemsTable = (props) => {
+// eslint-disable-next-line react/display-name
+const ConnectedSystemsTable = memo((props) => {
     return <SystemsTable {...props} />;
-};
+});
 
 export { default as Cells } from './Cells';
 export { SystemsTable };

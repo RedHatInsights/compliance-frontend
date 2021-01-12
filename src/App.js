@@ -5,6 +5,7 @@ import { Routes } from './Routes';
 import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
 import '@redhat-cloud-services/frontend-components-notifications/index.css';
 import './App.scss';
+import { LOCAL_STORE_FEATURE_PREFIX } from './Utilities/hooks/useFeature';
 
 const App = (props) => {
     const appNavClick = {
@@ -14,6 +15,7 @@ const App = (props) => {
     };
 
     useEffect(() => {
+        localStorage.setItem(`${LOCAL_STORE_FEATURE_PREFIX}:newInventory`, true);
         insights.chrome.init();
         insights.chrome?.hideGlobalFilter?.();
         insights.chrome.identifyApp('compliance');
