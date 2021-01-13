@@ -160,7 +160,7 @@ Array [
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="OUIA-Generated-Button-tertiary-1"
+          data-ouia-component-id="Benchmark"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={false}
@@ -174,7 +174,7 @@ Array [
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="OUIA-Generated-Button-tertiary-2"
+          data-ouia-component-id="Benchmark"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={false}
@@ -188,7 +188,7 @@ Array [
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="OUIA-Generated-Button-tertiary-3"
+          data-ouia-component-id="Benchmark"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={false}
@@ -202,7 +202,7 @@ Array [
           aria-disabled={false}
           aria-label={null}
           className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="OUIA-Generated-Button-tertiary-4"
+          data-ouia-component-id="Benchmark"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe={true}
           disabled={false}
@@ -383,7 +383,7 @@ Array [
     aria-disabled={false}
     aria-label={null}
     className="pf-c-button pf-m-tertiary wizard-os-button active-wizard-os-button"
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-5"
+    data-ouia-component-id="Benchmark"
     data-ouia-component-type="PF4/Button"
     data-ouia-safe={true}
     disabled={false}
@@ -397,7 +397,7 @@ Array [
     aria-disabled={false}
     aria-label={null}
     className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-6"
+    data-ouia-component-id="Benchmark"
     data-ouia-component-type="PF4/Button"
     data-ouia-safe={true}
     disabled={false}
@@ -411,7 +411,7 @@ Array [
     aria-disabled={false}
     aria-label={null}
     className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-7"
+    data-ouia-component-id="Benchmark"
     data-ouia-component-type="PF4/Button"
     data-ouia-safe={true}
     disabled={false}
@@ -425,7 +425,7 @@ Array [
     aria-disabled={false}
     aria-label={null}
     className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-8"
+    data-ouia-component-id="Benchmark"
     data-ouia-component-type="PF4/Button"
     data-ouia-safe={true}
     disabled={false}

@@ -47,7 +47,7 @@ export const SystemDetails = ({ route }) => {
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey='data'>
             <PageHeader>
-                <Breadcrumb>
+                <Breadcrumb ouiaId="systemName">
                     <BreadcrumbLinkItem to='/'>
                         Compliance
                     </BreadcrumbLinkItem>

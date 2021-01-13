@@ -69,6 +69,7 @@ const ReportsHeader = () => (
         <PageHeaderTitle title="Reports" className="pad-bottom" />
         <Alert
             variant="info"
+            ouiaId="support removed"
             isInline
             title="Support for external reports has been removed."
             actionLinks={

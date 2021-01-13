@@ -11,12 +11,14 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
         <Button
           aria-label="delete"
           onClick={[Function]}
+          ouiaId="Destroy"
           variant="danger"
         >
           Delete report
         </Button>,
         <Button
           onClick={[Function]}
+          ouiaId="Cancel"
           variant="secondary"
         >
           Cancel
@@ -31,6 +33,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
     hasNoBodyWrapper={false}
     isOpen={true}
     onClose={[Function]}
+    ouiaId="deleteReport"
     ouiaSafe={true}
     showClose={true}
     title="Delete report"
@@ -52,7 +55,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                 aria-labelledby="pf-modal-part-1"
                 aria-modal="true"
                 class="pf-c-modal-box pf-m-sm"
-                data-ouia-component-id="OUIA-Generated-Modal-small-1"
+                data-ouia-component-id="deleteReport"
                 data-ouia-component-type="PF4/ModalContent"
                 data-ouia-safe="true"
                 id="pf-modal-part-0"
@@ -113,7 +116,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                     aria-disabled="false"
                     aria-label="delete"
                     class="pf-c-button pf-m-danger"
-                    data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                    data-ouia-component-id="Destroy"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe="true"
                     type="button"
@@ -123,7 +126,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                   <button
                     aria-disabled="false"
                     class="pf-c-button pf-m-secondary"
-                    data-ouia-component-id="OUIA-Generated-Button-secondary-1"
+                    data-ouia-component-id="Cancel"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe="true"
                     type="button"
@@ -143,12 +146,14 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
             <Button
               aria-label="delete"
               onClick={[Function]}
+              ouiaId="Destroy"
               variant="danger"
             >
               Delete report
             </Button>,
             <Button
               onClick={[Function]}
+              ouiaId="Cancel"
               variant="secondary"
             >
               Cancel
@@ -165,7 +170,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
         isOpen={true}
         labelId="pf-modal-part-1"
         onClose={[Function]}
-        ouiaId="OUIA-Generated-Modal-small-1"
+        ouiaId="deleteReport"
         ouiaSafe={true}
         showClose={true}
         title="Delete report"
@@ -195,7 +200,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                   aria-label=""
                   aria-labelledby="pf-modal-part-1"
                   className=""
-                  data-ouia-component-id="OUIA-Generated-Modal-small-1"
+                  data-ouia-component-id="deleteReport"
                   data-ouia-component-type="PF4/ModalContent"
                   data-ouia-safe={true}
                   id="pf-modal-part-0"
@@ -208,7 +213,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                     aria-labelledby="pf-modal-part-1"
                     aria-modal="true"
                     className="pf-c-modal-box pf-m-sm"
-                    data-ouia-component-id="OUIA-Generated-Modal-small-1"
+                    data-ouia-component-id="deleteReport"
                     data-ouia-component-type="PF4/ModalContent"
                     data-ouia-safe={true}
                     id="pf-modal-part-0"
@@ -312,13 +317,14 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                           aria-label="delete"
                           key="destroy"
                           onClick={[Function]}
+                          ouiaId="Destroy"
                           variant="danger"
                         >
                           <button
                             aria-disabled={false}
                             aria-label="delete"
                             className="pf-c-button pf-m-danger"
-                            data-ouia-component-id="OUIA-Generated-Button-danger-1"
+                            data-ouia-component-id="Destroy"
                             data-ouia-component-type="PF4/Button"
                             data-ouia-safe={true}
                             disabled={false}
@@ -332,13 +338,14 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                         <Button
                           key="cancel"
                           onClick={[Function]}
+                          ouiaId="Cancel"
                           variant="secondary"
                         >
                           <button
                             aria-disabled={false}
                             aria-label={null}
                             className="pf-c-button pf-m-secondary"
-                            data-ouia-component-id="OUIA-Generated-Button-secondary-1"
+                            data-ouia-component-id="Cancel"
                             data-ouia-component-type="PF4/Button"
                             data-ouia-safe={true}
                             disabled={false}

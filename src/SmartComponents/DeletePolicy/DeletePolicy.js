@@ -46,12 +46,13 @@ const DeletePolicy = () => {
             onClose={ onClose }
             actions={[
                 <Button key='destroy'
+                    ouiaId="Delete"
                     aria-label="delete"
                     variant='danger'
                     onClick={() => deletePolicy({ variables: { input: { id } } })}>
                     Delete policy
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={ onClose }>
+                <Button key='cancel' ouiaId="Cancel" variant='secondary' onClick={ onClose }>
                     Cancel
                 </Button>
             ]}

@@ -43,6 +43,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -92,6 +93,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -239,6 +241,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={2}
       perPage={10}
@@ -328,6 +331,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -377,6 +381,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -920,6 +925,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={1}
       perPage={10}
@@ -1018,6 +1024,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -1067,6 +1074,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1140,6 +1148,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={1}
       perPage={10}
@@ -1229,6 +1238,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -1278,6 +1288,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1851,6 +1862,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={1}
       perPage={10}
@@ -1940,6 +1952,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -1989,6 +2002,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -2035,6 +2049,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={1}
       perPage={10}
@@ -2124,6 +2139,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         to="/scappolicies/new"
       >
         <Button
+          ouiaId="newPolicy"
           variant="primary"
         >
           Create new policy
@@ -2173,6 +2189,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    ouiaId="Policies"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -2716,6 +2733,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
       onPerPageSelect={[Function]}
       onPreviousClick={[Function]}
       onSetPage={[Function]}
+      ouiaId="pageUp"
       ouiaSafe={true}
       page={1}
       perPage={10}

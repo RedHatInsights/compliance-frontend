@@ -125,6 +125,7 @@ class FinishedCreatePolicy extends React.Component {
                         { percent === 100 ?
                             <Button
                                 variant={'primary'}
+                                ouiaId="return"
                                 onClick={() => { onWizardFinish(); }}
                             >
                                 Return to application

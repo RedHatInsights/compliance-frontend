@@ -7,12 +7,14 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
       <Button
         aria-label="delete"
         onClick={[Function]}
+        ouiaId="Delete"
         variant="danger"
       >
         Delete policy
       </Button>,
       <Button
         onClick={[Function]}
+        ouiaId="Cancel"
         variant="secondary"
       >
         Cancel

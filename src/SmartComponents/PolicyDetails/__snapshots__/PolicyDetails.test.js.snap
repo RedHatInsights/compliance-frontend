@@ -47,7 +47,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <PageHeader
       className="page-header-tabs"
     >
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="policyName"
+      >
         <BreadcrumbLinkItem
           to="/"
         >

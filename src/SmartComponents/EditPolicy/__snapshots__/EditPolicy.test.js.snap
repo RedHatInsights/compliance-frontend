@@ -7,12 +7,14 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
+        ouiaId="Save"
         variant="primary"
       >
         Save
       </Button>,
       <Button
         onClick={[Function]}
+        ouiaId="Cancel"
         variant="secondary"
       >
         Cancel
@@ -567,12 +569,14 @@ exports[`EditPolicy expect to render without error 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
+        ouiaId="Save"
         variant="primary"
       >
         Save
       </Button>,
       <Button
         onClick={[Function]}
+        ouiaId="Cancel"
         variant="secondary"
       >
         Cancel

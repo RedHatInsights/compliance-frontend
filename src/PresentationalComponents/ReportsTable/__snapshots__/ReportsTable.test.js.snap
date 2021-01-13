@@ -184,6 +184,7 @@ exports[`ReportsTable expect to render without error 1`] = `
     gridBreakPoint="grid-md"
     isStickyHeader={false}
     onSort={[Function]}
+    ouiaId="reports"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"

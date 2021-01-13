@@ -5,6 +5,7 @@ import { RowLoader } from '@redhat-cloud-services/frontend-components-utilities/
 const LoadingPoliciesTable = () => (
     <Table
         aria-label='policies-table'
+        ouiaId="policiesTable"
         cells={ [
             { title: 'Policy name' },
             { title: 'Operating system' },

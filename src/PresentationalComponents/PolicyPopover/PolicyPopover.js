@@ -67,7 +67,7 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
                 </TextContent>
             }
         >
-            <Button variant="link" isInline>
+            <Button variant="link" ouiaId="Link" isInline>
                 <OutlinedQuestionCircleIcon className='grey-icon'/>
             </Button>
         </Popover>

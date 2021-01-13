@@ -50,7 +50,9 @@ exports[`ReportDetails expect to render without error 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="titles"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -849,7 +851,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="titles"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -1645,7 +1649,9 @@ exports[`ReportDetails expect to render without ssg version for external profile
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="titles"
+      >
         <BreadcrumbLinkItem
           to="/"
         >

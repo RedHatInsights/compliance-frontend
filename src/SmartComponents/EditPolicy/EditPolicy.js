@@ -37,6 +37,7 @@ export const EditPolicy = ({ route }) => {
         <Button
             isDisabled={ saveEnabled }
             key='save'
+            ouiaId="Save"
             variant='primary'
             onClick={ () => (
                 updatePolicy(policy, updatedPolicy).then(() => linkToBackgroundWithHash())
@@ -45,6 +46,7 @@ export const EditPolicy = ({ route }) => {
         </Button>,
         <Button
             key='cancel'
+            ouiaId="Cancel"
             variant='secondary'
             onClick={ () => linkToBackgroundWithHash() }>
             Cancel
