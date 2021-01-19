@@ -193,12 +193,11 @@ class SystemsTable extends React.Component {
 
     updateSystems = () => {
         const prevSystems = this.props.systems.map((s) => s.node.id).sort();
-        return this.fetchSystems().then((items) => {
-            return this.props.updateSystems({
-                systems: items.data.systems.edges,
-                systemsCount: items.data.systems.totalCount
-            });
-        }).then(() => {
+        return this.fetchSystems().then((items) => this.props.updateSystems({
+            systems: items.data.systems.edges,
+            systemsCount: items.data.systems.totalCount
+        })
+        ).then(() => {
             const newSystems = this.props.systems.map((s) => s.node.id).sort();
             if (JSON.stringify(newSystems) === JSON.stringify(prevSystems)) {
                 this.props.updateRows();

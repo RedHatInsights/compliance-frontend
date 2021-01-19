@@ -7,7 +7,8 @@ const { aliases } = require('./alias.webpack.config');
 
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
-    debug: true
+    debug: true,
+    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
 });
 
 /**
