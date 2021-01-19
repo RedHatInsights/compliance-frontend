@@ -8,9 +8,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "path": "/scappolicies",
         "title": "SCAP policies",
@@ -18,9 +20,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "modal": true,
         "path": "/scappolicies/new",
@@ -29,9 +33,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "defaultTitle": "SCAP policies",
         "path": "/scappolicies/:policy_id",
@@ -40,9 +46,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "defaultTitle": "SCAP policies",
         "modal": true,
@@ -52,9 +60,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "modal": true,
         "path": "/scappolicies/:policy_id/delete",
@@ -63,9 +73,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "path": "/reports",
         "title": "Reports",
@@ -73,9 +85,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "defaultTitle": "Reports",
         "path": "/reports/:report_id",
@@ -84,9 +98,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "modal": true,
         "path": "/reports/:report_id/delete",
@@ -95,9 +111,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "path": "/systems",
         "title": "Systems",
@@ -105,9 +123,11 @@ exports[`Router expect to render without error 1`] = `
       Object {
         "component": Object {
           "$$typeof": Symbol(react.lazy),
-          "_ctor": [Function],
-          "_result": null,
-          "_status": -1,
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
         },
         "defaultTitle": "Systems",
         "path": "/systems/:inventoryId",
@@ -133,9 +153,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "isCurrent": false,
             "path": "/scappolicies",
@@ -155,9 +177,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "defaultTitle": "SCAP policies",
             "isCurrent": false,
@@ -178,9 +202,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "isCurrent": true,
             "path": "/reports",
@@ -200,9 +226,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "defaultTitle": "Reports",
             "isCurrent": false,
@@ -223,9 +251,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "isCurrent": false,
             "path": "/systems",
@@ -245,9 +275,11 @@ exports[`Router expect to render without error 1`] = `
           Object {
             "component": Object {
               "$$typeof": Symbol(react.lazy),
-              "_ctor": [Function],
-              "_result": null,
-              "_status": -1,
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
             },
             "defaultTitle": "Systems",
             "isCurrent": false,
@@ -272,9 +304,11 @@ exports[`Router expect to render without error 1`] = `
         Object {
           "component": Object {
             "$$typeof": Symbol(react.lazy),
-            "_ctor": [Function],
-            "_result": null,
-            "_status": -1,
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
           },
           "isCurrent": false,
           "modal": true,
@@ -295,9 +329,11 @@ exports[`Router expect to render without error 1`] = `
         Object {
           "component": Object {
             "$$typeof": Symbol(react.lazy),
-            "_ctor": [Function],
-            "_result": null,
-            "_status": -1,
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
           },
           "defaultTitle": "SCAP policies",
           "isCurrent": false,
@@ -319,9 +355,11 @@ exports[`Router expect to render without error 1`] = `
         Object {
           "component": Object {
             "$$typeof": Symbol(react.lazy),
-            "_ctor": [Function],
-            "_result": null,
-            "_status": -1,
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
           },
           "isCurrent": false,
           "modal": true,
@@ -342,9 +380,11 @@ exports[`Router expect to render without error 1`] = `
         Object {
           "component": Object {
             "$$typeof": Symbol(react.lazy),
-            "_ctor": [Function],
-            "_result": null,
-            "_status": -1,
+            "_init": [Function],
+            "_payload": Object {
+              "_result": [Function],
+              "_status": -1,
+            },
           },
           "isCurrent": false,
           "modal": true,

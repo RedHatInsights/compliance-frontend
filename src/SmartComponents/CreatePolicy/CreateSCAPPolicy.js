@@ -9,9 +9,7 @@ import {
     Tooltip,
     TooltipPosition
 } from '@patternfly/react-core';
-import {
-    OutlinedQuestionCircleIcon
-} from '@patternfly/react-icons';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';

@@ -7,7 +7,7 @@ import {
     Grid
 } from '@patternfly/react-core';
 import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 import {
     BackgroundLink,
     ErrorPage,

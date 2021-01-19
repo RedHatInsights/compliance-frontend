@@ -1,10 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
 import propTypes from 'prop-types';
-import * as reactRouterDom from 'react-router-dom';
-import * as reactCore from '@patternfly/react-core';
-import * as reactIcons from '@patternfly/react-icons';
-import * as pfReactTable from '@patternfly/react-table';
-import * as ReactRedux from 'react-redux';
 import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
@@ -14,15 +9,15 @@ import {
 } from '@redhat-cloud-services/frontend-components';
 import {
     ComplianceRemediationButton
-} from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import registry from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+import registry from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
 import {
     NoSystemsTableBody
 } from 'PresentationalComponents';
 
 import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
     DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
@@ -33,6 +28,9 @@ import {
     StateView,
     StateViewPart
 } from 'PresentationalComponents';
+import { TableVariant } from '@patternfly/react-table';
+import { Alert } from '@patternfly/react-core';
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/components/esm/Inventory';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
@@ -131,7 +129,6 @@ class SystemsTable extends React.Component {
 
     state = {
         ...initialState,
-        InventoryCmp: null,
         policyId: this.props.policyId,
         perPage: 50,
         totalCount: 0,
@@ -147,7 +144,7 @@ class SystemsTable extends React.Component {
         (this.props.preselectedSystems ?
             Promise.resolve(this.props.selectEntities(this.props.preselectedSystems)) : Promise.resolve())
         .then(() => {
-            this.updateSystems().then(() => this.fetchInventory());
+            this.updateSystems();
         });
     }
 
@@ -196,12 +193,11 @@ class SystemsTable extends React.Component {
 
     updateSystems = () => {
         const prevSystems = this.props.systems.map((s) => s.node.id).sort();
-        return this.fetchSystems().then((items) => (
-            this.props.updateSystems({
-                systems: items.data.systems.edges,
-                systemsCount: items.data.systems.totalCount
-            })
-        )).then(() => {
+        return this.fetchSystems().then((items) => this.props.updateSystems({
+            systems: items.data.systems.edges,
+            systemsCount: items.data.systems.totalCount
+        })
+        ).then(() => {
             const newSystems = this.props.systems.map((s) => s.node.id).sort();
             if (JSON.stringify(newSystems) === JSON.stringify(prevSystems)) {
                 this.props.updateRows();
@@ -266,42 +262,13 @@ class SystemsTable extends React.Component {
         return (total || 0) === 0 && selectedEntities.length === 0;
     }
 
-    async fetchInventory() {
-        const { columns, showAllSystems, clearInventoryFilter } = this.props;
-        const {
-            inventoryConnector,
-            INVENTORY_ACTION_TYPES,
-            mergeWithEntities
-        } = await insights.loadInventory({
-            ReactRedux,
-            react: React,
-            reactRouterDom,
-            pfReact: reactCore,
-            reactIcons,
-            pfReactTable
-        });
-
-        clearInventoryFilter();
-
-        this.getRegistry().register({
-            ...mergeWithEntities(
-                entitiesReducer(
-                    INVENTORY_ACTION_TYPES, columns, showAllSystems
-                ))
-        });
-
-        this.setState(() => ({
-            InventoryCmp: inventoryConnector(this.props.store).InventoryTable
-        }));
-    }
-
     render() {
         const {
             remediationsEnabled, compact, enableExport, showAllSystems, showActions, showComplianceSystemsInfo,
-            selectedEntities, selectedEntitiesIds, systems, total, policyId, systemProps
+            selectedEntities, selectedEntitiesIds, systems, total, policyId, systemProps, columns
         } = this.props;
         const {
-            page, perPage, InventoryCmp, activeFilters, error
+            page, perPage, activeFilters, error
         } = this.state;
         let noError;
         const filterConfig = this.filterConfig.buildConfiguration(
@@ -355,7 +322,7 @@ class SystemsTable extends React.Component {
         }
 
         if (compact) {
-            inventoryTableProps.variant = pfReactTable.TableVariant.compact;
+            inventoryTableProps.variant = TableVariant.compact;
         }
 
         if (error === undefined) {
@@ -377,24 +344,33 @@ class SystemsTable extends React.Component {
                 selectedRules={ [] } />;
         }
 
-        return <StateView stateValues={{ error, noError }}>
-            <StateViewPart stateKey='error'>
-                <ErrorPage error={error}/>
-            </StateViewPart>
-            <StateViewPart stateKey='noError'>
+        return (
+            <StateView stateValues={{ error, noError }}>
+                <StateViewPart stateKey='error'>
+                    <ErrorPage error={error}/>
+                </StateViewPart>
+                <StateViewPart stateKey='noError'>
 
-                { showComplianceSystemsInfo && <reactCore.Alert
-                    isInline
-                    variant="info"
-                    title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
+                    { showComplianceSystemsInfo && <Alert
+                        isInline
+                        variant="info"
+                        title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                             'Only systems previously or currently associated with compliance policies are displayed.' } /> }
-
-                { InventoryCmp ?
-                    <InventoryCmp { ...inventoryTableProps } /> :
-                    <SkeletonTable colSize={2} rowSize={15} /> }
-
-            </StateViewPart>
-        </StateView>;
+                    <InventoryTable
+                        { ...inventoryTableProps }
+                        fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                        onLoad={({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
+                            this.getRegistry().register({
+                                ...mergeWithEntities(
+                                    entitiesReducer(
+                                        INVENTORY_ACTION_TYPES, columns, showAllSystems
+                                    ))
+                            });
+                        }}
+                    />
+                </StateViewPart>
+            </StateView>
+        );
     }
 }
 
@@ -424,7 +400,6 @@ SystemsTable.propTypes = {
     showAllSystems: propTypes.bool,
     showOnlySystemsWithTestResults: propTypes.bool,
     showOsFilter: propTypes.bool,
-    store: propTypes.object,
     systems: propTypes.array,
     total: propTypes.number,
     updateRows: propTypes.func,
@@ -495,9 +470,10 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const ConnectedSystemsTable = (props) => {
-    return <SystemsTable {...props} store={ReactRedux.useStore()} />;
-};
+// eslint-disable-next-line react/display-name
+const ConnectedSystemsTable = memo((props) => {
+    return <SystemsTable {...props} />;
+});
 
 export { default as Cells } from './Cells';
 export { SystemsTable };

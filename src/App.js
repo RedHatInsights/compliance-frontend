@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/esm/RouterParams';
 import { Routes } from './Routes';
 import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
 import '@redhat-cloud-services/frontend-components-notifications/index.css';

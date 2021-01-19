@@ -9,11 +9,9 @@ import {
     WarningTriangleIcon
 } from '@patternfly/react-icons';
 import {
-    InvalidObject
-} from '@redhat-cloud-services/frontend-components/components/InvalidObject';
-import {
+    InvalidObject,
     NotAuthorized
-} from '@redhat-cloud-services/frontend-components/components/NotAuthorized';
+} from '@redhat-cloud-services/frontend-components';
 
 const ErrorPage = ({ error, ...props }) => {
     if (error.networkError && error.networkError.statusCode === 401) {

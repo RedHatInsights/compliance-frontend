@@ -87,7 +87,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
           </TabTitleText>
         }
       >
-        <Connect(withApollo(ConnectedSystemsTable))
+        <Connect(withApollo(Component))
           columns={
             Array [
               Object {
@@ -647,7 +647,7 @@ exports[`EditPolicy expect to render without error 1`] = `
           </TabTitleText>
         }
       >
-        <Connect(withApollo(ConnectedSystemsTable))
+        <Connect(withApollo(Component))
           columns={
             Array [
               Object {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
 
 const useFilterConfig = (initialConfig, arrayToFilter) => {
     const filterConfigBuilder = new FilterConfigBuilder(initialConfig);

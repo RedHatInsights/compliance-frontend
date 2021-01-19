@@ -1,10 +1,9 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import {
-    global_palette_black_300 as black300,
-    chart_color_blue_200 as blue200,
-    chart_color_blue_300 as blue300
-} from '@patternfly/react-tokens';
+
+import black300 from '@patternfly/react-tokens/dist/esm/global_palette_black_300';
+import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
+import blue300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
 import propTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
@@ -14,7 +13,7 @@ import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
 
 import {
-    PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner
+    PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner, DateFormat
 } from '@redhat-cloud-services/frontend-components';
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
@@ -30,7 +29,6 @@ import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
 import { systemName } from 'Store/Reducers/SystemStore';
-import { DateFormat } from '@redhat-cloud-services/frontend-components';
 import { ComplianceScore as complianceScore } from 'PresentationalComponents';
 
 export const QUERY = gql`

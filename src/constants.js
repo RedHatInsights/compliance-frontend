@@ -1,5 +1,5 @@
 import { version } from './../package.json';
-import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/components/cjs/ConditionalFilter';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
 
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
 export const DEFAULT_TITLE_SUFFIX = ` - ${ DEFAULT_TITLE }`;

@@ -2,7 +2,7 @@ import 'jest-canvas-mock';
 import { configure, mount, render, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 import 'babel-polyfill';
 
