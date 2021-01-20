@@ -84,8 +84,8 @@ class FinishedCreatePolicy extends React.Component {
             }));
         }).catch((error) => {
             this.setState({
-                message: error.networkError.message,
-                errors: error.networkError.result.errors,
+                message: error.networkError?.message || 'Failed to create new policy',
+                errors: error.networkError?.result?.errors,
                 failed: true
             });
         });;
