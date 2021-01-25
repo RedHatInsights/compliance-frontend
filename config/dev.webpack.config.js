@@ -20,6 +20,11 @@ webpackConfig.resolve.alias = {
     ...aliases
 };
 
+webpackConfig.resolve = {
+    ...webpackConfig.resolve,
+    modules: [resolve('./node_modules')],
+}
+
 webpackConfig.devServer = {
     ...webpackConfig.devServer,
     ...devserverConfig

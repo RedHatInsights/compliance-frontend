@@ -30,7 +30,7 @@ module.exports = {
             'transform-imports', {
                 '@patternfly/react-icons': {
                     transform: (importName) => (
-                        `@patternfly/react-icons/dist/js/icons/${IconMapper[importName] || importName
+                        `@patternfly/react-icons/dist/esm/icons/${IconMapper[importName] || importName
                         .split(/(?=[A-Z])/)
                         .join('-')
                         .toLowerCase()}.js`
@@ -38,6 +38,19 @@ module.exports = {
                 }
             },
             'react-icons'
+        ], [
+            'transform-imports', {
+                '@redhat-cloud-services/frontend-components': {
+                    transform: '@redhat-cloud-services/frontend-components/components/esm',
+                    preventFullImport: true,
+                    skipDefaultConversion: true
+                },
+                '@redhat-cloud-services/frontend-components-notifications': {
+                    transform: '@redhat-cloud-services/frontend-components-notifications/esm',
+                    preventFullImport: true,
+                    skipDefaultConversion: true
+                }
+            }
         ]
 
     ]
