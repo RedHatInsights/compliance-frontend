@@ -13,7 +13,7 @@
     "@data-driven-forms/react-form-renderer": "^2.19.1",
     "@patternfly/react-charts": "^6.12.12",
     "@patternfly/react-core": "^4.84.4",
-    "@patternfly/react-icons": "^4.7.22",
+    "@patternfly/react-icons": "^4.8.3",
     "@patternfly/react-table": "^4.19.45",
     "@patternfly/react-tokens": "^4.9.22",
     "@redhat-cloud-services/frontend-components": "^2.5.8",
