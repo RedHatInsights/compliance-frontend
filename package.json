@@ -11,7 +11,7 @@
     "@babel/runtime": "^7.12.5",
     "@data-driven-forms/pf4-component-mapper": "^2.19.1",
     "@data-driven-forms/react-form-renderer": "^2.19.1",
-    "@patternfly/react-charts": "^6.12.12",
+    "@patternfly/react-charts": "^6.13.7",
     "@patternfly/react-core": "^4.84.4",
     "@patternfly/react-icons": "^4.7.22",
     "@patternfly/react-table": "^4.19.45",
