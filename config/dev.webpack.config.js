@@ -9,6 +9,7 @@ const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
     debug: true,
     port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
+    useFileHash: false
 });
 
 /**
@@ -20,6 +21,11 @@ webpackConfig.resolve.alias = {
     ...aliases
 };
 
+webpackConfig.resolve = {
+    ...webpackConfig.resolve,
+    modules: [resolve('./node_modules')],
+}
+
 webpackConfig.devServer = {
     ...webpackConfig.devServer,
     ...devserverConfig
@@ -27,7 +33,8 @@ webpackConfig.devServer = {
 
 plugins.push(
     require('@redhat-cloud-services/frontend-components-config/federated-modules')({
-        root: resolve(__dirname, '../')
+        root: resolve(__dirname, '../'),
+        useFileHash: false
     })
 );
 
