@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import { SystemRulesTable, selectRulesTableColumns } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
-import { EmptyTable, Spinner } from '@redhat-cloud-services/frontend-components';
+import SystemRulesTable, {
+    selectColumns as selectRulesTableColumns
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { Button, Text, TextContent, TextVariants } from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';

@@ -2,7 +2,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';

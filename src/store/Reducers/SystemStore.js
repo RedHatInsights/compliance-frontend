@@ -1,6 +1,6 @@
 import React from 'react';
-import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/files/esm/ReducerRegistry';
-import { DateFormat } from '@redhat-cloud-services/frontend-components';
+import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
+import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import { Link } from 'react-router-dom';
 import { EXPORT, SELECT_ENTITY } from 'Store/ActionTypes';
 import { exportFromState } from 'Utilities/Export';
@@ -19,7 +19,7 @@ import {
     profilesRulesFailed
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
-import { mergeArraysByKey } from '@redhat-cloud-services/frontend-components-utilities/files/esm/helpers';
+import { mergeArraysByKey } from '@redhat-cloud-services/frontend-components-utilities/helpers';
 
 const NEVER = 'Never';
 

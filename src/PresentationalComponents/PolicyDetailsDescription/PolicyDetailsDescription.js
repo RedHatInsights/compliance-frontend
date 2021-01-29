@@ -11,7 +11,7 @@ import {
     Text,
     Tooltip
 } from '@patternfly/react-core';
-import { Truncate } from '@redhat-cloud-services/frontend-components';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
 
 const PolicyDetailsDescription = ({ policy }) => (

@@ -4,20 +4,17 @@ import { withApollo } from '@apollo/react-hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { pickBy } from 'lodash';
-import {
-    SkeletonTable
-} from '@redhat-cloud-services/frontend-components';
-import {
-    ComplianceRemediationButton
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
-import registry from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
+import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
+import ComplianceRemediationButton
+    from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
+import registry from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import {
     NoSystemsTableBody
 } from 'PresentationalComponents';
 
 import { exportFromState, selectAll, clearSelection, SELECT_ENTITY } from 'Store/ActionTypes';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/Utilities';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import {
     DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
@@ -30,7 +27,7 @@ import {
 } from 'PresentationalComponents';
 import { TableVariant } from '@patternfly/react-table';
 import { Alert } from '@patternfly/react-core';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/components/esm/Inventory';
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {

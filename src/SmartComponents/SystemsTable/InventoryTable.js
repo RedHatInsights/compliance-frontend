@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { withApollo } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
-import { SkeletonTable } from '@redhat-cloud-services/frontend-components';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import { policyFilter } from './constants';
 import { systemsReducer } from 'Store/Reducers/SystemStore';
 import { selectAll, clearSelection } from 'Store/ActionTypes';
@@ -17,12 +17,11 @@ import {
 } from 'PresentationalComponents';
 import { Alert } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
-import {
-    ComplianceRemediationButton
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+// eslint-disable-next-line max-len
+import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
-import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/components/esm/Inventory';
+import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 
 const InventoryTable = ({
     columns,

@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Tab } from '@patternfly/react-core';
-import {
-    PageHeader, PageHeaderTitle, Main, Spinner
-} from '@redhat-cloud-services/frontend-components';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
     PolicyDetailsDescription, PolicyDetailsContentLoader, RoutedTabSwitcher as TabSwitcher, ContentTab,
     StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem, BackgroundLink

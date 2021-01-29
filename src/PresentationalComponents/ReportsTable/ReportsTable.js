@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Table, TableBody, TableHeader, sortable, fitContent } from '@patternfly/react-table';
-import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components';
+import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import { emptyRows } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import useTableSort from 'Utilities/hooks/useTableSort';

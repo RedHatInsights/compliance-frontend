@@ -1,9 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Skeleton, SkeletonSize } from '@redhat-cloud-services/frontend-components';
-import { registryDecorator } from '@redhat-cloud-services/frontend-components-utilities/files/esm/Registry';
-
-import { InventoryDetail, DetailWrapper } from '@redhat-cloud-services/frontend-components/components/esm/Inventory';
+import Skeleton, { SkeletonSize } from '@redhat-cloud-services/frontend-components/Skeleton';
+import { registryDecorator } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { InventoryDetail, DetailWrapper } from '@redhat-cloud-services/frontend-components/Inventory';
 
 @registryDecorator()
 class InventoryDetails extends React.Component {

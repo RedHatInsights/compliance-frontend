@@ -6,8 +6,9 @@ import {
     Button,
     Grid
 } from '@patternfly/react-core';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import ComplianceEmptyState from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceEmptyState';
 import {
     BackgroundLink,
     ErrorPage,
