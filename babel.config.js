@@ -41,12 +41,12 @@ module.exports = {
         ], [
             'transform-imports', {
                 '@redhat-cloud-services/frontend-components': {
-                    transform: '@redhat-cloud-services/frontend-components/components/esm',
+                    transform: '@redhat-cloud-services/frontend-components/',
                     preventFullImport: true,
                     skipDefaultConversion: true
                 },
                 '@redhat-cloud-services/frontend-components-notifications': {
-                    transform: '@redhat-cloud-services/frontend-components-notifications/esm',
+                    transform: '@redhat-cloud-services/frontend-components-notifications',
                     preventFullImport: true,
                     skipDefaultConversion: true
                 }
