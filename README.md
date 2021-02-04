@@ -4,6 +4,8 @@
 
 UI application for Red Hat Insights Compliance.
 
+Some cool feature
+
 ## Running the frontend
 
 This application requires the use of [Insights Proxy](https://github.com/RedHatInsights/insights-proxy), which is configured with default routes that proxy a staging environment for services that are not available locally.
