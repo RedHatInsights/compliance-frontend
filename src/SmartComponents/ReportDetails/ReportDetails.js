@@ -12,9 +12,11 @@ import gql from 'graphql-tag';
 import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
 
-import {
-    PageHeader, PageHeaderTitle, Main, EmptyTable, Spinner, DateFormat
-} from '@redhat-cloud-services/frontend-components';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
+import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import useFeature from 'Utilities/hooks/useFeature';

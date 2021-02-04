@@ -13,7 +13,7 @@ import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { Spinner } from '@redhat-cloud-services/frontend-components';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';

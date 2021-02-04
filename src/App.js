@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/esm/RouterParams';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { Routes } from './Routes';
-import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
-import '@redhat-cloud-services/frontend-components-notifications/index.css';
+import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import './App.scss';
 
 const App = (props) => {

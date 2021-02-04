@@ -8,10 +8,8 @@ import {
 import {
     WarningTriangleIcon
 } from '@patternfly/react-icons';
-import {
-    InvalidObject,
-    NotAuthorized
-} from '@redhat-cloud-services/frontend-components';
+import InvalidObject from '@redhat-cloud-services/frontend-components/InvalidObject';
+import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
 const ErrorPage = ({ error, ...props }) => {
     if (error.networkError && error.networkError.statusCode === 401) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableHeader, TableBody } from '@patternfly/react-table';
-import { RowLoader } from '@redhat-cloud-services/frontend-components-utilities/files/esm/helpers';
+import RowLoader from '@redhat-cloud-services/frontend-components-utilities/RowLoader';
 
 const LoadingPoliciesTable = () => (
     <Table

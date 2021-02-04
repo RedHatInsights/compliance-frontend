@@ -1,7 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Label, Tab, TabTitleText, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import { SystemRulesTable, selectRulesTableColumns } from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+import SystemRulesTable, {
+    selectColumns as selectRulesTableColumns
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { RoutedTabs } from 'PresentationalComponents';
 
 const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => (

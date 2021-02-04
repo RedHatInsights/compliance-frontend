@@ -12,7 +12,7 @@ import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
-import { Spinner } from '@redhat-cloud-services/frontend-components';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { useQuery } from '@apollo/react-hooks';
 import {
     SystemsCountWarning

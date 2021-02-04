@@ -7,17 +7,14 @@ import {
 import {
     useParams
 } from 'react-router-dom';
-import {
-    PageHeader,
-    Main,
-    Skeleton,
-    SkeletonSize
-} from '@redhat-cloud-services/frontend-components';
+import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
+import Skeleton, { SkeletonSize } from '@redhat-cloud-services/frontend-components/Skeleton';
+import Main from '@redhat-cloud-services/frontend-components/Main';
 import {
     Breadcrumb,
     BreadcrumbItem
 } from '@patternfly/react-core';
-import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance/esm';
+import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance/Compliance';
 import {
     BreadcrumbLinkItem,
     StateViewWithError,
