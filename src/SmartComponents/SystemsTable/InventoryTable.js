@@ -122,7 +122,7 @@ const InventoryTable = ({
                 isInline
                 variant="info"
                 title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
-                    'Only systems previously or currently associated with compliance policies are displayed.' } /> }
+                    'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable
                 { ...systemProps }
                 onLoad={({
