@@ -87,15 +87,16 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
           </TabTitleText>
         }
       >
-        <Connect(withApollo(Component))
+        <withApollo(InventoryTable)
           columns={
             Array [
               Object {
-                "key": "facts.compliance.display_name",
+                "key": "display_name",
                 "props": Object {
                   "isStatic": true,
                   "width": 40,
                 },
+                "renderFunc": [Function],
                 "title": "Name",
               },
             ]
@@ -647,15 +648,16 @@ exports[`EditPolicy expect to render without error 1`] = `
           </TabTitleText>
         }
       >
-        <Connect(withApollo(Component))
+        <withApollo(InventoryTable)
           columns={
             Array [
               Object {
-                "key": "facts.compliance.display_name",
+                "key": "display_name",
                 "props": Object {
                   "isStatic": true,
                   "width": 40,
                 },
+                "renderFunc": [Function],
                 "title": "Name",
               },
             ]
