@@ -25,6 +25,8 @@ const QUERY = gql`
 }
 `;
 
+const DEFAULT_FILTER = 'has_test_results = true or has_policy = true';
+
 export const ComplianceSystems = () => {
     const newInventory = useFeature('newInventory');
     const { data, error, loading } = useQuery(QUERY);
@@ -79,6 +81,7 @@ export const ComplianceSystems = () => {
                     <StateViewPart stateKey="data">
                         { policies && <InvComponent
                             query={GET_SYSTEMS}
+                            defaultFilter={ DEFAULT_FILTER }
                             systemProps={{
                                 isFullView: true
                             }}
