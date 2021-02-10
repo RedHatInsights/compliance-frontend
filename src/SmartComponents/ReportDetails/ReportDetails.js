@@ -117,9 +117,16 @@ export const ReportDetails = ({ route }) => {
         props: {
             width: 5
         },
-        renderFunc: (profile) => (
-            profile && <Cells.SSGVersion supported={ profile.supported } ssgVersion={ profile.ssg_version } />
-        )
+        renderFunc: (profile, ...rest) => {
+            let realProfile = profile;
+            if (typeof profile === 'string') {
+                realProfile = rest[1];
+            }
+
+            return realProfile && <Cells.SSGVersion
+                supported={ realProfile.supported }
+                ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
+        }
     }] : [], {
         key: 'facts.compliance.rules_failed',
         title: 'Failed rules',

@@ -32,9 +32,16 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
             }, ...showSsgVersions ? [{
                 key: 'facts.compliance',
                 title: 'SSG version',
-                renderFunc: (profile) => (
-                    <Cells.SSGVersion supported={ profile.supported } ssgVersion={ profile.ssg_version } />
-                )
+                renderFunc: (profile, ...rest) => {
+                    let realProfile = profile;
+                    if (typeof profile === 'string') {
+                        realProfile = rest[1];
+                    }
+
+                    return realProfile && <Cells.SSGVersion
+                        supported={ realProfile.supported }
+                        ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
+                }
             }] : []]}
             complianceThreshold={ policy.complianceThreshold }
             { ...systemTableProps }
