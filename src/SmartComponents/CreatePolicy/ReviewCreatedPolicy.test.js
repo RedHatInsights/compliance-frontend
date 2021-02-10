@@ -20,6 +20,7 @@ describe('ReviewCreatedPolicy', () => {
             benchmark: {
                 title: 'SCAP security guide for RHEL7',
                 refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7',
+                osMajorVersion: '7',
                 version: '0.1.40'  }
         }, error: false, loading: false }));
         component = mount(
