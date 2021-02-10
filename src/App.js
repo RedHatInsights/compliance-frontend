@@ -5,12 +5,13 @@ import { Routes } from './Routes';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import './App.scss';
 
+const appNavClick = {
+    reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect }); },
+    scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect }); },
+    systems(redirect) { insights.chrome.appNavClick({ id: 'systems', redirect }); }
+};
+
 const App = (props) => {
-    const appNavClick = {
-        reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect }); },
-        scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect }); },
-        systems(redirect) { insights.chrome.appNavClick({ id: 'systems', redirect }); }
-    };
 
     useEffect(() => {
         insights.chrome.init();
@@ -26,11 +27,6 @@ const App = (props) => {
 
         return () => unregister();
     }, []);
-
-    useEffect(() => {
-        const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
-        insights && insights.chrome && baseComponentUrl && appNavClick[baseComponentUrl](false);
-    }, [appNavClick, props.location]);
 
     return (
         <React.Fragment>
