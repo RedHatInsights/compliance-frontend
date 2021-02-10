@@ -65,17 +65,19 @@ const InventoryTable = ({
     const fetchSystems = (perPage = 50, page = 1) => {
         setIsLoaded(false);
 
-        const filter = buildFilterString();
+        const filterString = buildFilterString();
+        const combindedFilter = [
+            ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
+            ...filterString?.length > 0 ? [filterString] : []
+        ].join(' and ');
+        const filter = defaultFilter ? `(${ defaultFilter }) and (${ combindedFilter })` : combindedFilter;
+
         return client.query({
             query,
             fetchResults: true,
             fetchPolicy: 'no-cache',
             variables: {
-                filter: [
-                    ...defaultFilter ? [defaultFilter] : [],
-                    ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
-                    ...filter?.length > 0 ? [filter] : []
-                ].join(' and '),
+                filter,
                 perPage,
                 page,
                 ...policyId && { policyId }
