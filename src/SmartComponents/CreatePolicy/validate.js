@@ -1,8 +1,8 @@
-export const validateFirstPage = (benchmark, profile) => {
-    if (!benchmark || !profile) {
-        return false;
-    } else {
+export const validateFirstPage = (benchmark, osMajorVersion, profile) => {
+    if (benchmark && osMajorVersion && profile) {
         return true;
+    } else {
+        return false;
     }
 };
 
