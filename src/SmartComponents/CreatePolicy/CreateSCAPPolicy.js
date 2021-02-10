@@ -26,6 +26,7 @@ query benchmarksAndProfiles {
         title
         refId
         version
+        osMajorVersion
         profiles {
             id
             name
@@ -88,12 +89,12 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     fieldId="benchmark">
                     <br/>
                     { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
-                        const { refId, id } = benchmark;
+                        const { id, osMajorVersion } = benchmark;
                         return (
                             <Button key={id} onClick={ () => { change('benchmark', id); } }
                                 className={`wizard-os-button ${selectedBenchmarkId === id ? 'active-wizard-os-button' : ''}`}
                                 variant="tertiary">
-                                { refId && refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
+                                { `RHEL ${osMajorVersion}` }
                             </Button>
                         );
                     })}

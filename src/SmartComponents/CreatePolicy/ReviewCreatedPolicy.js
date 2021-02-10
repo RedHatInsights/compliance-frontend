@@ -24,6 +24,7 @@ query review($benchmarkId: String!) {
         id
         title
         refId
+        osMajorVersion
         version
     }
 }
@@ -51,7 +52,7 @@ const ReviewCreatedPolicy = ({
             <TextList component={TextListVariants.dl}>
                 <TextListItem component={TextListItemVariants.dt}>Operating system</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                    { benchmark.refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
+                    { `RHEL ${benchmark.osMajorVersion}` }
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dt}>Security guide</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
