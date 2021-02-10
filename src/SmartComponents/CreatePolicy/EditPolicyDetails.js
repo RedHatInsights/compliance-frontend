@@ -76,6 +76,7 @@ export default compose(
                 refId: `${JSON.parse(selector(state, 'profile')).refId}`,
                 description: `${JSON.parse(selector(state, 'profile')).description}`,
                 benchmark: selector(state, 'benchmark'),
+                osMajorVersion: selector(state, 'osMajorVersion'),
                 profile: selector(state, 'profile')
             }
         })

@@ -13,7 +13,7 @@ import FinishedCreatePolicy from './FinishedCreatePolicy';
 import { validateFirstPage, validateSecondPage, validateThirdPage } from './validate';
 
 export const CreatePolicy = ({
-    benchmark, complianceThreshold, name, profile, refId, selectedRuleRefIds
+    benchmark, osMajorVersion, complianceThreshold, name, profile, refId, selectedRuleRefIds
 }) => {
     const history = useHistory();
     const [stepIdReached, setStepIdReached] = useState(1);
@@ -30,7 +30,7 @@ export const CreatePolicy = ({
             id: 1,
             name: 'Create SCAP policy',
             component: <CreateSCAPPolicy/>,
-            enableNext: validateFirstPage(benchmark, profile)
+            enableNext: validateFirstPage(benchmark, osMajorVersion, profile)
         },
         {
             id: 2,
@@ -84,6 +84,7 @@ export const CreatePolicy = ({
 
 CreatePolicy.propTypes = {
     benchmark: propTypes.string,
+    osMajorVersion: propTypes.string,
     complianceThreshold: propTypes.string,
     businessObjective: propTypes.object,
     dispatch: propTypes.func,
@@ -103,6 +104,7 @@ const selector = formValueSelector('policyForm');
 export default connect(
     state => ({
         benchmark: selector(state, 'benchmark'),
+        osMajorVersion: selector(state, 'osMajorVersion'),
         businessObjective: selector(state, 'businessObjective'),
         complianceThreshold: selector(state, 'complianceThreshold') || 100.0,
         name: selector(state, 'name'),

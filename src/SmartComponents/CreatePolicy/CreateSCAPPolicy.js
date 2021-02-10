@@ -72,6 +72,11 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
         }));
     }
 
+    const setBenchmark = ({ id, osMajorVersion }) => {
+        change('benchmark', id);
+        change('osMajorVersion', osMajorVersion);
+    };
+
     return (
         <React.Fragment>
             <TextContent>
@@ -91,7 +96,7 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
                         const { id, osMajorVersion } = benchmark;
                         return (
-                            <Button key={id} onClick={ () => { change('benchmark', id); } }
+                            <Button key={id} onClick={ () => setBenchmark(benchmark) }
                                 className={`wizard-os-button ${selectedBenchmarkId === id ? 'active-wizard-os-button' : ''}`}
                                 variant="tertiary">
                                 { `RHEL ${osMajorVersion}` }
