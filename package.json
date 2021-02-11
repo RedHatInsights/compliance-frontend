@@ -38,7 +38,7 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.5",
     "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.1.1"
+    "redux-promise-middleware": "^6.1.2"
   },
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",

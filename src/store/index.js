@@ -7,7 +7,7 @@ let registry;
 
 export function init (...middleware) {
     registry = getRegistry({}, [
-        promiseMiddleware(),
+        promiseMiddleware,
         ...middleware.filter(item => typeof item !== 'undefined')
     ]);
 
