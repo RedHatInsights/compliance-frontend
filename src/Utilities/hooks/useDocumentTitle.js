@@ -14,7 +14,7 @@ export const useTitleEntity = (route, entityTitle) => {
         const title = entityTitle ?
             route.title.replace('$entityTitle', entityTitle) : route.defaultTitle;
         route.setTitle(title);
-    }, [entityTitle, location]);
+    }, [entityTitle, location, route]);
 };
 
 const useDocumentTitle = () => (

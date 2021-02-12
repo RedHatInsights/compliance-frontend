@@ -131,7 +131,7 @@ export const PolicyDetails = ({ route }) => {
 
     useEffect(() => {
         refetch();
-    }, [location]);
+    }, [location, refetch]);
 
     useTitleEntity(route, policy?.name);
 
