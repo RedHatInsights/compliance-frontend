@@ -186,6 +186,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                 }
               }
               paused={false}
+              preventScrollOnDeactivate={false}
             >
               <div
                 className="pf-l-bullseye"
