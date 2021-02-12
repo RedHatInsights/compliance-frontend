@@ -76,10 +76,10 @@ const InventoryTable = ({
     const getEntities = async (...args) => {
         console.log(...args);
         const { collection: systems, total } = await fetchSystems();
+        console.log(systems)
         return {
             results: systems,
-            total,
-            loaded: true
+            total
         };
     };
 
@@ -105,30 +105,19 @@ const InventoryTable = ({
     //     };
     //
 
-    return <StateView stateValues={{ error, noError: error === undefined }}>
-        <StateViewPart stateKey='error'>
-            <ErrorPage error={error}/>
-        </StateViewPart>
-        <StateViewPart stateKey='noError'>
-
-            { showComplianceSystemsInfo && <Alert
-                isInline
-                variant="info"
-                title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
-                    'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
-            <FECInventoryTable
-                { ...systemProps }
-                onLoad={({ mergeWithEntities, INVENTORY_ACTION_TYPES }) => {
+    return <FECInventoryTable
+                // { ...systemProps }
+                onLoad={({ mergeWithEntities }) => {
                     getRegistry().register({
                         ...mergeWithEntities()
                     });
                 }}
-                fallback={<SkeletonTable colSize={2} rowSize={15} />}
-                tableProps={{
-                    canSelectAll: false
-                }}
-                variant={compact ? TableVariant.compact : ''}
-                ref={inventory}
+                // fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                // tableProps={{
+                //     canSelectAll: false
+                // }}
+                // variant={compact ? TableVariant.compact : ''}
+                // ref={inventory}
                 // TODO use table tool
                 // bulkSelect={{
                 //     checked: selectedEntities.length > 0 ?
@@ -139,33 +128,31 @@ const InventoryTable = ({
                 //     label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
                 // }}
                 getEntities={ getEntities }
-                {...!showAllSystems && {
-                    ...pagination,
-                    ...conditionalFilter,
-                    ...remediationsEnabled && {
-                        dedicatedAction: <ComplianceRemediationButton
-                            allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
-                            selectedRules={ [] } />
-                    }
-                }}
-                {...enableExport && {
-                    exportConfig: {
-                        isDisabled: false, // TODO  total === 0 && selectedEntities.length === 0,
-                        onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
-                    }
-                }}
-                {...showActions && {
-                    actions: [{
-                        title: 'View in inventory',
-                        onClick: (_event, _index, { id }) => {
-                            const beta = window.location.pathname.split('/')[1] === 'beta';
-                            window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
-                        }
-                    }]
-                }}
-            />
-        </StateViewPart>
-    </StateView>;
+                // {...!showAllSystems && {
+                //     ...pagination,
+                //     ...conditionalFilter,
+                //     ...remediationsEnabled && {
+                //         dedicatedAction: <ComplianceRemediationButton
+                //             allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
+                //             selectedRules={ [] } />
+                //     }
+                // }}
+                // {...enableExport && {
+                //     exportConfig: {
+                //         isDisabled: false, // TODO  total === 0 && selectedEntities.length === 0,
+                //         onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
+                //     }
+                // }}
+                // {...showActions && {
+                //     actions: [{
+                //         title: 'View in inventory',
+                //         onClick: (_event, _index, { id }) => {
+                //             const beta = window.location.pathname.split('/')[1] === 'beta';
+                //             window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
+                //         }
+                //     }]
+                // }}
+            />;
 };
 
 InventoryTable.propTypes = {

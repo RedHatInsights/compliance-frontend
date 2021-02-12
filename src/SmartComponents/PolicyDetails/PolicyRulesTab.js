@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@patternfly/react-core';
 import SystemRulesTable, {
-    selectedColumns as selectRulesTableColumns
+    selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 
 const PolicyRulesTab = ({ loading, policy }) => (
