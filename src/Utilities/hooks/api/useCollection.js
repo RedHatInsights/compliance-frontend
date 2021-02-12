@@ -1,71 +1,65 @@
-import { useEffect, useLayoutEffect, useMemo } from 'react';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import ApiClient from 'Utilities/ApiClient';
-import { normalizeData } from './utils/normalize';
-import { default as useReducer} from 'Utilities/hooks/useReducerWithLogger';
+import normalize from 'json-api-normalizer';
 
-const FETCH_COLLECTION = 'FETCH_COLLECTION';
+const includePropAndDelete = (entity, prop) => {
+    const attributes = entity[prop];
+    let newEntity = entity;
+    delete newEntity[prop];
+    return { ...newEntity, ...attributes };
+};
 
-const fetchCollection = async (apiClient, collection, params) => {
+const includeAttributes = (entity) => (
+    entity && includePropAndDelete(entity, 'attributes')
+);
+
+const includeRelationship = (entity, normalizedJson) => {
+    let relationships = {};
+    Object.entries(entity.relationships).forEach((item) => {
+        const [relationship, relationshipData] = item;
+        relationships[relationship] = relationshipData?.data.map((entity) => (
+            includeAttributes(normalizedJson?.[entity.type]?.[entity.id])
+        )).filter((v) => (!!v));
+    });
+    delete entity.relationships;
+    return { ...entity, ...relationships };
+};
+
+const normalizeData = (json, type) => {
+    const jsonNormalized = normalize(json);
+    const normalized = Object.values(jsonNormalized[type])?.map((entity) => {
+        console.log('ENT:', entity);
+        return includeRelationship(includeAttributes(entity), jsonNormalized);
+    });
+    return normalized;
+};
+
+const fetchCollection = async (apiClient, type, params) => {
     const json = await apiClient.get(null, {
         params: {
             ...params,
-            include: ['profiles']
+            include: ['profiles', 'testResults']
         }
     });
-    const normalized = Object.values(normalizeData(json, collection));
-
+    const normalized = normalizeData(json, type);
+    console.log('Fetch collection', json, normalized)
     return {
-        type: FETCH_COLLECTION,
-        payload: {
-            collection: normalized,
-            meta: json.meta,
-            total: json.meta.total
-        }
+        collection: normalized,
+        meta: json.meta,
+        total: json.meta.total,
+        json
     };
-}
-
-const collectionReducer = (collection) => (
-    (state, action) => {
-        switch (action.type) {
-            case FETCH_COLLECTION:
-                return action.payload;
-            default:
-                console.log('No action for', action, state)
-                throw new Error();
-        }
-    }
-);
+};
 
 const useCollection = (collection, options = {}) => {
-   const apiClient = new ApiClient({
-       apiBase: COMPLIANCE_API_ROOT,
-       path: `/${ collection }`
-   });
-   const fetchedCollection = options?.collection || collection;
-   const initialState = {
-      [collection]: [],
-      params: options?.params || {}
-   }
-   const [state, dispatch] = useReducer(
-      collectionReducer(collection), initialState
-   )
-   const dispatchFetch = useMemo(() => (async (params = state.params) => (
-       dispatch(
-           await fetchCollection(apiClient, fetchedCollection, params)
-       )
-   )), [state.params]);
+    const apiClient = new ApiClient({
+        apiBase: COMPLIANCE_API_ROOT,
+        path: `/${ collection }`
+    });
+    const params = options?.params || {};
+    const type = options?.type || collection;
 
-   useLayoutEffect(() => {
-       dispatchFetch()
-   }, []);
-
-   return {
-        collection: state.collection,
-        total: state.total,
-        dispatch,
-        fetch: dispatchFetch
-   }
+    return () => fetchCollection(apiClient, type, params);
 };
 
 export default useCollection;

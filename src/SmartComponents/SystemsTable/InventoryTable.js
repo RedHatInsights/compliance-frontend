@@ -23,12 +23,12 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 
+import useCollection from 'Utilities/hooks/api/useCollection';
+
 const InventoryTable = ({
     columns,
     showAllSystems,
     policyId,
-    query,
-    client,
     showActions,
     enableExport,
     compliantFilter,
@@ -45,74 +45,65 @@ const InventoryTable = ({
     const store = useStore();
     const dispatch = useDispatch();
     const inventory = useRef(null);
-    const [pagination, setPagination] = useState({
-        perPage: 50,
-        page: 1
-    });
-    const [isLoaded, setIsLoaded] = useState(false);
+
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : [])
     ]);
-    const total = useSelector(({ entities }) => entities?.systemsCount) || 0;
-    const items = useSelector(({ entities } = {}) => (entities?.systems?.map((system) => (
-        system?.node?.id
-    )) || []), shallowEqual);
+    // TODO use table tool
+    const [pagination, setPagination] = useState({
+        perPage: 50,
+        page: 1
+    });
+    const fetchSystems = useCollection('systems', {
+        pagination,
+        type: 'host',
+        filter: (() => {
+            const filter = buildFilterString();
+            return [
+                ...defaultFilter ? [defaultFilter] : [],
+                ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
+                ...filter?.length > 0 ? [filter] : []
+            ].join(' and ');
+        })(),
+        ...policyId && { policyId }
+    });
+
     const selectedEntities = useSelector(({ entities } = {}) => (entities?.selectedEntities || []), shallowEqual);
-    const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
+    // const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
 
-    const fetchSystems = (perPage = 50, page = 1) => {
-        setIsLoaded(false);
-
-        const filterString = buildFilterString();
-        const combindedFilter = [
-            ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
-            ...filterString?.length > 0 ? [filterString] : []
-        ].join(' and ');
-        const filter = defaultFilter ? `(${ defaultFilter }) and (${ combindedFilter })` : combindedFilter;
-
-        return client.query({
-            query,
-            fetchResults: true,
-            fetchPolicy: 'no-cache',
-            variables: {
-                filter,
-                perPage,
-                page,
-                ...policyId && { policyId }
-            }
-        }).then(({ data, loading }) => {
-            dispatch({
-                type: 'UPDATE_SYSTEMS',
-                systems: data.systems.edges,
-                systemsCount: data.systems.totalCount
-            });
-            setIsLoaded(true);
-            setPagination(() => ({ page, perPage }));
-            return { data, loading };
-        });
+    const getEntities = async (...args) => {
+        console.log(...args);
+        const { collection: systems, total } = await fetchSystems();
+        return {
+            results: systems,
+            total,
+            loaded: true
+        };
     };
 
-    const debounceFetchSystems = useCallback(
-        debounce(fetchSystems, 800),
-        [conditionalFilter.activeFiltersConfig.filters]
-    );
-
-    useEffect(() => {
-        if (conditionalFilter.activeFiltersConfig.filters) {
-            debounceFetchSystems(pagination.perPage, 1);
-        }
-    }, [activeFilters]);
-
-    const onRefresh = (options, callback) => {
-        query && fetchSystems(options.per_page, options.page);
-        if (!callback && inventory && inventory.current) {
-            inventory.current.onRefreshData(options);
-        } else if (callback) {
-            callback(options);
-        }
-    };
+    //
+    //     const debounceFetchSystems = useCallback(
+    //         debounce(fetchSystems, 800),
+    //         [conditionalFilter.activeFiltersConfig.filters]
+    //     );
+    //
+    //     useEffect(() => {
+    //         if (conditionalFilter.activeFiltersConfig.filters) {
+    //             debounceFetchSystems(pagination.perPage, 1);
+    //         }
+    //     }, [activeFilters]);
+    //
+    //     const onRefresh = (options, callback) => {
+    //         query && fetchSystems(options.per_page, options.page);
+    //         if (!callback && inventory && inventory.current) {
+    //             inventory.current.onRefreshData(options);
+    //         } else if (callback) {
+    //             callback(options);
+    //         }
+    //     };
+    //
 
     return <StateView stateValues={{ error, noError: error === undefined }}>
         <StateViewPart stateKey='error'>
@@ -127,15 +118,9 @@ const InventoryTable = ({
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable
                 { ...systemProps }
-                onLoad={({
-                    INVENTORY_ACTION_TYPES,
-                    mergeWithEntities
-                }) => {
+                onLoad={({ mergeWithEntities, INVENTORY_ACTION_TYPES }) => {
                     getRegistry().register({
-                        ...mergeWithEntities(
-                            systemsReducer(
-                                INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
-                            ))
+                        ...mergeWithEntities()
                     });
                 }}
                 fallback={<SkeletonTable colSize={2} rowSize={15} />}
@@ -144,20 +129,18 @@ const InventoryTable = ({
                 }}
                 variant={compact ? TableVariant.compact : ''}
                 ref={inventory}
-                onRefresh={onRefresh}
-                bulkSelect={{
-                    checked: selectedEntities.length > 0 ?
-                        (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
-                        : false,
-                    onSelect: onBulkSelect,
-                    count: selectedEntities.length,
-                    label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
-                }}
+                // TODO use table tool
+                // bulkSelect={{
+                //     checked: selectedEntities.length > 0 ?
+                //         (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
+                //         : false,
+                //     onSelect: onBulkSelect,
+                //     count: selectedEntities.length,
+                //     label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
+                // }}
+                getEntities={ getEntities }
                 {...!showAllSystems && {
                     ...pagination,
-                    isLoaded,
-                    items,
-                    total,
                     ...conditionalFilter,
                     ...remediationsEnabled && {
                         dedicatedAction: <ComplianceRemediationButton
@@ -167,7 +150,7 @@ const InventoryTable = ({
                 }}
                 {...enableExport && {
                     exportConfig: {
-                        isDisabled: total === 0 && selectedEntities.length === 0,
+                        isDisabled: false, // TODO  total === 0 && selectedEntities.length === 0,
                         onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
                     }
                 }}
