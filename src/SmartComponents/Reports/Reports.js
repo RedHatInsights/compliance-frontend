@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Alert, Text } from '@patternfly/react-core';
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
@@ -68,20 +67,7 @@ LoadingView.propTypes = {
 
 const ReportsHeader = () => (
     <PageHeader>
-        <PageHeaderTitle title="Reports" className="pad-bottom" />
-        <Alert
-            variant="info"
-            isInline
-            title="Support for external reports has been removed."
-            actionLinks={
-                <a href="https://access.redhat.com/solutions/5249481">Learn more</a>
-            }>
-            <Text variant="p">
-                Support for SCAP policies not defined within Compliance has been removed. The associated reports for
-                these policies have also been removed from Insights as of Jan 11th, 2021. Create a policy within the
-                Compliance service for compliance reporting.
-            </Text>
-        </Alert>
+        <PageHeaderTitle title="Reports" />
     </PageHeader>
 );
 
