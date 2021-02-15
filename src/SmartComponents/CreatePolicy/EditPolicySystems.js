@@ -34,7 +34,7 @@ const EditPolicySystems = ({ change, selectedSystemIds }) => {
         if (selectedSystemIds) {
             change('systems', selectedSystemIds);
         }
-    }, [selectedSystemIds]);
+    }, [selectedSystemIds, change]);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 

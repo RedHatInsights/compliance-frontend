@@ -100,7 +100,7 @@ export const Reports = () => {
 
     useEffect(() => {
         refetch();
-    }, [location]);
+    }, [location, refetch]);
 
     if (data) {
         profiles = profilesFromEdges(data);

@@ -66,7 +66,7 @@ export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, ch
                 change('selectedRuleRefIds', ruleIds);
             }
         }
-    }, [data]);
+    }, [data, change, selectedRuleRefIds]);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
         <StateViewPart stateKey="loading">

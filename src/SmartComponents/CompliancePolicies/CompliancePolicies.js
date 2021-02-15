@@ -59,7 +59,7 @@ export const CompliancePolicies = () => {
         <Button variant='primary'>Create new policy</Button>
     </BackgroundLink>;
     let { data, error, loading, refetch } = useQuery(QUERY);
-    useEffect(() => { refetch(); }, [location]);
+    useEffect(() => { refetch(); }, [location, refetch]);
     let policies;
 
     if (data) {
