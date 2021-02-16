@@ -30,43 +30,44 @@ const DEFAULT_FILTER = 'has_test_results = true or has_policy = true';
 export const ComplianceSystems = () => {
     const newInventory = useFeature('newInventory');
     const { data, error, loading } = useQuery(QUERY);
-    const columns = [{
-        key: 'facts.compliance.display_name',
-        title: 'Name',
-        props: {
-            width: 40, isStatic: true
-        },
-        ...newInventory && {
-            key: 'display_name',
-            renderFunc: systemName
-        }
-    }, {
-        key: 'facts.compliance.policies',
-        title: 'Policies',
-        props: {
-            width: 40, isStatic: true
-        },
-        ...newInventory && {
-            key: 'policyNames',
-            renderFunc: (policyNames) => {
-                const { title } = policiesCell({ policyNames }) || { title: '' };
-                return title;
-            }
-        }
-    }, {
-        key: 'facts.compliance.details_link',
-        title: '',
-        props: {
-            width: 20, isStatic: true
-        },
-        ...newInventory && {
-            key: 'testResultProfiles',
-            renderFunc: (data, id) => {
-                const { title } = detailsLink({ testResultProfiles: data, id }) || { title: '' };
-                return title;
-            }
-        }
-    }];
+    // const columns = [{
+    //     key: 'facts.compliance.display_name',
+    //     title: 'Name',
+    //     props: {
+    //         width: 40, isStatic: true
+    //     },
+    //     ...newInventory && {
+    //         key: 'display_name',
+    //         renderFunc: systemName
+    //     }
+    // }, {
+    //     key: 'facts.compliance.policies',
+    //     title: 'Policies',
+    //     props: {
+    //         width: 40, isStatic: true
+    //     },
+    //     ...newInventory && {
+    //         key: 'policyNames',
+    //         renderFunc: (policyNames) => {
+    //             const { title } = policiesCell({ policyNames }) || { title: '' };
+    //             return title;
+    //         }
+    //     }
+    // }, {
+    //     key: 'facts.compliance.details_link',
+    //     title: '',
+    //     props: {
+    //         width: 20, isStatic: true
+    //     },
+    //     ...newInventory && {
+    //         key: 'testResultProfiles',
+    //         renderFunc: (data, id) => {
+    //             const { title } = detailsLink({ testResultProfiles: data, id }) || { title: '' };
+    //             return title;
+    //         }
+    //     }
+    // }];
+    const columns = ['Name', 'Policies', 'details-link'];
     const policies = data?.profiles?.edges.map(({ node }) => node);
 
     const InvComponent = newInventory ? InventoryTable : SystemsTable;

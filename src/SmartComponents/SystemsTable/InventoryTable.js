@@ -3,6 +3,8 @@ import { withApollo } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
+
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import { policyFilter } from './constants';
 import { systemsReducer } from 'Store/Reducers/SystemStore';
@@ -25,6 +27,15 @@ import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/fron
 
 import useCollection from 'Utilities/hooks/api/useCollection';
 
+import selectedColumns from './Columns';
+
+export const entitiesReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
+    [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
+        ...state,
+        columns: state.total > 0 ? columns : [{ title: '' }]
+    })
+});
+
 const InventoryTable = ({
     columns,
     showAllSystems,
@@ -42,7 +53,7 @@ const InventoryTable = ({
     systemProps,
     defaultFilter
 }) => {
-    const store = useStore();
+    const tableColumns = selectedColumns(columns);
     const dispatch = useDispatch();
     const inventory = useRef(null);
 
@@ -57,6 +68,7 @@ const InventoryTable = ({
         page: 1
     });
     const fetchSystems = useCollection('systems', {
+        include: ['profiles', 'testResults', 'testResultProfiles', 'policies'],
         pagination,
         type: 'host',
         filter: (() => {
@@ -74,12 +86,16 @@ const InventoryTable = ({
     // const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
 
     const getEntities = async (...args) => {
-        console.log(...args);
+        console.log("getEntities", ...args);
         const { collection: systems, total } = await fetchSystems();
         console.log(systems)
+
         return {
             results: systems,
-            total
+            total,
+            perPage: 10,
+            per_page: 10,
+            columns
         };
     };
 
@@ -105,19 +121,33 @@ const InventoryTable = ({
     //     };
     //
 
-    return <FECInventoryTable
-                // { ...systemProps }
-                onLoad={({ mergeWithEntities }) => {
+    return <StateView stateValues={{ error, noError: error === undefined }}>
+        <StateViewPart stateKey='error'>
+            <ErrorPage error={error}/>
+        </StateViewPart>
+        <StateViewPart stateKey='noError'>
+
+            { showComplianceSystemsInfo && <Alert
+                isInline
+                variant="info"
+                title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
+                    'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
+
+            <FECInventoryTable
+                { ...systemProps }
+                onLoad={({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
                     getRegistry().register({
-                        ...mergeWithEntities()
+                        ...mergeWithEntities(entitiesReducer(
+                            INVENTORY_ACTION_TYPES, tableColumns
+                        ))
                     });
                 }}
-                // fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                fallback={ <SkeletonTable colSize={ columns.length } rowSize={ 10 } /> }
                 // tableProps={{
                 //     canSelectAll: false
                 // }}
-                // variant={compact ? TableVariant.compact : ''}
-                // ref={inventory}
+                variant={compact ? TableVariant.compact : ''}
+                ref={inventory} // TODO check if ref is needed
                 // TODO use table tool
                 // bulkSelect={{
                 //     checked: selectedEntities.length > 0 ?
@@ -128,15 +158,15 @@ const InventoryTable = ({
                 //     label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
                 // }}
                 getEntities={ getEntities }
-                // {...!showAllSystems && {
-                //     ...pagination,
-                //     ...conditionalFilter,
-                //     ...remediationsEnabled && {
-                //         dedicatedAction: <ComplianceRemediationButton
-                //             allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
-                //             selectedRules={ [] } />
-                //     }
-                // }}
+                {...!showAllSystems && {
+                    // ...pagination,
+                    // ...conditionalFilter,
+                    ...remediationsEnabled && {
+                        dedicatedAction: <ComplianceRemediationButton
+                            allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
+                            selectedRules={ [] } />
+                    }
+                }}
                 // {...enableExport && {
                 //     exportConfig: {
                 //         isDisabled: false, // TODO  total === 0 && selectedEntities.length === 0,
@@ -152,7 +182,9 @@ const InventoryTable = ({
                 //         }
                 //     }]
                 // }}
-            />;
+            />
+        </StateViewPart>
+    </StateView>;
 };
 
 InventoryTable.propTypes = {

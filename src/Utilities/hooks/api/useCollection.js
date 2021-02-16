@@ -27,22 +27,15 @@ const includeRelationship = (entity, normalizedJson) => {
 
 const normalizeData = (json, type) => {
     const jsonNormalized = normalize(json);
-    const normalized = Object.values(jsonNormalized[type])?.map((entity) => {
-        console.log('ENT:', entity);
-        return includeRelationship(includeAttributes(entity), jsonNormalized);
-    });
-    return normalized;
+    return Object.values(jsonNormalized[type] || {})?.map((entity) => (
+        includeRelationship(includeAttributes(entity), jsonNormalized)
+    ));
 };
 
-const fetchCollection = async (apiClient, type, params) => {
-    const json = await apiClient.get(null, {
-        params: {
-            ...params,
-            include: ['profiles', 'testResults']
-        }
-    });
+const fetchCollection = async (apiClient, type, params = {}) => {
+    const json = await apiClient.get(null, { params });
     const normalized = normalizeData(json, type);
-    console.log('Fetch collection', json, normalized)
+
     return {
         collection: normalized,
         meta: json.meta,
@@ -56,7 +49,10 @@ const useCollection = (collection, options = {}) => {
         apiBase: COMPLIANCE_API_ROOT,
         path: `/${ collection }`
     });
-    const params = options?.params || {};
+    const params = {
+        ...(options?.params || {}),
+        include: (options?.include || [])
+    };
     const type = options?.type || collection;
 
     return () => fetchCollection(apiClient, type, params);

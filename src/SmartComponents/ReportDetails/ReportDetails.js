@@ -63,9 +63,6 @@ query Profile($policyId: String!){
 `;
 
 export const ReportDetails = ({ route }) => {
-    let showSsgVersions;
-    let showSsgVersionsFeature = useFeature('showSsgVersions');
-    const newInventory = useFeature('newInventory');
     const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
@@ -82,7 +79,6 @@ export const ReportDetails = ({ route }) => {
     if (!loading && data) {
         profile = data.profile;
         policyName = profile.policy ? profile.policy.name : profile.name;
-        showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
         pageTitle = `Report: ${ policyName }`;
         const compliantHostCount = profile.compliantHostCount;
         const testResultHostCount = profile.testResultHostCount;
@@ -101,67 +97,8 @@ export const ReportDetails = ({ route }) => {
                 (donutValues[0].y / (donutValues[0].y + donutValues[1].y)))) : 0;
     }
 
-    const columns = [{
-        key: 'facts.compliance.display_name',
-        title: 'Name',
-        props: {
-            width: 30
-        },
-        ...newInventory && {
-            key: 'display_name',
-            renderFunc: systemName
-        }
-    }, ...showSsgVersions ? [{
-        key: 'facts.compliance',
-        title: 'SSG version',
-        props: {
-            width: 5
-        },
-        renderFunc: (profile, ...rest) => {
-            let realProfile = profile;
-            if (typeof profile === 'string') {
-                realProfile = rest[1];
-            }
+    const columns = ['Name', 'ssg', 'Failed rules', 'score', 'Last scanned'];
 
-            return realProfile && <Cells.SSGVersion
-                supported={ realProfile.supported }
-                ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
-        }
-    }] : [], {
-        key: 'facts.compliance.rules_failed',
-        title: 'Failed rules',
-        props: {
-            width: 5
-        },
-        ...newInventory && {
-            key: 'rulesFailed',
-            renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
-        }
-    }, {
-        key: 'facts.compliance.compliance_score',
-        title: 'Compliance score',
-        props: {
-            width: 5
-        },
-        ...newInventory && {
-            key: 'score',
-            renderFunc: (_score, _id, system) => complianceScore(system)
-        }
-    }, {
-        key: 'facts.compliance.last_scanned',
-        title: 'Last scanned',
-        props: {
-            width: 10
-        },
-        ...newInventory && {
-            key: 'lastScanned',
-            renderFunc: (lastScanned) => (lastScanned instanceof Date) ?
-                <DateFormat date={Date.parse(lastScanned)} type='relative' />
-                : lastScanned
-        }
-    }];
-
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
@@ -236,7 +173,7 @@ export const ReportDetails = ({ route }) => {
             <Main>
                 <Grid hasGutter>
                     <GridItem span={12}>
-                        <InvCmp
+                        <InventoryTable
                             query={GET_SYSTEMS}
                             showOnlySystemsWithTestResults
                             compliantFilter
