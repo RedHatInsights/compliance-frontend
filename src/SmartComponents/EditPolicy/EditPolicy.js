@@ -56,7 +56,7 @@ export const EditPolicy = ({ route }) => {
             ...updatedPolicy,
             hosts: selectedEntities ? selectedEntities : []
         });
-    }, [selectedEntities, updatedPolicy]);
+    }, [selectedEntities]);
 
     useEffect(() => {
         const complianceThresholdValid =
@@ -69,7 +69,7 @@ export const EditPolicy = ({ route }) => {
             type: 'SELECT_ENTITIES',
             payload: { ids: policy?.hosts?.map(({ id }) => ({ id })) || [] }
         });
-    }, [policy, dispatch]);
+    }, [policy]);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policy?.name);
