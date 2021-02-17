@@ -279,56 +279,81 @@ export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => app
         selectedEntities: ids
     })
 });
+//
+// export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash(
+//     {
+//         ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
+//             ...state,
+//             systems,
+//             systemsCount
+//         }),
+//         ['UPDATE_ROWS']: (state) => ({
+//             ...state,
+//             loaded: true,
+//             rows: systemsToInventoryEntities(
+//                 state.systems || [],
+//                 state.rows || [],
+//                 showAllSystems,
+//                 state.selectedEntities
+//             )
+//         }),
+//         [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
+//             ...state,
+//             rows: systemsToInventoryEntities(
+//                 state.systems || [],
+//                 state.rows,
+//                 showAllSystems,
+//                 state.selectedEntities
+//             ),
+//             total: !showAllSystems ? state.systemsCount : state.total,
+//             columns: state.total > 0 ? columns : [{ title: '' }]
+//         }),
+//         [EXPORT]: (state, { payload: { format } }) => {
+//             exportFromState(state, format);
+//             return state;
+//         },
+//         [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
+//             let newState;
+//
+//             if (id === 0) {
+//                 newState = selected ? selectAllRows(state) : deselectAllRows(state);
+//             } else {
+//                 newState = selected ? selectRow(state, id) : deselectRow(state, id);
+//             }
+//
+//             if (newState.selectedEntities.length === 0 || clearAll) {
+//                 newState.selectedEntities = undefined;
+//             }
+//
+//             return newState;
+//         },
+//         ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
+//             selectedEntities: ids
+//         })
+//     }
+// );
 
-export const entitiesReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash(
-    {
-        ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
-            ...state,
-            systems,
-            systemsCount
-        }),
-        ['UPDATE_ROWS']: (state) => ({
-            ...state,
-            loaded: true,
-            rows: systemsToInventoryEntities(
-                state.systems || [],
-                state.rows || [],
-                showAllSystems,
-                state.selectedEntities
-            )
-        }),
-        [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
-            ...state,
-            rows: systemsToInventoryEntities(
-                state.systems || [],
-                state.rows,
-                showAllSystems,
-                state.selectedEntities
-            ),
-            total: !showAllSystems ? state.systemsCount : state.total,
-            columns: state.total > 0 ? columns : [{ title: '' }]
-        }),
-        [EXPORT]: (state, { payload: { format } }) => {
-            exportFromState(state, format);
-            return state;
-        },
-        [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
-            let newState;
+export const entitiesReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
+    [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
+        ...state,
+        columns: state.total > 0 ? columns : [{ title: '' }]
+    }),
+    [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
+        let newState;
 
-            if (id === 0) {
-                newState = selected ? selectAllRows(state) : deselectAllRows(state);
-            } else {
-                newState = selected ? selectRow(state, id) : deselectRow(state, id);
-            }
+        if (id === 0) {
+            newState = selected ? selectAllRows(state) : deselectAllRows(state);
+        } else {
+            newState = selected ? selectRow(state, id) : deselectRow(state, id);
+        }
 
-            if (newState.selectedEntities.length === 0 || clearAll) {
-                newState.selectedEntities = undefined;
-            }
+        if (newState.selectedEntities.length === 0 || clearAll) {
+            newState.selectedEntities = undefined;
+        }
 
-            return newState;
-        },
-        ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
-            selectedEntities: ids
-        })
-    }
-);
+        return newState;
+    },
+    ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
+        selectedEntities: ids
+    })
+});

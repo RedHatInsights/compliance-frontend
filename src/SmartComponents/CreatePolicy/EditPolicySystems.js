@@ -1,43 +1,20 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm, formValueSelector } from 'redux-form';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import useFeature from 'Utilities/hooks/useFeature';
 
 const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
-    const newInventory = useFeature('newInventory');
-    const columns = [{
-        composed: ['facts.os_release', 'display_name'],
-        key: 'facts.compliance.display_name',
-        title: 'Name',
-        props: {
-            width: 40, isStatic: true
-        },
-        ...newInventory && {
-            key: 'display_name'
-        }
-    }, {
-        key: 'facts.compliance.policies',
-        title: 'Policies',
-        props: {
-            width: 40, isStatic: true
-        },
-        ...newInventory && {
-            key: 'policies'
-        }
-    }];
+    const columns = ['Name', 'policies'];
 
     useEffect(() => {
         if (selectedSystemIds) {
             change('systems', selectedSystemIds);
         }
     }, [selectedSystemIds, change]);
-
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
         <React.Fragment>
@@ -51,7 +28,7 @@ const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
             </TextContent>
             <Form>
                 <FormGroup>
-                    <InvCmp
+                    <InventoryTable
                         columns={columns}
                         remediationsEnabled={false}
                         compact

@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useLayoutEffect, useState, } from 'react';
 import { withApollo } from '@apollo/react-hoc';
 import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
-import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
-
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import { policyFilter } from './constants';
-import { systemsReducer } from 'Store/Reducers/SystemStore';
 import { selectAll, clearSelection } from 'Store/ActionTypes';
+import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import { exportFromState } from 'Utilities/Export';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
-import debounce from 'lodash/debounce';
 import {
     ErrorPage,
     StateView,
@@ -24,22 +21,14 @@ import ComplianceRemediationButton from '@redhat-cloud-services/frontend-compone
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-
-import useCollection from 'Utilities/hooks/api/useCollection';
-
 import selectedColumns from './Columns';
-
-export const entitiesReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
-    [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
-        ...state,
-        columns: state.total > 0 ? columns : [{ title: '' }]
-    })
-});
 
 const InventoryTable = ({
     columns,
     showAllSystems,
     policyId,
+    query,
+    client,
     showActions,
     enableExport,
     compliantFilter,
@@ -54,72 +43,65 @@ const InventoryTable = ({
     defaultFilter
 }) => {
     const tableColumns = selectedColumns(columns);
+    const store = useStore();
     const dispatch = useDispatch();
-    const inventory = useRef(null);
-
+    const [pagination, setPagination] = useState({
+        perPage: 50,
+        page: 1
+    });
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : [])
     ]);
-    // TODO use table tool
-    const [pagination, setPagination] = useState({
-        perPage: 50,
-        page: 1
-    });
-    const fetchSystems = useCollection('systems', {
-        include: ['profiles', 'testResults', 'testResultProfiles', 'policies'],
-        pagination,
-        type: 'host',
-        filter: (() => {
-            const filter = buildFilterString();
-            return [
-                ...defaultFilter ? [defaultFilter] : [],
-                ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
-                ...filter?.length > 0 ? [filter] : []
-            ].join(' and ');
-        })(),
-        ...policyId && { policyId }
-    });
-
+    const total = useSelector(({ entities }) => entities?.systemsCount) || 0;
+    const items = useSelector(({ entities } = {}) => (entities?.systems?.map((system) => (
+        system?.node?.id
+    )) || []), shallowEqual);
     const selectedEntities = useSelector(({ entities } = {}) => (entities?.selectedEntities || []), shallowEqual);
-    // const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
+    const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
+
+    const fetchSystems = (perPage = pagination.perPage, page = pagination.page) => {
+        const filterString = buildFilterString();
+        const combindedFilter = [
+            ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
+            ...filterString?.length > 0 ? [filterString] : []
+        ].join(' and ');
+        const filter = defaultFilter ? `(${ defaultFilter }) and (${ combindedFilter })` : combindedFilter;
+
+        return client.query({
+            query,
+            fetchResults: true,
+            fetchPolicy: 'no-cache',
+            variables: {
+                filter,
+                perPage,
+                page,
+                ...policyId && { policyId }
+            }
+        });
+    };
 
     const getEntities = async (...args) => {
-        console.log("getEntities", ...args);
-        const { collection: systems, total } = await fetchSystems();
-        console.log(systems)
+        console.log('getEntities', ...args);
+        const fetchedSystems = await fetchSystems();
+        const systems = fetchedSystems.data.systems.edges.map((e) => e.node);
+        console.log('Entities systems: ', systems, activeFilters);
 
         return {
             results: systems,
-            total,
-            perPage: 10,
-            per_page: 10,
-            columns
+            perPage: pagination.perPage,
+            per_page: pagination.perPage,
+            filters: activeFilters,
+            total: systems.length
         };
     };
 
-    //
-    //     const debounceFetchSystems = useCallback(
-    //         debounce(fetchSystems, 800),
-    //         [conditionalFilter.activeFiltersConfig.filters]
-    //     );
-    //
-    //     useEffect(() => {
-    //         if (conditionalFilter.activeFiltersConfig.filters) {
-    //             debounceFetchSystems(pagination.perPage, 1);
-    //         }
-    //     }, [activeFilters]);
-    //
-    //     const onRefresh = (options, callback) => {
-    //         query && fetchSystems(options.per_page, options.page);
-    //         if (!callback && inventory && inventory.current) {
-    //             inventory.current.onRefreshData(options);
-    //         } else if (callback) {
-    //             callback(options);
-    //         }
-    //     };
-    //
+    useLayoutEffect(() => {
+        // This is a hack. When using the InventoryTable in multiple places of one app
+        // the redux store persists between these and will show an old state before updating correctly
+        getRegistry().register({ entities: {} });
+    }, []);
 
     return <StateView stateValues={{ error, noError: error === undefined }}>
         <StateViewPart stateKey='error'>
@@ -132,56 +114,63 @@ const InventoryTable = ({
                 variant="info"
                 title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
-
             <FECInventoryTable
                 { ...systemProps }
-                onLoad={({ INVENTORY_ACTION_TYPES, mergeWithEntities }) => {
+                getEntities={ getEntities }
+                onLoad={({
+                    INVENTORY_ACTION_TYPES,
+                    mergeWithEntities
+                }) => {
                     getRegistry().register({
-                        ...mergeWithEntities(entitiesReducer(
-                            INVENTORY_ACTION_TYPES, tableColumns
-                        ))
+                        ...mergeWithEntities(
+                            entitiesReducer(
+                                INVENTORY_ACTION_TYPES, tableColumns
+                            )
+                        )
                     });
                 }}
-                fallback={ <SkeletonTable colSize={ columns.length } rowSize={ 10 } /> }
-                // tableProps={{
-                //     canSelectAll: false
-                // }}
+                hideFilters={{
+                    name: true,
+                    tags: true,
+                    registeredWith: true,
+                    stale: true
+                }}
+                fallback={<SkeletonTable colSize={2} rowSize={15} />}
+                tableProps={{
+                    canSelectAll: false
+                }}
                 variant={compact ? TableVariant.compact : ''}
-                ref={inventory} // TODO check if ref is needed
-                // TODO use table tool
-                // bulkSelect={{
-                //     checked: selectedEntities.length > 0 ?
-                //         (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
-                //         : false,
-                //     onSelect: onBulkSelect,
-                //     count: selectedEntities.length,
-                //     label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
-                // }}
-                getEntities={ getEntities }
+                bulkSelect={{
+                    checked: selectedEntities.length > 0 ?
+                        (items?.every(id => selectedEntities?.find((selected) => selected?.id === id)) ? true : null)
+                        : false,
+                    onSelect: onBulkSelect,
+                    count: selectedEntities.length,
+                    label: selectedEntities.length > 0 ? `${ selectedEntities.length } Selected` : undefined
+                }}
                 {...!showAllSystems && {
-                    // ...pagination,
-                    // ...conditionalFilter,
+                    ...conditionalFilter,
                     ...remediationsEnabled && {
                         dedicatedAction: <ComplianceRemediationButton
                             allSystems={ systemsWithRuleObjectsFailed(selectedEntities) }
                             selectedRules={ [] } />
                     }
                 }}
-                // {...enableExport && {
-                //     exportConfig: {
-                //         isDisabled: false, // TODO  total === 0 && selectedEntities.length === 0,
-                //         onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
-                //     }
-                // }}
-                // {...showActions && {
-                //     actions: [{
-                //         title: 'View in inventory',
-                //         onClick: (_event, _index, { id }) => {
-                //             const beta = window.location.pathname.split('/')[1] === 'beta';
-                //             window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
-                //         }
-                //     }]
-                // }}
+                {...enableExport && {
+                    exportConfig: {
+                        isDisabled: total === 0 && selectedEntities.length === 0,
+                        onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
+                    }
+                }}
+                {...showActions && {
+                    actions: [{
+                        title: 'View in inventory',
+                        onClick: (_event, _index, { id }) => {
+                            const beta = window.location.pathname.split('/')[1] === 'beta';
+                            window.location.href = `${window.location.origin}${beta ? '/beta' : ''}/insights/inventory/${id}`;
+                        }
+                    }]
+                }}
             />
         </StateViewPart>
     </StateView>;

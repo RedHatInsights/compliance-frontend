@@ -1,5 +1,7 @@
 import React from 'react';
-import { Name, ComplianceScore, DetailsLink, FailedRules, LastScanned, SSGVersion } from './Cells';
+import {
+    Name, ComplianceScore, DetailsLink, FailedRules, LastScanned, Policies, SSGVersion
+} from './Cells';
 
 const logArgs = (...args) => (
     console.log(...args)
@@ -11,6 +13,7 @@ const renderComponent = (Component) => (
     )
 );
 
+// isStatic: true prevents sortable to be added as a transform
 const columns = [{
     // key: 'name', // key: 'display_name'
     title: 'Name',
@@ -23,6 +26,9 @@ const columns = [{
     key: 'facts.compliance',
     title: 'SSG version',
     column: 'ssg',
+    props: {
+        isStatic: true
+    },
     renderFunc: renderComponent(SSGVersion)
 }, {
     key: 'policies',
@@ -31,32 +37,36 @@ const columns = [{
         width: 40,
         isStatic: true
     },
-    renderFunc: logArgs
+    renderFunc: renderComponent(Policies)
 }, {
     title: '',
     column: 'details-link',
     props: {
-        width: 20, isStatic: true
+        width: 20,
+        isStatic: true
     },
     renderFunc: renderComponent(DetailsLink)
 }, {
     title: 'Failed rules',
     props: {
-        width: 5
+        width: 5,
+        isStatic: true
     },
     renderFunc: renderComponent(FailedRules)
 }, {
     title: 'Compliance score',
     column: 'score',
     props: {
-        width: 5
+        width: 5,
+        isStatic: true
     },
     renderFunc: renderComponent(ComplianceScore)
 }, {
     title: 'Last scanned',
     column: 'scanned',
     props: {
-        width: 10
+        width: 10,
+        isStatic: true
     },
     renderFunc: renderComponent(LastScanned)
 }];

@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import {
     QuestionCircleIcon,
     CheckCircleIcon,
@@ -27,7 +28,7 @@ export const complianceScoreString = (system) => {
     return ' ' + fixedPercentage(system.score);
 };
 
-const ComplianceScore = (system) => (
+const ComplianceScore = ({ system }) => (
     <React.Fragment>
         { system.supported ?
             <Tooltip content={
@@ -41,5 +42,9 @@ const ComplianceScore = (system) => (
             complianceScoreString(system) }
     </React.Fragment>
 );
+
+ComplianceScore.propTypes = {
+    system: propTypes.object
+};
 
 export default ComplianceScore;

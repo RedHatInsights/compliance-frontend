@@ -1,37 +1,28 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-
 import black300 from '@patternfly/react-tokens/dist/esm/global_palette_black_300';
 import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
 import blue300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
 import propTypes from 'prop-types';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-
 import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
-
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
-
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
-import useFeature from 'Utilities/hooks/useFeature';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
     StateViewWithError, StateViewPart, UnsupportedSSGVersion, SubPageTitle
 } from 'PresentationalComponents';
-import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
-import { systemName } from 'Store/Reducers/SystemStore';
-import { ComplianceScore as complianceScore } from 'PresentationalComponents';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
