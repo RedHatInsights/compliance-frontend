@@ -45,10 +45,6 @@ const InventoryTable = ({
     const tableColumns = selectedColumns(columns);
     const store = useStore();
     const dispatch = useDispatch();
-    const [pagination, setPagination] = useState({
-        perPage: 50,
-        page: 1
-    });
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
@@ -61,7 +57,7 @@ const InventoryTable = ({
     const selectedEntities = useSelector(({ entities } = {}) => (entities?.selectedEntities || []), shallowEqual);
     const onBulkSelect = (isSelected) => isSelected ? dispatch(selectAll()) : dispatch(clearSelection());
 
-    const fetchSystems = (perPage = pagination.perPage, page = pagination.page) => {
+    const fetchSystems = (perPage, page) => {
         const filterString = buildFilterString();
         const combindedFilter = [
             ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
@@ -82,16 +78,16 @@ const InventoryTable = ({
         });
     };
 
-    const getEntities = async (...args) => {
-        console.log('getEntities', ...args);
-        const fetchedSystems = await fetchSystems();
+    const getEntities = async (_ids, { page = 1, perPage = 10 }) => {
+        const fetchedSystems = await fetchSystems(perPage, page);
         const systems = fetchedSystems.data.systems.edges.map((e) => e.node);
         console.log('Entities systems: ', systems, activeFilters);
 
         return {
             results: systems,
-            perPage: pagination.perPage,
-            per_page: pagination.perPage,
+            perPage,
+            per_page: perPage,
+            page,
             filters: activeFilters,
             total: systems.length
         };

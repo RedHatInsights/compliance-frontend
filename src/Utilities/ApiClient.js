@@ -1,6 +1,6 @@
 class ApiClient {
     DEFAULT_API_HEADERS = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/vnd.api+json',
         Accept: 'application/json'
     }
 
