@@ -72,6 +72,7 @@ const InventoryTable = ({
         ].join(' and ');
         const filter = defaultFilter ? `(${ defaultFilter }) and (${ combindedFilter })` : combindedFilter;
 
+        dispatch({ type: 'GET_SYSTEMS_PENDING' });
         return client.query({
             query,
             fetchResults: true,
@@ -84,7 +85,7 @@ const InventoryTable = ({
             }
         }).then(({ data, loading }) => {
             dispatch({
-                type: 'UPDATE_SYSTEMS',
+                type: 'GET_SYSTEMS_FULFILLED',
                 systems: data.systems.edges,
                 systemsCount: data.systems.totalCount
             });
