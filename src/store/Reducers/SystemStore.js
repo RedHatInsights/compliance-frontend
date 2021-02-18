@@ -19,7 +19,6 @@ import {
     profilesRulesFailed
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
-import { mergeArraysByKey } from '@redhat-cloud-services/frontend-components-utilities/helpers';
 
 const NEVER = 'Never';
 
@@ -196,6 +195,22 @@ export const systemsToInventoryEntities = (systems, entities, showAllSystems, se
     }).filter((value) => (!!value))
 );
 
+const systemsToRows = (systems) => (
+    systems.map(({ node }) => ({
+        ...node,
+        policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
+        rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
+        rulesFailed: profilesRulesFailed(node.testResultProfiles).length,
+        lastScanned: lastScanned(node),
+        compliant: compliant(node),
+        display_name: node.name, // eslint-disable-line camelcase
+        score: score(node),
+        supported: supported(node),
+        ssgVersion: profilesSsgVersions(node),
+        detailsLink: detailsLink(node)
+    }))
+);
+
 const selectRowsByIds = (state, ids) => {
     const rowsToSelect = state.rows.filter((row) => (
         ids.includes(row.id) && !(state.selectedEntities || []).map((e) => (e.id)).includes(row.id)
@@ -228,35 +243,43 @@ const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
 
-export const systemsReducer = (INVENTORY_ACTION, columns, showAllSystems) => applyReducerHash({
-    ['UPDATE_SYSTEMS']: (state, { systems, systemsCount }) => ({
+export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
+    ['GET_SYSTEMS_PENDING']: (state) => ({
+        ...state,
+        rows: [],
+        systems: undefined,
+        systemsCount: undefined,
+        columns,
+        loaded: false
+    }),
+    ['GET_SYSTEMS_FULFILLED']: (state, { systems, systemsCount }) => ({
         ...state,
         systems,
-        systemsCount
+        systemsCount,
+        total: systemsCount,
+        rows: systemsToRows(systems).map((row) => ({
+            ...row, selected: isSelected(row.id, state.selectedEntities)
+        })),
+        columns,
+        loaded: true
+    }),
+    [INVENTORY_ACTION.LOAD_ENTITIES_PENDING]: (state) => ({
+        ...state,
+        total: state.systemsCount,
+        rows: state.systems !== undefined ? systemsToRows(state.systems).map((row) => ({
+            ...row, selected: isSelected(row.id, state.selectedEntities)
+        })) : [],
+        columns,
+        loaded: state.systemsCount !== undefined
     }),
     [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
         ...state,
-        total: !showAllSystems ? state.systemsCount : state.total,
-        rows: mergeArraysByKey([
-            state.rows.map((row) => ({
-                ...row,
-                selected: isSelected(row.id, state.selectedEntities)
-            })),
-            state.systems?.map(({ node }) => ({
-                ...node,
-                ...showAllSystems && { testResultProfiles: [], policies: [] },
-                policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
-                rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
-                rulesFailed: profilesRulesFailed(node.testResultProfiles).length,
-                lastScanned: lastScanned(node),
-                compliant: compliant(node),
-                score: score(node),
-                supported: supported(node),
-                ssgVersion: profilesSsgVersions(node),
-                detailsLink: detailsLink(node)
-            }))
-        ]),
-        columns: state.total > 0 ? columns : [{ title: '' }]
+        total: state.systemsCount,
+        rows: state.systems !== undefined ? systemsToRows(state.systems).map((row) => ({
+            ...row, selected: isSelected(row.id, state.selectedEntities)
+        })) : [],
+        columns,
+        loaded: state.systemsCount !== undefined
     }),
     [SELECT_ENTITY]: (state, { payload: { id, selected, clearAll } }) => {
         let newState;

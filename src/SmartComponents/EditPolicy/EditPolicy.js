@@ -98,11 +98,9 @@ export const EditPolicy = ({ route }) => {
                         compact
                         showActions={ false }
                         enableExport={ false }
-                        showAllSystems
                         remediationsEnabled={ false }
                         policyId={ policy.id }
                         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-                        defaultFilter={`policy_id = ${policy.id}`}
                         columns={[{
                             key: 'facts.compliance.display_name',
                             title: 'Name',
