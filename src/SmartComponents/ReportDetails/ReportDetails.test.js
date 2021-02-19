@@ -12,6 +12,11 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
     setTitle: () => ({})
 }));
 
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(() => ({}))
+}));
+
 const mocks = [
     {
         request: {

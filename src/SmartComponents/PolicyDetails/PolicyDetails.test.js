@@ -39,6 +39,11 @@ const mocks = [
     }
 ];
 
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(() => ({}))
+}));
+
 jest.mock('@apollo/react-hooks', () => ({
     useQuery: () => (
         { data: mocks[0].result.data, error: undefined, loading: undefined }
