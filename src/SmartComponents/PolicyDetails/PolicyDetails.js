@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import propTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useParams, useLocation } from 'react-router-dom';
@@ -118,6 +119,7 @@ export const PolicyDetails = ({ route }) => {
     const { policy_id: policyId } = useParams();
     const location = useLocation();
     const anchor = useAnchor();
+    const dispatch = useDispatch();
     let { data, error, loading, refetch } = useQuery((multiversionTabs ? MULTIVERSION_QUERY : QUERY), {
         variables: { policyId }
     });
@@ -132,6 +134,8 @@ export const PolicyDetails = ({ route }) => {
     useEffect(() => {
         refetch();
     }, [location, refetch]);
+
+    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
 
     useTitleEntity(route, policy?.name);
 

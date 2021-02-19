@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import black300 from '@patternfly/react-tokens/dist/esm/global_palette_black_300';
 import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
@@ -70,6 +71,7 @@ export const ReportDetails = ({ route }) => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
     });
+    const dispatch = useDispatch();
     let donutValues = [];
     let donutId = 'loading-donut';
     let chartColorScale;
@@ -160,6 +162,8 @@ export const ReportDetails = ({ route }) => {
                 : lastScanned
         }
     }];
+
+    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policyName);

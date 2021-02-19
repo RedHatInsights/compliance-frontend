@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -30,6 +31,7 @@ const DEFAULT_FILTER = 'has_test_results = true or has_policy = true';
 export const ComplianceSystems = () => {
     const newInventory = useFeature('newInventory');
     const { data, error, loading } = useQuery(QUERY);
+    const dispatch = useDispatch();
     const columns = [{
         key: 'facts.compliance.display_name',
         title: 'Name',
@@ -68,6 +70,8 @@ export const ComplianceSystems = () => {
         }
     }];
     const policies = data?.profiles?.edges.map(({ node }) => node);
+
+    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
 
     const InvComponent = newInventory ? InventoryTable : SystemsTable;
 
