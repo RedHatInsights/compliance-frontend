@@ -32,6 +32,7 @@ describe('EditPolicy', () => {
                 policy: {
                     id: 'POLICY_ID',
                     name: 'Policy Name',
+                    majorOsVersion: '8',
                     businessObjective: {
                         title: 'BO title',
                         id: 1

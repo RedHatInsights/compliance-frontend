@@ -100,6 +100,7 @@ export const EditPolicy = ({ route }) => {
                         enableExport={ false }
                         remediationsEnabled={ false }
                         policyId={ policy.id }
+                        defaultFilter={ `os_major_version = ${policy.majorOsVersion}` }
                         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
                         columns={[{
                             key: 'facts.compliance.display_name',
