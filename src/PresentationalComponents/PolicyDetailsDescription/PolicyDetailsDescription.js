@@ -28,12 +28,10 @@ const PolicyDetailsDescription = ({ policy }) => (
                     <Tooltip
                         position='right'
                         content={
-                            <span>
-                                The threshold for compliance is a value set by your organization for
-                                each policy.
-                                This defines the percentage of passed rules that must be met in order
-                                for a system to be determined &quot;compliant&quot;.
-                            </span>
+                            <React.Fragment>
+                                The compliance threshold defines what percentage of rules must be
+                                met in order for a system to be determined &quot;compliant&quot;.
+                            </React.Fragment>
                         }
                     >
                         <span>
@@ -44,7 +42,22 @@ const PolicyDetailsDescription = ({ policy }) => (
                 <Text className='threshold-tooltip' component={TextVariants.p}>
                     { fixedPercentage(policy.complianceThreshold, 1) }
                 </Text>
-                <Text component={TextVariants.h5}>Business objective</Text>
+                <Text component={TextVariants.h5}>
+                    Business objective
+                    <Tooltip
+                        position='right'
+                        content={
+                            <React.Fragment>
+                                This is an optional field that can be used to label policies that
+                                are related to specific business objectives.
+                            </React.Fragment>
+                        }
+                    >
+                        <span>
+                            &nbsp;<OutlinedQuestionCircleIcon className='grey-icon'/>
+                        </span>
+                    </Tooltip>
+                </Text>
                 <Text component={TextVariants.p}>
                     { policy.businessObjective && policy.businessObjective.title || '-' }
                 </Text>

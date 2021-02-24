@@ -7,18 +7,19 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import useFeature from 'Utilities/hooks/useFeature';
+import { systemName } from 'Store/Reducers/SystemStore';
 
 const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
     const columns = [{
-        composed: ['facts.os_release', 'display_name'],
         key: 'facts.compliance.display_name',
         title: 'Name',
         props: {
             width: 40, isStatic: true
         },
         ...newInventory && {
-            key: 'display_name'
+            key: 'display_name',
+            renderFunc: systemName
         }
     }, {
         key: 'facts.compliance.policies',
