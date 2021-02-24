@@ -28,10 +28,10 @@ const PolicyDetailsDescription = ({ policy }) => (
                     <Tooltip
                         position='right'
                         content={
-                            <span>
+                            <React.Fragment>
                                 The compliance threshold defines what percentage of rules must be
                                 met in order for a system to be determined &quot;compliant&quot;.
-                            </span>
+                            </React.Fragment>
                         }
                     >
                         <span>
@@ -47,10 +47,10 @@ const PolicyDetailsDescription = ({ policy }) => (
                     <Tooltip
                         position='right'
                         content={
-                            <span>
+                            <React.Fragment>
                                 This is an optional field that can be used to label policies that
                                 are related to specific business objectives.
-                            </span>
+                            </React.Fragment>
                         }
                     >
                         <span>
