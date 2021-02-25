@@ -22,6 +22,7 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
                     score
                     supported
                     ssgVersion
+                    majorOsVersion
                     rules {
                         refId
                         title
