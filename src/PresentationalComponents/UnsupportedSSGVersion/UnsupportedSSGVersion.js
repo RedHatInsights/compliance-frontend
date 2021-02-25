@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Popover, Tooltip, Text } from '@patternfly/react-core';
 import { ExclamationTriangleIcon, OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import { supportedConfigsLink } from '@redhat-cloud-services/frontend-components-inventory-compliance';
 
 const UNSUPPORTED_SINGULAR_MESSAGE =
     'This system was using an incompatible version of the SSG at the time this report was generated. ' +
@@ -19,9 +20,6 @@ const UNSUPPORTED_PLURAL_MESSAGE = <React.Fragment>
 const WarningWithPopover = ({ children, variant = 'plural' }) => {
     const headerContent = 'Unsupported SSG versions';
     const bodyContent = variant === 'plural' ? UNSUPPORTED_PLURAL_MESSAGE : UNSUPPORTED_SINGULAR_MESSAGE;
-    const supportedConfigsLink = 'https://access.redhat.com/documentation/en-us/red_hat_insights/2020-10/' +
-        'html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/' +
-        'compl-assess-overview-con#compl-assess-supported-configurations-con';
     const footerContent = <a target='_blank' rel='noopener noreferrer' href={ supportedConfigsLink }>Supported SSG versions</a>;
 
     return <Popover id='unsupported-popover' maxWidth='25rem'
