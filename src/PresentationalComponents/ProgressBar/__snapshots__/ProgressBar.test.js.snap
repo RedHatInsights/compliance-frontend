@@ -46,6 +46,7 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
     </span>
   </div>
   <div
+    aria-label={null}
     aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
@@ -93,6 +94,7 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
     </span>
   </div>
   <div
+    aria-label={null}
     aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
@@ -162,6 +164,7 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
     </span>
   </div>
   <div
+    aria-label={null}
     aria-labelledby="finished-create-policy-description"
     aria-valuemax={100}
     aria-valuemin={0}
