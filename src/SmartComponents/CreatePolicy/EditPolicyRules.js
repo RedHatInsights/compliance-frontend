@@ -43,7 +43,7 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
 `;
 
 export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, change }) => {
-    const columns = selectRulesTableColumns(['Rule', 'Severity', 'Ansible']);
+    const columns = selectRulesTableColumns(['Name', 'Severity', 'Ansible']);
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
     const [defaultSelection, setDefaultSelection] = useState(null);
     const profileRules = data && [{
