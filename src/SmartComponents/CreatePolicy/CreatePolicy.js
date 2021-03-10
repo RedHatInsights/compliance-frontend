@@ -41,16 +41,16 @@ export const CreatePolicy = ({
         },
         {
             id: 3,
-            name: 'Rules',
-            component: <EditPolicyRules/>,
-            canJumpTo: stepIdReached >= 3,
-            enableNext: validateRulesPage(selectedRuleRefIds)
+            name: 'Systems',
+            component: <EditPolicySystems/>,
+            canJumpTo: stepIdReached >= 3
         },
         {
             id: 4,
-            name: 'Systems',
-            component: <EditPolicySystems/>,
-            canJumpTo: stepIdReached >= 4
+            name: 'Rules',
+            component: <EditPolicyRules/>,
+            canJumpTo: stepIdReached >= 4,
+            enableNext: validateRulesPage(selectedRuleRefIds)
         },
         {
             id: 5,
