@@ -42,12 +42,14 @@ const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
 
     return (
         <React.Fragment>
-            <TextContent>
+            <TextContent className="pf-u-mb-md">
                 <Text component={TextVariants.h1}>
                     Systems
                 </Text>
-                <Text component={TextVariants.h4}>
-                    Choose systems to scan with this policy. You can add and remove systems later.
+                <Text>
+                    Select which of your <b>RHEL { osMajorVersion }</b> systems should be included
+                    in this policy.<br />
+                    Systems can be added or removed at any time.
                 </Text>
             </TextContent>
             <Form>
