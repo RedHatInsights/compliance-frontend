@@ -3,7 +3,7 @@
 exports[`EditPolicySystems expect to render without error 1`] = `
 Array [
   <div
-    className="pf-c-content"
+    className="pf-c-content pf-u-mb-md"
   >
     <h1
       className=""
@@ -11,12 +11,19 @@ Array [
     >
       Systems
     </h1>
-    <h4
+    <p
       className=""
       data-pf-content={true}
     >
-      Choose systems to scan with this policy. You can add and remove systems later.
-    </h4>
+      Select which of your 
+      <b>
+        RHEL 
+        6
+      </b>
+       systems should be included in this policy.
+      <br />
+      Systems can be added or removed at any time.
+    </p>
   </div>,
   <form
     className="pf-c-form"
