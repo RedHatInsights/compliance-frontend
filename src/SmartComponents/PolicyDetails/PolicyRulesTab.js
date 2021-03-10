@@ -18,7 +18,7 @@ const PolicyRulesTab = ({ loading, policy }) => (
         </PageSection>
         <SystemRulesTable
             remediationsEnabled={false}
-            columns={ selectRulesTableColumns(['Rule', 'Severity', 'Ansible']) }
+            columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
             loading={ loading }
             profileRules={[{
                 profile: { refId: policy.refId, name: policy.name },

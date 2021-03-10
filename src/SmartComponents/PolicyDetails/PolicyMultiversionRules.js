@@ -24,7 +24,7 @@ const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => (
                             eventKey={ profile.ssgVersion }>
                             <SystemRulesTable
                                 remediationsEnabled={false}
-                                columns={ selectRulesTableColumns(['Rule', 'Severity', 'Ansible']) }
+                                columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
                                 profileRules={[{
                                     profile: { ...profile },
                                     rules: profile.rules

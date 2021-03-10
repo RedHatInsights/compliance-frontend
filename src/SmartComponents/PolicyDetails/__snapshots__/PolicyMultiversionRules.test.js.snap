@@ -35,7 +35,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           columns={
             Array [
               Object {
-                "title": "Rule",
+                "title": "Name",
                 "transforms": Array [
                   [Function],
                 ],
@@ -147,7 +147,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           columns={
             Array [
               Object {
-                "title": "Rule",
+                "title": "Name",
                 "transforms": Array [
                   [Function],
                 ],
@@ -259,7 +259,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           columns={
             Array [
               Object {
-                "title": "Rule",
+                "title": "Name",
                 "transforms": Array [
                   [Function],
                 ],
