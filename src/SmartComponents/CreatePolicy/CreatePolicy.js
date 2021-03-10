@@ -10,7 +10,7 @@ import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';
 import FinishedCreatePolicy from './FinishedCreatePolicy';
-import { validateFirstPage, validateSecondPage, validateThirdPage } from './validate';
+import { validateBenchmarkPage, validateDetailsPage, validateRulesPage } from './validate';
 
 export const CreatePolicy = ({
     benchmark, osMajorVersion, complianceThreshold, name, profile, refId, selectedRuleRefIds
@@ -30,21 +30,21 @@ export const CreatePolicy = ({
             id: 1,
             name: 'Create SCAP policy',
             component: <CreateSCAPPolicy/>,
-            enableNext: validateFirstPage(benchmark, osMajorVersion, profile)
+            enableNext: validateBenchmarkPage(benchmark, osMajorVersion, profile)
         },
         {
             id: 2,
             name: 'Details',
             component: <EditPolicyDetails/>,
             canJumpTo: stepIdReached >= 2,
-            enableNext: validateSecondPage(name, refId, complianceThreshold)
+            enableNext: validateDetailsPage(name, refId, complianceThreshold)
         },
         {
             id: 3,
             name: 'Rules',
             component: <EditPolicyRules/>,
             canJumpTo: stepIdReached >= 3,
-            enableNext: validateThirdPage(selectedRuleRefIds)
+            enableNext: validateRulesPage(selectedRuleRefIds)
         },
         {
             id: 4,
