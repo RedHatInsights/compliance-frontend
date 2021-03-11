@@ -28,3 +28,4 @@ export { default as ProfileThresholdField } from './ProfileThresholdField/Profil
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
+export { default as TabbedRules } from './TabbedRules/TabbedRules';

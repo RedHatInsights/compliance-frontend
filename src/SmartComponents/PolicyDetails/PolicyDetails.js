@@ -40,6 +40,7 @@ query Profile($policyId: String!){
             name
             refId
             profiles {
+                id
                 ssgVersion
                 name
                 refId
