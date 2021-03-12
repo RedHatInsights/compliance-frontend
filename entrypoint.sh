@@ -6,4 +6,6 @@ if [[ ! -d "/compliance/node_modules/@redhat-cloud-services" ]]; then
     cd /compliance; /usr/bin/npm install;
 fi
 
+export IN_DOCKER='true';
+
 exec "$@"

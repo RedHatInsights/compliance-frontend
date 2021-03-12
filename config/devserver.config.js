@@ -2,6 +2,14 @@
 /* global module */
 let default_host;
 
+const bindHost = () => {
+    if (process.env.IN_DOCKER && typeof(process.env.WEBPACK_BIND) === 'undefined') {
+        return '0.0.0.0';
+    } else {
+        return process.env.WEBPACK_BIND || 'localhost';
+    }
+};
+
 if (process.env.DEFAULT_HOST) {
     default_host = process.env.DEFAULT_HOST;
 } else {
@@ -23,6 +31,7 @@ const devserverConfig = {
     hot: hotReload(),
     injectClient: hotReload(),
     inline: hotReload(),
+    host: bindHost(),
     allowedHosts: [
         'ci.foo.redhat.com',
         'qa.foo.redhat.com',
