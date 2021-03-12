@@ -323,9 +323,7 @@ exports[`CreateSCAPPolicy should render policies from the selected benchmark onl
         }
       }
       trigger={
-        <span
-          aria-describedby="pf-tooltip-1"
-        >
+        <span>
            
           <OutlinedQuestionCircleIcon
             className="grey-icon"
@@ -340,9 +338,7 @@ exports[`CreateSCAPPolicy should render policies from the selected benchmark onl
       <FindRefWrapper
         onFoundRef={[Function]}
       >
-        <span
-          aria-describedby="pf-tooltip-1"
-        >
+        <span>
            
           <OutlinedQuestionCircleIcon
             className="grey-icon"

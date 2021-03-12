@@ -279,9 +279,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                             }
                           }
                           trigger={
-                            <WarningText
-                              aria-describedby="pf-tooltip-1"
-                            >
+                            <WarningText>
                               No Systems
                             </WarningText>
                           }
@@ -290,9 +288,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           <FindRefWrapper
                             onFoundRef={[Function]}
                           >
-                            <WarningText
-                              aria-describedby="pf-tooltip-1"
-                            >
+                            <WarningText>
                               <ExclamationTriangleIcon
                                 className="ins-u-warning"
                                 color="currentColor"
