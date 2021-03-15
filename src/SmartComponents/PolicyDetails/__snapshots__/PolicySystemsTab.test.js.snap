@@ -14,7 +14,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
         "title": "Name",
       },
       Object {
-        "key": "facts.compliance",
+        "key": "ssgVersion",
         "renderFunc": [Function],
         "title": "SSG version",
       },

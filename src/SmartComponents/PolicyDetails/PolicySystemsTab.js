@@ -30,7 +30,7 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
                     renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
                 }
             }, ...showSsgVersions ? [{
-                key: 'facts.compliance',
+                key: 'ssgVersion',
                 title: 'SSG version',
                 renderFunc: (profile, ...rest) => {
                     let realProfile = profile;
