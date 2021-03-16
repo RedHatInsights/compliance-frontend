@@ -7,9 +7,9 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import useFeature from 'Utilities/hooks/useFeature';
-import { systemName } from 'Store/Reducers/SystemStore';
+import { systemName, countOsMinorVersions } from 'Store/Reducers/SystemStore';
 
-const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
+const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
     const columns = [{
         key: 'facts.compliance.display_name',
@@ -36,7 +36,11 @@ const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
         if (selectedSystemIds) {
             change('systems', selectedSystemIds);
         }
-    }, [selectedSystemIds, change]);
+
+        if (osMinorVersionCounts) {
+            change('osMinorVersionCounts', osMinorVersionCounts);
+        }
+    }, [selectedSystemIds, osMinorVersionCounts, change]);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
@@ -70,17 +74,23 @@ const EditPolicySystems = ({ change, osMajorVersion, selectedSystemIds }) => {
 
 EditPolicySystems.propTypes = {
     osMajorVersion: propTypes.string,
+    osMinorVersionCounts: propTypes.arrayOf(propTypes.shape({
+        osMinorVersion: propTypes.number,
+        count: propTypes.number
+    })),
     selectedSystemIds: propTypes.array,
     change: reduxFormPropTypes.change
 };
 
 EditPolicySystems.defaultProps = {
-    selectedSystemIds: []
+    selectedSystemIds: [],
+    osMinorVersionCounts: []
 };
 
 const selector = formValueSelector('policyForm');
 const mapStateToProps = (state) => ({
     osMajorVersion: selector(state, 'osMajorVersion'),
+    osMinorVersionCounts: countOsMinorVersions(state.entities?.selectedEntities),
     selectedSystemIds: (state.entities?.selectedEntities || []).map((e) => (e.id))
 });
 

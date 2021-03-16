@@ -85,6 +85,10 @@ export const CreatePolicy = ({
 CreatePolicy.propTypes = {
     benchmark: propTypes.string,
     osMajorVersion: propTypes.string,
+    osMinorVersionCounts: propTypes.arrayOf(propTypes.shape({
+        osMinorVersion: propTypes.number,
+        count: propTypes.number
+    })),
     complianceThreshold: propTypes.string,
     businessObjective: propTypes.object,
     dispatch: propTypes.func,
@@ -105,6 +109,7 @@ export default connect(
     state => ({
         benchmark: selector(state, 'benchmark'),
         osMajorVersion: selector(state, 'osMajorVersion'),
+        osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
         businessObjective: selector(state, 'businessObjective'),
         complianceThreshold: selector(state, 'complianceThreshold') || 100.0,
         name: selector(state, 'name'),
