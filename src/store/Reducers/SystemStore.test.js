@@ -3,6 +3,7 @@ import {
     hasOsInfo,
     lastScanned,
     policyNames,
+    countOsMinorVersions,
     systemsToInventoryEntities
 } from './SystemStore';
 import { systems, entities } from '@/__fixtures__/systems.js';
@@ -144,5 +145,24 @@ describe('hasOsInfo', () => {
             osMinorVersion: null
         });
         expect(result).toEqual(false);
+    });
+});
+
+describe('countOsMinorVersions', () => {
+    it('gathers unique OS minor versions sorted', () => {
+        const systems = [
+            { osMinorVersion: 10 },
+            { osMinorVersion: 1 },
+            { osMinorVersion: 9 },
+            { osMinorVersion: 9 },
+            { osMinorVersion: 0 },
+            {}
+        ];
+        expect(countOsMinorVersions(systems)).toEqual([
+            { osMinorVersion: 0, count: 1 },
+            { osMinorVersion: 1, count: 1 },
+            { osMinorVersion: 9, count: 2 },
+            { osMinorVersion: 10, count: 1 }
+        ]);
     });
 });

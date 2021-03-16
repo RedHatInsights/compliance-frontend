@@ -19,6 +19,7 @@ import {
     profilesRulesFailed
 } from 'Utilities/ruleHelpers';
 import Truncate from 'react-truncate';
+import { sortingByProp } from 'Utilities/helpers';
 
 const NEVER = 'Never';
 
@@ -115,6 +116,19 @@ const isSelected = (id, selectedEntities) => (
 const profilesSsgVersions = ({ testResultProfiles: profiles = [] }) => (
     profiles.map((p) => (p.ssgVersion)).filter((version) => (!!version)).join(', ')
 );
+
+export const countOsMinorVersions = (systems) => {
+    if (!systems) { return []; }
+
+    const counted = systems.reduce((acc, { osMinorVersion }) => {
+        if (osMinorVersion !== undefined && osMinorVersion !== null) {
+            (acc[osMinorVersion] = acc[osMinorVersion] || { osMinorVersion, count: 0 }).count++;
+        }
+
+        return acc;
+    }, {});
+    return Object.values(counted).sort(sortingByProp('osMinorVersion'));
+};
 
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, selectedEntities) => (
     entities.map(entity => {
