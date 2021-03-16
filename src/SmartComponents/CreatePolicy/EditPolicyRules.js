@@ -14,6 +14,7 @@ import { useQuery } from '@apollo/react-hooks';
 import {
     StateViewWithError, StateViewPart
 } from 'PresentationalComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
 query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
@@ -42,7 +43,8 @@ query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
 }
 `;
 
-export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, change }) => {
+export const EditPolicyRules = ({ profileId, benchmarkId, osMajorVersion, osMinorVersionCounts, selectedRuleRefIds, change }) => {
+    const multiversionRules = useFeature('multiversionTabs');
     const columns = selectRulesTableColumns(['Name', 'Severity', 'Ansible']);
     const { data, error, loading } = useQuery(QUERY, { variables: { profileId, benchmarkId } });
     const [defaultSelection, setDefaultSelection] = useState(null);
@@ -90,6 +92,13 @@ export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, ch
                         </Button>
                     }
                 </Text>
+                { multiversionRules && osMinorVersionCounts && osMinorVersionCounts.length > 0 &&
+                    <Text>
+                        Tailoring for{' '}
+                        { osMinorVersionCounts.map(({ osMinorVersion, count }) =>
+                            `RHEL ${osMajorVersion}.${osMinorVersion} (${count} systems)`).join(', ') }
+                    </Text>
+                }
             </TextContent>
             <SystemRulesTable
                 remediationsEnabled={ false }
@@ -109,6 +118,11 @@ EditPolicyRules.propTypes = {
     profileId: propTypes.string,
     benchmarkId: propTypes.string,
     change: reduxFormPropTypes.change,
+    osMajorVersion: propTypes.string,
+    osMinorVersionCounts: propTypes.arrayOf(propTypes.shape({
+        osMinorVersion: propTypes.number,
+        count: propTypes.number
+    })),
     selectedRuleRefIds: propTypes.array
 };
 
@@ -119,6 +133,8 @@ export default compose(
         state => ({
             benchmarkId: selector(state, 'benchmark'),
             profileId: JSON.parse(selector(state, 'profile')).id,
+            osMajorVersion: selector(state, 'osMajorVersion'),
+            osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
             selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
         })
     ),
