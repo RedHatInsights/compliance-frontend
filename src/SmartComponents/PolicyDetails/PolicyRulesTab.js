@@ -1,9 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import SystemRulesTable, {
+import RulesTable, {
     selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+} from '@redhat-cloud-services/frontend-components-inventory-compliance';
 
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
@@ -16,7 +16,7 @@ const PolicyRulesTab = ({ loading, policy }) => (
                 those rules will be different and can be viewed on the systems details page.
             </Text>
         </PageSection>
-        <SystemRulesTable
+        <RulesTable
             remediationsEnabled={false}
             columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
             loading={ loading }

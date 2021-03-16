@@ -1,9 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Tab } from '@patternfly/react-core';
-import SystemRulesTable, {
+import RulesTable, {
     selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+} from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import { RoutedTabs } from 'PresentationalComponents';
 
 const eventKey = (id) => (
@@ -24,7 +24,7 @@ const TabbedRules = ({ tabsData, defaultProfileId, columns, level, handleSelect,
                     title={ title }
                     key={ eventKey(profile.id) }
                     eventKey={ eventKey(profile.id) }>
-                    <SystemRulesTable
+                    <RulesTable
                         remediationsEnabled={false}
                         columns={ selectRulesTableColumns(columns) }
                         profileRules={ [{ profile, rules }] }

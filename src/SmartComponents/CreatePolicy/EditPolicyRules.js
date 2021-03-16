@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import SystemRulesTable, {
+import RulesTable, {
     selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+} from '@redhat-cloud-services/frontend-components-inventory-compliance';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { Button, Text, TextContent, TextVariants } from '@patternfly/react-core';
@@ -91,7 +91,7 @@ export const EditPolicyRules = ({ profileId, benchmarkId, selectedRuleRefIds, ch
                     }
                 </Text>
             </TextContent>
-            <SystemRulesTable
+            <RulesTable
                 remediationsEnabled={ false }
                 tailoringEnabled
                 selectedFilter
