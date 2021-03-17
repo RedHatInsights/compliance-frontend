@@ -1,22 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Label, TextContent, Text, Progress } from '@patternfly/react-core';
+import { TextContent, Text, Progress } from '@patternfly/react-core';
 import { Link } from 'react-router-dom';
 import { PolicyPopover, GreySmallText, UnsupportedSSGVersion, OperatingSystemBadge } from 'PresentationalComponents';
 
 export const Name = (profile) => (
     <TextContent>
         <Link to={'/reports/' + profile.id} style={ { marginRight: '.5rem' }}>
-            { profile.policy ? profile.policy.name : profile.name }
+            { profile.policy.name }
         </Link>
-        { profile.policy
-            ? <React.Fragment>
-                <PolicyPopover { ...{ profile, position: 'right' } } />
-                <GreySmallText>{ profile.policyType }</GreySmallText>
-            </React.Fragment>
-
-            : <Label color="red">External</Label>
-        }
+        <React.Fragment>
+            <PolicyPopover { ...{ profile, position: 'right' } } />
+            <GreySmallText>{ profile.policyType }</GreySmallText>
+        </React.Fragment>
     </TextContent>
 );
 

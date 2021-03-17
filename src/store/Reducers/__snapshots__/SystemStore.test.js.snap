@@ -25,7 +25,7 @@ Array [
                   },
                 ]
               }
-              policyNames="HIPAA Policy, (External) Standard System Security Profile for Red Hat Enterprise Linux 7, (External) DISA STIG for Red Hat Enterprise Linux 7, (External) United States Government Configuration Baseline, (External) C2S for Red Hat Enterprise Linux 7"
+              policyNames="HIPAA Policy"
               rulesFailed={28}
               rulesPassed={24}
               score={10}
@@ -370,9 +370,9 @@ Array [
         },
         "last_scanned_text": 2019-11-21T14:32:19.000Z,
         "policies": Object {
-          "exportValue": "HIPAA Policy, (External) Standard System Security Profile for Red Hat Enterprise Linux 7, (External) DISA STIG for Red Hat Enterprise Linux 7, (External) United States Government Configuration Baseline, (External) C2S for Red Hat Enterprise Linux 7",
+          "exportValue": "HIPAA Policy",
           "title": <Tooltip
-            content="HIPAA Policy, (External) Standard System Security Profile for Red Hat Enterprise Linux 7, (External) DISA STIG for Red Hat Enterprise Linux 7, (External) United States Government Configuration Baseline, (External) C2S for Red Hat Enterprise Linux 7"
+            content="HIPAA Policy"
           >
             <Truncate
               ellipsis="…"
@@ -380,7 +380,7 @@ Array [
               trimWhitespace={false}
               width={540}
             >
-              HIPAA Policy, (External) Standard System Security Profile for Red Hat Enterprise Linux 7, (External) DISA STIG for Red Hat Enterprise Linux 7, (External) United States Government Configuration Baseline, (External) C2S for Red Hat Enterprise Linux 7
+              HIPAA Policy
             </Truncate>
           </Tooltip>,
         },

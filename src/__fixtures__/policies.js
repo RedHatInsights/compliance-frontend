@@ -190,6 +190,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: 'dae0487d-3201-4ee0-af5f-b94cde2af818',
+                    name: 'United States Government Configuration Baseline2'
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -208,6 +212,10 @@ export const policies = {
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '20a9d997-62a6-40cc-a5f3-19d466eb975e',
+                    name: 'C2S for Red Hat Enterprise Linux 7',
                 },
                 __typename: 'Profile'
             },
@@ -228,6 +236,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: '6d345bd2-d597-4df8-9bcf-71c41155b42c',
+                    name: 'Criminal Justice Information Services (CJIS) Security Policy',
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -246,6 +258,10 @@ export const policies = {
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'c8e15347-9c2b-495d-8e54-503c2f9582b6',
+                    name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
                 },
                 __typename: 'Profile'
             },
@@ -266,6 +282,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: '3c4823a1-2c16-46ae-b2fe-0cebf5a03931',
+                    name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -284,6 +304,10 @@ export const policies = {
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'f7b7977a-403b-4cd1-ab90-20b6f9a5a359',
+                    name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 },
                 __typename: 'Profile'
             },
@@ -304,6 +328,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: '36abc364-6dc3-4e35-94f4-d10fa77e866e',
+                    name: 'Health Insurance Portability and Accountability Act (HIPAA)',
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -322,6 +350,10 @@ export const policies = {
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'd35c8aad-8fc8-49e8-bff0-4d9d3dc8f220',
+                    name: 'United States Government Configuration Baseline',
                 },
                 __typename: 'Profile'
             },
@@ -342,6 +374,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: '4c27fe09-9a7f-437c-b38b-e42272d9ccf0',
+                    name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -361,6 +397,10 @@ export const policies = {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
                 },
+                policy: {
+                    id: '9b034440-e3dd-4c19-8f2c-ca75e813d57d',
+                    name: 'DISA STIG for Red Hat Enterprise Linux 7',
+                },
                 __typename: 'Profile'
             },
             __typename: 'ProfileEdge'
@@ -379,6 +419,10 @@ export const policies = {
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '19921ca4-8526-4651-8876-3c8587e8e125',
+                    name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72',
                 },
                 __typename: 'Profile'
             },

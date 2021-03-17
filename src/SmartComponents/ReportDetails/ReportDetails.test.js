@@ -104,22 +104,4 @@ describe('ReportDetails', () => {
 
         expect(toJson(component)).toMatchSnapshot();
     });
-
-    it('expect to render without ssg version for external profiles', () => {
-        useFeature.mockImplementation(() => (true));
-        const data = {
-            profile: {
-                ...mocks[0].result.data.profile,
-                policy: null
-            }
-        };
-        useQuery.mockImplementation(() => {
-            return { data };
-        });
-        const component = shallow(
-            <ReportDetails { ...defaultProps } store={ store } />
-        );
-
-        expect(toJson(component)).toMatchSnapshot();
-    });
 });
