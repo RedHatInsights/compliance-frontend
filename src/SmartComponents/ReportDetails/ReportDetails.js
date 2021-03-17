@@ -83,8 +83,8 @@ export const ReportDetails = ({ route }) => {
 
     if (!loading && data) {
         profile = data.profile;
-        policyName = profile.policy ? profile.policy.name : profile.name;
-        showSsgVersions = !!profile?.policy && showSsgVersionsFeature;
+        policyName = profile.policy.name;
+        showSsgVersions = showSsgVersionsFeature;
         pageTitle = `Report: ${ policyName }`;
         const compliantHostCount = profile.compliantHostCount;
         const testResultHostCount = profile.testResultHostCount;

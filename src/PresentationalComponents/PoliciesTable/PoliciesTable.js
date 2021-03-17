@@ -13,7 +13,7 @@ import {
 
 export const PolicyNameCell = ({ profile }) => (
     <TextContent>
-        <Link to={'/scappolicies/' + profile.id}>{profile.policy && profile.policy.name || profile.name}</Link>
+        <Link to={'/scappolicies/' + profile.id}>{ profile.policy.name }</Link>
         <GreySmallText>{ profile.policyType }</GreySmallText>
     </TextContent>
 );

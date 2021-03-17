@@ -55,10 +55,7 @@ export const policyNames = (system) => {
     if (system === {}) { return ''; }
 
     let policyNames = system.policies.map(({ name }) => name);
-    let externalPolicyNames = system.testResultProfiles.filter(p => !p.policy).map(({ name }) => (
-        `(External) ${name}`
-    ));
-    return [...policyNames, ...externalPolicyNames].join(', ');
+    return policyNames.join(', ');
 };
 
 export const policiesCell = ({ policyNames }) => ({

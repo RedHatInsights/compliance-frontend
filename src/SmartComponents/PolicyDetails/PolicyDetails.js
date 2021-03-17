@@ -126,12 +126,6 @@ export const PolicyDetails = ({ route }) => {
     });
     let policy = data && !loading ? data.profile : undefined;
 
-    if (policy && policy.external) {
-        error = { message: 'This is an external SCAP policy.' };
-        data = undefined;
-        loading = undefined;
-    }
-
     useEffect(() => {
         refetch();
     }, [location, refetch]);

@@ -8,7 +8,7 @@ export const policyNameFilter = [{
         return profiles.filter((profile) => (
             [
                 profile.name,
-                (profile?.policy?.name || '')
+                profile.policy.name
             ].join().toLowerCase().includes(lowerCaseValue)
         ));
     }

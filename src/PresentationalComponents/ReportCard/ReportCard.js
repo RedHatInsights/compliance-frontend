@@ -12,7 +12,6 @@ import {
     Text,
     TextContent,
     TextVariants,
-    Tooltip,
     Grid,
     GridItem
 } from '@patternfly/react-core';
@@ -22,7 +21,6 @@ import {
     ChartThemeColor,
     ChartThemeVariant
 } from '@patternfly/react-charts';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import '@/Charts.scss';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
@@ -137,19 +135,9 @@ class ReportCard extends React.Component {
                                     </Link>
                                 </Text>
                                 <Text component={TextVariants.small} style={{ fontSize: '16px' }} >
-                                    { !policy ? <Tooltip position='bottom' content={
-                                        <span>This policy report was uploaded into the Compliance application.
-                                        If you would like to manage your policy inside the Compliance application,
-                                        use the &quot;Create a policy&quot; wizard to create one and associate systems.</span>
-                                    }>
-                                        <span>
-                                            External policy <OutlinedQuestionCircleIcon className='grey-icon'/>
-                                        </span>
-                                    </Tooltip> :
-                                        <Link to={'/scappolicies/' + policy.id} >
-                                            View policy
-                                        </Link>
-                                    }
+                                    <Link to={'/scappolicies/' + policy.id} >
+                                        View policy
+                                    </Link>
                                 </Text>
                             </TextContent>
                         </GridItem>

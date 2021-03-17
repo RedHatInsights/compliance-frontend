@@ -102,15 +102,14 @@ describe('.policyNames', () => {
         const system = {
             testResultProfiles: [
                 { name: 'HIPAA Profile', policy: {} },
-                { name: 'PCI-DSS Profile', policy: {} },
-                { name: 'CIS', policy: null }
+                { name: 'PCI-DSS Profile', policy: {} }
             ],
             policies: [
                 { name: 'HIPAA' },
                 { name: 'PCI Policy' }
             ]
         };
-        expect(policyNames(system)).toEqual('HIPAA, PCI Policy, (External) CIS');
+        expect(policyNames(system)).toEqual('HIPAA, PCI Policy');
     });
 });
 
