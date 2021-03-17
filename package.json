@@ -11,12 +11,12 @@
     "@babel/runtime": "^7.12.5",
     "@data-driven-forms/pf4-component-mapper": "^2.19.1",
     "@data-driven-forms/react-form-renderer": "^2.19.1",
-    "@patternfly/react-charts": "^6.14.2",
-    "@patternfly/react-core": "^4.97.2",
-    "@patternfly/react-icons": "^4.9.2",
-    "@patternfly/react-table": "^4.23.2",
-    "@patternfly/react-tokens": "^4.10.2",
-    "@redhat-cloud-services/frontend-components": "^3.0.10",
+    "@patternfly/react-charts": "^6.14.6",
+    "@patternfly/react-core": "^4.101.3",
+    "@patternfly/react-icons": "^4.9.5",
+    "@patternfly/react-table": "^4.23.14",
+    "@patternfly/react-tokens": "^4.10.5",
+    "@redhat-cloud-services/frontend-components": "3.0.10",
     "@redhat-cloud-services/frontend-components-inventory-compliance": "^3.1.2",
     "@redhat-cloud-services/frontend-components-notifications": "^3.1.0",
     "@redhat-cloud-services/frontend-components-utilities": "^3.0.3",
@@ -142,6 +142,8 @@
     "travis:build": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack --config config/prod.webpack.config.js",
     "travis:verify": "npm-run-all travis:build lint test coverage",
     "verify": "npm-run-all build lint test",
-    "nightly": "npm run travis:verify"
+    "nightly": "npm run travis:verify",
+    "bump:redhatservices": "npm install @redhat-cloud-services/frontend-components-notifications@latest @redhat-cloud-services/frontend-components-utilities@latest @redhat-cloud-services/frontend-components-config@latest @redhat-cloud-services/frontend-components@latest @redhat-cloud-services/frontend-components-inventory-compliance@latest",
+    "bump:patternfly": "npm install @patternfly/react-core@latest @patternfly/react-tables@latest @patternfly/react-charts@latest @patternfly/react-tokens@latest @patternfly/react-icons@latest"
   }
 }
