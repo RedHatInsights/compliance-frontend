@@ -4,6 +4,7 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 <Fragment>
   <Progress
     aria-label={null}
+    aria-labelledby={null}
     className=""
     id=""
     isTitleTruncated={false}
@@ -43,6 +44,7 @@ exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
   <Progress
     aria-label={null}
+    aria-labelledby={null}
     className=""
     id=""
     isTitleTruncated={false}
