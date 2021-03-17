@@ -114,7 +114,7 @@ export const ReportDetails = ({ route }) => {
             renderFunc: systemName
         }
     }, ...showSsgVersions ? [{
-        key: 'facts.compliance',
+        key: 'ssgVersion',
         title: 'SSG version',
         props: {
             width: 5
