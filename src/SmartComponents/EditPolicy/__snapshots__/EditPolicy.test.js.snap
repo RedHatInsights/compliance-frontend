@@ -100,6 +100,15 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
                 "renderFunc": [Function],
                 "title": "Name",
               },
+              Object {
+                "key": "osMinorVersion",
+                "props": Object {
+                  "isStatic": true,
+                  "width": 40,
+                },
+                "renderFunc": [Function],
+                "title": "Operating system",
+              },
             ]
           }
           compact={true}
@@ -660,6 +669,15 @@ exports[`EditPolicy expect to render without error 1`] = `
                 },
                 "renderFunc": [Function],
                 "title": "Name",
+              },
+              Object {
+                "key": "osMinorVersion",
+                "props": Object {
+                  "isStatic": true,
+                  "width": 40,
+                },
+                "renderFunc": [Function],
+                "title": "Operating system",
               },
             ]
           }

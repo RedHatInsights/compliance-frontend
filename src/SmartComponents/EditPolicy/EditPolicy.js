@@ -25,6 +25,33 @@ export const EditPolicy = ({ route }) => {
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
+    const columns = [
+        {
+            key: 'facts.compliance.display_name',
+            title: 'Name',
+            props: {
+                width: 40, isStatic: true
+            },
+            ...newInventory && {
+                key: 'display_name',
+                renderFunc: (displayName, id, extra) => {
+                    return extra?.lastScanned ? systemName(displayName, id, { name: extra?.name }) : displayName;
+                }
+            }
+        },
+        {
+            key: 'facts.compliance.osMinorVersion',
+            title: 'Operating system',
+            props: {
+                width: 40, isStatic: true
+            },
+            ...newInventory && {
+                key: 'osMinorVersion',
+                renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
+            }
+        }
+    ];
+
     const linkToBackgroundWithHash = () => {
         newInventory && dispatch({
             type: 'SELECT_ENTITIES',
@@ -102,19 +129,7 @@ export const EditPolicy = ({ route }) => {
                         policyId={ policy.id }
                         defaultFilter={ `os_major_version = ${policy.majorOsVersion}` }
                         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-                        columns={[{
-                            key: 'facts.compliance.display_name',
-                            title: 'Name',
-                            props: {
-                                width: 40, isStatic: true
-                            },
-                            ...newInventory && {
-                                key: 'display_name',
-                                renderFunc: (displayName, id, extra) => {
-                                    return extra?.lastScanned ? systemName(displayName, id, extra) : displayName;
-                                }
-                            }
-                        }]}
+                        columns={columns}
                         preselectedSystems={ policy?.hosts.map((h) => ({ id: h.id })) || [] } />
                 </Tab>
             </RoutedTabs>

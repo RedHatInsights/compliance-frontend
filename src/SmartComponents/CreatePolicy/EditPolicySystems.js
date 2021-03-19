@@ -19,16 +19,17 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         },
         ...newInventory && {
             key: 'display_name',
-            renderFunc: systemName
+            renderFunc: (displayName, id, { name }) => systemName(displayName, id, { name })
         }
     }, {
-        key: 'facts.compliance.policies',
-        title: 'Policies',
+        key: 'facts.compliance.osMinorVersion',
+        title: 'Operating system',
         props: {
             width: 40, isStatic: true
         },
         ...newInventory && {
-            key: 'policies'
+            key: 'osMinorVersion',
+            renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
         }
     }];
 
