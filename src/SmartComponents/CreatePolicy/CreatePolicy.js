@@ -10,10 +10,10 @@ import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';
 import FinishedCreatePolicy from './FinishedCreatePolicy';
-import { validateBenchmarkPage, validateDetailsPage, validateRulesPage } from './validate';
+import { validateBenchmarkPage, validateDetailsPage, validateRulesPage, validateSystemsPage } from './validate';
 
 export const CreatePolicy = ({
-    benchmark, osMajorVersion, complianceThreshold, name, profile, refId, selectedRuleRefIds
+    benchmark, osMajorVersion, complianceThreshold, name, profile, refId, selectedRuleRefIds, systemIds
 }) => {
     const history = useHistory();
     const [stepIdReached, setStepIdReached] = useState(1);
@@ -43,7 +43,8 @@ export const CreatePolicy = ({
             id: 3,
             name: 'Systems',
             component: <EditPolicySystems/>,
-            canJumpTo: stepIdReached >= 3
+            canJumpTo: stepIdReached >= 3,
+            enableNext: validateSystemsPage(systemIds)
         },
         {
             id: 4,
@@ -97,7 +98,8 @@ CreatePolicy.propTypes = {
     onWizardFinish: propTypes.func,
     profile: propTypes.string,
     refId: propTypes.string,
-    selectedRuleRefIds: propTypes.arrayOf(propTypes.string)
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
+    systemIds: propTypes.arrayOf(propTypes.string)
 };
 
 CreatePolicy.defaultProps = {
@@ -115,6 +117,7 @@ export default connect(
         name: selector(state, 'name'),
         profile: selector(state, 'profile'),
         refId: selector(state, 'refId'),
-        selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
+        selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
+        systemIds: selector(state, 'systems')
     })
 )(CreatePolicy);

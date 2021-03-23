@@ -21,3 +21,11 @@ export const validateRulesPage = (selectedRuleRefIds) => {
         return true;
     }
 };
+
+export const validateSystemsPage = (systemIds) => {
+    if (systemIds) {
+        return systemIds.length > 0;
+    } else {
+        return false;
+    }
+};
