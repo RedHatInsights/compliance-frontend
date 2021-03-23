@@ -104,6 +104,7 @@ export const EditPolicyRules = ({ profileId, benchmarkId, osMajorVersion, osMino
                 remediationsEnabled={ false }
                 tailoringEnabled
                 selectedFilter
+                remediationAvailableFilter
                 columns={ columns }
                 loading={ loading }
                 handleSelect={ (selectedRuleRefIds) => change('selectedRuleRefIds', selectedRuleRefIds) }
