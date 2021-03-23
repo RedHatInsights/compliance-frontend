@@ -104,6 +104,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -209,6 +210,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -314,6 +316,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -426,6 +429,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -530,6 +534,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -634,6 +639,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -746,6 +752,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -850,6 +857,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}
@@ -954,6 +962,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={false}
       remediationsEnabled={false}
       selectedFilter={false}
       selectedRefIds={Array []}

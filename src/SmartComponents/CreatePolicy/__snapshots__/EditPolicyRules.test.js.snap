@@ -83,6 +83,7 @@ exports[`EditPolicyRules expect to render with error on error 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={true}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRefIds={Array []}
@@ -202,6 +203,7 @@ exports[`EditPolicyRules expect to render without error 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={true}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRefIds={Array []}
@@ -328,6 +330,7 @@ exports[`EditPolicyRules expect to render without error 2`] = `
           },
         ]
       }
+      remediationAvailableFilter={true}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRefIds={
@@ -425,6 +428,7 @@ exports[`EditPolicyRules expect to render without error on loading 1`] = `
           },
         ]
       }
+      remediationAvailableFilter={true}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRefIds={Array []}
