@@ -5,11 +5,8 @@ import {
     FormGroup,
     Text,
     TextContent,
-    TextVariants,
-    Tooltip,
-    TooltipPosition
+    TextVariants
 } from '@patternfly/react-core';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -104,16 +101,6 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                         );
                     })}
                 </FormGroup>
-                { selectedBenchmark &&
-                <Text component={TextVariants.small}>
-                    SCAP Security Guide (SSG): { selectedBenchmark.title } - { selectedBenchmark.version }
-                    <Tooltip position={TooltipPosition.right} content={`Policies configured in the Compliance services use
-                                                                        the latest version of the SSG packaged with RHEL.`}
-                    >
-                        <span>&nbsp;<OutlinedQuestionCircleIcon className='grey-icon'/></span>
-                    </Tooltip>
-                </Text>
-                }
                 <FormGroup label="Policy type" isRequired fieldId="policy-type">
                     <ProfileTypeSelect
                         profiles={selectedBenchmark && validProfiles }
