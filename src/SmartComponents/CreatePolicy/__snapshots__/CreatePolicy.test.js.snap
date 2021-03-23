@@ -41,6 +41,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       Object {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm)) />,
+        "enableNext": false,
         "id": 3,
         "name": "Systems",
       },
@@ -73,3 +74,5 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   width={null}
 />
 `;
+
+exports[`CreatePolicy expect to render the wizard with enableNext on systems 1`] = `true`;
