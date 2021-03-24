@@ -23,7 +23,7 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 
-const InventoryTable = ({
+export const InventoryTable = ({
     columns,
     showAllSystems,
     policyId,
@@ -40,7 +40,9 @@ const InventoryTable = ({
     compact,
     remediationsEnabled,
     systemProps,
-    defaultFilter
+    defaultFilter,
+    emptyStateComponent,
+    prependComponent
 }) => {
     const store = useStore();
     const dispatch = useDispatch();
@@ -50,6 +52,7 @@ const InventoryTable = ({
         page: 1
     });
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
@@ -91,6 +94,11 @@ const InventoryTable = ({
             });
             setIsLoaded(true);
             setPagination(() => ({ page, perPage }));
+
+            if (emptyStateComponent && !loading && data.systems.totalCount === 0) {
+                setIsEmpty(true);
+            }
+
             return { data, loading };
         });
     };
@@ -115,12 +123,16 @@ const InventoryTable = ({
         }
     };
 
-    return <StateView stateValues={{ error, noError: error === undefined }}>
+    return <StateView stateValues={{ error, noError: error === undefined && !isEmpty, empty: isEmpty }}>
         <StateViewPart stateKey='error'>
+            { !!prependComponent && prependComponent }
             <ErrorPage error={error}/>
         </StateViewPart>
+        <StateViewPart stateKey='empty'>
+            { emptyStateComponent }
+        </StateViewPart>
         <StateViewPart stateKey='noError'>
-
+            { !!prependComponent && isLoaded && prependComponent }
             { showComplianceSystemsInfo && <Alert
                 isInline
                 variant="info"
@@ -205,7 +217,9 @@ InventoryTable.propTypes = {
     defaultFilter: PropTypes.string,
     systemProps: PropTypes.shape({
         isFullView: PropTypes.bool
-    })
+    }),
+    emptyStateComponent: PropTypes.node,
+    prependComponent: PropTypes.node
 };
 
 InventoryTable.defaultProps = {
