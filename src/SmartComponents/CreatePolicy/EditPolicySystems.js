@@ -59,6 +59,7 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
             <Form>
                 <FormGroup>
                     <InvCmp
+                        emptyStateComponent={ "NO systems choose different OS" }
                         columns={columns}
                         remediationsEnabled={false}
                         compact

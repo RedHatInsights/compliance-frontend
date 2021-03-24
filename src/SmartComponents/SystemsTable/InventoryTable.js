@@ -40,7 +40,8 @@ const InventoryTable = ({
     compact,
     remediationsEnabled,
     systemProps,
-    defaultFilter
+    defaultFilter,
+    emptyStateComponent
 }) => {
     const store = useStore();
     const dispatch = useDispatch();
@@ -92,6 +93,8 @@ const InventoryTable = ({
             setIsLoaded(true);
             setPagination(() => ({ page, perPage }));
             return { data, loading };
+        }).then(({data, loading}) => {
+            // set a state similar to isLoaded/noError/error to enable empty state view part when no systems are in the data.
         });
     };
 
@@ -116,6 +119,9 @@ const InventoryTable = ({
     };
 
     return <StateView stateValues={{ error, noError: error === undefined }}>
+        <StateViewPart stateKey='empty'>
+            { emptyStateComponent ? emptyStateComponent : 'Empty' }
+        </StateViewPart>
         <StateViewPart stateKey='error'>
             <ErrorPage error={error}/>
         </StateViewPart>
