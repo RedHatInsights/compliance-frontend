@@ -23,7 +23,7 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 
-const InventoryTable = ({
+export const InventoryTable = ({
     columns,
     showAllSystems,
     policyId,
