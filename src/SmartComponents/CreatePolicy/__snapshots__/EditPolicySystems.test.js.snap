@@ -11,19 +11,6 @@ Array [
     >
       Systems
     </h1>
-    <p
-      className=""
-      data-pf-content={true}
-    >
-      Select which of your 
-      <b>
-        RHEL 
-        6
-      </b>
-       systems should be included in this policy.
-      <br />
-      Systems can be added or removed at any time.
-    </p>
   </div>,
   <form
     className="pf-c-form"
