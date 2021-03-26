@@ -12,7 +12,44 @@ describe('ReviewCreatedPolicy', () => {
     let component;
 
     beforeEach(() => {
-        store = mockStore({ form: { policyForm: { values: policyFormValues } } });
+        store = mockStore({
+            form: {
+                policyForm: {
+                    values: {
+                        osMinorVersionCounts: [
+                            {
+                                osMinorVersion: 7,
+                                count: 10
+                            },
+                            {
+                                osMinorVersion: 5,
+                                count: 3
+                            }
+                        ],
+                        ...policyFormValues
+                    }
+                }
+            },
+            entities: {
+                systems: [
+                    {
+                        node: {
+                            osMinorVersion: 2
+                        }
+                    },
+                    {
+                        node: {
+                            osMinorVersion: 1
+                        }
+                    },
+                    {
+                        node: {
+                            osMinorVersion: 1
+                        }
+                    }
+                ]
+            }
+        });
     });
 
     it('expect to render without error', () => {
