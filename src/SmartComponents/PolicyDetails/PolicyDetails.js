@@ -44,6 +44,14 @@ query Profile($policyId: String!){
                 ssgVersion
                 name
                 refId
+                osMinorVersion
+                osMajorVersion
+                benchmark {
+                    id
+                    title
+                    latestSupportedOsMinorVersions
+                    osMajorVersion
+                }
                 rules {
                     title
                     severity

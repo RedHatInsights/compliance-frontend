@@ -73,12 +73,12 @@ export const CreatePolicy = ({
         <React.Fragment>
             <Wizard
                 isOpen
+                width={ 1220 }
                 onClose={ onClose }
                 title="Create SCAP policy"
                 description="Create a new policy for managing SCAP compliance"
                 steps={ steps }
-                onNext={ onNext }
-            />
+                onNext={ onNext } />
         </React.Fragment>
     );
 };
