@@ -1,25 +1,89 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { groupBy } from 'lodash';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import { Button, Form, Modal, Tab, TabTitleText, Spinner } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
+import EditPolicyRulesTab from './EditPolicyRulesTab';
 import usePolicyUpdate from './usePolicyUpdate';
 import useFeature from 'Utilities/hooks/useFeature';
 import { systemName } from 'Store/Reducers/SystemStore';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 
+export const MULTIVERSION_QUERY = gql`
+query Profile($policyId: String!){
+    profile(id: $policyId) {
+        id
+        name
+        refId
+        external
+        description
+        totalHostCount
+        compliantHostCount
+        complianceThreshold
+        majorOsVersion
+        lastScanned
+        policyType
+        policy {
+            id
+            name
+            refId
+            profiles {
+                id
+                ssgVersion
+                name
+                refId
+                osMinorVersion
+                osMajorVersion
+                benchmark {
+                    id
+                    title
+                    latestSupportedOsMinorVersions
+                    osMajorVersion
+                }
+                rules {
+                    title
+                    severity
+                    rationale
+                    refId
+                    description
+                    remediationAvailable
+                    identifier
+                }
+            }
+        }
+        businessObjective {
+            id
+            title
+        }
+        hosts {
+            id
+            osMinorVersion
+            osMajorVersion
+        }
+    }
+}
+`;
+
 export const EditPolicy = ({ route }) => {
+    const { policy_id: policyId } = useParams();
+    let { data } = useQuery(MULTIVERSION_QUERY, {
+        variables: { policyId }
+    });
+    const policy = data?.profile;
     const newInventory = useFeature('newInventory');
-    const location = useLocation();
+    const multiversionRules = useFeature('multiversionTabs');
     const dispatch = useDispatch();
-    const policy = location?.state?.policy;
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
+    const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
     const updatePolicy = usePolicyUpdate();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
@@ -60,6 +124,21 @@ export const EditPolicy = ({ route }) => {
         linkToBackground({ hash: anchor });
     };
 
+    const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
+        const newSelection = selectedRuleRefIds.map((selectedProfile) => {
+            if (selectedProfile.id === profile.id) {
+                return {
+                    ...selectedProfile,
+                    selectedRuleRefIds: newSelectedRuleRefIds
+                };
+            } else {
+                return selectedProfile;
+            }
+        });
+
+        setSelectedRuleRefIds(newSelection);
+    };
+
     const actions = [
         <Button
             isDisabled={ saveEnabled }
@@ -86,29 +165,38 @@ export const EditPolicy = ({ route }) => {
     }, [selectedEntities]);
 
     useEffect(() => {
-        const complianceThresholdValid =
-            (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
-        setUpdatedPolicy({
-            ...policy,
-            complianceThresholdValid
-        });
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: policy?.hosts?.map(({ id }) => ({ id })) || [] }
-        });
+
+        if (policy) {
+            const complianceThresholdValid =
+                (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
+            setUpdatedPolicy({
+                ...policy,
+                complianceThresholdValid
+            });
+            setSelectedRuleRefIds(policy.policy.profiles.map((policyProfile) => ({
+                ...policyProfile,
+                selectedRuleRefIds: policyProfile.rules.map((rule) => (rule.refId))
+            })));
+            dispatch({
+                type: 'SELECT_ENTITIES',
+                payload: { ids: policy?.hosts?.map(({ id }) => ({ id })) || [] }
+            });
+        }
     }, [policy]);
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policy?.name);
+    const systemCounts = groupBy(policy?.hosts || [], 'osMinorVersion');
+    console.log(systemCounts);
 
-    return policy && <Modal
+    return <Modal
         isOpen
         style={ { height: '400px' } }
         width={ 1000 }
-        title={ `Edit ${policy.name }` }
+        title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>
-        <Form>
+        { policy ? <Form>
             <RoutedTabs defaultTab='details'>
                 <Tab eventKey='details' title={<TabTitleText>Details</TabTitleText>}>
                     <EditPolicyDetailsTab
@@ -117,7 +205,12 @@ export const EditPolicy = ({ route }) => {
                 </Tab>
 
                 <Tab eventKey='rules' title={ <TabTitleText>Rules</TabTitleText> }>
-                    Rule editing coming soon
+                    { multiversionRules ?
+                        <EditPolicyRulesTab
+                            policy={ policy }
+                            handleSelect={ handleRuleSelect }
+                            selectedRuleRefIds={ selectedRuleRefIds }
+                        /> : 'Rule editing coming soon' }
                 </Tab>
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
@@ -130,10 +223,10 @@ export const EditPolicy = ({ route }) => {
                         defaultFilter={ `os_major_version = ${policy.majorOsVersion}` }
                         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
                         columns={columns}
-                        preselectedSystems={ policy?.hosts.map((h) => ({ id: h.id })) || [] } />
+                        preselectedSystems={ (policy?.hosts || []).map((h) => ({ id: h.id })) || [] } />
                 </Tab>
             </RoutedTabs>
-        </Form>
+        </Form> : <Spinner /> }
     </Modal>;
 };
 

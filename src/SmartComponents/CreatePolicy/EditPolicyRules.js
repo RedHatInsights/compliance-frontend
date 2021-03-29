@@ -11,10 +11,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
-import {
-    StateViewWithError, StateViewPart
-} from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import useFeature from 'Utilities/hooks/useFeature';
+import EditPolicyProfilesRules from './EditPolicyProfilesRules';
 
 const QUERY = gql`
 query benchmarkAndProfile($benchmarkId: String!, $profileId: String!){
@@ -129,10 +128,11 @@ EditPolicyRules.propTypes = {
 
 const selector = formValueSelector('policyForm');
 
-export default compose(
+const EditPolicyRulesComponent = compose(
     connect(
         state => ({
             benchmarkId: selector(state, 'benchmark'),
+            profile: JSON.parse(selector(state, 'profile')),
             profileId: JSON.parse(selector(state, 'profile')).id,
             osMajorVersion: selector(state, 'osMajorVersion'),
             osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
@@ -145,3 +145,12 @@ export default compose(
         forceUnregisterOnUnmount: true
     })
 )(EditPolicyRules);
+
+const FeatureWrapper = (...props) => {
+    const multiversionRules = useFeature('multiversionTabs');
+    const Component = multiversionRules ? EditPolicyProfilesRules : EditPolicyRulesComponent;
+
+    return <Component { ...props } />;
+};
+
+export default FeatureWrapper;

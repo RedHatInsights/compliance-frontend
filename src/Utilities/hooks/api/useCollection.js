@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import normalize from 'json-api-normalizer';
 import useApi from './useApi';
@@ -34,7 +35,7 @@ const normalizeData = (json, type) => {
 
 const fetchCollection = async (apiClient, collection, params = {}, options = {}) => {
     const json = await apiClient.get(`/${ collection }`, { params });
-    const normalized = normalizeData(json, options?.type || collection);
+    const normalized = await normalizeData(json, options?.type || collection);
 
     return {
         collection: normalized,
@@ -45,6 +46,11 @@ const fetchCollection = async (apiClient, collection, params = {}, options = {})
 };
 
 const useCollection = (collection, options = {}) => {
+    const [collectionState, setCollectionState] = useState({
+        data: undefined,
+        loading: true,
+        error: undefined
+    });
     const apiClient = useApi({
         apiBase: COMPLIANCE_API_ROOT
     });
@@ -53,7 +59,17 @@ const useCollection = (collection, options = {}) => {
         include: (options?.include || [])
     };
 
-    return fetchCollection(apiClient, collection, params, options?.collection);
+    useEffect(() => {
+        fetchCollection(apiClient, collection, params, options).then((data) => {
+            setCollectionState({
+                data,
+                loading: undefined,
+                error: undefined
+            });
+        });
+    }, []);
+
+    return collectionState;
 };
 
 export default useCollection;

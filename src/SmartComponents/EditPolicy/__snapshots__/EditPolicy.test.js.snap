@@ -34,7 +34,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
       "height": "400px",
     }
   }
-  title="Edit Policy Name"
+  title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
   variant="default"
@@ -56,15 +56,24 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
         <EditPolicyDetailsTab
           policy={
             Object {
-              "businessObjective": Object {
-                "id": 1,
-                "title": "BO title",
+              "benchmark": Object {
+                "title": "benchmark",
+                "version": "0.1.5",
               },
-              "complianceThreshold": "30",
-              "hosts": Array [],
-              "id": "POLICY_ID",
-              "majorOsVersion": "8",
-              "name": "Policy Name",
+              "businessObjective": Object {
+                "id": "1",
+                "title": "BO 1",
+              },
+              "complianceThreshold": 1,
+              "compliantHostCount": 1,
+              "description": "profile description",
+              "id": "1",
+              "name": "profile1",
+              "policy": Object {
+                "name": "parentpolicy",
+              },
+              "refId": "121212",
+              "totalHostCount": 1,
             }
           }
           setUpdatedPolicy={[Function]}
@@ -112,9 +121,9 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
             ]
           }
           compact={true}
-          defaultFilter="os_major_version = 8"
+          defaultFilter="os_major_version = undefined"
           enableExport={false}
-          policyId="POLICY_ID"
+          policyId="1"
           preselectedSystems={Array []}
           query={
             Object {
@@ -604,7 +613,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       "height": "400px",
     }
   }
-  title="Edit Policy Name"
+  title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
   variant="default"
@@ -626,15 +635,24 @@ exports[`EditPolicy expect to render without error 1`] = `
         <EditPolicyDetailsTab
           policy={
             Object {
-              "businessObjective": Object {
-                "id": 1,
-                "title": "BO title",
+              "benchmark": Object {
+                "title": "benchmark",
+                "version": "0.1.5",
               },
-              "complianceThreshold": "30",
-              "hosts": Array [],
-              "id": "POLICY_ID",
-              "majorOsVersion": "8",
-              "name": "Policy Name",
+              "businessObjective": Object {
+                "id": "1",
+                "title": "BO 1",
+              },
+              "complianceThreshold": 1,
+              "compliantHostCount": 1,
+              "description": "profile description",
+              "id": "1",
+              "name": "profile1",
+              "policy": Object {
+                "name": "parentpolicy",
+              },
+              "refId": "121212",
+              "totalHostCount": 1,
             }
           }
           setUpdatedPolicy={[Function]}
@@ -682,9 +700,9 @@ exports[`EditPolicy expect to render without error 1`] = `
             ]
           }
           compact={true}
-          defaultFilter="os_major_version = 8"
+          defaultFilter="os_major_version = undefined"
           enableExport={false}
-          policyId="POLICY_ID"
+          policyId="1"
           preselectedSystems={Array []}
           query={
             Object {

@@ -47,7 +47,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       },
       Object {
         "canJumpTo": false,
-        "component": <Memo(Connect(ReduxForm)) />,
+        "component": <FeatureWrapper />,
         "enableNext": false,
         "id": 4,
         "name": "Rules",
@@ -71,7 +71,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
     ]
   }
   title="Create SCAP policy"
-  width={null}
+  width={1220}
 />
 `;
 
