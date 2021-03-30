@@ -33,7 +33,7 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
   }
 >
   <EditPolicyDetails
-    profile={
+    policy={
       Object {
         "complianceThreshold": 100,
         "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",

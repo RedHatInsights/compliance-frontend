@@ -21,7 +21,7 @@ describe('EditPolicyDetails', () => {
     it('expect to render without error', () => {
         const component = shallow(
             <Provider store={ store }>
-                <EditPolicyDetails profile={JSON.parse(policyFormValues.profile)}/>
+                <EditPolicyDetails policy={JSON.parse(policyFormValues.profile)}/>
             </Provider>
         );
         expect(toJson(component)).toMatchSnapshot();
