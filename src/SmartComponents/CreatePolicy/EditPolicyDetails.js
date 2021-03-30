@@ -7,7 +7,7 @@ import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/re
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import { ProfileThresholdField } from 'PresentationalComponents';
 
-const EditPolicyDetails = ({ profile: policy }) => {
+const EditPolicyDetails = ({ policy }) => {
     return (
         <React.Fragment>
             <TextContent>
@@ -63,24 +63,27 @@ const EditPolicyDetails = ({ profile: policy }) => {
 const selector = formValueSelector('policyForm');
 
 EditPolicyDetails.propTypes = {
-    profile: propTypes.object,
+    policy: propTypes.object,
     dispatch: propTypes.func
 };
 
+const mapStateToProps = (state) => {
+    const policy = JSON.parse(selector(state, 'profile'));
+    return {
+        policy,
+        initialValues: {
+            name: `${policy.name}`,
+            refId: `${policy.refId}`,
+            description: `${policy.description}`,
+            benchmark: selector(state, 'benchmark'),
+            osMajorVersion: selector(state, 'osMajorVersion'),
+            profile: selector(state, 'profile')
+        }
+    };
+};
+
 export default compose(
-    connect(
-        state => ({
-            profile: JSON.parse(selector(state, 'profile')),
-            initialValues: {
-                name: `${JSON.parse(selector(state, 'profile')).name}`,
-                refId: `${JSON.parse(selector(state, 'profile')).refId}`,
-                description: `${JSON.parse(selector(state, 'profile')).description}`,
-                benchmark: selector(state, 'benchmark'),
-                osMajorVersion: selector(state, 'osMajorVersion'),
-                profile: selector(state, 'profile')
-            }
-        })
-    ),
+    connect(mapStateToProps),
     reduxForm({
         form: 'policyForm',
         destroyOnUnmount: false,
