@@ -49,8 +49,9 @@ const ProfileTabContent = ({ profile, columns, handleSelect, systemsCounts, sele
         variables: {
             id: profile.benchmark.id
         },
-        skip: ((profile?.benchmark?.rules || []).length > 0)
+        skip: !handleSelect || ((profile?.benchmark?.rules || []).length > 0)
     });
+    const rules = benchmark?.benchmark?.rules || profile?.rules;
 
     return <React.Fragment>
         <Grid>
@@ -64,16 +65,16 @@ const ProfileTabContent = ({ profile, columns, handleSelect, systemsCounts, sele
                 </Text>
             </TextContent>
         </Grid>
-        <StateViewWithError stateValues={ { error, loading, benchmark } }>
+        <StateViewWithError stateValues={ { error, loading, rules } }>
             <StateViewPart stateKey="loading">
                 <Spinner />
             </StateViewPart>
-            <StateViewPart stateKey="benchmark">
+            <StateViewPart stateKey="rules">
 
                 <SystemRulesTable
                     remediationsEnabled={false}
                     columns={ columns }
-                    profileRules={ [{ profile, rules: (benchmark?.benchmark.rules || []) }] }
+                    profileRules={ [{ profile, rules: (rules || []) }] }
                     selectedRefIds={ selectedRuleRefIds }
                     handleSelect={
                         handleSelect
