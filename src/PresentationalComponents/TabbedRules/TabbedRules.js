@@ -1,11 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Tab } from '@patternfly/react-core';
+import { Tab, Badge } from '@patternfly/react-core';
 import {
     selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { RoutedTabs } from 'PresentationalComponents';
-import { sortingByProp } from 'Utilities/helpers';
 import ProfileTabContent from './ProfileTabContent';
 import OsVersionText from './OsVersionText';
 
@@ -13,40 +12,37 @@ const eventKey = (id) => (
     `rules-${id}`
 );
 
-const defaultTab = (profiles, profileId) => {
-    if (profiles && profiles.length > 0) {
-        return eventKey(profileId || profiles[0].id);
+const defaultTab = (tabsData, profileId) => {
+    if (tabsData && tabsData.length > 0) {
+        return eventKey(profileId || tabsData[0].profile.id);
     }
 };
 
 const TabbedRules = ({
-    profiles, systemsCounts, defaultProfileId, columns, level, handleSelect, selectedRuleRefIds, ...rulesTableProps
+    tabsData, defaultProfileId, columns, level, handleSelect, ...rulesTableProps
 }) => {
-    const sortableProfile = profiles?.map((profile) => ({
-        ...profile,
-        sortableMinorVersion: (profile.osMinorVersion || profile?.benchmark?.latestSupportedOsMinorVersions[0])
-    }));
-    const sortedProfiles = (sortableProfile || []).sort(sortingByProp('sortableMinorVersion', 'desc'));
-
-    return <RoutedTabs level={ level } defaultTab={ defaultTab(sortedProfiles, defaultProfileId) }>
+    return <RoutedTabs level={ level } defaultTab={ defaultTab(tabsData, defaultProfileId) }>
         {
-            sortedProfiles?.map((profile) => (
+            tabsData?.map(({ profile, selectedRuleRefIds, newOsMinorVersion, systemCount }) => (
                 <Tab
                     key={ eventKey(profile.id) }
                     eventKey={ eventKey(profile.id) }
                     title={
-                        <OsVersionText profile={ profile } />
+                        <span>
+                            <OsVersionText profile={ profile } newOsMinorVersion={newOsMinorVersion} />
+                            {' '}
+                            <Badge isRead>{ systemCount }</Badge>
+                        </span>
                     }>
                     <ProfileTabContent
                         { ...{
                             profile,
+                            newOsMinorVersion,
                             columns,
                             handleSelect,
                             rulesTableProps,
-                            systemsCounts,
-                            selectedRuleRefIds: (selectedRuleRefIds?.find((selectedProfile) => (
-                                selectedProfile.id === profile.id
-                            ))?.selectedRuleRefIds || [])
+                            systemCount,
+                            selectedRuleRefIds: (selectedRuleRefIds || [])
                         } } />
                 </Tab>
             ))
@@ -55,13 +51,20 @@ const TabbedRules = ({
 };
 
 TabbedRules.propTypes = {
-    columns: propTypes.arrayOf(propTypes.string),
+    tabsData: propTypes.arrayOf(
+        propTypes.shape(
+            {
+                profile: propTypes.object.isRequired,
+                selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
+                newOsMinorVersion: propTypes.string,
+                systemCount: propTypes.number
+            }
+        )
+    ).isRequired,
+    columns: propTypes.arrayOf(propTypes.object),
     defaultProfileId: propTypes.string,
     handleSelect: propTypes.func,
-    level: propTypes.number,
-    profiles: propTypes.array,
-    systemsCounts: propTypes.object,
-    selectedRuleRefIds: propTypes.object
+    level: propTypes.number
 };
 
 TabbedRules.defaultProps = {

@@ -17,17 +17,19 @@ SSGTabTitle.propTypes = {
     profile: propTypes.object.isRequired
 };
 
-const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => (
-    <React.Fragment>
+const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => {
+    let tabsData = profiles.map((profile) => ({ profile }));
+
+    return <React.Fragment>
         <Alert variant="info" isInline title="Rule editing coming soon" />
         <PageSection variant={ PageSectionVariants.light }>
             <TabbedRules
-                profiles={ profiles }
+                tabsData={ tabsData }
                 columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
                 level={ 1 } />
         </PageSection>
-    </React.Fragment>
-);
+    </React.Fragment>;
+};
 
 PolicyMultiversionRules.propTypes = {
     policy: propTypes.object.isRequired

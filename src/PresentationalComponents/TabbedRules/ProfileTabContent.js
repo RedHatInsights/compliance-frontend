@@ -10,18 +10,15 @@ import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 
-const ProfileSystemCount = ({ profile, counts = [] }) => {
-    if (counts.lenght > 0) {
-        const minorVersion = (profile.osMinorVersion || profile?.benchmark?.latestSupportedOsMinorVersions[0]);
-        const count = (counts.find((count) => (parseInt(count.osMinorVersion) === parseInt(minorVersion)))).count;
-
-        return <Label>{ count } { pluralize(count, 'system') }</Label>;
-    } else { return ''; }
-};
+const ProfileSystemCount = ({ count = 0 }) => (
+    <Label>
+        { `${count} ${ pluralize(count, 'system')}` }
+    </Label>
+);
 
 ProfileSystemCount.propTypes = {
     profile: propTypes.object,
-    counts: propTypes.object
+    count: propTypes.number
 };
 
 const BENCHMARK_QUERY = gql`
@@ -29,7 +26,6 @@ query benchmarkQuery($id: String!) {
     benchmark(id: $id) {
         id
         osMajorVersion
-        latestSupportedOsMinorVersions
         rules {
             id
             title
@@ -44,21 +40,24 @@ query benchmarkQuery($id: String!) {
 }
 `;
 
-const ProfileTabContent = ({ profile, columns, handleSelect, systemsCounts, selectedRuleRefIds, rulesTableProps }) => {
+const ProfileTabContent = ({
+    profile, columns, handleSelect, systemCount, selectedRuleRefIds, rulesTableProps, newOsMinorVersion
+}) => {
     const { data: benchmark, error, loading } = useQuery(BENCHMARK_QUERY, {
         variables: {
             id: profile.benchmark.id
         },
-        skip: !handleSelect || ((profile?.benchmark?.rules || []).length > 0)
+        skip: !handleSelect || !profile.benchmark?.id
     });
-    const rules = benchmark?.benchmark?.rules || profile?.rules;
+    const rules = handleSelect ? benchmark?.benchmark?.rules : profile?.rules;
 
     return <React.Fragment>
         <Grid>
             <TextContent>
                 <Text component={ TextVariants.h4 }>
-                    <OsVersionText profile={ profile } />
-                    <ProfileSystemCount profile={ profile } counts={ systemsCounts } />
+                    <OsVersionText profile={ profile } newOsMinorVersion={ newOsMinorVersion} />
+                    {' '}
+                    <ProfileSystemCount count={ systemCount } />
                 </Text>
                 <Text component={ TextVariants.p }>
                     SSG version { profile.ssgVersion }
@@ -89,9 +88,10 @@ const ProfileTabContent = ({ profile, columns, handleSelect, systemsCounts, sele
 
 ProfileTabContent.propTypes = {
     profile: propTypes.object,
+    newOsMinorVersion: propTypes.string,
     columns: propTypes.array,
     handleSelect: propTypes.func,
-    systemsCounts: propTypes.object,
+    systemCount: propTypes.object,
     selectedRuleRefIds: propTypes.object,
     rulesTableProps: propTypes.object
 };

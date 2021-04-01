@@ -1,5 +1,6 @@
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
+import { TabTitleText } from '@patternfly/react-core';
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -15,9 +16,10 @@ jest.mock('react-router-dom', () => ({
 describe('TabbedRules', () => {
     it('renders tabs with default', () => {
         const profiles = policies.edges[0].node.policy.profiles;
+        const tabsData =  profiles.map((profile) => ({ profile }));
 
         const wrapper = shallow(
-            <TabbedRules profiles={ profiles } />
+            <TabbedRules tabsData={ tabsData } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -25,9 +27,10 @@ describe('TabbedRules', () => {
 
     it('renders tabs with second item as default', () => {
         const profiles = policies.edges[0].node.policy.profiles;
+        const tabsData =  profiles.map((profile) => ({ profile }));
 
         const wrapper = shallow(
-            <TabbedRules profiles={ profiles } defaultProfileId={ profiles[1].id } />
+            <TabbedRules tabsData={ tabsData } defaultProfileId={ profiles[1].id } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -35,9 +38,10 @@ describe('TabbedRules', () => {
 
     it('passes handleSelect', () => {
         const profiles = policies.edges[0].node.policy.profiles;
+        const tabsData =  profiles.map((profile) => ({ profile }));
 
         const wrapper = shallow(
-            <TabbedRules profiles={ profiles } handleSelect={ function() {} } />
+            <TabbedRules tabsData={ tabsData } handleSelect={ function() {} } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
