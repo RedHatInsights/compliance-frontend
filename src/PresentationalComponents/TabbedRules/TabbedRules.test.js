@@ -1,6 +1,5 @@
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
-import { TabTitleText } from '@patternfly/react-core';
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
