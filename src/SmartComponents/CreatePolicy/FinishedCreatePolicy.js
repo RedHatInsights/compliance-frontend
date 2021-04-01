@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import {
     Title, Button, Bullseye, EmptyState, EmptyStateBody, EmptyStateSecondaryActions,
@@ -10,132 +10,80 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
-import {
-    CREATE_BUSINESS_OBJECTIVE, CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES
-} from 'Utilities/graphql/mutations';
+import usePolicyUpdate from 'SmartComponents/EditPolicy/usePolicyUpdate';
 
-class FinishedCreatePolicy extends React.Component {
-    state = {
-        percent: 0,
-        message: 'This usually takes a minute or two.',
-        errors: null,
-        failed: false
-    };
+const FinishedCreatePolicy = ({
+    onWizardFinish,
+    cloneFromProfileId,
+    description,
+    name,
+    complianceThreshold,
+    businessObjective,
+    refId,
+    benchmarkId,
+    systemIds
+}) => {
+    const [percent, setPercent] = useState(0);
+    const [message, setMessage] = useState('This usually takes a minute or two.');
+    const [errors, setErrors] = useState(null);
+    const [failed, setFailed] = useState(false);
+    const updatePolicy = usePolicyUpdate();
 
-    componentDidMount() {
-        this.createProfile().then((result) => {
-            this.setState(prevState => ({
-                percent: prevState.percent + 50,
-                profileId: result.data.createProfile.profile.id
-            }), this.associateSystems);
-        }).catch((error) => {
-            this.setState({
-                message: error.networkError.message,
-                errors: error.networkError.result.errors,
-                failed: true
-            });
-        });
-    }
-
-    createProfile = async () => {
-        const {
-            businessObjective, benchmarkId, cloneFromProfileId, refId, name,
-            description, complianceThreshold, selectedRuleRefIds, client
-        } = this.props;
-        let input = {
-            benchmarkId,
+    useEffect(async () => {
+        await updatePolicy(null, {
             cloneFromProfileId,
-            complianceThreshold,
             description,
             name,
+            complianceThreshold,
+            businessObjective: { title: businessObjective },
             refId,
-            selectedRuleRefIds
-        };
-
-        if (businessObjective) {
-            const businessObjectiveIdResult = await client.mutate({
-                mutation: CREATE_BUSINESS_OBJECTIVE,
-                variables: { input: { title: businessObjective } }
-            });
-            input.businessObjectiveId = businessObjectiveIdResult.data
-            .createBusinessObjective.businessObjective.id;
-        }
-
-        return client.mutate({
-            mutation: CREATE_PROFILE,
-            variables: {
-                input
-            }
+            benchmarkId,
+            hosts: systemIds.map((id) => ({ id }))
         });
+
+        setPercent(100);
+    }, []);
+
+    let listErrors;
+    if (errors && Array.isArray(errors) && errors.length > 0) {
+        listErrors = errors.map((error) => (
+            <ListItem key={ error }>{ error }</ListItem>
+        ));
     }
 
-    associateSystems = () => {
-        const { systemIds, client } = this.props;
-        const { profileId: id } = this.state;
-        return client.mutate({
-            mutation: ASSOCIATE_SYSTEMS_TO_PROFILES,
-            variables: {
-                input: { id, systemIds }
-            }
-        }).then(() => {
-            this.setState(prevState => ({
-                percent: prevState.percent + 50,
-                message: ''
-            }));
-        }).catch((error) => {
-            this.setState({
-                message: error.networkError.message,
-                errors: error.networkError.result.errors,
-                failed: true
-            });
-        });;
-    }
-
-    render() {
-        const { percent, message, failed, errors } = this.state;
-        const { onWizardFinish } = this.props;
-
-        let listErrors;
-        if (errors && Array.isArray(errors) && errors.length > 0) {
-            listErrors = errors.map((error) => (
-                <ListItem key={ error }>{ error }</ListItem>
-            ));
-        }
-
-        return (
-            <Bullseye>
-                <EmptyState variant={EmptyStateVariant.full}>
-                    <EmptyStateIcon icon={WrenchIcon} />
-                    <br/>
-                    <Title headingLevel="h1" size='lg'>
-                        Creating policy
-                    </Title>
-                    <EmptyStateBody>
-                        <ProgressBar percent={percent} failed={failed} />
+    return (
+        <Bullseye>
+            <EmptyState variant={EmptyStateVariant.full}>
+                <EmptyStateIcon icon={WrenchIcon} />
+                <br/>
+                <Title headingLevel="h1" size='lg'>
+                    Creating policy
+                </Title>
+                <EmptyStateBody>
+                    <ProgressBar percent={percent} failed={failed} />
+                </EmptyStateBody>
+                <EmptyStateBody className={failed && 'wizard-failed-message'}>
+                    { message }
+                </EmptyStateBody>
+                { listErrors &&
+                    <EmptyStateBody className='wizard-failed-errors'>
+                        <List>{ listErrors }</List>
                     </EmptyStateBody>
-                    <EmptyStateBody className={failed && 'wizard-failed-message'}>
-                        { message }
-                    </EmptyStateBody>
-                    { listErrors &&
-                        <EmptyStateBody className='wizard-failed-errors'>
-                            <List>{ listErrors }</List>
-                        </EmptyStateBody>
-                    }
-                    <EmptyStateSecondaryActions>
-                        { percent === 100 ?
-                            <Button
-                                variant={'primary'}
-                                onClick={() => { onWizardFinish(); }}
-                            >
-                                Return to application
-                            </Button> :
-                            '' }
-                    </EmptyStateSecondaryActions>
-                </EmptyState>
-            </Bullseye>
-        );
-    }
-}
+                }
+                <EmptyStateSecondaryActions>
+                    { percent === 100 ?
+                        <Button
+                            variant={'primary'}
+                            onClick={() => { onWizardFinish(); }}
+                        >
+                            Return to application
+                        </Button> :
+                        '' }
+                </EmptyStateSecondaryActions>
+            </EmptyState>
+        </Bullseye>
+    );
+};
 
 FinishedCreatePolicy.propTypes = {
     benchmarkId: propTypes.string.isRequired,
