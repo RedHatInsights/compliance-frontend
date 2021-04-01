@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { groupBy } from 'lodash';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
@@ -128,8 +127,8 @@ export const EditPolicy = ({ route }) => {
         const newSelection = selectedRuleRefIds.map((selectedProfile) => {
             if (selectedProfile.id === profile.id) {
                 return {
-                    ...selectedProfile,
-                    selectedRuleRefIds: newSelectedRuleRefIds
+                    id: selectedProfile.id,
+                    ruleRefIds: newSelectedRuleRefIds
                 };
             } else {
                 return selectedProfile;
@@ -174,8 +173,8 @@ export const EditPolicy = ({ route }) => {
                 complianceThresholdValid
             });
             setSelectedRuleRefIds(policy.policy.profiles.map((policyProfile) => ({
-                ...policyProfile,
-                selectedRuleRefIds: policyProfile.rules.map((rule) => (rule.refId))
+                id: policyProfile.id,
+                ruleRefIds: policyProfile.rules.map((rule) => (rule.refId))
             })));
             dispatch({
                 type: 'SELECT_ENTITIES',
@@ -186,8 +185,6 @@ export const EditPolicy = ({ route }) => {
 
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policy?.name);
-    const systemCounts = groupBy(policy?.hosts || [], 'osMinorVersion');
-    console.log(systemCounts);
 
     return <Modal
         isOpen

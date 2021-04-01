@@ -52,23 +52,27 @@ query Profiles($filter: String!){
 }
 `;
 
-const getBenchmarkProfiles = (profileRefId, benchmarks) => (
-    profileRefId && benchmarks ? benchmarks.flatMap((benchmark) => (
-        benchmark.profiles.filter((benchmarkProfile) => (benchmarkProfile.refId === profileRefId))
-    )) : []
+const getBenchmarkProfile = (benchmark, profileRefId) => (
+    benchmark.profiles.find((benchmarkProfile) => (benchmarkProfile.refId === profileRefId))
 );
 
-export const EditPolicyProfilesRules = ({ profile, selectedRuleRefIds, change, osMajorVersion, osMinorVersionCounts }) => {
+const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) => (
+    benchmarks.find((benchmark) =>
+        benchmark.latestSupportedOsMinorVersions?.includes(osMinorVersion)
+    )
+);
+
+export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, osMajorVersion, osMinorVersionCounts }) => {
     const columns = selectRulesTableColumns(['Name', 'Severity', 'Ansible']);
     const handleSelectCallback = (profile, newSelectedRuleRefIds) => {
-        const newSelection = selectedRuleRefIds.map((selectedProfile) => {
-            if (selectedProfile.id === profile.id) {
+        const newSelection = selectedRuleRefIds.map((profileSelectedRuleRefIds) => {
+            if (profileSelectedRuleRefIds.id === profile.id) {
                 return {
-                    ...selectedProfile,
-                    selectedRuleRefIds: newSelectedRuleRefIds
+                    id: profileSelectedRuleRefIds.id,
+                    ruleRefIds: newSelectedRuleRefIds
                 };
             } else {
-                return selectedProfile;
+                return profileSelectedRuleRefIds;
             }
         });
 
@@ -84,8 +88,36 @@ export const EditPolicyProfilesRules = ({ profile, selectedRuleRefIds, change, o
         }
     });
 
-    const profiles = getBenchmarkProfiles(profile.refId, benchmarks?.collection);
-    const profileIds = profiles?.map((profile) => (profile.id));
+    let profileIds = [];
+    let tabsData = osMinorVersionCounts.map(({ osMinorVersion, count: systemCount }) => {
+        osMinorVersion = `${osMinorVersion}`;
+        let profile;
+        let profileSelectedRuleRefIds;
+        if (benchmarks) {
+            const benchmark = getBenchmarkBySupportedOsMinor(benchmarks.collection, osMinorVersion);
+            if (benchmark) {
+                profile = getBenchmarkProfile(benchmark, policy.refId);
+                if (profile) {
+                    profile = {
+                        ...profile,
+                        rules: profile.relationships?.rules?.data,
+                        benchmark: profile.relationships?.benchmark?.data
+                    };
+                    profileSelectedRuleRefIds = selectedRuleRefIds?.find(({ id }) => id === profile.id);
+                    profileIds.push(profile.id);
+                }
+            }
+        }
+
+        return {
+            profile,
+            systemCount,
+            newOsMinorVersion: osMinorVersion,
+            selectedRuleRefIds: profileSelectedRuleRefIds?.ruleRefIds
+        };
+    });
+    tabsData = tabsData.filter(({ profile }) => !!profile);
+
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
         variables: {
@@ -100,8 +132,8 @@ export const EditPolicyProfilesRules = ({ profile, selectedRuleRefIds, change, o
         if (profilesData && !selectedRuleRefIds) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node));
             change('selectedRuleRefIds', profiles.map((profile) => ({
-                ...profile,
-                selectedRuleRefIds: profile.rules.map((rule) => (rule.refId))
+                id: profile.id,
+                ruleRefIds: profile.rules.map((rule) => (rule.refId))
             })));
         }
     }, [profilesData]);
@@ -120,18 +152,12 @@ export const EditPolicyProfilesRules = ({ profile, selectedRuleRefIds, change, o
                 <Text>
                     Edit your policy by including and excluding rules.
                 </Text>
-                <Text>
-                    Selected policy type <strong>{ profile.name }</strong> has { profile.rules?.length } rules.&ensp;
-                </Text>
             </TextContent>
             <TabbedRules
-                profiles={ profilesData?.profiles.edges.map((p) => (p.node)) }
-                selectedRuleRefIds={ selectedRuleRefIds }
-                benchmarks={ benchmarks?.collection }
+                tabsData={ tabsData }
                 columns={ columns }
                 remediationsEnabled={ false }
                 selectedFilter
-                systemsCounts={ osMinorVersionCounts }
                 level={ 1 }
                 handleSelect={ handleSelectCallback } />
         </StateViewPart>
@@ -139,7 +165,7 @@ export const EditPolicyProfilesRules = ({ profile, selectedRuleRefIds, change, o
 };
 
 EditPolicyProfilesRules.propTypes = {
-    profile: propTypes.object,
+    policy: propTypes.object,
     change: reduxFormPropTypes.change,
     osMajorVersion: propTypes.string,
     osMinorVersionCounts: propTypes.arrayOf(propTypes.shape({
@@ -154,7 +180,7 @@ const selector = formValueSelector('policyForm');
 export default compose(
     connect(
         state => ({
-            profile: JSON.parse(selector(state, 'profile')),
+            policy: JSON.parse(selector(state, 'profile')),
             osMajorVersion: selector(state, 'osMajorVersion'),
             osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
             selectedRuleRefIds: selector(state, 'selectedRuleRefIds')

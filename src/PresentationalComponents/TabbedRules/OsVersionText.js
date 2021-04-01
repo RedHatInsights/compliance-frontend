@@ -1,5 +1,5 @@
-const OsVersionText = ({ profile }) => (
-    `RHEL ${ profile.osMajorVersion }.${ (profile.osMinorVersion || profile?.benchmark?.latestSupportedOsMinorVersions[0]) }`
+const OsVersionText = ({ profile, newOsMinorVersion }) => (
+    `RHEL ${ profile.osMajorVersion }.${ (profile.osMinorVersion || newOsMinorVersion) }`
 );
 
 export default OsVersionText;
