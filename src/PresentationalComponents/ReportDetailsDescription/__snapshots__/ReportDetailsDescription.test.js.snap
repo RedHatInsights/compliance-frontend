@@ -15,6 +15,12 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
         "businessObjective": null,
         "complianceThreshold": 100,
         "compliantHostCount": 4,
+        "hosts": Array [
+          Object {
+            "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+            "osMinorVersion": 7,
+          },
+        ],
         "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
         "majorOsVersion": 7,
         "name": "United States Government Configuration Baseline23",

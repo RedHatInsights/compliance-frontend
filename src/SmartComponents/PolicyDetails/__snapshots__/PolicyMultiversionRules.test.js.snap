@@ -76,6 +76,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
               ],
               "ssgVersion": "0.1.49",
             },
+            "systemCount": 0,
           },
           Object {
             "profile": Object {
@@ -104,6 +105,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
               ],
               "ssgVersion": "0.1.45",
             },
+            "systemCount": 0,
           },
           Object {
             "profile": Object {
@@ -132,6 +134,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
               ],
               "ssgVersion": "0.1.46",
             },
+            "systemCount": 0,
           },
         ]
       }

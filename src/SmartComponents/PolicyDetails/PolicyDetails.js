@@ -69,6 +69,7 @@ query Profile($policyId: String!){
         }
         hosts {
             id
+            osMinorVersion
         }
         benchmark {
             id

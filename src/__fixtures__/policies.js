@@ -12,6 +12,9 @@ export const policies = {
                 testResultHostCount: 8,
                 compliantHostCount: 4,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -167,6 +170,9 @@ export const policies = {
                     ],
                     __typename: 'Profile'
                 },
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -186,6 +192,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -209,6 +218,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -232,6 +244,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -255,6 +270,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -278,6 +296,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -301,6 +322,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -324,6 +348,9 @@ export const policies = {
                 testResultHostCount: 8,
                 businessObjective: null,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -347,6 +374,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -370,6 +400,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -393,6 +426,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -416,6 +452,9 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 majorOsVersion: 7,
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
