@@ -10,7 +10,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/react-hoc';
-import usePolicyUpdate from 'SmartComponents/EditPolicy/usePolicyUpdate';
+import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
 
 const FinishedCreatePolicy = ({
     onWizardFinish,
@@ -28,7 +28,7 @@ const FinishedCreatePolicy = ({
     const [message, setMessage] = useState('This usually takes a minute or two.');
     const [errors, setErrors] = useState(null);
     const [failed, setFailed] = useState(false);
-    const updatePolicy = usePolicyUpdate();
+    const updatePolicy = usePolicy();
 
     useEffect(() => {
         updatePolicy(null, {
