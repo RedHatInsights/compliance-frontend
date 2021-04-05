@@ -21,7 +21,8 @@ const FinishedCreatePolicy = ({
     businessObjective,
     refId,
     benchmarkId,
-    systemIds
+    systemIds,
+    selectedRuleRefIds
 }) => {
     const [percent, setPercent] = useState(0);
     const [message, setMessage] = useState('This usually takes a minute or two.');
@@ -29,8 +30,8 @@ const FinishedCreatePolicy = ({
     const [failed, setFailed] = useState(false);
     const updatePolicy = usePolicyUpdate();
 
-    useEffect(async () => {
-        await updatePolicy(null, {
+    useEffect(() => {
+        updatePolicy(null, {
             cloneFromProfileId,
             description,
             name,
@@ -38,10 +39,15 @@ const FinishedCreatePolicy = ({
             businessObjective: { title: businessObjective },
             refId,
             benchmarkId,
-            hosts: systemIds.map((id) => ({ id }))
+            hosts: systemIds.map((id) => ({ id })),
+            selectedRuleRefIds
+        }).then(() => {
+            setPercent(100);
+        }).catch((error) => {
+            setMessage(error.networkError.message);
+            setErrors(error.networkError.result.errors);
+            setFailed(true);
         });
-
-        setPercent(100);
     }, []);
 
     let listErrors;

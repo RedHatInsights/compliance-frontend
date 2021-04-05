@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/react-hooks';
 import {
-    ASSOCIATE_SYSTEMS_TO_PROFILES, CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE, CREATE_PROFILE
+    ASSOCIATE_SYSTEMS_TO_PROFILES, CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE, CREATE_PROFILE, ASSOCIATE_RULES_TO_PROFILE
 } from 'Utilities/graphql/mutations';
 
 const useCreateBusinessObjective = () => {
@@ -26,6 +26,7 @@ const usePolicyUpdate = () => {
     const [updateProfile] = useMutation(UPDATE_PROFILE);
     const [createProfile] = useMutation(CREATE_PROFILE);
     const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
+    const [associateRules] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
 
     return async (policy, updatedPolicy) => {
         const businessObjectiveId = await createBusinessObjective(policy, updatedPolicy?.businessObjective);
@@ -61,7 +62,16 @@ const usePolicyUpdate = () => {
             } }
         });
 
-        return profiles;
+        updatedPolicy.selectedRuleRefIds.forEach(async ({ id, ruleRefIds }) => {
+            let ruleInput = {
+                id: profiles.find((profile) => (
+                    profile.id === id || profile.parentProfileId === id
+                )).id,
+                ruleRefIds
+            };
+
+            await associateRules({ variables: { input: ruleInput } });
+        });
     };
 };
 
