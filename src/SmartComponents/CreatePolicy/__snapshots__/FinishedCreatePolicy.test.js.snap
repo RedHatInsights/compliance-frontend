@@ -108,18 +108,14 @@ exports[`FinishedCreatePolicy expect to render finished error state 1`] = `
       <div
         className="pf-c-empty-state__body wizard-failed-message"
       >
-        Response not successful: Received status code 406
-      </div>
-      <div
-        className="pf-c-empty-state__body wizard-failed-errors"
-      >
-        <ul
-          className="pf-c-list"
-        >
-          <li>
-            Error reason
-          </li>
-        </ul>
+        No more mocked responses for the query: mutation CreateProfile($input: createProfileInput!) {
+  createProfile(input: $input) {
+    profile {
+      id
+    }
+  }
+}
+, variables: {"input":{"name":"C2S for Red Hat Enterprise Linux 6","description":"This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)","complianceThreshold":100,"cloneFromProfileId":"197eb783-7bca-45c5-978d-c1e89b0118da","refId":"xccdf_org.ssgproject.content_profile_C2S","benchmarkId":"a5e7f1ea-e63c-40be-a17a-c2a247c11e10"}}
       </div>
       <div
         className="pf-c-empty-state__secondary"
@@ -170,7 +166,7 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
         className="pf-c-empty-state__body"
       >
         <div
-          className="pf-c-progress pf-m-success wizard-progress-bar"
+          className="pf-c-progress wizard-progress-bar"
           id="finished-create-policy"
         >
           <div
@@ -179,7 +175,7 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
             id="finished-create-policy-description"
             onMouseEnter={null}
           >
-            Success
+            Progress
           </div>
           <div
             aria-hidden="true"
@@ -188,36 +184,14 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
             <span
               className="pf-c-progress__measure"
             >
-              100%
-            </span>
-            <span
-              className="pf-c-progress__status-icon"
-            >
-              <svg
-                aria-hidden={true}
-                aria-labelledby={null}
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style={
-                  Object {
-                    "verticalAlign": "-0.125em",
-                  }
-                }
-                viewBox="0 0 512 512"
-                width="1em"
-              >
-                <path
-                  d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
-                />
-              </svg>
+              0%
             </span>
           </div>
           <div
             aria-labelledby="finished-create-policy-description"
             aria-valuemax={100}
             aria-valuemin={0}
-            aria-valuenow={100}
+            aria-valuenow={0}
             className="pf-c-progress__bar"
             role="progressbar"
           >
@@ -225,7 +199,7 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
               className="pf-c-progress__indicator"
               style={
                 Object {
-                  "width": "100%",
+                  "width": "0%",
                 }
               }
             >
@@ -239,25 +213,12 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
       <div
         className="pf-c-empty-state__body"
       >
-        
+        This usually takes a minute or two.
       </div>
       <div
         className="pf-c-empty-state__secondary"
       >
-        <button
-          aria-disabled={false}
-          aria-label={null}
-          className="pf-c-button pf-m-primary"
-          data-ouia-component-id="OUIA-Generated-Button-primary-1"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe={true}
-          disabled={false}
-          onClick={[Function]}
-          role={null}
-          type="button"
-        >
-          Return to application
-        </button>
+        
       </div>
     </div>
   </div>

@@ -48,6 +48,7 @@ const usePolicyUpdate = () => {
             let {
                 data: { createProfile: { profile: { id } } }
             } = await createProfile({ variables: { input: policyInput } });
+
             policy = { id };
         } else {
             policyInput.id = policy.id;

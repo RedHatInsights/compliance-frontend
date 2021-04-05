@@ -44,8 +44,8 @@ const FinishedCreatePolicy = ({
         }).then(() => {
             setPercent(100);
         }).catch((error) => {
-            setMessage(error.networkError.message);
-            setErrors(error.networkError.result.errors);
+            setMessage(error.networkError?.message);
+            setErrors(error.networkError?.result?.errors);
             setFailed(true);
         });
     }, []);
