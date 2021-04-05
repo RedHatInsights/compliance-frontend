@@ -17,8 +17,15 @@ SSGTabTitle.propTypes = {
     profile: propTypes.object.isRequired
 };
 
-const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => {
-    let tabsData = profiles.map((profile) => ({ profile }));
+const PolicyMultiversionRules = ({ policy: { hosts, policy: { profiles } } }) => {
+    let tabsData = profiles.filter(
+        (profile) => profile.osMinorVersion !== ''
+    ).map((profile) => ({
+        profile,
+        systemCount: hosts.filter(
+            (host) => `${host.osMinorVersion}` === profile.osMinorVersion
+        ).length
+    }));
 
     return <React.Fragment>
         <Alert variant="info" isInline title="Rule editing coming soon" />

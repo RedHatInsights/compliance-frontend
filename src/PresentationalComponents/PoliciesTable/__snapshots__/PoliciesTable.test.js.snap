@@ -110,6 +110,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "4c27fe09-9a7f-437c-b38b-e42272d9ccf0",
                     "majorOsVersion": 7,
                     "name": "Standard System Security Profile for Red Hat Enterprise Linux 7",
@@ -151,6 +157,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "9b034440-e3dd-4c19-8f2c-ca75e813d57d",
                     "majorOsVersion": 7,
                     "name": "DISA STIG for Red Hat Enterprise Linux 7",
@@ -192,6 +204,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "19921ca4-8526-4651-8876-3c8587e8e125",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
@@ -408,6 +426,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     "businessObjective": null,
                     "complianceThreshold": 100,
                     "compliantHostCount": 4,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline23",
@@ -530,6 +554,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 67,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
@@ -618,6 +648,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "dae0487d-3201-4ee0-af5f-b94cde2af818",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline2",
@@ -659,6 +695,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 69.5,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
                     "majorOsVersion": 7,
                     "name": "C2S for Red Hat Enterprise Linux 7",
@@ -700,6 +742,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
                     "majorOsVersion": 7,
                     "name": "Criminal Justice Information Services (CJIS) Security Policy",
@@ -741,6 +789,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
                     "majorOsVersion": 7,
                     "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
@@ -782,6 +836,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -823,6 +883,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
                     "majorOsVersion": 7,
                     "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
@@ -864,6 +930,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
                     "majorOsVersion": 7,
                     "name": "Health Insurance Portability and Accountability Act (HIPAA)",
@@ -905,6 +977,12 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline",
@@ -1129,6 +1207,12 @@ exports[`PoliciesTable Pagination and search should show only matching results a
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
                     "majorOsVersion": 7,
                     "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
@@ -1345,6 +1429,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     "businessObjective": null,
                     "complianceThreshold": 100,
                     "compliantHostCount": 4,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline23",
@@ -1470,6 +1560,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 67,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
@@ -1561,6 +1657,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "dae0487d-3201-4ee0-af5f-b94cde2af818",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline2",
@@ -1605,6 +1707,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 69.5,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
                     "majorOsVersion": 7,
                     "name": "C2S for Red Hat Enterprise Linux 7",
@@ -1649,6 +1757,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
                     "majorOsVersion": 7,
                     "name": "Criminal Justice Information Services (CJIS) Security Policy",
@@ -1693,6 +1807,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
                     "majorOsVersion": 7,
                     "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
@@ -1737,6 +1857,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -1781,6 +1907,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
                     "majorOsVersion": 7,
                     "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
@@ -1825,6 +1957,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
                     "majorOsVersion": 7,
                     "name": "Health Insurance Portability and Accountability Act (HIPAA)",
@@ -1869,6 +2007,12 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline",
@@ -2272,6 +2416,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     "businessObjective": null,
                     "complianceThreshold": 100,
                     "compliantHostCount": 4,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline23",
@@ -2394,6 +2544,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 67,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "719999b6-d230-4ba5-8dba-7ab3dc6561e0",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
@@ -2482,6 +2638,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "dae0487d-3201-4ee0-af5f-b94cde2af818",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline2",
@@ -2523,6 +2685,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 69.5,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "20a9d997-62a6-40cc-a5f3-19d466eb975e",
                     "majorOsVersion": 7,
                     "name": "C2S for Red Hat Enterprise Linux 7",
@@ -2564,6 +2732,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "6d345bd2-d597-4df8-9bcf-71c41155b42c",
                     "majorOsVersion": 7,
                     "name": "Criminal Justice Information Services (CJIS) Security Policy",
@@ -2605,6 +2779,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "c8e15347-9c2b-495d-8e54-503c2f9582b6",
                     "majorOsVersion": 7,
                     "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
@@ -2646,6 +2826,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "3c4823a1-2c16-46ae-b2fe-0cebf5a03931",
                     "majorOsVersion": 7,
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -2687,6 +2873,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "f7b7977a-403b-4cd1-ab90-20b6f9a5a359",
                     "majorOsVersion": 7,
                     "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
@@ -2728,6 +2920,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "36abc364-6dc3-4e35-94f4-d10fa77e866e",
                     "majorOsVersion": 7,
                     "name": "Health Insurance Portability and Accountability Act (HIPAA)",
@@ -2769,6 +2967,12 @@ exports[`PoliciesTable expect to render without error 1`] = `
                     },
                     "businessObjective": null,
                     "complianceThreshold": 100,
+                    "hosts": Array [
+                      Object {
+                        "id": "f7d15113-1ac8-4aee-b367-e1777e60979d",
+                        "osMinorVersion": 7,
+                      },
+                    ],
                     "id": "d35c8aad-8fc8-49e8-bff0-4d9d3dc8f220",
                     "majorOsVersion": 7,
                     "name": "United States Government Configuration Baseline",
