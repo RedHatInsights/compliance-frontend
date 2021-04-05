@@ -16,6 +16,7 @@ mutation associateSystems($input: associateSystemsInput!) {
         profile {
             id
             policy {
+                id
                 profiles {
                     id
                     parentProfileId

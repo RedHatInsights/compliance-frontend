@@ -163,6 +163,8 @@ export const EditPolicy = ({ route }) => {
         });
     }, [selectedEntities]);
 
+    useEffect(() => setUpdatedPolicy({ ...updatedPolicy, selectedRuleRefIds }), [selectedRuleRefIds]);
+
     useEffect(() => {
 
         if (policy) {
