@@ -11,7 +11,7 @@ import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
-import usePolicyUpdate from './usePolicyUpdate';
+import usePolicy from './usePolicy';
 import useFeature from 'Utilities/hooks/useFeature';
 import { systemName } from 'Store/Reducers/SystemStore';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
@@ -83,7 +83,7 @@ export const EditPolicy = ({ route }) => {
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
-    const updatePolicy = usePolicyUpdate();
+    const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;

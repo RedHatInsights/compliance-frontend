@@ -5,7 +5,7 @@ jest.mock('react-redux', () => ({
     useSelector: jest.fn(() => ({})),
     useDispatch: jest.fn(() => ({}))
 }));
-jest.mock('./usePolicyUpdate', () => (() => {}));
+jest.mock('./usePolicy', () => (() => {}));
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line

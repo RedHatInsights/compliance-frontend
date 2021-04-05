@@ -21,7 +21,7 @@ const useCreateBusinessObjective = () => {
     };
 };
 
-const usePolicyUpdate = () => {
+const usePolicy = () => {
     const createBusinessObjective = useCreateBusinessObjective();
     const [updateProfile] = useMutation(UPDATE_PROFILE);
     const [createProfile] = useMutation(CREATE_PROFILE);
@@ -76,4 +76,4 @@ const usePolicyUpdate = () => {
     };
 };
 
-export default usePolicyUpdate;
+export default usePolicy;
