@@ -41,6 +41,16 @@ mutation associateProfiles($input: associateProfilesInput!) {
 }
 `;
 
+export const ASSOCIATE_RULES_TO_PROFILE = gql`
+mutation associateRules($input: associateRulesInput!) {
+    associateRules(input: $input) {
+        profile {
+            id
+        }
+    }
+}
+`;
+
 export const UPDATE_PROFILE = gql`
 mutation UpdateProfile($input: UpdateProfileInput!) {
     updateProfile(input: $input) {
