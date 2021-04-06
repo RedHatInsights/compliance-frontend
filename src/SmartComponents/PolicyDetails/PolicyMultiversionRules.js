@@ -34,7 +34,7 @@ const PolicyMultiversionRules = ({ policy }) => {
     const profilesForTabs = profiles.filter((profile) => !!profile.osMinorVersion);
     const systemCounts = mapCountOsMinorVersions(hosts);
 
-    const tabsData = profilesForTabs.sort(sortingByProp('osMinorVersion')).map((profile) => (
+    const tabsData = profilesForTabs.sort(sortingByProp('osMinorVersion', 'desc')).map((profile) => (
         {
             profile,
             systemCount: systemCounts[profile.osMinorVersion]?.count || 0
