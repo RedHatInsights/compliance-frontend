@@ -3,6 +3,7 @@ import {
     hasOsInfo,
     lastScanned,
     policyNames,
+    mapCountOsMinorVersions,
     countOsMinorVersions,
     systemsToInventoryEntities
 } from './SystemStore';
@@ -144,6 +145,25 @@ describe('hasOsInfo', () => {
             osMinorVersion: null
         });
         expect(result).toEqual(false);
+    });
+});
+
+describe('mapCountOsMinorVersions', () => {
+    it('maps host counts by osMinorVersion', () => {
+        const systems = [
+            { osMinorVersion: 10 },
+            { osMinorVersion: 1 },
+            { osMinorVersion: 9 },
+            { osMinorVersion: 9 },
+            { osMinorVersion: 0 },
+            {}
+        ];
+        expect(mapCountOsMinorVersions(systems)).toEqual({
+            0: { osMinorVersion: 0, count: 1 },
+            1: { osMinorVersion: 1, count: 1 },
+            10: { osMinorVersion: 10, count: 1 },
+            9: { osMinorVersion: 9, count: 2 }
+        });
     });
 });
 
