@@ -1,12 +1,33 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Alert, PageSection, PageSectionVariants } from '@patternfly/react-core';
+import { PageSection, PageSectionVariants, ToolbarItem, Button } from '@patternfly/react-core';
 import {
     selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
-import { TabbedRules } from 'PresentationalComponents';
+import { useAnchor } from 'Utilities/Router';
+import { TabbedRules, BackgroundLink } from 'PresentationalComponents';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 import { sortingByProp } from 'Utilities/helpers';
+
+const EditRulesButtonToolbarItem = ({ policy }) => {
+    let anchor = useAnchor();
+
+    return (
+        <ToolbarItem>
+            <BackgroundLink
+                to={ `/scappolicies/${ policy.id }/edit` }
+                state={ { policy } }
+                hash={ anchor }
+                backgroundLocation={ { hash: anchor } }>
+                <Button variant='primary'>Edit rules</Button>
+            </BackgroundLink>
+        </ToolbarItem>
+    );
+};
+
+EditRulesButtonToolbarItem.propTypes = {
+    policy: propTypes.object.isRequired
+};
 
 const PolicyMultiversionRules = ({ policy }) => {
     const { hosts, policy: { profiles } } = policy;
@@ -21,12 +42,12 @@ const PolicyMultiversionRules = ({ policy }) => {
     ));
 
     return <React.Fragment>
-        <Alert variant="info" isInline title="Rule editing coming soon" />
         <PageSection variant={ PageSectionVariants.light }>
             <TabbedRules
                 tabsData={ tabsData }
                 columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
-                level={ 1 } />
+                level={ 1 }
+                toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> } />
         </PageSection>
     </React.Fragment>;
 };
