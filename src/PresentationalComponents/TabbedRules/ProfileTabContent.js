@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import {
-    Text, TextVariants, TextContent, Grid, Spinner, Label
+    Text, TextVariants, TextContent, Grid, Spinner, Badge
 } from '@patternfly/react-core';
 import SystemRulesTable from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
@@ -11,9 +11,9 @@ import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 
 const ProfileSystemCount = ({ count = 0 }) => (
-    <Label>
+    <Badge isRead>
         { `${count} ${ pluralize(count, 'system')}` }
-    </Label>
+    </Badge>
 );
 
 ProfileSystemCount.propTypes = {
@@ -53,8 +53,8 @@ const ProfileTabContent = ({
 
     return <React.Fragment>
         <Grid>
-            <TextContent>
-                <Text component={ TextVariants.h4 }>
+            <TextContent className="pf-u-mt-md">
+                <Text component={ TextVariants.h3 } >
                     <OsVersionText profile={ profile } newOsMinorVersion={ newOsMinorVersion} />
                     {' '}
                     <ProfileSystemCount count={ systemCount } />
