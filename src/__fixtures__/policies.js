@@ -27,6 +27,7 @@ export const policies = {
                             id: 'b71376fd-015e-4209-99af',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
+                            osMinorVersion: '9',
                             ssgVersion: '0.1.49',
                             rules: [
                                 {
@@ -79,6 +80,7 @@ export const policies = {
                             id: 'b71376fd-015e-4209-99af',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
+                            osMinorVersion: '8',
                             ssgVersion: '0.1.46',
                             rules: [
                                 {

@@ -1,31 +1,24 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Alert, Label, TabTitleText, PageSection, PageSectionVariants } from '@patternfly/react-core';
+import { Alert, PageSection, PageSectionVariants } from '@patternfly/react-core';
 import {
     selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { TabbedRules } from 'PresentationalComponents';
+import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
+import { sortingByProp } from 'Utilities/helpers';
 
-const SSGTabTitle = ({ profile: { ssgVersion, rules = [] } }) => (
-    <TabTitleText>
-        <span>SSG { ssgVersion + ' ' }</span>
-        <Label color="blue">{ rules.length }</Label>
-    </TabTitleText>
-);
+const PolicyMultiversionRules = ({ policy }) => {
+    const { hosts, policy: { profiles } } = policy;
+    const profilesForTabs = profiles.filter((profile) => !!profile.osMinorVersion);
+    const systemCounts = mapCountOsMinorVersions(hosts);
 
-SSGTabTitle.propTypes = {
-    profile: propTypes.object.isRequired
-};
-
-const PolicyMultiversionRules = ({ policy: { hosts, policy: { profiles } } }) => {
-    let tabsData = profiles.filter(
-        (profile) => profile.osMinorVersion !== ''
-    ).map((profile) => ({
-        profile,
-        systemCount: hosts.filter(
-            (host) => `${host.osMinorVersion}` === profile.osMinorVersion
-        ).length
-    }));
+    const tabsData = profilesForTabs.sort(sortingByProp('osMinorVersion')).map((profile) => (
+        {
+            profile,
+            systemCount: systemCounts[profile.osMinorVersion]?.count || 0
+        }
+    ));
 
     return <React.Fragment>
         <Alert variant="info" isInline title="Rule editing coming soon" />

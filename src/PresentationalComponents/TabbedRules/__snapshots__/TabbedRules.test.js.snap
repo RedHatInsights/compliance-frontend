@@ -15,6 +15,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "9",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -88,6 +89,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -237,6 +239,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "8",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -310,6 +313,7 @@ exports[`TabbedRules passes handleSelect 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -356,6 +360,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "9",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -428,6 +433,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -576,6 +582,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "8",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -648,6 +655,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -694,6 +702,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "9",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -766,6 +775,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -914,6 +924,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "8",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
                 Object {
@@ -986,6 +997,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
