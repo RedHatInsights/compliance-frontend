@@ -178,10 +178,10 @@ describe('countOsMinorVersions', () => {
             {}
         ];
         expect(countOsMinorVersions(systems)).toEqual([
-            { osMinorVersion: 0, count: 1 },
-            { osMinorVersion: 1, count: 1 },
+            { osMinorVersion: 10, count: 1 },
             { osMinorVersion: 9, count: 2 },
-            { osMinorVersion: 10, count: 1 }
+            { osMinorVersion: 1, count: 1 },
+            { osMinorVersion: 0, count: 1 }
         ]);
     });
 });
