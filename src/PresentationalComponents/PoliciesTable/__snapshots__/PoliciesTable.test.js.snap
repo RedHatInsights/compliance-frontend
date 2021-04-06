@@ -92,6 +92,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -297,6 +298,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
@@ -407,6 +409,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1072,6 +1075,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
@@ -1191,6 +1195,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -1302,6 +1307,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
@@ -1412,6 +1418,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -2107,6 +2114,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
@@ -2217,6 +2225,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -2291,6 +2300,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
@@ -2401,6 +2411,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -3066,6 +3077,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",
+          "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
           "paginationTitle": "Pagination",
