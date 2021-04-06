@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm, formValueSelector } from 'redux-form';
-import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
+import { Button, Form, FormGroup, Text, TextContent, TextVariants, WizardContextConsumer } from '@patternfly/react-core';
 import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { compose } from 'redux';
@@ -11,6 +11,8 @@ import { systemName, countOsMinorVersions } from 'Store/Reducers/SystemStore';
 
 const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
+    const multiversionRules = useFeature('multiversionTabs');
+
     const columns = [{
         key: 'facts.compliance.display_name',
         title: 'Name',
@@ -43,6 +45,33 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         }
     }, [selectedSystemIds, osMinorVersionCounts, change]);
 
+    const emptyStateComponent = (<React.Fragment>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                You do not have any <b>RHEL { osMajorVersion }</b> systems connected to Insights and enabled for Compliance.<br/>
+                Policies must be created with at least one system.
+            </Text>
+        </TextContent>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                Choose a different operating system, or connect RHEL { osMajorVersion } systems to Insights.
+            </Text>
+        </TextContent>
+        <WizardContextConsumer>
+            { ({ goToStepById }) => <Button onClick={() => goToStepById(1)}>Choose a different operating system</Button> }
+        </WizardContextConsumer>
+    </React.Fragment>);
+
+    const prependComponent = (<React.Fragment>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                Select which of your <b>RHEL { osMajorVersion }</b> systems should be included
+                in this policy.<br />
+                Systems can be added or removed at any time.
+            </Text>
+        </TextContent>
+    </React.Fragment>);
+
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
@@ -51,15 +80,12 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
                 <Text component={TextVariants.h1}>
                     Systems
                 </Text>
-                <Text>
-                    Select which of your <b>RHEL { osMajorVersion }</b> systems should be included
-                    in this policy.<br />
-                    Systems can be added or removed at any time.
-                </Text>
             </TextContent>
             <Form>
                 <FormGroup>
                     <InvCmp
+                        prependComponent={prependComponent}
+                        emptyStateComponent={multiversionRules ? emptyStateComponent : undefined}
                         columns={columns}
                         remediationsEnabled={false}
                         compact

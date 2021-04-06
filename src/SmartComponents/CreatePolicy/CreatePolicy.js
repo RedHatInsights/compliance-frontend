@@ -113,7 +113,7 @@ export default connect(
         osMajorVersion: selector(state, 'osMajorVersion'),
         osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
         businessObjective: selector(state, 'businessObjective'),
-        complianceThreshold: selector(state, 'complianceThreshold') || 100.0,
+        complianceThreshold: selector(state, 'complianceThreshold') || '100.0',
         name: selector(state, 'name'),
         profile: selector(state, 'profile'),
         refId: selector(state, 'refId'),
