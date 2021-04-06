@@ -185,7 +185,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <ContentTab
           eventKey="rules"
         >
-          <PolicyRulesTab
+          <PolicyMultiversionRules
             policy={
               Object {
                 "benchmark": Object {
