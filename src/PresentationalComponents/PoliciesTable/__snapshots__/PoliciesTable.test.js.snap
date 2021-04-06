@@ -443,6 +443,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "9",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {
@@ -495,6 +496,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "8",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {
@@ -1446,6 +1448,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "9",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {
@@ -1498,6 +1501,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "8",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {
@@ -2433,6 +2437,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "9",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {
@@ -2485,6 +2490,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
                         Object {
                           "id": "b71376fd-015e-4209-99af",
                           "name": "United States Government Configuration Baseline123",
+                          "osMinorVersion": "8",
                           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                           "rules": Array [
                             Object {

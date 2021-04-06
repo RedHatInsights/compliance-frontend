@@ -186,9 +186,9 @@ export const PolicyDetails = ({ route }) => {
                             <PolicyDetailsDescription policy={ policy } />
                         </ContentTab>
                         <ContentTab eventKey='rules'>
-                            { multiversionTabs ?
-                                <PolicyMultiversionRules policy={ policy } /> :
-                                <PolicyRulesTab policy={ policy } /> }
+                            { multiversionTabs
+                                ? <PolicyMultiversionRules policy={ policy } />
+                                : <PolicyRulesTab policy={ policy } /> }
                         </ContentTab>
                         <ContentTab eventKey='systems'>
                             <PolicySystemsTab policy={ policy } />
