@@ -22,12 +22,12 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       osMinorVersionCounts={
         Array [
           Object {
-            "count": 3,
-            "osMinorVersion": 5,
-          },
-          Object {
             "count": 10,
             "osMinorVersion": 7,
+          },
+          Object {
+            "count": 3,
+            "osMinorVersion": 5,
           },
         ]
       }
@@ -159,7 +159,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           RHEL 
                           7
                           .
-                          5
+                          7
                         </dt>
                       </TextListItem>
                       <TextListItem
@@ -169,7 +169,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           className=""
                           data-pf-content={true}
                         >
-                          3
+                          10
                         </dd>
                       </TextListItem>
                       <TextListItem
@@ -192,7 +192,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           RHEL 
                           7
                           .
-                          7
+                          5
                         </dt>
                       </TextListItem>
                       <TextListItem
@@ -202,7 +202,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           className=""
                           data-pf-content={true}
                         >
-                          10
+                          3
                         </dd>
                       </TextListItem>
                     </dl>

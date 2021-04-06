@@ -58,7 +58,7 @@ const ReviewCreatedPolicy = ({
                 <TextListItem component={TextListItemVariants.dt}>Systems</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
                     <TextList component={TextListVariants.dl}>
-                        { osMinorVersionCounts.reverse().map(({ osMinorVersion, count }) => (
+                        { osMinorVersionCounts.map(({ osMinorVersion, count }) => (
                             <React.Fragment key={osMinorVersion}>
                                 <TextListItem component={TextListItemVariants.dt} style={{ 'font-weight': 'normal' }}>
                                     RHEL {osMajorVersion}.{osMinorVersion}

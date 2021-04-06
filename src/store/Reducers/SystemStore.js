@@ -127,7 +127,7 @@ export const mapCountOsMinorVersions = (systems) => {
 };
 
 export const countOsMinorVersions = (systems) => (
-    Object.values(mapCountOsMinorVersions(systems)).sort(sortingByProp('osMinorVersion'))
+    Object.values(mapCountOsMinorVersions(systems)).sort(sortingByProp('osMinorVersion', 'desc'))
 );
 
 export const systemsToInventoryEntities = (systems, entities, showAllSystems, selectedEntities) => (
