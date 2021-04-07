@@ -45,7 +45,7 @@ const fetchCollection = async (apiClient, collection, params = {}, options = {})
     };
 };
 
-const useCollection = (collection, options = {}) => {
+const useCollection = (collection, options = {}, effects = []) => {
     const [collectionState, setCollectionState] = useState({
         data: undefined,
         loading: true,
@@ -67,7 +67,7 @@ const useCollection = (collection, options = {}) => {
                 error: undefined
             });
         });
-    }, []);
+    }, effects);
 
     return collectionState;
 };
