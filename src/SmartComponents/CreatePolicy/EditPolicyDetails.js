@@ -7,12 +7,14 @@ import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/re
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import { ProfileThresholdField } from 'PresentationalComponents';
 
-const EditPolicyDetails = ({ change, policy }) => {
+const EditPolicyDetails = ({ change, policy, refId }) => {
 
     useEffect(() => {
-        change('name', `${policy.name}`);
-        change('refId', `${policy.refId}`);
-        change('description', `${policy.description}`);
+        if (policy && policy.refId !== refId) {
+            change('name', `${policy.name}`);
+            change('refId', `${policy.refId}`);
+            change('description', `${policy.description}`);
+        }
     }, [policy]);
 
     return (
@@ -71,6 +73,7 @@ const selector = formValueSelector('policyForm');
 
 EditPolicyDetails.propTypes = {
     policy: propTypes.object,
+    refId: propTypes.string,
     change: reduxFormPropTypes.change
 };
 
@@ -78,6 +81,7 @@ const mapStateToProps = (state) => {
     const policy = JSON.parse(selector(state, 'profile'));
     return {
         policy,
+        refId: selector(state, 'refId'),
         initialValues: {
             name: `${policy.name}`,
             refId: `${policy.refId}`,
