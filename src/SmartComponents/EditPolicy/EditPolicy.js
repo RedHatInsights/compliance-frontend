@@ -6,15 +6,13 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Button, Form, Modal, Tab, TabTitleText, Spinner } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
+import EditPolicySystemsTab from './EditPolicySystemsTab';
 import usePolicy from './usePolicy';
 import useFeature from 'Utilities/hooks/useFeature';
-import { systemName } from 'Store/Reducers/SystemStore';
-import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 
 export const MULTIVERSION_QUERY = gql`
 query Profile($policyId: String!){
@@ -88,33 +86,6 @@ export const EditPolicy = ({ route }) => {
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
-    const columns = [
-        {
-            key: 'facts.compliance.display_name',
-            title: 'Name',
-            props: {
-                width: 40, isStatic: true
-            },
-            ...newInventory && {
-                key: 'display_name',
-                renderFunc: (displayName, id, extra) => {
-                    return extra?.lastScanned ? systemName(displayName, id, { name: extra?.name }) : displayName;
-                }
-            }
-        },
-        {
-            key: 'facts.compliance.osMinorVersion',
-            title: 'Operating system',
-            props: {
-                width: 40, isStatic: true
-            },
-            ...newInventory && {
-                key: 'osMinorVersion',
-                renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-            }
-        }
-    ];
-
     const linkToBackgroundWithHash = () => {
         newInventory && dispatch({
             type: 'SELECT_ENTITIES',
@@ -185,7 +156,6 @@ export const EditPolicy = ({ route }) => {
         }
     }, [policy]);
 
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policy?.name);
 
     return <Modal
@@ -213,16 +183,7 @@ export const EditPolicy = ({ route }) => {
                 </Tab>
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
-                    <InvCmp
-                        compact
-                        showActions={ false }
-                        enableExport={ false }
-                        remediationsEnabled={ false }
-                        policyId={ policy.id }
-                        defaultFilter={ `os_major_version = ${policy.majorOsVersion}` }
-                        query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-                        columns={columns}
-                        preselectedSystems={ (policy?.hosts || []).map((h) => ({ id: h.id })) || [] } />
+                    <EditPolicySystemsTab policy={policy}/>
                 </Tab>
             </RoutedTabs>
         </Form> : <Spinner /> }
