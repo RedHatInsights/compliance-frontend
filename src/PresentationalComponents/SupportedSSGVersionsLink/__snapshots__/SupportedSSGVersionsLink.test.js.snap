@@ -6,6 +6,11 @@ exports[`SupportedSSGVersionsLink expect to render without error 1`] = `
   rel="noopener noreferrer"
   target="_blank"
 >
-  Supported SSG versions
+  Supported SSG versions 
+  <ExternalLinkAltIcon
+    color="currentColor"
+    noVerticalAlign={false}
+    size="sm"
+  />
 </a>
 `;
