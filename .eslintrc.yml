@@ -52,6 +52,8 @@ rules:
       MemberExpression: 0
       ImportDeclaration: 1
       ObjectExpression: 1
+      ignoredNodes:
+      - TemplateLiteral # https://github.com/babel/babel-eslint/issues/530
   key-spacing: 2
   keyword-spacing: 2
   linebreak-style:
