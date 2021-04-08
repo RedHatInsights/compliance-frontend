@@ -8,7 +8,11 @@ import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
-        <Alert variant="info" isInline title="Rule editing coming soon" />
+        <Alert isInline variant='info' title='Rule editing is now available.'>
+            Edit rules by clicking the &quot;Edit rules&quot; button in the toolbar. Rule can now be edited for
+            each minor version of the RHEL OS associated with this policy and will be displayed in the policy
+            after the &quot;Edit rules&quot; modal has been opened and saved.
+        </Alert>
         <PageSection variant={PageSectionVariants.light}>
             <Text component={TextVariants.p}>
                 <strong>What rules are shown on this list?&nbsp;</strong>
