@@ -13,7 +13,6 @@ import {
     StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem, BackgroundLink
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
-import useFeature from 'Utilities/hooks/useFeature';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
@@ -21,7 +20,7 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 
-export const MULTIVERSION_QUERY = gql`
+export const QUERY = gql`
 query Profile($policyId: String!){
     profile(id: $policyId) {
         id
@@ -76,35 +75,6 @@ query Profile($policyId: String!){
             title
             version
         }
-    }
-}
-`;
-
-export const QUERY = gql`
-query Profile($policyId: String!){
-    profile(id: $policyId) {
-        id
-        name
-        refId
-        external
-        description
-        totalHostCount
-        compliantHostCount
-        complianceThreshold
-        majorOsVersion
-        lastScanned
-        policyType
-        policy {
-            id
-            name
-        }
-        businessObjective {
-            id
-            title
-        }
-        hosts {
-            id
-        }
         rules {
             title
             severity
@@ -114,26 +84,25 @@ query Profile($policyId: String!){
             remediationAvailable
             identifier
         }
-        benchmark {
-            id
-            title
-            version
-        }
     }
 }
 `;
 
 export const PolicyDetails = ({ route }) => {
     const defaultTab = 'details';
-    const multiversionTabs = useFeature('multiversionTabs');
     const { policy_id: policyId } = useParams();
     const location = useLocation();
     const anchor = useAnchor();
     const dispatch = useDispatch();
-    let { data, error, loading, refetch } = useQuery((multiversionTabs ? MULTIVERSION_QUERY : QUERY), {
+    let { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
-    let policy = data && !loading ? data.profile : undefined;
+    let policy;
+    let hasOsMinorProfiles = true;
+    if (data && !loading) {
+        policy = data.profile;
+        hasOsMinorProfiles = !!policy.policy.profiles.find((profile) => !!profile.osMinorVersion);
+    }
 
     useEffect(() => {
         refetch();
@@ -186,7 +155,7 @@ export const PolicyDetails = ({ route }) => {
                             <PolicyDetailsDescription policy={ policy } />
                         </ContentTab>
                         <ContentTab eventKey='rules'>
-                            { multiversionTabs
+                            { hasOsMinorProfiles
                                 ? <PolicyMultiversionRules policy={ policy } />
                                 : <PolicyRulesTab policy={ policy } /> }
                         </ContentTab>

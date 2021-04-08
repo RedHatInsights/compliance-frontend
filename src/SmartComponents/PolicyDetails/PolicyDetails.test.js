@@ -23,7 +23,24 @@ const mocks = [
                     complianceThreshold: 1,
                     compliantHostCount: 1,
                     policy: {
-                        name: 'parentpolicy'
+                        name: 'parentpolicy',
+                        profiles: [
+                            {
+                                id: '1',
+                                refId: '121212',
+                                name: 'profile1',
+                                description: 'profile description',
+                                osMinorVersion: '',
+                                businessObjective: {
+                                    id: '1',
+                                    title: 'BO 1'
+                                },
+                                benchmark: {
+                                    title: 'benchmark',
+                                    version: '0.1.5'
+                                }
+                            }
+                        ]
                     },
                     businessObjective: {
                         id: '1',
