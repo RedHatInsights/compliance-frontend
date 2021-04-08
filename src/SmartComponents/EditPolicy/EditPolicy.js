@@ -98,18 +98,13 @@ export const EditPolicy = ({ route }) => {
     };
 
     const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
-        const newSelection = selectedRuleRefIds.map((selectedProfile) => {
-            if (selectedProfile.id === profile.id) {
-                return {
-                    id: selectedProfile.id,
-                    ruleRefIds: newSelectedRuleRefIds
-                };
-            } else {
-                return selectedProfile;
-            }
-        });
-
-        setSelectedRuleRefIds(newSelection);
+        const filteredSelection = selectedRuleRefIds.filter((selectedProfile) =>
+            selectedProfile.id !== profile.id
+        );
+        setSelectedRuleRefIds([
+            { id: profile.id, ruleRefIds: newSelectedRuleRefIds },
+            ...filteredSelection
+        ]);
     };
 
     const actions = [
