@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Popover, Tooltip, Text } from '@patternfly/react-core';
 import { ExclamationTriangleIcon, OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import { supportedConfigsLink } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 
 const UNSUPPORTED_SINGULAR_MESSAGE =
     'This system was using an incompatible version of the SSG at the time this report was generated. ' +
@@ -17,16 +17,16 @@ const UNSUPPORTED_PLURAL_MESSAGE = <React.Fragment>
     </Text>
 </React.Fragment>;
 
-const WarningWithPopover = ({ children, variant = 'plural' }) => {
-    const headerContent = 'Unsupported SSG versions';
-    const bodyContent = variant === 'plural' ? UNSUPPORTED_PLURAL_MESSAGE : UNSUPPORTED_SINGULAR_MESSAGE;
-    const footerContent = <a target='_blank' rel='noopener noreferrer' href={ supportedConfigsLink }>Supported SSG versions</a>;
-
-    return <Popover id='unsupported-popover' maxWidth='25rem'
-        { ...{ headerContent, bodyContent, footerContent } } >
+const WarningWithPopover = ({ children, variant = 'plural' }) => (
+    <Popover
+        id='unsupported-popover'
+        maxWidth='25rem'
+        headerContent='Unsupported SSG versions'
+        bodyContent={ variant === 'plural' ? UNSUPPORTED_PLURAL_MESSAGE : UNSUPPORTED_SINGULAR_MESSAGE }
+        footerContent={ <SupportedSSGVersionsLink /> }>
         { children }
-    </Popover>;
-};
+    </Popover>
+);
 
 WarningWithPopover.propTypes = {
     children: propTypes.node,

@@ -21,6 +21,23 @@ exports[`PolicyDetails expect to render without error 1`] = `
           "name": "profile1",
           "policy": Object {
             "name": "parentpolicy",
+            "profiles": Array [
+              Object {
+                "benchmark": Object {
+                  "title": "benchmark",
+                  "version": "0.1.5",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "osMinorVersion": "",
+                "refId": "121212",
+              },
+            ],
           },
           "refId": "121212",
           "totalHostCount": 1,
@@ -111,6 +128,23 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   "name": "profile1",
                   "policy": Object {
                     "name": "parentpolicy",
+                    "profiles": Array [
+                      Object {
+                        "benchmark": Object {
+                          "title": "benchmark",
+                          "version": "0.1.5",
+                        },
+                        "businessObjective": Object {
+                          "id": "1",
+                          "title": "BO 1",
+                        },
+                        "description": "profile description",
+                        "id": "1",
+                        "name": "profile1",
+                        "osMinorVersion": "",
+                        "refId": "121212",
+                      },
+                    ],
                   },
                   "refId": "121212",
                   "totalHostCount": 1,
@@ -175,6 +209,23 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,
@@ -185,7 +236,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <ContentTab
           eventKey="rules"
         >
-          <PolicyMultiversionRules
+          <PolicyRulesTab
             policy={
               Object {
                 "benchmark": Object {
@@ -203,6 +254,23 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,
@@ -231,6 +299,23 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,

@@ -25,6 +25,7 @@ export { default as PolicyPopover } from './PolicyPopover/PolicyPopover';
 export { default as NoResultsTable, emptyRows } from './NoResultsTable/NoResultsTable';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
 export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
+export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/SupportedSSGVersionsLink';
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
