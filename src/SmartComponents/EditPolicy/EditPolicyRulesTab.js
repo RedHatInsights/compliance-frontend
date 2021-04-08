@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { Text, TextContent } from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
@@ -68,6 +68,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
         params: { search: benchmarkSearch }
     }, [benchmarkSearch]);
 
+    let profileIds = [];
     let tabsData = Object.values(osMinorVersionCounts).sort(
         sortingByProp('osMinorVersion', 'desc')
     ).map(({ osMinorVersion, count: systemCount }) => {
@@ -85,6 +86,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
                     rules: benchmarkProfile.relationships?.rules?.data,
                     ...profile
                 };
+                profileIds.push(profile.id);
             }
         }
 
@@ -97,7 +99,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
     });
     tabsData = tabsData.filter(({ profile }) => !!profile);
 
-    const filter = `${ (tabsData.map(t => t.profile.id) || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
+    const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
         variables: {
             filter
@@ -106,6 +108,19 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
     });
     const dataState = ((tabsData?.length > 0) ? profilesData : undefined);
     const loadingState = ((loading || benchmarksLoading) ? true : undefined);
+
+    useLayoutEffect(() => {
+        if (profilesData) {
+            const profiles = profilesData?.profiles.edges.map((p) => (p.node)) || [];
+            profiles.forEach((profile) => {
+                const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
+                if (!foundSelection) {
+                    const refIds = profile.rules.map((rule) => (rule.refId));
+                    handleSelect(profile, refIds);
+                }
+            });
+        }
+    }, [profilesData]);
 
     return <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState } }>
         <StateViewPart stateKey="loading">
