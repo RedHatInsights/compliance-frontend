@@ -86,9 +86,10 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
                     rules: benchmarkProfile.relationships?.rules?.data,
                     ...profile
                 };
-                profileIds.push(profile.id);
             }
         }
+
+        profileIds.push(profile.id);
 
         return {
             profile,
