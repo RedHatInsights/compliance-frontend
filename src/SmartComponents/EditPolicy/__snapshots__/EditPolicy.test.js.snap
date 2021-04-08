@@ -123,7 +123,9 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
           </TabTitleText>
         }
       >
-        <EditPolicySystemsTab />
+        <EditPolicySystemsTab
+          policyOsMinorVersions={Array []}
+        />
       </Tab>
     </RoutedTabs>
   </Form>
@@ -253,7 +255,9 @@ exports[`EditPolicy expect to render without error 1`] = `
           </TabTitleText>
         }
       >
-        <EditPolicySystemsTab />
+        <EditPolicySystemsTab
+          policyOsMinorVersions={Array []}
+        />
       </Tab>
     </RoutedTabs>
   </Form>

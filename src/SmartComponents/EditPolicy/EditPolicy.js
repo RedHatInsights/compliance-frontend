@@ -78,6 +78,7 @@ export const EditPolicy = ({ route }) => {
         variables: { policyId }
     });
     const policy = data?.profile;
+    const policyProfiles = policy?.policy?.profiles || [];
     const newInventory = useFeature('newInventory');
     const dispatch = useDispatch();
     const anchor = useAnchor();
@@ -127,7 +128,7 @@ export const EditPolicy = ({ route }) => {
 
     const updateSelectedRuleRefIds = () => {
         if (policy) {
-            setSelectedRuleRefIds(policy.policy.profiles.map((policyProfile) => ({
+            setSelectedRuleRefIds(policyProfiles.map((policyProfile) => ({
                 id: policyProfile.id,
                 ruleRefIds: policyProfile.rules.map((rule) => (rule.refId))
             })));
@@ -143,7 +144,9 @@ export const EditPolicy = ({ route }) => {
 
         setOsMinorVersionCounts(
             (policy?.policy?.profiles || []).reduce((acc, profile) => {
-                acc[profile.osMinorVersion] ||= { osMinorVersion: profile.osMinorVersion, count: 0 };
+                if (profile.osMinorVersion !== '') {
+                    acc[profile.osMinorVersion] ||= { osMinorVersion: profile.osMinorVersion, count: 0 };
+                }
 
                 return acc;
             }, mapCountOsMinorVersions(selectedEntities))
@@ -198,6 +201,7 @@ export const EditPolicy = ({ route }) => {
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
                         osMajorVersion={ policy.osMajorVersion }
+                        policyOsMinorVersions={ [...new Set(policyProfiles.map(profile => profile.osMinorVersion))] }
                     />
                 </Tab>
             </RoutedTabs>
