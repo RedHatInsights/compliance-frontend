@@ -129,11 +129,13 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     const loadingState = ((loading || benchmarksLoading) ? true : undefined);
 
     useLayoutEffect(() => {
-        if (profilesData && !selectedRuleRefIds) {
+        if (profilesData) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node));
+
             change('selectedRuleRefIds', profiles.map((profile) => ({
                 id: profile.id,
-                ruleRefIds: profile.rules.map((rule) => (rule.refId))
+                ruleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile.id)?.ruleRefIds ||
+                            profile.rules.map((rule) => (rule.refId))
             })));
         }
     }, [profilesData]);
