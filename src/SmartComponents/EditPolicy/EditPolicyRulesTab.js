@@ -74,6 +74,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
     ).map(({ osMinorVersion, count: systemCount }) => {
         osMinorVersion = `${osMinorVersion}`;
         let profile = policy.policy.profiles.find((profile) => (profile.osMinorVersion === osMinorVersion));
+
         if (!profile && benchmarks) {
             const benchmark = getBenchmarkBySupportedOsMinor(benchmarks.collection, osMinorVersion);
             if (benchmark) {
@@ -89,8 +90,6 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
             }
         }
 
-        profileIds.push(profile.id);
-
         return {
             profile,
             systemCount,
@@ -98,7 +97,9 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
             selectedRuleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile?.id)?.ruleRefIds
         };
     });
-    tabsData = tabsData.filter(({ profile }) => !!profile);
+    tabsData = tabsData.filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion);
+
+    tabsData.forEach((tab) => (profileIds.push(tab.profile.id)));
 
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
