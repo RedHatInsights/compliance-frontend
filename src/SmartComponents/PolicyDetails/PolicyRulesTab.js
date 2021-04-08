@@ -4,6 +4,7 @@ import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@pa
 import SystemRulesTable, {
     selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
@@ -24,6 +25,7 @@ const PolicyRulesTab = ({ loading, policy }) => (
                 profile: { refId: policy.refId, name: policy.name },
                 rules: policy.rules
             }]}
+            toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> }
         />
     </React.Fragment>
 );

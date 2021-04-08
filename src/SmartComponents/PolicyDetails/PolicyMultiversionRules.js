@@ -1,33 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { PageSection, PageSectionVariants, ToolbarItem, Button } from '@patternfly/react-core';
+import { PageSection, PageSectionVariants } from '@patternfly/react-core';
 import {
     selectColumns as selectRulesTableColumns
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
-import { useAnchor } from 'Utilities/Router';
-import { TabbedRules, BackgroundLink } from 'PresentationalComponents';
+import { TabbedRules } from 'PresentationalComponents';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 import { sortingByProp } from 'Utilities/helpers';
-
-const EditRulesButtonToolbarItem = ({ policy }) => {
-    let anchor = useAnchor();
-
-    return (
-        <ToolbarItem>
-            <BackgroundLink
-                to={ `/scappolicies/${ policy.id }/edit` }
-                state={ { policy } }
-                hash={ anchor }
-                backgroundLocation={ { hash: anchor } }>
-                <Button variant='primary'>Edit rules</Button>
-            </BackgroundLink>
-        </ToolbarItem>
-    );
-};
-
-EditRulesButtonToolbarItem.propTypes = {
-    policy: propTypes.object.isRequired
-};
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyMultiversionRules = ({ policy }) => {
     const { hosts, policy: { profiles } } = policy;
