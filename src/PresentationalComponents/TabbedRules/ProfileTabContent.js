@@ -107,6 +107,7 @@ const ProfileTabContent = ({
             <StateViewPart stateKey="rules">
 
                 <SystemRulesTable
+                    remediationAvailableFilter
                     remediationsEnabled={false}
                     columns={ columns }
                     profileRules={ [{ profile, rules: (rules || []) }] }
