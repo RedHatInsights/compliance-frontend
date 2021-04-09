@@ -12,7 +12,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 
@@ -53,6 +53,8 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
         profiles.filter(profile => benchmark.refId === profile.node.benchmark.refId).map(profile => profile.node.refId)
     );
 
+    const dispatch = useDispatch();
+
     if (error) { return error; }
 
     if (loading) { return <Spinner/>; }
@@ -70,6 +72,13 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     }
 
     const setBenchmark = ({ id, osMajorVersion }) => {
+        if (selectedBenchmark?.osMajorVersion !== osMajorVersion) {
+            dispatch({
+                type: 'SELECT_ENTITIES',
+                payload: { ids: [] }
+            });
+        }
+
         change('benchmark', id);
         change('osMajorVersion', osMajorVersion);
     };
