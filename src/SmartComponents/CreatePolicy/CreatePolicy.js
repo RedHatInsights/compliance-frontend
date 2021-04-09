@@ -50,7 +50,7 @@ export const CreatePolicy = ({
             id: 4,
             name: 'Rules',
             component: <EditPolicyRules/>,
-            canJumpTo: stepIdReached >= 4,
+            canJumpTo: systemIds?.length > 0 && stepIdReached >= 4,
             enableNext: validateRulesPage(selectedRuleRefIds)
         },
         {
@@ -58,14 +58,14 @@ export const CreatePolicy = ({
             name: 'Review',
             component: <ReviewCreatedPolicy/>,
             nextButtonText: 'Finish',
-            canJumpTo: stepIdReached >= 5
+            canJumpTo: systemIds?.length > 0 && stepIdReached >= 5
         },
         {
             id: 6,
             name: 'Finished',
             component: <FinishedCreatePolicy onWizardFinish={ onClose } />,
             isFinishedStep: true,
-            canJumpTo: stepIdReached >= 6
+            canJumpTo: systemIds?.length > 0 && stepIdReached >= 6
         }
     ];
 
