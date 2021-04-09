@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { Button, Form, Modal, Tab, TabTitleText, Spinner } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
+import { uniq } from 'Utilities/helpers';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
@@ -153,7 +154,7 @@ export const EditPolicy = ({ route }) => {
         updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
-            profilesToOsMinorMap(policy?.policy?.profiles, selectedEntities)
+            profilesToOsMinorMap(policyProfiles, selectedEntities)
         );
     }, [selectedEntities]);
 
@@ -174,7 +175,7 @@ export const EditPolicy = ({ route }) => {
                 payload: { ids: policy?.hosts || [] }
             });
             setOsMinorVersionCounts(
-                profilesToOsMinorMap(policy.policy.profiles, policy.hosts)
+                profilesToOsMinorMap(policyProfiles, policy.hosts)
             );
         }
     }, [policy]);
@@ -208,7 +209,7 @@ export const EditPolicy = ({ route }) => {
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
                         osMajorVersion={ policy.osMajorVersion }
-                        policyOsMinorVersions={ [...new Set(policyProfiles.map(profile => profile.osMinorVersion))] }
+                        policyOsMinorVersions={ uniq(policyProfiles.map(profile => profile.osMinorVersion)) }
                     />
                 </Tab>
             </RoutedTabs>
