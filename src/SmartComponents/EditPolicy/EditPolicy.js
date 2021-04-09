@@ -72,6 +72,16 @@ query Profile($policyId: String!){
 }
 `;
 
+const profilesToOsMinorMap = (profiles, hosts) => (
+    (profiles || []).reduce((acc, profile) => {
+        if (profile.osMinorVersion !== '') {
+            acc[profile.osMinorVersion] ||= { osMinorVersion: profile.osMinorVersion, count: 0 };
+        }
+
+        return acc;
+    }, mapCountOsMinorVersions(hosts || []))
+);
+
 export const EditPolicy = ({ route }) => {
     const { policy_id: policyId } = useParams();
     let { data } = useQuery(MULTIVERSION_QUERY, {
@@ -143,20 +153,13 @@ export const EditPolicy = ({ route }) => {
         updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
-            (policy?.policy?.profiles || []).reduce((acc, profile) => {
-                if (profile.osMinorVersion !== '') {
-                    acc[profile.osMinorVersion] ||= { osMinorVersion: profile.osMinorVersion, count: 0 };
-                }
-
-                return acc;
-            }, mapCountOsMinorVersions(selectedEntities))
+            profilesToOsMinorMap(policy?.policy?.profiles, selectedEntities)
         );
     }, [selectedEntities]);
 
     useEffect(() => setUpdatedPolicy({ ...updatedPolicy, selectedRuleRefIds }), [selectedRuleRefIds]);
 
     useEffect(() => {
-
         if (policy) {
             const complianceThresholdValid =
                 (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
@@ -165,10 +168,14 @@ export const EditPolicy = ({ route }) => {
                 complianceThresholdValid
             });
             updateSelectedRuleRefIds();
+
             dispatch({
                 type: 'SELECT_ENTITIES',
                 payload: { ids: policy?.hosts || [] }
             });
+            setOsMinorVersionCounts(
+                profilesToOsMinorMap(policy.policy.profiles, policy.hosts)
+            );
         }
     }, [policy]);
 
