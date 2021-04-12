@@ -14,13 +14,9 @@ export const validateDetailsPage = (name, refId, complianceThreshold) => (
     !name || !refId  || !complianceThreshold || !thresholdValid(complianceThreshold) ? false : true
 );
 
-export const validateRulesPage = (selectedRuleRefIds) => {
-    if (!selectedRuleRefIds) {
-        return false;
-    } else {
-        return true;
-    }
-};
+export const validateRulesPage = (selectedRuleRefIds) => (
+    selectedRuleRefIds?.length > 0
+);
 
 export const validateSystemsPage = (systemIds) => {
     if (systemIds) {
