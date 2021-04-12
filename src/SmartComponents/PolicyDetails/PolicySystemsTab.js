@@ -42,7 +42,11 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
                         supported={ realProfile.supported }
                         ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
                 }
-            }] : []]}
+            }] : [], {
+                key: 'osMinorVersion',
+                title: 'Operating system',
+                renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
+            }]}
             complianceThreshold={ policy.complianceThreshold }
             { ...systemTableProps }
         />

@@ -18,6 +18,11 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
         "renderFunc": [Function],
         "title": "SSG version",
       },
+      Object {
+        "key": "osMinorVersion",
+        "renderFunc": [Function],
+        "title": "Operating system",
+      },
     ]
   }
   complianceThreshold={100}
