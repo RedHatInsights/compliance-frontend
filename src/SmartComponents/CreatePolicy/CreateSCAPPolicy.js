@@ -87,11 +87,11 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     return (
         <React.Fragment>
             <TextContent>
-                <Text component={TextVariants.h1}>
+                <Text component={TextVariants.h1} className="pf-u-mb-md">
                     Create SCAP policy
                 </Text>
-                <Text component={TextVariants.h4}>
-                    Select the operating system and policy type
+                <Text className="pf-u-mb-md">
+                    Select the operating system and policy type for this policy.
                 </Text>
             </TextContent>
             <Form>
@@ -99,7 +99,6 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     label="Operating system"
                     isRequired
                     fieldId="benchmark">
-                    <br/>
                     { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
                         const { id, osMajorVersion } = benchmark;
                         return (
