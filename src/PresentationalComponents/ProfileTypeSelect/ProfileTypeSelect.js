@@ -24,6 +24,14 @@ const InUseProfileLabel = () => (
 
 const ProfileTypeSelect  = ({ profiles, onClick }) => (
     <React.Fragment>
+        { profiles?.length === 0 && (
+            <TextContent style={{ color: 'var(--pf-c-content--blockquote--Color)' }}>
+                <Text>
+                    Select an operating system to view policy types.
+                </Text>
+            </TextContent>
+        )}
+
         <Grid hasGutter>
             { profiles.map((profile) => {
                 const { description, name, id, disabled } = profile;

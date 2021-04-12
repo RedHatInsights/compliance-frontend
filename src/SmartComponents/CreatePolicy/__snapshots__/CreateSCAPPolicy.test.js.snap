@@ -6,17 +6,17 @@ Array [
     className="pf-c-content"
   >
     <h1
-      className=""
+      className="pf-u-mb-md"
       data-pf-content={true}
     >
       Create SCAP policy
     </h1>
-    <h4
-      className=""
+    <p
+      className="pf-u-mb-md"
       data-pf-content={true}
     >
-      Select the operating system and policy type
-    </h4>
+      Select the operating system and policy type for this policy.
+    </p>
   </div>,
   <form
     className="pf-c-form"
@@ -50,7 +50,6 @@ Array [
       <div
         className="pf-c-form__group-control"
       >
-        <br />
         
       </div>
     </div>
@@ -83,6 +82,21 @@ Array [
         className="pf-c-form__group-control"
       >
         <div
+          className="pf-c-content"
+          style={
+            Object {
+              "color": "var(--pf-c-content--blockquote--Color)",
+            }
+          }
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            Select an operating system to view policy types.
+          </p>
+        </div>
+        <div
           className="pf-l-grid pf-m-gutter"
         />
         
@@ -111,17 +125,17 @@ Array [
     className="pf-c-content"
   >
     <h1
-      className=""
+      className="pf-u-mb-md"
       data-pf-content={true}
     >
       Create SCAP policy
     </h1>
-    <h4
-      className=""
+    <p
+      className="pf-u-mb-md"
       data-pf-content={true}
     >
-      Select the operating system and policy type
-    </h4>
+      Select the operating system and policy type for this policy.
+    </p>
   </div>,
   <form
     className="pf-c-form"
@@ -155,7 +169,6 @@ Array [
       <div
         className="pf-c-form__group-control"
       >
-        <br />
         <button
           aria-disabled={false}
           aria-label={null}
@@ -243,6 +256,21 @@ Array [
       <div
         className="pf-c-form__group-control"
       >
+        <div
+          className="pf-c-content"
+          style={
+            Object {
+              "color": "var(--pf-c-content--blockquote--Color)",
+            }
+          }
+        >
+          <p
+            className=""
+            data-pf-content={true}
+          >
+            Select an operating system to view policy types.
+          </p>
+        </div>
         <div
           className="pf-l-grid pf-m-gutter"
         />
