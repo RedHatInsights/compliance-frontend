@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import useFeature from 'Utilities/hooks/useFeature';
-import { systemName, countOsMinorVersions } from 'Store/Reducers/SystemStore';
+import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 
 const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
@@ -21,7 +21,7 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         },
         ...newInventory && {
             key: 'display_name',
-            renderFunc: (displayName, id, { name }) => systemName(displayName, id, { name })
+            renderFunc: (displayName, _id, { name }) => (displayName || name)
         }
     }, {
         key: 'facts.compliance.osMinorVersion',
