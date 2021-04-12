@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import propTypes from 'prop-types';
-import { systemName } from 'Store/Reducers/SystemStore';
 import { useHistory } from 'react-router-dom';
 
 const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
@@ -25,7 +24,7 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
         props: {
             width: 40, isStatic: true
         },
-        renderFunc: (displayName, id, { name }) => systemName(displayName, id, { name })
+        renderFunc: (displayName, _id, { name }) => (displayName || name)
     }, {
         key: 'osMinorVersion',
         title: 'Operating system',
