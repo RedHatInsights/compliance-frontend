@@ -140,30 +140,35 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         }
     }, [profilesData]);
 
-    return <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState } }>
-        <StateViewPart stateKey="loading">
-            <EmptyTable><Spinner/></EmptyTable>
-        </StateViewPart>
-        <StateViewPart stateKey="data">
-            <TextContent>
-                <Text component={TextVariants.h1}>
-                    Rules
-                </Text>
-            </TextContent>
-            <TextContent>
-                <Text>
-                    Edit your policy by including and excluding rules.
-                </Text>
-            </TextContent>
-            <TabbedRules
-                tabsData={ tabsData }
-                columns={ columns }
-                remediationsEnabled={ false }
-                selectedFilter
-                level={ 1 }
-                handleSelect={ handleSelectCallback } />
-        </StateViewPart>
-    </StateViewWithError>;
+    return <React.Fragment>
+        <TextContent className='pf-u-pb-md'>
+            <Text component={TextVariants.h1}>
+                Rules
+            </Text>
+            <Text>
+                Customize your <b>{ policy.name }</b> SCAP policy by including and excluding rules.
+            </Text>
+            <Text>
+                Each release of RHEL is supported with a unique and specific version of the SCAP Security
+                Guide (SSG). You must customize each version of SSG for each release of RHEL.
+            </Text>
+        </TextContent>
+
+        <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState } }>
+            <StateViewPart stateKey="loading">
+                <EmptyTable><Spinner/></EmptyTable>
+            </StateViewPart>
+            <StateViewPart stateKey="data">
+                <TabbedRules
+                    tabsData={ tabsData }
+                    columns={ columns }
+                    remediationsEnabled={ false }
+                    selectedFilter
+                    level={ 1 }
+                    handleSelect={ handleSelectCallback } />
+            </StateViewPart>
+        </StateViewWithError>
+    </React.Fragment>;
 };
 
 EditPolicyProfilesRules.propTypes = {

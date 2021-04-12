@@ -29,8 +29,9 @@ const TabbedRules = ({
                     eventKey={ eventKey(profile.id) }
                     title={
                         <span>
-                            <OsVersionText profile={ profile } newOsMinorVersion={newOsMinorVersion} />
-                            {' '}
+                            <span className='pf-u-pr-sm'>
+                                <OsVersionText profile={ profile } newOsMinorVersion={newOsMinorVersion} />
+                            </span>
                             <Badge isRead>{ systemCount }</Badge>
                         </span>
                     }>

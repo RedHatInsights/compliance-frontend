@@ -69,6 +69,10 @@ button.pf-c-button.pf-m-tertiary {
   }
 }
 
+.pf-c-switch {
+  --pf-c-switch--ColumnGap: 0;
+}
+
 .ins-c-warning-text {
     color: var(--pf-global--warning-color--200);
 }
