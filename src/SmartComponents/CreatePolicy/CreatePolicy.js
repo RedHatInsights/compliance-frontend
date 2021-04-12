@@ -67,7 +67,11 @@ export const CreatePolicy = ({
             name: 'Review',
             component: <ReviewCreatedPolicy/>,
             nextButtonText: 'Finish',
-            canJumpTo: systemIds?.length > 0 && stepIdReached >= 5
+            canJumpTo: (
+                validateRulesPage(selectedRuleRefIds) &&
+                systemIds?.length > 0 &&
+                stepIdReached >= 5
+            )
         },
         {
             id: 6,

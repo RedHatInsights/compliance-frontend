@@ -5,7 +5,10 @@ import {
 } from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { Text, TextContent, TextVariants } from '@patternfly/react-core';
+import {
+    Title, Text, TextContent, TextVariants,
+    EmptyState, EmptyStateBody
+} from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -119,26 +122,27 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     tabsData = tabsData.filter(({ profile }) => !!profile);
 
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
+    const skipProfilesQuery = benchmarksLoading || filter.length === 0;
     const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
         variables: {
             filter
         },
-        skip: filter.length === 0
+        skip: skipProfilesQuery
     });
     const dataState = ((profileIds?.length > 0) ? profilesData : undefined);
     const loadingState = ((loading || benchmarksLoading) ? true : undefined);
+    const noRuleSets = !error && !loadingState && profileIds?.length === 0;
+    const profiles = skipProfilesQuery ? [] : profilesData?.profiles.edges.map((p) => (p.node));
 
     useLayoutEffect(() => {
-        if (profilesData) {
-            const profiles = profilesData?.profiles.edges.map((p) => (p.node));
-
+        if (!loadingState) {
             change('selectedRuleRefIds', profiles.map((profile) => ({
                 id: profile.id,
                 ruleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile.id)?.ruleRefIds ||
                             profile.rules.map((rule) => (rule.refId))
             })));
         }
-    }, [profilesData]);
+    }, [profiles, loadingState]);
 
     return <React.Fragment>
         <TextContent className='pf-u-pb-md'>
@@ -154,7 +158,18 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
             </Text>
         </TextContent>
 
-        <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState } }>
+        <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState, noRuleSets } }>
+            <StateViewPart stateKey="noRuleSets">
+                <EmptyState>
+                    <Title headingLevel="h1" size="xl">
+                        No rules can be configured
+                    </Title>
+                    <EmptyStateBody>
+                        The policy type selected does not exist for the systems and
+                        OS versions selected in the previous steps.
+                    </EmptyStateBody>
+                </EmptyState>
+            </StateViewPart>
             <StateViewPart stateKey="loading">
                 <EmptyTable><Spinner/></EmptyTable>
             </StateViewPart>
