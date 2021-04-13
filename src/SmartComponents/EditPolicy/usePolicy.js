@@ -21,12 +21,42 @@ const useCreateBusinessObjective = () => {
     };
 };
 
+const useAssociateSystems = () => {
+    const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
+
+    return async ({ id }, hosts) => {
+        const { data } = await associateSystems({
+            variables: { input: {
+                id,
+                systemIds: hosts.map((h) => (h.id))
+            } }
+        });
+        return data?.associateSystems?.profile;
+    };
+};
+
+const useAssociateRules = () => {
+    const [associateRules] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
+
+    return async ({ id, ruleRefIds }, profiles) => {
+        const profile = profiles.find((profile) => (
+            profile.id === id || profile.parentProfileId === id
+        ));
+        const ruleInput = {
+            id: profile?.id,
+            ruleRefIds
+        };
+
+        await associateRules({ variables: { input: ruleInput } });
+    };
+};
+
 const usePolicy = () => {
     const createBusinessObjective = useCreateBusinessObjective();
     const [updateProfile] = useMutation(UPDATE_PROFILE);
     const [createProfile] = useMutation(CREATE_PROFILE);
-    const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
-    const [associateRules] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
+    const associateSystems = useAssociateSystems();
+    const associateRules = useAssociateRules();
 
     return async (policy, updatedPolicy, onProgress) => {
         const selectedRuleRefIds = updatedPolicy?.selectedRuleRefIds || [];
@@ -70,23 +100,11 @@ const usePolicy = () => {
             dispatchProgress();
         }
 
-        let { data: { associateSystems: { profile: { policy: { profiles } } } } } = await associateSystems({
-            variables: { input: {
-                id: policy.id,
-                systemIds: updatedPolicy.hosts.map((h) => (h.id))
-            } }
-        });
+        const { policy: { profiles } } = await associateSystems(policy, updatedPolicy.hosts);
         dispatchProgress();
 
-        for (const { id, ruleRefIds } of selectedRuleRefIds) {
-            let ruleInput = {
-                id: profiles.find((profile) => (
-                    profile.id === id || profile.parentProfileId === id
-                )).id,
-                ruleRefIds
-            };
-
-            await associateRules({ variables: { input: ruleInput } });
+        for (const profileSelectedRuleRefIds of selectedRuleRefIds) {
+            await associateRules(profileSelectedRuleRefIds, profiles);
             dispatchProgress();
         }
     };
