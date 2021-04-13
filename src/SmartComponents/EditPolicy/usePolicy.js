@@ -28,8 +28,20 @@ const usePolicy = () => {
     const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
     const [associateRules] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
 
-    return async (policy, updatedPolicy) => {
+    return async (policy, updatedPolicy, onProgress) => {
+        const selectedRuleRefIds = updatedPolicy?.selectedRuleRefIds || [];
+
+        const expectedUpdates = 3 + selectedRuleRefIds.length;
+        let progress = 0;
+        const dispatchProgress = () => {
+            if (onProgress) {
+                onProgress((++progress) / expectedUpdates);
+            }
+        };
+
         const businessObjectiveId = await createBusinessObjective(policy, updatedPolicy?.businessObjective);
+        dispatchProgress();
+
         let policyInput = {
             name: updatedPolicy.name,
             description: updatedPolicy.description,
@@ -49,11 +61,13 @@ const usePolicy = () => {
                 data: { createProfile: { profile: { id } } }
             } = await createProfile({ variables: { input: policyInput } });
 
+            dispatchProgress();
             policy = { id };
         } else {
             policyInput.id = policy.id;
 
             await updateProfile({ variables: { input: policyInput } });
+            dispatchProgress();
         }
 
         let { data: { associateSystems: { profile: { policy: { profiles } } } } } = await associateSystems({
@@ -62,8 +76,9 @@ const usePolicy = () => {
                 systemIds: updatedPolicy.hosts.map((h) => (h.id))
             } }
         });
+        dispatchProgress();
 
-        for (const { id, ruleRefIds } of updatedPolicy.selectedRuleRefIds) {
+        for (const { id, ruleRefIds } of selectedRuleRefIds) {
             let ruleInput = {
                 id: profiles.find((profile) => (
                     profile.id === id || profile.parentProfileId === id
@@ -72,6 +87,7 @@ const usePolicy = () => {
             };
 
             await associateRules({ variables: { input: ruleInput } });
+            dispatchProgress();
         }
     };
 };

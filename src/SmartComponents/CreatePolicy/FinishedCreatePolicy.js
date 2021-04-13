@@ -30,8 +30,12 @@ const FinishedCreatePolicy = ({
     const [failed, setFailed] = useState(false);
     const updatePolicy = usePolicy();
 
+    const onProgress = (progress) => {
+        setPercent(progress * 100);
+    };
+
     useEffect(() => {
-        updatePolicy(null, {
+        const newPolicy = {
             cloneFromProfileId,
             description,
             name,
@@ -41,7 +45,9 @@ const FinishedCreatePolicy = ({
             benchmarkId,
             hosts: systemIds.map((id) => ({ id })),
             selectedRuleRefIds
-        }).then(() => {
+        };
+
+        updatePolicy(null, newPolicy, onProgress).then(() => {
             setPercent(100);
             setMessage();
         }).catch((error) => {
