@@ -1,3 +1,18 @@
+.edit-policy-modal {
+  height: 768px;
+
+  .tabbed-rules-table {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+.create-policy-wizard {
+  .tabbed-rules-table {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
 
 .pf-c-page__main .pf-c-page-header.pf-c-page__main-section {
   &.page-header-tabs {

@@ -199,7 +199,7 @@ export const EditPolicy = ({ route }) => {
 
     return <Modal
         isOpen
-        style={ { height: '768px' } }
+        className='edit-policy-modal'
         width={ 1220 }
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }

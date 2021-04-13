@@ -106,19 +106,19 @@ const ProfileTabContent = ({
                 <Spinner />
             </StateViewPart>
             <StateViewPart stateKey="rules">
-
-                <SystemRulesTable
-                    remediationAvailableFilter
-                    remediationsEnabled={false}
-                    columns={ columns }
-                    profileRules={ [{ profile, rules: (rules || []) }] }
-                    selectedRefIds={ selectedRuleRefIds }
-                    handleSelect={
-                        handleSelect
-                        && ((selectedRuleRefIds) => handleSelect(profile, selectedRuleRefIds))
-                    }
-                    { ...rulesTableProps } />
-
+                <div className='tabbed-rules-table'>
+                    <SystemRulesTable
+                        remediationAvailableFilter
+                        remediationsEnabled={false}
+                        columns={ columns }
+                        profileRules={ [{ profile, rules: (rules || []) }] }
+                        selectedRefIds={ selectedRuleRefIds }
+                        handleSelect={
+                            handleSelect
+                            && ((selectedRuleRefIds) => handleSelect(profile, selectedRuleRefIds))
+                        }
+                        { ...rulesTableProps } />
+                </div>
             </StateViewPart>
         </StateViewWithError>
     </React.Fragment>;
