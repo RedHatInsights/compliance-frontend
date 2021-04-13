@@ -119,14 +119,21 @@ export const EditPolicy = ({ route }) => {
         ]);
     };
 
+    const onSave = () => (
+        updatePolicy(policy, updatedPolicy).then(() =>
+            linkToBackgroundWithHash()
+        ).catch(() =>
+            // TODO report error
+            linkToBackgroundWithHash()
+        )
+    );
+
     const actions = [
         <Button
             isDisabled={ saveEnabled }
             key='save'
             variant='primary'
-            onClick={ () => (
-                updatePolicy(policy, updatedPolicy).then(() => linkToBackgroundWithHash())
-            ) }>
+            onClick={ onSave }>
             Save
         </Button>,
         <Button
