@@ -17,8 +17,17 @@ export const CreatePolicy = ({
 }) => {
     const history = useHistory();
     const [stepIdReached, setStepIdReached] = useState(1);
+
+    const resetAnchor = () => {
+        const { location } = history;
+        if (location.hash) {
+            history.push({ ...location, hash: '' });
+        }
+    };
+
     const onNext = ({ id }) => {
         setStepIdReached(stepIdReached < id ? id : stepIdReached);
+        resetAnchor();
     };
 
     const onClose = () => {
@@ -74,11 +83,13 @@ export const CreatePolicy = ({
             <Wizard
                 isOpen
                 width={ 1220 }
+                onNext={ onNext }
+                onGoToStep={ resetAnchor }
+                onBack={ resetAnchor }
                 onClose={ onClose }
                 title="Create SCAP policy"
                 description="Create a new policy for managing SCAP compliance"
-                steps={ steps }
-                onNext={ onNext } />
+                steps={ steps } />
         </React.Fragment>
     );
 };
