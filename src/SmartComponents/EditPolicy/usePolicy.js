@@ -63,7 +63,7 @@ const usePolicy = () => {
             } }
         });
 
-        updatedPolicy.selectedRuleRefIds.forEach(async ({ id, ruleRefIds }) => {
+        for (const { id, ruleRefIds } of updatedPolicy.selectedRuleRefIds) {
             let ruleInput = {
                 id: profiles.find((profile) => (
                     profile.id === id || profile.parentProfileId === id
@@ -72,7 +72,7 @@ const usePolicy = () => {
             };
 
             await associateRules({ variables: { input: ruleInput } });
-        });
+        }
     };
 };
 
