@@ -26,6 +26,7 @@ exports[`ErrorPage expect to render without error 1`] = `
     size="xl"
     style={
       Object {
+        "color": "var(--pf-global--danger-color--100)",
         "opacity": "0.5",
       }
     }
