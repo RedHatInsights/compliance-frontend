@@ -43,6 +43,7 @@ const FinishedCreatePolicy = ({
             selectedRuleRefIds
         }).then(() => {
             setPercent(100);
+            setMessage();
         }).catch((error) => {
             setMessage(error.networkError?.message);
             setErrors(error.networkError?.result?.errors);
