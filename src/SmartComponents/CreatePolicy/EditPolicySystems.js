@@ -54,7 +54,7 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         </TextContent>
         <TextContent className="pf-u-mb-md">
             <Text>
-                Choose a different operating system, or connect RHEL { osMajorVersion } systems to Insights.
+                Choose a different operating system, or connect <b>RHEL { osMajorVersion }</b> systems to Insights.
             </Text>
         </TextContent>
         <WizardContextConsumer>
