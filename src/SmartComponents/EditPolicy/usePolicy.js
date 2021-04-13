@@ -12,11 +12,13 @@ const useCreateBusinessObjective = () => {
         } else if (newBusinessObjective?.title === '') {
             return null;
         } else {
-            const businessObjective = await create({ variables: {
+            const { data, error } = await create({ variables: {
                 input: { title: newBusinessObjective.title }
             } });
 
-            return businessObjective.data.createBusinessObjective.businessObjective.id;
+            if (error) { throw error; }
+
+            return data.createBusinessObjective.businessObjective.id;
         }
     };
 };
@@ -25,12 +27,15 @@ const useAssociateSystems = () => {
     const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
 
     return async ({ id }, hosts) => {
-        const { data } = await associateSystems({
+        const { data, error } = await associateSystems({
             variables: { input: {
                 id,
                 systemIds: hosts.map((h) => (h.id))
             } }
         });
+
+        if (error) { throw error; }
+
         return data?.associateSystems?.profile;
     };
 };
@@ -47,7 +52,8 @@ const useAssociateRules = () => {
             ruleRefIds
         };
 
-        await associateRules({ variables: { input: ruleInput } });
+        const { error } = await associateRules({ variables: { input: ruleInput } });
+        if (error) { throw error; }
     };
 };
 
@@ -88,15 +94,20 @@ const usePolicy = () => {
             policyInput.benchmarkId = updatedPolicy.benchmarkId;
 
             let {
-                data: { createProfile: { profile: { id } } }
+                data: { createProfile: { profile: { id } } },
+                error
             } = await createProfile({ variables: { input: policyInput } });
+
+            if (error) { throw error; }
 
             dispatchProgress();
             policy = { id };
         } else {
             policyInput.id = policy.id;
 
-            await updateProfile({ variables: { input: policyInput } });
+            let { error } = await updateProfile({ variables: { input: policyInput } });
+            if (error) { throw error; }
+
             dispatchProgress();
         }
 
