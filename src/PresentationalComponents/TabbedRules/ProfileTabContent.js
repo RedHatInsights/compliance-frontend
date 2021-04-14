@@ -24,7 +24,7 @@ ProfileSystemCount.propTypes = {
 
 const SSGVersionText = ({ profile, newOsMinorVersion }) => (
     <Text component={ TextVariants.p }>
-        SSG version { profile.ssgVersion }
+        SSG version: { profile.ssgVersion }
         {' '}
         <Popover
             position='right'
@@ -93,8 +93,9 @@ const ProfileTabContent = ({
         <Grid>
             <TextContent className="pf-u-mt-md">
                 <Text component={ TextVariants.h3 } >
-                    <OsVersionText { ...{ profile, newOsMinorVersion } } />
-                    {' '}
+                    <span className='pf-u-pr-sm'>
+                        <OsVersionText { ...{ profile, newOsMinorVersion } } />
+                    </span>
                     <ProfileSystemCount count={ systemCount } />
                 </Text>
                 <SSGVersionText { ...{ profile, newOsMinorVersion } } />
