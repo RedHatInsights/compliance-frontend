@@ -74,6 +74,7 @@ const DeletePolicy = () => {
             </Text>
             <Checkbox
                 label='I understand this will delete the policy and all associated reports'
+                id={ `deleting-policy-check-${id}` }
                 isChecked={ deleteEnabled }
                 onChange={ setDeleteEnabled }
             />

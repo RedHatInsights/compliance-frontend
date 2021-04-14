@@ -61,6 +61,7 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   </Text>
   <Checkbox
     className=""
+    id="deleting-policy-check-1"
     isChecked={false}
     isDisabled={false}
     isValid={true}
