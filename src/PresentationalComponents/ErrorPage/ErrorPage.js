@@ -6,7 +6,7 @@ import {
     Text
 } from '@patternfly/react-core';
 import {
-    WarningTriangleIcon
+    ExclamationCircleIcon
 } from '@patternfly/react-icons';
 import InvalidObject from '@redhat-cloud-services/frontend-components/InvalidObject';
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
@@ -26,7 +26,7 @@ const ErrorPage = ({ error, ...props }) => {
     }
 
     return <section {...props} className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet">
-        <WarningTriangleIcon size="xl" style={ { opacity: '0.5', color: 'var(--pf-global--danger-color--100)' } } />
+        <ExclamationCircleIcon size="xl" style={ { color: 'var(--pf-global--danger-color--100)' } } />
         <Title headingLevel='h1'>There was an error</Title>
         <Text>
             If you need to contact Red Hat Support about this, this is the exact error:
