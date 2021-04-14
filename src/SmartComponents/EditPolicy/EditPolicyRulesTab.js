@@ -112,8 +112,8 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
         },
         skip: filter.length === 0
     });
-    const dataState = ((tabsData?.length > 0) ? profilesData : undefined);
     const loadingState = ((loading || benchmarksLoading) ? true : undefined);
+    const dataState = ((!loadingState && tabsData?.length > 0) ? profilesData : undefined);
 
     useLayoutEffect(() => {
         if (profilesData) {
