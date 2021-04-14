@@ -79,14 +79,16 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
             const benchmark = getBenchmarkBySupportedOsMinor(benchmarks.collection, osMinorVersion);
             if (benchmark) {
                 const benchmarkProfile = getBenchmarkProfile(benchmark, policy.refId);
-                profile = policy.policy.profiles.find((profile) => (profile.parentProfileId === benchmarkProfile.id));
+                if (benchmarkProfile) {
+                    profile = policy.policy.profiles.find((profile) => (profile.parentProfileId === benchmarkProfile.id));
 
-                profile = {
-                    ...benchmarkProfile,
-                    benchmark: benchmarkProfile.relationships?.benchmark?.data,
-                    rules: benchmarkProfile.relationships?.rules?.data,
-                    ...profile
-                };
+                    profile = {
+                        ...benchmarkProfile,
+                        benchmark: benchmarkProfile.relationships?.benchmark?.data,
+                        rules: benchmarkProfile.relationships?.rules?.data,
+                        ...profile
+                    };
+                }
             }
         }
 
