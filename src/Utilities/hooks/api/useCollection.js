@@ -60,10 +60,16 @@ const useCollection = (collection, options = {}, effects = []) => {
     };
 
     useEffect(() => {
+        setCollectionState({
+            data: undefined,
+            loading: true,
+            error: undefined
+        });
+
         fetchCollection(apiClient, collection, params, options).then((data) => {
             setCollectionState({
                 data,
-                loading: undefined,
+                loading: false,
                 error: undefined
             });
         });
