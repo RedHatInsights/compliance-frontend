@@ -30,8 +30,12 @@ const FinishedCreatePolicy = ({
     const [failed, setFailed] = useState(false);
     const updatePolicy = usePolicy();
 
+    const onProgress = (progress) => {
+        setPercent(progress * 100);
+    };
+
     useEffect(() => {
-        updatePolicy(null, {
+        const newPolicy = {
             cloneFromProfileId,
             description,
             name,
@@ -41,8 +45,11 @@ const FinishedCreatePolicy = ({
             benchmarkId,
             hosts: systemIds.map((id) => ({ id })),
             selectedRuleRefIds
-        }).then(() => {
+        };
+
+        updatePolicy(null, newPolicy, onProgress).then(() => {
             setPercent(100);
+            setMessage();
         }).catch((error) => {
             setMessage(error.networkError?.message);
             setErrors(error.networkError?.result?.errors);
@@ -55,6 +62,17 @@ const FinishedCreatePolicy = ({
         listErrors = errors.map((error) => (
             <ListItem key={ error }>{ error }</ListItem>
         ));
+    }
+
+    let secondaryActions;
+    if (percent === 100 || failed) {
+        secondaryActions = (
+            <Button
+                variant={'primary'}
+                onClick={() => { onWizardFinish(); }}>
+                { failed ? 'Back' : 'Return to application' }
+            </Button>
+        );
     }
 
     return (
@@ -77,14 +95,7 @@ const FinishedCreatePolicy = ({
                     </EmptyStateBody>
                 }
                 <EmptyStateSecondaryActions>
-                    { percent === 100 ?
-                        <Button
-                            variant={'primary'}
-                            onClick={() => { onWizardFinish(); }}
-                        >
-                            Return to application
-                        </Button> :
-                        '' }
+                    { secondaryActions }
                 </EmptyStateSecondaryActions>
             </EmptyState>
         </Bullseye>
