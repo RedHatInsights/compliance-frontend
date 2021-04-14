@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyRulesTab expect to render without error 1`] = `
+<StateViewWithError
+  stateValues={
+    Object {
+      "data": undefined,
+      "empty": true,
+      "error": undefined,
+      "loading": undefined,
+    }
+  }
+>
+  <StateViewPart
+    stateKey="loading"
+  >
+    <EmptyTable>
+      <Spinner />
+    </EmptyTable>
+  </StateViewPart>
+  <StateViewPart
+    stateKey="data"
+  >
+    <TextContent>
+      <Text>
+        Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.
+      </Text>
+    </TextContent>
+    <TabbedRules
+      columns={
+        Array [
+          Object {
+            "title": "Name",
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          Object {
+            "title": "Severity",
+            "transforms": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          Object {
+            "original": "Ansible",
+            "props": Object {
+              "tooltip": "Ansible",
+            },
+            "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
+               Ansible
+            </React.Fragment>,
+            "transforms": Array [
+              [Function],
+              [Function],
+            ],
+          },
+        ]
+      }
+      handleSelect={[Function]}
+      level={1}
+      remediationsEnabled={false}
+      selectedFilter={true}
+      tabsData={Array []}
+    />
+  </StateViewPart>
+  <StateViewPart
+    stateKey="empty"
+  >
+    <EditPolicyRulesTabEmptyState />
+  </StateViewPart>
+</StateViewWithError>
+`;

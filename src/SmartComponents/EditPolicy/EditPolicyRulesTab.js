@@ -1,5 +1,7 @@
 import React, { useLayoutEffect } from 'react';
-import { Text, TextContent } from '@patternfly/react-core';
+import {
+    EmptyState, EmptyStateBody, Text, TextContent, Title
+} from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
@@ -56,6 +58,18 @@ const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) => (
 const getBenchmarkProfile = (benchmark, profileRefId) => (
     benchmark.profiles.find((benchmarkProfile) => (benchmarkProfile.refId === profileRefId))
 );
+
+const EditPolicyRulesTabEmptyState = () => <EmptyState>
+    <Title headingLevel="h5" size="lg">
+        No rules can be configured
+    </Title>
+    <EmptyStateBody>
+        This policy has no associated systems, and therefore no rules can be configured.
+    </EmptyStateBody>
+    <EmptyStateBody>
+        Add at least one system to configure rules for this policy.
+    </EmptyStateBody>
+</EmptyState>;
 
 const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
     const osMajorVersion = policy?.osMajorVersion;
@@ -128,7 +142,9 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
         }
     }, [profilesData]);
 
-    return <StateViewWithError stateValues={ { error, data: dataState, loading: loadingState } }>
+    return <StateViewWithError stateValues={ {
+        error, data: dataState, loading: loadingState, empty: !loadingState && !dataState
+    } }>
         <StateViewPart stateKey="loading">
             <EmptyTable><Spinner/></EmptyTable>
         </StateViewPart>
@@ -145,6 +161,9 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
                 selectedFilter
                 level={ 1 }
                 handleSelect={ handleSelect } />
+        </StateViewPart>
+        <StateViewPart stateKey="empty">
+            <EditPolicyRulesTabEmptyState />
         </StateViewPart>
     </StateViewWithError>;
 };
