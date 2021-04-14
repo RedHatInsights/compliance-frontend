@@ -7,6 +7,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
+        spinnerAriaValueText="Saving"
         variant="primary"
       >
         Save
@@ -139,6 +140,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
+        spinnerAriaValueText="Saving"
         variant="primary"
       >
         Save
