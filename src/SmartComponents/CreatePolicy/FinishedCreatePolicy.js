@@ -64,6 +64,17 @@ const FinishedCreatePolicy = ({
         ));
     }
 
+    let secondaryActions;
+    if (percent === 100 || failed) {
+        secondaryActions = (
+            <Button
+                variant={'primary'}
+                onClick={() => { onWizardFinish(); }}>
+                { failed ? 'Back' : 'Return to application' }
+            </Button>
+        );
+    }
+
     return (
         <Bullseye>
             <EmptyState variant={EmptyStateVariant.full}>
@@ -84,14 +95,7 @@ const FinishedCreatePolicy = ({
                     </EmptyStateBody>
                 }
                 <EmptyStateSecondaryActions>
-                    { percent === 100 ?
-                        <Button
-                            variant={'primary'}
-                            onClick={() => { onWizardFinish(); }}
-                        >
-                            Return to application
-                        </Button> :
-                        '' }
+                    { secondaryActions }
                 </EmptyStateSecondaryActions>
             </EmptyState>
         </Bullseye>
