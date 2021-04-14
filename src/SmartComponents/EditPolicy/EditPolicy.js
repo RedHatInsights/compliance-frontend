@@ -98,6 +98,7 @@ export const EditPolicy = ({ route }) => {
     const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
     const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
+    const [isSaving, setIsSaving] = useState();
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
@@ -119,20 +120,27 @@ export const EditPolicy = ({ route }) => {
         ]);
     };
 
-    const onSave = () => (
-        updatePolicy(policy, updatedPolicy).then(() =>
-            linkToBackgroundWithHash()
-        ).catch(() =>
+    const onSave = () => {
+        if (isSaving) { return; }
+
+        setIsSaving(true);
+        updatePolicy(policy, updatedPolicy).then(() => {
+            setIsSaving(false);
+            linkToBackgroundWithHash();
+        }).catch(() => {
             // TODO report error
-            linkToBackgroundWithHash()
-        )
-    );
+            setIsSaving(false);
+            linkToBackgroundWithHash();
+        });
+    };
 
     const actions = [
         <Button
             isDisabled={ saveEnabled }
             key='save'
             variant='primary'
+            spinnerAriaValueText='Saving'
+            isLoading={ isSaving }
             onClick={ onSave }>
             Save
         </Button>,
