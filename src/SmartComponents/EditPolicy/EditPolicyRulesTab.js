@@ -59,13 +59,15 @@ const getBenchmarkProfile = (benchmark, profileRefId) => (
 
 const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
     const osMajorVersion = policy?.osMajorVersion;
+    const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
-        `and latest_supported_os_minor_version ^ (${ Object.keys(osMinorVersionCounts).sort().join(',') })`;
+        `and latest_supported_os_minor_version ^ (${ osMinorVersions.join(',') })`;
 
     const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
         type: 'benchmark',
         include: ['profiles'],
-        params: { search: benchmarkSearch }
+        params: { search: benchmarkSearch },
+        skip: osMinorVersions.length === 0
     }, [benchmarkSearch]);
 
     let profileIds = [];
