@@ -32,14 +32,14 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
   showClose={true}
   style={
     Object {
-      "height": "400px",
+      "height": "768px",
     }
   }
   title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
   variant="default"
-  width={1000}
+  width={1220}
 >
   <Form>
     <RoutedTabs
@@ -165,14 +165,14 @@ exports[`EditPolicy expect to render without error 1`] = `
   showClose={true}
   style={
     Object {
-      "height": "400px",
+      "height": "768px",
     }
   }
   title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
   variant="default"
-  width={1000}
+  width={1220}
 >
   <Form>
     <RoutedTabs
