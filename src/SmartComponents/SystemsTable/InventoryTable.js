@@ -95,7 +95,7 @@ export const InventoryTable = ({
             setIsLoaded(true);
             setPagination(() => ({ page, perPage }));
 
-            if (emptyStateComponent && !loading && data.systems.totalCount === 0) {
+            if (emptyStateComponent && !loading && data.systems.totalCount === 0 && combindedFilter.length === 0) {
                 setIsEmpty(true);
             }
 
