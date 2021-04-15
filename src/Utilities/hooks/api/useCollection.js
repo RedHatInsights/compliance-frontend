@@ -48,7 +48,7 @@ const fetchCollection = async (apiClient, collection, params = {}, options = {})
 const useCollection = (collection, options = {}, effects = []) => {
     const [collectionState, setCollectionState] = useState({
         data: undefined,
-        loading: true,
+        loading: !options?.skip,
         error: undefined
     });
     const apiClient = useApi({
@@ -60,6 +60,16 @@ const useCollection = (collection, options = {}, effects = []) => {
     };
 
     useEffect(() => {
+        if (options?.skip) {
+            setCollectionState({
+                data: undefined,
+                loading: false,
+                error: undefined
+            });
+
+            return;
+        }
+
         setCollectionState({
             data: undefined,
             loading: true,
@@ -73,7 +83,7 @@ const useCollection = (collection, options = {}, effects = []) => {
                 error: undefined
             });
         });
-    }, effects);
+    }, [...effects, options?.skip]);
 
     return collectionState;
 };
