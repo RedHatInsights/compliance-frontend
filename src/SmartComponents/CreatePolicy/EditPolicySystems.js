@@ -84,7 +84,8 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
             <Form>
                 <FormGroup>
                     <InvCmp
-                        prependComponent={prependComponent}
+                        showOsMinorVersionFilter={ [osMajorVersion] }
+                        prependComponent={ prependComponent }
                         emptyStateComponent={multiversionRules ? emptyStateComponent : undefined}
                         columns={columns}
                         remediationsEnabled={false}

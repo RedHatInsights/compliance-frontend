@@ -48,6 +48,36 @@ export const systemsOsFilterConfiguration = (policies) => ([{
     }))
 }]);
 
+const toSystemsOsMinorFilterConfigurationItem = (osVersions) => (
+    (majorVersion) => ({
+        label: `RHEL ${ majorVersion }`,
+        value: majorVersion,
+        items: osVersions[majorVersion].map((minorVersion) => ({
+            label: `RHEL ${ majorVersion }.${ minorVersion }`,
+            value: minorVersion
+        }))
+    })
+);
+
+export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
+    const filterString = (value) => ([
+        Object.keys(value).flatMap((majorVersion) => (
+            Object.keys(value[majorVersion]).map((minorVersion) => (
+                value[majorVersion][minorVersion] &&
+                    `(os_major_version = ${ majorVersion } AND os_minor_version = ${ minorVersion })`
+            ))
+        )).filter((v) => (!!v)).join(' OR ')
+    ]);
+    const items = Object.keys(osMajorVersions).map(toSystemsOsMinorFilterConfigurationItem(osMajorVersions));
+
+    return [{
+        type: conditionalFilterType.group,
+        label: 'Operating System',
+        filterString,
+        items
+    }];
+};
+
 export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.checkbox,
