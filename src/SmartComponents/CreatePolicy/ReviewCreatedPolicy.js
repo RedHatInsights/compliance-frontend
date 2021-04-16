@@ -64,7 +64,7 @@ const ReviewCreatedPolicy = ({
                                     RHEL {osMajorVersion}.{osMinorVersion}
                                 </TextListItem>
                                 <TextListItem component={TextListItemVariants.dd}>
-                                    { count }
+                                    { count } { count > 1 ? 'systems' : 'system' }
                                 </TextListItem>
                             </React.Fragment>
                         )) }
