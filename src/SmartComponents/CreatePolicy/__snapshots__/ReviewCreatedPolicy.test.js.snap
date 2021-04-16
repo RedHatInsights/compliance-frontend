@@ -59,10 +59,20 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           </Text>
           <Text
             component="h3"
+            style={
+              Object {
+                "marginTop": 0,
+              }
+            }
           >
             <h3
               className=""
               data-pf-content={true}
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
             >
               C2S for Red Hat Enterprise Linux 6
             </h3>
