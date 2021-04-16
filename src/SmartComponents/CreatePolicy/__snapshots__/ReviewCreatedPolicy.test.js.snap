@@ -170,6 +170,8 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           data-pf-content={true}
                         >
                           10
+                           
+                          systems
                         </dd>
                       </TextListItem>
                       <TextListItem
@@ -203,6 +205,8 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                           data-pf-content={true}
                         >
                           3
+                           
+                          systems
                         </dd>
                       </TextListItem>
                     </dl>
