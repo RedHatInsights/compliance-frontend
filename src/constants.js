@@ -72,7 +72,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
 
     return [{
         type: conditionalFilterType.group,
-        label: 'Operating System',
+        label: 'Operating system',
         filterString,
         items
     }];

@@ -82,16 +82,6 @@ exports[`InventoryTable expect to not render a loading state 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
-              "filterValues": Object {
-                "groups": Array [],
-                "onChange": [Function],
-                "selected": undefined,
-              },
-              "id": "operatingsystem",
-              "label": "Operating System",
-              "type": "group",
-            },
           ],
         }
       }

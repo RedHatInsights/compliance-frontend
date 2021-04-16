@@ -27,5 +27,5 @@ export const useOsMinorVersionFilter = (showFilter) => {
         skip: !showFilter
     });
 
-    return osMinorVersionFilter(groupByMajorVersion(supportedSsgs?.collection, showFilter));
+    return showFilter ? osMinorVersionFilter(groupByMajorVersion(supportedSsgs?.collection, showFilter)) : [];
 };
