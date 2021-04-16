@@ -9,6 +9,10 @@
   }
 }
 
+.pf-c-modal-box__body .pf-c-table.pf-m-sticky-header > thead > tr > * {
+  top: calc(-1 * var(--pf-c-modal-box__body--PaddingTop));
+}
+
 .policy-delete-header-text {
   padding-left: 10px;
 }
