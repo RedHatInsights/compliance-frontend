@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import {
     Text, TextVariants, TextContent, Grid, Spinner, Badge, Popover

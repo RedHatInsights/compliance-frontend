@@ -11,7 +11,7 @@ import {
 } from '@patternfly/react-core';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { connect, useDispatch } from 'react-redux';

@@ -7,7 +7,7 @@ import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
 import blue300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
 import propTypes from 'prop-types';
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 
 import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';

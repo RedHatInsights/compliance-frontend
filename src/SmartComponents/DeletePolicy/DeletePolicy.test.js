@@ -1,12 +1,12 @@
 import { useLocation } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 import DeletePolicy from './DeletePolicy.js';
 
 jest.mock('Utilities/Dispatcher');
 
-jest.mock('@apollo/react-hooks', () => ({
+jest.mock('@apollo/client', () => ({
     ...jest.requireActual('@apollo/react-hooks'),
     useMutation: jest.fn(() => ({}))
 }));

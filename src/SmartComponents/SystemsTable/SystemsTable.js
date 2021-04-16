@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import propTypes from 'prop-types';
-import { withApollo } from '@apollo/react-hoc';
+import { withApollo } from '@apollo/client/react/hoc';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { pickBy } from 'lodash';

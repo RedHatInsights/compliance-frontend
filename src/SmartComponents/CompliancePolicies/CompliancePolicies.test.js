@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { profiles } from '@/__fixtures__/profiles.js';
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 jest.mock('react-router-dom');
 
 window.insights = {

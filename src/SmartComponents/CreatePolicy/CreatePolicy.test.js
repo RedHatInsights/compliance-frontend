@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { benchmarksQuery } from '@/__fixtures__/benchmarks_rules.js';
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 
 import { CreatePolicy } from './CreatePolicy.js';
 

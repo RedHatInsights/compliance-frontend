@@ -66,6 +66,7 @@ exports[`InventoryTable expect to not render a loading state 1`] = `
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={

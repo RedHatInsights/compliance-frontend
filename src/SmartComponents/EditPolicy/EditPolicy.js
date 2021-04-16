@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Button, Form, Modal, Tab, TabTitleText, Spinner } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
 import { uniq } from 'Utilities/helpers';

@@ -1,6 +1,6 @@
 import { init } from 'Store';
 import useFeature from 'Utilities/hooks/useFeature';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 
 import {
     QUERY,
@@ -63,7 +63,7 @@ jest.mock('../SystemsTable/SystemsTable', () => {
 
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 jest.mock('Utilities/hooks/useFeature');
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),

@@ -1,9 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import gql from 'graphql-tag';
-import {
-    useQuery
-} from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import {
     useParams
 } from 'react-router-dom';

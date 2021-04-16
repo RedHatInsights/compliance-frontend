@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-jest.mock('@apollo/react-hooks');
+import { useQuery } from '@apollo/client';
+jest.mock('@apollo/client');
 
 import { EditPolicyRules } from './EditPolicyRules.js';
 

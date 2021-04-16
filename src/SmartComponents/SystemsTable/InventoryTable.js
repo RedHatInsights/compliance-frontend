@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { withApollo } from '@apollo/react-hoc';
+import { withApollo } from '@apollo/client/react/hoc';
 import PropTypes from 'prop-types';
 import { useStore, useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
