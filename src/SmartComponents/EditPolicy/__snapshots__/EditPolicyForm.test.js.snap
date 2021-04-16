@@ -38,6 +38,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
             "name": "parentpolicy",
           }
         }
+        setNewRuleTabs={[Function]}
       />
     </Tab>
     <Tab
@@ -49,7 +50,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       }
     >
       <EditPolicySystemsTab
-        policyOsMinorVersions={Array []}
+        newRuleTabs={false}
       />
     </Tab>
   </RoutedTabs>

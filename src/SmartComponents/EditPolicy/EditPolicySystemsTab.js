@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert, AlertActionLink, Text, TextContent } from '@patternfly/react-core';
-import { useSelector } from 'react-redux';
 import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import propTypes from 'prop-types';
@@ -40,17 +39,8 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.string
 };
 
-const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
+const EditPolicySystemsTab = ({ osMajorVersion, newRuleTabs }) => {
     const { push, location } = useHistory();
-    const selectedSystemOsMinorVersions = useSelector(state => (
-        state?.entities?.selectedEntities?.map((entity) => (`${entity.osMinorVersion}`))
-    ));
-
-    const newOsMinorVersions = () => (
-        selectedSystemOsMinorVersions?.find((systemOsMinorVersion) => (
-            !policyOsMinorVersions.includes(systemOsMinorVersion)
-        ))
-    );
 
     const columns = [{
         key: 'display_name',
@@ -82,7 +72,7 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
                 enableExport={ false }
                 remediationsEnabled={ false }
             />
-            {newOsMinorVersions() && <Alert
+            {newRuleTabs && <Alert
                 variant="info"
                 isInline
                 title="You selected a system that has a release version previously not included in this policy."
@@ -97,7 +87,7 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
 
 EditPolicySystemsTab.propTypes = {
     osMajorVersion: propTypes.string,
-    policyOsMinorVersions: propTypes.arrayOf(propTypes.number)
+    newRuleTabs: propTypes.bool
 };
 
 export default EditPolicySystemsTab;

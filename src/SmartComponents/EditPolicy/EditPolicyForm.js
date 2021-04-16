@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import { uniq } from 'Utilities/helpers';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
@@ -28,6 +27,7 @@ export const EditPolicyForm = ({
     const policyProfiles = policy?.policy?.profiles || [];
     const dispatch = useDispatch();
     const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
+    const [newRuleTabs, setNewRuleTabs] = useState(false);
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
 
     const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
@@ -89,6 +89,7 @@ export const EditPolicyForm = ({
                 <Tab eventKey='rules' title={ <TabTitleText>Rules</TabTitleText> }>
                     <EditPolicyRulesTab
                         policy={ policy }
+                        setNewRuleTabs={ setNewRuleTabs }
                         handleSelect={ handleRuleSelect }
                         selectedRuleRefIds={ selectedRuleRefIds }
                         osMinorVersionCounts={ osMinorVersionCounts }
@@ -98,7 +99,7 @@ export const EditPolicyForm = ({
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
                         osMajorVersion={ policy.osMajorVersion }
-                        policyOsMinorVersions={ uniq(policyProfiles.map(profile => profile.osMinorVersion)) }
+                        newRuleTabs={ newRuleTabs }
                     />
                 </Tab>
             </RoutedTabs>

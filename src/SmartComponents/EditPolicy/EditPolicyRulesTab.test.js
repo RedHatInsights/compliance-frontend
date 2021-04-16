@@ -22,7 +22,8 @@ describe('EditPolicyRulesTab', () => {
         const wrapper = shallow(
             <EditPolicyRulesTab
                 handleSelect={ () => {} }
-                policy={ { policy: policies.edges[0].node  } }
+                setNewRuleTabs={ () => {} }
+                policy={ { policy: { profiles: [] } } }
                 selectedRuleRefIds={ [] }
                 osMinorVersionCounts={ {} }
             />
@@ -34,6 +35,7 @@ describe('EditPolicyRulesTab', () => {
         const wrapper = shallow(
             <EditPolicyRulesTab
                 handleSelect={ () => {} }
+                setNewRuleTabs={ () => {} }
                 policy={ policies.edges[0].node }
                 selectedRuleRefIds={ [] }
                 osMinorVersionCounts={ {

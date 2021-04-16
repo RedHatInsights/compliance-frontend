@@ -120,7 +120,7 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
     }).filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion)
 );
 
-export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
+export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts, setNewRuleTabs }) => {
     const osMajorVersion = policy?.osMajorVersion;
     const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
@@ -152,6 +152,14 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     });
     const loadingState = ((profilesLoading || benchmarksLoading) ? true : undefined);
     const dataState = ((!loadingState && tabsData?.length > 0) ? profilesData : undefined);
+
+    if (!loadingState) {
+        setNewRuleTabs(!!tabsData.find(tab => (
+            policy.policy.profiles.find(profile => (
+                profile.osMinorVersion !== tab.newOsMinorVersion
+            ))
+        )));
+    }
 
     useLayoutEffect(() => {
         if (profilesData) {
@@ -198,6 +206,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
 
 EditPolicyRulesTab.propTypes = {
     handleSelect: propTypes.func,
+    setNewRuleTabs: propTypes.func,
     policy: propTypes.object,
     osMinorVersionCounts: propTypes.shape({
         osMinorVersion: propTypes.shape({
