@@ -35,6 +35,12 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
   <EditPolicyDetails
     policy={
       Object {
+        "benchmark": Object {
+          "latestSupportedOsMinorVersions": Array [
+            "7",
+            "8",
+          ],
+        },
         "complianceThreshold": 100,
         "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
         "id": "197eb783-7bca-45c5-978d-c1e89b0118da",

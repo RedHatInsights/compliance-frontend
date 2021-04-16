@@ -1,6 +1,8 @@
 import gql from 'graphql-tag';
 import pickBy from 'lodash/pickBy';
-import { systemsPolicyFilterConfiguration, systemsOsFilterConfiguration } from '@/constants';
+import {
+    systemsPolicyFilterConfiguration, systemsOsFilterConfiguration, systemsOsMinorFilterConfiguration
+} from '@/constants';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
@@ -77,6 +79,8 @@ export const policyFilter = (policies, osFilter) => ([
     ...systemsPolicyFilterConfiguration(policies),
     ...(osFilter ? systemsOsFilterConfiguration(policies) : [])
 ]);
+
+export const osMinorVersionFilter = (...args) => systemsOsMinorFilterConfiguration(...args);
 
 export const initFilterState = (filterConfig) => (
     pickBy(filterConfig.initialDefaultState(), (value) => (!!value))

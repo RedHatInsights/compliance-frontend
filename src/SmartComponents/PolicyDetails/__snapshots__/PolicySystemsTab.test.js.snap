@@ -530,5 +530,10 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   }
   remediationsEnabled={false}
   showActions={false}
+  showOsMinorVersionFilter={
+    Array [
+      7,
+    ]
+  }
 />
 `;

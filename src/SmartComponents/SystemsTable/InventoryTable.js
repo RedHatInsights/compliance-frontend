@@ -22,6 +22,7 @@ import ComplianceRemediationButton from '@redhat-cloud-services/frontend-compone
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
+import { useOsMinorVersionFilter } from './hooks';
 
 export const InventoryTable = ({
     columns,
@@ -42,7 +43,8 @@ export const InventoryTable = ({
     systemProps,
     defaultFilter,
     emptyStateComponent,
-    prependComponent
+    prependComponent,
+    showOsMinorVersionFilter
 }) => {
     const store = useStore();
     const dispatch = useDispatch();
@@ -53,11 +55,14 @@ export const InventoryTable = ({
     });
     const [isLoaded, setIsLoaded] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
+    const osMinorVersionFilter = useOsMinorVersionFilter(showOsMinorVersionFilter);
     const { conditionalFilter, activeFilters, buildFilterString } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : [])
+        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
+        ...osMinorVersionFilter
     ]);
+
     const total = useSelector(({ entities }) => entities?.systemsCount) || 0;
     const items = useSelector(({ entities } = {}) => (entities?.systems?.map((system) => (
         system?.node?.id
@@ -219,7 +224,11 @@ InventoryTable.propTypes = {
         isFullView: PropTypes.bool
     }),
     emptyStateComponent: PropTypes.node,
-    prependComponent: PropTypes.node
+    prependComponent: PropTypes.node,
+    showOsMinorVersionFilter: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.arrayOf(PropTypes.number)
+    ])
 };
 
 InventoryTable.defaultProps = {

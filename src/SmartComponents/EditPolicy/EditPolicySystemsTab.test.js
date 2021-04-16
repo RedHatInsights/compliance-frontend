@@ -14,6 +14,10 @@ jest.mock('react-redux', () => ({
 }));
 
 describe('EditPolicySystemsTab', () => {
+    const defaultProps = {
+        osMajorVersion: 7,
+        policyOsMinorVersions: [1, 2, 3]
+    };
     const MockComponent = jest.fn(({ children, loaded }) => {
         return children && loaded ? children : 'Loading...';
     });
@@ -33,7 +37,7 @@ describe('EditPolicySystemsTab', () => {
 
     it('expect to render without error', async () => {
         const wrapper = shallow(
-            <EditPolicySystemsTab />
+            <EditPolicySystemsTab { ...defaultProps } />
         );
         expect(toJson(wrapper)).toMatchSnapshot();
     });

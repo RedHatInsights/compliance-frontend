@@ -26,6 +26,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
       ]
     }
     compact={true}
+    defaultFilter="os_major_version = 7"
     emptyStateComponent={
       <React.Fragment>
         <TextContent
@@ -35,6 +36,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
             You do not have any 
             <b>
               RHEL 
+              7
             </b>
              systems connected to Insights and enabled for Compliance.
           </Text>
@@ -44,6 +46,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         >
           <Text>
             Connect RHEL 
+            7
              systems to Insights.
           </Text>
         </TextContent>
@@ -59,6 +62,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
             Select which of your 
             <b>
               RHEL 
+              7
             </b>
              systems should be included in this policy.
           </Text>
@@ -512,6 +516,11 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     }
     remediationsEnabled={false}
     showActions={false}
+    showOsMinorVersionFilter={
+      Array [
+        7,
+      ]
+    }
   />
 </Fragment>
 `;

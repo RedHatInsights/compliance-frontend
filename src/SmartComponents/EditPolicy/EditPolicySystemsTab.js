@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
     const { push, location } = useHistory();
     const selectedSystemOsMinorVersions = useSelector(state => (
-        state?.entities?.selectedEntities?.map(entity => `${entity.osMinorVersion}`)
+        state?.entities?.selectedEntities?.map((entity) => (`${entity.osMinorVersion}`))
     ));
 
     const newOsMinorVersions = () => (
@@ -59,9 +59,10 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
     return (
         <React.Fragment>
             <InventoryTable
-                prependComponent={prependComponent}
-                emptyStateComponent={emptyStateComponent}
-                columns={columns}
+                showOsMinorVersionFilter={ [osMajorVersion] }
+                prependComponent={ prependComponent }
+                emptyStateComponent={ emptyStateComponent }
+                columns={ columns }
                 compact
                 showActions={ false }
                 query={ GET_SYSTEMS_WITHOUT_FAILED_RULES }

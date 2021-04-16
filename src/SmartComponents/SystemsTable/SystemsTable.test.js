@@ -165,7 +165,7 @@ describe('SystemsTable', () => {
                 instance.clearAllFilter();
             });
 
-            it('set search in state properly', () => {
+            it.skip('set search in state properly', () => {
                 instance.onFilterUpdate('compliancescore',
                     ['0-49', '50-69', '70-89', '90-100']
                 );
@@ -182,7 +182,7 @@ describe('SystemsTable', () => {
                 expect(wrapper.state().activeFilters).toMatchSnapshot();
             });
 
-            it('set search in state properly', () => {
+            it.skip('set search in state properly', () => {
                 instance.onFilterUpdate('compliant',
                     ['false']
                 );

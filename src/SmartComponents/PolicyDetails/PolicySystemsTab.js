@@ -7,13 +7,14 @@ import { Link } from 'react-router-dom';
 import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
 import useFeature from 'Utilities/hooks/useFeature';
 
-const PolicySystemsTab = ({ policy, systemTableProps }) => {
+const PolicySystemsTab = ({ policy }) => {
     const newInventory = useFeature('newInventory');
     let showSsgVersions = useFeature('showSsgVersions');
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
         <InvCmp
+            showOsMinorVersionFilter={ [policy.majorOsVersion] }
             query={GET_SYSTEMS}
             policyId={ policy.id }
             defaultFilter={`policy_id = ${policy.id}`}
@@ -47,16 +48,15 @@ const PolicySystemsTab = ({ policy, systemTableProps }) => {
                 title: 'Operating system',
                 renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
             }]}
-            complianceThreshold={ policy.complianceThreshold }
-            { ...systemTableProps }
-        />
+            complianceThreshold={ policy.complianceThreshold } />
     );
 };
 
 PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
         id: propTypes.string.isRequired,
-        complianceThreshold: propTypes.number.isRequired
+        complianceThreshold: propTypes.number.isRequired,
+        majorOsVersion: propTypes.number.isRequired
     }),
     systemTableProps: propTypes.object
 };
