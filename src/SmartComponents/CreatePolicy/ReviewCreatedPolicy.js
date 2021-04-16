@@ -43,7 +43,7 @@ const ReviewCreatedPolicy = ({
             <Text>
                 Review your SCAP policy before finishing.
             </Text>
-            <Text component={TextVariants.h3}>{ name }</Text>
+            <Text component={TextVariants.h3} style={ { marginTop: 0 } }>{ name }</Text>
             <TextList component={TextListVariants.dl}>
                 <TextListItem component={TextListItemVariants.dt}>Policy type</TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>{ parentProfileName }</TextListItem>
