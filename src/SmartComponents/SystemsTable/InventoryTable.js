@@ -44,7 +44,8 @@ export const InventoryTable = ({
     defaultFilter,
     emptyStateComponent,
     prependComponent,
-    showOsMinorVersionFilter
+    showOsMinorVersionFilter,
+    onLoad
 }) => {
     const store = useStore();
     const dispatch = useDispatch();
@@ -155,6 +156,7 @@ export const InventoryTable = ({
                                 INVENTORY_ACTION_TYPES, columns, showAllSystems, policyId
                             ))
                     });
+                    onLoad && onLoad();
                 }}
                 fallback={<SkeletonTable colSize={2} rowSize={15} />}
                 tableProps={{
@@ -228,7 +230,8 @@ InventoryTable.propTypes = {
     showOsMinorVersionFilter: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.arrayOf(PropTypes.number)
-    ])
+    ]),
+    onLoad: PropTypes.func
 };
 
 InventoryTable.defaultProps = {
