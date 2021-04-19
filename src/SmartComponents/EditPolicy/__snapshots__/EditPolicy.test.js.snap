@@ -14,7 +14,7 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
       </Button>,
       <Button
         onClick={[Function]}
-        variant="secondary"
+        variant="link"
       >
         Cancel
       </Button>,
@@ -147,7 +147,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       </Button>,
       <Button
         onClick={[Function]}
-        variant="secondary"
+        variant="link"
       >
         Cancel
       </Button>,
