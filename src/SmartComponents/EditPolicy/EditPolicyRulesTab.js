@@ -91,6 +91,7 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
     ).map(({ osMinorVersion, count: systemCount }) => {
         osMinorVersion = `${osMinorVersion}`;
         let profile = policy.policy.profiles.find((profile) => (profile.osMinorVersion === osMinorVersion));
+        let osMajorVersion = policy.osMajorVersion;
 
         if (!profile && benchmarks) {
             const benchmark = getBenchmarkBySupportedOsMinor(benchmarks, osMinorVersion);
@@ -101,8 +102,8 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
 
                     profile = {
                         ...benchmarkProfile,
-                        benchmark: benchmarkProfile.benchmark,
-                        rules: benchmarkProfile.rules,
+                        benchmark,
+                        osMajorVersion,
                         ...profile
                     };
                 }
@@ -140,13 +141,15 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds);
     const profileIds = tabsData.map((tab) => (tab.profile.id));
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
-    const { data: profilesData, profilesError, loading } = useQuery(PROFILES_QUERY, {
+    const {
+        data: profilesData, error: profilesError, loading: profilesLoading
+    } = useQuery(PROFILES_QUERY, {
         variables: {
             filter
         },
         skip: filter.length === 0
     });
-    const loadingState = ((loading || benchmarksLoading) ? true : undefined);
+    const loadingState = ((profilesLoading || benchmarksLoading) ? true : undefined);
     const dataState = ((!loadingState && tabsData?.length > 0) ? profilesData : undefined);
 
     useLayoutEffect(() => {
@@ -164,7 +167,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     const error = benchmarksError || profilesError;
 
     return <StateViewWithError stateValues={ {
-        error, data: dataState, loading: loadingState, empty: !loadingState && !dataState
+        error, data: dataState, loading: loadingState, empty: !loadingState && !dataState && !error
     } }>
         <StateViewPart stateKey="loading">
             <EmptyTable><Spinner/></EmptyTable>
