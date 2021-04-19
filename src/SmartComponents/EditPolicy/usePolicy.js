@@ -64,6 +64,8 @@ const usePolicy = () => {
     const associateSystems = useAssociateSystems();
     const associateRules = useAssociateRules();
 
+    // TODO break up returned function (into hooks)
+    // TODO investigate invoking hook combined with progress update
     return async (policy, updatedPolicy, onProgress) => {
         const selectedRuleRefIds = updatedPolicy?.selectedRuleRefIds || [];
 

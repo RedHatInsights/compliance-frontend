@@ -119,7 +119,7 @@ export const EditPolicy = ({ route }) => {
             ...filteredSelection
         ]);
     };
-
+    // TODO Move to hook
     const onSave = () => {
         if (isSaving) { return; }
 

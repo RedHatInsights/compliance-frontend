@@ -4,6 +4,7 @@ import Skeleton, { SkeletonSize } from '@redhat-cloud-services/frontend-componen
 import { registryDecorator } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import { InventoryDetail, DetailWrapper } from '@redhat-cloud-services/frontend-components/Inventory';
 
+// TODO update to functional component (see inventory docs)
 @registryDecorator()
 class InventoryDetails extends React.Component {
     constructor(props) {

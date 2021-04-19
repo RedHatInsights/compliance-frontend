@@ -85,6 +85,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
     }, [benchmarkSearch]);
 
     let profileIds = [];
+    // TODO Move to hook & refactor
     let tabsData = Object.values(osMinorVersionCounts).sort(
         sortingByProp('osMinorVersion', 'desc')
     ).map(({ osMinorVersion, count: systemCount }) => {
