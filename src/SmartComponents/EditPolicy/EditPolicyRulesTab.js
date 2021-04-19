@@ -75,7 +75,7 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
     const osMajorVersion = policy?.osMajorVersion;
     const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
-        `and latest_supported_os_minor_version ^ (${ osMinorVersions.join(',') })`;
+        `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
 
     const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
         type: 'benchmark',

@@ -87,7 +87,7 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         include: ['profiles'],
         params: {
             search: `os_major_version = ${ osMajorVersion } ` +
-                    `and latest_supported_os_minor_version ^ (${ osMinorVersionCounts.map((i) => (i.osMinorVersion)).join(',') })`
+                    `and latest_supported_os_minor_version ^ "${ osMinorVersionCounts.map((i) => (i.osMinorVersion)).join(',') }"`
         }
     });
 
