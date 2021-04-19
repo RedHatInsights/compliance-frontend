@@ -146,7 +146,7 @@ export const EditPolicy = ({ route }) => {
         </Button>,
         <Button
             key='cancel'
-            variant='secondary'
+            variant='link'
             onClick={ () => linkToBackgroundWithHash() }>
             Cancel
         </Button>
