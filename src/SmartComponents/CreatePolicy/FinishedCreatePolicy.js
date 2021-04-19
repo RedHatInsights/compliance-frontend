@@ -12,6 +12,23 @@ import { compose } from 'redux';
 import { withApollo } from '@apollo/client/react/hoc';
 import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
 
+const EmtpyStateWithErrors = ({ errors }) => (
+    (errors && Array.isArray(errors) && errors.length > 0) &&
+        <EmptyStateBody className='wizard-failed-errors'>
+            <List>
+                {
+                    errors.map((error) => (
+                        <ListItem key={ error }>{ error }</ListItem>
+                    ))
+                }
+            </List>
+        </EmptyStateBody>
+);
+
+EmtpyStateWithErrors.propTypes = {
+    errors: propTypes.array
+};
+
 const FinishedCreatePolicy = ({
     onWizardFinish,
     cloneFromProfileId,
@@ -57,24 +74,6 @@ const FinishedCreatePolicy = ({
         });
     }, []);
 
-    let listErrors;
-    if (errors && Array.isArray(errors) && errors.length > 0) {
-        listErrors = errors.map((error) => (
-            <ListItem key={ error }>{ error }</ListItem>
-        ));
-    }
-
-    let secondaryActions;
-    if (percent === 100 || failed) {
-        secondaryActions = (
-            <Button
-                variant={'primary'}
-                onClick={() => { onWizardFinish(); }}>
-                { failed ? 'Back' : 'Return to application' }
-            </Button>
-        );
-    }
-
     return (
         <Bullseye>
             <EmptyState variant={EmptyStateVariant.full}>
@@ -89,13 +88,16 @@ const FinishedCreatePolicy = ({
                 <EmptyStateBody className={failed && 'wizard-failed-message'}>
                     { message }
                 </EmptyStateBody>
-                { listErrors &&
-                    <EmptyStateBody className='wizard-failed-errors'>
-                        <List>{ listErrors }</List>
-                    </EmptyStateBody>
-                }
+                <EmtpyStateWithErrors error={ errors } />
                 <EmptyStateSecondaryActions>
-                    { secondaryActions }
+                    {
+                        (percent === 100 || failed) &&
+                            <Button
+                                variant={'primary'}
+                                onClick={() => { onWizardFinish(); }}>
+                                { failed ? 'Back' : 'Return to application' }
+                            </Button>
+                    }
                 </EmptyStateSecondaryActions>
             </EmptyState>
         </Bullseye>

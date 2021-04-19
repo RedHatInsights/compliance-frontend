@@ -28,46 +28,15 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     compact={true}
     defaultFilter="os_major_version = 7"
     emptyStateComponent={
-      <React.Fragment>
-        <TextContent
-          className="pf-u-mb-md"
-        >
-          <Text>
-            You do not have any 
-            <b>
-              RHEL 
-              7
-            </b>
-             systems connected to Insights and enabled for Compliance.
-          </Text>
-        </TextContent>
-        <TextContent
-          className="pf-u-mb-md"
-        >
-          <Text>
-            Connect RHEL 
-            7
-             systems to Insights.
-          </Text>
-        </TextContent>
-      </React.Fragment>
+      <EmptyState
+        osMajorVersion={7}
+      />
     }
     enableExport={false}
     prependComponent={
-      <React.Fragment>
-        <TextContent
-          className="pf-u-mb-md"
-        >
-          <Text>
-            Select which of your 
-            <b>
-              RHEL 
-              7
-            </b>
-             systems should be included in this policy.
-          </Text>
-        </TextContent>
-      </React.Fragment>
+      <PrependComponent
+        osMajorVersion={7}
+      />
     }
     query={
       Object {

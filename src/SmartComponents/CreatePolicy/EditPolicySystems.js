@@ -9,6 +9,45 @@ import { connect } from 'react-redux';
 import useFeature from 'Utilities/hooks/useFeature';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 
+const EmptyState = ({ osMajorVersion }) => (
+    <React.Fragment>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                You do not have any <b>RHEL { osMajorVersion }</b> systems connected to Insights and enabled for Compliance.<br/>
+                Policies must be created with at least one system.
+            </Text>
+        </TextContent>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                Choose a different operating system, or connect <b>RHEL { osMajorVersion }</b> systems to Insights.
+            </Text>
+        </TextContent>
+        <WizardContextConsumer>
+            { ({ goToStepById }) => <Button onClick={() => goToStepById(1)}>Choose a different operating system</Button> }
+        </WizardContextConsumer>
+    </React.Fragment>
+);
+
+EmptyState.propTypes = {
+    osMajorVersion: propTypes.number
+};
+
+const PrependComponent = ({ osMajorVersion }) => (
+    <React.Fragment>
+        <TextContent className="pf-u-mb-md">
+            <Text>
+                Select which of your <b>RHEL { osMajorVersion }</b> systems should be included
+                in this policy.<br />
+                Systems can be added or removed at any time.
+            </Text>
+        </TextContent>
+    </React.Fragment>
+);
+
+PrependComponent.propTypes = {
+    osMajorVersion: propTypes.number
+};
+
 const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
     const multiversionRules = useFeature('multiversionTabs');
@@ -45,33 +84,6 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         }
     }, [selectedSystemIds, osMinorVersionCounts, change]);
 
-    const emptyStateComponent = (<React.Fragment>
-        <TextContent className="pf-u-mb-md">
-            <Text>
-                You do not have any <b>RHEL { osMajorVersion }</b> systems connected to Insights and enabled for Compliance.<br/>
-                Policies must be created with at least one system.
-            </Text>
-        </TextContent>
-        <TextContent className="pf-u-mb-md">
-            <Text>
-                Choose a different operating system, or connect <b>RHEL { osMajorVersion }</b> systems to Insights.
-            </Text>
-        </TextContent>
-        <WizardContextConsumer>
-            { ({ goToStepById }) => <Button onClick={() => goToStepById(1)}>Choose a different operating system</Button> }
-        </WizardContextConsumer>
-    </React.Fragment>);
-
-    const prependComponent = (<React.Fragment>
-        <TextContent className="pf-u-mb-md">
-            <Text>
-                Select which of your <b>RHEL { osMajorVersion }</b> systems should be included
-                in this policy.<br />
-                Systems can be added or removed at any time.
-            </Text>
-        </TextContent>
-    </React.Fragment>);
-
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
@@ -85,8 +97,8 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
                 <FormGroup>
                     <InvCmp
                         showOsMinorVersionFilter={ [osMajorVersion] }
-                        prependComponent={ prependComponent }
-                        emptyStateComponent={multiversionRules ? emptyStateComponent : undefined}
+                        prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } /> }
+                        emptyStateComponent={ multiversionRules ? <EmptyState osMajorVersion={ osMajorVersion } /> : undefined }
                         columns={columns}
                         remediationsEnabled={false}
                         compact
