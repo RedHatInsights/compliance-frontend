@@ -15,7 +15,6 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
-import useCollection from 'Utilities/hooks/api/useCollection';
 
 const PROFILES_QUERY = gql`
 query Profiles($filter: String!){
@@ -55,6 +54,22 @@ query Profiles($filter: String!){
 }
 `;
 
+const BENCHMARKS_QUERY = gql`
+query Benchmarks($filter: String!){
+    benchmarks(search: $filter){
+        nodes {
+            id
+            latestSupportedOsMinorVersions
+            profiles {
+                id
+                refId
+                osMajorVersion
+            }
+        }
+    }
+}
+`;
+
 const getBenchmarkProfile = (benchmark, profileRefId) => (
     benchmark.profiles.find((benchmarkProfile) => (benchmarkProfile.refId === profileRefId))
 );
@@ -67,6 +82,10 @@ const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) => (
 
 export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, osMajorVersion, osMinorVersionCounts }) => {
     const columns = selectRulesTableColumns(['Name', 'Severity', 'Ansible']);
+    const osMinorVersions = osMinorVersionCounts.map((i) => (i.osMinorVersion)).sort();
+    const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
+        `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
+
     const handleSelectCallback = (profile, newSelectedRuleRefIds) => {
         const newSelection = selectedRuleRefIds.map((profileSelectedRuleRefIds) => {
             if (profileSelectedRuleRefIds.id === profile.id) {
@@ -82,14 +101,18 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         change('selectedRuleRefIds', newSelection);
     };
 
-    const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
-        type: 'benchmark',
-        include: ['profiles'],
-        params: {
-            search: `os_major_version = ${ osMajorVersion } ` +
-                    `and latest_supported_os_minor_version ^ "${ osMinorVersionCounts.map((i) => (i.osMinorVersion)).join(',') }"`
-        }
+    const {
+        data: benchmarksData,
+        error: benchmarksError,
+        loading: benchmarksLoading
+    } = useQuery(BENCHMARKS_QUERY, {
+        variables: {
+            filter: benchmarkSearch
+        },
+        skip: osMinorVersions.length === 0
     });
+
+    const benchmarks = benchmarksData?.benchmarks?.nodes;
 
     let profileIds = [];
     let tabsData = osMinorVersionCounts.map(({ osMinorVersion, count: systemCount }) => {
@@ -97,14 +120,13 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         let profile;
         let profileSelectedRuleRefIds;
         if (benchmarks) {
-            const benchmark = getBenchmarkBySupportedOsMinor(benchmarks.collection, osMinorVersion);
+            const benchmark = getBenchmarkBySupportedOsMinor(benchmarks, osMinorVersion);
             if (benchmark) {
                 profile = getBenchmarkProfile(benchmark, policy.refId);
                 if (profile) {
                     profile = {
                         ...profile,
-                        rules: profile.relationships?.rules?.data,
-                        benchmark: profile.relationships?.benchmark?.data
+                        benchmark
                     };
                     profileSelectedRuleRefIds = selectedRuleRefIds?.find(({ id }) => id === profile.id);
                     profileIds.push(profile.id);
@@ -123,14 +145,15 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
 
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const skipProfilesQuery = benchmarksLoading || filter.length === 0;
-    const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
+    const { data: profilesData, error: profilesError, loading: profilesLoading } = useQuery(PROFILES_QUERY, {
         variables: {
             filter
         },
         skip: skipProfilesQuery
     });
+    const error = benchmarksError || profilesError;
     const dataState = ((profileIds?.length > 0) ? profilesData : undefined);
-    const loadingState = ((loading || benchmarksLoading) ? true : undefined);
+    const loadingState = ((profilesLoading || benchmarksLoading) ? true : undefined);
     const noRuleSets = !error && !loadingState && profileIds?.length === 0;
     const profiles = skipProfilesQuery ? [] : profilesData?.profiles.edges.map((p) => (p.node));
 
