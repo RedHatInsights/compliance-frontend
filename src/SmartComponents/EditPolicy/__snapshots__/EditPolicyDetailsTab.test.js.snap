@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetailsTab expect to render without error 1`] = `
-<Fragment>
+<div
+  className="pf-c-form"
+>
   <FormGroup
     fieldId="description"
     isRequired={true}
@@ -61,5 +63,5 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
       type="number"
     />
   </FormGroup>
-</Fragment>
+</div>
 `;

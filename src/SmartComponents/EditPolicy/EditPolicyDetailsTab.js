@@ -17,7 +17,7 @@ export const useThresholdValidate = () => {
 const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
     const [validThreshold, validateThreshold] = useThresholdValidate();
 
-    return <React.Fragment>
+    return <div className="pf-c-form">
         <FormGroup label="Policy description" isRequired fieldId="description">
             <TextArea
                 style={ { width: 800, height: 110 } }
@@ -75,7 +75,7 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
                     }));
                 }} />
         </FormGroup>
-    </React.Fragment>;
+    </div>;
 };
 
 EditPolicyDetailsTab.propTypes = {
