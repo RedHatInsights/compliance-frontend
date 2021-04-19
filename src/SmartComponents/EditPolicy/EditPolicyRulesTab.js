@@ -8,7 +8,6 @@ import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
-import useCollection from 'Utilities/hooks/api/useCollection';
 import { sortingByProp } from 'Utilities/helpers';
 
 const PROFILES_QUERY = gql`
@@ -49,6 +48,21 @@ query Profiles($filter: String!){
 }
 `;
 
+const BENCHMARKS_QUERY = gql`
+query Benchmarks($filter: String!){
+    benchmarks(search: $filter){
+        nodes {
+            id
+            latestSupportedOsMinorVersions
+            profiles {
+                id
+                refId
+            }
+        }
+    }
+}
+`;
+
 const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) => (
     benchmarks.find((benchmark) =>
         benchmark.latestSupportedOsMinorVersions?.includes(osMinorVersion)
@@ -79,7 +93,7 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
         let profile = policy.policy.profiles.find((profile) => (profile.osMinorVersion === osMinorVersion));
 
         if (!profile && benchmarks) {
-            const benchmark = getBenchmarkBySupportedOsMinor(benchmarks.collection, osMinorVersion);
+            const benchmark = getBenchmarkBySupportedOsMinor(benchmarks, osMinorVersion);
             if (benchmark) {
                 const benchmarkProfile = getBenchmarkProfile(benchmark, policy.refId);
                 if (benchmarkProfile) {
@@ -87,8 +101,8 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
 
                     profile = {
                         ...benchmarkProfile,
-                        benchmark: benchmarkProfile.relationships?.benchmark?.data,
-                        rules: benchmarkProfile.relationships?.rules?.data,
+                        benchmark: benchmarkProfile.benchmark,
+                        rules: benchmarkProfile.rules,
                         ...profile
                     };
                 }
@@ -110,16 +124,23 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
         `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
 
-    const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
-        type: 'benchmark',
-        include: ['profiles'],
-        params: { search: benchmarkSearch },
+    const {
+        data: benchmarksData,
+        error: benchmarksError,
+        loading: benchmarksLoading
+    } = useQuery(BENCHMARKS_QUERY, {
+        variables: {
+            filter: benchmarkSearch
+        },
         skip: osMinorVersions.length === 0
-    }, [benchmarkSearch]);
+    });
+
+    const benchmarks = benchmarksData?.benchmarks?.nodes;
+
     const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds);
     const profileIds = tabsData.map((tab) => (tab.profile.id));
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
-    const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
+    const { data: profilesData, profilesError, loading } = useQuery(PROFILES_QUERY, {
         variables: {
             filter
         },
@@ -140,6 +161,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
             });
         }
     }, [profilesData]);
+    const error = benchmarksError || profilesError;
 
     return <StateViewWithError stateValues={ {
         error, data: dataState, loading: loadingState, empty: !loadingState && !dataState
