@@ -131,8 +131,9 @@ const systemsToRows = (systems, selectedEntities) => (
 );
 
 const selectRowsByIds = (state, ids) => {
+    const alreadySelectedIds = (state.selectedEntities || []).map((e) => (e.id));
     const rowsToSelect = state.rows.filter((row) => (
-        ids.includes(row.id) && !(state.selectedEntities || []).map((e) => (e.id)).includes(row.id)
+        ids.includes(row.id) && !alreadySelectedIds.includes(row.id)
     ));
 
     return {
