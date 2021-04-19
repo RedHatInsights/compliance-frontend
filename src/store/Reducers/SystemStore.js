@@ -113,8 +113,8 @@ export const countOsMinorVersions = (systems) => (
     Object.values(mapCountOsMinorVersions(systems)).sort(sortingByProp('osMinorVersion', 'desc'))
 );
 
-export const systemsToRows = (systems) => (
-    systems.map(({ node }) => ({
+const systemsToRows = (systems, selectedEntities) => (
+    (systems || []).map(({ node }) => ({
         ...node,
         policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),
         rulesPassed: profilesRulesPassed(node.testResultProfiles).length,
@@ -125,7 +125,8 @@ export const systemsToRows = (systems) => (
         score: score(node),
         supported: supported(node),
         ssgVersion: profilesSsgVersions(node),
-        detailsLink: detailsLink(node)
+        detailsLink: detailsLink(node),
+        selected: selectedEntities && isSelected(node.id, selectedEntities)
     }))
 );
 
@@ -175,27 +176,21 @@ export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
         systems,
         systemsCount,
         total: systemsCount,
-        rows: systemsToRows(systems).map((row) => ({
-            ...row, selected: isSelected(row.id, state.selectedEntities)
-        })),
+        rows: systemsToRows(systems, state.selectedEntities),
         columns,
         loaded: true
     }),
     [INVENTORY_ACTION.LOAD_ENTITIES_PENDING]: (state) => ({
         ...state,
         total: state.systemsCount,
-        rows: state.systems !== undefined ? systemsToRows(state.systems).map((row) => ({
-            ...row, selected: isSelected(row.id, state.selectedEntities)
-        })) : [],
+        rows: systemsToRows(state.systems, state.selectedEntities),
         columns,
         loaded: state.systemsCount !== undefined
     }),
     [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
         ...state,
         total: state.systemsCount,
-        rows: state.systems !== undefined ? systemsToRows(state.systems).map((row) => ({
-            ...row, selected: isSelected(row.id, state.selectedEntities)
-        })) : [],
+        rows: systemsToRows(state.systems, state.selectedEntities),
         columns,
         loaded: state.systemsCount !== undefined
     }),
