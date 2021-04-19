@@ -130,6 +130,10 @@ const systemsToRows = (systems, selectedEntities) => (
     }))
 );
 
+const selectedEntitesFromRowsById = (rows, ids) => (
+    rows.filter((row) => ids.includes(row.id))
+);
+
 const selectRowsByIds = (state, ids) => {
     const alreadySelectedIds = (state.selectedEntities || []).map((e) => (e.id));
     const rowsToSelect = state.rows.filter((row) => (
@@ -163,6 +167,15 @@ const deselectRow = (state, id) => (
     deselectRowsByIds(state, [id])
 );
 
+const selectedIdsToEntities = ({ selectByIds, selectedEntities }) => (
+    selectByIds ? selectByIds.map((id) => ({ id })) : selectedEntities
+);
+
+const reconcileSelectedEntities = (rows, selectedEntities) => {
+    const selectedIds = (selectedEntities || []).map((e) => (e.id));
+    return selectedEntitesFromRowsById(rows, selectedIds);
+};
+
 export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
     ['GET_SYSTEMS_PENDING']: (state) => ({
         ...state,
@@ -172,15 +185,23 @@ export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
         columns,
         loaded: false
     }),
-    ['GET_SYSTEMS_FULFILLED']: (state, { systems, systemsCount }) => ({
-        ...state,
-        systems,
-        systemsCount,
-        total: systemsCount,
-        rows: systemsToRows(systems, state.selectedEntities),
-        columns,
-        loaded: true
-    }),
+    ['GET_SYSTEMS_FULFILLED']: (state, { systems, systemsCount }) => {
+        let selectedEntities = selectedIdsToEntities(state);
+        const rows = systemsToRows(systems, selectedEntities);
+        selectedEntities = reconcileSelectedEntities(rows, selectedEntities);
+
+        return {
+            ...state,
+            systems,
+            systemsCount,
+            total: systemsCount,
+            rows,
+            selectedEntities,
+            selectByIds: undefined,
+            columns,
+            loaded: true
+        };
+    },
     [INVENTORY_ACTION.LOAD_ENTITIES_PENDING]: (state) => ({
         ...state,
         total: state.systemsCount,
@@ -210,8 +231,14 @@ export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
 
         return newState;
     },
-    ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
-        selectedEntities: ids
-    }),
+    ['SELECT_ENTITIES']: (state, { payload: { ids = [] } }) => (
+        state.rows
+            ? {
+                ...state,
+                selectedEntities: selectedEntitesFromRowsById(state.rows, ids),
+                selectByIds: undefined
+            }
+            : { ...state, selectByIds: ids }
+    ),
     ['CLEAR_INVENTORY_ENTITIES']: () => ({})
 });
