@@ -212,5 +212,6 @@ export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
     },
     ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
         selectedEntities: ids
-    })
+    }),
+    ['CLEAR_INVENTORY_ENTITIES']: () => ({})
 });

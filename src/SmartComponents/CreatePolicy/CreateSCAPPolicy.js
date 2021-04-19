@@ -85,10 +85,7 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     const setBenchmark = ({ id, osMajorVersion }) => {
         if (selectedBenchmark?.osMajorVersion !== osMajorVersion) {
             change('systems', []);
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: [] }
-            });
+            dispatch({ type: 'CLEAR_INVENTORY_ENTITIES' });
         }
 
         change('benchmark', id);

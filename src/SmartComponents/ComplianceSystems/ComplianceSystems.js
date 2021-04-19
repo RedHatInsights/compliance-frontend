@@ -60,7 +60,7 @@ export const ComplianceSystems = () => {
     }];
     const policies = data?.profiles?.edges.map(({ node }) => node);
 
-    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
+    useLayoutEffect(() => { dispatch({ type: 'CLEAR_INVENTORY_ENTITIES' }); }, []);
 
     return (
         <React.Fragment>

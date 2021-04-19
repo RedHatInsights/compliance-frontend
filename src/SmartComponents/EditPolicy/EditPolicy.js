@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -101,10 +101,7 @@ export const EditPolicy = ({ route }) => {
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: [] }
-        });
+        dispatch({ type: 'CLEAR_INVENTORY_ENTITIES' });
         linkToBackground({ hash: anchor });
     };
 
@@ -192,6 +189,8 @@ export const EditPolicy = ({ route }) => {
             );
         }
     }, [policy]);
+
+    useLayoutEffect(() => { dispatch({ type: 'CLEAR_INVENTORY_ENTITIES' }); }, []);
 
     useTitleEntity(route, policy?.name);
 

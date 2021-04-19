@@ -148,7 +148,7 @@ export const ReportDetails = ({ route }) => {
         )
     }];
 
-    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
+    useLayoutEffect(() => { dispatch({ type: 'CLEAR_INVENTORY_ENTITIES' }); }, []);
 
     useTitleEntity(route, policyName);
 
