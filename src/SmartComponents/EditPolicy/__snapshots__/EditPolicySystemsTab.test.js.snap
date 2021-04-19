@@ -33,6 +33,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
       />
     }
     enableExport={false}
+    onLoad={[Function]}
     prependComponent={
       <PrependComponent
         osMajorVersion={7}

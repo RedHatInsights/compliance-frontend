@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Alert, AlertActionLink, Text, TextContent } from '@patternfly/react-core';
 import { useSelector } from 'react-redux';
 import { InventoryTable } from 'SmartComponents';
@@ -40,8 +41,21 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.number
 };
 
-const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
+const EditPolicySystemsTab = ({ policy, policyOsMinorVersions }) => {
+    const { osMajorVersion } = policy;
     const { push, location } = useHistory();
+    const dispatch = useDispatch();
+    const [tableLoaded, setTableLoaded] = useState(false);
+
+    useEffect(() => {
+        if (!policy || !tableLoaded) { return; }
+
+        dispatch({
+            type: 'SELECT_ENTITIES',
+            payload: { ids: policy?.hosts?.map(({ id }) => id) || [] }
+        });
+    }, [policy, tableLoaded]);
+
     const selectedSystemOsMinorVersions = useSelector(state => (
         state?.entities?.selectedEntities?.map((entity) => (`${entity.osMinorVersion}`))
     ));
@@ -81,6 +95,7 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
                 defaultFilter={ osMajorVersion && `os_major_version = ${osMajorVersion}` }
                 enableExport={ false }
                 remediationsEnabled={ false }
+                onLoad={ () => setTableLoaded(true) }
             />
             {newOsMinorVersions() && <Alert
                 variant="info"
@@ -96,7 +111,10 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
 };
 
 EditPolicySystemsTab.propTypes = {
-    osMajorVersion: propTypes.string,
+    policy: propTypes.shape({
+        osMajorVersion: propTypes.string,
+        hosts: propTypes.arrayOf(propTypes.object)
+    }),
     policyOsMinorVersions: propTypes.arrayOf(propTypes.number)
 };
 

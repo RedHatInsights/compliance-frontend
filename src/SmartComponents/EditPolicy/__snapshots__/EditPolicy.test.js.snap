@@ -125,6 +125,28 @@ exports[`EditPolicy expect to render with active tab open 1`] = `
         }
       >
         <EditPolicySystemsTab
+          policy={
+            Object {
+              "benchmark": Object {
+                "title": "benchmark",
+                "version": "0.1.5",
+              },
+              "businessObjective": Object {
+                "id": "1",
+                "title": "BO 1",
+              },
+              "complianceThreshold": 1,
+              "compliantHostCount": 1,
+              "description": "profile description",
+              "id": "1",
+              "name": "profile1",
+              "policy": Object {
+                "name": "parentpolicy",
+              },
+              "refId": "121212",
+              "totalHostCount": 1,
+            }
+          }
           policyOsMinorVersions={Array []}
         />
       </Tab>
@@ -258,6 +280,28 @@ exports[`EditPolicy expect to render without error 1`] = `
         }
       >
         <EditPolicySystemsTab
+          policy={
+            Object {
+              "benchmark": Object {
+                "title": "benchmark",
+                "version": "0.1.5",
+              },
+              "businessObjective": Object {
+                "id": "1",
+                "title": "BO 1",
+              },
+              "complianceThreshold": 1,
+              "compliantHostCount": 1,
+              "description": "profile description",
+              "id": "1",
+              "name": "profile1",
+              "policy": Object {
+                "name": "parentpolicy",
+              },
+              "refId": "121212",
+              "totalHostCount": 1,
+            }
+          }
           policyOsMinorVersions={Array []}
         />
       </Tab>

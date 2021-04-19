@@ -180,10 +180,6 @@ export const EditPolicy = ({ route }) => {
             });
             updateSelectedRuleRefIds();
 
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: policy?.hosts || [] }
-            });
             setOsMinorVersionCounts(
                 profilesToOsMinorMap(policyProfiles, policy.hosts)
             );
@@ -220,7 +216,7 @@ export const EditPolicy = ({ route }) => {
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
-                        osMajorVersion={ policy.osMajorVersion }
+                        policy={ policy }
                         policyOsMinorVersions={ uniq(policyProfiles.map(profile => profile.osMinorVersion)) }
                     />
                 </Tab>
