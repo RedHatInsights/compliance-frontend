@@ -4,7 +4,7 @@ import {
 } from '@patternfly/react-core';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';

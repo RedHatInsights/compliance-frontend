@@ -118,6 +118,7 @@ exports[`SystemsTable expect to not render a loading state 1`] = `
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -209,6 +210,7 @@ exports[`SystemsTable expect to not show actions if showActions is false 1`] = `
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -308,6 +310,7 @@ exports[`SystemsTable expect to render a loading state 1`] = `
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -402,6 +405,7 @@ exports[`SystemsTable expect to set compliant filters when enabled 1`] = `
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -549,6 +553,7 @@ exports[`SystemsTable expect to set isDisable on export config to false total is
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -648,6 +653,7 @@ exports[`SystemsTable expect to set isDisable on export config to true total is 
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -747,6 +753,7 @@ exports[`SystemsTable expect to set loading state correctly on updateSystems 1`]
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={
@@ -841,6 +848,7 @@ exports[`SystemsTable expect to show actions if showActions is true or by defaul
           isSelectable={false}
           paddingColumnSize={0}
           rowSize={15}
+          variant={null}
         />
       }
       filterConfig={

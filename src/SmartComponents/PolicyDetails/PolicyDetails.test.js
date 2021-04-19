@@ -61,7 +61,7 @@ jest.mock('react-redux', () => ({
     useDispatch: jest.fn(() => ({}))
 }));
 
-jest.mock('@apollo/react-hooks', () => ({
+jest.mock('@apollo/client', () => ({
     useQuery: () => (
         { data: mocks[0].result.data, error: undefined, loading: undefined }
     )

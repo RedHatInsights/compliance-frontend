@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';

@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 const REVIEW = gql`
 query review($benchmarkId: String!) {

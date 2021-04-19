@@ -2,10 +2,10 @@ import ReviewCreatedPolicy from './ReviewCreatedPolicy.js';
 import configureStore from 'redux-mock-store';
 import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 import { Provider } from 'react-redux';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 const mockStore = configureStore();
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 
 describe('ReviewCreatedPolicy', () => {
     let store;

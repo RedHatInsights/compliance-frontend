@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import useFeature from 'Utilities/hooks/useFeature';
 import EditPolicyProfilesRules from './EditPolicyProfilesRules';

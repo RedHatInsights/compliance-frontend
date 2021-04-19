@@ -183,6 +183,7 @@ exports[`ReportsTable expect to render without error 1`] = `
     expandId="expandable-toggle"
     gridBreakPoint="grid-md"
     isStickyHeader={false}
+    isTreeTable={false}
     onSort={[Function]}
     ouiaSafe={true}
     role="grid"

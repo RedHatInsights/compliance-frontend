@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import { Reports } from './Reports.js';
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(() => ({}))

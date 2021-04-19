@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import EditPolicyRulesTab from './EditPolicyRulesTab.js';
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 
 describe('EditPolicyRulesTab', () => {
     useQuery.mockImplementation(() => ({

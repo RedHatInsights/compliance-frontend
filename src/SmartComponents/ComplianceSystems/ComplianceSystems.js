@@ -2,7 +2,7 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';

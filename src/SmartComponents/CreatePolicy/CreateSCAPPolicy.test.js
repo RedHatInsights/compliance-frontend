@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { benchmarksQuery, profileRefIdsQuery } from '@/__fixtures__/benchmarks_rules.js';
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn({}),
     connect: (i) => (i)
