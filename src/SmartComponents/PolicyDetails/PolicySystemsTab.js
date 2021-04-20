@@ -9,7 +9,6 @@ import useFeature from 'Utilities/hooks/useFeature';
 
 const PolicySystemsTab = ({ policy }) => {
     const newInventory = useFeature('newInventory');
-    let showSsgVersions = useFeature('showSsgVersions');
     const InvCmp = newInventory ? InventoryTable : SystemsTable;
 
     return (
@@ -30,7 +29,7 @@ const PolicySystemsTab = ({ policy }) => {
                     key: 'display_name',
                     renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
                 }
-            }, ...showSsgVersions ? [{
+            }, {
                 key: 'ssgVersion',
                 title: 'SSG version',
                 renderFunc: (profile, ...rest) => {
@@ -43,7 +42,7 @@ const PolicySystemsTab = ({ policy }) => {
                         supported={ realProfile.supported }
                         ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
                 }
-            }] : [], {
+            }, {
                 key: 'osMinorVersion',
                 title: 'Operating system',
                 renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`

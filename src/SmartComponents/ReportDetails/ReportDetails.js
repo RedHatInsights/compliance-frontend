@@ -64,8 +64,6 @@ query Profile($policyId: String!){
 `;
 
 export const ReportDetails = ({ route }) => {
-    let showSsgVersions;
-    let showSsgVersionsFeature = useFeature('showSsgVersions');
     const newInventory = useFeature('newInventory');
     const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
@@ -84,7 +82,6 @@ export const ReportDetails = ({ route }) => {
     if (!loading && data) {
         profile = data.profile;
         policyName = profile.policy.name;
-        showSsgVersions = showSsgVersionsFeature;
         pageTitle = `Report: ${ policyName }`;
         const compliantHostCount = profile.compliantHostCount;
         const testResultHostCount = profile.testResultHostCount;
@@ -113,7 +110,7 @@ export const ReportDetails = ({ route }) => {
             key: 'display_name',
             renderFunc: systemName
         }
-    }, ...showSsgVersions ? [{
+    }, {
         key: 'ssgVersion',
         title: 'SSG version',
         props: {
@@ -129,7 +126,7 @@ export const ReportDetails = ({ route }) => {
                 supported={ realProfile.supported }
                 ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
         }
-    }] : [], {
+    }, {
         key: 'facts.compliance.rules_failed',
         title: 'Failed rules',
         props: {
