@@ -19,8 +19,14 @@ exports[`Reports expect to render emptystate 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView
-        showTableView={true}
+      <SkeletonTable
+        canSelectAll={false}
+        colSize={3}
+        hasRadio={false}
+        isSelectable={false}
+        paddingColumnSize={0}
+        rowSize={10}
+        variant={null}
       />
     </Connect(Main)>
   </StateViewPart>
@@ -50,8 +56,14 @@ exports[`Reports expect to render loading 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView
-        showTableView={true}
+      <SkeletonTable
+        canSelectAll={false}
+        colSize={3}
+        hasRadio={false}
+        isSelectable={false}
+        paddingColumnSize={0}
+        rowSize={10}
+        variant={null}
       />
     </Connect(Main)>
   </StateViewPart>
@@ -101,8 +113,14 @@ exports[`Reports expect to render without error 1`] = `
   >
     <ReportsHeader />
     <Connect(Main)>
-      <LoadingView
-        showTableView={true}
+      <SkeletonTable
+        canSelectAll={false}
+        colSize={3}
+        hasRadio={false}
+        isSelectable={false}
+        paddingColumnSize={0}
+        rowSize={10}
+        variant={null}
       />
     </Connect(Main)>
   </StateViewPart>

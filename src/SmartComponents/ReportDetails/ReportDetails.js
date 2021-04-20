@@ -20,14 +20,13 @@ import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
-import useFeature from 'Utilities/hooks/useFeature';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
     StateViewWithError, StateViewPart, UnsupportedSSGVersion, SubPageTitle
 } from 'PresentationalComponents';
-import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
+import Cells from '@/SmartComponents/SystemsTable/Cells';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
@@ -64,7 +63,6 @@ query Profile($policyId: String!){
 `;
 
 export const ReportDetails = ({ route }) => {
-    const newInventory = useFeature('newInventory');
     const { report_id: policyId } = useParams();
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
@@ -101,15 +99,12 @@ export const ReportDetails = ({ route }) => {
     }
 
     const columns = [{
-        key: 'facts.compliance.display_name',
+        key: 'display_name',
         title: 'Name',
         props: {
             width: 30
         },
-        ...newInventory && {
-            key: 'display_name',
-            renderFunc: systemName
-        }
+        renderFunc: systemName
     }, {
         key: 'ssgVersion',
         title: 'SSG version',
@@ -127,42 +122,34 @@ export const ReportDetails = ({ route }) => {
                 ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
         }
     }, {
-        key: 'facts.compliance.rules_failed',
+        key: 'rulesFailed',
         title: 'Failed rules',
         props: {
             width: 5
         },
-        ...newInventory && {
-            key: 'rulesFailed',
-            renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
-        }
+        renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
     }, {
-        key: 'facts.compliance.compliance_score',
+        key: 'score',
         title: 'Compliance score',
         props: {
             width: 5
         },
-        ...newInventory && {
-            key: 'score',
-            renderFunc: (_score, _id, system) => complianceScore(system)
-        }
+        renderFunc: (_score, _id, system) => complianceScore(system)
     }, {
-        key: 'facts.compliance.last_scanned',
+        key: 'lastScanned',
         title: 'Last scanned',
         props: {
             width: 10
         },
-        ...newInventory && {
-            key: 'lastScanned',
-            renderFunc: (lastScanned) => (lastScanned instanceof Date) ?
+        renderFunc: (lastScanned) => (
+            (lastScanned instanceof Date) ?
                 <DateFormat date={Date.parse(lastScanned)} type='relative' />
                 : lastScanned
-        }
+        )
     }];
 
     useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
 
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
@@ -237,7 +224,7 @@ export const ReportDetails = ({ route }) => {
             <Main>
                 <Grid hasGutter>
                     <GridItem span={12}>
-                        <InvCmp
+                        <InventoryTable
                             query={GET_SYSTEMS}
                             showOnlySystemsWithTestResults
                             compliantFilter

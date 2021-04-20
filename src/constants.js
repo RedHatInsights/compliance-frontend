@@ -104,6 +104,4 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     }
 ];
 
-export const features = {
-    newInventory: true
-};
+export const features = {};

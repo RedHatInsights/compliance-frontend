@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm, formValueSelector } from 'redux-form';
 import { Button, Form, FormGroup, Text, TextContent, TextVariants, WizardContextConsumer } from '@patternfly/react-core';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import useFeature from 'Utilities/hooks/useFeature';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 
 const EmptyState = ({ osMajorVersion }) => (
@@ -49,28 +48,20 @@ PrependComponent.propTypes = {
 };
 
 const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
-    const newInventory = useFeature('newInventory');
-
     const columns = [{
-        key: 'facts.compliance.display_name',
+        key: 'display_name',
         title: 'Name',
         props: {
             width: 40, isStatic: true
         },
-        ...newInventory && {
-            key: 'display_name',
-            renderFunc: (displayName, _id, { name }) => (displayName || name)
-        }
+        renderFunc: (displayName, _id, { name }) => (displayName || name)
     }, {
-        key: 'facts.compliance.osMinorVersion',
+        key: 'osMinorVersion',
         title: 'Operating system',
         props: {
             width: 40, isStatic: true
         },
-        ...newInventory && {
-            key: 'osMinorVersion',
-            renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-        }
+        renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
     }];
 
     useEffect(() => {
@@ -83,8 +74,6 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
         }
     }, [selectedSystemIds, osMinorVersionCounts, change]);
 
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
-
     return (
         <React.Fragment>
             <TextContent className="pf-u-mb-md">
@@ -94,7 +83,7 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
             </TextContent>
             <Form>
                 <FormGroup>
-                    <InvCmp
+                    <InventoryTable
                         showOsMinorVersionFilter={ [osMajorVersion] }
                         prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } /> }
                         emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } /> }
