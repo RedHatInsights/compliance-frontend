@@ -50,7 +50,6 @@ PrependComponent.propTypes = {
 
 const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const newInventory = useFeature('newInventory');
-    const multiversionRules = useFeature('multiversionTabs');
 
     const columns = [{
         key: 'facts.compliance.display_name',
@@ -98,7 +97,7 @@ const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selec
                     <InvCmp
                         showOsMinorVersionFilter={ [osMajorVersion] }
                         prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } /> }
-                        emptyStateComponent={ multiversionRules ? <EmptyState osMajorVersion={ osMajorVersion } /> : undefined }
+                        emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } /> }
                         columns={columns}
                         remediationsEnabled={false}
                         compact
