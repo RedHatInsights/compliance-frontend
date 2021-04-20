@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import propTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
@@ -7,9 +6,8 @@ import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-com
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import {
-    ReportCardGrid, ReportsTable, StateViewPart, StateViewWithError, ReportsEmptyState, LoadingComplianceCards
+    ReportsTable, StateViewPart, StateViewWithError, ReportsEmptyState
 } from 'PresentationalComponents';
-import useFeature from 'Utilities/hooks/useFeature';
 
 const QUERY = gql`
 query Profiles($filter: String!) {
@@ -57,14 +55,6 @@ const profilesFromEdges = (data) => (
     ))
 );
 
-const LoadingView = ({ showTableView }) => (
-    showTableView ? <SkeletonTable colSize={ 3 } rowSize={ 10 } /> : <LoadingComplianceCards />
-);
-
-LoadingView.propTypes = {
-    showTableView: propTypes.bool
-};
-
 const ReportsHeader = () => (
     <PageHeader>
         <PageHeaderTitle title="Reports" />
@@ -75,8 +65,6 @@ export const Reports = () => {
     let profiles = [];
     let showView = false;
     const location = useLocation();
-    const showTableView = useFeature('reportsTableView');
-    const View = showTableView ? ReportsTable : ReportCardGrid;
     const filter = `(has_policy_test_results = true AND external = false)
                     OR (has_policy = false AND has_test_results = true)`;
 
@@ -99,13 +87,13 @@ export const Reports = () => {
         <StateViewPart stateKey='loading'>
             <ReportsHeader />
             <Main>
-                <LoadingView { ...{ showTableView } } />
+                <SkeletonTable colSize={ 3 } rowSize={ 10 } />
             </Main>
         </StateViewPart>
         <StateViewPart stateKey='data'>
             <ReportsHeader />
             <Main>
-                { showView ? <View { ...{ profiles } } /> : <ReportsEmptyState /> }
+                { showView ? <ReportsTable { ...{ profiles } } /> : <ReportsEmptyState /> }
             </Main>
         </StateViewPart>
     </StateViewWithError>;

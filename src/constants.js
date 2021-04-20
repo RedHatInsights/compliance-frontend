@@ -105,7 +105,6 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
 ];
 
 export const features = {
-    reportsTableView: true,
     multiversionTabs: true,
     showSsgVersions: true,
     newInventory: true
