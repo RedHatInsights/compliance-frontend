@@ -113,7 +113,7 @@ export const countOsMinorVersions = (systems) => (
     Object.values(mapCountOsMinorVersions(systems)).sort(sortingByProp('osMinorVersion', 'desc'))
 );
 
-const systemsToRows = (systems) => (
+export const systemsToRows = (systems) => (
     systems.map(({ node }) => ({
         ...node,
         policyNames: policyNames({ policies: node?.policies, testResultProfiles: [] }),

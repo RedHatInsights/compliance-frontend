@@ -4,8 +4,34 @@ import {
     lastScanned,
     policyNames,
     mapCountOsMinorVersions,
-    countOsMinorVersions
+    countOsMinorVersions,
+    systemsToRows
 } from './SystemStore';
+import { systems } from '@/__fixtures__/systems.js';
+
+describe('.systemsToRows', () => {
+    it('should return an empty set if there are no systems', () => {
+        expect(systemsToRows([])).toEqual([]);
+    });
+
+    it('should return all systems if showAllSystems is true', () => {
+        expect(systemsToRows(systems).length).toEqual(systems.length);
+        expect(systemsToRows(systems)).toMatchSnapshot();
+    });
+
+    it('should always return all systems for showAllSystems=true', () => {
+        const systemRows = systemsToRows(systems);
+        expect(systemRows.length).toBe(systems.length);
+
+        expect(
+            systemRows.map(row => row.id).sort()
+        ).toEqual(systems.map(e => e.node.id).sort());
+
+        expect(
+            systemRows.map(row => row.display_name).sort()
+        ).toEqual(systems.map(e => e.node.name).sort());
+    });
+});
 
 describe('.lastScanned', () => {
     it('should find the latest scan date', () => {
