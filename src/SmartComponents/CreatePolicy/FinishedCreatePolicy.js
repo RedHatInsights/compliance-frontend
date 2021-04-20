@@ -13,7 +13,7 @@ import { withApollo } from '@apollo/client/react/hoc';
 import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
 
 const EmtpyStateWithErrors = ({ errors }) => (
-    (errors && Array.isArray(errors) && errors.length > 0) &&
+    (errors && Array.isArray(errors) && errors.length > 0) ? (
         <EmptyStateBody className='wizard-failed-errors'>
             <List>
                 {
@@ -23,6 +23,7 @@ const EmtpyStateWithErrors = ({ errors }) => (
                 }
             </List>
         </EmptyStateBody>
+    ) : null
 );
 
 EmtpyStateWithErrors.propTypes = {
