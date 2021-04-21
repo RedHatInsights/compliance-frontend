@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
-import EditPolicyRulesTab from './EditPolicyRulesTab.js';
-import { policies } from '@/__fixtures__/policies';
+import { policies } from '@/__fixtures__/policies.js';
+import EditPolicyRulesTab, { toTabsData } from './EditPolicyRulesTab.js';
 
 jest.mock('@apollo/client');
 const policy = policies.edges[0].node;
@@ -22,7 +22,7 @@ describe('EditPolicyRulesTab', () => {
         const wrapper = shallow(
             <EditPolicyRulesTab
                 handleSelect={ () => {} }
-                policy={ policies.edges[0].node }
+                policy={ { policy: policies.edges[0].node  } }
                 selectedRuleRefIds={ [] }
                 osMinorVersionCounts={ {} }
             />
@@ -44,5 +44,25 @@ describe('EditPolicyRulesTab', () => {
             />
         );
         expect(toJson(wrapper)).toMatchSnapshot();
+    });
+});
+
+describe('.toTabsData', () => {
+    it('expect to render without error', async () => {
+        const policy = policies.edges[0].node;
+        const osMinorVersionCounts = {
+            9: {
+                osMinorVersion: 9,
+                count: 1
+            }
+        };
+        const benchmark = {
+            latestSupportedOsMinorVersions: [9],
+            profiles: [
+                { refId: policy.refId }
+            ]
+        };
+        const result = toTabsData(policy, osMinorVersionCounts, [benchmark], []);
+        expect(result).toMatchSnapshot();
     });
 });
