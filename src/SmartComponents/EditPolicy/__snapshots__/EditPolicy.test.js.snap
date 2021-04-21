@@ -41,31 +41,69 @@ exports[`EditPolicy expect to render without error 1`] = `
   variant="default"
   width={1220}
 >
-  <EditPolicyForm
-    policy={
+  <StateViewWithError
+    stateValues={
       Object {
-        "benchmark": Object {
-          "title": "benchmark",
-          "version": "0.1.5",
-        },
-        "businessObjective": Object {
-          "id": "1",
-          "title": "BO 1",
-        },
-        "complianceThreshold": 1,
-        "compliantHostCount": 1,
-        "description": "profile description",
-        "id": "1",
-        "name": "profile1",
+        "error": undefined,
+        "loading": undefined,
         "policy": Object {
-          "name": "parentpolicy",
+          "benchmark": Object {
+            "title": "benchmark",
+            "version": "0.1.5",
+          },
+          "businessObjective": Object {
+            "id": "1",
+            "title": "BO 1",
+          },
+          "complianceThreshold": 1,
+          "compliantHostCount": 1,
+          "description": "profile description",
+          "id": "1",
+          "name": "profile1",
+          "policy": Object {
+            "name": "parentpolicy",
+          },
+          "refId": "121212",
+          "totalHostCount": 1,
         },
-        "refId": "121212",
-        "totalHostCount": 1,
       }
     }
-    setUpdatedPolicy={[Function]}
-    updatedPolicy={null}
-  />
+  >
+    <StateViewPart
+      stateKey="loading"
+    >
+      <Spinner />
+    </StateViewPart>
+    <StateViewPart
+      stateKey="policy"
+    >
+      <EditPolicyForm
+        policy={
+          Object {
+            "benchmark": Object {
+              "title": "benchmark",
+              "version": "0.1.5",
+            },
+            "businessObjective": Object {
+              "id": "1",
+              "title": "BO 1",
+            },
+            "complianceThreshold": 1,
+            "compliantHostCount": 1,
+            "description": "profile description",
+            "id": "1",
+            "name": "profile1",
+            "policy": Object {
+              "name": "parentpolicy",
+            },
+            "refId": "121212",
+            "totalHostCount": 1,
+          }
+        }
+        setUpdatedPolicy={[Function]}
+        updatedPolicy={null}
+      />
+    </StateViewPart>
+  </StateViewWithError>
 </Modal>
 `;
