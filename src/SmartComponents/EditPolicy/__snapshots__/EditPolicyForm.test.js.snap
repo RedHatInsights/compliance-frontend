@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditPolicyForm expect to render without error 1`] = `
+<Form>
+  <RoutedTabs
+    defaultTab="details"
+    level={0}
+  >
+    <Tab
+      eventKey="details"
+      title={
+        <TabTitleText>
+          Details
+        </TabTitleText>
+      }
+    >
+      <EditPolicyDetailsTab
+        policy={
+          Object {
+            "name": "parentpolicy",
+          }
+        }
+      />
+    </Tab>
+    <Tab
+      eventKey="rules"
+      title={
+        <TabTitleText>
+          Rules
+        </TabTitleText>
+      }
+    >
+      <EditPolicyRulesTab
+        handleSelect={[Function]}
+        osMinorVersionCounts={Object {}}
+        policy={
+          Object {
+            "name": "parentpolicy",
+          }
+        }
+        selectedRuleRefIds={Array []}
+      />
+    </Tab>
+    <Tab
+      eventKey="systems"
+      title={
+        <TabTitleText>
+          Systems
+        </TabTitleText>
+      }
+    >
+      <EditPolicySystemsTab
+        policyOsMinorVersions={Array []}
+      />
+    </Tab>
+  </RoutedTabs>
+</Form>
+`;
