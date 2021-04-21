@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
 import usePolicy from './usePolicy';
 
@@ -69,7 +70,7 @@ query Profile($policyId: String!){
 
 export const EditPolicy = ({ route }) => {
     const { policy_id: policyId } = useParams();
-    let { data } = useQuery(MULTIVERSION_QUERY, {
+    const { data, loading, error } = useQuery(MULTIVERSION_QUERY, {
         variables: { policyId }
     });
     const policy = data?.profile;
@@ -130,9 +131,15 @@ export const EditPolicy = ({ route }) => {
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>
-        { policy
-            ? <EditPolicyForm { ...{ policy, updatedPolicy, setUpdatedPolicy } } />
-            : <Spinner /> }
+
+        <StateViewWithError stateValues={ { policy, loading, error } }>
+            <StateViewPart stateKey="loading">
+                <Spinner />
+            </StateViewPart>
+            <StateViewPart stateKey="policy">
+                <EditPolicyForm { ...{ policy, updatedPolicy, setUpdatedPolicy } } />
+            </StateViewPart>
+        </StateViewWithError>
     </Modal>;
 };
 
