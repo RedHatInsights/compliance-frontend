@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Button, Form, Modal, Tab, TabTitleText, Spinner } from '@patternfly/react-core';
-import { RoutedTabs } from 'PresentationalComponents';
-import { uniq } from 'Utilities/helpers';
+import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import EditPolicyDetailsTab from './EditPolicyDetailsTab';
-import EditPolicyRulesTab from './EditPolicyRulesTab';
-import EditPolicySystemsTab from './EditPolicySystemsTab';
+import EditPolicyForm from './EditPolicyForm';
 import usePolicy from './usePolicy';
-import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 
 export const MULTIVERSION_QUERY = gql`
 query Profile($policyId: String!){
@@ -72,32 +67,18 @@ query Profile($policyId: String!){
 }
 `;
 
-const profilesToOsMinorMap = (profiles, hosts) => (
-    (profiles || []).reduce((acc, profile) => {
-        if (profile.osMinorVersion !== '') {
-            acc[profile.osMinorVersion] ||= { osMinorVersion: profile.osMinorVersion, count: 0 };
-        }
-
-        return acc;
-    }, mapCountOsMinorVersions(hosts || []))
-);
-
 export const EditPolicy = ({ route }) => {
     const { policy_id: policyId } = useParams();
     let { data } = useQuery(MULTIVERSION_QUERY, {
         variables: { policyId }
     });
     const policy = data?.profile;
-    const policyProfiles = policy?.policy?.profiles || [];
     const dispatch = useDispatch();
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
-    const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
-    const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
     const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const [isSaving, setIsSaving] = useState();
-    const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
@@ -106,16 +87,6 @@ export const EditPolicy = ({ route }) => {
             payload: { ids: [] }
         });
         linkToBackground({ hash: anchor });
-    };
-
-    const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
-        const filteredSelection = selectedRuleRefIds.filter((selectedProfile) =>
-            selectedProfile.id !== profile.id
-        );
-        setSelectedRuleRefIds([
-            { id: profile.id, ruleRefIds: newSelectedRuleRefIds },
-            ...filteredSelection
-        ]);
     };
 
     const onSave = () => {
@@ -150,49 +121,6 @@ export const EditPolicy = ({ route }) => {
         </Button>
     ];
 
-    const updateSelectedRuleRefIds = () => {
-        if (policy) {
-            setSelectedRuleRefIds(policyProfiles.map((policyProfile) => ({
-                id: policyProfile.id,
-                ruleRefIds: policyProfile.rules.map((rule) => (rule.refId))
-            })));
-        }
-    };
-
-    useEffect(() => {
-        setUpdatedPolicy({
-            ...updatedPolicy,
-            hosts: selectedEntities ? selectedEntities : []
-        });
-        updateSelectedRuleRefIds();
-
-        setOsMinorVersionCounts(
-            profilesToOsMinorMap(policyProfiles, selectedEntities)
-        );
-    }, [selectedEntities]);
-
-    useEffect(() => setUpdatedPolicy({ ...updatedPolicy, selectedRuleRefIds }), [selectedRuleRefIds]);
-
-    useEffect(() => {
-        if (policy) {
-            const complianceThresholdValid =
-                (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
-            setUpdatedPolicy({
-                ...policy,
-                complianceThresholdValid
-            });
-            updateSelectedRuleRefIds();
-
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: policy?.hosts || [] }
-            });
-            setOsMinorVersionCounts(
-                profilesToOsMinorMap(policyProfiles, policy.hosts)
-            );
-        }
-    }, [policy]);
-
     useTitleEntity(route, policy?.name);
 
     return <Modal
@@ -202,31 +130,9 @@ export const EditPolicy = ({ route }) => {
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>
-        { policy ? <Form>
-            <RoutedTabs defaultTab='details'>
-                <Tab eventKey='details' title={<TabTitleText>Details</TabTitleText>}>
-                    <EditPolicyDetailsTab
-                        policy={ policy }
-                        setUpdatedPolicy={ setUpdatedPolicy } />
-                </Tab>
-
-                <Tab eventKey='rules' title={ <TabTitleText>Rules</TabTitleText> }>
-                    <EditPolicyRulesTab
-                        policy={ policy }
-                        handleSelect={ handleRuleSelect }
-                        selectedRuleRefIds={ selectedRuleRefIds }
-                        osMinorVersionCounts={ osMinorVersionCounts }
-                    />
-                </Tab>
-
-                <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
-                    <EditPolicySystemsTab
-                        osMajorVersion={ policy.osMajorVersion }
-                        policyOsMinorVersions={ uniq(policyProfiles.map(profile => profile.osMinorVersion)) }
-                    />
-                </Tab>
-            </RoutedTabs>
-        </Form> : <Spinner /> }
+        { policy
+            ? <EditPolicyForm { ...{ policy, updatedPolicy, setUpdatedPolicy } } />
+            : <Spinner /> }
     </Modal>;
 };
 
