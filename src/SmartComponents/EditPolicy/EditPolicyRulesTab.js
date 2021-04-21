@@ -71,21 +71,8 @@ const EditPolicyRulesTabEmptyState = () => <EmptyState>
     </EmptyStateBody>
 </EmptyState>;
 
-const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
-    const osMajorVersion = policy?.osMajorVersion;
-    const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
-    const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
-        `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
-
-    const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
-        type: 'benchmark',
-        include: ['profiles'],
-        params: { search: benchmarkSearch },
-        skip: osMinorVersions.length === 0
-    }, [benchmarkSearch]);
-
-    let profileIds = [];
-    let tabsData = Object.values(osMinorVersionCounts).sort(
+export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds) => (
+    Object.values(osMinorVersionCounts).sort(
         sortingByProp('osMinorVersion', 'desc')
     ).map(({ osMinorVersion, count: systemCount }) => {
         osMinorVersion = `${osMinorVersion}`;
@@ -114,11 +101,23 @@ const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorV
             newOsMinorVersion: osMinorVersion,
             selectedRuleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile?.id)?.ruleRefIds
         };
-    });
-    tabsData = tabsData.filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion);
+    }).filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion)
+);
 
-    tabsData.forEach((tab) => (profileIds.push(tab.profile.id)));
+export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
+    const osMajorVersion = policy?.osMajorVersion;
+    const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
+    const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
+        `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
 
+    const { data: benchmarks, loading: benchmarksLoading } = useCollection('benchmarks', {
+        type: 'benchmark',
+        include: ['profiles'],
+        params: { search: benchmarkSearch },
+        skip: osMinorVersions.length === 0
+    }, [benchmarkSearch]);
+    const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds);
+    const profileIds = tabsData.map((tab) => (tab.profile.id));
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const { data: profilesData, error, loading } = useQuery(PROFILES_QUERY, {
         variables: {

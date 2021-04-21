@@ -7,7 +7,7 @@ import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/re
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import { ProfileThresholdField } from 'PresentationalComponents';
 
-const EditPolicyDetails = ({ change, policy, refId }) => {
+export const EditPolicyDetails = ({ change, policy, refId }) => {
 
     useEffect(() => {
         if (policy && policy.refId !== refId) {
@@ -101,5 +101,3 @@ export default compose(
         forceUnregisterOnUnmount: true
     })
 )(EditPolicyDetails);
-
-export { EditPolicyDetails };

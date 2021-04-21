@@ -30,7 +30,7 @@ EmtpyStateWithErrors.propTypes = {
     errors: propTypes.array
 };
 
-const FinishedCreatePolicy = ({
+export const FinishedCreatePolicy = ({
     onWizardFinish,
     cloneFromProfileId,
     description,
@@ -107,7 +107,6 @@ const FinishedCreatePolicy = ({
 
 FinishedCreatePolicy.propTypes = {
     benchmarkId: propTypes.string.isRequired,
-    client: propTypes.object.isRequired,
     businessObjective: propTypes.object,
     cloneFromProfileId: propTypes.string.isRequired,
     refId: propTypes.string.isRequired,
