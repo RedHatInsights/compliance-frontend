@@ -56,11 +56,6 @@ const mocks = [
 ];
 const store = init().getStore();
 
-jest.mock('../SystemsTable/SystemsTable', () => {
-    const SystemsTable = () => <table><tbody><tr><td>Systems Table</td></tr></tbody></table>;
-    return SystemsTable;
-});
-
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
 jest.mock('@apollo/client');

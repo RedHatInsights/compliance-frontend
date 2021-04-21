@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Wizard } from '@patternfly/react-core';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
-import EditPolicyRules from './EditPolicyRules';
+import { default as EditPolicyRules } from './EditPolicyProfilesRules';
 import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';

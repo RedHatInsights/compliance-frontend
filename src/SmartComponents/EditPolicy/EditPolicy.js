@@ -13,7 +13,6 @@ import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import usePolicy from './usePolicy';
-import useFeature from 'Utilities/hooks/useFeature';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 
 export const MULTIVERSION_QUERY = gql`
@@ -90,7 +89,6 @@ export const EditPolicy = ({ route }) => {
     });
     const policy = data?.profile;
     const policyProfiles = policy?.policy?.profiles || [];
-    const newInventory = useFeature('newInventory');
     const dispatch = useDispatch();
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
@@ -103,7 +101,7 @@ export const EditPolicy = ({ route }) => {
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        newInventory && dispatch({
+        dispatch({
             type: 'SELECT_ENTITIES',
             payload: { ids: [] }
         });

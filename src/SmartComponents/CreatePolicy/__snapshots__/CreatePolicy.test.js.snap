@@ -47,7 +47,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
       },
       Object {
         "canJumpTo": false,
-        "component": <FeatureWrapper />,
+        "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 4,
         "name": "Rules",

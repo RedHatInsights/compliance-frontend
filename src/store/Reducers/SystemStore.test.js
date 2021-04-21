@@ -5,46 +5,31 @@ import {
     policyNames,
     mapCountOsMinorVersions,
     countOsMinorVersions,
-    systemsToInventoryEntities
+    systemsToRows
 } from './SystemStore';
-import { systems, entities } from '@/__fixtures__/systems.js';
+import { systems } from '@/__fixtures__/systems.js';
 
-describe('mapping systems to inventory entities', () => {
+describe('.systemsToRows', () => {
     it('should return an empty set if there are no systems', () => {
-        expect(systemsToInventoryEntities([], entities, false)).toEqual([]);
+        expect(systemsToRows([])).toEqual([]);
     });
 
     it('should return all systems if showAllSystems is true', () => {
-        expect(systemsToInventoryEntities([], entities, true).length).toEqual(entities.length);
-    });
-
-    it('should only return systems with a matching inventory entity', () => {
-        const oneMatchingEntityInventory = [{ id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6', facts: [] }];
-        const inventoryEntities = systemsToInventoryEntities(systems, oneMatchingEntityInventory);
-        expect(inventoryEntities.length).toBe(1);
-        expect(inventoryEntities).toMatchSnapshot();
-    });
-
-    it('should only return all systems if all have a matching in the inventory for showAllSystems=false', () => {
-        const inventoryEntities = systemsToInventoryEntities(systems, entities, false);
-        const systemIds = systems.map(system => system.node.id);
-        const systemNames = systems.map(system => system.node.name);
-        const systemComplianceScores = [' 10%', ' N/A'];
-        expect(inventoryEntities.length).toBe(2);
-        expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(systemIds.sort());
-        expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(systemNames.sort());
-        expect(inventoryEntities.map(entity => entity.facts.compliance.compliance_score_text).sort()).
-        toEqual(systemComplianceScores.sort());
+        expect(systemsToRows(systems).length).toEqual(systems.length);
+        expect(systemsToRows(systems)).toMatchSnapshot();
     });
 
     it('should always return all systems for showAllSystems=true', () => {
-        const inventoryEntities = systemsToInventoryEntities(systems, entities, true);
-        const systemComplianceScores = [' 10%', ' N/A', ' N/A', ' N/A'];
-        expect(inventoryEntities.length).toBe(entities.length);
-        expect(inventoryEntities.map(entity => entity.id).sort()).toEqual(entities.map(e => e.id).sort());
-        expect(inventoryEntities.map(entity => entity.display_name).sort()).toEqual(entities.map(e => e.display_name).sort());
-        expect(inventoryEntities.map(entity => entity.facts.compliance.compliance_score_text).sort()).
-        toEqual(systemComplianceScores.sort());
+        const systemRows = systemsToRows(systems);
+        expect(systemRows.length).toBe(systems.length);
+
+        expect(
+            systemRows.map(row => row.id).sort()
+        ).toEqual(systems.map(e => e.node.id).sort());
+
+        expect(
+            systemRows.map(row => row.display_name).sort()
+        ).toEqual(systems.map(e => e.node.name).sort());
     });
 });
 

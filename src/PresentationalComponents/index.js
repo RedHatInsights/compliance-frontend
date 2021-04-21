@@ -1,7 +1,4 @@
-export { default as LoadingComplianceCards } from './LoadingComplianceCards/LoadingComplianceCards';
 export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingPoliciesTable';
-export { default as ReportCard } from './ReportCard/ReportCard';
-export { default as ReportCardGrid } from './ReportCardGrid/ReportCardGrid';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
 export { default as GreySmallText } from './GreySmallText/GreySmallText';
 export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
@@ -16,7 +13,6 @@ export { default as TabSwitcher, ContentTab, RoutedTabSwitcher, RoutedTabs } fro
 export { StateView, StateViewWithError, StateViewPart } from './StateView/StateView';
 export { default as SystemsCountWarning, WARNING_TEXT } from './SystemsCountWarning/SystemsCountWarning';
 export { default as WarningText } from './WarningText/WarningText';
-export { default as NoSystemsTableBody } from './NoSystemsTableBody/NoSystemsTableBody';
 export { default as BackgroundLink } from './BackgroundLink/BackgroundLink';
 export { default as BreadcrumbLinkItem } from './BreadcrumbLinkItem/BreadcrumbLinkItem';
 export { default as ReportsTable } from './ReportsTable/ReportsTable';
