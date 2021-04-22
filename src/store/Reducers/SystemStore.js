@@ -1,7 +1,8 @@
 import React from 'react';
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
 import { Link } from 'react-router-dom';
-import { SELECT_ENTITY } from 'Store/ActionTypes';
+import { EXPORT, SELECT_ENTITY } from 'Store/ActionTypes';
+import { exportFromState } from 'Utilities/Export';
 import {
     Tooltip,
     Text,
@@ -216,5 +217,9 @@ export const systemsReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
     },
     ['SELECT_ENTITIES']: (state, { payload: { ids } }) => ({
         selectedEntities: ids
-    })
+    }),
+    [EXPORT]: (state, { payload: { format } }) => {
+        exportFromState(state, format);
+        return state;
+    }
 });
