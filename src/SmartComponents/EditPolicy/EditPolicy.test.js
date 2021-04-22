@@ -91,14 +91,4 @@ describe('EditPolicy', () => {
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
-
-    it('expect to render with active tab open', () => {
-        const wrapper = shallow(
-            <EditPolicy
-                { ...defaultProps }
-                activeTab={ 1 } />
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
 });

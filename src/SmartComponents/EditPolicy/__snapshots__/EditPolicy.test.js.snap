@@ -1,138 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EditPolicy expect to render with active tab open 1`] = `
-<Modal
-  actions={
-    Array [
-      <Button
-        isDisabled={null}
-        onClick={[Function]}
-        spinnerAriaValueText="Saving"
-        variant="primary"
-      >
-        Save
-      </Button>,
-      <Button
-        onClick={[Function]}
-        variant="link"
-      >
-        Cancel
-      </Button>,
-    ]
-  }
-  appendTo={[Function]}
-  aria-describedby=""
-  aria-label=""
-  aria-labelledby=""
-  className=""
-  hasNoBodyWrapper={false}
-  isOpen={true}
-  onClose={[Function]}
-  ouiaSafe={true}
-  showClose={true}
-  style={
-    Object {
-      "height": "768px",
-    }
-  }
-  title="Edit profile1"
-  titleIconVariant={null}
-  titleLabel=""
-  variant="default"
-  width={1220}
->
-  <Form>
-    <RoutedTabs
-      defaultTab="details"
-      level={0}
-    >
-      <Tab
-        eventKey="details"
-        title={
-          <TabTitleText>
-            Details
-          </TabTitleText>
-        }
-      >
-        <EditPolicyDetailsTab
-          policy={
-            Object {
-              "benchmark": Object {
-                "title": "benchmark",
-                "version": "0.1.5",
-              },
-              "businessObjective": Object {
-                "id": "1",
-                "title": "BO 1",
-              },
-              "complianceThreshold": 1,
-              "compliantHostCount": 1,
-              "description": "profile description",
-              "id": "1",
-              "name": "profile1",
-              "policy": Object {
-                "name": "parentpolicy",
-              },
-              "refId": "121212",
-              "totalHostCount": 1,
-            }
-          }
-          setUpdatedPolicy={[Function]}
-        />
-      </Tab>
-      <Tab
-        eventKey="rules"
-        title={
-          <TabTitleText>
-            Rules
-          </TabTitleText>
-        }
-      >
-        <EditPolicyRulesTab
-          handleSelect={[Function]}
-          osMinorVersionCounts={Object {}}
-          policy={
-            Object {
-              "benchmark": Object {
-                "title": "benchmark",
-                "version": "0.1.5",
-              },
-              "businessObjective": Object {
-                "id": "1",
-                "title": "BO 1",
-              },
-              "complianceThreshold": 1,
-              "compliantHostCount": 1,
-              "description": "profile description",
-              "id": "1",
-              "name": "profile1",
-              "policy": Object {
-                "name": "parentpolicy",
-              },
-              "refId": "121212",
-              "totalHostCount": 1,
-            }
-          }
-          selectedRuleRefIds={Array []}
-        />
-      </Tab>
-      <Tab
-        eventKey="systems"
-        title={
-          <TabTitleText>
-            Systems
-          </TabTitleText>
-        }
-      >
-        <EditPolicySystemsTab
-          policyOsMinorVersions={Array []}
-        />
-      </Tab>
-    </RoutedTabs>
-  </Form>
-</Modal>
-`;
-
 exports[`EditPolicy expect to render without error 1`] = `
 <Modal
   actions={
@@ -174,94 +41,69 @@ exports[`EditPolicy expect to render without error 1`] = `
   variant="default"
   width={1220}
 >
-  <Form>
-    <RoutedTabs
-      defaultTab="details"
-      level={0}
+  <StateViewWithError
+    stateValues={
+      Object {
+        "error": undefined,
+        "loading": undefined,
+        "policy": Object {
+          "benchmark": Object {
+            "title": "benchmark",
+            "version": "0.1.5",
+          },
+          "businessObjective": Object {
+            "id": "1",
+            "title": "BO 1",
+          },
+          "complianceThreshold": 1,
+          "compliantHostCount": 1,
+          "description": "profile description",
+          "id": "1",
+          "name": "profile1",
+          "policy": Object {
+            "name": "parentpolicy",
+          },
+          "refId": "121212",
+          "totalHostCount": 1,
+        },
+      }
+    }
+  >
+    <StateViewPart
+      stateKey="loading"
     >
-      <Tab
-        eventKey="details"
-        title={
-          <TabTitleText>
-            Details
-          </TabTitleText>
-        }
-      >
-        <EditPolicyDetailsTab
-          policy={
-            Object {
-              "benchmark": Object {
-                "title": "benchmark",
-                "version": "0.1.5",
-              },
-              "businessObjective": Object {
-                "id": "1",
-                "title": "BO 1",
-              },
-              "complianceThreshold": 1,
-              "compliantHostCount": 1,
-              "description": "profile description",
+      <Spinner />
+    </StateViewPart>
+    <StateViewPart
+      stateKey="policy"
+    >
+      <EditPolicyForm
+        policy={
+          Object {
+            "benchmark": Object {
+              "title": "benchmark",
+              "version": "0.1.5",
+            },
+            "businessObjective": Object {
               "id": "1",
-              "name": "profile1",
-              "policy": Object {
-                "name": "parentpolicy",
-              },
-              "refId": "121212",
-              "totalHostCount": 1,
-            }
+              "title": "BO 1",
+            },
+            "complianceThreshold": 1,
+            "compliantHostCount": 1,
+            "description": "profile description",
+            "id": "1",
+            "name": "profile1",
+            "policy": Object {
+              "name": "parentpolicy",
+            },
+            "refId": "121212",
+            "totalHostCount": 1,
           }
-          setUpdatedPolicy={[Function]}
-        />
-      </Tab>
-      <Tab
-        eventKey="rules"
-        title={
-          <TabTitleText>
-            Rules
-          </TabTitleText>
         }
-      >
-        <EditPolicyRulesTab
-          handleSelect={[Function]}
-          osMinorVersionCounts={Object {}}
-          policy={
-            Object {
-              "benchmark": Object {
-                "title": "benchmark",
-                "version": "0.1.5",
-              },
-              "businessObjective": Object {
-                "id": "1",
-                "title": "BO 1",
-              },
-              "complianceThreshold": 1,
-              "compliantHostCount": 1,
-              "description": "profile description",
-              "id": "1",
-              "name": "profile1",
-              "policy": Object {
-                "name": "parentpolicy",
-              },
-              "refId": "121212",
-              "totalHostCount": 1,
-            }
-          }
-          selectedRuleRefIds={Array []}
-        />
-      </Tab>
-      <Tab
-        eventKey="systems"
-        title={
-          <TabTitleText>
-            Systems
-          </TabTitleText>
-        }
-      >
-        <EditPolicySystemsTab
-          policyOsMinorVersions={Array []}
-        />
-      </Tab>
-    </RoutedTabs>
-  </Form>
+        setUpdatedPolicy={[Function]}
+        updatedPolicy={null}
+      />
+    </StateViewPart>
+  </StateViewWithError>
 </Modal>
 `;
