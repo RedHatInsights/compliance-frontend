@@ -13,4 +13,30 @@ describe('PolicySystemsTab', () => {
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
+
+    it('expect to render with no systems table', () => {
+        const policy = {
+            ...policies.edges[0].node,
+            hosts: []
+        };
+
+        const wrapper = shallow(
+            <PolicySystemsTab { ...{ policy } } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
+
+    it('expect to render with undefined hosts', () => {
+        const policy = {
+            ...policies.edges[0].node,
+            hosts: undefined
+        };
+
+        const wrapper = shallow(
+            <PolicySystemsTab { ...{ policy } } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 });

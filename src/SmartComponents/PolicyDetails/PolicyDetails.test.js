@@ -23,6 +23,7 @@ const mocks = [
                     complianceThreshold: 1,
                     compliantHostCount: 1,
                     majorOsVersion: '7',
+                    hosts: [],
                     policy: {
                         name: 'parentpolicy',
                         profiles: [
