@@ -51,6 +51,11 @@ exports[`EditPolicyForm expect to render without error 1`] = `
     >
       <EditPolicySystemsTab
         newRuleTabs={false}
+        policy={
+          Object {
+            "name": "parentpolicy",
+          }
+        }
       />
     </Tab>
   </RoutedTabs>

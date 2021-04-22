@@ -1,75 +1,68 @@
-import { init } from 'Store';
-import logger from 'redux-logger';
-import { useSelector } from 'react-redux';
-
 import { InventoryTable } from './InventoryTable';
+
+jest.mock('@apollo/client', () => ({
+    ...jest.requireActual('react-redux'),
+    useApolloClient: () => (
+        jest.fn()
+    )
+}));
 
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
-    useSelector: jest.fn(),
-    useStore: jest.fn(),
-    useDispatch: jest.fn()
+    useDispatch: () => (
+        jest.fn()
+    ),
+    useStore: jest.fn(() => ({
+        getStore: jest.fn({})
+    }))
 }));
 
-const items = {
-    data: {
-        systems: {
-            totalCount: 1,
-            edges: [
-                {
-                    node: {
-                        id: 1
-                    }
-                }
-            ]
-        }
-    }
-};
-
 describe('InventoryTable', () => {
-    const store = init(logger).getStore();
-    const client = { query: jest.fn(() => Promise.resolve(items)) };
-    const updateSystemsFunction = jest.fn(jest.fn(() => Promise.resolve(items)));
-    const updateRowsFunction = jest.fn(jest.fn(() => Promise.resolve(items)));
-    const defaultProps = {
-        store,
-        client,
-        updateSystems: updateSystemsFunction,
-        updateRows: updateRowsFunction,
-        clearInventoryFilter: jest.fn(),
-        titleComponent: 'Title Component',
-        emptyStateComponent: 'Empty State Component'
-    };
-    const MockComponent = jest.fn(({ children, loaded }) => {
-        return children && loaded ? children : 'Loading...';
+    it('returns', () => {
+        expect(renderJson(
+            <InventoryTable />
+        )).toMatchSnapshot();
     });
 
-    beforeEach(() => {
-        global.insights = {
-            loadInventory: jest.fn(() => {
-                return Promise.resolve({
-                    inventoryConnector: () => ({
-                        InventoryTable: MockComponent
-                    }),
-                    INVENTORY_ACTION_TYPES: {},
-                    mergeWithEntities: () => ({})
-                });
-            })
-        };
-
+    it('returns without actions', () => {
+        expect(renderJson(
+            <InventoryTable showActions={ false } />
+        )).toMatchSnapshot();
     });
 
-    it('expect to not render a loading state', () => {
-        const state = {
-            entities: {
-                selectedEntities: []
-            }
-        };
-        useSelector.mockImplementation((callback) => (callback(state)));
-        const wrapper = shallow(
-            <InventoryTable { ...defaultProps } />
-        );
+    it('returns without remediations', () => {
+        expect(renderJson(
+            <InventoryTable remediationsEnabled={ false } />
+        )).toMatchSnapshot();
+    });
 
-        expect(toJson(wrapper)).toMatchSnapshot();
+    it('returns showAllSystems', () => {
+        expect(renderJson(
+            <InventoryTable showAllSystems />
+        )).toMatchSnapshot();
+    });
+
+    it('returns with a showComplianceSystemsInfo', () => {
+        expect(renderJson(
+            <InventoryTable showComplianceSystemsInfo />
+        )).toMatchSnapshot();
+    });
+
+    it('returns compact', () => {
+        expect(renderJson(
+            <InventoryTable compact />
+        )).toMatchSnapshot();
+    });
+
+    it('returns with compliantFilter', () => {
+        expect(renderJson(
+            <InventoryTable compliantFilter />
+        )).toMatchSnapshot();
+    });
+
+    it('returns with showOnlySystemsWithTestResults', () => {
+        expect(renderJson(
+            <InventoryTable showOnlySystemsWithTestResults />
+        )).toMatchSnapshot();
     });
 });

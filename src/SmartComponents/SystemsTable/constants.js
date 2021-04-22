@@ -3,6 +3,8 @@ import pickBy from 'lodash/pickBy';
 import {
     systemsPolicyFilterConfiguration, systemsOsFilterConfiguration, systemsOsMinorFilterConfiguration
 } from '@/constants';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
 export const GET_SYSTEMS = gql`
 query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
@@ -85,3 +87,16 @@ export const osMinorVersionFilter = (...args) => systemsOsMinorFilterConfigurati
 export const initFilterState = (filterConfig) => (
     pickBy(filterConfig.initialDefaultState(), (value) => (!!value))
 );
+
+export const defaultOnLoad = (columns) => (({
+    INVENTORY_ACTION_TYPES,
+    mergeWithEntities
+}) => (
+    getRegistry().register({
+        ...mergeWithEntities(
+            entitiesReducer(
+                INVENTORY_ACTION_TYPES, columns
+            )
+        )
+    })
+));

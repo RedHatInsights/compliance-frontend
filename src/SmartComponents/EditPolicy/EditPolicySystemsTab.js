@@ -1,9 +1,10 @@
 import React from 'react';
 import { Alert, AlertActionLink, Text, TextContent } from '@patternfly/react-core';
+import propTypes from 'prop-types';
 import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
-import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
     <React.Fragment>
@@ -39,38 +40,26 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.string
 };
 
-const EditPolicySystemsTab = ({ osMajorVersion, newRuleTabs }) => {
+const EditPolicySystemsTab = ({ policy: { osMajorVersion, hosts }, newRuleTabs }) => {
     const { push, location } = useHistory();
-
-    const columns = [{
-        key: 'display_name',
-        title: 'Name',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (displayName, _id, { name }) => (displayName || name)
-    }, {
-        key: 'osMinorVersion',
-        title: 'Operating system',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-    }];
 
     return (
         <React.Fragment>
             <InventoryTable
+                columns={[
+                    Columns.Name,
+                    Columns.OperatingSystem
+                ]}
                 showOsMinorVersionFilter={ [osMajorVersion] }
                 prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } />  }
                 emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } />  }
-                columns={ columns }
                 compact
                 showActions={ false }
                 query={ GET_SYSTEMS_WITHOUT_FAILED_RULES }
                 defaultFilter={ osMajorVersion && `os_major_version = ${osMajorVersion}` }
                 enableExport={ false }
                 remediationsEnabled={ false }
+                preselectedSystems={ hosts }
             />
             {newRuleTabs && <Alert
                 variant="info"
@@ -86,7 +75,7 @@ const EditPolicySystemsTab = ({ osMajorVersion, newRuleTabs }) => {
 };
 
 EditPolicySystemsTab.propTypes = {
-    osMajorVersion: propTypes.string,
+    policy: propTypes.object,
     newRuleTabs: propTypes.bool
 };
 
