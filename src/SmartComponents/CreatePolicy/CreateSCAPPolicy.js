@@ -1,12 +1,12 @@
 import React from 'react';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
-    Button,
     Form,
     FormGroup,
     Text,
     TextContent,
     TextVariants,
+    Tile,
     Tooltip
 } from '@patternfly/react-core';
 import { ProfileTypeSelect } from 'PresentationalComponents';
@@ -113,11 +113,13 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
                         const { id, osMajorVersion } = benchmark;
                         return (
-                            <Button key={id} onClick={ () => setBenchmark(benchmark) }
-                                className={`wizard-os-button ${selectedBenchmarkId === id ? 'active-wizard-os-button' : ''}`}
-                                variant="tertiary">
-                                { `RHEL ${osMajorVersion}` }
-                            </Button>
+                            <Tile
+                                key={id}
+                                className="pf-u-mr-md"
+                                title={ `RHEL ${osMajorVersion}` }
+                                onClick={ () => setBenchmark(benchmark) }
+                                isSelected={ selectedBenchmarkId === id }
+                                isStacked />
                         );
                     })}
                 </FormGroup>
