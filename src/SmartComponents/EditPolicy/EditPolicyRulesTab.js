@@ -57,6 +57,7 @@ query Benchmarks($filter: String!){
             profiles {
                 id
                 refId
+                ssgVersion
             }
         }
     }
