@@ -38,7 +38,6 @@ exports[`EditPolicyForm expect to render without error 1`] = `
             "name": "parentpolicy",
           }
         }
-        selectedRuleRefIds={Array []}
       />
     </Tab>
     <Tab
