@@ -168,7 +168,10 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     const error = benchmarksError || profilesError;
 
     return <StateViewWithError stateValues={ {
-        error, data: dataState, loading: loadingState, empty: !loadingState && !dataState && !error
+        error,
+        data: !error && dataState,
+        loading: loadingState,
+        empty: !loadingState && !dataState && !error
     } }>
         <StateViewPart stateKey="loading">
             <EmptyTable><Spinner/></EmptyTable>
