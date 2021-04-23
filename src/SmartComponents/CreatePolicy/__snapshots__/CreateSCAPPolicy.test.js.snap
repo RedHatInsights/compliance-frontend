@@ -59,38 +59,38 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
       isRequired={true}
       label="Operating system"
     >
-      <Button
-        className="wizard-os-button "
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
         key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
         onClick={[Function]}
-        variant="tertiary"
-      >
-        RHEL 6
-      </Button>
-      <Button
-        className="wizard-os-button "
+        title="RHEL 6"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
         key="f1dff140-6649-4060-b0f6-7b1548f9e901"
         onClick={[Function]}
-        variant="tertiary"
-      >
-        RHEL 7
-      </Button>
-      <Button
-        className="wizard-os-button "
+        title="RHEL 7"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
         key="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
         onClick={[Function]}
-        variant="tertiary"
-      >
-        RHEL 7
-      </Button>
-      <Button
-        className="wizard-os-button "
+        title="RHEL 7"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
         key="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
         onClick={[Function]}
-        variant="tertiary"
-      >
-        RHEL 8
-      </Button>
+        title="RHEL 8"
+      />
     </FormGroup>
     <FormGroup
       fieldId="policy-type"
@@ -109,62 +109,66 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
 Array [
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-1"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 6
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-2"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 6
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 7
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-3"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 7
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 7
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="OUIA-Generated-Button-tertiary-4"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 7
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 8
-  </button>,
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 8
+      </div>
+    </div>
+  </div>,
 ]
 `;
 
