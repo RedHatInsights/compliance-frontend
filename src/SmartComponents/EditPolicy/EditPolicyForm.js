@@ -19,10 +19,14 @@ const profilesToOsMinorMap = (profiles, hosts) => (
     }, mapCountOsMinorVersions(hosts || []))
 );
 
-export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
+export const EditPolicyForm = ({
+    policy,
+    setUpdatedPolicy,
+    selectedRuleRefIds, setSelectedRuleRefIds,
+    setSelectedHosts
+}) => {
     const policyProfiles = policy?.policy?.profiles || [];
     const dispatch = useDispatch();
-    const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
     const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
 
@@ -46,10 +50,7 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
     };
 
     useEffect(() => {
-        setUpdatedPolicy({
-            ...updatedPolicy,
-            hosts: selectedEntities ? selectedEntities : []
-        });
+        setSelectedHosts(selectedEntities ? selectedEntities : []);
         updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
@@ -76,8 +77,6 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
             );
         }
     }, [policy]);
-
-    useEffect(() => setUpdatedPolicy({ ...updatedPolicy, selectedRuleRefIds }), [selectedRuleRefIds]);
 
     return (
         <Form>
@@ -110,8 +109,10 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
 
 EditPolicyForm.propTypes = {
     policy: propTypes.object,
-    updatedPolicy: propTypes.object,
-    setUpdatedPolicy: propTypes.func
+    setUpdatedPolicy: propTypes.func,
+    selectedRuleRefIds: propTypes.arrayOf(propTypes.object),
+    setSelectedRuleRefIds: propTypes.func,
+    setSelectedHosts: propTypes.func
 };
 
 export default EditPolicyForm;

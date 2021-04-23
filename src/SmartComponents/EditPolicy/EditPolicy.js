@@ -77,6 +77,8 @@ export const EditPolicy = ({ route }) => {
     const dispatch = useDispatch();
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
+    const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
+    const [selectedHosts, setSelectedHosts] = useState();
     const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const [isSaving, setIsSaving] = useState();
@@ -94,7 +96,12 @@ export const EditPolicy = ({ route }) => {
         if (isSaving) { return; }
 
         setIsSaving(true);
-        updatePolicy(policy, updatedPolicy).then(() => {
+        const updatedPolicyHostsAndRules = {
+            ...updatedPolicy,
+            selectedRuleRefIds,
+            hosts: selectedHosts
+        };
+        updatePolicy(policy, updatedPolicyHostsAndRules).then(() => {
             setIsSaving(false);
             linkToBackgroundWithHash();
         }).catch(() => {
@@ -137,7 +144,11 @@ export const EditPolicy = ({ route }) => {
                 <Spinner />
             </StateViewPart>
             <StateViewPart stateKey="policy">
-                <EditPolicyForm { ...{ policy, updatedPolicy, setUpdatedPolicy } } />
+                <EditPolicyForm
+                    { ...{
+                        policy, updatedPolicy, setUpdatedPolicy,
+                        selectedRuleRefIds, setSelectedRuleRefIds, setSelectedHosts
+                    } } />
             </StateViewPart>
         </StateViewWithError>
     </Modal>;
