@@ -29,13 +29,13 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     defaultFilter="os_major_version = 7"
     emptyStateComponent={
       <EmptyState
-        osMajorVersion={7}
+        osMajorVersion="7"
       />
     }
     enableExport={false}
     prependComponent={
       <PrependComponent
-        osMajorVersion={7}
+        osMajorVersion="7"
       />
     }
     query={
@@ -487,7 +487,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     showActions={false}
     showOsMinorVersionFilter={
       Array [
-        7,
+        "7",
       ]
     }
   />

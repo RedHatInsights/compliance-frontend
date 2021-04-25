@@ -22,7 +22,7 @@ const EmptyState = ({ osMajorVersion }) => (
 );
 
 EmptyState.propTypes = {
-    osMajorVersion: propTypes.number
+    osMajorVersion: propTypes.string
 };
 
 const PrependComponent = ({ osMajorVersion }) => (
@@ -37,7 +37,7 @@ const PrependComponent = ({ osMajorVersion }) => (
 );
 
 PrependComponent.propTypes = {
-    osMajorVersion: propTypes.number
+    osMajorVersion: propTypes.string
 };
 
 const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
