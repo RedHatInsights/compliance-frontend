@@ -26,3 +26,4 @@ export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/Unsupp
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
 export { default as TabbedRules } from './TabbedRules/TabbedRules';
+export { default as FormRenderer } from './FormRenderer/FormRenderer';

@@ -8,7 +8,7 @@ import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
-import EditPolicyForm from './EditPolicyForm';
+import EditPolicyForm from './EditPolicyDataForm';
 import usePolicy from './usePolicy';
 
 export const MULTIVERSION_QUERY = gql`
