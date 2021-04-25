@@ -28,7 +28,7 @@ const EmptyState = ({ osMajorVersion }) => (
 );
 
 EmptyState.propTypes = {
-    osMajorVersion: propTypes.number
+    osMajorVersion: propTypes.string
 };
 
 const PrependComponent = ({ osMajorVersion }) => (
@@ -44,10 +44,10 @@ const PrependComponent = ({ osMajorVersion }) => (
 );
 
 PrependComponent.propTypes = {
-    osMajorVersion: propTypes.number
+    osMajorVersion: propTypes.string
 };
 
-const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
+export const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
     const columns = [{
         key: 'display_name',
         title: 'Name',

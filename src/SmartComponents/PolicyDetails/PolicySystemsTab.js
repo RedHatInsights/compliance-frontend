@@ -46,7 +46,7 @@ PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
         id: propTypes.string.isRequired,
         complianceThreshold: propTypes.number.isRequired,
-        majorOsVersion: propTypes.number.isRequired
+        majorOsVersion: propTypes.string.isRequired
     }),
     systemTableProps: propTypes.object
 };

@@ -22,8 +22,8 @@ describe('policyTypeFilter', () => {
 
 describe('operatingSystemFilter', () => {
     it('expect to return results', () => {
-        const filterFunction = operatingSystemFilter([])[0].filter;
-        const result = filterFunction(profiles, [7]);
+        const filterFunction = operatingSystemFilter(['7'])[0].filter;
+        const result = filterFunction(profiles, ['7']);
         expect(result).toMatchSnapshot();
     });
 });

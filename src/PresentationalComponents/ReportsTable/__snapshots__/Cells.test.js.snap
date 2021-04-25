@@ -100,7 +100,7 @@ exports[`Name expect to render without error 1`] = `
 exports[`OperatingSystem expect to render with SSG version 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
   <Text>
     <GreySmallText>
@@ -113,7 +113,7 @@ exports[`OperatingSystem expect to render with SSG version 1`] = `
 exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
   <Text>
     <GreySmallText>
@@ -128,7 +128,7 @@ exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 exports[`OperatingSystem expect to render without error 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
 </Fragment>
 `;

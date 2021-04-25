@@ -532,7 +532,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   showActions={false}
   showOsMinorVersionFilter={
     Array [
-      7,
+      "7",
     ]
   }
 />
