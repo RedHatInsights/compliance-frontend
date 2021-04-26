@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
-<Select$1
+<Select
   additionalProp="Prop1"
   input={
     Object {
