@@ -46,10 +46,10 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
     };
 
     useEffect(() => {
-        setUpdatedPolicy({
-            ...updatedPolicy,
+        setUpdatedPolicy((prevState) => ({
+            ...prevState,
             hosts: selectedEntities ? selectedEntities : []
-        });
+        }));
         updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
@@ -61,10 +61,11 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
         if (policy) {
             const complianceThresholdValid =
                 (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
-            setUpdatedPolicy({
+            setUpdatedPolicy((prevState) => ({
+                ...prevState,
                 ...policy,
                 complianceThresholdValid
-            });
+            }));
             updateSelectedRuleRefIds();
 
             dispatch({
@@ -77,7 +78,13 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
         }
     }, [policy]);
 
-    useEffect(() => setUpdatedPolicy({ ...updatedPolicy, selectedRuleRefIds }), [selectedRuleRefIds]);
+    useEffect(() => (
+        setUpdatedPolicy((prevState) => ({
+            ...prevState,
+            ...updatedPolicy,
+            selectedRuleRefIds
+        }))
+    ), [selectedRuleRefIds]);
 
     return (
         <Form>
