@@ -50,7 +50,6 @@ export const EditPolicyForm = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
             ...updatedPolicy,
             hosts: selectedEntities ? selectedEntities : []
         });
-        updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
             profilesToOsMinorMap(policyProfiles, selectedEntities)
