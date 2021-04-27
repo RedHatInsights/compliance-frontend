@@ -51,7 +51,6 @@ export const EditPolicyForm = ({
 
     useEffect(() => {
         setSelectedHosts(selectedEntities ? selectedEntities : []);
-        updateSelectedRuleRefIds();
 
         setOsMinorVersionCounts(
             profilesToOsMinorMap(policyProfiles, selectedEntities)
