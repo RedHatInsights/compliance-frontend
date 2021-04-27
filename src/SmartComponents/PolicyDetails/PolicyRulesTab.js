@@ -9,7 +9,7 @@ import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
         <Alert isInline variant='info' title='Rule editing is now available.'>
-            Edit rules by clicking the &quot;Edit rules&quot; button in the toolbar. Rule can now be edited for
+            Edit rules by clicking the &quot;Edit rules&quot; button in the toolbar. Rules can now be edited for
             each minor version of the RHEL OS associated with this policy and will be displayed in the policy
             after the &quot;Edit rules&quot; modal has been opened and saved.
         </Alert>
