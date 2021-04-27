@@ -24,6 +24,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           Object {
             "original": "Ansible",
             "props": Object {
+              "property": "ansible",
               "tooltip": "Ansible",
             },
             "title": <React.Fragment>
