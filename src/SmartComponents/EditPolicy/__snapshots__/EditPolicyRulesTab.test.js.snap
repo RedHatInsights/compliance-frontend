@@ -92,6 +92,7 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
           Object {
             "original": "Ansible",
             "props": Object {
+              "property": "ansible",
               "tooltip": "Ansible",
             },
             "title": <React.Fragment>
@@ -204,6 +205,7 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
           Object {
             "original": "Ansible",
             "props": Object {
+              "property": "ansible",
               "tooltip": "Ansible",
             },
             "title": <React.Fragment>

@@ -100,6 +100,9 @@ exports[`EditPolicy expect to render without error 1`] = `
             "totalHostCount": 1,
           }
         }
+        selectedRuleRefIds={Array []}
+        setSelectedHosts={[Function]}
+        setSelectedRuleRefIds={[Function]}
         setUpdatedPolicy={[Function]}
         updatedPolicy={null}
       />
