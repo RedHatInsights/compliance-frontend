@@ -5,3 +5,4 @@ export { default as DeleteReport } from './DeleteReport/DeleteReport';
 export { default as EditPolicy } from './EditPolicy/EditPolicy';
 export { default as DeletePolicy } from './DeletePolicy/DeletePolicy';
 export { default as InventoryTable } from './SystemsTable/InventoryTable';
+export { default as Playground } from './Playground/Playground';

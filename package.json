@@ -108,6 +108,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "faker": "^5.5.3",
     "file-loader": "^6.2.0",
     "good-guy-http": "^1.13.0",
     "identity-obj-proxy": "^3.0.0",

@@ -84,7 +84,16 @@ const systemsRoutes = [
     }
 ];
 
+const DevRoutes = [{
+    path: '/playground',
+    title: 'Playground',
+    component: lazy(() =>
+        import(/* webpackChunkName: "SystemDetails" */ 'SmartComponents/Playground/Playground')
+    )
+}];
+
 export const routes = [
+    ...DevRoutes,
     ...policiesRoutes,
     ...reportsRoutes,
     ...systemsRoutes
