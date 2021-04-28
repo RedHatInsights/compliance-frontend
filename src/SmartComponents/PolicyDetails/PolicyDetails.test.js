@@ -22,6 +22,7 @@ const mocks = [
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
+                    majorOsVersion: '7',
                     policy: {
                         name: 'parentpolicy',
                         profiles: [
@@ -30,7 +31,7 @@ const mocks = [
                                 refId: '121212',
                                 name: 'profile1',
                                 description: 'profile description',
-                                osMinorVersion: '',
+                                osMinorVersion: '9',
                                 businessObjective: {
                                     id: '1',
                                     title: 'BO 1'
@@ -62,6 +63,7 @@ jest.mock('react-redux', () => ({
 }));
 
 jest.mock('@apollo/client', () => ({
+    ...jest.requireActual('@apollo/client'),
     useQuery: () => (
         { data: mocks[0].result.data, error: undefined, loading: undefined }
     )

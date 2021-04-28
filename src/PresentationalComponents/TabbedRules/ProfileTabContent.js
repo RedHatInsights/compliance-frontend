@@ -130,7 +130,7 @@ ProfileTabContent.propTypes = {
     columns: propTypes.array,
     handleSelect: propTypes.func,
     systemCount: propTypes.object,
-    selectedRuleRefIds: propTypes.object,
+    selectedRuleRefIds: propTypes.array,
     rulesTableProps: propTypes.object
 };
 
