@@ -18,6 +18,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
+          "majorOsVersion": 7,
           "name": "profile1",
           "policy": Object {
             "id": "thepolicyid",
@@ -106,6 +107,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
+                  "majorOsVersion": 7,
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
@@ -231,6 +233,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
+                "majorOsVersion": 7,
                 "name": "profile1",
                 "policy": Object {
                   "id": "thepolicyid",
@@ -802,6 +805,11 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             showOnlySystemsWithTestResults={true}
+            showOsMinorVersionFilter={
+              Array [
+                7,
+              ]
+            }
           />
         </GridItem>
       </Grid>
@@ -828,6 +836,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
+          "majorOsVersion": 7,
           "name": "profile1",
           "policy": Object {
             "id": "thepolicyid",
@@ -916,6 +925,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
+                  "majorOsVersion": 7,
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
@@ -1041,6 +1051,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
+                "majorOsVersion": 7,
                 "name": "profile1",
                 "policy": Object {
                   "id": "thepolicyid",
@@ -1612,6 +1623,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             showOnlySystemsWithTestResults={true}
+            showOsMinorVersionFilter={
+              Array [
+                7,
+              ]
+            }
           />
         </GridItem>
       </Grid>

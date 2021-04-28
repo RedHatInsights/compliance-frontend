@@ -225,6 +225,7 @@ export const ReportDetails = ({ route }) => {
                 <Grid hasGutter>
                     <GridItem span={12}>
                         <InventoryTable
+                            showOsMinorVersionFilter={ [profile.majorOsVersion] }
                             query={GET_SYSTEMS}
                             showOnlySystemsWithTestResults
                             compliantFilter
