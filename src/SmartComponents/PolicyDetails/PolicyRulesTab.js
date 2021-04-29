@@ -9,9 +9,9 @@ import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
         <Alert isInline variant='info' title='Rule editing is now available.'>
-            Edit rules by clicking the &quot;Edit rules&quot; button in the toolbar. Rules can now be edited for
-            each minor version of the RHEL OS associated with this policy and will be displayed in the policy
-            after the &quot;Edit rules&quot; modal has been opened and saved.
+            SCAP policies created before April 19th, 2021 with rule editing will use the full default
+            set of rules for the policy with the most accurate benchmark for systems within the policy.
+            Click the &quot;Edit rules&quot; or &quot;Edit policy&quot; button to edit rules.
         </Alert>
         <PageSection variant={PageSectionVariants.light}>
             <Text component={TextVariants.p}>
