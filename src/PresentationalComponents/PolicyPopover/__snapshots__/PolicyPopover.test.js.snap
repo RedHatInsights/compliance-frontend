@@ -23,14 +23,6 @@ exports[`PolicyPopover expect to render without error 1`] = `
         <TextListItem
           component="dt"
         >
-          Policy SSG version
-        </TextListItem>
-        <TextListItem
-          component="dd"
-        />
-        <TextListItem
-          component="dt"
-        >
           Compliance threshold
         </TextListItem>
         <TextListItem
