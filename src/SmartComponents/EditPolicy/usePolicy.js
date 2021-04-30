@@ -23,6 +23,49 @@ const useCreateBusinessObjective = () => {
     };
 };
 
+const usePolicyMutation = () => {
+    const [updateProfile] = useMutation(UPDATE_PROFILE);
+    const [createProfile] = useMutation(CREATE_PROFILE);
+
+    return async (id, updatedPolicy, businessObjectiveId) => {
+        const { name, description, complianceThreshold } = updatedPolicy;
+        const details = {
+            name,
+            description,
+            complianceThreshold: parseFloat(complianceThreshold),
+            ...businessObjectiveId && { businessObjectiveId }
+        };
+
+        let mutatedPolicy;
+        let error;
+        if (id) {
+            const policyInput = { id, ...details };
+
+            const result = await updateProfile({ variables: { input: policyInput } });
+            mutatedPolicy = result.data?.updateProfile?.profile;
+            error = result.error;
+        } else {
+            const { cloneFromProfileId, refId, benchmarkId } = updatedPolicy;
+            const policyInput = {
+                ...details,
+                cloneFromProfileId,
+                refId,
+                benchmarkId
+            };
+
+            const result = await createProfile({ variables: { input: policyInput } });
+            mutatedPolicy = result.data?.createProfile?.profile;
+            error = result.error;
+        }
+
+        if (error) {
+            throw error;
+        }
+
+        return mutatedPolicy;
+    };
+};
+
 const useAssociateSystems = () => {
     const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
 
@@ -59,8 +102,7 @@ const useAssociateRules = () => {
 
 const usePolicy = () => {
     const createBusinessObjective = useCreateBusinessObjective();
-    const [updateProfile] = useMutation(UPDATE_PROFILE);
-    const [createProfile] = useMutation(CREATE_PROFILE);
+    const policyMutation = usePolicyMutation();
     const associateSystems = useAssociateSystems();
     const associateRules = useAssociateRules();
 
@@ -78,37 +120,11 @@ const usePolicy = () => {
         const businessObjectiveId = await createBusinessObjective(policy, updatedPolicy?.businessObjective);
         dispatchProgress();
 
-        let policyInput = {
-            name: updatedPolicy.name,
-            description: updatedPolicy.description,
-            complianceThreshold: parseFloat(updatedPolicy.complianceThreshold)
-        };
+        const mutatedPolicy = await policyMutation(policy?.id, updatedPolicy, businessObjectiveId);
+        dispatchProgress();
 
-        if (businessObjectiveId) {
-            policyInput.businessObjectiveId = businessObjectiveId;
-        }
-
-        if (policy === null) {
-            policyInput.cloneFromProfileId = updatedPolicy.cloneFromProfileId;
-            policyInput.refId = updatedPolicy.refId;
-            policyInput.benchmarkId = updatedPolicy.benchmarkId;
-
-            let {
-                data: { createProfile: { profile: { id } } },
-                error
-            } = await createProfile({ variables: { input: policyInput } });
-
-            if (error) { throw error; }
-
-            dispatchProgress();
-            policy = { id };
-        } else {
-            policyInput.id = policy.id;
-
-            let { error } = await updateProfile({ variables: { input: policyInput } });
-            if (error) { throw error; }
-
-            dispatchProgress();
+        if (!policy) {
+            policy = mutatedPolicy;
         }
 
         const { policy: { profiles } } = await associateSystems(policy, updatedPolicy.hosts);
