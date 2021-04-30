@@ -53,7 +53,7 @@
       "!src/**/stories/*",
       "!src/{App,Routes,entry,entry-dev}.js",
       "!src/__fixtures__/*.js",
-      "!src/{SmartComponents,PresentationalComponents,store}/index.js",
+      "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js",
       "!src/Utilities/{asyncComponent,ReducerRegistry,Dispatcher}.js"
     ],
     "setupFiles": [
@@ -71,6 +71,7 @@
       "^SmartComponents/(.*)": "<rootDir>/src/SmartComponents/$1",
       "^PresentationalComponents$": "<rootDir>/src/PresentationalComponents",
       "^PresentationalComponents/(.*)": "<rootDir>/src/PresentationalComponents/$1",
+      "^Mutations(|/.*)": "<rootDir>/src/Mutations$1",
       "^Utilities/(.*)": "<rootDir>/src/Utilities/$1",
       "^Store/(.*)": "<rootDir>/src/store/$1",
       "^Store$": "<rootDir>/src/store",
