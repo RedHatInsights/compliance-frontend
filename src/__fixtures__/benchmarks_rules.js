@@ -1,4 +1,4 @@
-import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Utilities/graphql/mutations';
+import { CREATE_PROFILE, ASSOCIATE_SYSTEMS_TO_PROFILES } from 'Mutations';
 
 export const policyFormValues = {
     benchmark: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',

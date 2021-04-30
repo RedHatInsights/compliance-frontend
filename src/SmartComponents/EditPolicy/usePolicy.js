@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import {
     ASSOCIATE_SYSTEMS_TO_PROFILES, CREATE_BUSINESS_OBJECTIVE, UPDATE_PROFILE, CREATE_PROFILE, ASSOCIATE_RULES_TO_PROFILE
-} from 'Utilities/graphql/mutations';
+} from 'Mutations';
 
 const useCreateBusinessObjective = () => {
     const [create] = useMutation(CREATE_BUSINESS_OBJECTIVE);
