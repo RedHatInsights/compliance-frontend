@@ -12,7 +12,7 @@ import propTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { DELETE_PROFILE } from 'Utilities/graphql/mutations';
+import { DELETE_PROFILE } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { dispatchAction } from 'Utilities/Dispatcher';
 

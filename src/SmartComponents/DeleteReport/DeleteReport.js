@@ -8,7 +8,7 @@ import propTypes from 'prop-types';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { DELETE_REPORT } from 'Utilities/graphql/mutations';
+import { DELETE_REPORT } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
