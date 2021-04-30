@@ -36,6 +36,7 @@ const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8081);
 const LOCAL_REMEDIATIONS = envWithDefault('LOCAL_REMEDIATIONS', false);
 const REMEDIATIONS_HOST = envWithDefault('REMEDIATIONS_HOST', defaultHost());
 const REMEDIATIONS_PORT = envWithDefault('REMEDIATIONS_PORT', 9002);
+const GOOD_GUY = envWithDefault('GOOD_GUY', false);
 
 const routes = {};
 routes[`/beta/${BETA_SECTION}/${APP_ID}`] = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
@@ -68,4 +69,7 @@ const esi = {
     })
 };
 
-module.exports = { routes, esi };
+module.exports = {
+    routes,
+    ...GOOD_GUY && { esi }
+};
