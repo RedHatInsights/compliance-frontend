@@ -10,7 +10,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/client/react/hoc';
-import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
+import { usePolicy } from 'Mutations';
 
 const EmtpyStateWithErrors = ({ errors }) => (
     (errors && Array.isArray(errors) && errors.length > 0) ? (

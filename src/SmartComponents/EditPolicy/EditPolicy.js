@@ -8,7 +8,7 @@ import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
-import usePolicy from './usePolicy';
+import { usePolicy } from 'Mutations';
 
 export const MULTIVERSION_QUERY = gql`
 query Profile($policyId: String!){
