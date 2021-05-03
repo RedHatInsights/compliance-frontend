@@ -10,8 +10,8 @@ const usePolicyMutation = () => {
         const details = {
             name,
             description,
-            complianceThreshold: parseFloat(complianceThreshold),
-            ...businessObjectiveId && { businessObjectiveId }
+            businessObjectiveId,
+            complianceThreshold: parseFloat(complianceThreshold)
         };
 
         let mutatedPolicy;
