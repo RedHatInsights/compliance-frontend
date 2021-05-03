@@ -24,6 +24,7 @@ describe('usePolicyMutation', () => {
             expect(input.cloneFromProfileId).toBe('111');
             expect(input.refId).toBe('ref');
             expect(input.benchmarkId).toBe('222');
+            expect(input.businessObjectiveId).toBe('BOid');
             expect(input.otherAttribute).toBe(undefined);
 
             return {
@@ -33,7 +34,7 @@ describe('usePolicyMutation', () => {
         useMutation.mockImplementation(() => ([createProfile]));
 
         const policyMutation = usePolicyMutation();
-        const result = await policyMutation(undefined, updatedPolicy, undefined);
+        const result = await policyMutation(undefined, updatedPolicy, 'BOid');
 
         expect(createProfile).toHaveBeenCalled();
         expect(result).toEqual({ id: '1' });
@@ -53,7 +54,8 @@ describe('usePolicyMutation', () => {
                 id: '1',
                 name: 'NAME',
                 description: 'DESCRIPTION',
-                complianceThreshold: 1.0
+                complianceThreshold: 1.0,
+                businessObjectiveId: null
             });
             return {
                 data: { updateProfile: { profile: { id: '1' } } }
@@ -62,7 +64,7 @@ describe('usePolicyMutation', () => {
         useMutation.mockImplementation(() => ([updateProfile]));
 
         const policyMutation = usePolicyMutation();
-        const result = await policyMutation('1', updatedPolicy, undefined);
+        const result = await policyMutation('1', updatedPolicy, null);
 
         expect(updateProfile).toHaveBeenCalled();
         expect(result).toEqual({ id: '1' });
