@@ -29,17 +29,17 @@ exports[`EditPolicy expect to render without error 1`] = `
   isOpen={true}
   onClose={[Function]}
   ouiaSafe={true}
+  position="top"
   showClose={true}
   style={
     Object {
-      "height": "768px",
+      "minHeight": "768px",
     }
   }
   title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
-  variant="default"
-  width={1220}
+  variant="large"
 >
   <StateViewWithError
     stateValues={
