@@ -86,7 +86,6 @@ export const CreatePolicy = ({
         <React.Fragment>
             <Wizard
                 isOpen
-                width={ 1220 }
                 onNext={ onNext }
                 onGoToStep={ resetAnchor }
                 onBack={ resetAnchor }
