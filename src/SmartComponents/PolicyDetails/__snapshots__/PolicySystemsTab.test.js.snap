@@ -1,33 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PolicySystemsTab expect to render without error 1`] = `
-<withApollo(InventoryTable)
+<InventoryTable
   columns={
     Array [
       Object {
-        "key": "display_name",
+        "exportKey": "name",
         "props": Object {
           "isStatic": true,
+          "showLink": true,
           "width": 40,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "title": "Name",
       },
       Object {
-        "key": "ssgVersion",
+        "exportKey": "testResultProfiles",
+        "props": Object {
+          "isStatic": true,
+        },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "title": "SSG version",
       },
       Object {
-        "key": "osMinorVersion",
+        "props": Object {
+          "isStatic": true,
+        },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "title": "Operating system",
       },
     ]
   }
+  compact={false}
   complianceThreshold={100}
+  compliantFilter={false}
   defaultFilter="policy_id = b71376fd-015e-4209-99af-4543e82e5dc5"
+  enableExport={true}
   policyId="b71376fd-015e-4209-99af-4543e82e5dc5"
+  preselectedSystems={Array []}
   query={
     Object {
       "definitions": Array [
@@ -530,6 +543,8 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   }
   remediationsEnabled={false}
   showActions={false}
+  showComplianceSystemsInfo={false}
+  showOnlySystemsWithTestResults={false}
   showOsMinorVersionFilter={
     Array [
       "7",

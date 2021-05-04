@@ -18,7 +18,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
-          "majorOsVersion": 7,
+          "majorOsVersion": "7",
           "name": "profile1",
           "policy": Object {
             "id": "thepolicyid",
@@ -107,7 +107,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": 7,
+                  "majorOsVersion": "7",
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
@@ -233,7 +233,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
-                "majorOsVersion": 7,
+                "majorOsVersion": "7",
                 "name": "profile1",
                 "policy": Object {
                   "id": "thepolicyid",
@@ -256,54 +256,68 @@ exports[`ReportDetails expect to render without error 1`] = `
         <GridItem
           span={12}
         >
-          <withApollo(InventoryTable)
+          <InventoryTable
             columns={
               Array [
                 Object {
-                  "key": "display_name",
+                  "exportKey": "name",
                   "props": Object {
-                    "width": 30,
+                    "isStatic": true,
+                    "showLink": true,
+                    "showOsInfo": true,
+                    "width": 40,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
                 },
                 Object {
-                  "key": "ssgVersion",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
-                    "width": 5,
+                    "isStatic": true,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
                 },
                 Object {
-                  "key": "rulesFailed",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                 },
                 Object {
-                  "key": "score",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
                 },
                 Object {
-                  "key": "lastScanned",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 10,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
                 },
               ]
             }
+            compact={false}
             compliantFilter={true}
             defaultFilter="with_results_for_policy_id = 1"
+            enableExport={true}
             policyId="1"
+            preselectedSystems={Array []}
             query={
               Object {
                 "definitions": Array [
@@ -804,10 +818,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                 },
               }
             }
+            remediationsEnabled={true}
+            showActions={true}
+            showComplianceSystemsInfo={false}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               Array [
-                7,
+                "7",
               ]
             }
           />
@@ -836,7 +853,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
-          "majorOsVersion": 7,
+          "majorOsVersion": "7",
           "name": "profile1",
           "policy": Object {
             "id": "thepolicyid",
@@ -925,7 +942,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": 7,
+                  "majorOsVersion": "7",
                   "name": "profile1",
                   "policy": Object {
                     "id": "thepolicyid",
@@ -1051,7 +1068,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
-                "majorOsVersion": 7,
+                "majorOsVersion": "7",
                 "name": "profile1",
                 "policy": Object {
                   "id": "thepolicyid",
@@ -1074,54 +1091,68 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         <GridItem
           span={12}
         >
-          <withApollo(InventoryTable)
+          <InventoryTable
             columns={
               Array [
                 Object {
-                  "key": "display_name",
+                  "exportKey": "name",
                   "props": Object {
-                    "width": 30,
+                    "isStatic": true,
+                    "showLink": true,
+                    "showOsInfo": true,
+                    "width": 40,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
                 },
                 Object {
-                  "key": "ssgVersion",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
-                    "width": 5,
+                    "isStatic": true,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
                 },
                 Object {
-                  "key": "rulesFailed",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                 },
                 Object {
-                  "key": "score",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
                 },
                 Object {
-                  "key": "lastScanned",
+                  "exportKey": "testResultProfiles",
                   "props": Object {
+                    "isStatic": true,
                     "width": 10,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
                 },
               ]
             }
+            compact={false}
             compliantFilter={true}
             defaultFilter="with_results_for_policy_id = 1"
+            enableExport={true}
             policyId="1"
+            preselectedSystems={Array []}
             query={
               Object {
                 "definitions": Array [
@@ -1622,10 +1653,13 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 },
               }
             }
+            remediationsEnabled={true}
+            showActions={true}
+            showComplianceSystemsInfo={false}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               Array [
-                7,
+                "7",
               ]
             }
           />

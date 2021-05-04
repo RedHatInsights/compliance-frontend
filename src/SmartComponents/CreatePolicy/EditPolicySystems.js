@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { propTypes as reduxFormPropTypes, reduxForm, formValueSelector } from 'redux-form';
 import { Button, Form, FormGroup, Text, TextContent, TextVariants, WizardContextConsumer } from '@patternfly/react-core';
 import { InventoryTable } from 'SmartComponents';
@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
+import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
     <React.Fragment>
@@ -47,32 +48,11 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.string
 };
 
-export const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts, selectedSystemIds }) => {
-    const columns = [{
-        key: 'display_name',
-        title: 'Name',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (displayName, _id, { name }) => (displayName || name)
-    }, {
-        key: 'osMinorVersion',
-        title: 'Operating system',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-    }];
-
-    useEffect(() => {
-        if (selectedSystemIds) {
-            change('systems', selectedSystemIds);
-        }
-
-        if (osMinorVersionCounts) {
-            change('osMinorVersionCounts', osMinorVersionCounts);
-        }
-    }, [selectedSystemIds, osMinorVersionCounts, change]);
+export const EditPolicySystems = ({ change, osMajorVersion, selectedSystems }) => {
+    const onSystemSelect = (newSelectedSystems) => {
+        change('systems', newSelectedSystems);
+        change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
+    };
 
     return (
         <React.Fragment>
@@ -87,13 +67,18 @@ export const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts
                         showOsMinorVersionFilter={ [osMajorVersion] }
                         prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } /> }
                         emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } /> }
-                        columns={columns}
+                        columns={[
+                            Columns.Name,
+                            Columns.OperatingSystem
+                        ]}
                         remediationsEnabled={false}
                         compact
                         showActions={ false }
                         query={ GET_SYSTEMS_WITHOUT_FAILED_RULES }
                         defaultFilter={ osMajorVersion && `os_major_version = ${osMajorVersion}` }
-                        enableExport={ false }/>
+                        enableExport={ false }
+                        preselectedSystems={ selectedSystems }
+                        onSelect={ onSystemSelect } />
                 </FormGroup>
             </Form>
         </React.Fragment>
@@ -102,24 +87,18 @@ export const EditPolicySystems = ({ change, osMajorVersion, osMinorVersionCounts
 
 EditPolicySystems.propTypes = {
     osMajorVersion: propTypes.string,
-    osMinorVersionCounts: propTypes.arrayOf(propTypes.shape({
-        osMinorVersion: propTypes.number,
-        count: propTypes.number
-    })),
-    selectedSystemIds: propTypes.array,
+    selectedSystems: propTypes.array,
     change: reduxFormPropTypes.change
 };
 
 EditPolicySystems.defaultProps = {
-    selectedSystemIds: [],
-    osMinorVersionCounts: []
+    selectedSystems: []
 };
 
 const selector = formValueSelector('policyForm');
 const mapStateToProps = (state) => ({
     osMajorVersion: selector(state, 'osMajorVersion'),
-    osMinorVersionCounts: countOsMinorVersions(state.entities?.selectedEntities),
-    selectedSystemIds: (state.entities?.selectedEntities || []).map((e) => (e.id))
+    selectedSystems: selector(state, 'systems')
 });
 
 export default compose(

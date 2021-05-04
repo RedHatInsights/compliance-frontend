@@ -2,30 +2,31 @@
 
 exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
 <Fragment>
-  <withApollo(InventoryTable)
+  <InventoryTable
     columns={
       Array [
         Object {
-          "key": "display_name",
+          "exportKey": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,
           },
+          "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Name",
         },
         Object {
-          "key": "osMinorVersion",
           "props": Object {
             "isStatic": true,
-            "width": 40,
           },
+          "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Operating system",
         },
       ]
     }
     compact={true}
+    compliantFilter={false}
     defaultFilter="os_major_version = 7"
     emptyStateComponent={
       <EmptyState
@@ -33,11 +34,13 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
       />
     }
     enableExport={false}
+    policyId=""
     prependComponent={
       <PrependComponent
         osMajorVersion="7"
       />
     }
+    preselectedSystems={Array []}
     query={
       Object {
         "definitions": Array [
@@ -485,6 +488,8 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
     }
     remediationsEnabled={false}
     showActions={false}
+    showComplianceSystemsInfo={false}
+    showOnlySystemsWithTestResults={false}
     showOsMinorVersionFilter={
       Array [
         "7",
@@ -512,30 +517,31 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
 
 exports[`EditPolicySystemsTab expect to render without error 1`] = `
 <Fragment>
-  <withApollo(InventoryTable)
+  <InventoryTable
     columns={
       Array [
         Object {
-          "key": "display_name",
+          "exportKey": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,
           },
+          "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Name",
         },
         Object {
-          "key": "osMinorVersion",
           "props": Object {
             "isStatic": true,
-            "width": 40,
           },
+          "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Operating system",
         },
       ]
     }
     compact={true}
+    compliantFilter={false}
     defaultFilter="os_major_version = 7"
     emptyStateComponent={
       <EmptyState
@@ -543,11 +549,13 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
       />
     }
     enableExport={false}
+    policyId=""
     prependComponent={
       <PrependComponent
         osMajorVersion="7"
       />
     }
+    preselectedSystems={Array []}
     query={
       Object {
         "definitions": Array [
@@ -995,6 +1003,8 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     }
     remediationsEnabled={false}
     showActions={false}
+    showComplianceSystemsInfo={false}
+    showOnlySystemsWithTestResults={false}
     showOsMinorVersionFilter={
       Array [
         "7",

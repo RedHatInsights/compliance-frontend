@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
@@ -74,7 +73,6 @@ export const EditPolicy = ({ route }) => {
         variables: { policyId }
     });
     const policy = data?.profile;
-    const dispatch = useDispatch();
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
@@ -85,10 +83,6 @@ export const EditPolicy = ({ route }) => {
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: [] }
-        });
         linkToBackground({ hash: anchor });
     };
 

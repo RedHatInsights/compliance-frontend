@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Form, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
@@ -25,7 +25,6 @@ export const EditPolicyForm = ({
     setSelectedHosts
 }) => {
     const policyProfiles = policy?.policy?.profiles || [];
-    const dispatch = useDispatch();
     const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
     const [newRuleTabs, setNewRuleTabs] = useState(false);
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
@@ -67,10 +66,6 @@ export const EditPolicyForm = ({
             });
             updateSelectedRuleRefIds();
 
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: policy?.hosts || [] }
-            });
             setOsMinorVersionCounts(
                 profilesToOsMinorMap(policyProfiles, policy.hosts)
             );
@@ -98,7 +93,7 @@ export const EditPolicyForm = ({
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
-                        osMajorVersion={ policy.osMajorVersion }
+                        policy={ policy }
                         newRuleTabs={ newRuleTabs }
                     />
                 </Tab>

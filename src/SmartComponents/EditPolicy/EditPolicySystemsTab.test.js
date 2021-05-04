@@ -1,10 +1,5 @@
 import EditPolicySystemsTab from './EditPolicySystemsTab.js';
 
-jest.mock('react-redux', () => ({
-    ...jest.requireActual('react-redux'),
-    useSelector: jest.fn(() => ([]))
-}));
-
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useHistory: () => ({
@@ -15,7 +10,10 @@ jest.mock('react-router-dom', () => ({
 
 describe('EditPolicySystemsTab', () => {
     const defaultProps = {
-        osMajorVersion: '7',
+        policy: {
+            osMajorVersion: '7',
+            policyOsMinorVersions: [1, 2, 3]
+        },
         newRuleTabs: false
     };
 
