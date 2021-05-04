@@ -46,9 +46,7 @@ class SystemRulesTable extends React.Component {
     state = {
         page: 1,
         itemsPerPage: 10,
-        rows: [],
         sortBy: this.props.sortBy || {},
-        ruleCount: 0,
         selectedToRemediate: [],
         openIds: [],
         selectedOnly: this.props.selectedFilter,
@@ -223,13 +221,13 @@ class SystemRulesTable extends React.Component {
     }
 
     onFilterUpdate = (filter, values) => (
-        this.setState({
+        this.setState(({ activeFilters } = {}) => ({
             page: 1,
             activeFilters: {
-                ...this.state.activeFilters,
+                ...activeFilters,
                 [filter]: values
             }
-        })
+        }))
     )
 
     deleteFilter = (chips) => {

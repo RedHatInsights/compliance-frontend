@@ -40,19 +40,19 @@ class SystemPolicyCard extends React.Component {
     );
 
     onTitleMouseover = () => {
-        this.setState({ cardTitle: this.state.policy.name });
+        this.setState(({ policy = {} } = {}) => ({ cardTitle: policy.name }));
     }
 
     onTitleMouseout = () => {
-        this.setState({ cardTitle: <Truncate lines={ 1 }>{ this.state.cardTitle }</Truncate> });
+        this.setState(({ cardTitle } = {}) => ({ cardTitle: <Truncate lines={ 1 }>{ cardTitle }</Truncate> }));
     }
 
     onSubTitleMouseover = () => {
-        this.setState({ cardSubTitle: this.state.policy.policyType });
+        this.setState(({ policy = {} } = {}) => ({ cardSubTitle: policy.policyType }));
     }
 
     onSubTitleMouseout = () => {
-        this.setState({ cardSubTitle: <Truncate lines={ 1 }>{ this.state.policy.policyType }</Truncate> });
+        this.setState(({ policy = {} } = {}) => ({ cardSubTitle: <Truncate lines={ 1 }>{ policy.policyType }</Truncate> }));
     }
 
     render() {
