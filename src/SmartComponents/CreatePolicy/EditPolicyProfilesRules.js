@@ -64,6 +64,7 @@ query Benchmarks($filter: String!){
                 id
                 refId
                 osMajorVersion
+                ssgVersion
             }
         }
     }
