@@ -101,8 +101,9 @@ exports[`EditPolicy expect to render without error 1`] = `
           }
         }
         selectedRuleRefIds={Array []}
-        setSelectedHosts={[Function]}
+        selectedSystems={Array []}
         setSelectedRuleRefIds={[Function]}
+        setSelectedSystems={[Function]}
         setUpdatedPolicy={[Function]}
         updatedPolicy={null}
       />

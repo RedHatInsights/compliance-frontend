@@ -50,6 +50,9 @@ export const SsgVersion = {
 export const Policies = {
     title: 'Policies',
     exportKey: 'policies',
+    renderExport: (policies) => (
+        policies.map(({ name }) => (name)).join(', ')
+    ),
     props: {
         width: 40,
         ...disableSorting

@@ -1,11 +1,10 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useStore } from 'react-redux';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 // eslint-disable-next-line max-len
 import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
-import { exportFromState } from 'Utilities/Export';
+import { exportItems } from 'Utilities/Export';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
@@ -40,7 +39,6 @@ export const InventoryTable = ({
     onSelect: onSelectProp,
     noSystemsTable
 }) => {
-    const store = useStore();
     const inventory = useRef(null);
     const [isEmpty, setIsEmpty] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -132,7 +130,7 @@ export const InventoryTable = ({
                 {...enableExport && {
                     exportConfig: {
                         isDisabled: total === 0 && selectedCount === 0,
-                        onSelect: (_, format) => exportFromState(store.getState()?.entities, format)
+                        onSelect: (_, format) => exportItems((selectedCount === 0 ? items : selectedSystems), columns, format)
                     }
                 }}
                 {...showActions && {

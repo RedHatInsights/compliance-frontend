@@ -76,7 +76,7 @@ export const EditPolicy = ({ route }) => {
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
-    const [selectedHosts, setSelectedHosts] = useState();
+    const [selectedSystems, setSelectedSystems] = useState([]);
     const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const [isSaving, setIsSaving] = useState();
@@ -93,7 +93,7 @@ export const EditPolicy = ({ route }) => {
         const updatedPolicyHostsAndRules = {
             ...updatedPolicy,
             selectedRuleRefIds,
-            hosts: selectedHosts
+            hosts: selectedSystems
         };
         updatePolicy(policy, updatedPolicyHostsAndRules).then(() => {
             setIsSaving(false);
@@ -141,8 +141,13 @@ export const EditPolicy = ({ route }) => {
             <StateViewPart stateKey="policy">
                 <EditPolicyForm
                     { ...{
-                        policy, updatedPolicy, setUpdatedPolicy,
-                        selectedRuleRefIds, setSelectedRuleRefIds, setSelectedHosts
+                        policy,
+                        updatedPolicy,
+                        setUpdatedPolicy,
+                        selectedRuleRefIds,
+                        setSelectedRuleRefIds,
+                        selectedSystems,
+                        setSelectedSystems
                     } } />
             </StateViewPart>
         </StateViewWithError>
