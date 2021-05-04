@@ -2,7 +2,6 @@
 
 exports[`SupportedSSGVersionsLink expect to render without error 1`] = `
 <a
-  href="https://access.redhat.com/documentation/en-us/red_hat_insights/2021/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
   rel="noopener noreferrer"
   target="_blank"
 >

@@ -12,7 +12,7 @@ import {
     Breadcrumb,
     BreadcrumbItem
 } from '@patternfly/react-core';
-import ComplianceSystemDetails from '@redhat-cloud-services/frontend-components-inventory-compliance/Compliance';
+import ComplianceSystemDetails from './ComplianceDetail';
 import {
     BreadcrumbLinkItem,
     StateViewWithError,

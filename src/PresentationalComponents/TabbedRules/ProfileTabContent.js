@@ -6,7 +6,7 @@ import {
     Text, TextVariants, TextContent, Grid, Spinner, Badge, Popover
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink, RulesTable } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 

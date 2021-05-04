@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 // eslint-disable-next-line
-import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
+import ComplianceRemediationButton from '../../PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
