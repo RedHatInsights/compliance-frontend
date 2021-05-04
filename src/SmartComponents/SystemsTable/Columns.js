@@ -17,6 +17,7 @@ const disableSorting = { isStatic: true };
 
 export const Name = {
     title: 'Name',
+    key: 'name',
     props: {
         width: 40,
         ...disableSorting
@@ -37,6 +38,7 @@ export const customName = (props) => ({
 
 export const SsgVersion = {
     title: 'SSG version',
+    key: 'testResultProfiles',
     props: disableSorting,
     exportKey: 'testResultProfiles',
     renderExport: (testResultProfiles) => (
@@ -49,6 +51,7 @@ export const SsgVersion = {
 
 export const Policies = {
     title: 'Policies',
+    key: 'policies-cell',
     exportKey: 'policies',
     props: {
         width: 40,
@@ -60,6 +63,7 @@ export const Policies = {
 export const DetailsLink = {
     title: '',
     export: false,
+    key: 'details-link',
     props: {
         width: 20,
         ...disableSorting
@@ -70,6 +74,7 @@ export const DetailsLink = {
 export const FailedRules = {
     title: 'Failed rules',
     exportKey: 'testResultProfiles',
+    key: 'testResultProfiles-2',
     props: {
         width: 5,
         ...disableSorting
@@ -83,6 +88,7 @@ export const FailedRules = {
 export const ComplianceScore = {
     title: 'Compliance score',
     exportKey: 'testResultProfiles',
+    key: 'testResultProfiles-3',
     props: {
         width: 5,
         ...disableSorting
@@ -96,6 +102,7 @@ export const ComplianceScore = {
 export const LastScanned = {
     title: 'Last scanned',
     exportKey: 'testResultProfiles',
+    key: 'testResultProfiles',
     props: {
         width: 10,
         ...disableSorting
@@ -113,6 +120,7 @@ const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
 export const OperatingSystem  = {
     title: 'Operating system',
     props: disableSorting,
+    key: 'system',
     renderExport: (cell) => (
         operatingSystemString(cell)
     ),

@@ -8,19 +8,13 @@ const selectRows = (rows, selected) => (
     }))
 );
 
-export const entitiesReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
+export const entitiesReducer = (INVENTORY_ACTION) => applyReducerHash({
     ['INVENTORY_INIT']: () => ({
         rows: [],
-        total: 0,
-        columns
-    }),
-    [INVENTORY_ACTION.LOAD_ENTITIES_PENDING]: (state) => ({
-        ...state,
-        columns
+        total: 0
     }),
     [INVENTORY_ACTION.LOAD_ENTITIES_FULFILLED]: (state) => ({
         ...state,
-        columns: state.total > 0 ? columns : [{ title: '' }],
         rows: state?.selectedEntities ? selectRows(state.rows, state.selectedEntities) : state.rows
     }),
     ['RESET_PAGE']: (state) => ({

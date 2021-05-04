@@ -97,6 +97,8 @@ export const InventoryTable = ({
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable
                 { ...systemProps }
+                disableDefaultColumns={ !showAllSystems }
+                columns={ columns }
                 ref={ inventory }
                 activeFilters={ activeFilters }
                 getEntities={ getEntities }
