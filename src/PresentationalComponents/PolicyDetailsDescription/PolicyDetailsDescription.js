@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import {
     PolicyBusinessObjectiveTooltip,
@@ -12,8 +11,7 @@ import {
     CardBody,
     TextContent,
     TextVariants,
-    Text,
-    Tooltip
+    Text
 } from '@patternfly/react-core';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
