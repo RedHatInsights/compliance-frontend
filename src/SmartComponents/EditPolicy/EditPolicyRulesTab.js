@@ -100,7 +100,10 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks) => (
             if (benchmark) {
                 const benchmarkProfile = getBenchmarkProfile(benchmark, policy.refId);
                 if (benchmarkProfile) {
-                    profile = policy.policy.profiles.find((profile) => (profile.parentProfileId === benchmarkProfile.id));
+                    profile = policy.policy.profiles.find((profile) =>
+                        profile.parentProfileId === benchmarkProfile.id
+                        && profile.osMinorVersion === osMinorVersion
+                    );
 
                     profile = {
                         ...benchmarkProfile,
