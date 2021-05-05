@@ -18,12 +18,19 @@ const defaultTab = (tabsData, profileId) => {
     }
 };
 
+const selectedRuleRefIdsForTab = (selectedRuleRefIds, { id }) => {
+    const tabSelection = (selectedRuleRefIds || []).find((selection) =>
+        selection.id === id
+    );
+    return tabSelection?.ruleRefIds || [];
+};
+
 const TabbedRules = ({
-    tabsData, defaultProfileId, columns, level, handleSelect, ...rulesTableProps
+    tabsData, defaultProfileId, selectedRuleRefIds, columns, level, handleSelect, ...rulesTableProps
 }) => {
     return <RoutedTabs level={ level } defaultTab={ defaultTab(tabsData, defaultProfileId) }>
         {
-            tabsData?.map(({ profile, selectedRuleRefIds, newOsMinorVersion, systemCount }) => (
+            tabsData?.map(({ profile, newOsMinorVersion, systemCount }) => (
                 <Tab
                     key={ eventKey(profile.id) }
                     eventKey={ eventKey(profile.id) }
@@ -43,7 +50,7 @@ const TabbedRules = ({
                             handleSelect,
                             rulesTableProps,
                             systemCount,
-                            selectedRuleRefIds: (selectedRuleRefIds || [])
+                            selectedRuleRefIds: selectedRuleRefIdsForTab(selectedRuleRefIds, profile)
                         } } />
                 </Tab>
             ))
@@ -53,15 +60,19 @@ const TabbedRules = ({
 
 TabbedRules.propTypes = {
     tabsData: propTypes.arrayOf(
-        propTypes.shape(
-            {
-                profile: propTypes.object.isRequired,
-                selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
-                newOsMinorVersion: propTypes.string,
-                systemCount: propTypes.number
-            }
-        )
+        propTypes.shape({
+            profile: propTypes.object.isRequired,
+            selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
+            newOsMinorVersion: propTypes.string,
+            systemCount: propTypes.number
+        })
     ).isRequired,
+    selectedRuleRefIds: propTypes.arrayOf(
+        propTypes.shape({
+            id: propTypes.string,
+            ruleRefIds: propTypes.arrayOf(propTypes.string)
+        })
+    ),
     columns: propTypes.arrayOf(propTypes.object),
     defaultProfileId: propTypes.string,
     handleSelect: propTypes.func,
