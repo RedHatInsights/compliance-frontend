@@ -68,7 +68,6 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
                         defaultValue={ policy.businessObjective } />
                 </FormGroup>
                 <ProfileThresholdField
-                    showTitle={ false }
                     previousThreshold={ policy.complianceThreshold } />
             </Form>
         </React.Fragment>

@@ -80,7 +80,6 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
       shouldError={[Function]}
       shouldValidate={[Function]}
       shouldWarn={[Function]}
-      showTitle={false}
       submitAsSideEffect={false}
       touchOnBlur={true}
       touchOnChange={false}
