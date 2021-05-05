@@ -21,44 +21,6 @@ Object {
 }
 `;
 
-exports[`ProfileThresholdField expect to render with title 1`] = `
-<Fragment>
-  <Title
-    headingLevel="h3"
-    size="xl"
-  >
-    Compliance threshold
-  </Title>
-  The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-  <FormGroup
-    fieldId="policy-threshold"
-    helperText="A value of 95% or higher is recommended"
-    helperTextInvalid="Threshold has to be a number between 0 and 100"
-    label="Compliance threshold (%)"
-    labelIcon={<PolicyThresholdTooltip />}
-    validated="default"
-  >
-    <Field
-      aria-label="compliance threshold"
-      component={[Function]}
-      defaultValue={10}
-      id="complianceThreshold"
-      isRequired={true}
-      name="complianceThreshold"
-      onChange={[Function]}
-      style={
-        Object {
-          "display": "block",
-          "width": "60%",
-        }
-      }
-      type="number"
-      validated="default"
-    />
-  </FormGroup>
-</Fragment>
-`;
-
 exports[`ProfileThresholdField expect to render without error 1`] = `
 <Fragment>
   <FormGroup

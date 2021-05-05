@@ -13,17 +13,9 @@ describe('ProfileThresholdField', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('expect to render with title', () => {
-        const wrapper = shallow(
-            <ProfileThresholdField showTitle { ...defaultProps }/>
-        );
-
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
-
     it('expect to handle ThresholdChange', () => {
         const wrapper = shallow(
-            <ProfileThresholdField showTitle={false} { ...defaultProps }/>
+            <ProfileThresholdField { ...defaultProps }/>
         );
         const instance = wrapper.instance();
 
