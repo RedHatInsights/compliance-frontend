@@ -119,7 +119,6 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     let tabsData = osMinorVersionCounts.map(({ osMinorVersion, count: systemCount }) => {
         osMinorVersion = `${osMinorVersion}`;
         let profile;
-        let profileSelectedRuleRefIds;
         if (benchmarks) {
             const benchmark = getBenchmarkBySupportedOsMinor(benchmarks, osMinorVersion);
             if (benchmark) {
@@ -129,7 +128,6 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
                         ...profile,
                         benchmark
                     };
-                    profileSelectedRuleRefIds = selectedRuleRefIds?.find(({ id }) => id === profile.id);
                     profileIds.push(profile.id);
                 }
             }
@@ -138,8 +136,7 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         return {
             profile,
             systemCount,
-            newOsMinorVersion: osMinorVersion,
-            selectedRuleRefIds: profileSelectedRuleRefIds?.ruleRefIds
+            newOsMinorVersion: osMinorVersion
         };
     });
     tabsData = tabsData.filter(({ profile }) => !!profile);
@@ -200,6 +197,7 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
             <StateViewPart stateKey="data">
                 <TabbedRules
                     tabsData={ tabsData }
+                    selectedRuleRefIds={ selectedRuleRefIds }
                     columns={ columns }
                     remediationsEnabled={ false }
                     selectedFilter

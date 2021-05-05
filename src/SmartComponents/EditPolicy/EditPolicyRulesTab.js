@@ -86,7 +86,7 @@ const EditPolicyRulesTabEmptyState = () => <EmptyState>
     </EmptyStateBody>
 </EmptyState>;
 
-export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds) => (
+export const toTabsData = (policy, osMinorVersionCounts, benchmarks) => (
     Object.values(osMinorVersionCounts).sort(
         sortingByProp('osMinorVersion', 'desc')
     ).map(({ osMinorVersion, count: systemCount }) => {
@@ -114,8 +114,7 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
         return {
             profile,
             systemCount,
-            newOsMinorVersion: osMinorVersion,
-            selectedRuleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile?.id)?.ruleRefIds
+            newOsMinorVersion: osMinorVersion
         };
     }).filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion)
 );
@@ -139,7 +138,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
 
     const benchmarks = benchmarksData?.benchmarks?.nodes;
 
-    const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds);
+    const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
     const profileIds = tabsData.map((tab) => (tab.profile.id));
     const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
     const {
@@ -193,6 +192,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
             </TextContent>
             <TabbedRules
                 tabsData={ tabsData }
+                selectedRuleRefIds={ selectedRuleRefIds }
                 remediationsEnabled={ false }
                 selectedFilter
                 level={ 1 }

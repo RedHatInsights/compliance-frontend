@@ -45,4 +45,24 @@ describe('TabbedRules', () => {
 
         expect(toJson(wrapper)).toMatchSnapshot();
     });
+
+    it('sets selected rule ref ids', () => {
+        const profiles = policies.edges[0].node.policy.profiles;
+        const tabsData = profiles.map((profile) => ({
+            profile,
+            newOsMinorVersion: profile.osMinorVersion ? undefined : '99'
+        }));
+        const selectedRuleRefIds = [
+            {
+                id: profiles[1].id,
+                ruleRefIds: ['xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime']
+            }
+        ];
+
+        const wrapper = shallow(
+            <TabbedRules tabsData={ tabsData } selectedRuleRefIds={ selectedRuleRefIds } />
+        );
+
+        expect(toJson(wrapper)).toMatchSnapshot();
+    });
 });
