@@ -15,7 +15,10 @@ jest.mock('react-router-dom', () => ({
 describe('TabbedRules', () => {
     it('renders tabs with default', () => {
         const profiles = policies.edges[0].node.policy.profiles;
-        const tabsData =  profiles.map((profile) => ({ profile }));
+        const tabsData = profiles.map((profile) => ({
+            profile,
+            newOsMinorVersion: profile.osMinorVersion ? undefined : '99'
+        }));
 
         const wrapper = shallow(
             <TabbedRules tabsData={ tabsData } />
@@ -26,10 +29,17 @@ describe('TabbedRules', () => {
 
     it('renders tabs with second item as default', () => {
         const profiles = policies.edges[0].node.policy.profiles;
-        const tabsData =  profiles.map((profile) => ({ profile }));
+        const tabsData = profiles.map((profile) => ({
+            profile,
+            newOsMinorVersion: profile.osMinorVersion ? undefined : '99'
+        }));
+        const defaultTab = {
+            id: profiles[1].id,
+            osMinorVersion: '99'
+        };
 
         const wrapper = shallow(
-            <TabbedRules tabsData={ tabsData } defaultProfileId={ profiles[1].id } />
+            <TabbedRules tabsData={ tabsData } defaultTab={ defaultTab } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
@@ -37,7 +47,10 @@ describe('TabbedRules', () => {
 
     it('passes setSelectedRuleRefIds via internal handleSelect', () => {
         const profiles = policies.edges[0].node.policy.profiles;
-        const tabsData =  profiles.map((profile) => ({ profile }));
+        const tabsData = profiles.map((profile) => ({
+            profile,
+            newOsMinorVersion: profile.osMinorVersion ? undefined : '99'
+        }));
 
         const wrapper = shallow(
             <TabbedRules tabsData={ tabsData } setSelectedRuleRefIds={ () => {} } />

@@ -2,12 +2,12 @@
 
 exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] = `
 <RoutedTabs
-  defaultTab="rules-b71376fd-015e-4209-99af"
+  defaultTab="rules-b71376fd-015e-4209-99af-9"
   level={0}
 >
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99af-9"
+    key="rules-b71376fd-015e-4209-99af-9"
     title={
       <span>
         <span
@@ -123,14 +123,15 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ac"
-    key="rules-b71376fd-015e-4209-99ac"
+    eventKey="rules-b71376fd-015e-4209-99ac-99"
+    key="rules-b71376fd-015e-4209-99ac-99"
     title={
       <span>
         <span
           className="pf-u-pr-sm"
         >
           <OsVersionText
+            newOsMinorVersion="99"
             profile={
               Object {
                 "id": "b71376fd-015e-4209-99ac",
@@ -205,6 +206,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
         ]
       }
       handleSelect={[Function]}
+      newOsMinorVersion="99"
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ac",
@@ -238,8 +240,8 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ad"
-    key="rules-b71376fd-015e-4209-99ad"
+    eventKey="rules-b71376fd-015e-4209-99ad-8"
+    key="rules-b71376fd-015e-4209-99ad-8"
     title={
       <span>
         <span
@@ -359,12 +361,12 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
 
 exports[`TabbedRules renders tabs with default 1`] = `
 <RoutedTabs
-  defaultTab="rules-b71376fd-015e-4209-99af"
+  defaultTab="rules-b71376fd-015e-4209-99af-9"
   level={0}
 >
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99af-9"
+    key="rules-b71376fd-015e-4209-99af-9"
     title={
       <span>
         <span
@@ -479,14 +481,15 @@ exports[`TabbedRules renders tabs with default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ac"
-    key="rules-b71376fd-015e-4209-99ac"
+    eventKey="rules-b71376fd-015e-4209-99ac-99"
+    key="rules-b71376fd-015e-4209-99ac-99"
     title={
       <span>
         <span
           className="pf-u-pr-sm"
         >
           <OsVersionText
+            newOsMinorVersion="99"
             profile={
               Object {
                 "id": "b71376fd-015e-4209-99ac",
@@ -560,6 +563,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           },
         ]
       }
+      newOsMinorVersion="99"
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ac",
@@ -593,8 +597,8 @@ exports[`TabbedRules renders tabs with default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ad"
-    key="rules-b71376fd-015e-4209-99ad"
+    eventKey="rules-b71376fd-015e-4209-99ad-8"
+    key="rules-b71376fd-015e-4209-99ad-8"
     title={
       <span>
         <span
@@ -713,12 +717,12 @@ exports[`TabbedRules renders tabs with default 1`] = `
 
 exports[`TabbedRules renders tabs with second item as default 1`] = `
 <RoutedTabs
-  defaultTab="rules-b71376fd-015e-4209-99ac"
+  defaultTab="rules-b71376fd-015e-4209-99ac-99"
   level={0}
 >
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99af-9"
+    key="rules-b71376fd-015e-4209-99af-9"
     title={
       <span>
         <span
@@ -833,14 +837,15 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ac"
-    key="rules-b71376fd-015e-4209-99ac"
+    eventKey="rules-b71376fd-015e-4209-99ac-99"
+    key="rules-b71376fd-015e-4209-99ac-99"
     title={
       <span>
         <span
           className="pf-u-pr-sm"
         >
           <OsVersionText
+            newOsMinorVersion="99"
             profile={
               Object {
                 "id": "b71376fd-015e-4209-99ac",
@@ -914,6 +919,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           },
         ]
       }
+      newOsMinorVersion="99"
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ac",
@@ -947,8 +953,8 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ad"
-    key="rules-b71376fd-015e-4209-99ad"
+    eventKey="rules-b71376fd-015e-4209-99ad-8"
+    key="rules-b71376fd-015e-4209-99ad-8"
     title={
       <span>
         <span
@@ -1067,12 +1073,12 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
 
 exports[`TabbedRules sets selected rule ref ids 1`] = `
 <RoutedTabs
-  defaultTab="rules-b71376fd-015e-4209-99af"
+  defaultTab="rules-b71376fd-015e-4209-99af-9"
   level={0}
 >
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99af-9"
+    key="rules-b71376fd-015e-4209-99af-9"
     title={
       <span>
         <span
@@ -1187,8 +1193,8 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ac"
-    key="rules-b71376fd-015e-4209-99ac"
+    eventKey="rules-b71376fd-015e-4209-99ac-99"
+    key="rules-b71376fd-015e-4209-99ac-99"
     title={
       <span>
         <span
@@ -1307,8 +1313,8 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99ad"
-    key="rules-b71376fd-015e-4209-99ad"
+    eventKey="rules-b71376fd-015e-4209-99ad-8"
+    key="rules-b71376fd-015e-4209-99ad-8"
     title={
       <span>
         <span
