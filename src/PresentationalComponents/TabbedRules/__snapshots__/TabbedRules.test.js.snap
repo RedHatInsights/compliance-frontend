@@ -123,8 +123,8 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ac"
+    key="rules-b71376fd-015e-4209-99ac"
     title={
       <span>
         <span
@@ -133,7 +133,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -207,7 +207,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       handleSelect={[Function]}
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -238,8 +238,8 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ad"
+    key="rules-b71376fd-015e-4209-99ad"
     title={
       <span>
         <span
@@ -248,7 +248,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -323,7 +323,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       handleSelect={[Function]}
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -479,8 +479,8 @@ exports[`TabbedRules renders tabs with default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ac"
+    key="rules-b71376fd-015e-4209-99ac"
     title={
       <span>
         <span
@@ -489,7 +489,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -562,7 +562,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
       }
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -593,8 +593,8 @@ exports[`TabbedRules renders tabs with default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ad"
+    key="rules-b71376fd-015e-4209-99ad"
     title={
       <span>
         <span
@@ -603,7 +603,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -677,7 +677,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
       }
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -713,7 +713,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
 
 exports[`TabbedRules renders tabs with second item as default 1`] = `
 <RoutedTabs
-  defaultTab="rules-b71376fd-015e-4209-99af"
+  defaultTab="rules-b71376fd-015e-4209-99ac"
   level={0}
 >
   <Tab
@@ -833,8 +833,8 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ac"
+    key="rules-b71376fd-015e-4209-99ac"
     title={
       <span>
         <span
@@ -843,7 +843,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -916,7 +916,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       }
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -947,8 +947,8 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ad"
+    key="rules-b71376fd-015e-4209-99ad"
     title={
       <span>
         <span
@@ -957,7 +957,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -1031,7 +1031,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       }
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -1183,16 +1183,12 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
         }
       }
       rulesTableProps={Object {}}
-      selectedRuleRefIds={
-        Array [
-          "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-        ]
-      }
+      selectedRuleRefIds={Array []}
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ac"
+    key="rules-b71376fd-015e-4209-99ac"
     title={
       <span>
         <span
@@ -1202,7 +1198,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
             newOsMinorVersion="99"
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -1276,7 +1272,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       newOsMinorVersion="99"
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -1311,8 +1307,8 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     />
   </Tab>
   <Tab
-    eventKey="rules-b71376fd-015e-4209-99af"
-    key="rules-b71376fd-015e-4209-99af"
+    eventKey="rules-b71376fd-015e-4209-99ad"
+    key="rules-b71376fd-015e-4209-99ad"
     title={
       <span>
         <span
@@ -1321,7 +1317,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
           <OsVersionText
             profile={
               Object {
-                "id": "b71376fd-015e-4209-99af",
+                "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -1395,7 +1391,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       }
       profile={
         Object {
-          "id": "b71376fd-015e-4209-99af",
+          "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -1423,11 +1419,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
         }
       }
       rulesTableProps={Object {}}
-      selectedRuleRefIds={
-        Array [
-          "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-        ]
-      }
+      selectedRuleRefIds={Array []}
     />
   </Tab>
 </RoutedTabs>
