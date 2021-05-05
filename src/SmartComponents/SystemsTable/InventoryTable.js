@@ -37,7 +37,8 @@ export const InventoryTable = ({
     prependComponent,
     showOsMinorVersionFilter,
     preselectedSystems,
-    onSelect: onSelectProp
+    onSelect: onSelectProp,
+    noSystemsTable
 }) => {
     const store = useStore();
     const inventory = useRef(null);
@@ -97,6 +98,7 @@ export const InventoryTable = ({
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable
                 { ...systemProps }
+                noSystemsTable={ noSystemsTable }
                 ref={ inventory }
                 activeFilters={ activeFilters }
                 getEntities={ getEntities }
@@ -176,7 +178,8 @@ InventoryTable.propTypes = {
         PropTypes.arrayOf(PropTypes.string)
     ]),
     preselectedSystems: PropTypes.array,
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    noSystemsTable: PropTypes.node
 };
 
 InventoryTable.defaultProps = {
