@@ -51,7 +51,7 @@ export const policies = {
                             ]
                         },
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ac',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             ssgVersion: '0.1.45',
@@ -77,7 +77,7 @@ export const policies = {
                             ]
                         },
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ad',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMinorVersion: '8',
@@ -126,7 +126,7 @@ export const policies = {
                     name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73',
                     profiles: [
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ae',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             ssg_version: '0.1.45',
