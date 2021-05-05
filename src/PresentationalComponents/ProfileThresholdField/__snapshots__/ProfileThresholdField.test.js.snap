@@ -34,11 +34,8 @@ exports[`ProfileThresholdField expect to render with title 1`] = `
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
     helperTextInvalid="Threshold has to be a number between 0 and 100"
-    label={
-      <React.Fragment>
-        Compliance threshold (%) 
-      </React.Fragment>
-    }
+    label="Compliance threshold (%)"
+    labelIcon={<PolicyThresholdTooltip />}
     validated="default"
   >
     <Field
@@ -68,33 +65,8 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
     helperTextInvalid="Threshold has to be a number between 0 and 100"
-    label={
-      <React.Fragment>
-        Compliance threshold (%) 
-        <Popover
-          bodyContent={
-            <React.Fragment>
-              The compliance threshold defines what percentage of rules must be met in order for a system to be determined "compliant".
-            </React.Fragment>
-          }
-          headerContent={
-            <Title
-              headingLevel="h3"
-              size="xl"
-            >
-              Compliance threshold
-            </Title>
-          }
-          position="top"
-        >
-          <OutlinedQuestionCircleIcon
-            color="currentColor"
-            noVerticalAlign={false}
-            size="sm"
-          />
-        </Popover>
-      </React.Fragment>
-    }
+    label="Compliance threshold (%)"
+    labelIcon={<PolicyThresholdTooltip />}
     validated="default"
   >
     <Field

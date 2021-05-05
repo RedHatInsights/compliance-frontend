@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup, Title, Popover, PopoverPosition } from '@patternfly/react-core';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import { FormGroup, Title } from '@patternfly/react-core';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
 import round from 'lodash/round';
 import { thresholdValid } from '../../SmartComponents/CreatePolicy/validate';
+import { PolicyThresholdTooltip } from 'PresentationalComponents';
 
 export class ProfileThresholdField extends React.Component {
     state = {
@@ -30,13 +30,6 @@ export class ProfileThresholdField extends React.Component {
             { titleHeader }
             { explanation }
         </React.Fragment>;
-        const popover = <Popover
-            position={PopoverPosition.top}
-            headerContent={titleHeader}
-            bodyContent={explanation}
-        >
-            <OutlinedQuestionCircleIcon />
-        </Popover>;
 
         return (
             <React.Fragment>
@@ -45,7 +38,8 @@ export class ProfileThresholdField extends React.Component {
                     validated={ validThreshold ? 'default' : 'error' }
                     helperTextInvalid='Threshold has to be a number between 0 and 100'
                     helperText="A value of 95% or higher is recommended"
-                    label={<React.Fragment>Compliance threshold (%) {!showTitle && popover}</React.Fragment>}>
+                    labelIcon={ <PolicyThresholdTooltip /> }
+                    label='Compliance threshold (%)'>
                     <Field name='complianceThreshold' id='complianceThreshold' isRequired={true}
                         onChange={this.handleThresholdChange}
                         validated={ validThreshold ? 'default' : 'error' }
