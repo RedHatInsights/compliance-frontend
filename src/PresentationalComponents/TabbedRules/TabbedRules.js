@@ -25,6 +25,27 @@ const selectedRuleRefIdsForTab = (selectedRuleRefIds, { id }) => {
     return tabSelection?.ruleRefIds || [];
 };
 
+export const profilesWithRulesToSelection = (profiles, prevSelection = [], options = {}) => {
+    const { only } = options;
+    const additionalSelection = profiles.map((profile) => {
+        const foundSelection = prevSelection.find(({ id }) => id === profile?.id);
+        if (!foundSelection) {
+            if (!profile.rules) {
+                console.error(`Profile ${profile.id} is missing rules for selection!`);
+            }
+
+            return {
+                id: profile.id,
+                ruleRefIds: profile.rules?.map((rule) => (rule.refId)) || []
+            };
+        } else if (only) {
+            return foundSelection;
+        }
+    }).filter((v) => !!v);
+
+    return only ? additionalSelection : [...prevSelection, ...additionalSelection];
+};
+
 const TabbedRules = ({
     tabsData, defaultProfileId, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
 }) => {
