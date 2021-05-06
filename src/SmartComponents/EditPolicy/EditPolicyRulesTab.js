@@ -119,7 +119,13 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks) => (
     }).filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion)
 );
 
-export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts, setNewRuleTabs }) => {
+export const EditPolicyRulesTab = ({
+    policy,
+    selectedRuleRefIds,
+    setSelectedRuleRefIds,
+    osMinorVersionCounts,
+    setNewRuleTabs
+}) => {
     const osMajorVersion = policy?.osMajorVersion;
     const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
@@ -163,13 +169,21 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     useLayoutEffect(() => {
         if (profilesData) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node)) || [];
-            profiles.forEach((profile) => {
+            const additionalSelection = profiles.map((profile) => {
                 const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
                 if (!foundSelection) {
-                    const refIds = profile.rules.map((rule) => (rule.refId));
-                    handleSelect(profile, refIds);
+                    return {
+                        id: profile.id,
+                        ruleRefIds: profile.rules.map((rule) => (rule.refId))
+                    }
                 }
-            });
+            }).filter((v) => !!v);
+
+            if (additionalSelection.length > 0) {
+                setSelectedRuleRefIds((prevSelection) =>
+                    [...(prevSelection || []) , ...additionalSelection]
+                );
+            }
         }
     }, [profilesData]);
     const error = benchmarksError || profilesError;
@@ -193,10 +207,10 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
             <TabbedRules
                 tabsData={ tabsData }
                 selectedRuleRefIds={ selectedRuleRefIds }
+                setSelectedRuleRefIds={ setSelectedRuleRefIds }
                 remediationsEnabled={ false }
                 selectedFilter
-                level={ 1 }
-                handleSelect={ handleSelect } />
+                level={ 1 } />
         </StateViewPart>
         <StateViewPart stateKey="empty">
             <EditPolicyRulesTabEmptyState />
@@ -205,7 +219,6 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
 };
 
 EditPolicyRulesTab.propTypes = {
-    handleSelect: propTypes.func,
     setNewRuleTabs: propTypes.func,
     policy: propTypes.object,
     osMinorVersionCounts: propTypes.shape({
@@ -214,7 +227,8 @@ EditPolicyRulesTab.propTypes = {
             count: propTypes.number
         })
     }),
-    selectedRuleRefIds: propTypes.array
+    selectedRuleRefIds: propTypes.array,
+    setSelectedRuleRefIds: propTypes.func
 };
 
 export default EditPolicyRulesTab;

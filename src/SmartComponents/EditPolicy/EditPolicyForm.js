@@ -29,16 +29,6 @@ export const EditPolicyForm = ({
     const [newRuleTabs, setNewRuleTabs] = useState(false);
     const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
 
-    const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
-        const filteredSelection = selectedRuleRefIds.filter((selectedProfile) =>
-            selectedProfile.id !== profile.id
-        );
-        setSelectedRuleRefIds([
-            { id: profile.id, ruleRefIds: newSelectedRuleRefIds },
-            ...filteredSelection
-        ]);
-    };
-
     const updateSelectedRuleRefIds = () => {
         if (policy) {
             setSelectedRuleRefIds(policyProfiles.map((policyProfile) => ({
@@ -85,7 +75,7 @@ export const EditPolicyForm = ({
                     <EditPolicyRulesTab
                         policy={ policy }
                         setNewRuleTabs={ setNewRuleTabs }
-                        handleSelect={ handleRuleSelect }
+                        setSelectedRuleRefIds={ setSelectedRuleRefIds }
                         selectedRuleRefIds={ selectedRuleRefIds }
                         osMinorVersionCounts={ osMinorVersionCounts }
                     />

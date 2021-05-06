@@ -109,11 +109,11 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
           },
         ]
       }
-      handleSelect={[Function]}
       level={1}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRuleRefIds={Array []}
+      setSelectedRuleRefIds={[Function]}
       tabsData={
         Array [
           Object {
@@ -222,11 +222,11 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
           },
         ]
       }
-      handleSelect={[Function]}
       level={1}
       remediationsEnabled={false}
       selectedFilter={true}
       selectedRuleRefIds={Array []}
+      setSelectedRuleRefIds={[Function]}
       tabsData={Array []}
     />
   </StateViewPart>

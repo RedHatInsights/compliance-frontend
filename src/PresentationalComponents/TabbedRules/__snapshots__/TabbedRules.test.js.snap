@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabbedRules passes handleSelect 1`] = `
+exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] = `
 <RoutedTabs
   defaultTab="rules-b71376fd-015e-4209-99af"
   level={0}

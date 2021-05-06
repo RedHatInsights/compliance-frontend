@@ -35,12 +35,12 @@ describe('TabbedRules', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    it('passes handleSelect', () => {
+    it('passes setSelectedRuleRefIds via internal handleSelect', () => {
         const profiles = policies.edges[0].node.policy.profiles;
         const tabsData =  profiles.map((profile) => ({ profile }));
 
         const wrapper = shallow(
-            <TabbedRules tabsData={ tabsData } handleSelect={ function() {} } />
+            <TabbedRules tabsData={ tabsData } setSelectedRuleRefIds={ () => {} } />
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();

@@ -26,8 +26,19 @@ const selectedRuleRefIdsForTab = (selectedRuleRefIds, { id }) => {
 };
 
 const TabbedRules = ({
-    tabsData, defaultProfileId, selectedRuleRefIds, columns, level, handleSelect, ...rulesTableProps
+    tabsData, defaultProfileId, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
 }) => {
+    const handleSelect = (profile, profileSelectedRuleRefIds) => {
+        const filteredSelection = (selectedRuleRefIds || []).filter((profileSelection) =>
+            profileSelection.id !== profile.id
+        );
+        const newSelection = [
+            { id: profile.id, ruleRefIds: profileSelectedRuleRefIds },
+            ...filteredSelection
+        ];
+        setSelectedRuleRefIds(newSelection);
+    };
+
     return <RoutedTabs level={ level } defaultTab={ defaultTab(tabsData, defaultProfileId) }>
         {
             tabsData?.map(({ profile, newOsMinorVersion, systemCount }) => (
@@ -47,10 +58,10 @@ const TabbedRules = ({
                             profile,
                             newOsMinorVersion,
                             columns,
-                            handleSelect,
                             rulesTableProps,
                             systemCount,
-                            selectedRuleRefIds: selectedRuleRefIdsForTab(selectedRuleRefIds, profile)
+                            selectedRuleRefIds: selectedRuleRefIdsForTab(selectedRuleRefIds, profile),
+                            handleSelect: setSelectedRuleRefIds ? handleSelect : undefined
                         } } />
                 </Tab>
             ))
@@ -73,9 +84,9 @@ TabbedRules.propTypes = {
             ruleRefIds: propTypes.arrayOf(propTypes.string)
         })
     ),
+    setSelectedRuleRefIds: propTypes.func,
     columns: propTypes.arrayOf(propTypes.object),
     defaultProfileId: propTypes.string,
-    handleSelect: propTypes.func,
     level: propTypes.number
 };
 
