@@ -87,21 +87,6 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
         `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
 
-    const handleSelectCallback = (profile, newSelectedRuleRefIds) => {
-        const newSelection = selectedRuleRefIds.map((profileSelectedRuleRefIds) => {
-            if (profileSelectedRuleRefIds.id === profile.id) {
-                return {
-                    id: profileSelectedRuleRefIds.id,
-                    ruleRefIds: newSelectedRuleRefIds
-                };
-            } else {
-                return profileSelectedRuleRefIds;
-            }
-        });
-
-        change('selectedRuleRefIds', newSelection);
-    };
-
     const {
         data: benchmarksData,
         error: benchmarksError,
@@ -155,13 +140,23 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     const noRuleSets = !error && !loadingState && profileIds?.length === 0;
     const profiles = skipProfilesQuery ? [] : profilesData?.profiles.edges.map((p) => (p.node));
 
+    const setSelectedRuleRefIds = (newSelection) => {
+        change('selectedRuleRefIds', newSelection);
+    };
+
     useLayoutEffect(() => {
         if (!loadingState) {
-            change('selectedRuleRefIds', profiles.map((profile) => ({
-                id: profile.id,
-                ruleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile.id)?.ruleRefIds ||
-                            profile.rules.map((rule) => (rule.refId))
-            })));
+            const newSelection = profiles.map((profile) => {
+                const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
+                if (foundSelection) {
+                    return foundSelection;
+                }
+                return {
+                    id: profile.id,
+                    ruleRefIds: profile.rules.map((rule) => (rule.refId))
+                };
+            });
+            setSelectedRuleRefIds(newSelection);
         }
     }, [profiles, loadingState]);
 
@@ -202,7 +197,7 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
                     remediationsEnabled={ false }
                     selectedFilter
                     level={ 1 }
-                    handleSelect={ handleSelectCallback } />
+                    setSelectedRuleRefIds={ setSelectedRuleRefIds } />
             </StateViewPart>
         </StateViewWithError>
     </React.Fragment>;
