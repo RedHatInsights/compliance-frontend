@@ -27,5 +27,5 @@ export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
-export { default as TabbedRules } from './TabbedRules/TabbedRules';
+export { TabbedRules } from './TabbedRules';
 export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarning/NoSystemsTableWithWarning';

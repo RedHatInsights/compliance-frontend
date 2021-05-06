@@ -7,6 +7,7 @@ import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
+import { profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
 
 const profilesToOsMinorMap = (profiles, hosts) => (
     (profiles || []).reduce((acc, profile) => {
@@ -31,10 +32,8 @@ export const EditPolicyForm = ({
 
     const updateSelectedRuleRefIds = () => {
         if (policy) {
-            setSelectedRuleRefIds(policyProfiles.map((policyProfile) => ({
-                id: policyProfile.id,
-                ruleRefIds: policyProfile.rules.map((rule) => (rule.refId))
-            })));
+            // existing policy profiles and their rule sets
+            setSelectedRuleRefIds(profilesWithRulesToSelection(policyProfiles));
         }
     };
 

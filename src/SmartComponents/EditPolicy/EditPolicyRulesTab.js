@@ -7,7 +7,8 @@ import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import { TabbedRules, profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 
 const PROFILES_QUERY = gql`
@@ -169,21 +170,9 @@ export const EditPolicyRulesTab = ({
     useLayoutEffect(() => {
         if (profilesData) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node)) || [];
-            const additionalSelection = profiles.map((profile) => {
-                const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
-                if (!foundSelection) {
-                    return {
-                        id: profile.id,
-                        ruleRefIds: profile.rules.map((rule) => (rule.refId))
-                    }
-                }
-            }).filter((v) => !!v);
-
-            if (additionalSelection.length > 0) {
-                setSelectedRuleRefIds((prevSelection) =>
-                    [...(prevSelection || []) , ...additionalSelection]
-                );
-            }
+            setSelectedRuleRefIds((prevSelection) =>
+                profilesWithRulesToSelection(profiles, prevSelection)
+            );
         }
     }, [profilesData]);
     const error = benchmarksError || profilesError;

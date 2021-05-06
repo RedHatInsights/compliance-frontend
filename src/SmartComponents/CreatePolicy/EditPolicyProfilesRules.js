@@ -14,7 +14,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
-import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import { TabbedRules, profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
 
 const PROFILES_QUERY = gql`
 query Profiles($filter: String!){
@@ -146,16 +147,9 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
 
     useLayoutEffect(() => {
         if (!loadingState) {
-            const newSelection = profiles.map((profile) => {
-                const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
-                if (foundSelection) {
-                    return foundSelection;
-                }
-                return {
-                    id: profile.id,
-                    ruleRefIds: profile.rules.map((rule) => (rule.refId))
-                };
-            });
+            const newSelection = profilesWithRulesToSelection(
+                profiles, selectedRuleRefIds, { only: true }
+            );
             setSelectedRuleRefIds(newSelection);
         }
     }, [profiles, loadingState]);
