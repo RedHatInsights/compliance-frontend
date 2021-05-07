@@ -1,4 +1,4 @@
-import TabbedRules, { profilesWithRulesToSelection } from './TabbedRules';
+import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
 
 jest.mock('react-router-dom', () => ({
@@ -77,67 +77,5 @@ describe('TabbedRules', () => {
         );
 
         expect(toJson(wrapper)).toMatchSnapshot();
-    });
-});
-
-describe('profilesWithRulesToSelection', () => {
-    const profiles = [
-        {
-            id: '1',
-            rules: [
-                { refId: 'profile1-rule1' },
-                { refId: 'profile1-rule2' }
-            ]
-        },
-        {
-            id: '2',
-            rules: [
-                { refId: 'profile2-rule1' },
-                { refId: 'profile2-rule2' }
-            ]
-        }
-    ];
-
-    const prevSelection = [
-        {
-            id: '1',
-            ruleRefIds: ['profile1-rule3', 'profile1-rule4']
-        },
-        {
-            id: '99',
-            ruleRefIds: ['profile99-rule1', 'profile99-rule2']
-        }
-    ];
-
-    it('converts profiles with rules to brand new selection', () => {
-        const newSelection = profilesWithRulesToSelection(profiles);
-        expect(newSelection).toMatchSnapshot();
-    });
-
-    it('converts profiles with rules to brand new selection using only option', () => {
-        const newSelection = profilesWithRulesToSelection(profiles, undefined, { only: true });
-        expect(newSelection).toMatchSnapshot();
-    });
-
-    it('appends new profiles with rules to a selection and keeps existing', () => {
-        const newSelection = profilesWithRulesToSelection(profiles, prevSelection);
-        expect(newSelection).toMatchSnapshot();
-    });
-
-    it('keeps existing profile rules selection if they match new profiles', () => {
-        const newSelection = profilesWithRulesToSelection(profiles, prevSelection, { only: true });
-        expect(newSelection).toMatchSnapshot();
-    });
-
-    it('errors gracefully on missing rules', () => {
-        const profilesWithoutRules = [
-            { id: '1' }, { id: '2' }
-        ];
-
-        const consoleError = jest.spyOn(console, 'error').mockImplementation();
-        const newSelection = profilesWithRulesToSelection(profilesWithoutRules);
-        expect(newSelection).toMatchSnapshot();
-        expect(consoleError).toBeCalled();
-        consoleError.mockRestore();
     });
 });
