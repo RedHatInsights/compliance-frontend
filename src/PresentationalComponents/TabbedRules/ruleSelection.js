@@ -41,3 +41,11 @@ export const tabsDataToOsMinorMap = (tabsData) => {
     });
     return osMinorMap;
 };
+
+export const extendProfilesByOsMinor = (profiles, osMinorMap) => (
+    profiles.flatMap((profile) => (
+        (osMinorMap[profile.id] || [undefined]).map((osMinorVersion) => (
+            { ...profile, osMinorVersion }
+        ))
+    ))
+);

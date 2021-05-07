@@ -1,4 +1,6 @@
-import { profilesWithRulesToSelection, tabsDataToOsMinorMap } from './ruleSelection';
+import {
+    profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
+} from './ruleSelection';
 
 describe('profilesWithRulesToSelection', () => {
     const profiles = [
@@ -89,5 +91,23 @@ describe('tabsDataToOsMinorMap', () => {
             2: ['6', '7'],
             3: ['8']
         });
+    });
+});
+
+describe('extendProfilesByOsMinor', () => {
+    it('extends profiles by OS minor versions using a map', () => {
+        const profiles = [
+            { id: '1', title: 'Only one OS minor' },
+            { id: '2', title: 'Expanded to two OS minor' },
+            { id: '3', title: 'Version overwritten', osMinorVersion: '5' },
+            { id: '4', title: 'Unmatched' }
+        ];
+        const osMinorMap = {
+            1: ['5'],
+            2: ['6', '7'],
+            3: ['8']
+        };
+
+        expect(extendProfilesByOsMinor(profiles, osMinorMap)).toMatchSnapshot();
     });
 });
