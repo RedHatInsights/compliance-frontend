@@ -41,7 +41,10 @@ export const EditPolicyForm = ({
     const updateSelectedRuleRefIds = () => {
         if (policy) {
             // existing policy profiles and their rule sets
-            setSelectedRuleRefIds(profilesWithRulesToSelection(policyProfiles));
+            const profilesWithOsMinor = policyProfiles.filter(({ osMinorVersion }) =>
+                !!osMinorVersion
+            );
+            setSelectedRuleRefIds(profilesWithRulesToSelection(profilesWithOsMinor));
         }
     };
 
