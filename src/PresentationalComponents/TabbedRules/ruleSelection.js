@@ -27,3 +27,17 @@ export const profilesWithRulesToSelection = (profiles, prevSelection = [], optio
 
     return only ? additionalSelection : [...prevSelection, ...additionalSelection];
 };
+
+export const tabsDataToOsMinorMap = (tabsData) => {
+    const osMinorMap = {};
+    tabsData.forEach(({ profile, newOsMinorVersion }) => {
+        if (profile?.id) {
+            const osMinorVersion = newOsMinorVersion || profile.osMinorVersion;
+            osMinorMap[profile.id] = [
+                ...(osMinorMap[profile.id] || []),
+                osMinorVersion
+            ];
+        }
+    });
+    return osMinorMap;
+};

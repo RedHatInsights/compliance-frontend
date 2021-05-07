@@ -1,4 +1,4 @@
-import { profilesWithRulesToSelection } from './ruleSelection';
+import { profilesWithRulesToSelection, tabsDataToOsMinorMap } from './ruleSelection';
 
 describe('profilesWithRulesToSelection', () => {
     const profiles = [
@@ -59,5 +59,35 @@ describe('profilesWithRulesToSelection', () => {
         expect(newSelection).toMatchSnapshot();
         expect(consoleError).toBeCalled();
         consoleError.mockRestore();
+    });
+});
+
+describe('tabsDataToOsMinorMap', () => {
+    it('maps profile ids to osMinorVersions', () => {
+        const tabsData = [
+            {
+                profile: { id: '1' },
+                newOsMinorVersion: '5'
+            },
+            {
+                profile: { id: '2' },
+                newOsMinorVersion: '6'
+            },
+            {
+                profile: { id: '2' },
+                newOsMinorVersion: '7'
+            },
+            {
+                profile: { id: '3', osMinorVersion: '8' }
+            }
+        ];
+
+        const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
+        expect(Object.keys(profileToOsMinorMap)).toEqual(['1', '2', '3']);
+        expect(profileToOsMinorMap).toEqual({
+            1: ['5'],
+            2: ['6', '7'],
+            3: ['8']
+        });
     });
 });

@@ -8,7 +8,9 @@ import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
-import { TabbedRules, profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
+import {
+    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap
+} from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 
 const PROFILES_QUERY = gql`
@@ -149,8 +151,8 @@ export const EditPolicyRulesTab = ({
     const benchmarks = benchmarksData?.benchmarks?.nodes;
 
     const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
-    const profileIds = tabsData.map((tab) => (tab.profile.id));
-    const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
+    const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
+    const filter = Object.keys(profileToOsMinorMap).map((i) => (`id = ${ i }`)).join(' OR ');
     const {
         data: profilesData, error: profilesError, loading: profilesLoading
     } = useQuery(PROFILES_QUERY, {
