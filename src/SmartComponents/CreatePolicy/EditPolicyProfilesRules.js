@@ -16,7 +16,7 @@ import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import {
-    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap
+    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
 } from 'PresentationalComponents/TabbedRules';
 
 const PROFILES_QUERY = gql`
@@ -149,8 +149,9 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
 
     useLayoutEffect(() => {
         if (!loadingState) {
+            const profilesWithOs = extendProfilesByOsMinor(profiles, profileToOsMinorMap);
             const newSelection = profilesWithRulesToSelection(
-                profiles, selectedRuleRefIds, { only: true }
+                profilesWithOs, selectedRuleRefIds, { only: true }
             );
             setSelectedRuleRefIds(newSelection);
         }

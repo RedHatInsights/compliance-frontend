@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`extendProfilesByOsMinor extends profiles by OS minor versions using a map 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "osMinorVersion": "5",
+    "title": "Only one OS minor",
+  },
+  Object {
+    "id": "2",
+    "osMinorVersion": "6",
+    "title": "Expanded to two OS minor",
+  },
+  Object {
+    "id": "2",
+    "osMinorVersion": "7",
+    "title": "Expanded to two OS minor",
+  },
+  Object {
+    "id": "3",
+    "osMinorVersion": "8",
+    "title": "Version overwritten",
+  },
+  Object {
+    "id": "4",
+    "osMinorVersion": undefined,
+    "title": "Unmatched",
+  },
+]
+`;
+
 exports[`profilesWithRulesToSelection appends new profiles with rules to a selection and keeps existing 1`] = `
 Array [
   Object {

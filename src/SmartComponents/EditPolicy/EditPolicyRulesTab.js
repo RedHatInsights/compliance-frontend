@@ -9,7 +9,7 @@ import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import {
-    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap
+    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
 } from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 
@@ -175,8 +175,9 @@ export const EditPolicyRulesTab = ({
     useLayoutEffect(() => {
         if (profilesData) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node)) || [];
+            const profilesWithOs = extendProfilesByOsMinor(profiles, profileToOsMinorMap);
             setSelectedRuleRefIds((prevSelection) =>
-                profilesWithRulesToSelection(profiles, prevSelection)
+                profilesWithRulesToSelection(profilesWithOs, prevSelection)
             );
         }
     }, [profilesData]);
