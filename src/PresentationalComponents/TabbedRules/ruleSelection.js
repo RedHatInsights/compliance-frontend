@@ -1,12 +1,13 @@
 // Rule selection utilities
 
-export const matchesSelectionItem = (selectionItem, profile) => (
+export const matchesSelectionItem = (selectionItem, profile, newOsMinorVersion) => (
     selectionItem.id === profile.id
+    && selectionItem.osMinorVersion === (newOsMinorVersion || profile.osMinorVersion)
 );
 
-export const selectedRuleRefIdsForTab = (selectedRuleRefIds, profile) => {
+export const selectedRuleRefIdsForTab = (selectedRuleRefIds, profile, newOsMinorVersion) => {
     const tabSelection = (selectedRuleRefIds || []).find((selectionItem) =>
-        matchesSelectionItem(selectionItem, profile)
+        matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
     );
     return tabSelection?.ruleRefIds || [];
 };
@@ -22,8 +23,13 @@ export const profilesWithRulesToSelection = (profiles, prevSelection = [], optio
                 console.error(`Profile ${profile.id} is missing rules for selection!`);
             }
 
+            if (!profile.osMinorVersion) {
+                console.error(`Profile ${profile.id} is missing osMinorVersion for selection!`);
+            }
+
             return {
                 id: profile.id,
+                osMinorVersion: profile.osMinorVersion,
                 ruleRefIds: profile.rules?.map((rule) => (rule.refId)) || []
             };
         } else if (only) {

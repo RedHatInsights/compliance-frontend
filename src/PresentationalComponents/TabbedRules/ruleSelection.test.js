@@ -1,11 +1,54 @@
 import {
-    profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
+    matchesSelectionItem, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
 } from './ruleSelection';
+
+describe('matchesSelectionItem', () => {
+    const selectionItem = {
+        id: '1',
+        osMinorVersion: '5'
+    };
+
+    it('matches on profile id and osMinorVersion', () => {
+        const profile = {
+            id: '1',
+            osMinorVersion: '5'
+        };
+        expect(matchesSelectionItem(selectionItem, profile)).toBe(true);
+    });
+
+    it('matches on profile id and newOsMinorVersion', () => {
+        const profile = {
+            id: '1'
+        };
+        const newOsMinorVersion = '5';
+        expect(matchesSelectionItem(selectionItem, profile, newOsMinorVersion)).toBe(true);
+    });
+
+    it('returns false on profile id missmatch', () => {
+        const profile = {
+            id: '99',
+            osMinorVersion: '5'
+        };
+        expect(matchesSelectionItem(selectionItem, profile)).toBe(false);
+    });
+
+    it('returns false on osMinorVersion missmatch', () => {
+        const profile = {
+            id: '1',
+            osMinorVersion: '6'
+        };
+        const newOsMinorVersion = '7';
+
+        expect(matchesSelectionItem(selectionItem, profile)).toBe(false);
+        expect(matchesSelectionItem(selectionItem, profile, newOsMinorVersion)).toBe(false);
+    });
+});
 
 describe('profilesWithRulesToSelection', () => {
     const profiles = [
         {
             id: '1',
+            osMinorVersion: '5',
             rules: [
                 { refId: 'profile1-rule1' },
                 { refId: 'profile1-rule2' }
@@ -13,6 +56,7 @@ describe('profilesWithRulesToSelection', () => {
         },
         {
             id: '2',
+            osMinorVersion: '6',
             rules: [
                 { refId: 'profile2-rule1' },
                 { refId: 'profile2-rule2' }
@@ -23,10 +67,17 @@ describe('profilesWithRulesToSelection', () => {
     const prevSelection = [
         {
             id: '1',
+            osMinorVersion: '00',
+            ruleRefIds: ['profile1-different-os-rule']
+        },
+        {
+            id: '1',
+            osMinorVersion: '5',
             ruleRefIds: ['profile1-rule3', 'profile1-rule4']
         },
         {
             id: '99',
+            osMinorVersion: '5',
             ruleRefIds: ['profile99-rule1', 'profile99-rule2']
         }
     ];
@@ -53,11 +104,36 @@ describe('profilesWithRulesToSelection', () => {
 
     it('errors gracefully on missing rules', () => {
         const profilesWithoutRules = [
-            { id: '1' }, { id: '2' }
+            { id: '1', osMinorVersion: '5' }, { id: '2', osMinorVersion: '6' }
         ];
 
         const consoleError = jest.spyOn(console, 'error').mockImplementation();
         const newSelection = profilesWithRulesToSelection(profilesWithoutRules);
+        expect(newSelection).toMatchSnapshot();
+        expect(consoleError).toBeCalled();
+        consoleError.mockRestore();
+    });
+
+    it('errors gracefully on missing osMinorVersion', () => {
+        const profilesWithoutOS = [
+            {
+                id: '1',
+                rules: [
+                    { refId: 'profile1-rule1' },
+                    { refId: 'profile1-rule2' }
+                ]
+            },
+            {
+                id: '2',
+                rules: [
+                    { refId: 'profile2-rule1' },
+                    { refId: 'profile2-rule2' }
+                ]
+            }
+        ];
+
+        const consoleError = jest.spyOn(console, 'error').mockImplementation();
+        const newSelection = profilesWithRulesToSelection(profilesWithoutOS);
         expect(newSelection).toMatchSnapshot();
         expect(consoleError).toBeCalled();
         consoleError.mockRestore();

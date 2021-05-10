@@ -68,6 +68,7 @@ describe('TabbedRules', () => {
         const selectedRuleRefIds = [
             {
                 id: profiles[1].id,
+                osMinorVersion: '99',
                 ruleRefIds: ['xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime']
             }
         ];
