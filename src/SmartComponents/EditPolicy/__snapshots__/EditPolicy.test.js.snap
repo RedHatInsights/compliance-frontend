@@ -33,7 +33,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   showClose={true}
   style={
     Object {
-      "minHeight": "768px",
+      "minHeight": "350px",
     }
   }
   title="Edit profile1"
