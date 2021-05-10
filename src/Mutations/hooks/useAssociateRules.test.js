@@ -34,10 +34,15 @@ describe('useAssociateRules', () => {
     it('assigns rules to using parent profile', async () => {
         const profileSelectedRuleRefIds = {
             id: '1',
+            osMinorVersion: '5',
             ruleRefIds: ['ref1', 'ref2']
         };
         const profiles = [
-            { id: '999', parentProfileId: '1' }
+            {
+                id: '999',
+                parentProfileId: '1',
+                osMinorVersion: '5'
+            }
         ];
 
         const associateMutation = jest.fn(async ({ variables: { input } }) => {
