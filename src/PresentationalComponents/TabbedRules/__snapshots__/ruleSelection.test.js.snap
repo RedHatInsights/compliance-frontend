@@ -34,6 +34,14 @@ exports[`profilesWithRulesToSelection appends new profiles with rules to a selec
 Array [
   Object {
     "id": "1",
+    "osMinorVersion": "00",
+    "ruleRefIds": Array [
+      "profile1-different-os-rule",
+    ],
+  },
+  Object {
+    "id": "1",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [
       "profile1-rule3",
       "profile1-rule4",
@@ -41,6 +49,7 @@ Array [
   },
   Object {
     "id": "99",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [
       "profile99-rule1",
       "profile99-rule2",
@@ -48,6 +57,7 @@ Array [
   },
   Object {
     "id": "2",
+    "osMinorVersion": "6",
     "ruleRefIds": Array [
       "profile2-rule1",
       "profile2-rule2",
@@ -60,6 +70,7 @@ exports[`profilesWithRulesToSelection converts profiles with rules to brand new 
 Array [
   Object {
     "id": "1",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [
       "profile1-rule1",
       "profile1-rule2",
@@ -67,6 +78,7 @@ Array [
   },
   Object {
     "id": "2",
+    "osMinorVersion": "6",
     "ruleRefIds": Array [
       "profile2-rule1",
       "profile2-rule2",
@@ -79,6 +91,7 @@ exports[`profilesWithRulesToSelection converts profiles with rules to brand new 
 Array [
   Object {
     "id": "1",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [
       "profile1-rule1",
       "profile1-rule2",
@@ -86,6 +99,28 @@ Array [
   },
   Object {
     "id": "2",
+    "osMinorVersion": "6",
+    "ruleRefIds": Array [
+      "profile2-rule1",
+      "profile2-rule2",
+    ],
+  },
+]
+`;
+
+exports[`profilesWithRulesToSelection errors gracefully on missing osMinorVersion 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "osMinorVersion": undefined,
+    "ruleRefIds": Array [
+      "profile1-rule1",
+      "profile1-rule2",
+    ],
+  },
+  Object {
+    "id": "2",
+    "osMinorVersion": undefined,
     "ruleRefIds": Array [
       "profile2-rule1",
       "profile2-rule2",
@@ -98,10 +133,12 @@ exports[`profilesWithRulesToSelection errors gracefully on missing rules 1`] = `
 Array [
   Object {
     "id": "1",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [],
   },
   Object {
     "id": "2",
+    "osMinorVersion": "6",
     "ruleRefIds": Array [],
   },
 ]
@@ -111,6 +148,7 @@ exports[`profilesWithRulesToSelection keeps existing profile rules selection if 
 Array [
   Object {
     "id": "1",
+    "osMinorVersion": "5",
     "ruleRefIds": Array [
       "profile1-rule3",
       "profile1-rule4",
@@ -118,6 +156,7 @@ Array [
   },
   Object {
     "id": "2",
+    "osMinorVersion": "6",
     "ruleRefIds": Array [
       "profile2-rule1",
       "profile2-rule2",

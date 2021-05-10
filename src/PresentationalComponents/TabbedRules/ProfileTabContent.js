@@ -114,8 +114,9 @@ const ProfileTabContent = ({
                     profileRules={ [{ profile, rules: (rules || []) }] }
                     selectedRefIds={ selectedRuleRefIds }
                     handleSelect={
-                        handleSelect
-                        && ((selectedRuleRefIds) => handleSelect(profile, selectedRuleRefIds))
+                        handleSelect && ((selectedRuleRefIds) =>
+                            handleSelect(profile, newOsMinorVersion, selectedRuleRefIds)
+                        )
                     }
                     { ...rulesTableProps } />
 

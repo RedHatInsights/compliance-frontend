@@ -32,15 +32,17 @@ const getDefaultTab = (tabsData, defaultTab) => {
 const TabbedRules = ({
     tabsData, defaultTab, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
 }) => {
-    const handleSelect = (profile, profileSelectedRuleRefIds) => {
+    const handleSelect = (profile, newOsMinorVersion, profileSelectedRuleRefIds) => {
         const filteredSelection = (selectedRuleRefIds || []).filter((selectionItem) =>
-            !matchesSelectionItem(selectionItem, profile)
+            !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
         );
-        const newSelection = [
-            { id: profile.id, ruleRefIds: profileSelectedRuleRefIds },
-            ...filteredSelection
-        ];
-        setSelectedRuleRefIds(newSelection);
+
+        const newItem = {
+            id: profile.id,
+            osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
+            ruleRefIds: profileSelectedRuleRefIds
+        };
+        setSelectedRuleRefIds([newItem, ...filteredSelection]);
     };
 
     return <RoutedTabs level={ level } defaultTab={ getDefaultTab(tabsData, defaultTab) }>
@@ -64,7 +66,9 @@ const TabbedRules = ({
                             columns,
                             rulesTableProps,
                             systemCount,
-                            selectedRuleRefIds: selectedRuleRefIdsForTab(selectedRuleRefIds, profile),
+                            selectedRuleRefIds: selectedRuleRefIdsForTab(
+                                selectedRuleRefIds, profile, newOsMinorVersion
+                            ),
                             handleSelect: setSelectedRuleRefIds ? handleSelect : undefined
                         } } />
                 </Tab>
