@@ -7,7 +7,7 @@ import {
 import { RoutedTabs } from 'PresentationalComponents';
 import ProfileTabContent from './ProfileTabContent';
 import OsVersionText from './OsVersionText';
-import { selectedRuleRefIdsForTab } from './ruleSelection';
+import { selectedRuleRefIdsForTab, matchesSelectionItem } from './ruleSelection';
 
 const eventKey = ({ id, osMinorVersion }, newOsMinorVersion) => (
     `rules-${id}-${osMinorVersion || newOsMinorVersion}`
@@ -33,8 +33,8 @@ const TabbedRules = ({
     tabsData, defaultTab, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
 }) => {
     const handleSelect = (profile, profileSelectedRuleRefIds) => {
-        const filteredSelection = (selectedRuleRefIds || []).filter((profileSelection) =>
-            profileSelection.id !== profile.id
+        const filteredSelection = (selectedRuleRefIds || []).filter((selectionItem) =>
+            !matchesSelectionItem(selectionItem, profile)
         );
         const newSelection = [
             { id: profile.id, ruleRefIds: profileSelectedRuleRefIds },
