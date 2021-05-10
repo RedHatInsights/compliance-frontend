@@ -128,7 +128,7 @@ export const EditPolicy = ({ route }) => {
     return <Modal
         isOpen
         position={ 'top' }
-        style={ { minHeight: '768px' } }
+        style={ { minHeight: '350px' } }
         variant={ 'large' }
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
