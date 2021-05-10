@@ -1,8 +1,12 @@
 // Rule selection utilities
 
-export const selectedRuleRefIdsForTab = (selectedRuleRefIds, { id }) => {
-    const tabSelection = (selectedRuleRefIds || []).find((selection) =>
-        selection.id === id
+export const matchesSelectionItem = (selectionItem, profile) => (
+    selectionItem.id === profile.id
+);
+
+export const selectedRuleRefIdsForTab = (selectedRuleRefIds, profile) => {
+    const tabSelection = (selectedRuleRefIds || []).find((selectionItem) =>
+        matchesSelectionItem(selectionItem, profile)
     );
     return tabSelection?.ruleRefIds || [];
 };
@@ -10,7 +14,9 @@ export const selectedRuleRefIdsForTab = (selectedRuleRefIds, { id }) => {
 export const profilesWithRulesToSelection = (profiles, prevSelection = [], options = {}) => {
     const { only } = options;
     const additionalSelection = profiles.map((profile) => {
-        const foundSelection = prevSelection.find(({ id }) => id === profile?.id);
+        const foundSelection = prevSelection.find((selectionItem) =>
+            matchesSelectionItem(selectionItem, profile)
+        );
         if (!foundSelection) {
             if (!profile.rules) {
                 console.error(`Profile ${profile.id} is missing rules for selection!`);
