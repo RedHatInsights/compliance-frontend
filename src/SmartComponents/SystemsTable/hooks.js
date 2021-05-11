@@ -120,6 +120,10 @@ export const useOnSelect = (onSelectProp, items, preselectedSystems, total) => {
         onSelectCallback(selected);
     };
 
+    useEffect(() => {
+        setSelected(preselectedSystems);
+    }, [preselectedSystems]);
+
     return {
         onSelect,
         onBulkSelect,
@@ -141,7 +145,6 @@ export const useInventoryUtilities = (inventory, selectedSystems, activeFilters)
     }, []);
 
     // Ensures rows are marked as selected
-    // And Compatibility layer for parts that still rely on selectedEntities
     useEffect(() => {
         dispatch({
             type: 'SELECT_ENTITIES',

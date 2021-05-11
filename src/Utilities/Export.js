@@ -29,12 +29,12 @@ const textCsvCell = (row, column) => {
 };
 
 export const csvFromState = (state) => {
-    const { rows, columns, selectedEntities } = state;
+    const { rows, columns } = state;
 
     if (rows) {
         let csvRows = [columns.map((column) => column.title).join(CSV_DELIMITER)];
-        csvRows = csvRows.concat((selectedEntities || rows).map((row) => (
-            state.columns.map((column) => (column.export !== false) ? textCsvCell(row, column) : '').join(CSV_DELIMITER)
+        csvRows = csvRows.concat(rows.map((row) => (
+            columns.map((column) => (column.export !== false) ? textCsvCell(row, column) : '').join(CSV_DELIMITER)
         )));
 
         return encodeURI('data:text/csv;charset=utf-8,' + csvRows.join('\n'));
@@ -42,10 +42,10 @@ export const csvFromState = (state) => {
 };
 
 export const jsonFromState = (state) => {
-    const { rows, columns, selectedEntities } = state;
+    const { rows, columns } = state;
     let result;
     if (rows) {
-        result = (selectedEntities || rows).map((row) => {
+        result = rows.map((row) => {
             let object = {};
             columns.forEach((column) => {
                 const key = _.snakecase(column.title);
@@ -65,14 +65,11 @@ const filename = (format) => (
     CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format
 );
 
-export const exportFromState = (state, format) => {
-    let content;
+export const exportItems = (items, columns, format) => {
+    const formater = format === 'csv' ? csvFromState : jsonFromState;
 
-    if (format === 'csv') {
-        content = csvFromState(state);
-    } else if (format === 'json') {
-        content = jsonFromState(state);
-    }
-
-    linkAndDownload(content, filename(format));
+    return linkAndDownload(formater({
+        rows: items,
+        columns
+    }), filename(format));
 };

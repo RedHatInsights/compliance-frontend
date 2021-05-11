@@ -40,7 +40,7 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.string
 };
 
-const EditPolicySystemsTab = ({ policy: { osMajorVersion, hosts }, newRuleTabs }) => {
+const EditPolicySystemsTab = ({ policy: { osMajorVersion }, newRuleTabs, onSystemSelect, selectedSystems }) => {
     const { push, location } = useHistory();
 
     return (
@@ -59,7 +59,8 @@ const EditPolicySystemsTab = ({ policy: { osMajorVersion, hosts }, newRuleTabs }
                 defaultFilter={ osMajorVersion && `os_major_version = ${osMajorVersion}` }
                 enableExport={ false }
                 remediationsEnabled={ false }
-                preselectedSystems={ hosts }
+                preselectedSystems={ selectedSystems }
+                onSelect={ onSystemSelect }
             />
             {newRuleTabs && <Alert
                 variant="info"
@@ -76,7 +77,9 @@ const EditPolicySystemsTab = ({ policy: { osMajorVersion, hosts }, newRuleTabs }
 
 EditPolicySystemsTab.propTypes = {
     policy: propTypes.object,
-    newRuleTabs: propTypes.bool
+    newRuleTabs: propTypes.bool,
+    onSystemSelect: propTypes.func,
+    selectedSystems: propTypes.array
 };
 
 export default EditPolicySystemsTab;

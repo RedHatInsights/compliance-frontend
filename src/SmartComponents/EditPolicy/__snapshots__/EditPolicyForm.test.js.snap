@@ -50,6 +50,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
     >
       <EditPolicySystemsTab
         newRuleTabs={false}
+        onSystemSelect={[Function]}
         policy={
           Object {
             "name": "parentpolicy",
