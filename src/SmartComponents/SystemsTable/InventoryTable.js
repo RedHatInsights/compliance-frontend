@@ -7,7 +7,6 @@ import ComplianceRemediationButton from '@redhat-cloud-services/frontend-compone
 import { exportItems } from 'Utilities/Export';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
-import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad } from './constants';
@@ -48,8 +47,6 @@ export const InventoryTable = ({
     const {
         onSelect, onBulkSelect, selectedSystems, isPageSelected
     } = useOnSelect(onSelectProp, items, preselectedSystems, total);
-    const selectedIds = selectedSystems?.map((system) => (system.id));
-    const selectedItems = items.filter((item) => (selectedIds.includes(item.id)));
     const selectedCount = selectedSystems.length;
 
     const osMinorVersionFilter = useOsMinorVersionFilter(showOsMinorVersionFilter);
@@ -123,7 +120,7 @@ export const InventoryTable = ({
                     ...conditionalFilter,
                     ...remediationsEnabled && {
                         dedicatedAction: <ComplianceRemediationButton
-                            allSystems={ systemsWithRuleObjectsFailed(selectedItems) }
+                            allSystems={ selectedSystems }
                             selectedRules={ [] } />
                     }
                 }}

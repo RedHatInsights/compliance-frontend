@@ -3,6 +3,7 @@ import { useApolloClient } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import useCollection from 'Utilities/hooks/api/useCollection';
+import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter } from './constants';
 
 const groupByMajorVersion = (versions = [], showFilter) => {
@@ -59,8 +60,10 @@ export const useFetchSystems = (
                 ...policyId && { policyId }
             }
         }).then(({ data }) => {
+            const systems = data?.systems?.edges?.map((e) => e.node) || [];
+            const entities = systemsWithRuleObjectsFailed(systems);
             const result = {
-                entities: data?.systems?.edges?.map((e) => e.node) || [],
+                entities,
                 meta: {
                     totalCount: data?.systems?.totalCount || 0
                 }
