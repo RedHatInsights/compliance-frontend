@@ -63,5 +63,24 @@ describe('simulate ruleObjectsFailed', () => {
         ];
         expect(systemsWithRuleObjectsFailed(systems)).toMatchSnapshot();
     });
-});
 
+    it('creates a system with supported property', () => {
+        const system = {
+            testResultProfiles: [
+                {
+                    supported: true,
+                    rules: [{ title: 'a', compliant: true }, { title: 'b', compliant: false }]
+                },
+                {
+                    supported: true,
+                    rules: [
+                        { title: 'c', compliant: false },
+                        { title: 'd', compliant: false },
+                        { title: 'e', compliant: true }
+                    ]
+                }
+            ]
+        };
+        expect(systemsWithRuleObjectsFailed([system])).toMatchSnapshot();
+    });
+});

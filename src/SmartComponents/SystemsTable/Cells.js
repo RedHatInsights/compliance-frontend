@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Text, TextContent, TextVariants } from '@patternfly/react-core';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import { UnsupportedSSGVersion, ComplianceScore as complianceScore } from 'PresentationalComponents';
-import { profilesRulesPassed, profilesRulesFailed } from 'Utilities/ruleHelpers';
+import {
+    profilesRulesPassed, profilesRulesFailed, systemSupportedByProfiles
+} from 'Utilities/ruleHelpers';
 
 const SystemLink = ({ id, children }) => (
     <Link to={{ pathname: `/systems/${id}` }}>{ children }</Link>
@@ -113,14 +115,13 @@ export const complianceScoreData = (profiles) => {
     const compliant = profiles.every(profile => (
         profile.lastScanned === NEVER || profile.compliant === true
     ));
-    const supported = (profiles || []).reduce((acc, profile) => acc && profile.supported, true);
 
     return {
         score,
         rulesPassed,
         rulesFailed,
         compliant,
-        supported
+        supported: systemSupportedByProfiles(profiles)
     };
 };
 

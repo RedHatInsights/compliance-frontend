@@ -47,6 +47,7 @@ Array [
         "title": "d",
       },
     ],
+    "supported": false,
     "testResultProfiles": Array [
       Object {
         "rules": Array [
@@ -81,11 +82,98 @@ Array [
 ]
 `;
 
+exports[`simulate ruleObjectsFailed creates a system with supported property 1`] = `
+Array [
+  Object {
+    "profiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+        "supported": true,
+      },
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": false,
+            "title": "c",
+          },
+          Object {
+            "compliant": false,
+            "title": "d",
+          },
+          Object {
+            "compliant": true,
+            "title": "e",
+          },
+        ],
+        "supported": true,
+      },
+    ],
+    "ruleObjectsFailed": Array [
+      Object {
+        "compliant": false,
+        "title": "b",
+      },
+      Object {
+        "compliant": false,
+        "title": "c",
+      },
+      Object {
+        "compliant": false,
+        "title": "d",
+      },
+    ],
+    "supported": true,
+    "testResultProfiles": Array [
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": true,
+            "title": "a",
+          },
+          Object {
+            "compliant": false,
+            "title": "b",
+          },
+        ],
+        "supported": true,
+      },
+      Object {
+        "rules": Array [
+          Object {
+            "compliant": false,
+            "title": "c",
+          },
+          Object {
+            "compliant": false,
+            "title": "d",
+          },
+          Object {
+            "compliant": true,
+            "title": "e",
+          },
+        ],
+        "supported": true,
+      },
+    ],
+  },
+]
+`;
+
 exports[`simulate ruleObjectsFailed should set rule objects failed even if some have no profiles or rules 1`] = `
 Array [
   Object {
     "profiles": Array [],
     "ruleObjectsFailed": Array [],
+    "supported": true,
     "testResultProfiles": Array [],
   },
   Object {
@@ -95,6 +183,7 @@ Array [
       },
     ],
     "ruleObjectsFailed": Array [],
+    "supported": false,
     "testResultProfiles": Array [
       Object {
         "rules": Array [],
@@ -122,6 +211,7 @@ Array [
         "title": "b",
       },
     ],
+    "supported": false,
     "testResultProfiles": Array [
       Object {
         "rules": Array [
