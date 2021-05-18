@@ -99,9 +99,15 @@ export const useOnSelect = (onSelectProp, items, preselectedSystems, total) => {
     );
 
     const onSelect = (_event, select, _index, row) => {
-        const selected = select ?
-            [...selectedSystems, row] :
-            selectedSystems.filter((selected) => (selected.id !== row.id));
+        const system = items.find(({ id }) => id === row.id);
+        if (!system) {
+            console.error(`System identifed as ${row.id} not found in items for selection!`);
+            return;
+        }
+
+        const selected = select
+            ? [...selectedSystems, system]
+            : selectedSystems.filter((selected) => (selected.id !== row.id));
 
         setSelected(selected);
         onSelectCallback(selected);
