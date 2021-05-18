@@ -95,7 +95,7 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                             <Button key={id} onClick={ () => { change('benchmark', id); } }
                                 className={`wizard-os-button ${selectedBenchmarkId === id ? 'active-wizard-os-button' : ''}`}
                                 variant="tertiary"
-                                ouiaId="Benchmark">
+                                ouiaId="osButton">
                                 { refId && refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
                             </Button>
                         );

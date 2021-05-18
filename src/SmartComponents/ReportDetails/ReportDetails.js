@@ -164,7 +164,7 @@ export const ReportDetails = ({ route }) => {
         </StateViewPart>
         <StateViewPart stateKey='data'>
             <PageHeader>
-                <Breadcrumb ouiaId="titles">
+                <Breadcrumb ouiaId="pathToReport">
                     <BreadcrumbLinkItem to='/'>
                         Compliance
                     </BreadcrumbLinkItem>

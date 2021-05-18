@@ -143,7 +143,7 @@ export const PolicyDetails = ({ route }) => {
         <StateViewPart stateKey='data'>
             { policy && <Fragment>
                 <PageHeader className='page-header-tabs'>
-                    <Breadcrumb ouiaId="policyName">
+                    <Breadcrumb ouiaId="pathToPolicy">
                         <BreadcrumbLinkItem to='/'>
                             Compliance
                         </BreadcrumbLinkItem>
