@@ -6,8 +6,7 @@ import {
     Text, TextVariants, TextContent, Grid, Spinner, Badge, Popover
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import SystemRulesTable from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
-import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink, RulesTable } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 
@@ -107,7 +106,7 @@ const ProfileTabContent = ({
             </StateViewPart>
             <StateViewPart stateKey="rules">
 
-                <SystemRulesTable
+                <RulesTable
                     remediationAvailableFilter
                     remediationsEnabled={false}
                     columns={ columns }

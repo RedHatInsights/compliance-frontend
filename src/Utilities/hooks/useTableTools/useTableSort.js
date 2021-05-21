@@ -18,10 +18,10 @@ const addSortableTransform = (columns) => (
     }))
 );
 
-const columnOffset = (options = {}) => ([
-    ...(typeof options.onSelect === 'function') ? [1] : [],
-    ...(typeof options.detailsComponent  !== 'undefined') ? [1] : []
-].reduce((a, b) => (a + b), 0));
+const columnOffset = (options = {}) => (
+    (typeof options.onSelect === 'function') +
+    (typeof options.detailsComponent  !== 'undefined')
+);
 
 const useTableSort = (columns, options = {}) => {
     const [sortBy, setSortBy] = useState({

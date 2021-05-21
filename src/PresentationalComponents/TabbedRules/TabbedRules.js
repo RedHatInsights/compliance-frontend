@@ -1,9 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Tab, Badge } from '@patternfly/react-core';
-import {
-    selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { RoutedTabs } from 'PresentationalComponents';
 import ProfileTabContent from './ProfileTabContent';
 import OsVersionText from './OsVersionText';
@@ -30,7 +27,7 @@ const getDefaultTab = (tabsData, defaultTab) => {
 };
 
 const TabbedRules = ({
-    tabsData, defaultTab, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
+    tabsData, defaultTab, selectedRuleRefIds, setSelectedRuleRefIds, columns, level = 0, ...rulesTableProps
 }) => {
     const handleSelect = (profile, newOsMinorVersion, profileSelectedRuleRefIds) => {
         const filteredSelection = (selectedRuleRefIds || []).filter((selectionItem) =>
@@ -99,11 +96,6 @@ TabbedRules.propTypes = {
         osMinorVersion: propTypes.string
     }),
     level: propTypes.number
-};
-
-TabbedRules.defaultProps = {
-    columns: selectRulesTableColumns(['Name', 'Severity', 'Ansible']),
-    level: 0
 };
 
 export default TabbedRules;

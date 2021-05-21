@@ -76,34 +76,37 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
       columns={
         Array [
           Object {
+            "renderFunc": [Function],
+            "sortByProp": "title",
             "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
           },
           Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
+            "renderFunc": [Function],
+            "sortByArray": Array [
+              "high",
+              "medium",
+              "low",
+              "unknown",
             ],
+            "sortByProp": "severity",
+            "title": "Severity",
           },
           Object {
             "original": "Ansible",
             "props": Object {
-              "property": "ansible",
               "tooltip": "Ansible",
             },
-            "title": <React.Fragment>
+            "renderFunc": [Function],
+            "sortByProp": "remediationAvailable",
+            "title": <span>
               <AnsibeTowerIcon
                 color="currentColor"
                 noVerticalAlign={false}
                 size="sm"
               />
                Ansible
-            </React.Fragment>,
+            </span>,
             "transforms": Array [
-              [Function],
               [Function],
             ],
           },
@@ -189,34 +192,37 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
       columns={
         Array [
           Object {
+            "renderFunc": [Function],
+            "sortByProp": "title",
             "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
           },
           Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
+            "renderFunc": [Function],
+            "sortByArray": Array [
+              "high",
+              "medium",
+              "low",
+              "unknown",
             ],
+            "sortByProp": "severity",
+            "title": "Severity",
           },
           Object {
             "original": "Ansible",
             "props": Object {
-              "property": "ansible",
               "tooltip": "Ansible",
             },
-            "title": <React.Fragment>
+            "renderFunc": [Function],
+            "sortByProp": "remediationAvailable",
+            "title": <span>
               <AnsibeTowerIcon
                 color="currentColor"
                 noVerticalAlign={false}
                 size="sm"
               />
                Ansible
-            </React.Fragment>,
+            </span>,
             "transforms": Array [
-              [Function],
               [Function],
             ],
           },
