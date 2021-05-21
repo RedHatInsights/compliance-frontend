@@ -31,7 +31,7 @@ const usePaginate = ({ perPage = 10 } = {}) => {
     const setPage = (page) => (
         setPaginationState({
             ...paginationState,
-            page
+            page: page < 0 ? paginationState.page + page : page
         })
     );
 

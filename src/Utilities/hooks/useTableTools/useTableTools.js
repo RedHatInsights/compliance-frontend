@@ -51,7 +51,8 @@ const useTableTools = (items = [], columns = [], options = {}) => {
         items: identifiedItems,
         filter,
         paginator,
-        sorter
+        sorter,
+        setPage
     });
 
     const {

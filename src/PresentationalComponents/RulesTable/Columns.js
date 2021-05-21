@@ -21,6 +21,7 @@ export const Policy = {
 export const Severity = {
     title: 'Severity',
     sortByProp: 'severity',
+    transforms: [fitContent],
     sortByArray: ['high', 'medium', 'low', 'unknown'],
     renderFunc: renderComponent(SeverityCell)
 };

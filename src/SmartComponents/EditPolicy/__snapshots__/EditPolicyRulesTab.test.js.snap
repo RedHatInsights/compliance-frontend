@@ -90,6 +90,9 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
             ],
             "sortByProp": "severity",
             "title": "Severity",
+            "transforms": Array [
+              [Function],
+            ],
           },
           Object {
             "original": "Ansible",
@@ -206,6 +209,9 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
             ],
             "sortByProp": "severity",
             "title": "Severity",
+            "transforms": Array [
+              [Function],
+            ],
           },
           Object {
             "original": "Ansible",

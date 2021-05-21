@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { filterSelected } from './helper';
 
 const compileTitle = (itemsTotal, titleOption) => {
@@ -50,7 +50,8 @@ const useBulkSelect = ({
     filter,
     paginator,
     sorter,
-    preselected = []
+    preselected = [],
+    setPage
 } = {}) => {
     const [selectedIds, setSelectedItemIds] = useState(preselected);
     const selectItemTransformer = (item) => ({
@@ -136,6 +137,12 @@ const useBulkSelect = ({
     ));
 
     const clearSelection = () => setSelectedItemIds([]);
+
+    useEffect(() => {
+        if (paginatedTotal === 0) {
+            setPage(-1);
+        }
+    }, [paginatedTotal]);
 
     return {
         transformer: selectItemTransformer,
