@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import FilterConfigBuilder from './FilterConfigBuilder/FilterConfigBuilder';
 import useSelectedFilter from './useSelectedFilter';
 
-const filterConfigBuilder = new FilterConfigBuilder([]);
-
 const useFilterConfig = (options = {}) => {
+    const filterConfigBuilder = useMemo(() => (
+        new FilterConfigBuilder([])
+    ), []);
     const {
         filters,
         setPage,
