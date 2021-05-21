@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useSelectedFilter returns a table sort configuration 1`] = `
+Object {
+  "all": Array [
+    Object {
+      "filterItem": Object {
+        "default": true,
+        "filter": [Function],
+        "key": "selected",
+        "label": "selectFilter",
+        "type": "hidden",
+      },
+      "toolbarProps": Object {
+        "dedicatedAction": [Function],
+      },
+    },
+  ],
+  "current": Object {
+    "filterItem": Object {
+      "default": true,
+      "filter": [Function],
+      "key": "selected",
+      "label": "selectFilter",
+      "type": "hidden",
+    },
+    "toolbarProps": Object {
+      "dedicatedAction": [Function],
+    },
+  },
+  "error": undefined,
+}
+`;

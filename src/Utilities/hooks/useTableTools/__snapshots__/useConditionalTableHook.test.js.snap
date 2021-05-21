@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useConditionalTableHook returns a hook on condition 1`] = `
+Object {
+  "all": Array [
+    undefined,
+  ],
+  "current": undefined,
+  "error": undefined,
+}
+`;
