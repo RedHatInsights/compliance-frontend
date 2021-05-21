@@ -12,6 +12,7 @@ const itemDetailsRow = (item, idx, options) => (
 );
 
 const useExpandable = (options) => {
+    const enableExpanbale = !!options.detailsComponent;
     const [openItems, setOpenItems] = useState([]);
     const onCollapse = (_event, _index, _isOpen, row) => {
         if (openItems.includes(row.itemId)) {
@@ -35,12 +36,12 @@ const useExpandable = (options) => {
         ];
     };
 
-    return {
+    return enableExpanbale ? {
         transformer: openItem,
         tableProps: {
             onCollapse
         }
-    };
+    } : {};
 };
 
 export default useExpandable;

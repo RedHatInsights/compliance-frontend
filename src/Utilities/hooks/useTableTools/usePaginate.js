@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
-const usePaginate = ({ perPage = 10 } = {}) => {
+const usePaginate = (options = {}) => {
+    const { perPage = 10 } = options;
+    const enablePagination = options?.pagination !== false;
+
     const [paginationState, setPaginationState] = useState({
         perPage,
         page: 1
@@ -35,7 +38,7 @@ const usePaginate = ({ perPage = 10 } = {}) => {
         })
     );
 
-    return {
+    return enablePagination ? {
         paginator,
         setPage,
         toolbarProps: {
@@ -45,7 +48,7 @@ const usePaginate = ({ perPage = 10 } = {}) => {
                 onPerPageSelect
             }
         }
-    };
+    } : {};
 };
 
 export default usePaginate;

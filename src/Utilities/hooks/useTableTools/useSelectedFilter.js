@@ -2,8 +2,9 @@ import React from 'react';
 import SelectedFilterSwitch from './Components/SelectedFilterSwitch';
 
 const useSelectedFilter = ({
-    setActiveFilter, activeFilters
+    setActiveFilter, activeFilters, selectedFilter
 }) => {
+    const enableSelectedFilter = !!selectedFilter;
     const filterKey = 'selected';
     const filterItem = {
         type: 'hidden',
@@ -16,7 +17,7 @@ const useSelectedFilter = ({
     };
     const isChecked = activeFilters[filterKey] === true;
 
-    return {
+    return enableSelectedFilter ? {
         filterItem,
         toolbarProps: {
             dedicatedAction: () => ( // eslint-disable-line
@@ -26,7 +27,7 @@ const useSelectedFilter = ({
                 }  } />
             )
         }
-    };
+    } : {};
 };
 
 export default useSelectedFilter;

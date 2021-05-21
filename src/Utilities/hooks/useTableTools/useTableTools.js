@@ -4,7 +4,6 @@ import usePaginate from './usePaginate';
 import useRowsBuilder from './useRowsBuilder';
 import useBulkSelect from './useBulkSelect';
 import useItemIdentify from './useItemIdentify';
-import useConditionalTableHook from './useConditionalTableHook';
 import useExpandable from './useExpandable';
 import useDedicatedAction from './useDedicatedAction';
 
@@ -12,11 +11,6 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     const {
         toolbarProps: toolbarPropsOption, tableProps: tablePropsOption
     } = options;
-    const enableFilters = !!options.filters;
-    const enableBulkSelect = !!options.onSelect;
-    const enablePagination = options?.pagination !== false;
-    const enableExpanbale = !!options.detailsComponent;
-    const enableDedicatedAction = !!options.dedicatedAction;
 
     const identifiedItems = useItemIdentify(items, options);
 
@@ -26,27 +20,27 @@ const useTableTools = (items = [], columns = [], options = {}) => {
 
     const {
         toolbarProps: pagintionToolbarProps, setPage, paginator
-    } = useConditionalTableHook(enablePagination, usePaginate, options);
+    } = usePaginate(options);
 
     const {
         toolbarProps: conditionalFilterProps,
         filter,
         selectedFilterToolbarProps
-    } = useConditionalTableHook(enableFilters, useFilterConfig, {
+    } = useFilterConfig({
         ...options,
         setPage
     });
 
     const {
         transformer: openItem, tableProps: expandableProps
-    } = useConditionalTableHook(enableExpanbale, useExpandable, options);
+    } = useExpandable(options);
 
     const {
         transformer: selectItem,
         toolbarProps: bulkSelectToolbarProps,
         tableProps: bulkSelectTableProps,
         selected
-    } = useConditionalTableHook(enableBulkSelect, useBulkSelect, {
+    } = useBulkSelect({
         ...options,
         items: identifiedItems,
         filter,
@@ -57,7 +51,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
 
     const {
         toolbarProps: dedicatedActionToolbarProps
-    } = useConditionalTableHook(enableDedicatedAction, useDedicatedAction, {
+    } = useDedicatedAction({
         ...options,
         additionalDedicatedActions: [
             selectedFilterToolbarProps?.dedicatedAction

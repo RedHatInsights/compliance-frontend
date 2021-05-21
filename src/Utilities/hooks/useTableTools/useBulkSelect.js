@@ -53,6 +53,8 @@ const useBulkSelect = ({
     preselected = [],
     setPage
 } = {}) => {
+    const enableBulkSelect = !!onSelect;
+
     const [selectedIds, setSelectedItemIds] = useState(preselected);
     const selectItemTransformer = (item) => ({
         ...item,
@@ -144,7 +146,7 @@ const useBulkSelect = ({
         }
     }, [paginatedTotal]);
 
-    return {
+    return enableBulkSelect ? {
         transformer: selectItemTransformer,
         tableProps: {
             onSelect: paginatedTotal > 0 ? selectOne : undefined,
@@ -172,7 +174,7 @@ const useBulkSelect = ({
                 onSelect: !isDisabled ? () => selectPage() : undefined
             }
         }
-    };
+    } : {};
 };
 
 export default useBulkSelect;

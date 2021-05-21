@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import FilterConfigBuilder from './FilterConfigBuilder/FilterConfigBuilder';
-import useConditionalTableHook from './useConditionalTableHook';
 import useSelectedFilter from './useSelectedFilter';
 
 const filterConfigBuilder = new FilterConfigBuilder([]);
 
-const useFilterConfig = ({
-    filters: {
-        filterConfig,
-        activeFilters: initialActiveFilters
-    },
-    setPage,
-    selectedFilter
-}) => {
-    const enableSelectedFilter = selectedFilter;
+const useFilterConfig = (options = {}) => {
+    const {
+        filters,
+        setPage,
+        selectedFilter
+    } = options;
+    const enableFilters = !!filters;
+    const { filterConfig = [], activeFilters: initialActiveFilters } = filters || {};
     const [activeFilters, setActiveFilters] = useState({});
     const onFilterUpdate = (filter, value) => {
         setActiveFilters({
@@ -61,9 +59,10 @@ const useFilterConfig = ({
 
     const {
         toolbarProps: selectedFilterToolbarProps, filterItem: selectFilterItem
-    } = useConditionalTableHook(enableSelectedFilter, useSelectedFilter, {
+    } = useSelectedFilter({
         activeFilters,
-        setActiveFilter: onFilterUpdate
+        setActiveFilter: onFilterUpdate,
+        selectedFilter
     });
 
     useEffect(() => {
@@ -78,7 +77,7 @@ const useFilterConfig = ({
         };
     }, []);
 
-    return {
+    return enableFilters ? {
         filter,
         selectedFilterToolbarProps,
         toolbarProps: {
@@ -92,7 +91,7 @@ const useFilterConfig = ({
         activeFilters,
         addConfigItem,
         filterConfigBuilder
-    };
+    } : {};
 };
 
 export default useFilterConfig;
