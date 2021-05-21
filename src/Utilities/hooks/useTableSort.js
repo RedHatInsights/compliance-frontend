@@ -1,28 +1,5 @@
 import { useState } from 'react';
-
-const getSortable = (property, item) => {
-    if (typeof(property) === 'function') {
-        return property(item);
-    } else {
-        return item[property];
-    }
-};
-
-export const orderArrayByProp = (property, objects, direction) => (
-    objects.sort((a, b) => {
-        if (direction === 'asc') {
-            return String(getSortable(property, a)).localeCompare(String(getSortable(property, b)));
-        } else {
-            return -String(getSortable(property, a)).localeCompare(String(getSortable(property, b)));
-        }
-    })
-);
-
-export const orderByArray = (objectArray, orderProp, orderArray, direction) => (
-    (direction !== 'asc' ? orderArray.reverse() : orderArray).flatMap((orderKey) => (
-        objectArray.filter((item) => (item[orderProp] === orderKey))
-    ))
-);
+import { orderArrayByProp } from 'Utilities/helpers';
 
 const useTableSort = (array, columns) => {
     const [sortBy, setSortBy] = useState({
