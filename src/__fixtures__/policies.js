@@ -11,7 +11,10 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 compliantHostCount: 4,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -24,6 +27,7 @@ export const policies = {
                             id: 'b71376fd-015e-4209-99af',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
+                            osMinorVersion: '9',
                             ssgVersion: '0.1.49',
                             rules: [
                                 {
@@ -47,7 +51,7 @@ export const policies = {
                             ]
                         },
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ac',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             ssgVersion: '0.1.45',
@@ -73,9 +77,10 @@ export const policies = {
                             ]
                         },
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ad',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
+                            osMinorVersion: '8',
                             ssgVersion: '0.1.46',
                             rules: [
                                 {
@@ -115,13 +120,13 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
                 policy: {
                     id: 'b71376fd-015e-4209-99af-4543e82e5dc5-policy',
                     name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73',
                     profiles: [
                         {
-                            id: 'b71376fd-015e-4209-99af',
+                            id: 'b71376fd-015e-4209-99ae',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             ssg_version: '0.1.45',
@@ -167,6 +172,9 @@ export const policies = {
                     ],
                     __typename: 'Profile'
                 },
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
@@ -185,10 +193,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'dae0487d-3201-4ee0-af5f-b94cde2af818',
+                    name: 'United States Government Configuration Baseline2'
                 },
                 __typename: 'Profile'
             },
@@ -204,10 +219,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '20a9d997-62a6-40cc-a5f3-19d466eb975e',
+                    name: 'C2S for Red Hat Enterprise Linux 7',
                 },
                 __typename: 'Profile'
             },
@@ -223,10 +245,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '6d345bd2-d597-4df8-9bcf-71c41155b42c',
+                    name: 'Criminal Justice Information Services (CJIS) Security Policy',
                 },
                 __typename: 'Profile'
             },
@@ -242,10 +271,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'c8e15347-9c2b-495d-8e54-503c2f9582b6',
+                    name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
                 },
                 __typename: 'Profile'
             },
@@ -261,10 +297,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '3c4823a1-2c16-46ae-b2fe-0cebf5a03931',
+                    name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
                 },
                 __typename: 'Profile'
             },
@@ -280,10 +323,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'f7b7977a-403b-4cd1-ab90-20b6f9a5a359',
+                    name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 },
                 __typename: 'Profile'
             },
@@ -299,10 +349,17 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 businessObjective: null,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '36abc364-6dc3-4e35-94f4-d10fa77e866e',
+                    name: 'Health Insurance Portability and Accountability Act (HIPAA)',
                 },
                 __typename: 'Profile'
             },
@@ -318,10 +375,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: 'd35c8aad-8fc8-49e8-bff0-4d9d3dc8f220',
+                    name: 'United States Government Configuration Baseline',
                 },
                 __typename: 'Profile'
             },
@@ -337,10 +401,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '4c27fe09-9a7f-437c-b38b-e42272d9ccf0',
+                    name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                 },
                 __typename: 'Profile'
             },
@@ -356,10 +427,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '9b034440-e3dd-4c19-8f2c-ca75e813d57d',
+                    name: 'DISA STIG for Red Hat Enterprise Linux 7',
                 },
                 __typename: 'Profile'
             },
@@ -375,10 +453,17 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: 7,
+                majorOsVersion: '7',
+                hosts: [
+                    { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
+                ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
                     version: '0.1.49'
+                },
+                policy: {
+                    id: '19921ca4-8526-4651-8876-3c8587e8e125',
+                    name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72',
                 },
                 __typename: 'Profile'
             },

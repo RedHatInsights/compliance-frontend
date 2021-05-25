@@ -19,10 +19,21 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       complianceThreshold={100}
       dispatch={[Function]}
       name="C2S for Red Hat Enterprise Linux 6"
+      osMinorVersionCounts={
+        Array [
+          Object {
+            "count": 10,
+            "osMinorVersion": 7,
+          },
+          Object {
+            "count": 3,
+            "osMinorVersion": 5,
+          },
+        ]
+      }
       parentProfileName="C2S for Red Hat Enterprise Linux 6"
       refId="xccdf_org.ssgproject.content_profile_C2S"
       rulesCount={1}
-      systemsCount={0}
     >
       <TextContent>
         <div
@@ -38,15 +49,33 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               Review
             </h1>
           </Text>
-          <Text
-            component="h4"
-          >
-            <h4
+          <Text>
+            <p
               className=""
               data-pf-content={true}
             >
-              Review your policy before finishing.
-            </h4>
+              Review your SCAP policy before finishing.
+            </p>
+          </Text>
+          <Text
+            component="h3"
+            style={
+              Object {
+                "marginTop": 0,
+              }
+            }
+          >
+            <h3
+              className=""
+              data-pf-content={true}
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
+            >
+              C2S for Red Hat Enterprise Linux 6
+            </h3>
           </Text>
           <TextList
             component="dl"
@@ -55,46 +84,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               className=""
               data-pf-content={true}
             >
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                  data-pf-content={true}
-                >
-                  Operating system
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                  data-pf-content={true}
-                >
-                  RHEL 7
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                  data-pf-content={true}
-                >
-                  Security guide
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                  data-pf-content={true}
-                >
-                   SCAP security guide for RHEL7 - 0.1.40
-                </dd>
-              </TextListItem>
               <TextListItem
                 component="dt"
               >
@@ -113,46 +102,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                   data-pf-content={true}
                 >
                   C2S for Red Hat Enterprise Linux 6
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                  data-pf-content={true}
-                >
-                  Policy name
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                  data-pf-content={true}
-                >
-                  C2S for Red Hat Enterprise Linux 6
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                  data-pf-content={true}
-                >
-                  Reference ID
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                  data-pf-content={true}
-                >
-                  xccdf_org.ssgproject.content_profile_C2S
                 </dd>
               </TextListItem>
               <TextListItem
@@ -183,7 +132,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                   className=""
                   data-pf-content={true}
                 >
-                  No. of rules
+                  Systems
                 </dt>
               </TextListItem>
               <TextListItem
@@ -193,150 +142,85 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                   className=""
                   data-pf-content={true}
                 >
-                  1
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                  data-pf-content={true}
-                >
-                  No. of systems
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                  data-pf-content={true}
-                >
-                  <SystemsCountWarning
-                    count={0}
-                    variant="compact"
+                  <TextList
+                    component="dl"
                   >
-                    <WithOptionalToolTip
-                      showTooltip={true}
+                    <dl
+                      className=""
+                      data-pf-content={true}
                     >
-                      <Tooltip
-                        content="Policies without systems will not have reports."
-                        position="bottom"
+                      <TextListItem
+                        component="dt"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
                       >
-                        <Popper
-                          appendTo={[Function]}
-                          distance={15}
-                          enableFlip={true}
-                          flipBehavior={
-                            Array [
-                              "top",
-                              "right",
-                              "bottom",
-                              "left",
-                              "top",
-                              "right",
-                              "bottom",
-                            ]
-                          }
-                          isVisible={false}
-                          onBlur={[Function]}
-                          onDocumentClick={false}
-                          onDocumentKeyDown={[Function]}
-                          onFocus={[Function]}
-                          onMouseEnter={[Function]}
-                          onMouseLeave={[Function]}
-                          onTriggerEnter={[Function]}
-                          placement="bottom"
-                          popper={
-                            <div
-                              className="pf-c-tooltip"
-                              id="pf-tooltip-1"
-                              role="tooltip"
-                              style={
-                                Object {
-                                  "maxWidth": null,
-                                  "opacity": 0,
-                                  "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
-                                }
-                              }
-                            >
-                              <TooltipArrow />
-                              <TooltipContent
-                                isLeftAligned={false}
-                              >
-                                Policies without systems will not have reports.
-                              </TooltipContent>
-                            </div>
-                          }
-                          popperMatchesTriggerWidth={false}
-                          positionModifiers={
+                        <dt
+                          className=""
+                          data-pf-content={true}
+                          style={
                             Object {
-                              "bottom": "pf-m-bottom",
-                              "left": "pf-m-left",
-                              "right": "pf-m-right",
-                              "top": "pf-m-top",
+                              "fontWeight": "normal",
                             }
                           }
-                          trigger={
-                            <WarningText
-                              aria-describedby="pf-tooltip-1"
-                            >
-                              No Systems
-                            </WarningText>
-                          }
-                          zIndex={9999}
                         >
-                          <FindRefWrapper
-                            onFoundRef={[Function]}
-                          >
-                            <WarningText
-                              aria-describedby="pf-tooltip-1"
-                            >
-                              <ExclamationTriangleIcon
-                                className="ins-u-warning"
-                                color="currentColor"
-                                noVerticalAlign={false}
-                                size="sm"
-                              >
-                                <svg
-                                  aria-hidden={true}
-                                  aria-labelledby={null}
-                                  className="ins-u-warning"
-                                  fill="currentColor"
-                                  height="1em"
-                                  role="img"
-                                  style={
-                                    Object {
-                                      "verticalAlign": "-0.125em",
-                                    }
-                                  }
-                                  viewBox="0 0 576 512"
-                                  width="1em"
-                                >
-                                  <path
-                                    d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
-                                  />
-                                </svg>
-                              </ExclamationTriangleIcon>
-                              <Text
-                                className="ins-c-warning-text"
-                                component="span"
-                              >
-                                <span
-                                  className="ins-c-warning-text"
-                                  data-pf-content={true}
-                                >
-                                   
-                                  No Systems
-                                </span>
-                              </Text>
-                            </WarningText>
-                          </FindRefWrapper>
-                        </Popper>
-                      </Tooltip>
-                    </WithOptionalToolTip>
-                  </SystemsCountWarning>
+                          RHEL 
+                          7
+                          .
+                          7
+                        </dt>
+                      </TextListItem>
+                      <TextListItem
+                        component="dd"
+                      >
+                        <dd
+                          className=""
+                          data-pf-content={true}
+                        >
+                          10
+                           
+                          systems
+                        </dd>
+                      </TextListItem>
+                      <TextListItem
+                        component="dt"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        <dt
+                          className=""
+                          data-pf-content={true}
+                          style={
+                            Object {
+                              "fontWeight": "normal",
+                            }
+                          }
+                        >
+                          RHEL 
+                          7
+                          .
+                          5
+                        </dt>
+                      </TextListItem>
+                      <TextListItem
+                        component="dd"
+                      >
+                        <dd
+                          className=""
+                          data-pf-content={true}
+                        >
+                          3
+                           
+                          systems
+                        </dd>
+                      </TextListItem>
+                    </dl>
+                  </TextList>
                 </dd>
               </TextListItem>
             </dl>
@@ -367,10 +251,21 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
       complianceThreshold={100}
       dispatch={[Function]}
       name="C2S for Red Hat Enterprise Linux 6"
+      osMinorVersionCounts={
+        Array [
+          Object {
+            "count": 10,
+            "osMinorVersion": 7,
+          },
+          Object {
+            "count": 3,
+            "osMinorVersion": 5,
+          },
+        ]
+      }
       parentProfileName="C2S for Red Hat Enterprise Linux 6"
       refId="xccdf_org.ssgproject.content_profile_C2S"
       rulesCount={1}
-      systemsCount={0}
     >
       <Spinner>
         <div

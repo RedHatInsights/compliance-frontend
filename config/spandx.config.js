@@ -33,6 +33,11 @@ const LOCAL_INVENTORY = envWithDefault('LOCAL_INVENTORY', false);
 const INVENTORY_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
 const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8081);
 
+const LOCAL_REMEDIATIONS = envWithDefault('LOCAL_REMEDIATIONS', false);
+const REMEDIATIONS_HOST = envWithDefault('REMEDIATIONS_HOST', defaultHost());
+const REMEDIATIONS_PORT = envWithDefault('REMEDIATIONS_PORT', 9002);
+const GOOD_GUY = envWithDefault('GOOD_GUY', false);
+
 const routes = {};
 routes[`/beta/${BETA_SECTION}/${APP_ID}`] = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
 routes[`/${SECTION}/${APP_ID}`]      = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
@@ -52,6 +57,10 @@ if (LOCAL_INVENTORY) {
     routes[`/api/inventory/v1/hosts`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
 }
 
+if (LOCAL_REMEDIATIONS) {
+    routes[`/api/remediations/`] = { host: `http://${REMEDIATIONS_HOST}:${REMEDIATIONS_PORT}` };
+}
+
 const esi = {
     // Increases the default (2s) timeout which can be a pain sometimes.
     // https://github.com/Schibsted-Tech-Polska/good-guy-http/blob/master/lib/index.js#L55
@@ -60,4 +69,7 @@ const esi = {
     })
 };
 
-module.exports = { routes, esi };
+module.exports = {
+    routes,
+    ...GOOD_GUY && { esi }
+};

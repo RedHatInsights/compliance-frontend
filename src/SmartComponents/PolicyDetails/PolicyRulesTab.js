@@ -1,11 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import { SystemRulesTable, selectRulesTableColumns } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import SystemRulesTable, {
+    selectColumns as selectRulesTableColumns
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
-        <Alert variant="info" isInline title="Rule editing coming soon" />
+        <Alert isInline variant='info' title='Rule editing is now available.'>
+            SCAP policies created before April 19th, 2021 with rule editing will use the full default
+            set of rules for the policy with the most accurate benchmark for systems within the policy.
+            Click the &quot;Edit rules&quot; or &quot;Edit policy&quot; button to edit rules.
+        </Alert>
         <PageSection variant={PageSectionVariants.light}>
             <Text component={TextVariants.p}>
                 <strong>What rules are shown on this list?&nbsp;</strong>
@@ -16,12 +23,13 @@ const PolicyRulesTab = ({ loading, policy }) => (
         </PageSection>
         <SystemRulesTable
             remediationsEnabled={false}
-            columns={ selectRulesTableColumns(['Rule', 'Severity', 'Ansible']) }
+            columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
             loading={ loading }
             profileRules={[{
                 profile: { refId: policy.refId, name: policy.name },
                 rules: policy.rules
             }]}
+            toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> }
         />
     </React.Fragment>
 );

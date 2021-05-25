@@ -22,8 +22,27 @@ const mocks = [
                     totalHostCount: 1,
                     complianceThreshold: 1,
                     compliantHostCount: 1,
+                    majorOsVersion: '7',
+                    hosts: [],
                     policy: {
-                        name: 'parentpolicy'
+                        name: 'parentpolicy',
+                        profiles: [
+                            {
+                                id: '1',
+                                refId: '121212',
+                                name: 'profile1',
+                                description: 'profile description',
+                                osMinorVersion: '9',
+                                businessObjective: {
+                                    id: '1',
+                                    title: 'BO 1'
+                                },
+                                benchmark: {
+                                    title: 'benchmark',
+                                    version: '0.1.5'
+                                }
+                            }
+                        ]
                     },
                     businessObjective: {
                         id: '1',
@@ -39,7 +58,13 @@ const mocks = [
     }
 ];
 
-jest.mock('@apollo/react-hooks', () => ({
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(() => ({}))
+}));
+
+jest.mock('@apollo/client', () => ({
+    ...jest.requireActual('@apollo/client'),
     useQuery: () => (
         { data: mocks[0].result.data, error: undefined, loading: undefined }
     )

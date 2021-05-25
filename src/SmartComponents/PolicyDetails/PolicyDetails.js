@@ -2,72 +2,22 @@ import React, { Fragment, useEffect } from 'react';
 import propTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Tab } from '@patternfly/react-core';
-import {
-    PageHeader, PageHeaderTitle, Main, Spinner
-} from '@redhat-cloud-services/frontend-components';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
     PolicyDetailsDescription, PolicyDetailsContentLoader, RoutedTabSwitcher as TabSwitcher, ContentTab,
     StateViewWithError, StateViewPart, RoutedTabs, BreadcrumbLinkItem, BackgroundLink
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
-import useFeature from 'Utilities/hooks/useFeature';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
-
-export const MULTIVERSION_QUERY = gql`
-query Profile($policyId: String!){
-    profile(id: $policyId) {
-        id
-        name
-        refId
-        external
-        description
-        totalHostCount
-        compliantHostCount
-        complianceThreshold
-        majorOsVersion
-        lastScanned
-        policyType
-        policy {
-            id
-            name
-            refId
-            profiles {
-                ssgVersion
-                name
-                refId
-                rules {
-                    title
-                    severity
-                    rationale
-                    refId
-                    description
-                    remediationAvailable
-                    identifier
-                }
-            }
-        }
-        businessObjective {
-            id
-            title
-        }
-        hosts {
-            id
-        }
-        benchmark {
-            id
-            title
-            version
-        }
-    }
-}
-`;
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -86,6 +36,30 @@ query Profile($policyId: String!){
         policy {
             id
             name
+            refId
+            profiles {
+                id
+                ssgVersion
+                name
+                refId
+                osMinorVersion
+                osMajorVersion
+                benchmark {
+                    id
+                    title
+                    latestSupportedOsMinorVersions
+                    osMajorVersion
+                }
+                rules {
+                    title
+                    severity
+                    rationale
+                    refId
+                    description
+                    remediationAvailable
+                    identifier
+                }
+            }
         }
         businessObjective {
             id
@@ -93,6 +67,12 @@ query Profile($policyId: String!){
         }
         hosts {
             id
+            osMinorVersion
+        }
+        benchmark {
+            id
+            title
+            version
         }
         rules {
             title
@@ -103,35 +83,28 @@ query Profile($policyId: String!){
             remediationAvailable
             identifier
         }
-        benchmark {
-            id
-            title
-            version
-        }
     }
 }
 `;
 
 export const PolicyDetails = ({ route }) => {
     const defaultTab = 'details';
-    const multiversionTabs = useFeature('multiversionTabs');
     const { policy_id: policyId } = useParams();
     const location = useLocation();
     const anchor = useAnchor();
-    let { data, error, loading, refetch } = useQuery((multiversionTabs ? MULTIVERSION_QUERY : QUERY), {
+    let { data, error, loading, refetch } = useQuery(QUERY, {
         variables: { policyId }
     });
-    let policy = data && !loading ? data.profile : undefined;
-
-    if (policy && policy.external) {
-        error = { message: 'This is an external SCAP policy.' };
-        data = undefined;
-        loading = undefined;
+    let policy;
+    let hasOsMinorProfiles = true;
+    if (data && !loading) {
+        policy = data.profile;
+        hasOsMinorProfiles = !!policy.policy.profiles.find((profile) => !!profile.osMinorVersion);
     }
 
     useEffect(() => {
         refetch();
-    }, [location]);
+    }, [location, refetch]);
 
     useTitleEntity(route, policy?.name);
 
@@ -178,9 +151,9 @@ export const PolicyDetails = ({ route }) => {
                             <PolicyDetailsDescription policy={ policy } />
                         </ContentTab>
                         <ContentTab eventKey='rules'>
-                            { multiversionTabs ?
-                                <PolicyMultiversionRules policy={ policy } /> :
-                                <PolicyRulesTab policy={ policy } /> }
+                            { hasOsMinorProfiles
+                                ? <PolicyMultiversionRules policy={ policy } />
+                                : <PolicyRulesTab policy={ policy } /> }
                         </ContentTab>
                         <ContentTab eventKey='systems'>
                             <PolicySystemsTab policy={ policy } />

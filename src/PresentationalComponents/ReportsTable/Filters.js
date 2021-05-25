@@ -1,4 +1,4 @@
-import { conditionalFilterType } from '@redhat-cloud-services/frontend-components';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
 export const policyNameFilter = [{
     type: conditionalFilterType.text,
@@ -8,7 +8,7 @@ export const policyNameFilter = [{
         return profiles.filter((profile) => (
             [
                 profile.name,
-                (profile?.policy?.name || '')
+                profile.policy.name
             ].join().toLowerCase().includes(lowerCaseValue)
         ));
     }

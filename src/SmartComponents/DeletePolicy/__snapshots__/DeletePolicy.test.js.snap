@@ -6,11 +6,12 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
     Array [
       <Button
         aria-label="delete"
+        isDisabled={true}
         onClick={[Function]}
         ouiaId="Delete"
         variant="danger"
       >
-        Delete policy
+        Delete policy and associated reports
       </Button>,
       <Button
         onClick={[Function]}
@@ -31,17 +32,43 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   onClose={[Function]}
   ouiaSafe={true}
   showClose={true}
-  title="Delete policy"
+  title={
+    <React.Fragment>
+      <ExclamationTriangleIcon
+        className="ins-u-warning"
+        color="currentColor"
+        noVerticalAlign={false}
+        size="sm"
+      />
+      <Text
+        className="policy-delete-header-text"
+        component="span"
+      >
+        Delete policy?
+      </Text>
+    </React.Fragment>
+  }
   titleIconVariant={null}
   titleLabel=""
   variant="small"
 >
-  <TextContent>
-    Are you sure you want to delete 
+  <Text
+    className="policy-delete-body-text"
+  >
+    Deleting the policy 
     <b>
       foo
     </b>
-    ? This cannot be undone.
-  </TextContent>
+     will also delete its associated reports.
+  </Text>
+  <Checkbox
+    className=""
+    id="deleting-policy-check-1"
+    isChecked={false}
+    isDisabled={false}
+    isValid={true}
+    label="I understand this will delete the policy and all associated reports"
+    onChange={[Function]}
+  />
 </Modal>
 `;

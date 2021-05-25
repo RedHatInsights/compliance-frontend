@@ -1,5 +1,5 @@
 import { version } from './../package.json';
-import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/components/cjs/ConditionalFilter';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
 export const DEFAULT_TITLE_SUFFIX = ` - ${ DEFAULT_TITLE }`;
@@ -48,6 +48,36 @@ export const systemsOsFilterConfiguration = (policies) => ([{
     }))
 }]);
 
+const toSystemsOsMinorFilterConfigurationItem = (osVersions) => (
+    (majorVersion) => ({
+        label: `RHEL ${ majorVersion }`,
+        value: majorVersion,
+        items: osVersions[majorVersion].map((minorVersion) => ({
+            label: `RHEL ${ majorVersion }.${ minorVersion }`,
+            value: minorVersion
+        }))
+    })
+);
+
+export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
+    const filterString = (value) => ([
+        Object.keys(value).flatMap((majorVersion) => (
+            Object.keys(value[majorVersion]).map((minorVersion) => (
+                value[majorVersion][minorVersion] &&
+                    `(os_major_version = ${ majorVersion } AND os_minor_version = ${ minorVersion })`
+            ))
+        )).filter((v) => (!!v)).join(' OR ')
+    ]);
+    const items = Object.keys(osMajorVersions).map(toSystemsOsMinorFilterConfigurationItem(osMajorVersions));
+
+    return [{
+        type: conditionalFilterType.group,
+        label: 'Operating system',
+        filterString,
+        items
+    }];
+};
+
 export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.checkbox,
@@ -74,8 +104,4 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     }
 ];
 
-export const features = {
-    reportsTableView: true,
-    multiversionTabs: false,
-    showSsgVersions: true
-};
+export const features = {};

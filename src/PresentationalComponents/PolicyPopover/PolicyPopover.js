@@ -43,12 +43,6 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
                             RHEL { majorOsVersion }
                         </TextListItem>
                         <TextListItem component={TextListItemVariants.dt}>
-                            Policy SSG version
-                        </TextListItem>
-                        <TextListItem component={TextListItemVariants.dd}>
-                            { policy && policy.benchmark && policy.benchmark.version }
-                        </TextListItem>
-                        <TextListItem component={TextListItemVariants.dt}>
                             Compliance threshold
                         </TextListItem>
                         <TextListItem component={TextListItemVariants.dd}>

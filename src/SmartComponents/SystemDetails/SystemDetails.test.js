@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
 import { SystemDetails } from './SystemDetails.js';
 
@@ -6,7 +6,7 @@ jest.mock('SmartComponents', () => ({
     InventoryDetails: () => 'MockedInventoryDetails'
 }));
 
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),

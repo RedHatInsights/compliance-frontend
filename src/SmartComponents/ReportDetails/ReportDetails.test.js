@@ -1,6 +1,6 @@
 import { init } from 'Store';
 import useFeature from 'Utilities/hooks/useFeature';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 
 import {
     QUERY,
@@ -10,6 +10,11 @@ import {
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
     useTitleEntity: () => ({}),
     setTitle: () => ({})
+}));
+
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(() => ({}))
 }));
 
 const mocks = [
@@ -33,6 +38,7 @@ const mocks = [
                     complianceThreshold: 1,
                     compliantHostCount: 5,
                     unsupportedHostCount: 5,
+                    majorOsVersion: '7',
                     policy: {
                         id: 'thepolicyid',
                         name: 'the policy name'
@@ -51,14 +57,9 @@ const mocks = [
 ];
 const store = init().getStore();
 
-jest.mock('../SystemsTable/SystemsTable', () => {
-    const SystemsTable = () => <table><tbody><tr><td>Systems Table</td></tr></tbody></table>;
-    return SystemsTable;
-});
-
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 jest.mock('Utilities/hooks/useFeature');
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -93,24 +94,6 @@ describe('ReportDetails', () => {
 
     it('expect to render without error and ssg Version', () => {
         useFeature.mockImplementation(() => (true));
-        const component = shallow(
-            <ReportDetails { ...defaultProps } store={ store } />
-        );
-
-        expect(toJson(component)).toMatchSnapshot();
-    });
-
-    it('expect to render without ssg version for external profiles', () => {
-        useFeature.mockImplementation(() => (true));
-        const data = {
-            profile: {
-                ...mocks[0].result.data.profile,
-                policy: null
-            }
-        };
-        useQuery.mockImplementation(() => {
-            return { data };
-        });
         const component = shallow(
             <ReportDetails { ...defaultProps } store={ store } />
         );

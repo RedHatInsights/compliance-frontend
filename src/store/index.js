@@ -1,5 +1,5 @@
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/files/Registry';
-import { notifications } from '@redhat-cloud-services/frontend-components-notifications';
+import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reducer as form } from 'redux-form';
 
@@ -7,11 +7,11 @@ let registry;
 
 export function init (...middleware) {
     registry = getRegistry({}, [
-        promiseMiddleware(),
-        ...middleware
+        promiseMiddleware,
+        ...middleware.filter(item => typeof item !== 'undefined')
     ]);
 
-    registry.register({ form, notifications });
+    registry.register({ form, notifications: notificationsReducer });
     return registry;
 }
 

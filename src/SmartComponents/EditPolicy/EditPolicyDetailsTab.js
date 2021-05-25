@@ -3,6 +3,10 @@ import propTypes from 'prop-types';
 import {
     FormGroup, TextArea, TextInput
 } from '@patternfly/react-core';
+import {
+    PolicyThresholdTooltip,
+    PolicyBusinessObjectiveTooltip
+} from 'PresentationalComponents';
 import { thresholdValid } from '../CreatePolicy/validate';
 
 export const useThresholdValidate = () => {
@@ -17,7 +21,7 @@ export const useThresholdValidate = () => {
 const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
     const [validThreshold, validateThreshold] = useThresholdValidate();
 
-    return <React.Fragment>
+    return <div className="pf-c-form">
         <FormGroup label="Policy description" isRequired fieldId="description">
             <TextArea
                 style={ { width: 800, height: 110 } }
@@ -35,7 +39,10 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
                 }} />
         </FormGroup>
 
-        <FormGroup label="Business objective" fieldId="business-objective">
+        <FormGroup
+            label="Business objective"
+            labelIcon={ <PolicyBusinessObjectiveTooltip /> }
+            fieldId="business-objective">
             <TextInput
                 type="text"
                 style={ { width: 300 } }
@@ -57,6 +64,7 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
         <FormGroup
             validated={ validThreshold ? 'default' : 'error' }
             label='Compliance threshold (%)'
+            labelIcon={ <PolicyThresholdTooltip /> }
             fieldId='policy-threshold'
             helperTextInvalid='Threshold has to be a number between 0 and 100'
             helperText='A value of 95% or higher is recommended'>
@@ -75,7 +83,7 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
                     }));
                 }} />
         </FormGroup>
-    </React.Fragment>;
+    </div>;
 };
 
 EditPolicyDetailsTab.propTypes = {

@@ -17,10 +17,29 @@ exports[`PolicyDetails expect to render without error 1`] = `
           "complianceThreshold": 1,
           "compliantHostCount": 1,
           "description": "profile description",
+          "hosts": Array [],
           "id": "1",
+          "majorOsVersion": "7",
           "name": "profile1",
           "policy": Object {
             "name": "parentpolicy",
+            "profiles": Array [
+              Object {
+                "benchmark": Object {
+                  "title": "benchmark",
+                  "version": "0.1.5",
+                },
+                "businessObjective": Object {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "description": "profile description",
+                "id": "1",
+                "name": "profile1",
+                "osMinorVersion": "9",
+                "refId": "121212",
+              },
+            ],
           },
           "refId": "121212",
           "totalHostCount": 1,
@@ -48,7 +67,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
       className="page-header-tabs"
     >
       <Breadcrumb
-        ouiaId="policyName"
+        ouiaId="pathToPolicy"
       >
         <BreadcrumbLinkItem
           to="/"
@@ -109,10 +128,29 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   "complianceThreshold": 1,
                   "compliantHostCount": 1,
                   "description": "profile description",
+                  "hosts": Array [],
                   "id": "1",
+                  "majorOsVersion": "7",
                   "name": "profile1",
                   "policy": Object {
                     "name": "parentpolicy",
+                    "profiles": Array [
+                      Object {
+                        "benchmark": Object {
+                          "title": "benchmark",
+                          "version": "0.1.5",
+                        },
+                        "businessObjective": Object {
+                          "id": "1",
+                          "title": "BO 1",
+                        },
+                        "description": "profile description",
+                        "id": "1",
+                        "name": "profile1",
+                        "osMinorVersion": "9",
+                        "refId": "121212",
+                      },
+                    ],
                   },
                   "refId": "121212",
                   "totalHostCount": 1,
@@ -173,10 +211,29 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
+                "majorOsVersion": "7",
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "9",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,
@@ -187,7 +244,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         <ContentTab
           eventKey="rules"
         >
-          <PolicyRulesTab
+          <PolicyMultiversionRules
             policy={
               Object {
                 "benchmark": Object {
@@ -201,10 +258,29 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
+                "majorOsVersion": "7",
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "9",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,
@@ -229,10 +305,29 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
+                "majorOsVersion": "7",
                 "name": "profile1",
                 "policy": Object {
                   "name": "parentpolicy",
+                  "profiles": Array [
+                    Object {
+                      "benchmark": Object {
+                        "title": "benchmark",
+                        "version": "0.1.5",
+                      },
+                      "businessObjective": Object {
+                        "id": "1",
+                        "title": "BO 1",
+                      },
+                      "description": "profile description",
+                      "id": "1",
+                      "name": "profile1",
+                      "osMinorVersion": "9",
+                      "refId": "121212",
+                    },
+                  ],
                 },
                 "refId": "121212",
                 "totalHostCount": 1,

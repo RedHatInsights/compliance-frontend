@@ -1,26 +1,49 @@
 import { useState } from 'react';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/Utilities';
+
+const filterValues = (activeFilters) => (
+    Object.values(activeFilters).filter((value) => {
+        if (typeof value === Object) {
+            return Object.values(value).length > 0;
+        }
+
+        if (typeof value === Array) {
+            return value?.length > 0;
+        }
+
+        return !!value;
+    })
+);
 
 const useFilterConfig = (initialConfig, arrayToFilter) => {
     const filterConfigBuilder = new FilterConfigBuilder(initialConfig);
     const [activeFilters, setActiveFilters] = useState(filterConfigBuilder.initialDefaultState());
-    const onFilterUpdate = (filter, value) => (
-        setActiveFilters({
+    const [activeFilterValues, setActiveFilterValues] = useState([]);
+    const onFilterUpdate = (filter, value) => {
+        const newActiveFilters = {
             ...activeFilters,
             [filter]: value
-        })
-    );
+        };
+        setActiveFilters(newActiveFilters);
+        setActiveFilterValues(filterValues(newActiveFilters));
+    };
+
     const clearAllFilter = () => (
         setActiveFilters(filterConfigBuilder.initialDefaultState())
     );
-    const deleteFilter = (chips) => (
-        setActiveFilters(filterConfigBuilder.removeFilterWithChip(
+
+    const deleteFilter = (chips) => {
+        const newActiveFilters = filterConfigBuilder.removeFilterWithChip(
             chips, activeFilters
-        ))
-    );
+        );
+        setActiveFilters(newActiveFilters);
+        setActiveFilterValues(filterValues(newActiveFilters));
+    };
+
     const onFilterDelete = (_event, chips, clearAll = false) => (
         clearAll ? clearAllFilter() : deleteFilter(chips[0])
     );
+
     const chipBuilder = filterConfigBuilder.getChipBuilder();
     const filterConfig = filterConfigBuilder.buildConfiguration(
         onFilterUpdate,
@@ -41,6 +64,7 @@ const useFilterConfig = (initialConfig, arrayToFilter) => {
         },
         filtered: filteredArray,
         activeFilters,
+        activeFilterValues,
         buildFilterString: () => filterConfigBuilder.getFilterBuilder().buildFilterString(activeFilters)
     };
 };

@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/files/RouterParams';
+import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { Routes } from './Routes';
-import { NotificationsPortal } from '@redhat-cloud-services/frontend-components-notifications';
-import '@redhat-cloud-services/frontend-components-notifications/index.css';
+import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import './App.scss';
+import { useSetFlagsFromUrl } from 'Utilities/hooks/useFeature';
+
+const appNavClick = {
+    reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect }); },
+    scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect }); },
+    systems(redirect) { insights.chrome.appNavClick({ id: 'systems', redirect }); }
+};
 
 const App = (props) => {
-    const appNavClick = {
-        reports(redirect) { insights.chrome.appNavClick({ id: 'reports', redirect }); },
-        scappolicies(redirect) { insights.chrome.appNavClick({ id: 'scappolicies', redirect }); },
-        systems(redirect) { insights.chrome.appNavClick({ id: 'systems', redirect }); }
-    };
-
+    useSetFlagsFromUrl();
     useEffect(() => {
         insights.chrome.init();
         insights.chrome?.hideGlobalFilter?.();
@@ -27,11 +28,6 @@ const App = (props) => {
 
         return () => unregister();
     }, []);
-
-    useEffect(() => {
-        const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
-        insights && insights.chrome && baseComponentUrl && appNavClick[baseComponentUrl](false);
-    }, [appNavClick, props.location]);
 
     return (
         <React.Fragment>

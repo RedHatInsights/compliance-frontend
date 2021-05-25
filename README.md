@@ -1,6 +1,7 @@
 # compliance-frontend
 
 [![Build Status](https://travis-ci.org/RedHatInsights/compliance-frontend.svg?branch=master)](https://travis-ci.org/RedHatInsights/compliance-frontend)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dae99b3728337e64871c/maintainability)](https://codeclimate.com/github/RedHatInsights/compliance-frontend/maintainability)
 
 UI application for Red Hat Insights Compliance.
 
@@ -126,3 +127,12 @@ $ npm run test -- -u
 This repository has [dependabot](https://dependabot.com/) configured in order to update (some) packages automatically via a pull request.
 Occasionally these updates will fail snapshot tests and require to update the snapshots as mentioned in the "Testing" section.
 
+#### Running Sonarqube
+
+Follow instructions to set up self-signed certs, as described [here](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/).
+
+Use the docker image:
+
+```
+podman run -itv $PWD:/usr/src -v $PWD/cacerts:/opt/java/openjdk/lib/security/cacerts --rm --name sonar-scanner-cli -e SONAR_HOST_URL='<sonarqube host>' -e SONAR_LOGIN=<token> sonarsource/sonar-scanner-cli
+```

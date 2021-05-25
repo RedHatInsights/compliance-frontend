@@ -1,17 +1,19 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { fixedPercentage } from 'Utilities/TextHelper';
+import {
+    PolicyBusinessObjectiveTooltip,
+    PolicyThresholdTooltip
+} from 'PresentationalComponents';
 import {
     Card,
     CardHeader,
     CardBody,
     TextContent,
     TextVariants,
-    Text,
-    Tooltip
+    Text
 } from '@patternfly/react-core';
-import { Truncate } from '@redhat-cloud-services/frontend-components';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
 
 const PolicyDetailsDescription = ({ policy }) => (
@@ -25,26 +27,15 @@ const PolicyDetailsDescription = ({ policy }) => (
             <TextContent>
                 <Text component={TextVariants.h5}>
                     Compliance threshold
-                    <Tooltip
-                        position='right'
-                        content={
-                            <span>
-                                The threshold for compliance is a value set by your organization for
-                                each policy.
-                                This defines the percentage of passed rules that must be met in order
-                                for a system to be determined &quot;compliant&quot;.
-                            </span>
-                        }
-                    >
-                        <span>
-                            &nbsp;<OutlinedQuestionCircleIcon className='grey-icon'/>
-                        </span>
-                    </Tooltip>
+                    <PolicyThresholdTooltip />
                 </Text>
                 <Text className='threshold-tooltip' component={TextVariants.p}>
                     { fixedPercentage(policy.complianceThreshold, 1) }
                 </Text>
-                <Text component={TextVariants.h5}>Business objective</Text>
+                <Text component={TextVariants.h5}>
+                    Business objective
+                    <PolicyBusinessObjectiveTooltip />
+                </Text>
                 <Text component={TextVariants.p}>
                     { policy.businessObjective && policy.businessObjective.title || '-' }
                 </Text>

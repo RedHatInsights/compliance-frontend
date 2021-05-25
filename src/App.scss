@@ -1,11 +1,3 @@
-// Importing Global Variables
-@import "~@redhat-cloud-services/frontend-components/index.css";
-@import "~@redhat-cloud-services/frontend-components-utilities/files/Utilities/_all";
-@import "~@redhat-cloud-services/frontend-components-inventory-compliance/index.css";
-
-.pf-c-page__main .pf-c-page-header .pf-c-title.pad-bottom {
-  padding-bottom: inherit;
-}
 
 .pf-c-page__main .pf-c-page-header.pf-c-page__main-section {
   &.page-header-tabs {
@@ -15,6 +7,18 @@
   .pf-l-tabs, .pf-c-tabs {
       padding-top: 22px;
   }
+}
+
+.pf-c-modal-box__body .pf-c-table.pf-m-sticky-header > thead > tr > * {
+  top: calc(-1 * var(--pf-c-modal-box__body--PaddingTop));
+}
+
+.policy-delete-header-text {
+  padding-left: 10px;
+}
+
+.policy-delete-body-text {
+  padding-bottom: 18px;
 }
 
 .upload-instructions {
@@ -69,6 +73,10 @@ button.pf-c-button.pf-m-tertiary {
   }
 }
 
+.pf-c-switch {
+  --pf-c-switch--ColumnGap: 0;
+}
+
 .ins-c-warning-text {
     color: var(--pf-global--warning-color--200);
 }
@@ -76,4 +84,16 @@ button.pf-c-button.pf-m-tertiary {
 .ins-c-non-bold-h2 {
   font-size: var(--pf-c-content--h2--FontSize);
   font-weight: normal;
+}
+    
+.ins-u-passed {
+  color: var(--pf-global--success-color--200);
+}
+
+.ins-u-failed {
+  color: var(--pf-global--danger-color--100);
+}
+
+.ins-u-warning {
+  color: var(--pf-global--warning-color--100);
 }

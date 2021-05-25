@@ -2,355 +2,236 @@
 
 exports[`PolicyMultiversionRules expect to render without error 1`] = `
 <Fragment>
-  <Alert
-    isInline={true}
-    title="Rule editing coming soon"
-    variant="info"
-  />
   <PageSection
     variant="light"
   >
-    <RoutedTabs
-      defaultTab="0.1.49"
+    <TabbedRules
+      columns={
+        Array [
+          Object {
+            "title": "Name",
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          Object {
+            "title": "Severity",
+            "transforms": Array [
+              [Function],
+              [Function],
+            ],
+          },
+          Object {
+            "original": "Ansible",
+            "props": Object {
+              "property": "ansible",
+              "tooltip": "Ansible",
+            },
+            "title": <React.Fragment>
+              <AnsibeTowerIcon
+                color="currentColor"
+                noVerticalAlign={false}
+                size="sm"
+              />
+               Ansible
+            </React.Fragment>,
+            "transforms": Array [
+              [Function],
+              [Function],
+            ],
+          },
+        ]
+      }
       level={1}
-    >
-      <Tab
-        eventKey="0.1.49"
-        key="ssgversion-tab-0.1.49"
-        title={
-          <TabTitleText>
-            <span>
-              SSG 
-              0.1.49 
-            </span>
-            <Label
-              color="blue"
-            >
-              2
-            </Label>
-          </TabTitleText>
-        }
-      >
-        <SystemRulesTable
-          columns={
-            Array [
-              Object {
-                "title": "Rule",
-                "transforms": Array [
-                  [Function],
-                ],
-              },
-              Object {
-                "title": "Severity",
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-              Object {
-                "original": "Ansible",
-                "props": Object {
-                  "tooltip": "Ansible",
+      tabsData={
+        Array [
+          Object {
+            "profile": Object {
+              "id": "b71376fd-015e-4209-99af",
+              "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "9",
+              "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+              "rules": Array [
+                Object {
+                  "__typename": "Rule",
+                  "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                  "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                  "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                  "remediationAvailable": false,
+                  "severity": "medium",
+                  "title": "Record Attempts to Alter the localtime File",
                 },
-                "title": <React.Fragment>
-                  <AnsibeTowerIcon
-                    color="currentColor"
-                    noVerticalAlign={false}
-                    size="sm"
-                  />
-                   Ansible
-                </React.Fragment>,
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-            ]
-          }
-          hidePassed={false}
-          profileRules={
-            Array [
-              Object {
-                "profile": Object {
-                  "id": "b71376fd-015e-4209-99af",
-                  "name": "United States Government Configuration Baseline123",
-                  "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-                  "rules": Array [
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter the localtime File",
-                    },
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter Time Through clock_settime",
-                    },
-                  ],
-                  "ssgVersion": "0.1.49",
+                Object {
+                  "__typename": "Rule",
+                  "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                  "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                  "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                  "remediationAvailable": false,
+                  "severity": "medium",
+                  "title": "Record Attempts to Alter Time Through clock_settime",
                 },
-                "rules": Array [
+              ],
+              "ssgVersion": "0.1.49",
+            },
+            "systemCount": 2,
+          },
+          Object {
+            "profile": Object {
+              "id": "b71376fd-015e-4209-99ad",
+              "name": "United States Government Configuration Baseline123",
+              "osMinorVersion": "8",
+              "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+              "rules": Array [
+                Object {
+                  "__typename": "Rule",
+                  "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                  "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                  "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                  "remediationAvailable": false,
+                  "severity": "medium",
+                  "title": "Record Attempts to Alter the localtime File",
+                },
+                Object {
+                  "__typename": "Rule",
+                  "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                  "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                  "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                  "remediationAvailable": false,
+                  "severity": "medium",
+                  "title": "Record Attempts to Alter Time Through clock_settime",
+                },
+              ],
+              "ssgVersion": "0.1.46",
+            },
+            "systemCount": 1,
+          },
+        ]
+      }
+      toolbarItems={
+        <EditRulesButtonToolbarItem
+          policy={
+            Object {
+              "__typename": "Profile",
+              "benchmark": Object {
+                "title": "Guide to the Secure Configuration of RHEL 7",
+                "version": "0.1.49",
+              },
+              "businessObjective": null,
+              "complianceThreshold": 100,
+              "compliantHostCount": 4,
+              "hosts": Array [
+                Object {
+                  "osMinorVersion": "9",
+                },
+                Object {
+                  "osMinorVersion": "9",
+                },
+                Object {
+                  "osMinorVersion": "8",
+                },
+                Object {
+                  "osMinorVersion": "999",
+                },
+              ],
+              "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
+              "majorOsVersion": "7",
+              "name": "United States Government Configuration Baseline23",
+              "policy": Object {
+                "__typename": "Profile",
+                "id": "b71376fd-015e-4209-99af-4543e82e5dc5-policy",
+                "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
+                "profiles": Array [
                   Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter the localtime File",
+                    "id": "b71376fd-015e-4209-99af",
+                    "name": "United States Government Configuration Baseline123",
+                    "osMinorVersion": "9",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                    "rules": Array [
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter the localtime File",
+                      },
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter Time Through clock_settime",
+                      },
+                    ],
+                    "ssgVersion": "0.1.49",
                   },
                   Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter Time Through clock_settime",
+                    "id": "b71376fd-015e-4209-99ac",
+                    "name": "United States Government Configuration Baseline123",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                    "rules": Array [
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter the localtime File",
+                      },
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter Time Through clock_settime",
+                      },
+                    ],
+                    "ssgVersion": "0.1.45",
+                  },
+                  Object {
+                    "id": "b71376fd-015e-4209-99ad",
+                    "name": "United States Government Configuration Baseline123",
+                    "osMinorVersion": "8",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp123",
+                    "rules": Array [
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter the localtime File",
+                      },
+                      Object {
+                        "__typename": "Rule",
+                        "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
+                        "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
+                        "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+                        "remediationAvailable": false,
+                        "severity": "medium",
+                        "title": "Record Attempts to Alter Time Through clock_settime",
+                      },
+                    ],
+                    "ssgVersion": "0.1.46",
                   },
                 ],
               },
-            ]
+              "policyType": "United States Government Standard",
+              "refId": "xccdf_org.ssgproject.content_profile_ospp23",
+              "testResultHostCount": 8,
+              "totalHostCount": 10,
+            }
           }
-          remediationsEnabled={false}
-          selectedFilter={false}
-          selectedRefIds={Array []}
-          tailoringEnabled={false}
         />
-      </Tab>
-      <Tab
-        eventKey="0.1.45"
-        key="ssgversion-tab-0.1.45"
-        title={
-          <TabTitleText>
-            <span>
-              SSG 
-              0.1.45 
-            </span>
-            <Label
-              color="blue"
-            >
-              2
-            </Label>
-          </TabTitleText>
-        }
-      >
-        <SystemRulesTable
-          columns={
-            Array [
-              Object {
-                "title": "Rule",
-                "transforms": Array [
-                  [Function],
-                ],
-              },
-              Object {
-                "title": "Severity",
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-              Object {
-                "original": "Ansible",
-                "props": Object {
-                  "tooltip": "Ansible",
-                },
-                "title": <React.Fragment>
-                  <AnsibeTowerIcon
-                    color="currentColor"
-                    noVerticalAlign={false}
-                    size="sm"
-                  />
-                   Ansible
-                </React.Fragment>,
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-            ]
-          }
-          hidePassed={false}
-          profileRules={
-            Array [
-              Object {
-                "profile": Object {
-                  "id": "b71376fd-015e-4209-99af",
-                  "name": "United States Government Configuration Baseline123",
-                  "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-                  "rules": Array [
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter the localtime File",
-                    },
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter Time Through clock_settime",
-                    },
-                  ],
-                  "ssgVersion": "0.1.45",
-                },
-                "rules": Array [
-                  Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter the localtime File",
-                  },
-                  Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter Time Through clock_settime",
-                  },
-                ],
-              },
-            ]
-          }
-          remediationsEnabled={false}
-          selectedFilter={false}
-          selectedRefIds={Array []}
-          tailoringEnabled={false}
-        />
-      </Tab>
-      <Tab
-        eventKey="0.1.46"
-        key="ssgversion-tab-0.1.46"
-        title={
-          <TabTitleText>
-            <span>
-              SSG 
-              0.1.46 
-            </span>
-            <Label
-              color="blue"
-            >
-              2
-            </Label>
-          </TabTitleText>
-        }
-      >
-        <SystemRulesTable
-          columns={
-            Array [
-              Object {
-                "title": "Rule",
-                "transforms": Array [
-                  [Function],
-                ],
-              },
-              Object {
-                "title": "Severity",
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-              Object {
-                "original": "Ansible",
-                "props": Object {
-                  "tooltip": "Ansible",
-                },
-                "title": <React.Fragment>
-                  <AnsibeTowerIcon
-                    color="currentColor"
-                    noVerticalAlign={false}
-                    size="sm"
-                  />
-                   Ansible
-                </React.Fragment>,
-                "transforms": Array [
-                  [Function],
-                  [Function],
-                ],
-              },
-            ]
-          }
-          hidePassed={false}
-          profileRules={
-            Array [
-              Object {
-                "profile": Object {
-                  "id": "b71376fd-015e-4209-99af",
-                  "name": "United States Government Configuration Baseline123",
-                  "refId": "xccdf_org.ssgproject.content_profile_ospp123",
-                  "rules": Array [
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter the localtime File",
-                    },
-                    Object {
-                      "__typename": "Rule",
-                      "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                      "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                      "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                      "remediationAvailable": false,
-                      "severity": "medium",
-                      "title": "Record Attempts to Alter Time Through clock_settime",
-                    },
-                  ],
-                  "ssgVersion": "0.1.46",
-                },
-                "rules": Array [
-                  Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter the localtime File",
-                  },
-                  Object {
-                    "__typename": "Rule",
-                    "description": "If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules",
-                    "rationale": "Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.",
-                    "refId": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
-                    "remediationAvailable": false,
-                    "severity": "medium",
-                    "title": "Record Attempts to Alter Time Through clock_settime",
-                  },
-                ],
-              },
-            ]
-          }
-          remediationsEnabled={false}
-          selectedFilter={false}
-          selectedRefIds={Array []}
-          tailoringEnabled={false}
-        />
-      </Tab>
-    </RoutedTabs>
+      }
+    />
   </PageSection>
 </Fragment>
 `;

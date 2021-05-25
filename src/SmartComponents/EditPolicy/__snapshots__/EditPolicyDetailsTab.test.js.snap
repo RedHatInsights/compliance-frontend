@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetailsTab expect to render without error 1`] = `
-<Fragment>
+<div
+  className="pf-c-form"
+>
   <FormGroup
     fieldId="description"
     isRequired={true}
@@ -25,6 +27,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
   <FormGroup
     fieldId="business-objective"
     label="Business objective"
+    labelIcon={<PolicyBusinessObjectiveTooltip />}
   >
     <TextInput
       aria-describedby="business-objective"
@@ -45,6 +48,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
     helperText="A value of 95% or higher is recommended"
     helperTextInvalid="Threshold has to be a number between 0 and 100"
     label="Compliance threshold (%)"
+    labelIcon={<PolicyThresholdTooltip />}
     validated="default"
   >
     <TextInput
@@ -61,5 +65,5 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
       type="number"
     />
   </FormGroup>
-</Fragment>
+</div>
 `;

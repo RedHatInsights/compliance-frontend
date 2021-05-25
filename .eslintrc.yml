@@ -10,6 +10,7 @@ extends:
   - 'eslint:recommended'
   - 'prettier'
   - 'plugin:react/recommended'
+  - 'plugin:react-hooks/recommended'
 parserOptions:
   ecmaVersion: 7
   sourceType: module
@@ -27,6 +28,7 @@ globals:
   React: true
   Promise: true
   toJson: true
+  renderJson: true
 rules:
   array-bracket-spacing: 2
   comma-dangle: 2
@@ -51,6 +53,8 @@ rules:
       MemberExpression: 0
       ImportDeclaration: 1
       ObjectExpression: 1
+      ignoredNodes:
+      - TemplateLiteral # https://github.com/babel/babel-eslint/issues/530
   key-spacing: 2
   keyword-spacing: 2
   linebreak-style:

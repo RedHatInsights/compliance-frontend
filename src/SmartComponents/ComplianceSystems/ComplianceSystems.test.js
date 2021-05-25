@@ -1,6 +1,11 @@
 import { ComplianceSystems } from './ComplianceSystems.js';
 
-jest.mock('@apollo/react-hooks', () => ({
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(() => ({}))
+}));
+
+jest.mock('@apollo/client', () => ({
     useQuery: () => (
         { data: [], error: undefined, loading: undefined }
     )

@@ -1,39 +1,36 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Alert, Label, Tab, TabTitleText, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import { SystemRulesTable, selectRulesTableColumns } from '@redhat-cloud-services/frontend-components-inventory-compliance';
-import { RoutedTabs } from 'PresentationalComponents';
+import { PageSection, PageSectionVariants } from '@patternfly/react-core';
+import {
+    selectColumns as selectRulesTableColumns
+} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+import { TabbedRules } from 'PresentationalComponents';
+import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
+import { sortingByProp } from 'Utilities/helpers';
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
-const PolicyMultiversionRules = ({ policy: { policy: { profiles } } }) => (
-    <React.Fragment>
-        <Alert variant="info" isInline title="Rule editing coming soon" />
+const PolicyMultiversionRules = ({ policy }) => {
+    const { hosts, policy: { profiles } } = policy;
+    const profilesForTabs = profiles.filter((profile) => !!profile.osMinorVersion);
+    const systemCounts = mapCountOsMinorVersions(hosts);
+
+    const tabsData = profilesForTabs.sort(sortingByProp('osMinorVersion', 'desc')).map((profile) => (
+        {
+            profile,
+            systemCount: systemCounts[profile.osMinorVersion]?.count || 0
+        }
+    ));
+
+    return <React.Fragment>
         <PageSection variant={ PageSectionVariants.light }>
-            <RoutedTabs level={ 1 } defaultTab={ profiles[0].ssgVersion }>
-                {
-                    profiles.map((profile) => (
-                        <Tab
-                            key={ `ssgversion-tab-${ profile.ssgVersion }` }
-                            title={
-                                <TabTitleText>
-                                    <span>SSG { profile.ssgVersion + ' ' }</span>
-                                    <Label color="blue">{ profile.rules.length }</Label>
-                                </TabTitleText>
-                            }
-                            eventKey={ profile.ssgVersion }>
-                            <SystemRulesTable
-                                remediationsEnabled={false}
-                                columns={ selectRulesTableColumns(['Rule', 'Severity', 'Ansible']) }
-                                profileRules={[{
-                                    profile: { ...profile },
-                                    rules: profile.rules
-                                }]} />
-                        </Tab>
-                    ))
-                }
-            </RoutedTabs>
+            <TabbedRules
+                tabsData={ tabsData }
+                columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
+                level={ 1 }
+                toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> } />
         </PageSection>
-    </React.Fragment>
-);
+    </React.Fragment>;
+};
 
 PolicyMultiversionRules.propTypes = {
     policy: propTypes.object.isRequired

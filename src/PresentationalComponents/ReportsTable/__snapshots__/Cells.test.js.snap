@@ -3,6 +3,8 @@
 exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 <Fragment>
   <Progress
+    aria-label={null}
+    aria-labelledby={null}
     className=""
     id=""
     isTitleTruncated={false}
@@ -41,6 +43,8 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
   <Progress
+    aria-label={null}
+    aria-labelledby={null}
     className=""
     id=""
     isTitleTruncated={false}
@@ -96,7 +100,7 @@ exports[`Name expect to render without error 1`] = `
 exports[`OperatingSystem expect to render with SSG version 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
   <Text>
     <GreySmallText>
@@ -109,7 +113,7 @@ exports[`OperatingSystem expect to render with SSG version 1`] = `
 exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
   <Text>
     <GreySmallText>
@@ -124,7 +128,7 @@ exports[`OperatingSystem expect to render with unsupported warning 1`] = `
 exports[`OperatingSystem expect to render without error 1`] = `
 <Fragment>
   <OperatingSystemBadge
-    majorOsVersion={7}
+    majorOsVersion="7"
   />
 </Fragment>
 `;

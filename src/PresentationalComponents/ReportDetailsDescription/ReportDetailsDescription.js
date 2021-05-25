@@ -7,8 +7,7 @@ import {
     TextList,
     TextListVariants,
     TextListItem,
-    TextListItemVariants,
-    TextVariants
+    TextListItemVariants
 } from '@patternfly/react-core';
 import {
     Link
@@ -31,19 +30,6 @@ const Dd = ({ children, ...props }) => (
     </TextListItem>
 );
 Dd.propTypes = PropTypes;
-
-const ExternalPolicyDescription = () => (
-    <React.Fragment>
-        <Text component={TextVariants.h2}>Policy details</Text><br/>
-        <Text component={TextVariants.p}>Policy not managed in cloud.redhat.com</Text>
-        <Text component={TextVariants.p}>
-            <a target='_blank' rel='noopener noreferrer'
-                href='https://access.redhat.com/products/cloud_management_services_for_rhel'>
-                Learn to manage your policies in cloud.redhat.com
-            </a>
-        </Text>
-    </React.Fragment>
-);
 
 const PolicyDescription = ({ profile }) => (
     <React.Fragment>
@@ -83,7 +69,7 @@ PolicyDescription.propTypes = {
         id: propTypes.string,
         complianceThreshold: propTypes.number,
         businessObjective: propTypes.object,
-        majorOsVersion: propTypes.number,
+        majorOsVersion: propTypes.string,
         policy: propTypes.shape({
             id: propTypes.string
         }),
@@ -95,7 +81,7 @@ PolicyDescription.propTypes = {
 
 const ReportDetailsDescription = ({ profile }) => (
     <TextContent className='policy-details'>
-        { !profile.policy ? <ExternalPolicyDescription /> : <PolicyDescription { ...{ profile }} /> }
+        <PolicyDescription { ...{ profile }} />
     </TextContent>
 );
 

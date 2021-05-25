@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import {
     Button,
     Grid
 } from '@patternfly/react-core';
-import { PageHeader, PageHeaderTitle, Main } from '@redhat-cloud-services/frontend-components';
-import { ComplianceEmptyState } from '@redhat-cloud-services/frontend-components-inventory-compliance';
+import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
+import Main from '@redhat-cloud-services/frontend-components/Main';
+import ComplianceEmptyState from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceEmptyState';
 import {
     BackgroundLink,
     ErrorPage,
@@ -58,7 +59,7 @@ export const CompliancePolicies = () => {
         <Button variant='primary' ouiaId="newPolicy">Create new policy</Button>
     </BackgroundLink>;
     let { data, error, loading, refetch } = useQuery(QUERY);
-    useEffect(() => { refetch(); }, [location]);
+    useEffect(() => { refetch(); }, [location, refetch]);
     let policies;
 
     if (data) {

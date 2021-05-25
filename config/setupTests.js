@@ -2,7 +2,7 @@ import 'jest-canvas-mock';
 import { configure, mount, render, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 import 'babel-polyfill';
 
@@ -14,3 +14,7 @@ global.mount = mount;
 global.React = React;
 global.toJson = toJson;
 global.fetch = function () {};
+
+global.renderJson = (component) => (
+    toJson(shallow(component))
+);

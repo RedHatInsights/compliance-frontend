@@ -2,17 +2,54 @@ import ReviewCreatedPolicy from './ReviewCreatedPolicy.js';
 import configureStore from 'redux-mock-store';
 import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 import { Provider } from 'react-redux';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 const mockStore = configureStore();
-jest.mock('@apollo/react-hooks');
+jest.mock('@apollo/client');
 
 describe('ReviewCreatedPolicy', () => {
     let store;
     let component;
 
     beforeEach(() => {
-        store = mockStore({ form: { policyForm: { values: policyFormValues } } });
+        store = mockStore({
+            form: {
+                policyForm: {
+                    values: {
+                        osMinorVersionCounts: [
+                            {
+                                osMinorVersion: 7,
+                                count: 10
+                            },
+                            {
+                                osMinorVersion: 5,
+                                count: 3
+                            }
+                        ],
+                        ...policyFormValues
+                    }
+                }
+            },
+            entities: {
+                systems: [
+                    {
+                        node: {
+                            osMinorVersion: 2
+                        }
+                    },
+                    {
+                        node: {
+                            osMinorVersion: 1
+                        }
+                    },
+                    {
+                        node: {
+                            osMinorVersion: 1
+                        }
+                    }
+                ]
+            }
+        });
     });
 
     it('expect to render without error', () => {
@@ -20,6 +57,7 @@ describe('ReviewCreatedPolicy', () => {
             benchmark: {
                 title: 'SCAP security guide for RHEL7',
                 refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7',
+                osMajorVersion: '7',
                 version: '0.1.40'  }
         }, error: false, loading: false }));
         component = mount(

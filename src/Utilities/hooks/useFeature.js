@@ -1,6 +1,6 @@
 import { features } from '@/constants';
 import { useLocation, useHistory } from 'react-router-dom';
-const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
+export const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
 
 const setFeatureFlag = (featureValue, feature) => {
     const value = featureValue === 'enable';
@@ -15,7 +15,7 @@ const setFeatureFlag = (featureValue, feature) => {
 };
 
 // Allows setting feature flag values via ?feature|(enable/disable)
-const setFlagsFromUrl = () => {
+export const useSetFlagsFromUrl = () => {
     const { search, pathName: path } = useLocation();
     const history = useHistory();
     if (!search) {
@@ -28,22 +28,20 @@ const setFlagsFromUrl = () => {
     history.push(path);
 };
 
-// Queries the local storage for feature flag values
-const getLocatStateFlag = (feature) => (
-    !!localStorage.getItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`)
-);
+const getFlagValue = (feature) => {
+    const defaultValue = features[feature];
+    const storedValue = !!localStorage.getItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`);
+
+    return storedValue || defaultValue;
+};
 
 // A hook to query feature values
 const useFeature = (feature) => {
-    const featureDefault = features[feature];
     if (!feature) {
         return;
     }
 
-    setFlagsFromUrl();
-
-    const localStoreValue = getLocatStateFlag(feature);
-    const featureEnabled = localStoreValue || featureDefault;
+    const featureEnabled = getFlagValue(feature);
 
     console.log(`Feature ${feature} is set to ${featureEnabled}`);
     return featureEnabled;

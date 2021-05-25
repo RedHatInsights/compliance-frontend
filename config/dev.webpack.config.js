@@ -1,44 +1,47 @@
-/* global module */
+/* eslint-disable camelcase */
+/* global module, __dirname */
+const { resolve } = require('path');
+const config = require('@redhat-cloud-services/frontend-components-config');
+const { devserverConfig } = require('./devserver.config');
+const { aliases } = require('./alias.webpack.config');
 
-const _ = require('lodash');
-const webpackConfig = require('./base.webpack.config');
-const config = require('./webpack.common.js');
+const { config: webpackConfig, plugins } = config({
+    rootFolder: resolve(__dirname, '../'),
+    debug: true,
+    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
+    useFileHash: false
+});
 
-if (process.env.DEFAULT_HOST) {
-    default_host = process.env.DEFAULT_HOST;
-} else {
-    default_host = 'host.docker.internal';
-}
+/**
+ * Revise these aliases. Remove those that are not use.
+ * Custom dependencies for inventory are included withing the common config
+ */
+webpackConfig.resolve.alias = {
+    ...webpackConfig.resolve.alias,
+    ...aliases
+};
 
-// Hot reloading will not work at the moment within a container because of CORS issues.
-const hotReload = function () {
-    return process.env.HOT_RELOAD && process.env.HOT_RELOAD === 'true' ? true : false
+webpackConfig.resolve = {
+    ...webpackConfig.resolve,
+    modules: [resolve('./node_modules')],
 }
 
 webpackConfig.devServer = {
-    contentBase: config.paths.public,
-    historyApiFallback: true,
-    serveIndex: false,
-    liveReload: hotReload(),
-    hot: hotReload(),
-    injectClient: hotReload(),
-    inline: hotReload(),
-    allowedHosts: [
-        'ci.foo.redhat.com',
-        'qa.foo.redhat.com',
-        'stage.foo.redhat.com',
-        'prod.foo.redhat.com',
-        default_host
-    ],
-    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
-    host: process.env.FRONTEND_HOST ? process.env.FRONTEND_HOST  : '0.0.0.0'
-};
+    ...webpackConfig.devServer,
+    ...devserverConfig
+}
 
-module.exports = _.merge({
-    performance: {
-        hints: 'warning'
-    }
-},
-webpackConfig,
-require('./dev.webpack.plugins.js')
+plugins.push(
+    require('@redhat-cloud-services/frontend-components-config/federated-modules')({
+        root: resolve(__dirname, '../'),
+        useFileHash: false,
+        exposes: {
+            './RootApp': resolve(__dirname, '../src/bootstrap-dev'),
+        },
+    })
 );
+
+module.exports = {
+    ...webpackConfig,
+    plugins
+};

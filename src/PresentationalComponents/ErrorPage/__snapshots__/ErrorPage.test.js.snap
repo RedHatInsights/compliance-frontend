@@ -20,13 +20,13 @@ exports[`ErrorPage expect to render without error 1`] = `
 <section
   className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet"
 >
-  <WarningTriangleIcon
+  <ExclamationCircleIcon
     color="currentColor"
     noVerticalAlign={false}
     size="xl"
     style={
       Object {
-        "opacity": "0.5",
+        "color": "var(--pf-global--danger-color--100)",
       }
     }
   />

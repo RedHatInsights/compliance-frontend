@@ -1,36 +1,108 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, Form, Modal, Tab, TabTitleText } from '@patternfly/react-core';
-import { RoutedTabs } from 'PresentationalComponents';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { useParams } from 'react-router-dom';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/client';
+import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import EditPolicyDetailsTab from './EditPolicyDetailsTab';
-import usePolicyUpdate from './usePolicyUpdate';
-import useFeature from 'Utilities/hooks/useFeature';
-import { systemName } from 'Store/Reducers/SystemStore';
-import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import EditPolicyForm from './EditPolicyForm';
+import { usePolicy } from 'Mutations';
+
+export const MULTIVERSION_QUERY = gql`
+query Profile($policyId: String!){
+    profile(id: $policyId) {
+        id
+        name
+        refId
+        external
+        description
+        totalHostCount
+        compliantHostCount
+        complianceThreshold
+        majorOsVersion
+        osMajorVersion
+        lastScanned
+        policyType
+        policy {
+            id
+            name
+            refId
+            profiles {
+                id
+                ssgVersion
+                parentProfileId
+                name
+                refId
+                osMinorVersion
+                osMajorVersion
+                benchmark {
+                    id
+                    title
+                    latestSupportedOsMinorVersions
+                    osMajorVersion
+                }
+                rules {
+                    title
+                    severity
+                    rationale
+                    refId
+                    description
+                    remediationAvailable
+                    identifier
+                }
+            }
+        }
+        businessObjective {
+            id
+            title
+        }
+        hosts {
+            id
+            osMinorVersion
+            osMajorVersion
+        }
+    }
+}
+`;
 
 export const EditPolicy = ({ route }) => {
-    const newInventory = useFeature('newInventory');
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const policy = location?.state?.policy;
+    const { policy_id: policyId } = useParams();
+    const { data, loading, error } = useQuery(MULTIVERSION_QUERY, {
+        variables: { policyId }
+    });
+    const policy = data?.profile;
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
-    const updatePolicy = usePolicyUpdate();
+    const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
+    const [selectedSystems, setSelectedSystems] = useState([]);
+    const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
-    const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
+    const [isSaving, setIsSaving] = useState();
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        newInventory && dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: [] }
-        });
         linkToBackground({ hash: anchor });
+    };
+
+    const onSave = () => {
+        if (isSaving) { return; }
+
+        setIsSaving(true);
+        const updatedPolicyHostsAndRules = {
+            ...updatedPolicy,
+            selectedRuleRefIds,
+            hosts: selectedSystems
+        };
+        updatePolicy(policy, updatedPolicyHostsAndRules).then(() => {
+            setIsSaving(false);
+            linkToBackgroundWithHash();
+        }).catch(() => {
+            // TODO report error
+            setIsSaving(false);
+            linkToBackgroundWithHash();
+        });
     };
 
     const actions = [
@@ -39,89 +111,48 @@ export const EditPolicy = ({ route }) => {
             key='save'
             ouiaId="Save"
             variant='primary'
-            onClick={ () => (
-                updatePolicy(policy, updatedPolicy).then(() => linkToBackgroundWithHash())
-            ) }>
+            spinnerAriaValueText='Saving'
+            isLoading={ isSaving }
+            onClick={ onSave }>
             Save
         </Button>,
         <Button
             key='cancel'
             ouiaId="Cancel"
-            variant='secondary'
+            variant='link'
             onClick={ () => linkToBackgroundWithHash() }>
             Cancel
         </Button>
     ];
 
-    useEffect(() => {
-        setUpdatedPolicy({
-            ...updatedPolicy,
-            hosts: selectedEntities ? selectedEntities : []
-        });
-    }, [selectedEntities]);
-
-    useEffect(() => {
-        const complianceThresholdValid =
-            (policy.complianceThreshold < 101 && policy.complianceThreshold > 0);
-        setUpdatedPolicy({
-            ...policy,
-            complianceThresholdValid
-        });
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: policy?.hosts?.map(({ id }) => ({ id })) || [] }
-        });
-    }, [policy]);
-
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
     useTitleEntity(route, policy?.name);
 
-    return policy && <Modal
+    return <Modal
         isOpen
-        style={ { height: '400px' } }
-        width={ 1000 }
-        title={ `Edit ${policy.name }` }
+        position={ 'top' }
+        style={ { minHeight: '350px' } }
+        variant={ 'large' }
+        title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>
-        <Form>
-            <RoutedTabs defaultTab='details'>
-                <Tab eventKey='details' title={<TabTitleText>Details</TabTitleText>}>
-                    <EditPolicyDetailsTab
-                        policy={ policy }
-                        setUpdatedPolicy={ setUpdatedPolicy } />
-                </Tab>
 
-                <Tab eventKey='rules' title={ <TabTitleText>Rules</TabTitleText> }>
-                    Rule editing coming soon
-                </Tab>
-
-                <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
-                    <InvCmp
-                        compact
-                        showActions={ false }
-                        enableExport={ false }
-                        showAllSystems
-                        remediationsEnabled={ false }
-                        policyId={ policy.id }
-                        query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-                        defaultFilter={`policy_id = ${policy.id}`}
-                        columns={[{
-                            key: 'facts.compliance.display_name',
-                            title: 'Name',
-                            props: {
-                                width: 40, isStatic: true
-                            },
-                            ...newInventory && {
-                                key: 'display_name',
-                                renderFunc: (displayName, id, extra) => {
-                                    return extra?.lastScanned ? systemName(displayName, id, extra) : displayName;
-                                }
-                            }
-                        }]}
-                        preselectedSystems={ policy?.hosts.map((h) => ({ id: h.id })) || [] } />
-                </Tab>
-            </RoutedTabs>
-        </Form>
+        <StateViewWithError stateValues={ { policy, loading, error } }>
+            <StateViewPart stateKey="loading">
+                <Spinner />
+            </StateViewPart>
+            <StateViewPart stateKey="policy">
+                <EditPolicyForm
+                    { ...{
+                        policy,
+                        updatedPolicy,
+                        setUpdatedPolicy,
+                        selectedRuleRefIds,
+                        setSelectedRuleRefIds,
+                        selectedSystems,
+                        setSelectedSystems
+                    } } />
+            </StateViewPart>
+        </StateViewWithError>
     </Modal>;
 };
 

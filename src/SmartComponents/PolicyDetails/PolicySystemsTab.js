@@ -1,51 +1,36 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import propTypes from 'prop-types';
-import { InventoryTable, SystemsTable } from 'SmartComponents';
+import { NoSystemsTableWithWarning } from 'PresentationalComponents';
+import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
-import { Link } from 'react-router-dom';
-import { Cells } from '@/SmartComponents/SystemsTable/SystemsTable';
-import useFeature from 'Utilities/hooks/useFeature';
+import * as Columns from '../SystemsTable/Columns';
 
-const PolicySystemsTab = ({ policy, systemTableProps }) => {
-    const newInventory = useFeature('newInventory');
-    let showSsgVersions = useFeature('showSsgVersions');
-    const InvCmp = newInventory ? InventoryTable : SystemsTable;
-
-    return (
-        <InvCmp
-            query={GET_SYSTEMS}
-            policyId={ policy.id }
-            defaultFilter={`policy_id = ${policy.id}`}
-            showActions={ false }
-            remediationsEnabled={ false }
-            columns={[{
-                key: 'facts.compliance.display_name',
-                title: 'Name',
-                props: {
-                    width: 40, isStatic: true
-                },
-                ...newInventory && {
-                    key: 'display_name',
-                    renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
-                }
-            }, ...showSsgVersions ? [{
-                key: 'facts.compliance',
-                title: 'SSG version',
-                renderFunc: (profile) => (
-                    <Cells.SSGVersion supported={ profile.supported } ssgVersion={ profile.ssg_version } />
-                )
-            }] : []]}
-            complianceThreshold={ policy.complianceThreshold }
-            { ...systemTableProps }
-        />
-    );
-};
+const PolicySystemsTab = ({ policy }) => (
+    <InventoryTable
+        columns={[
+            Columns.customName({
+                showLink: true
+            }),
+            Columns.SsgVersion,
+            Columns.OperatingSystem
+        ]}
+        showOsMinorVersionFilter={ [policy.majorOsVersion] }
+        query={GET_SYSTEMS}
+        policyId={ policy.id }
+        defaultFilter={`policy_id = ${policy.id}`}
+        showActions={ false }
+        remediationsEnabled={ false }
+        noSystemsTable={ policy?.hosts?.length === 0 && <NoSystemsTableWithWarning /> }
+        complianceThreshold={ policy.complianceThreshold } />
+);
 
 PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
         id: propTypes.string.isRequired,
-        complianceThreshold: propTypes.number.isRequired
+        complianceThreshold: propTypes.number.isRequired,
+        majorOsVersion: propTypes.string.isRequired,
+        hosts: propTypes.array.isRequired
     }),
     systemTableProps: propTypes.object
 };

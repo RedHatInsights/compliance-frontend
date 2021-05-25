@@ -1,18 +1,23 @@
 import {
     Button,
+    Checkbox,
     Modal,
     ModalVariant,
-    TextContent
+    Text
 } from '@patternfly/react-core';
+import {
+    ExclamationTriangleIcon
+} from '@patternfly/react-icons';
 import propTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
-import { DELETE_PROFILE } from 'Utilities/graphql/mutations';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications';
+import { useMutation } from '@apollo/client';
+import { DELETE_PROFILE } from 'Mutations';
+import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeletePolicy = () => {
+    const [deleteEnabled, setDeleteEnabled] = useState(false);
     const location = useLocation();
     const history = useHistory();
     const { name, id } = location.state.policy;
@@ -24,7 +29,7 @@ const DeletePolicy = () => {
         onCompleted: () => {
             dispatchAction(addNotification({
                 variant: 'success',
-                title: `Removed policy ${ name }`
+                title: `The policy ${ name } and its associated reports has been deleted`
             }));
             onClose();
         },
@@ -41,26 +46,39 @@ const DeletePolicy = () => {
     return (
         <Modal
             variant={ ModalVariant.small }
-            title='Delete policy'
+            title={
+                <React.Fragment>
+                    <ExclamationTriangleIcon  className='ins-u-warning'/>
+                    <Text component="span" className='policy-delete-header-text'>
+                        Delete policy?
+                    </Text>
+                </React.Fragment>
+            }
             isOpen
             onClose={ onClose }
             actions={[
                 <Button key='destroy'
                     ouiaId="Delete"
                     aria-label="delete"
+                    isDisabled={ !deleteEnabled }
                     variant='danger'
                     onClick={() => deletePolicy({ variables: { input: { id } } })}>
-                    Delete policy
+                    Delete policy and associated reports
                 </Button>,
                 <Button key='cancel' ouiaId="Cancel" variant='secondary' onClick={ onClose }>
                     Cancel
                 </Button>
             ]}
         >
-            <TextContent>
-                Are you sure you want to delete <b>{ name }</b>?
-                This cannot be undone.
-            </TextContent>
+            <Text className='policy-delete-body-text'>
+                Deleting the policy <b>{ name }</b> will also delete its associated reports.
+            </Text>
+            <Checkbox
+                label='I understand this will delete the policy and all associated reports'
+                id={ `deleting-policy-check-${id}` }
+                isChecked={ deleteEnabled }
+                onChange={ setDeleteEnabled }
+            />
         </Modal>
     );
 };

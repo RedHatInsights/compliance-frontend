@@ -3,7 +3,7 @@ export const systems = [
     {
         node: {
             id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6',
-            name: 'demo.lobatolan.home',
+            name: 'demo.example.com',
             testResultProfiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
@@ -312,7 +312,7 @@ export const systems = [
     {
         node: {
             id: 'c1f0aef3-66fd-4abc-aa33-ec6755dd39d9',
-            name: 'hellofromlobatolan',
+            name: 'foo.example.com',
             testResultProfiles: [
                 {
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
@@ -341,7 +341,7 @@ export const entities = [
         ip_addresses: [
             '10.0.140.61'
         ],
-        fqdn: 'perfectscore.lobatolan.home',
+        fqdn: 'perfectscore.example.com',
         mac_addresses: [
             '24:e8:67:7c:fe:9c',
             '00:00:00:00:00:00'
@@ -349,7 +349,7 @@ export const entities = [
         external_id: null,
         id: '274f7d10-5c81-49af-bd89-06b522386a41',
         account: '1460290',
-        display_name: 'perfectscore.lobatolan.home',
+        display_name: 'perfectscore.example.com',
         ansible_host: null,
         facts: [],
         reporter: null,
@@ -395,7 +395,7 @@ export const entities = [
         ip_addresses: [
             '192.168.121.239'
         ],
-        fqdn: 'demo.lobatolan.home',
+        fqdn: 'demo.example.com',
         mac_addresses: [
             '52:54:00:1d:a8:87',
             '00:00:00:00:00:00'
@@ -403,7 +403,7 @@ export const entities = [
         external_id: null,
         id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6',
         account: '1460290',
-        display_name: 'demo.lobatolan.home',
+        display_name: 'demo.example.com',
         ansible_host: null,
         facts: [],
         reporter: null,
@@ -420,18 +420,18 @@ export const entities = [
         satellite_id: null,
         bios_uuid: null,
         ip_addresses: null,
-        fqdn: 'hellofromlobatolan',
+        fqdn: 'foo.example.com',
         mac_addresses: null,
         external_id: null,
         id: 'c1f0aef3-66fd-4abc-aa33-ec6755dd39d9',
         account: '1460290',
-        display_name: 'hellofromlobatolan',
+        display_name: 'foo.example.com',
         ansible_host: null,
         facts: [
             {
                 namespace: 'inventory',
                 facts: {
-                    fqdn: 'hellofromlobatolan'
+                    fqdn: 'foo.example.com'
                 }
             }
         ],

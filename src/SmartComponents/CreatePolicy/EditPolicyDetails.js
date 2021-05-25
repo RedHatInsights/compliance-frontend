@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { compose } from 'redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm, formValueSelector, propTypes as reduxFormPropTypes } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
-import { ProfileThresholdField } from 'PresentationalComponents';
+import {
+    ProfileThresholdField,
+    PolicyBusinessObjectiveTooltip
+} from 'PresentationalComponents';
 
-const EditPolicyDetails = ({ profile: policy }) => {
+export const EditPolicyDetails = ({ change, policy, refId }) => {
+
+    useEffect(() => {
+        if (policy && policy.refId !== refId) {
+            change('name', `${policy.name}`);
+            change('refId', `${policy.refId}`);
+            change('description', `${policy.description}`);
+        }
+    }, [policy]);
+
     return (
         <React.Fragment>
             <TextContent>
@@ -43,7 +55,10 @@ const EditPolicyDetails = ({ profile: policy }) => {
                         name="description"
                         aria-describedby="description" />
                 </FormGroup>
-                <FormGroup label="Business objective" fieldId="businessObjective">
+                <FormGroup
+                    label="Business objective"
+                    labelIcon={ <PolicyBusinessObjectiveTooltip /> }
+                    fieldId="businessObjective">
                     <Field
                         type="text"
                         component={ ReduxFormTextInput }
@@ -53,7 +68,6 @@ const EditPolicyDetails = ({ profile: policy }) => {
                         defaultValue={ policy.businessObjective } />
                 </FormGroup>
                 <ProfileThresholdField
-                    showTitle={ false }
                     previousThreshold={ policy.complianceThreshold } />
             </Form>
         </React.Fragment>
@@ -63,28 +77,32 @@ const EditPolicyDetails = ({ profile: policy }) => {
 const selector = formValueSelector('policyForm');
 
 EditPolicyDetails.propTypes = {
-    profile: propTypes.object,
-    dispatch: propTypes.func
+    policy: propTypes.object,
+    refId: propTypes.string,
+    change: reduxFormPropTypes.change
+};
+
+const mapStateToProps = (state) => {
+    const policy = JSON.parse(selector(state, 'profile'));
+    return {
+        policy,
+        refId: selector(state, 'refId'),
+        initialValues: {
+            name: `${policy.name}`,
+            refId: `${policy.refId}`,
+            description: `${policy.description}`,
+            benchmark: selector(state, 'benchmark'),
+            osMajorVersion: selector(state, 'osMajorVersion'),
+            profile: selector(state, 'profile')
+        }
+    };
 };
 
 export default compose(
-    connect(
-        state => ({
-            profile: JSON.parse(selector(state, 'profile')),
-            initialValues: {
-                name: `${JSON.parse(selector(state, 'profile')).name}`,
-                refId: `${JSON.parse(selector(state, 'profile')).refId}`,
-                description: `${JSON.parse(selector(state, 'profile')).description}`,
-                benchmark: selector(state, 'benchmark'),
-                profile: selector(state, 'profile')
-            }
-        })
-    ),
+    connect(mapStateToProps),
     reduxForm({
         form: 'policyForm',
         destroyOnUnmount: false,
         forceUnregisterOnUnmount: true
     })
 )(EditPolicyDetails);
-
-export { EditPolicyDetails };

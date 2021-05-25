@@ -1,21 +1,18 @@
 import React from 'react';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
-    Button,
     Form,
     FormGroup,
     Text,
     TextContent,
     TextVariants,
-    Tooltip,
-    TooltipPosition
+    Tile,
+    Tooltip
 } from '@patternfly/react-core';
-import {
-    OutlinedQuestionCircleIcon
-} from '@patternfly/react-icons';
 import { ProfileTypeSelect } from 'PresentationalComponents';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { Spinner } from '@redhat-cloud-services/frontend-components';
+import { useQuery } from '@apollo/client';
+import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -28,6 +25,7 @@ query benchmarksAndProfiles {
         title
         refId
         version
+        osMajorVersion
         profiles {
             id
             name
@@ -50,7 +48,16 @@ query benchmarksAndProfiles {
 }
 `;
 
-const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
+const PolicyTooltip = () => (
+    <Tooltip
+        position="right"
+        content="Policy types are OpenSCAP policies that are supported by RHEL.
+        For each major version of RHEL, users can create one policy of each type.">
+        <OutlinedQuestionCircleIcon style={{ opacity: 0.5 }}/>
+    </Tooltip>
+);
+
+export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES, { fetchPolicy: 'no-cache' });
 
     const inUseProfileRefIds = (profiles, benchmark) => (
@@ -73,14 +80,23 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
         }));
     }
 
+    const setBenchmark = ({ id, osMajorVersion }) => {
+        if (selectedBenchmark?.osMajorVersion !== osMajorVersion) {
+            change('systems', []);
+        }
+
+        change('benchmark', id);
+        change('osMajorVersion', osMajorVersion);
+    };
+
     return (
         <React.Fragment>
             <TextContent>
-                <Text component={TextVariants.h1}>
+                <Text component={TextVariants.h1} className="pf-u-mb-md">
                     Create SCAP policy
                 </Text>
-                <Text component={TextVariants.h4}>
-                    Select the operating system and policy type
+                <Text className="pf-u-mb-md">
+                    Select the operating system and policy type for this policy.
                 </Text>
             </TextContent>
             <Form>
@@ -88,30 +104,24 @@ const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     label="Operating system"
                     isRequired
                     fieldId="benchmark">
-                    <br/>
                     { benchmarks && benchmarks.sort((a, b) => a.refId.localeCompare(b.refId)).map((benchmark) => {
-                        const { refId, id } = benchmark;
+                        const { id, osMajorVersion } = benchmark;
                         return (
-                            <Button key={id} onClick={ () => { change('benchmark', id); } }
-                                className={`wizard-os-button ${selectedBenchmarkId === id ? 'active-wizard-os-button' : ''}`}
-                                variant="tertiary"
-                                ouiaId="osButton">
-                                { refId && refId.split('xccdf_org.ssgproject.content_benchmark_')[1].replace('-', ' ') }
-                            </Button>
+                            <Tile
+                                key={id}
+                                className="pf-u-mr-md"
+                                title={ `RHEL ${osMajorVersion}` }
+                                onClick={ () => setBenchmark(benchmark) }
+                                isSelected={ selectedBenchmarkId === id }
+                                isStacked />
                         );
                     })}
                 </FormGroup>
-                { selectedBenchmark &&
-                <Text component={TextVariants.small}>
-                    SCAP Security Guide (SSG): { selectedBenchmark.title } - { selectedBenchmark.version }
-                    <Tooltip position={TooltipPosition.right} content={`Policies configured in the Compliance services use
-                                                                        the latest version of the SSG packaged with RHEL.`}
-                    >
-                        <span>&nbsp;<OutlinedQuestionCircleIcon className='grey-icon'/></span>
-                    </Tooltip>
-                </Text>
-                }
-                <FormGroup label="Policy type" isRequired fieldId="policy-type">
+                <FormGroup
+                    isRequired
+                    labelIcon={<PolicyTooltip/>}
+                    label="Policy type"
+                    fieldId="policy-type">
                     <ProfileTypeSelect
                         profiles={selectedBenchmark && validProfiles }
                         onClick={ () => {

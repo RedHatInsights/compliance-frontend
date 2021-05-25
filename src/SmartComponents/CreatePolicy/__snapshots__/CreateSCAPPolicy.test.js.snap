@@ -1,579 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CreateSCAPPolicy expect to render without error 1`] = `
-Array [
-  <div
-    className="pf-c-content"
-  >
-    <h1
-      className=""
-      data-pf-content={true}
+<Fragment>
+  <TextContent>
+    <Text
+      className="pf-u-mb-md"
+      component="h1"
     >
       Create SCAP policy
-    </h1>
-    <h4
-      className=""
-      data-pf-content={true}
+    </Text>
+    <Text
+      className="pf-u-mb-md"
     >
-      Select the operating system and policy type
-    </h4>
-  </div>,
-  <form
-    className="pf-c-form"
-    noValidate={true}
-  >
-    <div
-      className="pf-c-form__group"
+      Select the operating system and policy type for this policy.
+    </Text>
+  </TextContent>
+  <Form>
+    <FormGroup
+      fieldId="benchmark"
+      isRequired={true}
+      label="Operating system"
+    />
+    <FormGroup
+      fieldId="policy-type"
+      isRequired={true}
+      label="Policy type"
+      labelIcon={<PolicyTooltip />}
     >
-      <div
-        className="pf-c-form__group-label"
-      >
-        <label
-          className="pf-c-form__label"
-          htmlFor="benchmark"
-        >
-          <span
-            className="pf-c-form__label-text"
-          >
-            Operating system
-          </span>
-          <span
-            aria-hidden="true"
-            className="pf-c-form__label-required"
-          >
-             
-            *
-          </span>
-        </label>
-         
-      </div>
-      <div
-        className="pf-c-form__group-control"
-      >
-        <br />
-        
-      </div>
-    </div>
-    <div
-      className="pf-c-form__group"
-    >
-      <div
-        className="pf-c-form__group-label"
-      >
-        <label
-          className="pf-c-form__label"
-          htmlFor="policy-type"
-        >
-          <span
-            className="pf-c-form__label-text"
-          >
-            Policy type
-          </span>
-          <span
-            aria-hidden="true"
-            className="pf-c-form__label-required"
-          >
-             
-            *
-          </span>
-        </label>
-         
-      </div>
-      <div
-        className="pf-c-form__group-control"
-      >
-        <div
-          className="pf-l-grid pf-m-gutter"
-        />
-        
-      </div>
-    </div>
-  </form>,
-]
+      <ProfileTypeSelect
+        onClick={[Function]}
+        profiles={Array []}
+      />
+    </FormGroup>
+  </Form>
+</Fragment>
 `;
 
-exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `
-<div
-  className="ins-c-spinner"
-  role="status"
->
-  <span
-    className="pf-u-screen-reader"
-  >
-    Loading...
-  </span>
-</div>
-`;
+exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `<Spinner />`;
 
 exports[`CreateSCAPPolicy should render benchmarks and no policies until one is selected 1`] = `
-Array [
-  <div
-    className="pf-c-content"
-  >
-    <h1
-      className=""
-      data-pf-content={true}
+<Fragment>
+  <TextContent>
+    <Text
+      className="pf-u-mb-md"
+      component="h1"
     >
       Create SCAP policy
-    </h1>
-    <h4
-      className=""
-      data-pf-content={true}
+    </Text>
+    <Text
+      className="pf-u-mb-md"
     >
-      Select the operating system and policy type
-    </h4>
-  </div>,
-  <form
-    className="pf-c-form"
-    noValidate={true}
-  >
-    <div
-      className="pf-c-form__group"
+      Select the operating system and policy type for this policy.
+    </Text>
+  </TextContent>
+  <Form>
+    <FormGroup
+      fieldId="benchmark"
+      isRequired={true}
+      label="Operating system"
     >
-      <div
-        className="pf-c-form__group-label"
-      >
-        <label
-          className="pf-c-form__label"
-          htmlFor="benchmark"
-        >
-          <span
-            className="pf-c-form__label-text"
-          >
-            Operating system
-          </span>
-          <span
-            aria-hidden="true"
-            className="pf-c-form__label-required"
-          >
-             
-            *
-          </span>
-        </label>
-         
-      </div>
-      <div
-        className="pf-c-form__group-control"
-      >
-        <br />
-        <button
-          aria-disabled={false}
-          aria-label={null}
-          className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="Benchmark"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe={true}
-          disabled={false}
-          onClick={[Function]}
-          role={null}
-          type="button"
-        >
-          RHEL 6
-        </button>
-        <button
-          aria-disabled={false}
-          aria-label={null}
-          className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="Benchmark"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe={true}
-          disabled={false}
-          onClick={[Function]}
-          role={null}
-          type="button"
-        >
-          RHEL 7
-        </button>
-        <button
-          aria-disabled={false}
-          aria-label={null}
-          className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="Benchmark"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe={true}
-          disabled={false}
-          onClick={[Function]}
-          role={null}
-          type="button"
-        >
-          RHEL 7
-        </button>
-        <button
-          aria-disabled={false}
-          aria-label={null}
-          className="pf-c-button pf-m-tertiary wizard-os-button "
-          data-ouia-component-id="Benchmark"
-          data-ouia-component-type="PF4/Button"
-          data-ouia-safe={true}
-          disabled={false}
-          onClick={[Function]}
-          role={null}
-          type="button"
-        >
-          RHEL 8
-        </button>
-        
-      </div>
-    </div>
-    <div
-      className="pf-c-form__group"
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
+        key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+        onClick={[Function]}
+        title="RHEL 6"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
+        key="f1dff140-6649-4060-b0f6-7b1548f9e901"
+        onClick={[Function]}
+        title="RHEL 7"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
+        key="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
+        onClick={[Function]}
+        title="RHEL 7"
+      />
+      <Tile
+        className="pf-u-mr-md"
+        isSelected={false}
+        isStacked={true}
+        key="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+        onClick={[Function]}
+        title="RHEL 8"
+      />
+    </FormGroup>
+    <FormGroup
+      fieldId="policy-type"
+      isRequired={true}
+      label="Policy type"
+      labelIcon={<PolicyTooltip />}
     >
-      <div
-        className="pf-c-form__group-label"
-      >
-        <label
-          className="pf-c-form__label"
-          htmlFor="policy-type"
-        >
-          <span
-            className="pf-c-form__label-text"
-          >
-            Policy type
-          </span>
-          <span
-            aria-hidden="true"
-            className="pf-c-form__label-required"
-          >
-             
-            *
-          </span>
-        </label>
-         
-      </div>
-      <div
-        className="pf-c-form__group-control"
-      >
-        <div
-          className="pf-l-grid pf-m-gutter"
-        />
-        
-      </div>
-    </div>
-  </form>,
-]
+      <ProfileTypeSelect
+        onClick={[Function]}
+        profiles={Array []}
+      />
+    </FormGroup>
+  </Form>
+</Fragment>
 `;
 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
-<small
-  className=""
-  data-pf-content={true}
->
-  SCAP Security Guide (SSG): 
-  Guide to the Secure Configuration of Red Hat Enterprise Linux 6
-   - 
-  0.1.28
-  <Tooltip
-    content="Policies configured in the Compliance services use
-                                                                        the latest version of the SSG packaged with RHEL."
-    position="right"
-  >
-    <Popper
-      appendTo={[Function]}
-      distance={15}
-      enableFlip={true}
-      flipBehavior={
-        Array [
-          "top",
-          "right",
-          "bottom",
-          "left",
-          "top",
-          "right",
-          "bottom",
-        ]
-      }
-      isVisible={false}
-      onBlur={[Function]}
-      onDocumentClick={false}
-      onDocumentKeyDown={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onTriggerEnter={[Function]}
-      placement="right"
-      popper={
-        <div
-          className="pf-c-tooltip"
-          id="pf-tooltip-1"
-          role="tooltip"
-          style={
-            Object {
-              "maxWidth": null,
-              "opacity": 0,
-              "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
-            }
-          }
-        >
-          <TooltipArrow />
-          <TooltipContent
-            isLeftAligned={false}
-          >
-            Policies configured in the Compliance services use
-                                                                        the latest version of the SSG packaged with RHEL.
-          </TooltipContent>
-        </div>
-      }
-      popperMatchesTriggerWidth={false}
-      positionModifiers={
-        Object {
-          "bottom": "pf-m-bottom",
-          "left": "pf-m-left",
-          "right": "pf-m-right",
-          "top": "pf-m-top",
-        }
-      }
-      trigger={
-        <span
-          aria-describedby="pf-tooltip-1"
-        >
-           
-          <OutlinedQuestionCircleIcon
-            className="grey-icon"
-            color="currentColor"
-            noVerticalAlign={false}
-            size="sm"
-          />
-        </span>
-      }
-      zIndex={9999}
-    >
-      <FindRefWrapper
-        onFoundRef={[Function]}
-      >
-        <span
-          aria-describedby="pf-tooltip-1"
-        >
-           
-          <OutlinedQuestionCircleIcon
-            className="grey-icon"
-            color="currentColor"
-            noVerticalAlign={false}
-            size="sm"
-          >
-            <svg
-              aria-hidden={true}
-              aria-labelledby={null}
-              className="grey-icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style={
-                Object {
-                  "verticalAlign": "-0.125em",
-                }
-              }
-              viewBox="0 0 512 512"
-              width="1em"
-            >
-              <path
-                d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-              />
-            </svg>
-          </OutlinedQuestionCircleIcon>
-        </span>
-      </FindRefWrapper>
-    </Popper>
-  </Tooltip>
-</small>
-`;
-
-exports[`CreateSCAPPolicy should render policies from the selected benchmark only 2`] = `
 Array [
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button active-wizard-os-button"
-    data-ouia-component-id="Benchmark"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 6
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="Benchmark"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 6
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 7
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="Benchmark"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 7
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 7
-  </button>,
-  <button
-    aria-disabled={false}
-    aria-label={null}
-    className="pf-c-button pf-m-tertiary wizard-os-button "
-    data-ouia-component-id="Benchmark"
-    data-ouia-component-type="PF4/Button"
-    data-ouia-safe={true}
-    disabled={false}
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 7
+      </div>
+    </div>
+  </div>,
+  <div
+    className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
-    role={null}
-    type="button"
+    tabIndex={0}
   >
-    RHEL 8
-  </button>,
+    <div
+      className="pf-c-tile__header pf-m-stacked"
+    >
+      <div
+        className="pf-c-tile__title"
+      >
+        RHEL 8
+      </div>
+    </div>
+  </div>,
 ]
 `;
 
-exports[`CreateSCAPPolicy should render policies from the selected benchmark only 3`] = `
+exports[`CreateSCAPPolicy should render policies from the selected benchmark only 2`] = `
 <ProfileTypeSelect
   onClick={[Function]}
-  profiles={
-    Array [
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This is a *draft* SCAP profile for Red Hat Certified Cloud Providers",
-        "disabled": false,
-        "id": "4a271e9e-6e84-4038-941b-6b265d9b1727",
-        "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
-        "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": " This profile reflects the Centralized Super Computing Facility 
-(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received 
-government ATO through the ICD 503 process, utilizing the CNSSI 1253 cross 
-domain overlay. This profile should be considered in active development. 
-Additional tailoring will be needed, such as the creation of RBAC roles 
-for production deployment.",
-        "disabled": false,
-        "id": "2c9ef707-bb58-4f80-9ce4-c20ebd4248a8",
-        "name": "CSCF RHEL6 MLS Core Baseline",
-        "refId": "xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile demonstrates compliance against the 
-U.S. Government Commercial Cloud Services (C2S) baseline.
-
-This baseline was inspired by the Center for Internet Security
-(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.
-For the SCAP Security Guide project to remain in compliance with
-CIS' terms and conditions, specifically Restrictions(8), note 
-there is no representation or claim that the C2S profile will
-ensure a system is in compliance or consistency with the CIS
-baseline. 
-",
-        "disabled": false,
-        "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
-        "name": "C2S for Red Hat Enterprise Linux 6",
-        "refId": "xccdf_org.ssgproject.content_profile_C2S",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.
-Regardless of your system's workload all of these checks should pass.",
-        "disabled": false,
-        "id": "7f501f8b-be3b-4105-a7d4-aa7cfa61d823",
-        "name": "Standard System Security Profile",
-        "refId": "xccdf_org.ssgproject.content_profile_standard",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile is an example of a customized server profile.",
-        "disabled": false,
-        "id": "074277c6-3f32-4758-86f6-30da5b99c404",
-        "name": "Example Server Profile",
-        "refId": "xccdf_org.ssgproject.content_profile_CS2",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile contains items common to general-purpose desktop and server installations.",
-        "disabled": false,
-        "id": "f8f4b1ca-44ec-48cb-bfbf-2fca69663e10",
-        "name": "Common Profile for General-Purpose Systems",
-        "refId": "xccdf_org.ssgproject.content_profile_common",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile is for Red Hat Enterprise Linux 6 acting as a server.",
-        "disabled": false,
-        "id": "11efa871-3514-4931-95fb-c44f546b303d",
-        "name": "Server Baseline",
-        "refId": "xccdf_org.ssgproject.content_profile_server",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,
-serving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.
-
-As a result of the upstream/downstream relationship between the SCAP Security Guide project 
-and the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.
-For official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.
-
-While this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note 
-that commercial support of this SCAP content is NOT available. This profile is provided as example 
-SCAP content with no endorsement for suitability or production readiness. Support for this 
-profile is provided by the upstream SCAP Security Guide community on a best-effort basis. The
-upstream project homepage is https://fedorahosted.org/scap-security-guide/.
-",
-        "disabled": false,
-        "id": "efedd0fe-7bcd-490e-b8c9-416122533ce5",
-        "name": "Upstream STIG for Red Hat Enterprise Linux 6 Server",
-        "refId": "xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile is a working draft for a USGCB submission against RHEL6 Server.",
-        "disabled": false,
-        "id": "91ffca63-accc-4698-ba93-84d147c80271",
-        "name": "United States Government Configuration Baseline (USGCB)",
-        "refId": "xccdf_org.ssgproject.content_profile_usgcb-rhel6-server",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This is a *draft* profile for PCI-DSS v3",
-        "disabled": false,
-        "id": "45b793d2-9f6a-4854-b0a8-9b89e7d7f3eb",
-        "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6",
-        "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
-      },
-      Object {
-        "__typename": "Profile",
-        "complianceThreshold": 100,
-        "description": "This profile follows the Committee on National Security Systems Instruction
-(CNSSI) No. 1253, \\"Security Categorization and Control Selection for National Security
-Systems\\" on security controls to meet low confidentiality, low integrity, and low
-assurance.\\"",
-        "disabled": false,
-        "id": "f839edeb-c32f-425c-bbd2-1b807806393b",
-        "name": "CNSSI 1253 Low/Low/Low",
-        "refId": "xccdf_org.ssgproject.content_profile_nist-cl-il-al",
-      },
-    ]
-  }
+  profiles={Array []}
 />
 `;

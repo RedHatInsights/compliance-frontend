@@ -1,47 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EditPolicyDetails expect to render without error 1`] = `
-<ContextProvider
-  value={
-    Object {
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "clearActions": [Function],
-          "dispatch": [Function],
-          "getActions": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-        },
-        "unsubscribe": null,
-      },
-    }
-  }
->
-  <EditPolicyDetails
-    profile={
-      Object {
-        "complianceThreshold": 100,
-        "description": "This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)",
-        "id": "197eb783-7bca-45c5-978d-c1e89b0118da",
-        "name": "C2S for Red Hat Enterprise Linux 6",
-        "refId": "xccdf_org.ssgproject.content_profile_C2S",
-      }
-    }
-  />
-</ContextProvider>
+<Fragment>
+  <TextContent>
+    <Text
+      component="h1"
+    >
+      Details
+    </Text>
+  </TextContent>
+  <br />
+  <Form
+    id="editpolicydetails"
+  >
+    <FormGroup
+      fieldId="name"
+      isRequired={true}
+      label="Policy name"
+    >
+      <Field
+        aria-describedby="name"
+        component={[Function]}
+        id="name"
+        isRequired={true}
+        name="name"
+        type="text"
+      />
+    </FormGroup>
+    <FormGroup
+      fieldId="refId"
+      isRequired={true}
+      label="Reference ID"
+    >
+      <Field
+        aria-describedby="refId"
+        component={[Function]}
+        id="refId"
+        isDisabled={true}
+        name="refId"
+        type="text"
+      />
+    </FormGroup>
+    <FormGroup
+      fieldId="description"
+      label="Description"
+    >
+      <Field
+        aria-describedby="description"
+        component={[Function]}
+        id="description"
+        name="description"
+        type="text"
+      />
+    </FormGroup>
+    <FormGroup
+      fieldId="businessObjective"
+      label="Business objective"
+      labelIcon={<PolicyBusinessObjectiveTooltip />}
+    >
+      <Field
+        aria-describedby="businessObjective"
+        component={[Function]}
+        id="businessObjective"
+        name="businessObjective"
+        type="text"
+      />
+    </FormGroup>
+    <ReduxForm
+      destroyOnUnmount={false}
+      enableReinitialize={false}
+      forceUnregisterOnUnmount={true}
+      form="policyForm"
+      getFormState={[Function]}
+      keepDirtyOnReinitialize={false}
+      persistentSubmitErrors={false}
+      previousThreshold={100}
+      pure={true}
+      shouldAsyncValidate={[Function]}
+      shouldError={[Function]}
+      shouldValidate={[Function]}
+      shouldWarn={[Function]}
+      submitAsSideEffect={false}
+      touchOnBlur={true}
+      touchOnChange={false}
+      updateUnregisteredFields={false}
+    />
+  </Form>
+</Fragment>
 `;

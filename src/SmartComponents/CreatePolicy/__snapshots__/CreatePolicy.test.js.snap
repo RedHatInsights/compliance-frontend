@@ -18,9 +18,9 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   navAriaLabel={null}
   navAriaLabelledBy={null}
   nextButtonText="Next"
-  onBack={null}
+  onBack={[Function]}
   onClose={[Function]}
-  onGoToStep={null}
+  onGoToStep={[Function]}
   onNext={[Function]}
   startAtStep={1}
   steps={
@@ -43,13 +43,14 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 3,
-        "name": "Rules",
+        "name": "Systems",
       },
       Object {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm)) />,
+        "enableNext": false,
         "id": 4,
-        "name": "Systems",
+        "name": "Rules",
       },
       Object {
         "canJumpTo": false,
@@ -73,3 +74,5 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   width={null}
 />
 `;
+
+exports[`CreatePolicy expect to render the wizard with enableNext on systems 1`] = `true`;
