@@ -84,8 +84,8 @@ const useBulkSelect = ({
 
     const title = compileTitle(selectedItemsTotal);
     const checked = checkboxState(selectedItemsTotal, total);
-    const allSelected = selectedItemsTotal === total;
     const allCount = filtered ? filteredTotal : total;
+    const allSelected = selectedItemsTotal === allCount;
     const isDisabled = allCount === 0;
 
     const onSelectCallback = (func) => {
