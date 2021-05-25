@@ -125,7 +125,7 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     <ProfileTypeSelect
                         profiles={selectedBenchmark && validProfiles }
                         onClick={ () => {
-                            change('selectedRuleRefIds', null);
+                            change('selectedRuleRefIds', undefined);
                         }}/>
                 </FormGroup>
             </Form>
