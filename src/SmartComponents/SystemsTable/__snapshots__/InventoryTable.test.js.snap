@@ -292,6 +292,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
   >
     <Alert
       isInline={true}
+      ouiaId="SystemsListIsDifferentAlert"
       title="The list of systems in this view is different than those that appear in the Inventory. Only systems currently associated with or reporting against compliance policies are displayed."
       variant="info"
     />

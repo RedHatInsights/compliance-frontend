@@ -30,6 +30,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   hasNoBodyWrapper={false}
   isOpen={true}
   onClose={[Function]}
+  ouiaId="EditPolicyModal"
   ouiaSafe={true}
   position="top"
   showClose={true}

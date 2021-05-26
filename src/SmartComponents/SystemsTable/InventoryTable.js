@@ -89,6 +89,7 @@ export const InventoryTable = ({
             { showComplianceSystemsInfo && <Alert
                 isInline
                 variant="info"
+                ouiaId="SystemsListIsDifferentAlert"
                 title={ 'The list of systems in this view is different than those that appear in the Inventory. ' +
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable

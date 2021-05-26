@@ -54,6 +54,7 @@ const DeletePolicy = () => {
                     </Text>
                 </React.Fragment>
             }
+            ouiaId="DeletePolicyModal"
             isOpen
             onClose={ onClose }
             actions={[
