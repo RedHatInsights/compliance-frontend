@@ -61,7 +61,7 @@ const ReportsTable = ({ profiles }) => {
         <PrimaryToolbar { ...conditionalFilter } />
         <Table
             aria-label='Reports'
-            ouiaId="reports"
+            ouiaId="ReportsTable"
             cells={ columns }
             rows={ rows }
             { ...tableSort }>

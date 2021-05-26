@@ -42,7 +42,7 @@ exports[`ErrorPage expect to render without error 1`] = `
     </Text>
   </Text>
   <Button
-    ouiaId="GoBack"
+    ouiaId="ErrorPageGoBackButton"
     variant="link"
   >
     Go back

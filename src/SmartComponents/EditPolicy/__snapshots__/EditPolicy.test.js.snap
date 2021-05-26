@@ -7,7 +7,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
-        ouiaId="Save"
+        ouiaId="EditPolicySaveButton"
         spinnerAriaValueText="Saving"
         variant="primary"
       >
@@ -15,7 +15,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       </Button>,
       <Button
         onClick={[Function]}
-        ouiaId="Cancel"
+        ouiaId="EditPolicyCancelButton"
         variant="link"
       >
         Cancel

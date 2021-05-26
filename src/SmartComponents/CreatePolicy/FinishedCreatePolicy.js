@@ -95,7 +95,7 @@ export const FinishedCreatePolicy = ({
                         (percent === 100 || failed) &&
                             <Button
                                 variant={'primary'}
-                                ouiaId="return"
+                                ouiaId="ReturnToAppButton"
                                 onClick={() => { onWizardFinish(); }}>
                                 { failed ? 'Back' : 'Return to application' }
                             </Button>

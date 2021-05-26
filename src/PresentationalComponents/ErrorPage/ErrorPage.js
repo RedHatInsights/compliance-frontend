@@ -36,7 +36,7 @@ const ErrorPage = ({ error, ...props }) => {
         </Text>
         <Button
             variant="link"
-            ouiaId="GoBack"
+            ouiaId="ErrorPageGoBackButton"
             onClick={ history.goBack }>
                 Go back
         </Button>
