@@ -31,12 +31,13 @@ const usePaginate = (options = {}) => {
         return items.slice(start, end);
     };
 
-    const setPage = (page) => (
+    const setPage = (page) => {
+        const nextPage = page < 0 ? paginationState.page + page : page;
         setPaginationState({
             ...paginationState,
-            page: page < 0 ? paginationState.page + page : page
-        })
-    );
+            page: nextPage > 0 ? nextPage : 1
+        });
+    };
 
     return enablePagination ? {
         paginator,
