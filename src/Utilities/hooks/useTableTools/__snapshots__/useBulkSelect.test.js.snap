@@ -258,6 +258,7 @@ Object {
   "all": Array [
     Object {
       "clearSelection": [Function],
+      "selected": Array [],
       "tableProps": Object {
         "canSelectAll": false,
         "onSelect": [Function],
@@ -296,6 +297,7 @@ Object {
   ],
   "current": Object {
     "clearSelection": [Function],
+    "selected": Array [],
     "tableProps": Object {
       "canSelectAll": false,
       "onSelect": [Function],

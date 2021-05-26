@@ -21,7 +21,7 @@ const checkboxState = (selectedItemsTotal, itemsTotal) => {
     }
 };
 
-const allItemsIncluded = (items, selection) => (
+const allItemsIncluded = (items, selection = []) => (
     items.filter((item) => (
         selection.includes(item)
     )).length === items.length
@@ -50,16 +50,16 @@ const useBulkSelect = ({
     filter,
     paginator,
     sorter,
-    preselected = [],
+    preselected,
     setPage
-} = {}) => {
+}) => {
     const enableBulkSelect = !!onSelect;
 
-    const [selectedIds, setSelectedItemIds] = useState([]);
+    const [selectedIds, setSelectedItemIds] = useState(preselected || []);
     const selectItemTransformer = (item) => ({
         ...item,
         rowProps: {
-            selected: selectedIds.includes(item.itemId)
+            selected: (selectedIds || []).includes(item.itemId)
         }
     });
 

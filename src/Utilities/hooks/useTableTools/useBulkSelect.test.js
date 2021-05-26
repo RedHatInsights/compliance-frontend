@@ -8,7 +8,8 @@ describe('useBulkSelect', () => {
     const defaultOptions = {
         onSelect: () => ({}),
         items: exampleItems,
-        perPage: 10
+        perPage: 10,
+        preselected: []
     };
 
     it('returns a bulk select configuration', () => {
