@@ -126,6 +126,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           >
             <Button
               isInline={true}
+              ouiaId="ReportDetailsDeleteReportLink"
               variant="link"
             >
               Delete report
@@ -963,6 +964,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           >
             <Button
               isInline={true}
+              ouiaId="ReportDetailsDeleteReportLink"
               variant="link"
             >
               Delete report
