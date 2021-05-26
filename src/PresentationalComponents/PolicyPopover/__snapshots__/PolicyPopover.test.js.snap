@@ -54,6 +54,7 @@ exports[`PolicyPopover expect to render without error 1`] = `
 >
   <Button
     isInline={true}
+    ouiaId="PopoverViewPolicyLink"
     variant="link"
   >
     <OutlinedQuestionCircleIcon

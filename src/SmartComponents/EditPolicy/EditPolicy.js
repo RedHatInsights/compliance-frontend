@@ -109,6 +109,7 @@ export const EditPolicy = ({ route }) => {
         <Button
             isDisabled={ saveEnabled }
             key='save'
+            ouiaId="EditPolicySaveButton"
             variant='primary'
             spinnerAriaValueText='Saving'
             isLoading={ isSaving }
@@ -117,6 +118,7 @@ export const EditPolicy = ({ route }) => {
         </Button>,
         <Button
             key='cancel'
+            ouiaId="EditPolicyCancelButton"
             variant='link'
             onClick={ () => linkToBackgroundWithHash() }>
             Cancel
