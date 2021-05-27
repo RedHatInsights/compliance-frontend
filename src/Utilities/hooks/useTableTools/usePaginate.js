@@ -33,8 +33,7 @@ const usePaginate = (options = {}) => {
 
     const setPage = (page) => {
         const nextPage = page < 0 ? paginationState.page + page : page;
-        setPaginationState({
-            ...paginationState,
+        setPagination({
             page: nextPage > 0 ? nextPage : 1
         });
     };
