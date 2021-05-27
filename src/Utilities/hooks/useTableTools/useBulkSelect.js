@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { filterSelected } from './helper';
 
 const compileTitle = (itemsTotal, titleOption) => {
@@ -72,8 +72,9 @@ const useBulkSelect = ({
 
     const filteredItems = filter ? filter(items) : items;
     const filteredTotal = filteredItems.length;
-    const filtered = filteredTotal < total;
-    const allFiltertedSelected = allItemsIncluded(itemIds(filteredItems), selectedIds);
+    const filtered = filteredTotal !== total;
+    const allFiltertedSelected = selectedIds?.length > 0 ?
+        allItemsIncluded(itemIds(filteredItems), selectedIds) : false;
 
     const paginatedItems = paginator ? paginator(filteredItems) : filteredItems;
     const paginatedTotal = paginatedItems.length;
@@ -104,37 +105,48 @@ const useBulkSelect = ({
         return newItemIds;
     });
 
+    const selectItems = (itemIds) => (
+        mergeArraysUniqly(selectedIds, itemIds)
+    );
+
+    const unselectItems = (itemIds) => (
+        selectedIds.filter((itemId) => (
+            !itemIds.includes(itemId)
+        ))
+    );
+
     const selectPage = () => onSelectCallback(() => {
         const currentPageIds = itemIds(paginatedItems);
-        const newItemIds = currentPageSelected ? selectedIds.filter((itemId) => (
-            !currentPageIds.includes(itemId)
-        )) : mergeArraysUniqly(selectedIds, currentPageIds);
-
-        return newItemIds;
+        return currentPageSelected ?
+            unselectItems(currentPageIds) : selectItems(currentPageIds);
     });
 
-    const selectFiltered = () => {
+    const selectFiltered = () => onSelectCallback(() => {
         const currentFilteredIds = itemIds(filteredItems);
-        const newItemIds = allFiltertedSelected ? selectedIds.filter((itemId) => (
-            !currentFilteredIds.includes(itemId)
-        )) : mergeArraysUniqly(selectedIds, currentFilteredIds);
+        return allFiltertedSelected ?
+            unselectItems(currentFilteredIds) : selectItems(currentFilteredIds);
+    });
 
-        return newItemIds;
-    };
+    const selectAll = () => onSelectCallback(() => (
+        itemIds(items)
+    ));
 
-    const selectFilteredOrAll = () => {
-        filtered ? selectFiltered() : onSelectCallback(() => (
-            itemIds(items)
-        ));
-    };
+    const selectFilteredOrAll = () => (
+        filtered ? selectFiltered() : selectAll()
+    );
 
-    const selectAll = () => allSelected ? selectNone() : selectFilteredOrAll();
+    const selectAllHandler = () => (
+        allSelected ? selectNone() : selectFilteredOrAll()
+    );
+    const setPageMemo = useMemo(() => (
+        setPage
+    ), []);
 
     useEffect(() => {
         if (paginatedTotal === 0) {
-            setPage(-1);
+            setPageMemo(-1);
         }
-    }, [paginatedTotal, setPage]);
+    }, [paginatedTotal, setPageMemo]);
 
     useEffect(() => {
         setSelectedItemIds(preselected);
@@ -162,8 +174,8 @@ const useBulkSelect = ({
                     title: `${ selectOrUnselect(currentPageSelected) } page (${ paginatedTotal } items)`,
                     onClick: selectPage
                 }, {
-                    title: `${ selectOrUnselect(allSelected) } all (${ allCount } items)`,
-                    onClick: selectAll
+                    title: `${ selectOrUnselect(filtered ? allFiltertedSelected : allSelected) } all (${ allCount } items)`,
+                    onClick: selectAllHandler
                 }],
                 checked,
                 onSelect: !isDisabled ? () => selectPage() : undefined

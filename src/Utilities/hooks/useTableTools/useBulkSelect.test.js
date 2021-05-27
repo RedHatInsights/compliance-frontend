@@ -11,6 +11,10 @@ describe('useBulkSelect', () => {
         perPage: 10,
         preselected: []
     };
+    const getBulkSelect = (result) => (result.current.toolbarProps.bulkSelect);
+    const getSelectNone = (result) => (result.current.toolbarProps.bulkSelect.items[0]);
+    const getSelectPage = (result) => (result.current.toolbarProps.bulkSelect.items[1]);
+    const getSelectAll = (result) => (result.current.toolbarProps.bulkSelect.items[2]);
 
     it('returns a bulk select configuration', () => {
         const { result } = renderHook(() => useBulkSelect(defaultOptions));
@@ -30,45 +34,59 @@ describe('useBulkSelect', () => {
 
     it('returns a allows to select/deselect all', () => {
         const { result } = renderHook(() => useBulkSelect(defaultOptions));
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[2].onClick();
+            getSelectAll(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[2].onClick();
+            getSelectAll(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
     });
 
     it('returns a allows to select/deselect page', () => {
         const { result } = renderHook(() => useBulkSelect(defaultOptions));
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[1].onClick();
+            getSelectPage(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[1].onClick();
+            getSelectPage(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
     });
 
-    it('returns a allows to select none after all selected', () => {
+    it('returns to select none after all selected', () => {
         const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[2].onClick();
+            getSelectAll(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
-            result.current.toolbarProps.bulkSelect.items[0].onClick();
+            getSelectNone(result).onClick();
         });
-        expect(result.current.toolbarProps.bulkSelect).toMatchSnapshot();
+        expect(getBulkSelect(result)).toMatchSnapshot();
+    });
+
+    it('returns respects filtered results', () => {
+        const { result } = renderHook(() => useBulkSelect({
+            ...defaultOptions,
+            filter: (items) => (items.slice(5, 10))
+        }));
+        expect(getBulkSelect(result)).toMatchSnapshot();
+
+        act(() => {
+            getSelectAll(result).onClick();
+        });
+        expect(getBulkSelect(result)).toMatchSnapshot();
     });
 });
