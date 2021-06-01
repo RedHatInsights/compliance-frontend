@@ -221,7 +221,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
       to="/scappolicies/new"
     >
       <Button
-        ouiaId="NewPolicyButton"
+        ouiaId="CreateNewPolicyButton"
         variant="primary"
       >
         Create new policy

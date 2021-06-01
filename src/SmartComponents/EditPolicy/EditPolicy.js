@@ -132,6 +132,7 @@ export const EditPolicy = ({ route }) => {
         position={ 'top' }
         style={ { minHeight: '350px' } }
         variant={ 'large' }
+        ouiaId="EditPolicyModal"
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>

@@ -178,11 +178,12 @@ export class PoliciesTable extends React.Component {
                 }}
                 pagination={{
                     ...pagination,
-                    dropDirection: 'down'
+                    dropDirection: 'down',
+                    ouiaId: 'PoliciesCompactPagination'
                 }}>
                 <ToolbarItem>
                     <BackgroundLink to='/scappolicies/new'>
-                        <Button variant='primary' ouiaId="NewPolicyButton">Create new policy</Button>
+                        <Button variant='primary' ouiaId="CreateNewPolicyButton">Create new policy</Button>
                     </BackgroundLink>
                 </ToolbarItem>
                 <ToolbarItem>
@@ -203,7 +204,7 @@ export class PoliciesTable extends React.Component {
                 <Pagination
                     { ...pagination }
                     dropDirection='up'
-                    ouiaId="ItemsPerPageExpandUpButton"
+                    ouiaId="PoliciesPagination"
                     variant={ PaginationVariant.bottom }
                 />
             </TableToolbar>
