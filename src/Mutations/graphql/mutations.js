@@ -20,6 +20,7 @@ mutation associateSystems($input: associateSystemsInput!) {
                 profiles {
                     id
                     parentProfileId
+                    osMinorVersion
                 }
             }
         }

@@ -10,7 +10,7 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/client/react/hoc';
-import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
+import { usePolicy } from 'Mutations';
 
 const EmtpyStateWithErrors = ({ errors }) => (
     (errors && Array.isArray(errors) && errors.length > 0) ? (
@@ -39,7 +39,7 @@ export const FinishedCreatePolicy = ({
     businessObjective,
     refId,
     benchmarkId,
-    systemIds,
+    systems,
     selectedRuleRefIds
 }) => {
     const [percent, setPercent] = useState(0);
@@ -61,7 +61,7 @@ export const FinishedCreatePolicy = ({
             businessObjective: { title: businessObjective },
             refId,
             benchmarkId,
-            hosts: systemIds.map((id) => ({ id })),
+            hosts: systems,
             selectedRuleRefIds
         };
 
@@ -95,6 +95,7 @@ export const FinishedCreatePolicy = ({
                         (percent === 100 || failed) &&
                             <Button
                                 variant={'primary'}
+                                ouiaId="ReturnToAppButton"
                                 onClick={() => { onWizardFinish(); }}>
                                 { failed ? 'Back' : 'Return to application' }
                             </Button>
@@ -112,7 +113,7 @@ FinishedCreatePolicy.propTypes = {
     refId: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     description: propTypes.string,
-    systemIds: propTypes.array,
+    systems: propTypes.array,
     complianceThreshold: propTypes.number,
     onWizardFinish: propTypes.func,
     selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired
@@ -130,7 +131,7 @@ export default compose(
             name: selector(state, 'name'),
             description: selector(state, 'description'),
             complianceThreshold: parseFloat(selector(state, 'complianceThreshold')) || 100.0,
-            systemIds: selector(state, 'systems'),
+            systems: selector(state, 'systems'),
             selectedRuleRefIds: selector(state, 'selectedRuleRefIds')
         })
     ),

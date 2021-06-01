@@ -1,6 +1,6 @@
 import { FinishedCreatePolicy } from './FinishedCreatePolicy.js';
-import usePolicy from 'SmartComponents/EditPolicy/usePolicy';
-jest.mock('SmartComponents/EditPolicy/usePolicy');
+import { usePolicy } from 'Mutations';
+jest.mock('Mutations');
 
 describe('FinishedCreatePolicy', () => {
     const defaultProps = {

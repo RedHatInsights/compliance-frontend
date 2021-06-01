@@ -56,7 +56,7 @@ const QUERY = gql`
 export const CompliancePolicies = () => {
     const location = useLocation();
     const createLink = <BackgroundLink to='/scappolicies/new'>
-        <Button variant='primary'>Create new policy</Button>
+        <Button variant='primary' ouiaId="NewPolicyButton">Create new policy</Button>
     </BackgroundLink>;
     let { data, error, loading, refetch } = useQuery(QUERY);
     useEffect(() => { refetch(); }, [location, refetch]);

@@ -185,6 +185,7 @@ exports[`ReportsTable expect to render without error 1`] = `
     isStickyHeader={false}
     isTreeTable={false}
     onSort={[Function]}
+    ouiaId="ReportsTable"
     ouiaSafe={true}
     role="grid"
     rowLabeledBy="simple-node"
@@ -249,7 +250,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.49",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ac",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [
@@ -275,7 +276,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.45",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ad",
                         "name": "United States Government Configuration Baseline123",
                         "osMinorVersion": "8",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -367,7 +368,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.49",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ac",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [
@@ -393,7 +394,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.45",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ad",
                         "name": "United States Government Configuration Baseline123",
                         "osMinorVersion": "8",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -485,7 +486,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.49",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ac",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [
@@ -511,7 +512,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                         "ssgVersion": "0.1.45",
                       },
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ad",
                         "name": "United States Government Configuration Baseline123",
                         "osMinorVersion": "8",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -1109,7 +1110,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
                     "profiles": Array [
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ae",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [
@@ -1190,7 +1191,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
                     "profiles": Array [
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ae",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [
@@ -1271,7 +1272,7 @@ exports[`ReportsTable expect to render without error 1`] = `
                     "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
                     "profiles": Array [
                       Object {
-                        "id": "b71376fd-015e-4209-99af",
+                        "id": "b71376fd-015e-4209-99ae",
                         "name": "United States Government Configuration Baseline123",
                         "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                         "rules": Array [

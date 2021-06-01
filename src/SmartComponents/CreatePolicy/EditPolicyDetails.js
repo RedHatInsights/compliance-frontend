@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Form, FormGroup, Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { ReduxFormTextInput, ReduxFormTextArea } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
-import { ProfileThresholdField } from 'PresentationalComponents';
+import {
+    ProfileThresholdField,
+    PolicyBusinessObjectiveTooltip
+} from 'PresentationalComponents';
 
 export const EditPolicyDetails = ({ change, policy, refId }) => {
 
@@ -52,7 +55,10 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
                         name="description"
                         aria-describedby="description" />
                 </FormGroup>
-                <FormGroup label="Business objective" fieldId="businessObjective">
+                <FormGroup
+                    label="Business objective"
+                    labelIcon={ <PolicyBusinessObjectiveTooltip /> }
+                    fieldId="businessObjective">
                     <Field
                         type="text"
                         component={ ReduxFormTextInput }
@@ -62,7 +68,6 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
                         defaultValue={ policy.businessObjective } />
                 </FormGroup>
                 <ProfileThresholdField
-                    showTitle={ false }
                     previousThreshold={ policy.complianceThreshold } />
             </Form>
         </React.Fragment>

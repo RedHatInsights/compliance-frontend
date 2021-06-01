@@ -31,7 +31,6 @@ Array [
       ],
       "ssgVersion": "0.1.49",
     },
-    "selectedRuleRefIds": undefined,
     "systemCount": 1,
   },
 ]
@@ -110,10 +109,11 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
           },
         ]
       }
-      handleSelect={[Function]}
       level={1}
       remediationsEnabled={false}
       selectedFilter={true}
+      selectedRuleRefIds={Array []}
+      setSelectedRuleRefIds={[Function]}
       tabsData={
         Array [
           Object {
@@ -145,7 +145,6 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
               ],
               "ssgVersion": "0.1.49",
             },
-            "selectedRuleRefIds": undefined,
             "systemCount": 1,
           },
         ]
@@ -223,10 +222,11 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
           },
         ]
       }
-      handleSelect={[Function]}
       level={1}
       remediationsEnabled={false}
       selectedFilter={true}
+      selectedRuleRefIds={Array []}
+      setSelectedRuleRefIds={[Function]}
       tabsData={Array []}
     />
   </StateViewPart>

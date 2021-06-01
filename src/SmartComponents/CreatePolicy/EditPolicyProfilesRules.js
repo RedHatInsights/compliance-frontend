@@ -14,7 +14,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
-import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import {
+    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
+} from 'PresentationalComponents/TabbedRules';
 
 const PROFILES_QUERY = gql`
 query Profiles($filter: String!){
@@ -64,6 +67,7 @@ query Benchmarks($filter: String!){
                 id
                 refId
                 osMajorVersion
+                ssgVersion
             }
         }
     }
@@ -86,21 +90,6 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
         `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;
 
-    const handleSelectCallback = (profile, newSelectedRuleRefIds) => {
-        const newSelection = selectedRuleRefIds.map((profileSelectedRuleRefIds) => {
-            if (profileSelectedRuleRefIds.id === profile.id) {
-                return {
-                    id: profileSelectedRuleRefIds.id,
-                    ruleRefIds: newSelectedRuleRefIds
-                };
-            } else {
-                return profileSelectedRuleRefIds;
-            }
-        });
-
-        change('selectedRuleRefIds', newSelection);
-    };
-
     const {
         data: benchmarksData,
         error: benchmarksError,
@@ -114,11 +103,9 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
 
     const benchmarks = benchmarksData?.benchmarks?.nodes;
 
-    let profileIds = [];
     let tabsData = osMinorVersionCounts.map(({ osMinorVersion, count: systemCount }) => {
         osMinorVersion = `${osMinorVersion}`;
         let profile;
-        let profileSelectedRuleRefIds;
         if (benchmarks) {
             const benchmark = getBenchmarkBySupportedOsMinor(benchmarks, osMinorVersion);
             if (benchmark) {
@@ -128,8 +115,6 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
                         ...profile,
                         benchmark
                     };
-                    profileSelectedRuleRefIds = selectedRuleRefIds?.find(({ id }) => id === profile.id);
-                    profileIds.push(profile.id);
                 }
             }
         }
@@ -137,13 +122,14 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
         return {
             profile,
             systemCount,
-            newOsMinorVersion: osMinorVersion,
-            selectedRuleRefIds: profileSelectedRuleRefIds?.ruleRefIds
+            newOsMinorVersion: osMinorVersion
         };
     });
     tabsData = tabsData.filter(({ profile }) => !!profile);
 
-    const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
+    const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
+    const profileIds = Object.keys(profileToOsMinorMap);
+    const filter = profileIds.map((i) => `id = ${ i }`).join(' OR ');
     const skipProfilesQuery = benchmarksLoading || filter.length === 0;
     const { data: profilesData, error: profilesError, loading: profilesLoading } = useQuery(PROFILES_QUERY, {
         variables: {
@@ -157,13 +143,17 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
     const noRuleSets = !error && !loadingState && profileIds?.length === 0;
     const profiles = skipProfilesQuery ? [] : profilesData?.profiles.edges.map((p) => (p.node));
 
+    const setSelectedRuleRefIds = (newSelection) => {
+        change('selectedRuleRefIds', newSelection);
+    };
+
     useLayoutEffect(() => {
         if (!loadingState) {
-            change('selectedRuleRefIds', profiles.map((profile) => ({
-                id: profile.id,
-                ruleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile.id)?.ruleRefIds ||
-                            profile.rules.map((rule) => (rule.refId))
-            })));
+            const profilesWithOs = extendProfilesByOsMinor(profiles, profileToOsMinorMap);
+            const newSelection = profilesWithRulesToSelection(
+                profilesWithOs, selectedRuleRefIds, { only: true }
+            );
+            setSelectedRuleRefIds(newSelection);
         }
     }, [profiles, loadingState]);
 
@@ -199,11 +189,12 @@ export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, os
             <StateViewPart stateKey="data">
                 <TabbedRules
                     tabsData={ tabsData }
+                    selectedRuleRefIds={ selectedRuleRefIds }
                     columns={ columns }
                     remediationsEnabled={ false }
                     selectedFilter
                     level={ 1 }
-                    handleSelect={ handleSelectCallback } />
+                    setSelectedRuleRefIds={ setSelectedRuleRefIds } />
             </StateViewPart>
         </StateViewWithError>
     </React.Fragment>;

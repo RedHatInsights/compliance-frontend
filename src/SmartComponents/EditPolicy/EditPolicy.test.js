@@ -1,11 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import { EditPolicy, MULTIVERSION_QUERY } from './EditPolicy.js';
+jest.mock('Mutations');
 jest.mock('react-redux', () => ({
     ...jest.requireActual('react-redux'),
     useSelector: jest.fn(() => ({})),
     useDispatch: jest.fn(() => ({}))
 }));
-jest.mock('./usePolicy', () => (() => {}));
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line

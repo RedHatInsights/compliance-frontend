@@ -14,7 +14,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 
@@ -64,8 +64,6 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
         profiles.filter(profile => benchmark.refId === profile.node.benchmark.refId).map(profile => profile.node.refId)
     );
 
-    const dispatch = useDispatch();
-
     if (error) { return error; }
 
     if (loading) { return <Spinner/>; }
@@ -85,10 +83,6 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
     const setBenchmark = ({ id, osMajorVersion }) => {
         if (selectedBenchmark?.osMajorVersion !== osMajorVersion) {
             change('systems', []);
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: [] }
-            });
         }
 
         change('benchmark', id);
@@ -131,7 +125,7 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
                     <ProfileTypeSelect
                         profiles={selectedBenchmark && validProfiles }
                         onClick={ () => {
-                            change('selectedRuleRefIds', null);
+                            change('selectedRuleRefIds', undefined);
                         }}/>
                 </FormGroup>
             </Form>

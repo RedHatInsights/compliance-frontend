@@ -7,6 +7,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       <Button
         isDisabled={null}
         onClick={[Function]}
+        ouiaId="EditPolicySaveButton"
         spinnerAriaValueText="Saving"
         variant="primary"
       >
@@ -14,6 +15,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       </Button>,
       <Button
         onClick={[Function]}
+        ouiaId="EditPolicyCancelButton"
         variant="link"
       >
         Cancel
@@ -29,17 +31,17 @@ exports[`EditPolicy expect to render without error 1`] = `
   isOpen={true}
   onClose={[Function]}
   ouiaSafe={true}
+  position="top"
   showClose={true}
   style={
     Object {
-      "height": "768px",
+      "minHeight": "350px",
     }
   }
   title="Edit profile1"
   titleIconVariant={null}
   titleLabel=""
-  variant="default"
-  width={1220}
+  variant="large"
 >
   <StateViewWithError
     stateValues={
@@ -101,8 +103,9 @@ exports[`EditPolicy expect to render without error 1`] = `
           }
         }
         selectedRuleRefIds={Array []}
-        setSelectedHosts={[Function]}
+        selectedSystems={Array []}
         setSelectedRuleRefIds={[Function]}
+        setSelectedSystems={[Function]}
         setUpdatedPolicy={[Function]}
         updatedPolicy={null}
       />

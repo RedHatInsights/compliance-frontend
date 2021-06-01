@@ -17,6 +17,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
           "complianceThreshold": 1,
           "compliantHostCount": 1,
           "description": "profile description",
+          "hosts": Array [],
           "id": "1",
           "majorOsVersion": "7",
           "name": "profile1",
@@ -65,7 +66,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <PageHeader
       className="page-header-tabs"
     >
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="PolicyDetailsPathBreadcrumb"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -125,6 +128,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   "complianceThreshold": 1,
                   "compliantHostCount": 1,
                   "description": "profile description",
+                  "hosts": Array [],
                   "id": "1",
                   "majorOsVersion": "7",
                   "name": "profile1",
@@ -207,6 +211,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
                 "majorOsVersion": "7",
                 "name": "profile1",
@@ -253,6 +258,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
                 "majorOsVersion": "7",
                 "name": "profile1",
@@ -299,6 +305,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
+                "hosts": Array [],
                 "id": "1",
                 "majorOsVersion": "7",
                 "name": "profile1",

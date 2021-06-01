@@ -18,6 +18,8 @@ export { default as BreadcrumbLinkItem } from './BreadcrumbLinkItem/BreadcrumbLi
 export { default as ReportsTable } from './ReportsTable/ReportsTable';
 export { default as ReportsEmptyState } from './ReportsEmptyState/ReportsEmptyState';
 export { default as PolicyPopover } from './PolicyPopover/PolicyPopover';
+export { default as PolicyThresholdTooltip } from './PolicyThresholdTooltip/PolicyThresholdTooltip';
+export { default as PolicyBusinessObjectiveTooltip } from './PolicyBusinessObjectiveTooltip/PolicyBusinessObjectiveTooltip';
 export { default as NoResultsTable, emptyRows } from './NoResultsTable/NoResultsTable';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
 export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
@@ -25,4 +27,5 @@ export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
-export { default as TabbedRules } from './TabbedRules/TabbedRules';
+export { TabbedRules } from './TabbedRules';
+export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarning/NoSystemsTableWithWarning';

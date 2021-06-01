@@ -23,7 +23,9 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="SystemDetailsPathBreadcrumb"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -81,7 +83,9 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="SystemDetailsPathBreadcrumb"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -139,7 +143,9 @@ exports[`SystemDetails expect to render loading 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="SystemDetailsPathBreadcrumb"
+      >
         <BreadcrumbLinkItem
           to="/"
         >
@@ -197,7 +203,9 @@ exports[`SystemDetails expect to render without error 1`] = `
     stateKey="data"
   >
     <PageHeader>
-      <Breadcrumb>
+      <Breadcrumb
+        ouiaId="SystemDetailsPathBreadcrumb"
+      >
         <BreadcrumbLinkItem
           to="/"
         >

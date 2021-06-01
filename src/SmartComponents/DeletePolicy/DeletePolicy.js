@@ -12,7 +12,7 @@ import propTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { DELETE_PROFILE } from 'Utilities/graphql/mutations';
+import { DELETE_PROFILE } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
@@ -58,13 +58,14 @@ const DeletePolicy = () => {
             onClose={ onClose }
             actions={[
                 <Button key='destroy'
+                    ouiaId="DeletePolicyButton"
                     aria-label="delete"
                     isDisabled={ !deleteEnabled }
                     variant='danger'
                     onClick={() => deletePolicy({ variables: { input: { id } } })}>
                     Delete policy and associated reports
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={ onClose }>
+                <Button key='cancel' ouiaId="DeletePolicyCancelButton" variant='secondary' onClick={ onClose }>
                     Cancel
                 </Button>
             ]}

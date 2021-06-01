@@ -21,9 +21,10 @@ describe('EditPolicyRulesTab', () => {
     it('expect to render without error', () => {
         const wrapper = shallow(
             <EditPolicyRulesTab
-                handleSelect={ () => {} }
-                policy={ { policy: policies.edges[0].node  } }
+                setNewRuleTabs={ () => {} }
+                policy={ { policy: { profiles: [] } } }
                 selectedRuleRefIds={ [] }
+                setSelectedRuleRefIds={ () => {} }
                 osMinorVersionCounts={ {} }
             />
         );
@@ -33,9 +34,10 @@ describe('EditPolicyRulesTab', () => {
     it('expect to render with policy passed', () => {
         const wrapper = shallow(
             <EditPolicyRulesTab
-                handleSelect={ () => {} }
+                setNewRuleTabs={ () => {} }
                 policy={ policies.edges[0].node }
                 selectedRuleRefIds={ [] }
+                setSelectedRuleRefIds={ () => {} }
                 osMinorVersionCounts={ {
                     9: {
                         osMinorVersion: 9, count: 1

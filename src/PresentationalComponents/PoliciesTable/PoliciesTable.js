@@ -182,7 +182,7 @@ export class PoliciesTable extends React.Component {
                 }}>
                 <ToolbarItem>
                     <BackgroundLink to='/scappolicies/new'>
-                        <Button variant='primary'>Create new policy</Button>
+                        <Button variant='primary' ouiaId="NewPolicyButton">Create new policy</Button>
                     </BackgroundLink>
                 </ToolbarItem>
                 <ToolbarItem>
@@ -191,6 +191,7 @@ export class PoliciesTable extends React.Component {
             </PrimaryToolbar>
             <Table
                 aria-label='policies'
+                ouiaId="PoliciesTable"
                 className='compliance-policies-table'
                 cells={ this.columns }
                 actionResolver={ rows.length > 0 && this.actionResolver }
@@ -202,6 +203,7 @@ export class PoliciesTable extends React.Component {
                 <Pagination
                     { ...pagination }
                     dropDirection='up'
+                    ouiaId="ItemsPerPageExpandUpButton"
                     variant={ PaginationVariant.bottom }
                 />
             </TableToolbar>

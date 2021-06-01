@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
 import { Form, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import { uniq } from 'Utilities/helpers';
 import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
+import { profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
 
 const profilesToOsMinorMap = (profiles, hosts) => (
     (profiles || []).reduce((acc, profile) => {
@@ -22,40 +21,32 @@ const profilesToOsMinorMap = (profiles, hosts) => (
 export const EditPolicyForm = ({
     policy,
     setUpdatedPolicy,
-    selectedRuleRefIds, setSelectedRuleRefIds,
-    setSelectedHosts
+    selectedRuleRefIds,
+    setSelectedRuleRefIds,
+    selectedSystems,
+    setSelectedSystems
 }) => {
     const policyProfiles = policy?.policy?.profiles || [];
-    const dispatch = useDispatch();
     const [osMinorVersionCounts, setOsMinorVersionCounts] = useState({});
-    const selectedEntities = useSelector((state) => (state?.entities?.selectedEntities));
+    const [newRuleTabs, setNewRuleTabs] = useState(false);
 
-    const handleRuleSelect = (profile, newSelectedRuleRefIds) => {
-        const filteredSelection = selectedRuleRefIds.filter((selectedProfile) =>
-            selectedProfile.id !== profile.id
+    const handleSystemSelect = (selectedSystems) => {
+        setSelectedSystems(selectedSystems);
+
+        setOsMinorVersionCounts(
+            profilesToOsMinorMap(policyProfiles, selectedSystems)
         );
-        setSelectedRuleRefIds([
-            { id: profile.id, ruleRefIds: newSelectedRuleRefIds },
-            ...filteredSelection
-        ]);
     };
 
     const updateSelectedRuleRefIds = () => {
         if (policy) {
-            setSelectedRuleRefIds(policyProfiles.map((policyProfile) => ({
-                id: policyProfile.id,
-                ruleRefIds: policyProfile.rules.map((rule) => (rule.refId))
-            })));
+            // existing policy profiles and their rule sets
+            const profilesWithOsMinor = policyProfiles.filter(({ osMinorVersion }) =>
+                !!osMinorVersion
+            );
+            setSelectedRuleRefIds(profilesWithRulesToSelection(profilesWithOsMinor));
         }
     };
-
-    useEffect(() => {
-        setSelectedHosts(selectedEntities ? selectedEntities : []);
-
-        setOsMinorVersionCounts(
-            profilesToOsMinorMap(policyProfiles, selectedEntities)
-        );
-    }, [selectedEntities]);
 
     useEffect(() => {
         if (policy) {
@@ -66,14 +57,7 @@ export const EditPolicyForm = ({
                 complianceThresholdValid
             });
             updateSelectedRuleRefIds();
-
-            dispatch({
-                type: 'SELECT_ENTITIES',
-                payload: { ids: policy?.hosts || [] }
-            });
-            setOsMinorVersionCounts(
-                profilesToOsMinorMap(policyProfiles, policy.hosts)
-            );
+            handleSystemSelect(policy.hosts);
         }
     }, [policy]);
 
@@ -89,7 +73,8 @@ export const EditPolicyForm = ({
                 <Tab eventKey='rules' title={ <TabTitleText>Rules</TabTitleText> }>
                     <EditPolicyRulesTab
                         policy={ policy }
-                        handleSelect={ handleRuleSelect }
+                        setNewRuleTabs={ setNewRuleTabs }
+                        setSelectedRuleRefIds={ setSelectedRuleRefIds }
                         selectedRuleRefIds={ selectedRuleRefIds }
                         osMinorVersionCounts={ osMinorVersionCounts }
                     />
@@ -97,8 +82,10 @@ export const EditPolicyForm = ({
 
                 <Tab eventKey='systems' title={ <TabTitleText>Systems</TabTitleText> }>
                     <EditPolicySystemsTab
-                        osMajorVersion={ policy.osMajorVersion }
-                        policyOsMinorVersions={ uniq(policyProfiles.map(profile => profile.osMinorVersion)) }
+                        policy={ policy }
+                        newRuleTabs={ newRuleTabs }
+                        selectedSystems={ selectedSystems }
+                        onSystemSelect={ handleSystemSelect }
                     />
                 </Tab>
             </RoutedTabs>
@@ -111,7 +98,8 @@ EditPolicyForm.propTypes = {
     setUpdatedPolicy: propTypes.func,
     selectedRuleRefIds: propTypes.arrayOf(propTypes.object),
     setSelectedRuleRefIds: propTypes.func,
-    setSelectedHosts: propTypes.func
+    setSelectedSystems: propTypes.func,
+    selectedSystems: propTypes.array
 };
 
 export default EditPolicyForm;

@@ -33,6 +33,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   gridBreakPoint="grid-md"
   isStickyHeader={false}
   isTreeTable={false}
+  ouiaId="PoliciesTable"
   ouiaSafe={true}
   role="grid"
   rowLabeledBy="simple-node"

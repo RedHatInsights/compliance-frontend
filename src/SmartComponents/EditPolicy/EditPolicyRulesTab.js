@@ -7,7 +7,10 @@ import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { StateViewWithError, StateViewPart, TabbedRules } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import {
+    TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
+} from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 
 const PROFILES_QUERY = gql`
@@ -86,7 +89,7 @@ const EditPolicyRulesTabEmptyState = () => <EmptyState>
     </EmptyStateBody>
 </EmptyState>;
 
-export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds) => (
+export const toTabsData = (policy, osMinorVersionCounts, benchmarks) => (
     Object.values(osMinorVersionCounts).sort(
         sortingByProp('osMinorVersion', 'desc')
     ).map(({ osMinorVersion, count: systemCount }) => {
@@ -99,7 +102,10 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
             if (benchmark) {
                 const benchmarkProfile = getBenchmarkProfile(benchmark, policy.refId);
                 if (benchmarkProfile) {
-                    profile = policy.policy.profiles.find((profile) => (profile.parentProfileId === benchmarkProfile.id));
+                    profile = policy.policy.profiles.find((profile) =>
+                        profile.parentProfileId === benchmarkProfile.id
+                        && profile.osMinorVersion === osMinorVersion
+                    );
 
                     profile = {
                         ...benchmarkProfile,
@@ -114,13 +120,18 @@ export const toTabsData = (policy, osMinorVersionCounts, benchmarks, selectedRul
         return {
             profile,
             systemCount,
-            newOsMinorVersion: osMinorVersion,
-            selectedRuleRefIds: selectedRuleRefIds?.find(({ id }) => id === profile?.id)?.ruleRefIds
+            newOsMinorVersion: osMinorVersion
         };
     }).filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion)
 );
 
-export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, osMinorVersionCounts }) => {
+export const EditPolicyRulesTab = ({
+    policy,
+    selectedRuleRefIds,
+    setSelectedRuleRefIds,
+    osMinorVersionCounts,
+    setNewRuleTabs
+}) => {
     const osMajorVersion = policy?.osMajorVersion;
     const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
@@ -139,9 +150,9 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
 
     const benchmarks = benchmarksData?.benchmarks?.nodes;
 
-    const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks, selectedRuleRefIds);
-    const profileIds = tabsData.map((tab) => (tab.profile.id));
-    const filter = `${ (profileIds || []).map((i) => (`id = ${ i }`)).join(' OR ') }`;
+    const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
+    const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
+    const filter = Object.keys(profileToOsMinorMap).map((i) => (`id = ${ i }`)).join(' OR ');
     const {
         data: profilesData, error: profilesError, loading: profilesLoading
     } = useQuery(PROFILES_QUERY, {
@@ -153,16 +164,21 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
     const loadingState = ((profilesLoading || benchmarksLoading) ? true : undefined);
     const dataState = ((!loadingState && tabsData?.length > 0) ? profilesData : undefined);
 
+    if (!loadingState) {
+        setNewRuleTabs(!!tabsData.find(tab => (
+            policy.policy.profiles.find(profile => (
+                profile.osMinorVersion !== tab.newOsMinorVersion
+            ))
+        )));
+    }
+
     useLayoutEffect(() => {
         if (profilesData) {
             const profiles = profilesData?.profiles.edges.map((p) => (p.node)) || [];
-            profiles.forEach((profile) => {
-                const foundSelection = selectedRuleRefIds?.find(({ id }) => id === profile?.id);
-                if (!foundSelection) {
-                    const refIds = profile.rules.map((rule) => (rule.refId));
-                    handleSelect(profile, refIds);
-                }
-            });
+            const profilesWithOs = extendProfilesByOsMinor(profiles, profileToOsMinorMap);
+            setSelectedRuleRefIds((prevSelection) =>
+                profilesWithRulesToSelection(profilesWithOs, prevSelection)
+            );
         }
     }, [profilesData]);
     const error = benchmarksError || profilesError;
@@ -185,10 +201,11 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
             </TextContent>
             <TabbedRules
                 tabsData={ tabsData }
+                selectedRuleRefIds={ selectedRuleRefIds }
+                setSelectedRuleRefIds={ setSelectedRuleRefIds }
                 remediationsEnabled={ false }
                 selectedFilter
-                level={ 1 }
-                handleSelect={ handleSelect } />
+                level={ 1 } />
         </StateViewPart>
         <StateViewPart stateKey="empty">
             <EditPolicyRulesTabEmptyState />
@@ -197,7 +214,7 @@ export const EditPolicyRulesTab = ({ handleSelect, policy, selectedRuleRefIds, o
 };
 
 EditPolicyRulesTab.propTypes = {
-    handleSelect: propTypes.func,
+    setNewRuleTabs: propTypes.func,
     policy: propTypes.object,
     osMinorVersionCounts: propTypes.shape({
         osMinorVersion: propTypes.shape({
@@ -205,7 +222,8 @@ EditPolicyRulesTab.propTypes = {
             count: propTypes.number
         })
     }),
-    selectedRuleRefIds: propTypes.array
+    selectedRuleRefIds: propTypes.array,
+    setSelectedRuleRefIds: propTypes.func
 };
 
 export default EditPolicyRulesTab;

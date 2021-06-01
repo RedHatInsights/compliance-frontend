@@ -7,26 +7,50 @@ import {
 import { RoutedTabs } from 'PresentationalComponents';
 import ProfileTabContent from './ProfileTabContent';
 import OsVersionText from './OsVersionText';
+import { selectedRuleRefIdsForTab, matchesSelectionItem } from './ruleSelection';
 
-const eventKey = (id) => (
-    `rules-${id}`
+const eventKey = ({ id, osMinorVersion }, newOsMinorVersion) => (
+    `rules-${id}-${osMinorVersion || newOsMinorVersion}`
 );
 
-const defaultTab = (tabsData, profileId) => {
-    if (tabsData && tabsData.length > 0) {
-        return eventKey(profileId || tabsData[0].profile.id);
+const getDefaultTab = (tabsData, defaultTab) => {
+    if (!tabsData || tabsData.length === 0) {
+        return;
     }
+
+    if (!defaultTab) {
+        const firstTab = tabsData[0];
+        defaultTab = {
+            id: firstTab.profile.id,
+            osMinorVersion: firstTab.profile.osMinorVersion || firstTab.newOsMinorVersion
+        };
+    }
+
+    return eventKey(defaultTab);
 };
 
 const TabbedRules = ({
-    tabsData, defaultProfileId, columns, level, handleSelect, ...rulesTableProps
+    tabsData, defaultTab, selectedRuleRefIds, setSelectedRuleRefIds, columns, level, ...rulesTableProps
 }) => {
-    return <RoutedTabs level={ level } defaultTab={ defaultTab(tabsData, defaultProfileId) }>
+    const handleSelect = (profile, newOsMinorVersion, profileSelectedRuleRefIds) => {
+        const filteredSelection = (selectedRuleRefIds || []).filter((selectionItem) =>
+            !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
+        );
+
+        const newItem = {
+            id: profile.id,
+            osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
+            ruleRefIds: profileSelectedRuleRefIds
+        };
+        setSelectedRuleRefIds([newItem, ...filteredSelection]);
+    };
+
+    return <RoutedTabs level={ level } defaultTab={ getDefaultTab(tabsData, defaultTab) }>
         {
-            tabsData?.map(({ profile, selectedRuleRefIds, newOsMinorVersion, systemCount }) => (
+            tabsData?.map(({ profile, newOsMinorVersion, systemCount }) => (
                 <Tab
-                    key={ eventKey(profile.id) }
-                    eventKey={ eventKey(profile.id) }
+                    key={ eventKey(profile, newOsMinorVersion) }
+                    eventKey={ eventKey(profile, newOsMinorVersion) }
                     title={
                         <span>
                             <span className='pf-u-pr-sm'>
@@ -40,10 +64,12 @@ const TabbedRules = ({
                             profile,
                             newOsMinorVersion,
                             columns,
-                            handleSelect,
                             rulesTableProps,
                             systemCount,
-                            selectedRuleRefIds: (selectedRuleRefIds || [])
+                            selectedRuleRefIds: selectedRuleRefIdsForTab(
+                                selectedRuleRefIds, profile, newOsMinorVersion
+                            ),
+                            handleSelect: setSelectedRuleRefIds ? handleSelect : undefined
                         } } />
                 </Tab>
             ))
@@ -53,18 +79,25 @@ const TabbedRules = ({
 
 TabbedRules.propTypes = {
     tabsData: propTypes.arrayOf(
-        propTypes.shape(
-            {
-                profile: propTypes.object.isRequired,
-                selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
-                newOsMinorVersion: propTypes.string,
-                systemCount: propTypes.number
-            }
-        )
+        propTypes.shape({
+            profile: propTypes.object.isRequired,
+            selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
+            newOsMinorVersion: propTypes.string,
+            systemCount: propTypes.number
+        })
     ).isRequired,
+    selectedRuleRefIds: propTypes.arrayOf(
+        propTypes.shape({
+            id: propTypes.string,
+            ruleRefIds: propTypes.arrayOf(propTypes.string)
+        })
+    ),
+    setSelectedRuleRefIds: propTypes.func,
     columns: propTypes.arrayOf(propTypes.object),
-    defaultProfileId: propTypes.string,
-    handleSelect: propTypes.func,
+    defaultTab: propTypes.shape({
+        id: propTypes.string,
+        osMinorVersion: propTypes.string
+    }),
     level: propTypes.number
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Alert, AlertActionLink, Text, TextContent } from '@patternfly/react-core';
-import { useSelector } from 'react-redux';
+import propTypes from 'prop-types';
 import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
-import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
     <React.Fragment>
@@ -40,49 +40,29 @@ PrependComponent.propTypes = {
     osMajorVersion: propTypes.string
 };
 
-const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
+const EditPolicySystemsTab = ({ policy: { osMajorVersion }, newRuleTabs, onSystemSelect, selectedSystems }) => {
     const { push, location } = useHistory();
-    const selectedSystemOsMinorVersions = useSelector(state => (
-        state?.entities?.selectedEntities?.map((entity) => (`${entity.osMinorVersion}`))
-    ));
-
-    const newOsMinorVersions = () => (
-        selectedSystemOsMinorVersions?.find((systemOsMinorVersion) => (
-            !policyOsMinorVersions.includes(systemOsMinorVersion)
-        ))
-    );
-
-    const columns = [{
-        key: 'display_name',
-        title: 'Name',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (displayName, _id, { name }) => (displayName || name)
-    }, {
-        key: 'osMinorVersion',
-        title: 'Operating system',
-        props: {
-            width: 40, isStatic: true
-        },
-        renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-    }];
 
     return (
         <React.Fragment>
             <InventoryTable
+                columns={[
+                    Columns.Name,
+                    Columns.OperatingSystem
+                ]}
                 showOsMinorVersionFilter={ [osMajorVersion] }
                 prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } />  }
                 emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } />  }
-                columns={ columns }
                 compact
                 showActions={ false }
                 query={ GET_SYSTEMS_WITHOUT_FAILED_RULES }
                 defaultFilter={ osMajorVersion && `os_major_version = ${osMajorVersion}` }
                 enableExport={ false }
                 remediationsEnabled={ false }
+                preselectedSystems={ selectedSystems }
+                onSelect={ onSystemSelect }
             />
-            {newOsMinorVersions() && <Alert
+            {newRuleTabs && <Alert
                 variant="info"
                 isInline
                 title="You selected a system that has a release version previously not included in this policy."
@@ -96,8 +76,10 @@ const EditPolicySystemsTab = ({ osMajorVersion, policyOsMinorVersions }) => {
 };
 
 EditPolicySystemsTab.propTypes = {
-    osMajorVersion: propTypes.string,
-    policyOsMinorVersions: propTypes.arrayOf(propTypes.number)
+    policy: propTypes.object,
+    newRuleTabs: propTypes.bool,
+    onSystemSelect: propTypes.func,
+    selectedSystems: propTypes.array
 };
 
 export default EditPolicySystemsTab;

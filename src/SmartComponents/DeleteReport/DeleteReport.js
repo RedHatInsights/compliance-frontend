@@ -8,7 +8,7 @@ import propTypes from 'prop-types';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { DELETE_REPORT } from 'Utilities/graphql/mutations';
+import { DELETE_REPORT } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
@@ -46,10 +46,12 @@ const DeleteReport = () => {
             isOpen
             variant={ ModalVariant.small }
             title='Delete report'
+            ouiaId="DeleteReportModal"
             onClose={ onClose }
             actions={[
                 <Button
                     key='destroy'
+                    ouiaId="DeleteReportButton"
                     aria-label="delete"
                     variant='danger'
                     onClick={() => deleteReport({
@@ -61,7 +63,7 @@ const DeleteReport = () => {
                     })}>
                     Delete report
                 </Button>,
-                <Button key='cancel' variant='secondary' onClick={ () => onClose() }>
+                <Button key='cancel' ouiaId="DeleteReportCancelButton" variant='secondary' onClick={ () => onClose() }>
                     Cancel
                 </Button>
             ]}>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
@@ -9,7 +8,7 @@ import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
-import usePolicy from './usePolicy';
+import { usePolicy } from 'Mutations';
 
 export const MULTIVERSION_QUERY = gql`
 query Profile($policyId: String!){
@@ -74,21 +73,16 @@ export const EditPolicy = ({ route }) => {
         variables: { policyId }
     });
     const policy = data?.profile;
-    const dispatch = useDispatch();
     const anchor = useAnchor();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
-    const [selectedHosts, setSelectedHosts] = useState();
+    const [selectedSystems, setSelectedSystems] = useState([]);
     const updatePolicy = usePolicy();
     const linkToBackground = useLinkToBackground('/scappolicies');
     const [isSaving, setIsSaving] = useState();
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
 
     const linkToBackgroundWithHash = () => {
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: { ids: [] }
-        });
         linkToBackground({ hash: anchor });
     };
 
@@ -99,7 +93,7 @@ export const EditPolicy = ({ route }) => {
         const updatedPolicyHostsAndRules = {
             ...updatedPolicy,
             selectedRuleRefIds,
-            hosts: selectedHosts
+            hosts: selectedSystems
         };
         updatePolicy(policy, updatedPolicyHostsAndRules).then(() => {
             setIsSaving(false);
@@ -115,6 +109,7 @@ export const EditPolicy = ({ route }) => {
         <Button
             isDisabled={ saveEnabled }
             key='save'
+            ouiaId="EditPolicySaveButton"
             variant='primary'
             spinnerAriaValueText='Saving'
             isLoading={ isSaving }
@@ -123,6 +118,7 @@ export const EditPolicy = ({ route }) => {
         </Button>,
         <Button
             key='cancel'
+            ouiaId="EditPolicyCancelButton"
             variant='link'
             onClick={ () => linkToBackgroundWithHash() }>
             Cancel
@@ -133,8 +129,9 @@ export const EditPolicy = ({ route }) => {
 
     return <Modal
         isOpen
-        style={ { height: '768px' } }
-        width={ 1220 }
+        position={ 'top' }
+        style={ { minHeight: '350px' } }
+        variant={ 'large' }
         title={ `Edit ${ policy ? policy.name : '' }` }
         onClose={ () => linkToBackgroundWithHash() }
         actions={ actions }>
@@ -146,8 +143,13 @@ export const EditPolicy = ({ route }) => {
             <StateViewPart stateKey="policy">
                 <EditPolicyForm
                     { ...{
-                        policy, updatedPolicy, setUpdatedPolicy,
-                        selectedRuleRefIds, setSelectedRuleRefIds, setSelectedHosts
+                        policy,
+                        updatedPolicy,
+                        setUpdatedPolicy,
+                        selectedRuleRefIds,
+                        setSelectedRuleRefIds,
+                        selectedSystems,
+                        setSelectedSystems
                     } } />
             </StateViewPart>
         </StateViewWithError>

@@ -1,37 +1,29 @@
 /* eslint-disable react/display-name */
-import React, { useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
+import React from 'react';
 import black300 from '@patternfly/react-tokens/dist/esm/global_palette_black_300';
 import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
 import blue300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
 import propTypes from 'prop-types';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-
 import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import { Breadcrumb, BreadcrumbItem, Button, Grid, GridItem, Text } from '@patternfly/react-core';
-
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
-
 import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import {
     BackgroundLink, BreadcrumbLinkItem, ReportDetailsContentLoader, ReportDetailsDescription,
     StateViewWithError, StateViewPart, UnsupportedSSGVersion, SubPageTitle
 } from 'PresentationalComponents';
-import Cells from '@/SmartComponents/SystemsTable/Cells';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
-import { systemName } from 'Store/Reducers/SystemStore';
-import { ComplianceScore as complianceScore } from 'PresentationalComponents';
+import * as Columns from '../SystemsTable/Columns';
 
 export const QUERY = gql`
 query Profile($policyId: String!){
@@ -67,7 +59,6 @@ export const ReportDetails = ({ route }) => {
     const { data, error, loading } = useQuery(QUERY, {
         variables: { policyId }
     });
-    const dispatch = useDispatch();
     let donutValues = [];
     let donutId = 'loading-donut';
     let chartColorScale;
@@ -98,58 +89,6 @@ export const ReportDetails = ({ route }) => {
                 (donutValues[0].y / (donutValues[0].y + donutValues[1].y)))) : 0;
     }
 
-    const columns = [{
-        key: 'display_name',
-        title: 'Name',
-        props: {
-            width: 30
-        },
-        renderFunc: systemName
-    }, {
-        key: 'ssgVersion',
-        title: 'SSG version',
-        props: {
-            width: 5
-        },
-        renderFunc: (profile, ...rest) => {
-            let realProfile = profile;
-            if (typeof profile === 'string') {
-                realProfile = rest[1];
-            }
-
-            return realProfile && <Cells.SSGVersion
-                supported={ realProfile.supported }
-                ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
-        }
-    }, {
-        key: 'rulesFailed',
-        title: 'Failed rules',
-        props: {
-            width: 5
-        },
-        renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
-    }, {
-        key: 'score',
-        title: 'Compliance score',
-        props: {
-            width: 5
-        },
-        renderFunc: (_score, _id, system) => complianceScore(system)
-    }, {
-        key: 'lastScanned',
-        title: 'Last scanned',
-        props: {
-            width: 10
-        },
-        renderFunc: (lastScanned) => (
-            (lastScanned instanceof Date) ?
-                <DateFormat date={Date.parse(lastScanned)} type='relative' />
-                : lastScanned
-        )
-    }];
-
-    useLayoutEffect(() => { dispatch({ type: 'SELECT_ENTITIES', payload: { ids: [] } }); }, []);
-
     useTitleEntity(route, policyName);
 
     return <StateViewWithError stateValues={ { error, data, loading } }>
@@ -159,7 +98,7 @@ export const ReportDetails = ({ route }) => {
         </StateViewPart>
         <StateViewPart stateKey='data'>
             <PageHeader>
-                <Breadcrumb>
+                <Breadcrumb ouiaId="ReportDetailsPathBreadcrumb">
                     <BreadcrumbLinkItem to='/'>
                         Compliance
                     </BreadcrumbLinkItem>
@@ -226,12 +165,21 @@ export const ReportDetails = ({ route }) => {
                     <GridItem span={12}>
                         <InventoryTable
                             showOsMinorVersionFilter={ [profile.majorOsVersion] }
+                            columns={[
+                                Columns.customName({
+                                    showLink: true,
+                                    showOsInfo: true
+                                }),
+                                Columns.SsgVersion,
+                                Columns.FailedRules,
+                                Columns.ComplianceScore,
+                                Columns.LastScanned
+                            ]}
                             query={GET_SYSTEMS}
                             showOnlySystemsWithTestResults
                             compliantFilter
                             defaultFilter={`with_results_for_policy_id = ${profile.id}`}
-                            policyId={profile.id}
-                            columns={columns} />
+                            policyId={profile.id} />
                     </GridItem>
                 </Grid>
             </Main>

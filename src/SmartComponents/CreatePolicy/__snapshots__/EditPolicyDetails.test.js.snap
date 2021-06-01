@@ -56,6 +56,7 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
     <FormGroup
       fieldId="businessObjective"
       label="Business objective"
+      labelIcon={<PolicyBusinessObjectiveTooltip />}
     >
       <Field
         aria-describedby="businessObjective"
@@ -79,7 +80,6 @@ exports[`EditPolicyDetails expect to render without error 1`] = `
       shouldError={[Function]}
       shouldValidate={[Function]}
       shouldWarn={[Function]}
-      showTitle={false}
       submitAsSideEffect={false}
       touchOnBlur={true}
       touchOnChange={false}

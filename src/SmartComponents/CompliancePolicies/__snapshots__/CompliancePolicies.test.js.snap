@@ -723,6 +723,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                 to="/scappolicies/new"
               >
                 <Button
+                  ouiaId="NewPolicyButton"
                   variant="primary"
                 >
                   Create new policy

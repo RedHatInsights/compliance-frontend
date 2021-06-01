@@ -77,7 +77,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           },
           Object {
             "profile": Object {
-              "id": "b71376fd-015e-4209-99af",
+              "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
               "osMinorVersion": "8",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -169,7 +169,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
                     "ssgVersion": "0.1.49",
                   },
                   Object {
-                    "id": "b71376fd-015e-4209-99af",
+                    "id": "b71376fd-015e-4209-99ac",
                     "name": "United States Government Configuration Baseline123",
                     "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                     "rules": Array [
@@ -195,7 +195,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
                     "ssgVersion": "0.1.45",
                   },
                   Object {
-                    "id": "b71376fd-015e-4209-99af",
+                    "id": "b71376fd-015e-4209-99ad",
                     "name": "United States Government Configuration Baseline123",
                     "osMinorVersion": "8",
                     "refId": "xccdf_org.ssgproject.content_profile_ospp123",

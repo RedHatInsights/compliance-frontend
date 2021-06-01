@@ -1,44 +1,27 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import propTypes from 'prop-types';
+import { NoSystemsTableWithWarning } from 'PresentationalComponents';
 import { InventoryTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
-import { Link } from 'react-router-dom';
-import Cells from '@/SmartComponents/SystemsTable/Cells';
+import * as Columns from '../SystemsTable/Columns';
 
 const PolicySystemsTab = ({ policy }) => (
     <InventoryTable
+        columns={[
+            Columns.customName({
+                showLink: true
+            }),
+            Columns.SsgVersion,
+            Columns.OperatingSystem
+        ]}
         showOsMinorVersionFilter={ [policy.majorOsVersion] }
         query={GET_SYSTEMS}
         policyId={ policy.id }
         defaultFilter={`policy_id = ${policy.id}`}
         showActions={ false }
         remediationsEnabled={ false }
-        columns={[{
-            key: 'display_name',
-            title: 'Name',
-            props: {
-                width: 40, isStatic: true
-            },
-            renderFunc: (name, id) => <Link to={{ pathname: `/systems/${id}` }}> {name} </Link>
-        }, {
-            key: 'ssgVersion',
-            title: 'SSG version',
-            renderFunc: (profile, ...rest) => {
-                let realProfile = profile;
-                if (typeof profile === 'string') {
-                    realProfile = rest[1];
-                }
-
-                return realProfile && <Cells.SSGVersion
-                    supported={ realProfile.supported }
-                    ssgVersion={ realProfile?.ssg_version || realProfile?.ssgVersion } />;
-            }
-        }, {
-            key: 'osMinorVersion',
-            title: 'Operating system',
-            renderFunc: (osMinorVersion, _id, { osMajorVersion }) => `RHEL ${osMajorVersion}.${osMinorVersion}`
-        }]}
+        noSystemsTable={ policy?.hosts?.length === 0 && <NoSystemsTableWithWarning /> }
         complianceThreshold={ policy.complianceThreshold } />
 );
 
@@ -46,7 +29,8 @@ PolicySystemsTab.propTypes = {
     policy: propTypes.shape({
         id: propTypes.string.isRequired,
         complianceThreshold: propTypes.number.isRequired,
-        majorOsVersion: propTypes.string.isRequired
+        majorOsVersion: propTypes.string.isRequired,
+        hosts: propTypes.array.isRequired
     }),
     systemTableProps: propTypes.object
 };
