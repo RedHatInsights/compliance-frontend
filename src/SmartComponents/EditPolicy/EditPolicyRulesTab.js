@@ -12,6 +12,7 @@ import {
     TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
 } from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 const PROFILES_QUERY = gql`
 query Profiles($filter: String!){
@@ -200,6 +201,7 @@ export const EditPolicyRulesTab = ({
                 </Text>
             </TextContent>
             <TabbedRules
+                columns={ [Columns.Name, Columns.Severity, Columns.Ansible] }
                 tabsData={ tabsData }
                 selectedRuleRefIds={ selectedRuleRefIds }
                 setSelectedRuleRefIds={ setSelectedRuleRefIds }

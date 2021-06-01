@@ -28,3 +28,17 @@ export const systemsWithRuleObjectsFailed = (systems) => (
         }
     ))
 );
+
+export const toRulesArrayWithProfile = (profilesWithRules) => (
+    profilesWithRules.flatMap((profileWithRules) => (
+        profileWithRules.rules.map((rule) => {
+            const identifier = rule.identifier && JSON.parse(rule.identifier);
+            return {
+                ...rule,
+                references: rule.references ? JSON.parse(rule.references) : [],
+                identifier: identifier && identifier.label ? identifier : null,
+                profile: profileWithRules.profile
+            };
+        })
+    ))
+);

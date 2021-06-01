@@ -1,0 +1,328 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableToolsTable expect to render without error 1`] = `
+<Fragment>
+  <PrimaryToolbar
+    activeFiltersConfig={
+      Object {
+        "filters": Array [],
+        "onDelete": [Function],
+      }
+    }
+    filterConfig={
+      Object {
+        "items": Array [],
+      }
+    }
+    pagination={
+      Object {
+        "itemCount": 30,
+        "onPerPageSelect": [Function],
+        "onSetPage": [Function],
+        "page": 1,
+        "perPage": 10,
+      }
+    }
+    toggleIsExpanded={[Function]}
+  />
+  <Table
+    borders={true}
+    canSelectAll={true}
+    canSortFavorites={true}
+    cells={
+      Array [
+        Object {
+          "renderFunc": [Function],
+          "sortByProperty": "name",
+          "title": "Name",
+        },
+        Object {
+          "sortByProperty": "description",
+          "title": "Description",
+        },
+        Object {
+          "renderFunc": [Function],
+          "sortByFunction": [Function],
+          "title": "Severity sorted by function",
+          "transforms": Array [
+            [Function],
+          ],
+        },
+        Object {
+          "renderFunc": [Function],
+          "sortByArray": Array [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+          ],
+          "sortByProperty": "severity",
+          "title": "Severity by Array",
+        },
+      ]
+    }
+    className=""
+    contentId="expanded-content"
+    dropdownDirection="down"
+    dropdownPosition="right"
+    expandId="expandable-toggle"
+    gridBreakPoint="grid-md"
+    isStickyHeader={false}
+    isTreeTable={false}
+    onSort={[Function]}
+    ouiaSafe={true}
+    role="grid"
+    rowLabeledBy="simple-node"
+    rows={
+      Array [
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #30",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "low",
+            },
+            Object {
+              "title": "low",
+            },
+          ],
+          "itemId": 30,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #2",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "low",
+            },
+            Object {
+              "title": "low",
+            },
+          ],
+          "itemId": 2,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #3",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "unknown",
+            },
+            Object {
+              "title": "unknown",
+            },
+          ],
+          "itemId": 3,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #4",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "high",
+            },
+            Object {
+              "title": "high",
+            },
+          ],
+          "itemId": 4,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #5",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "medium",
+            },
+            Object {
+              "title": "medium",
+            },
+          ],
+          "itemId": 5,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #6",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "low",
+            },
+            Object {
+              "title": "low",
+            },
+          ],
+          "itemId": 6,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #7",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "unknown",
+            },
+            Object {
+              "title": "unknown",
+            },
+          ],
+          "itemId": 7,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #8",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "high",
+            },
+            Object {
+              "title": "high",
+            },
+          ],
+          "itemId": 8,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #9",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "medium",
+            },
+            Object {
+              "title": "medium",
+            },
+          ],
+          "itemId": 9,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": "TEST ITEM #10",
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "low",
+            },
+            Object {
+              "title": "low",
+            },
+          ],
+          "itemId": 10,
+        },
+      ]
+    }
+    selectVariant="checkbox"
+    sortBy={
+      Object {
+        "direction": "desc",
+        "index": 0,
+      }
+    }
+    variant={null}
+  >
+    <TableHeader />
+    <Component />
+  </Table>
+  <TableToolbar
+    isFooter={true}
+  >
+    <Pagination
+      className=""
+      defaultToFullPage={false}
+      firstPage={1}
+      isCompact={false}
+      isDisabled={false}
+      isSticky={false}
+      itemCount={30}
+      itemsEnd={null}
+      itemsStart={null}
+      offset={0}
+      onFirstClick={[Function]}
+      onLastClick={[Function]}
+      onNextClick={[Function]}
+      onPageInput={[Function]}
+      onPerPageSelect={[Function]}
+      onPreviousClick={[Function]}
+      onSetPage={[Function]}
+      ouiaSafe={true}
+      page={1}
+      perPage={10}
+      perPageOptions={
+        Array [
+          Object {
+            "title": "10",
+            "value": 10,
+          },
+          Object {
+            "title": "20",
+            "value": 20,
+          },
+          Object {
+            "title": "50",
+            "value": 50,
+          },
+          Object {
+            "title": "100",
+            "value": 100,
+          },
+        ]
+      }
+      titles={
+        Object {
+          "currPage": "Current page",
+          "items": "",
+          "itemsPerPage": "Items per page",
+          "ofWord": "of",
+          "optionsToggle": "Items per page",
+          "page": "",
+          "paginationTitle": "Pagination",
+          "perPageSuffix": "per page",
+          "toFirstPage": "Go to first page",
+          "toLastPage": "Go to last page",
+          "toNextPage": "Go to next page",
+          "toPreviousPage": "Go to previous page",
+        }
+      }
+      toggleTemplate={[Function]}
+      variant="bottom"
+      widgetId="pagination-options-menu"
+    />
+  </TableToolbar>
+</Fragment>
+`;

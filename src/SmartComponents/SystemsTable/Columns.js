@@ -1,6 +1,6 @@
-import React from 'react';
 import { complianceScoreString } from 'PresentationalComponents';
 import { profilesRulesFailed } from 'Utilities/ruleHelpers';
+import { renderComponent } from 'Utilities/helpers';
 
 import {
     Name as NameCell, ComplianceScore as ComplianceScoreCell, DetailsLink as DetailsLinkCell,
@@ -8,11 +8,6 @@ import {
     SSGVersions as SsgVersionCell, complianceScoreData, lastScanned
 } from './Cells';
 
-const renderComponent = (Component, props) => (
-    (_data, _id, entity) => ( // eslint-disable-line react/display-name
-        <Component { ...entity } { ...props } />
-    )
-);
 const disableSorting = { isStatic: true };
 
 export const Name = {
