@@ -30,7 +30,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   hasNoBodyWrapper={false}
   isOpen={true}
   onClose={[Function]}
-  ouiaId="DeletePolicyModal"
   ouiaSafe={true}
   showClose={true}
   title={

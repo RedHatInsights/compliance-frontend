@@ -160,7 +160,6 @@ exports[`PolicyDetails expect to render without error 1`] = `
             to="/scappolicies/1/edit"
           >
             <Button
-              ouiaId="EditPolicyButton"
               variant="secondary"
             >
               Edit policy
@@ -172,7 +171,6 @@ exports[`PolicyDetails expect to render without error 1`] = `
         aria-label="Policy Tabs"
         defaultTab="details"
         level={0}
-        ouiaId="PolicyDetailsTabs"
       >
         <Tab
           eventKey="details"

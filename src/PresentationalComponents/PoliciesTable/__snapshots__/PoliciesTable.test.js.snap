@@ -32,7 +32,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         "itemCount": 13,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 2,
         "perPage": 10,
       }
@@ -353,7 +352,6 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
         "itemCount": 13,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 1,
         "perPage": 10,
       }
@@ -1143,7 +1141,6 @@ exports[`PoliciesTable Pagination and search should show only matching results a
         "itemCount": 1,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 1,
         "perPage": 10,
       }
@@ -1370,7 +1367,6 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         "itemCount": 13,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 1,
         "perPage": 10,
       }
@@ -2181,7 +2177,6 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         "itemCount": 0,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 1,
         "perPage": 10,
       }
@@ -2371,7 +2366,6 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "itemCount": 13,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
-        "ouiaId": "PoliciesCompactPagination",
         "page": 1,
         "perPage": 10,
       }
