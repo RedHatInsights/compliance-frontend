@@ -65,7 +65,7 @@ const useFilterConfig = (initialConfig, arrayToFilter) => {
         filtered: filteredArray,
         activeFilters,
         activeFilterValues,
-        buildFilterString: () => filterConfigBuilder.getFilterBuilder().buildFilterString(activeFilters)
+        filterString: filterConfigBuilder.getFilterBuilder().buildFilterString(activeFilters)
     };
 };
 
