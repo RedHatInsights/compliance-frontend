@@ -29,3 +29,5 @@ export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
 export { default as OperatingSystemBadge } from './OperatingSystemBadge/OperatingSystemBadge';
 export { TabbedRules } from './TabbedRules';
 export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarning/NoSystemsTableWithWarning';
+export { default as RulesTable } from './RulesTable/RulesTable';
+export { default as ConditionalLink } from './ConditionalLink/ConditionalLink';

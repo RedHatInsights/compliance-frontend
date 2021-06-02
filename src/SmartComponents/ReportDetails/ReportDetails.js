@@ -118,7 +118,7 @@ export const ReportDetails = ({ route }) => {
                         <BackgroundLink
                             state={ { profile } }
                             to={ `/reports/${ profile.id }/delete` }>
-                            <Button variant='link' isInline>Delete report</Button>
+                            <Button variant='link' ouiaId="ReportDetailsDeleteReportLink" isInline>Delete report</Button>
                         </BackgroundLink>
                     </GridItem>
                 </Grid>

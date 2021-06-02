@@ -8,7 +8,7 @@ import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => (
     <React.Fragment>
-        <Alert isInline variant='info' title='Rule editing is now available.'>
+        <Alert isInline ouiaId='RuleEditingAvailableAlert' variant='info' title='Rule editing is now available.'>
             SCAP policies created before April 19th, 2021 with rule editing will use the full default
             set of rules for the policy with the most accurate benchmark for systems within the policy.
             Click the &quot;Edit rules&quot; or &quot;Edit policy&quot; button to edit rules.

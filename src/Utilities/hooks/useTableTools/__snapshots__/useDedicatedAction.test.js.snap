@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useDedicatedAction returns a dedicated action toolbar config 1`] = `
+Object {
+  "all": Array [
+    Object {
+      "toolbarProps": Object {
+        "dedicatedAction": Array [
+          <dedicatedAction />,
+          <Unknown />,
+        ],
+      },
+    },
+  ],
+  "current": Object {
+    "toolbarProps": Object {
+      "dedicatedAction": Array [
+        <dedicatedAction />,
+        <Unknown />,
+      ],
+    },
+  },
+  "error": undefined,
+}
+`;

@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useFilterConfig returns a filter config configuration 1`] = `
+Object {
+  "activeFilters": Object {
+    "chackboxfilter": Array [],
+    "hiddenfilter": false,
+    "invalidfilter": undefined,
+    "name": "",
+    "radiofilter": undefined,
+  },
+  "addConfigItem": [Function],
+  "filter": [Function],
+  "filterConfigBuilder": FilterConfigBuilder {
+    "addConfigItem": [Function],
+    "applyFilterToObjectArray": [Function],
+    "buildConfiguration": [Function],
+    "categoryLabelForValue": [Function],
+    "chipBuilder": ChipBuilder {
+      "checkboxFilterChip": [Function],
+      "chipFor": [Function],
+      "chipsFor": [Function],
+      "config": Array [],
+      "filterConfig": [Circular],
+      "radioFilterChip": [Function],
+      "textFilterChip": [Function],
+    },
+    "config": Array [
+      Object {
+        "filter": [Function],
+        "label": "Name",
+        "type": "text",
+      },
+      Object {
+        "filter": [Function],
+        "label": "Hidden filter",
+        "type": "hidden",
+      },
+      Object {
+        "filter": [Function],
+        "items": Array [
+          Object {
+            "label": "OPTION 1",
+            "value": "OPTION 1",
+          },
+          Object {
+            "label": "OPTION 2",
+            "value": "OPTION 2",
+          },
+          Object {
+            "label": "OPTION 3",
+            "value": "OPTION 3",
+          },
+        ],
+        "label": "Chackbox Filter",
+        "type": "checkbox",
+      },
+      Object {
+        "filter": [Function],
+        "items": Array [
+          Object {
+            "label": "OPTION 1",
+            "value": "OPTION 1",
+          },
+          Object {
+            "label": "OPTION 2",
+            "value": "OPTION 2",
+          },
+          Object {
+            "label": "OPTION 3",
+            "value": "OPTION 3",
+          },
+        ],
+        "label": "Radio Filter",
+        "type": "radio",
+      },
+      Object {
+        "filter": [Function],
+        "items": Array [
+          Object {
+            "label": "OPTION 1",
+            "value": "OPTION 1",
+          },
+          Object {
+            "label": "OPTION 2",
+            "value": "OPTION 2",
+          },
+          Object {
+            "label": "OPTION 3",
+            "value": "OPTION 3",
+          },
+        ],
+        "label": "Invalid Filter",
+        "type": "UNKNOWNTYPE",
+      },
+    ],
+    "defaultValueForFilter": [Function],
+    "filterBuilder": null,
+    "getCategoryForLabel": [Function],
+    "getChipBuilder": [Function],
+    "getFilterBuilder": [Function],
+    "getItemByLabelOrValue": [Function],
+    "initialDefaultState": [Function],
+    "labelForValue": [Function],
+    "removeFilterFromFilterState": [Function],
+    "removeFilterWithChip": [Function],
+    "toCheckboxFilterConfig": [Function],
+    "toFilterConfigItem": [Function],
+    "toRadioFilterConfig": [Function],
+    "toTextFilterConfig": [Function],
+    "valueForLabel": [Function],
+  },
+  "selectedFilterToolbarProps": undefined,
+  "setActiveFilter": [Function],
+  "toolbarProps": Object {
+    "activeFiltersConfig": Object {
+      "filters": Array [],
+      "onDelete": [Function],
+    },
+    "filterConfig": Object {
+      "items": Array [
+        Object {
+          "filterValues": Object {
+            "onChange": [Function],
+            "value": "",
+          },
+          "id": "name",
+          "label": "Name",
+          "placeholder": "Filter by name",
+          "type": "text",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "OPTION 1",
+                "value": "OPTION 1",
+              },
+              Object {
+                "label": "OPTION 2",
+                "value": "OPTION 2",
+              },
+              Object {
+                "label": "OPTION 3",
+                "value": "OPTION 3",
+              },
+            ],
+            "onChange": [Function],
+            "value": Array [],
+          },
+          "id": "chackboxfilter",
+          "label": "Chackbox Filter",
+          "placeholder": "Filter by chackbox filter",
+          "type": "checkbox",
+        },
+        Object {
+          "filterValues": Object {
+            "items": Array [
+              Object {
+                "label": "OPTION 1",
+                "value": "OPTION 1",
+              },
+              Object {
+                "label": "OPTION 2",
+                "value": "OPTION 2",
+              },
+              Object {
+                "label": "OPTION 3",
+                "value": "OPTION 3",
+              },
+            ],
+            "onChange": [Function],
+            "value": undefined,
+          },
+          "id": "radiofilter",
+          "label": "Radio Filter",
+          "placeholder": "Filter by radio filter",
+          "type": "radio",
+        },
+      ],
+    },
+  },
+}
+`;

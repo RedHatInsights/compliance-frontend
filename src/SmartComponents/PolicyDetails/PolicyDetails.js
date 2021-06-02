@@ -135,11 +135,11 @@ export const PolicyDetails = ({ route }) => {
                                 state={ { policy } }
                                 hash={ anchor }
                                 backgroundLocation={ { hash: 'details' } }>
-                                <Button variant='secondary'>Edit policy</Button>
+                                <Button variant='secondary' ouiaId="EditPolicyButton">Edit policy</Button>
                             </BackgroundLink>
                         </GridItem>
                     </Grid>
-                    <RoutedTabs aria-label="Policy Tabs" defaultTab={ defaultTab }>
+                    <RoutedTabs aria-label="Policy Tabs" ouiaId="PolicyDetailsTabs" defaultTab={ defaultTab }>
                         <Tab title='Details' id='policy-details' eventKey='details' />
                         <Tab title='Rules' id='policy-rules' eventKey='rules' />
                         <Tab title='Systems' id='policy-systems' eventKey='systems' />

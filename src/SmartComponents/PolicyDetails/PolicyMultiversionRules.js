@@ -1,13 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { PageSection, PageSectionVariants } from '@patternfly/react-core';
-import {
-    selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import { TabbedRules } from 'PresentationalComponents';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 import { sortingByProp } from 'Utilities/helpers';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 const PolicyMultiversionRules = ({ policy }) => {
     const { hosts, policy: { profiles } } = policy;
@@ -25,7 +23,7 @@ const PolicyMultiversionRules = ({ policy }) => {
         <PageSection variant={ PageSectionVariants.light }>
             <TabbedRules
                 tabsData={ tabsData }
-                columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
+                columns={ [Columns.Name, Columns.Severity, Columns.Ansible] }
                 level={ 1 }
                 toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> } />
         </PageSection>

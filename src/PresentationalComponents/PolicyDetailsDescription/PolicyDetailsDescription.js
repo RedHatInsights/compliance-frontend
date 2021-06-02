@@ -17,7 +17,7 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
 
 const PolicyDetailsDescription = ({ policy }) => (
-    <Card>
+    <Card ouiaId="PolicyDetailsCard">
         <CardHeader>
             <Text style={ { fontSize: 20 } }>
                 <b>Policy details</b>

@@ -14,7 +14,7 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
                 state={ { policy } }
                 hash={ anchor }
                 backgroundLocation={ { hash: anchor } }>
-                <Button variant='primary'>Edit rules</Button>
+                <Button variant='primary' ouiaId='EditRulesButton'>Edit rules</Button>
             </BackgroundLink>
         </ToolbarItem>
     );

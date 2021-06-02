@@ -1,8 +1,5 @@
 import React, { useLayoutEffect } from 'react';
 import { propTypes as reduxFormPropTypes, formValueSelector, reduxForm } from 'redux-form';
-import {
-    selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
@@ -18,6 +15,7 @@ import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import {
     TabbedRules, profilesWithRulesToSelection, tabsDataToOsMinorMap, extendProfilesByOsMinor
 } from 'PresentationalComponents/TabbedRules';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 const PROFILES_QUERY = gql`
 query Profiles($filter: String!){
@@ -85,7 +83,7 @@ const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) => (
 );
 
 export const EditPolicyProfilesRules = ({ policy, selectedRuleRefIds, change, osMajorVersion, osMinorVersionCounts }) => {
-    const columns = selectRulesTableColumns(['Name', 'Severity', 'Ansible']);
+    const columns = [Columns.Name, Columns.Severity, Columns.Ansible];
     const osMinorVersions = osMinorVersionCounts.map((i) => (i.osMinorVersion)).sort();
     const benchmarkSearch = `os_major_version = ${ osMajorVersion } ` +
         `and latest_supported_os_minor_version ^ "${ osMinorVersions.join(',') }"`;

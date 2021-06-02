@@ -52,42 +52,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       handleSelect={[Function]}
       profile={
         Object {
@@ -169,42 +133,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       handleSelect={[Function]}
       newOsMinorVersion="99"
       profile={
@@ -286,42 +214,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       handleSelect={[Function]}
       profile={
         Object {
@@ -411,42 +303,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99af",
@@ -527,42 +383,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       newOsMinorVersion="99"
       profile={
         Object {
@@ -643,42 +463,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ad",
@@ -767,42 +551,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99af",
@@ -883,42 +631,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       newOsMinorVersion="99"
       profile={
         Object {
@@ -999,42 +711,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ad",
@@ -1123,42 +799,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99af",
@@ -1239,42 +879,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       newOsMinorVersion="99"
       profile={
         Object {
@@ -1359,42 +963,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     }
   >
     <ProfileTabContent
-      columns={
-        Array [
-          Object {
-            "title": "Name",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-          Object {
-            "title": "Severity",
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-          Object {
-            "original": "Ansible",
-            "props": Object {
-              "property": "ansible",
-              "tooltip": "Ansible",
-            },
-            "title": <React.Fragment>
-              <AnsibeTowerIcon
-                color="currentColor"
-                noVerticalAlign={false}
-                size="sm"
-              />
-               Ansible
-            </React.Fragment>,
-            "transforms": Array [
-              [Function],
-              [Function],
-            ],
-          },
-        ]
-      }
       profile={
         Object {
           "id": "b71376fd-015e-4209-99ad",
