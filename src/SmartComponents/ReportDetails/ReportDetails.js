@@ -133,6 +133,7 @@ export const ReportDetails = ({ route }) => {
                                     themeVariant={ChartThemeVariant.light}
                                     colorScale={chartColorScale}
                                     style={{ fontSize: 20 }}
+                                    constrainToVisibleArea={ true }
                                     innerRadius={88}
                                     width={462}
                                     legendPosition='right'
