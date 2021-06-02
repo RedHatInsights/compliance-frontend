@@ -156,6 +156,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "#519de9",
                   ]
                 }
+                constrainToVisibleArea={true}
                 data={
                   Array [
                     Object {
@@ -994,6 +995,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "#519de9",
                   ]
                 }
+                constrainToVisibleArea={true}
                 data={
                   Array [
                     Object {
