@@ -15,8 +15,9 @@ RUN dnf -y --disableplugin=subscription-manager module enable nodejs:10 && \
        make gcc-c++ git && \
     dnf --disableplugin=subscription-manager clean all
 
+RUN npm install -g npm@latest
+
 RUN npm install
-RUN npm rebuild node-sass
 
 EXPOSE 8002
 
