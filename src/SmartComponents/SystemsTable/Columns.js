@@ -86,7 +86,7 @@ export const ComplianceScore = {
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
-        complianceScoreString(complianceScoreData(testResultProfiles))
+        complianceScoreString(complianceScoreData(testResultProfiles)).trim()
     ),
     renderFunc: renderComponent(ComplianceScoreCell)
 };

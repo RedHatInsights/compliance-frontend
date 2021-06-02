@@ -4,14 +4,14 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 // eslint-disable-next-line max-len
 import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
-import { exportItems } from 'Utilities/Export';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad } from './constants';
 import {
-    useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities, useOnSelect
+    useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities, useOnSelect,
+    useSystemsExport, useSystemsFilter
 } from './hooks';
 
 export const InventoryTable = ({
@@ -50,7 +50,7 @@ export const InventoryTable = ({
     const selectedCount = selectedSystems.length;
 
     const osMinorVersionFilter = useOsMinorVersionFilter(showOsMinorVersionFilter);
-    const { conditionalFilter, activeFilters, buildFilterString, activeFilterValues } = useFilterConfig([
+    const { conditionalFilter, activeFilters, filterString, activeFilterValues } = useFilterConfig([
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
@@ -71,10 +71,24 @@ export const InventoryTable = ({
         }
     };
 
-    const fetchSystems = useFetchSystems(
-        query, policyId, buildFilterString, showOnlySystemsWithTestResults, defaultFilter, onComplete
-    );
+    const systemsFilter = useSystemsFilter(filterString, showOnlySystemsWithTestResults, defaultFilter);
+    const fetchSystems = useFetchSystems({
+        query,
+        onComplete,
+        variables: {
+            filter: systemsFilter,
+            ...policyId && { policyId }
+        }
+    });
     const getEntities = useGetEntities(fetchSystems, { selected: selectedSystems });
+    const exportConfig = useSystemsExport({
+        columns,
+        filter: systemsFilter,
+        policyId,
+        query,
+        selected: selectedSystems.map((i) => (i.id)),
+        total
+    });
 
     return <StateView stateValues={{ error, noError: error === undefined && !isEmpty, empty: isEmpty }}>
         <StateViewPart stateKey='error'>
@@ -125,12 +139,7 @@ export const InventoryTable = ({
                             selectedRules={ [] } />
                     }
                 }}
-                {...enableExport && {
-                    exportConfig: {
-                        isDisabled: total === 0 && selectedCount === 0,
-                        onSelect: (_, format) => exportItems((selectedCount === 0 ? items : selectedSystems), columns, format)
-                    }
-                }}
+                {...enableExport && { exportConfig }}
                 {...showActions && {
                     actions: [{
                         title: 'View in inventory',

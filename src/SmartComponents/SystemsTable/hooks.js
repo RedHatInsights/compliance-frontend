@@ -5,6 +5,7 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
 import useCollection from 'Utilities/hooks/api/useCollection';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter } from './constants';
+import useExport from 'Utilities/hooks/useTableTools/useExport';
 
 const groupByMajorVersion = (versions = [], showFilter) => {
     const showVersion = (version) => {
@@ -35,18 +36,26 @@ export const useOsMinorVersionFilter = (showFilter) => {
     return showFilter ? osMinorVersionFilter(groupByMajorVersion(supportedSsgs?.collection, showFilter)) : [];
 };
 
-export const useFetchSystems = (
-    query, policyId, buildFilterString, showOnlySystemsWithTestResults, defaultFilter, onComplete
+export const useSystemsFilter = (
+    filterString, showOnlySystemsWithTestResults, defaultFilter
 ) => {
-    const client = useApolloClient();
-    const filterString = buildFilterString();
     const combindedFilter = [
         ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
         ...filterString?.length > 0 ? [filterString] : []
     ].join(' and ');
     const filter = defaultFilter ?
         `(${ defaultFilter })` +
-        `${ combindedFilter ? `and (${ combindedFilter })` : '' })` : combindedFilter;
+        (combindedFilter ? ` and (${ combindedFilter })` : '') : combindedFilter;
+
+    return filter;
+};
+
+export const useFetchSystems = ({
+    query,
+    onComplete,
+    variables = {}
+}) => {
+    const client = useApolloClient();
 
     return (perPage, page) => (
         client.query({
@@ -54,10 +63,9 @@ export const useFetchSystems = (
             fetchResults: true,
             fetchPolicy: 'no-cache',
             variables: {
-                filter,
                 perPage,
                 page,
-                ...policyId && { policyId }
+                ...variables
             }
         }).then(({ data }) => {
             const systems = data?.systems?.edges?.map((e) => e.node) || [];
@@ -179,4 +187,56 @@ export const useInventoryUtilities = (inventory, selectedSystems, activeFilters)
     useEffect(() => {
         debounceResetPage();
     }, [activeFilters]);
+};
+
+const toIdFilter = (ids) => (
+    (ids?.length > 0) ?
+        ids.map((id) => (
+            `id = ${ id }`
+        )).join(' or ') : undefined
+);
+
+export const useSystemsExport = ({
+    columns, filter, policyId, query, selected, total
+}) => {
+    const selectionFilter = selected ? toIdFilter(selected) : undefined;
+    const fetchSystems = useFetchSystems({
+        query,
+        variables: {
+            filter: selectionFilter ?
+                `${ filter } and (${ selectionFilter })` : filter,
+            ...policyId && { policyId }
+        }
+    });
+
+    const fetchBatched = (total, filter) => {
+        const BATCH_SIZE = 100;
+        const pages = Math.floor(total / BATCH_SIZE) + 1;
+        return Promise.all([...new Array(pages)].map((_, pageIdx) => (
+            fetchSystems(BATCH_SIZE, pageIdx + 1, filter)
+        )));
+    };
+
+    const selectedFilter = () => {
+        if (selected?.length > 0) {
+            return selected.map((id) => (
+                `id = ${ id }`
+            )).join(' or ');
+        }
+    };
+
+    const exporter = async () => {
+        const fetchedItems = await fetchBatched(total, selectedFilter());
+        return fetchedItems.flatMap((result) => (
+            result.entities
+        ));
+    };
+
+    const { toolbarProps: { exportConfig } } = useExport({
+        exporter,
+        columns,
+        isDisabled: total === 0
+    });
+
+    return exportConfig;
 };

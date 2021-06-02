@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useSystemsExport returns a export configuration 1`] = `
+Object {
+  "isDisabled": false,
+  "onSelect": [Function],
+}
+`;
+
+exports[`useSystemsExport returns a export with isDisabled true on total 0  1`] = `
+Object {
+  "isDisabled": true,
+  "onSelect": [Function],
+}
+`;
+
+exports[`useSystemsExport returns a export with isDisabled true on total 0  2`] = `
+Object {
+  "isDisabled": false,
+  "onSelect": [Function],
+}
+`;
+
+exports[`useSystemsFilter returns a filter string 1`] = `"(default = \\"filter\\") and (has_test_results = true and name = \\"Name\\")"`;
