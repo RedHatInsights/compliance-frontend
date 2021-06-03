@@ -5,7 +5,6 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
   columns={
     Array [
       Object {
-        "exportKey": "name",
         "props": Object {
           "isStatic": true,
           "showLink": true,
@@ -559,7 +558,6 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   columns={
     Array [
       Object {
-        "exportKey": "name",
         "props": Object {
           "isStatic": true,
           "showLink": true,

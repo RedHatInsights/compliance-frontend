@@ -10,5 +10,5 @@ export default (count) => {
             name: 'TEST ITEM #' + currentCount,
             description: 'DESCRIPTION'
         };
-    });
+    }).sort();
 };

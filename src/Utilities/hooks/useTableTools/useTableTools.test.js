@@ -4,7 +4,7 @@ import items from './__fixtures__/items';
 import columns from './__fixtures__/columns';
 
 describe('useTableTools', () => {
-    const exampleItems = items(30).sort((item) => (item.name));
+    const exampleItems = items(30);
     const defaultArguments = [exampleItems, columns];
 
     it('returns a tableProps and toolbarProps', () => {
