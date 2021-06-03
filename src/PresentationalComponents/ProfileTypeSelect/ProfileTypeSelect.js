@@ -18,7 +18,7 @@ const InUseProfileLabel = () => (
         content="A policy of this type is already in use.
         Only one policy per policy type can be created for a major release of RHEL."
     >
-        <Label style={ { lineHeight: '1.5em' } }>In use</Label>
+        <Label color="orange" style={ { lineHeight: '1.5em' } }>In use</Label>
     </Tooltip>
 );
 
