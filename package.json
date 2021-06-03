@@ -52,7 +52,7 @@
       "src/**/*.{js,jsx}",
       "!src/**/stories/*",
       "!src/{App,Routes,entry,entry-dev}.js",
-      "!src/__fixtures__/*.js",
+      "!src/**/__fixtures__/*.js",
       "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js",
       "!src/Utilities/{asyncComponent,ReducerRegistry,Dispatcher}.js"
     ],
