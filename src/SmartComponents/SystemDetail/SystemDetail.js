@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
-import SystemRulesTable, { columns } from '../../PresentationalComponents/SystemRulesTable';
+import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from '../../PresentationalComponents/ComplianceEmptyState';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -54,7 +54,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
     <React.Fragment>
         <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
         <br/>
-        <SystemRulesTable
+        <RulesTable
             hidePassed={ hidePassed }
             sortBy={{
                 index: 4,
@@ -65,7 +65,6 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
                 ...system,
                 supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
             } }
-            columns={ columns }
             profileRules={ system?.testResultProfiles.map(profile => ({
                 system,
                 profile,

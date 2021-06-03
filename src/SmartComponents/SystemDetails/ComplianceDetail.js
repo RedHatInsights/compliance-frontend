@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
-import SystemRulesTable, { columns } from '../../PresentationalComponents/SystemRulesTable';
+import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from '../../PresentationalComponents/ComplianceEmptyState';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -50,30 +50,32 @@ query System($systemId: String!){
 }
 `;
 
-const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
-    <React.Fragment>
-        <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
-        <br/>
-        <SystemRulesTable
-            hidePassed={ hidePassed }
-            sortBy={{
-                index: 4,
-                direction: 'asc',
-                property: 'severity'
-            }}
-            system={ {
-                ...system,
-                supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
-            } }
-            columns={ columns }
-            profileRules={ system?.testResultProfiles.map(profile => ({
-                system,
-                profile,
-                rules: profile.rules
-            })) }
-            loading={ loading } />
-    </React.Fragment>
-);
+const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
+    console.log(hidePassed, 'this is hidePassed!!!!');
+    return (
+        <React.Fragment>
+            <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
+            <br/>
+            <RulesTable
+                hidePassed={ hidePassed }
+                sortBy={{
+                    index: 4,
+                    direction: 'asc',
+                    property: 'severity'
+                }}
+                system={ {
+                    ...system,
+                    supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
+                } }
+                profileRules={ system?.testResultProfiles.map(profile => ({
+                    system,
+                    profile,
+                    rules: profile.rules
+                })) }
+                loading={ loading } />
+        </React.Fragment>
+    );
+};
 
 SystemQuery.propTypes = {
     data: propTypes.shape({

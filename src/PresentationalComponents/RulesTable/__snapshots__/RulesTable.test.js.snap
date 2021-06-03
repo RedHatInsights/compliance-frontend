@@ -484,9 +484,6 @@ exports[`RulesTable expect to render without error 1`] = `
   }
   filters={
     Object {
-      "activeFilters": Object {
-        "passed": undefined,
-      },
       "filterConfig": Array [
         Object {
           "filter": [Function],

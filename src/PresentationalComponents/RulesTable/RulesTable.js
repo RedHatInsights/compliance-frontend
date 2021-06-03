@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 // eslint-disable-next-line
-import ComplianceRemediationButton from '../../PresentationalComponents/ComplianceRemediationButton';
+import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
@@ -60,9 +60,9 @@ const RulesTable = ({
                 policies,
                 remediationAvailableFilter
             }),
-            activeFilters: {
-                passed: hidePassed ? 'failed' : undefined
-            }
+            ...hidePassed && { activeFilters: {
+                passed: ['failed']
+            } }
         }}
         options={{
             ...options,

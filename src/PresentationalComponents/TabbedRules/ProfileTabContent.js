@@ -8,6 +8,7 @@ import {
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
+import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import OsVersionText from './OsVersionText';
 
 const ProfileSystemCount = ({ count = 0 }) => (
