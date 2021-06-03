@@ -36,7 +36,7 @@ export const csvForItems = ({ items, columns }) => {
     const header = columns.map((column) => (column.title)).join(CSV_DELIMITER);
     const csvRows = [header, ...items.map((row) => (
         columns.map((column) => (
-            textForCell(row, column)
+            `"${ textForCell(row, column) }"`
         )).join(CSV_DELIMITER)
     ))];
 
