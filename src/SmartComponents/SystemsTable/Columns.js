@@ -10,14 +10,19 @@ import {
 
 const disableSorting = { isStatic: true };
 
+const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
+    `RHEL ${osMajorVersion}.${osMinorVersion}`
+);
+
 export const Name = {
     title: 'Name',
     props: {
         width: 40,
         ...disableSorting
     },
-    exportKey: 'name',
-    renderExport: (name) => (String(name)),
+    renderExport: (system) => (
+        `${ system.name } (${ operatingSystemString(system) })`
+    ),
     renderFunc: renderComponent(NameCell)
 };
 
@@ -103,10 +108,6 @@ export const LastScanned = {
     ),
     renderFunc: renderComponent(LastScannedCell)
 };
-
-const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
-    `RHEL ${osMajorVersion}.${osMinorVersion}`
-);
 
 export const OperatingSystem  = {
     title: 'Operating system',

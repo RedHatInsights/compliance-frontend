@@ -6,7 +6,6 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
     columns={
       Array [
         Object {
-          "exportKey": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,
@@ -521,7 +520,6 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     columns={
       Array [
         Object {
-          "exportKey": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,

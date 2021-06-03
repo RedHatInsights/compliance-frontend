@@ -264,7 +264,6 @@ exports[`ReportDetails expect to render without error 1`] = `
             columns={
               Array [
                 Object {
-                  "exportKey": "name",
                   "props": Object {
                     "isStatic": true,
                     "showLink": true,
@@ -1103,7 +1102,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             columns={
               Array [
                 Object {
-                  "exportKey": "name",
                   "props": Object {
                     "isStatic": true,
                     "showLink": true,
