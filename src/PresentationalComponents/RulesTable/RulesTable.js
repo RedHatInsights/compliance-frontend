@@ -24,7 +24,8 @@ const RulesTable = ({
     selectedFilter = false,
     handleSelect,
     selectedRefIds = [],
-    hidePassed = false
+    hidePassed = false,
+    ...rulesTableProps
 }) => {
     const rules = toRulesArrayWithProfile(profileRules);
     const showPassFailFilter = (columns.filter((c) => (c.title === 'Passed')).length > 0);
@@ -67,7 +68,8 @@ const RulesTable = ({
                     }] }
                     selectedRules={ (selectedRules || []).filter((rule) => (rule.remediationAvailable)) } />
             )
-        }} />;
+        }}
+        { ...rulesTableProps } />;
 };
 
 RulesTable.propTypes = {
