@@ -25,7 +25,9 @@ const PolicyMultiversionRules = ({ policy }) => {
                 tabsData={ tabsData }
                 columns={ [Columns.Name, Columns.Severity, Columns.Ansible] }
                 level={ 1 }
-                toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> } />
+                options={{
+                    dedicatedAction: () => (<EditRulesButtonToolbarItem policy={ policy } />) // eslint-disable-line
+                }} />
         </PageSection>
     </React.Fragment>;
 };

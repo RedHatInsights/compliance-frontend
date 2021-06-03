@@ -1,9 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Alert, Text, TextVariants, PageSection, PageSectionVariants } from '@patternfly/react-core';
-import SystemRulesTable, {
-    selectColumns as selectRulesTableColumns
-} from '@redhat-cloud-services/frontend-components-inventory-compliance/SystemRulesTable';
+import { RulesTable } from 'PresentationalComponents';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => (
@@ -21,15 +21,17 @@ const PolicyRulesTab = ({ loading, policy }) => (
                 those rules will be different and can be viewed on the systems details page.
             </Text>
         </PageSection>
-        <SystemRulesTable
+        <RulesTable
             remediationsEnabled={false}
-            columns={ selectRulesTableColumns(['Name', 'Severity', 'Ansible']) }
+            columns={ [Columns.Name, Columns.Severity, Columns.Ansible] }
             loading={ loading }
             profileRules={[{
                 profile: { refId: policy.refId, name: policy.name },
                 rules: policy.rules
             }]}
-            toolbarItems={ <EditRulesButtonToolbarItem policy={ policy } /> }
+            options={{
+                dedicatedAction: () => (<EditRulesButtonToolbarItem policy={ policy } />) // eslint-disable-line
+            }}
         />
     </React.Fragment>
 );
