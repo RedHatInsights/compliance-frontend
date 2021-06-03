@@ -217,13 +217,9 @@ export const useSystemsExport = ({
         )));
     };
 
-    const selectedFilter = () => {
-        if (selected?.length > 0) {
-            return selected.map((id) => (
-                `id = ${ id }`
-            )).join(' or ');
-        }
-    };
+    const selectedFilter = () => (
+        selected?.length > 0 ? toIdFilter(selected) : undefined
+    );
 
     const exporter = async () => {
         const fetchedItems = await fetchBatched(total, selectedFilter());
