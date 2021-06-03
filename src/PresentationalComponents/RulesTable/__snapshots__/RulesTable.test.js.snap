@@ -57,9 +57,6 @@ exports[`RulesTable expect to pass on options 1`] = `
   }
   filters={
     Object {
-      "activeFilters": Object {
-        "passed": undefined,
-      },
       "filterConfig": Array [
         Object {
           "filter": [Function],

@@ -6,9 +6,8 @@ import {
     Text, TextVariants, TextContent, Grid, Spinner, Badge, Popover
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink } from 'PresentationalComponents';
+import { StateViewWithError, StateViewPart, SupportedSSGVersionsLink, RulesTable } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
-import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import OsVersionText from './OsVersionText';
 
 const ProfileSystemCount = ({ count = 0 }) => (

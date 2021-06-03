@@ -8,7 +8,7 @@ import {
 } from '@patternfly/react-core';
 import PageHeader, { PageHeaderTitle } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
-import ComplianceEmptyState from '../../PresentationalComponents/ComplianceEmptyState';
+import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
     BackgroundLink,
     ErrorPage,
