@@ -8,7 +8,7 @@ const ExampleDetailsRow = (item) => {
 };
 
 describe('useExpandable', () => {
-    const exampleItems = items(30).sort((item) => (item.name));
+    const exampleItems = items(30);
     const defaultOptions = {
         detailsComponent: ExampleDetailsRow
     };

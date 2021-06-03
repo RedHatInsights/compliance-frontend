@@ -3,7 +3,7 @@ import columns from './__fixtures__/columns';
 import items from './__fixtures__/items';
 import useExport, { jsonForItems, csvForItems } from './useExport';
 
-const exampleItems = items(25).sort((item) => (item.id));
+const exampleItems = items(25);
 
 describe('useExport', () => {
     const exporter = jest.fn(() => (exampleItems));

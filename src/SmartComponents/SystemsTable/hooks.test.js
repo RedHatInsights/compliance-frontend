@@ -3,9 +3,9 @@ import { useApolloClient } from '@apollo/client';
 import { useSystemsFilter, useSystemsExport } from './hooks';
 
 jest.mock('@apollo/client', () => ({
-    useApolloClient: jest.fn(() => (
-        () => Promise.resolve([])
-    ))
+    useApolloClient: jest.fn(() => ({
+        query: () => Promise.resolve([])
+    }))
 }));
 
 describe('useSystemsFilter', () => {
@@ -51,7 +51,9 @@ describe('useSystemsExport', () => {
     });
 
     it('returns a export with isDisabled true on total 0 ', () => {
-        const apolloClient = jest.fn(() => Promise.resolve([]));
+        const apolloClient = jest.fn(() => ({
+            query: () => Promise.resolve([])
+        }));
         useApolloClient.mockImplementation(apolloClient);
 
         const { result } = renderHook(() => useSystemsExport({

@@ -3,7 +3,7 @@ import items from './__fixtures__/items';
 import useItemIdentify from './useItemIdentify';
 
 describe('useItemIdentify', () => {
-    const exampleItems = items(30).sort((item) => (item.name));
+    const exampleItems = items(30);
 
     it('returns identified items', () => {
         const { result } = renderHook(() => useItemIdentify(exampleItems));

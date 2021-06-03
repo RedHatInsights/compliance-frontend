@@ -15,12 +15,11 @@ const encoding = (format) => (
     `data:${ encodings[format] };charset=utf-8`
 );
 
-const linkAndDownload = (data, filename) => {
+export const linkAndDownload = (data, filename) => {
     const link = document.createElement('a');
     link.href = data;
     link.download = filename;
     link.click();
-    document.body.removeChild(link);
 };
 
 const textForCell = (row, column) => {

@@ -4,17 +4,17 @@ exports[`useItemIdentify returns identified items 1`] = `
 Array [
   Object {
     "description": "DESCRIPTION",
+    "id": 16,
+    "itemId": 16,
+    "name": "TEST ITEM #16",
+    "severity": "high",
+  },
+  Object {
+    "description": "DESCRIPTION",
     "id": 1,
     "itemId": 1,
     "name": "TEST ITEM #1",
     "severity": "medium",
-  },
-  Object {
-    "description": "DESCRIPTION",
-    "id": 30,
-    "itemId": 30,
-    "name": "TEST ITEM #30",
-    "severity": "low",
   },
   Object {
     "description": "DESCRIPTION",
@@ -207,10 +207,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 16,
-    "itemId": 16,
-    "name": "TEST ITEM #16",
-    "severity": "high",
+    "id": 30,
+    "itemId": 30,
+    "name": "TEST ITEM #30",
+    "severity": "low",
   },
 ]
 `;
@@ -219,17 +219,17 @@ exports[`useItemIdentify returns identified items by name 1`] = `
 Array [
   Object {
     "description": "DESCRIPTION",
+    "id": 16,
+    "itemId": "TEST ITEM #16",
+    "name": "TEST ITEM #16",
+    "severity": "high",
+  },
+  Object {
+    "description": "DESCRIPTION",
     "id": 1,
     "itemId": "TEST ITEM #1",
     "name": "TEST ITEM #1",
     "severity": "medium",
-  },
-  Object {
-    "description": "DESCRIPTION",
-    "id": 30,
-    "itemId": "TEST ITEM #30",
-    "name": "TEST ITEM #30",
-    "severity": "low",
   },
   Object {
     "description": "DESCRIPTION",
@@ -422,10 +422,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 16,
-    "itemId": "TEST ITEM #16",
-    "name": "TEST ITEM #16",
-    "severity": "high",
+    "id": 30,
+    "itemId": "TEST ITEM #30",
+    "name": "TEST ITEM #30",
+    "severity": "low",
   },
 ]
 `;

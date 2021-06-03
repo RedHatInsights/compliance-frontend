@@ -4,7 +4,7 @@ import columns from './__fixtures__/columns';
 import useRowsBuilder from './useRowsBuilder';
 
 describe('useRowsBuilder', () => {
-    const exampleItems = items(30).sort((item) => (item.name));
+    const exampleItems = items(30);
 
     it('returns a rows configuration', () => {
         const { result } = renderHook(() =>
