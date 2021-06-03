@@ -45,3 +45,21 @@ export const orderByArray = (objectArray, orderProp, orderArray, direction) => (
         objectArray.filter((item) => (item[orderProp] === orderKey))
     ))
 );
+
+export const getProperty = (obj, path, fallback) => {
+    const parts = path.split('.');
+    const key = parts.shift();
+    if (typeof obj[key] !== 'undefined') {
+        return parts.length > 0 ?
+            getProperty(obj[key], parts.join('.'), fallback) :
+            obj[key];
+    }
+
+    return fallback;
+};
+
+export const camelCase = (str) => (
+    str.replace(/(?:^\w|\[A-Z\]|\b\w)/g, (string, idx) => (
+        idx === 0 ? string.toLowerCase() : string.toUpperCase()
+    )).replace(/\s+/g, '')
+);

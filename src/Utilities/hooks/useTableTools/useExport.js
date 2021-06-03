@@ -1,18 +1,18 @@
-import _ from 'lodash';
+import { camelCase, getProperty } from 'Utilities/helpers';
 
 const CSV_FILE_PREFIX = 'compliance-export';
 const CSV_DELIMITER = ',';
-
-const filename = (format) => (
-    CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format
-);
-const encodings = {
+const ENCODINGS = {
     csv: 'text/csv',
     json: 'application/json'
 };
 
+const filename = (format) => (
+    CSV_FILE_PREFIX + '-' + (new Date()).toISOString() + '.' + format
+);
+
 const encoding = (format) => (
-    `data:${ encodings[format] };charset=utf-8`
+    `data:${ ENCODINGS[format] };charset=utf-8`
 );
 
 export const linkAndDownload = (data, filename) => {
@@ -24,12 +24,12 @@ export const linkAndDownload = (data, filename) => {
 
 const textForCell = (row, column) => {
     const { exportKey, renderExport } = column;
-    let cell = exportKey ? _.at(row, exportKey)[0] : row;
+    let cell = exportKey ? getProperty(row, exportKey) : row;
     if (renderExport) {
-        cell = renderExport(cell);
+        return renderExport(cell);
+    } else {
+        return cell;
     }
-
-    return cell;
 };
 
 export const csvForItems = ({ items, columns }) => {
@@ -46,9 +46,10 @@ export const csvForItems = ({ items, columns }) => {
 export const jsonForItems = ({ items, columns }) => {
     const result = items.map((row) => (
         columns.reduce((object, column) => {
-            const key = _.snakecase(column.title);
-            object[key] = textForCell(row, column);
+            const key = camelCase(column.title);
+            const value = textForCell(row, column);
 
+            object[key] = value;
             return object;
         }, {})
     ));
