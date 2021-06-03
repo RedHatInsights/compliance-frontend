@@ -50,32 +50,29 @@ query System($systemId: String!){
 }
 `;
 
-const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
-    console.log(hidePassed, 'this is hidePassed!!!!');
-    return (
-        <React.Fragment>
-            <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
-            <br/>
-            <RulesTable
-                hidePassed={ hidePassed }
-                sortBy={{
-                    index: 4,
-                    direction: 'asc',
-                    property: 'severity'
-                }}
-                system={ {
-                    ...system,
-                    supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
-                } }
-                profileRules={ system?.testResultProfiles.map(profile => ({
-                    system,
-                    profile,
-                    rules: profile.rules
-                })) }
-                loading={ loading } />
-        </React.Fragment>
-    );
-};
+const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
+    <React.Fragment>
+        <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
+        <br/>
+        <RulesTable
+            hidePassed={ hidePassed }
+            sortBy={{
+                index: 4,
+                direction: 'asc',
+                property: 'severity'
+            }}
+            system={ {
+                ...system,
+                supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
+            } }
+            profileRules={ system?.testResultProfiles.map(profile => ({
+                system,
+                profile,
+                rules: profile.rules
+            })) }
+            loading={ loading } />
+    </React.Fragment>
+);
 
 SystemQuery.propTypes = {
     data: propTypes.shape({

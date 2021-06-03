@@ -1,7 +1,7 @@
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import FilterBuilder from './FilterBuilder';
-import ChipBuilder from './ChipBuilder';
 import { stringToId } from './helpers';
+import ChipBuilder from './hooks/useTableTools/FilterConfigBuilder/ChipBuilder';
 
 const defaultPlaceholder = (label) => (`Filter by ${ label.toLowerCase() }`);
 
