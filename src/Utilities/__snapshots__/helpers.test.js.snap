@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`camelCase should camelCase a string 1`] = `"TESTCase"`;
+
+exports[`camelCase should camelCase a string 2`] = `"TestCase"`;
+
+exports[`camelCase should camelCase a string 3`] = `"TestCase"`;
+
+exports[`camelCase should camelCase a string 4`] = `"TestCase"`;
+
+exports[`camelCase should camelCase a string 5`] = `"TestCaseWithMultipleWords"`;
+
+exports[`getPropery should return values of keys 1`] = `"value-level-3"`;
+
+exports[`getPropery should return values of keys 2`] = `"value-level-2"`;

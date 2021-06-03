@@ -58,8 +58,9 @@ export const getProperty = (obj, path, fallback) => {
     return fallback;
 };
 
-export const camelCase = (str) => (
-    str.replace(/(?:^\w|\[A-Z\]|\b\w)/g, (string, idx) => (
-        idx === 0 ? string.toLowerCase() : string.toUpperCase()
-    )).replace(/\s+/g, '')
+export const camelCase = (string) => (
+    string.split(/[-_\W]+/g)
+    .map((string) => (string.trim()))
+    .map((string) => string[0].toUpperCase() + string.substring(1))
+    .join('')
 );
