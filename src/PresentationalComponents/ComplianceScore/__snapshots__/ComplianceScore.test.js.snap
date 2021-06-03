@@ -91,24 +91,19 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
           supported={true}
         >
           <ExclamationCircleIcon
-            color="currentColor"
+            color="var(--pf-global--danger-color--100)"
             noVerticalAlign={false}
             size="sm"
-            style={
-              Object {
-                "color": "var(--pf-global--danger-color--100)",
-              }
-            }
           >
             <svg
               aria-hidden={true}
               aria-labelledby={null}
-              fill="currentColor"
+              fill="var(--pf-global--danger-color--100)"
               height="1em"
               role="img"
               style={
                 Object {
-                  "color": "var(--pf-global--danger-color--100)",
+                  "verticalAlign": "-0.125em",
                 }
               }
               viewBox="0 0 512 512"

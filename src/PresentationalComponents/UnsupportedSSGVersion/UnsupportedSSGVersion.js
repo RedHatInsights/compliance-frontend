@@ -86,24 +86,17 @@ const UnsupportedSSGVersion = ({
 
     return <span style={ { ...style, display: 'inline-block' } }>
         { showWarningIcon && <TooltipOrPopover { ...iconProps }>
-            <ExclamationTriangleIcon
-                className='ins-u-warning'
-                style={ {
-                    ...defaultStyle,
-                    marginRight: '.25em'
-                } }
-            />
+            <span style={ defaultStyle } className='pf-u-mr-xs'>
+                <ExclamationTriangleIcon color='var(--pf-global--warning-color--100)' />
+            </span>
         </TooltipOrPopover> }
 
         { children }
 
         { showHelpIcon &&  <TooltipOrPopover { ...iconProps }>
-            <OutlinedQuestionCircleIcon
-                style={ {
-                    ...defaultStyle,
-                    marginLeft: '.25em'
-                } }
-            />
+            <span style={ defaultStyle } className='pf-u-ml-xs'>
+                <OutlinedQuestionCircleIcon />
+            </span>
         </TooltipOrPopover> }
     </span>;
 };

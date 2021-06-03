@@ -9,11 +9,11 @@ import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => {
     if ((system.rulesPassed + system.rulesFailed) === 0) {
-        return <QuestionCircleIcon style={{ color: 'var(--pf-global--disabled-color--100)' }}/>;
+        return <QuestionCircleIcon color='var(--pf-global--disabled-color--100)' />;
     } else {
         return system.compliant ?
-            <CheckCircleIcon style={{ color: 'var(--pf-global--success-color--200)' }}/> :
-            <ExclamationCircleIcon style={{ color: 'var(--pf-global--danger-color--100)' }}/>;
+            <CheckCircleIcon color='var(--pf-global--success-color--200)' /> :
+            <ExclamationCircleIcon color='var(--pf-global--danger-color--100)' />;
     }
 };
 
