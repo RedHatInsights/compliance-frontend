@@ -190,10 +190,7 @@ export const useInventoryUtilities = (inventory, selectedSystems, activeFilters)
 };
 
 const toIdFilter = (ids) => (
-    (ids?.length > 0) ?
-        ids.map((id) => (
-            `id = ${ id }`
-        )).join(' or ') : undefined
+    (ids?.length > 0) ? `id ^ (${ ids.join(',') })` : undefined
 );
 
 export const useSystemsExport = ({
