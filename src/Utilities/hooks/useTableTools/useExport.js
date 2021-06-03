@@ -62,7 +62,7 @@ const useExport = ({
     isDisabled = false
 }) => {
     const exportableColumns = columns.filter((column) => (
-        column.export !== false && !!column.exportKey
+        column.export !== false && (column.exportKey || column.renderExport)
     ));
     const exportWithFormat = async (format) => {
         const items = await exporter();
