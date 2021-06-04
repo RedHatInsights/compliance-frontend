@@ -1,13 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi:latest
 
-ENV WORKDIR /compliance/
-RUN mkdir -p $WORKDIR
-WORKDIR $WORKDIR
-
-COPY package*.json $WORKDIR
-COPY ./entrypoint.sh /
-
-RUN dnf -y --disableplugin=subscription-manager module enable nodejs:10 && \
+RUN dnf -y --disableplugin=subscription-manager module enable nodejs:14 && \
     dnf -y --disableplugin=subscription-manager module enable python27:2.7 && \
     dnf -y --disableplugin=subscription-manager --setopt=tsflags=nodocs install \
        npm nodejs \
@@ -15,7 +8,14 @@ RUN dnf -y --disableplugin=subscription-manager module enable nodejs:10 && \
        make gcc-c++ git && \
     dnf --disableplugin=subscription-manager clean all
 
-RUN npm install -g npm@latest
+ENV WORKDIR /compliance/
+RUN mkdir -p $WORKDIR
+WORKDIR $WORKDIR
+
+COPY package*.json $WORKDIR
+COPY ./entrypoint.sh /
+
+RUN npm install -g npm@7.7.6
 
 RUN npm install
 
