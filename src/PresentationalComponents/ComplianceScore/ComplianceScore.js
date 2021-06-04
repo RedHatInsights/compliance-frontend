@@ -4,7 +4,7 @@ import {
     CheckCircleIcon,
     ExclamationCircleIcon
 } from '@patternfly/react-icons';
-import { Tooltip } from '@patternfly/react-core';
+import { Text, Tooltip } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => {
@@ -28,7 +28,7 @@ export const complianceScoreString = (system) => {
 };
 
 const ComplianceScore = (system) => (
-    <React.Fragment>
+    <Text>
         { system.supported ?
             <Tooltip content={
                 'The system compliance score is calculated by OpenSCAP and ' +
@@ -39,7 +39,7 @@ const ComplianceScore = (system) => (
             </Tooltip>
             :
             complianceScoreString(system) }
-    </React.Fragment>
+    </Text>
 );
 
 export default ComplianceScore;

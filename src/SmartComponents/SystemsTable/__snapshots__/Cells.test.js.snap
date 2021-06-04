@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ComplianceScore returns 1`] = `
-<Fragment>
+<Text>
   <Tooltip
     content="The system compliance score is calculated by OpenSCAP and is a normalized weighted sum of rules selected for this policy."
   >
@@ -15,7 +15,7 @@ exports[`ComplianceScore returns 1`] = `
     />
      10%
   </Tooltip>
-</Fragment>
+</Text>
 `;
 
 exports[`DetailsLink returns 1`] = `
