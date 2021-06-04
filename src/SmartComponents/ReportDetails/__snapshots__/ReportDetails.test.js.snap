@@ -273,6 +273,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -282,6 +285,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -292,6 +298,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -302,8 +311,14 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
+                  "cellTransforms": Array [
+                    [Function],
+                  ],
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
@@ -312,6 +327,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
               ]
             }
@@ -1111,6 +1129,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1120,6 +1141,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1130,6 +1154,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1140,8 +1167,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
+                  "cellTransforms": Array [
+                    [Function],
+                  ],
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
@@ -1150,6 +1183,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
               ]
             }
