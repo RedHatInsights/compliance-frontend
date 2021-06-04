@@ -13,9 +13,6 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
           "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Name",
-          "transforms": Array [
-            [Function],
-          ],
         },
         Object {
           "props": Object {
@@ -533,9 +530,6 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
           "renderExport": [Function],
           "renderFunc": [Function],
           "title": "Name",
-          "transforms": Array [
-            [Function],
-          ],
         },
         Object {
           "props": Object {

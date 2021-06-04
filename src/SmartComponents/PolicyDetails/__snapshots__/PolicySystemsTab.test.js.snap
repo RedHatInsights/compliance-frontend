@@ -13,9 +13,6 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "title": "Name",
-        "transforms": Array [
-          [Function],
-        ],
       },
       Object {
         "exportKey": "testResultProfiles",
@@ -575,9 +572,6 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "title": "Name",
-        "transforms": Array [
-          [Function],
-        ],
       },
       Object {
         "exportKey": "testResultProfiles",

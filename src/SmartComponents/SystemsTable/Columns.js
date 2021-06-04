@@ -1,4 +1,4 @@
-import { fitContent } from '@patternfly/react-table';
+import { nowrap } from '@patternfly/react-table';
 import { complianceScoreString } from 'PresentationalComponents';
 import { profilesRulesFailed } from 'Utilities/ruleHelpers';
 import { renderComponent } from 'Utilities/helpers';
@@ -17,7 +17,6 @@ const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
 
 export const Name = {
     title: 'Name',
-    transforms: [fitContent],
     props: {
         width: 40,
         ...disableSorting
@@ -39,7 +38,7 @@ export const customName = (props) => ({
 
 export const SsgVersion = {
     title: 'SSG version',
-    transforms: [fitContent],
+    transforms: [nowrap],
     props: disableSorting,
     exportKey: 'testResultProfiles',
     renderExport: (testResultProfiles) => (
@@ -52,7 +51,7 @@ export const SsgVersion = {
 
 export const Policies = {
     title: 'Policies',
-    transforms: [fitContent],
+    transforms: [nowrap],
     exportKey: 'policies',
     renderExport: (policies) => (
         policies.map(({ name }) => (name)).join(', ')
@@ -76,10 +75,9 @@ export const DetailsLink = {
 
 export const FailedRules = {
     title: 'Failed rules',
-    transforms: [fitContent],
     exportKey: 'testResultProfiles',
+    transforms: [nowrap],
     props: {
-        width: 5,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -90,10 +88,9 @@ export const FailedRules = {
 
 export const ComplianceScore = {
     title: 'Compliance score',
-    transforms: [fitContent],
     exportKey: 'testResultProfiles',
+    transforms: [nowrap],
     props: {
-        width: 5,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -104,11 +101,9 @@ export const ComplianceScore = {
 
 export const LastScanned = {
     title: 'Last scanned',
-    transforms: [fitContent],
-    cellTransforms: [fitContent],
+    transforms: [nowrap],
     exportKey: 'testResultProfiles',
     props: {
-        width: 10,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -119,7 +114,7 @@ export const LastScanned = {
 
 export const OperatingSystem  = {
     title: 'Operating system',
-    transforms: [fitContent],
+    transforms: [nowrap],
     props: disableSorting,
     renderExport: (cell) => (
         operatingSystemString(cell)
