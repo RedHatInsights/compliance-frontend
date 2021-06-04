@@ -24,9 +24,6 @@ exports[`EditPolicySystems expect to render without error 1`] = `
               "renderExport": [Function],
               "renderFunc": [Function],
               "title": "Name",
-              "transforms": Array [
-                [Function],
-              ],
             },
             Object {
               "props": Object {

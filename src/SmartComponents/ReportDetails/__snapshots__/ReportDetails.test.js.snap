@@ -273,9 +273,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
-                  "transforms": Array [
-                    [Function],
-                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -293,7 +290,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
@@ -306,7 +302,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
@@ -316,13 +311,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   ],
                 },
                 Object {
-                  "cellTransforms": Array [
-                    [Function],
-                  ],
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 10,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
@@ -1129,9 +1120,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Name",
-                  "transforms": Array [
-                    [Function],
-                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1149,7 +1137,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
@@ -1162,7 +1149,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
@@ -1172,13 +1158,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   ],
                 },
                 Object {
-                  "cellTransforms": Array [
-                    [Function],
-                  ],
                   "exportKey": "testResultProfiles",
                   "props": Object {
                     "isStatic": true,
-                    "width": 10,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
