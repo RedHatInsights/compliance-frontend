@@ -29,7 +29,9 @@ const SSGVersionText = ({ profile, newOsMinorVersion }) => (
             position='right'
             bodyContent={ <SSGPopoverBody { ...{ profile, newOsMinorVersion } } /> }
             footerContent={ <SupportedSSGVersionsLink /> }>
-            <OutlinedQuestionCircleIcon style={ { cursor: 'pointer' } } />
+            <span style={ { cursor: 'pointer' } }>
+                <OutlinedQuestionCircleIcon className="grey-icon" />
+            </span>
         </Popover>
     </Text>
 );
