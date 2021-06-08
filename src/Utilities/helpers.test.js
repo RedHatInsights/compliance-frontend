@@ -1,4 +1,7 @@
-import { camelCase, getProperty, uniq, sortingByProp } from './helpers';
+import {
+    camelCase, getProperty, uniq, sortingByProp, orderByArray
+} from './helpers';
+import items, { severityLevels } from './hooks/useTableTools/__fixtures__/items';
 
 describe('uniq', () => {
     it('should deduplicate items', () => {
@@ -75,6 +78,22 @@ describe('sortingByProp', () => {
             { prop: 'c' },
             { prop: 'd' }
         ]);
+    });
+});
+
+describe('orderByArray', () => {
+    const exampleItems = items(10);
+
+    it('sorts an array asc', () => {
+        expect(orderByArray(
+            exampleItems, 'severity', severityLevels, 'asc'
+        )).toMatchSnapshot();
+    });
+
+    it('sorts an array desc', () => {
+        expect(orderByArray(
+            exampleItems, 'severity', severityLevels, 'desc'
+        )).toMatchSnapshot();
     });
 });
 

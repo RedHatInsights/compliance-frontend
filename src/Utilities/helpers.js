@@ -40,11 +40,12 @@ export const orderArrayByProp = (property, objects, direction) => (
     })
 );
 
-export const orderByArray = (objectArray, orderProp, orderArray, direction) => (
-    (direction !== 'asc' ? orderArray.reverse() : orderArray).flatMap((orderKey) => (
+export const orderByArray = (objectArray, orderProp, orderArray, direction) => {
+    const sortedObjectArray = orderArray.flatMap((orderKey) => (
         objectArray.filter((item) => (item[orderProp] === orderKey))
-    ))
-);
+    ));
+    return (direction !== 'asc' ? sortedObjectArray.reverse() : sortedObjectArray);
+};
 
 export const getProperty = (obj, path, fallback) => {
     const parts = path.split('.');
