@@ -193,7 +193,7 @@ export class PoliciesTable extends React.Component {
             <Table
                 aria-label='policies'
                 ouiaId="PoliciesTable"
-                className='compliance-policies-table'
+                className={rows.length === 0 ? 'ins-c-table-empty-state compliance-policies-table' : 'compliance-policies-table'}
                 cells={ this.columns }
                 actionResolver={ rows.length > 0 && this.actionResolver }
                 rows={ (rows.length === 0) ? emptyRows : rows }>

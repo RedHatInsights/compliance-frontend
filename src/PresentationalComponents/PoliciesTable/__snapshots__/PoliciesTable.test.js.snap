@@ -2236,7 +2236,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         },
       ]
     }
-    className="compliance-policies-table"
+    className="ins-c-table-empty-state compliance-policies-table"
     contentId="expanded-content"
     dropdownDirection="down"
     dropdownPosition="right"
