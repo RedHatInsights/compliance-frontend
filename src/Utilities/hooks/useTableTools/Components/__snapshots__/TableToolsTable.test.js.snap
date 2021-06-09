@@ -93,29 +93,6 @@ exports[`TableToolsTable expect to render without error 1`] = `
         Object {
           "cells": Array [
             Object {
-              "title": 30,
-            },
-            Object {
-              "title": "TEST ITEM #30",
-            },
-            Object {
-              "title": undefined,
-            },
-            Object {
-              "title": "DESCRIPTION",
-            },
-            Object {
-              "title": "low",
-            },
-            Object {
-              "title": "low",
-            },
-          ],
-          "itemId": 30,
-        },
-        Object {
-          "cells": Array [
-            Object {
               "title": 1,
             },
             Object {
@@ -135,6 +112,29 @@ exports[`TableToolsTable expect to render without error 1`] = `
             },
           ],
           "itemId": 1,
+        },
+        Object {
+          "cells": Array [
+            Object {
+              "title": 2,
+            },
+            Object {
+              "title": "TEST ITEM #2",
+            },
+            Object {
+              "title": undefined,
+            },
+            Object {
+              "title": "DESCRIPTION",
+            },
+            Object {
+              "title": "low",
+            },
+            Object {
+              "title": "low",
+            },
+          ],
+          "itemId": 2,
         },
         Object {
           "cells": Array [
