@@ -25,6 +25,7 @@ const RulesTable = ({
     handleSelect,
     selectedRefIds = [],
     hidePassed = false,
+    options,
     ...rulesTableProps
 }) => {
     const rules = toRulesArrayWithProfile(profileRules);
@@ -51,6 +52,7 @@ const RulesTable = ({
             }
         }}
         options={{
+            ...options,
             identifier: (item) => (item.refId),
             selectable: !!handleSelect || remediationsEnabled,
             onSelect: handleSelect,
@@ -82,7 +84,8 @@ RulesTable.propTypes = {
     selectedRefIds: propTypes.array,
     selectedFilter: propTypes.bool,
     handleSelect: propTypes.func,
-    columns: propTypes.array
+    columns: propTypes.array,
+    options: propTypes.object
 };
 
 export default RulesTable;
