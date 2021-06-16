@@ -152,3 +152,11 @@ export const LastScanned = ({ testResultProfiles: profiles }) => {
 LastScanned.propTypes = {
     testResultProfiles: propTypes.array
 };
+
+export const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
+    `RHEL ${osMajorVersion}.${osMinorVersion}`
+);
+
+export const OperatingSystem = (system) => (
+    operatingSystemString(system)
+);

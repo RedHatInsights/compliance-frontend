@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { useApolloClient } from '@apollo/client';
-import { useSystemsFilter, useSystemsExport } from './hooks';
+import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 
 jest.mock('@apollo/client', () => ({
     useApolloClient: jest.fn(() => ({
@@ -66,5 +66,39 @@ describe('useSystemsExport', () => {
         });
 
         expect(apolloClient).toHaveBeenCalled();
+    });
+});
+
+describe('useGetEntities', () => {
+    const mockFetch = jest.fn(() => Promise.resolve({
+        entities: [{ id: 1, name: 'TEST ENTITY NAME' }],
+        meta: { totalCount: 0 }
+    }));
+
+    it('returns a getEntities function', () => {
+        const { result } = renderHook(() => useGetEntities(mockFetch));
+        expect(result.current).toMatchSnapshot();
+    });
+
+    it('the returned function calls mockFetch', async () => {
+        const { result } = renderHook(() => useGetEntities(mockFetch));
+        // eslint-disable-next-line
+        const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
+        expect(fetchResult).toMatchSnapshot();
+        expect(mockFetch).toHaveBeenCalled();
+    });
+
+    it('the returned function calls with proper sortBy', async () => {
+        const { result } = renderHook(() => useGetEntities(mockFetch, {
+            columns: [{
+                title: 'Name',
+                key: 'name',
+                sortBy: ['nameAttribute']
+            }],
+            selected: [{ id: 1 }]
+        }));
+        // eslint-disable-next-line
+        const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
+        expect(mockFetch).toHaveBeenCalledWith(10, 1, { filters: undefined, sortBy: ['nameAttribute:ASC'] });
     });
 });

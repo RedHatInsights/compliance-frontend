@@ -7,8 +7,8 @@ import { getRegistry } from '@redhat-cloud-services/frontend-components-utilitie
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
 export const GET_SYSTEMS = gql`
-query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
-    systems(search: $filter, limit: $perPage, offset: $page) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int, $sortBy: [String!]) {
+    systems(search: $filter, limit: $perPage, offset: $page, sortBy: $sortBy) {
         totalCount
         edges {
             node {
@@ -45,8 +45,8 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
 `;
 
 export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
-query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int) {
-    systems(search: $filter, limit: $perPage, offset: $page) {
+query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int, $sortBy: [String!]) {
+    systems(search: $filter, limit: $perPage, offset: $page, sortBy: $sortBy) {
         totalCount
         edges {
             node {

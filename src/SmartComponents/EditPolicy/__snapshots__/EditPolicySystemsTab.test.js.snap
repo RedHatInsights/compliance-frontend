@@ -6,6 +6,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
     columns={
       Array [
         Object {
+          "key": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,
@@ -15,6 +16,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
           "title": "Name",
         },
         Object {
+          "key": "operatingSystem",
           "props": Object {
             "isStatic": true,
           },
@@ -99,6 +101,20 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
                         "name": Object {
                           "kind": "Name",
                           "value": "page",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sortBy",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "sortBy",
                         },
                       },
                     },
@@ -478,12 +494,37 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
                   },
                 },
               },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "ListType",
+                  "type": Object {
+                    "kind": "NonNullType",
+                    "type": Object {
+                      "kind": "NamedType",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "String",
+                      },
+                    },
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "sortBy",
+                  },
+                },
+              },
             ],
           },
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 825,
+          "end": 862,
           "start": 0,
         },
       }
@@ -523,6 +564,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     columns={
       Array [
         Object {
+          "key": "name",
           "props": Object {
             "isStatic": true,
             "width": 40,
@@ -532,6 +574,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
           "title": "Name",
         },
         Object {
+          "key": "operatingSystem",
           "props": Object {
             "isStatic": true,
           },
@@ -616,6 +659,20 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
                         "name": Object {
                           "kind": "Name",
                           "value": "page",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sortBy",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "sortBy",
                         },
                       },
                     },
@@ -995,12 +1052,37 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
                   },
                 },
               },
+              Object {
+                "defaultValue": undefined,
+                "directives": Array [],
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "ListType",
+                  "type": Object {
+                    "kind": "NonNullType",
+                    "type": Object {
+                      "kind": "NamedType",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "String",
+                      },
+                    },
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "sortBy",
+                  },
+                },
+              },
             ],
           },
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 825,
+          "end": 862,
           "start": 0,
         },
       }

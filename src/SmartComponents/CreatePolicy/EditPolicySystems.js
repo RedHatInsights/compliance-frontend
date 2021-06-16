@@ -67,10 +67,17 @@ export const EditPolicySystems = ({ change, osMajorVersion, selectedSystems }) =
                         showOsMinorVersionFilter={ [osMajorVersion] }
                         prependComponent={ <PrependComponent osMajorVersion={ osMajorVersion } /> }
                         emptyStateComponent={ <EmptyState osMajorVersion={ osMajorVersion } /> }
-                        columns={[
-                            Columns.Name,
-                            Columns.OperatingSystem
-                        ]}
+                        columns={[{
+                            ...Columns.Name,
+                            props: {
+                                width: 40
+                            },
+                            sortBy: ['name']
+                        }, {
+                            ...Columns.OperatingSystem,
+                            props: {},
+                            sortBy: ['osMajorVersion', 'osMinorVersion']
+                        }]}
                         remediationsEnabled={false}
                         compact
                         showActions={ false }
