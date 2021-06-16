@@ -57,7 +57,7 @@ export const useFetchSystems = ({
 }) => {
     const client = useApolloClient();
 
-    return (perPage, page) => (
+    return (perPage, page, requestVariables = {}) => (
         client.query({
             query,
             fetchResults: true,
@@ -65,7 +65,8 @@ export const useFetchSystems = ({
             variables: {
                 perPage,
                 page,
-                ...variables
+                ...variables,
+                ...requestVariables
             }
         }).then(({ data }) => {
             const systems = data?.systems?.edges?.map((e) => e.node) || [];
@@ -83,20 +84,38 @@ export const useFetchSystems = ({
     );
 };
 
-export const useGetEntities = (fetchEntities, { selected }) => (
-    async (_ids, { page = 1, per_page: perPage }) => {
-        const fetchedEntities = await fetchEntities(perPage, page);
+export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
+    const appendDirection = (attributes, direction) => (
+        attributes.map((attribute) => `${attribute}:${direction}`)
+    );
+
+    const findColumnByKey = (key) => (
+        (columns || []).find((column) => column.key === key)
+    );
+
+    return async (_ids, { page = 1, per_page: perPage, orderBy, orderDirection, filters }) => {
+        const columnKey = orderBy.split(' ')[0];
+        const sortableColumn = findColumnByKey(columnKey);
+        const sortBy = sortableColumn && sortableColumn.sortBy ?
+            appendDirection(sortableColumn.sortBy, orderDirection) : undefined;
+
+        const fetchedEntities = await fetchEntities(perPage, page, {
+            filters,
+            sortBy
+        });
         const { entities, meta: { totalCount } } = fetchedEntities || {};
 
         return {
             results: entities.map((entity) => ({
                 ...entity,
-                selected: selected.map((item) => (item.id)).includes(entity.id)
+                selected: (selected || []).map((item) => (item.id)).includes(entity.id)
             })),
+            orderBy,
+            orderDirection,
             total: totalCount
         };
-    }
-);
+    };
+};
 
 export const useOnSelect = (onSelectProp, items, preselectedSystems, total) => {
     const [selectedSystems, setSelected] = useState(preselectedSystems);

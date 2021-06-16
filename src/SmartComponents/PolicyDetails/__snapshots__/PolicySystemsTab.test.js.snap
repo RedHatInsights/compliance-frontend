@@ -5,6 +5,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
   columns={
     Array [
       Object {
+        "key": "name",
         "props": Object {
           "isStatic": true,
           "showLink": true,
@@ -27,6 +28,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
         ],
       },
       Object {
+        "key": "operatingSystem",
         "props": Object {
           "isStatic": true,
         },
@@ -106,6 +108,20 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
                       },
                     },
                   },
+                  Object {
+                    "kind": "Argument",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "sortBy",
+                    },
+                    "value": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sortBy",
+                      },
+                    },
+                  },
                 ],
                 "directives": Array [],
                 "kind": "Field",
@@ -537,12 +553,37 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
                 },
               },
             },
+            Object {
+              "defaultValue": undefined,
+              "directives": Array [],
+              "kind": "VariableDefinition",
+              "type": Object {
+                "kind": "ListType",
+                "type": Object {
+                  "kind": "NonNullType",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "String",
+                    },
+                  },
+                },
+              },
+              "variable": Object {
+                "kind": "Variable",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "sortBy",
+                },
+              },
+            },
           ],
         },
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 997,
+        "end": 1034,
         "start": 0,
       },
     }
@@ -564,6 +605,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   columns={
     Array [
       Object {
+        "key": "name",
         "props": Object {
           "isStatic": true,
           "showLink": true,
@@ -586,6 +628,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
         ],
       },
       Object {
+        "key": "operatingSystem",
         "props": Object {
           "isStatic": true,
         },
@@ -665,6 +708,20 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
                       },
                     },
                   },
+                  Object {
+                    "kind": "Argument",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "sortBy",
+                    },
+                    "value": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sortBy",
+                      },
+                    },
+                  },
                 ],
                 "directives": Array [],
                 "kind": "Field",
@@ -1096,12 +1153,37 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
                 },
               },
             },
+            Object {
+              "defaultValue": undefined,
+              "directives": Array [],
+              "kind": "VariableDefinition",
+              "type": Object {
+                "kind": "ListType",
+                "type": Object {
+                  "kind": "NonNullType",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "String",
+                    },
+                  },
+                },
+              },
+              "variable": Object {
+                "kind": "Variable",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "sortBy",
+                },
+              },
+            },
           ],
         },
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 997,
+        "end": 1034,
         "start": 0,
       },
     }

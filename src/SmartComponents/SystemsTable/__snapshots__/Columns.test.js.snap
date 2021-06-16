@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compileColumnRenderFunc a column with a renderFunc 1`] = `
+Object {
+  "key": "columnKey",
+  "props": Object {
+    "width": 40,
+  },
+  "renderFunc": [Function],
+  "title": "Column title",
+}
+`;
+
+exports[`compileColumnRenderFunc a column with custom props appended 1`] = `
+Object {
+  "key": "columnKey",
+  "props": Object {
+    "isStatic": true,
+    "width": 40,
+  },
+  "renderFunc": [Function],
+  "title": "Column title",
+}
+`;

@@ -6,16 +6,27 @@ import { renderComponent } from 'Utilities/helpers';
 import {
     Name as NameCell, ComplianceScore as ComplianceScoreCell, DetailsLink as DetailsLinkCell,
     FailedRules as FailedRulesCell, LastScanned as LastScannedCell, Policies as PoliciesCell,
-    SSGVersions as SsgVersionCell, complianceScoreData, lastScanned
+    SSGVersions as SsgVersionCell, complianceScoreData, lastScanned, operatingSystemString,
+    OperatingSystem as OperatingSystemCell
 } from './Cells';
 
 const disableSorting = { isStatic: true };
 
-const operatingSystemString = ({ osMinorVersion, osMajorVersion }) => (
-    `RHEL ${osMajorVersion}.${osMinorVersion}`
-);
+export const compileColumnRenderFunc = ({ cell, ...column }) => ({
+    ...column,
+    renderFunc: renderComponent(cell, column.props)
+});
 
-export const Name = {
+export const customColumn = (column, props) => compileColumnRenderFunc({
+    ...column,
+    props: {
+        ...column.props,
+        ...props
+    }
+});
+
+export const Name = compileColumnRenderFunc({
+    key: 'name',
     title: 'Name',
     props: {
         width: 40,
@@ -24,8 +35,8 @@ export const Name = {
     renderExport: (system) => (
         `${ system.name } (${ operatingSystemString(system) })`
     ),
-    renderFunc: renderComponent(NameCell)
-};
+    cell: NameCell
+});
 
 export const customName = (props) => ({
     ...Name,
@@ -39,8 +50,8 @@ export const customName = (props) => ({
 export const SsgVersion = {
     title: 'SSG version',
     transforms: [nowrap],
-    props: disableSorting,
     exportKey: 'testResultProfiles',
+    props: disableSorting,
     renderExport: (testResultProfiles) => (
         testResultProfiles.map(({ supported, ssgVersion }) =>(
             `${ !supported ? '!' : '' }${ ssgVersion }`
@@ -78,6 +89,7 @@ export const FailedRules = {
     exportKey: 'testResultProfiles',
     transforms: [nowrap],
     props: {
+        width: 5,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -91,6 +103,7 @@ export const ComplianceScore = {
     exportKey: 'testResultProfiles',
     transforms: [nowrap],
     props: {
+        width: 5,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -104,6 +117,7 @@ export const LastScanned = {
     transforms: [nowrap],
     exportKey: 'testResultProfiles',
     props: {
+        width: 10,
         ...disableSorting
     },
     renderExport: (testResultProfiles) => (
@@ -112,14 +126,13 @@ export const LastScanned = {
     renderFunc: renderComponent(LastScannedCell)
 };
 
-export const OperatingSystem  = {
+export const OperatingSystem  = compileColumnRenderFunc({
     title: 'Operating system',
+    key: 'operatingSystem',
     transforms: [nowrap],
     props: disableSorting,
     renderExport: (cell) => (
         operatingSystemString(cell)
     ),
-    renderFunc: (_data, _id, system) => (
-        operatingSystemString(system)
-    )
-};
+    cell: OperatingSystemCell
+});

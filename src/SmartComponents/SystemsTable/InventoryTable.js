@@ -80,7 +80,7 @@ export const InventoryTable = ({
             ...policyId && { policyId }
         }
     });
-    const getEntities = useGetEntities(fetchSystems, { selected: selectedSystems });
+    const getEntities = useGetEntities(fetchSystems, { selected: selectedSystems, columns });
     const exportConfig = useSystemsExport({
         columns,
         filter: systemsFilter,
