@@ -825,7 +825,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 997,
+                  "end": 787,
                   "start": 0,
                 },
               }
@@ -1672,7 +1672,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 997,
+                  "end": 787,
                   "start": 0,
                 },
               }

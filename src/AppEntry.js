@@ -12,24 +12,27 @@ import App from './App';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 
 const client = new ApolloClient({
-    link: new HttpLink({ credentials: 'include', uri: COMPLIANCE_API_ROOT + '/graphql' }),
-    cache: new InMemoryCache()
+  link: new HttpLink({
+    credentials: 'include',
+    uri: COMPLIANCE_API_ROOT + '/graphql',
+  }),
+  cache: new InMemoryCache(),
 });
 
 const AppEntry = ({ logger }) => (
-    <Provider store={ init(logger).getStore() }>
-        <IntlProvider locale={ navigator.language }>
-            <Router basename={ getBaseName(window.location.pathname) }>
-                <ApolloProvider client={ client }>
-                    <App />
-                </ApolloProvider>
-            </Router>
-        </IntlProvider>
-    </Provider>
+  <Provider store={init(logger).getStore()}>
+    <IntlProvider locale={navigator.language}>
+      <Router basename={getBaseName(window.location.pathname)}>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </Router>
+    </IntlProvider>
+  </Provider>
 );
 
 AppEntry.propTypes = {
-    logger: PropTypes.any
+  logger: PropTypes.any,
 };
 
 export default AppEntry;

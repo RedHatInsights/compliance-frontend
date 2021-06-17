@@ -1,11 +1,9 @@
 import LoadingPoliciesTable from './LoadingPoliciesTable';
 
 describe('LoadingPoliciesTable', () => {
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <LoadingPoliciesTable />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(<LoadingPoliciesTable />);
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

@@ -12,6 +12,7 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
   hasNoBodyPadding={false}
   height={null}
   hideClose={false}
+  isNavExpandable={false}
   isOpen={true}
   mainAriaLabel={null}
   mainAriaLabelledBy={null}

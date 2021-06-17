@@ -1,72 +1,80 @@
 import { Name, OperatingSystem, CompliantSystems } from './Cells';
 
 describe('Name', () => {
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <Name { ...{
-                id: 'ID',
-                name: 'NAME',
-                policyType: 'POLICY_TYPE',
-                policy: {
-                    id: 'POLICY_ID',
-                    name: 'POLICY_NAME'
-                }
-            }} />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(
+      <Name
+        {...{
+          id: 'ID',
+          name: 'NAME',
+          policyType: 'POLICY_TYPE',
+          policy: {
+            id: 'POLICY_ID',
+            name: 'POLICY_NAME',
+          },
+        }}
+      />
+    );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
 
 describe('OperatingSystem', () => {
-    const defaultProps = {
-        majorOsVersion: '7'
-    };
+  const defaultProps = {
+    majorOsVersion: '7',
+  };
 
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <OperatingSystem { ...defaultProps } />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(<OperatingSystem {...defaultProps} />);
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    it('expect to render with SSG version', () => {
-        const wrapper = shallow(
-            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' policy={ null } unsupportedHostCount={ 0 } />
-        );
+  it('expect to render with SSG version', () => {
+    const wrapper = shallow(
+      <OperatingSystem
+        {...defaultProps}
+        ssgVersion="1.2.3"
+        policy={null}
+        unsupportedHostCount={0}
+      />
+    );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    it('expect to render with unsupported warning', () => {
-        const wrapper = shallow(
-            <OperatingSystem { ...defaultProps } ssgVersion='1.2.3' unsupportedHostCount={ 3 } policy={ null } />
-        );
+  it('expect to render with unsupported warning', () => {
+    const wrapper = shallow(
+      <OperatingSystem
+        {...defaultProps}
+        ssgVersion="1.2.3"
+        unsupportedHostCount={3}
+        policy={null}
+      />
+    );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
 
 describe('CompliantSystems', () => {
-    const deftaultProps = {
-        testResultHostCount: 10,
-        compliantHostCount: 9
-    };
+  const deftaultProps = {
+    testResultHostCount: 10,
+    compliantHostCount: 9,
+  };
 
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <CompliantSystems { ...deftaultProps } />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(<CompliantSystems {...deftaultProps} />);
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    it('expect to render with unsupported hosts', () => {
-        const wrapper = shallow(
-            <CompliantSystems { ...deftaultProps } unsupportedHostCount={ 42 } />
-        );
+  it('expect to render with unsupported hosts', () => {
+    const wrapper = shallow(
+      <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+    );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
