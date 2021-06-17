@@ -7,10 +7,10 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 
-const groupByMajorVersion = (versions = [], showFilter) => {
+const groupByMajorVersion = (versions = [], showFilter = []) => {
     const showVersion = (version) => {
         if (showFilter.length > 0) {
-            return Array(showFilter).map(String).includes(String(version));
+            return showFilter.map(String).includes(String(version));
         } else {
             return true;
         }

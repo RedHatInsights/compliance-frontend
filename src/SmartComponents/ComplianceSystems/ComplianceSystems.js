@@ -52,7 +52,7 @@ export const ComplianceSystems = () => {
                             systemProps={{
                                 isFullView: true
                             }}
-                            showOsFilter
+                            showOsMinorVersionFilter={ policies.map((policy) => (policy.majorOsVersion)) }
                             showComplianceSystemsInfo
                             enableEditPolicy={ false }
                             remediationsEnabled={ false }

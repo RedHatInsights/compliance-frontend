@@ -52,6 +52,7 @@ const toSystemsOsMinorFilterConfigurationItem = (osVersions) => (
     (majorVersion) => ({
         label: `RHEL ${ majorVersion }`,
         value: majorVersion,
+        groupSelectable: true,
         items: osVersions[majorVersion].map((minorVersion) => ({
             label: `RHEL ${ majorVersion }.${ minorVersion }`,
             value: minorVersion
