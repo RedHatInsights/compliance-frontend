@@ -495,7 +495,7 @@ exports[`EditPolicySystems expect to render without error 1`] = `
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 825,
+              "end": 661,
               "start": 0,
             },
           }

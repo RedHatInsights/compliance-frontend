@@ -16,14 +16,9 @@ export const sortingByProp =
     }
   };
 
-export const renderComponent =
-  (Component, props) =>
-  (
-    _data,
-    _id,
-    entity // eslint-disable-line react/display-name
-  ) =>
-    <Component {...entity} {...props} />;
+// eslint-disable-next-line react/display-name
+export const renderComponent = (Component, props) => (_data, _id, entity) =>
+  <Component {...entity} {...props} />;
 
 const getSortable = (property, item) => {
   if (typeof property === 'function') {

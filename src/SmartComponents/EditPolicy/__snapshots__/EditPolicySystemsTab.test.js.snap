@@ -483,7 +483,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 825,
+          "end": 661,
           "start": 0,
         },
       }
@@ -1000,7 +1000,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 825,
+          "end": 661,
           "start": 0,
         },
       }

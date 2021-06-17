@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* global module, __dirname */
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { aliases } = require('./alias.webpack.config');

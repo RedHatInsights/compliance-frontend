@@ -62,22 +62,21 @@ const RulesTable = ({
         detailsComponent: RuleDetailsRow,
         emptyRows: emptyRows(columns),
         selectedFilter,
-            dedicatedAction: ({ selected: selectedRules }) => ( // eslint-disable-line
-            remediationsEnabled && (
-              <ComplianceRemediationButton
-                allSystems={[
-                  {
-                    id: system.id,
-                    profiles: system.testResultProfiles,
-                    ruleObjectsFailed: [],
-                    supported: system.supported,
-                  },
-                ]}
-                selectedRules={(selectedRules || []).filter(
-                  (rule) => rule.remediationAvailable
-                )}
-              />
-            ),
+            dedicatedAction: ({ selected: selectedRules }) => ( remediationsEnabled && // eslint-disable-line
+            <ComplianceRemediationButton
+              allSystems={[
+                {
+                  id: system.id,
+                  profiles: system.testResultProfiles,
+                  ruleObjectsFailed: [],
+                  supported: system.supported,
+                },
+              ]}
+              selectedRules={(selectedRules || []).filter(
+                (rule) => rule.remediationAvailable
+              )}
+            />
+          ),
       }}
       {...rulesTableProps}
     />

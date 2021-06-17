@@ -1,5 +1,5 @@
 import React from 'react';
-import supportedConfigsLink from '@redhat-cloud-services/frontend-components-inventory-compliance/supportedConfigsLink';
+import { supportedConfigsLink } from '@redhat-cloud-services/frontend-components-inventory-compliance/PresentationalComponents/UnsupportedSSGVersion';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
 const SupportedSSGVersionsLink = () => (
