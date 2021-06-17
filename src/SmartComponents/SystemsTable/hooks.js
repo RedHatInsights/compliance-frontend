@@ -94,8 +94,7 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
     );
 
     return async (_ids, { page = 1, per_page: perPage, orderBy, orderDirection, filters }) => {
-        const columnKey = orderBy.split(' ')[0];
-        const sortableColumn = findColumnByKey(columnKey);
+        const sortableColumn = findColumnByKey(orderBy);
         const sortBy = sortableColumn && sortableColumn.sortBy ?
             appendDirection(sortableColumn.sortBy, orderDirection) : undefined;
 
