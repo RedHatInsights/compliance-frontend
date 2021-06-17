@@ -1,3 +1,1 @@
-export const stringToId = (string) => (
-    string.split(' ').join('').toLowerCase()
-);
+export const stringToId = (string) => string.split(' ').join('').toLowerCase();
