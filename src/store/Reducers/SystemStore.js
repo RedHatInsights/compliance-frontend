@@ -24,7 +24,8 @@ export const entitiesReducer = (INVENTORY_ACTION, columns) => applyReducerHash({
     }),
     ['RESET_PAGE']: (state) => ({
         ...state,
-        page: 1
+        page: 1,
+        columns: []
     }),
     ['SELECT_ENTITIES']: (state, { payload: { selected } }) => ({
         ...state,
