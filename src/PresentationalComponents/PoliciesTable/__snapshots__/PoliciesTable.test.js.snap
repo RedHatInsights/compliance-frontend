@@ -136,9 +136,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -183,9 +181,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -230,9 +226,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -541,9 +535,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -635,9 +627,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -682,9 +672,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -729,9 +717,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -776,9 +762,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -823,9 +807,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -870,9 +852,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -917,9 +897,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -964,9 +942,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -1011,9 +987,7 @@ exports[`PoliciesTable Pagination and search should be able to move to next and 
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -1247,9 +1221,7 @@ exports[`PoliciesTable Pagination and search should show only matching results a
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -1558,9 +1530,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1655,9 +1625,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1705,9 +1673,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1755,9 +1721,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1805,9 +1769,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1855,9 +1817,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1905,9 +1865,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -1955,9 +1913,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -2005,9 +1961,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -2055,9 +2009,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": <SystemsCountWarning
@@ -2559,9 +2511,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2653,9 +2603,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2700,9 +2648,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2747,9 +2693,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2794,9 +2738,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2841,9 +2783,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2888,9 +2828,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2935,9 +2873,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -2982,9 +2918,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,
@@ -3029,9 +2963,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
               />,
             },
             Object {
-              "title": <OperatingSystemBadge
-                majorOsVersion="7"
-              />,
+              "title": "RHEL 7",
             },
             Object {
               "title": 10,

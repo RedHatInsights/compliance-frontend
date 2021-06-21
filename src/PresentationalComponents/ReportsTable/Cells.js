@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { TextContent, Text, Progress } from '@patternfly/react-core';
 import { Link } from 'react-router-dom';
-import { PolicyPopover, GreySmallText, UnsupportedSSGVersion, OperatingSystemBadge } from 'PresentationalComponents';
+import { PolicyPopover, GreySmallText, UnsupportedSSGVersion } from 'PresentationalComponents';
 
 export const Name = (profile) => (
     <TextContent>
@@ -25,7 +25,7 @@ export const OperatingSystem = ({ majorOsVersion, ssgVersion, unsupportedHostCou
     ssgVersion = 'SSG: ' + ssgVersion;
 
     return <React.Fragment>
-        <OperatingSystemBadge { ...{ majorOsVersion } } />
+        RHEL { majorOsVersion }
         { policy === null && ssgVersion && <Text>
             <GreySmallText>
                 { supported ? ssgVersion : <UnsupportedSSGVersion>{ ssgVersion }</UnsupportedSSGVersion> }

@@ -8,7 +8,7 @@ import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolba
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/Utilities';
 import {
-    BackgroundLink, GreySmallText, SystemsCountWarning, emptyRows, OperatingSystemBadge
+    BackgroundLink, GreySmallText, SystemsCountWarning, emptyRows
 } from 'PresentationalComponents';
 
 export const PolicyNameCell = ({ profile }) => (
@@ -28,7 +28,7 @@ const policiesToRows = (policies) => (
             policyId: policy.id,
             cells: [
                 { title: <PolicyNameCell profile={policy} /> },
-                { title: <OperatingSystemBadge majorOsVersion={ policy.majorOsVersion } /> },
+                { title: `RHEL ${ policy.majorOsVersion }` },
                 { title: policy.totalHostCount > 0 ? policy.totalHostCount :
                     <SystemsCountWarning count={ policy.totalHostCount } variant='count' /> },
                 policy.businessObjective && policy.businessObjective.title || '--',
