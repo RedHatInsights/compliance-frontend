@@ -14,7 +14,7 @@ import {
 } from '@patternfly/react-core';
 import { CloudSecurityIcon } from '@patternfly/react-icons';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from '../PresentationalComponents';
 const COMPLIANCE_API_ROOT = '/api/compliance';

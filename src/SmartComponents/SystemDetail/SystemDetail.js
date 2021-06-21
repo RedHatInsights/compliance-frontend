@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
@@ -55,6 +55,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
         <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
         <br/>
         <RulesTable
+            remediationAvailableFilter
             hidePassed={ hidePassed }
             sortBy={{
                 index: 4,

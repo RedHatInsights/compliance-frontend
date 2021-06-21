@@ -2,8 +2,8 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { shallow } from 'enzyme';
 import ComplianceEmptyState from './ComplianceEmptyState';
-import { useQuery } from '@apollo/react-hooks';
-jest.mock('@apollo/react-hooks');
+import { useQuery } from '@apollo/client';
+jest.mock('@apollo/client');
 jest.mock('apollo-boost');
 
 describe('ComplianceEmptyState', () => {
