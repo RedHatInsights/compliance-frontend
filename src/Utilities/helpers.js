@@ -30,6 +30,10 @@ const getSortable = (property, item) => {
     }
 };
 
+export const stringToId = (string) => (
+    string.split(' ').join('').toLowerCase()
+);
+
 export const orderArrayByProp = (property, objects, direction) => (
     objects.sort((a, b) => {
         if (direction === 'asc') {

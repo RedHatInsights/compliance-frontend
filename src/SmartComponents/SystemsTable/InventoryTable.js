@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 // eslint-disable-next-line max-len
-import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
+import ComplianceRemediationButton from '@/PresentationalComponents/ComplianceRemediationButton';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useFilterConfig';

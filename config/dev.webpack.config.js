@@ -37,6 +37,10 @@ plugins.push(
         useFileHash: false,
         exposes: {
             './RootApp': resolve(__dirname, '../src/bootstrap-dev'),
+            './SystemDetail': resolve(
+              __dirname,
+              '../src/SmartComponents/SystemDetails/ComplianceDetail'
+            ),
         },
     })
 );

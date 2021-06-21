@@ -7,7 +7,7 @@ import { PolicyPopover, GreySmallText, UnsupportedSSGVersion, OperatingSystemBad
 export const Name = (profile) => (
     <TextContent>
         <Link to={'/reports/' + profile.id} style={ { marginRight: '.5rem' }}>
-            { profile.policy.name }
+            { profile.policy?.name }
         </Link>
         <React.Fragment>
             <PolicyPopover { ...{ profile, position: 'right' } } />

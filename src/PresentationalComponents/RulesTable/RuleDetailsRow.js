@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Grid, GridItem, Stack, StackItem, Text, TextVariants } from '@patternfly/react-core';
-import ConditionalLink from 'PresentationalComponents';
+import { ConditionalLink } from 'PresentationalComponents';
 
 const RuleDetailsRow = ({ rule }) => {
     const { refId, description, identifier, references, rationale } = rule;

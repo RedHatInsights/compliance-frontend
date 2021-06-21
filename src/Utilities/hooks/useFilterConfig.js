@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FilterConfigBuilder } from '@redhat-cloud-services/frontend-components-inventory-compliance/Utilities';
+import FilterConfigBuilder from './useTableTools/FilterConfigBuilder/FilterConfigBuilder';
 
 const filterValues = (activeFilters) => (
     Object.values(activeFilters).filter((value) => {
