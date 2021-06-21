@@ -4,8 +4,6 @@ import buildFilterConfig from './Filters';
 import RulesTable from './RulesTable';
 
 expect.extend(filterHelpers);
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton',
-    () => (() => (<span>Button</span>))); // eslint-disable-line
 
 describe('RulesTable', () => {
     const profiles = policies.edges[0].node.policy.profiles.map((profile) => (

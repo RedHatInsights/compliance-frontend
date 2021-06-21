@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
-import { ErrorCard } from '../../PresentationalComponents/PresentationalComponents';
+import { ErrorCard } from 'PresentationalComponents/ErrorCard/ErrorCard';
 import { IntlProvider } from 'react-intl';
 
 const COMPLIANCE_API_ROOT = '/api/compliance';

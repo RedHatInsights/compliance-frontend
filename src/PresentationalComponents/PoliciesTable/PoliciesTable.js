@@ -6,7 +6,7 @@ import { Button, Pagination, PaginationVariant, ToolbarItem, TextContent } from 
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
-import FilterConfigBuilder from '../../Utilities/hooks/useTableTools/FilterConfigBuilder/FilterConfigBuilder';
+import FilterConfigBuilder from 'Utilities/hooks/useTableTools/FilterConfigBuilder/FilterConfigBuilder';
 import {
     BackgroundLink, GreySmallText, SystemsCountWarning, emptyRows
 } from 'PresentationalComponents';
