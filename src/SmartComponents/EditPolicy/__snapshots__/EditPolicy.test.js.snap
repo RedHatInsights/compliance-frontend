@@ -6,6 +6,7 @@ exports[`EditPolicy expect to render without error 1`] = `
     Array [
       <Button
         isDisabled={null}
+        isLoading={false}
         onClick={[Function]}
         ouiaId="EditPolicySaveButton"
         spinnerAriaValueText="Saving"
