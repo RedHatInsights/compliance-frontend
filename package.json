@@ -92,7 +92,7 @@
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-flow": "^7.13.13",
     "@babel/preset-react": "^7.13.13",
-    "@redhat-cloud-services/frontend-components-config": "^4.1.10",
+    "@redhat-cloud-services/frontend-components-config": "^4.2.7",
     "@testing-library/react-hooks": "^5.1.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "babel-core": "^6.26.3",
