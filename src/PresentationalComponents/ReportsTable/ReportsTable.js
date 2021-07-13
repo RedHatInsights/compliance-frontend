@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Table, TableBody, TableHeader, sortable, fitContent } from '@patternfly/react-table';
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import { emptyRows } from 'PresentationalComponents';
-import useFilterConfig from 'Utilities/hooks/useFilterConfig';
+import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import useTableSort from 'Utilities/hooks/useTableSort';
 import { Name, OperatingSystem, CompliantSystems } from './Cells';
 import { uniq } from 'Utilities/helpers';
@@ -42,12 +42,14 @@ const ReportsTable = ({ profiles }) => {
     ];
     const policyTypes = uniq(profiles.map(({ policyType }) => (policyType)).filter((i) => (!!i)));
     const operatingSystems = uniq(profiles.map(({ majorOsVersion }) => (majorOsVersion)).filter((i) => (!!i)));
-    const { conditionalFilter, filtered: filteredProfiles } = useFilterConfig([
+    const { toolbarProps: conditionalFilter, filter } = useFilterConfig({ filters: { filterConfig: [
         ...policyNameFilter,
         ...policyTypes.length > 0 && policyTypeFilter(policyTypes) || [],
         ...operatingSystems.length > 0 && operatingSystemFilter(operatingSystems) || [],
         ...policyComplianceFilter
-    ], profiles);
+    ] } });
+    const filteredProfiles = filter ? filter(profiles) : [];
+
     const { tableSort, sorted: sortedProfiles } = useTableSort(filteredProfiles, columns);
     const rows = sortedProfiles.length > 0 ? sortedProfiles.map((profile) => ({
         cells: [
