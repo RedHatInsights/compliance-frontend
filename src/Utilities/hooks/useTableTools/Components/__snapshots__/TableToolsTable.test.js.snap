@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TableToolsTable expect to have filters properly rendered 1`] = `
+<div
+  class="pf-c-pagination__total-items"
+>
+  <b>
+    1
+     - 
+    1
+  </b>
+   
+  of
+   
+  <b>
+    1
+  </b>
+   
+  
+</div>
+`;
+
+exports[`TableToolsTable expect to have filters properly rendered 2`] = `
+<div
+  class="pf-c-pagination__total-items"
+>
+  <b>
+    1
+     - 
+    10
+  </b>
+   
+  of
+   
+  <b>
+    30
+  </b>
+   
+  
+</div>
+`;
+
 exports[`TableToolsTable expect to render without error 1`] = `
 <Fragment>
   <PrimaryToolbar
@@ -15,7 +55,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
           Object {
             "filterValues": Object {
               "onChange": [Function],
-              "value": "",
+              "value": undefined,
             },
             "id": "name",
             "label": "Name",
@@ -39,7 +79,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
                 },
               ],
               "onChange": [Function],
-              "value": Array [],
+              "value": undefined,
             },
             "id": "checkboxfilter",
             "label": "Checkbox Filter",

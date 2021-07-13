@@ -1,6 +1,14 @@
 import { policies as rawPolicies  } from '@/__fixtures__/policies.js';
+import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
+import { PoliciesTable, PolicyNameCell, FILTER_CONFIGURATION } from './PoliciesTable.js';
 
-import { PoliciesTable, PolicyNameCell } from './PoliciesTable.js';
+expect.extend(filterHelpers);
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    Link: () => ('Mocked Link'),
+    useLocation: jest.fn()
+}));
 
 const policies = rawPolicies.edges.map(profile => profile.node);
 
@@ -63,6 +71,14 @@ describe('PoliciesTable', () => {
             await instance.changePage(1, 10);
             expect(toJson(wrapper)).toMatchSnapshot();
         });
+    });
+
+    it('expect to have filters properly rendered', () => {
+        const component = <PoliciesTable
+            { ...defaultProps }
+            policies={ policies } />;
+
+        expect(component).toHaveFiltersFor(FILTER_CONFIGURATION);
     });
 });
 

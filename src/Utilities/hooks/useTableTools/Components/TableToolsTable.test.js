@@ -1,3 +1,6 @@
+import { render, act } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
+
 import TableToolsTable from './TableToolsTable';
 import items from '../__fixtures__/items';
 import columns from '../__fixtures__/columns';
@@ -27,4 +30,30 @@ describe('TableToolsTable', () => {
         const component = <TableToolsTable { ...defaultProps } />;
         expect(component).toHaveFiltersFor(filters);
     });
+
+    it('expect to have filters properly rendered', () => {
+        const component = <TableToolsTable {
+            ...{
+                ...defaultProps,
+                options: {
+                    preselected: [exampleItems[1].id],
+                    selectedFilter: true,
+                    onSelect: () => {}
+                }
+            }
+        } />;
+        const { container } = render(component);
+        const toolbar = container.querySelector('#ins-primary-data-toolbar');
+
+        expect(container.querySelector('.pf-c-pagination__total-items')).toMatchSnapshot();
+
+        act(() => {
+            const onlyToggle = queryByText(toolbar, 'Selected only', { selector: '.pf-m-off' });
+            onlyToggle.click();
+        });
+
+        expect(container.querySelector('.pf-c-pagination__total-items')).toMatchSnapshot();
+
+    });
+
 });

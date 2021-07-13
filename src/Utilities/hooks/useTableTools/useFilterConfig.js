@@ -16,6 +16,8 @@ const filterValues = (activeFilters) => (
     })
 );
 
+const filterConfigBuilder = new FilterConfigBuilder([]);
+
 const useFilterConfig = (options = {}) => {
     const {
         filters,
@@ -24,7 +26,6 @@ const useFilterConfig = (options = {}) => {
     } = options;
     const enableFilters = !!filters;
     const { filterConfig = [], activeFilters: initialActiveFilters } = filters || {};
-    const filterConfigBuilder = new FilterConfigBuilder(filterConfig);
     const [activeFilters, setActiveFilters] = useState(
         filterConfigBuilder.initialDefaultState(initialActiveFilters)
     );
@@ -95,7 +96,9 @@ const useFilterConfig = (options = {}) => {
         toolbarProps: {
             filterConfig: filterConfigBuilder.buildConfiguration(
                 onFilterUpdate,
-                activeFilters
+                activeFilters,
+                {},
+                filterConfig
             ),
             activeFiltersConfig: {
                 filters: filterChips,
