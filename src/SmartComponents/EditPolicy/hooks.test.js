@@ -43,7 +43,8 @@ describe('useOnSave', function () {
 
         expect(mockedNotification).toHaveBeenCalledWith({
             variant: 'success',
-            title: 'Policy successfully updated'
+            title: 'Policy successfully updated',
+            autoDismiss: true
         });
     });
 

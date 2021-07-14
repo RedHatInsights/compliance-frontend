@@ -72,6 +72,7 @@ export const FinishedCreatePolicy = ({
             dispatchNotification({
                 variant: 'success',
                 title: `Policy created`,
+                autoDismiss: true,
                 description: <span>
                     From the <strong>SCAP Policies</strong> page, open { name }.
                 </span>

@@ -23,7 +23,8 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
             setIsSaving(false);
             dispatchNotification({
                 variant: 'success',
-                title: 'Policy successfully updated'
+                title: 'Policy successfully updated',
+                autoDismiss: true
             });
             linkToPolicy();
         }).catch((error) => {
