@@ -82,7 +82,7 @@ export const InventoryTable = ({
     });
     const getEntities = useGetEntities(fetchSystems, { selected: selectedSystems, columns });
     const exportConfig = useSystemsExport({
-        columns,
+        columns: [...columns, { key: 'tags' }],
         filter: systemsFilter,
         policyId,
         query,
@@ -115,10 +115,11 @@ export const InventoryTable = ({
                 onLoad={ defaultOnLoad(columns) }
                 hideFilters={{
                     name: true,
-                    tags: true,
+                    tags: false,
                     registeredWith: true,
                     stale: true
                 }}
+                showTags
                 tableProps={{
                     canSelectAll: false,
                     ...items.length > 0 && { onSelect }
