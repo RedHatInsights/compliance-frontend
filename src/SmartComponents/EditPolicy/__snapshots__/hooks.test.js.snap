@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useOnSave returns an array with a boolean and function 1`] = `
+Object {
+  "all": Array [
+    Array [
+      false,
+      [Function],
+    ],
+  ],
+  "current": Array [
+    false,
+    [Function],
+  ],
+  "error": undefined,
+}
+`;

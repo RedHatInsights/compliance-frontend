@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/client/react/hoc';
 import { usePolicy } from 'Mutations';
+import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const EmtpyStateWithErrors = ({ errors }) => (
     (errors && Array.isArray(errors) && errors.length > 0) ? (
@@ -68,10 +69,23 @@ export const FinishedCreatePolicy = ({
         updatePolicy(null, newPolicy, onProgress).then(() => {
             setPercent(100);
             setMessage();
+            dispatchNotification({
+                variant: 'success',
+                title: `Policy created`,
+                autoDismiss: true,
+                description: <span>
+                    From the <strong>SCAP Policies</strong> page, open { name }.
+                </span>
+            });
         }).catch((error) => {
             setMessage(error.networkError?.message);
             setErrors(error.networkError?.result?.errors);
             setFailed(true);
+            dispatchNotification({
+                variant: 'danger',
+                title: 'Error creating policy',
+                description: error.message
+            });
         });
     }, []);
 

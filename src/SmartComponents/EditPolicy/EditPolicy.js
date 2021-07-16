@@ -4,11 +4,10 @@ import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
-import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
-import { usePolicy } from 'Mutations';
+import { useOnSave, useLinkToPolicy } from './hooks';
 
 export const MULTIVERSION_QUERY = gql`
 query Profile($policyId: String!){
@@ -73,37 +72,17 @@ export const EditPolicy = ({ route }) => {
         variables: { policyId }
     });
     const policy = data?.profile;
-    const anchor = useAnchor();
+    const linkToPolicy = useLinkToPolicy();
     const [updatedPolicy, setUpdatedPolicy] = useState(null);
     const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
     const [selectedSystems, setSelectedSystems] = useState([]);
-    const updatePolicy = usePolicy();
-    const linkToBackground = useLinkToBackground('/scappolicies');
-    const [isSaving, setIsSaving] = useState();
     const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
-
-    const linkToBackgroundWithHash = () => {
-        linkToBackground({ hash: anchor });
+    const updatedPolicyHostsAndRules = {
+        ...updatedPolicy,
+        selectedRuleRefIds,
+        hosts: selectedSystems
     };
-
-    const onSave = () => {
-        if (isSaving) { return; }
-
-        setIsSaving(true);
-        const updatedPolicyHostsAndRules = {
-            ...updatedPolicy,
-            selectedRuleRefIds,
-            hosts: selectedSystems
-        };
-        updatePolicy(policy, updatedPolicyHostsAndRules).then(() => {
-            setIsSaving(false);
-            linkToBackgroundWithHash();
-        }).catch(() => {
-            // TODO report error
-            setIsSaving(false);
-            linkToBackgroundWithHash();
-        });
-    };
+    const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules);
 
     const actions = [
         <Button
@@ -120,7 +99,7 @@ export const EditPolicy = ({ route }) => {
             key='cancel'
             ouiaId="EditPolicyCancelButton"
             variant='link'
-            onClick={ () => linkToBackgroundWithHash() }>
+            onClick={ () => linkToPolicy() }>
             Cancel
         </Button>
     ];
@@ -134,7 +113,7 @@ export const EditPolicy = ({ route }) => {
         variant={ 'large' }
         ouiaId="EditPolicyModal"
         title={ `Edit ${ policy ? policy.name : '' }` }
-        onClose={ () => linkToBackgroundWithHash() }
+        onClose={ () => linkToPolicy() }
         actions={ actions }>
 
         <StateViewWithError stateValues={ { policy, loading, error } }>
