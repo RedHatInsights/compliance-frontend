@@ -136,3 +136,5 @@ export const OperatingSystem  = compileColumnRenderFunc({
     ),
     cell: OperatingSystemCell
 });
+
+export const inventoryColumn = (column) => (column);

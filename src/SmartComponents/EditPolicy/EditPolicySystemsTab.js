@@ -48,6 +48,7 @@ const EditPolicySystemsTab = ({ policy: { osMajorVersion }, newRuleTabs, onSyste
             <InventoryTable
                 columns={[
                     Columns.Name,
+                    Columns.inventoryColumn('tags'),
                     Columns.OperatingSystem
                 ]}
                 showOsMinorVersionFilter={ [osMajorVersion] }

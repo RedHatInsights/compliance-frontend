@@ -171,6 +171,7 @@ export const ReportDetails = ({ route }) => {
                                     showLink: true,
                                     showOsInfo: true
                                 }),
+                                Columns.inventoryColumn('tags'),
                                 Columns.SsgVersion,
                                 Columns.FailedRules,
                                 Columns.ComplianceScore,

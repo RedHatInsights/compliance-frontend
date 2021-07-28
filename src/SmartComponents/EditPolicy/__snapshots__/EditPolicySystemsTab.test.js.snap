@@ -15,6 +15,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
           "renderFunc": [Function],
           "title": "Name",
         },
+        "tags",
         Object {
           "key": "operatingSystem",
           "props": Object {
@@ -403,6 +404,54 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
                                       ],
                                     },
                                   },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "tags",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "namespace",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "key",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "value",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -524,7 +573,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 862,
+          "end": 983,
           "start": 0,
         },
       }
@@ -573,6 +622,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
           "renderFunc": [Function],
           "title": "Name",
         },
+        "tags",
         Object {
           "key": "operatingSystem",
           "props": Object {
@@ -961,6 +1011,54 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
                                       ],
                                     },
                                   },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "tags",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "namespace",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "key",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "value",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -1082,7 +1180,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 862,
+          "end": 983,
           "start": 0,
         },
       }

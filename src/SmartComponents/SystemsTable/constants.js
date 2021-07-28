@@ -38,6 +38,11 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int, $so
                     id
                     name
                 }
+                tags {
+                    namespace
+                    key
+                    value
+                }
             }
         }
     }
@@ -70,6 +75,11 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int, $so
                 policies(policyId: $policyId) {
                     id
                     name
+                }
+                tags {
+                    namespace
+                    key
+                    value
                 }
             }
         }

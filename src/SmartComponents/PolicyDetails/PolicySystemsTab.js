@@ -12,6 +12,7 @@ const PolicySystemsTab = ({ policy }) => (
             Columns.customName({
                 showLink: true
             }),
+            Columns.inventoryColumn('tags'),
             Columns.SsgVersion,
             Columns.OperatingSystem
         ]}
