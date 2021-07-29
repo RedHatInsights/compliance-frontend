@@ -4,7 +4,7 @@ import { sortingByProp } from 'Utilities/helpers';
 const selectRows = (rows, selected) => (
     rows.map((row) => ({
         ...row,
-        selected: selected.map((entity) => (entity.id)).includes(row.id)
+        selected: selected.includes(row.id)
     }))
 );
 

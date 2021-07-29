@@ -39,9 +39,30 @@ exports[`InventoryTable returns 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -184,6 +205,7 @@ exports[`InventoryTable returns 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -231,9 +253,30 @@ exports[`InventoryTable returns compact 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -376,6 +419,7 @@ exports[`InventoryTable returns compact 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant="compact"
@@ -417,9 +461,30 @@ exports[`InventoryTable returns showAllSystems 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -443,6 +508,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -496,9 +562,30 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -641,6 +728,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -688,9 +776,30 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -881,6 +990,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -928,9 +1038,30 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -1073,6 +1204,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -1112,9 +1244,30 @@ exports[`InventoryTable returns without actions 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -1257,6 +1410,7 @@ exports[`InventoryTable returns without actions 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""
@@ -1304,9 +1458,30 @@ exports[`InventoryTable returns without remediations 1`] = `
       bulkSelect={
         Object {
           "checked": false,
-          "count": 0,
-          "label": undefined,
-          "onSelect": false,
+          "isDisabled": true,
+          "items": Array [
+            Object {
+              "onClick": [Function],
+              "props": Object {
+                "isDisabled": true,
+              },
+              "title": "Select none",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Select page (0 items)",
+            },
+            Object {
+              "onClick": [Function],
+              "title": "Unselect all (0 items)",
+            },
+          ],
+          "onSelect": undefined,
+          "toggleProps": Object {
+            "children": Array [
+              "0 selected",
+            ],
+          },
         }
       }
       columns={[Function]}
@@ -1443,6 +1618,7 @@ exports[`InventoryTable returns without remediations 1`] = `
       tableProps={
         Object {
           "canSelectAll": false,
+          "onSelect": undefined,
         }
       }
       variant=""

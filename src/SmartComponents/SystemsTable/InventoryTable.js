@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
@@ -11,7 +11,7 @@ import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/fron
 import { policyFilter, defaultOnLoad } from './constants';
 import {
     useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities, useOnSelect,
-    useSystemsExport, useSystemsFilter, useTags
+    useSystemsExport, useSystemsFilter, useSystemBulkSelect, useTags
 } from './hooks';
 import useFeature from 'Utilities/hooks/useFeature';
 
@@ -47,11 +47,6 @@ export const InventoryTable = ({
     const tagsEnabled = useFeature('tags');
     const { props: tagsProps } = useTags(tagsEnabled);
 
-    const {
-        onSelect, onBulkSelect, selectedSystems, isPageSelected
-    } = useOnSelect(onSelectProp, items, preselectedSystems, total);
-    const selectedCount = selectedSystems.length;
-
     const osMinorVersionFilter = useOsMinorVersionFilter(showOsMinorVersionFilter);
     const { toolbarProps: conditionalFilter, filterString, activeFilterValues } = useFilterConfig({
         filters: { filterConfig: [
@@ -61,8 +56,32 @@ export const InventoryTable = ({
             ...osMinorVersionFilter
         ] }
     });
+    const systemsFilter = useSystemsFilter(filterString, showOnlySystemsWithTestResults, defaultFilter);
 
-    useInventoryUtilities(inventory, selectedSystems, activeFilterValues);
+    const systemFetchArguments = {
+        query,
+        variables: {
+            filter: systemsFilter,
+            ...policyId && { policyId }
+        }
+    };
+
+    const preselection = useMemo(() => (
+        preselectedSystems.map(({ id }) => (id))
+    ), [preselectedSystems]);
+
+    const {
+        selectedIds, selectedSystems, tableProps: bulkSelectTableProps, toolbarProps: bulkSelectToolBarProps
+    } = useSystemBulkSelect({
+        total,
+        onSelect: onSelectProp,
+        preselected: preselection,
+        fetchArguments: systemFetchArguments,
+        currentPageIds: items.map(({ id }) => (id)),
+        systemsCache: items
+    });
+
+    useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
     const onComplete = (result) => {
         setTotal(result.meta.totalCount);
@@ -78,21 +97,16 @@ export const InventoryTable = ({
 
     const systemsFilter = useSystemsFilter(filterString(), showOnlySystemsWithTestResults, defaultFilter);
     const fetchSystems = useFetchSystems({
-        query,
-        onComplete,
-        variables: {
-            filter: systemsFilter,
-            ...policyId && { policyId }
-        }
+        ...systemFetchArguments,
+        onComplete
     });
-    const getEntities = useGetEntities(fetchSystems, { selected: selectedSystems, columns });
+    const getEntities = useGetEntities(fetchSystems, { selected: selectedIds, columns });
     const exportConfig = useSystemsExport({
         columns,
         filter: systemsFilter,
-        policyId,
-        query,
-        selected: selectedSystems.map((i) => (i.id)),
-        total
+        selected: selectedIds,
+        total,
+        fetchArguments: systemFetchArguments
     });
 
     const mergedColumns = (defaultColumns) => (
@@ -135,18 +149,12 @@ export const InventoryTable = ({
                 getEntities={ getEntities }
                 onLoad={ defaultOnLoad(columns) }
                 tableProps={{
-                    canSelectAll: false,
-                    ...items.length > 0 && { onSelect }
+                    ...bulkSelectTableProps
                 }}
                 fallback={ <Spinner /> }
                 variant={ compact ? TableVariant.compact : '' }
-                bulkSelect={{
-                    checked: selectedCount > 0 ? (isPageSelected ? true : null) : false,
-                    onSelect: items.length > 0 && onBulkSelect,
-                    count: selectedCount,
-                    label: selectedCount > 0 ? `${ selectedCount } Selected` : undefined
-                }}
-                {...!showAllSystems && {
+                { ...bulkSelectToolBarProps }
+                { ...!showAllSystems && {
                     ...conditionalFilter,
                     ...remediationsEnabled && {
                         dedicatedAction: <ComplianceRemediationButton

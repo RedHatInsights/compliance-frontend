@@ -20,10 +20,13 @@ describe('useSystemsFilter', () => {
 describe('useSystemsExport', () => {
     const defaultOptions = {
         columns: [{ name: 'Name' }],
-        filter: '',
         policyId: 'POLICY ID',
-        query: 'QUERY',
-        total: 1
+        total: 1,
+        fetchArguments: {
+            query: 'QUERY',
+            filter: '',
+            variables: {}
+        }
     };
 
     it('returns a export configuration', () => {
