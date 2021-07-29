@@ -2,7 +2,7 @@ import useFilterConfig from './useFilterConfig';
 import useTableSort from './useTableSort';
 import usePaginate from './usePaginate';
 import useRowsBuilder from './useRowsBuilder';
-import useBulkSelect from './useBulkSelect';
+import { useBulkSelectWithItems } from './useBulkSelect';
 import useItemIdentify from './useItemIdentify';
 import useExpandable from './useExpandable';
 import useDedicatedAction from './useDedicatedAction';
@@ -42,10 +42,9 @@ const useTableTools = (items = [], columns = [], options = {}) => {
         selectedItems
     } = useBulkSelect({
         ...options,
-        items: identifiedItems,
+        items: sorter(identifiedItems),
         filter,
         paginator,
-        sorter,
         setPage
     });
 

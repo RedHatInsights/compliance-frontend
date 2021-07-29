@@ -1,9 +1,60 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useBulkSelect from './useBulkSelect';
+import { useBulkSelect, useBulkSelectWithItems } from './useBulkSelect';
 import items from './__fixtures__/items';
 import useItemIdentify from './useItemIdentify';
 
 describe('useBulkSelect', () => {
+    const defaultOptions = {
+        total: 0,
+        onSelect: () => ({}),
+        itemIdsInTable: () => ([]),
+        itemIdsOnPage: () => ([])
+    };
+
+    it('returns a bulk select configuration', () => {
+        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+
+        expect(result).toMatchSnapshot();
+    });
+
+    it('returns a bulk select configuration with the correct options', () => {
+        const { result } = renderHook(() => useBulkSelect({
+            ...defaultOptions,
+            total: 1,
+            preselected: ['ID'],
+            itemIdsInTable: () => (['ID']),
+            itemIdsOnPage: () => (['ID'])
+        }));
+
+        expect(result.current).toMatchSnapshot();
+    });
+
+    it('returns a bulk select configuration with the correct options', () => {
+        const { result } = renderHook(() => useBulkSelect({
+            ...defaultOptions,
+            total: 2,
+            preselected: ['ID'],
+            itemIdsInTable: () => (['ID', 'ID2']),
+            itemIdsOnPage: () => (['ID', 'ID2'])
+        }));
+
+        expect(result.current).toMatchSnapshot();
+    });
+
+    it('returns a bulk select configuration with the correct options', () => {
+        const { result } = renderHook(() => useBulkSelect({
+            ...defaultOptions,
+            total: 2,
+            preselected: ['ID'],
+            itemIdsInTable: () => (['ID', 'ID2']),
+            itemIdsOnPage: () => (['ID'])
+        }));
+
+        expect(result.current).toMatchSnapshot();
+    });
+});
+
+describe('useBulkSelectWithItems', () => {
     const exampleItems = useItemIdentify(items(20));
     const defaultOptions = {
         onSelect: () => ({}),
@@ -17,14 +68,14 @@ describe('useBulkSelect', () => {
     const getSelectAll = (result) => (result.current.toolbarProps.bulkSelect.items[2]);
 
     it('returns a bulk select configuration', () => {
-        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
 
         expect(result).toMatchSnapshot();
     });
 
     it('returns a allows to select one', () => {
         const item = exampleItems[5];
-        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
 
         act(() => {
             result.current.tableProps.onSelect(undefined, true, 'key', item);
@@ -33,7 +84,7 @@ describe('useBulkSelect', () => {
     });
 
     it('returns a allows to select/deselect all', () => {
-        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
         expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
@@ -48,7 +99,7 @@ describe('useBulkSelect', () => {
     });
 
     it('returns a allows to select/deselect page', () => {
-        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
         expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
@@ -63,7 +114,7 @@ describe('useBulkSelect', () => {
     });
 
     it('returns to select none after all selected', () => {
-        const { result } = renderHook(() => useBulkSelect(defaultOptions));
+        const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
         expect(getBulkSelect(result)).toMatchSnapshot();
 
         act(() => {
@@ -78,7 +129,7 @@ describe('useBulkSelect', () => {
     });
 
     it('returns respects filtered results', () => {
-        const { result } = renderHook(() => useBulkSelect({
+        const { result } = renderHook(() => useBulkSelectWithItems({
             ...defaultOptions,
             filter: (items) => (items.slice(5, 10))
         }));
