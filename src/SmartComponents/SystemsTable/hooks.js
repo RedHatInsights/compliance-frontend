@@ -235,6 +235,10 @@ export const useSystemBulkSelect = ({
     });
 
     const fetchFunc = async (fetchIds) => {
+        if (fetchIds.length === 0) {
+            return [];
+        }
+
         const idFilter = toIdFilter(fetchIds);
         const results = await fetchBatched(fetchSystems, fetchIds.length, {
             ...idFilter && { filter: idFilter }
