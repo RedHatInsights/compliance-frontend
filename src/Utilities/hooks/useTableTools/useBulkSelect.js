@@ -95,10 +95,9 @@ export const useBulkSelect = ({
             unselectItems(currentPageIds) : selectItems(currentPageIds);
     });
 
-    const selectAll = () => onSelectCallback(async () => {
-        const allItemIds = await itemIdsInTable();
-        return allSelected ? unselectAll() : selectItems(allItemIds);
-    });
+    const selectAll = () => onSelectCallback(async () => (
+        allSelected ? unselectAll() : selectItems(await itemIdsInTable())
+    ));
 
     useEffect(() => {
         setSelectedItemIds(preselected);
