@@ -4,13 +4,14 @@ const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
+const { routes } = require('./spandx.config.js');
 
 const insightsProxy = {
     https: false,
     port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
     ...(process.env.BETA && { deployment: 'beta/apps' }),
   };
-  
+
   const webpackProxy = {
     deployment: process.env.BETA ? 'beta/apps' : 'apps',
     appUrl: process.env.BETA ? ['/beta/insights/compliance'] : ['/insights/compliance'],
@@ -20,10 +21,11 @@ const insightsProxy = {
     useCloud: true, // until console pre-prod env is ready
     // localChrome: '~/insights/insights-chrome/build/', // for local chrome builds
     routes: {
-    //   '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
+        //   '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
+        ...routes
     },
   };
-  
+
 
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
