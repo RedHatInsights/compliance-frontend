@@ -5,11 +5,31 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
 
+const insightsProxy = {
+    https: false,
+    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
+    ...(process.env.BETA && { deployment: 'beta/apps' }),
+  };
+  
+  const webpackProxy = {
+    deployment: process.env.BETA ? 'beta/apps' : 'apps',
+    appUrl: process.env.BETA ? ['/beta/insights/compliance'] : ['/insights/compliance'],
+    env: `ci-${process.env.BETA ? 'beta' : 'stable'}`, // pick chrome env ['ci-beta', 'ci-stable', 'qa-beta', 'qa-stable', 'prod-beta', 'prod-stable']
+    useProxy: true,
+    proxyVerbose: true,
+    useCloud: true, // until console pre-prod env is ready
+    // localChrome: '~/insights/insights-chrome/build/', // for local chrome builds
+    routes: {
+    //   '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
+    },
+  };
+  
+
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),
     debug: true,
-    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
-    useFileHash: false
+    useFileHash: false,
+    ...(process.env.PROXY ? webpackProxy : insightsProxy),
 });
 
 /**
