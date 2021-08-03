@@ -1,6 +1,7 @@
 import FilterConfigBuilder from './FilterConfigBuilder';
 import FilterBuilder from './FilterBuilder';
 import { exampleFilters } from '../__fixtures__/filters';
+import { COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 
 describe('buildFilterString', () => {
     const configBuilder = new FilterConfigBuilder(exampleFilters);
@@ -40,6 +41,23 @@ describe('buildFilterString', () => {
                 systemsmeetingcompliance: ['0-49', '50-69']
             };
             expect(filterBuilder.buildFilterString(testExampleState)).toMatchSnapshot();
+        });
+    });
+
+    describe('builds filters from constants in use: ', () => {
+        it('COMPLIANT_SYSTEMS_FILTER_CONFIGURATION', () => {
+            let builder = new FilterBuilder(
+                new FilterConfigBuilder(COMPLIANT_SYSTEMS_FILTER_CONFIGURATION)
+            );
+
+            expect(builder.buildFilterString({
+                compliancescore: ['0-50', '50-70']
+            })).toMatchSnapshot();
+
+            expect(builder.buildFilterString({
+                compliancescore: ['90-101', '70-90'],
+                compliant: [true]
+            })).toMatchSnapshot();
         });
     });
 });

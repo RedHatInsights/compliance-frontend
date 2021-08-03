@@ -94,13 +94,13 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
         label: 'Compliance score',
         filterString: (value) => {
             const scoreRange = value.split('-');
-            return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
+            return `(compliance_score >= ${scoreRange[0]} and compliance_score < ${scoreRange[1]})`;
         },
         items: [
-            { label: '90 - 100%', value: '90-100' },
-            { label: '70 - 89%', value: '70-89' },
-            { label: '50 - 69%', value: '50-69' },
-            { label: 'Less than 50%', value: '0-49' }
+            { label: '90 - 100%', value: '90-101' },
+            { label: '70 - 89%', value: '70-90' },
+            { label: '50 - 69%', value: '50-70' },
+            { label: 'Less than 50%', value: '0-50' }
         ]
     }
 ];
