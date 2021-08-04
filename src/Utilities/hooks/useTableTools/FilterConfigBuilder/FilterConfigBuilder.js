@@ -19,13 +19,21 @@ class FilterConfigBuilder {
         )).concat(item)
     )
 
-    getChipBuilder = () => (
-        this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this)
-    )
+    getChipBuilder = (config) => {
+        if (config) {
+            this.config = config;
+        }
 
-    getFilterBuilder = () => (
-        this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this)
-    )
+        return this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this);
+    }
+
+    getFilterBuilder = (config) => {
+        if (config) {
+            this.config = config;
+        }
+
+        return this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this);
+    }
 
     toTextFilterConfig = (item, handler, value) => ({
         type: conditionalFilterType.text,

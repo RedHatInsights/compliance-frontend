@@ -57,8 +57,6 @@ const useFilterConfig = (options = {}) => {
     const onFilterDelete = (_event, chips, clearAll = false) => (
         clearAll ? clearAllFilter() : deleteFilter(chips[0])
     );
-    const chipBuilder = filterConfigBuilder.getChipBuilder();
-    const filterChips = chipBuilder.chipsFor(activeFilters);
 
     const filter = (items) => (
         filterConfigBuilder.applyFilterToObjectArray(
@@ -101,7 +99,7 @@ const useFilterConfig = (options = {}) => {
                 filterConfig
             ),
             activeFiltersConfig: {
-                filters: filterChips,
+                filters: filterConfigBuilder.getChipBuilder(filterConfig).chipsFor(activeFilters),
                 onDelete: onFilterDelete
             }
         },
@@ -110,7 +108,7 @@ const useFilterConfig = (options = {}) => {
         activeFilterValues,
         addConfigItem,
         filterConfigBuilder,
-        filterString: () => filterConfigBuilder.getFilterBuilder().buildFilterString(activeFilters)
+        filterString: () => filterConfigBuilder.getFilterBuilder(filterConfig).buildFilterString(activeFilters)
     } : {};
 };
 

@@ -254,7 +254,7 @@ exports[`InventoryTable returns compact 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -517,7 +517,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -708,7 +708,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -947,7 +947,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -1130,7 +1130,7 @@ exports[`InventoryTable returns without actions 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -1315,7 +1315,7 @@ exports[`InventoryTable returns without remediations 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
