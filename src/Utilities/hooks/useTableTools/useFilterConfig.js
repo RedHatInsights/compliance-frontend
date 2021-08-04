@@ -76,9 +76,11 @@ const useFilterConfig = (options = {}) => {
         filterValues(activeFilters)
     ), [activeFilters]);
 
+    const filterConfigWithSelected = [...filterConfig, ...(selectFilterItem ? [selectFilterItem] : [])];
+
     useEffect(() => {
         filterConfigBuilder.config = [];
-        [...filterConfig, selectFilterItem].filter((v) => (!!v)).forEach(addConfigItem);
+        filterConfigWithSelected.filter((v) => (!!v)).forEach(addConfigItem);
         setActiveFilters(filterConfigBuilder.initialDefaultState(
             initialActiveFilters || []
         ));
@@ -96,10 +98,10 @@ const useFilterConfig = (options = {}) => {
                 onFilterUpdate,
                 activeFilters,
                 {},
-                filterConfig
+                filterConfigWithSelected
             ),
             activeFiltersConfig: {
-                filters: filterConfigBuilder.getChipBuilder(filterConfig).chipsFor(activeFilters),
+                filters: filterConfigBuilder.getChipBuilder(filterConfigWithSelected).chipsFor(activeFilters),
                 onDelete: onFilterDelete
             }
         },
@@ -108,7 +110,7 @@ const useFilterConfig = (options = {}) => {
         activeFilterValues,
         addConfigItem,
         filterConfigBuilder,
-        filterString: () => filterConfigBuilder.getFilterBuilder(filterConfig).buildFilterString(activeFilters)
+        filterString: () => filterConfigBuilder.getFilterBuilder(filterConfigWithSelected).buildFilterString(activeFilters)
     } : {};
 };
 
