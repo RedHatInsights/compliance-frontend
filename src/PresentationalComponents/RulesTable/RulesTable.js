@@ -37,6 +37,19 @@ const RulesTable = ({
         }
     ));
 
+    const remediationAction = ({ selected: selectedRules }) => (
+        <ComplianceRemediationButton
+            allSystems={ [{
+                id: system.id,
+                profiles: system.testResultProfiles,
+                ruleObjectsFailed: [],
+                supported: system.supported
+            }] }
+            selectedRules={
+                (selectedRules || []).filter((rule) => (rule.remediationAvailable))
+            } />
+    );
+
     return <TableToolsTable
         aria-label="Rules Table"
         items={ rules }
@@ -60,16 +73,7 @@ const RulesTable = ({
             detailsComponent: RuleDetailsRow,
             emptyRows: emptyRows(columns),
             selectedFilter,
-            dedicatedAction: ({ selected: selectedRules }) => ( // eslint-disable-line
-                remediationsEnabled && <ComplianceRemediationButton
-                    allSystems={ [{
-                        id: system.id,
-                        profiles: system.testResultProfiles,
-                        ruleObjectsFailed: [],
-                        supported: system.supported
-                    }] }
-                    selectedRules={ (selectedRules || []).filter((rule) => (rule.remediationAvailable)) } />
-            )
+            ...remediationsEnabled ? { dedicatedAction: remediationAction } : {}
         }}
         { ...rulesTableProps } />;
 };

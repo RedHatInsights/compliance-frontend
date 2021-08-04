@@ -51,4 +51,19 @@ describe('RulesTable', () => {
 
         expect(component).toHaveFiltersFor(filterConfig);
     });
+
+    it('expect to pass dedicatedAction', () => {
+        const dedicatedAction = () => <span>Dedicated Action</span>;
+        let wrapper = shallow(
+            <RulesTable { ...{
+                ...defaultProps,
+                remediationsEnabled: false,
+                options: {
+                    dedicatedAction
+                }
+            } } />
+        );
+
+        expect(wrapper.props().options.dedicatedAction).toBe(dedicatedAction);
+    });
 });

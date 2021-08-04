@@ -30,7 +30,7 @@ const PolicyRulesTab = ({ loading, policy }) => (
                 rules: policy.rules
             }]}
             options={{
-                dedicatedAction: () => (<EditRulesButtonToolbarItem policy={ policy } />) // eslint-disable-line
+                dedicatedAction: <EditRulesButtonToolbarItem policy={ policy } />
             }}
         />
     </React.Fragment>
