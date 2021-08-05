@@ -63,7 +63,7 @@ exports[`InventoryTable returns 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": undefined,
+                "value": "",
               },
               "id": "name",
               "label": "Name",
@@ -728,7 +728,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
                   },
                 ],
                 "onChange": [Function],
-                "value": undefined,
+                "value": Array [],
               },
               "id": "compliant",
               "label": "Compliant",
@@ -756,7 +756,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
                   },
                 ],
                 "onChange": [Function],
-                "value": undefined,
+                "value": Array [],
               },
               "id": "compliancescore",
               "label": "Compliance score",

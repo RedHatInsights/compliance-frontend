@@ -27,7 +27,7 @@ const useFilterConfig = (options = {}) => {
     const enableFilters = !!filters;
     const { filterConfig = [], activeFilters: initialActiveFilters } = filters || {};
     const [activeFilters, setActiveFilters] = useState(
-        filterConfigBuilder.initialDefaultState(initialActiveFilters)
+        filterConfigBuilder.initialDefaultState(initialActiveFilters, filterConfig)
     );
     const onFilterUpdate = (filter, value) => {
         setActiveFilters({
@@ -83,7 +83,7 @@ const useFilterConfig = (options = {}) => {
         filterConfigWithSelected.filter((v) => (!!v)).forEach(addConfigItem);
         setActiveFilters(filterConfigBuilder.initialDefaultState(
             initialActiveFilters || []
-        ));
+        ), filterConfig);
 
         return () => {
             filterConfigBuilder.config = [];

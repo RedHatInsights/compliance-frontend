@@ -135,9 +135,9 @@ class FilterConfigBuilder {
         }
     }
 
-    initialDefaultState = (defaultStates = {}) => {
+    initialDefaultState = (defaultStates = {}, initConfig) => {
         let initialState = {};
-        this.config.forEach((filter) => {
+        (initConfig || this.config).forEach((filter) => {
             const filterStateName = stringToId(filter.key || filter.label);
             initialState[filterStateName] =
                 defaultStates[filterStateName] || this.defaultValueForFilter(filter);
