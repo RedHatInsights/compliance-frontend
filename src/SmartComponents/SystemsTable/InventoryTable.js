@@ -6,7 +6,7 @@ import { TableVariant } from '@patternfly/react-table';
 import ComplianceRemediationButton from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton';
 import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION, COMPLIANT_SYSTEMS_FILTER_CONFIGURATION } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
-import useFilterConfig from 'Utilities/hooks/useFilterConfig';
+import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad } from './constants';
 import {
@@ -50,12 +50,14 @@ export const InventoryTable = ({
     const selectedCount = selectedSystems.length;
 
     const osMinorVersionFilter = useOsMinorVersionFilter(showOsMinorVersionFilter);
-    const { conditionalFilter, activeFilters, filterString, activeFilterValues } = useFilterConfig([
-        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-        ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
-        ...osMinorVersionFilter
-    ]);
+    const { toolbarProps: conditionalFilter, filterString, activeFilterValues } = useFilterConfig({
+        filters: { filterConfig: [
+            ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
+            ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
+            ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
+            ...osMinorVersionFilter
+        ] }
+    });
 
     useInventoryUtilities(inventory, selectedSystems, activeFilterValues);
 
@@ -71,7 +73,7 @@ export const InventoryTable = ({
         }
     };
 
-    const systemsFilter = useSystemsFilter(filterString, showOnlySystemsWithTestResults, defaultFilter);
+    const systemsFilter = useSystemsFilter(filterString(), showOnlySystemsWithTestResults, defaultFilter);
     const fetchSystems = useFetchSystems({
         query,
         onComplete,
@@ -110,7 +112,6 @@ export const InventoryTable = ({
                 { ...systemProps }
                 noSystemsTable={ noSystemsTable }
                 ref={ inventory }
-                activeFilters={ activeFilters }
                 getEntities={ getEntities }
                 onLoad={ defaultOnLoad(columns) }
                 hideFilters={{

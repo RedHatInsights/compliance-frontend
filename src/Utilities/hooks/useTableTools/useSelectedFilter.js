@@ -16,16 +16,15 @@ const useSelectedFilter = ({
         }
     };
     const isChecked = activeFilters[filterKey] === true;
+    const selectedToggle = <SelectedFilterSwitch { ...{
+        setActiveFilter,
+        isChecked
+    }  } />;
 
     return enableSelectedFilter ? {
         filterItem,
         toolbarProps: {
-            dedicatedAction: () => ( // eslint-disable-line
-                <SelectedFilterSwitch { ...{
-                    setActiveFilter,
-                    isChecked
-                }  } />
-            )
+            dedicatedAction: selectedToggle
         }
     } : {};
 };

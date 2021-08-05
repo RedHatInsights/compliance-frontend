@@ -2,8 +2,12 @@
 
 exports[`useFilterConfig returns a filter config configuration 1`] = `
 Object {
+  "activeFilterValues": Array [
+    Array [],
+  ],
   "activeFilters": Object {
-    "chackboxfilter": Array [],
+    "checkboxfilter": Array [],
+    "filtergroup": undefined,
     "hiddenfilter": false,
     "invalidfilter": undefined,
     "name": "",
@@ -20,8 +24,112 @@ Object {
       "checkboxFilterChip": [Function],
       "chipFor": [Function],
       "chipsFor": [Function],
-      "config": Array [],
+      "config": Array [
+        Object {
+          "filter": [Function],
+          "label": "Name",
+          "type": "text",
+        },
+        Object {
+          "filter": [Function],
+          "label": "Hidden filter",
+          "type": "hidden",
+        },
+        Object {
+          "filter": [Function],
+          "items": Array [
+            Object {
+              "label": "OPTION 1",
+              "value": "OPTION 1",
+            },
+            Object {
+              "label": "OPTION 2",
+              "value": "OPTION 2",
+            },
+            Object {
+              "label": "OPTION 3",
+              "value": "OPTION 3",
+            },
+          ],
+          "label": "Checkbox Filter",
+          "type": "checkbox",
+        },
+        Object {
+          "filter": [Function],
+          "items": Array [
+            Object {
+              "label": "OPTION 1",
+              "value": "OPTION 1",
+            },
+            Object {
+              "label": "OPTION 2",
+              "value": "OPTION 2",
+            },
+            Object {
+              "label": "OPTION 3",
+              "value": "OPTION 3",
+            },
+          ],
+          "label": "Radio Filter",
+          "type": "radio",
+        },
+        Object {
+          "filter": [Function],
+          "items": Array [
+            Object {
+              "label": "OPTION 1",
+              "value": "OPTION 1",
+            },
+            Object {
+              "label": "OPTION 2",
+              "value": "OPTION 2",
+            },
+            Object {
+              "label": "OPTION 3",
+              "value": "OPTION 3",
+            },
+          ],
+          "label": "Invalid Filter",
+          "type": "UNKNOWNTYPE",
+        },
+        Object {
+          "filter": [Function],
+          "items": Array [
+            Object {
+              "items": Array [
+                Object {
+                  "label": "Child 1",
+                  "value": 1,
+                },
+                Object {
+                  "label": "Child 2",
+                  "value": 2,
+                },
+              ],
+              "label": "Parent 1",
+              "value": 1,
+            },
+            Object {
+              "items": Array [
+                Object {
+                  "label": "Parent 2 Child 1",
+                  "value": 1,
+                },
+                Object {
+                  "label": "Parent 2 Child 2",
+                  "value": 2,
+                },
+              ],
+              "label": "Parent 2",
+              "value": 2,
+            },
+          ],
+          "label": "Filter group",
+          "type": "group",
+        },
+      ],
       "filterConfig": [Circular],
+      "groupFilterChip": [Function],
       "radioFilterChip": [Function],
       "textFilterChip": [Function],
     },
@@ -52,7 +160,7 @@ Object {
             "value": "OPTION 3",
           },
         ],
-        "label": "Chackbox Filter",
+        "label": "Checkbox Filter",
         "type": "checkbox",
       },
       Object {
@@ -93,6 +201,41 @@ Object {
         "label": "Invalid Filter",
         "type": "UNKNOWNTYPE",
       },
+      Object {
+        "filter": [Function],
+        "items": Array [
+          Object {
+            "items": Array [
+              Object {
+                "label": "Child 1",
+                "value": 1,
+              },
+              Object {
+                "label": "Child 2",
+                "value": 2,
+              },
+            ],
+            "label": "Parent 1",
+            "value": 1,
+          },
+          Object {
+            "items": Array [
+              Object {
+                "label": "Parent 2 Child 1",
+                "value": 1,
+              },
+              Object {
+                "label": "Parent 2 Child 2",
+                "value": 2,
+              },
+            ],
+            "label": "Parent 2",
+            "value": 2,
+          },
+        ],
+        "label": "Filter group",
+        "type": "group",
+      },
     ],
     "defaultValueForFilter": [Function],
     "filterBuilder": null,
@@ -103,13 +246,16 @@ Object {
     "initialDefaultState": [Function],
     "labelForValue": [Function],
     "removeFilterFromFilterState": [Function],
+    "removeFilterFromGroupFilterState": [Function],
     "removeFilterWithChip": [Function],
     "toCheckboxFilterConfig": [Function],
     "toFilterConfigItem": [Function],
+    "toGroupedFilterConfig": [Function],
     "toRadioFilterConfig": [Function],
     "toTextFilterConfig": [Function],
     "valueForLabel": [Function],
   },
+  "filterString": [Function],
   "selectedFilterToolbarProps": undefined,
   "setActiveFilter": [Function],
   "toolbarProps": Object {
@@ -148,9 +294,9 @@ Object {
             "onChange": [Function],
             "value": Array [],
           },
-          "id": "chackboxfilter",
-          "label": "Chackbox Filter",
-          "placeholder": "Filter by chackbox filter",
+          "id": "checkboxfilter",
+          "label": "Checkbox Filter",
+          "placeholder": "Filter by checkbox filter",
           "type": "checkbox",
         },
         Object {
@@ -177,8 +323,60 @@ Object {
           "placeholder": "Filter by radio filter",
           "type": "radio",
         },
+        Object {
+          "filterValues": Object {
+            "groups": Array [
+              Object {
+                "items": Array [
+                  Object {
+                    "label": "Child 1",
+                    "type": "checkbox",
+                    "value": 1,
+                  },
+                  Object {
+                    "label": "Child 2",
+                    "type": "checkbox",
+                    "value": 2,
+                  },
+                ],
+                "label": "Parent 1",
+                "type": "checkbox",
+                "value": 1,
+              },
+              Object {
+                "items": Array [
+                  Object {
+                    "label": "Parent 2 Child 1",
+                    "type": "checkbox",
+                    "value": 1,
+                  },
+                  Object {
+                    "label": "Parent 2 Child 2",
+                    "type": "checkbox",
+                    "value": 2,
+                  },
+                ],
+                "label": "Parent 2",
+                "type": "checkbox",
+                "value": 2,
+              },
+            ],
+            "onChange": [Function],
+            "selected": undefined,
+          },
+          "id": "filtergroup",
+          "label": "Filter group",
+          "type": "group",
+        },
       ],
     },
   },
 }
+`;
+
+exports[`useFilterConfig works concurrently 1`] = `
+<div>
+  3
+  4
+</div>
 `;

@@ -5,19 +5,25 @@ Object {
   "all": Array [
     Object {
       "toolbarProps": Object {
-        "dedicatedAction": Array [
-          <dedicatedAction />,
-          <Unknown />,
-        ],
+        "dedicatedAction": <div>
+           
+          [Function]
+           
+          [Function]
+           
+        </div>,
       },
     },
   ],
   "current": Object {
     "toolbarProps": Object {
-      "dedicatedAction": Array [
-        <dedicatedAction />,
-        <Unknown />,
-      ],
+      "dedicatedAction": <div>
+         
+        [Function]
+         
+        [Function]
+         
+      </div>,
     },
   },
   "error": undefined,

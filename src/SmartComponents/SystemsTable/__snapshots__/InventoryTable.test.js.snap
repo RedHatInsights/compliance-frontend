@@ -21,7 +21,7 @@ exports[`InventoryTable returns 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -29,11 +29,6 @@ exports[`InventoryTable returns 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -74,6 +69,103 @@ exports[`InventoryTable returns 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }
@@ -120,7 +212,7 @@ exports[`InventoryTable returns compact 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -128,11 +220,6 @@ exports[`InventoryTable returns compact 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -173,6 +260,103 @@ exports[`InventoryTable returns compact 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }
@@ -219,7 +403,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -227,11 +411,6 @@ exports[`InventoryTable returns showAllSystems 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       bulkSelect={
         Object {
@@ -296,7 +475,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
       title="The list of systems in this view is different than those that appear in the Inventory. Only systems currently associated with or reporting against compliance policies are displayed."
       variant="info"
     />
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -304,11 +483,6 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -349,6 +523,103 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }
@@ -395,7 +666,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -403,13 +674,6 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "compliancescore": Array [],
-          "compliant": Array [],
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -499,6 +763,103 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
               "placeholder": "Filter by compliance score",
               "type": "checkbox",
             },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
+            },
           ],
         }
       }
@@ -544,7 +905,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -552,11 +913,6 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -597,6 +953,103 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }
@@ -643,12 +1096,7 @@ exports[`InventoryTable returns without actions 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
-      activeFilters={
-        Object {
-          "name": "",
-        }
-      }
+    <InventoryTableMock
       activeFiltersConfig={
         Object {
           "filters": Array [],
@@ -688,6 +1136,103 @@ exports[`InventoryTable returns without actions 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }
@@ -734,7 +1279,7 @@ exports[`InventoryTable returns without remediations 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <ForwardRef
+    <InventoryTableMock
       actions={
         Array [
           Object {
@@ -742,11 +1287,6 @@ exports[`InventoryTable returns without remediations 1`] = `
             "title": "View in inventory",
           },
         ]
-      }
-      activeFilters={
-        Object {
-          "name": "",
-        }
       }
       activeFiltersConfig={
         Object {
@@ -781,6 +1321,103 @@ exports[`InventoryTable returns without remediations 1`] = `
               "label": "Name",
               "placeholder": "Filter by name",
               "type": "text",
+            },
+            Object {
+              "filterValues": Object {
+                "groups": Array [
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 7.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 7.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 7.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 7.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                      Object {
+                        "label": "RHEL 7.5",
+                        "type": "checkbox",
+                        "value": "5",
+                      },
+                      Object {
+                        "label": "RHEL 7.6",
+                        "type": "checkbox",
+                        "value": "6",
+                      },
+                      Object {
+                        "label": "RHEL 7.7",
+                        "type": "checkbox",
+                        "value": "7",
+                      },
+                      Object {
+                        "label": "RHEL 7.8",
+                        "type": "checkbox",
+                        "value": "8",
+                      },
+                      Object {
+                        "label": "RHEL 7.9",
+                        "type": "checkbox",
+                        "value": "9",
+                      },
+                    ],
+                    "label": "RHEL 7",
+                    "type": "checkbox",
+                    "value": "7",
+                  },
+                  Object {
+                    "groupSelectable": true,
+                    "items": Array [
+                      Object {
+                        "label": "RHEL 8.0",
+                        "type": "checkbox",
+                        "value": "0",
+                      },
+                      Object {
+                        "label": "RHEL 8.1",
+                        "type": "checkbox",
+                        "value": "1",
+                      },
+                      Object {
+                        "label": "RHEL 8.2",
+                        "type": "checkbox",
+                        "value": "2",
+                      },
+                      Object {
+                        "label": "RHEL 8.3",
+                        "type": "checkbox",
+                        "value": "3",
+                      },
+                      Object {
+                        "label": "RHEL 8.4",
+                        "type": "checkbox",
+                        "value": "4",
+                      },
+                    ],
+                    "label": "RHEL 8",
+                    "type": "checkbox",
+                    "value": "8",
+                  },
+                ],
+                "onChange": [Function],
+                "selected": undefined,
+              },
+              "id": "operatingsystem",
+              "label": "Operating system",
+              "type": "group",
             },
           ],
         }

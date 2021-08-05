@@ -19,13 +19,21 @@ class FilterConfigBuilder {
         )).concat(item)
     )
 
-    getChipBuilder = () => (
-        this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this)
-    )
+    getChipBuilder = (config) => {
+        if (config) {
+            this.config = config;
+        }
 
-    getFilterBuilder = () => (
-        this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this)
-    )
+        return this.chipBuilder = this.chipBuilder ? this.chipBuilder : new ChipBuilder(this);
+    }
+
+    getFilterBuilder = (config) => {
+        if (config) {
+            this.config = config;
+        }
+
+        return this.filterBuilder = this.filterBuilder ? this.filterBuilder : new FilterBuilder(this);
+    }
 
     toTextFilterConfig = (item, handler, value) => ({
         type: conditionalFilterType.text,
@@ -68,6 +76,26 @@ class FilterConfigBuilder {
         }
     });
 
+    toGroupedFilterConfig = (item, handler, value) => ({
+        type: conditionalFilterType.group,
+        label: item.label,
+        id: stringToId(item.label),
+        filterValues: {
+            selected: value,
+            onChange: (_event, selectedValues) => {
+                handler(stringToId(item.label), selectedValues);
+            },
+            groups: item.items.map((item) => ({
+                ...item,
+                type: 'checkbox',
+                items: item.items.map((subItem) => ({
+                    ...subItem,
+                    type: 'checkbox'
+                }))
+            }))
+        }
+    });
+
     toFilterConfigItem = (item, handler, value) => {
         switch (item.type) {
             case conditionalFilterType.text:
@@ -79,14 +107,17 @@ class FilterConfigBuilder {
             case conditionalFilterType.radio:
                 return this.toRadioFilterConfig(item, handler, value);
 
+            case conditionalFilterType.group:
+                return this.toGroupedFilterConfig(item, handler, value);
+
             default:
                 return null;
         }
     };
 
-    buildConfiguration = (handler, states, props = {}) => ({
+    buildConfiguration = (handler, states, props = {}, initConfig) => ({
         ...props,
-        items: this.config.map((item) => (
+        items: (initConfig || this.config).map((item) => (
             this.toFilterConfigItem(item, handler, states[stringToId(item.label)])
         )).filter((v) => (!!v))
     });
@@ -104,9 +135,9 @@ class FilterConfigBuilder {
         }
     }
 
-    initialDefaultState = (defaultStates = {}) => {
+    initialDefaultState = (defaultStates = {}, initConfig) => {
         let initialState = {};
-        this.config.forEach((filter) => {
+        (initConfig || this.config).forEach((filter) => {
             const filterStateName = stringToId(filter.key || filter.label);
             initialState[filterStateName] =
                 defaultStates[filterStateName] || this.defaultValueForFilter(filter);
@@ -128,7 +159,11 @@ class FilterConfigBuilder {
     )
 
     getItemByLabelOrValue = (query, category) => {
-        const items = this.getCategoryForLabel(category).items;
+        const categoryConfig = this.getCategoryForLabel(category);
+        const items = categoryConfig.type !== conditionalFilterType.group ?
+            categoryConfig.items : categoryConfig.items.flatMap((item) => (
+                item.items.map((subItem) => ({ ...subItem, parentValue: item.value }))
+            ));
         const results = (items || []).filter((item) => (
             item.value === query || item.label === query
         ));
@@ -180,12 +215,27 @@ class FilterConfigBuilder {
             )
     )
 
+    removeFilterFromGroupFilterState = (currentState, filter, chipItem) => {
+        // eslint-disable-next-line
+        const { [chipItem.value]: _remove, ...newGroupState } = currentState[chipItem.parentValue];
+        return {
+            ...currentState,
+            [chipItem.parentValue]: newGroupState
+        };
+    }
+
     removeFilterWithChip = (chips, activeFilters) => {
         const chipCategory = chips.category;
-        const chipValue = this.valueForLabel(chips.chips[0].name, chipCategory);
+        const chipLabel = chips.chips[0].name;
+        const chipItem = this.getItemByLabelOrValue(chipLabel, chipCategory);
+        const chipValue = chipItem ? chipItem.value : chipLabel;
         const stateProp = stringToId(chipCategory);
         const currentState = activeFilters[stateProp];
-        const newFilterState = this.removeFilterFromFilterState(currentState, chipValue);
+        const categoryConfig = this.getCategoryForLabel(chipCategory);
+        const isGroup = categoryConfig.type === conditionalFilterType.group;
+        const newFilterState = (isGroup ?
+            this.removeFilterFromGroupFilterState : this.removeFilterFromFilterState
+        )(currentState, chipValue, chipItem);
 
         return {
             ...activeFilters,

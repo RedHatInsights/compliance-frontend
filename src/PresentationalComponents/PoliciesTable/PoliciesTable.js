@@ -38,7 +38,7 @@ const policiesToRows = (policies) => (
     ))
 );
 
-const FILTER_CONFIGURATION = [
+export const FILTER_CONFIGURATION = [
     {
         type: conditionalFilterType.text,
         label: 'Name',

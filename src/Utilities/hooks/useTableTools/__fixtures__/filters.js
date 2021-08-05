@@ -37,7 +37,7 @@ export default [{
     filter: (items) => (items)
 }, {
     type: 'checkbox',
-    label: 'Chackbox Filter',
+    label: 'Checkbox Filter',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
         label: option,
         value: option
@@ -59,4 +59,16 @@ export default [{
         value: option
     })),
     filter: (items) => (items)
+}, {
+    type: 'group',
+    label: 'Filter group',
+    items: [
+        { label: 'Parent 1', value: 1, items: [
+            { label: 'Child 1', value: 1 }, { label: 'Child 2', value: 2 }
+        ] },
+        { label: 'Parent 2', value: 2, items: [
+            { label: 'Parent 2 Child 1', value: 1 }, { label: 'Parent 2 Child 2', value: 2 }
+        ] }
+    ],
+    filter: () => ([])
 }];

@@ -2,10 +2,23 @@ import { useState, useEffect, useMemo } from 'react';
 import FilterConfigBuilder from './FilterConfigBuilder/FilterConfigBuilder';
 import useSelectedFilter from './useSelectedFilter';
 
+const filterValues = (activeFilters) => (
+    Object.values(activeFilters).filter((value) => {
+        if (typeof value === Object) {
+            return Object.values(value).length > 0;
+        }
+
+        if (typeof value === Array) {
+            return value.length > 0;
+        }
+
+        return !!value;
+    })
+);
+
+const filterConfigBuilder = new FilterConfigBuilder([]);
+
 const useFilterConfig = (options = {}) => {
-    const filterConfigBuilder = useMemo(() => (
-        new FilterConfigBuilder([])
-    ), []);
     const {
         filters,
         setPage,
@@ -13,7 +26,9 @@ const useFilterConfig = (options = {}) => {
     } = options;
     const enableFilters = !!filters;
     const { filterConfig = [], activeFilters: initialActiveFilters } = filters || {};
-    const [activeFilters, setActiveFilters] = useState({});
+    const [activeFilters, setActiveFilters] = useState(
+        filterConfigBuilder.initialDefaultState(initialActiveFilters, filterConfig)
+    );
     const onFilterUpdate = (filter, value) => {
         setActiveFilters({
             ...activeFilters,
@@ -22,13 +37,6 @@ const useFilterConfig = (options = {}) => {
 
         setPage && setPage(1);
     };
-
-    const buildConfig = () => (
-        filterConfigBuilder.buildConfiguration(
-            onFilterUpdate,
-            activeFilters
-        )
-    );
 
     const addConfigItem = (item) => {
         filterConfigBuilder.addConfigItem(item);
@@ -49,8 +57,6 @@ const useFilterConfig = (options = {}) => {
     const onFilterDelete = (_event, chips, clearAll = false) => (
         clearAll ? clearAllFilter() : deleteFilter(chips[0])
     );
-    const chipBuilder = filterConfigBuilder.getChipBuilder();
-    const filterChips = chipBuilder.chipsFor(activeFilters);
 
     const filter = (items) => (
         filterConfigBuilder.applyFilterToObjectArray(
@@ -66,12 +72,18 @@ const useFilterConfig = (options = {}) => {
         selectedFilter
     });
 
+    const activeFilterValues = useMemo(() => (
+        filterValues(activeFilters)
+    ), [activeFilters]);
+
+    const filterConfigWithSelected = [...filterConfig, ...(selectFilterItem ? [selectFilterItem] : [])];
+
     useEffect(() => {
         filterConfigBuilder.config = [];
-        [...filterConfig, selectFilterItem].filter((v) => (!!v)).forEach(addConfigItem);
+        filterConfigWithSelected.filter((v) => (!!v)).forEach(addConfigItem);
         setActiveFilters(filterConfigBuilder.initialDefaultState(
             initialActiveFilters || []
-        ));
+        ), filterConfig);
 
         return () => {
             filterConfigBuilder.config = [];
@@ -82,16 +94,23 @@ const useFilterConfig = (options = {}) => {
         filter,
         selectedFilterToolbarProps,
         toolbarProps: {
-            filterConfig: buildConfig(),
+            filterConfig: filterConfigBuilder.buildConfiguration(
+                onFilterUpdate,
+                activeFilters,
+                {},
+                filterConfigWithSelected
+            ),
             activeFiltersConfig: {
-                filters: filterChips,
+                filters: filterConfigBuilder.getChipBuilder(filterConfigWithSelected).chipsFor(activeFilters),
                 onDelete: onFilterDelete
             }
         },
         setActiveFilter: onFilterUpdate,
         activeFilters,
+        activeFilterValues,
         addConfigItem,
-        filterConfigBuilder
+        filterConfigBuilder,
+        filterString: () => filterConfigBuilder.getFilterBuilder(filterConfigWithSelected).buildFilterString(activeFilters)
     } : {};
 };
 
