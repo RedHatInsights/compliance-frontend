@@ -56,7 +56,7 @@ export const InventoryTable = ({
             ...osMinorVersionFilter
         ] }
     });
-    const systemsFilter = useSystemsFilter(filterString, showOnlySystemsWithTestResults, defaultFilter);
+    const systemsFilter = useSystemsFilter(filterString(), showOnlySystemsWithTestResults, defaultFilter);
 
     const systemFetchArguments = {
         query,
@@ -95,7 +95,6 @@ export const InventoryTable = ({
         }
     };
 
-    const systemsFilter = useSystemsFilter(filterString(), showOnlySystemsWithTestResults, defaultFilter);
     const fetchSystems = useFetchSystems({
         ...systemFetchArguments,
         onComplete
