@@ -48,7 +48,7 @@ const ReportsTable = ({ profiles }) => {
         ...operatingSystems.length > 0 && operatingSystemFilter(operatingSystems) || [],
         ...policyComplianceFilter
     ] } });
-    const filteredProfiles = filter ? filter(profiles) : [];
+    const filteredProfiles = filter(profiles);
 
     const { tableSort, sorted: sortedProfiles } = useTableSort(filteredProfiles, columns);
     const rows = sortedProfiles.length > 0 ? sortedProfiles.map((profile) => ({
