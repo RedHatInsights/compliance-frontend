@@ -46,6 +46,7 @@ const mergeArraysUniqly = (arrayA, arrayB) => (
 
 const useBulkSelect = ({
     onSelect,
+    selectable,
     items: propItems,
     filter,
     paginator,
@@ -53,7 +54,7 @@ const useBulkSelect = ({
     preselected,
     setPage
 }) => {
-    const enableBulkSelect = !!onSelect;
+    const enableBulkSelect = onSelect || selectable;
 
     const [selectedIds, setSelectedItemIds] = useState(preselected || []);
     const selectItemTransformer = (item) => ({
@@ -159,6 +160,7 @@ const useBulkSelect = ({
             canSelectAll: false
         },
         selected: selectedIds,
+        selectedItems,
         clearSelection: selectNone,
         toolbarProps: {
             bulkSelect: {

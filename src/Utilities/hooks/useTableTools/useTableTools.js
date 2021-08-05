@@ -38,7 +38,8 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     const {
         transformer: selectItem,
         toolbarProps: bulkSelectToolbarProps,
-        tableProps: bulkSelectTableProps
+        tableProps: bulkSelectTableProps,
+        selectedItems
     } = useBulkSelect({
         ...options,
         items: identifiedItems,
@@ -48,10 +49,9 @@ const useTableTools = (items = [], columns = [], options = {}) => {
         setPage
     });
 
-    const {
-        toolbarProps: dedicatedActionToolbarProps
-    } = useDedicatedAction({
+    const dedicatedAction = useDedicatedAction({
         ...options,
+        selectedItems,
         additionalDedicatedActions: [
             selectedFilterToolbarProps?.dedicatedAction
         ]
@@ -74,7 +74,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
         ...bulkSelectToolbarProps,
         ...conditionalFilterProps,
         ...selectedFilterToolbarProps,
-        ...dedicatedActionToolbarProps,
+        dedicatedAction,
         ...rowBuilderToolbarProps,
         ...toolbarPropsOption
     };

@@ -1,31 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useDedicatedAction returns a dedicated action toolbar config 1`] = `
+exports[`useDedicatedAction returns a dedicated action toolbar config using an element 1`] = `
 Object {
   "all": Array [
-    Object {
-      "toolbarProps": Object {
-        "dedicatedAction": <div>
-           
-          [Function]
-           
-          [Function]
-           
-        </div>,
-      },
-    },
+    <div>
+      <span>
+        DEDICATED ACTION
+      </span>
+      <span>
+        ANOTHER DEDICATED ACTION
+      </span>
+    </div>,
   ],
-  "current": Object {
-    "toolbarProps": Object {
-      "dedicatedAction": <div>
-         
-        [Function]
-         
-        [Function]
-         
-      </div>,
-    },
-  },
+  "current": <div>
+    <span>
+      DEDICATED ACTION
+    </span>
+    <span>
+      ANOTHER DEDICATED ACTION
+    </span>
+  </div>,
+  "error": undefined,
+}
+`;
+
+exports[`useDedicatedAction returns a dedicated action toolbar config using and passes selected items to a component 1`] = `
+Object {
+  "all": Array [
+    <div>
+      <TestComponent
+        selectedItems="list of selected items"
+      />
+      <span>
+        ANOTHER DEDICATED ACTION
+      </span>
+    </div>,
+  ],
+  "current": <div>
+    <TestComponent
+      selectedItems="list of selected items"
+    />
+    <span>
+      ANOTHER DEDICATED ACTION
+    </span>
+  </div>,
   "error": undefined,
 }
 `;

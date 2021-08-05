@@ -1,15 +1,15 @@
 import React from 'react';
 
-const useDedicatedAction = (options) => {
-    const enableDedicatedAction = !!options.dedicatedAction;
-    const {
-        dedicatedAction: dedicatedActionOption, additionalDedicatedActions
-    } = options;
+const useDedicatedAction = ({ dedicatedAction, selectedItems, additionalDedicatedActions = []}) => {
+    const actions = [dedicatedAction, ...additionalDedicatedActions].filter((a) => !!a);
 
-    return enableDedicatedAction ? {
-        toolbarProps: {
-            dedicatedAction: <div> { dedicatedActionOption } { additionalDedicatedActions } </div>
-        } } : {};
+    return actions.length > 0 ? (
+        <div>
+            { actions.map((Action) => (
+                React.isValidElement(Action) ? Action : <Action { ...{ selectedItems } } />
+            )) }
+        </div>
+    ) : undefined;
 };
 
 export default useDedicatedAction;
