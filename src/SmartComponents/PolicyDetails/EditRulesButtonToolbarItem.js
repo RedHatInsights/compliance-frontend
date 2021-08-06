@@ -5,23 +5,26 @@ import { BackgroundLink } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
 
 const EditRulesButtonToolbarItem = ({ policy }) => {
-    let anchor = useAnchor();
+  let anchor = useAnchor();
 
-    return (
-        <ToolbarItem>
-            <BackgroundLink
-                to={ `/scappolicies/${ policy.id }/edit` }
-                state={ { policy } }
-                hash={ anchor }
-                backgroundLocation={ { hash: anchor } }>
-                <Button variant='primary' ouiaId='EditRulesButton'>Edit rules</Button>
-            </BackgroundLink>
-        </ToolbarItem>
-    );
+  return (
+    <ToolbarItem>
+      <BackgroundLink
+        to={`/scappolicies/${policy.id}/edit`}
+        state={{ policy }}
+        hash={anchor}
+        backgroundLocation={{ hash: anchor }}
+      >
+        <Button variant="primary" ouiaId="EditRulesButton">
+          Edit rules
+        </Button>
+      </BackgroundLink>
+    </ToolbarItem>
+  );
 };
 
 EditRulesButtonToolbarItem.propTypes = {
-    policy: propTypes.object.isRequired
+  policy: propTypes.object.isRequired,
 };
 
 export default EditRulesButtonToolbarItem;

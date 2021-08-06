@@ -1,39 +1,45 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import {
-    Bullseye, EmptyState, EmptyStateBody, EmptyStateVariant, Title
+  Bullseye,
+  EmptyState,
+  EmptyStateBody,
+  EmptyStateVariant,
+  Title,
 } from '@patternfly/react-core';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 
 export const NoResultsTable = ({ kind = 'results' }) => (
-    <EmptyTable>
-        <Bullseye>
-            <EmptyState variant={ EmptyStateVariant.full }>
-                <Title headingLevel="h5" size="lg">
-                    No matching { kind } found
-                </Title>
-                <EmptyStateBody>
-                    This filter criteria matches no { kind }.<br />
-                    Try changing your filter settings.
-                </EmptyStateBody>
-            </EmptyState>
-        </Bullseye>
-    </EmptyTable>
+  <EmptyTable>
+    <Bullseye>
+      <EmptyState variant={EmptyStateVariant.full}>
+        <Title headingLevel="h5" size="lg">
+          No matching {kind} found
+        </Title>
+        <EmptyStateBody>
+          This filter criteria matches no {kind}.<br />
+          Try changing your filter settings.
+        </EmptyStateBody>
+      </EmptyState>
+    </Bullseye>
+  </EmptyTable>
 );
 
 NoResultsTable.propTypes = {
-    kind: propTypes.string
+  kind: propTypes.string,
 };
 
-export const emptyRows = [{
+export const emptyRows = [
+  {
     cells: [
-        {
+      {
             title: () => (<NoResultsTable />),  // eslint-disable-line
-            props: {
-                colSpan: 3
-            }
-        }
-    ]
-}];
+        props: {
+          colSpan: 3,
+        },
+      },
+    ],
+  },
+];
 
 export default NoResultsTable;

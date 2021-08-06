@@ -4,58 +4,66 @@ import propTypes from 'prop-types';
 import { Checkbox } from '@patternfly/react-core';
 
 const CheckboxFieldArray = ({ input, options }) => {
-    const { name, onChange } = input;
-    const inputValue = input.value;
+  const { name, onChange } = input;
+  const inputValue = input.value;
 
-    const handleChange = (checked, value) => {
-        const arr = [...new Set(inputValue)];
-        if (checked) {
-            arr.push(value);
-        } else {
-            arr.splice(arr.indexOf(value), 1);
-        }
+  const handleChange = (checked, value) => {
+    const arr = [...new Set(inputValue)];
+    if (checked) {
+      arr.push(value);
+    } else {
+      arr.splice(arr.indexOf(value), 1);
+    }
 
-        return onChange(arr);
-    };
+    return onChange(arr);
+  };
 
-    return (
-        <React.Fragment>
-            {
-                options.map(({ label, value, defaultChecked }, index) => (
-                    <Checkbox key={value} id={value} label={label}
-                        name={`${name}[${index}]`} value={value}
-                        isChecked={inputValue === '' ? defaultChecked : inputValue.includes(value)}
-                        onChange={(checked) => handleChange(checked, value)}
-                    />
-                ))
-            }
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      {options.map(({ label, value, defaultChecked }, index) => (
+        <Checkbox
+          key={value}
+          id={value}
+          label={label}
+          name={`${name}[${index}]`}
+          value={value}
+          isChecked={
+            inputValue === '' ? defaultChecked : inputValue.includes(value)
+          }
+          onChange={(checked) => handleChange(checked, value)}
+        />
+      ))}
+    </React.Fragment>
+  );
 };
 
 CheckboxFieldArray.propTypes = {
-    input: propTypes.shape({
-        name: propTypes.string.isRequired,
-        onChange: propTypes.func,
-        value: propTypes.string
-    }),
-    options: propTypes.arrayOf(propTypes.shape({
-        label: propTypes.string.isRequired,
-        value: propTypes.string.isRequired,
-        defaultChecked: propTypes.bool
-    })).isRequired
+  input: propTypes.shape({
+    name: propTypes.string.isRequired,
+    onChange: propTypes.func,
+    value: propTypes.string,
+  }),
+  options: propTypes.arrayOf(
+    propTypes.shape({
+      label: propTypes.string.isRequired,
+      value: propTypes.string.isRequired,
+      defaultChecked: propTypes.bool,
+    })
+  ).isRequired,
 };
 
 const CheckboxGroup = (props) => (
-    <Field {...props} type="checkbox" component={CheckboxFieldArray} />
+  <Field {...props} type="checkbox" component={CheckboxFieldArray} />
 );
 
 CheckboxGroup.propTypes = {
-    options: propTypes.arrayOf(propTypes.shape({
-        label: propTypes.string.isRequired,
-        value: propTypes.string.isRequired,
-        defaultChecked: propTypes.bool
-    })).isRequired
+  options: propTypes.arrayOf(
+    propTypes.shape({
+      label: propTypes.string.isRequired,
+      value: propTypes.string.isRequired,
+      defaultChecked: propTypes.bool,
+    })
+  ).isRequired,
 };
 
 export { CheckboxFieldArray };

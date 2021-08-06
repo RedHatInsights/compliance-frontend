@@ -14,133 +14,146 @@ import { IntlProvider } from 'react-intl';
 const COMPLIANCE_API_ROOT = '/api/compliance';
 
 const QUERY = gql`
-query System($systemId: String!){
+  query System($systemId: String!) {
     system(id: $systemId) {
+      id
+      name
+      testResultProfiles {
         id
         name
-        testResultProfiles {
-            id
-            name
-            policyType
-            refId
-            compliant
-            rulesFailed
-            rulesPassed
-            lastScanned
-            score
-            supported
-            ssgVersion
-            majorOsVersion
-            policy {
-                id
-            }
-            rules {
-                title
-                severity
-                rationale
-                refId
-                description
-                compliant
-                remediationAvailable
-                references
-                identifier
-            }
+        policyType
+        refId
+        compliant
+        rulesFailed
+        rulesPassed
+        lastScanned
+        score
+        supported
+        ssgVersion
+        majorOsVersion
+        policy {
+          id
         }
+        rules {
+          title
+          severity
+          rationale
+          refId
+          description
+          compliant
+          remediationAvailable
+          references
+          identifier
+        }
+      }
     }
-}
+  }
 `;
 
 const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
-    <React.Fragment>
-        <SystemPolicyCards policies={ system?.testResultProfiles } loading={ loading } />
-        <br/>
-        <RulesTable
-            remediationAvailableFilter
-            handleSelect={() => undefined}
-            hidePassed={ hidePassed }
-            sortBy={{
-                index: 4,
-                direction: 'asc',
-                property: 'severity'
-            }}
-            system={ {
-                ...system,
-                supported: ((system?.testResultProfiles || []).filter((profile) => (profile.supported)).length > 0)
-            } }
-            profileRules={ system?.testResultProfiles.map(profile => ({
-                system,
-                profile,
-                rules: profile.rules
-            })) }
-            loading={ loading } />
-    </React.Fragment>
+  <React.Fragment>
+    <SystemPolicyCards
+      policies={system?.testResultProfiles}
+      loading={loading}
+    />
+    <br />
+    <RulesTable
+      remediationAvailableFilter
+      handleSelect={() => undefined}
+      hidePassed={hidePassed}
+      sortBy={{
+        index: 4,
+        direction: 'asc',
+        property: 'severity',
+      }}
+      system={{
+        ...system,
+        supported:
+          (system?.testResultProfiles || []).filter(
+            (profile) => profile.supported
+          ).length > 0,
+      }}
+      profileRules={system?.testResultProfiles.map((profile) => ({
+        system,
+        profile,
+        rules: profile.rules,
+      }))}
+      loading={loading}
+    />
+  </React.Fragment>
 );
 
 SystemQuery.propTypes = {
-    data: propTypes.shape({
-        system: propTypes.shape({
-            profiles: propTypes.array,
-            testResultProfiles: propTypes.array
-        })
+  data: propTypes.shape({
+    system: propTypes.shape({
+      profiles: propTypes.array,
+      testResultProfiles: propTypes.array,
     }),
-    loading: propTypes.bool,
-    hidePassed: propTypes.bool
+  }),
+  loading: propTypes.bool,
+  hidePassed: propTypes.bool,
 };
 
 SystemQuery.defaultProps = {
-    loading: true
+  loading: true,
 };
 
 const SystemDetails = ({ inventoryId, hidePassed, client }) => {
-    let { data, error, loading } = useQuery(QUERY, {
-        variables: { systemId: inventoryId },
-        client
-    });
-    const is404 = error?.networkError?.statusCode === 404;
+  let { data, error, loading } = useQuery(QUERY, {
+    variables: { systemId: inventoryId },
+    client,
+  });
+  const is404 = error?.networkError?.statusCode === 404;
 
-    if (loading) {
-        return <Spinner/>;
-    }
+  if (loading) {
+    return <Spinner />;
+  }
 
-    if (error && !is404) {
-        const errorMsg = `Oops! Error loading System data: ${error}`;
-        return <ErrorCard message={errorMsg} />;
-    }
+  if (error && !is404) {
+    const errorMsg = `Oops! Error loading System data: ${error}`;
+    return <ErrorCard message={errorMsg} />;
+  }
 
-    return <div className="ins-c-compliance__scope">
-        { !data?.system || is404 ?
-            <ComplianceEmptyState title='No policies are reporting for this system' /> :
-            <SystemQuery hidePassed={ hidePassed } data={ data } loading={ loading } /> }
-    </div>;
+  return (
+    <div className="ins-c-compliance__scope">
+      {!data?.system || is404 ? (
+        <ComplianceEmptyState title="No policies are reporting for this system" />
+      ) : (
+        <SystemQuery hidePassed={hidePassed} data={data} loading={loading} />
+      )}
+    </div>
+  );
 };
 
 SystemDetails.propTypes = {
-    inventoryId: propTypes.string,
-    client: propTypes.object,
-    hidePassed: propTypes.bool
+  inventoryId: propTypes.string,
+  client: propTypes.object,
+  hidePassed: propTypes.bool,
 };
 
 SystemDetails.defaultProps = {
-    client: new ApolloClient({
-        link: new HttpLink({
-            uri: COMPLIANCE_API_ROOT + '/graphql',
-            credentials: 'include'
-        }),
-        cache: new InMemoryCache()
-    })
+  client: new ApolloClient({
+    link: new HttpLink({
+      uri: COMPLIANCE_API_ROOT + '/graphql',
+      credentials: 'include',
+    }),
+    cache: new InMemoryCache(),
+  }),
 };
 
 const WrappedSystemDetails = ({ customItnl, intlProps, ...props }) => {
-    const IntlWrapper = customItnl ? IntlProvider : React.Fragment;
+  const IntlWrapper = customItnl ? IntlProvider : React.Fragment;
 
-    return <IntlWrapper { ...customItnl && intlProps } >
-        <SystemDetails { ...props } />
-    </IntlWrapper>;
+  return (
+    <IntlWrapper {...(customItnl && intlProps)}>
+      <SystemDetails {...props} />
+    </IntlWrapper>
+  );
 };
 
 WrappedSystemDetails.propTypes = {
-    customItnl: propTypes.bool,
-    intlProps: propTypes.any
+  customItnl: propTypes.bool,
+  intlProps: propTypes.any,
 };
 
 export default WrappedSystemDetails;

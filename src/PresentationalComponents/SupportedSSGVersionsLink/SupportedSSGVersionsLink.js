@@ -3,9 +3,9 @@ import { supportedConfigsLink } from '../UnsupportedSSGVersion/UnsupportedSSGVer
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
 const SupportedSSGVersionsLink = () => (
-    <a target='_blank' rel='noopener noreferrer' href={ supportedConfigsLink }>
-        Supported SSG versions <ExternalLinkAltIcon />
-    </a>
+  <a target="_blank" rel="noopener noreferrer" href={supportedConfigsLink}>
+    Supported SSG versions <ExternalLinkAltIcon />
+  </a>
 );
 
 export default SupportedSSGVersionsLink;

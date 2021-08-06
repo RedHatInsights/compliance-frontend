@@ -3,88 +3,84 @@ import useAssociateRules from './useAssociateRules';
 jest.mock('@apollo/client');
 
 describe('useAssociateRules', () => {
-    afterEach(() => {
-        useMutation.mockReset();
+  afterEach(() => {
+    useMutation.mockReset();
+  });
+
+  it('assigns rules to exact profile', async () => {
+    const profileSelectedRuleRefIds = {
+      id: '1',
+      ruleRefIds: ['ref1', 'ref2'],
+    };
+    const profiles = [{ id: '1', parentProfileId: null }];
+
+    const associateMutation = jest.fn(async ({ variables: { input } }) => {
+      expect(input).toBeDefined();
+      expect(input.id).toBe('1');
+      expect(input.ruleRefIds).toEqual(['ref1', 'ref2']);
+
+      return {};
     });
+    useMutation.mockImplementation(() => [associateMutation]);
 
-    it('assigns rules to exact profile', async () => {
-        const profileSelectedRuleRefIds = {
-            id: '1',
-            ruleRefIds: ['ref1', 'ref2']
-        };
-        const profiles = [
-            { id: '1', parentProfileId: null }
-        ];
+    const associateRules = useAssociateRules();
+    await associateRules(profileSelectedRuleRefIds, profiles);
 
-        const associateMutation = jest.fn(async ({ variables: { input } }) => {
-            expect(input).toBeDefined();
-            expect(input.id).toBe('1');
-            expect(input.ruleRefIds).toEqual(['ref1', 'ref2']);
+    expect(associateMutation).toHaveBeenCalled();
+  });
 
-            return {};
-        });
-        useMutation.mockImplementation(() => ([associateMutation]));
+  it('assigns rules to using parent profile', async () => {
+    const profileSelectedRuleRefIds = {
+      id: '1',
+      osMinorVersion: '5',
+      ruleRefIds: ['ref1', 'ref2'],
+    };
+    const profiles = [
+      {
+        id: '999',
+        parentProfileId: '1',
+        osMinorVersion: '5',
+      },
+    ];
 
-        const associateRules = useAssociateRules();
-        await associateRules(profileSelectedRuleRefIds, profiles);
+    const associateMutation = jest.fn(async ({ variables: { input } }) => {
+      expect(input).toBeDefined();
+      expect(input.id).toBe('999');
+      expect(input.ruleRefIds).toEqual(['ref1', 'ref2']);
 
-        expect(associateMutation).toHaveBeenCalled();
+      return {};
     });
+    useMutation.mockImplementation(() => [associateMutation]);
 
-    it('assigns rules to using parent profile', async () => {
-        const profileSelectedRuleRefIds = {
-            id: '1',
-            osMinorVersion: '5',
-            ruleRefIds: ['ref1', 'ref2']
-        };
-        const profiles = [
-            {
-                id: '999',
-                parentProfileId: '1',
-                osMinorVersion: '5'
-            }
-        ];
+    const associateRules = useAssociateRules();
+    await associateRules(profileSelectedRuleRefIds, profiles);
 
-        const associateMutation = jest.fn(async ({ variables: { input } }) => {
-            expect(input).toBeDefined();
-            expect(input.id).toBe('999');
-            expect(input.ruleRefIds).toEqual(['ref1', 'ref2']);
+    expect(associateMutation).toHaveBeenCalled();
+  });
 
-            return {};
-        });
-        useMutation.mockImplementation(() => ([associateMutation]));
+  it('throws on error', async () => {
+    const profileSelectedRuleRefIds = {
+      id: '1',
+      ruleRefIds: ['ref1', 'ref2'],
+    };
+    const profiles = [{ id: '1', parentProfileId: null }];
 
-        const associateRules = useAssociateRules();
-        await associateRules(profileSelectedRuleRefIds, profiles);
-
-        expect(associateMutation).toHaveBeenCalled();
+    const associateMutation = jest.fn(async () => {
+      return {
+        error: new Error('bam!'),
+      };
     });
+    useMutation.mockImplementation(() => [associateMutation]);
 
-    it('throws on error', async () => {
-        const profileSelectedRuleRefIds = {
-            id: '1',
-            ruleRefIds: ['ref1', 'ref2']
-        };
-        const profiles = [
-            { id: '1', parentProfileId: null }
-        ];
+    const associateRules = useAssociateRules();
 
-        const associateMutation = jest.fn(async () => {
-            return {
-                error: new Error('bam!')
-            };
-        });
-        useMutation.mockImplementation(() => ([associateMutation]));
+    try {
+      await associateRules(profileSelectedRuleRefIds, profiles);
+      throw new Error('Must throw an error');
+    } catch (error) {
+      expect(error).toEqual(new Error('bam!'));
+    }
 
-        const associateRules = useAssociateRules();
-
-        try {
-            await associateRules(profileSelectedRuleRefIds, profiles);
-            throw new Error('Must throw an error');
-        } catch (error) {
-            expect(error).toEqual(new Error('bam!'));
-        }
-
-        expect(associateMutation).toHaveBeenCalled();
-    });
+    expect(associateMutation).toHaveBeenCalled();
+  });
 });

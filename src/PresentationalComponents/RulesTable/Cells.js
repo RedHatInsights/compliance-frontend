@@ -2,42 +2,46 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Text, TextVariants, TextContent } from '@patternfly/react-core';
 import {
-    CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, QuestionCircleIcon
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  ExclamationTriangleIcon,
+  QuestionCircleIcon,
 } from '@patternfly/react-icons';
 
 const ruleProps = {
-    title: propTypes.string,
-    identifier: propTypes.object,
-    profile: propTypes.object,
-    compliant: propTypes.bool,
-    remediationAvailable: propTypes.bool,
-    severity: propTypes.string
+  title: propTypes.string,
+  identifier: propTypes.object,
+  profile: propTypes.object,
+  compliant: propTypes.bool,
+  remediationAvailable: propTypes.bool,
+  severity: propTypes.string,
 };
 
 export const Rule = ({ title, identifier }) => (
-    <TextContent>
-        { title }
-        { identifier ?
-            <Text component={ TextVariants.small }>{ identifier.label }</Text> : '' }
-    </TextContent>
+  <TextContent>
+    {title}
+    {identifier ? (
+      <Text component={TextVariants.small}>{identifier.label}</Text>
+    ) : (
+      ''
+    )}
+  </TextContent>
 );
 Rule.propTypes = ruleProps;
 
-export const Policy = ({ profile }) => (
-    profile.name
-);
+export const Policy = ({ profile }) => profile.name;
 Policy.propTypes = ruleProps;
 
 export const HighSeverity = () => (
-    <span>
-        <ExclamationCircleIcon className='ins-u-failed'/> High
-    </span>
+  <span>
+    <ExclamationCircleIcon className="ins-u-failed" /> High
+  </span>
 );
 
 export const MediumSeverity = () => (
-    <span>
-        <ExclamationTriangleIcon className='ins-u-warning'/> Medium
-    </span>
+  <span>
+    <ExclamationTriangleIcon className="ins-u-warning" /> Medium
+  </span>
 );
 
 export const LowSeverityIcon = () => (
@@ -45,34 +49,33 @@ export const LowSeverityIcon = () => (
 );
 
 export const LowSeverity = () => (
-    <span>
-        <LowSeverityIcon /> Low
-    </span>
+  <span>
+    <LowSeverityIcon /> Low
+  </span>
 );
 
 export const UnknownSeverity = () => (
-    <span>
-        <QuestionCircleIcon /> Unknown
-    </span>
+  <span>
+    <QuestionCircleIcon /> Unknown
+  </span>
 );
 
-export const Severity = ({ severity }) => (
-    {
-        high: <HighSeverity />,
-        medium: <MediumSeverity />,
-        low: <LowSeverity />
-    }[severity?.toLowerCase()] || <UnknownSeverity />
-);
+export const Severity = ({ severity }) =>
+  ({
+    high: <HighSeverity />,
+    medium: <MediumSeverity />,
+    low: <LowSeverity />,
+  }[severity?.toLowerCase()] || <UnknownSeverity />);
 Severity.propTypes = ruleProps;
 
-export const Passed = ({ compliant }) => (
-    compliant ?
-        <CheckCircleIcon className='ins-u-passed' /> :
-        <ExclamationCircleIcon className='ins-u-failed' />
-);
+export const Passed = ({ compliant }) =>
+  compliant ? (
+    <CheckCircleIcon className="ins-u-passed" />
+  ) : (
+    <ExclamationCircleIcon className="ins-u-failed" />
+  );
 Passed.propTypes = ruleProps;
 
-export const Ansible = ({ remediationAvailable }) => (
-    remediationAvailable ? <CheckCircleIcon className='ins-u-passed' /> : 'No'
-);
+export const Ansible = ({ remediationAvailable }) =>
+  remediationAvailable ? <CheckCircleIcon className="ins-u-passed" /> : 'No';
 Ansible.propTypes = ruleProps;

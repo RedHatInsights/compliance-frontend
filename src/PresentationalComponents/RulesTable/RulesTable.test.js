@@ -8,73 +8,76 @@ import { Provider } from 'react-redux';
 const mockStore = configureStore();
 expect.extend(filterHelpers);
 
-jest.mock('@redhat-cloud-services/frontend-components-remediations/RemediationButton',
+jest.mock(
+  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
     () => (() => (<span>Button</span>))); // eslint-disable-line
 
 describe('RulesTable', () => {
-    let store;
-    const profiles = policies.edges[0].node.policy.profiles.map((profile) => (
-        {
-            ...profile,
-            profile
-        }
-    ));
-    const defaultProps = {
-        profileRules: profiles,
-        system: {
-            id: 1
-        }
-    };
+  let store;
+  const profiles = policies.edges[0].node.policy.profiles.map((profile) => ({
+    ...profile,
+    profile,
+  }));
+  const defaultProps = {
+    profileRules: profiles,
+    system: {
+      id: 1,
+    },
+  };
 
-    beforeEach(() => {
-        store = mockStore({});
-    });
+  beforeEach(() => {
+    store = mockStore({});
+  });
 
-    it('expect to render without error', () => {
-        let wrapper = shallow(
-            <RulesTable { ...defaultProps } />
-        );
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+  it('expect to render without error', () => {
+    let wrapper = shallow(<RulesTable {...defaultProps} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    it('expect to pass on options', () => {
-        let wrapper = shallow(
-            <RulesTable { ...{
-                ...defaultProps,
-                options: {
-                    additionalTableToolsOption: true
-                }
-            } } />
-        );
+  it('expect to pass on options', () => {
+    let wrapper = shallow(
+      <RulesTable
+        {...{
+          ...defaultProps,
+          options: {
+            additionalTableToolsOption: true,
+          },
+        }}
+      />
+    );
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    it('expect to have filters properly rendered', () => {
-        const filterConfig = buildFilterConfig({
-            showPassFailFilter: false,
-            remediationAvailableFilter: false
-        }).filter((filter) => (filter.label !== 'Severity'));
+  it('expect to have filters properly rendered', () => {
+    const filterConfig = buildFilterConfig({
+      showPassFailFilter: false,
+      remediationAvailableFilter: false,
+    }).filter((filter) => filter.label !== 'Severity');
 
-        const component = <Provider store={store}>
-            <RulesTable { ...defaultProps } />
-        </Provider>;
+    const component = (
+      <Provider store={store}>
+        <RulesTable {...defaultProps} />
+      </Provider>
+    );
 
-        expect(component).toHaveFiltersFor(filterConfig);
-    });
+    expect(component).toHaveFiltersFor(filterConfig);
+  });
 
-    it('expect to pass dedicatedAction', () => {
-        const dedicatedAction = () => <span>Dedicated Action</span>;
-        let wrapper = shallow(
-            <RulesTable { ...{
-                ...defaultProps,
-                remediationsEnabled: false,
-                options: {
-                    dedicatedAction
-                }
-            } } />
-        );
+  it('expect to pass dedicatedAction', () => {
+    const dedicatedAction = () => <span>Dedicated Action</span>;
+    let wrapper = shallow(
+      <RulesTable
+        {...{
+          ...defaultProps,
+          remediationsEnabled: false,
+          options: {
+            dedicatedAction,
+          },
+        }}
+      />
+    );
 
-        expect(wrapper.props().options.dedicatedAction).toBe(dedicatedAction);
-    });
+    expect(wrapper.props().options.dedicatedAction).toBe(dedicatedAction);
+  });
 });
