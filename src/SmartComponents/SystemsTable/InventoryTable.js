@@ -10,7 +10,7 @@ import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad } from './constants';
 import {
-    useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities, useOnSelect,
+    useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities,
     useSystemsExport, useSystemsFilter, useSystemBulkSelect, useTags
 } from './hooks';
 import useFeature from 'Utilities/hooks/useFeature';
