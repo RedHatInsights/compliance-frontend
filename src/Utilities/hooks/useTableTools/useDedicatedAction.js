@@ -9,7 +9,7 @@ const useDedicatedAction = (options) => {
 
     return enableDedicatedAction ? {
         toolbarProps: {
-            dedicatedAction: <div>
+            dedicatedAction: selected && <div>
                 {DedicatedActionOption && <DedicatedActionOption selected={selected} />}
                 {AdditionalDedicatedActions && <AdditionalDedicatedActions selected={ selected } />}
             </div>
