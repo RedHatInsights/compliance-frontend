@@ -1,11 +1,9 @@
 import ReportDetailsContentLoader from './ReportDetailsContentLoader';
 
 describe('ReportDetailsContentLoader', () => {
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <ReportDetailsContentLoader />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(<ReportDetailsContentLoader />);
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

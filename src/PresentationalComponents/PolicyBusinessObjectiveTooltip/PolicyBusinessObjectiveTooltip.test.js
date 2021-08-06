@@ -1,11 +1,9 @@
 import PolicyBusinessObjectiveTooltip from './PolicyBusinessObjectiveTooltip';
 
 describe('PolicyBusinessObjectiveTooltip', () => {
-    it('expect to render without error', () => {
-        const wrapper = shallow(
-            <PolicyBusinessObjectiveTooltip />
-        );
+  it('expect to render without error', () => {
+    const wrapper = shallow(<PolicyBusinessObjectiveTooltip />);
 
-        expect(toJson(wrapper)).toMatchSnapshot();
-    });
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

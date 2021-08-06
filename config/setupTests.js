@@ -14,6 +14,4 @@ global.React = React;
 global.toJson = toJson;
 global.fetch = function () {};
 
-global.renderJson = (component) => (
-    toJson(shallow(component))
-);
+global.renderJson = (component) => toJson(shallow(component));

@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* global module, __dirname */
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
@@ -10,7 +9,7 @@ const insightsProxy = {
     port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
     ...(process.env.BETA && { deployment: 'beta/apps' }),
   };
-  
+
   const webpackProxy = {
     deployment: process.env.BETA ? 'beta/apps' : 'apps',
     appUrl: process.env.BETA ? ['/beta/insights/compliance'] : ['/insights/compliance'],
@@ -23,7 +22,7 @@ const insightsProxy = {
     //   '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
     },
   };
-  
+
 
 const { config: webpackConfig, plugins } = config({
     rootFolder: resolve(__dirname, '../'),

@@ -4,21 +4,21 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { BreadcrumbItem } from '@patternfly/react-core';
 
 const RouterLink = ({ href, ...props }) => (
-    <ReactRouterLink { ...props } to={ href } />
+  <ReactRouterLink {...props} to={href} />
 );
 
 RouterLink.propTypes = {
-    href: propTypes.string
+  href: propTypes.string,
 };
 
 const BreadcrumbLinkItem = ({ children, ...props }) => (
-    <BreadcrumbItem { ...props } component={ RouterLink }>
-        { children}
-    </BreadcrumbItem>
+  <BreadcrumbItem {...props} component={RouterLink}>
+    {children}
+  </BreadcrumbItem>
 );
 
 BreadcrumbLinkItem.propTypes = {
-    children: propTypes.node
+  children: propTypes.node,
 };
 
 export default BreadcrumbLinkItem;
