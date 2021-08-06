@@ -11,6 +11,9 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
   <Text>
     <p
       className=""
+      data-ouia-component-id="OUIA-Generated-Text-1"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe={true}
       data-pf-content={true}
     >
       <Tooltip
@@ -137,6 +140,9 @@ exports[`auxiliary functions to reducer should show a question mark icon if the 
   <Text>
     <p
       className=""
+      data-ouia-component-id="OUIA-Generated-Text-3"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe={true}
       data-pf-content={true}
     >
        N/A
@@ -164,6 +170,9 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
   <Text>
     <p
       className=""
+      data-ouia-component-id="OUIA-Generated-Text-2"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe={true}
       data-pf-content={true}
     >
        91%

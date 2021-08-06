@@ -5,6 +5,7 @@ exports[`SelectedFilterSwitch expect to render without error 1`] = `
   aria-label=""
   isChecked={true}
   isDisabled={false}
+  isReversed={false}
   label="Selected only"
   onChange={[Function]}
 />
@@ -15,6 +16,7 @@ exports[`SelectedFilterSwitch expect to render without error 2`] = `
   aria-label=""
   isChecked={false}
   isDisabled={false}
+  isReversed={false}
   label="Selected only"
   onChange={[Function]}
 />

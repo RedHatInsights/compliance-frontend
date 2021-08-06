@@ -12,6 +12,7 @@ exports[`CheckboxFieldArray expect to render with default checked fields 1`] = `
     label="pci"
     name="policies[0]"
     onChange={[Function]}
+    ouiaSafe={true}
     value="12345"
   />
   <Checkbox
@@ -24,6 +25,7 @@ exports[`CheckboxFieldArray expect to render with default checked fields 1`] = `
     label="hipaa"
     name="policies[1]"
     onChange={[Function]}
+    ouiaSafe={true}
     value="1111"
   />
 </Fragment>
@@ -41,6 +43,7 @@ exports[`CheckboxFieldArray expect to render without default checked fields 1`] 
     label="pci"
     name="policies[0]"
     onChange={[Function]}
+    ouiaSafe={true}
     value="12345"
   />
   <Checkbox
@@ -53,6 +56,7 @@ exports[`CheckboxFieldArray expect to render without default checked fields 1`] 
     label="hipaa"
     name="policies[1]"
     onChange={[Function]}
+    ouiaSafe={true}
     value="1111"
   />
 </Fragment>
