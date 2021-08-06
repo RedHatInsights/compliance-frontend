@@ -56,6 +56,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
         <br/>
         <RulesTable
             remediationAvailableFilter
+            handleSelect={() => undefined}
             hidePassed={ hidePassed }
             sortBy={{
                 index: 4,
