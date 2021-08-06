@@ -32,7 +32,7 @@ const selectOrUnselect = (selected) => (
 );
 
 const checkCurrentPageSelected = (items, selectedItems) => {
-    if (items.length === 0) {
+    if (selectedItems.length === 0) {
         return false;
     } else {
         return allItemsIncluded(items, selectedItems);
@@ -44,66 +44,33 @@ const mergeArraysUniqly = (arrayA, arrayB) => (
     Array.from(new Set([...arrayA, ...arrayB]))
 );
 
-const useBulkSelect = ({
+export const useBulkSelect = ({
+    total,
     onSelect,
-    items: propItems,
-    filter,
-    paginator,
-    sorter,
     preselected,
-    setPage
+    itemIdsInTable,
+    itemIdsOnPage,
+    identifier = 'id'
 }) => {
     const enableBulkSelect = !!onSelect;
-
-    const [selectedIds, setSelectedItemIds] = useState(preselected || []);
-    const selectItemTransformer = (item) => ({
-        ...item,
-        rowProps: {
-            selected: (selectedIds || []).includes(item.itemId)
-        }
-    });
-
-    const items = (sorter ? sorter(propItems) : propItems).map(selectItemTransformer);
-    const total = items.length;
-
-    const selectedItems = filterSelected(items, selectedIds);
-    const selectedItemsTotal = selectedItems.length;
-    const noneSelected = selectedItemsTotal === 0;
-
-    const filteredItems = filter ? filter(items) : items;
-    const filteredTotal = filteredItems.length;
-    const filtered = filteredTotal !== total;
-    const allFiltertedSelected = selectedIds?.length > 0 ?
-        allItemsIncluded(itemIds(filteredItems), selectedIds) : false;
-
-    const paginatedItems = paginator ? paginator(filteredItems) : filteredItems;
-    const paginatedTotal = paginatedItems.length;
-
+    const [selectedIds, setSelectedItemIds] = useState(preselected);
+    const selectedIdsTotal = (selectedIds || []).length;
+    const paginatedTotal = itemIdsOnPage().length;
+    const allSelected = selectedIdsTotal === total;
+    const noneSelected = selectedIdsTotal === 0;
     const currentPageSelected = checkCurrentPageSelected(
-        itemIds(paginatedItems), selectedIds
+        itemIdsOnPage(), (selectedIds || [])
     );
 
-    const title = compileTitle(selectedItemsTotal);
-    const checked = checkboxState(selectedItemsTotal, total);
-    const allCount = filtered ? filteredTotal : total;
-    const allSelected = selectedItemsTotal === allCount;
-    const isDisabled = allCount === 0;
+    const isDisabled = total === 0;
+    const checked = checkboxState(selectedIdsTotal, total);
+    const title = compileTitle(selectedIdsTotal);
 
-    const onSelectCallback = (func) => {
-        const newSelectedItemsIds = func();
+    const onSelectCallback = async (func) => {
+        const newSelectedItemsIds = await func();
         setSelectedItemIds(newSelectedItemsIds);
         onSelect && onSelect(newSelectedItemsIds);
     };
-
-    const selectNone = () => onSelectCallback(() =>([]));
-
-    const selectOne = (_, selected, key, row) => onSelectCallback(() => {
-        const newItemIds = selected ?
-            [...selectedIds, row.itemId] :
-            selectedIds.filter((rowId) => (rowId !== row.itemId));
-
-        return newItemIds;
-    });
 
     const selectItems = (itemIds) => (
         mergeArraysUniqly(selectedIds, itemIds)
@@ -115,52 +82,35 @@ const useBulkSelect = ({
         ))
     );
 
+    const unselectAll = () => ([]);
+    const selectNone = () => onSelectCallback(unselectAll);
+    const selectOne = (_, selected, key, row) => onSelectCallback(() => (
+        selected ? selectItems([row[identifier]]) : unselectItems([row[identifier]])
+    ));
+
     const selectPage = () => onSelectCallback(() => {
-        const currentPageIds = itemIds(paginatedItems);
+        const currentPageIds = itemIdsOnPage();
+        const currentPageSelected = mergeArraysUniqly(selectedIds, currentPageIds).length === selectedIds.length;
+
         return currentPageSelected ?
             unselectItems(currentPageIds) : selectItems(currentPageIds);
     });
 
-    const selectFiltered = () => onSelectCallback(() => {
-        const currentFilteredIds = itemIds(filteredItems);
-        return allFiltertedSelected ?
-            unselectItems(currentFilteredIds) : selectItems(currentFilteredIds);
-    });
-
-    const selectAll = () => onSelectCallback(() => (
-        itemIds(items)
+    const selectAll = () => onSelectCallback(async () => (
+        allSelected ? unselectAll() : selectItems(await itemIdsInTable())
     ));
-
-    const selectFilteredOrAll = () => (
-        filtered ? selectFiltered() : selectAll()
-    );
-
-    const selectAllHandler = () => (
-        allSelected ? selectNone() : selectFilteredOrAll()
-    );
-    const setPageMemo = useMemo(() => (
-        setPage
-    ), []);
-
-    useEffect(() => {
-        if (paginatedTotal === 0) {
-            setPageMemo(-1);
-        }
-    }, [paginatedTotal, setPageMemo]);
 
     useEffect(() => {
         setSelectedItemIds(preselected);
     }, [preselected]);
 
     return enableBulkSelect ? {
-        transformer: selectItemTransformer,
+        selectedIds,
+        selectNone,
         tableProps: {
-            onSelect: paginatedTotal > 0 ? selectOne : undefined,
+            onSelect: total > 0 ? selectOne : undefined,
             canSelectAll: false
         },
-        selected: selectedIds,
-        selectedItems,
-        clearSelection: selectNone,
         toolbarProps: {
             bulkSelect: {
                 toggleProps: { children: [title] },
@@ -175,14 +125,70 @@ const useBulkSelect = ({
                     title: `${ selectOrUnselect(currentPageSelected) } page (${ paginatedTotal } items)`,
                     onClick: selectPage
                 }, {
-                    title: `${ selectOrUnselect(filtered ? allFiltertedSelected : allSelected) } all (${ allCount } items)`,
-                    onClick: selectAllHandler
+                    title: `${ selectOrUnselect(allSelected) } all (${ total } items)`,
+                    onClick: selectAll
                 }],
                 checked,
-                onSelect: !isDisabled ? () => selectPage() : undefined
+                onSelect: !isDisabled ? selectPage : undefined
             }
         }
     } : {};
 };
 
-export default useBulkSelect;
+const selectItemTransformer = (item, selectedIds) => ({
+    ...item,
+    rowProps: {
+        selected: (selectedIds || []).includes(item.itemId)
+    }
+});
+
+export const useBulkSelectWithItems = ({
+    onSelect,
+    items: propItems,
+    filter,
+    paginator,
+    preselected,
+    setPage
+}) => {
+    const enableBulkSelect = !!onSelect;
+    const items = propItems.map((item) =>
+        selectItemTransformer(item, preselected)
+    );
+    const total = items.length;
+
+    const filteredItems = filter ? filter(items) : items;
+    const filteredTotal = filteredItems.length;
+    const filtered = filteredTotal !== total;
+
+    const paginatedItems = paginator ? paginator(filteredItems) : filteredItems;
+    const paginatedTotal = paginatedItems.length;
+
+    const allCount = filtered ? filteredTotal : total;
+
+    const setPageMemo = useMemo(() => (
+        setPage
+    ), []);
+
+    useEffect(() => {
+        if (paginatedTotal === 0) {
+            setPageMemo(-1);
+        }
+    }, [paginatedTotal, setPageMemo]);
+
+    const { selectNone, selectedIds, ...bulkSelect } = useBulkSelect({
+        total: allCount,
+        onSelect,
+        preselected,
+        itemIdsInTable: () => (filtered ? itemIds(filteredItems) : itemIds(items)),
+        itemIdsOnPage: () => (itemIds(paginatedItems)),
+        identifier: 'itemId'
+    });
+
+    return enableBulkSelect ? {
+        transformer: (item) => (selectItemTransformer(item, selectedIds)),
+        selectedItems: filterSelected(items, selectedIds),
+        selected: selectedIds,
+        clearSelection: selectNone,
+        ...bulkSelect
+    } : {};
+};

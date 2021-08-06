@@ -4,8 +4,10 @@ import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import useCollection from 'Utilities/hooks/api/useCollection';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import { osMinorVersionFilter } from './constants';
+import { osMinorVersionFilter, GET_MINIMAL_SYSTEMS } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
+import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
+import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
     const showVersion = (version) => {
@@ -84,6 +86,13 @@ export const useFetchSystems = ({
     );
 };
 
+const fetchBatched = (fetchFunction, total, filter, batchSize = 100) => {
+    const pages = Math.ceil(total / batchSize) || 1;
+    return Promise.all([...new Array(pages)].map((_, pageIdx) => (
+        fetchFunction(batchSize, pageIdx + 1, filter)
+    )));
+};
+
 const buildApiFilters = (filters = {}) => {
     const { tagFilters, ...otherFilters } = filters;
     const tagsApiFilter = tagFilters ? {
@@ -124,63 +133,12 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
         return {
             results: entities.map((entity) => ({
                 ...entity,
-                selected: (selected || []).map((item) => (item.id)).includes(entity.id)
+                selected: (selected || []).map((id) => (id)).includes(entity.id)
             })),
             orderBy,
             orderDirection,
             total: totalCount
         };
-    };
-};
-
-export const useOnSelect = (onSelectProp, items, preselectedSystems, total) => {
-    const [selectedSystems, setSelected] = useState(preselectedSystems);
-    const selectedSystemIds = selectedSystems.map((system) => (system.id));
-    const isPageSelected = items.filter((item) => (
-        selectedSystemIds.includes(item.id)
-    )).length === items.length;
-
-    const onSelectCallback = (selected) => (
-        onSelectProp && onSelectProp(selected)
-    );
-
-    const onSelect = (_event, select, _index, row) => {
-        const system = items.find(({ id }) => id === row.id);
-        if (!system) {
-            console.error(`System identifed as ${row.id} not found in items for selection!`);
-            return;
-        }
-
-        const selected = select
-            ? [...selectedSystems, system]
-            : selectedSystems.filter((selected) => (selected.id !== row.id));
-
-        setSelected(selected);
-        onSelectCallback(selected);
-    };
-
-    const onBulkSelect = () => {
-        const selectedSystemsWithoutItems = (selectedSystems || []).filter((system) => (
-            !(items.map((item) => (item.id))).includes(system.id)
-        ));
-        const notAllSelected = selectedSystems.length <= total;
-        const selected = notAllSelected ? (
-            !isPageSelected ? [...selectedSystemsWithoutItems, ...items] : selectedSystemsWithoutItems
-        ) : [];
-
-        setSelected(selected);
-        onSelectCallback(selected);
-    };
-
-    useEffect(() => {
-        setSelected(preselectedSystems);
-    }, [preselectedSystems]);
-
-    return {
-        onSelect,
-        onBulkSelect,
-        selectedSystems,
-        isPageSelected
     };
 };
 
@@ -229,32 +187,25 @@ const toIdFilter = (ids) => (
 );
 
 export const useSystemsExport = ({
-    columns, filter, policyId, query, selected, total
+    columns, selected, total, fetchArguments
 }) => {
     const selectionFilter = selected ? toIdFilter(selected) : undefined;
     const fetchSystems = useFetchSystems({
-        query,
+        query: fetchArguments.query,
         variables: {
+            ...fetchArguments.variables,
             filter: selectionFilter ?
-                `${ filter } and (${ selectionFilter })` : filter,
-            ...policyId && { policyId }
+                `${ fetchArguments.variables.filter } and (${ selectionFilter })` :
+                fetchArguments.variables.filter
         }
     });
-
-    const fetchBatched = (total, filter) => {
-        const BATCH_SIZE = 100;
-        const pages = Math.floor(total / BATCH_SIZE) + 1;
-        return Promise.all([...new Array(pages)].map((_, pageIdx) => (
-            fetchSystems(BATCH_SIZE, pageIdx + 1, filter)
-        )));
-    };
 
     const selectedFilter = () => (
         selected?.length > 0 ? toIdFilter(selected) : undefined
     );
 
     const exporter = async () => {
-        const fetchedItems = await fetchBatched(total, selectedFilter());
+        const fetchedItems = await fetchBatched(fetchSystems, total, selectedFilter());
         return fetchedItems.flatMap((result) => (
             result.entities
         ));
@@ -267,6 +218,80 @@ export const useSystemsExport = ({
     });
 
     return exportConfig;
+};
+
+export const useSystemBulkSelect = ({
+    total,
+    onSelect,
+    preselected,
+    fetchArguments,
+    currentPageIds,
+    systemsCache = []
+}) => {
+    // This is meant as a compatibility layer and to be removed
+    const [selectedSystems, setSelectedSystems] = useState([]);
+    const fetchSystems = useFetchSystems({
+        ...fetchArguments,
+        query: GET_MINIMAL_SYSTEMS
+    });
+
+    const fetchFunc = async (fetchIds) => {
+        if (fetchIds.length === 0) {
+            return [];
+        }
+
+        const idFilter = toIdFilter(fetchIds);
+        const results = await fetchBatched(fetchSystems, fetchIds.length, {
+            ...idFilter && { filter: idFilter }
+        }).catch((error) => {
+            dispatchNotification({
+                variant: 'danger',
+                title: 'Error selecting systems',
+                description: error.message
+            });
+        });
+
+        return results.flatMap((result) => (
+            result.entities
+        ));
+    };
+
+    const cachedOrFetch = async (selectedIds) => {
+        const cachedSystems = systemsCache.filter(({ id }) => (selectedIds.includes(id)));
+        const cachedIds = cachedSystems.map(({ id }) => (id));
+        const fetchIds = selectedIds.filter((id) => (!cachedIds.includes(id)));
+        const fetchedSystems = await fetchFunc(fetchIds);
+
+        return [
+            ...cachedSystems,
+            ...fetchedSystems
+        ];
+    };
+
+    const onSelectCallback = async (selectedIds) => {
+        const systems = await cachedOrFetch(selectedIds);
+        setSelectedSystems(systems);
+        onSelect && onSelect(systems);
+    };
+
+    const itemIdsInTable = async () => {
+        const results = await fetchBatched(fetchSystems, total);
+        return results.flatMap((result) => (
+            result.entities.map(({ id }) => (id))
+        ));
+    };
+
+    const bulkSelect = useBulkSelect({
+        total,
+        onSelect: onSelectCallback,
+        preselected,
+        itemIdsInTable,
+        itemIdsOnPage: () => (currentPageIds)
+    });
+    return {
+        selectedSystems,
+        ...bulkSelect
+    };
 };
 
 export const useTags = (tagsEnabled) => (

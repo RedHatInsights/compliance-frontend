@@ -87,6 +87,19 @@ query getSystems($filter: String!, $policyId: ID, $perPage: Int, $page: Int, $so
 }
 `;
 
+export const GET_MINIMAL_SYSTEMS = gql`
+query getSystems($filter: String!, $perPage: Int, $page: Int, $sortBy: [String!]) {
+    systems(search: $filter, limit: $perPage, offset: $page, sortBy: $sortBy) {
+        totalCount
+        edges {
+            node {
+                id
+            }
+        }
+    }
+}
+`;
+
 export const policyFilter = (policies, osFilter) => ([
     ...systemsPolicyFilterConfiguration(policies),
     ...(osFilter ? systemsOsFilterConfiguration(policies) : [])
