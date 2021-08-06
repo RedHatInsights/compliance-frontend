@@ -361,7 +361,8 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               data-ouia-safe={true}
                               data-pf-content={true}
                             >
-                              Last scanned: 
+                              Last scanned:
+                               
                               <DateFormat
                                 date={1551853213000}
                                 type="relative"
@@ -904,7 +905,8 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               data-ouia-safe={true}
                               data-pf-content={true}
                             >
-                              Last scanned: 
+                              Last scanned:
+                               
                               <DateFormat
                                 date={1551853213000}
                                 type="relative"

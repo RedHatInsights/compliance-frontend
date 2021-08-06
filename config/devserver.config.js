@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-/* global module */
 let default_host;
 
 const bindHost = () => {

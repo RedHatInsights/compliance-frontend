@@ -632,7 +632,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1155,
+        "end": 929,
         "start": 0,
       },
     }
@@ -1281,7 +1281,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1155,
+        "end": 929,
         "start": 0,
       },
     }

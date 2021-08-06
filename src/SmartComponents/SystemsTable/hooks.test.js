@@ -94,8 +94,7 @@ describe('useGetEntities', () => {
   it('the returned function calls mockFetch', async () => {
     const { result } = renderHook(() => useGetEntities(mockFetch));
     // eslint-disable-next-line
-        const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
-    });
+    const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
     expect(fetchResult).toMatchSnapshot();
     expect(mockFetch).toHaveBeenCalled();
   });
@@ -114,8 +113,7 @@ describe('useGetEntities', () => {
       })
     );
     // eslint-disable-next-line
-        const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
-    });
+    const fetchResult = await result.current([], { per_page: 10, orderBy: 'name', orderDirection: 'ASC' })
     expect(mockFetch).toHaveBeenCalledWith(10, 1, {
       filters: undefined,
       sortBy: ['nameAttribute:ASC'],

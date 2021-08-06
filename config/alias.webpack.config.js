@@ -1,4 +1,3 @@
-/* global module, __dirname */
 const { resolve } = require('path');
 
 const aliases = {
