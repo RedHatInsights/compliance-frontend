@@ -11,8 +11,9 @@ import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/fron
 import { policyFilter, defaultOnLoad } from './constants';
 import {
     useFetchSystems, useGetEntities, useOsMinorVersionFilter, useInventoryUtilities, useOnSelect,
-    useSystemsExport, useSystemsFilter
+    useSystemsExport, useSystemsFilter, useTags
 } from './hooks';
+import useFeature from 'Utilities/hooks/useFeature';
 
 export const InventoryTable = ({
     columns,
@@ -43,6 +44,8 @@ export const InventoryTable = ({
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState(0);
+    const tagsEnabled = useFeature('tags');
+    const { props: tagsProps } = useTags(tagsEnabled);
 
     const {
         onSelect, onBulkSelect, selectedSystems, isPageSelected
@@ -92,6 +95,21 @@ export const InventoryTable = ({
         total
     });
 
+    const mergedColumns = (defaultColumns) => (
+        columns.map((column) => {
+            if (typeof column === 'string') {
+                // Remove when removing 'tags' feature flag
+                if (column === 'tags' && !tagsEnabled) {
+                    return;
+                }
+
+                return defaultColumns.find(({ key }) => (key === column)) || column;
+            } else {
+                return column;
+            }
+        }).filter((v) => (!!v))
+    );
+
     return <StateView stateValues={{ error, noError: error === undefined && !isEmpty, empty: isEmpty }}>
         <StateViewPart stateKey='error'>
             { !!prependComponent && prependComponent }
@@ -110,16 +128,12 @@ export const InventoryTable = ({
                     'Only systems currently associated with or reporting against compliance policies are displayed.' } /> }
             <FECInventoryTable
                 { ...systemProps }
+                { ...tagsProps }
+                columns={ mergedColumns }
                 noSystemsTable={ noSystemsTable }
                 ref={ inventory }
                 getEntities={ getEntities }
                 onLoad={ defaultOnLoad(columns) }
-                hideFilters={{
-                    name: true,
-                    tags: true,
-                    registeredWith: true,
-                    stale: true
-                }}
                 tableProps={{
                     canSelectAll: false,
                     ...items.length > 0 && { onSelect }
@@ -156,7 +170,11 @@ export const InventoryTable = ({
 };
 
 InventoryTable.propTypes = {
-    columns: PropTypes.arrayOf(PropTypes.shape({})),
+    columns: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+            PropTypes.shape({}),
+            PropTypes.string
+        ])),
     policies: PropTypes.arrayOf(PropTypes.shape({})),
     showAllSystems: PropTypes.bool,
     policyId: PropTypes.string,

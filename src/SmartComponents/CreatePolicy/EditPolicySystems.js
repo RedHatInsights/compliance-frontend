@@ -73,7 +73,9 @@ export const EditPolicySystems = ({ change, osMajorVersion, selectedSystems }) =
                                 width: 40
                             },
                             sortBy: ['name']
-                        }, {
+                        },
+                        Columns.inventoryColumn('tags'),
+                        {
                             ...Columns.OperatingSystem,
                             props: {},
                             sortBy: ['osMajorVersion', 'osMinorVersion']
