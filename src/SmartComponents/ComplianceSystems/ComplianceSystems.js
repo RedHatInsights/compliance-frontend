@@ -44,6 +44,7 @@ export const ComplianceSystems = () => {
                                     showLink: true,
                                     showOsInfo: true
                                 }),
+                                Columns.inventoryColumn('tags'),
                                 Columns.Policies,
                                 Columns.DetailsLink
                             ]}

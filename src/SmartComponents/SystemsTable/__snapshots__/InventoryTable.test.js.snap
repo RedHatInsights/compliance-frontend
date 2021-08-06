@@ -44,6 +44,7 @@ exports[`InventoryTable returns 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -235,6 +236,7 @@ exports[`InventoryTable returns compact 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -420,6 +422,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -498,6 +501,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -689,6 +693,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -928,6 +933,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -1111,6 +1117,7 @@ exports[`InventoryTable returns without actions 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       dedicatedAction={
         <Memo(Connect(ComplianceRemediationButton))
           allSystems={Array []}
@@ -1302,6 +1309,7 @@ exports[`InventoryTable returns without remediations 1`] = `
           "onSelect": false,
         }
       }
+      columns={[Function]}
       exportConfig={
         Object {
           "isDisabled": true,

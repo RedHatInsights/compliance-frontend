@@ -84,6 +84,22 @@ export const useFetchSystems = ({
     );
 };
 
+const buildApiFilters = (filters = {}) => {
+    const { tagFilters, ...otherFilters } = filters;
+    const tagsApiFilter = tagFilters ? {
+        tags: tagFilters.flatMap((tagFilter) => (
+            tagFilter.values.map((tag) => (
+                `${ encodeURIComponent(tagFilter.key) }/${ encodeURIComponent(tag.tagKey) }=${ encodeURIComponent(tag.value) }`
+            ))
+        ))
+    } : {};
+
+    return {
+        ...otherFilters,
+        ...tagsApiFilter
+    };
+};
+
 export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
     const appendDirection = (attributes, direction) => (
         attributes.map((attribute) => `${attribute}:${direction}`)
@@ -97,9 +113,10 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
         const sortableColumn = findColumnByKey(orderBy);
         const sortBy = sortableColumn && sortableColumn.sortBy ?
             appendDirection(sortableColumn.sortBy, orderDirection) : undefined;
+        const filterForApi = buildApiFilters(filters);
 
         const fetchedEntities = await fetchEntities(perPage, page, {
-            filters,
+            ...filterForApi,
             sortBy
         });
         const { entities, meta: { totalCount } } = fetchedEntities || {};
@@ -251,3 +268,26 @@ export const useSystemsExport = ({
 
     return exportConfig;
 };
+
+export const useTags = (tagsEnabled) => (
+    tagsEnabled ? {
+        props: {
+            hideFilters: {
+                name: true,
+                tags: false,
+                registeredWith: true,
+                stale: true
+            },
+            showTags: true
+        }
+    } : {
+        props: {
+            hideFilters: {
+                name: true,
+                tags: true,
+                registeredWith: true,
+                stale: true
+            }
+        }
+    }
+);
