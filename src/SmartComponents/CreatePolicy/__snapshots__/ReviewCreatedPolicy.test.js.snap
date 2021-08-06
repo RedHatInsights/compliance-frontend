@@ -44,6 +44,9 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           >
             <h1
               className=""
+              data-ouia-component-id="OUIA-Generated-Text-1"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
               data-pf-content={true}
             >
               Review
@@ -52,6 +55,9 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           <Text>
             <p
               className=""
+              data-ouia-component-id="OUIA-Generated-Text-2"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
               data-pf-content={true}
             >
               Review your SCAP policy before finishing.
@@ -67,6 +73,9 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           >
             <h3
               className=""
+              data-ouia-component-id="OUIA-Generated-Text-3"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
               data-pf-content={true}
               style={
                 Object {
