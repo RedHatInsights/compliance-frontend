@@ -7,6 +7,7 @@ import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter, GET_MINIMAL_SYSTEMS } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
+import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
     const showVersion = (version) => {
@@ -242,7 +243,14 @@ export const useSystemBulkSelect = ({
         const idFilter = toIdFilter(fetchIds);
         const results = await fetchBatched(fetchSystems, fetchIds.length, {
             ...idFilter && { filter: idFilter }
+        }).catch((error) => {
+            dispatchNotification({
+                variant: 'danger',
+                title: 'Error selecting systems',
+                description: error.message
+            });
         });
+
         return results.flatMap((result) => (
             result.entities
         ));
