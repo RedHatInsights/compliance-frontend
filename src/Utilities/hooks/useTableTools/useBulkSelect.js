@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { filterSelected } from './helper';
 
 const compileTitle = (itemsTotal, titleOption) => {
     if (typeof titleOption === 'string') {
@@ -110,9 +111,6 @@ export const useBulkSelect = ({
             onSelect: total > 0 ? selectOne : undefined,
             canSelectAll: false
         },
-        selected: selectedIds,
-        selectedItems,
-        clearSelection: selectNone,
         toolbarProps: {
             bulkSelect: {
                 toggleProps: { children: [title] },
@@ -188,6 +186,7 @@ export const useBulkSelectWithItems = ({
 
     return enableBulkSelect ? {
         transformer: (item) => (selectItemTransformer(item, selectedIds)),
+        selectedItems: filterSelected(items, selectedIds),
         selected: selectedIds,
         clearSelection: selectNone,
         ...bulkSelect

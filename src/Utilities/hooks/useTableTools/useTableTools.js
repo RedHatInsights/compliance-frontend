@@ -40,7 +40,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
         toolbarProps: bulkSelectToolbarProps,
         tableProps: bulkSelectTableProps,
         selectedItems
-    } = useBulkSelect({
+    } = useBulkSelectWithItems({
         ...options,
         items: sorter(identifiedItems),
         filter,
