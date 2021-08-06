@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@patternfly/react-core';
-import ComplianceEmptyState from '@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceEmptyState';
+import ComplianceEmptyState from '../ComplianceEmptyState';
 import { BackgroundLink } from 'PresentationalComponents';
 
 const ReportsEmptyState = () => (

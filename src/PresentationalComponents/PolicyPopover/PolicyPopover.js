@@ -24,12 +24,12 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
             { ...{ position } }
             headerContent={
                 <TextContent>
-                    { policy.name }
+                    { policy?.name }
                     <Text component={ TextVariants.small }>{ policyType }</Text>
                 </TextContent>
             }
             footerContent={
-                <Link to={'/scappolicies/' + policy.id} >
+                <Link to={'/scappolicies/' + policy?.id} >
                     View policy
                 </Link>
             }

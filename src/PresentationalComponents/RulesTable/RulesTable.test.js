@@ -2,12 +2,17 @@ import { policies } from '@/__fixtures__/policies';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 import buildFilterConfig from './Filters';
 import RulesTable from './RulesTable';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 
+const mockStore = configureStore();
 expect.extend(filterHelpers);
-jest.mock('@redhat-cloud-services/frontend-components-inventory-compliance/ComplianceRemediationButton',
+
+jest.mock('@redhat-cloud-services/frontend-components-remediations/RemediationButton',
     () => (() => (<span>Button</span>))); // eslint-disable-line
 
 describe('RulesTable', () => {
+    let store;
     const profiles = policies.edges[0].node.policy.profiles.map((profile) => (
         {
             ...profile,
@@ -20,6 +25,10 @@ describe('RulesTable', () => {
             id: 1
         }
     };
+
+    beforeEach(() => {
+        store = mockStore({});
+    });
 
     it('expect to render without error', () => {
         let wrapper = shallow(
@@ -47,7 +56,9 @@ describe('RulesTable', () => {
             remediationAvailableFilter: false
         }).filter((filter) => (filter.label !== 'Severity'));
 
-        const component = <RulesTable { ...defaultProps } />;
+        const component = <Provider store={store}>
+            <RulesTable { ...defaultProps } />
+        </Provider>;
 
         expect(component).toHaveFiltersFor(filterConfig);
     });

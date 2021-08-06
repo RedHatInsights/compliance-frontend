@@ -6,11 +6,9 @@ Object {
     Object {
       "toolbarProps": Object {
         "dedicatedAction": <div>
-           
-          [Function]
-           
-          [Function]
-           
+          <dedicatedAction
+            selected={Array []}
+          />
         </div>,
       },
     },
@@ -18,11 +16,9 @@ Object {
   "current": Object {
     "toolbarProps": Object {
       "dedicatedAction": <div>
-         
-        [Function]
-         
-        [Function]
-         
+        <dedicatedAction
+          selected={Array []}
+        />
       </div>,
     },
   },

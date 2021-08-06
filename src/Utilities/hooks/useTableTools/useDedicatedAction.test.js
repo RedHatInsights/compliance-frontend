@@ -9,7 +9,8 @@ describe('useDedicatedAction', () => {
             ),
             additionalDedicatedActions: [() => ( //eslint-disable-line
                 <span>ANOTHER DEDICATED ACTION</span>
-            )]
+            )],
+            selected: []
         }));
         expect(result).toMatchSnapshot();
     });

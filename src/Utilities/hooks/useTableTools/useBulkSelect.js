@@ -159,6 +159,7 @@ const useBulkSelect = ({
             canSelectAll: false
         },
         selected: selectedIds,
+        selectedItems,
         clearSelection: selectNone,
         toolbarProps: {
             bulkSelect: {

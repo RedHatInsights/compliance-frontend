@@ -3,12 +3,16 @@ import React from 'react';
 const useDedicatedAction = (options) => {
     const enableDedicatedAction = !!options.dedicatedAction;
     const {
-        dedicatedAction: dedicatedActionOption, additionalDedicatedActions
+        dedicatedAction: DedicatedActionOption, AdditionalDedicatedActions,
+        selected
     } = options;
 
     return enableDedicatedAction ? {
         toolbarProps: {
-            dedicatedAction: <div> { dedicatedActionOption } { additionalDedicatedActions } </div>
+            dedicatedAction: selected && <div>
+                {DedicatedActionOption && <DedicatedActionOption selected={selected} />}
+                {AdditionalDedicatedActions && <AdditionalDedicatedActions selected={ selected } />}
+            </div>
         } } : {};
 };
 
