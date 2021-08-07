@@ -546,16 +546,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
   }
   options={
     Object {
-      "dedicatedAction": <BackgroundLink
-        to="/scappolicies/new"
-      >
-        <Button
-          ouiaId="CreateNewPolicyButton"
-          variant="primary"
-        >
-          Create new policy
-        </Button>
-      </BackgroundLink>,
+      "dedicatedAction": [Function],
     }
   }
   ouiaId="PoliciesTable"
@@ -636,16 +627,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
   items={Array []}
   options={
     Object {
-      "dedicatedAction": <BackgroundLink
-        to="/scappolicies/new"
-      >
-        <Button
-          ouiaId="CreateNewPolicyButton"
-          variant="primary"
-        >
-          Create new policy
-        </Button>
-      </BackgroundLink>,
+      "dedicatedAction": [Function],
     }
   }
   ouiaId="PoliciesTable"
@@ -1198,16 +1180,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
   }
   options={
     Object {
-      "dedicatedAction": <BackgroundLink
-        to="/scappolicies/new"
-      >
-        <Button
-          ouiaId="CreateNewPolicyButton"
-          variant="primary"
-        >
-          Create new policy
-        </Button>
-      </BackgroundLink>,
+      "dedicatedAction": [Function],
     }
   }
   ouiaId="PoliciesTable"
