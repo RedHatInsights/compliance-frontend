@@ -7,6 +7,16 @@ import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import * as Columns from './Columns';
 import * as Filters from './Filters';
 
+const DedicatedAction = () => (
+  <div>
+    <BackgroundLink to="/scappolicies/new">
+      <Button variant="primary" ouiaId="CreateNewPolicyButton">
+        Create new policy
+      </Button>
+    </BackgroundLink>
+  </div>
+);
+
 export const PoliciesTable = ({ policies, location, history }) => {
   const columns = Object.values(Columns);
   const filters = Object.values(Filters);
@@ -47,13 +57,7 @@ export const PoliciesTable = ({ policies, location, history }) => {
         filterConfig: filters,
       }}
       options={{
-        dedicatedAction: (
-          <BackgroundLink to="/scappolicies/new">
-            <Button variant="primary" ouiaId="CreateNewPolicyButton">
-              Create new policy
-            </Button>
-          </BackgroundLink>
-        ),
+        dedicatedAction: DedicatedAction,
       }}
       actionResolver={actionResolver}
     />

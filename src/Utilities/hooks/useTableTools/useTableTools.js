@@ -52,7 +52,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: dedicatedActionToolbarProps } = useDedicatedAction({
     ...options,
     selected: selectedItems,
-    additionalDedicatedActions: [selectedFilterToolbarProps?.dedicatedAction],
+    additionalDedicatedActions: selectedFilterToolbarProps?.dedicatedAction,
   });
 
   const {
