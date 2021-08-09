@@ -470,7 +470,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
     selectVariant="checkbox"
     sortBy={
       Object {
-        "direction": "desc",
+        "direction": "asc",
         "index": 0,
       }
     }

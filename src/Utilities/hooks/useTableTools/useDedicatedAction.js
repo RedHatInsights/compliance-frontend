@@ -11,13 +11,13 @@ const useDedicatedAction = (options) => {
   return enableDedicatedAction
     ? {
         toolbarProps: {
-          dedicatedAction: selected && (
+          dedicatedAction: (
             <div>
               {DedicatedActionOption && (
-                <DedicatedActionOption selected={selected} />
+                <DedicatedActionOption {...(selected && { selected })} />
               )}
               {AdditionalDedicatedActions && (
-                <AdditionalDedicatedActions selected={selected} />
+                <AdditionalDedicatedActions {...(selected && { selected })} />
               )}
             </div>
           ),

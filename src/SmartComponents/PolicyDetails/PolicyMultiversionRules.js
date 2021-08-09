@@ -24,6 +24,8 @@ const PolicyMultiversionRules = ({ policy }) => {
       systemCount: systemCounts[profile.osMinorVersion]?.count || 0,
     }));
 
+  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+
   return (
     <React.Fragment>
       <PageSection variant={PageSectionVariants.light}>
@@ -32,7 +34,7 @@ const PolicyMultiversionRules = ({ policy }) => {
           columns={[Columns.Name, Columns.Severity, Columns.Ansible]}
           level={1}
           options={{
-            dedicatedAction: <EditRulesButtonToolbarItem policy={policy} />,
+            dedicatedAction: DedicatedAction,
           }}
         />
       </PageSection>
