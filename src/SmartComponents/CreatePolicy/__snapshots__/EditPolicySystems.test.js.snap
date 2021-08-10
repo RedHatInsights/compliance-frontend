@@ -135,6 +135,20 @@ exports[`EditPolicySystems expect to render without error 1`] = `
                             },
                           },
                         },
+                        Object {
+                          "kind": "Argument",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "tags",
+                          },
+                          "value": Object {
+                            "kind": "Variable",
+                            "name": Object {
+                              "kind": "Name",
+                              "value": "tags",
+                            },
+                          },
+                        },
                       ],
                       "directives": Array [],
                       "kind": "Field",
@@ -584,12 +598,37 @@ exports[`EditPolicySystems expect to render without error 1`] = `
                       },
                     },
                   },
+                  Object {
+                    "defaultValue": undefined,
+                    "directives": Array [],
+                    "kind": "VariableDefinition",
+                    "type": Object {
+                      "kind": "ListType",
+                      "type": Object {
+                        "kind": "NonNullType",
+                        "type": Object {
+                          "kind": "NamedType",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "String",
+                          },
+                        },
+                      },
+                    },
+                    "variable": Object {
+                      "kind": "Variable",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "tags",
+                      },
+                    },
+                  },
                 ],
               },
             ],
             "kind": "Document",
             "loc": Object {
-              "end": 803,
+              "end": 869,
               "start": 0,
             },
           }
