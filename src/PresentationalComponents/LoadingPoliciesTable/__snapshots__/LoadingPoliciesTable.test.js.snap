@@ -9,18 +9,40 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   cells={
     Array [
       Object {
-        "title": "Policy name",
+        "props": Object {
+          "width": 45,
+        },
+        "renderFunc": [Function],
+        "sortByProp": "name",
+        "title": "Name",
       },
       Object {
+        "props": Object {
+          "width": 15,
+        },
+        "renderFunc": [Function],
+        "sortByProp": "majorOsVersion",
         "title": "Operating system",
+        "transforms": Array [
+          [Function],
+        ],
       },
       Object {
+        "props": Object {
+          "width": 15,
+        },
+        "renderFunc": [Function],
+        "sortByProp": "totalHostCount",
         "title": "Systems",
       },
       Object {
-        "title": "Business initiative",
+        "renderFunc": [Function],
+        "sortByFunction": [Function],
+        "title": "Business objective",
       },
       Object {
+        "renderFunc": [Function],
+        "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",
       },
     ]

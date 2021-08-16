@@ -65,3 +65,11 @@ export const ComplianceThreshold = {
   sortByProp: 'complianceThreshold',
   renderFunc: (_data, _id, policy) => `${policy.complianceThreshold}%`,
 };
+
+export default [
+  Name,
+  OperatingSystem,
+  Systems,
+  BusinessObjective,
+  ComplianceThreshold,
+];
