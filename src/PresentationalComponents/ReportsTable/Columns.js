@@ -35,3 +35,5 @@ export const CompliantSystems = {
   },
   renderFunc: renderComponent(CompliantSystemsCell),
 };
+
+export default [Name, OperatingSystem, CompliantSystems];
