@@ -30,7 +30,7 @@ To run the container setup either Podman or Docker and their compose commands ca
 
 ```shell
   $ cp .env.example .env # Can be used to enable a local backend and other services
-  $ podman-compose up # Starts up the insights-proxy and the compliance frontend
+  $ podman-compose up # Starts up the compliance frontend with a webpack proxy
 ```
 
 This will build the image if it is not yet available locally and run the containers to make the frontend available at [https://ci.foo.redhat.com:1337/insights/compliance/](https://ci.foo.redhat.com:1337/insights/compliance/)
