@@ -108,6 +108,9 @@ class ComplianceRemediationButton extends React.Component {
             addNotification(result.getNotification())
           }
           dataProvider={this.dataProvider}
+          buttonProps={{
+            ouiaId: 'RemediateButton',
+          }}
         >
           <AnsibeTowerIcon
             size="sm"
