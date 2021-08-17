@@ -1,35 +1,54 @@
 /* eslint-disable camelcase */
+/* global module, __dirname */
+require('dotenv').config();
+
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
 
+const useLocalChrome = () => {
+    return process.env.LOCAL_CHROME === 'true' ? {
+        localChrome: process.env.CHROME_DIR
+    } : {}
+};
+
+const chromeEnv = () => {
+    const env = process.env?.CHROME_ENV;
+    return env ? env : `ci-${process.env.BETA ? 'beta' : 'stable'}`
+}
+
 const insightsProxy = {
     https: false,
     port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
     ...(process.env.BETA && { deployment: 'beta/apps' }),
-  };
+};
 
-  const webpackProxy = {
+const webpackProxy = {
     deployment: process.env.BETA ? 'beta/apps' : 'apps',
     appUrl: process.env.BETA ? ['/beta/insights/compliance'] : ['/insights/compliance'],
-    env: `ci-${process.env.BETA ? 'beta' : 'stable'}`, // pick chrome env ['ci-beta', 'ci-stable', 'qa-beta', 'qa-stable', 'prod-beta', 'prod-stable']
+    env: chromeEnv(),
     useProxy: true,
     proxyVerbose: true,
-    useCloud: true, // until console pre-prod env is ready
-    // localChrome: '~/insights/insights-chrome/build/', // for local chrome builds
+    useCloud: (process.env?.USE_CLOUD === 'true'),
+    ...useLocalChrome(),
     routes: {
-    //   '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
+        // Additional routes to the spandx config
+        // '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
     },
-  };
+};
 
+const { config: webpackConfig, plugins } = (() => {
+    const initConfig = {
+        rootFolder: resolve(__dirname, '../'),
+        debug: (process.env?.WEBPACK_DEBUG === 'true'),
+        useFileHash: false,
+        ...(process.env.PROXY ? webpackProxy : insightsProxy),
+    };
 
-const { config: webpackConfig, plugins } = config({
-    rootFolder: resolve(__dirname, '../'),
-    debug: true,
-    useFileHash: false,
-    ...(process.env.PROXY ? webpackProxy : insightsProxy),
-});
+    console.log('Configuration provided', initConfig)
+    return config(initConfig)
+})();
 
 /**
  * Revise these aliases. Remove those that are not use.

@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-let default_host;
 
 const bindHost = () => {
   if (
@@ -11,14 +10,6 @@ const bindHost = () => {
     return process.env.WEBPACK_BIND || 'localhost';
   }
 };
-
-if (process.env.DEFAULT_HOST) {
-  default_host = process.env.DEFAULT_HOST;
-} else {
-  default_host = 'host.docker.internal';
-}
-
-module.exports.default_host = default_host;
 
 const hotReload = function () {
   return process.env.HOT_RELOAD && process.env.HOT_RELOAD === 'true'
@@ -41,7 +32,7 @@ const devserverConfig = {
     'qa.foo.redhat.com',
     'stage.foo.redhat.com',
     'prod.foo.redhat.com',
-    default_host,
+    process.env.DEFAULT_HOST,
   ],
 };
 
