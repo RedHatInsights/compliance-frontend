@@ -66,8 +66,7 @@ export const Reports = () => {
   let profiles = [];
   let showView = false;
   const location = useLocation();
-  const filter = `(has_policy_test_results = true AND external = false)
-                    OR (has_policy = false AND has_test_results = true)`;
+  const filter = `has_policy_test_results = true AND external = false`;
 
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { filter },
