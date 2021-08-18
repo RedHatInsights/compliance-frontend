@@ -156,6 +156,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "#519de9",
                   ]
                 }
+                constrainToVisibleArea={true}
                 data={
                   Array [
                     Object {
@@ -263,7 +264,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             columns={
               Array [
                 Object {
-                  "exportKey": "name",
+                  "key": "name",
                   "props": Object {
                     "isStatic": true,
                     "showLink": true,
@@ -274,6 +275,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderFunc": [Function],
                   "title": "Name",
                 },
+                "tags",
                 Object {
                   "exportKey": "testResultProfiles",
                   "props": Object {
@@ -282,6 +284,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -292,6 +297,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -302,6 +310,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -312,6 +323,9 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
               ]
             }
@@ -377,6 +391,34 @@ exports[`ReportDetails expect to render without error 1`] = `
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "page",
+                                },
+                              },
+                            },
+                            Object {
+                              "kind": "Argument",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "sortBy",
+                              },
+                              "value": Object {
+                                "kind": "Variable",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "sortBy",
+                                },
+                              },
+                            },
+                            Object {
+                              "kind": "Argument",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "tags",
+                              },
+                              "value": Object {
+                                "kind": "Variable",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "tags",
                                 },
                               },
                             },
@@ -720,6 +762,54 @@ exports[`ReportDetails expect to render without error 1`] = `
                                               ],
                                             },
                                           },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "tags",
+                                            },
+                                            "selectionSet": Object {
+                                              "kind": "SelectionSet",
+                                              "selections": Array [
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "namespace",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "key",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "value",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                              ],
+                                            },
+                                          },
                                         ],
                                       },
                                     },
@@ -811,12 +901,62 @@ exports[`ReportDetails expect to render without error 1`] = `
                           },
                         },
                       },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "ListType",
+                          "type": Object {
+                            "kind": "NonNullType",
+                            "type": Object {
+                              "kind": "NamedType",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "String",
+                              },
+                            },
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "sortBy",
+                          },
+                        },
+                      },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "ListType",
+                          "type": Object {
+                            "kind": "NonNullType",
+                            "type": Object {
+                              "kind": "NamedType",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "String",
+                              },
+                            },
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "tags",
+                          },
+                        },
+                      },
                     ],
                   },
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 997,
+                  "end": 995,
                   "start": 0,
                 },
               }
@@ -994,6 +1134,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "#519de9",
                   ]
                 }
+                constrainToVisibleArea={true}
                 data={
                   Array [
                     Object {
@@ -1101,7 +1242,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             columns={
               Array [
                 Object {
-                  "exportKey": "name",
+                  "key": "name",
                   "props": Object {
                     "isStatic": true,
                     "showLink": true,
@@ -1112,6 +1253,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderFunc": [Function],
                   "title": "Name",
                 },
+                "tags",
                 Object {
                   "exportKey": "testResultProfiles",
                   "props": Object {
@@ -1120,6 +1262,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "SSG version",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1130,6 +1275,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1140,6 +1288,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1150,6 +1301,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
+                  "transforms": Array [
+                    [Function],
+                  ],
                 },
               ]
             }
@@ -1215,6 +1369,34 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                 "name": Object {
                                   "kind": "Name",
                                   "value": "page",
+                                },
+                              },
+                            },
+                            Object {
+                              "kind": "Argument",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "sortBy",
+                              },
+                              "value": Object {
+                                "kind": "Variable",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "sortBy",
+                                },
+                              },
+                            },
+                            Object {
+                              "kind": "Argument",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "tags",
+                              },
+                              "value": Object {
+                                "kind": "Variable",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "tags",
                                 },
                               },
                             },
@@ -1558,6 +1740,54 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                               ],
                                             },
                                           },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "tags",
+                                            },
+                                            "selectionSet": Object {
+                                              "kind": "SelectionSet",
+                                              "selections": Array [
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "namespace",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "key",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                                Object {
+                                                  "alias": undefined,
+                                                  "arguments": Array [],
+                                                  "directives": Array [],
+                                                  "kind": "Field",
+                                                  "name": Object {
+                                                    "kind": "Name",
+                                                    "value": "value",
+                                                  },
+                                                  "selectionSet": undefined,
+                                                },
+                                              ],
+                                            },
+                                          },
                                         ],
                                       },
                                     },
@@ -1649,12 +1879,62 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                           },
                         },
                       },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "ListType",
+                          "type": Object {
+                            "kind": "NonNullType",
+                            "type": Object {
+                              "kind": "NamedType",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "String",
+                              },
+                            },
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "sortBy",
+                          },
+                        },
+                      },
+                      Object {
+                        "defaultValue": undefined,
+                        "directives": Array [],
+                        "kind": "VariableDefinition",
+                        "type": Object {
+                          "kind": "ListType",
+                          "type": Object {
+                            "kind": "NonNullType",
+                            "type": Object {
+                              "kind": "NamedType",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "String",
+                              },
+                            },
+                          },
+                        },
+                        "variable": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "tags",
+                          },
+                        },
+                      },
                     ],
                   },
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 997,
+                  "end": 995,
                   "start": 0,
                 },
               }

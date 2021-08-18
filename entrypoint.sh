@@ -8,4 +8,7 @@ fi
 
 export IN_DOCKER='true';
 
+/usr/bin/node --version
+/usr/local/bin/npm --version
+
 exec "$@"

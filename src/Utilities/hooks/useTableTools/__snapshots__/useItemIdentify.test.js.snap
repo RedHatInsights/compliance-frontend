@@ -11,9 +11,9 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 30,
-    "itemId": 30,
-    "name": "TEST ITEM #30",
+    "id": 2,
+    "itemId": 2,
+    "name": "TEST ITEM #2",
     "severity": "low",
   },
   Object {
@@ -109,10 +109,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 2,
-    "itemId": 2,
-    "name": "TEST ITEM #2",
-    "severity": "low",
+    "id": 16,
+    "itemId": 16,
+    "name": "TEST ITEM #16",
+    "severity": "high",
   },
   Object {
     "description": "DESCRIPTION",
@@ -207,10 +207,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 16,
-    "itemId": 16,
-    "name": "TEST ITEM #16",
-    "severity": "high",
+    "id": 30,
+    "itemId": 30,
+    "name": "TEST ITEM #30",
+    "severity": "low",
   },
 ]
 `;
@@ -226,9 +226,9 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 30,
-    "itemId": "TEST ITEM #30",
-    "name": "TEST ITEM #30",
+    "id": 2,
+    "itemId": "TEST ITEM #2",
+    "name": "TEST ITEM #2",
     "severity": "low",
   },
   Object {
@@ -324,10 +324,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 2,
-    "itemId": "TEST ITEM #2",
-    "name": "TEST ITEM #2",
-    "severity": "low",
+    "id": 16,
+    "itemId": "TEST ITEM #16",
+    "name": "TEST ITEM #16",
+    "severity": "high",
   },
   Object {
     "description": "DESCRIPTION",
@@ -422,10 +422,10 @@ Array [
   },
   Object {
     "description": "DESCRIPTION",
-    "id": 16,
-    "itemId": "TEST ITEM #16",
-    "name": "TEST ITEM #16",
-    "severity": "high",
+    "id": 30,
+    "itemId": "TEST ITEM #30",
+    "name": "TEST ITEM #30",
+    "severity": "low",
   },
 ]
 `;

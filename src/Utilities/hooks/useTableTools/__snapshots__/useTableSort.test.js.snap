@@ -8,15 +8,29 @@ Object {
       "tableProps": Object {
         "cells": Array [
           Object {
+            "exportKey": "id",
+            "sortByProperty": "id",
+            "title": "ID",
+          },
+          Object {
+            "exportKey": "name",
             "renderFunc": [Function],
             "sortByProperty": "name",
             "title": "Name",
           },
           Object {
+            "exportKey": "name",
+            "renderExport": [Function],
+            "sortByProperty": "name",
+            "title": "Another Name column",
+          },
+          Object {
+            "renderExport": [Function],
             "sortByProperty": "description",
             "title": "Description",
           },
           Object {
+            "exportKey": "severity",
             "renderFunc": [Function],
             "sortByFunction": [Function],
             "title": "Severity sorted by function",
@@ -25,6 +39,7 @@ Object {
             ],
           },
           Object {
+            "exportKey": "severity",
             "renderFunc": [Function],
             "sortByArray": Array [
               "high",
@@ -38,7 +53,7 @@ Object {
         ],
         "onSort": [Function],
         "sortBy": Object {
-          "direction": "desc",
+          "direction": "asc",
           "index": 0,
         },
       },
@@ -49,15 +64,29 @@ Object {
     "tableProps": Object {
       "cells": Array [
         Object {
+          "exportKey": "id",
+          "sortByProperty": "id",
+          "title": "ID",
+        },
+        Object {
+          "exportKey": "name",
           "renderFunc": [Function],
           "sortByProperty": "name",
           "title": "Name",
         },
         Object {
+          "exportKey": "name",
+          "renderExport": [Function],
+          "sortByProperty": "name",
+          "title": "Another Name column",
+        },
+        Object {
+          "renderExport": [Function],
           "sortByProperty": "description",
           "title": "Description",
         },
         Object {
+          "exportKey": "severity",
           "renderFunc": [Function],
           "sortByFunction": [Function],
           "title": "Severity sorted by function",
@@ -66,6 +95,7 @@ Object {
           ],
         },
         Object {
+          "exportKey": "severity",
           "renderFunc": [Function],
           "sortByArray": Array [
             "high",
@@ -79,7 +109,7 @@ Object {
       ],
       "onSort": [Function],
       "sortBy": Object {
-        "direction": "desc",
+        "direction": "asc",
         "index": 0,
       },
     },

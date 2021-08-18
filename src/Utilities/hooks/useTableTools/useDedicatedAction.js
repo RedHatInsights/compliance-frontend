@@ -1,21 +1,29 @@
 import React from 'react';
 
 const useDedicatedAction = (options) => {
-    const enableDedicatedAction = !!options.dedicatedAction;
-    const {
-        dedicatedAction: dedicatedActionOption, additionalDedicatedActions, selected
-    } = options;
+  const enableDedicatedAction = !!options.dedicatedAction;
+  const {
+    dedicatedAction: DedicatedActionOption,
+    AdditionalDedicatedActions,
+    selected,
+  } = options;
 
-    return enableDedicatedAction ? {
+  return enableDedicatedAction
+    ? {
         toolbarProps: {
-            dedicatedAction: [
-                dedicatedActionOption,
-                ...additionalDedicatedActions
-            ].filter((v) => (!!v)).map((DedicatedAction, idx) => (
-                <DedicatedAction key={ `dedicated-table-action-${ idx }`} { ...{ selected } } />
-            ))
-        }
-    } : {};
+          dedicatedAction: (
+            <div>
+              {DedicatedActionOption && (
+                <DedicatedActionOption {...(selected && { selected })} />
+              )}
+              {AdditionalDedicatedActions && (
+                <AdditionalDedicatedActions {...(selected && { selected })} />
+              )}
+            </div>
+          ),
+        },
+      }
+    : {};
 };
 
 export default useDedicatedAction;

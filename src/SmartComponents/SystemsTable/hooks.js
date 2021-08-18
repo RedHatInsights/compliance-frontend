@@ -4,179 +4,340 @@ import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import useCollection from 'Utilities/hooks/api/useCollection';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import { osMinorVersionFilter } from './constants';
+import { osMinorVersionFilter, GET_MINIMAL_SYSTEMS } from './constants';
+import useExport from 'Utilities/hooks/useTableTools/useExport';
+import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
+import { dispatchNotification } from 'Utilities/Dispatcher';
 
-const groupByMajorVersion = (versions = [], showFilter) => {
-    const showVersion = (version) => {
-        if (showFilter.length > 0) {
-            return Array(showFilter).map(String).includes(String(version));
-        } else {
-            return true;
-        }
-    };
+const groupByMajorVersion = (versions = [], showFilter = []) => {
+  const showVersion = (version) => {
+    if (showFilter.length > 0) {
+      return showFilter.map(String).includes(String(version));
+    } else {
+      return true;
+    }
+  };
 
-    return versions.reduce((acc, currentValue) => {
-        if (showVersion(currentValue.osMajorVersion)) {
-            acc[String(currentValue.osMajorVersion)] = [...new Set(
-                [...acc[currentValue.osMajorVersion] || [], currentValue.osMinorVersion]
-            )];
-        }
+  return versions.reduce((acc, currentValue) => {
+    if (showVersion(currentValue.osMajorVersion)) {
+      acc[String(currentValue.osMajorVersion)] = [
+        ...new Set([
+          ...(acc[currentValue.osMajorVersion] || []),
+          currentValue.osMinorVersion,
+        ]),
+      ];
+    }
 
-        return acc;
-    }, []);
+    return acc;
+  }, []);
 };
 
 export const useOsMinorVersionFilter = (showFilter) => {
-    const { data: supportedSsgs } = useCollection('supported_ssgs', {
-        type: 'supportedSsg',
-        skip: !showFilter
-    });
+  const { data: supportedSsgs } = useCollection('supported_ssgs', {
+    type: 'supportedSsg',
+    skip: !showFilter,
+  });
 
-    return showFilter ? osMinorVersionFilter(groupByMajorVersion(supportedSsgs?.collection, showFilter)) : [];
+  return showFilter
+    ? osMinorVersionFilter(
+        groupByMajorVersion(supportedSsgs?.collection, showFilter)
+      )
+    : [];
 };
 
-export const useFetchSystems = (
-    query, policyId, buildFilterString, showOnlySystemsWithTestResults, defaultFilter, onComplete
+export const useSystemsFilter = (
+  filterString,
+  showOnlySystemsWithTestResults,
+  defaultFilter
 ) => {
-    const client = useApolloClient();
-    const filterString = buildFilterString();
-    const combindedFilter = [
-        ...showOnlySystemsWithTestResults ? ['has_test_results = true'] : [],
-        ...filterString?.length > 0 ? [filterString] : []
-    ].join(' and ');
-    const filter = defaultFilter ?
-        `(${ defaultFilter })` +
-        `${ combindedFilter ? `and (${ combindedFilter })` : '' })` : combindedFilter;
+  const combindedFilter = [
+    ...(showOnlySystemsWithTestResults ? ['has_test_results = true'] : []),
+    ...(filterString?.length > 0 ? [filterString] : []),
+  ].join(' and ');
+  const filter = defaultFilter
+    ? `(${defaultFilter})` +
+      (combindedFilter ? ` and (${combindedFilter})` : '')
+    : combindedFilter;
 
-    return (perPage, page) => (
-        client.query({
-            query,
-            fetchResults: true,
-            fetchPolicy: 'no-cache',
-            variables: {
-                filter,
-                perPage,
-                page,
-                ...policyId && { policyId }
-            }
-        }).then(({ data }) => {
-            const systems = data?.systems?.edges?.map((e) => e.node) || [];
-            const entities = systemsWithRuleObjectsFailed(systems);
-            const result = {
-                entities,
-                meta: {
-                    totalCount: data?.systems?.totalCount || 0
-                }
-            };
-
-            onComplete && onComplete(result);
-            return result;
-        })
-    );
+  return filter;
 };
 
-export const useGetEntities = (fetchEntities, { selected }) => (
-    async (_ids, { page = 1, per_page: perPage }) => {
-        const fetchedEntities = await fetchEntities(perPage, page);
-        const { entities, meta: { totalCount } } = fetchedEntities || {};
+export const useFetchSystems = ({ query, onComplete, variables = {} }) => {
+  const client = useApolloClient();
 
-        return {
-            results: entities.map((entity) => ({
-                ...entity,
-                selected: selected.map((item) => (item.id)).includes(entity.id)
-            })),
-            total: totalCount
+  return (perPage, page, requestVariables = {}) =>
+    client
+      .query({
+        query,
+        fetchResults: true,
+        fetchPolicy: 'no-cache',
+        variables: {
+          perPage,
+          page,
+          ...variables,
+          ...requestVariables,
+        },
+      })
+      .then(({ data }) => {
+        const systems = data?.systems?.edges?.map((e) => e.node) || [];
+        const entities = systemsWithRuleObjectsFailed(systems);
+        const result = {
+          entities,
+          meta: {
+            totalCount: data?.systems?.totalCount || 0,
+          },
         };
-    }
-);
 
-export const useOnSelect = (onSelectProp, items, preselectedSystems, total) => {
-    const [selectedSystems, setSelected] = useState(preselectedSystems);
-    const selectedSystemIds = selectedSystems.map((system) => (system.id));
-    const isPageSelected = items.filter((item) => (
-        selectedSystemIds.includes(item.id)
-    )).length === items.length;
+        onComplete && onComplete(result);
+        return result;
+      });
+};
 
-    const onSelectCallback = (selected) => (
-        onSelectProp && onSelectProp(selected)
-    );
+const fetchBatched = (fetchFunction, total, filter, batchSize = 100) => {
+  const pages = Math.ceil(total / batchSize) || 1;
+  return Promise.all(
+    [...new Array(pages)].map((_, pageIdx) =>
+      fetchFunction(batchSize, pageIdx + 1, filter)
+    )
+  );
+};
 
-    const onSelect = (_event, select, _index, row) => {
-        const system = items.find(({ id }) => id === row.id);
-        if (!system) {
-            console.error(`System identifed as ${row.id} not found in items for selection!`);
-            return;
-        }
+const buildApiFilters = (filters = {}) => {
+  const { tagFilters, ...otherFilters } = filters;
+  const tagsApiFilter = tagFilters
+    ? {
+        tags: tagFilters.flatMap((tagFilter) =>
+          tagFilter.values.map(
+            (tag) =>
+              `${encodeURIComponent(tagFilter.key)}/${encodeURIComponent(
+                tag.tagKey
+              )}=${encodeURIComponent(tag.value)}`
+          )
+        ),
+      }
+    : {};
 
-        const selected = select
-            ? [...selectedSystems, system]
-            : selectedSystems.filter((selected) => (selected.id !== row.id));
+  return {
+    ...otherFilters,
+    ...tagsApiFilter,
+  };
+};
 
-        setSelected(selected);
-        onSelectCallback(selected);
-    };
+export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
+  const appendDirection = (attributes, direction) =>
+    attributes.map((attribute) => `${attribute}:${direction}`);
 
-    const onBulkSelect = () => {
-        const selectedSystemsWithoutItems = (selectedSystems || []).filter((system) => (
-            !(items.map((item) => (item.id))).includes(system.id)
-        ));
-        const notAllSelected = selectedSystems.length <= total;
-        const selected = notAllSelected ? (
-            !isPageSelected ? [...selectedSystemsWithoutItems, ...items] : selectedSystemsWithoutItems
-        ) : [];
+  const findColumnByKey = (key) =>
+    (columns || []).find((column) => column.key === key);
 
-        setSelected(selected);
-        onSelectCallback(selected);
-    };
+  return async (
+    _ids,
+    { page = 1, per_page: perPage, orderBy, orderDirection, filters }
+  ) => {
+    const sortableColumn = findColumnByKey(orderBy);
+    const sortBy =
+      sortableColumn && sortableColumn.sortBy
+        ? appendDirection(sortableColumn.sortBy, orderDirection)
+        : undefined;
+    const filterForApi = buildApiFilters(filters);
 
-    useEffect(() => {
-        setSelected(preselectedSystems);
-    }, [preselectedSystems]);
+    const fetchedEntities = await fetchEntities(perPage, page, {
+      ...filterForApi,
+      sortBy,
+    });
+    const {
+      entities,
+      meta: { totalCount },
+    } = fetchedEntities || {};
 
     return {
-        onSelect,
-        onBulkSelect,
-        selectedSystems,
-        isPageSelected
+      results: entities.map((entity) => ({
+        ...entity,
+        selected: (selected || []).map((id) => id).includes(entity.id),
+      })),
+      orderBy,
+      orderDirection,
+      total: totalCount,
     };
+  };
 };
 
 // This hook is primarily meant to work around issues in the inventory
-export const useInventoryUtilities = (inventory, selectedSystems, activeFilters) => {
-    const dispatch = useDispatch();
+export const useInventoryUtilities = (
+  inventory,
+  selectedSystems,
+  activeFilters
+) => {
+  const dispatch = useDispatch();
 
-    // Resets the Inventory to a loading state
-    // and prevents previously shown columns and rows to appear
-    useLayoutEffect(() => {
-        dispatch({
-            type: 'INVENTORY_INIT'
-        });
-    }, []);
+  // Resets the Inventory to a loading state
+  // and prevents previously shown columns and rows to appear
+  useLayoutEffect(() => {
+    dispatch({
+      type: 'INVENTORY_INIT',
+    });
+  }, []);
 
-    // Ensures rows are marked as selected
-    useEffect(() => {
-        dispatch({
-            type: 'SELECT_ENTITIES',
-            payload: {
-                selected: selectedSystems
-            }
-        });
-    }, [selectedSystems]);
+  // Ensures rows are marked as selected
+  useEffect(() => {
+    dispatch({
+      type: 'SELECT_ENTITIES',
+      payload: {
+        selected: selectedSystems,
+      },
+    });
+  }, [selectedSystems]);
 
-    // Filters do not yet trigger the inventory to call getEntities
-    // and the page would not reset to page 1
-    const resetPage = () => {
-        Promise.resolve(dispatch({
-            type: 'RESET_PAGE'
-        })).then(() =>
-            inventory?.current?.onRefreshData()
-        );
-    };
+  // Filters do not yet trigger the inventory to call getEntities
+  // and the page would not reset to page 1
+  const resetPage = () => {
+    Promise.resolve(
+      dispatch({
+        type: 'RESET_PAGE',
+      })
+    ).then(() => inventory?.current?.onRefreshData());
+  };
 
-    // The debounce is to not have filter updates collide or get out of order.
-    const debounceResetPage = debounce(resetPage, 50);
+  // The debounce is to not have filter updates collide or get out of order.
+  const debounceResetPage = debounce(resetPage, 50);
 
-    useEffect(() => {
-        debounceResetPage();
-    }, [activeFilters]);
+  useEffect(() => {
+    debounceResetPage();
+  }, [activeFilters]);
 };
+
+const toIdFilter = (ids) =>
+  ids?.length > 0 ? `id ^ (${ids.join(',')})` : undefined;
+
+export const useSystemsExport = ({
+  columns,
+  selected,
+  total,
+  fetchArguments,
+}) => {
+  const selectionFilter = selected ? toIdFilter(selected) : undefined;
+  const fetchSystems = useFetchSystems({
+    query: fetchArguments.query,
+    variables: {
+      ...fetchArguments.variables,
+      filter: selectionFilter
+        ? `${fetchArguments.variables.filter} and (${selectionFilter})`
+        : fetchArguments.variables.filter,
+    },
+  });
+
+  const selectedFilter = () =>
+    selected?.length > 0 ? toIdFilter(selected) : undefined;
+
+  const exporter = async () => {
+    const fetchedItems = await fetchBatched(
+      fetchSystems,
+      total,
+      selectedFilter()
+    );
+    return fetchedItems.flatMap((result) => result.entities);
+  };
+
+  const {
+    toolbarProps: { exportConfig },
+  } = useExport({
+    exporter,
+    columns,
+    isDisabled: total === 0,
+  });
+
+  return exportConfig;
+};
+
+export const useSystemBulkSelect = ({
+  total,
+  onSelect,
+  preselected,
+  fetchArguments,
+  currentPageIds,
+  systemsCache = [],
+}) => {
+  // This is meant as a compatibility layer and to be removed
+  const [selectedSystems, setSelectedSystems] = useState([]);
+  const fetchSystems = useFetchSystems({
+    ...fetchArguments,
+    query: GET_MINIMAL_SYSTEMS,
+  });
+
+  const fetchFunc = async (fetchIds) => {
+    if (fetchIds.length === 0) {
+      return [];
+    }
+
+    const idFilter = toIdFilter(fetchIds);
+    const results = await fetchBatched(fetchSystems, fetchIds.length, {
+      ...(idFilter && { filter: idFilter }),
+    }).catch((error) => {
+      dispatchNotification({
+        variant: 'danger',
+        title: 'Error selecting systems',
+        description: error.message,
+      });
+    });
+
+    return results.flatMap((result) => result.entities);
+  };
+
+  const cachedOrFetch = async (selectedIds) => {
+    const cachedSystems = systemsCache.filter(({ id }) =>
+      selectedIds.includes(id)
+    );
+    const cachedIds = cachedSystems.map(({ id }) => id);
+    const fetchIds = selectedIds.filter((id) => !cachedIds.includes(id));
+    const fetchedSystems = await fetchFunc(fetchIds);
+
+    return [...cachedSystems, ...fetchedSystems];
+  };
+
+  const onSelectCallback = async (selectedIds) => {
+    const systems = await cachedOrFetch(selectedIds);
+    setSelectedSystems(systems);
+    onSelect && onSelect(systems);
+  };
+
+  const itemIdsInTable = async () => {
+    const results = await fetchBatched(fetchSystems, total);
+    return results.flatMap((result) => result.entities.map(({ id }) => id));
+  };
+
+  const bulkSelect = useBulkSelect({
+    total,
+    onSelect: onSelectCallback,
+    preselected,
+    itemIdsInTable,
+    itemIdsOnPage: () => currentPageIds,
+  });
+  return {
+    selectedSystems,
+    ...bulkSelect,
+  };
+};
+
+export const useTags = (tagsEnabled) =>
+  tagsEnabled
+    ? {
+        props: {
+          hideFilters: {
+            name: true,
+            tags: false,
+            registeredWith: true,
+            stale: true,
+          },
+          showTags: true,
+        },
+      }
+    : {
+        props: {
+          hideFilters: {
+            name: true,
+            tags: true,
+            registeredWith: true,
+            stale: true,
+          },
+        },
+      };

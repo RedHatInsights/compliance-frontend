@@ -17,18 +17,20 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     }
     variant="popover"
   >
-    <ExclamationTriangleIcon
-      className="ins-u-warning"
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
+    <span
+      className="pf-u-mr-xs"
       style={
         Object {
           "cursor": "pointer",
-          "marginRight": ".25em",
         }
       }
-    />
+    >
+      <ExclamationTriangleIcon
+        color="var(--pf-global--warning-color--100)"
+        noVerticalAlign={false}
+        size="sm"
+      />
+    </span>
   </TooltipOrPopover>
   Unsupported text
   <TooltipOrPopover
@@ -39,17 +41,20 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     }
     variant="popover"
   >
-    <OutlinedQuestionCircleIcon
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
+    <span
+      className="pf-u-ml-xs"
       style={
         Object {
           "cursor": "pointer",
-          "marginLeft": ".25em",
         }
       }
-    />
+    >
+      <OutlinedQuestionCircleIcon
+        color="currentColor"
+        noVerticalAlign={false}
+        size="sm"
+      />
+    </span>
   </TooltipOrPopover>
 </span>
 `;
@@ -84,18 +89,20 @@ exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
     }
     variant="popover"
   >
-    <ExclamationTriangleIcon
-      className="ins-u-warning"
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
+    <span
+      className="pf-u-mr-xs"
       style={
         Object {
           "cursor": "pointer",
-          "marginRight": ".25em",
         }
       }
-    />
+    >
+      <ExclamationTriangleIcon
+        color="var(--pf-global--warning-color--100)"
+        noVerticalAlign={false}
+        size="sm"
+      />
+    </span>
   </TooltipOrPopover>
   Unsupported text
 </span>
@@ -121,17 +128,16 @@ exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
     }
     variant="tooltip"
   >
-    <ExclamationTriangleIcon
-      className="ins-u-warning"
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
-      style={
-        Object {
-          "marginRight": ".25em",
-        }
-      }
-    />
+    <span
+      className="pf-u-mr-xs"
+      style={Object {}}
+    >
+      <ExclamationTriangleIcon
+        color="var(--pf-global--warning-color--100)"
+        noVerticalAlign={false}
+        size="sm"
+      />
+    </span>
   </TooltipOrPopover>
   Unsupported text
 </span>
@@ -154,18 +160,20 @@ exports[`UnsupportedSSGVersion expect to render without error 1`] = `
     }
     variant="popover"
   >
-    <ExclamationTriangleIcon
-      className="ins-u-warning"
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
+    <span
+      className="pf-u-mr-xs"
       style={
         Object {
           "cursor": "pointer",
-          "marginRight": ".25em",
         }
       }
-    />
+    >
+      <ExclamationTriangleIcon
+        color="var(--pf-global--warning-color--100)"
+        noVerticalAlign={false}
+        size="sm"
+      />
+    </span>
   </TooltipOrPopover>
   Unsupported text
 </span>
