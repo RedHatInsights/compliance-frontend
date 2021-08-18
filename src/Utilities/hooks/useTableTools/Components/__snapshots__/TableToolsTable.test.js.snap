@@ -167,7 +167,6 @@ exports[`TableToolsTable expect to render without error 1`] = `
         "perPage": 10,
       }
     }
-    toggleIsExpanded={[Function]}
   />
   <Table
     aria-label="Test Table"
