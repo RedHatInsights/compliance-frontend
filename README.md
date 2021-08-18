@@ -15,6 +15,15 @@ Both can be run either manually and separately or in a container setup.
 Both will require to have hostnames like `ci.foo.redhat.com` resolve to the local host.
 [Insights Proxy](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh) provides a script to patch the `/etc/hosts` file for this purpose.
 
+## Using useProxy
+
+Running webpack with "useProxy" can be used instead of insights-proxy for backend routes.
+
+```shell
+$ npm run start:proxy
+$ npm run start:proxy:beta # Will run the UI with beta chrome
+```
+
 ### In containers (recommended)
 
 To run the container setup either Podman or Docker and their compose commands can be used to
