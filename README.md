@@ -17,7 +17,7 @@ Both will require to have hostnames like `ci.foo.redhat.com` resolve to the loca
 
 ## Using useProxy
 
-Instead of only running webpack to server assets "useProxy" can be used instead of insights-proxy for backend routes.
+Running webpack with "useProxy" can be used instead of insights-proxy for backend routes.
 
 ```shell
 $ npm run start:proxy
