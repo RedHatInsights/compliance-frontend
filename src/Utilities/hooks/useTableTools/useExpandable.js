@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const childRowForRule = (item, idx, DetailsComponent) => ({
   parent: idx * 2,
+  fullWidth: true,
   cells: [
     { title: <DetailsComponent rule={item} key={'item-' + item.rowId} /> },
   ],

@@ -25,6 +25,7 @@ Array [
         />,
       },
     ],
+    "fullWidth": true,
     "parent": 2,
   },
 ]
@@ -75,6 +76,7 @@ Array [
         />,
       },
     ],
+    "fullWidth": true,
     "parent": 2,
   },
 ]
