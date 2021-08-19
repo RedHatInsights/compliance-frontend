@@ -27,17 +27,24 @@ class ComplianceRemediationButton extends React.Component {
     });
   };
 
-  ruleProfile = (rule, system) =>
-    system.profiles.find((profile) =>
+  ruleProfile = (rule, system) => {
+    const profile = system.profiles.find((profile) =>
       profile.rules.find((profileRule) => rule.refId === profileRule.refId)
     );
+    if (!profile) {
+      console.log('No profile', rule, system);
+      return;
+    }
+
+    return profile;
+  };
 
   rulesWithRemediations = (rules, system) => {
     return rules
       .filter(
         (rule) =>
           rule.remediationAvailable &&
-          this.ruleProfile(rule, system).supported &&
+          this.ruleProfile(rule, system)?.supported &&
           rule.compliant === false
       )
       .map((rule) => {
@@ -91,7 +98,7 @@ class ComplianceRemediationButton extends React.Component {
         rule.remediationAvailable &&
         (rule.profiles?.some((profile) => profile.supported) ||
           allSystems.some(
-            (system) => this.ruleProfile(rule, system).supported
+            (system) => this.ruleProfile(rule, system)?.supported
           )) &&
         rule.compliant === false
     );
