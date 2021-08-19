@@ -62,7 +62,12 @@ export const useSystemsFilter = (
   return filter;
 };
 
-export const useFetchSystems = ({ query, onComplete, variables = {} }) => {
+export const useFetchSystems = ({
+  query,
+  onComplete,
+  variables = {},
+  onError,
+}) => {
   const client = useApolloClient();
 
   return (perPage, page, requestVariables = {}) =>
@@ -90,6 +95,14 @@ export const useFetchSystems = ({ query, onComplete, variables = {} }) => {
 
         onComplete && onComplete(result);
         return result;
+      })
+      .catch((error) => {
+        if (onError) {
+          onError(error);
+          return { entities: [], meta: { totalCount: 0 } };
+        } else {
+          throw error;
+        }
       });
 };
 
@@ -262,6 +275,13 @@ export const useSystemBulkSelect = ({
   const fetchSystems = useFetchSystems({
     ...fetchArguments,
     query: GET_MINIMAL_SYSTEMS,
+    onError: (error) => {
+      dispatchNotification({
+        variant: 'danger',
+        title: 'Error selecting systems',
+        description: error.message,
+      });
+    },
   });
 
   const fetchFunc = async (fetchIds) => {
@@ -272,12 +292,6 @@ export const useSystemBulkSelect = ({
     const idFilter = toIdFilter(fetchIds);
     const results = await fetchBatched(fetchSystems, fetchIds.length, {
       ...(idFilter && { filter: idFilter }),
-    }).catch((error) => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Error selecting systems',
-        description: error.message,
-      });
     });
 
     return results.flatMap((result) => result.entities);
