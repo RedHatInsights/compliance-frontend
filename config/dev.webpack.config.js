@@ -32,6 +32,7 @@ const webpackProxy = {
     proxyVerbose: true,
     useCloud: (process.env?.USE_CLOUD === 'true'),
     ...useLocalChrome(),
+    routesPath: process.env.ROUTES_PATH || '/compliance/config/spandx.config.js',
     routes: {
         // Additional routes to the spandx config
         // '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
