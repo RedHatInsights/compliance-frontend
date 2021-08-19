@@ -190,6 +190,7 @@ export const InventoryTable = ({
           onLoad={defaultOnLoad(columns)}
           tableProps={{
             ...bulkSelectTableProps,
+            isStickyHeader: true,
           }}
           fallback={<Spinner />}
           variant={compact ? TableVariant.compact : ''}

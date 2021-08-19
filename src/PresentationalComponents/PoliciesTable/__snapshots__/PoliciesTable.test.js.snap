@@ -71,6 +71,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       ],
     }
   }
+  isStickyHeader={true}
   items={
     Array [
       Object {
@@ -624,6 +625,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
       ],
     }
   }
+  isStickyHeader={true}
   items={Array []}
   options={
     Object {
@@ -705,6 +707,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
       ],
     }
   }
+  isStickyHeader={true}
   items={
     Array [
       Object {

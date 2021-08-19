@@ -155,6 +155,7 @@ exports[`ReportsTable expect to render without error 1`] = `
       ],
     }
   }
+  isStickyHeader={true}
   items={
     Array [
       Object {
