@@ -54,7 +54,11 @@ export const InventoryTable = ({
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const tagsEnabled = useFeature('tags');
-  const { props: tagsProps } = useTags(tagsEnabled);
+  const {
+    props: tagsProps,
+    currentTags,
+    setCurrentTags,
+  } = useTags(tagsEnabled);
 
   const osMinorVersionFilter = useOsMinorVersionFilter(
     showOsMinorVersionFilter
@@ -82,6 +86,7 @@ export const InventoryTable = ({
   const systemFetchArguments = {
     query,
     variables: {
+      tags: currentTags,
       filter: systemsFilter,
       ...(policyId && { policyId }),
     },
@@ -112,6 +117,7 @@ export const InventoryTable = ({
     setTotal(result.meta.totalCount);
     setItems(result.entities);
     setIsLoaded(true);
+    setCurrentTags && setCurrentTags(result.meta.tags);
 
     if (
       emptyStateComponent &&
@@ -135,7 +141,10 @@ export const InventoryTable = ({
     filter: systemsFilter,
     selected: selectedIds,
     total,
-    fetchArguments: systemFetchArguments,
+    fetchArguments: {
+      tags: currentTags,
+      ...systemFetchArguments,
+    },
   });
 
   const mergedColumns = (defaultColumns) =>
