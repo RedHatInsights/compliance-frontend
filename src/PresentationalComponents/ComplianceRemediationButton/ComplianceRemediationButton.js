@@ -9,7 +9,7 @@ import { AnsibeTowerIcon } from '@patternfly/react-icons';
 class ComplianceRemediationButton extends React.Component {
   formatRule = ({ title, refId }, profile, system, majorOsVersion) => ({
     id: `ssg:rhel${majorOsVersion}|${
-      profile.split('xccdf_org.ssgproject.')[1]
+      profile.split('xccdf_org.ssgproject.content_profile_')[1]
     }|${refId}`,
     description: title,
     systems: [system],
