@@ -26,6 +26,7 @@ const ReportsTable = ({ profiles }) => {
       columns={columns}
       items={profiles}
       emptyRows={emptyRows}
+      isStickyHeader
       filters={{
         filterConfig: [
           ...policyNameFilter,

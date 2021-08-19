@@ -59,6 +59,7 @@ const RulesTable = ({
       aria-label="Rules Table"
       items={rules}
       columns={columns}
+      isStickyHeader
       filters={{
         filterConfig: buildFilterConfig({
           showPassFailFilter,
