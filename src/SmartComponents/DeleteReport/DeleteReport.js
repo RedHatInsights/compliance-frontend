@@ -29,7 +29,9 @@ const DeleteReport = () => {
       dispatchAction(
         addNotification({
           variant: 'success',
-          title: `Removed report`,
+          title: 'Report deleted',
+          descrtiption:
+            'Systems associated with this policy will upload reports on the next check-in.',
         })
       );
       onDelete();

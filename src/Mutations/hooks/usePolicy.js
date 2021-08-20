@@ -46,6 +46,8 @@ const usePolicy = () => {
       await associateRules(profileSelectedRuleRefIds, profiles);
       dispatchProgress();
     }
+
+    return mutatedPolicy;
   };
 };
 

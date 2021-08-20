@@ -2,6 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { useApolloClient } from '@apollo/client';
 import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 
+jest.mock('Utilities/Dispatcher');
 jest.mock('@apollo/client', () => ({
   useApolloClient: jest.fn(() => ({
     query: () => Promise.resolve([]),
