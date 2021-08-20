@@ -44,6 +44,15 @@ describe('sortingByProp', () => {
     ]);
   });
 
+  it('should sort string properties naturally', () => {
+    const input = [{ prop: '10' }, { prop: '1' }, { prop: '5' }];
+    expect(input.sort(sortingByProp('prop'))).toEqual([
+      { prop: '1' },
+      { prop: '5' },
+      { prop: '10' },
+    ]);
+  });
+
   it('should sort with a missing poperty', () => {
     const input = [
       { prop: 'c' },
