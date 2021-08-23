@@ -73,6 +73,7 @@ export const ReportDetails = ({ route }) => {
   const { report_id: policyId } = useParams();
   const { data, error, loading } = useQuery(QUERY, {
     variables: { policyId },
+    fetchPolicy: 'no-cache',
   });
   let donutValues = [];
   let donutId = 'loading-donut';
