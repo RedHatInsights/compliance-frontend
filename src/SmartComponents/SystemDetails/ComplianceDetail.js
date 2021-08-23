@@ -102,6 +102,7 @@ const SystemDetails = ({ inventoryId, hidePassed, client }) => {
   let { data, error, loading } = useQuery(QUERY, {
     variables: { systemId: inventoryId },
     client,
+    fetchPolicy: 'no-cache',
   });
   const is404 = error?.networkError?.statusCode === 404;
 
