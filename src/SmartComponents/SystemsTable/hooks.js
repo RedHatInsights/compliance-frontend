@@ -62,6 +62,22 @@ export const useSystemsFilter = (
   return filter;
 };
 
+const renameInventoryAttributes = ({
+  culledTimestamp,
+  staleWarningTimestamp,
+  staleTimestamp,
+  insightsId,
+  lastScanned,
+  ...system
+}) => ({
+  ...system,
+  updated: lastScanned,
+  culled_timestamp: culledTimestamp,
+  stale_warning_timestamp: staleWarningTimestamp,
+  stale_timestamp: staleTimestamp,
+  insights_id: insightsId,
+});
+
 export const useFetchSystems = ({
   query,
   onComplete,
@@ -85,7 +101,9 @@ export const useFetchSystems = ({
       })
       .then(({ data }) => {
         const systems = data?.systems?.edges?.map((e) => e.node) || [];
-        const entities = systemsWithRuleObjectsFailed(systems);
+        const entities = systemsWithRuleObjectsFailed(systems).map(
+          renameInventoryAttributes
+        );
         const result = {
           entities,
           meta: {

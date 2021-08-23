@@ -31,6 +31,11 @@ export const GET_SYSTEMS = gql`
           name
           osMajorVersion
           osMinorVersion
+          culledTimestamp
+          staleWarningTimestamp
+          staleTimestamp
+          insightsId
+          lastScanned
           testResultProfiles(policyId: $policyId) {
             id
             name
@@ -87,6 +92,11 @@ export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
           name
           osMajorVersion
           osMinorVersion
+          culledTimestamp
+          staleWarningTimestamp
+          staleTimestamp
+          insightsId
+          lastScanned
           testResultProfiles(policyId: $policyId) {
             id
             name

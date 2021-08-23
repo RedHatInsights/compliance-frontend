@@ -513,6 +513,61 @@ exports[`ReportDetails expect to render without error 1`] = `
                                           },
                                           Object {
                                             "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "culledTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "staleWarningTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "staleTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "insightsId",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "lastScanned",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
                                             "arguments": Array [
                                               Object {
                                                 "kind": "Argument",
@@ -956,7 +1011,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 995,
+                  "end": 1121,
                   "start": 0,
                 },
               }
@@ -1491,6 +1546,61 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                           },
                                           Object {
                                             "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "culledTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "staleWarningTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "staleTimestamp",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "insightsId",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "lastScanned",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
                                             "arguments": Array [
                                               Object {
                                                 "kind": "Argument",
@@ -1934,7 +2044,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 995,
+                  "end": 1121,
                   "start": 0,
                 },
               }

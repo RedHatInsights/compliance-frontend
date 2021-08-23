@@ -73,7 +73,7 @@ export const Policies = {
   exportKey: 'policies',
   renderExport: (policies) => policies.map(({ name }) => name).join(', '),
   props: {
-    width: 40,
+    width: 35,
     ...disableSorting,
   },
   renderFunc: renderComponent(PoliciesCell),
