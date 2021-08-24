@@ -61,11 +61,6 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
       remediationAvailableFilter
       handleSelect={() => undefined}
       hidePassed={hidePassed}
-      sortBy={{
-        index: 4,
-        direction: 'asc',
-        property: 'severity',
-      }}
       system={{
         ...system,
         supported:
@@ -79,6 +74,13 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
         rules: profile.rules,
       }))}
       loading={loading}
+      options={{
+        sortBy: {
+          index: 4,
+          direction: 'asc',
+          property: 'severity',
+        },
+      }}
     />
   </React.Fragment>
 );
