@@ -7,4 +7,17 @@ describe('useTableSort', () => {
     const { result } = renderHook(() => useTableSort(columns));
     expect(result).toMatchSnapshot();
   });
+
+  it('returns a table sort configuration with an inital state', () => {
+    const sortBy = {
+      index: 3,
+      direction: 'asc',
+    };
+    const { result } = renderHook(() =>
+      useTableSort(columns, {
+        sortBy,
+      })
+    );
+    expect(result.current.tableProps.sortBy).toEqual(sortBy);
+  });
 });
