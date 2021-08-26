@@ -13,7 +13,7 @@ describe('EditPolicySystemsTab', () => {
     policy: {
       id: '12345abcde',
       osMajorVersion: '7',
-      policyOsMinorVersions: [1, 2, 3],
+      supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'],
     },
     newRuleTabs: false,
   };

@@ -45,12 +45,24 @@ PrependComponent.propTypes = {
 };
 
 const EditPolicySystemsTab = ({
-  policy: { id: policyId, osMajorVersion },
+  policy,
   newRuleTabs,
   onSystemSelect,
   selectedSystems,
 }) => {
   const { push, location } = useHistory();
+  const { id: policyId, osMajorVersion, supportedOsVersions } = policy;
+  const osMinorVersions = supportedOsVersions.map(
+    (version) => version.split('.')[1]
+  );
+  const osFilter =
+    osMajorVersion &&
+    `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+      ','
+    )})`;
+  const defaultFilter = osFilter
+    ? `${osFilter} or policy_id = ${policyId}`
+    : `policy_id = ${policyId}`;
 
   return (
     <React.Fragment>
@@ -66,10 +78,7 @@ const EditPolicySystemsTab = ({
         compact
         showActions={false}
         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-        defaultFilter={
-          osMajorVersion &&
-          `os_major_version = ${osMajorVersion} or policy_id = ${policyId}`
-        }
+        defaultFilter={defaultFilter}
         enableExport={false}
         remediationsEnabled={false}
         preselectedSystems={selectedSystems}

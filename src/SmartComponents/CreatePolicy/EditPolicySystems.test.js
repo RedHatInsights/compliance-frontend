@@ -10,8 +10,8 @@ describe('EditPolicySystems', () => {
       <EditPolicySystems
         {...defaultProps}
         osMajorVersion="7"
-        osMinorVersionCounts={[]}
         selectedSystemIds={[]}
+        policy={{ supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'] }}
       />
     );
     expect(toJson(component)).toMatchSnapshot();
