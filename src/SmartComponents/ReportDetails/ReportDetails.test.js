@@ -1,5 +1,4 @@
 import { init } from 'Store';
-import useFeature from 'Utilities/hooks/useFeature';
 import { useQuery, useMutation } from '@apollo/client';
 
 import { QUERY, ReportDetails } from './ReportDetails';
@@ -57,7 +56,6 @@ const store = init().getStore();
 // Currently there seems to be an issue in react-apollo, which causes it not to recognize a MockProvider
 // This is a hack and should eventually be replaced by using a MockProvider provided by react-apollo's test utilities
 jest.mock('@apollo/client');
-jest.mock('Utilities/hooks/useFeature');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
     useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
@@ -73,7 +71,6 @@ describe('ReportDetails', () => {
   };
 
   beforeEach(() => {
-    useFeature.mockImplementation(() => true);
     useMutation.mockImplementation(() => [() => {}]);
     useQuery.mockImplementation(() => ({ data: mocks[0].result.data }));
     window.insights = {
@@ -88,7 +85,6 @@ describe('ReportDetails', () => {
   });
 
   it('expect to render without error and ssg Version', () => {
-    useFeature.mockImplementation(() => true);
     const component = shallow(
       <ReportDetails {...defaultProps} store={store} />
     );
