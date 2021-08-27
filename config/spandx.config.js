@@ -11,12 +11,7 @@ const defaultHost = function () {
     return envWithDefault('DEFAULT_HOST', 'host.docker.internal');
 }
 
-const SECTION = 'insights';
-const BETA_SECTION = 'insights';
 const APP_ID = 'compliance';
-
-const FRONTEND_PORT = 8002;
-const FRONTEND_HOST = envWithDefault('FRONTEND_HOST', defaultHost());
 
 /*
     If you are running the complaince backend locally set LOCAL_API in .env
@@ -39,10 +34,6 @@ const REMEDIATIONS_PORT = envWithDefault('REMEDIATIONS_PORT', 9002);
 const GOOD_GUY = envWithDefault('GOOD_GUY', false);
 
 const routes = {};
-routes[`/beta/${BETA_SECTION}/${APP_ID}`] = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
-routes[`/${SECTION}/${APP_ID}`]      = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
-routes[`/beta/apps/${APP_ID}`]       = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
-routes[`/apps/${APP_ID}`]            = { host: `http://${FRONTEND_HOST}:${FRONTEND_PORT}` };
 
 if (LOCAL_API) {
     routes[`/api/${APP_ID}`] = { host: `http://${API_HOST}:${API_PORT}` };

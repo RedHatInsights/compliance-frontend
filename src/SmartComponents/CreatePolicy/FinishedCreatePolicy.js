@@ -13,6 +13,7 @@ import {
   ListItem,
 } from '@patternfly/react-core';
 import { ProgressBar } from 'PresentationalComponents';
+import { Link } from 'react-router-dom';
 import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
@@ -72,16 +73,17 @@ export const FinishedCreatePolicy = ({
     };
 
     updatePolicy(null, newPolicy, onProgress)
-      .then(() => {
+      .then(({ id }) => {
         setPercent(100);
         setMessage();
         dispatchNotification({
           variant: 'success',
-          title: `Policy created`,
+          title: `Created policy "${name}"`,
           autoDismiss: true,
           description: (
             <span>
-              From the <strong>SCAP Policies</strong> page, open {name}.
+              From the <strong>SCAP Policies</strong> list, open{' '}
+              <Link to={`/scappolicies/${id}`}>{name}</Link>.
             </span>
           ),
         });

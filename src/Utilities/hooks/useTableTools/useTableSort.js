@@ -19,32 +19,35 @@ const columnOffset = (options = {}) =>
   (typeof options.detailsComponent !== 'undefined');
 
 const useTableSort = (columns, options = {}) => {
-  const [sortBy, setSortBy] = useState({
-    index: 0,
-    direction: 'asc',
-  });
+  const [sortBy, setSortBy] = useState(
+    options.sortBy || {
+      index: 0,
+      direction: 'asc',
+    }
+  );
   const onSort = (_, index, direction) =>
     setSortBy({
       index,
       direction,
     });
+  const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
+  const sorter = (items) =>
+    currentSortableColumn?.sortByArray
+      ? orderByArray(
+          items,
+          currentSortableColumn?.sortByProp,
+          currentSortableColumn?.sortByArray,
+          sortBy.direction
+        )
+      : orderArrayByProp(
+          currentSortableColumn?.sortByProp ||
+            currentSortableColumn?.sortByFunction,
+          items,
+          sortBy.direction
+        );
 
   return {
-    sorter: (items) => {
-      const column = columns[sortBy.index - columnOffset(options)];
-      return column?.sortByArray
-        ? orderByArray(
-            items,
-            column?.sortByProp,
-            column?.sortByArray,
-            sortBy.direction
-          )
-        : orderArrayByProp(
-            column?.sortByProp || column?.sortByFunction,
-            items,
-            sortBy.direction
-          );
-    },
+    sorter,
     tableProps: {
       onSort,
       sortBy,

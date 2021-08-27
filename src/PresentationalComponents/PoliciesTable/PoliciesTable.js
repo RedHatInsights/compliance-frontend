@@ -52,6 +52,7 @@ export const PoliciesTable = ({ policies, location, history }) => {
       columns={columns}
       items={policies}
       emptyRows={emptyRows}
+      isStickyHeader
       filters={{
         filterConfig: filters,
       }}

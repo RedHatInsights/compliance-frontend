@@ -4,29 +4,6 @@ services:
         env_file: .env
         build: .
         image: compliance-frontend_frontend
-        ports:
-            - 8002:8002
-        volumes:
-            - .:/compliance:z
-            - /compliance/node_modules
-
-    # Enable/uncomment this if you want to run chrome locally
-    # chrome:
-    #     env_file: .env
-    #     image: compliance-frontend_frontend
-    #     working_dir: /insights-chrome
-    #     entrypoint: /bin/sh
-    #     command: -c '
-    #         npm i;
-    #         npm run start'
-    #     volumes:
-    #         - ${CHROME_DIR}:/insights-chrome:z
-    #         - /insights-chrome/node_modules
-
-    proxy:
-        env_file: .env
-        image: docker.io/redhatinsights/insights-proxy
         network_mode: host
         volumes:
-          - ./config/spandx.config.js:/config/spandx.config.js:z
-          # - ${CHROME_DIR}/build:/chrome:z # local chrome
+            - .:/compliance:z
