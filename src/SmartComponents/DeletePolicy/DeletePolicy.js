@@ -28,7 +28,7 @@ const DeletePolicy = () => {
       dispatchAction(
         addNotification({
           variant: 'success',
-          title: `Deleted ${name} and its associated reports`,
+          title: `Deleted "${name}" and its associated reports`,
         })
       );
       onClose();
