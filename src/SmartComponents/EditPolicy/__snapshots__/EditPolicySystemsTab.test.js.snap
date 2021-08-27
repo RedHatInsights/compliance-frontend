@@ -32,7 +32,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
     }
     compact={true}
     compliantFilter={false}
-    defaultFilter="os_major_version = 7"
+    defaultFilter="os_major_version = 7 or policy_id = 12345abcde"
     emptyStateComponent={
       <EmptyState
         osMajorVersion="7"
@@ -678,7 +678,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
     }
     compact={true}
     compliantFilter={false}
-    defaultFilter="os_major_version = 7"
+    defaultFilter="os_major_version = 7 or policy_id = 12345abcde"
     emptyStateComponent={
       <EmptyState
         osMajorVersion="7"

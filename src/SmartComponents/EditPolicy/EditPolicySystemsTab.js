@@ -45,7 +45,7 @@ PrependComponent.propTypes = {
 };
 
 const EditPolicySystemsTab = ({
-  policy: { osMajorVersion },
+  policy: { id: policyId, osMajorVersion },
   newRuleTabs,
   onSystemSelect,
   selectedSystems,
@@ -66,7 +66,10 @@ const EditPolicySystemsTab = ({
         compact
         showActions={false}
         query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
-        defaultFilter={osMajorVersion && `os_major_version = ${osMajorVersion}`}
+        defaultFilter={
+          osMajorVersion &&
+          `os_major_version = ${osMajorVersion} or policy_id = ${policyId}`
+        }
         enableExport={false}
         remediationsEnabled={false}
         preselectedSystems={selectedSystems}
