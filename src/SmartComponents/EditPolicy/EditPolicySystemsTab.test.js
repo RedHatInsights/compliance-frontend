@@ -11,6 +11,7 @@ jest.mock('react-router-dom', () => ({
 describe('EditPolicySystemsTab', () => {
   const defaultProps = {
     policy: {
+      id: '12345abcde',
       osMajorVersion: '7',
       policyOsMinorVersions: [1, 2, 3],
     },
