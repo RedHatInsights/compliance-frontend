@@ -30,7 +30,7 @@ const DeleteReport = () => {
         addNotification({
           variant: 'success',
           title: 'Report deleted',
-          descrtiption:
+          description:
             'Systems associated with this policy will upload reports on the next check-in.',
         })
       );
