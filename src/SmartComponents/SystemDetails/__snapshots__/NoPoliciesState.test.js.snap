@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoPoliciesState with a system having missing hasPolicy prop 1`] = `
+<Bullseye>
+  <EmptyState>
+    <EmptyStateIcon
+      icon={[Function]}
+    />
+    <Title
+      headingLevel="h1"
+      size="lg"
+    >
+      This system is not part of any SCAP policies defined within Compliance.
+    </Title>
+    <EmptyStateBody>
+      To assess and monitor compliance against a SCAP policy for this system, add it to an existing policy or create a new policy.
+    </EmptyStateBody>
+    <EmptyStatePrimary>
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          ouiaId="CreateNewPolicyButton"
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
+    </EmptyStatePrimary>
+    <EmptyStateSecondaryActions>
+      <Button
+        component="a"
+        href="/insights/compliance/scappolicies"
+        variant="link"
+      >
+        View compliance policies
+      </Button>
+    </EmptyStateSecondaryActions>
+  </EmptyState>
+</Bullseye>
+`;
+
+exports[`NoPoliciesState with a system having no policies 1`] = `
+<Bullseye>
+  <EmptyState>
+    <EmptyStateIcon
+      icon={[Function]}
+    />
+    <Title
+      headingLevel="h1"
+      size="lg"
+    >
+      This system is not part of any SCAP policies defined within Compliance.
+    </Title>
+    <EmptyStateBody>
+      To assess and monitor compliance against a SCAP policy for this system, add it to an existing policy or create a new policy.
+    </EmptyStateBody>
+    <EmptyStatePrimary>
+      <BackgroundLink
+        to="/scappolicies/new"
+      >
+        <Button
+          ouiaId="CreateNewPolicyButton"
+          variant="primary"
+        >
+          Create new policy
+        </Button>
+      </BackgroundLink>
+    </EmptyStatePrimary>
+    <EmptyStateSecondaryActions>
+      <Button
+        component="a"
+        href="/insights/compliance/scappolicies"
+        variant="link"
+      >
+        View compliance policies
+      </Button>
+    </EmptyStateSecondaryActions>
+  </EmptyState>
+</Bullseye>
+`;
+
+exports[`NoPoliciesState with a system having policies 1`] = `<Fragment />`;
