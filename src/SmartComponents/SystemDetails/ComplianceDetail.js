@@ -10,6 +10,8 @@ import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents/ErrorCard/ErrorCard';
 import { IntlProvider } from 'react-intl';
+import NoReportsState from './NoReportsState';
+import NoPoliciesState from './NoPoliciesState';
 
 const COMPLIANCE_API_ROOT = '/api/compliance';
 
@@ -18,6 +20,10 @@ const QUERY = gql`
     system(id: $systemId) {
       id
       name
+      hasPolicy
+      policies {
+        id
+      }
       testResultProfiles {
         id
         name
@@ -56,38 +62,46 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
       policies={system?.testResultProfiles}
       loading={loading}
     />
+    <NoPoliciesState system={system} />
+    <NoReportsState system={system} />
     <br />
-    <RulesTable
-      remediationAvailableFilter
-      handleSelect={() => undefined}
-      hidePassed={hidePassed}
-      system={{
-        ...system,
-        supported:
-          (system?.testResultProfiles || []).filter(
-            (profile) => profile.supported
-          ).length > 0,
-      }}
-      profileRules={system?.testResultProfiles.map((profile) => ({
-        system,
-        profile,
-        rules: profile.rules,
-      }))}
-      loading={loading}
-      options={{
-        sortBy: {
-          index: 4,
-          direction: 'asc',
-          property: 'severity',
-        },
-      }}
-    />
+    {system?.testResultProfiles?.length ? (
+      <RulesTable
+        remediationAvailableFilter
+        handleSelect={() => undefined}
+        hidePassed={hidePassed}
+        system={{
+          ...system,
+          supported:
+            (system?.testResultProfiles || []).filter(
+              (profile) => profile.supported
+            ).length > 0,
+        }}
+        profileRules={system?.testResultProfiles.map((profile) => ({
+          system,
+          profile,
+          rules: profile.rules,
+        }))}
+        loading={loading}
+        options={{
+          sortBy: {
+            index: 4,
+            direction: 'asc',
+            property: 'severity',
+          },
+        }}
+      />
+    ) : undefined}
   </React.Fragment>
 );
 
 SystemQuery.propTypes = {
   data: propTypes.shape({
     system: propTypes.shape({
+      hasPolicy: propTypes.bool,
+      policies: propTypes.shape({
+        id: propTypes.string,
+      }),
       profiles: propTypes.array,
       testResultProfiles: propTypes.array,
     }),

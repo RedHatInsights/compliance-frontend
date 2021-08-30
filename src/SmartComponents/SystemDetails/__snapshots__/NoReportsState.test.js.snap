@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoReportsState with a system having a policy and test results 1`] = `<Fragment />`;
+
+exports[`NoReportsState with a system having a policy but missing test results 1`] = `<Fragment />`;
+
+exports[`NoReportsState with a system having missing hasPolicy prop 1`] = `<Fragment />`;
+
+exports[`NoReportsState with a system having multiple policies 1`] = `
+<Bullseye>
+  <EmptyState>
+    <EmptyStateIcon
+      icon={[Function]}
+      size="xl"
+      style={
+        Object {
+          "color": "var(--pf-global--primary-color--100)",
+          "fontWeight": "500",
+        }
+      }
+      title="Compliance"
+    />
+    <Title
+      headingLevel="h1"
+      size="lg"
+    >
+      No results reported
+    </Title>
+    <EmptyStateBody>
+      This system is part of 
+      2
+       policies
+      , but has not returned any results.
+    </EmptyStateBody>
+    <EmptyStateBody>
+      Reports are returned when the system checks into Insights. By default, systems check in every 24 hours.
+    </EmptyStateBody>
+  </EmptyState>
+</Bullseye>
+`;
+
+exports[`NoReportsState with a system having no policies 1`] = `<Fragment />`;
+
+exports[`NoReportsState with a system having policies 1`] = `
+<Bullseye>
+  <EmptyState>
+    <EmptyStateIcon
+      icon={[Function]}
+      size="xl"
+      style={
+        Object {
+          "color": "var(--pf-global--primary-color--100)",
+          "fontWeight": "500",
+        }
+      }
+      title="Compliance"
+    />
+    <Title
+      headingLevel="h1"
+      size="lg"
+    >
+      No results reported
+    </Title>
+    <EmptyStateBody>
+      This system is part of 
+      1
+       policy
+      , but has not returned any results.
+    </EmptyStateBody>
+    <EmptyStateBody>
+      Reports are returned when the system checks into Insights. By default, systems check in every 24 hours.
+    </EmptyStateBody>
+  </EmptyState>
+</Bullseye>
+`;
+
+exports[`NoReportsState with a system missing policies prop 1`] = `<Fragment />`;
