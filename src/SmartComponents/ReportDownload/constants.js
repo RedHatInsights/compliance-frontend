@@ -1,5 +1,13 @@
 import gql from 'graphql-tag';
 
+export const DEFAULT_EXPORT_SETTINGS = {
+  compliantSystems: false,
+  nonCompliantSystems: true,
+  unsupportedSystems: true,
+  topTenFailedRules: true,
+  userNotes: undefined,
+};
+
 export const GET_SYSTEMS = gql`
   query getSystems(
     $filter: String!
@@ -51,6 +59,36 @@ export const GET_SYSTEMS = gql`
             value
           }
         }
+      }
+    }
+  }
+`;
+
+export const GET_PROFILE = gql`
+  query Profile($policyId: String!) {
+    profile(id: $policyId) {
+      id
+      name
+      refId
+      testResultHostCount
+      compliantHostCount
+      unsupportedHostCount
+      complianceThreshold
+      majorOsVersion
+      lastScanned
+      policyType
+      totalHostCount
+      policy {
+        id
+        name
+      }
+      benchmark {
+        id
+        version
+      }
+      businessObjective {
+        id
+        title
       }
     }
   }

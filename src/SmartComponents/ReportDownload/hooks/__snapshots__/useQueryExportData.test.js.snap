@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useQueryExportData queryExportData returns catches errors 1`] = `Object {}`;
+
+exports[`useQueryExportData queryExportData returns data 1`] = `
+Object {
+  "nonCompliantSystems": 20,
+  "topTenFailedRules": 10,
+  "unsupportedSystems": 10,
+}
+`;
+
+exports[`useQueryExportData returns a query function 1`] = `[Function]`;
+
+exports[`useQueryExportData returns a query function 2`] = `
+Object {
+  "nonCompliantSystems": 20,
+  "topTenFailedRules": 10,
+  "unsupportedSystems": 10,
+}
+`;

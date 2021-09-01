@@ -1,4 +1,4 @@
-import { orderByArray } from 'Utilities/helper';
+import { orderByArray } from 'Utilities/helpers';
 import { SEVERITY_LEVELS } from '@/constants';
 
 const scannedProfiles = (profiles) =>

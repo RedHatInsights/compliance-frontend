@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react';
-
+import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import ExportPDFForm from './ExportPDFForm';
+
+jest.mock('Utilities/Dispatcher');
 
 describe('ExportPDFForm', function () {
   const defaultProps = {
@@ -8,10 +10,7 @@ describe('ExportPDFForm', function () {
       name: 'Policy Test Name',
     },
     exportSettings: {
-      compliantSystems: true,
-      nonCompliantSystems: true,
-      unsupportedSystems: false,
-      topTenFailedRules: true,
+      ...DEFAULT_EXPORT_SETTINGS,
       userNotes: 'NOTE',
     },
     setExportSetting: () => ({}),
@@ -19,6 +18,21 @@ describe('ExportPDFForm', function () {
 
   it('expect to render without error', () => {
     const { container } = render(<ExportPDFForm {...defaultProps} />);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('expect to render without error with different export settings', () => {
+    const componentProps = {
+      ...defaultProps,
+      exportSettings: {
+        ...DEFAULT_EXPORT_SETTINGS,
+        compliantSystems: true,
+        unsupportedSystems: false,
+        userNotes: 'NOTE',
+      },
+    };
+    const { container } = render(<ExportPDFForm {...componentProps} />);
 
     expect(container).toMatchSnapshot();
   });

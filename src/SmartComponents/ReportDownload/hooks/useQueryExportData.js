@@ -1,5 +1,5 @@
 import { useApolloClient } from '@apollo/client';
-import { GET_SYSTEMS } from './constants';
+import { GET_SYSTEMS } from '../constants';
 import {
   compliantSystemsData,
   nonCompliantSystemsData,
@@ -7,10 +7,22 @@ import {
   topTenFailedRulesData,
 } from './helpers';
 
+const fetchBatched = (fetchFunction, total, batchSize = 100) => {
+  const pages = Math.ceil(total / batchSize) || 1;
+  return Promise.all(
+    [...new Array(pages)].map((_, pageIdx) =>
+      fetchFunction(batchSize, pageIdx + 1)
+    )
+  );
+};
+
 const useQueryExportData = (
   exportSettings,
-  policy,
-  { onComplete, onError }
+  { id: policyId, totalHostCount },
+  { onComplete, onError } = {
+    onComplete: () => undefined,
+    onError: () => undefined,
+  }
 ) => {
   const client = useApolloClient();
 
@@ -29,26 +41,26 @@ const useQueryExportData = (
     }),
     ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
   });
+  const fetchFunction = (perPage, page) =>
+    client.query({
+      query: GET_SYSTEMS,
+      fetchResults: true,
+      fetchPolicy: 'no-cache',
+      variables: {
+        perPage,
+        page,
+        filter: '',
+        policyId,
+      },
+    });
 
-  // TODO fetch all batched
   return () =>
-    client
-      .query({
-        query: GET_SYSTEMS,
-        fetchResults: true,
-        fetchPolicy: 'no-cache',
-        variables: {
-          perPage: 100,
-          page: 1,
-          filter: '',
-          policyId: policy.id,
-        },
-      })
-      .then(({ data }) => {
-        const exportData = prepareForExport(
-          exportSettings,
-          data?.systems?.edges?.map((e) => e.node) || []
-        );
+    fetchBatched(fetchFunction, totalHostCount)
+      .then((results) =>
+        results.flatMap(({ data }) => data.systems.edges.map((e) => e.node))
+      )
+      .then((systems) => {
+        const exportData = prepareForExport(systems);
         onComplete && onComplete(exportData);
         return exportData;
       })

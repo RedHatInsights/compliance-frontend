@@ -1,58 +1,24 @@
 import React, { useState } from 'react';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import { useLinkToBackground } from 'Utilities/Router';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
-//eslint-disable-next-line
-import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator';
-
-export const QUERY = gql`
-  query Profile($policyId: String!) {
-    profile(id: $policyId) {
-      id
-      name
-      refId
-      testResultHostCount
-      compliantHostCount
-      unsupportedHostCount
-      complianceThreshold
-      majorOsVersion
-      lastScanned
-      policyType
-      policy {
-        id
-        name
-      }
-      benchmark {
-        id
-        version
-      }
-      businessObjective {
-        id
-        title
-      }
-    }
-  }
-`;
+import { GET_PROFILE, DEFAULT_EXPORT_SETTINGS } from './constants';
+// We use the mock for the tests here as well till fixes have been made to the DownloadButton component
+// import DownloadButton from '@redhat-cloud-services/frontend-components-pdf-generator/DownloadButton';
+import DownloadButton from './__mocks__/DownloadButton';
 
 export const ReportDownload = () => {
   const { report_id: policyId } = useParams();
   const linkToReport = useLinkToBackground('/reports/' + policyId);
-  const { data, loading, error } = useQuery(QUERY, {
+  const { data, loading, error } = useQuery(GET_PROFILE, {
     variables: { policyId },
   });
   const policy = data?.profile;
-  const [exportSettings, setExportSettings] = useState({
-    compliantSystems: false,
-    nonCompliantSystems: true,
-    unsupportedSystems: true,
-    topTenFailedRules: true,
-    userNotes: undefined,
-  });
+  const [exportSettings, setExportSettings] = useState(DEFAULT_EXPORT_SETTINGS);
   const setExportSetting = (setting) => {
     return (value) => {
       setExportSettings({
