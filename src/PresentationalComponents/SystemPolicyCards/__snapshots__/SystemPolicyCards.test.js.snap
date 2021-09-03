@@ -18,6 +18,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
           "compliant": false,
           "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+          "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
           "rulesFailed": 10,
           "rulesPassed": 30,
@@ -29,6 +30,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
           "compliant": false,
           "lastScanned": null,
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7 2",
+          "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
           "rulesFailed": 0,
           "rulesPassed": 0,
@@ -61,6 +63,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                   "compliant": false,
                   "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                  "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                   "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
                   "rulesFailed": 10,
                   "rulesPassed": 30,
@@ -119,33 +122,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                             >
-                              <Truncate
-                                ellipsis="…"
-                                lines={1}
-                                trimWhitespace={false}
-                                width={0}
-                              >
-                                <span
-                                  width={0}
-                                >
-                                  <span />
-                                  <span>
-                                    PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
-                                  </span>
-                                  <span
-                                    style={
-                                      Object {
-                                        "left": 0,
-                                        "position": "fixed",
-                                        "top": 0,
-                                        "visibility": "hidden",
-                                      }
-                                    }
-                                  >
-                                    …
-                                  </span>
-                                </span>
-                              </Truncate>
+                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
                             </h4>
                           </Text>
                           <Text
@@ -172,31 +149,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                 }
                               }
                             >
-                              <Truncate
-                                ellipsis="…"
-                                lines={1}
-                                trimWhitespace={false}
-                                width={0}
-                              >
-                                <span
-                                  width={0}
-                                >
-                                  <span />
-                                  <span />
-                                  <span
-                                    style={
-                                      Object {
-                                        "left": 0,
-                                        "position": "fixed",
-                                        "top": 0,
-                                        "visibility": "hidden",
-                                      }
-                                    }
-                                  >
-                                    …
-                                  </span>
-                                </span>
-                              </Truncate>
+                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
                             </small>
                           </Text>
                         </div>
@@ -562,6 +515,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
           "compliant": false,
           "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+          "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
           "rulesFailed": 10,
           "rulesPassed": 30,
@@ -573,6 +527,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
           "compliant": false,
           "lastScanned": null,
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7 2",
+          "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
           "rulesFailed": 0,
           "rulesPassed": 0,
@@ -605,6 +560,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                   "compliant": false,
                   "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                  "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                   "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
                   "rulesFailed": 10,
                   "rulesPassed": 30,
@@ -663,33 +619,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                             >
-                              <Truncate
-                                ellipsis="…"
-                                lines={1}
-                                trimWhitespace={false}
-                                width={0}
-                              >
-                                <span
-                                  width={0}
-                                >
-                                  <span />
-                                  <span>
-                                    PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
-                                  </span>
-                                  <span
-                                    style={
-                                      Object {
-                                        "left": 0,
-                                        "position": "fixed",
-                                        "top": 0,
-                                        "visibility": "hidden",
-                                      }
-                                    }
-                                  >
-                                    …
-                                  </span>
-                                </span>
-                              </Truncate>
+                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
                             </h4>
                           </Text>
                           <Text
@@ -716,31 +646,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                 }
                               }
                             >
-                              <Truncate
-                                ellipsis="…"
-                                lines={1}
-                                trimWhitespace={false}
-                                width={0}
-                              >
-                                <span
-                                  width={0}
-                                >
-                                  <span />
-                                  <span />
-                                  <span
-                                    style={
-                                      Object {
-                                        "left": 0,
-                                        "position": "fixed",
-                                        "top": 0,
-                                        "visibility": "hidden",
-                                      }
-                                    }
-                                  >
-                                    …
-                                  </span>
-                                </span>
-                              </Truncate>
+                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
                             </small>
                           </Text>
                         </div>
