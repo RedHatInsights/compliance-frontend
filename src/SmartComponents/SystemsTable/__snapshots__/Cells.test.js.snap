@@ -49,7 +49,15 @@ exports[`Name returns 1`] = `
 </TextContent>
 `;
 
-exports[`Policies returns 1`] = `"HIPAA Policy"`;
+exports[`Policies returns 1`] = `
+<Truncate
+  collapseText="Collapse"
+  expandText="Read more"
+  inline={true}
+  length={215}
+  text="HIPAA Policy"
+/>
+`;
 
 exports[`Policies returns without error without policies 1`] = `""`;
 
