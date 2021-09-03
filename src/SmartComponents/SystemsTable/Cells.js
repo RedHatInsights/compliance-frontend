@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Text, TextContent, TextVariants } from '@patternfly/react-core';
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
   UnsupportedSSGVersion,
   ComplianceScore as complianceScore,
@@ -99,7 +100,17 @@ DetailsLink.propTypes = {
 };
 
 export const Policies = ({ policies }) =>
-  (policies || []).map((p) => p.name).join(', ');
+  (policies || []).length > 0 && (
+    <Truncate
+      inline
+      text={policies.map((p) => p.name).join(', ')}
+      length={215}
+    />
+  );
+
+Policies.propTypes = {
+  policies: propTypes.array,
+};
 
 export const FailedRules = ({ id, testResultProfiles }) => {
   const rulesFailed = profilesRulesFailed(testResultProfiles).length;
