@@ -4,7 +4,6 @@ import {
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
-import Truncate from 'react-truncate';
 
 import {
   Card,
@@ -18,12 +17,15 @@ import {
 import PropTypes from 'prop-types';
 import UnsupportedSSGVersion from './UnsupportedSSGVersion';
 
+const truncate = (text, length = 150) =>
+  text.length > length ? text.substring(0, length) + '...' : text;
+
 class SystemPolicyCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cardTitle: <Truncate lines={1}>{props.policy.name}</Truncate>,
-      cardSubTitle: <Truncate lines={1}>{props.policy.policyType}</Truncate>,
+      cardTitle: truncate(props.policy.name),
+      cardSubTitle: truncate(props.policy.policyType),
       ...props,
     };
   }
@@ -44,25 +46,25 @@ class SystemPolicyCard extends React.Component {
     value.toFixed(fixed) + (withPercent ? '%' : '');
 
   onTitleMouseover = () => {
-    this.setState(({ policy = {} } = {}) => ({ cardTitle: policy.name }));
+    this.setState({ cardTitle: this.props.policy.name });
   };
 
   onTitleMouseout = () => {
-    this.setState(({ cardTitle } = {}) => ({
-      cardTitle: <Truncate lines={1}>{cardTitle}</Truncate>,
-    }));
+    this.setState({
+      cardTitle: truncate(this.props.policy.name),
+    });
   };
 
   onSubTitleMouseover = () => {
-    this.setState(({ policy = {} } = {}) => ({
-      cardSubTitle: policy.policyType,
-    }));
+    this.setState({
+      cardSubTitle: this.props.policy.policyType,
+    });
   };
 
   onSubTitleMouseout = () => {
-    this.setState(({ policy = {} } = {}) => ({
-      cardSubTitle: <Truncate lines={1}>{policy.policyType}</Truncate>,
-    }));
+    this.setState({
+      cardSubTitle: truncate(this.props.policy.policyType),
+    });
   };
 
   render() {

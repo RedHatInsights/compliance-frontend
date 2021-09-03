@@ -39,14 +39,13 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
           component="p"
         >
           <Truncate
-            ellipsis="…"
+            collapseText="Collapse"
+            expandText="Read more"
+            inline={true}
             key="profile-select-text-fooid"
-            lines={3}
-            trimWhitespace={false}
-            width={0}
-          >
-            foodesc
-          </Truncate>
+            length={190}
+            text="foodesc"
+          />
         </Text>
       </TextContent>
     </GridItem>
@@ -86,14 +85,13 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
           component="p"
         >
           <Truncate
-            ellipsis="…"
+            collapseText="Collapse"
+            expandText="Read more"
+            inline={true}
             key="profile-select-text-fooid"
-            lines={3}
-            trimWhitespace={false}
-            width={0}
-          >
-            foodesc
-          </Truncate>
+            length={190}
+            text="foodesc"
+          />
         </Text>
       </TextContent>
     </GridItem>

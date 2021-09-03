@@ -34,7 +34,6 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-show-more-text": "^1.4.4",
-    "react-truncate": "^2.4.0",
     "redux": "^4.0.5",
     "redux-form": "^8.3.5",
     "redux-logger": "^3.0.6",

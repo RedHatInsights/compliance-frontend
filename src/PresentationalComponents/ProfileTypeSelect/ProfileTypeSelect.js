@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import propTypes from 'prop-types';
-import Truncate from 'react-truncate';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
   Grid,
   GridItem,
@@ -63,9 +63,12 @@ const ProfileTypeSelect = ({ profiles, onClick }) => (
                 style={{ color: 'var(--pf-c-content--blockquote--Color)' }}
               >
                 <Text component={TextVariants.p}>
-                  <Truncate key={`profile-select-text-${id}`} lines={3}>
-                    {description}
-                  </Truncate>
+                  <Truncate
+                    inline
+                    key={`profile-select-text-${id}`}
+                    length={190}
+                    text={description}
+                  />
                 </Text>
               </TextContent>
             </GridItem>
