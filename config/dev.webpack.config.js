@@ -62,7 +62,7 @@ webpackConfig.resolve.alias = {
 
 webpackConfig.resolve = {
     ...webpackConfig.resolve,
-    modules: [resolve('./node_modules')],
+    ...process.env.LOCAL_NODE_MODULES === 'true' && { modules: [resolve('./node_modules')] },
 }
 
 webpackConfig.devServer = {
