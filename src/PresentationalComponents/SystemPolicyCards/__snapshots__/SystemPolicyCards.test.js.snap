@@ -16,7 +16,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
       Array [
         Object {
           "compliant": false,
-          "lastScanned": "2019-03-06T06:20:13Z",
+          "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
           "rulesFailed": 10,
@@ -59,7 +59,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
               policy={
                 Object {
                   "compliant": false,
-                  "lastScanned": "2019-03-06T06:20:13Z",
+                  "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                   "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
                   "rulesFailed": 10,
@@ -560,7 +560,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
       Array [
         Object {
           "compliant": false,
-          "lastScanned": "2019-03-06T06:20:13Z",
+          "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
           "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
           "rulesFailed": 10,
@@ -603,7 +603,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
               policy={
                 Object {
                   "compliant": false,
-                  "lastScanned": "2019-03-06T06:20:13Z",
+                  "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                   "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
                   "rulesFailed": 10,
