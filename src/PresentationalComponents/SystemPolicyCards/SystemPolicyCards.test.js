@@ -8,12 +8,16 @@ jest.mock('react-content-loader', () => ({
 }));
 
 describe('SystemPolicyCards component', () => {
+  const currentTime = new Date('2021-03-06T06:20:13Z');
+  const pastTime = new Date('2021-03-06T06:20:13Z');
+  pastTime.setYear(pastTime.getFullYear() - 2);
+
   const policies = [
     {
       rulesPassed: 30,
       rulesFailed: 10,
       score: 75,
-      lastScanned: '2019-03-06T06:20:13Z',
+      lastScanned: pastTime.toISOString(),
       refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
       name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
       compliant: false,
@@ -32,6 +36,15 @@ describe('SystemPolicyCards component', () => {
       ssgVersion: '0.1.45',
     },
   ];
+
+  beforeAll(() => {
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(currentTime);
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
 
   it('should render loading state', () => {
     const wrappper = mount(
