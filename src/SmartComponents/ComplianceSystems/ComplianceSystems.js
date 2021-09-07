@@ -49,7 +49,7 @@ export const ComplianceSystems = () => {
                   }),
                   Columns.inventoryColumn('tags'),
                   Columns.Policies,
-                  Columns.inventoryColumn('updated'),
+                  Columns.inventoryColumn('updated', { isStatic: true }),
                 ]}
                 query={GET_SYSTEMS}
                 defaultFilter={DEFAULT_FILTER}

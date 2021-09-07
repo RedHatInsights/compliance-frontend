@@ -28,7 +28,10 @@ exports[`EditPolicySystems expect to render without error 1`] = `
               ],
               "title": "Name",
             },
-            "tags",
+            Object {
+              "key": "tags",
+              "props": undefined,
+            },
             Object {
               "key": "operatingSystem",
               "props": Object {},

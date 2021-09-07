@@ -73,7 +73,7 @@ export const Policies = {
   exportKey: 'policies',
   renderExport: (policies) => policies.map(({ name }) => name).join(', '),
   props: {
-    width: 35,
+    width: 40,
     ...disableSorting,
   },
   renderFunc: renderComponent(PoliciesCell),
@@ -136,4 +136,7 @@ export const OperatingSystem = compileColumnRenderFunc({
   cell: OperatingSystemCell,
 });
 
-export const inventoryColumn = (column) => column;
+export const inventoryColumn = (column, props) => ({
+  key: column,
+  props,
+});

@@ -15,7 +15,10 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
         "renderFunc": [Function],
         "title": "Name",
       },
-      "tags",
+      Object {
+        "key": "tags",
+        "props": undefined,
+      },
       Object {
         "exportKey": "testResultProfiles",
         "props": Object {
@@ -758,7 +761,10 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
         "renderFunc": [Function],
         "title": "Name",
       },
-      "tags",
+      Object {
+        "key": "tags",
+        "props": undefined,
+      },
       Object {
         "exportKey": "testResultProfiles",
         "props": Object {
