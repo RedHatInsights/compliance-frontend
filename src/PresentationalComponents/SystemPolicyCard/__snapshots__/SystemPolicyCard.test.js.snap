@@ -21,19 +21,19 @@ exports[`SystemPolicyCard component should render an unsupported policy 1`] = `
         data-ouia-safe="true"
         data-pf-content="true"
       >
-        <span
-          width="0"
+        <div
+          class="pf-l-stack ins-c-truncate is-block"
         >
-          <span />
-          <span>
-            PCI-DSS Policy
-          </span>
-          <span
-            style="position:fixed;visibility:hidden;top:0;left:0"
+          <div
+            class="pf-l-stack__item"
           >
-            …
-          </span>
-        </span>
+            <span
+              widget-type="InsightsTruncateBlock"
+            >
+              PCI-DSS Policy
+            </span>
+          </div>
+        </div>
       </h4>
       <small
         class=""
@@ -43,19 +43,19 @@ exports[`SystemPolicyCard component should render an unsupported policy 1`] = `
         data-pf-content="true"
         style="color:var(--pf-global--Color--200)"
       >
-        <span
-          width="0"
+        <div
+          class="pf-l-stack ins-c-truncate is-block"
         >
-          <span />
-          <span>
-            PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
-          </span>
-          <span
-            style="position:fixed;visibility:hidden;top:0;left:0"
+          <div
+            class="pf-l-stack__item"
           >
-            …
-          </span>
-        </span>
+            <span
+              widget-type="InsightsTruncateBlock"
+            >
+              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+            </span>
+          </div>
+        </div>
       </small>
     </div>
     <div
@@ -182,7 +182,19 @@ exports[`SystemPolicyCard component should render policy 1`] = `
         data-ouia-safe="true"
         data-pf-content="true"
       >
-        PCI-DSS Policy
+        <div
+          class="pf-l-stack ins-c-truncate is-block"
+        >
+          <div
+            class="pf-l-stack__item"
+          >
+            <span
+              widget-type="InsightsTruncateBlock"
+            >
+              PCI-DSS Policy
+            </span>
+          </div>
+        </div>
       </h4>
       <small
         class=""
@@ -192,7 +204,19 @@ exports[`SystemPolicyCard component should render policy 1`] = `
         data-pf-content="true"
         style="color:var(--pf-global--Color--200)"
       >
-        PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+        <div
+          class="pf-l-stack ins-c-truncate is-block"
+        >
+          <div
+            class="pf-l-stack__item"
+          >
+            <span
+              widget-type="InsightsTruncateBlock"
+            >
+              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+            </span>
+          </div>
+        </div>
       </small>
     </div>
     <div

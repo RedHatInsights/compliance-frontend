@@ -1,10 +1,9 @@
 import React from 'react';
-import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
+import PropTypes from 'prop-types';
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
-
 import {
   Card,
   CardBody,
@@ -14,24 +13,13 @@ import {
   TextVariants,
   Tooltip,
 } from '@patternfly/react-core';
-import PropTypes from 'prop-types';
+import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import UnsupportedSSGVersion from './UnsupportedSSGVersion';
 
-const truncate = (text, length = 150) =>
-  text.length > length ? text.substring(0, length) + '...' : text;
-
 class SystemPolicyCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardTitle: truncate(props.policy.name),
-      cardSubTitle: truncate(props.policy.policyType),
-      ...props,
-    };
-  }
-
-  complianceIcon = () => {
-    return this.state.policy.compliant ? (
+  complianceIcon = (compliant) =>
+    compliant ? (
       <div className="ins-c-policy-card ins-m-compliant">
         <CheckCircleIcon /> Compliant
       </div>
@@ -40,34 +28,12 @@ class SystemPolicyCard extends React.Component {
         <ExclamationCircleIcon /> Not compliant
       </div>
     );
-  };
 
   fixedPercentage = (value, fixed = 0, withPercent = true) =>
     value.toFixed(fixed) + (withPercent ? '%' : '');
 
-  onTitleMouseover = () => {
-    this.setState({ cardTitle: this.props.policy.name });
-  };
-
-  onTitleMouseout = () => {
-    this.setState({
-      cardTitle: truncate(this.props.policy.name),
-    });
-  };
-
-  onSubTitleMouseover = () => {
-    this.setState({
-      cardSubTitle: this.props.policy.policyType,
-    });
-  };
-
-  onSubTitleMouseout = () => {
-    this.setState({
-      cardSubTitle: truncate(this.props.policy.policyType),
-    });
-  };
-
   render() {
+    const { policy, style } = this.props;
     const {
       rulesFailed,
       compliant,
@@ -75,9 +41,11 @@ class SystemPolicyCard extends React.Component {
       score,
       ssgVersion,
       supported,
-    } = this.state.policy;
-    const { cardTitle, cardSubTitle, style } = this.state;
+      name,
+      policyType,
+    } = policy;
     const passedPercentage = this.fixedPercentage(score);
+    const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 
     return (
       <Card style={style}>
@@ -86,18 +54,14 @@ class SystemPolicyCard extends React.Component {
             <Text
               className="margin-bottom-top-none"
               component={TextVariants.h4}
-              onMouseEnter={this.onTitleMouseover}
-              onMouseLeave={this.onTitleMouseout}
             >
-              {cardTitle}
+              <Truncate text={name} length={110} {...truncateDefaults} />
             </Text>
             <Text
               style={{ color: 'var(--pf-global--Color--200)' }}
               component={TextVariants.small}
-              onMouseEnter={this.onSubTitleMouseover}
-              onMouseLeave={this.onSubTitleMouseout}
             >
-              {cardSubTitle}
+              <Truncate text={policyType} length={110} {...truncateDefaults} />
             </Text>
           </TextContent>
           <div className="margin-bottom-md">
@@ -158,8 +122,8 @@ SystemPolicyCard.propTypes = {
     compliant: PropTypes.bool,
     ssgVersion: PropTypes.string,
     supported: PropTypes.bool,
-    style: PropTypes.object,
   }),
+  style: PropTypes.object,
 };
 
 export default SystemPolicyCard;
