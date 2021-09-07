@@ -110,8 +110,6 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                           <Text
                             className="margin-bottom-top-none"
                             component="h4"
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
                           >
                             <h4
                               className="margin-bottom-top-none"
@@ -119,16 +117,45 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               data-ouia-component-type="PF4/Text"
                               data-ouia-safe={true}
                               data-pf-content={true}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                             >
-                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                              <Truncate
+                                expandOnMouseOver={true}
+                                hideExpandText={true}
+                                length={110}
+                                text="PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7"
+                              >
+                                <Stack
+                                  className="ins-c-truncate is-block"
+                                >
+                                  <div
+                                    className="pf-l-stack ins-c-truncate is-block"
+                                  >
+                                    <StackItem
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    >
+                                      <div
+                                        className="pf-l-stack__item"
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <span
+                                          dangerouslySetInnerHTML={
+                                            Object {
+                                              "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                                            }
+                                          }
+                                          widget-type="InsightsTruncateBlock"
+                                        />
+                                      </div>
+                                    </StackItem>
+                                  </div>
+                                </Stack>
+                              </Truncate>
                             </h4>
                           </Text>
                           <Text
                             component="small"
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
                             style={
                               Object {
                                 "color": "var(--pf-global--Color--200)",
@@ -141,15 +168,46 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               data-ouia-component-type="PF4/Text"
                               data-ouia-safe={true}
                               data-pf-content={true}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                               style={
                                 Object {
                                   "color": "var(--pf-global--Color--200)",
                                 }
                               }
                             >
-                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                              <Truncate
+                                expandOnMouseOver={true}
+                                hideExpandText={true}
+                                length={110}
+                                text="PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7"
+                              >
+                                <Stack
+                                  className="ins-c-truncate is-block"
+                                >
+                                  <div
+                                    className="pf-l-stack ins-c-truncate is-block"
+                                  >
+                                    <StackItem
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    >
+                                      <div
+                                        className="pf-l-stack__item"
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <span
+                                          dangerouslySetInnerHTML={
+                                            Object {
+                                              "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                                            }
+                                          }
+                                          widget-type="InsightsTruncateBlock"
+                                        />
+                                      </div>
+                                    </StackItem>
+                                  </div>
+                                </Stack>
+                              </Truncate>
                             </small>
                           </Text>
                         </div>
@@ -607,8 +665,6 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                           <Text
                             className="margin-bottom-top-none"
                             component="h4"
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
                           >
                             <h4
                               className="margin-bottom-top-none"
@@ -616,16 +672,45 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               data-ouia-component-type="PF4/Text"
                               data-ouia-safe={true}
                               data-pf-content={true}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                             >
-                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                              <Truncate
+                                expandOnMouseOver={true}
+                                hideExpandText={true}
+                                length={110}
+                                text="PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7"
+                              >
+                                <Stack
+                                  className="ins-c-truncate is-block"
+                                >
+                                  <div
+                                    className="pf-l-stack ins-c-truncate is-block"
+                                  >
+                                    <StackItem
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    >
+                                      <div
+                                        className="pf-l-stack__item"
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <span
+                                          dangerouslySetInnerHTML={
+                                            Object {
+                                              "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                                            }
+                                          }
+                                          widget-type="InsightsTruncateBlock"
+                                        />
+                                      </div>
+                                    </StackItem>
+                                  </div>
+                                </Stack>
+                              </Truncate>
                             </h4>
                           </Text>
                           <Text
                             component="small"
-                            onMouseEnter={[Function]}
-                            onMouseLeave={[Function]}
                             style={
                               Object {
                                 "color": "var(--pf-global--Color--200)",
@@ -638,15 +723,46 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               data-ouia-component-type="PF4/Text"
                               data-ouia-safe={true}
                               data-pf-content={true}
-                              onMouseEnter={[Function]}
-                              onMouseLeave={[Function]}
                               style={
                                 Object {
                                   "color": "var(--pf-global--Color--200)",
                                 }
                               }
                             >
-                              PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                              <Truncate
+                                expandOnMouseOver={true}
+                                hideExpandText={true}
+                                length={110}
+                                text="PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7"
+                              >
+                                <Stack
+                                  className="ins-c-truncate is-block"
+                                >
+                                  <div
+                                    className="pf-l-stack ins-c-truncate is-block"
+                                  >
+                                    <StackItem
+                                      onMouseEnter={[Function]}
+                                      onMouseLeave={[Function]}
+                                    >
+                                      <div
+                                        className="pf-l-stack__item"
+                                        onMouseEnter={[Function]}
+                                        onMouseLeave={[Function]}
+                                      >
+                                        <span
+                                          dangerouslySetInnerHTML={
+                                            Object {
+                                              "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
+                                            }
+                                          }
+                                          widget-type="InsightsTruncateBlock"
+                                        />
+                                      </div>
+                                    </StackItem>
+                                  </div>
+                                </Stack>
+                              </Truncate>
                             </small>
                           </Text>
                         </div>
