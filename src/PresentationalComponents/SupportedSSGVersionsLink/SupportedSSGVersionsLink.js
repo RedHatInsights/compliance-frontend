@@ -1,6 +1,6 @@
 import React from 'react';
-import { supportedConfigsLink } from '../UnsupportedSSGVersion/UnsupportedSSGVersion';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { supportedConfigsLink } from '@/constants';
 
 const SupportedSSGVersionsLink = () => (
   <a target="_blank" rel="noopener noreferrer" href={supportedConfigsLink}>
