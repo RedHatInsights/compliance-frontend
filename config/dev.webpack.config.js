@@ -7,11 +7,17 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
 
-const useLocalChrome = () => {
-    return process.env.LOCAL_CHROME === 'true' ? {
+const useLocalChrome = () => (
+    process.env.LOCAL_CHROME === 'true' ? {
         localChrome: process.env.CHROME_DIR
     } : {}
-};
+);
+
+const useStandalone  = () => (
+  process.env.STANDALONE === 'true' ? {
+  reposDir: '/tmp',
+  standalone: true } : {}
+)
 
 const chromeEnv = () => {
     const env = process.env?.CHROME_ENV;
@@ -33,6 +39,7 @@ const webpackProxy = {
     useCloud: (process.env?.USE_CLOUD === 'true'),
     ...useLocalChrome(),
     routesPath: process.env.ROUTES_PATH || resolve(__dirname, '../config/spandx.config.js'),
+    ...useStandalone(),
     routes: {
         // Additional routes to the spandx config
         // '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
