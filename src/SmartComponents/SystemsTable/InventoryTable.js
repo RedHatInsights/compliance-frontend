@@ -148,20 +148,21 @@ export const InventoryTable = ({
   });
 
   const mergedColumns = (defaultColumns) =>
-    columns
-      .map((column) => {
-        if (typeof column === 'string') {
-          // Remove when removing 'tags' feature flag
-          if (column === 'tags' && !tagsEnabled) {
-            return;
-          }
-
-          return defaultColumns.find(({ key }) => key === column) || column;
-        } else {
-          return column;
-        }
-      })
-      .filter((v) => !!v);
+    columns.map((column) => {
+      const isStringCol = typeof column === 'string';
+      const key = isStringCol ? column : column.key;
+      const defaultColumn = defaultColumns.find(
+        (defaultCol) => defaultCol.key === key
+      );
+      return {
+        ...defaultColumn,
+        ...(isStringCol ? { key: column } : column),
+        props: {
+          ...defaultColumn?.props,
+          ...column?.props,
+        },
+      };
+    });
 
   return (
     <StateView
@@ -192,6 +193,7 @@ export const InventoryTable = ({
         <FECInventoryTable
           {...systemProps}
           {...tagsProps}
+          disableDefaultColumns
           columns={mergedColumns}
           noSystemsTable={noSystemsTable}
           ref={inventory}

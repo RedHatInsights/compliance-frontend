@@ -72,6 +72,7 @@ exports[`InventoryTable returns 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -287,6 +288,7 @@ exports[`InventoryTable returns compact 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -490,6 +492,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
         }
       }
       columns={[Function]}
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -598,6 +601,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -813,6 +817,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -1076,6 +1081,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -1283,6 +1289,7 @@ exports[`InventoryTable returns without actions 1`] = `
           selectedRules={Array []}
         />
       }
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
@@ -1492,6 +1499,7 @@ exports[`InventoryTable returns without remediations 1`] = `
         }
       }
       columns={[Function]}
+      disableDefaultColumns={true}
       exportConfig={
         Object {
           "isDisabled": true,
