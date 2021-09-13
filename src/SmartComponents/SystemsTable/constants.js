@@ -121,8 +121,15 @@ export const GET_MINIMAL_SYSTEMS = gql`
     $perPage: Int
     $page: Int
     $sortBy: [String!]
+    $tags: [String!]
   ) {
-    systems(search: $filter, limit: $perPage, offset: $page, sortBy: $sortBy) {
+    systems(
+      search: $filter
+      limit: $perPage
+      offset: $page
+      sortBy: $sortBy
+      tags: $tags
+    ) {
       totalCount
       edges {
         node {

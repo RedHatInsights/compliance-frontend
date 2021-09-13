@@ -89,6 +89,7 @@ export const useFetchSystems = ({
         const result = {
           entities,
           meta: {
+            ...(requestVariables.tags && { tags: requestVariables.tags }),
             totalCount: data?.systems?.totalCount || 0,
           },
         };
@@ -233,6 +234,7 @@ export const useSystemsExport = ({
     query: fetchArguments.query,
     variables: {
       ...fetchArguments.variables,
+      ...(fetchArguments.tags && { tags: fetchArguments.tags }),
       filter: selectionFilter
         ? `${fetchArguments.variables.filter} and (${selectionFilter})`
         : fetchArguments.variables.filter,
@@ -351,8 +353,10 @@ export const useSystemBulkSelect = ({
   };
 };
 
-export const useTags = (tagsEnabled) =>
-  tagsEnabled
+export const useTags = (tagsEnabled) => {
+  const [currentTags, setCurrentTags] = useState([]);
+
+  return tagsEnabled
     ? {
         props: {
           hideFilters: {
@@ -363,6 +367,8 @@ export const useTags = (tagsEnabled) =>
           },
           showTags: true,
         },
+        currentTags,
+        setCurrentTags,
       }
     : {
         props: {
@@ -374,3 +380,4 @@ export const useTags = (tagsEnabled) =>
           },
         },
       };
+};
