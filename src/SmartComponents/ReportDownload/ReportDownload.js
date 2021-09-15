@@ -30,13 +30,16 @@ export const ReportDownload = () => {
   const exportPDF = policy
     ? usePDFExport(exportSettings, policy)
     : () => Promise.resolve([]);
+  const exportFileName = `compliance-report--${
+    new Date().toISOString().split('T')[0]
+  }`;
 
   const actions = [
     <DownloadButton
       groupName="Red Hat Insights"
       key="export"
       label="Export report"
-      fileName={`Report.pdf`}
+      fileName={exportFileName}
       asyncFunction={() => {
         console.log(exportPDF());
         return Promise.resolve([]);
