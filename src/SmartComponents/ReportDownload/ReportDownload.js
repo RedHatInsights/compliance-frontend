@@ -50,7 +50,10 @@ export const ReportDownload = () => {
       variant="secondary"
       key="cancel"
       ouiaId="ExportReportCancelButton"
-      onClick={linkToReport}
+      onClick={(event) => {
+        event.preventDefault();
+        window.history.back();
+      }}
     >
       Cancel
     </Button>,
