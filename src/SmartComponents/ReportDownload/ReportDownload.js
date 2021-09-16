@@ -11,6 +11,7 @@ import { GET_PROFILE, DEFAULT_EXPORT_SETTINGS } from './constants';
 // import DownloadButton from '@redhat-cloud-services/frontend-components-pdf-generator/DownloadButton';
 import DownloadButton from './__mocks__/DownloadButton';
 
+// Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {
   const { report_id: policyId } = useParams();
   const linkToReport = useLinkToBackground('/reports/' + policyId);

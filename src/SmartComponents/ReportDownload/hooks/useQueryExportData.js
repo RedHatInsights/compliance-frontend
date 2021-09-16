@@ -16,6 +16,7 @@ const fetchBatched = (fetchFunction, total, batchSize = 100) => {
   );
 };
 
+// Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
 const useQueryExportData = (
   exportSettings,
   { id: policyId, totalHostCount },

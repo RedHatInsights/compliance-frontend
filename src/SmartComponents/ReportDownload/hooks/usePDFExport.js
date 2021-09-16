@@ -2,6 +2,8 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 import useQueryExportData from './useQueryExportData';
 import usePDFBuilder from './usePDFBuilder';
 
+// Hook to provide a function that fetches the necessary data to export
+// and compile it into pages for the pdf-generator DownloadButton
 const usePDFExport = (exportSettings, policy) => {
   const queryExportData = useQueryExportData(exportSettings, policy, {
     onError: () => {
