@@ -12,6 +12,7 @@ import { ErrorCard } from 'PresentationalComponents/ErrorCard/ErrorCard';
 import { IntlProvider } from 'react-intl';
 import NoReportsState from './NoReportsState';
 import NoPoliciesState from './NoPoliciesState';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const COMPLIANCE_API_ROOT = '/api/compliance';
 
@@ -158,19 +159,28 @@ SystemDetails.defaultProps = {
   }),
 };
 
-const WrappedSystemDetails = ({ customItnl, intlProps, ...props }) => {
+const WrappedSystemDetails = ({
+  customItnl,
+  customRouter,
+  intlProps,
+  ...props
+}) => {
   const IntlWrapper = customItnl ? IntlProvider : React.Fragment;
+  const RouterWrapper = customRouter ? Router : React.Fragment;
 
   return (
-    <IntlWrapper {...(customItnl && intlProps)}>
-      <SystemDetails {...props} />
-    </IntlWrapper>
+    <RouterWrapper>
+      <IntlWrapper {...(customItnl && intlProps)}>
+        <SystemDetails {...props} />
+      </IntlWrapper>
+    </RouterWrapper>
   );
 };
 
 WrappedSystemDetails.propTypes = {
   customItnl: propTypes.bool,
   intlProps: propTypes.any,
+  customRouter: propTypes.bool,
 };
 
 export default WrappedSystemDetails;
