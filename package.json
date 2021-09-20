@@ -10,7 +10,7 @@
     "@babel/runtime": "^7.13.10",
     "@data-driven-forms/pf4-component-mapper": "^2.24.0",
     "@data-driven-forms/react-form-renderer": "^2.24.1",
-    "@patternfly/react-charts": "^6.15.20",
+    "@patternfly/react-charts": "^6.15.23",
     "@patternfly/react-core": "^4.152.4",
     "@patternfly/react-icons": "^4.11.14",
     "@patternfly/react-table": "^4.29.58",
