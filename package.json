@@ -13,7 +13,7 @@
     "@patternfly/react-charts": "^6.15.20",
     "@patternfly/react-core": "^4.152.4",
     "@patternfly/react-icons": "^4.11.14",
-    "@patternfly/react-table": "^4.29.58",
+    "@patternfly/react-table": "^4.30.3",
     "@patternfly/react-tokens": "^4.12.15",
     "@redhat-cloud-services/frontend-components": "^3.4.1",
     "@redhat-cloud-services/frontend-components-notifications": "^3.2.4",
