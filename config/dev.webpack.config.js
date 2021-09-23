@@ -1,54 +1,73 @@
 /* eslint-disable camelcase */
-/* global module, __dirname */
 require('dotenv').config();
+
+const defaults = {
+  LOCAL_CHROME: 'false',
+  CHROME_ENV: 'stage-stable',
+  BETA: 'false',
+  FILE_HASH: 'false',
+  LOCAL_NODE_MODULES: 'false',
+  WEBPACK_DEBUG: 'false',
+  FRONTEND_PORT: '8002',
+  PROXY: 'true',
+  CHROME_DIR: '../insights-chrome/build',
+};
+
+const withDefault = (envVar) => process?.env[envVar] || defaults[envVar];
 
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
 const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
 
-const useLocalChrome = () => {
-    return process.env.LOCAL_CHROME === 'true' ? {
-        localChrome: process.env.CHROME_DIR
-    } : {}
-};
+const useLocalChrome = () =>
+  withDefault('LOCAL_CHROME') === 'true'
+    ? {
+        localChrome: withDefault('CHROME_DIR'),
+      }
+    : {};
 
 const chromeEnv = () => {
-    const env = process.env?.CHROME_ENV;
-    return env ? env : `ci-${process.env.BETA ? 'beta' : 'stable'}`
-}
+  const env = withDefault('CHROME_ENV');
+  return env ? env : `ci-${withDefault('BETA') === 'true' ? 'beta' : 'stable'}`;
+};
 
 const insightsProxy = {
-    https: false,
-    port: process.env.FRONTEND_PORT ? process.env.FRONTEND_PORT  : '8002',
-    ...(process.env.BETA && { deployment: 'beta/apps' }),
+  https: false,
+  port: withDefault('FRONTEND_PORT'),
+  ...(withDefault('BETA') === 'true' && { deployment: 'beta/apps' }),
 };
 
 const webpackProxy = {
-    deployment: process.env.BETA ? 'beta/apps' : 'apps',
-    appUrl: process.env.BETA ? ['/beta/insights/compliance'] : ['/insights/compliance'],
-    env: chromeEnv(),
-    useProxy: true,
-    proxyVerbose: true,
-    useCloud: (process.env?.USE_CLOUD === 'true'),
-    ...useLocalChrome(),
-    routesPath: process.env.ROUTES_PATH || resolve(__dirname, '../config/spandx.config.js'),
-    routes: {
-        // Additional routes to the spandx config
-        // '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
-    },
+  deployment: withDefault('BETA') === 'true' ? 'beta/apps' : 'apps',
+  appUrl:
+    withDefault('BETA') === 'true'
+      ? ['/beta/insights/compliance']
+      : ['/insights/compliance'],
+  env: chromeEnv(),
+  useProxy: true,
+  proxyVerbose: true,
+  useCloud: withDefault('USE_CLOUD') === 'true',
+  ...useLocalChrome(),
+  routesPath:
+    withDefault('ROUTES_PATH') ||
+    resolve(__dirname, '../config/spandx.config.js'),
+  routes: {
+    // Additional routes to the spandx config
+    // '/beta/config': { host: 'http://localhost:8003' }, // for local CSC config
+  },
 };
 
 const { config: webpackConfig, plugins } = (() => {
-    const initConfig = {
-        rootFolder: resolve(__dirname, '../'),
-        debug: (process.env?.WEBPACK_DEBUG === 'true'),
-        useFileHash: false,
-        ...(process.env.PROXY ? webpackProxy : insightsProxy),
-    };
+  const initConfig = {
+    rootFolder: resolve(__dirname, '../'),
+    debug: withDefault('WEBPACK_DEBUG') === 'true',
+    useFileHash: false,
+    ...(withDefault('PROXY') ? webpackProxy : insightsProxy),
+  };
 
-    console.log('Configuration provided', initConfig)
-    return config(initConfig)
+  console.log('Configuration provided', initConfig);
+  return config(initConfig);
 })();
 
 /**
@@ -56,14 +75,16 @@ const { config: webpackConfig, plugins } = (() => {
  * Custom dependencies for inventory are included withing the common config
  */
 webpackConfig.resolve.alias = {
-    ...webpackConfig.resolve.alias,
-    ...aliases
+  ...webpackConfig.resolve.alias,
+  ...aliases,
 };
 
 webpackConfig.resolve = {
-    ...webpackConfig.resolve,
-    ...process.env.LOCAL_NODE_MODULES === 'true' && { modules: [resolve('./node_modules')] },
-}
+  ...webpackConfig.resolve,
+  ...(process.env.LOCAL_NODE_MODULES === 'true' && {
+    modules: [resolve('./node_modules')],
+  }),
+};
 
 webpackConfig.devServer = {
     ...webpackConfig.devServer,
@@ -75,20 +96,22 @@ webpackConfig.devServer = {
 }
 
 plugins.push(
-    require('@redhat-cloud-services/frontend-components-config/federated-modules')({
-        root: resolve(__dirname, '../'),
-        useFileHash: false,
-        exposes: {
-            './RootApp': resolve(__dirname, '../src/AppEntry'),
-            './SystemDetail': resolve(
-              __dirname,
-              '../src/SmartComponents/SystemDetails/ComplianceDetail'
-            ),
-        },
-    })
+  require('@redhat-cloud-services/frontend-components-config/federated-modules')(
+    {
+      root: resolve(__dirname, '../'),
+      useFileHash: false,
+      exposes: {
+        './RootApp': resolve(__dirname, '../src/AppEntry'),
+        './SystemDetail': resolve(
+          __dirname,
+          '../src/SmartComponents/SystemDetails/ComplianceDetail'
+        ),
+      },
+    }
+  )
 );
 
 module.exports = {
-    ...webpackConfig,
-    plugins
+  ...webpackConfig,
+  plugins,
 };
