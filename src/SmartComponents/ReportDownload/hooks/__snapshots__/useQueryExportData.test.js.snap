@@ -11,11 +11,3 @@ Object {
 `;
 
 exports[`useQueryExportData returns a query function 1`] = `[Function]`;
-
-exports[`useQueryExportData returns a query function 2`] = `
-Object {
-  "nonCompliantSystems": 20,
-  "topTenFailedRules": 10,
-  "unsupportedSystems": 10,
-}
-`;

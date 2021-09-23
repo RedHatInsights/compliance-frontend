@@ -15,24 +15,26 @@ describe('usePDFExport', () => {
   });
 
   it('returns a export function', () => {
-    const { result } = renderHook(() =>
-      usePDFExport(DEFAULT_EXPORT_SETTINGS, {})
-    );
+    const {
+      result: { current: exportData },
+    } = renderHook(() => usePDFExport(DEFAULT_EXPORT_SETTINGS, {}));
 
-    expect(result.current).toMatchSnapshot();
+    expect(exportData).toMatchSnapshot();
   });
 
   describe('exportData', () => {
     it('returns a export data', async () => {
-      const { result } = renderHook(() =>
-        usePDFExport(DEFAULT_EXPORT_SETTINGS, {})
-      );
+      const {
+        result: { current: exportData },
+      } = renderHook(() => usePDFExport(DEFAULT_EXPORT_SETTINGS, {}));
 
-      expect(await result.current()).toMatchSnapshot();
+      expect(await exportData()).toMatchSnapshot();
     });
 
     it('returns a export data with different settings', async () => {
-      const { result } = renderHook(() =>
+      const {
+        result: { current: exportData },
+      } = renderHook(() =>
         usePDFExport(
           {
             ...DEFAULT_EXPORT_SETTINGS,
@@ -44,7 +46,7 @@ describe('usePDFExport', () => {
         )
       );
 
-      expect(await result.current()).toMatchSnapshot();
+      expect(await exportData()).toMatchSnapshot();
     });
   });
 });

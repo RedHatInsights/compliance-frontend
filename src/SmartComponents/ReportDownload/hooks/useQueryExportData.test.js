@@ -22,11 +22,10 @@ describe('useQueryExportData', () => {
   });
 
   it('returns a query function', async () => {
-    const { result } = renderHook(() =>
-      useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile)
-    );
-    expect(result.current).toMatchSnapshot();
-    expect(reduceToCounts(await result.current())).toMatchSnapshot();
+    const {
+      result: { current: queryExportData },
+    } = renderHook(() => useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile));
+    expect(queryExportData).toMatchSnapshot();
   });
 
   describe('queryExportData', () => {
@@ -39,14 +38,16 @@ describe('useQueryExportData', () => {
     });
 
     it('returns data', async () => {
-      const { result } = renderHook(() =>
+      const {
+        result: { current: queryExportData },
+      } = renderHook(() =>
         useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile, {
           onComplete,
           onError,
         })
       );
 
-      expect(reduceToCounts(await result.current())).toMatchSnapshot();
+      expect(reduceToCounts(await queryExportData())).toMatchSnapshot();
       expect(onComplete).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
     });
@@ -57,14 +58,16 @@ describe('useQueryExportData', () => {
           throw 'Error';
         },
       }));
-      const { result } = renderHook(() =>
+      const {
+        result: { current: queryExportData },
+      } = renderHook(() =>
         useQueryExportData(DEFAULT_EXPORT_SETTINGS, profile, {
           onComplete,
           onError,
         })
       );
 
-      expect(reduceToCounts(await result.current())).toMatchSnapshot();
+      expect(reduceToCounts(await queryExportData())).toMatchSnapshot();
       expect(onComplete).not.toHaveBeenCalled();
       expect(onError).toHaveBeenCalled();
     });

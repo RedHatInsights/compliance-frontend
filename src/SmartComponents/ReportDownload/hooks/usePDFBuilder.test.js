@@ -3,14 +3,18 @@ import usePDFBuilder from './usePDFBuilder';
 
 describe('usePDFBuilder', () => {
   it('returns a build pages function', () => {
-    const { result } = renderHook(() => usePDFBuilder());
-    expect(result.current).toMatchSnapshot();
+    const {
+      result: { current: buildPages },
+    } = renderHook(() => usePDFBuilder());
+    expect(buildPages).toMatchSnapshot();
   });
 
   describe('buildPages', () => {
-    it('returns a query function', async () => {
-      const { result } = renderHook(() => usePDFBuilder());
-      expect(await result.current({})).toMatchSnapshot();
+    it('returns and array of pages', async () => {
+      const {
+        result: { current: buildPages },
+      } = renderHook(() => usePDFBuilder());
+      expect(await buildPages({})).toMatchSnapshot();
     });
   });
 });
