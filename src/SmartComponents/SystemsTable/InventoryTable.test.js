@@ -1,15 +1,26 @@
+import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
-import { Table } from '@patternfly/react-table';
-import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import { InventoryTable } from './InventoryTable';
+import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
 } from '@/constants';
-import { osMinorVersionFilter as mockOsMinorVersionFilter } from './__mocks__/osMinorVersionFilter';
+import {
+  useGetEntities,
+  useOsMinorVersionFilter,
+  useFetchSystems,
+} from './hooks';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers';
 expect.extend(filterHelpers);
+
+import { osMinorVersionFilter as mockOsMinorVersionFilter } from './__mocks__/osMinorVersionFilter';
+import InventoryTableMock from './__mocks__/InventoryTableMock';
+import useFetchSystemsMockBuilder from './__mocks__/useFetchSystemsMockBuilder';
+
+import useFeature from 'Utilities/hooks/useFeature';
+jest.mock('Utilities/hooks/useFeature');
 
 jest.mock('@apollo/client', () => ({
   ...jest.requireActual('@apollo/client'),
@@ -21,24 +32,29 @@ jest.mock('react-redux', () => ({
   useDispatch: () => jest.fn(),
 }));
 
-const InventoryTableMock = (props) => (
-  <div>
-    <PrimaryToolbar {...props} />
-    <Table aria-label="Mock inventory table" {...props} />
-  </div>
+jest.mock('./hooks', () => ({
+  ...jest.requireActual('./hooks'),
+  useGetEntities: jest.fn(),
+  useFetchSystems: jest.fn(),
+  useOsMinorVersionFilter: jest.fn(),
+}));
+useFetchSystems.mockImplementation(useFetchSystemsMockBuilder());
+useGetEntities.mockImplementation(
+  (fetchSystems) => async () => await fetchSystems()
 );
+useOsMinorVersionFilter.mockImplementation(() => mockOsMinorVersionFilter);
 
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   ...jest.requireActual('@redhat-cloud-services/frontend-components/Inventory'),
-  InventoryTable: InventoryTableMock,
+  InventoryTable: jest.fn(),
 }));
-
-jest.mock('./hooks', () => ({
-  ...jest.requireActual('./hooks'),
-  useOsMinorVersionFilter: jest.fn(() => mockOsMinorVersionFilter),
-}));
+FECInventoryTable.mockImplementation((props) => (
+  <InventoryTableMock {...props} />
+));
 
 describe('InventoryTable', () => {
+  const store = init().getStore();
+
   it('returns', () => {
     expect(renderJson(<InventoryTable />)).toMatchSnapshot();
   });
@@ -80,7 +96,6 @@ describe('InventoryTable', () => {
   });
 
   it('expect to have filters properly rendered', () => {
-    const store = init().getStore();
     const component = (
       <Provider store={store}>
         <InventoryTable
@@ -106,5 +121,57 @@ describe('InventoryTable', () => {
         ],
       },
     ]);
+  });
+
+  describe('via @testing-library/react', () => {
+    beforeEach(() => {
+      useFeature.mockImplementation((feature) => feature === 'tags');
+      window.insights = {
+        chrome: {
+          getUserPermissions: () => Promise.resolve([]),
+        },
+        experimental: {
+          loadRemediations: () => Promise.resolve([]),
+        },
+      };
+    });
+
+    describe('emptyStateComponent', function () {
+      const emptyStateComponent = <div>Empty State</div>;
+      const component = (
+        <Provider store={store}>
+          <InventoryTable {...{ emptyStateComponent }} />
+        </Provider>
+      );
+
+      it('should show an emptystate when there are no results', () => {
+        useFetchSystems.mockImplementation(
+          useFetchSystemsMockBuilder({
+            entities: [],
+            meta: {
+              tags: [],
+              totalCount: 0,
+            },
+          })
+        );
+
+        const { container } = render(component);
+        expect(container).toMatchSnapshot();
+      });
+
+      it('should show NO emptystate when tags queries return no results', () => {
+        useFetchSystems.mockImplementation(
+          useFetchSystemsMockBuilder({
+            entities: [],
+            meta: {
+              tags: ['tag1'],
+              totalCount: 0,
+            },
+          })
+        );
+        const { container } = render(component);
+        expect(container).toMatchSnapshot();
+      });
+    });
   });
 });
