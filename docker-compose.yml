@@ -7,3 +7,4 @@ services:
         network_mode: host
         volumes:
             - .:/compliance:z
+            - /compliance/node_modules/
