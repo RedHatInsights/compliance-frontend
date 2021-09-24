@@ -11,6 +11,7 @@ const defaults = {
   FRONTEND_PORT: '8002',
   PROXY: 'true',
   CHROME_DIR: '../insights-chrome/build',
+  STANDALONE: 'false',
 };
 
 const withDefault = (envVar) => process?.env[envVar] || defaults[envVar];
@@ -32,6 +33,14 @@ const chromeEnv = () => {
   return env ? env : `ci-${withDefault('BETA') === 'true' ? 'beta' : 'stable'}`;
 };
 
+const useStandalone = () =>
+  withDefault('STANDALONE') === 'true'
+    ? {
+        reposDir: '/tmp',
+        standalone: true,
+      }
+    : {};
+
 const insightsProxy = {
   https: false,
   port: withDefault('FRONTEND_PORT'),
@@ -49,6 +58,7 @@ const webpackProxy = {
   proxyVerbose: true,
   useCloud: withDefault('USE_CLOUD') === 'true',
   ...useLocalChrome(),
+  ...useStandalone(),
   routesPath:
     withDefault('ROUTES_PATH') ||
     resolve(__dirname, '../config/spandx.config.js'),
