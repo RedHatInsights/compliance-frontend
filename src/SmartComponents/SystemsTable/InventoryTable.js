@@ -122,7 +122,8 @@ export const InventoryTable = ({
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
-      activeFilterValues.length === 0
+      activeFilterValues.length === 0 &&
+      result?.meta?.tags?.length === 0
     ) {
       setIsEmpty(true);
     }

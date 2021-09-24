@@ -21,7 +21,7 @@ exports[`InventoryTable returns 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -237,7 +237,7 @@ exports[`InventoryTable returns compact 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -453,7 +453,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -550,7 +550,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
       title="The list of systems in this view is different than those that appear in the Inventory. Only systems currently associated with or reporting against compliance policies are displayed."
       variant="info"
     />
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -766,7 +766,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -1030,7 +1030,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -1246,7 +1246,7 @@ exports[`InventoryTable returns without actions 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       activeFiltersConfig={
         Object {
           "filters": Array [],
@@ -1454,7 +1454,7 @@ exports[`InventoryTable returns without remediations 1`] = `
   <StateViewPart
     stateKey="noError"
   >
-    <InventoryTableMock
+    <mockConstructor
       actions={
         Array [
           Object {
@@ -1641,4 +1641,306 @@ exports[`InventoryTable returns without remediations 1`] = `
     />
   </StateViewPart>
 </StateView>
+`;
+
+exports[`InventoryTable via @testing-library/react emptyStateComponent should show NO emptystate when tags queries return no results 1`] = `
+<div>
+  <div>
+    <div
+      actions="[object Object]"
+      class="pf-c-toolbar  ins-c-primary-toolbar"
+      data-ouia-component-id="OUIA-Generated-Toolbar-6"
+      data-ouia-component-type="PF4/Toolbar"
+      data-ouia-safe="true"
+      fallback="[object Object]"
+      hidefilters="[object Object]"
+      id="ins-primary-data-toolbar"
+      tableprops="[object Object]"
+      variant=""
+    >
+      <div
+        class="pf-c-toolbar__content"
+      >
+        <div
+          class="pf-c-toolbar__content-section"
+        >
+          <div
+            class="pf-c-toolbar__group pf-m-filter-group ins-c-primary-toolbar__group-filter pf-m-spacer-md pf-m-space-items-lg"
+          >
+            <div
+              class="pf-c-toolbar__item"
+            >
+              <div
+                class="pf-c-dropdown ins-c-bulk-select"
+                data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6"
+                data-ouia-component-type="PF4/Dropdown"
+                data-ouia-safe="true"
+              >
+                <div
+                  class="pf-c-dropdown__toggle pf-m-split-button pf-m-disabled"
+                >
+                  <label
+                    class="pf-c-dropdown__toggle-check"
+                    for="toggle-checkbox"
+                  >
+                    <input
+                      aria-invalid="false"
+                      aria-label="Select all"
+                      data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6-toggle-checkbox"
+                      data-ouia-component-type="PF4/DropdownToggleCheckbox"
+                      data-ouia-safe="true"
+                      id="toggle-checkbox"
+                      type="checkbox"
+                    />
+                    
+                  </label>
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-label="Select"
+                    class="pf-c-dropdown__toggle-button"
+                    data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6-toggle"
+                    data-ouia-component-type="PF4/DropdownToggle"
+                    data-ouia-safe="true"
+                    disabled=""
+                    id="pf-dropdown-toggle-id-37"
+                    type="button"
+                  >
+                    <span
+                      class="pf-c-dropdown__toggle-text"
+                    >
+                      0 selected
+                    </span>
+                    <span
+                      class=""
+                    >
+                      <svg
+                        aria-hidden="true"
+                        fill="currentColor"
+                        height="1em"
+                        role="img"
+                        style="vertical-align: -0.125em;"
+                        viewBox="0 0 320 512"
+                        width="1em"
+                      >
+                        <path
+                          d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pf-c-toolbar__item ins-c-primary-toolbar__filter"
+            >
+              <div
+                class="pf-l-split ins-c-conditional-filter"
+              >
+                <div
+                  class="pf-l-split__item"
+                >
+                  <div
+                    class="pf-c-dropdown ins-c-conditional-filter__group"
+                    data-ouia-component-id="OUIA-Generated-Dropdown-11"
+                    data-ouia-component-type="PF4/Dropdown"
+                    data-ouia-safe="true"
+                  >
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="pf-c-dropdown__toggle"
+                      data-ouia-component-id="OUIA-Generated-DropdownToggle-6"
+                      data-ouia-component-type="PF4/DropdownToggle"
+                      data-ouia-safe="true"
+                      id="pf-dropdown-toggle-id-38"
+                      type="button"
+                    >
+                      <span
+                        class="pf-c-dropdown__toggle-text"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          fill="currentColor"
+                          height="1em"
+                          role="img"
+                          style="vertical-align: -0.125em;"
+                          viewBox="0 0 512 512"
+                          width="1em"
+                        >
+                          <path
+                            d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+                          />
+                        </svg>
+                        <span
+                          class="ins-c-conditional-filter__value-selector"
+                        >
+                          Name
+                        </span>
+                      </span>
+                      <span
+                        class="pf-c-dropdown__toggle-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          fill="currentColor"
+                          height="1em"
+                          role="img"
+                          style="vertical-align: -0.125em;"
+                          viewBox="0 0 320 512"
+                          width="1em"
+                        >
+                          <path
+                            d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="pf-l-split__item pf-m-fill"
+                >
+                  <input
+                    aria-invalid="false"
+                    aria-label="text input"
+                    class="pf-c-form-control ins-c-conditional-filter "
+                    data-ouia-component-id="OUIA-Generated-TextInputBase-6"
+                    data-ouia-component-type="PF4/TextInput"
+                    data-ouia-safe="true"
+                    placeholder="Filter by name"
+                    type="text"
+                    value=""
+                    widget-type="InsightsInput"
+                  />
+                  <svg
+                    aria-hidden="true"
+                    class="ins-c-search-icon"
+                    fill="currentColor"
+                    height="1em"
+                    role="img"
+                    style="vertical-align: -0.125em;"
+                    viewBox="0 0 512 512"
+                    width="1em"
+                  >
+                    <path
+                      d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div
+              class="pf-c-toolbar__item"
+            >
+              <button
+                aria-disabled="true"
+                class="pf-c-button pf-m-primary pf-m-disabled"
+                data-ouia-component-id="RemediateButton"
+                data-ouia-component-type="PF4/Button"
+                data-ouia-safe="true"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  fill="var(--pf-c-button--m-primary--Color)"
+                  height="1em"
+                  role="img"
+                  style="vertical-align: -0.125em;"
+                  viewBox="20 20 390 390"
+                  width="1em"
+                >
+                  <path
+                    d="M402.6,214.7c0,103.9-84.2,188.1-188.1,188.1c-103.9,0-188.1-84.2-188.1-188.1  c0-103.9,84.2-188.1,188.1-188.1C318.4,26.6,402.6,110.8,402.6,214.7z M304.1,289.3l-74.9-180.2c-2.1-5.2-6.4-7.9-11.6-7.9c-5.2,0-9.8,2.8-11.9,7.9l-82.2,197.7h28.1l32.5-81.5  l97.1,78.4c3.9,3.2,6.7,4.6,10.4,4.6c7.3,0,13.7-5.5,13.7-13.4C305.4,293.6,305,291.5,304.1,289.3z M217.7,141.5l48.7,120.2  l-73.5-57.9L217.7,141.5z"
+                  />
+                </svg>
+                 Remediate
+              </button>
+            </div>
+          </div>
+          <div
+            class="pf-c-toolbar__item pf-m-spacer-sm"
+          >
+            <div
+              class="pf-c-dropdown"
+              data-ouia-component-id="OUIA-Generated-Dropdown-12"
+              data-ouia-component-type="PF4/Dropdown"
+              data-ouia-safe="true"
+            >
+              <button
+                aria-expanded="false"
+                aria-haspopup="true"
+                class="pf-c-dropdown__toggle pf-m-plain"
+                data-ouia-component-id="toggle"
+                data-ouia-component-type="PF4/DropdownToggle"
+                data-ouia-safe="true"
+                disabled=""
+                id="pf-dropdown-toggle-id-39"
+                type="button"
+              >
+                <span>
+                  <svg
+                    aria-hidden="true"
+                    fill="currentColor"
+                    height="1em"
+                    role="img"
+                    style="vertical-align: -0.125em;"
+                    viewBox="0 0 1024 1024"
+                    width="1em"
+                  >
+                    <path
+                      d="M975.8,636.9 L870.9,741.8 L457.9,328.6 C452.1,322.8 445.4,319.9 437.9,319.9 C430.4,319.9 423.7,322.8 417.9,328.6 L328.8,417.7 C323,423.5 320.1,430.2 320.1,437.7 C320.1,445.2 323,451.9 328.8,457.7 L742,870.7 L636.9,975.8 C610.5,1002.2 619.4,1024 656.8,1024 L956,1024 C1014.5,1024 1024,1013.7 1024,955.9 L1024,656.7 C1023.9,619.4 1002.2,610.5 975.8,636.9 Z M128,128 L896,128 L896,361.7 C896.007942,370.182681 899.389907,378.313788 905.4,384.3 L996.7,475.6 C1006.8,485.7 1024,478.5 1024,464.3 L1024,22.7 C1024,16.1 1021.9,10.7 1017.6,6.4 C1013.3,2.1 1007.9,0 1001.3,0 L22.7,0 C16.1,0 10.7,2.1 6.4,6.4 C2.1,10.7 0,16.1 0,22.7 L0,1001.3 C0,1007.9 2.1,1013.3 6.4,1017.6 C10.7,1021.9 16.1,1024 22.7,1024 L463.4,1024 C469.862884,1023.98894 475.684489,1020.0908 478.156232,1014.11925 C480.627976,1008.14769 479.264428,1001.27548 474.7,996.7 L383.4,905.4 C377.413788,899.389907 369.282681,896.007942 360.8,896 L128,896 L128,128 Z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pf-c-toolbar__expandable-content"
+          id="ins-primary-data-toolbar-expandable-content-10"
+        >
+          <div
+            class="pf-c-toolbar__group"
+          />
+        </div>
+      </div>
+      <div
+        class="pf-c-toolbar__content pf-m-hidden"
+        hidden=""
+      >
+        <div
+          class="pf-c-toolbar__group"
+        />
+      </div>
+    </div>
+    <table
+      activefiltersconfig="[object Object]"
+      aria-label="Mock inventory table"
+      bulkselect="[object Object]"
+      class="pf-c-table pf-m-grid-md"
+      data-ouia-component-id="OUIA-Generated-Table-12"
+      data-ouia-component-type="PF4/Table"
+      data-ouia-safe="true"
+      dedicatedaction="[object Object]"
+      exportconfig="[object Object]"
+      fallback="[object Object]"
+      filterconfig="[object Object]"
+      hidefilters="[object Object]"
+      role="grid"
+      tableprops="[object Object]"
+    />
+  </div>
+</div>
+`;
+
+exports[`InventoryTable via @testing-library/react emptyStateComponent should show an emptystate when there are no results 1`] = `
+<div>
+  <div>
+    Empty State
+  </div>
+</div>
 `;
