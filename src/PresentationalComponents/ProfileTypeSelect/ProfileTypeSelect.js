@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field } from 'redux-form';
 import propTypes from 'prop-types';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
@@ -7,9 +6,9 @@ import {
   GridItem,
   Label,
   TextContent,
-  TextVariants,
   Text,
   Tooltip,
+  Radio,
 } from '@patternfly/react-core';
 
 const InUseProfileLabel = () => (
@@ -24,7 +23,7 @@ const InUseProfileLabel = () => (
   </Tooltip>
 );
 
-const ProfileTypeSelect = ({ profiles, onClick }) => (
+const ProfileTypeSelect = ({ profiles, onChange, selectedProfile }) => (
   <React.Fragment>
     {profiles?.length === 0 && (
       <TextContent style={{ color: 'var(--pf-c-content--blockquote--Color)' }}>
@@ -38,39 +37,27 @@ const ProfileTypeSelect = ({ profiles, onClick }) => (
         return (
           <React.Fragment key={`profile-select-${id}`}>
             <GridItem span={8} rowSpan={2}>
-              <TextContent
-                style={{
-                  lineHeight: '2em',
-                  color: disabled
-                    ? 'var(--pf-c-content--blockquote--Color)'
-                    : '',
-                }}
-              >
-                <Text>
-                  <Field
-                    component="input"
-                    type="radio"
-                    name="profile"
-                    value={JSON.stringify(profile)}
-                    onClick={() => onClick(JSON.stringify(profile))}
-                    disabled={disabled}
-                  />
-                  {` ${name} `}
-                  {disabled && <InUseProfileLabel />}
-                </Text>
-              </TextContent>
-              <TextContent
-                style={{ color: 'var(--pf-c-content--blockquote--Color)' }}
-              >
-                <Text component={TextVariants.p}>
+              <Radio
+                id={`profile-select-text-${id}`}
+                label={
+                  <>
+                    {` ${name} `}
+                    {disabled && <InUseProfileLabel />}
+                  </>
+                }
+                isDisabled={disabled}
+                description={
                   <Truncate
                     inline
                     key={`profile-select-text-${id}`}
                     length={190}
                     text={description}
                   />
-                </Text>
-              </TextContent>
+                }
+                isChecked={selectedProfile === JSON.stringify(profile)}
+                onChange={(_, event) => onChange(event.currentTarget?.value)}
+                value={JSON.stringify(profile)}
+              />
             </GridItem>
           </React.Fragment>
         );
@@ -81,7 +68,8 @@ const ProfileTypeSelect = ({ profiles, onClick }) => (
 
 ProfileTypeSelect.propTypes = {
   profiles: propTypes.array,
-  onClick: propTypes.func,
+  onChange: propTypes.func,
+  selectedProfile: propTypes.object,
 };
 
 ProfileTypeSelect.defaultProps = {
