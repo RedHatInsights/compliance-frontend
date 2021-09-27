@@ -4,7 +4,7 @@ exports[`useQueryExportData queryExportData returns catches errors 1`] = `Object
 
 exports[`useQueryExportData queryExportData returns data 1`] = `
 Object {
-  "nonCompliantSystems": 20,
+  "nonCompliantSystems": 10,
   "topTenFailedRules": 10,
   "unsupportedSystems": 10,
 }

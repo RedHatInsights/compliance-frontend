@@ -25,15 +25,30 @@ const isSystemNonCompliant = (system) => {
   return hasScannedProfiles && hasNonCompliantProfiles;
 };
 
-const isSystemUnsupported = ({ testResultProfiles }) =>
-  scannedProfiles(testResultProfiles).length > 0 &&
-  scannedProfiles(testResultProfiles).every((profile) => !profile.supported);
+const hasProfiles = ({ testResultProfiles }) =>
+  scannedProfiles(testResultProfiles).length > 0;
+
+const isSystemSupported = (system) =>
+  hasProfiles(system) &&
+  scannedProfiles(system.testResultProfiles).every(
+    (profile) => profile.supported
+  );
+
+const isSystemUnsupported = (system) =>
+  hasProfiles(system) &&
+  scannedProfiles(system.testResultProfiles).every(
+    (profile) => !profile.supported
+  );
 
 export const compliantSystemsData = (systems) =>
-  systems.filter((system) => isSystemCompliant(system));
+  systems.filter(
+    (system) => isSystemSupported(system) && isSystemCompliant(system)
+  );
 
 export const nonCompliantSystemsData = (systems) =>
-  systems.filter((system) => isSystemNonCompliant(system));
+  systems.filter(
+    (system) => isSystemSupported(system) && isSystemNonCompliant(system)
+  );
 
 export const unsupportedSystemsData = (systems) =>
   systems.filter((system) => isSystemUnsupported(system));
