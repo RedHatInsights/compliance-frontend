@@ -62,7 +62,11 @@ const PolicyTooltip = () => (
   </Tooltip>
 );
 
-export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
+export const CreateSCAPPolicy = ({
+  change,
+  selectedBenchmarkId,
+  selectedProfile,
+}) => {
   const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES, {
     fetchPolicy: 'no-cache',
   });
@@ -143,9 +147,11 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
         >
           <ProfileTypeSelect
             profiles={selectedBenchmark && validProfiles}
-            onClick={() => {
+            onChange={(value) => {
               change('selectedRuleRefIds', undefined);
+              change('profile', value);
             }}
+            selectedProfile={selectedProfile}
           />
         </FormGroup>
       </Form>
@@ -156,6 +162,7 @@ export const CreateSCAPPolicy = ({ change, selectedBenchmarkId }) => {
 CreateSCAPPolicy.propTypes = {
   selectedBenchmarkId: propTypes.string,
   change: reduxFormPropTypes.change,
+  selectedProfile: propTypes.object,
 };
 
 const selector = formValueSelector('policyForm');
@@ -163,6 +170,7 @@ const selector = formValueSelector('policyForm');
 export default compose(
   connect((state) => ({
     selectedBenchmarkId: selector(state, 'benchmark'),
+    selectedProfile: selector(state, 'profile'),
   })),
   reduxForm({
     form: 'policyForm',
