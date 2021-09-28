@@ -17,9 +17,8 @@ import RulesTable from './ReportPDF/RulesTable';
 import PanelItem from './ReportPDF/PanelItem';
 import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
-import useSupportedSsgFinder from '../hooks/useSupportedSsgFinder';
 
-const ReportPDF = ({ data }) => {
+const ReportPDF = ({ data, ssgFinder }) => {
   const {
     compliantSystems,
     compliantSystemCount,
@@ -35,7 +34,6 @@ const ReportPDF = ({ data }) => {
   const percentCompliant = Math.floor(
     100 * (compliantHostCount / testResultHostCount)
   );
-  const ssgFinder = useSupportedSsgFinder(unsupportedSystemCount == 0);
 
   return (
     <Fragment>
@@ -156,6 +154,7 @@ const ReportPDF = ({ data }) => {
 
 ReportPDF.propTypes = {
   data: propTypes.object,
+  ssgFinder: propTypes.func,
 };
 
 export default ReportPDF;
