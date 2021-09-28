@@ -1,6 +1,9 @@
 import { orderByArray } from 'Utilities/helpers';
 import { SEVERITY_LEVELS } from '@/constants';
 
+// TODO move to utilities
+// to make these helpers available elsewhere and then use where needed
+
 const scannedProfiles = (profiles) =>
   profiles?.filter((profile) => profile.lastScanned != 'Never') || [];
 
@@ -56,29 +59,37 @@ export const unsupportedSystemsData = (systems) =>
 export const supportedSystemsData = (systems) =>
   systems.filter((system) => isSystemSupported(system));
 
+const sortBySystemsCount = (rules) =>
+  rules.sort((ruleWithCount) => ruleWithCount.systemCount);
+
+// Returns the "top ten" failed rules by system count
+// or just random "top 10" rules by severity
+// TODO refactor.
 const topTenFromRulesWithCounts = (failedRulesWithCounts) => {
   const failedRulesWithCountsArray = Object.values(failedRulesWithCounts);
 
-  const topTenByCount = failedRulesWithCountsArray
-    .sort((ruleWithCount) => ruleWithCount.systemCount)
-    .slice(0, 10);
+  const topTenByCount = sortBySystemsCount(failedRulesWithCountsArray).slice(
+    0,
+    10
+  );
 
   const topTenIsSingleCount =
     topTenByCount.filter((ruleWithCount) => ruleWithCount.systemCount === 1)
       .length === 10;
 
-  const topTenBySeverity = topTenIsSingleCount
-    ? orderByArray(
-        failedRulesWithCountsArray,
-        'severity',
-        SEVERITY_LEVELS,
-        'asc'
-      ).slice(0, 10)
-    : undefined;
+  const topTenBySeverity = () =>
+    orderByArray(
+      failedRulesWithCountsArray,
+      'severity',
+      SEVERITY_LEVELS,
+      'asc'
+    ).slice(0, 10);
 
-  return topTenBySeverity ? topTenBySeverity : topTenByCount;
+  return topTenIsSingleCount ? topTenBySeverity() : topTenByCount;
 };
 
+// Sums up rules and adds the number of systems failed for each
+// TODO refactor.
 const getFailedRulesWithCounts = (systems) => {
   const failedRulesWithCounts = {};
   const countIfFailed = (rule) => {

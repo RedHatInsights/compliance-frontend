@@ -20,7 +20,7 @@ const usePDFExport = (exportSettings, policy) => {
       });
     },
   });
-  const buildPDFPages = usePDFBuilder();
+  const buildPDFPages = usePDFBuilder(policy);
 
   const exportPDF = async () => {
     dispatchNotification({
@@ -29,9 +29,7 @@ const usePDFExport = (exportSettings, policy) => {
       description: 'Once complete, your download will start automatically.',
     });
     const data = await queryExportData();
-    console.log('DATA:', data);
-    const pages = await buildPDFPages(data);
-    return pages;
+    return await buildPDFPages(data);
   };
 
   return exportPDF;

@@ -47,6 +47,8 @@ export const GET_SYSTEMS = gql`
               title
               compliant
               remediationAvailable
+              severity
+              identifier
             }
           }
           policies(policyId: $policyId) {
@@ -78,6 +80,7 @@ export const GET_PROFILE = gql`
       lastScanned
       policyType
       totalHostCount
+      ssgVersion
       policy {
         id
         name

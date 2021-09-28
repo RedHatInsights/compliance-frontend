@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => ({
   useHistory: jest.fn(() => ({})),
 }));
 jest.mock('Utilities/Dispatcher');
-jest.mock('./hooks/usePDFExport');
+jest.mock('./hooks/usePDFExport', () => () => []);
 
 describe('ReportDownload', function () {
   const exportFunMock = jest.fn(() => Promise.resolve([]));
