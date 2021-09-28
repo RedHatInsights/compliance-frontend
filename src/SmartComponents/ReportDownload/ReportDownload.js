@@ -6,10 +6,10 @@ import { useQuery } from '@apollo/client';
 import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import { useLinkToBackground } from 'Utilities/Router';
+import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
 import useExportSettings from './hooks/useExportSettings';
-import { GET_PROFILE } from './constants';
 
 // Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {

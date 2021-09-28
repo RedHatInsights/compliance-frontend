@@ -14,7 +14,6 @@ const useSupportedSsgFinder = (skip) => {
         compareAsIntegers(profile.osMajorVersion, majorVersion) &&
         compareAsIntegers(profile.osMinorVersion, minorVersion)
     );
-    console.log(majorVersion, minorVersion, matchingVersion);
 
     return matchingVersion?.version || 'N/A';
   };
