@@ -4,8 +4,11 @@ exports[`useQueryExportData queryExportData returns catches errors 1`] = `Object
 
 exports[`useQueryExportData queryExportData returns data 1`] = `
 Object {
+  "compliantSystemCount": undefined,
+  "nonCompliantSystemCount": undefined,
   "nonCompliantSystems": 10,
   "topTenFailedRules": 10,
+  "unsupportedSystemCount": undefined,
   "unsupportedSystems": 10,
 }
 `;

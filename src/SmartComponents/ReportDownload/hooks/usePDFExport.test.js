@@ -3,12 +3,16 @@ import { useApolloClient } from '@apollo/client';
 import apolloQueryMock from '../__mocks__/apolloQueryMock';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import usePDFBuilder from './usePDFBuilder';
+import useSupportedSsgFinder from './useSupportedSsgFinder';
 
 jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
-jest.mock('./usePDFBuilder', () => jest.fn());
 
+jest.mock('./usePDFBuilder', () => jest.fn());
 usePDFBuilder.mockImplementation(() => async () => []);
+
+jest.mock('./useSupportedSsgFinder', () => jest.fn());
+useSupportedSsgFinder.mockImplementation(() => async () => []);
 
 import usePDFExport from './usePDFExport';
 
