@@ -1,5 +1,6 @@
 import { StyleSheet } from '@react-pdf/renderer';
 
+// Supported style properties see: https://react-pdf.org/styling
 export default StyleSheet.create({
   // TODO: bold rendering in PDF does not appear to work
   bold: {
