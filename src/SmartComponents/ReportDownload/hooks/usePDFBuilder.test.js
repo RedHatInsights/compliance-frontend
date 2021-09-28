@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import usePDFBuilder from './usePDFBuilder';
+jest.mock('../Components/ReportPDF', () => <div>PDF</div>);
 
 describe('usePDFBuilder', () => {
   it('returns a build pages function', () => {

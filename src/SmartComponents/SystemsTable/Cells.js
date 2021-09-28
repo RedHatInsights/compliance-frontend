@@ -9,9 +9,9 @@ import {
   ComplianceScore as complianceScore,
 } from 'PresentationalComponents';
 import {
-  profilesRulesPassed,
   profilesRulesFailed,
-  systemSupportedByProfiles,
+  complianceScoreData,
+  NEVER,
 } from 'Utilities/ruleHelpers';
 
 const SystemLink = ({ id, children }) => (
@@ -122,37 +122,7 @@ FailedRules.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
-const NEVER = 'Never';
-
-export const complianceScoreData = (profiles) => {
-  const scoreTotal = profiles.reduce((acc, profile) => acc + profile.score, 0);
-  const rulesPassed = profilesRulesPassed(profiles).length;
-  const rulesFailed = profilesRulesFailed(profiles).length;
-  const numScored = profiles.reduce((acc, profile) => {
-    if (
-      profilesRulesPassed([profile]).length +
-        profilesRulesFailed([profile]).length >
-      0
-    ) {
-      return acc + 1;
-    }
-
-    return acc;
-  }, 0);
-  const score = numScored ? scoreTotal / numScored : 0;
-  const compliant = profiles.every(
-    (profile) => profile.lastScanned === NEVER || profile.compliant === true
-  );
-
-  return {
-    score,
-    rulesPassed,
-    rulesFailed,
-    compliant,
-    supported: systemSupportedByProfiles(profiles),
-  };
-};
-
+export { complianceScoreData };
 export const ComplianceScore = ({ testResultProfiles }) =>
   complianceScore(complianceScoreData(testResultProfiles));
 
