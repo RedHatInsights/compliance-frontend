@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-// eslint-disable-next-line
-import {Chart} from '@redhat-cloud-services/frontend-components-pdf-generator';
+// eslint-disable-next-line rulesdir/disallow-fec-relative-imports
+import { Chart } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 // TODO Legend table style need to be disablable

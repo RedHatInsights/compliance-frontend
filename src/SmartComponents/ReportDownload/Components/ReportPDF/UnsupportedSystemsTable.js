@@ -1,7 +1,6 @@
 import React from 'react';
-
 import propTypes from 'prop-types';
-// eslint-disable-next-line
+// eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import { Table } from '@redhat-cloud-services/frontend-components-pdf-generator';
 
 const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
@@ -17,7 +16,7 @@ const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
     system.testResultProfiles[0].ssgVersion,
     ssgFinder(system.osMajorVersion, system.osMinorVersion),
   ]);
-  console.log(rows);
+
   return <Table withHeader rows={[headerRow, ...rows]} />;
 };
 
