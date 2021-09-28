@@ -67,6 +67,8 @@ export const UNKNOWN_SEVERITY = (
   </React.Fragment>
 );
 
+export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
+
 export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.text,
@@ -168,4 +170,5 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
 
 export const features = {
   tags: false,
+  pdfReport: false,
 };

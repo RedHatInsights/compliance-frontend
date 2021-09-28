@@ -34,6 +34,7 @@ import {
   SubPageTitle,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import useFeature from 'Utilities/hooks/useFeature';
 import { InventoryTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -71,6 +72,7 @@ export const QUERY = gql`
 
 export const ReportDetails = ({ route }) => {
   const { report_id: policyId } = useParams();
+  const pdfReportEnabled = useFeature('pdfReport');
   const { data, error, loading } = useQuery(QUERY, {
     variables: { policyId },
     fetchPolicy: 'no-cache',
@@ -157,6 +159,20 @@ export const ReportDetails = ({ route }) => {
               lg={3}
               xl={3}
             >
+              {pdfReportEnabled && (
+                <BackgroundLink
+                  state={{ profile }}
+                  to={`/reports/${profile.id}/pdf`}
+                >
+                  <Button
+                    ouiaId="ReportDetailsDownloadReportPDFLink"
+                    variant="primary"
+                    className="pf-u-mr-md"
+                  >
+                    Download PDF
+                  </Button>
+                </BackgroundLink>
+              )}
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}

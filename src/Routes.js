@@ -32,6 +32,18 @@ const reportsRoutes = [
     ),
     modal: true,
   },
+
+  {
+    path: '/reports/:report_id/pdf',
+    title: `Export report - ${defaultReportTitle}`,
+    defaultTitle: defaultReportTitle,
+    modal: true,
+    component: lazy(() =>
+      import(
+        /* webpackChunkName: "ReportDetails" */ 'SmartComponents/ReportDownload/ReportDownload'
+      )
+    ),
+  },
 ];
 
 const defaultPoliciesTitle = 'SCAP policies';
