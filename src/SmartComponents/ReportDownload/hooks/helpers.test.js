@@ -43,4 +43,20 @@ describe('topTenFailedRulesData', () => {
       topTenFailedRulesData(nonCompliantSystems).map((rule) => rule.title)
     ).toMatchSnapshot();
   });
+
+  it('returns top 10 failed only for supported systems', () => {
+    const sortedRuleTitles = (systems) =>
+      topTenFailedRulesData(systems)
+        .map((rule) => rule.title)
+        .sort((title) => title);
+    const nonCompliantSystems = buildNonCompliantSystems(10);
+    const nonComplianAndUnsupportedSystems = [
+      buildUnsupportedSystems(10),
+      ...nonCompliantSystems,
+    ];
+
+    expect(sortedRuleTitles(nonCompliantSystems)).toEqual(
+      sortedRuleTitles(nonComplianAndUnsupportedSystems)
+    );
+  });
 });

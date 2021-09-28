@@ -2,7 +2,7 @@ import { orderByArray } from 'Utilities/helpers';
 import { SEVERITY_LEVELS } from '@/constants';
 
 const scannedProfiles = (profiles) =>
-  profiles.filter((profile) => profile.lastScanned != 'Never');
+  profiles?.filter((profile) => profile.lastScanned != 'Never') || [];
 
 const isSystemCompliant = (system) => {
   const hasScannedProfiles =
@@ -53,6 +53,9 @@ export const nonCompliantSystemsData = (systems) =>
 export const unsupportedSystemsData = (systems) =>
   systems.filter((system) => isSystemUnsupported(system));
 
+export const supportedSystemsData = (systems) =>
+  systems.filter((system) => isSystemSupported(system));
+
 const topTenFromRulesWithCounts = (failedRulesWithCounts) => {
   const failedRulesWithCountsArray = Object.values(failedRulesWithCounts);
 
@@ -92,7 +95,7 @@ const getFailedRulesWithCounts = (systems) => {
     }
   };
 
-  nonCompliantSystemsData(systems).forEach((system) => {
+  supportedSystemsData(systems).forEach((system) => {
     system.testResultProfiles.forEach((profile) => {
       profile.rules.forEach((rule) => countIfFailed(rule));
     });
