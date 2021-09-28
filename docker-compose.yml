@@ -10,4 +10,5 @@ services:
         #  - 1337:1337
         volumes:
             - .:/compliance:z
-            - /compliance/node_modules/
+            # Enable to speed up tests in the container
+            # - /compliance/node_modules/
