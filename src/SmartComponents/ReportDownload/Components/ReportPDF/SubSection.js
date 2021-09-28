@@ -1,8 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
-// eslint-disable-next-line
-import { Chart, Paragraph, Panel, Table, Column, Section } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import styles from './StyleSheet';
 
 const SubSection = ({ children, metaTitle, title }) => {
