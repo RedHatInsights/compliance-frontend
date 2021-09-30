@@ -30,7 +30,7 @@ const BENCHMARKS_AND_PROFILES = gql`
       refId
       version
       osMajorVersion
-      profiles {
+      profiles: downstreamProfiles {
         id
         name
         refId

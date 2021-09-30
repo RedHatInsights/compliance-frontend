@@ -49,7 +49,7 @@ const PROFILES_QUERY = gql`
             osMajorVersion
           }
           ssgVersion
-          rules {
+          rules: downstreamRules {
             id
             title
             severity
