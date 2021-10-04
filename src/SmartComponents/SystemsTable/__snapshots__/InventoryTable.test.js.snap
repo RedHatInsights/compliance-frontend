@@ -1649,7 +1649,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
     <div
       actions="[object Object]"
       class="pf-c-toolbar  ins-c-primary-toolbar"
-      data-ouia-component-id="OUIA-Generated-Toolbar-6"
+      data-ouia-component-id="PrimaryToolbar"
       data-ouia-component-type="PF4/Toolbar"
       data-ouia-safe="true"
       fallback="[object Object]"
@@ -1672,7 +1672,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
             >
               <div
                 class="pf-c-dropdown ins-c-bulk-select"
-                data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6"
+                data-ouia-component-id="BulkSelect"
                 data-ouia-component-type="PF4/Dropdown"
                 data-ouia-safe="true"
               >
@@ -1686,7 +1686,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                     <input
                       aria-invalid="false"
                       aria-label="Select all"
-                      data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6-toggle-checkbox"
+                      data-ouia-component-id="BulkSelect"
                       data-ouia-component-type="PF4/DropdownToggleCheckbox"
                       data-ouia-safe="true"
                       id="toggle-checkbox"
@@ -1699,7 +1699,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                     aria-haspopup="true"
                     aria-label="Select"
                     class="pf-c-dropdown__toggle-button"
-                    data-ouia-component-id="OUIA-Generated-RHI/BulkSelect-6-toggle"
+                    data-ouia-component-id="BulkSelect"
                     data-ouia-component-type="PF4/DropdownToggle"
                     data-ouia-safe="true"
                     disabled=""
@@ -1743,7 +1743,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                 >
                   <div
                     class="pf-c-dropdown ins-c-conditional-filter__group"
-                    data-ouia-component-id="OUIA-Generated-Dropdown-11"
+                    data-ouia-component-id="ConditionalFilter"
                     data-ouia-component-type="PF4/Dropdown"
                     data-ouia-safe="true"
                   >
@@ -1751,7 +1751,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="pf-c-dropdown__toggle"
-                      data-ouia-component-id="OUIA-Generated-DropdownToggle-6"
+                      data-ouia-component-id="ConditionalFilter"
                       data-ouia-component-type="PF4/DropdownToggle"
                       data-ouia-safe="true"
                       id="pf-dropdown-toggle-id-38"
@@ -1806,7 +1806,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                     aria-invalid="false"
                     aria-label="text input"
                     class="pf-c-form-control ins-c-conditional-filter "
-                    data-ouia-component-id="OUIA-Generated-TextInputBase-6"
+                    data-ouia-component-id="ConditionalFilter"
                     data-ouia-component-type="PF4/TextInput"
                     data-ouia-safe="true"
                     placeholder="Filter by name"
@@ -1834,30 +1834,18 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
             <div
               class="pf-c-toolbar__item"
             >
-              <button
-                aria-disabled="true"
-                class="pf-c-button pf-m-primary pf-m-disabled"
-                data-ouia-component-id="RemediateButton"
-                data-ouia-component-type="PF4/Button"
-                data-ouia-safe="true"
-                disabled=""
-                type="button"
-              >
-                <svg
-                  aria-hidden="true"
-                  fill="var(--pf-c-button--m-primary--Color)"
-                  height="1em"
-                  role="img"
-                  style="vertical-align: -0.125em;"
-                  viewBox="20 20 390 390"
-                  width="1em"
-                >
-                  <path
-                    d="M402.6,214.7c0,103.9-84.2,188.1-188.1,188.1c-103.9,0-188.1-84.2-188.1-188.1  c0-103.9,84.2-188.1,188.1-188.1C318.4,26.6,402.6,110.8,402.6,214.7z M304.1,289.3l-74.9-180.2c-2.1-5.2-6.4-7.9-11.6-7.9c-5.2,0-9.8,2.8-11.9,7.9l-82.2,197.7h28.1l32.5-81.5  l97.1,78.4c3.9,3.2,6.7,4.6,10.4,4.6c7.3,0,13.7-5.5,13.7-13.4C305.4,293.6,305,291.5,304.1,289.3z M217.7,141.5l48.7,120.2  l-73.5-57.9L217.7,141.5z"
-                  />
-                </svg>
-                 Remediate
-              </button>
+              <div>
+                <h1>
+                  Unable to load remedaitions component
+                </h1>
+                <h2>
+                  Failed to load 
+                  RemediationButton
+                </h2>
+                <code>
+                  More info can be found in browser console output.
+                </code>
+              </div>
             </div>
           </div>
           <div
@@ -1865,7 +1853,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
           >
             <div
               class="pf-c-dropdown"
-              data-ouia-component-id="OUIA-Generated-Dropdown-12"
+              data-ouia-component-id="Export"
               data-ouia-component-type="PF4/Dropdown"
               data-ouia-safe="true"
             >
@@ -1873,7 +1861,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
                 aria-expanded="false"
                 aria-haspopup="true"
                 class="pf-c-dropdown__toggle pf-m-plain"
-                data-ouia-component-id="toggle"
+                data-ouia-component-id="Export"
                 data-ouia-component-type="PF4/DropdownToggle"
                 data-ouia-safe="true"
                 disabled=""
