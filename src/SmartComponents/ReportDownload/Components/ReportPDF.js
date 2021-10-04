@@ -91,11 +91,11 @@ const ReportPDF = ({ data, ssgFinder }) => {
             {nonCompliantSystemCount}
           </PanelItem>
 
-          {unsupportedSystemCount && (
+          {unsupportedSystemCount ? (
             <PanelItem title="Systems with unsupported configuration">
               {unsupportedSystemCount}
             </PanelItem>
-          )}
+          ) : null}
 
           <PanelItem title="Compliant systems">
             {compliantSystemCount}
@@ -135,7 +135,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
         ) : null}
       </Section>
 
-      {topTenFailedRules && (
+      {topTenFailedRules ? (
         <Section
           title="Rules"
           withColumn={false}
@@ -147,7 +147,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
             <RulesTable rules={topTenFailedRules} />
           </SubSection>
         </Section>
-      )}
+      ) : null}
     </Fragment>
   );
 };
