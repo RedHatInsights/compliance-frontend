@@ -36,6 +36,7 @@ const TabbedRules = ({
   setSelectedRuleRefIds,
   columns,
   level = 0,
+  ouiaId,
   ...rulesTableProps
 }) => {
   const handleSelect = (
@@ -57,7 +58,11 @@ const TabbedRules = ({
   };
 
   return (
-    <RoutedTabs level={level} defaultTab={getDefaultTab(tabsData, defaultTab)}>
+    <RoutedTabs
+      ouiaId={ouiaId}
+      level={level}
+      defaultTab={getDefaultTab(tabsData, defaultTab)}
+    >
       {tabsData?.map(({ profile, newOsMinorVersion, systemCount }) => (
         <Tab
           key={eventKey(profile, newOsMinorVersion)}
@@ -73,6 +78,9 @@ const TabbedRules = ({
               <Badge isRead>{systemCount}</Badge>
             </span>
           }
+          ouiaId={`RHEL ${profile.osMajorVersion}.${
+            profile.osMinorVersion || newOsMinorVersion
+          }`}
         >
           <ProfileTabContent
             {...{
@@ -117,6 +125,7 @@ TabbedRules.propTypes = {
     osMinorVersion: propTypes.string,
   }),
   level: propTypes.number,
+  ouiaId: propTypes.string,
 };
 
 export default TabbedRules;

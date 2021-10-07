@@ -240,6 +240,7 @@ export const EditPolicyRulesTab = ({
           remediationsEnabled={false}
           selectedFilter
           level={1}
+          ouiaId="RHELVersions"
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">

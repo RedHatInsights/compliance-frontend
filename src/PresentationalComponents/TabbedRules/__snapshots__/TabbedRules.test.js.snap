@@ -8,6 +8,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
   <Tab
     eventKey="rules-b71376fd-015e-4209-99af-9"
     key="rules-b71376fd-015e-4209-99af-9"
+    ouiaId="RHEL 7.9"
     title={
       <span>
         <span
@@ -18,6 +19,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               Object {
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "9",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -57,6 +59,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -89,6 +92,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ac-99"
     key="rules-b71376fd-015e-4209-99ac-99"
+    ouiaId="RHEL 7.99"
     title={
       <span>
         <span
@@ -100,6 +104,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               Object {
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
                   Object {
@@ -139,6 +144,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
         Object {
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -170,6 +176,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ad-8"
     key="rules-b71376fd-015e-4209-99ad-8"
+    ouiaId="RHEL 7.8"
     title={
       <span>
         <span
@@ -180,6 +187,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               Object {
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -219,6 +227,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
         Object {
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -259,6 +268,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99af-9"
     key="rules-b71376fd-015e-4209-99af-9"
+    ouiaId="RHEL 7.9"
     title={
       <span>
         <span
@@ -269,6 +279,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "9",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -307,6 +318,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -339,6 +351,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ac-99"
     key="rules-b71376fd-015e-4209-99ac-99"
+    ouiaId="RHEL 7.99"
     title={
       <span>
         <span
@@ -350,6 +363,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
                   Object {
@@ -388,6 +402,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -419,6 +434,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ad-8"
     key="rules-b71376fd-015e-4209-99ad-8"
+    ouiaId="RHEL 7.8"
     title={
       <span>
         <span
@@ -429,6 +445,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -467,6 +484,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -507,6 +525,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99af-9"
     key="rules-b71376fd-015e-4209-99af-9"
+    ouiaId="RHEL 7.9"
     title={
       <span>
         <span
@@ -517,6 +536,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "9",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -555,6 +575,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -587,6 +608,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ac-99"
     key="rules-b71376fd-015e-4209-99ac-99"
+    ouiaId="RHEL 7.99"
     title={
       <span>
         <span
@@ -598,6 +620,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
                   Object {
@@ -636,6 +659,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -667,6 +691,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ad-8"
     key="rules-b71376fd-015e-4209-99ad-8"
+    ouiaId="RHEL 7.8"
     title={
       <span>
         <span
@@ -677,6 +702,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -715,6 +741,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -755,6 +782,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99af-9"
     key="rules-b71376fd-015e-4209-99af-9"
+    ouiaId="RHEL 7.9"
     title={
       <span>
         <span
@@ -765,6 +793,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "9",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -803,6 +832,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "9",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
@@ -835,6 +865,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ac-99"
     key="rules-b71376fd-015e-4209-99ac-99"
+    ouiaId="RHEL 7.99"
     title={
       <span>
         <span
@@ -846,6 +877,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
                   Object {
@@ -884,6 +916,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [
             Object {
@@ -919,6 +952,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
   <Tab
     eventKey="rules-b71376fd-015e-4209-99ad-8"
     key="rules-b71376fd-015e-4209-99ad-8"
+    ouiaId="RHEL 7.8"
     title={
       <span>
         <span
@@ -929,6 +963,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               Object {
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
+                "osMajorVersion": "7",
                 "osMinorVersion": "8",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp123",
                 "rules": Array [
@@ -967,6 +1002,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
         Object {
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
+          "osMajorVersion": "7",
           "osMinorVersion": "8",
           "refId": "xccdf_org.ssgproject.content_profile_ospp123",
           "rules": Array [

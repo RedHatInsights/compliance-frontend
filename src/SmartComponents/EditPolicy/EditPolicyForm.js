@@ -65,15 +65,23 @@ export const EditPolicyForm = ({
 
   return (
     <Form>
-      <RoutedTabs defaultTab="details">
-        <Tab eventKey="details" title={<TabTitleText>Details</TabTitleText>}>
+      <RoutedTabs ouiaId="EditPolicy" defaultTab="details">
+        <Tab
+          eventKey="details"
+          ouiaId="Details"
+          title={<TabTitleText>Details</TabTitleText>}
+        >
           <EditPolicyDetailsTab
             policy={policy}
             setUpdatedPolicy={setUpdatedPolicy}
           />
         </Tab>
 
-        <Tab eventKey="rules" title={<TabTitleText>Rules</TabTitleText>}>
+        <Tab
+          eventKey="rules"
+          ouiaId="Rules"
+          title={<TabTitleText>Rules</TabTitleText>}
+        >
           <EditPolicyRulesTab
             policy={policy}
             setNewRuleTabs={setNewRuleTabs}
@@ -83,7 +91,11 @@ export const EditPolicyForm = ({
           />
         </Tab>
 
-        <Tab eventKey="systems" title={<TabTitleText>Systems</TabTitleText>}>
+        <Tab
+          eventKey="systems"
+          ouiaId="Systems"
+          title={<TabTitleText>Systems</TabTitleText>}
+        >
           <EditPolicySystemsTab
             policy={policy}
             newRuleTabs={newRuleTabs}
