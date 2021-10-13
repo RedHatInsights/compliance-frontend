@@ -67,7 +67,11 @@ webpackConfig.resolve = {
 
 webpackConfig.devServer = {
     ...webpackConfig.devServer,
-    ...devserverConfig
+    ...devserverConfig,
+    static: {
+        ...webpackConfig.devServer.static,
+        ...devserverConfig.static
+    }
 }
 
 plugins.push(

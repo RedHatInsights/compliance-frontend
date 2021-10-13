@@ -21,11 +21,12 @@ const hotReload = function () {
  * Place custom webpack dev server config here
  */
 const devserverConfig = {
-  serveIndex: false,
+  static: {
+    serveIndex: false,
+  },
   liveReload: hotReload(),
   hot: hotReload(),
-  injectClient: hotReload(),
-  inline: hotReload(),
+  client: hotReload(),
   host: bindHost(),
   allowedHosts: [
     'ci.foo.redhat.com',
@@ -33,7 +34,10 @@ const devserverConfig = {
     'stage.foo.redhat.com',
     'prod.foo.redhat.com',
     process.env.DEFAULT_HOST,
-  ],
+    /**
+     * webpack dev server does now allow undefined entries
+     */
+  ].filter((item) => typeof item === 'string'),
 };
 
 module.exports.devserverConfig = devserverConfig;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ConditionalLink = ({ children, href, ...additionalProps }) =>
   (href && (
@@ -8,5 +9,10 @@ const ConditionalLink = ({ children, href, ...additionalProps }) =>
   )) ||
   children ||
   '';
+
+ConditionalLink.propTypes = {
+  children: PropTypes.node,
+  href: PropTypes.string,
+};
 
 export default ConditionalLink;
