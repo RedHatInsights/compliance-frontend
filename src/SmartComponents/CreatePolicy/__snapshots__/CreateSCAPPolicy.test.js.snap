@@ -28,6 +28,7 @@ exports[`CreateSCAPPolicy expect to render without error 1`] = `
       labelIcon={<PolicyTooltip />}
     >
       <ProfileTypeSelect
+        onChange={[Function]}
         onClick={[Function]}
         profiles={Array []}
       />
@@ -99,6 +100,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
       labelIcon={<PolicyTooltip />}
     >
       <ProfileTypeSelect
+        onChange={[Function]}
         onClick={[Function]}
         profiles={Array []}
       />
@@ -174,6 +176,7 @@ Array [
 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 2`] = `
 <ProfileTypeSelect
+  onChange={[Function]}
   onClick={[Function]}
   profiles={Array []}
 />

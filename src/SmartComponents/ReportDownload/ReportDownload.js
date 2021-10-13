@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Modal, Spinner } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+// eslint-disable-next-line
+import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import { useLinkToBackground } from 'Utilities/Router';
+import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
-import { GET_PROFILE, DEFAULT_EXPORT_SETTINGS } from './constants';
-// We use the mock for the tests here as well till fixes have been made to the DownloadButton component
-// import DownloadButton from '@redhat-cloud-services/frontend-components-pdf-generator/DownloadButton';
-import DownloadButton from './__mocks__/DownloadButton';
+import useExportSettings from './hooks/useExportSettings';
 
 // Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {
@@ -19,36 +19,37 @@ export const ReportDownload = () => {
     variables: { policyId },
   });
   const policy = data?.profile;
-  const [exportSettings, setExportSettings] = useState(DEFAULT_EXPORT_SETTINGS);
-  const setExportSetting = (setting) => {
-    return (value) => {
-      setExportSettings({
-        ...exportSettings,
-        [setting]: value,
-      });
-    };
-  };
-  const exportPDF = policy
-    ? usePDFExport(exportSettings, policy)
-    : () => Promise.resolve([]);
+  const {
+    exportSettings,
+    setExportSetting,
+    isValid: settingsValid,
+  } = useExportSettings();
+
+  const exportPDF = usePDFExport(exportSettings, policy);
   const exportFileName = `compliance-report--${
     new Date().toISOString().split('T')[0]
   }`;
+  const buttonLabel = 'Export report';
+  const buttonProps = {
+    ouiaId: 'ExportReportButton',
+    variant: 'primary',
+    isDisabled: !settingsValid,
+  };
+
+  const FallbackButton = () => <Button {...buttonProps}>{buttonLabel}</Button>;
 
   const actions = [
     <DownloadButton
       groupName="Red Hat Insights"
       key="export"
-      label="Export report"
+      label={buttonLabel}
+      reportName={`Compliance:`}
+      type={policy && policy.name}
       fileName={exportFileName}
-      asyncFunction={() => {
-        console.log(exportPDF());
-        return Promise.resolve([]);
-      }}
-      buttonProps={{
-        ouiaId: 'ExportReportButton',
-        variant: 'primary',
-      }}
+      asyncFunction={exportPDF}
+      buttonProps={buttonProps}
+      fallback={<FallbackButton />}
+      className="pf-u-mr-sm"
     />,
     <Button
       variant="secondary"

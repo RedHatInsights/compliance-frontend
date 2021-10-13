@@ -9,87 +9,54 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
       rowSpan={2}
       span={8}
     >
-      <TextContent
-        style={
-          Object {
-            "color": "",
-            "lineHeight": "2em",
-          }
-        }
-      >
-        <Text>
-          <Field
-            component="input"
-            name="profile"
-            onClick={[Function]}
-            type="radio"
-            value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
-          />
-           fooname 
-        </Text>
-      </TextContent>
-      <TextContent
-        style={
-          Object {
-            "color": "var(--pf-c-content--blockquote--Color)",
-          }
-        }
-      >
-        <Text
-          component="p"
-        >
+      <Radio
+        className=""
+        description={
           <Truncate
             inline={true}
-            key="profile-select-text-fooid"
             length={190}
             text="foodesc"
           />
-        </Text>
-      </TextContent>
+        }
+        id="profile-select-text-fooid"
+        isChecked={false}
+        isDisabled={false}
+        isValid={true}
+        label={
+          <React.Fragment>
+             fooname 
+          </React.Fragment>
+        }
+        onChange={[Function]}
+        value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
+      />
     </GridItem>
     <GridItem
       rowSpan={2}
       span={8}
     >
-      <TextContent
-        style={
-          Object {
-            "color": "var(--pf-c-content--blockquote--Color)",
-            "lineHeight": "2em",
-          }
-        }
-      >
-        <Text>
-          <Field
-            component="input"
-            disabled={true}
-            name="profile"
-            onClick={[Function]}
-            type="radio"
-            value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\",\\"disabled\\":true}"
-          />
-           fooname 
-          <InUseProfileLabel />
-        </Text>
-      </TextContent>
-      <TextContent
-        style={
-          Object {
-            "color": "var(--pf-c-content--blockquote--Color)",
-          }
-        }
-      >
-        <Text
-          component="p"
-        >
+      <Radio
+        className=""
+        description={
           <Truncate
             inline={true}
-            key="profile-select-text-fooid"
             length={190}
             text="foodesc"
           />
-        </Text>
-      </TextContent>
+        }
+        id="profile-select-text-fooid"
+        isChecked={false}
+        isDisabled={true}
+        isValid={true}
+        label={
+          <React.Fragment>
+             fooname 
+            <InUseProfileLabel />
+          </React.Fragment>
+        }
+        onChange={[Function]}
+        value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\",\\"disabled\\":true}"
+      />
     </GridItem>
   </Grid>
 </Fragment>

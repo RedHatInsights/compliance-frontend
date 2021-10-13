@@ -6,12 +6,6 @@ import useQueryExportData from './useQueryExportData';
 
 jest.mock('@apollo/client');
 
-const reduceToCounts = (exportData) =>
-  Object.keys(exportData).reduce((acc, entry) => {
-    acc[entry] = exportData[entry].length;
-    return acc;
-  }, {});
-
 describe('useQueryExportData', () => {
   const profile = { id: 'TEST_ID', name: 'TEST_PROFILE', totalHostCount: 1000 };
 
@@ -47,7 +41,7 @@ describe('useQueryExportData', () => {
         })
       );
 
-      expect(reduceToCounts(await queryExportData())).toMatchSnapshot();
+      expect(await queryExportData()).toMatchSnapshot();
       expect(onComplete).toHaveBeenCalled();
       expect(onError).not.toHaveBeenCalled();
     });
@@ -67,7 +61,7 @@ describe('useQueryExportData', () => {
         })
       );
 
-      expect(reduceToCounts(await queryExportData())).toMatchSnapshot();
+      expect(await queryExportData()).toMatchSnapshot();
       expect(onComplete).not.toHaveBeenCalled();
       expect(onError).toHaveBeenCalled();
     });

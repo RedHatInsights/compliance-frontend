@@ -19,7 +19,7 @@ const fetchBatched = (fetchFunction, total, batchSize = 100) => {
 // Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
 const useQueryExportData = (
   exportSettings,
-  { id: policyId, totalHostCount },
+  { id: policyId, totalHostCount } = {},
   { onComplete, onError } = {
     onComplete: () => undefined,
     onError: () => undefined,
@@ -27,21 +27,29 @@ const useQueryExportData = (
 ) => {
   const client = useApolloClient();
 
-  const prepareForExport = (systems) => ({
-    ...(exportSettings.compliantSystems && {
-      compliantSystems: compliantSystemsData(systems),
-    }),
-    ...(exportSettings.nonCompliantSystems && {
-      nonCompliantSystems: nonCompliantSystemsData(systems),
-    }),
-    ...(exportSettings.unsupportedSystems && {
-      unsupportedSystems: unsupportedSystemsData(systems),
-    }),
-    ...(exportSettings.topTenFailedRules && {
-      topTenFailedRules: topTenFailedRulesData(systems),
-    }),
-    ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
-  });
+  const prepareForExport = (systems) => {
+    const compliantSystems = compliantSystemsData(systems);
+    const nonCompliantSystems = nonCompliantSystemsData(systems);
+    const unsupportedSystems = unsupportedSystemsData(systems);
+    return {
+      ...(exportSettings.compliantSystems && {
+        compliantSystems: compliantSystems,
+      }),
+      compliantSystemCount: compliantSystems.length,
+      ...(exportSettings.nonCompliantSystems && {
+        nonCompliantSystems: nonCompliantSystems,
+      }),
+      nonCompliantSystemCount: nonCompliantSystems.length,
+      ...(exportSettings.unsupportedSystems && {
+        unsupportedSystems: unsupportedSystems,
+      }),
+      unsupportedSystemCount: unsupportedSystems.length,
+      ...(exportSettings.topTenFailedRules && {
+        topTenFailedRules: topTenFailedRulesData(systems),
+      }),
+      ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
+    };
+  };
   const fetchFunction = (perPage, page) =>
     client.query({
       query: GET_SYSTEMS,
