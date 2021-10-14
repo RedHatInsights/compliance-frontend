@@ -9,12 +9,19 @@ const defaults = {
   LOCAL_NODE_MODULES: 'false',
   WEBPACK_DEBUG: 'false',
   FRONTEND_PORT: '8002',
-  PROXY: 'true',
+  PROXY: 'false',
   CHROME_DIR: '../insights-chrome/build',
   STANDALONE: 'false',
 };
 
-const withDefault = (envVar) => process?.env[envVar] || defaults[envVar];
+const withDefault = (envVar) => {
+  const defaultValue = process?.env[envVar] || defaults[envVar];
+  if (defaultValue === 'true' || defaultValue === 'false') {
+    return defaultValue === 'true';
+  } else {
+    return process?.env[envVar] || defaults[envVar];
+  }
+};
 
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
