@@ -144,6 +144,14 @@ export const GET_MINIMAL_SYSTEMS = gql`
       edges {
         node {
           id
+          name
+          osMajorVersion
+          osMinorVersion
+          culledTimestamp
+          staleWarningTimestamp
+          staleTimestamp
+          insightsId
+          lastScanned
         }
       }
     }
