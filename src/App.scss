@@ -97,3 +97,15 @@ button.pf-c-button.pf-m-tertiary {
 .ins-u-warning {
   color: var(--pf-global--warning-color--100);
 }
+
+.ins-c-inventory__list-tags {
+    display: block;
+    position: relative;
+    top: 8px;
+}
+
+button.pf-c-button.pf-m-plain {
+    --pf-c-button--FontSize: var(--pf-c-button--m-link--m-inline--FontSize);
+    padding: 0;
+    text-align: left;
+}
