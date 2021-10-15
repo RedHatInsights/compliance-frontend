@@ -75,9 +75,9 @@ The CI pipeline is also setup to validate pull requests.
 * The [insights-frontend-components](https://www.npmjs.com/package/@red-hat-insights/insights-frontend-components) package is included to provide components shared across the Insights Platform.
 * [Insights Chrome](https://github.com/RedHatInsights/insights-chrome) which provides header and sidebar, as well as authentication and related functions, which is injected/included via webpack-dev-servers `useProxy`.
 
-#### Inventory Components
+#### Federated modules
 
-Some components are "hot loaded" via [Insights Chrome](https://github.com/RedHatInsights/insights-chrome). These are known as "Inventory Components" and are used for systems tables and systems details. The source for these components can be found in [insights-frontend-components](https://github.com/RedHatInsights/frontend-components/tree/master/packages/inventory#readme). With the frontend-components repository resides the [inventory-compliance](https://github.com/RedHatInsights/frontend-components/tree/master/packages/inventory-compliance) package, which implements wrapper components for these inventory components to add compliance specific behaviour.
+The platform provides
 
 ### File organisation
 
