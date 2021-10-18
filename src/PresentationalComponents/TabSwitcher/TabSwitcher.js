@@ -45,7 +45,13 @@ RoutedTabSwitcher.defaultProps = {
   level: 0,
 };
 
-export const RoutedTabs = ({ children, defaultTab, level, ...props }) => {
+export const RoutedTabs = ({
+  children,
+  defaultTab,
+  level,
+  ouiaId,
+  ...props
+}) => {
   const { push } = useHistory();
   const { pathname, state } = useLocation();
   const { currentAnchor, levels } = useAnchorLevels(defaultTab, level);
@@ -63,7 +69,12 @@ export const RoutedTabs = ({ children, defaultTab, level, ...props }) => {
   };
 
   return (
-    <Tabs {...props} onSelect={handleTabSelect} activeKey={currentAnchor}>
+    <Tabs
+      {...props}
+      ouiaId={ouiaId}
+      onSelect={handleTabSelect}
+      activeKey={currentAnchor}
+    >
       {children}
     </Tabs>
   );
@@ -77,6 +88,7 @@ RoutedTabs.propTypes = {
   children: propTypes.node,
   defaultTab: propTypes.string,
   level: propTypes.number,
+  ouiaId: propTypes.string,
 };
 
 export default TabSwitcher;

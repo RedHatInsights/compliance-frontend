@@ -5,9 +5,11 @@ exports[`EditPolicyForm expect to render without error 1`] = `
   <RoutedTabs
     defaultTab="details"
     level={0}
+    ouiaId="EditPolicy"
   >
     <Tab
       eventKey="details"
+      ouiaId="Details"
       title={
         <TabTitleText>
           Details
@@ -24,6 +26,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
     </Tab>
     <Tab
       eventKey="rules"
+      ouiaId="Rules"
       title={
         <TabTitleText>
           Rules
@@ -42,6 +45,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
     </Tab>
     <Tab
       eventKey="systems"
+      ouiaId="Systems"
       title={
         <TabTitleText>
           Systems

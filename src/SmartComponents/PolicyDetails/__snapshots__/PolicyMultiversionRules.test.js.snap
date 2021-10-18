@@ -60,6 +60,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
             "profile": Object {
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
+              "osMajorVersion": "7",
               "osMinorVersion": "9",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
@@ -90,6 +91,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
             "profile": Object {
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
+              "osMajorVersion": "7",
               "osMinorVersion": "8",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
               "rules": Array [
