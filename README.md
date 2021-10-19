@@ -12,7 +12,7 @@ which serves the frontend and is configured with default routes that proxy a sta
 
 It can be run either locally or in a container setup.
 
-Both will require to have hostnames like `ci.foo.redhat.com` resolve to the local host.
+Both will require to have hostnames like `stage.foo.redhat.com` resolve to the local host.
 [Insights Proxy](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh) provides a script to patch the `/etc/hosts` file for this purpose.
 
 ## Using useProxy
@@ -33,7 +33,7 @@ To run the container setup either Podman or Docker and their compose commands ca
   $ podman-compose up # Starts up the compliance frontend with a webpack proxy
 ```
 
-This will build the image if it is not yet available locally and run the containers to make the frontend available at [https://ci.foo.redhat.com:1337/insights/compliance/](https://ci.foo.redhat.com:1337/insights/compliance/)
+This will build the image if it is not yet available locally and run the containers to make the frontend available at [https://stage.foo.redhat.com:1337/insights/compliance/](https://stage.foo.redhat.com:1337/insights/compliance/)
 
 #### Opening a shell
 
