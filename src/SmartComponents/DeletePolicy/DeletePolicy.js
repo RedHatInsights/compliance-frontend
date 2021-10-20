@@ -1,10 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Modal,
-  ModalVariant,
-  Text,
-} from '@patternfly/react-core';
+import { Button, Checkbox, ModalVariant, Text } from '@patternfly/react-core';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -12,6 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { DELETE_PROFILE } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { ComplianceModal } from 'PresentationalComponents';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeletePolicy = () => {
@@ -46,7 +41,7 @@ const DeletePolicy = () => {
   });
 
   return (
-    <Modal
+    <ComplianceModal
       variant={ModalVariant.small}
       title={
         <React.Fragment>
@@ -90,7 +85,7 @@ const DeletePolicy = () => {
         isChecked={deleteEnabled}
         onChange={setDeleteEnabled}
       />
-    </Modal>
+    </ComplianceModal>
   );
 };
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeletePolicy expect to render an open modal without error 1`] = `
-<Modal
+<ComplianceModal
   actions={
     Array [
       <Button
@@ -22,17 +22,9 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
       </Button>,
     ]
   }
-  appendTo={[Function]}
-  aria-describedby=""
-  aria-label=""
-  aria-labelledby=""
-  className=""
-  hasNoBodyWrapper={false}
   isOpen={true}
   onClose={[Function]}
   ouiaId="DeletePolicyModal"
-  ouiaSafe={true}
-  showClose={true}
   title={
     <React.Fragment>
       <ExclamationTriangleIcon
@@ -49,8 +41,6 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
       </Text>
     </React.Fragment>
   }
-  titleIconVariant={null}
-  titleLabel=""
   variant="small"
 >
   <Text
@@ -72,5 +62,5 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
     onChange={[Function]}
     ouiaSafe={true}
   />
-</Modal>
+</ComplianceModal>
 `;
