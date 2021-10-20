@@ -4,13 +4,14 @@ import {
   Name as NameCell,
   OperatingSystem as OperatingSystemCell,
   CompliantSystems as CompliantSystemsCell,
+  PDFExportDownload as PDFExportDownloadCell,
 } from './Cells';
 
 export const Name = {
   title: 'Policy',
   sortByProp: 'name',
   props: {
-    width: 55,
+    width: 60,
   },
   renderFunc: renderComponent(NameCell),
 };
@@ -31,9 +32,14 @@ export const CompliantSystems = {
   sortByFunction: ({ testResultHostCount, compliantHostCount }) =>
     (100 / testResultHostCount) * compliantHostCount,
   props: {
-    width: 25,
+    width: 20,
   },
   renderFunc: renderComponent(CompliantSystemsCell),
+};
+
+export const PDFExportDownload = {
+  title: '',
+  renderFunc: renderComponent(PDFExportDownloadCell),
 };
 
 export default [Name, OperatingSystem, CompliantSystems];

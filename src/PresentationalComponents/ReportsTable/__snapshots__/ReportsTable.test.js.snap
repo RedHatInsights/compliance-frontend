@@ -7,7 +7,7 @@ exports[`ReportsTable expect to render without error 1`] = `
     Array [
       Object {
         "props": Object {
-          "width": 55,
+          "width": 60,
         },
         "renderFunc": [Function],
         "sortByProp": "name",
@@ -26,7 +26,7 @@ exports[`ReportsTable expect to render without error 1`] = `
       },
       Object {
         "props": Object {
-          "width": 25,
+          "width": 20,
         },
         "renderFunc": [Function],
         "sortByFunction": [Function],
