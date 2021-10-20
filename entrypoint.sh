@@ -8,7 +8,10 @@ fi
 
 export IN_DOCKER='true';
 
-/usr/bin/node --version
-/usr/local/bin/npm --version
+source $NVM_DIR/nvm.sh
+
+nvm use "v15.14.0"
+node --version
+npm --version
 
 exec "$@"

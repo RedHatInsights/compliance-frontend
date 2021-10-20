@@ -29,8 +29,6 @@ const devserverConfig = {
   client: hotReload(),
   host: bindHost(),
   allowedHosts: [
-    'ci.foo.redhat.com',
-    'qa.foo.redhat.com',
     'stage.foo.redhat.com',
     'prod.foo.redhat.com',
     process.env.DEFAULT_HOST,

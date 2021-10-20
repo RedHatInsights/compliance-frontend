@@ -5,5 +5,10 @@ services:
         build: .
         image: compliance-frontend_frontend
         network_mode: host
+        # Use ports instead of host network mode when on Docker for Mac or in a VM
+        #ports:
+        #  - 1337:1337
         volumes:
             - .:/compliance:z
+            # Enable to speed up tests in the container
+            # - /compliance/node_modules/
