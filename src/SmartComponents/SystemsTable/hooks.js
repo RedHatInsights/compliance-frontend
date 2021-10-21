@@ -375,6 +375,15 @@ export const useSystemBulkSelect = ({
   };
 };
 
+const searchTagsByKey = (search, tags) =>
+  tags.filter((tagItem) => {
+    if (search || search === '') {
+      return tagItem?.key.indexOf(search) !== -1;
+    } else {
+      return true;
+    }
+  });
+
 const useFetchTag = () => {
   const apiClient = useApolloClient();
 
@@ -389,15 +398,10 @@ const useFetchTag = () => {
           data: {
             systems: { tags },
           },
-        }) => {
-          return tags.filter((tagItem) => {
-            if (search || search === '') {
-              return tagItem.tag.key.indexOf(search) !== -1;
-            } else {
-              return true;
-            }
-          });
-        }
+        }) =>
+          searchTagsByKey(search, tags).map((tag) => ({
+            tag,
+          }))
       );
 
     const start = per_page * page - per_page;
