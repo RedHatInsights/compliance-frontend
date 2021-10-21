@@ -48,18 +48,12 @@ export const InventoryTable = ({
   onSelect: onSelectProp,
   noSystemsTable,
 }) => {
+  const tagsEnabled = useFeature('tags');
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const tagsEnabled = useFeature('tags');
-  const {
-    props: tagsProps,
-    currentTags,
-    setCurrentTags,
-  } = useTags(tagsEnabled);
-
   const osMinorVersionFilter = useOsMinorVersionFilter(
     showOsMinorVersionFilter
   );
@@ -82,6 +76,18 @@ export const InventoryTable = ({
     showOnlySystemsWithTestResults,
     defaultFilter
   );
+
+  const {
+    props: tagsProps,
+    currentTags,
+    setCurrentTags,
+    getTags,
+  } = useTags(tagsEnabled, {
+    variables: {
+      filter: systemsFilter,
+      ...(policyId && { policyId }),
+    },
+  });
 
   const systemFetchArguments = {
     query,
@@ -199,6 +205,7 @@ export const InventoryTable = ({
           noSystemsTable={noSystemsTable}
           ref={inventory}
           getEntities={getEntities}
+          getTags={getTags}
           onLoad={defaultOnLoad(columns)}
           tableProps={{
             ...bulkSelectTableProps,

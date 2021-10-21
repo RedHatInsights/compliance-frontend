@@ -158,6 +158,18 @@ export const GET_MINIMAL_SYSTEMS = gql`
   }
 `;
 
+export const GET_SYSTEMS_TAGS = gql`
+  query getSystems($filter: String!, $limit: Int) {
+    systems(search: $filter, limit: $limit) {
+      tags {
+        namespace
+        key
+        value
+      }
+    }
+  }
+`;
+
 export const policyFilter = (policies, osFilter) => [
   ...systemsPolicyFilterConfiguration(policies),
   ...(osFilter ? systemsOsFilterConfiguration(policies) : []),

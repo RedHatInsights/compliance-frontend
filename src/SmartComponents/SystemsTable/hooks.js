@@ -4,7 +4,11 @@ import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import useCollection from 'Utilities/hooks/api/useCollection';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import { osMinorVersionFilter, GET_MINIMAL_SYSTEMS } from './constants';
+import {
+  osMinorVersionFilter,
+  GET_MINIMAL_SYSTEMS,
+  GET_SYSTEMS_TAGS,
+} from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
@@ -371,8 +375,68 @@ export const useSystemBulkSelect = ({
   };
 };
 
-export const useTags = (tagsEnabled) => {
-  const [currentTags, setCurrentTags] = useState([]);
+const searchTagsByKey = (search, tags) =>
+  tags.filter((tagItem) => {
+    if (search || search === '') {
+      return tagItem?.key.indexOf(search) !== -1;
+    } else {
+      return true;
+    }
+  });
+
+const useFetchTag = () => {
+  const apiClient = useApolloClient();
+
+  return async (page, per_page, search, fetchArguments) => {
+    const fetchedTags = await apiClient
+      .query({
+        query: GET_SYSTEMS_TAGS,
+        ...fetchArguments,
+      })
+      .then(
+        ({
+          data: {
+            systems: { tags },
+          },
+        }) =>
+          searchTagsByKey(search, tags).map((tag) => ({
+            tag,
+          }))
+      );
+
+    const start = per_page * page - per_page;
+    const end = start + per_page;
+
+    return {
+      total: fetchedTags.length,
+      results: fetchedTags.slice(start, end),
+    };
+  };
+};
+
+export const useTags = (tagsEnabled, fetchArguments) => {
+  const [currentTags, setCurrentTags] = useState();
+  const fetchTags = useFetchTag();
+
+  const getTags = async (search, config) => {
+    const { page, perPage: per_page } = config.pagination || {
+      perPage: 10,
+      page: 1,
+    };
+    const { total, results: tagsList } = await fetchTags(
+      page,
+      per_page,
+      search,
+      fetchArguments
+    );
+
+    return {
+      page,
+      per_page,
+      total,
+      results: tagsList,
+    };
+  };
 
   return tagsEnabled
     ? {
@@ -387,6 +451,7 @@ export const useTags = (tagsEnabled) => {
         },
         currentTags,
         setCurrentTags,
+        getTags,
       }
     : {
         props: {
