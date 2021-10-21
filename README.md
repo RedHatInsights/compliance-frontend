@@ -77,7 +77,33 @@ The CI pipeline is also setup to validate pull requests.
 
 #### Federated modules
 
-The platform provides
+Certain platform applications expose components that can be used by other applications without requiring to add it as a dependency.
+Compliance currently exposes the `SystemsDetails` as a federated module, which is used in the inventory application.
+Compliance also imports the `InventoryTable` and `InventoryDetails` components, which are federated modules exposed by the Inventory application.
+
+##### Running compliance with locally built federated modules
+
+###### Imported from the [insights-inventory-frontend](https://github.com/RedHatInsights/insights-inventory-frontend)
+
+In order to develop and test changes for the `InventoryTable` and `InventoryDetails` within compliance:
+
+1. Pull the `insights-inventory-frontend` repository and change into the directory
+2. Run `npm install` to install all packages
+3. Run the `npm run start:federated` task
+
+This will run a webpack instance that builds and serves federated modules from the local source code.
+
+To use them in compliance the routes for the frontend need to be enabled to point to the before mentioned webpack instance.
+This can be done by setting the `LOCAL_INVENTORY_FRONTEND` environment variable (in `.env`) to `true`.
+
+###### Run compliance building and exposing federated modules
+
+Developing and testing changes in components that Compliance exposes is also possible in a similar way.
+Compliance also provides a `npm run start:federated` task, that also builds and serves the `SystemsDetails` as a federated module.
+
+To make use of it in another application it will require setting up the necessary routes in that applications configuration,
+but instead of rerouting to inventory, the routes will need match `/compliance/` routes.
+See the FEC script documentation for an example: https://github.com/RedHatInsights/frontend-components/tree/master/packages/config#fec-node-scripts
 
 ### File organisation
 

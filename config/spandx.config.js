@@ -28,6 +28,10 @@ const LOCAL_INVENTORY = envWithDefault('LOCAL_INVENTORY', false);
 const INVENTORY_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
 const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8081);
 
+const LOCAL_INVENTORY_FRONTEND = envWithDefault('LOCAL_INVENTORY_FRONTEND', false);
+const INVENTORY_FRONTEND_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
+const INVENTORY_FRONTEND_PORT = envWithDefault('INVENTORY_PORT', 8003);
+
 const LOCAL_REMEDIATIONS = envWithDefault('LOCAL_REMEDIATIONS', false);
 const REMEDIATIONS_HOST = envWithDefault('REMEDIATIONS_HOST', defaultHost());
 const REMEDIATIONS_PORT = envWithDefault('REMEDIATIONS_PORT', 9002);
@@ -46,6 +50,11 @@ if (LOCAL_INGRESS) {
 
 if (LOCAL_INVENTORY) {
     routes[`/api/inventory/v1/hosts`] = { host: `http://${INVENTORY_HOST}:${INVENTORY_PORT}` };
+}
+
+if (LOCAL_INVENTORY_FRONTEND) {
+  routes['/apps/inventory'] = { host: `http://${INVENTORY_FRONTEND_HOST}:${INVENTORY_FRONTEND_PORT}` };
+  routes['/beta/apps/inventory'] = { host:  `http://${INVENTORY_FRONTEND_HOST}:${INVENTORY_FRONTEND_PORT}` };
 }
 
 if (LOCAL_REMEDIATIONS) {
