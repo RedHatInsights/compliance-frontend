@@ -1,10 +1,14 @@
 import React from 'react';
-import { Button, Modal, Spinner } from '@patternfly/react-core';
+import { Button, Spinner } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 // eslint-disable-next-line
 import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator';
-import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import {
+  ComplianceModal,
+  StateViewWithError,
+  StateViewPart,
+} from 'PresentationalComponents';
 import { useLinkToBackground } from 'Utilities/Router';
 import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
@@ -65,7 +69,7 @@ export const ReportDownload = () => {
   ];
 
   return (
-    <Modal
+    <ComplianceModal
       isOpen
       width="440px"
       ouiaId="DownloadReportModal"
@@ -81,7 +85,7 @@ export const ReportDownload = () => {
           <ExportPDFForm {...{ policy, setExportSetting, exportSettings }} />
         </StateViewPart>
       </StateViewWithError>
-    </Modal>
+    </ComplianceModal>
   );
 };
 

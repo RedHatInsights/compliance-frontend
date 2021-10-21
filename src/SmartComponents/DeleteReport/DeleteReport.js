@@ -1,15 +1,11 @@
-import {
-  Button,
-  Modal,
-  ModalVariant,
-  TextContent,
-} from '@patternfly/react-core';
+import { Button, ModalVariant, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { DELETE_REPORT } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { ComplianceModal } from 'PresentationalComponents';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeleteReport = () => {
@@ -48,7 +44,7 @@ const DeleteReport = () => {
     },
   });
   return (
-    <Modal
+    <ComplianceModal
       isOpen
       variant={ModalVariant.small}
       title="Delete report"
@@ -85,7 +81,7 @@ const DeleteReport = () => {
       <TextContent>
         Deleting a report is permanent and cannot be undone.
       </TextContent>
-    </Modal>
+    </ComplianceModal>
   );
 };
 

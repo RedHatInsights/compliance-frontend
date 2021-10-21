@@ -3,9 +3,13 @@ import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Button, Modal, Spinner } from '@patternfly/react-core';
+import { Button, Spinner } from '@patternfly/react-core';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import {
+  ComplianceModal,
+  StateViewWithError,
+  StateViewPart,
+} from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave, useLinkToPolicy } from './hooks';
 
@@ -109,7 +113,7 @@ export const EditPolicy = ({ route }) => {
   useTitleEntity(route, policy?.name);
 
   return (
-    <Modal
+    <ComplianceModal
       isOpen
       position={'top'}
       style={{ minHeight: '350px' }}
@@ -137,7 +141,7 @@ export const EditPolicy = ({ route }) => {
           />
         </StateViewPart>
       </StateViewWithError>
-    </Modal>
+    </ComplianceModal>
   );
 };
 

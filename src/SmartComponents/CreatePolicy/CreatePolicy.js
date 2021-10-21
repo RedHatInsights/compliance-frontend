@@ -96,6 +96,7 @@ export const CreatePolicy = ({
   return (
     <React.Fragment>
       <Wizard
+        className="compliance"
         isOpen
         onNext={onNext}
         onGoToStep={resetAnchor}

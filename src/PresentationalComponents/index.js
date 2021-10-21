@@ -48,3 +48,4 @@ export { TabbedRules } from './TabbedRules';
 export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarning/NoSystemsTableWithWarning';
 export { default as RulesTable } from './RulesTable/RulesTable';
 export { default as ConditionalLink } from './ConditionalLink/ConditionalLink';
+export { default as ComplianceModal } from './ComplianceModal/ComplianceModal';
