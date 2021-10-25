@@ -74,7 +74,7 @@ export const ReportDownload = () => {
       width="440px"
       ouiaId="DownloadReportModal"
       title="Compliance report"
-      onClose={linkToReport}
+      onClose={() => linkToReport()}
       actions={actions}
     >
       <StateViewWithError stateValues={{ error, data, loading }}>
