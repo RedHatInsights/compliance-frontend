@@ -1,8 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent, Text, Progress } from '@patternfly/react-core';
+import { Button, TextContent, Text, Progress } from '@patternfly/react-core';
+import { DownloadIcon } from '@patternfly/react-icons';
 import { Link } from 'react-router-dom';
 import {
+  BackgroundLink,
   PolicyPopover,
   GreySmallText,
   UnsupportedSSGVersion,
@@ -98,4 +100,18 @@ CompliantSystems.propTypes = {
   testResultHostCount: propTypes.number,
   compliantHostCount: propTypes.number,
   unsupportedHostCount: propTypes.number,
+};
+
+export const PDFExportDownload = (profile) => {
+  return (
+    <BackgroundLink to={`/reports/${profile.id}/pdf`}>
+      <Button
+        ouiaId="ReportsDownloadReportPDFLink"
+        variant="plain"
+        className="pf-u-mr-md"
+      >
+        <DownloadIcon />
+      </Button>
+    </BackgroundLink>
+  );
 };
