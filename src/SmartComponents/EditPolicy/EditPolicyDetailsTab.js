@@ -4,6 +4,7 @@ import { FormGroup, TextArea, TextInput } from '@patternfly/react-core';
 import {
   PolicyThresholdTooltip,
   PolicyBusinessObjectiveTooltip,
+  ComplianceThresholdHelperText,
 } from 'PresentationalComponents';
 import { thresholdValid } from '../CreatePolicy/validate';
 
@@ -19,7 +20,7 @@ export const useThresholdValidate = () => {
   ];
 };
 
-const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
+const EditPolicyDetailsTab = ({ policy, updatedPolicy, setUpdatedPolicy }) => {
   const [validThreshold, validateThreshold] = useThresholdValidate();
 
   return (
@@ -71,7 +72,15 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
         label="Compliance threshold (%)"
         labelIcon={<PolicyThresholdTooltip />}
         fieldId="policy-threshold"
-        helperTextInvalid="Threshold has to be a number between 0 and 100"
+        helperTextInvalid={
+          <ComplianceThresholdHelperText
+            threshold={
+              updatedPolicy
+                ? updatedPolicy.complianceThreshold
+                : policy.complianceThreshold
+            }
+          />
+        }
         helperText="A value of 95% or higher is recommended"
       >
         <TextInput
@@ -84,7 +93,7 @@ const EditPolicyDetailsTab = ({ policy, setUpdatedPolicy }) => {
           onChange={(value) => {
             setUpdatedPolicy((policy) => ({
               ...policy,
-              complianceThreshold: value,
+              complianceThreshold: parseFloat(value),
               complianceThresholdValid: validateThreshold(value),
             }));
           }}
@@ -102,6 +111,11 @@ EditPolicyDetailsTab.propTypes = {
       propTypes.string,
       propTypes.number,
     ]),
+  }),
+  updatedPolicy: propTypes.shape({
+    description: propTypes.string,
+    businessObjective: propTypes.object,
+    complianceThreshold: propTypes.number,
   }),
   setUpdatedPolicy: propTypes.func,
 };
