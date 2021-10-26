@@ -46,7 +46,11 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
   <FormGroup
     fieldId="policy-threshold"
     helperText="A value of 95% or higher is recommended"
-    helperTextInvalid="Threshold has to be a number between 0 and 100"
+    helperTextInvalid={
+      <ComplianceThresholdHelperText
+        threshold="30"
+      />
+    }
     label="Compliance threshold (%)"
     labelIcon={<PolicyThresholdTooltip />}
     validated="default"

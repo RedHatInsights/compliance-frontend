@@ -3,21 +3,24 @@ import { Field, reduxForm } from 'redux-form';
 import { FormGroup } from '@patternfly/react-core';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import propTypes from 'prop-types';
-import round from 'lodash/round';
 import { thresholdValid } from '../../SmartComponents/CreatePolicy/validate';
-import { PolicyThresholdTooltip } from 'PresentationalComponents';
+import {
+  PolicyThresholdTooltip,
+  ComplianceThresholdHelperText,
+} from 'PresentationalComponents';
 
 export class ProfileThresholdField extends React.Component {
   state = {
     validThreshold: thresholdValid(this.props.previousThreshold),
-    threshold: round(this.props.previousThreshold || 100, 1),
+    threshold: this.props.previousThreshold,
   };
 
-  handleThresholdChange = (threshold) =>
+  handleThresholdChange = (threshold) => {
     this.setState({
       validThreshold: thresholdValid(threshold),
-      threshold: round(threshold, 1),
+      threshold: threshold,
     });
+  };
 
   render() {
     const { threshold, validThreshold } = this.state;
@@ -27,7 +30,9 @@ export class ProfileThresholdField extends React.Component {
         <FormGroup
           fieldId="policy-threshold"
           validated={validThreshold ? 'default' : 'error'}
-          helperTextInvalid="Threshold has to be a number between 0 and 100"
+          helperTextInvalid={
+            <ComplianceThresholdHelperText threshold={threshold} />
+          }
           helperText="A value of 95% or higher is recommended"
           labelIcon={<PolicyThresholdTooltip />}
           label="Compliance threshold (%)"

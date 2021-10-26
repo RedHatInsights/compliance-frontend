@@ -7,6 +7,7 @@ import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 import { profilesWithRulesToSelection } from 'PresentationalComponents/TabbedRules';
+import { thresholdValid } from '../CreatePolicy/validate';
 
 const profilesToOsMinorMap = (profiles, hosts) =>
   (profiles || []).reduce((acc, profile) => {
@@ -22,6 +23,7 @@ const profilesToOsMinorMap = (profiles, hosts) =>
 
 export const EditPolicyForm = ({
   policy,
+  updatedPolicy,
   setUpdatedPolicy,
   selectedRuleRefIds,
   setSelectedRuleRefIds,
@@ -52,8 +54,9 @@ export const EditPolicyForm = ({
 
   useEffect(() => {
     if (policy) {
-      const complianceThresholdValid =
-        policy.complianceThreshold < 101 && policy.complianceThreshold > 0;
+      const complianceThresholdValid = thresholdValid(
+        policy.complianceThreshold
+      );
       setUpdatedPolicy({
         ...policy,
         complianceThresholdValid,
@@ -73,6 +76,7 @@ export const EditPolicyForm = ({
         >
           <EditPolicyDetailsTab
             policy={policy}
+            updatedPolicy={updatedPolicy}
             setUpdatedPolicy={setUpdatedPolicy}
           />
         </Tab>
@@ -110,6 +114,7 @@ export const EditPolicyForm = ({
 
 EditPolicyForm.propTypes = {
   policy: propTypes.object,
+  updatedPolicy: propTypes.object,
   setUpdatedPolicy: propTypes.func,
   selectedRuleRefIds: propTypes.arrayOf(propTypes.object),
   setSelectedRuleRefIds: propTypes.func,

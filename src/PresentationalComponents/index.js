@@ -42,6 +42,7 @@ export {
 } from './NoResultsTable/NoResultsTable';
 export { default as PoliciesTable } from './PoliciesTable/PoliciesTable';
 export { default as ProfileThresholdField } from './ProfileThresholdField/ProfileThresholdField';
+export { default as ComplianceThresholdHelperText } from './ComplianceThresholdHelperText/ComplianceThresholdHelperText';
 export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/SupportedSSGVersionsLink';
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
