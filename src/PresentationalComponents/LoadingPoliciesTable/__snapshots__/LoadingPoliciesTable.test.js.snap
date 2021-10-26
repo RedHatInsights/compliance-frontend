@@ -53,6 +53,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   dropdownPosition="right"
   expandId="expandable-toggle"
   gridBreakPoint="grid-md"
+  isHeaderSelectDisabled={false}
   isNested={false}
   isStickyHeader={false}
   isTreeTable={false}
