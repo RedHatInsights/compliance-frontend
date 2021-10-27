@@ -1,5 +1,6 @@
 export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingPoliciesTable';
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
+export { default as ErrorCard } from './ErrorCard/ErrorCard';
 export { default as GreySmallText } from './GreySmallText/GreySmallText';
 export { default as CheckboxGroup } from './CheckboxGroup/CheckboxGroup';
 export { default as ProfileTypeSelect } from './ProfileTypeSelect/ProfileTypeSelect';
