@@ -26,7 +26,6 @@ const devserverConfig = {
   },
   liveReload: hotReload(),
   hot: hotReload(),
-  client: hotReload(),
   host: bindHost(),
   allowedHosts: [
     'stage.foo.redhat.com',
