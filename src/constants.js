@@ -1,5 +1,5 @@
 /* eslint max-len: 0 */
-import { version } from './../package.json';
+import packageJson from './../package.json';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
@@ -10,7 +10,7 @@ export const COMPLIANCE_UI_ROOT = '/rhel/compliance';
 export const INVENTORY_API_ROOT = '/api/inventory/v1';
 
 export const API_HEADERS = {
-  'X-Insights-Compliance': version,
+  'X-Insights-Compliance': packageJson.version,
   'Content-Type': 'application/json',
   Accept: 'application/json',
 };
