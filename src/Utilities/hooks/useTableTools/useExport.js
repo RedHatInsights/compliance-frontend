@@ -90,4 +90,15 @@ const useExport = ({ exporter, columns = [], isDisabled = false }) => {
   };
 };
 
+export const useExportWithItems = (items, columns, options = {}) => {
+  const exportEnabled = options.exportable;
+  const exportProps = useExport({
+    exporter: () => items,
+    columns,
+    isDisabled: items.length === 0,
+  });
+
+  return exportEnabled ? exportProps : {};
+};
+
 export default useExport;
