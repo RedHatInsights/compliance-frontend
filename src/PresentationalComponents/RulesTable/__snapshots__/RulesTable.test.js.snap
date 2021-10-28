@@ -6,16 +6,19 @@ exports[`RulesTable expect to pass on options 1`] = `
   columns={
     Array [
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "title",
         "title": "Name",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Policy",
       },
       Object {
+        "exportKey": "severity",
         "renderFunc": [Function],
         "sortByArray": Array [
           "high",
@@ -30,6 +33,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         ],
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "compliant",
         "title": "Passed",
@@ -39,6 +43,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "props": Object {
           "tooltip": "Ansible",
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "remediationAvailable",
         "title": <span>
@@ -421,6 +426,7 @@ exports[`RulesTable expect to pass on options 1`] = `
           ],
         },
       ],
+      "exportable": true,
       "identifier": [Function],
       "onSelect": undefined,
       "preselected": Array [],
@@ -437,16 +443,19 @@ exports[`RulesTable expect to render without error 1`] = `
   columns={
     Array [
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "title",
         "title": "Name",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Policy",
       },
       Object {
+        "exportKey": "severity",
         "renderFunc": [Function],
         "sortByArray": Array [
           "high",
@@ -461,6 +470,7 @@ exports[`RulesTable expect to render without error 1`] = `
         ],
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "compliant",
         "title": "Passed",
@@ -470,6 +480,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "props": Object {
           "tooltip": "Ansible",
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "remediationAvailable",
         "title": <span>
@@ -851,6 +862,7 @@ exports[`RulesTable expect to render without error 1`] = `
           ],
         },
       ],
+      "exportable": true,
       "identifier": [Function],
       "onSelect": undefined,
       "preselected": Array [],

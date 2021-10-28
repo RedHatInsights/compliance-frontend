@@ -30,7 +30,9 @@ const textForCell = (row, column) => {
 };
 
 export const csvForItems = ({ items, columns }) => {
-  const header = columns.map((column) => column.title).join(CSV_DELIMITER);
+  const header = columns
+    .map((column) => column.original || column.title)
+    .join(CSV_DELIMITER);
   const csvRows = [
     header,
     ...items.map((row) =>
@@ -46,7 +48,7 @@ export const csvForItems = ({ items, columns }) => {
 export const jsonForItems = ({ items, columns }) => {
   const result = items.map((row) =>
     columns.reduce((object, column) => {
-      const key = camelCase(column.title);
+      const key = camelCase(column.original || column.title);
       const value = textForCell(row, column);
 
       object[key] = value;

@@ -9,11 +9,13 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
       columns={
         Array [
           Object {
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "title",
             "title": "Name",
           },
           Object {
+            "exportKey": "severity",
             "renderFunc": [Function],
             "sortByArray": Array [
               "high",
@@ -32,6 +34,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
             "props": Object {
               "tooltip": "Ansible",
             },
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "remediationAvailable",
             "title": <span>
