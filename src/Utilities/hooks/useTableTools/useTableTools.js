@@ -6,6 +6,7 @@ import { useBulkSelectWithItems } from './useBulkSelect';
 import useItemIdentify from './useItemIdentify';
 import useExpandable from './useExpandable';
 import useDedicatedAction from './useDedicatedAction';
+import { useExportWithItems } from './useExport';
 
 const useTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
@@ -55,6 +56,12 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     additionalDedicatedActions: selectedFilterToolbarProps?.dedicatedAction,
   });
 
+  const { toolbarProps: exportToolbarProps } = useExportWithItems(
+    items,
+    columns,
+    options
+  );
+
   const {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
@@ -76,6 +83,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...dedicatedActionToolbarProps,
     ...rowBuilderToolbarProps,
     ...toolbarPropsOption,
+    ...exportToolbarProps,
   };
 
   const tableProps = {
