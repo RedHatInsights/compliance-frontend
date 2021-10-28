@@ -169,6 +169,6 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
 ];
 
 export const features = {
-  tags: false,
+  tags: true,
   pdfReport: false,
 };
