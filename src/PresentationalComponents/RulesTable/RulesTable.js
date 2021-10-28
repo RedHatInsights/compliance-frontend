@@ -82,6 +82,7 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        exportable: true,
       }}
       {...rulesTableProps}
     />

@@ -77,11 +77,13 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
       columns={
         Array [
           Object {
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "title",
             "title": "Name",
           },
           Object {
+            "exportKey": "severity",
             "renderFunc": [Function],
             "sortByArray": Array [
               "high",
@@ -100,6 +102,7 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
             "props": Object {
               "tooltip": "Ansible",
             },
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "remediationAvailable",
             "title": <span>
@@ -198,11 +201,13 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
       columns={
         Array [
           Object {
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "title",
             "title": "Name",
           },
           Object {
+            "exportKey": "severity",
             "renderFunc": [Function],
             "sortByArray": Array [
               "high",
@@ -221,6 +226,7 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
             "props": Object {
               "tooltip": "Ansible",
             },
+            "renderExport": [Function],
             "renderFunc": [Function],
             "sortByProp": "remediationAvailable",
             "title": <span>

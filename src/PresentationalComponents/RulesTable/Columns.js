@@ -13,18 +13,21 @@ import {
 export const Name = {
   title: 'Name',
   sortByProp: 'title',
+  renderExport: ({ title, identifier }) => `${title} - ${identifier.label}`,
   renderFunc: renderComponent(Rule),
 };
 
 export const Policy = {
   title: 'Policy',
   sortByFunction: (rule) => rule?.profile?.name,
+  renderExport: (rule) => rule?.profile?.name,
   renderFunc: renderComponent(PolicyCell),
 };
 
 export const Severity = {
   title: 'Severity',
   sortByProp: 'severity',
+  exportKey: 'severity',
   transforms: [fitContent],
   sortByArray: ['high', 'medium', 'low', 'unknown'],
   renderFunc: renderComponent(SeverityCell),
@@ -33,6 +36,7 @@ export const Severity = {
 export const Passed = {
   title: 'Passed',
   sortByProp: 'compliant',
+  renderExport: (rule) => (rule?.compliant ? 'Yes' : 'No'),
   renderFunc: renderComponent(PassedCell),
 };
 
@@ -48,5 +52,6 @@ export const Ansible = {
   },
   transforms: [fitContent],
   sortByProp: 'remediationAvailable',
+  renderExport: (rule) => (rule?.remediationAvailable ? 'Yes' : 'No'),
   renderFunc: renderComponent(AnsibleCell),
 };
