@@ -53,7 +53,13 @@ export const SystemsTable = ({
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const osMinorVersionFilter = useOsMinorVersionFilter(
-    showOsMinorVersionFilter
+    showOsMinorVersionFilter,
+    {
+      variables: {
+        filter: defaultFilter,
+        ...(policyId && { policyId }),
+      },
+    }
   );
   const {
     toolbarProps: conditionalFilter,
