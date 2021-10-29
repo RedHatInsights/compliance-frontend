@@ -117,10 +117,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
         ) : null}
 
         {compliantSystems && compliantSystemCount ? (
-          <SubSection
-            title="Compliant systems"
-            metaTitle={`${compliantSystemCount} systems (${percentCompliant}% compliant)`}
-          >
+          <SubSection title="Compliant systems">
             <SystemsTable systems={compliantSystems} />
           </SubSection>
         ) : null}

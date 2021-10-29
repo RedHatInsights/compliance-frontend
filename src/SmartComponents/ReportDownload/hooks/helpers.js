@@ -1,5 +1,7 @@
 import { orderByArray } from 'Utilities/helpers';
 import { SEVERITY_LEVELS } from '@/constants';
+import groupBy from 'lodash/groupBy';
+import natsort from 'natsort';
 
 // TODO move to utilities
 // to make these helpers available elsewhere and then use where needed
@@ -59,15 +61,31 @@ export const unsupportedSystemsData = (systems) =>
 export const supportedSystemsData = (systems) =>
   systems.filter((system) => isSystemSupported(system));
 
-const sortBySystemsCount = (rules) =>
-  rules.sort((ruleWithCount) => ruleWithCount.systemCount);
+export const sortBySystemsCount = (rules) =>
+  rules.sort((a, b) => natsort(a.systemsCount, b.systemsCount));
+
+const sortBySeverity = (rules, order = 'asc') =>
+  orderByArray(rules, 'severity', SEVERITY_LEVELS, order);
+
+export const topTenRulesSortedBySeverityAndSystemCount = (
+  failedRulesWithCountsArray
+) => {
+  const topTenRulesBySeverity = sortBySeverity(
+    failedRulesWithCountsArray,
+    'asc'
+  ).slice(0, 10);
+  const rulesGroupedBySeverity = groupBy(topTenRulesBySeverity, 'severity');
+
+  return SEVERITY_LEVELS.flatMap((rulesGroupKey) =>
+    sortBySystemsCount(rulesGroupedBySeverity[rulesGroupKey] || [])
+  );
+};
 
 // Returns the "top ten" failed rules by system count
 // or just random "top 10" rules by severity
 // TODO refactor.
-const topTenFromRulesWithCounts = (failedRulesWithCounts) => {
+export const topTenFromRulesWithCounts = (failedRulesWithCounts) => {
   const failedRulesWithCountsArray = Object.values(failedRulesWithCounts);
-
   const topTenByCount = sortBySystemsCount(failedRulesWithCountsArray).slice(
     0,
     10
@@ -78,14 +96,9 @@ const topTenFromRulesWithCounts = (failedRulesWithCounts) => {
       .length === 10;
 
   const topTenBySeverity = () =>
-    orderByArray(
-      failedRulesWithCountsArray,
-      'severity',
-      SEVERITY_LEVELS,
-      'asc'
-    ).slice(0, 10);
+    topTenRulesSortedBySeverityAndSystemCount(failedRulesWithCountsArray);
 
-  return topTenIsSingleCount ? topTenBySeverity() : topTenByCount;
+  return topTenIsSingleCount ? topTenByCount : topTenBySeverity();
 };
 
 // Sums up rules and adds the number of systems failed for each

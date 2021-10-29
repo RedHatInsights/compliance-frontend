@@ -20,18 +20,204 @@ Array [
 ]
 `;
 
+exports[`sortBySystemsCount rules sorted desc by systems count 1`] = `
+Array [
+  Object {
+    "name": "First",
+    "systemsCount": 10,
+  },
+  Object {
+    "name": "Second",
+    "systemsCount": 5,
+  },
+  Object {
+    "name": "Third",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "Fourth",
+    "systemsCount": 0,
+  },
+]
+`;
+
 exports[`topTenFailedRulesData returns top 10 failed 1`] = `
 Array [
   "Profile #5 Rule #0",
-  "Profile #5 Rule #1",
-  "Profile #5 Rule #2",
-  "Profile #5 Rule #3",
   "Profile #5 Rule #4",
-  "Profile #5 Rule #5",
-  "Profile #5 Rule #6",
-  "Profile #5 Rule #7",
   "Profile #5 Rule #8",
+  "Profile #5 Rule #12",
+  "Profile #5 Rule #1",
+  "Profile #5 Rule #5",
   "Profile #5 Rule #9",
+  "Profile #5 Rule #13",
+  "Profile #5 Rule #2",
+  "Profile #5 Rule #6",
+]
+`;
+
+exports[`topTenFromRulesWithCounts rules sorted by severity and systems count #2 1`] = `
+Array [
+  Object {
+    "name": "1",
+    "severity": "high",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "2",
+    "severity": "high",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "3",
+    "severity": "medium",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "4",
+    "severity": "medium",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "5",
+    "severity": "low",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "6",
+    "severity": "low",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "7",
+    "severity": "unknown",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "8",
+    "severity": "unknown",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "9",
+    "severity": "unknown",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "10",
+    "severity": "unknown",
+    "systemsCount": 1,
+  },
+]
+`;
+
+exports[`topTenFromRulesWithCounts rules sorted by severity and systems count 1`] = `
+Array [
+  Object {
+    "name": "1",
+    "severity": "high",
+    "systemsCount": 10,
+  },
+  Object {
+    "name": "2",
+    "severity": "high",
+    "systemsCount": 5,
+  },
+  Object {
+    "name": "5",
+    "severity": "medium",
+    "systemsCount": 3,
+  },
+  Object {
+    "name": "6",
+    "severity": "medium",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "3",
+    "severity": "low",
+    "systemsCount": 13,
+  },
+  Object {
+    "name": "4",
+    "severity": "low",
+    "systemsCount": 10,
+  },
+  Object {
+    "name": "7",
+    "severity": "unknown",
+    "systemsCount": 4,
+  },
+  Object {
+    "name": "8",
+    "severity": "unknown",
+    "systemsCount": 5,
+  },
+  Object {
+    "name": "9",
+    "severity": "unknown",
+    "systemsCount": 3,
+  },
+  Object {
+    "name": "10",
+    "severity": "unknown",
+    "systemsCount": 2,
+  },
+]
+`;
+
+exports[`topTenFromRulesWithCounts rules sorted by severity and systems count 2`] = `
+Array [
+  Object {
+    "name": "1",
+    "severity": "high",
+    "systemsCount": 15,
+  },
+  Object {
+    "name": "2",
+    "severity": "high",
+    "systemsCount": 10,
+  },
+  Object {
+    "name": "3",
+    "severity": "high",
+    "systemsCount": 11,
+  },
+  Object {
+    "name": "4",
+    "severity": "high",
+    "systemsCount": 10,
+  },
+  Object {
+    "name": "5",
+    "severity": "high",
+    "systemsCount": 7,
+  },
+  Object {
+    "name": "6",
+    "severity": "high",
+    "systemsCount": 5,
+  },
+  Object {
+    "name": "7",
+    "severity": "high",
+    "systemsCount": 4,
+  },
+  Object {
+    "name": "8",
+    "severity": "high",
+    "systemsCount": 3,
+  },
+  Object {
+    "name": "9",
+    "severity": "high",
+    "systemsCount": 1,
+  },
+  Object {
+    "name": "10",
+    "severity": "high",
+    "systemsCount": 0,
+  },
 ]
 `;
 
