@@ -85,7 +85,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
           style: styles.sectionTitle,
         }}
       >
-        <Panel withColumn={false}>
+        <Panel withColumn={false} style={{ marginBottom: '20px' }}>
           <PanelItem title="Non-compliant systems">
             {nonCompliantSystemCount}
           </PanelItem>
@@ -102,21 +102,13 @@ const ReportPDF = ({ data, ssgFinder }) => {
         </Panel>
 
         {nonCompliantSystems && nonCompliantSystemCount ? (
-          <SubSection
-            title="Non-compliant systems"
-            metaTitle={`${nonCompliantSystemCount} systems (${
-              100 - percentCompliant
-            }% non-compliant)`}
-          >
+          <SubSection title="Non-compliant systems">
             <SystemsTable systems={nonCompliantSystems} />
           </SubSection>
         ) : null}
 
         {unsupportedSystems && unsupportedSystemCount ? (
-          <SubSection
-            title="Systems with unsupported configuration"
-            metaTitle={`${unsupportedSystemCount} systems`}
-          >
+          <SubSection title="Systems with unsupported configuration">
             <UnsupportedSystemsTable
               systems={unsupportedSystems}
               ssgFinder={ssgFinder}
