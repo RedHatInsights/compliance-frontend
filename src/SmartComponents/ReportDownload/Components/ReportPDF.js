@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import {
-  Paragraph,
   Panel,
   Table,
   Column,
@@ -43,12 +42,12 @@ const ReportPDF = ({ data, ssgFinder }) => {
 
       {userNotes && (
         <View style={styles.userNotes}>
-          <Paragraph style={styles.userNotesTitle}>
-            <Text style={styles.bold}>User notes</Text>
-          </Paragraph>
-          <Paragraph>
+          <View style={styles.userNotesTitle}>
+            <Text>User notes</Text>
+          </View>
+          <View>
             <Text>{userNotes}</Text>
-          </Paragraph>
+          </View>
         </View>
       )}
 
