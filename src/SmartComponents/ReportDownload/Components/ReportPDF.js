@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import {
-  Paragraph,
   Panel,
   Table,
   Column,
@@ -43,12 +42,12 @@ const ReportPDF = ({ data, ssgFinder }) => {
 
       {userNotes && (
         <View style={styles.userNotes}>
-          <Paragraph style={styles.userNotesTitle}>
-            <Text style={styles.bold}>User notes</Text>
-          </Paragraph>
-          <Paragraph>
+          <View style={styles.userNotesTitle}>
+            <Text>User notes</Text>
+          </View>
+          <View>
             <Text>{userNotes}</Text>
-          </Paragraph>
+          </View>
         </View>
       )}
 
@@ -86,7 +85,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
           style: styles.sectionTitle,
         }}
       >
-        <Panel withColumn={false}>
+        <Panel withColumn={false} style={{ marginBottom: '20px' }}>
           <PanelItem title="Non-compliant systems">
             {nonCompliantSystemCount}
           </PanelItem>
@@ -103,21 +102,13 @@ const ReportPDF = ({ data, ssgFinder }) => {
         </Panel>
 
         {nonCompliantSystems && nonCompliantSystemCount ? (
-          <SubSection
-            title="Non-compliant systems"
-            metaTitle={`${nonCompliantSystemCount} systems (${
-              100 - percentCompliant
-            }% non-compliant)`}
-          >
+          <SubSection title="Non-compliant systems">
             <SystemsTable systems={nonCompliantSystems} />
           </SubSection>
         ) : null}
 
         {unsupportedSystems && unsupportedSystemCount ? (
-          <SubSection
-            title="Systems with unsupported configuration"
-            metaTitle={`${unsupportedSystemCount} systems`}
-          >
+          <SubSection title="Systems with unsupported configuration">
             <UnsupportedSystemsTable
               systems={unsupportedSystems}
               ssgFinder={ssgFinder}
@@ -126,10 +117,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
         ) : null}
 
         {compliantSystems && compliantSystemCount ? (
-          <SubSection
-            title="Compliant systems"
-            metaTitle={`${compliantSystemCount} systems (${percentCompliant}% compliant)`}
-          >
+          <SubSection title="Compliant systems">
             <SystemsTable systems={compliantSystems} />
           </SubSection>
         ) : null}
