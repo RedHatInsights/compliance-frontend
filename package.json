@@ -134,6 +134,7 @@
     "build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
     "test": "jest --passWithNoTests",
     "test:nocoverage": "jest --passWithNoTests --no-coverage",
+    "test:snapshots": "jest -u --passWithNoTests --no-coverage",
     "coverage": "codecov",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",
