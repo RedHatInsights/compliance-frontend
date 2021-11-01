@@ -8,6 +8,7 @@ import {
 } from './Filters';
 import { uniq } from 'Utilities/helpers';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
+import { useWithFeature } from 'Utilities/testHelpers';
 
 expect.extend(filterHelpers);
 
@@ -20,26 +21,28 @@ jest.mock('react-router-dom', () => ({
 const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
-  it('expect to render without error', () => {
-    const wrapper = shallow(<ReportsTable profiles={profiles} />);
+  useWithFeature('pdfReport', () => {
+    it('expect to render without error', () => {
+      const wrapper = shallow(<ReportsTable profiles={profiles} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
+      expect(toJson(wrapper)).toMatchSnapshot();
+    });
 
-  it('expect to have filters properly rendered', () => {
-    const policyTypes = uniq(
-      profiles.map(({ policyType }) => policyType).filter((i) => !!i)
-    );
-    const operatingSystems = uniq(
-      profiles.map(({ majorOsVersion }) => majorOsVersion).filter((i) => !!i)
-    );
-    const component = <ReportsTable profiles={profiles} />;
+    it('expect to have filters properly rendered', () => {
+      const policyTypes = uniq(
+        profiles.map(({ policyType }) => policyType).filter((i) => !!i)
+      );
+      const operatingSystems = uniq(
+        profiles.map(({ majorOsVersion }) => majorOsVersion).filter((i) => !!i)
+      );
+      const component = <ReportsTable profiles={profiles} />;
 
-    expect(component).toHaveFiltersFor([
-      ...policyNameFilter,
-      ...policyComplianceFilter,
-      ...policyTypeFilter(policyTypes),
-      ...operatingSystemFilter(operatingSystems),
-    ]);
+      expect(component).toHaveFiltersFor([
+        ...policyNameFilter,
+        ...policyComplianceFilter,
+        ...policyTypeFilter(policyTypes),
+        ...operatingSystemFilter(operatingSystems),
+      ]);
+    });
   });
 });

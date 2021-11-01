@@ -23,6 +23,7 @@ const ReportsTable = ({ profiles }) => {
 
   return (
     <TableToolsTable
+      PDFEnabled={pdfReportEnabled}
       aria-label="Reports"
       ouiaId="ReportsTable"
       columns={[
