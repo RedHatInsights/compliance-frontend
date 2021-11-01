@@ -15,7 +15,7 @@ const RulesTable = ({ rules }) => {
     identifierLabel(rule),
     // TODO: Add icon svg for severity
     capitalize(rule?.severity),
-    `${rule.systemCount}`,
+    `${rule.systemsCount}`,
   ]);
 
   return <Table withHeader rows={[headerRow, ...failedRuleRows]} />;
