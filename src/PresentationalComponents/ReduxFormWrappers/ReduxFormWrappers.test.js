@@ -1,8 +1,4 @@
-import {
-  ReduxFormTextInput,
-  ReduxFormCreatableSelectInput,
-  ReduxFormTextArea,
-} from './ReduxFormWrappers';
+import { ReduxFormTextInput, ReduxFormTextArea } from './ReduxFormWrappers';
 
 describe('ReduxFormTextInput', () => {
   it('expect to render without error', () => {
@@ -27,21 +23,6 @@ describe('ReduxFormTextInput', () => {
       additionalProp: 'Prop1',
     };
     const wrapper = shallow(<ReduxFormTextInput {...field} />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-});
-
-describe('ReduxFormCreatableSelectInput', () => {
-  it('expect to render without error', () => {
-    const field = {
-      input: {
-        onChange: jest.fn(),
-      },
-      selected: 'SELECTED_VALUE',
-      additionalProp: 'Prop1',
-    };
-    const wrapper = shallow(<ReduxFormCreatableSelectInput {...field} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });
