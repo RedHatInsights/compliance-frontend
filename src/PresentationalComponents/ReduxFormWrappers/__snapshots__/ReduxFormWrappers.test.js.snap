@@ -1,32 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReduxFormCreatableSelectInput expect to render without error 1`] = `
-<Select$1
-  additionalProp="Prop1"
-  input={
-    Object {
-      "onChange": [MockFunction],
-    }
-  }
-  isClearable={false}
-  isSearchable={false}
-  loadingMessage="Loading..."
-  menuIsPortal={false}
-  noOptionsMessage="No options"
-  noResultsMessage="No results found"
-  onChange={[MockFunction]}
-  options={Array []}
-  placeholder="Choose..."
-  selectVariant="createable"
-  selected="SELECTED_VALUE"
-  showLessLabel="Show less"
-  showMoreLabel="more"
-  simpleValue={true}
-  updatingMessage="Loading data..."
-  value="SELECTED_VALUE"
-/>
-`;
-
 exports[`ReduxFormTextArea expect to render without error 1`] = `
 <TextArea
   additionalProp="Prop1"
