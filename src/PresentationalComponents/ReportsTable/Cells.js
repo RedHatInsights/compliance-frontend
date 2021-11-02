@@ -71,6 +71,7 @@ export const CompliantSystems = ({
   return (
     <React.Fragment>
       <Progress
+        aria-label="Compliant systems"
         measureLocation={'outside'}
         value={
           testResultHostCount
