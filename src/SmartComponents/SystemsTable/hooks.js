@@ -414,7 +414,7 @@ const useFetchTag = () => {
   };
 };
 
-export const useTags = (tagsEnabled, fetchArguments) => {
+export const useTags = (fetchArguments) => {
   const [currentTags, setCurrentTags] = useState();
   const fetchTags = useFetchTag();
 
@@ -438,29 +438,18 @@ export const useTags = (tagsEnabled, fetchArguments) => {
     };
   };
 
-  return tagsEnabled
-    ? {
-        props: {
-          hideFilters: {
-            name: true,
-            tags: false,
-            registeredWith: true,
-            stale: true,
-          },
-          showTags: true,
-        },
-        currentTags,
-        setCurrentTags,
-        getTags,
-      }
-    : {
-        props: {
-          hideFilters: {
-            name: true,
-            tags: true,
-            registeredWith: true,
-            stale: true,
-          },
-        },
-      };
+  return {
+    props: {
+      hideFilters: {
+        name: true,
+        tags: false,
+        registeredWith: true,
+        stale: true,
+      },
+      showTags: true,
+    },
+    currentTags,
+    setCurrentTags,
+    getTags,
+  };
 };

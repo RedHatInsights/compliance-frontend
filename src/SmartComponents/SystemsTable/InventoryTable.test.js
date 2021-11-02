@@ -19,9 +19,6 @@ import { osMinorVersionFilter as mockOsMinorVersionFilter } from './__mocks__/os
 import InventoryTableMock from './__mocks__/InventoryTableMock';
 import useFetchSystemsMockBuilder from './__mocks__/useFetchSystemsMockBuilder';
 
-import useFeature from 'Utilities/hooks/useFeature';
-jest.mock('Utilities/hooks/useFeature');
-
 jest.mock('@apollo/client', () => ({
   ...jest.requireActual('@apollo/client'),
   useApolloClient: () => jest.fn(),
@@ -125,7 +122,6 @@ describe('InventoryTable', () => {
 
   describe('via @testing-library/react', () => {
     beforeEach(() => {
-      useFeature.mockImplementation((feature) => feature === 'tags');
       window.insights = {
         chrome: {
           getUserPermissions: () => Promise.resolve([]),
