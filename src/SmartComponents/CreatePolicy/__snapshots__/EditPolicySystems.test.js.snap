@@ -13,7 +13,7 @@ exports[`EditPolicySystems expect to render without error 1`] = `
   </TextContent>
   <Form>
     <FormGroup>
-      <InventoryTable
+      <SystemsTable
         columns={
           Array [
             Object {

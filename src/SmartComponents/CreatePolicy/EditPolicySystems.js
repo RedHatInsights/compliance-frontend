@@ -13,7 +13,7 @@ import {
   TextVariants,
   WizardContextConsumer,
 } from '@patternfly/react-core';
-import { InventoryTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
@@ -85,7 +85,7 @@ export const EditPolicySystems = ({
       </TextContent>
       <Form>
         <FormGroup>
-          <InventoryTable
+          <SystemsTable
             showOsMinorVersionFilter={[osMajorVersion]}
             prependComponent={
               <PrependComponent osMajorVersion={osMajorVersion} />

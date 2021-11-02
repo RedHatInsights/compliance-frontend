@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
-import { InventoryTable } from './InventoryTable';
-import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
+import { SystemsTable } from './SystemsTable';
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
@@ -45,57 +45,53 @@ jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   ...jest.requireActual('@redhat-cloud-services/frontend-components/Inventory'),
   InventoryTable: jest.fn(),
 }));
-FECInventoryTable.mockImplementation((props) => (
-  <InventoryTableMock {...props} />
-));
+InventoryTable.mockImplementation((props) => <InventoryTableMock {...props} />);
 
-describe('InventoryTable', () => {
+describe('SystemsTable', () => {
   const store = init().getStore();
 
   it('returns', () => {
-    expect(renderJson(<InventoryTable />)).toMatchSnapshot();
+    expect(renderJson(<SystemsTable />)).toMatchSnapshot();
   });
 
   it('returns without actions', () => {
-    expect(
-      renderJson(<InventoryTable showActions={false} />)
-    ).toMatchSnapshot();
+    expect(renderJson(<SystemsTable showActions={false} />)).toMatchSnapshot();
   });
 
   it('returns without remediations', () => {
     expect(
-      renderJson(<InventoryTable remediationsEnabled={false} />)
+      renderJson(<SystemsTable remediationsEnabled={false} />)
     ).toMatchSnapshot();
   });
 
   it('returns showAllSystems', () => {
-    expect(renderJson(<InventoryTable showAllSystems />)).toMatchSnapshot();
+    expect(renderJson(<SystemsTable showAllSystems />)).toMatchSnapshot();
   });
 
   it('returns with a showComplianceSystemsInfo', () => {
     expect(
-      renderJson(<InventoryTable showComplianceSystemsInfo />)
+      renderJson(<SystemsTable showComplianceSystemsInfo />)
     ).toMatchSnapshot();
   });
 
   it('returns compact', () => {
-    expect(renderJson(<InventoryTable compact />)).toMatchSnapshot();
+    expect(renderJson(<SystemsTable compact />)).toMatchSnapshot();
   });
 
   it('returns with compliantFilter', () => {
-    expect(renderJson(<InventoryTable compliantFilter />)).toMatchSnapshot();
+    expect(renderJson(<SystemsTable compliantFilter />)).toMatchSnapshot();
   });
 
   it('returns with showOnlySystemsWithTestResults', () => {
     expect(
-      renderJson(<InventoryTable showOnlySystemsWithTestResults />)
+      renderJson(<SystemsTable showOnlySystemsWithTestResults />)
     ).toMatchSnapshot();
   });
 
   it('expect to have filters properly rendered', () => {
     const component = (
       <Provider store={store}>
-        <InventoryTable
+        <SystemsTable
           showOsMinorVersionFilter
           compliantFilter
           remediationsEnabled={false}
@@ -136,7 +132,7 @@ describe('InventoryTable', () => {
       const emptyStateComponent = <div>Empty State</div>;
       const component = (
         <Provider store={store}>
-          <InventoryTable {...{ emptyStateComponent }} />
+          <SystemsTable {...{ emptyStateComponent }} />
         </Provider>
       );
 

@@ -10,7 +10,7 @@ import {
 } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
-import { InventoryTable as FECInventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad } from './constants';
 import {
   useFetchSystems,
@@ -23,7 +23,7 @@ import {
   useTags,
 } from './hooks';
 
-export const InventoryTable = ({
+export const SystemsTable = ({
   columns,
   showAllSystems,
   policyId,
@@ -195,7 +195,7 @@ export const InventoryTable = ({
             }
           />
         )}
-        <FECInventoryTable
+        <InventoryTable
           {...systemProps}
           {...tagsProps}
           disableDefaultColumns
@@ -244,7 +244,7 @@ export const InventoryTable = ({
   );
 };
 
-InventoryTable.propTypes = {
+SystemsTable.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string])
   ),
@@ -276,7 +276,7 @@ InventoryTable.propTypes = {
   noSystemsTable: PropTypes.node,
 };
 
-InventoryTable.defaultProps = {
+SystemsTable.defaultProps = {
   policyId: '',
   showActions: true,
   enableExport: true,
@@ -288,4 +288,4 @@ InventoryTable.defaultProps = {
   preselectedSystems: [],
 };
 
-export default InventoryTable;
+export default SystemsTable;

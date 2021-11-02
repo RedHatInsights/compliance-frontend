@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PolicySystemsTab expect to render with no systems table 1`] = `
-<InventoryTable
+<SystemsTable
   columns={
     Array [
       Object {
@@ -747,7 +747,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
 `;
 
 exports[`PolicySystemsTab expect to render without error 1`] = `
-<InventoryTable
+<SystemsTable
   columns={
     Array [
       Object {

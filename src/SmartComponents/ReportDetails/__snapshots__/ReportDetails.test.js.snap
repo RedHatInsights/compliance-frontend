@@ -299,7 +299,7 @@ exports[`ReportDetails expect to render without error 1`] = `
         <GridItem
           span={12}
         >
-          <InventoryTable
+          <SystemsTable
             columns={
               Array [
                 Object {
@@ -1374,7 +1374,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         <GridItem
           span={12}
         >
-          <InventoryTable
+          <SystemsTable
             columns={
               Array [
                 Object {

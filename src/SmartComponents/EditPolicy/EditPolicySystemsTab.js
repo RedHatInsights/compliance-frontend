@@ -6,7 +6,7 @@ import {
   TextContent,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { InventoryTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
 import { useHistory } from 'react-router-dom';
 import * as Columns from '../SystemsTable/Columns';
@@ -54,7 +54,7 @@ const EditPolicySystemsTab = ({
 
   return (
     <React.Fragment>
-      <InventoryTable
+      <SystemsTable
         columns={[
           Columns.Name,
           Columns.inventoryColumn('tags'),
