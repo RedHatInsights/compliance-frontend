@@ -13,6 +13,7 @@ export const Name = {
   props: {
     width: 60,
   },
+  exportKey: 'name',
   renderFunc: renderComponent(NameCell),
 };
 
@@ -23,6 +24,7 @@ export const OperatingSystem = {
   props: {
     width: 20,
   },
+  renderExport: ({ majorOsVersion }) => `RHEL ${majorOsVersion} `,
   renderFunc: renderComponent(OperatingSystemCell),
 };
 
@@ -34,6 +36,14 @@ export const CompliantSystems = {
   props: {
     width: 20,
   },
+  renderExport: ({
+    testResultHostCount = 0,
+    compliantHostCount = 0,
+    unsupportedHostCount = 0,
+  }) =>
+    `${compliantHostCount} of ${testResultHostCount} systems${
+      unsupportedHostCount > 0 ? ` | ${unsupportedHostCount} unsupported` : ''
+    }`,
   renderFunc: renderComponent(CompliantSystemsCell),
 };
 
@@ -41,5 +51,17 @@ export const PDFExportDownload = {
   title: '',
   renderFunc: renderComponent(PDFExportDownloadCell),
 };
+
+const PolicyType = {
+  title: 'Policy Type',
+  renderExport: (profile) => profile.policyType,
+};
+
+export const exportableColumns = [
+  Name,
+  PolicyType,
+  OperatingSystem,
+  CompliantSystems,
+];
 
 export default [Name, OperatingSystem, CompliantSystems];
