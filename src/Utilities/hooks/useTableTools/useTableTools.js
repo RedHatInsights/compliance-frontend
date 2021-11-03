@@ -56,8 +56,13 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     additionalDedicatedActions: selectedFilterToolbarProps?.dedicatedAction,
   });
 
+  const filteredAndSortedItems = (items, filter, sorter) => {
+    const filtered = filter ? filter(items) : items;
+    return sorter ? sorter(filtered) : filtered;
+  };
+
   const { toolbarProps: exportToolbarProps } = useExportWithItems(
-    items,
+    filteredAndSortedItems(items, filter, sorter),
     columns,
     options
   );
