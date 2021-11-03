@@ -1,10 +1,18 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Button } from '@patternfly/react-core';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import flatten from 'lodash/flatten';
 import { connect } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { AnsibeTowerIcon } from '@patternfly/react-icons';
+
+const FallbackButton = () => (
+  <Button variant="primary" isDisabled>
+    <AnsibeTowerIcon size="sm" color="var(--pf-c-button--m-primary--Color)" />
+    &nbsp;Remediate
+  </Button>
+);
 
 class ComplianceRemediationButton extends React.Component {
   formatRule = ({ title, refId }, profile, system, majorOsVersion) => ({
@@ -118,6 +126,7 @@ class ComplianceRemediationButton extends React.Component {
           buttonProps={{
             ouiaId: 'RemediateButton',
           }}
+          fallback={<FallbackButton />}
         >
           <AnsibeTowerIcon
             size="sm"
