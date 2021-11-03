@@ -3,7 +3,7 @@
 exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 <Fragment>
   <Progress
-    aria-label={null}
+    aria-label="Compliant systems"
     aria-labelledby={null}
     className=""
     id=""
@@ -43,7 +43,7 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
   <Progress
-    aria-label={null}
+    aria-label="Compliant systems"
     aria-labelledby={null}
     className=""
     id=""
