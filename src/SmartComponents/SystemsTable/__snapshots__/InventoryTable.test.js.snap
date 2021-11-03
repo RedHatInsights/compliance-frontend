@@ -194,15 +194,17 @@ exports[`InventoryTable returns 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -410,15 +412,17 @@ exports[`InventoryTable returns compact 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -501,15 +505,17 @@ exports[`InventoryTable returns showAllSystems 1`] = `
       }
       fallback={<Spinner />}
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -723,15 +729,17 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -987,15 +995,17 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -1203,15 +1213,17 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -1411,15 +1423,17 @@ exports[`InventoryTable returns without actions 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,
@@ -1621,15 +1635,17 @@ exports[`InventoryTable returns without remediations 1`] = `
         }
       }
       getEntities={[Function]}
+      getTags={[Function]}
       hideFilters={
         Object {
           "name": true,
           "registeredWith": true,
           "stale": true,
-          "tags": true,
+          "tags": false,
         }
       }
       onLoad={[Function]}
+      showTags={true}
       tableProps={
         Object {
           "canSelectAll": false,

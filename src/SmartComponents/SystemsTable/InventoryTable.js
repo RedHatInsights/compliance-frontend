@@ -22,7 +22,6 @@ import {
   useSystemBulkSelect,
   useTags,
 } from './hooks';
-import useFeature from 'Utilities/hooks/useFeature';
 
 export const InventoryTable = ({
   columns,
@@ -48,7 +47,6 @@ export const InventoryTable = ({
   onSelect: onSelectProp,
   noSystemsTable,
 }) => {
-  const tagsEnabled = useFeature('tags');
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -82,7 +80,7 @@ export const InventoryTable = ({
     currentTags,
     setCurrentTags,
     getTags,
-  } = useTags(tagsEnabled, {
+  } = useTags({
     variables: {
       filter: systemsFilter,
       ...(policyId && { policyId }),
