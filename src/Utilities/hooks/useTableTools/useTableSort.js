@@ -56,4 +56,16 @@ const useTableSort = (columns, options = {}) => {
   };
 };
 
+export const useTableSortWithItems = (items, columns, options) => {
+  const { tableProps, sorter } = useTableSort(columns, options);
+
+  return {
+    tableProps: {
+      ...tableProps,
+      sortBy: items.length > 0 ? tableProps.sortBy : undefined,
+    },
+    sorter,
+  };
+};
+
 export default useTableSort;

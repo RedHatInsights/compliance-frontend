@@ -1,5 +1,5 @@
 import useFilterConfig from './useFilterConfig';
-import useTableSort from './useTableSort';
+import { useTableSortWithItems } from './useTableSort';
 import usePaginate from './usePaginate';
 import useRowsBuilder from './useRowsBuilder';
 import { useBulkSelectWithItems } from './useBulkSelect';
@@ -13,11 +13,6 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     options;
 
   const identifiedItems = useItemIdentify(items, options);
-
-  const { tableProps: sortableTableProps, sorter } = useTableSort(
-    columns,
-    options
-  );
 
   const {
     toolbarProps: pagintionToolbarProps,
@@ -36,6 +31,12 @@ const useTableTools = (items = [], columns = [], options = {}) => {
 
   const { transformer: openItem, tableProps: expandableProps } =
     useExpandable(options);
+
+  const { tableProps: sortableTableProps, sorter } = useTableSortWithItems(
+    filter ? filter(items) : items,
+    columns,
+    options
+  );
 
   const {
     transformer: selectItem,
