@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useTableSort from './useTableSort';
+import useTableSort, { useTableSortWithItems } from './useTableSort';
 import columns from './__fixtures__/columns';
 
 describe('useTableSort', () => {
@@ -19,5 +19,20 @@ describe('useTableSort', () => {
       })
     );
     expect(result.current.tableProps.sortBy).toEqual(sortBy);
+  });
+});
+
+describe('useTableSortWithItems', () => {
+  it('returns no sortBy when there are no items', () => {
+    const sortBy = {
+      index: 3,
+      direction: 'asc',
+    };
+    const { result } = renderHook(() =>
+      useTableSortWithItems([], columns, {
+        sortBy,
+      })
+    );
+    expect(result.current.tableProps.sortBy).toEqual(undefined);
   });
 });
