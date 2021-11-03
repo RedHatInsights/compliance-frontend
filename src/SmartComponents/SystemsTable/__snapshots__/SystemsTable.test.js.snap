@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InventoryTable returns 1`] = `
+exports[`SystemsTable returns 1`] = `
 <StateView
   stateValues={
     Object {
@@ -218,7 +218,7 @@ exports[`InventoryTable returns 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns compact 1`] = `
+exports[`SystemsTable returns compact 1`] = `
 <StateView
   stateValues={
     Object {
@@ -436,7 +436,7 @@ exports[`InventoryTable returns compact 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns showAllSystems 1`] = `
+exports[`SystemsTable returns showAllSystems 1`] = `
 <StateView
   stateValues={
     Object {
@@ -529,7 +529,7 @@ exports[`InventoryTable returns showAllSystems 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
+exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
 <StateView
   stateValues={
     Object {
@@ -753,7 +753,7 @@ exports[`InventoryTable returns with a showComplianceSystemsInfo 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns with compliantFilter 1`] = `
+exports[`SystemsTable returns with compliantFilter 1`] = `
 <StateView
   stateValues={
     Object {
@@ -1019,7 +1019,7 @@ exports[`InventoryTable returns with compliantFilter 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
+exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
 <StateView
   stateValues={
     Object {
@@ -1237,7 +1237,7 @@ exports[`InventoryTable returns with showOnlySystemsWithTestResults 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns without actions 1`] = `
+exports[`SystemsTable returns without actions 1`] = `
 <StateView
   stateValues={
     Object {
@@ -1447,7 +1447,7 @@ exports[`InventoryTable returns without actions 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable returns without remediations 1`] = `
+exports[`SystemsTable returns without remediations 1`] = `
 <StateView
   stateValues={
     Object {
@@ -1659,7 +1659,7 @@ exports[`InventoryTable returns without remediations 1`] = `
 </StateView>
 `;
 
-exports[`InventoryTable via @testing-library/react emptyStateComponent should show NO emptystate when tags queries return no results 1`] = `
+exports[`SystemsTable via @testing-library/react emptyStateComponent should show NO emptystate when tags queries return no results 1`] = `
 <div>
   <div>
     <div
@@ -1941,7 +1941,7 @@ exports[`InventoryTable via @testing-library/react emptyStateComponent should sh
 </div>
 `;
 
-exports[`InventoryTable via @testing-library/react emptyStateComponent should show an emptystate when there are no results 1`] = `
+exports[`SystemsTable via @testing-library/react emptyStateComponent should show an emptystate when there are no results 1`] = `
 <div>
   <div>
     Empty State

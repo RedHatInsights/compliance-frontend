@@ -2,12 +2,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { NoSystemsTableWithWarning } from 'PresentationalComponents';
-import { InventoryTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
 const PolicySystemsTab = ({ policy }) => (
-  <InventoryTable
+  <SystemsTable
     columns={[
       Columns.customName({
         showLink: true,

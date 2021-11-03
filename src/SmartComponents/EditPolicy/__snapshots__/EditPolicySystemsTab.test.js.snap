@@ -2,7 +2,7 @@
 
 exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
 <Fragment>
-  <InventoryTable
+  <SystemsTable
     columns={
       Array [
         Object {
@@ -706,7 +706,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
 
 exports[`EditPolicySystemsTab expect to render without error 1`] = `
 <Fragment>
-  <InventoryTable
+  <SystemsTable
     columns={
       Array [
         Object {

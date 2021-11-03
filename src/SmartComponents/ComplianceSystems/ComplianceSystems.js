@@ -7,7 +7,7 @@ import PageHeader, {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import { InventoryTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
@@ -41,7 +41,7 @@ export const ComplianceSystems = () => {
         <StateViewWithError stateValues={{ error, data, loading }}>
           <StateViewPart stateKey="data">
             {policies && (
-              <InventoryTable
+              <SystemsTable
                 columns={[
                   Columns.customName({
                     showLink: true,

@@ -35,7 +35,7 @@ import {
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useFeature from 'Utilities/hooks/useFeature';
-import { InventoryTable } from 'SmartComponents';
+import { SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
@@ -232,7 +232,7 @@ export const ReportDetails = ({ route }) => {
         <Main>
           <Grid hasGutter>
             <GridItem span={12}>
-              <InventoryTable
+              <SystemsTable
                 showOsMinorVersionFilter={[profile.majorOsVersion]}
                 columns={[
                   Columns.customName({
