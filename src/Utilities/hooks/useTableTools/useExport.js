@@ -93,10 +93,12 @@ const useExport = ({ exporter, columns = [], isDisabled = false }) => {
 };
 
 export const useExportWithItems = (items, columns, options = {}) => {
-  const exportEnabled = options.exportable;
+  const exportEnabled = options?.exportable;
+  const { columns: exportableColumns } =
+    typeof options.exportable === 'object' ? options.exportable : {};
   const exportProps = useExport({
     exporter: () => items,
-    columns,
+    columns: exportableColumns || columns,
     isDisabled: items.length === 0,
   });
 

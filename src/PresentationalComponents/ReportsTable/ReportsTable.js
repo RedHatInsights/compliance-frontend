@@ -4,7 +4,7 @@ import { emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
 import useFeature from 'Utilities/hooks/useFeature';
-import columns, { PDFExportDownload } from './Columns';
+import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
   policyNameFilter,
   policyTypeFilter,
@@ -41,6 +41,11 @@ const ReportsTable = ({ profiles }) => {
             []),
           ...policyComplianceFilter,
         ],
+      }}
+      options={{
+        exportable: {
+          columns: exportableColumns,
+        },
       }}
     />
   );
