@@ -29,8 +29,8 @@ const INVENTORY_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
 const INVENTORY_PORT = envWithDefault('INVENTORY_PORT', 8081);
 
 const LOCAL_INVENTORY_FRONTEND = envWithDefault('LOCAL_INVENTORY_FRONTEND', false);
-const INVENTORY_FRONTEND_HOST = envWithDefault('INVENTORY_HOST', defaultHost());
-const INVENTORY_FRONTEND_PORT = envWithDefault('INVENTORY_PORT', 8003);
+const INVENTORY_FRONTEND_HOST = envWithDefault('INVENTORY_FRONTEND_HOST', defaultHost());
+const INVENTORY_FRONTEND_PORT = envWithDefault('INVENTORY_FRONTEND_PORT', 8003);
 
 const LOCAL_REMEDIATIONS = envWithDefault('LOCAL_REMEDIATIONS', false);
 const REMEDIATIONS_HOST = envWithDefault('REMEDIATIONS_HOST', defaultHost());
