@@ -170,6 +170,18 @@ export const GET_SYSTEMS_TAGS = gql`
   }
 `;
 
+export const GET_SYSTEMS_OSES = gql`
+  query getSystems($filter: String!) {
+    systems(search: $filter) {
+      osVersions {
+        name
+        major
+        minor
+      }
+    }
+  }
+`;
+
 export const policyFilter = (policies, osFilter) => [
   ...systemsPolicyFilterConfiguration(policies),
   ...(osFilter ? systemsOsFilterConfiguration(policies) : []),

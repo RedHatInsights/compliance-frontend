@@ -1,13 +1,13 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient, useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import useCollection from 'Utilities/hooks/api/useCollection';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import {
   osMinorVersionFilter,
   GET_MINIMAL_SYSTEMS,
   GET_SYSTEMS_TAGS,
+  GET_SYSTEMS_OSES,
 } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
@@ -23,12 +23,9 @@ const groupByMajorVersion = (versions = [], showFilter = []) => {
   };
 
   return versions.reduce((acc, currentValue) => {
-    if (showVersion(currentValue.osMajorVersion)) {
-      acc[String(currentValue.osMajorVersion)] = [
-        ...new Set([
-          ...(acc[currentValue.osMajorVersion] || []),
-          currentValue.osMinorVersion,
-        ]),
+    if (showVersion(currentValue.major)) {
+      acc[String(currentValue.major)] = [
+        ...new Set([...(acc[currentValue.major] || []), currentValue.minor]),
       ];
     }
 
@@ -36,16 +33,15 @@ const groupByMajorVersion = (versions = [], showFilter = []) => {
   }, []);
 };
 
-export const useOsMinorVersionFilter = (showFilter) => {
-  const { data: supportedSsgs } = useCollection('supported_ssgs', {
-    type: 'supportedSsg',
+export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
+  let { data } = useQuery(GET_SYSTEMS_OSES, {
     skip: !showFilter,
+    ...fetchArguments,
   });
+  const { osVersions } = data?.systems || {};
 
   return showFilter
-    ? osMinorVersionFilter(
-        groupByMajorVersion(supportedSsgs?.collection, showFilter)
-      )
+    ? osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
     : [];
 };
 
