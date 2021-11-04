@@ -13,7 +13,8 @@ import {
 export const Name = {
   title: 'Name',
   sortByProp: 'title',
-  renderExport: ({ title, identifier }) => `${title} - ${identifier.label}`,
+  renderExport: ({ title, identifier }) =>
+    `${title}${identifier ? ` - ${identifier.label}` : ''}`,
   renderFunc: renderComponent(Rule),
 };
 
