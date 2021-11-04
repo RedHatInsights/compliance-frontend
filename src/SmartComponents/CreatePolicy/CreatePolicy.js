@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { formValueSelector } from 'redux-form';
+import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { Wizard } from '@patternfly/react-core';
@@ -17,7 +17,7 @@ import {
   validateSystemsPage,
 } from './validate';
 
-export const CreatePolicy = ({
+export const CreatePolicyForm = ({
   benchmark,
   osMajorVersion,
   complianceThreshold,
@@ -26,10 +26,10 @@ export const CreatePolicy = ({
   refId,
   selectedRuleRefIds,
   systemIds,
+  reset,
 }) => {
   const history = useHistory();
   const [stepIdReached, setStepIdReached] = useState(1);
-
   const resetAnchor = () => {
     const { location } = history;
     if (location.hash) {
@@ -43,6 +43,7 @@ export const CreatePolicy = ({
   };
 
   const onClose = () => {
+    reset();
     history.push('/scappolicies');
   };
 
@@ -110,7 +111,7 @@ export const CreatePolicy = ({
   );
 };
 
-CreatePolicy.propTypes = {
+CreatePolicyForm.propTypes = {
   benchmark: propTypes.string,
   osMajorVersion: propTypes.string,
   osMinorVersionCounts: propTypes.arrayOf(
@@ -129,11 +130,16 @@ CreatePolicy.propTypes = {
   refId: propTypes.string,
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string),
   systemIds: propTypes.arrayOf(propTypes.string),
+  reset: propTypes.func,
 };
 
-CreatePolicy.defaultProps = {
+CreatePolicyForm.defaultProps = {
   isOpen: false,
 };
+
+const CreatePolicy = reduxForm({
+  form: 'policyForm',
+})(CreatePolicyForm);
 
 const selector = formValueSelector('policyForm');
 export default connect((state) => ({
