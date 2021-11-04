@@ -1,9 +1,10 @@
+import { useLocation } from 'react-router-dom';
+import { Tab } from '@patternfly/react-core';
 import TabSwitcher, {
   ContentTab,
   RoutedTabSwitcher,
   RoutedTabs,
 } from './TabSwitcher';
-import { Tab } from '@patternfly/react-core';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -19,9 +20,9 @@ jest.mock('react-router-dom', () => ({
 describe('TabSwitcher', () => {
   it('expect to render first tab', () => {
     const wrapper = shallow(
-      <TabSwitcher activeKey={0}>
-        <Tab eventKey={0}>First Tab</Tab>
-        <Tab tabId={1}>Second Tab</Tab>
+      <TabSwitcher activeKey="0">
+        <Tab eventKey="0">First Tab</Tab>
+        <Tab tabId="1">Second Tab</Tab>
       </TabSwitcher>
     );
 
@@ -30,9 +31,31 @@ describe('TabSwitcher', () => {
 
   it('expect to render second tab', () => {
     const wrapper = shallow(
-      <TabSwitcher activeKey={1}>
-        <Tab eventKey={0}>First Tab</Tab>
-        <Tab eventKey={1}>Second Tab</Tab>
+      <TabSwitcher activeKey="1">
+        <Tab eventKey="0">First Tab</Tab>
+        <Tab eventKey="1">Second Tab</Tab>
+      </TabSwitcher>
+    );
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('expect to render second default tab', () => {
+    const wrapper = shallow(
+      <TabSwitcher defaultTab="1" activeKey="101">
+        <Tab eventKey="0">First Tab</Tab>
+        <Tab eventKey="1">Second Tab</Tab>
+      </TabSwitcher>
+    );
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('expect to render first as default tab', () => {
+    const wrapper = shallow(
+      <TabSwitcher activeKey="101">
+        <Tab eventKey="0">First Tab</Tab>
+        <Tab eventKey="1">Second Tab</Tab>
       </TabSwitcher>
     );
 
@@ -41,9 +64,13 @@ describe('TabSwitcher', () => {
 });
 
 describe('TabSwitcher', () => {
-  it('expect to render first tab', () => {
+  it('expect to set systems as activeKey', () => {
+    useLocation.mockImplementation(() => ({
+      hash: '#system',
+      path: '/current/location',
+    }));
     const wrapper = shallow(
-      <RoutedTabSwitcher defaultTab="system">
+      <RoutedTabSwitcher defaultTab="details">
         <ContentTab eventKey="details">DETAILS</ContentTab>
         <ContentTab eventKey="rules">RULES</ContentTab>
         <ContentTab eventKey="systems">SYSTEMS</ContentTab>
@@ -53,12 +80,16 @@ describe('TabSwitcher', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
-  it('expect to render second tab', () => {
+  it('expect to set 1 as active tab', () => {
+    useLocation.mockImplementation(() => ({
+      hash: '#1',
+      path: '/current/location',
+    }));
     const wrapper = shallow(
-      <TabSwitcher activeKey={1}>
-        <Tab eventKey={0}>First Tab</Tab>
-        <Tab eventKey={1}>Second Tab</Tab>
-      </TabSwitcher>
+      <RoutedTabSwitcher defaultTab="0">
+        <Tab eventKey="0">First Tab</Tab>
+        <Tab eventKey="1">Second Tab</Tab>
+      </RoutedTabSwitcher>
     );
 
     expect(toJson(wrapper)).toMatchSnapshot();

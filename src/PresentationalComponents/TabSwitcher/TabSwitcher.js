@@ -4,7 +4,10 @@ import propTypes from 'prop-types';
 import { Tabs } from '@patternfly/react-core';
 import { useAnchor } from 'Utilities/Router';
 
+// Plain tab component without any styling
 export const ContentTab = ({ children }) => children;
+
+const findTab = (tabs, key) => tabs.find((tab) => tab.props.eventKey === key);
 
 const useAnchorLevels = (defaultAnchor, level) => {
   const anchor = useAnchor(defaultAnchor);
@@ -17,22 +20,25 @@ const useAnchorLevels = (defaultAnchor, level) => {
   };
 };
 
-const TabSwitcher = (props) =>
-  props.children
-    .map((tab) => (tab.props.eventKey === props.activeKey ? tab : undefined))
-    .filter((c) => !!c);
+// Shows always only one tab, either the current or if not available the default
+const TabSwitcher = ({ children, activeKey: currentAnchor, defaultTab }) => {
+  const getDefaultTab = () =>
+    defaultTab ? findTab(children, defaultTab) : children[0];
+  const currentTab = findTab(children, currentAnchor);
+
+  return currentTab ? [currentTab] : [getDefaultTab()];
+};
 
 TabSwitcher.propTypes = {
   activeTab: propTypes.number,
   children: propTypes.node,
 };
 
+// Routed Plain switcher that can be used with PatternFly tabs
 export const RoutedTabSwitcher = ({ children, defaultTab, level }) => {
   const { currentAnchor } = useAnchorLevels(defaultTab, level);
 
-  return children
-    .map((tab) => (tab.props.eventKey === currentAnchor ? tab : undefined))
-    .filter((c) => !!c);
+  return <TabSwitcher activeKey={currentAnchor}>{children}</TabSwitcher>;
 };
 
 RoutedTabSwitcher.propTypes = {
@@ -45,6 +51,8 @@ RoutedTabSwitcher.defaultProps = {
   level: 0,
 };
 
+// Allows to use full PatternFly tabs and switch them using the URL hash
+// It can be used with filled tabs (EditPolicyForm) or just tab "buttons" (PolicyDetails)
 export const RoutedTabs = ({
   children,
   defaultTab,
@@ -67,13 +75,16 @@ export const RoutedTabs = ({
       hash: tabAnchor.slice(0, level + 1).join('|'),
     });
   };
+  const tabAvailable = children
+    .map(({ props: { eventKey } }) => eventKey)
+    .find((tabAnchor) => tabAnchor === currentAnchor);
 
   return (
     <Tabs
       {...props}
       ouiaId={ouiaId}
       onSelect={handleTabSelect}
-      activeKey={currentAnchor}
+      activeKey={tabAvailable ? currentAnchor : defaultTab}
     >
       {children}
     </Tabs>

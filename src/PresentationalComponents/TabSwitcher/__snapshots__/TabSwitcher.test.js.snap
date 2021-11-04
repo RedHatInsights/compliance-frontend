@@ -70,28 +70,73 @@ exports[`RoutedTabs expect to render second tab 1`] = `
 </Tabs>
 `;
 
-exports[`TabSwitcher expect to render first tab 1`] = `
+exports[`TabSwitcher expect to render first as default tab 1`] = `
 <Tab
-  eventKey={0}
+  eventKey="0"
 >
   First Tab
 </Tab>
 `;
 
-exports[`TabSwitcher expect to render first tab 2`] = `null`;
-
-exports[`TabSwitcher expect to render second tab 1`] = `
+exports[`TabSwitcher expect to render first tab 1`] = `
 <Tab
-  eventKey={1}
+  eventKey="0"
+>
+  First Tab
+</Tab>
+`;
+
+exports[`TabSwitcher expect to render second default tab 1`] = `
+<Tab
+  eventKey="1"
 >
   Second Tab
 </Tab>
 `;
 
-exports[`TabSwitcher expect to render second tab 2`] = `
+exports[`TabSwitcher expect to render second tab 1`] = `
 <Tab
-  eventKey={1}
+  eventKey="1"
 >
   Second Tab
 </Tab>
+`;
+
+exports[`TabSwitcher expect to set 1 as active tab 1`] = `
+<TabSwitcher
+  activeKey="1"
+>
+  <Tab
+    eventKey="0"
+  >
+    First Tab
+  </Tab>
+  <Tab
+    eventKey="1"
+  >
+    Second Tab
+  </Tab>
+</TabSwitcher>
+`;
+
+exports[`TabSwitcher expect to set systems as activeKey 1`] = `
+<TabSwitcher
+  activeKey="system"
+>
+  <ContentTab
+    eventKey="details"
+  >
+    DETAILS
+  </ContentTab>
+  <ContentTab
+    eventKey="rules"
+  >
+    RULES
+  </ContentTab>
+  <ContentTab
+    eventKey="systems"
+  >
+    SYSTEMS
+  </ContentTab>
+</TabSwitcher>
 `;
