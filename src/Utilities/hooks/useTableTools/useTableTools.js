@@ -63,7 +63,11 @@ const useTableTools = (items = [], columns = [], options = {}) => {
   };
 
   const { toolbarProps: exportToolbarProps } = useExportWithItems(
-    filteredAndSortedItems(items, filter, sorter),
+    filteredAndSortedItems(
+      selectedItems?.length > 0 ? selectedItems : items,
+      filter,
+      sorter
+    ),
     columns,
     options
   );
