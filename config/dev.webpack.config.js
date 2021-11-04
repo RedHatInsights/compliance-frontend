@@ -118,7 +118,7 @@ plugins.push(
       root: resolve(__dirname, '../'),
       useFileHash: false,
       exposes: {
-        './RootApp': resolve(__dirname, '../src/AppEntry'),
+        './RootApp': resolve(__dirname, '../src/DevAppEntry'),
         './SystemDetail': resolve(
           __dirname,
           '../src/SmartComponents/SystemDetails/ComplianceDetail'

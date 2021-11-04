@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import logger from 'redux-logger';
-import AppEntry from './AppEntry';
-
-const DevAppEntry = () => <AppEntry logger={logger} />;
+import DevAppEntry from './DevAppEntry';
 
 ReactDOM.render(<DevAppEntry />, document.getElementById('root'));
 
