@@ -188,7 +188,7 @@ export const EditPolicyProfilesRules = ({
       );
       setSelectedRuleRefIds(newSelection);
     }
-  }, [profiles, loadingState]);
+  }, [JSON.stringify(profiles), loadingState]);
 
   return (
     <React.Fragment>

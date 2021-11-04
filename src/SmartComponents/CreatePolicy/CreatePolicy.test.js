@@ -3,16 +3,16 @@ import { benchmarksQuery } from '@/__fixtures__/benchmarks_rules.js';
 
 jest.mock('@apollo/client');
 
-import { CreatePolicy } from './CreatePolicy.js';
+import { CreatePolicyForm } from './CreatePolicy.js';
 
-describe('CreatePolicy', () => {
+describe('CreatePolicyForm', () => {
   it('expect to render the wizard', () => {
     useQuery.mockImplementation(() => ({
       data: { latestBenchmarks: benchmarksQuery },
       error: false,
       loading: false,
     }));
-    const wrapper = shallow(<CreatePolicy />);
+    const wrapper = shallow(<CreatePolicyForm />);
     expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
   });
 
@@ -22,7 +22,7 @@ describe('CreatePolicy', () => {
       error: false,
       loading: false,
     }));
-    const wrapper = shallow(<CreatePolicy systemIds={['123', '456']} />);
+    const wrapper = shallow(<CreatePolicyForm systemIds={['123', '456']} />);
     expect(
       wrapper
         .find('Wizard')

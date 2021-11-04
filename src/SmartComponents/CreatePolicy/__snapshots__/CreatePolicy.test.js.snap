@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CreatePolicy expect to render the wizard 1`] = `
+exports[`CreatePolicyForm expect to render the wizard 1`] = `
 <Wizard
   appendTo={null}
   backButtonText="Back"
@@ -76,4 +76,4 @@ exports[`CreatePolicy expect to render the wizard 1`] = `
 />
 `;
 
-exports[`CreatePolicy expect to render the wizard with enableNext on systems 1`] = `true`;
+exports[`CreatePolicyForm expect to render the wizard with enableNext on systems 1`] = `true`;
