@@ -111,6 +111,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
             "type": "radio",
           },
           Object {
+            "className": undefined,
             "filterValues": Object {
               "groups": Array [
                 Object {

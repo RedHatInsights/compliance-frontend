@@ -324,6 +324,7 @@ Object {
           "type": "radio",
         },
         Object {
+          "className": undefined,
           "filterValues": Object {
             "groups": Array [
               Object {
