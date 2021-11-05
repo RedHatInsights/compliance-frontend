@@ -264,23 +264,12 @@ export const useSystemsExport = ({
         description: 'Reinitiate this export to try again.',
       });
     },
-    onComplete: () => {
-      dispatchNotification({
-        variant: 'success',
-        title: 'Downloading export',
-      });
-    },
   });
 
   const selectedFilter = () =>
     selected?.length > 0 ? toIdFilter(selected) : undefined;
 
   const exporter = async () => {
-    dispatchNotification({
-      variant: 'info',
-      title: 'Preparing export',
-      description: 'Once complete, your download will start automatically.',
-    });
     const fetchedItems = await fetchBatched(
       fetchSystems,
       total,
@@ -296,6 +285,19 @@ export const useSystemsExport = ({
     exporter,
     columns,
     isDisabled: total === 0,
+    onStart: () => {
+      dispatchNotification({
+        variant: 'info',
+        title: 'Preparing export',
+        description: 'Once complete, your download will start automatically.',
+      });
+    },
+    onComplete: () => {
+      dispatchNotification({
+        variant: 'success',
+        title: 'Downloading export',
+      });
+    },
   });
 
   return exportConfig;

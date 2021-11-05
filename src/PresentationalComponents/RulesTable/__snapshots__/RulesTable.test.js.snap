@@ -426,7 +426,10 @@ exports[`RulesTable expect to pass on options 1`] = `
           ],
         },
       ],
-      "exportable": true,
+      "exportable": Object {
+        "onComplete": [Function],
+        "onStart": [Function],
+      },
       "identifier": [Function],
       "onSelect": undefined,
       "preselected": Array [],
@@ -862,7 +865,10 @@ exports[`RulesTable expect to render without error 1`] = `
           ],
         },
       ],
-      "exportable": true,
+      "exportable": Object {
+        "onComplete": [Function],
+        "onStart": [Function],
+      },
       "identifier": [Function],
       "onSelect": undefined,
       "preselected": Array [],

@@ -1,6 +1,7 @@
 /* eslint max-len: 0 */
 import packageJson from './../package.json';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
+import { dispatchNotification } from 'Utilities/Dispatcher';
 
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
 export const DEFAULT_TITLE_SUFFIX = ` - ${DEFAULT_TITLE}`;
@@ -186,5 +187,23 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     ],
   },
 ];
+
+export const COMPLIANCE_TABLE_DEFAULTS = {
+  exportable: {
+    onStart: () => {
+      dispatchNotification({
+        variant: 'info',
+        title: 'Preparing export',
+        description: 'Once complete, your download will start automatically.',
+      });
+    },
+    onComplete: () => {
+      dispatchNotification({
+        variant: 'success',
+        title: 'Downloading export',
+      });
+    },
+  },
+};
 
 export const features = {};

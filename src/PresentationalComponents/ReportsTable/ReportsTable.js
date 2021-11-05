@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
@@ -38,7 +39,9 @@ const ReportsTable = ({ profiles }) => {
         ],
       }}
       options={{
+        ...COMPLIANCE_TABLE_DEFAULTS,
         exportable: {
+          ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
       }}
