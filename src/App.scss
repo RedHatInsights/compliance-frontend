@@ -110,6 +110,26 @@ button.pf-c-button.pf-m-plain {
     text-align: left;
 }
 
-.ins-c-primary-toolbar__group-filter .pf-c-menu-toggle {
+button.pf-c-menu-toggle {
    padding: 6px 8px;
+
+   &.ins-c-tagfilter {
+     padding: 0;
+   }
  }
+
+.ins-c-primary-toolbar__group-filter button.ins-c-osfilter__os-filter-button {
+  background: #FFF;
+
+  label {
+    cursor: default;
+  }
+
+  input {
+    display: none;
+  }
+
+  .ins-c-osfilter__no-os {
+    color: #000;
+  }
+}

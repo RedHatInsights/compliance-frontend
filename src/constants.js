@@ -115,6 +115,22 @@ const toSystemsOsMinorFilterConfigurationItem =
     })),
   });
 
+const emptyFilterDropDownItem = {
+  value: '',
+  isDisabled: true,
+  items: [
+    {
+      value: '',
+      label: (
+        <div className="ins-c-osfilter__no-os">No OS versions available</div>
+      ),
+      isDisabled: true,
+      items: [],
+      className: 'ins-c-osfilter__os-filter-button',
+    },
+  ],
+};
+
 export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   const filterString = (value) => [
     Object.keys(value)
@@ -128,9 +144,12 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
       .filter((v) => !!v)
       .join(' OR '),
   ];
-  const items = Object.keys(osMajorVersions).map(
-    toSystemsOsMinorFilterConfigurationItem(osMajorVersions)
-  );
+  const osVersions = Object.keys(osMajorVersions);
+
+  const items =
+    osVersions.length > 0
+      ? osVersions.map(toSystemsOsMinorFilterConfigurationItem(osMajorVersions))
+      : [emptyFilterDropDownItem];
 
   return [
     {

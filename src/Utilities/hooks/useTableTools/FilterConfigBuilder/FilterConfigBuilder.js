@@ -83,10 +83,13 @@ class FilterConfigBuilder {
     type: conditionalFilterType.group,
     label: item.label,
     id: stringToId(item.label),
+    className: item.className,
     filterValues: {
       selected: value,
-      onChange: (_event, selectedValues) => {
-        handler(stringToId(item.label), selectedValues);
+      onChange: (_event, selectedValues, _group, item) => {
+        if (item.meta) {
+          handler(stringToId(item.label), selectedValues);
+        }
       },
       groups: item.items.map((item) => ({
         ...item,
