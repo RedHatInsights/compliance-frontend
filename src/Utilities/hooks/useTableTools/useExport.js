@@ -59,13 +59,29 @@ export const jsonForItems = ({ items, columns }) => {
   return encodeURI(`${encoding('json')},${JSON.stringify(result)}`);
 };
 
-const useExport = ({ exporter, columns = [], isDisabled = false }) => {
+const callCallback = (callback, ...args) => callback && callback(...args);
+
+const useExport = ({
+  exporter,
+  columns = [],
+  isDisabled = false,
+  onStart,
+  onComplete,
+  onError,
+}) => {
   const exportableColumns = columns.filter(
     (column) =>
       column.export !== false && (column.exportKey || column.renderExport)
   );
   const exportWithFormat = async (format) => {
-    const items = await exporter();
+    callCallback(onStart);
+    const items = await exporter()
+      .then((items) => {
+        callCallback(onComplete, items);
+        return items;
+      })
+      .catch((error) => callCallback(onError, error));
+
     const formater = format === 'csv' ? csvForItems : jsonForItems;
 
     if (items) {
@@ -94,12 +110,17 @@ const useExport = ({ exporter, columns = [], isDisabled = false }) => {
 
 export const useExportWithItems = (items, columns, options = {}) => {
   const exportEnabled = options?.exportable;
-  const { columns: exportableColumns } =
-    typeof options.exportable === 'object' ? options.exportable : {};
+  const {
+    columns: exportableColumns,
+    onStart,
+    onComplete,
+  } = typeof options.exportable === 'object' ? options.exportable : {};
   const exportProps = useExport({
-    exporter: () => items,
+    exporter: () => Promise.resolve(items),
     columns: exportableColumns || columns,
     isDisabled: items.length === 0,
+    onStart,
+    onComplete,
   });
 
   return exportEnabled ? exportProps : {};

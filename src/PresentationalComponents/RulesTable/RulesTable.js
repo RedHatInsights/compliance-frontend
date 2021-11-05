@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
@@ -73,6 +74,7 @@ const RulesTable = ({
         }),
       }}
       options={{
+        ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
         identifier: (item) => item.refId,
         selectable: !!handleSelect || remediationsEnabled,
@@ -82,7 +84,6 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
-        exportable: true,
       }}
       {...rulesTableProps}
     />

@@ -6,7 +6,7 @@ import useExport, { jsonForItems, csvForItems } from './useExport';
 const exampleItems = items(25);
 
 describe('useExport', () => {
-  const exporter = jest.fn(() => exampleItems);
+  const exporter = jest.fn(() => Promise.resolve(exampleItems));
   const defaultOptions = {
     exporter,
     columns,
