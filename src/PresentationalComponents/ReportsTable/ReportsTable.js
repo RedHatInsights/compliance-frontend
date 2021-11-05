@@ -3,8 +3,7 @@ import propTypes from 'prop-types';
 import { emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
-import useFeature from 'Utilities/hooks/useFeature';
-import columns, { exportableColumns, PDFExportDownload } from './Columns';
+import columns, { exportableColumns } from './Columns';
 import {
   policyNameFilter,
   policyTypeFilter,
@@ -13,7 +12,6 @@ import {
 } from './Filters';
 
 const ReportsTable = ({ profiles }) => {
-  const pdfReportEnabled = useFeature('pdfReport');
   const policyTypes = uniq(
     profiles.map(({ policyType }) => policyType).filter((i) => !!i)
   );
@@ -25,10 +23,7 @@ const ReportsTable = ({ profiles }) => {
     <TableToolsTable
       aria-label="Reports"
       ouiaId="ReportsTable"
-      columns={[
-        ...columns,
-        ...((pdfReportEnabled && [PDFExportDownload]) || []),
-      ]}
+      columns={columns}
       items={profiles}
       emptyRows={emptyRows}
       isStickyHeader
