@@ -64,4 +64,4 @@ export const exportableColumns = [
   CompliantSystems,
 ];
 
-export default [Name, OperatingSystem, CompliantSystems];
+export default [Name, OperatingSystem, CompliantSystems, PDFExportDownload];

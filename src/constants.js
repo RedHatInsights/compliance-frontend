@@ -168,6 +168,4 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
   },
 ];
 
-export const features = {
-  pdfReport: true,
-};
+export const features = {};
