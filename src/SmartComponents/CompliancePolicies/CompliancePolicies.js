@@ -56,7 +56,7 @@ export const CompliancePolicies = () => {
   const location = useLocation();
   const createLink = (
     <BackgroundLink to="/scappolicies/new">
-      <Button variant="primary" ouiaId="NewPolicyButton">
+      <Button variant="primary" ouiaId="CreateNewPolicyButton">
         Create new policy
       </Button>
     </BackgroundLink>
