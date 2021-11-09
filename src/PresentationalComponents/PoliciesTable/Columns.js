@@ -25,8 +25,16 @@ export const Name = {
     width: 45,
   },
   sortByProp: 'name',
+  renderExport: (policy) => policy.name,
   renderFunc: renderComponent(PolicyNameCell),
 };
+
+const PolicyType = {
+  title: 'Policy Type',
+  renderExport: (policy) => policy.policyType,
+};
+
+const osString = (policy) => `RHEL ${policy.majorOsVersion}`;
 
 export const OperatingSystem = {
   title: 'Operating system',
@@ -35,7 +43,8 @@ export const OperatingSystem = {
     width: 15,
   },
   sortByProp: 'majorOsVersion',
-  renderFunc: (_data, _id, policy) => `RHEL ${policy.majorOsVersion}`,
+  renderExport: osString,
+  renderFunc: (_data, _id, policy) => osString(policy),
 };
 
 export const Systems = {
@@ -44,6 +53,7 @@ export const Systems = {
     width: 15,
   },
   sortByProp: 'totalHostCount',
+  renderExport: (policy) => policy.totalHostCount,
   // eslint-disable-next-line react/display-name
   renderFunc: (_data, _id, policy) =>
     policy.totalHostCount > 0 ? (
@@ -53,18 +63,33 @@ export const Systems = {
     ),
 };
 
+const businessObjectiveString = (policy) =>
+  (policy.businessObjective && policy.businessObjective.title) || '--';
+
 export const BusinessObjective = {
   title: 'Business objective',
   sortByFunction: (policy) => policy?.businessObjective?.title,
-  renderFunc: (_data, _id, policy) =>
-    (policy.businessObjective && policy.businessObjective.title) || '--',
+  renderExport: businessObjectiveString,
+  renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
 };
+
+const complianceThresholdString = (policy) => `${policy.complianceThreshold}%`;
 
 export const ComplianceThreshold = {
   title: 'Compliance threshold',
   sortByProp: 'complianceThreshold',
-  renderFunc: (_data, _id, policy) => `${policy.complianceThreshold}%`,
+  renderExport: complianceThresholdString,
+  renderFunc: (_data, _id, policy) => complianceThresholdString(policy),
 };
+
+export const exportableColumns = [
+  Name,
+  PolicyType,
+  OperatingSystem,
+  Systems,
+  BusinessObjective,
+  ComplianceThreshold,
+];
 
 export default [
   Name,

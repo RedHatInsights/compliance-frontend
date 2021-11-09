@@ -12,6 +12,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 45,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "name",
         "title": "Name",
@@ -20,6 +21,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "majorOsVersion",
         "title": "Operating system",
@@ -31,16 +33,19 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "totalHostCount",
         "title": "Systems",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Business objective",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",

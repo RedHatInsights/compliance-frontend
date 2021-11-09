@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Button } from '@patternfly/react-core';
 import { BackgroundLink, emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import columns from './Columns';
+import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
 
 const DedicatedAction = () => (
@@ -58,6 +58,9 @@ export const PoliciesTable = ({ policies, location, history }) => {
       }}
       options={{
         dedicatedAction: DedicatedAction,
+        exportable: {
+          columns: exportableColumns,
+        },
       }}
       actionResolver={actionResolver}
     />
