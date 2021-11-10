@@ -8,18 +8,12 @@ import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
 import emptyRows from './EmptyRows';
 import buildFilterConfig from './Filters';
-import * as Columns from './Columns';
+import defaultColumns from './Columns';
 
 const RulesTable = ({
   system,
   profileRules,
-  columns = [
-    Columns.Name,
-    Columns.Policy,
-    Columns.Severity,
-    Columns.Passed,
-    Columns.Ansible,
-  ],
+  columns = defaultColumns,
   remediationsEnabled = true,
   remediationAvailableFilter = false,
   selectedFilter = false,

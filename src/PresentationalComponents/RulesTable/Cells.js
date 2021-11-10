@@ -7,7 +7,7 @@ import {
   ExclamationTriangleIcon,
   QuestionCircleIcon,
 } from '@patternfly/react-icons';
-
+import RemediationCell from '../RemediationCell/RemediationCell';
 const ruleProps = {
   title: propTypes.string,
   identifier: propTypes.object,
@@ -76,6 +76,7 @@ export const Passed = ({ compliant }) =>
   );
 Passed.propTypes = ruleProps;
 
-export const Ansible = ({ remediationAvailable }) =>
-  remediationAvailable ? <CheckCircleIcon className="ins-u-passed" /> : 'No';
-Ansible.propTypes = ruleProps;
+export const RemediatonColumnCell = ({ remediationAvailable }) => (
+  <RemediationCell hasPlaybook={remediationAvailable} />
+);
+RemediatonColumnCell.propTypes = ruleProps;
