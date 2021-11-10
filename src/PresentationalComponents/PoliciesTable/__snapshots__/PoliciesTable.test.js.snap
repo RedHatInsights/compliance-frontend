@@ -605,6 +605,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
             "title": "Compliance threshold",
           },
         ],
+        "onComplete": [Function],
+        "onStart": [Function],
       },
     }
   }
@@ -742,6 +744,8 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
             "title": "Compliance threshold",
           },
         ],
+        "onComplete": [Function],
+        "onStart": [Function],
       },
     }
   }
@@ -1354,6 +1358,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
             "title": "Compliance threshold",
           },
         ],
+        "onComplete": [Function],
+        "onStart": [Function],
       },
     }
   }
