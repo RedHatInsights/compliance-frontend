@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@patternfly/react-core';
+import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { BackgroundLink, emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import columns, { exportableColumns } from './Columns';
@@ -57,8 +58,10 @@ export const PoliciesTable = ({ policies, location, history }) => {
         filterConfig: filters,
       }}
       options={{
+        ...COMPLIANCE_TABLE_DEFAULTS,
         dedicatedAction: DedicatedAction,
         exportable: {
+          ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
       }}
