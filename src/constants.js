@@ -206,4 +206,6 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
   },
 };
 
-export const features = {};
+export const features = {
+  pdfReport: true,
+};
