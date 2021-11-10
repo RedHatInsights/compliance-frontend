@@ -122,45 +122,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                 },
               }
             }
-            to="/reports/1/pdf"
-          >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
-          </BackgroundLink>
-          <BackgroundLink
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "majorOsVersion": "7",
-                  "name": "profile1",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
             to="/reports/1/delete"
           >
             <Button
@@ -1168,45 +1129,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           sm={3}
           xl={3}
         >
-          <BackgroundLink
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "majorOsVersion": "7",
-                  "name": "profile1",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
-            to="/reports/1/pdf"
-          >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
-          </BackgroundLink>
           <BackgroundLink
             state={
               Object {
