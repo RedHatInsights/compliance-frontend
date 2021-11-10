@@ -11,6 +11,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         "props": Object {
           "width": 45,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "name",
         "title": "Name",
@@ -19,6 +20,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "majorOsVersion",
         "title": "Operating system",
@@ -30,16 +32,19 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "totalHostCount",
         "title": "Systems",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Business objective",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",
@@ -551,6 +556,56 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
   options={
     Object {
       "dedicatedAction": [Function],
+      "exportable": Object {
+        "columns": Array [
+          Object {
+            "props": Object {
+              "width": 45,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "name",
+            "title": "Name",
+          },
+          Object {
+            "renderExport": [Function],
+            "title": "Policy Type",
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "majorOsVersion",
+            "title": "Operating system",
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "totalHostCount",
+            "title": "Systems",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByFunction": [Function],
+            "title": "Business objective",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "complianceThreshold",
+            "title": "Compliance threshold",
+          },
+        ],
+      },
     }
   }
   ouiaId="PoliciesTable"
@@ -568,6 +623,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         "props": Object {
           "width": 45,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "name",
         "title": "Name",
@@ -576,6 +632,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "majorOsVersion",
         "title": "Operating system",
@@ -587,16 +644,19 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "totalHostCount",
         "title": "Systems",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Business objective",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",
@@ -633,6 +693,56 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
   options={
     Object {
       "dedicatedAction": [Function],
+      "exportable": Object {
+        "columns": Array [
+          Object {
+            "props": Object {
+              "width": 45,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "name",
+            "title": "Name",
+          },
+          Object {
+            "renderExport": [Function],
+            "title": "Policy Type",
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "majorOsVersion",
+            "title": "Operating system",
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "totalHostCount",
+            "title": "Systems",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByFunction": [Function],
+            "title": "Business objective",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "complianceThreshold",
+            "title": "Compliance threshold",
+          },
+        ],
+      },
     }
   }
   ouiaId="PoliciesTable"
@@ -650,6 +760,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 45,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "name",
         "title": "Name",
@@ -658,6 +769,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "majorOsVersion",
         "title": "Operating system",
@@ -669,16 +781,19 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "props": Object {
           "width": 15,
         },
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "totalHostCount",
         "title": "Systems",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Business objective",
       },
       Object {
+        "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",
@@ -1190,6 +1305,56 @@ exports[`PoliciesTable expect to render without error 1`] = `
   options={
     Object {
       "dedicatedAction": [Function],
+      "exportable": Object {
+        "columns": Array [
+          Object {
+            "props": Object {
+              "width": 45,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "name",
+            "title": "Name",
+          },
+          Object {
+            "renderExport": [Function],
+            "title": "Policy Type",
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "majorOsVersion",
+            "title": "Operating system",
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          Object {
+            "props": Object {
+              "width": 15,
+            },
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "totalHostCount",
+            "title": "Systems",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByFunction": [Function],
+            "title": "Business objective",
+          },
+          Object {
+            "renderExport": [Function],
+            "renderFunc": [Function],
+            "sortByProp": "complianceThreshold",
+            "title": "Compliance threshold",
+          },
+        ],
+      },
     }
   }
   ouiaId="PoliciesTable"
