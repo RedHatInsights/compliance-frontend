@@ -70,7 +70,7 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        identifier: (item) => item.refId,
+        identifier: (item) => `${item.profile.id}_${item.refId}`,
         selectable: !!handleSelect || remediationsEnabled,
         onSelect: handleSelect,
         preselected: selectedRefIds,
