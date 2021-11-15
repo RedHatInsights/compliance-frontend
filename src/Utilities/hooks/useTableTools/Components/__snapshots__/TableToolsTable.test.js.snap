@@ -43,6 +43,13 @@ exports[`TableToolsTable expect to have filters properly rendered 2`] = `
 exports[`TableToolsTable expect to render without error 1`] = `
 <Fragment>
   <PrimaryToolbar
+    actionsConfig={
+      Object {
+        "actions": Array [
+          undefined,
+        ],
+      }
+    }
     activeFiltersConfig={
       Object {
         "filters": Array [],

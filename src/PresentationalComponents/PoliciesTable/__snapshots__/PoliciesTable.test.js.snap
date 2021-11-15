@@ -608,6 +608,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
         "onComplete": [Function],
         "onStart": [Function],
       },
+      "manageColumns": false,
     }
   }
   ouiaId="PoliciesTable"
@@ -747,6 +748,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
         "onComplete": [Function],
         "onStart": [Function],
       },
+      "manageColumns": false,
     }
   }
   ouiaId="PoliciesTable"
@@ -1361,6 +1363,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "onComplete": [Function],
         "onStart": [Function],
       },
+      "manageColumns": false,
     }
   }
   ouiaId="PoliciesTable"
