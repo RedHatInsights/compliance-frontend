@@ -44,7 +44,17 @@ class ChipBuilder {
 
         return Object.keys(currentValue[groupValue]).map((itemValue) =>
           currentValue[groupValue][itemValue]
-            ? group?.items.find(findWithString(itemValue))
+            ? [
+                ...(group.groupSelectable
+                  ? [
+                      {
+                        label: group.label,
+                        value: group.value,
+                      },
+                    ]
+                  : []),
+                ...(group?.items || []),
+              ].find(findWithString(itemValue))
             : null
         );
       })
