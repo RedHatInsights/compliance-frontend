@@ -1,13 +1,11 @@
-import React from 'react';
-import { fitContent } from '@patternfly/react-table';
-import { AnsibeTowerIcon } from '@patternfly/react-icons';
+import { nowrap } from '@patternfly/react-table';
 import { renderComponent } from 'Utilities/helpers';
 import {
   Rule,
   Policy as PolicyCell,
   Severity as SeverityCell,
   Passed as PassedCell,
-  Ansible as AnsibleCell,
+  RemediatonColumnCell,
 } from './Cells';
 
 export const Name = {
@@ -29,7 +27,6 @@ export const Severity = {
   title: 'Severity',
   sortByProp: 'severity',
   exportKey: 'severity',
-  transforms: [fitContent],
   sortByArray: ['high', 'medium', 'low', 'unknown'],
   renderFunc: renderComponent(SeverityCell),
 };
@@ -41,18 +38,12 @@ export const Passed = {
   renderFunc: renderComponent(PassedCell),
 };
 
-export const Ansible = {
-  title: (
-    <span>
-      <AnsibeTowerIcon /> Ansible
-    </span>
-  ),
-  original: 'Ansible',
-  props: {
-    tooltip: 'Ansible',
-  },
-  transforms: [fitContent],
-  sortByProp: 'remediationAvailable',
-  renderExport: (rule) => (rule?.remediationAvailable ? 'Yes' : 'No'),
-  renderFunc: renderComponent(AnsibleCell),
+export const Remediaton = {
+  title: 'Remediaton',
+  transforms: [nowrap],
+  sortByFunction: (rule) => rule?.remediationAvailable,
+  renderExport: (rule) => (rule?.remediationAvailable ? 'Playbook' : 'Manual'),
+  renderFunc: renderComponent(RemediatonColumnCell),
 };
+
+export default [Name, Policy, Severity, Passed, Remediaton];
