@@ -31,7 +31,7 @@ const PolicyMultiversionRules = ({ policy }) => {
       <PageSection variant={PageSectionVariants.light}>
         <TabbedRules
           tabsData={tabsData}
-          columns={[Columns.Name, Columns.Severity, Columns.Ansible]}
+          columns={[Columns.Name, Columns.Severity, Columns.Remediaton]}
           level={1}
           options={{
             dedicatedAction: DedicatedAction,
