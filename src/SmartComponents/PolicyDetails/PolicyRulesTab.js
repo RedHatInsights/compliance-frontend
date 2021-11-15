@@ -39,7 +39,7 @@ const PolicyRulesTab = ({ loading, policy }) => {
       </PageSection>
       <RulesTable
         remediationsEnabled={false}
-        columns={[Columns.Name, Columns.Severity, Columns.Ansible]}
+        columns={[Columns.Name, Columns.Severity, Columns.Remediaton]}
         loading={loading}
         profileRules={[
           {

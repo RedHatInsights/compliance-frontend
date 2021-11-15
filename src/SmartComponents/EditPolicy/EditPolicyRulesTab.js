@@ -233,7 +233,7 @@ export const EditPolicyRulesTab = ({
           </Text>
         </TextContent>
         <TabbedRules
-          columns={[Columns.Name, Columns.Severity, Columns.Ansible]}
+          columns={[Columns.Name, Columns.Severity, Columns.Remediaton]}
           tabsData={tabsData}
           selectedRuleRefIds={selectedRuleRefIds}
           setSelectedRuleRefIds={setSelectedRuleRefIds}

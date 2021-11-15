@@ -8,18 +8,12 @@ import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
 import emptyRows from './EmptyRows';
 import buildFilterConfig from './Filters';
-import * as Columns from './Columns';
+import defaultColumns from './Columns';
 
 const RulesTable = ({
   system,
   profileRules,
-  columns = [
-    Columns.Name,
-    Columns.Policy,
-    Columns.Severity,
-    Columns.Passed,
-    Columns.Ansible,
-  ],
+  columns = defaultColumns,
   remediationsEnabled = true,
   remediationAvailableFilter = false,
   selectedFilter = false,
@@ -76,7 +70,7 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        identifier: (item) => item.refId,
+        identifier: (item) => `${item.profile.id}_${item.refId}`,
         selectable: !!handleSelect || remediationsEnabled,
         onSelect: handleSelect,
         preselected: selectedRefIds,
