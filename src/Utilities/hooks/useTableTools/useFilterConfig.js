@@ -26,10 +26,10 @@ const useFilterConfig = (options = {}) => {
     filterConfigBuilder.initialDefaultState(initialActiveFilters, filterConfig)
   );
   const onFilterUpdate = (filter, value) => {
-    setActiveFilters({
-      ...activeFilters,
+    setActiveFilters((prevFilters) => ({
+      ...prevFilters,
       [filter]: value,
-    });
+    }));
 
     setPage && setPage(1);
   };
