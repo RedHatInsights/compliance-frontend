@@ -58,7 +58,7 @@ const useQueryExportData = (
       variables: {
         perPage,
         page,
-        filter: '',
+        filter: `with_results_for_policy_id = ${policyId}`,
         policyId,
       },
     });
