@@ -39,7 +39,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
-        "title": "Remediaton",
+        "title": "Remediation",
         "transforms": Array [
           [Function],
         ],
@@ -465,7 +465,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
-        "title": "Remediaton",
+        "title": "Remediation",
         "transforms": Array [
           [Function],
         ],

@@ -99,7 +99,7 @@ export const EditPolicyProfilesRules = ({
   osMajorVersion,
   osMinorVersionCounts,
 }) => {
-  const columns = [Columns.Name, Columns.Severity, Columns.Remediaton];
+  const columns = [Columns.Name, Columns.Severity, Columns.Remediation];
   const osMinorVersions = osMinorVersionCounts
     .map((i) => i.osMinorVersion)
     .sort();

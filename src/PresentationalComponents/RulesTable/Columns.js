@@ -5,7 +5,7 @@ import {
   Policy as PolicyCell,
   Severity as SeverityCell,
   Passed as PassedCell,
-  RemediatonColumnCell,
+  RemediationColumnCell,
 } from './Cells';
 
 export const Name = {
@@ -38,12 +38,12 @@ export const Passed = {
   renderFunc: renderComponent(PassedCell),
 };
 
-export const Remediaton = {
-  title: 'Remediaton',
+export const Remediation = {
+  title: 'Remediation',
   transforms: [nowrap],
   sortByFunction: (rule) => rule?.remediationAvailable,
   renderExport: (rule) => (rule?.remediationAvailable ? 'Playbook' : 'Manual'),
-  renderFunc: renderComponent(RemediatonColumnCell),
+  renderFunc: renderComponent(RemediationColumnCell),
 };
 
-export default [Name, Policy, Severity, Passed, Remediaton];
+export default [Name, Policy, Severity, Passed, Remediation];
