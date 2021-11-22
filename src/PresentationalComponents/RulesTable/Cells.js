@@ -76,7 +76,7 @@ export const Passed = ({ compliant }) =>
   );
 Passed.propTypes = ruleProps;
 
-export const RemediatonColumnCell = ({ remediationAvailable }) => (
+export const RemediationColumnCell = ({ remediationAvailable }) => (
   <RemediationCell hasPlaybook={remediationAvailable} />
 );
-RemediatonColumnCell.propTypes = ruleProps;
+RemediationColumnCell.propTypes = ruleProps;
