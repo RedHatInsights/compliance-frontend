@@ -38,6 +38,10 @@ exports[`ReportsTable expect to render without error 1`] = `
           [Function],
         ],
       },
+      Object {
+        "renderFunc": [Function],
+        "title": "",
+      },
     ]
   }
   emptyRows={
