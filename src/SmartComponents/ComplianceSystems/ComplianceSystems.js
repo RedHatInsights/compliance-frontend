@@ -45,9 +45,9 @@ export const ComplianceSystems = () => {
                 columns={[
                   Columns.customName({
                     showLink: true,
-                    showOsInfo: true,
                   }),
                   Columns.inventoryColumn('tags'),
+                  Columns.OS,
                   Columns.Policies,
                   Columns.inventoryColumn('updated', { isStatic: true }),
                 ]}
