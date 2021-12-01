@@ -13,8 +13,8 @@ const PolicySystemsTab = ({ policy }) => (
         showLink: true,
       }),
       Columns.inventoryColumn('tags'),
+      Columns.OS,
       Columns.SsgVersion,
-      Columns.OperatingSystem,
     ]}
     showOsMinorVersionFilter={[policy.majorOsVersion]}
     query={GET_SYSTEMS}
