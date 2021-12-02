@@ -18,12 +18,14 @@ const RulesTable = ({
   remediationAvailableFilter = false,
   selectedFilter = false,
   handleSelect,
-  selectedRefIds = [],
+  selectedRules = [],
   hidePassed = false,
   options,
   ...rulesTableProps
 }) => {
   const rules = toRulesArrayWithProfile(profileRules);
+  const selectedRulesWithRemediations = (selectedRules) =>
+    (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showPassFailFilter =
     columns.filter((c) => c.title === 'Passed').length > 0;
   const policies = profileRules
@@ -33,7 +35,7 @@ const RulesTable = ({
       name: profile.name,
     }));
 
-  const remediationAction = ({ selected: selectedRules }) => (
+  const remediationAction = ({ selected }) => (
     <ComplianceRemediationButton
       allSystems={[
         {
@@ -43,9 +45,7 @@ const RulesTable = ({
           supported: system.supported,
         },
       ]}
-      selectedRules={(selectedRules || []).filter(
-        (rule) => rule.remediationAvailable
-      )}
+      selectedRules={selectedRulesWithRemediations(selected)}
     />
   );
 
@@ -70,10 +70,10 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        identifier: (item) => `${item.profile.id}_${item.refId}`,
+        identifier: (item) => `${item.profile.id}|${item.refId}`,
         selectable: !!handleSelect || remediationsEnabled,
         onSelect: handleSelect,
-        preselected: selectedRefIds,
+        preselected: selectedRules,
         detailsComponent: RuleDetailsRow,
         emptyRows: emptyRows(columns),
         selectedFilter,
@@ -91,7 +91,7 @@ RulesTable.propTypes = {
   system: propTypes.object,
   remediationsEnabled: propTypes.bool,
   remediationAvailableFilter: propTypes.bool,
-  selectedRefIds: propTypes.array,
+  selectedRules: propTypes.array,
   selectedFilter: propTypes.bool,
   handleSelect: propTypes.func,
   columns: propTypes.array,

@@ -131,11 +131,19 @@ const ProfileTabContent = ({
             remediationsEnabled={false}
             columns={columns}
             profileRules={[{ profile, rules: rules || [] }]}
-            selectedRefIds={selectedRuleRefIds}
+            selectedRules={selectedRuleRefIds.map(
+              (refId) => `${profile.id}|${refId}`
+            )}
             handleSelect={
               handleSelect &&
               ((selectedRuleRefIds) =>
-                handleSelect(profile, newOsMinorVersion, selectedRuleRefIds))
+                handleSelect(
+                  profile,
+                  newOsMinorVersion,
+                  selectedRuleRefIds.map(
+                    (profileRuleRefId) => profileRuleRefId.split('|')[1]
+                  )
+                ))
             }
             {...rulesTableProps}
           />
