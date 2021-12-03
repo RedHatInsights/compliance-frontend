@@ -49,7 +49,7 @@ describe('topTenFailedRulesData', () => {
     ).toMatchSnapshot();
   });
 
-  it('returns top 10 failed only for supported systems', () => {
+  it('returns top 10 failed for supported and unsupported systems', () => {
     const sortedRuleTitles = (systems) =>
       topTenFailedRulesData(systems)
         .map((rule) => rule.title)

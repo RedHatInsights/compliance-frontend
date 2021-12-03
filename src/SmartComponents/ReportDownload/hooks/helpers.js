@@ -106,8 +106,8 @@ const getFailedRulesWithCounts = (systems) => {
     }
   };
 
-  supportedSystemsData(systems).forEach((system) => {
-    system.testResultProfiles.forEach((profile) => {
+  systems.forEach((system) => {
+    system.testResultProfiles?.forEach((profile) => {
       profile.rules.forEach((rule) => countIfFailed(rule));
     });
   });
