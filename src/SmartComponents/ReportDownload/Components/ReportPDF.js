@@ -17,6 +17,11 @@ import PanelItem from './ReportPDF/PanelItem';
 import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
 
+const calculatePercent = (compliantHostCount, testResultHostCount) =>
+  compliantHostCount !== 0 && testResultHostCount !== 0
+    ? Math.floor(100 * (compliantHostCount / testResultHostCount))
+    : 0;
+
 const ReportPDF = ({ data, ssgFinder }) => {
   const {
     compliantSystems,
@@ -30,8 +35,9 @@ const ReportPDF = ({ data, ssgFinder }) => {
     policy,
   } = data;
   const { testResultHostCount = 0, compliantHostCount = 0 } = policy;
-  const percentCompliant = Math.floor(
-    100 * (compliantHostCount / testResultHostCount)
+  const percentCompliant = calculatePercent(
+    compliantHostCount,
+    testResultHostCount
   );
 
   return (
