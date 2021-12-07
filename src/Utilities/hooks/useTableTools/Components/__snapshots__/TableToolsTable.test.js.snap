@@ -541,7 +541,6 @@ exports[`TableToolsTable expect to render without error 1`] = `
           "toPreviousPage": "Go to previous page",
         }
       }
-      toggleTemplate={[Function]}
       variant="bottom"
       widgetId="pagination-options-menu"
     />
