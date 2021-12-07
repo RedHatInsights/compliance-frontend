@@ -144,12 +144,10 @@ class FilterConfigBuilder {
   initialDefaultState = (defaultStates = {}, initConfig) =>
     (initConfig || this.config).reduce((acc, filter) => {
       const filterStateName = stringToId(filter.key || filter.label);
-      const defaultState = () => {
-        const state =
-          defaultStates[filterStateName] || this.defaultValueForFilter(filter);
-        return state ? state : undefined;
-      };
-      acc[filterStateName] = defaultState();
+      const state =
+        defaultStates[filterStateName] || this.defaultValueForFilter(filter);
+      acc[filterStateName] = state ? state : undefined;
+
       return acc;
     }, {});
 
