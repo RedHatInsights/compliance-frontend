@@ -33,7 +33,7 @@ class SystemPolicyCard extends React.Component {
     value.toFixed(fixed) + (withPercent ? '%' : '');
 
   render() {
-    const { policy, style } = this.props;
+    const { policy, style, onClick, isSelected } = this.props;
     const {
       rulesFailed,
       compliant,
@@ -48,7 +48,15 @@ class SystemPolicyCard extends React.Component {
     const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 
     return (
-      <Card style={style}>
+      <Card
+        onClick={(event) => {
+          event.stopPropagation();
+          onClick(policy);
+        }}
+        isSelectable
+        isSelected={isSelected}
+        style={style}
+      >
         <CardBody>
           <TextContent className="margin-bottom-md">
             <Text
@@ -124,6 +132,8 @@ SystemPolicyCard.propTypes = {
     supported: PropTypes.bool,
   }),
   style: PropTypes.object,
+  onClick: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
 export default SystemPolicyCard;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
@@ -60,44 +60,92 @@ const QUERY = gql`
   }
 `;
 
-const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => (
-  <>
-    <SystemPolicyCards
-      policies={system?.testResultProfiles}
-      loading={loading}
-    />
-    <br />
-    {system?.testResultProfiles?.length ? (
-      <RulesTable
-        remediationAvailableFilter
-        handleSelect={() => undefined}
-        hidePassed={hidePassed}
-        system={{
-          ...system,
-          supported:
-            (system?.testResultProfiles || []).filter(
-              (profile) => profile.supported
-            ).length > 0,
-        }}
-        profileRules={system?.testResultProfiles.map((profile) => ({
-          system,
-          profile,
-          rules: profile.rules,
-        }))}
+const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => {
+  const [selectedPolicies, setSelectedPolicies] = useState();
+  const policies = system?.testResultProfiles;
+  const setOrUnsetPolicy = (policy) => {
+    if (!policy) {
+      return;
+    }
+    const policyIncluded = selectedPolicies?.find(
+      (policyId) => policy?.id === policyId
+    );
+    if (policyIncluded) {
+      const newSelection = selectedPolicies?.filter(
+        (policyId) => policy.id !== policyId
+      );
+      setSelectedPolicies(newSelection.length > 0 ? newSelection : undefined);
+    } else {
+      setSelectedPolicies([...(selectedPolicies || []), policy?.id]);
+    }
+  };
+
+  const onDeleteFilter = (chips, clearAll) => {
+    const chipNames = chips
+      .find((chips) => chips.category === 'Policy')
+      ?.chips.map((chip) => chip.name);
+    const policyId = policies.find(({ name }) => chipNames?.includes(name))?.id;
+
+    if (policyId) {
+      !clearAll
+        ? setOrUnsetPolicy(
+            policyId
+              ? {
+                  id: policyId,
+                }
+              : {}
+          )
+        : setSelectedPolicies(undefined);
+    }
+  };
+
+  return (
+    <>
+      <SystemPolicyCards
+        policies={policies}
         loading={loading}
-        options={{
-          sortBy: {
-            index: 4,
-            direction: 'asc',
-            property: 'severity',
-          },
+        selectedPolicies={selectedPolicies}
+        onCardClick={(policy) => {
+          setOrUnsetPolicy(policy);
         }}
       />
-    ) : (
-      <EmptyState system={system} isWrapped={isWrapped} />
-    )}
-  </>
-);
+      <br />
+      {system?.testResultProfiles?.length ? (
+        <RulesTable
+          remediationAvailableFilter
+          handleSelect={() => undefined}
+          hidePassed={hidePassed}
+          system={{
+            ...system,
+            supported:
+              (system?.testResultProfiles || []).filter(
+                (profile) => profile.supported
+              ).length > 0,
+          }}
+          profileRules={system?.testResultProfiles.map((profile) => ({
+            system,
+            profile,
+            rules: profile.rules,
+          }))}
+          loading={loading}
+          options={{
+            sortBy: {
+              index: 4,
+              direction: 'asc',
+              property: 'severity',
+            },
+            onDeleteFilter,
+          }}
+          activeFilters={{
+            policy: selectedPolicies,
+          }}
+        />
+      ) : (
+        <EmptyState system={system} isWrapped={isWrapped} />
+      )}
+    </>
+  );
+};
 
 SystemQuery.propTypes = {
   data: propTypes.shape({

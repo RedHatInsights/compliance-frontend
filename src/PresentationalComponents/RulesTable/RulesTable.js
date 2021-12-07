@@ -22,6 +22,7 @@ const RulesTable = ({
   selectedRules = [],
   hidePassed = false,
   options,
+  activeFilters,
   ...rulesTableProps
 }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
@@ -64,9 +65,13 @@ const RulesTable = ({
           remediationAvailableFilter,
         }),
         ...(hidePassed && {
-          activeFilters: {
-            passed: ['failed'],
-          },
+          activeFilters: (currentActiveFilters) => ({
+            ...currentActiveFilters,
+            passed: currentActiveFilters.passed
+              ? currentActiveFilters.passed
+              : ['failed'],
+            ...activeFilters,
+          }),
         }),
       }}
       options={{
@@ -99,6 +104,7 @@ RulesTable.propTypes = {
   handleSelect: propTypes.func,
   columns: propTypes.array,
   options: propTypes.object,
+  activeFilters: propTypes.object,
 };
 
 export default RulesTable;

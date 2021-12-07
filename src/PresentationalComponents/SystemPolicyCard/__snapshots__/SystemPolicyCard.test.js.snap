@@ -2,11 +2,12 @@
 
 exports[`SystemPolicyCard component should render an unsupported policy 1`] = `
 <article
-  class="pf-c-card"
+  class="pf-c-card pf-m-selectable"
   data-ouia-component-id="OUIA-Generated-Card-2"
   data-ouia-component-type="PF4/Card"
   data-ouia-safe="true"
   id=""
+  tabindex="0"
 >
   <div
     class="pf-c-card__body"
@@ -163,11 +164,12 @@ exports[`SystemPolicyCard component should render an unsupported policy 1`] = `
 
 exports[`SystemPolicyCard component should render policy 1`] = `
 <article
-  class="pf-c-card"
+  class="pf-c-card pf-m-selectable"
   data-ouia-component-id="OUIA-Generated-Card-1"
   data-ouia-component-type="PF4/Card"
   data-ouia-safe="true"
   id=""
+  tabindex="0"
 >
   <div
     class="pf-c-card__body"
