@@ -17,13 +17,27 @@ const filterValues = (activeFilters) =>
 
 const filterConfigBuilder = new FilterConfigBuilder([]);
 
+const perpareInitialActiveFilters = (
+  initialActiveFiltersRaw,
+  activeFilters
+) => {
+  if (typeof initialActiveFiltersRaw === 'function') {
+    return initialActiveFiltersRaw(activeFilters);
+  } else {
+    return initialActiveFiltersRaw;
+  }
+};
+
 const useFilterConfig = (options = {}) => {
-  const { filters, setPage, selectedFilter } = options;
+  const { filters, setPage, selectedFilter, onDeleteFilter } = options;
   const enableFilters = !!filters;
-  const { filterConfig = [], activeFilters: initialActiveFilters } =
+  const { filterConfig = [], activeFilters: initialActiveFiltersRaw } =
     filters || {};
-  const [activeFilters, setActiveFilters] = useState(
-    filterConfigBuilder.initialDefaultState(initialActiveFilters, filterConfig)
+
+  const [activeFilters, setActiveFilters] = useState({});
+  const initialActiveFilters = perpareInitialActiveFilters(
+    initialActiveFiltersRaw,
+    activeFilters
   );
   const onFilterUpdate = (filter, value) => {
     setActiveFilters((prevFilters) => ({
@@ -46,8 +60,10 @@ const useFilterConfig = (options = {}) => {
     setActiveFilters(
       filterConfigBuilder.removeFilterWithChip(chips, activeFilters)
     );
-  const onFilterDelete = (_event, chips, clearAll = false) =>
-    clearAll ? clearAllFilter() : deleteFilter(chips[0]);
+  const onFilterDelete = async (_event, chips, clearAll = false) => {
+    (await clearAll) ? clearAllFilter() : deleteFilter(chips[0]);
+    onDeleteFilter && onDeleteFilter(chips, clearAll);
+  };
 
   const filter = (items) =>
     filterConfigBuilder.applyFilterToObjectArray(items, activeFilters);
@@ -82,7 +98,7 @@ const useFilterConfig = (options = {}) => {
     return () => {
       filterConfigBuilder.config = [];
     };
-  }, []);
+  }, [JSON.stringify(initialActiveFilters)]);
 
   return enableFilters
     ? {

@@ -141,16 +141,17 @@ class FilterConfigBuilder {
     }
   };
 
-  initialDefaultState = (defaultStates = {}, initConfig) => {
-    let initialState = {};
-    (initConfig || this.config).forEach((filter) => {
+  initialDefaultState = (defaultStates = {}, initConfig) =>
+    (initConfig || this.config).reduce((acc, filter) => {
       const filterStateName = stringToId(filter.key || filter.label);
-      initialState[filterStateName] =
-        defaultStates[filterStateName] || this.defaultValueForFilter(filter);
-    });
-
-    return initialState;
-  };
+      const defaultState = () => {
+        const state =
+          defaultStates[filterStateName] || this.defaultValueForFilter(filter);
+        return state ? state : undefined;
+      };
+      acc[filterStateName] = defaultState();
+      return acc;
+    }, {});
 
   categoryLabelForValue = (value) => {
     const category = this.config.filter((category) =>
