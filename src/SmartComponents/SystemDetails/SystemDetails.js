@@ -46,7 +46,6 @@ export const SystemDetails = ({ route }) => {
             <BreadcrumbItem isActive>{systemName}</BreadcrumbItem>
           </Breadcrumb>
           <InventoryDetails />
-          <br />
         </PageHeader>
         <Main>
           <ComplianceSystemDetails hidePassed inventoryId={inventoryId} />
