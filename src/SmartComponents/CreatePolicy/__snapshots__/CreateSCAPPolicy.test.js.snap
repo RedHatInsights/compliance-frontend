@@ -17,7 +17,7 @@ exports[`CreateSCAPPolicy expect to render without error 1`] = `
   </TextContent>
   <Form>
     <FormGroup
-      fieldId="benchmark"
+      fieldId="osMajorVersion"
       isRequired={true}
       label="Operating system"
     />
@@ -56,7 +56,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
   </TextContent>
   <Form>
     <FormGroup
-      fieldId="benchmark"
+      fieldId="osMajorVersion"
       isRequired={true}
       label="Operating system"
     >
@@ -64,7 +64,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
         className="pf-u-mr-md"
         isSelected={false}
         isStacked={true}
-        key="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
+        key="6"
         onClick={[Function]}
         title="RHEL 6"
       />
@@ -72,7 +72,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
         className="pf-u-mr-md"
         isSelected={false}
         isStacked={true}
-        key="f1dff140-6649-4060-b0f6-7b1548f9e901"
+        key="7"
         onClick={[Function]}
         title="RHEL 7"
       />
@@ -80,15 +80,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
         className="pf-u-mr-md"
         isSelected={false}
         isStacked={true}
-        key="bdcc6b37-1d4a-489a-a38d-e9be7aef7051"
-        onClick={[Function]}
-        title="RHEL 7"
-      />
-      <Tile
-        className="pf-u-mr-md"
-        isSelected={false}
-        isStacked={true}
-        key="6a02b217-c9e9-4a4d-93a9-c77b5ea7967a"
+        key="8"
         onClick={[Function]}
         title="RHEL 8"
       />
@@ -123,21 +115,6 @@ Array [
         className="pf-c-tile__title"
       >
         RHEL 6
-      </div>
-    </div>
-  </div>,
-  <div
-    className="pf-c-tile pf-u-mr-md"
-    onClick={[Function]}
-    tabIndex={0}
-  >
-    <div
-      className="pf-c-tile__header pf-m-stacked"
-    >
-      <div
-        className="pf-c-tile__title"
-      >
-        RHEL 7
       </div>
     </div>
   </div>,

@@ -6,7 +6,7 @@ describe('validations', () => {
   });
 
   it('expect to validate the first page if benchmark and profile are set', () => {
-    expect(validateBenchmarkPage('a', 'b', 'c')).toBe(true);
+    expect(validateBenchmarkPage('a', 'b')).toBe(true);
   });
 
   it('expect not to validate the first page if one of benchmark and profile are not set', () => {

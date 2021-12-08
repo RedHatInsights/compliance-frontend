@@ -22,20 +22,23 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 
-const BENCHMARKS_AND_PROFILES = gql`
-  query benchmarksAndProfiles {
-    latestBenchmarks {
-      id
-      title
-      refId
-      version
-      osMajorVersion
-      profiles {
-        id
-        name
-        refId
-        description
-        complianceThreshold
+const SUPPORTED_PROFILES_BY_OS_MAJOR = gql`
+  query supportedProfilesByOSMajor {
+    osMajorVersions {
+      edges {
+        node {
+          osMajorVersion
+          supportedProfiles {
+            id
+            name
+            refId
+            description
+            complianceThreshold
+            benchmark {
+              id
+            }
+          }
+        }
       }
     }
     profiles(search: "external = false and canonical = false") {
@@ -44,7 +47,7 @@ const BENCHMARKS_AND_PROFILES = gql`
           id
           refId
           benchmark {
-            refId
+            osMajorVersion
           }
         }
       }
@@ -62,18 +65,16 @@ const PolicyTooltip = () => (
   </Tooltip>
 );
 
-export const CreateSCAPPolicy = ({
-  change,
-  selectedBenchmarkId,
-  selectedProfile,
-}) => {
-  const { data, error, loading } = useQuery(BENCHMARKS_AND_PROFILES, {
+export const CreateSCAPPolicy = ({ change, selectedOs, selectedProfile }) => {
+  const { data, error, loading } = useQuery(SUPPORTED_PROFILES_BY_OS_MAJOR, {
     fetchPolicy: 'no-cache',
   });
 
-  const inUseProfileRefIds = (profiles, benchmark) =>
+  const inUseProfileRefIds = (profiles, osMajorVersion) =>
     profiles
-      .filter((profile) => benchmark.refId === profile.node.benchmark.refId)
+      .filter(
+        (profile) => osMajorVersion == profile.node.benchmark.osMajorVersion
+      )
       .map((profile) => profile.node.refId);
 
   if (error) {
@@ -84,30 +85,31 @@ export const CreateSCAPPolicy = ({
     return <Spinner />;
   }
 
-  const benchmarks = data.latestBenchmarks;
-  let selectedBenchmark;
+  const osMajorVersions = data.osMajorVersions?.edges;
+  let selectedOsMajorVersion;
   let validProfiles;
-  if (selectedBenchmarkId) {
-    selectedBenchmark = benchmarks.find(
-      (benchmark) => benchmark.id === selectedBenchmarkId
+  if (selectedOs) {
+    selectedOsMajorVersion = osMajorVersions.find(
+      (os) => os.node.osMajorVersion === selectedOs
     );
     const userProfileRefIds = inUseProfileRefIds(
       data.profiles.edges,
-      selectedBenchmark
+      selectedOs
     );
-    validProfiles = selectedBenchmark.profiles.map((profile) => ({
-      ...profile,
-      disabled: userProfileRefIds.includes(profile.refId),
-    }));
+    validProfiles = selectedOsMajorVersion?.node.supportedProfiles.map(
+      (profile) => ({
+        ...profile,
+        disabled: userProfileRefIds.includes(profile.refId),
+      })
+    );
   }
 
-  const setBenchmark = ({ id, osMajorVersion }) => {
-    if (selectedBenchmark?.osMajorVersion !== osMajorVersion) {
+  const setOsMajorVerson = (osMajorVersion) => {
+    if (selectedOs !== osMajorVersion.node.osMajorVersion) {
       change('systems', []);
     }
 
-    change('benchmark', id);
-    change('osMajorVersion', osMajorVersion);
+    change('osMajorVersion', osMajorVersion.node.osMajorVersion);
   };
 
   return (
@@ -121,23 +123,21 @@ export const CreateSCAPPolicy = ({
         </Text>
       </TextContent>
       <Form>
-        <FormGroup label="Operating system" isRequired fieldId="benchmark">
-          {benchmarks &&
-            benchmarks
-              .sort((a, b) => a.refId.localeCompare(b.refId))
-              .map((benchmark) => {
-                const { id, osMajorVersion } = benchmark;
-                return (
-                  <Tile
-                    key={id}
-                    className="pf-u-mr-md"
-                    title={`RHEL ${osMajorVersion}`}
-                    onClick={() => setBenchmark(benchmark)}
-                    isSelected={selectedBenchmarkId === id}
-                    isStacked
-                  />
-                );
-              })}
+        <FormGroup label="Operating system" isRequired fieldId="osMajorVersion">
+          {osMajorVersions &&
+            osMajorVersions.map((os) => {
+              const osMajorVersion = os.node.osMajorVersion;
+              return (
+                <Tile
+                  key={osMajorVersion}
+                  className="pf-u-mr-md"
+                  title={`RHEL ${osMajorVersion}`}
+                  onClick={() => setOsMajorVerson(os)}
+                  isSelected={selectedOs === osMajorVersion}
+                  isStacked
+                />
+              );
+            })}
         </FormGroup>
         <FormGroup
           isRequired
@@ -146,10 +146,11 @@ export const CreateSCAPPolicy = ({
           fieldId="policy-type"
         >
           <ProfileTypeSelect
-            profiles={selectedBenchmark && validProfiles}
+            profiles={selectedOs && validProfiles}
             onChange={(value) => {
               change('selectedRuleRefIds', undefined);
               change('profile', value);
+              change('benchmark', JSON.parse(value).benchmark.id);
             }}
             selectedProfile={selectedProfile}
           />
@@ -160,7 +161,7 @@ export const CreateSCAPPolicy = ({
 };
 
 CreateSCAPPolicy.propTypes = {
-  selectedBenchmarkId: propTypes.string,
+  selectedOs: propTypes.number,
   change: reduxFormPropTypes.change,
   selectedProfile: propTypes.object,
 };
@@ -169,7 +170,7 @@ const selector = formValueSelector('policyForm');
 
 export default compose(
   connect((state) => ({
-    selectedBenchmarkId: selector(state, 'benchmark'),
+    selectedOs: selector(state, 'osMajorVersion'),
     selectedProfile: selector(state, 'profile'),
   })),
   reduxForm({

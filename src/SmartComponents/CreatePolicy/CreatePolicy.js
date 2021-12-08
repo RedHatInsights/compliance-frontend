@@ -18,7 +18,6 @@ import {
 } from './validate';
 
 export const CreatePolicyForm = ({
-  benchmark,
   osMajorVersion,
   complianceThreshold,
   name,
@@ -52,7 +51,7 @@ export const CreatePolicyForm = ({
       id: 1,
       name: 'Create SCAP policy',
       component: <CreateSCAPPolicy />,
-      enableNext: validateBenchmarkPage(benchmark, osMajorVersion, profile),
+      enableNext: validateBenchmarkPage(osMajorVersion, profile),
     },
     {
       id: 2,
@@ -113,7 +112,7 @@ export const CreatePolicyForm = ({
 
 CreatePolicyForm.propTypes = {
   benchmark: propTypes.string,
-  osMajorVersion: propTypes.string,
+  osMajorVersion: propTypes.number,
   osMinorVersionCounts: propTypes.arrayOf(
     propTypes.shape({
       osMinorVersion: propTypes.number,

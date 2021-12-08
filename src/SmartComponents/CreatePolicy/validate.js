@@ -1,5 +1,5 @@
-export const validateBenchmarkPage = (benchmark, osMajorVersion, profile) => {
-  if (benchmark && osMajorVersion && profile) {
+export const validateBenchmarkPage = (osMajorVersion, profile) => {
+  if (osMajorVersion && profile) {
     return true;
   } else {
     return false;

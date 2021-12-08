@@ -726,3 +726,120 @@ export const profileRefIdsQuery = {
         }
     ]
 };
+
+export const osMajorVersionsQuery = {
+    edges: [
+        {
+            node: {
+                osMajorVersion: 6,
+                supportedProfiles: [
+                    {
+                        benchmark: {
+                            id: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
+                            __typename: 'Benchmark'
+                        },
+                        id: '4a271e9e-6e84-4038-941b-6b265d9b1727',
+                        name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
+                        refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
+                        description: 'This is a *draft* SCAP profile for Red Hat Certified Cloud Providers',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                    {
+                        benchmark: {
+                            id: 'a5e7f1ea-e63c-40be-a17a-c2a247c11e10',
+                            __typename: 'Benchmark'
+                        },
+                        id: '2c9ef707-bb58-4f80-9ce4-c20ebd4248a8',
+                        name: 'CSCF RHEL6 MLS Core Baseline',
+                        refId: 'xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS',
+                        description: ' This profile reflects the Centralized Super Computing Facility \n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \ndomain overlay. This profile should be considered in active development. \nAdditional tailoring will be needed, such as the creation of RBAC roles \nfor production deployment.',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                ],
+                __typename: 'OsMajorVersion',
+            },
+            __typename: 'OsMajorVersionEdge'
+        },
+        {
+            node: {
+                osMajorVersion: 7,
+                supportedProfiles: [
+                    {
+                        benchmark: {
+                            id: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                            __typename: 'Benchmark'
+                        },
+                        id: 'ffb19e93-3c4e-4be9-9ed9-3285340da558',
+                        name: 'DISA STIG for Red Hat Enterprise Linux 7',
+                        refId: 'xccdf_org.ssgproject.content_profile_stig-rhel7-disa',
+                        description: 'This profile contains configuration checks that align to the\nDISA STIG for Red Hat Enterprise Linux V1R4.\n\nIn addition to being applicable to RHEL7, DISA recognizes this\nconfiguration baseline as applicable to the operating system tier of\nRed Hat technologies that are based off RHEL7, such as:\n\n- Red Hat Enterprise Linux Server\n- Red Hat Enterprise Linux Workstation and Desktop\n- Red Hat Enterprise Linux for HPC\n- Red Hat Storage',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                    {
+                        benchmark: {
+                            id: 'bdcc6b37-1d4a-489a-a38d-e9be7aef7051',
+                            __typename: 'Benchmark'
+                        },
+                        id: '85c24168-d858-4a99-967b-978679765fea',
+                        name: 'PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7',
+                        refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
+                        description: 'Ensures PCI-DSS v3.2.1 related security configuration settings are applied.',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                    {
+                        benchmark: {
+                            id: 'f1dff140-6649-4060-b0f6-7b1548f9e901',
+                            __typename: 'Benchmark'
+                        },
+                        id: '02ca6a92-ffc9-4047-9bce-9bcef0e26ea2',
+                        name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
+                        refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
+                        description: 'Ensures PCI-DSS v3 related security configuration settings \\n \\ are applied.',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    }
+                ],
+                __typename: 'OsMajorVersion',
+            },
+            __typename: 'OsMajorVersionEdge'
+        },
+        {
+            node: {
+                osMajorVersion: 8,
+                supportedProfiles: [
+                    {
+                        benchmark: {
+                            id: '6a02b217-c9e9-4a4d-93a9-c77b5ea7967a',
+                            __typename: 'Benchmark'
+                        },
+                        id: '893aea23-079a-4eef-9598-56dc3bb7666a',
+                        name: 'Criminal Justice Information Services (CJIS) Security Policy',
+                        refId: 'xccdf_org.ssgproject.content_profile_cjis',
+                        description: 'This profile is derived from FBI\'s CJIS v5.4\nSecurity Policy. A copy of this policy can be found at the CJIS Security\nPolicy Resource Center:\n\nhttps://www.fbi.gov/services/cjis/cjis-security-policy-resource-center',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                    {
+                        benchmark: {
+                            id: '6a02b217-c9e9-4a4d-93a9-c77b5ea7967a',
+                            __typename: 'Benchmark'
+                        },
+                        id: 'f2567016-e955-45b7-be7f-ba4c778a1989',
+                        name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
+                        refId: 'xccdf_org.ssgproject.content_profile_cui',
+                        description: 'From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in nonfederal\ninformation systems and organizations have a well-defined structure that\nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 8 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI)."',
+                        complianceThreshold: 100,
+                        __typename: 'Profile'
+                    },
+                ],
+                __typename: 'OsMajorVersion',
+            },
+            __typename: 'OsMajorVersionEdge'
+        }
+    ]
+};
+    

@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import {
-  benchmarksQuery,
   profileRefIdsQuery,
+  osMajorVersionsQuery,
 } from '@/__fixtures__/benchmarks_rules.js';
 
 jest.mock('@apollo/client');
@@ -53,7 +53,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('should render benchmarks and no policies until one is selected', () => {
     useQuery.mockImplementation(() => ({
-      data: { latestBenchmarks: benchmarksQuery },
+      data: { osMajorVersions: osMajorVersionsQuery },
       error: false,
       loading: false,
     }));
@@ -63,7 +63,10 @@ describe('CreateSCAPPolicy', () => {
 
   it('should render policies from the selected benchmark only', () => {
     useQuery.mockImplementation(() => ({
-      data: { latestBenchmarks: benchmarksQuery, profiles: profileRefIdsQuery },
+      data: {
+        osMajorVersions: osMajorVersionsQuery,
+        profiles: profileRefIdsQuery,
+      },
       error: false,
       loading: false,
     }));
