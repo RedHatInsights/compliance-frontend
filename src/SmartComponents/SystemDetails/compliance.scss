@@ -6,7 +6,13 @@
     .ins-c-policy-card {
         font-size: var(--pf-global--FontSize--lg);
     }
-    
+
+    .ins-c-policy-card.ins-m-compliant,
+    .ins-c-policy-card.ins-m-noncompliant {
+      font-size: var(--pf-global--FontSize--sm);
+      font-weight: bold;
+    }
+
     .ins-c-policy-card.ins-m-compliant {
         color: var(--pf-global--success-color--200);
     }
