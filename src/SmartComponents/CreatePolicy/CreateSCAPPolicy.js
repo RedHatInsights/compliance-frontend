@@ -107,6 +107,7 @@ export const CreateSCAPPolicy = ({ change, selectedOs, selectedProfile }) => {
   const setOsMajorVerson = (osMajorVersion) => {
     if (selectedOs !== osMajorVersion.node.osMajorVersion) {
       change('systems', []);
+      change('profile', undefined);
     }
 
     change('osMajorVersion', osMajorVersion.node.osMajorVersion);
