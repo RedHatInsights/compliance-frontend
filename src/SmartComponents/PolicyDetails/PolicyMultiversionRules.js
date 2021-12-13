@@ -36,6 +36,7 @@ const PolicyMultiversionRules = ({ policy }) => {
           options={{
             dedicatedAction: DedicatedAction,
           }}
+          ouiaId="RHELVersions"
         />
       </PageSection>
     </React.Fragment>
