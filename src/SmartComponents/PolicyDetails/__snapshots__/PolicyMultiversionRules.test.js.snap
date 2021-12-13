@@ -43,6 +43,7 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
           "dedicatedAction": [Function],
         }
       }
+      ouiaId="RHELVersions"
       tabsData={
         Array [
           Object {
