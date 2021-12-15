@@ -12,7 +12,7 @@
     "@patternfly/react-core": "^4.175.4",
     "@patternfly/react-icons": "^4.26.4",
     "@patternfly/react-table": "^4.44.4",
-    "@patternfly/react-tokens": "^4.27.4",
+    "@patternfly/react-tokens": "^4.33.1",
     "@redhat-cloud-services/frontend-components": "^3.5.1",
     "@redhat-cloud-services/frontend-components-notifications": "^3.2.5",
     "@redhat-cloud-services/frontend-components-pdf-generator": "^2.6.11",
