@@ -74,6 +74,7 @@ const ColumnManager = ({
         {columns.map((column, idx) => (
           <ColumnManagerListItem
             key={`column-${idx}`}
+            id={`column-${idx}`}
             column={column}
             isSelected={isSelectedColumn(column)}
             onChange={() => {

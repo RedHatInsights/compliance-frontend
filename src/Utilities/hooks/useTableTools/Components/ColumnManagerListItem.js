@@ -10,11 +10,11 @@ import {
 } from '@patternfly/react-core';
 
 const ColumnManagerListItem = ({
-  key,
   column,
   onChange,
   isSelected,
   isDisabled,
+  id,
 }) => (
   <DataListItem>
     <DataListItemRow>
@@ -24,12 +24,14 @@ const ColumnManagerListItem = ({
           onChange={onChange}
           otherControls
           isDisabled={isDisabled}
+          id={`${id}-id`}
+          name={`${id}-id`}
         />
       </DataListControl>
       <DataListItemCells
         dataListCells={[
-          <DataListCell key={`${key}-cell`}>
-            <label>{column.title}</label>
+          <DataListCell key={`${id}-cell`}>
+            <label htmlFor={`${id}-id`}>{column.title}</label>
           </DataListCell>,
         ]}
       />
@@ -38,7 +40,7 @@ const ColumnManagerListItem = ({
 );
 
 ColumnManagerListItem.propTypes = {
-  key: propTypes.string,
+  id: propTypes.string,
   column: propTypes.object,
   onChange: propTypes.func,
   isSelected: propTypes.bool,
