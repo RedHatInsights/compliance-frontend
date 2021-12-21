@@ -115,9 +115,13 @@ export const useExportWithItems = (items, columns, options = {}) => {
     onStart,
     onComplete,
   } = typeof options.exportable === 'object' ? options.exportable : {};
+  const exportableSelectedColumns = (exportableColumns || columns).filter(
+    (column) => columns.includes(column)
+  );
+
   const exportProps = useExport({
     exporter: () => Promise.resolve(items),
-    columns: exportableColumns || columns,
+    columns: exportableSelectedColumns,
     isDisabled: items.length === 0,
     onStart,
     onComplete,
