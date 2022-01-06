@@ -34,7 +34,6 @@ exports[`EditPolicySystems expect to render without error 1`] = `
             },
             Object {
               "key": "operatingSystem",
-              "props": Object {},
               "renderExport": [Function],
               "renderFunc": [Function],
               "sortBy": Array [
