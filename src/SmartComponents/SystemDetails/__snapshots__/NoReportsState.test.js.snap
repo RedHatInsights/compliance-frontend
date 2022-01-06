@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoReportsState with a system having a policy and test results 1`] = `<Fragment />`;
-
-exports[`NoReportsState with a system having a policy but missing test results 1`] = `<Fragment />`;
-
-exports[`NoReportsState with a system having missing hasPolicy prop 1`] = `<Fragment />`;
-
 exports[`NoReportsState with a system having multiple policies 1`] = `
 <Bullseye>
   <EmptyState>
@@ -39,8 +33,6 @@ exports[`NoReportsState with a system having multiple policies 1`] = `
 </Bullseye>
 `;
 
-exports[`NoReportsState with a system having no policies 1`] = `<Fragment />`;
-
 exports[`NoReportsState with a system having policies 1`] = `
 <Bullseye>
   <EmptyState>
@@ -73,5 +65,3 @@ exports[`NoReportsState with a system having policies 1`] = `
   </EmptyState>
 </Bullseye>
 `;
-
-exports[`NoReportsState with a system missing policies prop 1`] = `<Fragment />`;

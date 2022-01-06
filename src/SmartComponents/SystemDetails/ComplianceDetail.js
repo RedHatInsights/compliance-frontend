@@ -6,13 +6,16 @@ import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState'
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/client';
+
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
 import { IntlProvider } from 'react-intl';
-import NoReportsState from './NoReportsState';
-import NoPoliciesState from './NoPoliciesState';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { init } from 'Store';
+import EmptyState from './EmptyState';
 
 const COMPLIANCE_API_ROOT = '/api/compliance';
 
@@ -57,14 +60,12 @@ const QUERY = gql`
   }
 `;
 
-const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
-  <React.Fragment>
+const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => (
+  <>
     <SystemPolicyCards
       policies={system?.testResultProfiles}
       loading={loading}
     />
-    <NoPoliciesState system={system} />
-    <NoReportsState system={system} />
     <br />
     {system?.testResultProfiles?.length ? (
       <RulesTable
@@ -92,8 +93,10 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => (
           },
         }}
       />
-    ) : undefined}
-  </React.Fragment>
+    ) : (
+      <EmptyState system={system} isWrapped={isWrapped} />
+    )}
+  </>
 );
 
 SystemQuery.propTypes = {
@@ -109,16 +112,17 @@ SystemQuery.propTypes = {
   }),
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
+  isWrapped: propTypes.bool,
 };
 
 SystemQuery.defaultProps = {
   loading: true,
+  isWrapped: false,
 };
 
-const SystemDetails = ({ inventoryId, hidePassed, client }) => {
+export const SystemDetails = ({ inventoryId, hidePassed, ...props }) => {
   let { data, error, loading } = useQuery(QUERY, {
     variables: { systemId: inventoryId },
-    client,
     fetchPolicy: 'no-cache',
   });
   const is404 = error?.networkError?.statusCode === 404;
@@ -137,7 +141,12 @@ const SystemDetails = ({ inventoryId, hidePassed, client }) => {
       {!data?.system || is404 ? (
         <ComplianceEmptyState title="No policies are reporting for this system" />
       ) : (
-        <SystemQuery hidePassed={hidePassed} data={data} loading={loading} />
+        <SystemQuery
+          {...props}
+          hidePassed={hidePassed}
+          data={data}
+          loading={loading}
+        />
       )}
     </div>
   );
@@ -145,33 +154,28 @@ const SystemDetails = ({ inventoryId, hidePassed, client }) => {
 
 SystemDetails.propTypes = {
   inventoryId: propTypes.string,
-  client: propTypes.object,
   hidePassed: propTypes.bool,
-};
-
-SystemDetails.defaultProps = {
-  client: new ApolloClient({
-    link: new HttpLink({
-      uri: COMPLIANCE_API_ROOT + '/graphql',
-      credentials: 'include',
-    }),
-    cache: new InMemoryCache(),
-  }),
 };
 
 const WrappedSystemDetails = ({
   customItnl,
   customRouter,
   intlProps,
+  client,
   ...props
 }) => {
   const IntlWrapper = customItnl ? IntlProvider : React.Fragment;
   const RouterWrapper = customRouter ? Router : React.Fragment;
+  const store = init().getStore();
 
   return (
     <RouterWrapper>
       <IntlWrapper {...(customItnl && intlProps)}>
-        <SystemDetails {...props} />
+        <ApolloProvider client={client}>
+          <Provider store={store}>
+            <SystemDetails {...props} isWrapped />
+          </Provider>
+        </ApolloProvider>
       </IntlWrapper>
     </RouterWrapper>
   );
@@ -181,6 +185,17 @@ WrappedSystemDetails.propTypes = {
   customItnl: propTypes.bool,
   intlProps: propTypes.any,
   customRouter: propTypes.bool,
+  client: propTypes.object,
+};
+
+WrappedSystemDetails.defaultProps = {
+  client: new ApolloClient({
+    link: new HttpLink({
+      uri: COMPLIANCE_API_ROOT + '/graphql',
+      credentials: 'include',
+    }),
+    cache: new InMemoryCache(),
+  }),
 };
 
 export default WrappedSystemDetails;
