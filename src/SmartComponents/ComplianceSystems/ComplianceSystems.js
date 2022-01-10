@@ -35,7 +35,7 @@ export const ComplianceSystems = () => {
   return (
     <React.Fragment>
       <PageHeader className="page-header">
-        <PageHeaderTitle title="Systems" />
+        <PageHeaderTitle title="Compliance systems" />
       </PageHeader>
       <Main>
         <StateViewWithError stateValues={{ error, data, loading }}>
