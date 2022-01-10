@@ -10,6 +10,9 @@ Object {
     Object {
       "id": 1,
       "name": "TEST ENTITY NAME",
+      "props": Object {
+        "class": "notreported",
+      },
       "selected": false,
     },
   ],

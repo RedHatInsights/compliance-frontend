@@ -40,6 +40,7 @@ import '@/Charts.scss';
 import './ReportDetails.scss';
 import { GET_SYSTEMS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
+import ReportedSystemRow from './Components/ReportedSystemRow';
 
 export const QUERY = gql`
   query Profile($policyId: String!) {
@@ -246,10 +247,12 @@ export const ReportDetails = ({ route }) => {
                   Columns.LastScanned,
                 ]}
                 query={GET_SYSTEMS}
-                showOnlySystemsWithTestResults
                 compliantFilter
-                defaultFilter={`with_results_for_policy_id = ${profile.id}`}
+                defaultFilter={`policy_id = ${profile.id}`}
                 policyId={profile.id}
+                tableProps={{
+                  rowWrapper: ReportedSystemRow,
+                }}
               />
             </GridItem>
           </Grid>

@@ -50,11 +50,23 @@ describe('FailedRules', () => {
   it('returns', () => {
     expect(renderJson(<FailedRules {...testSystem} />)).toMatchSnapshot();
   });
+
+  it('returns no error without testResultProfiles', () => {
+    expect(
+      renderJson(<FailedRules {...testSystem} testResultProfiles={[]} />)
+    ).toMatchSnapshot();
+  });
 });
 
 describe('ComplianceScore', () => {
   it('returns', () => {
     expect(renderJson(<ComplianceScore {...testSystem} />)).toMatchSnapshot();
+  });
+
+  it('returns no error without testResultProfiles', () => {
+    expect(
+      renderJson(<ComplianceScore {...testSystem} testResultProfiles={[]} />)
+    ).toMatchSnapshot();
   });
 });
 
@@ -66,6 +78,12 @@ describe('LastScanned', () => {
   it('returns NEVER', () => {
     expect(
       renderJson(<LastScanned {...testSystem} testResultProfiles={undefined} />)
+    ).toMatchSnapshot();
+  });
+
+  it('returns no error without testResultProfiles', () => {
+    expect(
+      renderJson(<LastScanned {...testSystem} testResultProfiles={[]} />)
     ).toMatchSnapshot();
   });
 });

@@ -186,6 +186,9 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       results: entities.map((entity) => ({
         ...entity,
         selected: (selected || []).map((id) => id).includes(entity.id),
+        props: {
+          class: 'notreported',
+        },
       })),
       orderBy,
       orderDirection,

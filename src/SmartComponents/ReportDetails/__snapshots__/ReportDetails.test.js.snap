@@ -376,7 +376,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="with_results_for_policy_id = 1"
+            defaultFilter="policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={Array []}
@@ -1064,11 +1064,16 @@ exports[`ReportDetails expect to render without error 1`] = `
             remediationsEnabled={true}
             showActions={true}
             showComplianceSystemsInfo={false}
-            showOnlySystemsWithTestResults={true}
+            showOnlySystemsWithTestResults={false}
             showOsMinorVersionFilter={
               Array [
                 "7",
               ]
+            }
+            tableProps={
+              Object {
+                "rowWrapper": [Function],
+              }
             }
           />
         </GridItem>
@@ -1454,7 +1459,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="with_results_for_policy_id = 1"
+            defaultFilter="policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={Array []}
@@ -2142,11 +2147,16 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             remediationsEnabled={true}
             showActions={true}
             showComplianceSystemsInfo={false}
-            showOnlySystemsWithTestResults={true}
+            showOnlySystemsWithTestResults={false}
             showOsMinorVersionFilter={
               Array [
                 "7",
               ]
+            }
+            tableProps={
+              Object {
+                "rowWrapper": [Function],
+              }
             }
           />
         </GridItem>
