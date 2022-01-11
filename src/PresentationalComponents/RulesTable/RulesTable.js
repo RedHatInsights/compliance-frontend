@@ -34,7 +34,7 @@ const RulesTable = ({
   const policies = profileRules
     .filter(({ profile }) => !!profile)
     .map(({ profile }) => ({
-      id: profile.policy ? profile.policy.id : profile.id,
+      id: profile.id,
       name: profile.name,
     }));
 
