@@ -19,7 +19,7 @@ const PolicySystemsTab = ({ policy }) => (
     showOsMinorVersionFilter={[policy.majorOsVersion]}
     query={GET_SYSTEMS}
     policyId={policy.id}
-    defaultFilter={`policy_id = ${policy.id}`}
+    defaultFilter={`with_results_for_policy_id = ${policy.id}`}
     showActions={false}
     remediationsEnabled={false}
     noSystemsTable={
