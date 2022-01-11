@@ -132,7 +132,7 @@ exports[`Router expect to render without error 1`] = `
           },
         },
         "path": "/systems",
-        "title": "Systems",
+        "title": "Compliance systems",
       },
       Object {
         "component": Object {
@@ -143,9 +143,9 @@ exports[`Router expect to render without error 1`] = `
             "_status": -1,
           },
         },
-        "defaultTitle": "Systems",
+        "defaultTitle": "Compliance systems",
         "path": "/systems/:inventoryId",
-        "title": "$entityTitle - Systems",
+        "title": "$entityTitle - Compliance systems",
       },
     ]
   }
@@ -274,7 +274,7 @@ exports[`Router expect to render without error 1`] = `
             "isCurrent": false,
             "path": "/systems",
             "setTitle": [Function],
-            "title": "Systems",
+            "title": "Compliance systems",
           }
         }
       />
@@ -295,11 +295,11 @@ exports[`Router expect to render without error 1`] = `
                 "_status": -1,
               },
             },
-            "defaultTitle": "Systems",
+            "defaultTitle": "Compliance systems",
             "isCurrent": false,
             "path": "/systems/:inventoryId",
             "setTitle": [Function],
-            "title": "$entityTitle - Systems",
+            "title": "$entityTitle - Compliance systems",
           }
         }
       />

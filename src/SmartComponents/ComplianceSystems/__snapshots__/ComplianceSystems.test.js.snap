@@ -6,7 +6,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
     className="page-header"
   >
     <PageHeaderTitle
-      title="Systems"
+      title="Compliance systems"
     />
   </PageHeader>
   <Connect(Main)>
