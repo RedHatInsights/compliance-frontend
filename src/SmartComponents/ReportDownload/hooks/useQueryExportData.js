@@ -4,6 +4,7 @@ import {
   compliantSystemsData,
   nonCompliantSystemsData,
   unsupportedSystemsData,
+  nonReportingSystemsData,
   topTenFailedRulesData,
 } from './helpers';
 
@@ -31,6 +32,8 @@ const useQueryExportData = (
     const compliantSystems = compliantSystemsData(systems);
     const nonCompliantSystems = nonCompliantSystemsData(systems);
     const unsupportedSystems = unsupportedSystemsData(systems);
+    const nonReportingSystems = nonReportingSystemsData(systems);
+
     return {
       ...(exportSettings.compliantSystems && {
         compliantSystems: compliantSystems,
@@ -47,6 +50,10 @@ const useQueryExportData = (
       ...(exportSettings.topTenFailedRules && {
         topTenFailedRules: topTenFailedRulesData(systems),
       }),
+      nonReportingSystemCount: nonReportingSystems.length,
+      ...(exportSettings.nonReportingSystems && {
+        nonReportingSystems: nonReportingSystems,
+      }),
       ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
     };
   };
@@ -58,7 +65,7 @@ const useQueryExportData = (
       variables: {
         perPage,
         page,
-        filter: `with_results_for_policy_id = ${policyId}`,
+        filter: `policy_id = ${policyId}`,
         policyId,
       },
     });

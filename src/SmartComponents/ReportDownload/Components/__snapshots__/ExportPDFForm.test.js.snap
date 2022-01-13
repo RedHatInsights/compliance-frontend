@@ -107,9 +107,30 @@ exports[`ExportPDFForm expect to render without error 1`] = `
         >
           <input
             aria-invalid="false"
-            aria-label="Compliant systems"
+            aria-label="Systems not reporting"
+            checked=""
             class="pf-c-check__input"
             data-ouia-component-id="OUIA-Generated-Checkbox-3"
+            data-ouia-component-type="PF4/Checkbox"
+            data-ouia-safe="true"
+            id="nonreporting-systems-export-setting"
+            type="checkbox"
+          />
+          <label
+            class="pf-c-check__label"
+            for="nonreporting-systems-export-setting"
+          >
+            Systems with no reports
+          </label>
+        </div>
+        <div
+          class="pf-c-check"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Compliant systems"
+            class="pf-c-check__input"
+            data-ouia-component-id="OUIA-Generated-Checkbox-4"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="compliant-systems-export-setting"
@@ -154,7 +175,7 @@ exports[`ExportPDFForm expect to render without error 1`] = `
             aria-label="Rule data to include"
             checked=""
             class="pf-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-4"
+            data-ouia-component-id="OUIA-Generated-Checkbox-5"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="failed-rules-export-setting"
@@ -273,7 +294,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Non-compliant systems"
             checked=""
             class="pf-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-5"
+            data-ouia-component-id="OUIA-Generated-Checkbox-6"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="non-compliant-systems-export-setting"
@@ -293,7 +314,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-invalid="false"
             aria-label="Systems with unsupported configuration"
             class="pf-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-6"
+            data-ouia-component-id="OUIA-Generated-Checkbox-7"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="unsupported-systems-export-setting"
@@ -311,10 +332,31 @@ exports[`ExportPDFForm expect to render without error with different export sett
         >
           <input
             aria-invalid="false"
+            aria-label="Systems not reporting"
+            checked=""
+            class="pf-c-check__input"
+            data-ouia-component-id="OUIA-Generated-Checkbox-8"
+            data-ouia-component-type="PF4/Checkbox"
+            data-ouia-safe="true"
+            id="nonreporting-systems-export-setting"
+            type="checkbox"
+          />
+          <label
+            class="pf-c-check__label"
+            for="nonreporting-systems-export-setting"
+          >
+            Systems with no reports
+          </label>
+        </div>
+        <div
+          class="pf-c-check"
+        >
+          <input
+            aria-invalid="false"
             aria-label="Compliant systems"
             checked=""
             class="pf-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-7"
+            data-ouia-component-id="OUIA-Generated-Checkbox-9"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="compliant-systems-export-setting"
@@ -359,7 +401,7 @@ exports[`ExportPDFForm expect to render without error with different export sett
             aria-label="Rule data to include"
             checked=""
             class="pf-c-check__input"
-            data-ouia-component-id="OUIA-Generated-Checkbox-8"
+            data-ouia-component-id="OUIA-Generated-Checkbox-10"
             data-ouia-component-type="PF4/Checkbox"
             data-ouia-safe="true"
             id="failed-rules-export-setting"

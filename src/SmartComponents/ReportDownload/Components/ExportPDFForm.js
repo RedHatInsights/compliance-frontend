@@ -34,6 +34,13 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => {
           isChecked={exportSettings.unsupportedSystems}
         />
         <Checkbox
+          label="Systems with no reports"
+          id="nonreporting-systems-export-setting"
+          aria-label="Systems not reporting"
+          onChange={setExportSetting('nonReportingSystems')}
+          isChecked={exportSettings.nonReportingSystems}
+        />
+        <Checkbox
           id="compliant-systems-export-setting"
           onChange={setExportSetting('compliantSystems')}
           isChecked={exportSettings.compliantSystems}

@@ -1,27 +1,44 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import chart_color_gold_300 from '@patternfly/react-tokens/dist/esm/chart_color_gold_300';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import { Chart } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 // TODO Legend table style need to be disablable
 const ComplianceChart = ({
-  policy: {
-    testResultHostCount = 0,
-    compliantHostCount = 0,
-    percentCompliant = 0,
-  },
+  policy: { percentCompliant = 0 },
+  compliantSystemCount,
+  nonCompliantSystemCount,
+  unsupportedSystemCount,
+  nonReportingSystemCount,
 }) => {
-  const nonCompliantSystemsCount = testResultHostCount - compliantHostCount;
   const compliantSystemsChartData = [
     {
-      x: `${compliantHostCount} systems compliant`,
-      y: compliantHostCount,
+      x: `${compliantSystemCount} systems compliant`,
+      y: compliantSystemCount,
     },
     {
-      x: `${nonCompliantSystemsCount} systems non-compliant`,
-      y: nonCompliantSystemsCount,
+      x: `${nonCompliantSystemCount} systems non-compliant`,
+      y: nonCompliantSystemCount,
     },
+    ...(unsupportedSystemCount > 0
+      ? [
+          {
+            x: `${unsupportedSystemCount} systems not supported`,
+            y: unsupportedSystemCount,
+            color: chart_color_gold_300.value,
+          },
+        ]
+      : []),
+    ...(nonReportingSystemCount > 0
+      ? [
+          {
+            x: `${nonReportingSystemCount} systems never reported`,
+            y: 0,
+          },
+        ]
+      : []),
   ];
   const compliancePercentage = fixedPercentage(percentCompliant);
 
@@ -30,7 +47,6 @@ const ComplianceChart = ({
       legendHeader={''}
       chartType="donut"
       subTitle="Compliant"
-      colorSchema="blue"
       title={compliancePercentage}
       data={compliantSystemsChartData}
     />
@@ -39,6 +55,10 @@ const ComplianceChart = ({
 
 ComplianceChart.propTypes = {
   policy: propTypes.object,
+  compliantSystemCount: propTypes.number,
+  nonCompliantSystemCount: propTypes.number,
+  unsupportedSystemCount: propTypes.number,
+  nonReportingSystemCount: propTypes.number,
 };
 
 export default ComplianceChart;
