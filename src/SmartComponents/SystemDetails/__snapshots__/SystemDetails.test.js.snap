@@ -56,7 +56,6 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
   >
     <PageHeader>
       <Skeleton
-        isDark={false}
         size="md"
       />
     </PageHeader>
@@ -115,7 +114,6 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
   >
     <PageHeader>
       <Skeleton
-        isDark={false}
         size="md"
       />
     </PageHeader>
@@ -174,7 +172,6 @@ exports[`SystemDetails expect to render loading 1`] = `
   >
     <PageHeader>
       <Skeleton
-        isDark={false}
         size="md"
       />
     </PageHeader>
@@ -233,7 +230,6 @@ exports[`SystemDetails expect to render without error 1`] = `
   >
     <PageHeader>
       <Skeleton
-        isDark={false}
         size="md"
       />
     </PageHeader>
