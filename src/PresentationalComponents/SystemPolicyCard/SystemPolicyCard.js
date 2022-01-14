@@ -33,7 +33,7 @@ class SystemPolicyCard extends React.Component {
     value.toFixed(fixed) + (withPercent ? '%' : '');
 
   render() {
-    const { policy, style } = this.props;
+    const { policy, style, onClick, isSelected } = this.props;
     const {
       rulesFailed,
       compliant,
@@ -48,16 +48,27 @@ class SystemPolicyCard extends React.Component {
     const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 
     return (
-      <Card style={style}>
+      <Card
+        ouiaId="PolicyCard"
+        onClick={(event) => {
+          event.stopPropagation();
+          onClick(policy);
+        }}
+        isSelectable
+        isSelected={isSelected}
+        style={style}
+      >
         <CardBody>
           <TextContent className="margin-bottom-md">
             <Text
+              ouiaId="PolicyCardName"
               className="margin-bottom-top-none"
               component={TextVariants.h4}
             >
               <Truncate text={name} length={110} {...truncateDefaults} />
             </Text>
             <Text
+              ouiaId="PolicyCardType"
               style={{ color: 'var(--pf-global--Color--200)' }}
               component={TextVariants.small}
             >
@@ -66,7 +77,10 @@ class SystemPolicyCard extends React.Component {
           </TextContent>
           <div className="margin-bottom-md">
             {supported && this.complianceIcon(compliant)}
-            <Text component={TextVariants.small}>
+            <Text
+              ouiaId="PolicyCardFailedRulesScore"
+              component={TextVariants.small}
+            >
               {rulesFailed} rule{rulesFailed === 1 ? '' : 's'} failed{' '}
               <Tooltip
                 position="bottom"
@@ -81,8 +95,8 @@ class SystemPolicyCard extends React.Component {
             </Text>
           </div>
           <Text className="margin-bottom-none" component={TextVariants.small}>
-            <Text>SSG version: {ssgVersion}</Text>
-            <Text>
+            <Text ouiaId="PolicyCardSSGVersion">SSG version: {ssgVersion}</Text>
+            <Text ouiaId="PolicyCardLastScanned">
               Last scanned:{' '}
               {lastScanned !== 'Never' ? (
                 <DateFormat date={Date.parse(lastScanned)} type="relative" />
@@ -95,6 +109,7 @@ class SystemPolicyCard extends React.Component {
         {!supported && (
           <CardFooter style={{ padding: '0' }}>
             <UnsupportedSSGVersion
+              ouiaId="PolicyCardUnsupportedSSG"
               ssgVersion={ssgVersion}
               style={{
                 paddingTop: 'var(--pf-c-alert--PaddingTop)',
@@ -124,6 +139,8 @@ SystemPolicyCard.propTypes = {
     supported: PropTypes.bool,
   }),
   style: PropTypes.object,
+  onClick: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
 export default SystemPolicyCard;

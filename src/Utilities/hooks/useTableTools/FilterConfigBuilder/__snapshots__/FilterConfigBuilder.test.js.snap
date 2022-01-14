@@ -9,7 +9,7 @@ exports[`FilterConfigBuilder categoryLabelForValue to return a matching category
 exports[`FilterConfigBuilder initialDefaultState to return a matching category label 1`] = `
 Object {
   "compliant": Array [],
-  "name": "",
+  "name": undefined,
   "systemsmeetingcompliance": Array [],
 }
 `;

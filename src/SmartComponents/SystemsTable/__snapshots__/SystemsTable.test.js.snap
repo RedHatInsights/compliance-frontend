@@ -86,7 +86,7 @@ exports[`SystemsTable returns 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -305,7 +305,7 @@ exports[`SystemsTable returns compact 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -623,7 +623,7 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -842,7 +842,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -862,7 +862,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
                   },
                 ],
                 "onChange": [Function],
-                "value": Array [],
+                "value": undefined,
               },
               "id": "compliant",
               "label": "Compliant",
@@ -890,7 +890,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
                   },
                 ],
                 "onChange": [Function],
-                "value": Array [],
+                "value": undefined,
               },
               "id": "compliancescore",
               "label": "Compliance score",
@@ -1109,7 +1109,7 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -1320,7 +1320,7 @@ exports[`SystemsTable returns without actions 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
@@ -1533,7 +1533,7 @@ exports[`SystemsTable returns without remediations 1`] = `
             Object {
               "filterValues": Object {
                 "onChange": [Function],
-                "value": "",
+                "value": undefined,
               },
               "id": "name",
               "label": "Name",
