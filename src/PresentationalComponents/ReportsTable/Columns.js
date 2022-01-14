@@ -50,6 +50,7 @@ export const CompliantSystems = {
 export const PDFExportDownload = {
   title: '',
   renderFunc: renderComponent(PDFExportDownloadCell),
+  managable: false,
 };
 
 const PolicyType = {

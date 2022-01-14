@@ -14,12 +14,16 @@ const TableToolsTable = ({
   toolbarProps: toolbarPropsProp,
   ...tablePropsRest
 }) => {
-  const { toolbarProps, tableProps } = useTableTools(items, columns, {
-    filters,
-    toolbarProps: toolbarPropsProp,
-    tableProps: tablePropsRest,
-    ...options,
-  });
+  const { toolbarProps, tableProps, ColumnManager } = useTableTools(
+    items,
+    columns,
+    {
+      filters,
+      toolbarProps: toolbarPropsProp,
+      tableProps: tablePropsRest,
+      ...options,
+    }
+  );
 
   return (
     <React.Fragment>
@@ -36,6 +40,8 @@ const TableToolsTable = ({
           {...toolbarProps.pagination}
         />
       </TableToolbar>
+
+      {ColumnManager && <ColumnManager />}
     </React.Fragment>
   );
 };

@@ -5,6 +5,7 @@ import { Button } from '@patternfly/react-core';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { BackgroundLink, emptyRows } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
 
@@ -19,6 +20,7 @@ const DedicatedAction = () => (
 );
 
 export const PoliciesTable = ({ policies, location, history }) => {
+  const manageColumnsEnabled = useFeature('manageColumns');
   const filters = Object.values(Filters);
 
   const actionResolver = () => [
@@ -64,6 +66,7 @@ export const PoliciesTable = ({ policies, location, history }) => {
           ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
+        manageColumns: manageColumnsEnabled,
       }}
       actionResolver={actionResolver}
     />
