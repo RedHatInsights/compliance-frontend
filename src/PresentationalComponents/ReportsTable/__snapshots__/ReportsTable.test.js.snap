@@ -39,6 +39,7 @@ exports[`ReportsTable expect to render without error 1`] = `
         ],
       },
       Object {
+        "managable": false,
         "renderFunc": [Function],
         "title": "",
       },
@@ -684,6 +685,7 @@ exports[`ReportsTable expect to render without error 1`] = `
         "onComplete": [Function],
         "onStart": [Function],
       },
+      "manageColumns": false,
     }
   }
   ouiaId="ReportsTable"

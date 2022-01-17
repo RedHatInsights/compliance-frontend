@@ -4,6 +4,7 @@ import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import useFeature from 'Utilities/hooks/useFeature';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
 import emptyRows from './EmptyRows';
@@ -21,8 +22,10 @@ const RulesTable = ({
   selectedRules = [],
   hidePassed = false,
   options,
+  activeFilters,
   ...rulesTableProps
 }) => {
+  const manageColumnsEnabled = useFeature('manageColumns');
   const rules = toRulesArrayWithProfile(profileRules);
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
@@ -31,7 +34,7 @@ const RulesTable = ({
   const policies = profileRules
     .filter(({ profile }) => !!profile)
     .map(({ profile }) => ({
-      id: profile.policy ? profile.policy.id : profile.id,
+      id: profile.id,
       name: profile.name,
     }));
 
@@ -62,9 +65,13 @@ const RulesTable = ({
           remediationAvailableFilter,
         }),
         ...(hidePassed && {
-          activeFilters: {
-            passed: ['failed'],
-          },
+          activeFilters: (currentActiveFilters) => ({
+            ...currentActiveFilters,
+            passed: currentActiveFilters.passed
+              ? currentActiveFilters.passed
+              : ['failed'],
+            ...activeFilters,
+          }),
         }),
       }}
       options={{
@@ -78,6 +85,7 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        manageColumns: manageColumnsEnabled,
       }}
       {...rulesTableProps}
     />
@@ -96,6 +104,7 @@ RulesTable.propTypes = {
   handleSelect: propTypes.func,
   columns: propTypes.array,
   options: propTypes.object,
+  activeFilters: propTypes.object,
 };
 
 export default RulesTable;

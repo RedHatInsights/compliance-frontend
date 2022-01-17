@@ -208,4 +208,5 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
 
 export const features = {
   pdfReport: true,
+  manageColumns: false,
 };

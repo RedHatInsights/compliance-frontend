@@ -14,6 +14,7 @@ import {
 } from './Filters';
 
 const ReportsTable = ({ profiles }) => {
+  const manageColumnsEnabled = useFeature('manageColumns');
   const pdfReportEnabled = useFeature('pdfReport');
   const policyTypes = uniq(
     profiles.map(({ policyType }) => policyType).filter((i) => !!i)
@@ -49,6 +50,7 @@ const ReportsTable = ({ profiles }) => {
           ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
+        manageColumns: manageColumnsEnabled,
       }}
     />
   );

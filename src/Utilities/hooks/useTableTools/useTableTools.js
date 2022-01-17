@@ -6,6 +6,8 @@ import { useBulkSelectWithItems } from './useBulkSelect';
 import useItemIdentify from './useItemIdentify';
 import useExpandable from './useExpandable';
 import useDedicatedAction from './useDedicatedAction';
+import useToolbarActions from './useToolbarActions';
+import useColumnManager from './useColumnManager';
 import { useExportWithItems } from './useExport';
 
 const useTableTools = (items = [], columns = [], options = {}) => {
@@ -13,6 +15,20 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     options;
 
   const identifiedItems = useItemIdentify(items, options);
+
+  const {
+    columnManagerAction,
+    ColumnManager,
+    columns: managedColumns,
+  } = useColumnManager(columns, options);
+
+  const { toolbarProps: toolbarActionsProps } = useToolbarActions({
+    ...options,
+    actions: [
+      ...(options?.actions || []),
+      ...((columnManagerAction && [columnManagerAction]) || []),
+    ],
+  });
 
   const {
     toolbarProps: pagintionToolbarProps,
@@ -34,7 +50,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
 
   const { tableProps: sortableTableProps, sorter } = useTableSortWithItems(
     filter ? filter(items) : items,
-    columns,
+    managedColumns,
     options
   );
 
@@ -68,7 +84,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
       filter,
       sorter
     ),
-    columns,
+    managedColumns,
     options
   );
 
@@ -94,10 +110,11 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...rowBuilderToolbarProps,
     ...toolbarPropsOption,
     ...exportToolbarProps,
+    ...toolbarActionsProps,
   };
 
   const tableProps = {
-    cells: columns,
+    cells: managedColumns,
     ...rowBuilderTableProps,
     ...sortableTableProps,
     ...bulkSelectTableProps,
@@ -108,6 +125,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
   return {
     toolbarProps,
     tableProps,
+    ColumnManager,
   };
 };
 

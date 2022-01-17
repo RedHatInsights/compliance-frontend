@@ -8,9 +8,9 @@ Object {
   "activeFilters": Object {
     "checkboxfilter": Array [],
     "filtergroup": undefined,
-    "hiddenfilter": false,
+    "hiddenfilter": undefined,
     "invalidfilter": undefined,
-    "name": "",
+    "name": undefined,
     "radiofilter": undefined,
   },
   "addConfigItem": [Function],
@@ -268,7 +268,7 @@ Object {
         Object {
           "filterValues": Object {
             "onChange": [Function],
-            "value": "",
+            "value": undefined,
           },
           "id": "name",
           "label": "Name",

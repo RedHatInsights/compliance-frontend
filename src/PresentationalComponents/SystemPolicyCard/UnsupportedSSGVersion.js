@@ -4,7 +4,7 @@ import { Popover, Alert } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import { supportedConfigsLink } from '@/constants';
 
-const UnsupportedSSGVersion = ({ ssgVersion, style }) => {
+const UnsupportedSSGVersion = ({ ssgVersion, style, ...props }) => {
   const bodyContent =
     'This system was using an incompatible version of the SSG at the time this report was generated.' +
     ' Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
@@ -33,6 +33,7 @@ const UnsupportedSSGVersion = ({ ssgVersion, style }) => {
           </Popover>
         </React.Fragment>
       }
+      {...props}
     />
   );
 };
