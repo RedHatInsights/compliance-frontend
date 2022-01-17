@@ -17,19 +17,19 @@ import { fixedPercentage, pluralize } from 'Utilities/TextHelper';
 import '@/Charts.scss';
 import LegendLabel from './LegendLabel';
 
-const ReportChart = ({ profile }) => {
+const ReportChart = ({ profile = {} }) => {
   const {
-    compliantHostCount,
-    testResultHostCount,
-    unsupportedHostCount,
-    totalHostCount,
+    compliantHostCount = 0,
+    testResultHostCount = 0,
+    unsupportedHostCount = 0,
+    totalHostCount = 0,
   } = profile;
   const notReportingHostCount =
     totalHostCount - unsupportedHostCount - testResultHostCount;
-  const donutId = profile.name.replace(/ /g, '');
+  const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
-    { x: 'Compliant', y: testResultHostCount ? compliantHostCount : '0' },
-    { x: 'Non-compliant', y: testResultHostCount - compliantHostCount },
+    { x: 'Compliant', y: compliantHostCount },
+    { x: 'Non-compliant', y: totalHostCount - compliantHostCount },
     { x: 'Unsupported', y: unsupportedHostCount },
     { x: 'Not reporting', y: 0 },
   ];
