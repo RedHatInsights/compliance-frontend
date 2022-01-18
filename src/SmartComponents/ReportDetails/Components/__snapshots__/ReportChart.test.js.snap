@@ -3,10 +3,10 @@
 exports[`ReportChart expect to render with not reporting hosts 1`] = `
 <div>
   <div
-    class="chart-inline"
+    class="pf-l-grid chart-container"
   >
     <div
-      class="chart-container"
+      class="pf-l-grid__item pf-m-6-col"
     >
       <div
         class="pf-c-chart"
@@ -16,8 +16,8 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
           height="230"
           role="img"
           style="pointer-events: all; width: 100%; height: 100%;"
-          viewBox="0 0 462 230"
-          width="462"
+          viewBox="0 0 230 230"
+          width="230"
         >
           <g>
             <path
@@ -25,127 +25,34 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
-          </g>
-          <g>
-            <rect
-              height="92.71499999999999"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: none;"
-              vector-effect="non-scaling-stroke"
-              width="198.28124999999997"
-              x="209"
-              y="70.64250000000001"
-            />
-            <path
-              d="M 218.128, 89.51450000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #06c;"
-            />
-            <path
-              d="M 218.128, 120.41950000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #8bc1f7;"
-            />
-            <path
-              d="M 218.128, 151.3245
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #f4c145;"
-            />
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-0"
-              x="239.8"
-              y="89.61250000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-1"
-              x="239.8"
-              y="120.51750000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems non-compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-2"
-              x="239.8"
-              y="151.4225"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems not supported
-              </tspan>
-            </text>
           </g>
           <text
             direction="inherit"
             dx="0"
-            x="106"
+            x="115"
             y="113.675"
           >
             <tspan
@@ -153,7 +60,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
               dy="0"
               style="font-size: 24px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               0
             </tspan>
@@ -162,7 +69,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
               dy="13.5"
               style="fill: #b8bbbe; font-size: 14px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               Compliant
             </tspan>
@@ -174,11 +81,65 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
           <svg
             height="230"
             style="overflow: visible; width: 100%; height: 100%;"
-            viewBox="0 0 462 230"
-            width="462"
+            viewBox="0 0 230 230"
+            width="230"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-6-col pf-u-display-flex pf-u-align-items-center"
+      style="font-size: .85em; height: 100%;"
+    >
+      <ul
+        class="pf-c-list"
+      >
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(0, 102, 204);"
+            >
+               
+            </span>
+          </span>
+          0 systems compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(81, 157, 233);"
+            >
+               
+            </span>
+          </span>
+          0 systems non-compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+            >
+               
+            </span>
+          </span>
+          0 systems not supported
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -187,10 +148,10 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
 exports[`ReportChart expect to render with unsupported hosts 1`] = `
 <div>
   <div
-    class="chart-inline"
+    class="pf-l-grid chart-container"
   >
     <div
-      class="chart-container"
+      class="pf-l-grid__item pf-m-6-col"
     >
       <div
         class="pf-c-chart"
@@ -200,8 +161,8 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
           height="230"
           role="img"
           style="pointer-events: all; width: 100%; height: 100%;"
-          viewBox="0 0 462 230"
-          width="462"
+          viewBox="0 0 230 230"
+          width="230"
         >
           <g>
             <path
@@ -209,127 +170,34 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
-          </g>
-          <g>
-            <rect
-              height="92.71499999999999"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: none;"
-              vector-effect="non-scaling-stroke"
-              width="198.28124999999997"
-              x="209"
-              y="70.64250000000001"
-            />
-            <path
-              d="M 218.128, 89.51450000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #06c;"
-            />
-            <path
-              d="M 218.128, 120.41950000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #8bc1f7;"
-            />
-            <path
-              d="M 218.128, 151.3245
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #f4c145;"
-            />
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-0"
-              x="239.8"
-              y="89.61250000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-1"
-              x="239.8"
-              y="120.51750000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems non-compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-2"
-              x="239.8"
-              y="151.4225"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems not supported
-              </tspan>
-            </text>
           </g>
           <text
             direction="inherit"
             dx="0"
-            x="106"
+            x="115"
             y="113.675"
           >
             <tspan
@@ -337,7 +205,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
               dy="0"
               style="font-size: 24px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               0
             </tspan>
@@ -346,7 +214,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
               dy="13.5"
               style="fill: #b8bbbe; font-size: 14px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               Compliant
             </tspan>
@@ -358,11 +226,65 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
           <svg
             height="230"
             style="overflow: visible; width: 100%; height: 100%;"
-            viewBox="0 0 462 230"
-            width="462"
+            viewBox="0 0 230 230"
+            width="230"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-6-col pf-u-display-flex pf-u-align-items-center"
+      style="font-size: .85em; height: 100%;"
+    >
+      <ul
+        class="pf-c-list"
+      >
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(0, 102, 204);"
+            >
+               
+            </span>
+          </span>
+          0 systems compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(81, 157, 233);"
+            >
+               
+            </span>
+          </span>
+          0 systems non-compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+            >
+               
+            </span>
+          </span>
+          0 systems not supported
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -371,10 +293,10 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
 exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
 <div>
   <div
-    class="chart-inline"
+    class="pf-l-grid chart-container"
   >
     <div
-      class="chart-container"
+      class="pf-l-grid__item pf-m-6-col"
     >
       <div
         class="pf-c-chart"
@@ -384,8 +306,8 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
           height="230"
           role="img"
           style="pointer-events: all; width: 100%; height: 100%;"
-          viewBox="0 0 462 230"
-          width="462"
+          viewBox="0 0 230 230"
+          width="230"
         >
           <g>
             <path
@@ -393,127 +315,34 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
-          </g>
-          <g>
-            <rect
-              height="92.71499999999999"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: none;"
-              vector-effect="non-scaling-stroke"
-              width="198.28124999999997"
-              x="209"
-              y="70.64250000000001"
-            />
-            <path
-              d="M 218.128, 89.51450000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #06c;"
-            />
-            <path
-              d="M 218.128, 120.41950000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #8bc1f7;"
-            />
-            <path
-              d="M 218.128, 151.3245
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #f4c145;"
-            />
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-0"
-              x="239.8"
-              y="89.61250000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-1"
-              x="239.8"
-              y="120.51750000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems non-compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-2"
-              x="239.8"
-              y="151.4225"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems not supported
-              </tspan>
-            </text>
           </g>
           <text
             direction="inherit"
             dx="0"
-            x="106"
+            x="115"
             y="113.675"
           >
             <tspan
@@ -521,7 +350,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
               dy="0"
               style="font-size: 24px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               0
             </tspan>
@@ -530,7 +359,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
               dy="13.5"
               style="fill: #b8bbbe; font-size: 14px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               Compliant
             </tspan>
@@ -542,11 +371,65 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
           <svg
             height="230"
             style="overflow: visible; width: 100%; height: 100%;"
-            viewBox="0 0 462 230"
-            width="462"
+            viewBox="0 0 230 230"
+            width="230"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-6-col pf-u-display-flex pf-u-align-items-center"
+      style="font-size: .85em; height: 100%;"
+    >
+      <ul
+        class="pf-c-list"
+      >
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(0, 102, 204);"
+            >
+               
+            </span>
+          </span>
+          0 systems compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(81, 157, 233);"
+            >
+               
+            </span>
+          </span>
+          0 systems non-compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+            >
+               
+            </span>
+          </span>
+          0 systems not supported
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -555,10 +438,10 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
 exports[`ReportChart expect to render without error with no profile 1`] = `
 <div>
   <div
-    class="chart-inline"
+    class="pf-l-grid chart-container"
   >
     <div
-      class="chart-container"
+      class="pf-l-grid__item pf-m-6-col"
     >
       <div
         class="pf-c-chart"
@@ -568,8 +451,8 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
           height="230"
           role="img"
           style="pointer-events: all; width: 100%; height: 100%;"
-          viewBox="0 0 462 230"
-          width="462"
+          viewBox="0 0 230 230"
+          width="230"
         >
           <g>
             <path
@@ -577,127 +460,34 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
-          </g>
-          <g>
-            <rect
-              height="92.71499999999999"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: none;"
-              vector-effect="non-scaling-stroke"
-              width="198.28124999999997"
-              x="209"
-              y="70.64250000000001"
-            />
-            <path
-              d="M 218.128, 89.51450000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #06c;"
-            />
-            <path
-              d="M 218.128, 120.41950000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #8bc1f7;"
-            />
-            <path
-              d="M 218.128, 151.3245
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #f4c145;"
-            />
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-0"
-              x="239.8"
-              y="89.61250000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-1"
-              x="239.8"
-              y="120.51750000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems non-compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-2"
-              x="239.8"
-              y="151.4225"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems not supported
-              </tspan>
-            </text>
           </g>
           <text
             direction="inherit"
             dx="0"
-            x="106"
+            x="115"
             y="113.675"
           >
             <tspan
@@ -705,7 +495,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
               dy="0"
               style="font-size: 24px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               0
             </tspan>
@@ -714,7 +504,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
               dy="13.5"
               style="fill: #b8bbbe; font-size: 14px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               Compliant
             </tspan>
@@ -726,11 +516,65 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
           <svg
             height="230"
             style="overflow: visible; width: 100%; height: 100%;"
-            viewBox="0 0 462 230"
-            width="462"
+            viewBox="0 0 230 230"
+            width="230"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-6-col pf-u-display-flex pf-u-align-items-center"
+      style="font-size: .85em; height: 100%;"
+    >
+      <ul
+        class="pf-c-list"
+      >
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(0, 102, 204);"
+            >
+               
+            </span>
+          </span>
+          0 systems compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(81, 157, 233);"
+            >
+               
+            </span>
+          </span>
+          0 systems non-compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+            >
+               
+            </span>
+          </span>
+          0 systems not supported
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -739,10 +583,10 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
 exports[`ReportChart expect to render without error with zero counts 1`] = `
 <div>
   <div
-    class="chart-inline"
+    class="pf-l-grid chart-container"
   >
     <div
-      class="chart-container"
+      class="pf-l-grid__item pf-m-6-col"
     >
       <div
         class="pf-c-chart"
@@ -752,8 +596,8 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
           height="230"
           role="img"
           style="pointer-events: all; width: 100%; height: 100%;"
-          viewBox="0 0 462 230"
-          width="462"
+          viewBox="0 0 230 230"
+          width="230"
         >
           <g>
             <path
@@ -761,127 +605,34 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
             <path
               d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
-              transform="translate(106, 115)"
+              transform="translate(115, 115)"
             />
-          </g>
-          <g>
-            <rect
-              height="92.71499999999999"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: none;"
-              vector-effect="non-scaling-stroke"
-              width="198.28124999999997"
-              x="209"
-              y="70.64250000000001"
-            />
-            <path
-              d="M 218.128, 89.51450000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #06c;"
-            />
-            <path
-              d="M 218.128, 120.41950000000001
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #8bc1f7;"
-            />
-            <path
-              d="M 218.128, 151.3245
-      h9.744000000000028
-      v-9.744000000000028
-      h-9.744000000000028
-      z"
-              role="presentation"
-              shape-rendering="auto"
-              style="fill: #f4c145;"
-            />
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-0"
-              x="239.8"
-              y="89.61250000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-1"
-              x="239.8"
-              y="120.51750000000001"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems non-compliant
-              </tspan>
-            </text>
-            <text
-              direction="inherit"
-              dx="0"
-              id="legend-labels-2"
-              x="239.8"
-              y="151.4225"
-            >
-              <tspan
-                dx="0"
-                dy="0"
-                style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: transparent; fill: #252525;"
-                text-anchor="start"
-                x="239.8"
-              >
-                0 systems not supported
-              </tspan>
-            </text>
           </g>
           <text
             direction="inherit"
             dx="0"
-            x="106"
+            x="115"
             y="113.675"
           >
             <tspan
@@ -889,7 +640,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
               dy="0"
               style="font-size: 24px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); fill: #252525; stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               0
             </tspan>
@@ -898,7 +649,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
               dy="13.5"
               style="fill: #b8bbbe; font-size: 14px; text-anchor: middle; font-family: var(--pf-chart-global--FontFamily); letter-spacing: var(--pf-chart-global--letter-spacing); stroke: transparent;"
               text-anchor="middle"
-              x="106"
+              x="115"
             >
               Compliant
             </tspan>
@@ -910,11 +661,65 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
           <svg
             height="230"
             style="overflow: visible; width: 100%; height: 100%;"
-            viewBox="0 0 462 230"
-            width="462"
+            viewBox="0 0 230 230"
+            width="230"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-6-col pf-u-display-flex pf-u-align-items-center"
+      style="font-size: .85em; height: 100%;"
+    >
+      <ul
+        class="pf-c-list"
+      >
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(0, 102, 204);"
+            >
+               
+            </span>
+          </span>
+          0 systems compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(81, 157, 233);"
+            >
+               
+            </span>
+          </span>
+          0 systems non-compliant
+        </li>
+        <li
+          class="pf-c-list__item"
+          style="vertical-align: middle; display: inline-block;"
+        >
+          <span
+            class="pf-c-list__item-icon"
+          >
+            <span
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+            >
+               
+            </span>
+          </span>
+          0 systems not supported
+        </li>
+      </ul>
     </div>
   </div>
 </div>
