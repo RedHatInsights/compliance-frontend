@@ -49,7 +49,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     useExpandable(options);
 
   const { tableProps: sortableTableProps, sorter } = useTableSortWithItems(
-    filter ? filter(items) : items,
+    items,
     managedColumns,
     options
   );
