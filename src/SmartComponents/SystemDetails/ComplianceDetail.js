@@ -113,7 +113,6 @@ const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => {
       {system?.testResultProfiles?.length ? (
         <RulesTable
           remediationAvailableFilter
-          handleSelect={() => undefined}
           hidePassed={hidePassed}
           system={{
             ...system,

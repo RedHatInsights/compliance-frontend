@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
@@ -19,13 +19,16 @@ const RulesTable = ({
   remediationAvailableFilter = false,
   selectedFilter = false,
   handleSelect,
-  selectedRules = [],
+  selectedRules: selectedRulesProp = [],
   hidePassed = false,
   options,
   activeFilters,
   ...rulesTableProps
 }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
+  const [selectedRules, setSelectedRules] = handleSelect
+    ? [selectedRulesProp, handleSelect]
+    : useState([]);
   const rules = toRulesArrayWithProfile(profileRules);
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
@@ -78,8 +81,7 @@ const RulesTable = ({
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
         identifier: (item) => `${item.profile.id}|${item.refId}`,
-        selectable: !!handleSelect || remediationsEnabled,
-        onSelect: handleSelect,
+        onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
         detailsComponent: RuleDetailsRow,
         emptyRows: emptyRows(columns),
