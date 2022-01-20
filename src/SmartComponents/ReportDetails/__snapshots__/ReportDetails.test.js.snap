@@ -182,34 +182,66 @@ exports[`ReportDetails expect to render without error 1`] = `
           sm={12}
           xl={6}
         >
-          <ReportChart
-            profile={
-              Object {
-                "benchmark": Object {
-                  "version": "0.1.4",
-                },
-                "businessObjective": Object {
-                  "id": "1",
-                  "title": "BO 1",
-                },
-                "complianceThreshold": 1,
-                "compliantHostCount": 5,
-                "description": "profile description",
-                "external": false,
-                "id": "1",
-                "majorOsVersion": "7",
-                "name": "profile1",
-                "policy": Object {
-                  "id": "thepolicyid",
-                  "name": "the policy name",
-                },
-                "policyType": "policy type",
-                "refId": "121212",
-                "testResultHostCount": 10,
-                "unsupportedHostCount": 5,
-              }
-            }
-          />
+          <div
+            className="chart-inline"
+          >
+            <div
+              className="chart-container"
+            >
+              <ChartDonut
+                colorScale={
+                  Array [
+                    "#06c",
+                    "#519de9",
+                  ]
+                }
+                constrainToVisibleArea={true}
+                data={
+                  Array [
+                    Object {
+                      "x": "Compliant",
+                      "y": 5,
+                    },
+                    Object {
+                      "x": "Non-compliant",
+                      "y": 5,
+                    },
+                  ]
+                }
+                identifier="profile1"
+                innerRadius={88}
+                legendData={
+                  Array [
+                    Object {
+                      "name": "5 systems compliant",
+                    },
+                    Object {
+                      "name": "5 systems non-compliant",
+                    },
+                  ]
+                }
+                legendOrientation="vertical"
+                legendPosition="right"
+                padding={
+                  Object {
+                    "bottom": 20,
+                    "left": 0,
+                    "right": 250,
+                    "top": 20,
+                  }
+                }
+                style={
+                  Object {
+                    "fontSize": 20,
+                  }
+                }
+                subTitle="Compliant"
+                themeVariant="light"
+                title="50%"
+                width={462}
+              />
+            </div>
+          </div>
           <Text>
             <UnsupportedSSGVersion
               showHelpIcon={true}
@@ -344,7 +376,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="policy_id = 1"
+            defaultFilter="with_results_for_policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={Array []}
@@ -1032,16 +1064,11 @@ exports[`ReportDetails expect to render without error 1`] = `
             remediationsEnabled={true}
             showActions={true}
             showComplianceSystemsInfo={false}
-            showOnlySystemsWithTestResults={false}
+            showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               Array [
                 "7",
               ]
-            }
-            tableProps={
-              Object {
-                "rowWrapper": [Function],
-              }
             }
           />
         </GridItem>
@@ -1233,34 +1260,66 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           sm={12}
           xl={6}
         >
-          <ReportChart
-            profile={
-              Object {
-                "benchmark": Object {
-                  "version": "0.1.4",
-                },
-                "businessObjective": Object {
-                  "id": "1",
-                  "title": "BO 1",
-                },
-                "complianceThreshold": 1,
-                "compliantHostCount": 5,
-                "description": "profile description",
-                "external": false,
-                "id": "1",
-                "majorOsVersion": "7",
-                "name": "profile1",
-                "policy": Object {
-                  "id": "thepolicyid",
-                  "name": "the policy name",
-                },
-                "policyType": "policy type",
-                "refId": "121212",
-                "testResultHostCount": 10,
-                "unsupportedHostCount": 5,
-              }
-            }
-          />
+          <div
+            className="chart-inline"
+          >
+            <div
+              className="chart-container"
+            >
+              <ChartDonut
+                colorScale={
+                  Array [
+                    "#06c",
+                    "#519de9",
+                  ]
+                }
+                constrainToVisibleArea={true}
+                data={
+                  Array [
+                    Object {
+                      "x": "Compliant",
+                      "y": 5,
+                    },
+                    Object {
+                      "x": "Non-compliant",
+                      "y": 5,
+                    },
+                  ]
+                }
+                identifier="profile1"
+                innerRadius={88}
+                legendData={
+                  Array [
+                    Object {
+                      "name": "5 systems compliant",
+                    },
+                    Object {
+                      "name": "5 systems non-compliant",
+                    },
+                  ]
+                }
+                legendOrientation="vertical"
+                legendPosition="right"
+                padding={
+                  Object {
+                    "bottom": 20,
+                    "left": 0,
+                    "right": 250,
+                    "top": 20,
+                  }
+                }
+                style={
+                  Object {
+                    "fontSize": 20,
+                  }
+                }
+                subTitle="Compliant"
+                themeVariant="light"
+                title="50%"
+                width={462}
+              />
+            </div>
+          </div>
           <Text>
             <UnsupportedSSGVersion
               showHelpIcon={true}
@@ -1395,7 +1454,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="policy_id = 1"
+            defaultFilter="with_results_for_policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={Array []}
@@ -2083,16 +2142,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             remediationsEnabled={true}
             showActions={true}
             showComplianceSystemsInfo={false}
-            showOnlySystemsWithTestResults={false}
+            showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               Array [
                 "7",
               ]
-            }
-            tableProps={
-              Object {
-                "rowWrapper": [Function],
-              }
             }
           />
         </GridItem>

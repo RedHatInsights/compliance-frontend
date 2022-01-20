@@ -7,8 +7,11 @@ import {
   TextArea,
   Checkbox,
 } from '@patternfly/react-core';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => {
+  const systemsNotReporting = useFeature('systemsNotReporting');
+
   return (
     <Form>
       <FormGroup isInline fieldId="simple-form-checkbox-group" label="Policy">
@@ -33,13 +36,15 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => {
           onChange={setExportSetting('unsupportedSystems')}
           isChecked={exportSettings.unsupportedSystems}
         />
-        <Checkbox
-          label="Systems with no reports"
-          id="nonreporting-systems-export-setting"
-          aria-label="Systems not reporting"
-          onChange={setExportSetting('nonReportingSystems')}
-          isChecked={exportSettings.nonReportingSystems}
-        />
+        {systemsNotReporting && (
+          <Checkbox
+            label="Systems with no reports"
+            id="nonreporting-systems-export-setting"
+            aria-label="Systems not reporting"
+            onChange={setExportSetting('nonReportingSystems')}
+            isChecked={exportSettings.nonReportingSystems}
+          />
+        )}
         <Checkbox
           id="compliant-systems-export-setting"
           onChange={setExportSetting('compliantSystems')}

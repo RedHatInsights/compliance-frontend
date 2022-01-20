@@ -1,4 +1,5 @@
 import { useApolloClient } from '@apollo/client';
+import useFeature from 'Utilities/hooks/useFeature';
 import { GET_SYSTEMS } from '../constants';
 import {
   compliantSystemsData,
@@ -26,6 +27,8 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
+  const systemsNotReporting = useFeature('systemsNotReporting');
+
   const client = useApolloClient();
 
   const prepareForExport = (systems) => {
@@ -50,10 +53,14 @@ const useQueryExportData = (
       ...(exportSettings.topTenFailedRules && {
         topTenFailedRules: topTenFailedRulesData(systems),
       }),
-      nonReportingSystemCount: nonReportingSystems.length,
-      ...(exportSettings.nonReportingSystems && {
-        nonReportingSystems: nonReportingSystems,
-      }),
+      ...(systemsNotReporting
+        ? {
+            nonReportingSystemCount: nonReportingSystems.length,
+            ...(exportSettings.nonReportingSystems && {
+              nonReportingSystems: nonReportingSystems,
+            }),
+          }
+        : {}),
       ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
     };
   };

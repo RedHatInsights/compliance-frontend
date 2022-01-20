@@ -7,7 +7,6 @@ Object {
       "exportSettings": Object {
         "compliantSystems": false,
         "nonCompliantSystems": true,
-        "nonReportingSystems": true,
         "topTenFailedRules": true,
         "unsupportedSystems": true,
         "userNotes": undefined,
@@ -20,7 +19,6 @@ Object {
     "exportSettings": Object {
       "compliantSystems": false,
       "nonCompliantSystems": true,
-      "nonReportingSystems": true,
       "topTenFailedRules": true,
       "unsupportedSystems": true,
       "userNotes": undefined,

@@ -1,8 +1,19 @@
 import { useState } from 'react';
+import pickBy from 'lodash/pickBy';
+import useFeature from 'Utilities/hooks/useFeature';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 
+const preparedSettings = (withReporting) =>
+  pickBy(
+    DEFAULT_EXPORT_SETTINGS,
+    (_value, key) => !(key === 'nonReportingSystems' && !withReporting)
+  );
+
 const useExportSettings = () => {
-  const [exportSettings, setExportSettings] = useState(DEFAULT_EXPORT_SETTINGS);
+  const systemsNotReporting = useFeature('systemsNotReporting');
+  const [exportSettings, setExportSettings] = useState(
+    preparedSettings(systemsNotReporting)
+  );
 
   const setExportSetting = (setting) => (value) =>
     setExportSettings({
@@ -14,7 +25,7 @@ const useExportSettings = () => {
     Object.keys(exportSettings).some(
       (key) => (key !== 'userNotes' && !!exportSettings[key]) === true
     );
-
+  console.log(exportSettings);
   return {
     exportSettings,
     setExportSetting,

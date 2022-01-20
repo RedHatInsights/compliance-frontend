@@ -11478,8 +11478,6 @@ Object {
       ],
     },
   ],
-  "nonReportingSystemCount": 0,
-  "nonReportingSystems": Array [],
   "topTenFailedRules": Array [
     Object {
       "compliant": false,
