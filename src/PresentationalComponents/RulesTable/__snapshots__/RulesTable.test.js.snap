@@ -418,9 +418,8 @@ exports[`RulesTable expect to pass on options 1`] = `
       },
       "identifier": [Function],
       "manageColumns": false,
-      "onSelect": undefined,
+      "onSelect": [Function],
       "preselected": Array [],
-      "selectable": true,
       "selectedFilter": false,
     }
   }
@@ -844,9 +843,8 @@ exports[`RulesTable expect to render without error 1`] = `
       },
       "identifier": [Function],
       "manageColumns": false,
-      "onSelect": undefined,
+      "onSelect": [Function],
       "preselected": Array [],
-      "selectable": true,
       "selectedFilter": false,
     }
   }
