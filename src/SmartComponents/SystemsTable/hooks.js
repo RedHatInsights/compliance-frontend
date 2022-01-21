@@ -442,6 +442,7 @@ export const useTags = (fetchArguments) => {
         name: true,
         tags: false,
         registeredWith: true,
+        operatingSystem: true,
         stale: true,
       },
       showTags: true,
