@@ -15,7 +15,7 @@ const addSortableTransform = (columns) =>
   }));
 
 const columnOffset = (options = {}) =>
-  (typeof options.onSelect === 'function') +
+  (typeof options.onSelect === 'function' || options.hasRadioSelect) +
   (typeof options.detailsComponent !== 'undefined');
 
 const useTableSort = (columns, options = {}) => {
@@ -25,14 +25,16 @@ const useTableSort = (columns, options = {}) => {
       direction: 'asc',
     }
   );
-  const onSort = (_, index, direction) =>
+  const onSort = (_, index, direction) => {
     setSortBy({
       index,
       direction,
     });
+  };
   const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
-  const sorter = (items) =>
-    currentSortableColumn?.sortByArray
+  const sorter = (items) => {
+    console.log(currentSortableColumn);
+    return currentSortableColumn?.sortByArray
       ? orderByArray(
           items,
           currentSortableColumn?.sortByProp,
@@ -45,7 +47,7 @@ const useTableSort = (columns, options = {}) => {
           items,
           sortBy.direction
         );
-
+  };
   return {
     sorter,
     tableProps: {

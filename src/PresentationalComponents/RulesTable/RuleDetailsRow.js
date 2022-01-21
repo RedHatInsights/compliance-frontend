@@ -10,7 +10,7 @@ import {
 } from '@patternfly/react-core';
 import { ConditionalLink } from 'PresentationalComponents';
 
-const RuleDetailsRow = ({ rule }) => {
+const RuleDetailsRow = ({ item: rule }) => {
   const { refId, description, identifier, references, rationale } = rule;
   const key = `rule-child-row-${refId}`;
 
@@ -91,7 +91,7 @@ const RuleDetailsRow = ({ rule }) => {
 };
 
 RuleDetailsRow.propTypes = {
-  rule: propTypes.object,
+  item: propTypes.object,
 };
 
 export default RuleDetailsRow;

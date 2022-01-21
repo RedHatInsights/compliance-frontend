@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
 
-const childRowForRule = (item, idx, DetailsComponent) => ({
+const calculateColSpan = (columns, options) => {
+  let colSpan = columns.length + 1;
+  if (options.selectable || options.hasRadioSelect) {
+    colSpan++;
+  }
+  return colSpan;
+};
+
+const childRowForRule = (item, idx, DetailsComponent, colSpan) => ({
   parent: idx * 2,
   fullWidth: true,
   cells: [
-    { title: <DetailsComponent rule={item} key={'item-' + item.rowId} /> },
+    {
+      title: <DetailsComponent item={item} key={'item-' + item.rowId} />,
+      props: { colSpan },
+    },
   ],
 });
 
-const itemDetailsRow = (item, idx, options) =>
+const itemDetailsRow = (item, idx, options, columns) =>
   typeof options?.detailsComponent !== 'undefined' &&
-  childRowForRule(item, idx, options.detailsComponent);
+  childRowForRule(
+    item,
+    idx,
+    options.detailsComponent,
+    calculateColSpan(columns, options)
+  );
 
 const useExpandable = (options) => {
   const enableExpanbale = !!options.detailsComponent;
@@ -23,13 +39,13 @@ const useExpandable = (options) => {
     }
   };
 
-  const openItem = (row, item, _columns, rowIndex) => {
+  const openItem = (row, item, columns, rowIndex) => {
     const isOpen = openItems.includes(item.itemId);
     const newRow = {
       ...row,
       isOpen,
     };
-    const expandableRow = itemDetailsRow(item, rowIndex, options);
+    const expandableRow = itemDetailsRow(item, rowIndex, options, columns);
 
     return [newRow, expandableRow];
   };
