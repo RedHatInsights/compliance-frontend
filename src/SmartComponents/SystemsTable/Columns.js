@@ -36,9 +36,9 @@ export const customColumn = (column, props) =>
 export const Name = compileColumnRenderFunc({
   key: 'name',
   title: 'Name',
+  sortBy: ['name'],
   props: {
     width: 40,
-    ...disableSorting,
   },
   renderExport: (system) => `${system.name} (${operatingSystemString(system)})`,
   cell: NameCell,
@@ -57,7 +57,8 @@ export const SsgVersion = {
   title: 'SSG version',
   transforms: [nowrap],
   exportKey: 'testResultProfiles',
-  props: disableSorting,
+  sortBy: ['ssg_version'],
+  key: 'ssg_version',
   renderExport: (testResultProfiles) =>
     testResultProfiles
       .map(
@@ -130,8 +131,8 @@ export const LastScanned = {
 export const OperatingSystem = compileColumnRenderFunc({
   title: 'Operating system',
   key: 'operatingSystem',
+  sortBy: ['osMajorVersion', 'osMinorVersion'],
   transforms: [nowrap],
-  props: disableSorting,
   renderExport: (cell) => operatingSystemString(cell),
   cell: OperatingSystemCell,
 });

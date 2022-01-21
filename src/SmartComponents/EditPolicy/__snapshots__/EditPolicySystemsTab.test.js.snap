@@ -8,11 +8,13 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         Object {
           "key": "name",
           "props": Object {
-            "isStatic": true,
             "width": 40,
           },
           "renderExport": [Function],
           "renderFunc": [Function],
+          "sortBy": Array [
+            "name",
+          ],
           "title": "Name",
         },
         Object {
@@ -21,11 +23,12 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         },
         Object {
           "key": "operatingSystem",
-          "props": Object {
-            "isStatic": true,
-          },
           "renderExport": [Function],
           "renderFunc": [Function],
+          "sortBy": Array [
+            "osMajorVersion",
+            "osMinorVersion",
+          ],
           "title": "Operating system",
           "transforms": Array [
             [Function],
@@ -712,11 +715,13 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         Object {
           "key": "name",
           "props": Object {
-            "isStatic": true,
             "width": 40,
           },
           "renderExport": [Function],
           "renderFunc": [Function],
+          "sortBy": Array [
+            "name",
+          ],
           "title": "Name",
         },
         Object {
@@ -725,11 +730,12 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         },
         Object {
           "key": "operatingSystem",
-          "props": Object {
-            "isStatic": true,
-          },
           "renderExport": [Function],
           "renderFunc": [Function],
+          "sortBy": Array [
+            "osMajorVersion",
+            "osMinorVersion",
+          ],
           "title": "Operating system",
           "transforms": Array [
             [Function],

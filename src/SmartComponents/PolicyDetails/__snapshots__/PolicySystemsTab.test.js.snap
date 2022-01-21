@@ -7,12 +7,14 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       Object {
         "key": "name",
         "props": Object {
-          "isStatic": true,
           "showLink": true,
           "width": 40,
         },
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "name",
+        ],
         "title": "Name",
       },
       Object {
@@ -21,11 +23,12 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       },
       Object {
         "exportKey": "testResultProfiles",
-        "props": Object {
-          "isStatic": true,
-        },
+        "key": "ssg_version",
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "ssg_version",
+        ],
         "title": "SSG version",
         "transforms": Array [
           [Function],
@@ -33,11 +36,12 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       },
       Object {
         "key": "operatingSystem",
-        "props": Object {
-          "isStatic": true,
-        },
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "osMajorVersion",
+          "osMinorVersion",
+        ],
         "title": "Operating system",
         "transforms": Array [
           [Function],
@@ -753,12 +757,14 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       Object {
         "key": "name",
         "props": Object {
-          "isStatic": true,
           "showLink": true,
           "width": 40,
         },
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "name",
+        ],
         "title": "Name",
       },
       Object {
@@ -767,11 +773,12 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       },
       Object {
         "exportKey": "testResultProfiles",
-        "props": Object {
-          "isStatic": true,
-        },
+        "key": "ssg_version",
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "ssg_version",
+        ],
         "title": "SSG version",
         "transforms": Array [
           [Function],
@@ -779,11 +786,12 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       },
       Object {
         "key": "operatingSystem",
-        "props": Object {
-          "isStatic": true,
-        },
         "renderExport": [Function],
         "renderFunc": [Function],
+        "sortBy": Array [
+          "osMajorVersion",
+          "osMinorVersion",
+        ],
         "title": "Operating system",
         "transforms": Array [
           [Function],
