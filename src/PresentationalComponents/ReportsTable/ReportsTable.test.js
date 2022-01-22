@@ -7,8 +7,7 @@ import {
   policyComplianceFilter,
 } from './Filters';
 import { uniq } from 'Utilities/helpers';
-import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
-
+import { filterHelpers } from '@redhat-cloud-services/frontend-components-utilities/useTableTools/testHelpers';
 expect.extend(filterHelpers);
 
 window.ResizeObserver = class {

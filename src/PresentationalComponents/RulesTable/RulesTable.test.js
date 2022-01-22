@@ -1,12 +1,12 @@
 import { policies } from '@/__fixtures__/policies';
-import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 import buildFilterConfig from './Filters';
 import RulesTable from './RulesTable';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import { filterHelpers } from '@redhat-cloud-services/frontend-components-utilities/useTableTools/testHelpers';
+expect.extend(filterHelpers);
 
 const mockStore = configureStore();
-expect.extend(filterHelpers);
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-remediations/RemediationButton',

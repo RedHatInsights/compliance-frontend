@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { fitContent } from '@patternfly/react-table';
 import { InUseProfileLabel } from 'PresentationalComponents';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import TableToolsTable from '@redhat-cloud-services/frontend-components/TableToolsTable';
 import { renderComponent } from 'Utilities/helpers';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import PolicyTypeDetailsRow from './PolicyTypeDetailsRow';

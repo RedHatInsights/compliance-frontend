@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import TableToolsTable from '@redhat-cloud-services/frontend-components/TableToolsTable';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import useFeature from 'Utilities/hooks/useFeature';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';

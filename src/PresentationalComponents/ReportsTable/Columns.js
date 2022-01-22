@@ -9,6 +9,7 @@ import {
 
 export const Name = {
   title: 'Policy',
+  key: 'name',
   sortByProp: 'name',
   props: {
     width: 60,
@@ -19,6 +20,8 @@ export const Name = {
 
 export const OperatingSystem = {
   title: 'Operating system',
+  key: 'operating_system',
+  isRequired: true,
   transforms: [fitContent],
   sortByProp: 'osMajorVersion',
   props: {
@@ -30,6 +33,7 @@ export const OperatingSystem = {
 
 export const CompliantSystems = {
   title: 'Systems meeting compliance',
+  key: 'systems_meeting_compliance',
   transforms: [fitContent],
   sortByFunction: ({ testResultHostCount, compliantHostCount }) =>
     (100 / testResultHostCount) * compliantHostCount,
@@ -50,11 +54,11 @@ export const CompliantSystems = {
 export const PDFExportDownload = {
   title: '',
   renderFunc: renderComponent(PDFExportDownloadCell),
-  managable: false,
 };
 
 const PolicyType = {
   title: 'Policy Type',
+  key: 'policy_type',
   renderExport: (profile) => profile.policyType,
 };
 

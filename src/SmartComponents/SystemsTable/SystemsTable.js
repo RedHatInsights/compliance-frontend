@@ -2,6 +2,7 @@ import React, { useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
+import useFilterConfig from '@redhat-cloud-services/frontend-components-utilities/useFilterConfig';
 // eslint-disable-next-line max-len
 import ComplianceRemediationButton from '@/PresentationalComponents/ComplianceRemediationButton';
 import {
@@ -9,19 +10,17 @@ import {
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
 } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
-import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad, ssgVersionFilter } from './constants';
 import {
   useFetchSystems,
   useGetEntities,
-  useOsMinorVersionFilter,
   useInventoryUtilities,
   useSystemsExport,
-  useSystemsFilter,
   useSystemBulkSelect,
   useTags,
 } from './hooks';
+import { buildSystemsFilter } from './helpers';
 
 export const SystemsTable = ({
   columns,
@@ -42,7 +41,6 @@ export const SystemsTable = ({
   defaultFilter,
   emptyStateComponent,
   prependComponent,
-  showOsMinorVersionFilter,
   preselectedSystems,
   onSelect: onSelectProp,
   noSystemsTable,
@@ -54,32 +52,30 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const osMinorVersionFilter = useOsMinorVersionFilter(
-    showOsMinorVersionFilter,
-    {
-      variables: {
-        filter: defaultFilter,
-        ...(policyId && { policyId }),
-      },
-    }
-  );
-  const {
-    toolbarProps: conditionalFilter,
-    filterString,
-    activeFilterValues,
-  } = useFilterConfig({
+  // const osMinorVersionFilter = useOsMinorVersionFilter(
+  //   showOsMinorVersionFilter,
+  //   {
+  //     variables: {
+  //       filter: defaultFilter,
+  //       ...(policyId && { policyId }),
+  //     },
+  //   }
+  // );
+  const filterConfig = [
+    ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
+    ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
+    ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
+    ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
+    // ...osMinorVersionFilter,
+  ];
+  const { toolbarProps: conditionalFilter, activeFilters } = useFilterConfig({
     filters: {
-      filterConfig: [
-        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-        ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
-        ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
-        ...osMinorVersionFilter,
-      ],
+      filterConfig,
     },
   });
-  const systemsFilter = useSystemsFilter(
-    filterString(),
+  const systemsFilter = buildSystemsFilter(
+    filterConfig,
+    activeFilters,
     showOnlySystemsWithTestResults,
     defaultFilter
   );
@@ -124,7 +120,7 @@ export const SystemsTable = ({
     systemsCache: items,
   });
 
-  useInventoryUtilities(inventory, selectedIds, activeFilterValues);
+  useInventoryUtilities(inventory, selectedIds, Object.values(activeFilters));
 
   const onComplete = (result) => {
     setTotal(result.meta.totalCount);
@@ -135,7 +131,7 @@ export const SystemsTable = ({
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
-      activeFilterValues.length === 0 &&
+      Object.values(activeFilters).length === 0 &&
       result?.meta?.tags?.length === 0
     ) {
       setIsEmpty(true);

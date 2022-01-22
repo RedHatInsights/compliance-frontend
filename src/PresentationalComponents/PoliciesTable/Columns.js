@@ -21,6 +21,7 @@ PolicyNameCell.propTypes = {
 
 export const Name = {
   title: 'Name',
+  key: 'name',
   props: {
     width: 45,
   },
@@ -38,6 +39,7 @@ const osString = (policy) => `RHEL ${policy.osMajorVersion}`;
 
 export const OperatingSystem = {
   title: 'Operating system',
+  key: 'operating_system',
   transforms: [fitContent],
   props: {
     width: 15,
@@ -49,6 +51,7 @@ export const OperatingSystem = {
 
 export const Systems = {
   title: 'Systems',
+  key: 'systems',
   props: {
     width: 15,
   },
@@ -68,6 +71,7 @@ const businessObjectiveString = (policy) =>
 
 export const BusinessObjective = {
   title: 'Business objective',
+  key: 'business_objective',
   sortByFunction: (policy) => policy?.businessObjective?.title,
   renderExport: businessObjectiveString,
   renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
@@ -77,6 +81,7 @@ const complianceThresholdString = (policy) => `${policy.complianceThreshold}%`;
 
 export const ComplianceThreshold = {
   title: 'Compliance threshold',
+  key: 'compliance_threshold',
   sortByProp: 'complianceThreshold',
   renderExport: complianceThresholdString,
   renderFunc: (_data, _id, policy) => complianceThresholdString(policy),

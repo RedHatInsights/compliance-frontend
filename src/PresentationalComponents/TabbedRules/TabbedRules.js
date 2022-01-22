@@ -6,7 +6,7 @@ import ProfileTabContent from './ProfileTabContent';
 import OsVersionText from './OsVersionText';
 import {
   selectedRuleRefIdsForTab,
-  matchesSelectionItem,
+  // matchesSelectionItem,
 } from './ruleSelection';
 
 const eventKey = ({ id, osMinorVersion }, newOsMinorVersion) =>
@@ -39,23 +39,24 @@ const TabbedRules = ({
   ouiaId,
   ...rulesTableProps
 }) => {
-  const handleSelect = (
-    profile,
-    newOsMinorVersion,
-    profileSelectedRuleRefIds
-  ) => {
-    const filteredSelection = (selectedRuleRefIds || []).filter(
-      (selectionItem) =>
-        !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
-    );
-
-    const newItem = {
-      id: profile.id,
-      osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
-      ruleRefIds: profileSelectedRuleRefIds,
+  const handleSelect = () =>
+    // profile,
+    // newOsMinorVersion,
+    // profileSelectedRuleRefIds
+    {
+      console.log('AAAA');
+      //     const filteredSelection = (selectedRuleRefIds || []).filter(
+      //       (selectionItem) =>
+      //         !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
+      //     );
+      //
+      //     const newItem = {
+      //       id: profile.id,
+      //       osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
+      //       ruleRefIds: profileSelectedRuleRefIds,
+      //     };
+      //setSelectedRuleRefIds([newItem, ...filteredSelection]);
     };
-    setSelectedRuleRefIds([newItem, ...filteredSelection]);
-  };
 
   return (
     <RoutedTabs
