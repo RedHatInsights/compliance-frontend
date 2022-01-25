@@ -1,4 +1,6 @@
+import React from 'react';
 import { nowrap } from '@patternfly/react-table';
+import { Tooltip } from '@patternfly/react-core';
 import { complianceScoreString } from 'PresentationalComponents';
 import { profilesRulesFailed } from 'Utilities/ruleHelpers';
 import { renderComponent } from 'Utilities/helpers';
@@ -133,6 +135,24 @@ export const OperatingSystem = compileColumnRenderFunc({
   key: 'operatingSystem',
   sortBy: ['osMajorVersion', 'osMinorVersion'],
   transforms: [nowrap],
+  renderExport: (cell) => operatingSystemString(cell),
+  cell: OperatingSystemCell,
+});
+
+export const OS = compileColumnRenderFunc({
+  title: (
+    <Tooltip content={<span>Operating System</span>}>
+      <span>OS</span>
+    </Tooltip>
+  ),
+  original: 'Operating System',
+  key: 'operatingSystem',
+  dataLabel: 'OS',
+  transforms: [nowrap],
+  sortBy: ['osMajorVersion', 'osMinorVersion'],
+  props: {
+    width: 10,
+  },
   renderExport: (cell) => operatingSystemString(cell),
   cell: OperatingSystemCell,
 });
