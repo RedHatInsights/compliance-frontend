@@ -15,40 +15,37 @@ const useLegendData = (donutValues, profile) => {
 
   return [
     {
-      name:
-        donutValues[0].y +
-        ' ' +
-        pluralize(donutValues[0].y, 'system') +
-        ' compliant',
+      name: `${donutValues[0].y} ${pluralize(
+        donutValues[0].y,
+        'system'
+      )} compliant`,
       symbol: { fill: blue300.value },
     },
     {
-      name:
-        donutValues[1].y +
-        ' ' +
-        pluralize(donutValues[1].y, 'system') +
-        ' non-compliant',
+      name: `${donutValues[1].y} ${pluralize(
+        donutValues[1].y,
+        'system'
+      )} non-compliant`,
       symbol: { fill: blue200.value },
     },
     {
-      name:
-        donutValues[2].y +
-        ' ' +
-        pluralize(donutValues[2].y, 'system') +
-        ' not supported',
+      name: `${donutValues[2].y} ${pluralize(
+        donutValues[2].y,
+        'system'
+      )} not supported`,
       symbol: { fill: chart_color_gold_300.value },
     },
     ...(notReportingHostCount > 0
       ? [
           {
-            name:
-              notReportingHostCount +
-              ' ' +
-              pluralize(notReportingHostCount, 'system') +
-              ' not reporting',
-            tooltip:
-              notReportingHostCount +
-              ' systems are not reporting scan results. This may be because the system is disconnected, or the insights-client is not properly configured to use Compliance.',
+            name: `${notReportingHostCount} ${pluralize(
+              notReportingHostCount,
+              'system'
+            )} not reporting`,
+            tooltip: `${notReportingHostCount} ${pluralize(
+              notReportingHostCount,
+              'system'
+            )} are not reporting scan results. This may be because the system is disconnected, or the insights-client is not properly configured to use Compliance.`,
             symbol: { fill: chart_color_black_200.value },
           },
         ]
