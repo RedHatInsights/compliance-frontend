@@ -100,11 +100,7 @@ export const EditPolicySystems = ({
                 sortBy: ['name'],
               },
               Columns.inventoryColumn('tags'),
-              {
-                ...Columns.OperatingSystem,
-                props: {},
-                sortBy: ['osMajorVersion', 'osMinorVersion'],
-              },
+              Columns.OperatingSystem,
             ]}
             remediationsEnabled={false}
             compact

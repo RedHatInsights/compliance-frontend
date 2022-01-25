@@ -305,13 +305,15 @@ exports[`ReportDetails expect to render without error 1`] = `
                 Object {
                   "key": "name",
                   "props": Object {
-                    "isStatic": true,
                     "showLink": true,
                     "showOsInfo": true,
                     "width": 40,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": Array [
+                    "name",
+                  ],
                   "title": "Name",
                 },
                 Object {
@@ -320,11 +322,12 @@ exports[`ReportDetails expect to render without error 1`] = `
                 },
                 Object {
                   "exportKey": "testResultProfiles",
-                  "props": Object {
-                    "isStatic": true,
-                  },
+                  "key": "ssg_version",
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": Array [
+                    "ssg_version",
+                  ],
                   "title": "SSG version",
                   "transforms": Array [
                     [Function],
@@ -1380,13 +1383,15 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 Object {
                   "key": "name",
                   "props": Object {
-                    "isStatic": true,
                     "showLink": true,
                     "showOsInfo": true,
                     "width": 40,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": Array [
+                    "name",
+                  ],
                   "title": "Name",
                 },
                 Object {
@@ -1395,11 +1400,12 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 },
                 Object {
                   "exportKey": "testResultProfiles",
-                  "props": Object {
-                    "isStatic": true,
-                  },
+                  "key": "ssg_version",
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": Array [
+                    "ssg_version",
+                  ],
                   "title": "SSG version",
                   "transforms": Array [
                     [Function],
