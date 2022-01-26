@@ -14,13 +14,14 @@ const useDonutChart = (profile) => {
     unsupportedHostCount = 0,
     totalHostCount = 0,
   } = profile;
-
+  const notReportingHostCount =
+    totalHostCount - unsupportedHostCount - testResultHostCount;
   const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
     { x: 'Compliant', y: compliantHostCount },
     { x: 'Non-compliant', y: totalHostCount - compliantHostCount },
     { x: 'Unsupported', y: unsupportedHostCount },
-    { x: 'Not reporting', y: 0 },
+    { x: 'Not reporting', y: notReportingHostCount },
   ];
   const chartColorScale = (testResultHostCount === 0 && [black300.value]) || [
     blue300.value,
