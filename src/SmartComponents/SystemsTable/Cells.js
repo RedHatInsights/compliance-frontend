@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Text, TextContent, TextVariants } from '@patternfly/react-core';
+import {
+  Text,
+  TextContent,
+  TextVariants,
+  Tooltip,
+} from '@patternfly/react-core';
+import { ExclamationTriangleIcon } from '@patternfly/react-icons';
+
 import DateFormat from '@redhat-cloud-services/frontend-components/DateFormat';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
@@ -81,7 +88,7 @@ export const SSGVersions = ({ testResultProfiles = [] }) =>
     ? testResultProfiles.map((profile) => (
         <SSGVersion key={`ssgversion-${profile.id}`} {...profile} />
       ))
-    : 'Not available';
+    : 'Unknown';
 
 SSGVersions.propTypes = {
   testResultProfiles: propTypes.array,
@@ -114,7 +121,11 @@ Policies.propTypes = {
 
 export const FailedRules = ({ id, testResultProfiles }) => {
   const rulesFailed = profilesRulesFailed(testResultProfiles).length;
-  return <SystemLink {...{ id }}>{rulesFailed}</SystemLink>;
+  return (
+    <SystemLink {...{ id }}>
+      {testResultProfiles.length > 0 ? rulesFailed : 'N/A'}
+    </SystemLink>
+  );
 };
 
 FailedRules.propTypes = {
@@ -124,11 +135,29 @@ FailedRules.propTypes = {
 
 export { complianceScoreData };
 export const ComplianceScore = ({ testResultProfiles }) =>
-  complianceScore(complianceScoreData(testResultProfiles));
+  testResultProfiles.length > 0
+    ? complianceScore(complianceScoreData(testResultProfiles))
+    : 'N/A';
 
 ComplianceScore.propTypes = {
   testResultProfiles: propTypes.array,
 };
+
+const NeverScanned = () => (
+  <Tooltip
+    position="right"
+    content={
+      <Fragment>
+        This system has never returned a report for this policy. This may be
+        because it is disconnected, or the insights-client on this system is not
+        configured to use Compliance.
+      </Fragment>
+    }
+  >
+    <ExclamationTriangleIcon color="var(--pf-global--warning-color--100)" />
+    {' ' + NEVER}
+  </Tooltip>
+);
 
 export const lastScanned = (profiles) => {
   const dates = profiles.map((profile) => new Date(profile.lastScanned));
@@ -138,7 +167,8 @@ export const lastScanned = (profiles) => {
       dates.filter((date) => isFinite(date))
     )
   );
-  const result = last instanceof Date && isFinite(last) ? last : NEVER;
+  const result =
+    last instanceof Date && isFinite(last) ? last : <NeverScanned />;
 
   return result;
 };

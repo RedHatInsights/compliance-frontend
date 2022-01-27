@@ -46,6 +46,7 @@ export const SystemsTable = ({
   preselectedSystems,
   onSelect: onSelectProp,
   noSystemsTable,
+  tableProps,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -214,6 +215,7 @@ export const SystemsTable = ({
           tableProps={{
             ...bulkSelectTableProps,
             isStickyHeader: true,
+            ...tableProps,
           }}
           fallback={<Spinner />}
           variant={compact ? TableVariant.compact : ''}
@@ -280,6 +282,7 @@ SystemsTable.propTypes = {
   preselectedSystems: PropTypes.array,
   onSelect: PropTypes.func,
   noSystemsTable: PropTypes.node,
+  tableProps: PropTypes.object,
 };
 
 SystemsTable.defaultProps = {
