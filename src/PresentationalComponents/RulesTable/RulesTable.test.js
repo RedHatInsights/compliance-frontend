@@ -52,7 +52,7 @@ describe('RulesTable', () => {
   it('expect to have filters properly rendered', () => {
     const filterConfig = buildFilterConfig({
       showPassFailFilter: false,
-      remediationAvailableFilter: false,
+      ansibleSupportFilter: false,
     }).filter((filter) => filter.label !== 'Severity');
 
     const component = (

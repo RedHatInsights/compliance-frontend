@@ -16,7 +16,7 @@ const RulesTable = ({
   profileRules,
   columns = defaultColumns,
   remediationsEnabled = true,
-  remediationAvailableFilter = false,
+  ansibleSupportFilter = false,
   selectedFilter = false,
   handleSelect,
   selectedRules: selectedRulesProp = [],
@@ -65,7 +65,7 @@ const RulesTable = ({
         filterConfig: buildFilterConfig({
           showPassFailFilter,
           policies,
-          remediationAvailableFilter,
+          ansibleSupportFilter,
         }),
         ...(hidePassed && {
           activeFilters: (currentActiveFilters) => ({
@@ -100,7 +100,7 @@ RulesTable.propTypes = {
   hidePassed: propTypes.bool,
   system: propTypes.object,
   remediationsEnabled: propTypes.bool,
-  remediationAvailableFilter: propTypes.bool,
+  ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
   selectedFilter: propTypes.bool,
   handleSelect: propTypes.func,
