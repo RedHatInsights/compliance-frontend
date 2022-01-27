@@ -115,7 +115,7 @@ const UnsupportedSSGVersion = ({
       {showHelpIcon && (
         <TooltipOrPopover {...iconProps}>
           <span style={defaultStyle} className="pf-u-ml-xs">
-            <OutlinedQuestionCircleIcon />
+            <OutlinedQuestionCircleIcon className="grey-icon" />
           </span>
         </TooltipOrPopover>
       )}

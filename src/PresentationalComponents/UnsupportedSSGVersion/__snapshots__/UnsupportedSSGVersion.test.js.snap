@@ -50,6 +50,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
       }
     >
       <OutlinedQuestionCircleIcon
+        className="grey-icon"
         color="currentColor"
         noVerticalAlign={false}
         size="sm"
