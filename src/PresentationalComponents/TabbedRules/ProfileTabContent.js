@@ -127,7 +127,7 @@ const ProfileTabContent = ({
         </StateViewPart>
         <StateViewPart stateKey="rules">
           <RulesTable
-            remediationAvailableFilter
+            ansibleSupportFilter
             remediationsEnabled={false}
             columns={columns}
             profileRules={[{ profile, rules: rules || [] }]}

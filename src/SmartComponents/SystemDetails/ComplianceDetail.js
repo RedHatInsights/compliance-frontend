@@ -112,7 +112,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => {
       <br />
       {system?.testResultProfiles?.length ? (
         <RulesTable
-          remediationAvailableFilter
+          ansibleSupportFilter
           hidePassed={hidePassed}
           system={{
             ...system,

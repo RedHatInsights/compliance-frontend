@@ -61,6 +61,16 @@ export const unsupportedSystemsData = (systems) =>
 export const supportedSystemsData = (systems) =>
   systems.filter((system) => isSystemSupported(system));
 
+export const nonReportingSystemsData = (systems) => {
+  const reportingSystemIds = [
+    ...compliantSystemsData(systems),
+    ...nonCompliantSystemsData(systems),
+    ...unsupportedSystemsData(systems),
+  ].map((system) => system.id);
+
+  return systems.filter((system) => !reportingSystemIds.includes(system.id));
+};
+
 export const sortBySystemsCount = (rules) =>
   sortBy(rules, 'systemsCount').reverse();
 

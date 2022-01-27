@@ -9,7 +9,7 @@ const PanelItem = (props) => {
     <View
       style={{
         justifyContent: 'space-evenly',
-        width: '32%',
+        width: '24%',
         paddingRight: '1%',
       }}
     >
