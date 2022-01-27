@@ -86,20 +86,25 @@ export const policiesFilterConfig = (policies) => ({
     ),
 });
 
-export const REMEDIATION_AVAILABLE_FILTER_CONFIG = {
+export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
   type: conditionalFilterType.checkbox,
-  label: 'Remediation available',
-  items: [{ label: 'Remediation available', value: 'true' }],
-  filter: (rules, value) =>
-    rules.filter((rule) =>
-      value[0] === 'true' ? rule.remediationAvailable === true : true
+  label: 'Ansible support',
+  items: [
+    { label: 'Ansible remediation support', value: 'true' },
+    { label: 'No Ansible remediation support', value: 'false' },
+  ],
+  filter: (rules, values) =>
+    anyFilterApply(
+      rules,
+      values,
+      (rule, value) => rule.remediationAvailable === (value === 'true')
     ),
 };
 
 const buildFilterConfig = ({
   showPassFailFilter,
   policies,
-  remediationAvailableFilter,
+  ansibleSupportFilter,
 }) => {
   const config = [...BASE_FILTER_CONFIGURATION];
 
@@ -111,8 +116,8 @@ const buildFilterConfig = ({
     config.push(policiesFilterConfig(policies));
   }
 
-  if (remediationAvailableFilter) {
-    config.push(REMEDIATION_AVAILABLE_FILTER_CONFIG);
+  if (ansibleSupportFilter) {
+    config.push(ANSIBLE_SUPPORT_FILTER_CONFIG);
   }
 
   return config;
