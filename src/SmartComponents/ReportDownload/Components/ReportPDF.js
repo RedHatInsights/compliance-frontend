@@ -12,6 +12,7 @@ import { DateFormat } from '@redhat-cloud-services/frontend-components/DateForma
 import styles from './ReportPDF/StyleSheet';
 import SystemsTable from './ReportPDF/SystemsTable';
 import UnsupportedSystemsTable from './ReportPDF/UnsupportedSystemsTable';
+import NonReportedSystemsTable from './ReportPDF/NonReportedSystemsTable';
 import RulesTable from './ReportPDF/RulesTable';
 import PanelItem from './ReportPDF/PanelItem';
 import SubSection from './ReportPDF/SubSection';
@@ -31,6 +32,8 @@ const ReportPDF = ({ data, ssgFinder }) => {
     topTenFailedRules,
     unsupportedSystems,
     unsupportedSystemCount,
+    nonReportingSystems,
+    nonReportingSystemCount,
     userNotes,
     policy,
   } = data;
@@ -80,6 +83,12 @@ const ReportPDF = ({ data, ssgFinder }) => {
               ...policy,
               percentCompliant,
             }}
+            {...{
+              compliantSystemCount,
+              nonCompliantSystemCount,
+              unsupportedSystemCount,
+              nonReportingSystemCount,
+            }}
           />
         </Column>
       </Section>
@@ -102,6 +111,12 @@ const ReportPDF = ({ data, ssgFinder }) => {
             </PanelItem>
           ) : null}
 
+          {nonReportingSystemCount ? (
+            <PanelItem title="Systems never reported">
+              {nonReportingSystemCount}
+            </PanelItem>
+          ) : null}
+
           <PanelItem title="Compliant systems">
             {compliantSystemCount}
           </PanelItem>
@@ -119,6 +134,12 @@ const ReportPDF = ({ data, ssgFinder }) => {
               systems={unsupportedSystems}
               ssgFinder={ssgFinder}
             />
+          </SubSection>
+        ) : null}
+
+        {nonReportingSystems && nonReportingSystemCount ? (
+          <SubSection title="Systems never reported">
+            <NonReportedSystemsTable systems={nonReportingSystems} />
           </SubSection>
         ) : null}
 

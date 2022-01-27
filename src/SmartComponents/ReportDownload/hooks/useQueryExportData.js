@@ -1,9 +1,11 @@
 import { useApolloClient } from '@apollo/client';
+import useFeature from 'Utilities/hooks/useFeature';
 import { GET_SYSTEMS } from '../constants';
 import {
   compliantSystemsData,
   nonCompliantSystemsData,
   unsupportedSystemsData,
+  nonReportingSystemsData,
   topTenFailedRulesData,
 } from './helpers';
 
@@ -25,12 +27,16 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
+  const systemsNotReporting = useFeature('systemsNotReporting');
+
   const client = useApolloClient();
 
   const prepareForExport = (systems) => {
     const compliantSystems = compliantSystemsData(systems);
     const nonCompliantSystems = nonCompliantSystemsData(systems);
     const unsupportedSystems = unsupportedSystemsData(systems);
+    const nonReportingSystems = nonReportingSystemsData(systems);
+
     return {
       ...(exportSettings.compliantSystems && {
         compliantSystems: compliantSystems,
@@ -47,6 +53,14 @@ const useQueryExportData = (
       ...(exportSettings.topTenFailedRules && {
         topTenFailedRules: topTenFailedRulesData(systems),
       }),
+      ...(systemsNotReporting
+        ? {
+            nonReportingSystemCount: nonReportingSystems.length,
+            ...(exportSettings.nonReportingSystems && {
+              nonReportingSystems: nonReportingSystems,
+            }),
+          }
+        : {}),
       ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
     };
   };
@@ -58,7 +72,7 @@ const useQueryExportData = (
       variables: {
         perPage,
         page,
-        filter: `with_results_for_policy_id = ${policyId}`,
+        filter: `policy_id = ${policyId}`,
         policyId,
       },
     });
