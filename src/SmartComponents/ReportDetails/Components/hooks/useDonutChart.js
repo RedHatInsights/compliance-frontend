@@ -19,7 +19,7 @@ const useDonutChart = (profile) => {
   const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
     { x: 'Compliant', y: compliantHostCount },
-    { x: 'Non-compliant', y: totalHostCount - compliantHostCount },
+    { x: 'Non-compliant', y: testResultHostCount - compliantHostCount },
     { x: 'Unsupported', y: unsupportedHostCount },
     { x: 'Not reporting', y: notReportingHostCount },
   ];
