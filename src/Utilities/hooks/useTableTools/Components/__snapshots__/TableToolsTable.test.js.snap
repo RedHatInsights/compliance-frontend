@@ -540,6 +540,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
           "ofWord": "of",
           "optionsToggle": "Items per page",
           "page": "",
+          "pages": "",
           "paginationTitle": "Pagination",
           "perPageSuffix": "per page",
           "toFirstPage": "Go to first page",

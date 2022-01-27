@@ -44,12 +44,12 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
       </Breadcrumb>
       <InventoryDetails />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SystemDetails
         hidePassed={true}
         inventoryId={1}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -102,12 +102,12 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
       </Breadcrumb>
       <InventoryDetails />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SystemDetails
         hidePassed={true}
         inventoryId={1}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -160,12 +160,12 @@ exports[`SystemDetails expect to render loading 1`] = `
       </Breadcrumb>
       <InventoryDetails />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SystemDetails
         hidePassed={true}
         inventoryId={1}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -218,12 +218,12 @@ exports[`SystemDetails expect to render without error 1`] = `
       </Breadcrumb>
       <InventoryDetails />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SystemDetails
         hidePassed={true}
         inventoryId={1}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"

@@ -18,7 +18,7 @@ exports[`Reports expect to render emptystate 1`] = `
     stateKey="loading"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SkeletonTable
         canSelectAll={false}
         colSize={3}
@@ -29,15 +29,15 @@ exports[`Reports expect to render emptystate 1`] = `
         rowSize={10}
         variant={null}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <ReportsEmptyState />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -56,7 +56,7 @@ exports[`Reports expect to render loading 1`] = `
     stateKey="loading"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SkeletonTable
         canSelectAll={false}
         colSize={3}
@@ -67,15 +67,15 @@ exports[`Reports expect to render loading 1`] = `
         rowSize={10}
         variant={null}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <ReportsEmptyState />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -114,7 +114,7 @@ exports[`Reports expect to render without error 1`] = `
     stateKey="loading"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <SkeletonTable
         canSelectAll={false}
         colSize={3}
@@ -125,13 +125,13 @@ exports[`Reports expect to render without error 1`] = `
         rowSize={10}
         variant={null}
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
   >
     <ReportsHeader />
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <ReportsTable
         profiles={
           Array [
@@ -151,7 +151,7 @@ exports[`Reports expect to render without error 1`] = `
           ]
         }
       />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;

@@ -9,7 +9,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
       title="SCAP policies"
     />
   </PageHeader>
-  <Connect(Main)>
+  <Connect(InternalMain)>
     <StateView
       stateValues={
         Object {
@@ -407,7 +407,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
         />
       </StateViewPart>
     </StateView>
-  </Connect(Main)>
+  </Connect(InternalMain)>
 </Fragment>
 `;
 
@@ -420,7 +420,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       title="SCAP policies"
     />
   </PageHeader>
-  <Connect(Main)>
+  <Connect(InternalMain)>
     <StateView
       stateValues={
         Object {
@@ -460,7 +460,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
         <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
-  </Connect(Main)>
+  </Connect(InternalMain)>
 </Fragment>
 `;
 
@@ -473,7 +473,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
       title="SCAP policies"
     />
   </PageHeader>
-  <Connect(Main)>
+  <Connect(InternalMain)>
     <StateView
       stateValues={
         Object {
@@ -735,7 +735,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
         </Grid>
       </StateViewPart>
     </StateView>
-  </Connect(Main)>
+  </Connect(InternalMain)>
 </Fragment>
 `;
 
@@ -748,7 +748,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       title="SCAP policies"
     />
   </PageHeader>
-  <Connect(Main)>
+  <Connect(InternalMain)>
     <StateView
       stateValues={
         Object {
@@ -774,7 +774,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
         <withRouter(PoliciesTable) />
       </StateViewPart>
     </StateView>
-  </Connect(Main)>
+  </Connect(InternalMain)>
 </Fragment>
 `;
 
@@ -787,7 +787,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
       title="SCAP policies"
     />
   </PageHeader>
-  <Connect(Main)>
+  <Connect(InternalMain)>
     <StateView
       stateValues={
         Object {
@@ -834,6 +834,6 @@ exports[`CompliancePolicies expect to render without error 1`] = `
         />
       </StateViewPart>
     </StateView>
-  </Connect(Main)>
+  </Connect(InternalMain)>
 </Fragment>
 `;
