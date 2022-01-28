@@ -318,7 +318,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                 },
                 Object {
                   "key": "tags",
-                  "props": undefined,
                 },
                 Object {
                   "exportKey": "testResultProfiles",
@@ -1396,7 +1395,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 },
                 Object {
                   "key": "tags",
-                  "props": undefined,
                 },
                 Object {
                   "exportKey": "testResultProfiles",
