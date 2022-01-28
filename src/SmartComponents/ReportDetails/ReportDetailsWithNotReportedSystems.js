@@ -150,13 +150,17 @@ export const ReportDetails = ({ route }) => {
             <GridItem sm={12} md={12} lg={12} xl={6}>
               <ReportChart profile={profile} />
               <Text variant="p" style={{ marginBottom: '1rem' }}>
-                <Text variant="small" className="grey-icon">
+                <Text
+                  variant="small"
+                  className="grey-icon"
+                  ouiaId="ScoreCouningNotification"
+                >
                   * Overall compliance score includes only supported, reporting
                   systems
                 </Text>
               </Text>
               {profile.unsupportedHostCount > 0 && (
-                <Text>
+                <Text ouiaId="UnsupportedSSGCountNotification">
                   <UnsupportedSSGVersion showHelpIcon>
                     <strong className="ins-c-warning-text">
                       {profile.unsupportedHostCount} systems not supported
