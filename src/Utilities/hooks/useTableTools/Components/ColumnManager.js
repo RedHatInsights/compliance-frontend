@@ -56,12 +56,18 @@ const ColumnManager = ({
       isOpen={isOpen}
       variant="small"
       onClose={onClose}
+      ouiaId="ManageColumns"
       description={description}
       actions={[
-        <Button key="save" variant="primary" onClick={onSave}>
+        <Button key="save" variant="primary" ouiaId="Save" onClick={onSave}>
           Save
         </Button>,
-        <Button key="cancel" variant="secondary" onClick={onClose}>
+        <Button
+          key="cancel"
+          variant="secondary"
+          ouiaId="Cancel"
+          onClick={onClose}
+        >
           Cancel
         </Button>,
       ]}
