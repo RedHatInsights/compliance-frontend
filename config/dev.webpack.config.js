@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-require('dotenv').config();
+require('dotenv').config({ path: '.env.defaults' });
 
 const defaults = {
   LOCAL_CHROME: 'false',
@@ -29,7 +29,7 @@ const { devserverConfig } = require('./devserver.config');
 const { aliases } = require('./alias.webpack.config');
 
 const useLocalChrome = () =>
-  withDefault('LOCAL_CHROME') === 'true'
+  withDefault('LOCAL_CHROME')
     ? {
         localChrome: withDefault('CHROME_DIR'),
       }
