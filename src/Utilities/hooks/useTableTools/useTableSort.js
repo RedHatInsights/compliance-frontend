@@ -32,9 +32,8 @@ const useTableSort = (columns, options = {}) => {
     });
   };
   const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
-  const sorter = (items) => {
-    console.log(currentSortableColumn);
-    return currentSortableColumn?.sortByArray
+  const sorter = (items) =>
+    currentSortableColumn?.sortByArray
       ? orderByArray(
           items,
           currentSortableColumn?.sortByProp,
@@ -47,7 +46,6 @@ const useTableSort = (columns, options = {}) => {
           items,
           sortBy.direction
         );
-  };
   return {
     sorter,
     tableProps: {
