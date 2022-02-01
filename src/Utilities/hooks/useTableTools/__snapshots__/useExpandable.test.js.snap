@@ -12,8 +12,11 @@ Array [
   Object {
     "cells": Array [
       Object {
+        "props": Object {
+          "colSpan": 7,
+        },
         "title": <ExampleDetailsRow
-          rule={
+          item={
             Object {
               "description": "DESCRIPTION",
               "id": 1,
@@ -63,8 +66,11 @@ Array [
   Object {
     "cells": Array [
       Object {
+        "props": Object {
+          "colSpan": 7,
+        },
         "title": <ExampleDetailsRow
-          rule={
+          item={
             Object {
               "description": "DESCRIPTION",
               "id": 1,

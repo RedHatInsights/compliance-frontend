@@ -51,3 +51,4 @@ export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarnin
 export { default as RulesTable } from './RulesTable/RulesTable';
 export { default as ConditionalLink } from './ConditionalLink/ConditionalLink';
 export { default as ComplianceModal } from './ComplianceModal/ComplianceModal';
+export { default as InUseProfileLabel } from './InUseProfileLabel/InUseProfileLabel';

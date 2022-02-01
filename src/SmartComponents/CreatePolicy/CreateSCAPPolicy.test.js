@@ -1,35 +1,45 @@
 import { useQuery } from '@apollo/client';
-import { useDispatch } from 'react-redux';
-import {
-  benchmarksQuery,
-  profileRefIdsQuery,
-} from '@/__fixtures__/benchmarks_rules.js';
-
-jest.mock('@apollo/client');
-jest.mock('react-redux', () => ({
-  useDispatch: jest.fn({}),
-  connect: (i) => i,
-}));
-jest.mock('redux-form', () => ({
-  Field: 'Field',
-  reduxForm: () => (component) => component,
-  formValueSelector: () => () => '',
-  propTypes: {
-    change: jest.fn(),
-  },
-}));
-
+import buildProfiles from '@/__factories__/profiles.js';
 import { CreateSCAPPolicy } from './CreateSCAPPolicy.js';
 
+jest.mock('@apollo/client');
+
 describe('CreateSCAPPolicy', () => {
-  let component;
   const defaultProps = {
     change: () => ({}),
+    selectedProfile: undefined,
+    selectedOsMajorVersion: undefined,
   };
 
-  beforeEach(() => {
-    useDispatch.mockImplementation(() => ({}));
-  });
+  const builtProfiles = buildProfiles();
+  const profiles = {
+    edges: builtProfiles.map((profile) => ({
+      node: profile,
+    })),
+  };
+
+  const osMajorVersions = {
+    edges: [6, 7, 8].map((osMajorVersion) => {
+      return {
+        node: {
+          osMajorVersion,
+          profiles: {
+            edges: builtProfiles.map((profile) => ({
+              ...profile,
+              supportedOsVersions: [1, 2, 3, 4].map(
+                (minorVersion) => `${osMajorVersion}.${minorVersion}`
+              ),
+              benchmark: {
+                id: `${osMajorVersion}-benchmark-id`,
+                refId: `${osMajorVersion}-benchmark-refId`,
+                osMajorVersion,
+              },
+            })),
+          },
+        },
+      };
+    }),
+  };
 
   it('expect to render without error', () => {
     useQuery.mockImplementation(() => ({
@@ -37,7 +47,7 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: false,
     }));
-    component = shallow(<CreateSCAPPolicy {...defaultProps} />);
+    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
@@ -47,23 +57,23 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: true,
     }));
-    component = shallow(<CreateSCAPPolicy {...defaultProps} />);
+    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render benchmarks and no policies until one is selected', () => {
     useQuery.mockImplementation(() => ({
-      data: { latestBenchmarks: benchmarksQuery },
+      data: { osMajorVersions },
       error: false,
       loading: false,
     }));
-    component = shallow(<CreateSCAPPolicy {...defaultProps} />);
+    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
     expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render policies from the selected benchmark only', () => {
     useQuery.mockImplementation(() => ({
-      data: { latestBenchmarks: benchmarksQuery, profiles: profileRefIdsQuery },
+      data: { osMajorVersions, profiles },
       error: false,
       loading: false,
     }));

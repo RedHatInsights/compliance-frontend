@@ -98,7 +98,7 @@ EditPolicyDetails.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const policy = JSON.parse(selector(state, 'profile'));
+  const policy = selector(state, 'profile');
   return {
     policy,
     refId: selector(state, 'refId'),
