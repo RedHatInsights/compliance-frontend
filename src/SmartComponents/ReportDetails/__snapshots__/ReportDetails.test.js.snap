@@ -41,11 +41,11 @@ exports[`ReportDetails expect to render without error 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -292,7 +292,7 @@ exports[`ReportDetails expect to render without error 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <Grid
         hasGutter={true}
       >
@@ -1073,7 +1073,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           />
         </GridItem>
       </Grid>
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -1119,11 +1119,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -1370,7 +1370,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <Grid
         hasGutter={true}
       >
@@ -2151,7 +2151,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           />
         </GridItem>
       </Grid>
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;

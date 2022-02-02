@@ -56,9 +56,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <PageHeader>
       <PolicyDetailsContentLoader />
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <Spinner />
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -191,7 +191,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
         />
       </RoutedTabs>
     </PageHeader>
-    <Connect(Main)>
+    <Connect(InternalMain)>
       <RoutedTabSwitcher
         defaultTab="details"
         level={0}
@@ -338,7 +338,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
           />
         </ContentTab>
       </RoutedTabSwitcher>
-    </Connect(Main)>
+    </Connect(InternalMain)>
   </StateViewPart>
 </StateViewWithError>
 `;

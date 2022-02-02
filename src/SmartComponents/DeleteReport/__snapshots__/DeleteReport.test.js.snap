@@ -91,7 +91,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                     aria-disabled="false"
                     aria-label="Close"
                     class="pf-c-button pf-m-plain"
-                    data-ouia-component-id="OUIA-Generated-Button-plain-1"
+                    data-ouia-component-id="DeleteReportModal-ModalBoxCloseButton"
                     data-ouia-component-type="PF4/Button"
                     data-ouia-safe="true"
                     type="button"
@@ -249,11 +249,13 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                     >
                       <ModalBoxCloseButton
                         onClose={[Function]}
+                        ouiaId="DeleteReportModal"
                       >
                         <Button
                           aria-label="Close"
                           className=""
                           onClick={[Function]}
+                          ouiaId="DeleteReportModal-ModalBoxCloseButton"
                           variant="plain"
                         >
                           <ButtonBase
@@ -261,13 +263,14 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                             className=""
                             innerRef={null}
                             onClick={[Function]}
+                            ouiaId="DeleteReportModal-ModalBoxCloseButton"
                             variant="plain"
                           >
                             <button
                               aria-disabled={false}
                               aria-label="Close"
                               className="pf-c-button pf-m-plain"
-                              data-ouia-component-id="OUIA-Generated-Button-plain-1"
+                              data-ouia-component-id="DeleteReportModal-ModalBoxCloseButton"
                               data-ouia-component-type="PF4/Button"
                               data-ouia-safe={true}
                               disabled={false}
