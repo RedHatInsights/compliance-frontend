@@ -2,6 +2,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
+import { nowrap } from '@patternfly/react-table';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -49,7 +50,10 @@ export const ComplianceSystems = () => {
                   Columns.inventoryColumn('tags'),
                   Columns.OS,
                   Columns.Policies,
-                  Columns.inventoryColumn('updated', { isStatic: true }),
+                  Columns.inventoryColumn('updated', {
+                    props: { isStatic: true },
+                    transforms: [nowrap],
+                  }),
                 ]}
                 query={GET_SYSTEMS}
                 defaultFilter={DEFAULT_FILTER}

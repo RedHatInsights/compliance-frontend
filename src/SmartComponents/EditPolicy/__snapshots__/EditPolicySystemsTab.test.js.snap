@@ -19,7 +19,6 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         },
         Object {
           "key": "tags",
-          "props": undefined,
         },
         Object {
           "key": "operatingSystem",
@@ -726,7 +725,6 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         },
         Object {
           "key": "tags",
-          "props": undefined,
         },
         Object {
           "key": "operatingSystem",

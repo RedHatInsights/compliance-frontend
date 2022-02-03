@@ -19,7 +19,6 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       },
       Object {
         "key": "tags",
-        "props": undefined,
       },
       Object {
         "dataLabel": "OS",
@@ -784,7 +783,6 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       },
       Object {
         "key": "tags",
-        "props": undefined,
       },
       Object {
         "dataLabel": "OS",

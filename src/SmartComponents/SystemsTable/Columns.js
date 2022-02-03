@@ -159,5 +159,5 @@ export const OS = compileColumnRenderFunc({
 
 export const inventoryColumn = (column, props) => ({
   key: column,
-  props,
+  ...props,
 });
