@@ -5,7 +5,7 @@ import { RowWrapper } from '@patternfly/react-table';
 const ReportedSystemRow = ({ row, children }) => (
   <RowWrapper
     style={
-      row.testResultProfiles?.length === 0 ? { background: '#D2D2D2' } : {}
+      row.testResultProfiles?.length === 0 ? { background: '#F0F0F0' } : {}
     }
   >
     {children}
