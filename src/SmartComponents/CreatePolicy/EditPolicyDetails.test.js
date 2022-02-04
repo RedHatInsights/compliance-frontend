@@ -6,7 +6,7 @@ describe('EditPolicyDetails', () => {
     const component = shallow(
       <EditPolicyDetails
         change={() => ({})}
-        policy={JSON.parse(policyFormValues.profile)}
+        policy={policyFormValues.profile}
       />
     );
     expect(toJson(component)).toMatchSnapshot();

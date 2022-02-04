@@ -152,7 +152,7 @@ export default compose(
   connect((state) => ({
     benchmarkId: selector(state, 'benchmark'),
     businessObjective: selector(state, 'businessObjective'),
-    cloneFromProfileId: JSON.parse(selector(state, 'profile')).id,
+    cloneFromProfileId: selector(state, 'profile').id,
     refId: selector(state, 'refId'),
     name: selector(state, 'name'),
     description: selector(state, 'description'),
