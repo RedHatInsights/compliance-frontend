@@ -263,7 +263,7 @@ const selector = formValueSelector('policyForm');
 
 export default compose(
   connect((state) => ({
-    policy: JSON.parse(selector(state, 'profile')),
+    policy: selector(state, 'profile'),
     osMajorVersion: selector(state, 'osMajorVersion'),
     osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
     selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),

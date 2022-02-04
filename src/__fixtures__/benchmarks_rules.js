@@ -6,7 +6,7 @@ export const policyFormValues = {
     name: 'C2S for Red Hat Enterprise Linux 6',
     osMajorVersion: '6',
     latestSupportedOsMinorVersions: ['7', '8'],
-    profile: JSON.stringify({
+    profile: {
         complianceThreshold: 100,
         description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
         id: '197eb783-7bca-45c5-978d-c1e89b0118da',
@@ -15,7 +15,7 @@ export const policyFormValues = {
         benchmark: {
             latestSupportedOsMinorVersions: ['7', '8'],
         }
-    }),
+    },
     refId: 'xccdf_org.ssgproject.content_profile_C2S',
     systems: [],
     selectedRuleRefIds: ['myrulefrefid']
