@@ -66,9 +66,14 @@ export const CreateSCAPPolicy = ({
   const { data, error, loading } = useQuery(SUPPORTED_PROFILES, {
     fetchPolicy: 'no-cache',
   });
-  const inUseProfileRefIds = data?.profiles?.edges.map(
-    ({ node: { refId } }) => refId
-  );
+  const isInUse = (profileRefId, benchmarkRedId) =>
+    !!data?.profiles?.edges
+      .map(({ node }) => node)
+      .find(
+        (profile) =>
+          profile.refId === profileRefId &&
+          benchmarkRedId === profile.benchmark.refId
+      );
   const osMajorVersions = data?.osMajorVersions?.edges.map(({ node }) => node);
   const selectedOsMajorVersionObject = osMajorVersions?.find(
     ({ osMajorVersion }) => osMajorVersion === selectedOsMajorVersion
@@ -76,7 +81,7 @@ export const CreateSCAPPolicy = ({
   const profilesToSelect = selectedOsMajorVersionObject?.profiles.map(
     (profile) => ({
       ...profile,
-      disabled: inUseProfileRefIds.includes(profile.refId),
+      disabled: isInUse(profile.refId, profile.benchmark.refId),
     })
   );
 
