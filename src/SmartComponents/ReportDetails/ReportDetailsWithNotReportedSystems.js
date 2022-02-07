@@ -198,7 +198,7 @@ export const ReportDetails = ({ route }) => {
                 ]}
                 query={GET_SYSTEMS}
                 compliantFilter
-                defaultFilter={`policy_id = ${profile.id}`}
+                defaultFilter={`policy_id = ${profile.id} or with_results_for_policy_id = ${profile.id}`}
                 policyId={profile.id}
                 tableProps={{
                   rowWrapper: ReportedSystemRow,
