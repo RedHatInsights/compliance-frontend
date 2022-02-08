@@ -63,7 +63,6 @@ const webpackProxy = {
   env: chromeEnv(),
   useProxy: true,
   proxyVerbose: true,
-  useCloud: withDefault('USE_CLOUD') === 'true',
   ...useLocalChrome(),
   ...useStandalone(),
   routesPath:
