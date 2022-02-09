@@ -15,7 +15,7 @@ const addSortableTransform = (columns) =>
   }));
 
 const columnOffset = (options = {}) =>
-  (typeof options.onSelect === 'function' || options.hasRadioSelect) +
+  (typeof options.onSelect === 'function' || options.hasRadioSelect ? 1 : 0) +
   (typeof options.detailsComponent !== 'undefined');
 
 const useTableSort = (columns, options = {}) => {
