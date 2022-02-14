@@ -29,7 +29,7 @@ $ npm run start:proxy:beta # Will run the UI with beta chrome
 To run the container setup either Podman or Docker and their compose commands can be used to
 
 ```shell
-  $ cp .env.example .env # Can be used to enable a local backend and other services
+  $ cp .env.defaults .env # Can be used to enable a local backend and other services
   $ podman-compose up # Starts up the compliance frontend with a webpack proxy
 ```
 
