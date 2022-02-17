@@ -61,7 +61,7 @@ const useLegendData = (donutValues, profile) => {
             name: `${notReportingHostCount} ${pluralize(
               notReportingHostCount,
               'system'
-            )} not reporting`,
+            )} never reported`,
             popover: {
               title: 'Systems never reported',
               content: `${notReportingHostCount} ${pluralize(
