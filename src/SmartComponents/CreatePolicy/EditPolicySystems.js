@@ -69,6 +69,7 @@ PrependComponent.propTypes = {
 };
 
 export const EditPolicySystems = ({
+  policy,
   change,
   osMajorVersion,
   selectedSystems,
@@ -77,7 +78,9 @@ export const EditPolicySystems = ({
     change('systems', newSelectedSystems);
     change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
   };
-
+  const osMinorVersions = policy.supportedOsVersions.map(
+    (version) => version.split('.')[1]
+  );
   return (
     <React.Fragment>
       <TextContent className="pf-u-mb-md">
@@ -107,7 +110,10 @@ export const EditPolicySystems = ({
             showActions={false}
             query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
             defaultFilter={
-              osMajorVersion && `os_major_version = ${osMajorVersion}`
+              osMajorVersion &&
+              `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+                ','
+              )})`
             }
             enableExport={false}
             preselectedSystems={selectedSystems}
@@ -121,6 +127,7 @@ export const EditPolicySystems = ({
 
 EditPolicySystems.propTypes = {
   osMajorVersion: propTypes.string,
+  policy: propTypes.object,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
 };
@@ -131,6 +138,7 @@ EditPolicySystems.defaultProps = {
 
 const selector = formValueSelector('policyForm');
 const mapStateToProps = (state) => ({
+  policy: selector(state, 'profile'),
   osMajorVersion: selector(state, 'osMajorVersion'),
   selectedSystems: selector(state, 'systems'),
 });
