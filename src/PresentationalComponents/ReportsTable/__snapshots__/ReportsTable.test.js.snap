@@ -685,7 +685,7 @@ exports[`ReportsTable expect to render without error 1`] = `
         "onComplete": [Function],
         "onStart": [Function],
       },
-      "manageColumns": false,
+      "manageColumns": true,
     }
   }
   ouiaId="ReportsTable"
