@@ -74,6 +74,7 @@ export const QUERY = gql`
             description
             remediationAvailable
             identifier
+            precedence
           }
         }
       }
@@ -98,6 +99,7 @@ export const QUERY = gql`
         description
         remediationAvailable
         identifier
+        precedence
       }
     }
   }

@@ -55,6 +55,7 @@ const QUERY = gql`
           remediationAvailable
           references
           identifier
+          precedence
         }
       }
     }
