@@ -4,12 +4,8 @@ import { NotConnected } from '@redhat-cloud-services/frontend-components/NotConn
 import NoPoliciesState from './NoPoliciesState';
 import NoReportsState from './NoReportsState';
 
-const EmptyState = ({ system, isWrapped }) => {
-  if (
-    isWrapped &&
-    !system?.hasPolicy &&
-    system?.testResultProfiles?.length === 0
-  ) {
+const EmptyState = ({ system }) => {
+  if (!system?.insights_id) {
     return <NotConnected />;
   } else {
     if (!system?.hasPolicy) {
@@ -22,7 +18,6 @@ const EmptyState = ({ system, isWrapped }) => {
 
 EmptyState.propTypes = {
   system: propTypes.object,
-  isWrapped: propTypes.bool,
 };
 
 export default EmptyState;

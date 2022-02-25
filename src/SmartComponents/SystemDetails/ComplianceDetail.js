@@ -25,6 +25,7 @@ const QUERY = gql`
       id
       name
       hasPolicy
+      insights_id
       policies {
         id
       }
@@ -60,7 +61,7 @@ const QUERY = gql`
   }
 `;
 
-const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => {
+const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   const [selectedPolicies, setSelectedPolicies] = useState();
   const policies = system?.testResultProfiles;
   const setOrUnsetPolicy = (policy) => {
@@ -140,7 +141,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed, isWrapped }) => {
           }}
         />
       ) : (
-        <EmptyState system={system} isWrapped={isWrapped} />
+        <EmptyState system={system} />
       )}
     </>
   );
@@ -159,12 +160,10 @@ SystemQuery.propTypes = {
   }),
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
-  isWrapped: propTypes.bool,
 };
 
 SystemQuery.defaultProps = {
   loading: true,
-  isWrapped: false,
 };
 
 export const SystemDetails = ({ inventoryId, hidePassed, ...props }) => {
@@ -220,7 +219,7 @@ const WrappedSystemDetails = ({
       <IntlWrapper {...(customItnl && intlProps)}>
         <ApolloProvider client={client}>
           <Provider store={store}>
-            <SystemDetails {...props} isWrapped />
+            <SystemDetails {...props} />
           </Provider>
         </ApolloProvider>
       </IntlWrapper>
