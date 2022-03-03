@@ -18,11 +18,11 @@ COPY ./entrypoint.sh /
 # nvm environment variables
 ENV NVM_DIR /root/.nvm
 RUN mkdir -p $NVM_DIR
-ENV NODE_VERSION 15.14.0
+ENV NODE_VERSION 16.13.0
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 # install node and npm
 RUN source $NVM_DIR/nvm.sh \
