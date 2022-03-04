@@ -936,8 +936,10 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
 Array [
   <div
+    aria-selected={false}
     className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
+    role="option"
     tabIndex={0}
   >
     <div
@@ -951,8 +953,10 @@ Array [
     </div>
   </div>,
   <div
+    aria-selected={false}
     className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
+    role="option"
     tabIndex={0}
   >
     <div
@@ -966,8 +970,10 @@ Array [
     </div>
   </div>,
   <div
+    aria-selected={false}
     className="pf-c-tile pf-u-mr-md"
     onClick={[Function]}
+    role="option"
     tabIndex={0}
   >
     <div
