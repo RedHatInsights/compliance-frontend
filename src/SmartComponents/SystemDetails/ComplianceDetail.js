@@ -25,7 +25,7 @@ const QUERY = gql`
       id
       name
       hasPolicy
-      insights_id
+      insightsId
       policies {
         id
       }

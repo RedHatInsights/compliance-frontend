@@ -66,7 +66,6 @@ const renameInventoryAttributes = ({
   culledTimestamp,
   staleWarningTimestamp,
   staleTimestamp,
-  insightsId,
   lastScanned,
   ...system
 }) => ({
@@ -75,7 +74,6 @@ const renameInventoryAttributes = ({
   culled_timestamp: culledTimestamp,
   stale_warning_timestamp: staleWarningTimestamp,
   stale_timestamp: staleTimestamp,
-  insights_id: insightsId,
 });
 
 export const useFetchSystems = ({
