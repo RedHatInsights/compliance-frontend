@@ -36,6 +36,7 @@ export const GET_SYSTEMS = gql`
           staleTimestamp
           insightsId
           lastScanned
+          updated
           testResultProfiles(policyId: $policyId) {
             id
             name
@@ -97,6 +98,7 @@ export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
           staleTimestamp
           insightsId
           lastScanned
+          updated
           testResultProfiles(policyId: $policyId) {
             id
             name
@@ -152,6 +154,7 @@ export const GET_MINIMAL_SYSTEMS = gql`
           staleTimestamp
           insightsId
           lastScanned
+          updated
         }
       }
     }
