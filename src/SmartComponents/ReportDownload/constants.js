@@ -32,6 +32,7 @@ export const GET_SYSTEMS = gql`
           name
           osMajorVersion
           osMinorVersion
+          insightsId
           testResultProfiles(policyId: $policyId) {
             id
             name
