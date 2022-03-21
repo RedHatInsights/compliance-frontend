@@ -66,9 +66,11 @@ const renameInventoryAttributes = ({
   culledTimestamp,
   staleWarningTimestamp,
   staleTimestamp,
+  insightsId,
   ...system
 }) => ({
   ...system,
+  insights_id: insightsId,
   culled_timestamp: culledTimestamp,
   stale_warning_timestamp: staleWarningTimestamp,
   stale_timestamp: staleTimestamp,
