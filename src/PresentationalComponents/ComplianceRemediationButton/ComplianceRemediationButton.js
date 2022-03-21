@@ -1,4 +1,5 @@
 import React from 'react';
+import sortBy from 'lodash/sortBy';
 import propTypes from 'prop-types';
 import { Button } from '@patternfly/react-core';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
@@ -64,6 +65,8 @@ class ComplianceRemediationButton extends React.Component {
       });
   };
 
+  sortByPrecedence = (issues) => sortBy(issues, ['precedence']);
+
   dataProvider = () => {
     const { allSystems, selectedRules } = this.props;
     const result = { systems: [], issues: [] };
@@ -83,7 +86,9 @@ class ComplianceRemediationButton extends React.Component {
       });
 
     return Promise.all(result.issues).then((issues) => {
-      result.issues = this.uniqIssuesBySystem(flatten(issues));
+      result.issues = this.sortByPrecedence(
+        this.uniqIssuesBySystem(flatten(issues))
+      );
       return result;
     });
   };

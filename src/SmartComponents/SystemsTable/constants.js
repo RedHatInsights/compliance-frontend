@@ -53,6 +53,7 @@ export const GET_SYSTEMS = gql`
               title
               compliant
               remediationAvailable
+              precedence
             }
           }
           policies(policyId: $policyId) {
