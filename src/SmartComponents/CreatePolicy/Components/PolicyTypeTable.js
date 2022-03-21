@@ -58,17 +58,14 @@ const PolicyTypeTable = ({ profiles, onChange, selectedProfile }) => (
     ]}
     options={{
       detailsComponent: PolicyTypeDetailsRow,
-      hasRadioSelect: true,
+      onRadioSelect: (_event, _value, _rowIdx, { itemId }) =>
+        onChange && onChange(profiles.find(({ id }) => id === itemId)),
       sortBy: {
         index: 2,
         direction: 'asc',
         property: 'name',
       },
     }}
-    onSelect={(_event, _value, _rowIdx, { itemId }) =>
-      onChange && onChange(profiles.find(({ id }) => id === itemId))
-    }
-    selectVariant="radio"
     variant="compact"
   />
 );

@@ -8,7 +8,13 @@ import useExpandable from './useExpandable';
 import useDedicatedAction from './useDedicatedAction';
 import useToolbarActions from './useToolbarActions';
 import useColumnManager from './useColumnManager';
+import { useRadioSelectWithItems } from './useRadioSelect';
 import { useExportWithItems } from './useExport';
+
+const filteredAndSortedItems = (items, filter, sorter) => {
+  const filtered = filter ? filter(items) : items;
+  return sorter ? sorter(filtered) : filtered;
+};
 
 const useTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
@@ -67,16 +73,16 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     setPage,
   });
 
+  const { tableProps: radioSelectTableProps } = useRadioSelectWithItems({
+    items: filteredAndSortedItems(identifiedItems, filter, sorter),
+    ...options,
+  });
+
   const { toolbarProps: dedicatedActionToolbarProps } = useDedicatedAction({
     ...options,
     selected: selectedItems,
     additionalDedicatedActions: selectedFilterToolbarProps?.dedicatedAction,
   });
-
-  const filteredAndSortedItems = (items, filter, sorter) => {
-    const filtered = filter ? filter(items) : items;
-    return sorter ? sorter(filtered) : filtered;
-  };
 
   const { toolbarProps: exportToolbarProps } = useExportWithItems(
     filteredAndSortedItems(
@@ -119,6 +125,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...sortableTableProps,
     ...bulkSelectTableProps,
     ...expandableProps,
+    ...radioSelectTableProps,
     ...tablePropsOption,
   };
 
