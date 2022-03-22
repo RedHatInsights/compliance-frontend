@@ -130,6 +130,7 @@ export const CreateSCAPPolicy = ({
                   change('profile', policy);
                   change('benchmark', policy.benchmark.id);
                   change('selectedRuleRefIds', undefined);
+                  change('systems', []);
                 }}
                 selectedProfile={selectedProfile}
               />
