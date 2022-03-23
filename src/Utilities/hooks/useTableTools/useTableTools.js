@@ -9,6 +9,7 @@ import useDedicatedAction from './useDedicatedAction';
 import useToolbarActions from './useToolbarActions';
 import useColumnManager from './useColumnManager';
 import { useRadioSelectWithItems } from './useRadioSelect';
+import { useActionResolverWithItems } from './useActionResolver';
 import { useExportWithItems } from './useExport';
 
 const filteredAndSortedItems = (items, filter, sorter) => {
@@ -78,6 +79,12 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...options,
   });
 
+  const { tableProps: actionResolverTableProps } = useActionResolverWithItems({
+    items: filteredAndSortedItems(identifiedItems, filter, sorter),
+    ...options,
+    ...tablePropsOption,
+  });
+
   const { toolbarProps: dedicatedActionToolbarProps } = useDedicatedAction({
     ...options,
     selected: selectedItems,
@@ -126,6 +133,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...bulkSelectTableProps,
     ...expandableProps,
     ...radioSelectTableProps,
+    ...actionResolverTableProps,
     ...tablePropsOption,
   };
 

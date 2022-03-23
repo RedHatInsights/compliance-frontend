@@ -33,9 +33,9 @@ export const emptyRows = [
   {
     cells: [
       {
-        title: () => (<NoResultsTable />),  // eslint-disable-line
+        title: () => <NoResultsTable />, // eslint-disable-line react/display-name
         props: {
-          colSpan: 3,
+          colSpan: 6,
         },
       },
     ],

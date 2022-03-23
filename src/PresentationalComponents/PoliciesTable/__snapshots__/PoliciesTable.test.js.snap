@@ -2,7 +2,6 @@
 
 exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
 <TableToolsTable
-  actionResolver={[Function]}
   aria-label="Policies"
   className="compliance-policies-table"
   columns={
@@ -555,6 +554,7 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
   }
   options={
     Object {
+      "actionResolver": [Function],
       "dedicatedAction": [Function],
       "exportable": Object {
         "columns": Array [
@@ -617,7 +617,6 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
 
 exports[`PoliciesTable expect to render emptystate 1`] = `
 <TableToolsTable
-  actionResolver={[Function]}
   aria-label="Policies"
   className="compliance-policies-table"
   columns={
@@ -695,6 +694,7 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
   items={Array []}
   options={
     Object {
+      "actionResolver": [Function],
       "dedicatedAction": [Function],
       "exportable": Object {
         "columns": Array [
@@ -757,7 +757,6 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
 
 exports[`PoliciesTable expect to render without error 1`] = `
 <TableToolsTable
-  actionResolver={[Function]}
   aria-label="Policies"
   className="compliance-policies-table"
   columns={
@@ -1310,6 +1309,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
   }
   options={
     Object {
+      "actionResolver": [Function],
       "dedicatedAction": [Function],
       "exportable": Object {
         "columns": Array [

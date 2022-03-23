@@ -61,6 +61,7 @@ export const PoliciesTable = ({ policies, location, history }) => {
       }}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
+        actionResolver,
         dedicatedAction: DedicatedAction,
         exportable: {
           ...COMPLIANCE_TABLE_DEFAULTS.exportable,
@@ -68,7 +69,6 @@ export const PoliciesTable = ({ policies, location, history }) => {
         },
         manageColumns: manageColumnsEnabled,
       }}
-      actionResolver={actionResolver}
     />
   );
 };

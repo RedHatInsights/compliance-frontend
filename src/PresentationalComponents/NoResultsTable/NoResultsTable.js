@@ -28,7 +28,7 @@ export const emptyRows = [
   {
     cells: [
       {
-            title: () => (<NoResultsTable />),  // eslint-disable-line
+        title: () => <NoResultsTable />, // eslint-disable-line
         props: {
           colSpan: 3,
         },
