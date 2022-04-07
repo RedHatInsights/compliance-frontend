@@ -8,10 +8,18 @@ import {
   useLocation,
   matchPath,
 } from 'react-router-dom';
+import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
 
 const Route = (route) => {
-  const { component: Component, modal, path, props = {}, title } = route;
+  const {
+    component: Component,
+    modal,
+    path,
+    props = {},
+    title,
+    requiredPermissions,
+  } = route;
   const location = useLocation();
   const setTitle = useDocumentTitle();
   const isCurrent = !!matchPath(location.pathname, { path, exact: true });
@@ -32,7 +40,13 @@ const Route = (route) => {
 
   return (
     <ReactRoute {...routeProps}>
-      <Component {...componentProps} />
+      {requiredPermissions ? (
+        <WithPermission requiredPermissions={requiredPermissions}>
+          <Component {...componentProps} />
+        </WithPermission>
+      ) : (
+        <Component {...componentProps} />
+      )}
     </ReactRoute>
   );
 };
@@ -43,6 +57,7 @@ Route.propTypes = {
   path: propTypes.string,
   props: propTypes.object,
   title: propTypes.string,
+  requiredPermissions: propTypes.array,
 };
 
 const Router = ({ routes }) => {

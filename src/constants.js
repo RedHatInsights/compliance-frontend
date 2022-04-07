@@ -210,4 +210,5 @@ export const features = {
   pdfReport: true,
   manageColumns: true,
   systemsNotReporting: true,
+  rbac: false,
 };

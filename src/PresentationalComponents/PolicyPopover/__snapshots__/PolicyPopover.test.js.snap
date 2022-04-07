@@ -34,11 +34,11 @@ exports[`PolicyPopover expect to render without error 1`] = `
     </TextContent>
   }
   footerContent={
-    <Link
+    <LinkWithPermission
       to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5-policy"
     >
       View policy
-    </Link>
+    </LinkWithPermission>
   }
   headerContent={
     <TextContent>
