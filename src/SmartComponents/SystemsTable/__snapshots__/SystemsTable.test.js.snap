@@ -868,9 +868,9 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
                 "onChange": [Function],
                 "value": undefined,
               },
-              "id": "compliant",
-              "label": "Compliant",
-              "placeholder": "Filter by compliant",
+              "id": "compliance",
+              "label": "Compliance",
+              "placeholder": "Filter by compliance",
               "type": "checkbox",
             },
             Object {

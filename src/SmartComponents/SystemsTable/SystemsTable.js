@@ -11,7 +11,7 @@ import {
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-import { policyFilter, defaultOnLoad } from './constants';
+import { policyFilter, defaultOnLoad, ssgVersionFilter } from './constants';
 import {
   useFetchSystems,
   useGetEntities,
@@ -47,6 +47,7 @@ export const SystemsTable = ({
   onSelect: onSelectProp,
   noSystemsTable,
   tableProps,
+  ssgVersions,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -72,6 +73,7 @@ export const SystemsTable = ({
         ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
         ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
+        ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...osMinorVersionFilter,
       ],
     },
@@ -283,6 +285,7 @@ SystemsTable.propTypes = {
   onSelect: PropTypes.func,
   noSystemsTable: PropTypes.node,
   tableProps: PropTypes.object,
+  ssgVersions: PropTypes.array,
 };
 
 SystemsTable.defaultProps = {

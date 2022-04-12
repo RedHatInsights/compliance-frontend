@@ -165,7 +165,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
 export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.checkbox,
-    label: 'Compliant',
+    label: 'Compliance',
     filterString: (value) => `compliant = ${value}`,
     items: [
       { label: 'Compliant', value: 'true' },

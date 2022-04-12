@@ -6,7 +6,7 @@ export const exampleFilters = [
   },
   {
     type: 'checkbox',
-    label: 'Compliant',
+    label: 'Compliance',
     filterString: (value) => `compliant = ${value}`,
     items: [
       { label: 'Compliant', value: 'true' },
