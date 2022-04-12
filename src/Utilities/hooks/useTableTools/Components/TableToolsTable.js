@@ -34,7 +34,8 @@ const TableToolsTable = ({
         <TableBody />
       </Table>
 
-      <TableToolbar isFooter>
+      {/* The -1 are to combat a bug currently in the TableToolbar component */}
+      <TableToolbar isFooter results={-1} selected={-1}>
         <Pagination
           variant={PaginationVariant.bottom}
           {...toolbarProps.pagination}

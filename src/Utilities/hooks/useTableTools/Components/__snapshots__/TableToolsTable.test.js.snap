@@ -179,6 +179,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
   <Table
     aria-label="Test Table"
     borders={true}
+    canCollapseAll={false}
     canSelectAll={true}
     canSortFavorites={true}
     cells={
@@ -229,6 +230,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
       ]
     }
     className=""
+    collapseAllAriaLabel=""
     contentId="expanded-content"
     dropdownDirection="down"
     dropdownPosition="right"
@@ -490,6 +492,8 @@ exports[`TableToolsTable expect to render without error 1`] = `
   </Table>
   <TableToolbar
     isFooter={true}
+    results={-1}
+    selected={-1}
   >
     <Pagination
       className=""
