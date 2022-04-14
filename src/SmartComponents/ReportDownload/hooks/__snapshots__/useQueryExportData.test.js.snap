@@ -11552,6 +11552,7 @@ Object {
       "title": "Profile #5 Rule #1",
     },
   ],
+  "totalHostCount": 30,
   "unsupportedSystemCount": 10,
   "unsupportedSystems": Array [
     Object {
