@@ -38,6 +38,7 @@ const useQueryExportData = (
     const nonReportingSystems = nonReportingSystemsData(systems);
 
     return {
+      totalHostCount: systems.length,
       ...(exportSettings.compliantSystems && {
         compliantSystems: compliantSystems,
       }),
