@@ -22,7 +22,7 @@ describe('Name', () => {
 
 describe('OperatingSystem', () => {
   const defaultProps = {
-    majorOsVersion: '7',
+    osMajorVersion: '7',
   };
 
   it('expect to render without error', () => {

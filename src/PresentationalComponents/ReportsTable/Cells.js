@@ -27,7 +27,7 @@ Name.propTypes = {
 };
 
 export const OperatingSystem = ({
-  majorOsVersion,
+  osMajorVersion,
   ssgVersion,
   unsupportedHostCount,
   policy,
@@ -37,7 +37,7 @@ export const OperatingSystem = ({
 
   return (
     <React.Fragment>
-      RHEL {majorOsVersion}
+      RHEL {osMajorVersion}
       {policy === null && ssgVersion && (
         <Text>
           <GreySmallText>
@@ -54,7 +54,7 @@ export const OperatingSystem = ({
 };
 
 OperatingSystem.propTypes = {
-  majorOsVersion: propTypes.string,
+  osMajorVersion: propTypes.string,
   ssgVersion: propTypes.string,
   unsupportedHostCount: propTypes.number,
   policy: propTypes.object,

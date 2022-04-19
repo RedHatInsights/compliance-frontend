@@ -20,11 +20,11 @@ export const Name = {
 export const OperatingSystem = {
   title: 'Operating system',
   transforms: [fitContent],
-  sortByProp: 'majorOsVersion',
+  sortByProp: 'osMajorVersion',
   props: {
     width: 20,
   },
-  renderExport: ({ majorOsVersion }) => `RHEL ${majorOsVersion} `,
+  renderExport: ({ osMajorVersion }) => `RHEL ${osMajorVersion} `,
   renderFunc: renderComponent(OperatingSystemCell),
 };
 

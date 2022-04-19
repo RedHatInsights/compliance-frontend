@@ -24,7 +24,7 @@ export const MULTIVERSION_QUERY = gql`
       totalHostCount
       compliantHostCount
       complianceThreshold
-      majorOsVersion
+      osMajorVersion
       osMajorVersion
       supportedOsVersions
       lastScanned

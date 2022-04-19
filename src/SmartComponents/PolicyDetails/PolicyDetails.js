@@ -46,7 +46,7 @@ export const QUERY = gql`
       totalHostCount
       compliantHostCount
       complianceThreshold
-      majorOsVersion
+      osMajorVersion
       lastScanned
       policyType
       policy {

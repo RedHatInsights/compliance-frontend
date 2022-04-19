@@ -34,7 +34,7 @@ const mocks = [
           complianceThreshold: 1,
           compliantHostCount: 5,
           unsupportedHostCount: 5,
-          majorOsVersion: '7',
+          osMajorVersion: '7',
           policy: {
             id: 'thepolicyid',
             name: 'the policy name',

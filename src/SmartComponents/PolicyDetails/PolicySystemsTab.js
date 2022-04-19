@@ -16,7 +16,7 @@ const PolicySystemsTab = ({ policy }) => (
       Columns.OS,
       Columns.SsgVersion,
     ]}
-    showOsMinorVersionFilter={[policy.majorOsVersion]}
+    showOsMinorVersionFilter={[policy.osMajorVersion]}
     query={GET_SYSTEMS}
     policyId={policy.id}
     defaultFilter={`policy_id = ${policy.id}`}
@@ -33,7 +33,7 @@ PolicySystemsTab.propTypes = {
   policy: propTypes.shape({
     id: propTypes.string.isRequired,
     complianceThreshold: propTypes.number.isRequired,
-    majorOsVersion: propTypes.string.isRequired,
+    osMajorVersion: propTypes.string.isRequired,
     hosts: propTypes.array.isRequired,
   }),
   systemTableProps: propTypes.object,

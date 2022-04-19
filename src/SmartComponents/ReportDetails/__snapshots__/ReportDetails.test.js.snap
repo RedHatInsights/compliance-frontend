@@ -18,8 +18,8 @@ exports[`ReportDetails expect to render without error 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
-          "majorOsVersion": "7",
           "name": "profile1",
+          "osMajorVersion": "7",
           "policy": Object {
             "id": "thepolicyid",
             "name": "the policy name",
@@ -109,8 +109,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": "7",
                   "name": "profile1",
+                  "osMajorVersion": "7",
                   "policy": Object {
                     "id": "thepolicyid",
                     "name": "the policy name",
@@ -148,8 +148,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": "7",
                   "name": "profile1",
+                  "osMajorVersion": "7",
                   "policy": Object {
                     "id": "thepolicyid",
                     "name": "the policy name",
@@ -276,8 +276,8 @@ exports[`ReportDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
-                "majorOsVersion": "7",
                 "name": "profile1",
+                "osMajorVersion": "7",
                 "policy": Object {
                   "id": "thepolicyid",
                   "name": "the policy name",
@@ -754,7 +754,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "majorOsVersion",
+                                                    "value": "osMajorVersion",
                                                   },
                                                   "selectionSet": undefined,
                                                 },
@@ -1117,8 +1117,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "description": "profile description",
           "external": false,
           "id": "1",
-          "majorOsVersion": "7",
           "name": "profile1",
+          "osMajorVersion": "7",
           "policy": Object {
             "id": "thepolicyid",
             "name": "the policy name",
@@ -1208,8 +1208,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": "7",
                   "name": "profile1",
+                  "osMajorVersion": "7",
                   "policy": Object {
                     "id": "thepolicyid",
                     "name": "the policy name",
@@ -1247,8 +1247,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "description": "profile description",
                   "external": false,
                   "id": "1",
-                  "majorOsVersion": "7",
                   "name": "profile1",
+                  "osMajorVersion": "7",
                   "policy": Object {
                     "id": "thepolicyid",
                     "name": "the policy name",
@@ -1375,8 +1375,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "description": "profile description",
                 "external": false,
                 "id": "1",
-                "majorOsVersion": "7",
                 "name": "profile1",
+                "osMajorVersion": "7",
                 "policy": Object {
                   "id": "thepolicyid",
                   "name": "the policy name",
@@ -1853,7 +1853,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                   "kind": "Field",
                                                   "name": Object {
                                                     "kind": "Name",
-                                                    "value": "majorOsVersion",
+                                                    "value": "osMajorVersion",
                                                   },
                                                   "selectionSet": undefined,
                                                 },

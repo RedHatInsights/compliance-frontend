@@ -11,7 +11,7 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 compliantHostCount: 4,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -123,7 +123,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 policy: {
                     id: 'b71376fd-015e-4209-99af-4543e82e5dc5-policy',
                     name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73',
@@ -196,7 +196,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -222,7 +222,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -248,7 +248,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -274,7 +274,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -300,7 +300,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -326,7 +326,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -352,7 +352,7 @@ export const policies = {
                 totalHostCount: 10,
                 testResultHostCount: 8,
                 businessObjective: null,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -378,7 +378,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -404,7 +404,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -430,7 +430,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],
@@ -456,7 +456,7 @@ export const policies = {
                 businessObjective: null,
                 totalHostCount: 10,
                 testResultHostCount: 8,
-                majorOsVersion: '7',
+                osMajorVersion: '7',
                 hosts: [
                     { id: 'f7d15113-1ac8-4aee-b367-e1777e60979d', osMinorVersion: 7 }
                 ],

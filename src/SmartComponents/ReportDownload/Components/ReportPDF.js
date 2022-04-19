@@ -68,7 +68,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
             // TODO: correct left side styling
             rows={[
               ['Policy type', policy.policyType],
-              ['Operating system', `RHEL ${policy.majorOsVersion}`],
+              ['Operating system', `RHEL ${policy.osMajorVersion}`],
               ['Compliance threshold', `${policy.complianceThreshold}%`],
               ['Business Objective', policy.businessObjective?.title || '--'],
             ]}

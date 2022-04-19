@@ -28,7 +28,7 @@ const QUERY = gql`
           testResultHostCount
           compliantHostCount
           unsupportedHostCount
-          majorOsVersion
+          osMajorVersion
           ssgVersion
           complianceThreshold
           businessObjective {

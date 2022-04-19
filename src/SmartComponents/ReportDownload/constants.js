@@ -43,7 +43,7 @@ export const GET_SYSTEMS = gql`
             score
             supported
             ssgVersion
-            majorOsVersion
+            osMajorVersion
             rules {
               refId
               title
@@ -78,7 +78,7 @@ export const GET_PROFILE = gql`
       compliantHostCount
       unsupportedHostCount
       complianceThreshold
-      majorOsVersion
+      osMajorVersion
       lastScanned
       policyType
       totalHostCount
