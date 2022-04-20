@@ -96,7 +96,7 @@
     "@commitlint/config-conventional": "^14.1.0",
     "@commitlint/travis-cli": "^14.1.0",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^1.2.1",
-    "@redhat-cloud-services/frontend-components-config": "^4.6.7",
+    "@redhat-cloud-services/frontend-components-config": "^4.6.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.2",
