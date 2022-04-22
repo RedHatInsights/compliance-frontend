@@ -446,7 +446,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
                                         "kind": "Field",
                                         "name": Object {
                                           "kind": "Name",
-                                          "value": "majorOsVersion",
+                                          "value": "osMajorVersion",
                                         },
                                         "selectionSet": undefined,
                                       },
@@ -1232,7 +1232,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
                                         "kind": "Field",
                                         "name": Object {
                                           "kind": "Name",
-                                          "value": "majorOsVersion",
+                                          "value": "osMajorVersion",
                                         },
                                         "selectionSet": undefined,
                                       },

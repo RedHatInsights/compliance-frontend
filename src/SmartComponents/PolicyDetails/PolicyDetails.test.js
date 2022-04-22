@@ -19,7 +19,7 @@ const mocks = [
           totalHostCount: 1,
           complianceThreshold: 1,
           compliantHostCount: 1,
-          majorOsVersion: '7',
+          osMajorVersion: '7',
           hosts: [],
           policy: {
             name: 'parentpolicy',

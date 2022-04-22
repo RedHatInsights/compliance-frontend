@@ -36,7 +36,7 @@ const PolicyDescription = ({ profile }) => (
         <Text className="ins-c-non-bold-h2">Policy details</Text>
       </Dt>
       <Dt>Operating system</Dt>
-      <Dd>RHEL {profile.majorOsVersion}</Dd>
+      <Dd>RHEL {profile.osMajorVersion}</Dd>
       <Dt>Compliance threshold</Dt>
       <Dd>{fixedPercentage(profile.complianceThreshold, 1)}</Dd>
       <Dt>Business objective</Dt>
@@ -53,7 +53,7 @@ PolicyDescription.propTypes = {
     id: propTypes.string,
     complianceThreshold: propTypes.number,
     businessObjective: propTypes.object,
-    majorOsVersion: propTypes.string,
+    osMajorVersion: propTypes.string,
     policy: propTypes.shape({
       id: propTypes.string,
     }),

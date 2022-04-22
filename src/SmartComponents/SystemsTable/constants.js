@@ -47,7 +47,7 @@ export const GET_SYSTEMS = gql`
             score
             supported
             ssgVersion
-            majorOsVersion
+            osMajorVersion
             rules {
               refId
               title

@@ -41,7 +41,7 @@ const QUERY = gql`
         score
         supported
         ssgVersion
-        majorOsVersion
+        osMajorVersion
         policy {
           id
         }

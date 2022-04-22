@@ -19,8 +19,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
           "description": "profile description",
           "hosts": Array [],
           "id": "1",
-          "majorOsVersion": "7",
           "name": "profile1",
+          "osMajorVersion": "7",
           "policy": Object {
             "name": "parentpolicy",
             "profiles": Array [
@@ -130,8 +130,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
                   "description": "profile description",
                   "hosts": Array [],
                   "id": "1",
-                  "majorOsVersion": "7",
                   "name": "profile1",
+                  "osMajorVersion": "7",
                   "policy": Object {
                     "name": "parentpolicy",
                     "profiles": Array [
@@ -215,8 +215,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "hosts": Array [],
                 "id": "1",
-                "majorOsVersion": "7",
                 "name": "profile1",
+                "osMajorVersion": "7",
                 "policy": Object {
                   "name": "parentpolicy",
                   "profiles": Array [
@@ -262,8 +262,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "hosts": Array [],
                 "id": "1",
-                "majorOsVersion": "7",
                 "name": "profile1",
+                "osMajorVersion": "7",
                 "policy": Object {
                   "name": "parentpolicy",
                   "profiles": Array [
@@ -309,8 +309,8 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "description": "profile description",
                 "hosts": Array [],
                 "id": "1",
-                "majorOsVersion": "7",
                 "name": "profile1",
+                "osMajorVersion": "7",
                 "policy": Object {
                   "name": "parentpolicy",
                   "profiles": Array [

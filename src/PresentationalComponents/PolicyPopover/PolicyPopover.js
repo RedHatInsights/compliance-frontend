@@ -20,7 +20,7 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
     policy,
     policyType,
     complianceThreshold,
-    majorOsVersion,
+    osMajorVersion,
     businessObjective,
   } = profile;
   return (
@@ -42,7 +42,7 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
               Operating system
             </TextListItem>
             <TextListItem component={TextListItemVariants.dd}>
-              RHEL {majorOsVersion}
+              RHEL {osMajorVersion}
             </TextListItem>
             <TextListItem component={TextListItemVariants.dt}>
               Compliance threshold

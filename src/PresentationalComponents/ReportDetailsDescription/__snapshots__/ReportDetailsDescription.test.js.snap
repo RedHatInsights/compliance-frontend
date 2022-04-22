@@ -22,8 +22,8 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
           },
         ],
         "id": "b71376fd-015e-4209-99af-4543e82e5dc5",
-        "majorOsVersion": "7",
         "name": "United States Government Configuration Baseline23",
+        "osMajorVersion": "7",
         "policy": Object {
           "__typename": "Profile",
           "id": "b71376fd-015e-4209-99af-4543e82e5dc5-policy",

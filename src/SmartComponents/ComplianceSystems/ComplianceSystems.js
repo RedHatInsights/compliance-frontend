@@ -20,7 +20,7 @@ const QUERY = gql`
           id
           name
           refId
-          majorOsVersion
+          osMajorVersion
         }
       }
     }
@@ -61,7 +61,7 @@ export const ComplianceSystems = () => {
                   isFullView: true,
                 }}
                 showOsMinorVersionFilter={policies.map(
-                  (policy) => policy.majorOsVersion
+                  (policy) => policy.osMajorVersion
                 )}
                 showComplianceSystemsInfo
                 enableEditPolicy={false}
