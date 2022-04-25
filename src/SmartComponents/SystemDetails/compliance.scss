@@ -25,7 +25,7 @@
         color: var(--pf-global--success-color--200)
     }
     
-    .margin-bottom {
+    .margin-bottom, %margin-bottom {
         &-none {
             margin-bottom: 0;
         }
@@ -43,7 +43,7 @@
         }
     }
     
-    .margin-top {
+    .margin-top, %margin-top {
         &-none {
             margin-top: 0;
         }
@@ -54,8 +54,8 @@
     }
     
     .margin-bottom-top-none {
-        @extend .margin-top-none;
-        @extend .margin-bottom-none;
+        @extend %margin-top-none;
+        @extend %margin-bottom-none;
     }
     
     .wrap-break-word {
