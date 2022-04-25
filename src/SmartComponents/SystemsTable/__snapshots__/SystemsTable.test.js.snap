@@ -1781,7 +1781,6 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
-                      aria-label="Conditional filter"
                       class="pf-c-dropdown__toggle"
                       data-ouia-component-id="ConditionalFilter"
                       data-ouia-component-type="PF4/DropdownToggle"
@@ -1883,7 +1882,6 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
               <button
                 aria-expanded="false"
                 aria-haspopup="true"
-                aria-label="Export"
                 class="pf-c-dropdown__toggle pf-m-plain"
                 data-ouia-component-id="Export"
                 data-ouia-component-type="PF4/DropdownToggle"
