@@ -4,6 +4,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
 <Table
   aria-label="policies-table"
   borders={true}
+  canCollapseAll={false}
   canSelectAll={true}
   canSortFavorites={true}
   cells={
@@ -23,7 +24,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         },
         "renderExport": [Function],
         "renderFunc": [Function],
-        "sortByProp": "majorOsVersion",
+        "sortByProp": "osMajorVersion",
         "title": "Operating system",
         "transforms": Array [
           [Function],
@@ -53,6 +54,7 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
     ]
   }
   className=""
+  collapseAllAriaLabel=""
   contentId="expanded-content"
   dropdownDirection="down"
   dropdownPosition="right"

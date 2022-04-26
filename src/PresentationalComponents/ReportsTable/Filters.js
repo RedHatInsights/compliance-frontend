@@ -34,7 +34,7 @@ export const operatingSystemFilter = (operatingSystems) => [
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
     filter: (profiles, values) =>
-      profiles.filter(({ majorOsVersion }) => values.includes(majorOsVersion)),
+      profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
       label: `RHEL ${operatingSystem}`,
       value: operatingSystem,

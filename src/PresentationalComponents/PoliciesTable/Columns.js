@@ -34,7 +34,7 @@ const PolicyType = {
   renderExport: (policy) => policy.policyType,
 };
 
-const osString = (policy) => `RHEL ${policy.majorOsVersion}`;
+const osString = (policy) => `RHEL ${policy.osMajorVersion}`;
 
 export const OperatingSystem = {
   title: 'Operating system',
@@ -42,7 +42,7 @@ export const OperatingSystem = {
   props: {
     width: 15,
   },
-  sortByProp: 'majorOsVersion',
+  sortByProp: 'osMajorVersion',
   renderExport: osString,
   renderFunc: (_data, _id, policy) => osString(policy),
 };

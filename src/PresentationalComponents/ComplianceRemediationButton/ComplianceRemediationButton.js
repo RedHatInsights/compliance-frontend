@@ -14,8 +14,8 @@ const FallbackButton = () => (
 );
 
 class ComplianceRemediationButton extends React.Component {
-  formatRule = ({ title, refId }, profile, system, majorOsVersion) => ({
-    id: `ssg:rhel${majorOsVersion}|${
+  formatRule = ({ title, refId }, profile, system, osMajorVersion) => ({
+    id: `ssg:rhel${osMajorVersion}|${
       profile.split('xccdf_org.ssgproject.content_profile_')[1]
     }|${refId}`,
     description: title,
@@ -60,7 +60,7 @@ class ComplianceRemediationButton extends React.Component {
           rule,
           profile.refId,
           system.id,
-          profile.majorOsVersion
+          profile.osMajorVersion
         );
       });
   };

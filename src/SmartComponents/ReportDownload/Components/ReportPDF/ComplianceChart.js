@@ -35,7 +35,7 @@ const ComplianceChart = ({
       ? [
           {
             x: `${nonReportingSystemCount} systems never reported`,
-            y: 0,
+            y: nonReportingSystemCount,
           },
         ]
       : []),

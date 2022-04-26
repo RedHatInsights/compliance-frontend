@@ -9,6 +9,7 @@ import {
   Section,
 } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
+import { fixedPercentage } from 'Utilities/TextHelper';
 import styles from './ReportPDF/StyleSheet';
 import SystemsTable from './ReportPDF/SystemsTable';
 import UnsupportedSystemsTable from './ReportPDF/UnsupportedSystemsTable';
@@ -18,13 +19,9 @@ import PanelItem from './ReportPDF/PanelItem';
 import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
 
-const calculatePercent = (compliantHostCount, testResultHostCount) =>
-  compliantHostCount !== 0 && testResultHostCount !== 0
-    ? Math.floor(100 * (compliantHostCount / testResultHostCount))
-    : 0;
-
 const ReportPDF = ({ data, ssgFinder }) => {
   const {
+    totalHostCount,
     compliantSystems,
     compliantSystemCount,
     nonCompliantSystems,
@@ -38,10 +35,10 @@ const ReportPDF = ({ data, ssgFinder }) => {
     policy,
   } = data;
   const { testResultHostCount = 0, compliantHostCount = 0 } = policy;
-  const percentCompliant = calculatePercent(
-    compliantHostCount,
-    testResultHostCount
-  );
+  const percentCompliant =
+    testResultHostCount != 0
+      ? fixedPercentage(Math.floor(100 * (compliantHostCount / totalHostCount)))
+      : 0;
 
   return (
     <Fragment>

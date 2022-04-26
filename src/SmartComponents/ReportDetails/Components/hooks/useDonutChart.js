@@ -16,10 +16,11 @@ const useDonutChart = (profile) => {
   } = profile;
   const notReportingHostCount =
     totalHostCount - unsupportedHostCount - testResultHostCount;
+  const nonCompliantHostCount = testResultHostCount - compliantHostCount;
   const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
     { x: 'Compliant', y: compliantHostCount },
-    { x: 'Non-compliant', y: testResultHostCount - compliantHostCount },
+    { x: 'Non-compliant', y: nonCompliantHostCount },
     { x: 'Unsupported', y: unsupportedHostCount },
     { x: 'Not reporting', y: notReportingHostCount },
   ];
@@ -32,11 +33,7 @@ const useDonutChart = (profile) => {
   const legendData = useLegendData(donutValues, profile);
 
   const compliancePercentage = testResultHostCount
-    ? fixedPercentage(
-        Math.floor(
-          100 * (donutValues[0].y / (donutValues[0].y + donutValues[1].y))
-        )
-      )
+    ? fixedPercentage(Math.floor(100 * (compliantHostCount / totalHostCount)))
     : 0;
 
   return {

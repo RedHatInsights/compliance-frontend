@@ -1781,6 +1781,7 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
                     <button
                       aria-expanded="false"
                       aria-haspopup="true"
+                      aria-label="Conditional filter"
                       class="pf-c-dropdown__toggle"
                       data-ouia-component-id="ConditionalFilter"
                       data-ouia-component-type="PF4/DropdownToggle"
@@ -1865,18 +1866,9 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
             <div
               class="pf-c-toolbar__item"
             >
-              <div>
-                <h1>
-                  Unable to load remedaitions component
-                </h1>
-                <h2>
-                  Failed to load 
-                  RemediationButton
-                </h2>
-                <code>
-                  More info can be found in browser console output.
-                </code>
-              </div>
+              <button>
+                Remediation button mock
+              </button>
             </div>
           </div>
           <div
@@ -1891,6 +1883,7 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
               <button
                 aria-expanded="false"
                 aria-haspopup="true"
+                aria-label="Export"
                 class="pf-c-dropdown__toggle pf-m-plain"
                 data-ouia-component-id="Export"
                 data-ouia-component-type="PF4/DropdownToggle"

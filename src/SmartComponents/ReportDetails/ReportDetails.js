@@ -52,7 +52,7 @@ export const QUERY = gql`
       compliantHostCount
       unsupportedHostCount
       complianceThreshold
-      majorOsVersion
+      osMajorVersion
       lastScanned
       policyType
       policy {
@@ -234,7 +234,7 @@ export const ReportDetails = ({ route }) => {
           <Grid hasGutter>
             <GridItem span={12}>
               <SystemsTable
-                showOsMinorVersionFilter={[profile.majorOsVersion]}
+                showOsMinorVersionFilter={[profile.osMajorVersion]}
                 columns={[
                   Columns.customName({
                     showLink: true,

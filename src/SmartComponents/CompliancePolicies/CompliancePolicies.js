@@ -28,7 +28,7 @@ const QUERY = gql`
           refId
           complianceThreshold
           totalHostCount
-          majorOsVersion
+          osMajorVersion
           policyType
           policy {
             id

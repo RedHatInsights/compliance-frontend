@@ -20,7 +20,7 @@ const ReportsTable = ({ profiles }) => {
     profiles.map(({ policyType }) => policyType).filter((i) => !!i)
   );
   const operatingSystems = uniq(
-    profiles.map(({ majorOsVersion }) => majorOsVersion).filter((i) => !!i)
+    profiles.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
   );
 
   return (
