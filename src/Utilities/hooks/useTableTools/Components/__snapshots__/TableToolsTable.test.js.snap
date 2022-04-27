@@ -516,6 +516,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
       ouiaSafe={true}
       page={1}
       perPage={10}
+      perPageComponent="div"
       perPageOptions={
         Array [
           Object {
@@ -542,7 +543,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
           "items": "",
           "itemsPerPage": "Items per page",
           "ofWord": "of",
-          "optionsToggle": "Items per page",
+          "optionsToggle": "",
           "page": "",
           "pages": "",
           "paginationTitle": "Pagination",

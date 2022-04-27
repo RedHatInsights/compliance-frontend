@@ -8,6 +8,7 @@ exports[`CreatePolicyForm expect to render the wizard 1`] = `
   className="compliance"
   closeButtonAriaLabel="Close"
   description="Create a new policy for managing SCAP compliance"
+  descriptionComponent="p"
   footer={null}
   hasNoBodyPadding={false}
   height={null}

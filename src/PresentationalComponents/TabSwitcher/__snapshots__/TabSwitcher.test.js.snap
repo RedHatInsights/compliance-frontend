@@ -4,6 +4,7 @@ exports[`RoutedTabs expect to render first tab 1`] = `
 <Tabs
   activeKey="rules"
   component="div"
+  hasBorderBottom={true}
   isBox={false}
   isFilled={false}
   isSecondary={false}
@@ -39,6 +40,7 @@ exports[`RoutedTabs expect to render second tab 1`] = `
 <Tabs
   activeKey="rules"
   component="div"
+  hasBorderBottom={true}
   isBox={false}
   isFilled={false}
   isSecondary={false}
