@@ -11,7 +11,7 @@ describe('FilterConfigBuilder', () => {
   it('returns a filterConfig', () => {
     const states = {
       name: '',
-      compliant: [],
+      compliance: [],
       compliancescore: [],
     };
     const builtConfig = builder.buildConfiguration(
@@ -31,7 +31,7 @@ describe('FilterConfigBuilder', () => {
   describe('categoryLabelForValue', () => {
     it('to return a matching category label', () => {
       expect(
-        builder.categoryLabelForValue('true', 'compliant')
+        builder.categoryLabelForValue('true', 'compliance')
       ).toMatchSnapshot();
       expect(
         builder.categoryLabelForValue('0-49', 'compliancescore')
@@ -44,7 +44,7 @@ describe('FilterConfigBuilder', () => {
 
   describe('labelForValue', () => {
     it('to return a matching label', () => {
-      expect(builder.labelForValue('true', 'compliant')).toMatchSnapshot();
+      expect(builder.labelForValue('true', 'compliance')).toMatchSnapshot();
       expect(
         builder.labelForValue('0-49', 'compliancescore')
       ).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe('FilterConfigBuilder', () => {
   describe('valueForLabel', () => {
     it('to return a matching value', () => {
       expect(
-        builder.valueForLabel('Non-compliant', 'compliant')
+        builder.valueForLabel('Non-compliant', 'compliance')
       ).toMatchSnapshot();
       expect(
         builder.valueForLabel('50 - 69%', 'compliancescore')

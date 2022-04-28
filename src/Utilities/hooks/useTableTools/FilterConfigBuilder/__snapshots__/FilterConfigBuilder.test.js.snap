@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 1`] = `"Compliant"`;
+exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 1`] = `"Compliance"`;
 
 exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 2`] = `"Systems meeting compliance"`;
 
@@ -8,7 +8,7 @@ exports[`FilterConfigBuilder categoryLabelForValue to return a matching category
 
 exports[`FilterConfigBuilder initialDefaultState to return a matching category label 1`] = `
 Object {
-  "compliant": Array [],
+  "compliance": Array [],
   "name": undefined,
   "systemsmeetingcompliance": Array [],
 }
@@ -22,8 +22,8 @@ exports[`FilterConfigBuilder labelForValue to return a matching label 3`] = `"Se
 
 exports[`FilterConfigBuilder returns a filterConfig 1`] = `
 Object {
+  "compliance": Array [],
   "compliancescore": Array [],
-  "compliant": Array [],
   "items": Array [
     Object {
       "filterValues": Object {
@@ -50,9 +50,9 @@ Object {
         "onChange": [Function],
         "value": undefined,
       },
-      "id": "compliant",
-      "label": "Compliant",
-      "placeholder": "Filter by compliant",
+      "id": "compliance",
+      "label": "Compliance",
+      "placeholder": "Filter by compliance",
       "type": "checkbox",
     },
     Object {

@@ -14,7 +14,7 @@ describe('buildFilterString', () => {
   it('returns a filterstring', () => {
     const exampleActiveFilters = {
       name: 'Name',
-      compliant: [true],
+      compliance: [true],
       compliancescore: ['0-49', '50-69'],
     };
 
@@ -35,7 +35,7 @@ describe('buildFilterString', () => {
 
     it('returns a filter for compliant', () => {
       const testExampleState = {
-        compliant: [true],
+        compliance: [true],
       };
       expect(
         filterBuilder.buildFilterString(testExampleState)
@@ -67,7 +67,7 @@ describe('buildFilterString', () => {
       expect(
         builder.buildFilterString({
           compliancescore: ['90-101', '70-90'],
-          compliant: [true],
+          compliance: [true],
         })
       ).toMatchSnapshot();
     });

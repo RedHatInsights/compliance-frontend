@@ -6,6 +6,7 @@ import {
   systemsOsMinorFilterConfiguration,
 } from '@/constants';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
 export const GET_SYSTEMS = gql`
@@ -203,3 +204,15 @@ export const defaultOnLoad =
     getRegistry().register({
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
+
+export const ssgVersionFilter = (ssgVersions) => [
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'SSG Version',
+    filterString: (value) => `ssg_version = ${value}`,
+    items: ssgVersions.map((ssgVersion) => ({
+      label: ssgVersion,
+      value: ssgVersion,
+    })),
+  },
+];

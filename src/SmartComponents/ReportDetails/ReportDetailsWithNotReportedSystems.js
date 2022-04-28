@@ -55,6 +55,13 @@ export const QUERY = gql`
       policy {
         id
         name
+        profiles {
+          benchmark {
+            profiles {
+              ssgVersion
+            }
+          }
+        }
       }
       benchmark {
         id
@@ -78,11 +85,19 @@ export const ReportDetails = ({ route }) => {
   let profile = {};
   let policyName;
   let pageTitle;
+  let ssgVersions = [];
 
   if (!loading && data) {
     profile = data.profile;
     policyName = profile.policy.name;
     pageTitle = `Report: ${policyName}`;
+    ssgVersions = [
+      ...new Set(
+        profile.policy.profiles.flatMap(({ benchmark: { profiles } }) =>
+          profiles.map(({ ssgVersion }) => ssgVersion)
+        )
+      ),
+    ];
   }
 
   useTitleEntity(route, policyName);
@@ -169,6 +184,7 @@ export const ReportDetails = ({ route }) => {
             <GridItem span={12}>
               <SystemsTable
                 showOsMinorVersionFilter={[profile.osMajorVersion]}
+                ssgVersions={ssgVersions}
                 columns={[
                   Columns.customName({
                     showLink: true,
