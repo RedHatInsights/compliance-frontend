@@ -35,6 +35,7 @@ exports[`PolicyPopover expect to render without error 1`] = `
   }
   footerContent={
     <Link
+      className="pf-u-font-size-md"
       to="/scappolicies/b71376fd-015e-4209-99af-4543e82e5dc5-policy"
     >
       View policy
