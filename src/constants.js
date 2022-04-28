@@ -108,11 +108,11 @@ export const systemsOsFilterConfiguration = (policies) => [
 const toSystemsOsMinorFilterConfigurationItem =
   (osVersions) => (majorVersion) => ({
     label: `RHEL ${majorVersion}`,
-    value: majorVersion,
+    value: `${majorVersion}.99`, // .99 is here to distinguish state with only major version selected
     groupSelectable: true,
-    items: osVersions[majorVersion].map((minorVersion) => ({
+    items: osVersions[majorVersion]?.map((minorVersion) => ({
       label: `RHEL ${majorVersion}.${minorVersion}`,
-      value: minorVersion,
+      value: `${majorVersion}.${minorVersion}`,
     })),
   });
 
@@ -132,19 +132,56 @@ const emptyFilterDropDownItem = {
   ],
 };
 
+const hasOnlyMajor = (selectedOsObject) => {
+  const keys = Object.keys(selectedOsObject).filter((key) => key != '99');
+  let onlyMajor = true;
+  for (const key of keys) {
+    if (selectedOsObject[key]) {
+      onlyMajor = false;
+    }
+  }
+  return onlyMajor && selectedOsObject['99'];
+};
+
+const clearOsObject = (osObject) => {
+  const clearedObject = {};
+  for (const majorOs in osObject) {
+    const majorVersion = majorOs.split('.')[0];
+    const majorOsObject = osObject[majorOs];
+
+    const clearedMinorOsObject = {};
+    for (const minorOs in majorOsObject) {
+      const minorVersion = minorOs.split('.')[1];
+      clearedMinorOsObject[minorVersion] = majorOsObject[minorOs];
+    }
+    clearedObject[majorVersion] = clearedMinorOsObject;
+  }
+  return clearedObject;
+};
+
 export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
-  const filterString = (value) => [
-    Object.keys(value)
-      .flatMap((majorVersion) =>
-        Object.keys(value[majorVersion]).map(
-          (minorVersion) =>
-            value[majorVersion][minorVersion] &&
-            `(os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion})`
+  const filterString = (value) => {
+    value = clearOsObject(value);
+    const filter = [
+      Object.keys(value)
+        .flatMap((majorVersion) =>
+          Object.keys(value[majorVersion]).map((minorVersion) => {
+            if (hasOnlyMajor(value[majorVersion])) {
+              return `(os_major_version = ${majorVersion})`;
+            } else {
+              return (
+                value[majorVersion][minorVersion] &&
+                minorVersion != '99' &&
+                `(os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion})`
+              );
+            }
+          })
         )
-      )
-      .filter((v) => !!v)
-      .join(' OR '),
-  ];
+        .filter((v) => !!v)
+        .join(' OR '),
+    ];
+    return filter;
+  };
   const osVersions = Object.keys(osMajorVersions);
 
   const items =
