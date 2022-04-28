@@ -2,14 +2,14 @@ import { default as ApiClientClass } from './ApiClient';
 
 const ApiClient = new ApiClientClass();
 
-describe('request', () => {
-  const objectResolver = Promise.resolve({});
-  const mockFetchPromise = Promise.resolve({
-    ok: true,
-    json: () => objectResolver,
-  });
-  const fetchSpy = jest.fn(() => mockFetchPromise);
+const objectResolver = Promise.resolve({});
+const mockFetchPromise = Promise.resolve({
+  ok: true,
+  json: () => objectResolver,
+});
+const fetchSpy = jest.fn(() => mockFetchPromise);
 
+describe('request', () => {
   beforeAll(() => {
     window.insights = {
       chrome: {
@@ -22,12 +22,10 @@ describe('request', () => {
     window.fetch = fetchSpy;
   });
 
-  it('calls fetch', () => {
-    expect(ApiClient.request('/path', {}, 'get')).toEqual(objectResolver);
-    // Oddly this does not give the expected result, even though it has to call the
-    // spy in order to get objectResolver as an expected result above.
-    //
-    //  expect(window.fetch).toHaveBeenCalledWith('/api/hooks/path');
+  it('calls fetch', async () => {
+    const result = await ApiClient.request('/path', {}, 'get');
+    expect(result).toMatchObject(objectResolver);
+    expect(window.fetch).toHaveBeenCalled();
   });
 
   afterAll(() => {

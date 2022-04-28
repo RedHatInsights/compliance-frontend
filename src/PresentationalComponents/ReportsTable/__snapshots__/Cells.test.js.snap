@@ -67,7 +67,7 @@ exports[`CompliantSystems expect to render without error 1`] = `
 
 exports[`Name expect to render without error 1`] = `
 <TextContent>
-  <Link
+  <LinkWithPermission
     style={
       Object {
         "marginRight": ".5rem",
@@ -76,7 +76,7 @@ exports[`Name expect to render without error 1`] = `
     to="/reports/ID"
   >
     POLICY_NAME
-  </Link>
+  </LinkWithPermission>
   <PolicyPopover
     position="right"
     profile={

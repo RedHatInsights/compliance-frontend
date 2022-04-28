@@ -15,6 +15,9 @@ exports[`Router expect to render without error 1`] = `
           },
         },
         "path": "/scappolicies",
+        "requiredPermissions": Array [
+          "compliance:policy:read",
+        ],
         "title": "SCAP policies",
       },
       Object {
@@ -28,6 +31,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "modal": true,
         "path": "/scappolicies/new",
+        "requiredPermissions": Array [
+          "compliance:policy:create",
+        ],
         "title": "SCAP policies",
       },
       Object {
@@ -41,6 +47,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "defaultTitle": "SCAP policies",
         "path": "/scappolicies/:policy_id",
+        "requiredPermissions": Array [
+          "compliance:policy:read",
+        ],
         "title": "$entityTitle - SCAP policies",
       },
       Object {
@@ -55,6 +64,9 @@ exports[`Router expect to render without error 1`] = `
         "defaultTitle": "SCAP policies",
         "modal": true,
         "path": "/scappolicies/:policy_id/edit",
+        "requiredPermissions": Array [
+          "compliance:policy:update",
+        ],
         "title": "$entityTitle - SCAP policies",
       },
       Object {
@@ -68,6 +80,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "modal": true,
         "path": "/scappolicies/:policy_id/delete",
+        "requiredPermissions": Array [
+          "compliance:policy:delete",
+        ],
         "title": "Delete policy - SCAP policies",
       },
       Object {
@@ -80,6 +95,9 @@ exports[`Router expect to render without error 1`] = `
           },
         },
         "path": "/reports",
+        "requiredPermissions": Array [
+          "compliance:reports:read",
+        ],
         "title": "Reports",
       },
       Object {
@@ -93,6 +111,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "defaultTitle": "Reports",
         "path": "/reports/:report_id",
+        "requiredPermissions": Array [
+          "compliance:reports:read",
+        ],
         "title": "Report: $entityTitle - Reports",
       },
       Object {
@@ -106,6 +127,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "modal": true,
         "path": "/reports/:report_id/delete",
+        "requiredPermissions": Array [
+          "compliance:reports:delete",
+        ],
         "title": "Delete report - Reports",
       },
       Object {
@@ -120,6 +144,9 @@ exports[`Router expect to render without error 1`] = `
         "defaultTitle": "Reports",
         "modal": true,
         "path": "/reports/:report_id/pdf",
+        "requiredPermissions": Array [
+          "compliance:report_export:read",
+        ],
         "title": "Export report - Reports",
       },
       Object {
@@ -132,6 +159,9 @@ exports[`Router expect to render without error 1`] = `
           },
         },
         "path": "/systems",
+        "requiredPermissions": Array [
+          "compliance:*:*",
+        ],
         "title": "Compliance systems",
       },
       Object {
@@ -145,6 +175,9 @@ exports[`Router expect to render without error 1`] = `
         },
         "defaultTitle": "Compliance systems",
         "path": "/systems/:inventoryId",
+        "requiredPermissions": Array [
+          "compliance:*:*",
+        ],
         "title": "$entityTitle - Compliance systems",
       },
     ]
@@ -162,6 +195,230 @@ exports[`Router expect to render without error 1`] = `
       key="fullpage-route--scappolicies"
       path="/scappolicies"
     >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:policy:read",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "isCurrent": false,
+              "path": "/scappolicies",
+              "requiredPermissions": Array [
+                "compliance:policy:read",
+              ],
+              "setTitle": [Function],
+              "title": "SCAP policies",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--scappolicies/:policy_id"
+      path="/scappolicies/:policy_id"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:policy:read",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "defaultTitle": "SCAP policies",
+              "isCurrent": false,
+              "path": "/scappolicies/:policy_id",
+              "requiredPermissions": Array [
+                "compliance:policy:read",
+              ],
+              "setTitle": [Function],
+              "title": "$entityTitle - SCAP policies",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--reports"
+      path="/reports"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:reports:read",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "isCurrent": true,
+              "path": "/reports",
+              "requiredPermissions": Array [
+                "compliance:reports:read",
+              ],
+              "setTitle": [Function],
+              "title": "Reports",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--reports/:report_id"
+      path="/reports/:report_id"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:reports:read",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "defaultTitle": "Reports",
+              "isCurrent": false,
+              "path": "/reports/:report_id",
+              "requiredPermissions": Array [
+                "compliance:reports:read",
+              ],
+              "setTitle": [Function],
+              "title": "Report: $entityTitle - Reports",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--systems"
+      path="/systems"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:*:*",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "isCurrent": false,
+              "path": "/systems",
+              "requiredPermissions": Array [
+                "compliance:*:*",
+              ],
+              "setTitle": [Function],
+              "title": "Compliance systems",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--systems/:inventoryId"
+      path="/systems/:inventoryId"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:*:*",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "defaultTitle": "Compliance systems",
+              "isCurrent": false,
+              "path": "/systems/:inventoryId",
+              "requiredPermissions": Array [
+                "compliance:*:*",
+              ],
+              "setTitle": [Function],
+              "title": "$entityTitle - Compliance systems",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      render={[Function]}
+    />
+  </Switch>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/new"
+    path="/scappolicies/new"
+  >
+    <WithPermission
+      requiredPermissions={
+        Array [
+          "compliance:policy:create",
+        ]
+      }
+    >
       <lazy
         route={
           Object {
@@ -174,17 +431,29 @@ exports[`Router expect to render without error 1`] = `
               },
             },
             "isCurrent": false,
-            "path": "/scappolicies",
+            "modal": true,
+            "path": "/scappolicies/new",
+            "requiredPermissions": Array [
+              "compliance:policy:create",
+            ],
             "setTitle": [Function],
             "title": "SCAP policies",
           }
         }
       />
-    </Route>
-    <Route
-      exact={true}
-      key="fullpage-route--scappolicies/:policy_id"
-      path="/scappolicies/:policy_id"
+    </WithPermission>
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/:policy_id/edit"
+    path="/scappolicies/:policy_id/edit"
+  >
+    <WithPermission
+      requiredPermissions={
+        Array [
+          "compliance:policy:update",
+        ]
+      }
     >
       <lazy
         route={
@@ -199,17 +468,29 @@ exports[`Router expect to render without error 1`] = `
             },
             "defaultTitle": "SCAP policies",
             "isCurrent": false,
-            "path": "/scappolicies/:policy_id",
+            "modal": true,
+            "path": "/scappolicies/:policy_id/edit",
+            "requiredPermissions": Array [
+              "compliance:policy:update",
+            ],
             "setTitle": [Function],
             "title": "$entityTitle - SCAP policies",
           }
         }
       />
-    </Route>
-    <Route
-      exact={true}
-      key="fullpage-route--reports"
-      path="/reports"
+    </WithPermission>
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--scappolicies/:policy_id/delete"
+    path="/scappolicies/:policy_id/delete"
+  >
+    <WithPermission
+      requiredPermissions={
+        Array [
+          "compliance:policy:delete",
+        ]
+      }
     >
       <lazy
         route={
@@ -222,18 +503,66 @@ exports[`Router expect to render without error 1`] = `
                 "_status": -1,
               },
             },
-            "isCurrent": true,
-            "path": "/reports",
+            "isCurrent": false,
+            "modal": true,
+            "path": "/scappolicies/:policy_id/delete",
+            "requiredPermissions": Array [
+              "compliance:policy:delete",
+            ],
             "setTitle": [Function],
-            "title": "Reports",
+            "title": "Delete policy - SCAP policies",
           }
         }
       />
-    </Route>
-    <Route
-      exact={true}
-      key="fullpage-route--reports/:report_id"
-      path="/reports/:report_id"
+    </WithPermission>
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--reports/:report_id/delete"
+    path="/reports/:report_id/delete"
+  >
+    <WithPermission
+      requiredPermissions={
+        Array [
+          "compliance:reports:delete",
+        ]
+      }
+    >
+      <lazy
+        route={
+          Object {
+            "component": Object {
+              "$$typeof": Symbol(react.lazy),
+              "_init": [Function],
+              "_payload": Object {
+                "_result": [Function],
+                "_status": -1,
+              },
+            },
+            "isCurrent": false,
+            "modal": true,
+            "path": "/reports/:report_id/delete",
+            "requiredPermissions": Array [
+              "compliance:reports:delete",
+            ],
+            "setTitle": [Function],
+            "title": "Delete report - Reports",
+          }
+        }
+      />
+    </WithPermission>
+  </Route>
+  <Route
+    exact={true}
+    key="modal-route--reports/:report_id/pdf"
+    path="/reports/:report_id/pdf"
+  >
+    <WithPermission
+      requiredPermissions={
+        Array [
+          "compliance:report_export:read",
+        ]
+      }
     >
       <lazy
         route={
@@ -248,192 +577,17 @@ exports[`Router expect to render without error 1`] = `
             },
             "defaultTitle": "Reports",
             "isCurrent": false,
-            "path": "/reports/:report_id",
+            "modal": true,
+            "path": "/reports/:report_id/pdf",
+            "requiredPermissions": Array [
+              "compliance:report_export:read",
+            ],
             "setTitle": [Function],
-            "title": "Report: $entityTitle - Reports",
+            "title": "Export report - Reports",
           }
         }
       />
-    </Route>
-    <Route
-      exact={true}
-      key="fullpage-route--systems"
-      path="/systems"
-    >
-      <lazy
-        route={
-          Object {
-            "component": Object {
-              "$$typeof": Symbol(react.lazy),
-              "_init": [Function],
-              "_payload": Object {
-                "_result": [Function],
-                "_status": -1,
-              },
-            },
-            "isCurrent": false,
-            "path": "/systems",
-            "setTitle": [Function],
-            "title": "Compliance systems",
-          }
-        }
-      />
-    </Route>
-    <Route
-      exact={true}
-      key="fullpage-route--systems/:inventoryId"
-      path="/systems/:inventoryId"
-    >
-      <lazy
-        route={
-          Object {
-            "component": Object {
-              "$$typeof": Symbol(react.lazy),
-              "_init": [Function],
-              "_payload": Object {
-                "_result": [Function],
-                "_status": -1,
-              },
-            },
-            "defaultTitle": "Compliance systems",
-            "isCurrent": false,
-            "path": "/systems/:inventoryId",
-            "setTitle": [Function],
-            "title": "$entityTitle - Compliance systems",
-          }
-        }
-      />
-    </Route>
-    <Route
-      render={[Function]}
-    />
-  </Switch>
-  <Route
-    exact={true}
-    key="modal-route--scappolicies/new"
-    path="/scappolicies/new"
-  >
-    <lazy
-      route={
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.lazy),
-            "_init": [Function],
-            "_payload": Object {
-              "_result": [Function],
-              "_status": -1,
-            },
-          },
-          "isCurrent": false,
-          "modal": true,
-          "path": "/scappolicies/new",
-          "setTitle": [Function],
-          "title": "SCAP policies",
-        }
-      }
-    />
-  </Route>
-  <Route
-    exact={true}
-    key="modal-route--scappolicies/:policy_id/edit"
-    path="/scappolicies/:policy_id/edit"
-  >
-    <lazy
-      route={
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.lazy),
-            "_init": [Function],
-            "_payload": Object {
-              "_result": [Function],
-              "_status": -1,
-            },
-          },
-          "defaultTitle": "SCAP policies",
-          "isCurrent": false,
-          "modal": true,
-          "path": "/scappolicies/:policy_id/edit",
-          "setTitle": [Function],
-          "title": "$entityTitle - SCAP policies",
-        }
-      }
-    />
-  </Route>
-  <Route
-    exact={true}
-    key="modal-route--scappolicies/:policy_id/delete"
-    path="/scappolicies/:policy_id/delete"
-  >
-    <lazy
-      route={
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.lazy),
-            "_init": [Function],
-            "_payload": Object {
-              "_result": [Function],
-              "_status": -1,
-            },
-          },
-          "isCurrent": false,
-          "modal": true,
-          "path": "/scappolicies/:policy_id/delete",
-          "setTitle": [Function],
-          "title": "Delete policy - SCAP policies",
-        }
-      }
-    />
-  </Route>
-  <Route
-    exact={true}
-    key="modal-route--reports/:report_id/delete"
-    path="/reports/:report_id/delete"
-  >
-    <lazy
-      route={
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.lazy),
-            "_init": [Function],
-            "_payload": Object {
-              "_result": [Function],
-              "_status": -1,
-            },
-          },
-          "isCurrent": false,
-          "modal": true,
-          "path": "/reports/:report_id/delete",
-          "setTitle": [Function],
-          "title": "Delete report - Reports",
-        }
-      }
-    />
-  </Route>
-  <Route
-    exact={true}
-    key="modal-route--reports/:report_id/pdf"
-    path="/reports/:report_id/pdf"
-  >
-    <lazy
-      route={
-        Object {
-          "component": Object {
-            "$$typeof": Symbol(react.lazy),
-            "_init": [Function],
-            "_payload": Object {
-              "_result": [Function],
-              "_status": -1,
-            },
-          },
-          "defaultTitle": "Reports",
-          "isCurrent": false,
-          "modal": true,
-          "path": "/reports/:report_id/pdf",
-          "setTitle": [Function],
-          "title": "Export report - Reports",
-        }
-      }
-    />
+    </WithPermission>
   </Route>
 </Suspense>
 `;

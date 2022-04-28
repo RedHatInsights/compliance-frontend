@@ -9,7 +9,7 @@ import {
   TextListItem,
   TextListItemVariants,
 } from '@patternfly/react-core';
-import { Link } from 'react-router-dom';
+import { LinkWithPermission as Link } from 'PresentationalComponents';
 
 const PropTypes = {
   children: propTypes.node,

@@ -2,12 +2,12 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Button, TextContent, Text, Progress } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
-import { Link } from 'react-router-dom';
 import {
   BackgroundLink,
   PolicyPopover,
   GreySmallText,
   UnsupportedSSGVersion,
+  LinkWithPermission as Link,
 } from 'PresentationalComponents';
 
 export const Name = (profile) => (
