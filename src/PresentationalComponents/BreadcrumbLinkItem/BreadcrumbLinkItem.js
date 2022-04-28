@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { LinkWithPermission as ReactRouterLink } from 'PresentationalComponents';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { BreadcrumbItem } from '@patternfly/react-core';
 
 const RouterLink = ({ href, ...props }) => (
