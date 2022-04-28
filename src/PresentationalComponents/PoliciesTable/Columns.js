@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { TextContent } from '@patternfly/react-core';
 import { fitContent } from '@patternfly/react-table';
-import { LinkWithPermission as Link } from 'PresentationalComponents';
+import { Link } from 'react-router-dom';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
