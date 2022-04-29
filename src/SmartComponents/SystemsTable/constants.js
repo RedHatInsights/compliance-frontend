@@ -9,6 +9,49 @@ import { getRegistry } from '@redhat-cloud-services/frontend-components-utilitie
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
+export const GET_SYSTEMS_ONLY = gql`
+  query getSystems(
+    $filter: String!
+    $policyId: ID
+    $perPage: Int
+    $page: Int
+    $sortBy: [String!]
+    $tags: [String!]
+  ) {
+    systems(
+      search: $filter
+      limit: $perPage
+      offset: $page
+      sortBy: $sortBy
+      tags: $tags
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          osMajorVersion
+          osMinorVersion
+          culledTimestamp
+          staleWarningTimestamp
+          staleTimestamp
+          insightsId
+          updated
+          policies(policyId: $policyId) {
+            id
+            name
+          }
+          tags {
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GET_SYSTEMS = gql`
   query getSystems(
     $filter: String!
