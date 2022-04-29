@@ -33,7 +33,7 @@ import useFeature from 'Utilities/hooks/useFeature';
 import { SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import { GET_SYSTEMS } from '../SystemsTable/constants';
+import { GET_SYSTEMS_WITH_REPORTS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
@@ -196,7 +196,7 @@ export const ReportDetails = ({ route }) => {
                   Columns.ComplianceScore,
                   Columns.LastScanned,
                 ]}
-                query={GET_SYSTEMS}
+                query={GET_SYSTEMS_WITH_REPORTS}
                 compliantFilter
                 defaultFilter={`policy_id = ${profile.id}`}
                 policyId={profile.id}

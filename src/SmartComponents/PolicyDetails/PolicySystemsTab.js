@@ -3,7 +3,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { NoSystemsTableWithWarning } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
-import { GET_SYSTEMS } from '../SystemsTable/constants';
+import { GET_SYSTEMS_WITH_REPORTS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
 const PolicySystemsTab = ({ policy }) => (
@@ -17,7 +17,7 @@ const PolicySystemsTab = ({ policy }) => (
       Columns.SsgVersion,
     ]}
     showOsMinorVersionFilter={[policy.osMajorVersion]}
-    query={GET_SYSTEMS}
+    query={GET_SYSTEMS_WITH_REPORTS}
     policyId={policy.id}
     defaultFilter={`policy_id = ${policy.id}`}
     showActions={false}

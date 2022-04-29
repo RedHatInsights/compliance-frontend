@@ -9,7 +9,7 @@ import { getRegistry } from '@redhat-cloud-services/frontend-components-utilitie
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
-export const GET_SYSTEMS_ONLY = gql`
+export const GET_SYSTEMS_WITH_POLICIES = gql`
   query getSystems(
     $filter: String!
     $policyId: ID
@@ -52,7 +52,7 @@ export const GET_SYSTEMS_ONLY = gql`
   }
 `;
 
-export const GET_SYSTEMS = gql`
+export const GET_SYSTEMS_WITH_REPORTS = gql`
   query getSystems(
     $filter: String!
     $policyId: ID
@@ -98,63 +98,6 @@ export const GET_SYSTEMS = gql`
               compliant
               remediationAvailable
               precedence
-            }
-          }
-          policies(policyId: $policyId) {
-            id
-            name
-          }
-          tags {
-            namespace
-            key
-            value
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const GET_SYSTEMS_WITHOUT_FAILED_RULES = gql`
-  query getSystems(
-    $filter: String!
-    $policyId: ID
-    $perPage: Int
-    $page: Int
-    $sortBy: [String!]
-    $tags: [String!]
-  ) {
-    systems(
-      search: $filter
-      limit: $perPage
-      offset: $page
-      sortBy: $sortBy
-      tags: $tags
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          name
-          osMajorVersion
-          osMinorVersion
-          culledTimestamp
-          staleWarningTimestamp
-          staleTimestamp
-          insightsId
-          lastScanned
-          updated
-          testResultProfiles(policyId: $policyId) {
-            id
-            name
-            lastScanned
-            external
-            compliant
-            score
-            supported
-            ssgVersion
-            policy {
-              id
             }
           }
           policies(policyId: $policyId) {

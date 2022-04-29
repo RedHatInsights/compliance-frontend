@@ -7,7 +7,7 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
-import { GET_SYSTEMS_WITHOUT_FAILED_RULES } from '../SystemsTable/constants';
+import { GET_SYSTEMS_WITH_POLICIES } from '../SystemsTable/constants';
 import { useHistory } from 'react-router-dom';
 import * as Columns from '../SystemsTable/Columns';
 
@@ -77,7 +77,7 @@ const EditPolicySystemsTab = ({
         emptyStateComponent={<EmptyState osMajorVersion={osMajorVersion} />}
         compact
         showActions={false}
-        query={GET_SYSTEMS_WITHOUT_FAILED_RULES}
+        query={GET_SYSTEMS_WITH_POLICIES}
         defaultFilter={defaultFilter}
         enableExport={false}
         remediationsEnabled={false}

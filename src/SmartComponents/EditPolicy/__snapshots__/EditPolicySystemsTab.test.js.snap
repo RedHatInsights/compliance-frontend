@@ -278,164 +278,9 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
                                     "kind": "Field",
                                     "name": Object {
                                       "kind": "Name",
-                                      "value": "lastScanned",
-                                    },
-                                    "selectionSet": undefined,
-                                  },
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
                                       "value": "updated",
                                     },
                                     "selectionSet": undefined,
-                                  },
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [
-                                      Object {
-                                        "kind": "Argument",
-                                        "name": Object {
-                                          "kind": "Name",
-                                          "value": "policyId",
-                                        },
-                                        "value": Object {
-                                          "kind": "Variable",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "policyId",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
-                                      "value": "testResultProfiles",
-                                    },
-                                    "selectionSet": Object {
-                                      "kind": "SelectionSet",
-                                      "selections": Array [
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "id",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "name",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "lastScanned",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "external",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "compliant",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "score",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "supported",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "ssgVersion",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "policy",
-                                          },
-                                          "selectionSet": Object {
-                                            "kind": "SelectionSet",
-                                            "selections": Array [
-                                              Object {
-                                                "alias": undefined,
-                                                "arguments": Array [],
-                                                "directives": Array [],
-                                                "kind": "Field",
-                                                "name": Object {
-                                                  "kind": "Name",
-                                                  "value": "id",
-                                                },
-                                                "selectionSet": undefined,
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
                                   },
                                   Object {
                                     "alias": undefined,
@@ -683,7 +528,7 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 1013,
+          "end": 713,
           "start": 0,
         },
       }
@@ -995,164 +840,9 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
                                     "kind": "Field",
                                     "name": Object {
                                       "kind": "Name",
-                                      "value": "lastScanned",
-                                    },
-                                    "selectionSet": undefined,
-                                  },
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
                                       "value": "updated",
                                     },
                                     "selectionSet": undefined,
-                                  },
-                                  Object {
-                                    "alias": undefined,
-                                    "arguments": Array [
-                                      Object {
-                                        "kind": "Argument",
-                                        "name": Object {
-                                          "kind": "Name",
-                                          "value": "policyId",
-                                        },
-                                        "value": Object {
-                                          "kind": "Variable",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "policyId",
-                                          },
-                                        },
-                                      },
-                                    ],
-                                    "directives": Array [],
-                                    "kind": "Field",
-                                    "name": Object {
-                                      "kind": "Name",
-                                      "value": "testResultProfiles",
-                                    },
-                                    "selectionSet": Object {
-                                      "kind": "SelectionSet",
-                                      "selections": Array [
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "id",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "name",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "lastScanned",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "external",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "compliant",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "score",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "supported",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "ssgVersion",
-                                          },
-                                          "selectionSet": undefined,
-                                        },
-                                        Object {
-                                          "alias": undefined,
-                                          "arguments": Array [],
-                                          "directives": Array [],
-                                          "kind": "Field",
-                                          "name": Object {
-                                            "kind": "Name",
-                                            "value": "policy",
-                                          },
-                                          "selectionSet": Object {
-                                            "kind": "SelectionSet",
-                                            "selections": Array [
-                                              Object {
-                                                "alias": undefined,
-                                                "arguments": Array [],
-                                                "directives": Array [],
-                                                "kind": "Field",
-                                                "name": Object {
-                                                  "kind": "Name",
-                                                  "value": "id",
-                                                },
-                                                "selectionSet": undefined,
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
                                   },
                                   Object {
                                     "alias": undefined,
@@ -1400,7 +1090,7 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         ],
         "kind": "Document",
         "loc": Object {
-          "end": 1013,
+          "end": 713,
           "start": 0,
         },
       }
