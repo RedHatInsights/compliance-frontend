@@ -1,18 +1,4 @@
-import React from 'react';
-import { NoResultsTable } from './Components/NoResultsTable';
-
-const emptyRows = [
-  {
-    cells: [
-      {
-        title: () => <NoResultsTable kind="reports" />, // eslint-disable-line react/display-name
-        props: {
-          colSpan: 6,
-        },
-      },
-    ],
-  },
-];
+import { emptyRows } from './Components/NoResultsTable';
 
 const columnProp = (column) =>
   column.key || column.original?.toLowerCase() || column.title?.toLowerCase();

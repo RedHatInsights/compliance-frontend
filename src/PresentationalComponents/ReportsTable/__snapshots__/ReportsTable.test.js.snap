@@ -45,20 +45,6 @@ exports[`ReportsTable expect to render without error 1`] = `
       },
     ]
   }
-  emptyRows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
-            "props": Object {
-              "colSpan": 3,
-            },
-            "title": [Function],
-          },
-        ],
-      },
-    ]
-  }
   filters={
     Object {
       "filterConfig": Array [
@@ -642,6 +628,18 @@ exports[`ReportsTable expect to render without error 1`] = `
   }
   options={
     Object {
+      "emptyRows": Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 3,
+              },
+              "title": [Function],
+            },
+          ],
+        },
+      ],
       "exportable": Object {
         "columns": Array [
           Object {
