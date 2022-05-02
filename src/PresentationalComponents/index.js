@@ -52,3 +52,5 @@ export { default as RulesTable } from './RulesTable/RulesTable';
 export { default as ConditionalLink } from './ConditionalLink/ConditionalLink';
 export { default as ComplianceModal } from './ComplianceModal/ComplianceModal';
 export { default as InUseProfileLabel } from './InUseProfileLabel/InUseProfileLabel';
+export { default as WithPermission } from './WithPermission/WithPermission';
+export { default as LinkWithPermission } from './LinkWithPermission/LinkWithPermission';

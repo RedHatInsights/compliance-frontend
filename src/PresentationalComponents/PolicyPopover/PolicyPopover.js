@@ -12,7 +12,7 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
-import { Link } from 'react-router-dom';
+import { LinkWithPermission as Link } from 'PresentationalComponents';
 import propTypes from 'prop-types';
 
 const PolicyPopover = ({ profile, position = 'top' }) => {
