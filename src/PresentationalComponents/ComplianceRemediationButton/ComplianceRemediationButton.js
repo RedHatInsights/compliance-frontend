@@ -14,10 +14,8 @@ const FallbackButton = () => (
 );
 
 class ComplianceRemediationButton extends React.Component {
-  formatRule = ({ title, refId }, profile, system, osMajorVersion) => ({
-    id: `ssg:rhel${osMajorVersion}|${
-      profile.split('xccdf_org.ssgproject.content_profile_')[1]
-    }|${refId}`,
+  formatRule = ({ title, remediationIssueId }, system) => ({
+    id: remediationIssueId,
     description: title,
     systems: [system],
   });
@@ -50,19 +48,11 @@ class ComplianceRemediationButton extends React.Component {
     return rules
       .filter(
         (rule) =>
-          rule.remediationAvailable &&
+          rule.remediationIssueId &&
           this.ruleProfile(rule, system)?.supported &&
           rule.compliant === false
       )
-      .map((rule) => {
-        const profile = this.ruleProfile(rule, system);
-        return this.formatRule(
-          rule,
-          profile.refId,
-          system.id,
-          profile.osMajorVersion
-        );
-      });
+      .map((rule) => this.formatRule(rule, system.id));
   };
 
   sortByPrecedence = (issues) => sortBy(issues, ['precedence']);
@@ -106,7 +96,7 @@ class ComplianceRemediationButton extends React.Component {
 
     return rules.some(
       (rule) =>
-        rule.remediationAvailable &&
+        rule.remediationIssueId &&
         (rule.profiles?.some((profile) => profile.supported) ||
           allSystems.some(
             (system) => this.ruleProfile(rule, system)?.supported

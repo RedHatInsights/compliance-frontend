@@ -13,7 +13,7 @@ const ruleProps = {
   identifier: propTypes.object,
   profile: propTypes.object,
   compliant: propTypes.bool,
-  remediationAvailable: propTypes.bool,
+  remediationIssueId: propTypes.string,
   severity: propTypes.string,
 };
 
@@ -76,7 +76,7 @@ export const Passed = ({ compliant }) =>
   );
 Passed.propTypes = ruleProps;
 
-export const RemediationColumnCell = ({ remediationAvailable }) => (
-  <RemediationCell hasPlaybook={remediationAvailable} />
+export const RemediationColumnCell = ({ remediationIssueId }) => (
+  <RemediationCell hasPlaybook={!!remediationIssueId} />
 );
 RemediationColumnCell.propTypes = ruleProps;
