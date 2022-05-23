@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import { emptyRows } from 'PresentationalComponents';
+import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
 import useFeature from 'Utilities/hooks/useFeature';
@@ -32,7 +32,6 @@ const ReportsTable = ({ profiles }) => {
         ...((pdfReportEnabled && [PDFExportDownload]) || []),
       ]}
       items={profiles}
-      emptyRows={emptyRows}
       isStickyHeader
       filters={{
         filterConfig: [
@@ -51,6 +50,7 @@ const ReportsTable = ({ profiles }) => {
           columns: exportableColumns,
         },
         manageColumns: manageColumnsEnabled,
+        emptyRows: emptyRows('reports', columns.length),
       }}
     />
   );

@@ -50,20 +50,6 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       },
     ]
   }
-  emptyRows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
-            "props": Object {
-              "colSpan": 3,
-            },
-            "title": [Function],
-          },
-        ],
-      },
-    ]
-  }
   filters={
     Object {
       "filterConfig": Array [
@@ -556,6 +542,18 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
     Object {
       "actionResolver": [Function],
       "dedicatedAction": [Function],
+      "emptyRows": Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 5,
+              },
+              "title": [Function],
+            },
+          ],
+        },
+      ],
       "exportable": Object {
         "columns": Array [
           Object {
@@ -665,20 +663,6 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
       },
     ]
   }
-  emptyRows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
-            "props": Object {
-              "colSpan": 3,
-            },
-            "title": [Function],
-          },
-        ],
-      },
-    ]
-  }
   filters={
     Object {
       "filterConfig": Array [
@@ -696,6 +680,18 @@ exports[`PoliciesTable expect to render emptystate 1`] = `
     Object {
       "actionResolver": [Function],
       "dedicatedAction": [Function],
+      "emptyRows": Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 5,
+              },
+              "title": [Function],
+            },
+          ],
+        },
+      ],
       "exportable": Object {
         "columns": Array [
           Object {
@@ -802,20 +798,6 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
         "title": "Compliance threshold",
-      },
-    ]
-  }
-  emptyRows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
-            "props": Object {
-              "colSpan": 3,
-            },
-            "title": [Function],
-          },
-        ],
       },
     ]
   }
@@ -1311,6 +1293,18 @@ exports[`PoliciesTable expect to render without error 1`] = `
     Object {
       "actionResolver": [Function],
       "dedicatedAction": [Function],
+      "emptyRows": Array [
+        Object {
+          "cells": Array [
+            Object {
+              "props": Object {
+                "colSpan": 5,
+              },
+              "title": [Function],
+            },
+          ],
+        },
+      ],
       "exportable": Object {
         "columns": Array [
           Object {

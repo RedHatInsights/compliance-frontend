@@ -3,11 +3,12 @@ import propTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Button } from '@patternfly/react-core';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import { BackgroundLink, emptyRows } from 'PresentationalComponents';
+import { BackgroundLink } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
+import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 
 const DedicatedAction = () => (
   <div>
@@ -54,7 +55,6 @@ export const PoliciesTable = ({ policies, location, history }) => {
       className="compliance-policies-table"
       columns={columns}
       items={policies}
-      emptyRows={emptyRows}
       isStickyHeader
       filters={{
         filterConfig: filters,
@@ -68,6 +68,7 @@ export const PoliciesTable = ({ policies, location, history }) => {
           columns: exportableColumns,
         },
         manageColumns: manageColumnsEnabled,
+        emptyRows: emptyRows('policies', columns.length),
       }}
     />
   );
