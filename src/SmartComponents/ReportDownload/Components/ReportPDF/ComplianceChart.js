@@ -47,6 +47,7 @@ const ComplianceChart = ({
       legendHeader={''}
       chartType="donut"
       subTitle="Compliant"
+      colorSchema="multi"
       title={compliancePercentage}
       data={compliantSystemsChartData}
     />
