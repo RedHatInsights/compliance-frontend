@@ -48,7 +48,7 @@ export const GET_SYSTEMS = gql`
               refId
               title
               compliant
-              remediationAvailable
+              remediationIssueId
               severity
               identifier
             }
