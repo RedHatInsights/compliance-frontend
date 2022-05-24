@@ -38,7 +38,10 @@ const PolicyDescription = ({ profile }) => (
       <Dt>Operating system</Dt>
       <Dd>RHEL {profile.osMajorVersion}</Dd>
       <Dt>Compliance threshold</Dt>
-      <Dd>{fixedPercentage(profile.complianceThreshold, 1)}</Dd>
+      <Dd>
+        {`${fixedPercentage(profile.complianceThreshold, 1)} of rules must be
+        passed for a system to be labeled "Compliant"`}
+      </Dd>
       <Dt>Business objective</Dt>
       <Dd>
         {profile.businessObjective ? profile.businessObjective.title : '--'}
