@@ -30,7 +30,8 @@ const PolicyDetailsDescription = ({ policy }) => (
           <PolicyThresholdTooltip />
         </Text>
         <Text className="threshold-tooltip" component={TextVariants.p}>
-          {fixedPercentage(policy.complianceThreshold, 1)}
+          {`${fixedPercentage(policy.complianceThreshold, 1)} of rules must be
+        passed for a system to be labeled "Compliant"`}
         </Text>
         <Text component={TextVariants.h5}>
           Business objective
