@@ -21,28 +21,28 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
         >
           <g>
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M1.130044229770525,-94.99327870980537A95,95,0,0,1,89.99477384980764,-30.42927340115073L83.3368697148128,-28.265989212060404A88,88,0,0,0,1.1300442297705258,-87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M90.69317959259652,-28.279801544300742A95,95,0,0,1,1.130044229770525,94.99327870980537L1.1300442297705258,87.99274401925855A88,88,0,0,0,84.03527545760168,-26.116517355210412Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #519de9; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M5.8170722959499274e-15,95L5.3884459162483544e-15,88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #f4c145; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-1.1300442297705133,94.99327870980537A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-1.1300442297705149,87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
@@ -62,7 +62,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
               text-anchor="middle"
               x="115"
             >
-              0
+              20%
             </tspan>
             <tspan
               dx="0"
@@ -107,7 +107,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
                
             </span>
           </span>
-          0 systems compliant
+          2 systems compliant
         </li>
         <li
           class="pf-c-list__item"
@@ -122,7 +122,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
                
             </span>
           </span>
-          0 systems non-compliant
+          3 systems non-compliant
         </li>
         <li
           class="pf-c-list__item"
@@ -132,12 +132,12 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
             class="pf-c-list__item-icon"
           >
             <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
+              style="width: 10px; height: 10px; display: inline-block; background: rgb(210, 210, 210);"
             >
                
             </span>
           </span>
-          0 systems not supported
+          5 systems never reported
           <span>
              
             <svg
@@ -183,28 +183,28 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
         >
           <g>
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M1.130044229770525,-94.99327870980537A95,95,0,1,1,-92.36014038643614,22.23970475968167L-85.5351237164249,20.68193924214763A88,88,0,1,0,1.1300442297705258,-87.99274401925855Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-92.61815165727324,21.139488725849876L-85.79365627200048,19.581842188155676Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #519de9; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-92.8630573812771,20.03628143647509A95,95,0,0,1,-1.1300442297705369,-94.99327870980537L-1.1300442297705169,-87.99274401925855A88,88,0,0,0,-86.03804071126588,18.478515918941014Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #f4c145; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
@@ -224,7 +224,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
               text-anchor="middle"
               x="115"
             >
-              0
+              100%
             </tspan>
             <tspan
               dx="0"
@@ -269,7 +269,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
                
             </span>
           </span>
-          0 systems compliant
+          5 systems compliant
         </li>
         <li
           class="pf-c-list__item"
@@ -299,7 +299,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
                
             </span>
           </span>
-          0 systems not supported
+          2 systems not supported
           <span>
              
             <svg
@@ -345,28 +345,28 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
         >
           <g>
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M5.8170722959499274e-15,-95A95,95,0,1,1,-5.8170722959499274e-15,95A95,95,0,1,1,5.8170722959499274e-15,-95M-1.6165337748745062e-14,-88A88,88,0,1,0,1.6165337748745062e-14,88A88,88,0,1,0,-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #06c; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #519de9; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
-              style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
+              style="fill: #f4c145; padding: 8px; stroke: transparent; stroke-width: 1;"
               transform="translate(115, 115)"
             />
             <path
-              d="M5.8170722959499274e-15,-95L5.3884459162483544e-15,-88Z"
+              d="M-1.745121688784978e-14,-95L-1.6165337748745062e-14,-88Z"
               role="presentation"
               shape-rendering="auto"
               style="fill: #d2d2d2; padding: 8px; stroke: transparent; stroke-width: 1;"
@@ -386,7 +386,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
               text-anchor="middle"
               x="115"
             >
-              0
+              100%
             </tspan>
             <tspan
               dx="0"
@@ -431,7 +431,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
                
             </span>
           </span>
-          0 systems compliant
+          5 systems compliant
         </li>
         <li
           class="pf-c-list__item"
@@ -447,38 +447,6 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
             </span>
           </span>
           0 systems non-compliant
-        </li>
-        <li
-          class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
-        >
-          <span
-            class="pf-c-list__item-icon"
-          >
-            <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
-            >
-               
-            </span>
-          </span>
-          0 systems not supported
-          <span>
-             
-            <svg
-              aria-hidden="true"
-              class="grey-icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="cursor: pointer;"
-              viewBox="0 0 512 512"
-              width="1em"
-            >
-              <path
-                d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-              />
-            </svg>
-          </span>
         </li>
       </ul>
     </div>
@@ -610,38 +578,6 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
           </span>
           0 systems non-compliant
         </li>
-        <li
-          class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
-        >
-          <span
-            class="pf-c-list__item-icon"
-          >
-            <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
-            >
-               
-            </span>
-          </span>
-          0 systems not supported
-          <span>
-             
-            <svg
-              aria-hidden="true"
-              class="grey-icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="cursor: pointer;"
-              viewBox="0 0 512 512"
-              width="1em"
-            >
-              <path
-                d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-              />
-            </svg>
-          </span>
-        </li>
       </ul>
     </div>
   </div>
@@ -771,38 +707,6 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
             </span>
           </span>
           0 systems non-compliant
-        </li>
-        <li
-          class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
-        >
-          <span
-            class="pf-c-list__item-icon"
-          >
-            <span
-              style="width: 10px; height: 10px; display: inline-block; background: rgb(244, 193, 69);"
-            >
-               
-            </span>
-          </span>
-          0 systems not supported
-          <span>
-             
-            <svg
-              aria-hidden="true"
-              class="grey-icon"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="cursor: pointer;"
-              viewBox="0 0 512 512"
-              width="1em"
-            >
-              <path
-                d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-              />
-            </svg>
-          </span>
         </li>
       </ul>
     </div>

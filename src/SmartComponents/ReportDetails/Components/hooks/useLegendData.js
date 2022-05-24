@@ -31,30 +31,34 @@ const useLegendData = (donutValues, profile) => {
       )} non-compliant`,
       symbol: { fill: blue200.value },
     },
-    {
-      name: `${donutValues[2].y} ${pluralize(
-        donutValues[2].y,
-        'system'
-      )} not supported`,
-      symbol: { fill: chart_color_gold_300.value },
-      popover: {
-        title: 'Unsupported SSG versions',
-        content: (
-          <>
-            <Text variant="p">
-              These systems are running unsupported versions of the SCAP
-              Security Guide (SSG) for the version of RHEL installed on them.
-              Assessment of rules failed/passed on these systems is a best-guess
-              effort and may not be accurate.
-            </Text>
-            <Text variant="p">
-              The policy&apos;s compliance score excludes these systems.
-            </Text>
-          </>
-        ),
-        footer: <SupportedSSGVersionsLink />,
-      },
-    },
+    ...(unsupportedHostCount > 0
+      ? [
+          {
+            name: `${donutValues[2].y} ${pluralize(
+              donutValues[2].y,
+              'system'
+            )} not supported`,
+            symbol: { fill: chart_color_gold_300.value },
+            popover: {
+              title: 'Unsupported SSG versions',
+              content: (
+                <>
+                  <Text variant="p">
+                    These systems are running unsupported versions of the SCAP
+                    Security Guide (SSG) for the version of RHEL installed on
+                    them. Assessment of rules failed/passed on these systems is
+                    a best-guess effort and may not be accurate.
+                  </Text>
+                  <Text variant="p">
+                    The policy&apos;s compliance score excludes these systems.
+                  </Text>
+                </>
+              ),
+              footer: <SupportedSSGVersionsLink />,
+            },
+          },
+        ]
+      : []),
     ...(notReportingHostCount > 0
       ? [
           {
