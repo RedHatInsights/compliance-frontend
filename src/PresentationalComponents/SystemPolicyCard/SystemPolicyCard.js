@@ -90,7 +90,9 @@ class SystemPolicyCard extends React.Component {
                   'is a normalized weighted sum of rules selected for this policy.'
                 }
               >
-                <span>(Score: {passedPercentage})</span>
+                <span>
+                  (Score: {supported ? passedPercentage : 'Unsupported'})
+                </span>
               </Tooltip>
             </Text>
           </div>

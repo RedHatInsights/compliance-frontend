@@ -71,7 +71,7 @@ exports[`SystemPolicyCard component should render an unsupported policy 1`] = `
       >
         10 rules failed 
         <span>
-          (Score: 75%)
+          (Score: Unsupported)
         </span>
       </small>
     </div>
