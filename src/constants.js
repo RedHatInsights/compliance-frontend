@@ -2,6 +2,7 @@
 import packageJson from './../package.json';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { dispatchNotification } from 'Utilities/Dispatcher';
+import sortBy from 'lodash/sortBy';
 
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
 export const DEFAULT_TITLE_SUFFIX = ` - ${DEFAULT_TITLE}`;
@@ -110,10 +111,12 @@ const toSystemsOsMinorFilterConfigurationItem =
     label: `RHEL ${majorVersion}`,
     value: majorVersion,
     groupSelectable: true,
-    items: osVersions[majorVersion].map((minorVersion) => ({
-      label: `RHEL ${majorVersion}.${minorVersion}`,
-      value: minorVersion,
-    })),
+    items: sortBy(osVersions[majorVersion])
+      .reverse()
+      .map((minorVersion) => ({
+        label: `RHEL ${majorVersion}.${minorVersion}`,
+        value: minorVersion,
+      })),
   });
 
 const emptyFilterDropDownItem = {
@@ -145,7 +148,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
       .filter((v) => !!v)
       .join(' OR '),
   ];
-  const osVersions = Object.keys(osMajorVersions);
+  const osVersions = sortBy(Object.keys(osMajorVersions).map(Number)).reverse();
 
   const items =
     osVersions.length > 0
