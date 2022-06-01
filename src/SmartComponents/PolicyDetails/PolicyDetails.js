@@ -72,7 +72,7 @@ export const QUERY = gql`
             rationale
             refId
             description
-            remediationIssueId
+            remediationAvailable
             identifier
             precedence
           }
@@ -97,7 +97,7 @@ export const QUERY = gql`
         rationale
         refId
         description
-        remediationIssueId
+        remediationAvailable
         identifier
         precedence
       }

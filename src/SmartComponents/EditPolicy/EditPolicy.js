@@ -53,7 +53,7 @@ export const MULTIVERSION_QUERY = gql`
             rationale
             refId
             description
-            remediationIssueId
+            remediationAvailable
             identifier
           }
         }
