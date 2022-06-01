@@ -52,7 +52,7 @@ const QUERY = gql`
           refId
           description
           compliant
-          remediationIssueId
+          remediationAvailable
           references
           identifier
           precedence

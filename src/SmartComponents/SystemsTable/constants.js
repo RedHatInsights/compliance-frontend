@@ -96,7 +96,7 @@ export const GET_SYSTEMS_WITH_REPORTS = gql`
               refId
               title
               compliant
-              remediationIssueId
+              remediationAvailable
               precedence
             }
           }

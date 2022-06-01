@@ -387,7 +387,7 @@ export const policyRulesQuery = {
                 rationale: 'Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
                 description: 'If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -w /etc/localtime -p wa -k audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -w /etc/localtime -p wa -k audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport and should always be used.',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27310-2',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -401,7 +401,7 @@ export const policyRulesQuery = {
                 rationale: 'Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime',
                 description: 'If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S clock_settime -F a0=0x0 -F key=time-change If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -F key=time-change The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27219-5',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -415,7 +415,7 @@ export const policyRulesQuery = {
                 rationale: 'Log files can contain valuable information regarding system configuration. If the system log files are not protected unauthorized users could change the logged data, eliminating their forensic value.',
                 refId: 'xccdf_org.ssgproject.content_rule_rsyslog_files_permissions',
                 description: 'The file permissions for all log files written by rsyslog should be set to 600, or more restrictive. These log files are determined by the second part of each Rule line in /etc/rsyslog.conf and typically all appear in /var/log. For each log file LOGFILE referenced in /etc/rsyslog.conf, run the following command to inspect the file\'s permissions: $ ls -l LOGFILE If the permissions are not 600 or more restrictive, run the following command to correct this: $ sudo chmod 0600 LOGFILE"',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-80191-0',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -429,7 +429,7 @@ export const policyRulesQuery = {
                 rationale: 'Arbitrary changes to the system time can be used to obfuscate nefarious activities in log files, as well as to confuse network services that are highly dependent upon an accurate system time (such as sshd). All changes to the system time should be audited.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_time_adjtimex',
                 description: 'If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S adjtimex -F key=audit_time_rules If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S adjtimex -F key=audit_time_rules If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S adjtimex -F key=audit_time_rules If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S adjtimex -F key=audit_time_rules The -k option allows for the specification of a key in string form that can be used for better reporting capability through ausearch and aureport. Multiple system calls can be defined on the same line to save space if desired, but is not required. See an example of multiple combined syscalls: -a always,exit -F arch=b64 -S adjtimex,settimeofday -F key=audit_time_rules',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27290-6',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -443,7 +443,7 @@ export const policyRulesQuery = {
                 rationale: 'The changing of file permissions could indicate that a user is attempting to gain access to information that would otherwise be disallowed. Auditing DAC modifications can facilitate the identification of patterns of abuse among both authorized and unauthorized users.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchown',
                 description: 'At a minimum, the audit system should collect file permission changes for all users and root. If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=unset -F key=perm_mod',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27356-5',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -457,7 +457,7 @@ export const policyRulesQuery = {
                 rationale: 'The changing of file permissions could indicate that a user is attempting to gain access to information that would otherwise be disallowed. Auditing DAC modifications can facilitate the identification of patterns of abuse among both authorized and unauthorized users.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_setxattr',
                 description: 'At a minimum, the audit system should collect file permission changes for all users and root. If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=unset -F key=perm_mod',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27213-8',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -471,7 +471,7 @@ export const policyRulesQuery = {
                 rationale: 'The changing of file permissions could indicate that a user is attempting to gain access to information that would otherwise be disallowed. Auditing DAC modifications can facilitate the identification of patterns of abuse among both authorized and unauthorized users.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_chown',
                 description: 'At a minimum, the audit system should collect file permission changes for all users and root. If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=unset -F key=perm_mod',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27364-9',
                     system: 'https://nvd.nist.gov/cce/index.cfm',
@@ -485,7 +485,7 @@ export const policyRulesQuery = {
                 rationale: 'The changing of file permissions could indicate that a user is attempting to gain access to information that would otherwise be disallowed. Auditing DAC modifications can facilitate the identification of patterns of abuse among both authorized and unauthorized users.',
                 refId: 'xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchownat',
                 description: 'At a minimum, the audit system should collect file permission changes for all users and root. If the auditd daemon is configured to use the augenrules program to read audit rules during daemon startup (the default), add the following line to a file with suffix .rules in the directory /etc/audit/rules.d: -a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod If the auditd daemon is configured to use the auditctl utility to read audit rules during daemon startup, add the following line to /etc/audit/audit.rules file: -a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod If the system is 64 bit then also add the following line: -a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -F key=perm_mod',
-                remediationIssueId: null,
+                remediationAvailable: false,
                 identifier: {
                     label: 'CCE-27387-0',
                     system: 'https://nvd.nist.gov/cce/index.cfm',

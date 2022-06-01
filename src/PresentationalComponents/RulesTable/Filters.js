@@ -97,7 +97,7 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
     anyFilterApply(
       rules,
       values,
-      (rule, value) => !!rule.remediationIssueId === (value === 'true')
+      (rule, value) => rule.remediationAvailable === (value === 'true')
     ),
 };
 

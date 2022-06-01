@@ -31,7 +31,7 @@ const RulesTable = ({
     : useState([]);
   const rules = toRulesArrayWithProfile(profileRules);
   const selectedRulesWithRemediations = (selectedRules) =>
-    (selectedRules || []).filter((rule) => !!rule.remediationIssueId);
+    (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showPassFailFilter =
     columns.filter((c) => c.title === 'Passed').length > 0;
   const policies = profileRules

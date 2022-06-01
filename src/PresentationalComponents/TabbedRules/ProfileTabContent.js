@@ -80,7 +80,7 @@ const BENCHMARK_QUERY = gql`
         rationale
         refId
         description
-        remediationIssueId
+        remediationAvailable
         identifier
       }
     }

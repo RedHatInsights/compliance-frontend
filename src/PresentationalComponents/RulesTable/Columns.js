@@ -41,8 +41,8 @@ export const Passed = {
 export const Remediation = {
   title: 'Remediation',
   transforms: [nowrap],
-  sortByFunction: (rule) => rule?.remediationIssueId,
-  renderExport: (rule) => (rule?.remediationIssueId ? 'Playbook' : 'Manual'),
+  sortByFunction: (rule) => rule?.remediationAvailable,
+  renderExport: (rule) => (rule?.remediationAvailable ? 'Playbook' : 'Manual'),
   renderFunc: renderComponent(RemediationColumnCell),
 };
 
