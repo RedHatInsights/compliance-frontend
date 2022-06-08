@@ -46,7 +46,10 @@ To run tests or lint your code you might want to run a shell container, this can
 
 #### Running other dependent services locally
 
-To configure the proxy to use local services the `.env` contains a few `LOCAL_` variables that can be uncommented and adjusted.
+To run the frontend with proxy and local services/APIs the `LOCAL_APIS` environment variable can be used.
+To enable the routes for proxying to a local inventory add `inventory:5000` (`APP_ID:APP_API_PORT`) to the `LOCAL_APIS` variable in a `.env` or start the proxy with it.
+
+All application/service hosts for the APIs can be overridden via a environment variable like `LOCAL_INVENTORY_HOST`.
 
 ## Code Notes
 
@@ -89,12 +92,15 @@ In order to develop and test changes for the `InventoryTable` and `InventoryDeta
 
 1. Pull the `insights-inventory-frontend` repository and change into the directory
 2. Run `npm install` to install all packages
-3. Run the `npm run start:federated` task
+3. Run the `npm run start -- --port=8003` task
 
-This will run a webpack instance that builds and serves federated modules from the local source code.
+This will run a webpack instance that builds and serves the inventory frontend including federated modules from the local source code.
 
-To use them in compliance the routes for the frontend need to be enabled to point to the before mentioned webpack instance.
-This can be done by setting the `LOCAL_INVENTORY_FRONTEND` environment variable (in `.env`) to `true`.
+To use them in/with Compliance and set routes for the locally running Inventory app, configure it with the `LOCAL_APPS` environment variable in `.env` or start the proxy with:
+
+```sh
+$ LOCAL_APPS=inventory:8003 npm run start:proxy
+```
 
 ###### Run compliance building and exposing federated modules
 

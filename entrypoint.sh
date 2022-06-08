@@ -10,7 +10,7 @@ export IN_DOCKER='true';
 
 source $NVM_DIR/nvm.sh
 
-nvm use "v15.14.0"
+nvm use "v$NODE_VERSION"
 node --version
 npm --version
 
