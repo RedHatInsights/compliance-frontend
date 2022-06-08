@@ -214,6 +214,9 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                 focusTrapOptions={
                   Object {
                     "clickOutsideDeactivates": true,
+                    "tabbableOptions": Object {
+                      "displayCheck": "none",
+                    },
                   }
                 }
                 paused={false}

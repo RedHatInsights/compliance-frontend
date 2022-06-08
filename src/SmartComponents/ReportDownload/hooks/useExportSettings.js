@@ -25,7 +25,7 @@ const useExportSettings = () => {
     Object.keys(exportSettings).some(
       (key) => (key !== 'userNotes' && !!exportSettings[key]) === true
     );
-  console.log(exportSettings);
+
   return {
     exportSettings,
     setExportSetting,
