@@ -41,10 +41,13 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
           onFocus={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
+          onPopperMouseEnter={[Function]}
+          onPopperMouseLeave={[Function]}
           onTriggerEnter={[Function]}
           placement="top"
           popper={
             <div
+              aria-live="off"
               className="pf-c-tooltip"
               id="pf-tooltip-1"
               role="tooltip"
