@@ -371,10 +371,11 @@ export const useSystemBulkSelect = ({
   };
 };
 
-const searchTagsByKey = (search, tags) =>
+const searchTags = (search, tags) =>
   tags.filter((tagItem) => {
     if (search || search === '') {
-      return tagItem?.key.indexOf(search) !== -1;
+      const tagString = `${tagItem?.key}=${tagItem?.value}`;
+      return tagString.indexOf(search) !== -1;
     } else {
       return true;
     }
@@ -395,7 +396,7 @@ const useFetchTag = () => {
             systems: { tags },
           },
         }) =>
-          searchTagsByKey(search, tags).map((tag) => ({
+          searchTags(search, tags).map((tag) => ({
             tag,
           }))
       );
