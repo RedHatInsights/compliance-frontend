@@ -63,6 +63,7 @@ const ReportsHeader = () => (
 );
 
 export const Reports = () => {
+  // I don't like let.
   let profiles = [];
   let showView = false;
   const location = useLocation();

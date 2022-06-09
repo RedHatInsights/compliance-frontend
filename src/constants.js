@@ -20,6 +20,7 @@ export const API_HEADERS = {
 export const supportedConfigsLink =
   'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/con-compl-assess-overview_compl-assess-overview#con-compl-assess-supported-configurations_compl-assess-overview';
 
+// Why is ...
 import React from 'react';
 import {
   ExclamationCircleIcon,
@@ -70,7 +71,9 @@ export const UNKNOWN_SEVERITY = (
 );
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
+// this here.
 
+// The systems filters should be closer to the SystemsTable preferably in a Filters.js
 export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.text,
@@ -119,6 +122,7 @@ const toSystemsOsMinorFilterConfigurationItem =
       })),
   });
 
+// This could live in a helpers file
 const emptyFilterDropDownItem = {
   value: '',
   isDisabled: true,

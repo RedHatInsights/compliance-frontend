@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+// So many imports.... this should probably be split up more into multiple components
 import black300 from '@patternfly/react-tokens/dist/esm/global_palette_black_300';
 import blue200 from '@patternfly/react-tokens/dist/esm/chart_color_blue_200';
 import blue300 from '@patternfly/react-tokens/dist/esm/chart_color_blue_300';
@@ -73,6 +74,7 @@ export const QUERY = gql`
 
 export const ReportDetails = ({ route }) => {
   const { report_id: policyId } = useParams();
+  // We could clean out this feature flag probably.
   const pdfReportEnabled = useFeature('pdfReport');
   const { data, error, loading } = useQuery(QUERY, {
     variables: { policyId },
@@ -87,6 +89,8 @@ export const ReportDetails = ({ route }) => {
   let compliancePercentage;
   let pageTitle;
 
+  // The ReportDownload has functions to calculate the same/similar data
+  // We should adapt and use those here as well
   if (!loading && data) {
     profile = data.profile;
     policyName = profile.policy.name;
@@ -265,6 +269,7 @@ ReportDetails.propTypes = {
 };
 
 const ReportDetailsFeatureWrapper = (props) => {
+  // We can also clean out this feature
   const systemsNotReporting = useFeature('systemsNotReporting');
 
   return systemsNotReporting ? (

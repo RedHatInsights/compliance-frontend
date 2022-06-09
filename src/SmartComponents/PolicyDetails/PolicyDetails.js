@@ -35,6 +35,7 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 
+// consts file
 export const QUERY = gql`
   query Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -126,6 +127,7 @@ export const PolicyDetails = ({ route }) => {
     refetch();
   }, [location, refetch]);
 
+  // try to use chrome API
   useTitleEntity(route, policy?.name);
 
   return (

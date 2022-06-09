@@ -9,6 +9,8 @@ import {
   DetailWrapper,
 } from '@redhat-cloud-services/frontend-components/Inventory';
 
+// 1. This is old.
+// 2. This is just used on the SystemDetails nowhere else and it can live there as a sub component and be happy.
 @registryDecorator()
 class InventoryDetails extends React.Component {
   constructor(props) {

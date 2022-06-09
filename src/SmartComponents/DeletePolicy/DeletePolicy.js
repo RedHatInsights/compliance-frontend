@@ -39,7 +39,7 @@ const DeletePolicy = () => {
       onClose();
     },
   });
-
+  // Maybe we can clean this up.
   return (
     <ComplianceModal
       variant={ModalVariant.small}

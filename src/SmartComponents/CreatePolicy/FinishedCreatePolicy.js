@@ -59,6 +59,7 @@ export const FinishedCreatePolicy = ({
     setPercent(progress * 100);
   };
 
+  // the body of this function is too large for my taste
   useEffect(() => {
     const newPolicy = {
       cloneFromProfileId,

@@ -27,6 +27,7 @@ import {
 export const EditPolicyDetails = ({ change, policy, refId }) => {
   useEffect(() => {
     if (policy && policy.refId !== refId) {
+      // this triggers three redux actions. can we batch them?
       change('name', `${policy.name}`);
       change('refId', `${policy.refId}`);
       change('description', `${policy.description}`);

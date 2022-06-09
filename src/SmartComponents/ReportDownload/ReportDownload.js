@@ -16,6 +16,7 @@ import usePDFExport from './hooks/usePDFExport';
 import useExportSettings from './hooks/useExportSettings';
 
 // Provides that export settings modal accessible in the report details
+// Refactor a tiny bit.
 export const ReportDownload = () => {
   const { report_id: policyId } = useParams();
   const linkToReport = useLinkToBackground('/reports/' + policyId);

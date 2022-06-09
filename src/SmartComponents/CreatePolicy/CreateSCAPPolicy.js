@@ -22,6 +22,7 @@ import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import PolicyTypesTable from './Components/PolicyTypeTable';
 import PolicyTypeTooltip from './Components/PolicyTypeTooltip';
 
+// move to a consts file
 const SUPPORTED_PROFILES = gql`
   query supportedProfilesByOSMajor {
     osMajorVersions {

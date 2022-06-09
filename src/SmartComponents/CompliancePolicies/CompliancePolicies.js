@@ -17,6 +17,7 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 
+// move to a consts file
 const QUERY = gql`
   {
     profiles(search: "external = false and canonical = false") {
@@ -51,9 +52,10 @@ const QUERY = gql`
     }
   }
 `;
-
+// This should just be "Polcies"
 export const CompliancePolicies = () => {
   const location = useLocation();
+  // This should be a proper component
   const createLink = (
     <BackgroundLink to="/scappolicies/new">
       <Button variant="primary" ouiaId="CreateNewPolicyButton">
@@ -65,6 +67,7 @@ export const CompliancePolicies = () => {
   useEffect(() => {
     refetch();
   }, [location, refetch]);
+  // can we do without the lets?
   let policies;
 
   if (data) {

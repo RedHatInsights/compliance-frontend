@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+// Me no liky redux-form
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';

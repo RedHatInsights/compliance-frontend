@@ -27,6 +27,7 @@ const QUERY = gql`
   }
 `;
 
+// the folder/file organisation could be better
 export const SystemDetails = ({ route }) => {
   const { inventoryId } = useParams();
   const { data, error, loading } = useQuery(QUERY, {

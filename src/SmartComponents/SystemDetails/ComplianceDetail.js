@@ -17,8 +17,9 @@ import { Provider } from 'react-redux';
 import { init } from 'Store';
 import EmptyState from './EmptyState';
 
+// Why u define the api path here?
 const COMPLIANCE_API_ROOT = '/api/compliance';
-
+// consts file
 const QUERY = gql`
   query System($systemId: String!) {
     system(id: $systemId) {
@@ -62,6 +63,7 @@ const QUERY = gql`
   }
 `;
 
+// This should be the main component and refactored
 const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   const [selectedPolicies, setSelectedPolicies] = useState();
   const policies = system?.testResultProfiles;
@@ -204,6 +206,9 @@ SystemDetails.propTypes = {
   hidePassed: propTypes.bool,
 };
 
+// Watchout this is used in the Inventory.
+// Can we move it somewhere that makes more sense?
+// some apps that export fed mods have a "modules" directory (?)
 const WrappedSystemDetails = ({
   customItnl,
   customRouter,

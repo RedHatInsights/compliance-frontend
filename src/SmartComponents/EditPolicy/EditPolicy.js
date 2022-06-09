@@ -13,6 +13,7 @@ import {
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave, useLinkToPolicy } from './hooks';
 
+// consts file
 export const MULTIVERSION_QUERY = gql`
   query Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -111,6 +112,7 @@ export const EditPolicy = ({ route }) => {
     </Button>,
   ];
 
+  // there is now a chrome API to set a title. look into that
   useTitleEntity(route, policy?.name);
 
   return (
@@ -129,6 +131,11 @@ export const EditPolicy = ({ route }) => {
           <Spinner />
         </StateViewPart>
         <StateViewPart stateKey="policy">
+          {
+            // This would be really nice to replace with data driven forms.
+            // It started out as a basic Patternfly form, but has become overly complex.
+            // There is a WIP PR that would need to be picked up again and finish
+          }
           <EditPolicyForm
             {...{
               policy,

@@ -12,6 +12,7 @@ import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
+// Can this be removed?
 const PolicyRulesTab = ({ loading, policy }) => {
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
 

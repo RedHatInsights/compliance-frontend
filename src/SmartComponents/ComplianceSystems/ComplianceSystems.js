@@ -29,6 +29,7 @@ const QUERY = gql`
 
 const DEFAULT_FILTER = 'has_test_results = true or has_policy = true';
 
+// this should just be systems
 export const ComplianceSystems = () => {
   const { data, error, loading } = useQuery(QUERY);
   const policies = data?.profiles?.edges.map(({ node }) => node);

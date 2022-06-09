@@ -52,6 +52,11 @@ export const SystemsTable = ({
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  // This is sorta of a hack.
+  // we need the items somewhere to later put them into a selection if needed
+  // the selected items need to have all info provided for external tasks.
+  // We should investigate what these other tasks need the info for and which info and if we can accomplish that there only with providing IDs
+  // The edit policy and wizard are places to look.
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const osMinorVersionFilter = useOsMinorVersionFilter(
@@ -78,6 +83,7 @@ export const SystemsTable = ({
       ],
     },
   });
+  // What are you?
   const systemsFilter = useSystemsFilter(
     filterString(),
     showOnlySystemsWithTestResults,
@@ -96,6 +102,7 @@ export const SystemsTable = ({
     },
   });
 
+  // Brrrrrr......
   const systemFetchArguments = {
     query,
     variables: {
@@ -105,6 +112,7 @@ export const SystemsTable = ({
     },
   };
 
+  // weird?
   const preselection = useMemo(
     () => preselectedSystems.map(({ id }) => id),
     [preselectedSystems]
@@ -126,6 +134,8 @@ export const SystemsTable = ({
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
+  // Important, but gets lost in code
+  // Can we maybe do this differently?
   const onComplete = (result) => {
     setTotal(result.meta.totalCount);
     setItems(result.entities);
@@ -161,6 +171,7 @@ export const SystemsTable = ({
     },
   });
 
+  // This could be in the inventorytable
   const mergedColumns = (defaultColumns) =>
     columns.map((column) => {
       const isStringCol = typeof column === 'string';

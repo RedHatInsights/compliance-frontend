@@ -28,6 +28,7 @@ import {
 } from 'PresentationalComponents/TabbedRules';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
+// move to consts file
 const PROFILES_QUERY = gql`
   query Profiles($filter: String!) {
     profiles(search: $filter) {
@@ -65,6 +66,7 @@ const PROFILES_QUERY = gql`
   }
 `;
 
+// same as above
 const BENCHMARKS_QUERY = gql`
   query Benchmarks($filter: String!) {
     benchmarks(search: $filter) {
@@ -82,6 +84,7 @@ const BENCHMARKS_QUERY = gql`
   }
 `;
 
+// helpers file
 const getBenchmarkProfile = (benchmark, profileRefId) =>
   benchmark.profiles.find(
     (benchmarkProfile) => benchmarkProfile.refId === profileRefId
@@ -100,6 +103,7 @@ export const EditPolicyProfilesRules = ({
   osMinorVersionCounts,
 }) => {
   const columns = [Columns.Name, Columns.Severity, Columns.Remediation];
+  // Refactor from here on ↓
   const osMinorVersions = osMinorVersionCounts
     .map((i) => i.osMinorVersion)
     .sort();
@@ -120,6 +124,8 @@ export const EditPolicyProfilesRules = ({
 
   const benchmarks = benchmarksData?.benchmarks?.nodes;
 
+  // All this tabs data stuff should be elsewhere packed in one function
+  // the whole architecture of the tabs and such to display rules of different versions is a bit rough.
   let tabsData = osMinorVersionCounts.map(
     ({ osMinorVersion, count: systemCount }) => {
       osMinorVersion = `${osMinorVersion}`;
@@ -176,6 +182,7 @@ export const EditPolicyProfilesRules = ({
   };
 
   useLayoutEffect(() => {
+    // this is oh so meh.
     if (!loadingState) {
       const profilesWithOs = extendProfilesByOsMinor(
         profiles,

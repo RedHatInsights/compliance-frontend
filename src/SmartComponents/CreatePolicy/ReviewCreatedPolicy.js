@@ -35,7 +35,8 @@ const ReviewCreatedPolicy = ({
   const { data, error, loading } = useQuery(REVIEW, {
     variables: { benchmarkId },
   });
-
+  // use stateviews
+  // is there a reason we don't use it here?
   if (error) {
     return error;
   }

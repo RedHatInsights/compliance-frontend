@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
 
+// There should only be one component per file (rare exceptions exist)
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
     <TextContent className="pf-u-mb-md">

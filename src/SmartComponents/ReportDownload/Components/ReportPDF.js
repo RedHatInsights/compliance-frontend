@@ -20,6 +20,7 @@ import SubSection from './ReportPDF/SubSection';
 import ComplianceChart from './ReportPDF/ComplianceChart';
 
 const ReportPDF = ({ data, ssgFinder }) => {
+  // I'm not sure what this is telling us, but so many assignments at once... 🕵️
   const {
     totalHostCount,
     compliantSystems,
