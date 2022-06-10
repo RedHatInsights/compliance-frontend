@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: compliance-frontend
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: compliance
+    spec:
+      envName: ${ENV_NAME}
+      title: Compliance
+      deploymentRepo: https://github.com/RedHatInsights/compliance-frontend
+      API:
+        versions:
+          - v1
+      frontend:
+        paths:
+          - /apps/compliance
+      image: ${IMAGE}:${IMAGE_TAG}
+      navItems:
+        - appId: "Compliance"
+          title: "Compliance"
+          href: "/insights/compliance"
+          product: "Red Hat Insights"
+      module:
+        manifestLocation: "/apps/compliance/fed-mods.json"
+        modules:
+          - id: "compliance"
+            module: "./RootApp"
+            routes:
+              - pathname: /insights/compliance
+
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: quay.io/cloudservices/compliance-frontend
+
