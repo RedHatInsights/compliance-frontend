@@ -7,7 +7,7 @@ const reportsRoutes = [
   {
     path: '/reports',
     title: defaultReportTitle,
-    requiredPermissions: ['compliance:reports:read'],
+    requiredPermissions: ['compliance:report:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports'
@@ -17,7 +17,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id',
     title: `Report: $entityTitle - ${defaultReportTitle}`,
-    requiredPermissions: ['compliance:reports:read'],
+    requiredPermissions: ['compliance:report:read'],
     defaultTitle: defaultReportTitle,
     component: lazy(() =>
       import(
@@ -28,7 +28,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id/delete',
     title: `Delete report - ${defaultReportTitle}`,
-    requiredPermissions: ['compliance:reports:delete'],
+    requiredPermissions: ['compliance:report:delete'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport'

@@ -96,7 +96,7 @@ exports[`Router expect to render without error 1`] = `
         },
         "path": "/reports",
         "requiredPermissions": Array [
-          "compliance:reports:read",
+          "compliance:report:read",
         ],
         "title": "Reports",
       },
@@ -112,7 +112,7 @@ exports[`Router expect to render without error 1`] = `
         "defaultTitle": "Reports",
         "path": "/reports/:report_id",
         "requiredPermissions": Array [
-          "compliance:reports:read",
+          "compliance:report:read",
         ],
         "title": "Report: $entityTitle - Reports",
       },
@@ -128,7 +128,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/reports/:report_id/delete",
         "requiredPermissions": Array [
-          "compliance:reports:delete",
+          "compliance:report:delete",
         ],
         "title": "Delete report - Reports",
       },
@@ -269,7 +269,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
-            "compliance:reports:read",
+            "compliance:report:read",
           ]
         }
       >
@@ -287,7 +287,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": true,
               "path": "/reports",
               "requiredPermissions": Array [
-                "compliance:reports:read",
+                "compliance:report:read",
               ],
               "setTitle": [Function],
               "title": "Reports",
@@ -304,7 +304,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
-            "compliance:reports:read",
+            "compliance:report:read",
           ]
         }
       >
@@ -323,7 +323,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": false,
               "path": "/reports/:report_id",
               "requiredPermissions": Array [
-                "compliance:reports:read",
+                "compliance:report:read",
               ],
               "setTitle": [Function],
               "title": "Report: $entityTitle - Reports",
@@ -524,7 +524,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
-          "compliance:reports:delete",
+          "compliance:report:delete",
         ]
       }
     >
@@ -543,7 +543,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/reports/:report_id/delete",
             "requiredPermissions": Array [
-              "compliance:reports:delete",
+              "compliance:report:delete",
             ],
             "setTitle": [Function],
             "title": "Delete report - Reports",

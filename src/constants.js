@@ -4,6 +4,7 @@ import { conditionalFilterType } from '@redhat-cloud-services/frontend-component
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import sortBy from 'lodash/sortBy';
 
+export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
 export const DEFAULT_TITLE_SUFFIX = ` - ${DEFAULT_TITLE}`;
 
