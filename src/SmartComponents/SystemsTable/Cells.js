@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import {
   Text,
   TextContent,
@@ -14,6 +13,7 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import {
   UnsupportedSSGVersion,
   ComplianceScore as complianceScore,
+  LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import {
   profilesRulesFailed,

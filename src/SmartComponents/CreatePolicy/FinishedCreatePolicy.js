@@ -12,8 +12,10 @@ import {
   List,
   ListItem,
 } from '@patternfly/react-core';
-import { ProgressBar } from 'PresentationalComponents';
-import { Link } from 'react-router-dom';
+import {
+  ProgressBar,
+  LinkWithPermission as Link,
+} from 'PresentationalComponents';
 import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';

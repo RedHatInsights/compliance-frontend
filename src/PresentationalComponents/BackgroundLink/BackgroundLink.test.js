@@ -19,16 +19,6 @@ describe('BackgroundLink', () => {
 
   it('expect to render without error', () => {
     const { asFragment } = render(
-      <BackgroundLink checkPermissions={false} to="/test/location">
-        Test background link
-      </BackgroundLink>
-    );
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('expect to render LinkWithPermission', () => {
-    const { asFragment } = render(
       <BackgroundLink to="/test/location">Test background link</BackgroundLink>
     );
 

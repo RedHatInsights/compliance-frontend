@@ -9,42 +9,48 @@ import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const DedicatedAction = () => (
-  <div>
-    <BackgroundLink to="/scappolicies/new">
-      <Button variant="primary" ouiaId="CreateNewPolicyButton">
-        Create new policy
-      </Button>
-    </BackgroundLink>
-  </div>
+  <BackgroundLink
+    to="/scappolicies/new"
+    component={Button}
+    variant="primary"
+    ouiaId="CreateNewPolicyButton"
+  >
+    Create new policy
+  </BackgroundLink>
 );
 
 export const PoliciesTable = ({ policies, location, history }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
   const filters = Object.values(Filters);
+  const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
+    usePermissions('compliance', `/scappolicies/XYZ/delete`);
+  const { hasAccess: hasEditAccess, isLoading: isEditAccessLoading } =
+    usePermissions('compliance', `/scappolicies/XYZ/edit`);
+
+  const onClick = (to, { itemId: policyId }) => {
+    const policy = policies.find((policy) => policy.id === policyId);
+    history.push(`/scappolicies/${policyId}/delete`, {
+      policy,
+      background: location,
+      state: { policy },
+    });
+  };
 
   const actionResolver = () => [
     {
       title: 'Delete policy',
-      onClick: (_event, _index, { itemId: policyId }) => {
-        const policy = policies.find((policy) => policy.id === policyId);
-        history.push(`/scappolicies/${policyId}/delete`, {
-          policy,
-          background: location,
-        });
-      },
+      isDisabled: !isDeleteAccessLoading && !hasDeleteAccess,
+      onClick: (_event, _index, policy) =>
+        onClick(`/scappolicies/${policy.itemId}/delete`, policy),
     },
     {
       title: 'Edit policy',
-      onClick: (_event, _index, { itemId: policyId }) => {
-        const policy = policies.find((policy) => policy.id === policyId);
-        history.push(`/scappolicies/${policyId}/edit`, {
-          policy,
-          background: location,
-          state: { policy },
-        });
-      },
+      isDisabled: !isEditAccessLoading && !hasEditAccess,
+      onClick: (_event, _index, policy) =>
+        onClick(`/scappolicies/${policy.itemId}/edit`, policy),
     },
   ];
 

@@ -94,6 +94,14 @@ exports[`ReportDetails expect to render without error 1`] = `
           xl={3}
         >
           <BackgroundLink
+            className="pf-u-mr-md"
+            component={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              }
+            }
+            ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
                 "profile": Object {
@@ -123,14 +131,9 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/pdf"
+            variant="plain"
           >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
+            Download PDF
           </BackgroundLink>
           <BackgroundLink
             state={
@@ -1193,6 +1196,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           xl={3}
         >
           <BackgroundLink
+            className="pf-u-mr-md"
+            component={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              }
+            }
+            ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
                 "profile": Object {
@@ -1222,14 +1233,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/pdf"
+            variant="plain"
           >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
+            Download PDF
           </BackgroundLink>
           <BackgroundLink
             state={

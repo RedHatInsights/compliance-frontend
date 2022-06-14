@@ -137,27 +137,23 @@ export const ReportDetails = ({ route }) => {
                 <BackgroundLink
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
+                  component={Button}
+                  ouiaId="ReportDetailsDownloadReportPDFLink"
+                  variant="primary"
+                  className="pf-u-mr-md"
                 >
-                  <Button
-                    ouiaId="ReportDetailsDownloadReportPDFLink"
-                    variant="primary"
-                    className="pf-u-mr-md"
-                  >
-                    Download PDF
-                  </Button>
+                  Download PDF
                 </BackgroundLink>
               )}
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
+                component={Button}
+                variant="link"
+                ouiaId="ReportDetailsDeleteReportLink"
+                isInline
               >
-                <Button
-                  variant="link"
-                  ouiaId="ReportDetailsDeleteReportLink"
-                  isInline
-                >
-                  Delete report
-                </Button>
+                Delete report
               </BackgroundLink>
             </GridItem>
           </Grid>

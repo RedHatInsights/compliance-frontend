@@ -720,14 +720,17 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
             }
             mainButton={
               <BackgroundLink
+                component={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "render": [Function],
+                  }
+                }
+                ouiaId="CreateNewPolicyButton"
                 to="/scappolicies/new"
+                variant="primary"
               >
-                <Button
-                  ouiaId="CreateNewPolicyButton"
-                  variant="primary"
-                >
-                  Create new policy
-                </Button>
+                Create new policy
               </BackgroundLink>
             }
             title="No policies"

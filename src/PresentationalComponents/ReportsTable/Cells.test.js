@@ -1,4 +1,9 @@
-import { Name, OperatingSystem, CompliantSystems } from './Cells';
+import {
+  Name,
+  OperatingSystem,
+  CompliantSystems,
+  PDFExportDownload,
+} from './Cells';
 
 describe('Name', () => {
   it('expect to render without error', () => {
@@ -74,6 +79,14 @@ describe('CompliantSystems', () => {
     const wrapper = shallow(
       <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
     );
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+});
+
+describe('PDFExportDownload', () => {
+  it('expect to render without error', () => {
+    const wrapper = shallow(<PDFExportDownload id="ID1" />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

@@ -103,16 +103,18 @@ CompliantSystems.propTypes = {
   unsupportedHostCount: propTypes.number,
 };
 
-export const PDFExportDownload = (profile) => {
-  return (
-    <BackgroundLink to={`/reports/${profile.id}/pdf`}>
-      <Button
-        ouiaId="ReportsDownloadReportPDFLink"
-        variant="plain"
-        className="pf-u-mr-md"
-      >
-        <DownloadIcon />
-      </Button>
-    </BackgroundLink>
-  );
+export const PDFExportDownload = ({ id }) => (
+  <BackgroundLink
+    component={Button}
+    ouiaId="ReportsDownloadReportPDFLink"
+    variant="plain"
+    className="pf-u-mr-md"
+    to={`/reports/${id}/pdf`}
+  >
+    <DownloadIcon />
+  </BackgroundLink>
+);
+
+PDFExportDownload.propTypes = {
+  id: propTypes.string,
 };

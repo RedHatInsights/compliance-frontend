@@ -164,14 +164,12 @@ export const ReportDetails = ({ route }) => {
                 <BackgroundLink
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
+                  component={Button}
+                  ouiaId="ReportDetailsDownloadReportPDFLink"
+                  variant="plain"
+                  className="pf-u-mr-md"
                 >
-                  <Button
-                    ouiaId="ReportDetailsDownloadReportPDFLink"
-                    variant="primary"
-                    className="pf-u-mr-md"
-                  >
-                    Download PDF
-                  </Button>
+                  Download PDF
                 </BackgroundLink>
               )}
               <BackgroundLink
