@@ -123,7 +123,7 @@ export const useFetchSystems = ({
       });
 };
 
-const fetchBatched = (fetchFunction, total, filter, batchSize = 100) => {
+const fetchBatched = (fetchFunction, total, filter, batchSize = 50) => {
   const pages = Math.ceil(total / batchSize) || 1;
   return Promise.all(
     [...new Array(pages)].map((_, pageIdx) =>

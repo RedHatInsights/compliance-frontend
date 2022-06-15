@@ -7,7 +7,7 @@ import useQueryExportData from './useQueryExportData';
 jest.mock('@apollo/client');
 
 describe('useQueryExportData', () => {
-  const profile = { id: 'TEST_ID', name: 'TEST_PROFILE', totalHostCount: 1000 };
+  const profile = { id: 'TEST_ID', name: 'TEST_PROFILE', totalHostCount: 3 };
 
   beforeEach(() => {
     useApolloClient.mockImplementation(() => ({
