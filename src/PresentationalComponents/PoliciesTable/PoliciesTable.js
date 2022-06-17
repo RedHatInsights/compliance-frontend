@@ -26,9 +26,9 @@ export const PoliciesTable = ({ policies, location, history }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
   const filters = Object.values(Filters);
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
-    usePermissions('compliance', `/scappolicies/XYZ/delete`);
+    usePermissions('compliance', `/scappolicies/XYZ/delete`, false, true);
   const { hasAccess: hasEditAccess, isLoading: isEditAccessLoading } =
-    usePermissions('compliance', `/scappolicies/XYZ/edit`);
+    usePermissions('compliance', `/scappolicies/XYZ/edit`, false, true);
 
   const onClick = (to, { itemId: policyId }) => {
     const policy = policies.find((policy) => policy.id === policyId);

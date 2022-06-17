@@ -16,6 +16,7 @@ exports[`Router expect to render without error 1`] = `
         },
         "path": "/scappolicies",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:policy:read",
         ],
         "title": "SCAP policies",
@@ -32,6 +33,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/scappolicies/new",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:policy:create",
         ],
         "title": "SCAP policies",
@@ -48,6 +50,7 @@ exports[`Router expect to render without error 1`] = `
         "defaultTitle": "SCAP policies",
         "path": "/scappolicies/:policy_id",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:policy:read",
         ],
         "title": "$entityTitle - SCAP policies",
@@ -65,6 +68,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/scappolicies/:policy_id/edit",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:policy:update",
         ],
         "title": "$entityTitle - SCAP policies",
@@ -81,6 +85,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/scappolicies/:policy_id/delete",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:policy:delete",
         ],
         "title": "Delete policy - SCAP policies",
@@ -96,6 +101,7 @@ exports[`Router expect to render without error 1`] = `
         },
         "path": "/reports",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:report:read",
         ],
         "title": "Reports",
@@ -112,6 +118,7 @@ exports[`Router expect to render without error 1`] = `
         "defaultTitle": "Reports",
         "path": "/reports/:report_id",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:report:read",
         ],
         "title": "Report: $entityTitle - Reports",
@@ -128,6 +135,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/reports/:report_id/delete",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:report:delete",
         ],
         "title": "Delete report - Reports",
@@ -145,6 +153,7 @@ exports[`Router expect to render without error 1`] = `
         "modal": true,
         "path": "/reports/:report_id/pdf",
         "requiredPermissions": Array [
+          "compliance:*:*",
           "compliance:report_export:read",
         ],
         "title": "Export report - Reports",
@@ -198,6 +207,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
+            "compliance:*:*",
             "compliance:policy:read",
           ]
         }
@@ -216,6 +226,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": false,
               "path": "/scappolicies",
               "requiredPermissions": Array [
+                "compliance:*:*",
                 "compliance:policy:read",
               ],
               "setTitle": [Function],
@@ -233,6 +244,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
+            "compliance:*:*",
             "compliance:policy:read",
           ]
         }
@@ -252,6 +264,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": false,
               "path": "/scappolicies/:policy_id",
               "requiredPermissions": Array [
+                "compliance:*:*",
                 "compliance:policy:read",
               ],
               "setTitle": [Function],
@@ -269,6 +282,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
+            "compliance:*:*",
             "compliance:report:read",
           ]
         }
@@ -287,6 +301,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": true,
               "path": "/reports",
               "requiredPermissions": Array [
+                "compliance:*:*",
                 "compliance:report:read",
               ],
               "setTitle": [Function],
@@ -304,6 +319,7 @@ exports[`Router expect to render without error 1`] = `
       <WithPermission
         requiredPermissions={
           Array [
+            "compliance:*:*",
             "compliance:report:read",
           ]
         }
@@ -323,6 +339,7 @@ exports[`Router expect to render without error 1`] = `
               "isCurrent": false,
               "path": "/reports/:report_id",
               "requiredPermissions": Array [
+                "compliance:*:*",
                 "compliance:report:read",
               ],
               "setTitle": [Function],
@@ -415,6 +432,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
+          "compliance:*:*",
           "compliance:policy:create",
         ]
       }
@@ -434,6 +452,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/scappolicies/new",
             "requiredPermissions": Array [
+              "compliance:*:*",
               "compliance:policy:create",
             ],
             "setTitle": [Function],
@@ -451,6 +470,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
+          "compliance:*:*",
           "compliance:policy:update",
         ]
       }
@@ -471,6 +491,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/scappolicies/:policy_id/edit",
             "requiredPermissions": Array [
+              "compliance:*:*",
               "compliance:policy:update",
             ],
             "setTitle": [Function],
@@ -488,6 +509,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
+          "compliance:*:*",
           "compliance:policy:delete",
         ]
       }
@@ -507,6 +529,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/scappolicies/:policy_id/delete",
             "requiredPermissions": Array [
+              "compliance:*:*",
               "compliance:policy:delete",
             ],
             "setTitle": [Function],
@@ -524,6 +547,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
+          "compliance:*:*",
           "compliance:report:delete",
         ]
       }
@@ -543,6 +567,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/reports/:report_id/delete",
             "requiredPermissions": Array [
+              "compliance:*:*",
               "compliance:report:delete",
             ],
             "setTitle": [Function],
@@ -560,6 +585,7 @@ exports[`Router expect to render without error 1`] = `
     <WithPermission
       requiredPermissions={
         Array [
+          "compliance:*:*",
           "compliance:report_export:read",
         ]
       }
@@ -580,6 +606,7 @@ exports[`Router expect to render without error 1`] = `
             "modal": true,
             "path": "/reports/:report_id/pdf",
             "requiredPermissions": Array [
+              "compliance:*:*",
               "compliance:report_export:read",
             ],
             "setTitle": [Function],

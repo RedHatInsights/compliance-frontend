@@ -15,7 +15,9 @@ export const LinkWithRBAC = ({ to, children, ...linkProps }) => {
   const route = findRouteByPath(to);
   const { hasAccess, isLoading } = usePermissions(
     'compliance',
-    route?.requiredPermissions
+    route?.requiredPermissions,
+    true,
+    true
   );
   const hasPermission = !isLoading && hasAccess;
   const TooltipOrDiv = !hasPermission ? Tooltip : NoOp;
