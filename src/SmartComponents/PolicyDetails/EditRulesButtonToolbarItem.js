@@ -14,10 +14,11 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
         state={{ policy }}
         hash={anchor}
         backgroundLocation={{ hash: anchor }}
+        variant="primary"
+        ouiaId="EditRulesButton"
+        component={Button}
       >
-        <Button variant="primary" ouiaId="EditRulesButton">
-          Edit rules
-        </Button>
+        Edit rules
       </BackgroundLink>
     </ToolbarItem>
   );

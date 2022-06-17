@@ -136,6 +136,14 @@ exports[`ReportDetails expect to render without error 1`] = `
             Download PDF
           </BackgroundLink>
           <BackgroundLink
+            component={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              }
+            }
+            isInline={true}
+            ouiaId="ReportDetailsDeleteReportLink"
             state={
               Object {
                 "profile": Object {
@@ -165,14 +173,9 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/delete"
+            variant="link"
           >
-            <Button
-              isInline={true}
-              ouiaId="ReportDetailsDeleteReportLink"
-              variant="link"
-            >
-              Delete report
-            </Button>
+            Delete report
           </BackgroundLink>
         </GridItem>
       </Grid>
@@ -1238,6 +1241,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             Download PDF
           </BackgroundLink>
           <BackgroundLink
+            component={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              }
+            }
+            isInline={true}
+            ouiaId="ReportDetailsDeleteReportLink"
             state={
               Object {
                 "profile": Object {
@@ -1267,14 +1278,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/delete"
+            variant="link"
           >
-            <Button
-              isInline={true}
-              ouiaId="ReportDetailsDeleteReportLink"
-              variant="link"
-            >
-              Delete report
-            </Button>
+            Delete report
           </BackgroundLink>
         </GridItem>
       </Grid>

@@ -113,7 +113,14 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "hash": "details",
               }
             }
+            component={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "render": [Function],
+              }
+            }
             hash=""
+            ouiaId="EditPolicyButton"
             state={
               Object {
                 "policy": Object {
@@ -158,13 +165,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
               }
             }
             to="/scappolicies/1/edit"
+            variant="secondary"
           >
-            <Button
-              ouiaId="EditPolicyButton"
-              variant="secondary"
-            >
-              Edit policy
-            </Button>
+            Edit policy
           </BackgroundLink>
         </GridItem>
       </Grid>

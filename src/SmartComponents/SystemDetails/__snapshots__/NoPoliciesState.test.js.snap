@@ -17,20 +17,23 @@ exports[`NoPoliciesState with a system having policies 1`] = `
     </EmptyStateBody>
     <EmptyStatePrimary>
       <BackgroundLink
+        component={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          }
+        }
+        ouiaId="CreateNewPolicyButton"
         to="/scappolicies/new"
+        variant="primary"
       >
-        <Button
-          ouiaId="CreateNewPolicyButton"
-          variant="primary"
-        >
-          Create new policy
-        </Button>
+        Create new policy
       </BackgroundLink>
     </EmptyStatePrimary>
     <EmptyStateSecondaryActions>
       <Button
         component="a"
-        href="/insights/compliance/scappolicies"
+        href="/scappolicies"
         variant="link"
       >
         View compliance policies

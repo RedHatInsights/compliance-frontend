@@ -166,10 +166,11 @@ export const PolicyDetails = ({ route }) => {
                     state={{ policy }}
                     hash={anchor}
                     backgroundLocation={{ hash: 'details' }}
+                    variant="secondary"
+                    ouiaId="EditPolicyButton"
+                    component={Button}
                   >
-                    <Button variant="secondary" ouiaId="EditPolicyButton">
-                      Edit policy
-                    </Button>
+                    Edit policy
                   </BackgroundLink>
                 </GridItem>
               </Grid>

@@ -175,14 +175,12 @@ export const ReportDetails = ({ route }) => {
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
+                component={Button}
+                variant="link"
+                ouiaId="ReportDetailsDeleteReportLink"
+                isInline
               >
-                <Button
-                  variant="link"
-                  ouiaId="ReportDetailsDeleteReportLink"
-                  isInline
-                >
-                  Delete report
-                </Button>
+                Delete report
               </BackgroundLink>
             </GridItem>
           </Grid>
