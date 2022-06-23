@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent, Text, Progress } from '@patternfly/react-core';
+import { TextContent, Text } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
 import {
   BackgroundLink,
@@ -8,6 +8,7 @@ import {
   GreySmallText,
   UnsupportedSSGVersion,
   LinkWithPermission as Link,
+  ReportStatusBar,
   LinkButton,
 } from 'PresentationalComponents';
 
@@ -65,21 +66,22 @@ export const CompliantSystems = ({
   testResultHostCount = 0,
   compliantHostCount = 0,
   unsupportedHostCount = 0,
+  totalHostCount = 0,
 }) => {
   const tooltipText =
     'Insights cannot provide a compliance score for systems running an unsupported ' +
     'version of the SSG at the time this report was created, as the SSG version was not supported by RHEL.';
   return (
     <React.Fragment>
-      <Progress
-        aria-label="Compliant systems"
-        measureLocation={'outside'}
-        value={
-          testResultHostCount
-            ? (100 / testResultHostCount) * compliantHostCount
-            : 0
-        }
+      <ReportStatusBar
+        hostCounts={{
+          totalResults: testResultHostCount,
+          compliant: compliantHostCount,
+          unsupported: unsupportedHostCount,
+          total: totalHostCount,
+        }}
       />
+
       <GreySmallText>
         {`${compliantHostCount} of ${testResultHostCount} systems `}
 
@@ -102,6 +104,7 @@ CompliantSystems.propTypes = {
   testResultHostCount: propTypes.number,
   compliantHostCount: propTypes.number,
   unsupportedHostCount: propTypes.number,
+  totalHostCount: propTypes.number,
 };
 
 export const PDFExportDownload = ({ id }) => (

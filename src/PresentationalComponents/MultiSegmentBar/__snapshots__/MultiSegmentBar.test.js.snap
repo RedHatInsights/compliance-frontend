@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSegmentBar expect to render without error 1`] = `
+<div
+  style={
+    Object {
+      "height": "20px",
+      "padding": 0,
+    }
+  }
+>
+  <Chart
+    containerComponent={
+      <ChartContainer
+        portalZIndex={110}
+      />
+    }
+    height={24}
+    padding={0}
+    showAxis={false}
+    width={167}
+  >
+    <ChartStack
+      colorScale={
+        Array [
+          "#fff",
+          "#000",
+        ]
+      }
+      horizontal={true}
+    >
+      <ChartBar
+        barWidth={16}
+        data={
+          Array [
+            Object {
+              "label": "test1",
+              "name": undefined,
+              "x": "",
+              "y": 5,
+            },
+          ]
+        }
+        labelComponent={
+          <ChartTooltip
+            dx={-34.791666666666664}
+            dy={-15}
+            orientation="top"
+          />
+        }
+      />
+      <ChartBar
+        barWidth={16}
+        data={
+          Array [
+            Object {
+              "label": "test2",
+              "name": undefined,
+              "x": "",
+              "y": 7,
+            },
+          ]
+        }
+        labelComponent={
+          <ChartTooltip
+            dx={-48.708333333333336}
+            dy={-15}
+            orientation="top"
+          />
+        }
+      />
+    </ChartStack>
+  </Chart>
+</div>
+`;

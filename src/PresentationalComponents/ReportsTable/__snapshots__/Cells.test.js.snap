@@ -2,22 +2,15 @@
 
 exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 <Fragment>
-  <Progress
-    aria-label="Compliant systems"
-    aria-labelledby={null}
-    className=""
-    id=""
-    isTitleTruncated={false}
-    label={null}
-    max={100}
-    measureLocation="outside"
-    min={0}
-    size={null}
-    title=""
-    tooltipPosition="top"
-    value={90}
-    valueText={null}
-    variant={null}
+  <ReportStatusBar
+    hostCounts={
+      Object {
+        "compliant": 9,
+        "total": 0,
+        "totalResults": 10,
+        "unsupported": 42,
+      }
+    }
   />
   <GreySmallText>
     9 of 10 systems 
@@ -42,22 +35,15 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 
 exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
-  <Progress
-    aria-label="Compliant systems"
-    aria-labelledby={null}
-    className=""
-    id=""
-    isTitleTruncated={false}
-    label={null}
-    max={100}
-    measureLocation="outside"
-    min={0}
-    size={null}
-    title=""
-    tooltipPosition="top"
-    value={90}
-    valueText={null}
-    variant={null}
+  <ReportStatusBar
+    hostCounts={
+      Object {
+        "compliant": 9,
+        "total": 0,
+        "totalResults": 10,
+        "unsupported": 0,
+      }
+    }
   />
   <GreySmallText>
     9 of 10 systems 
