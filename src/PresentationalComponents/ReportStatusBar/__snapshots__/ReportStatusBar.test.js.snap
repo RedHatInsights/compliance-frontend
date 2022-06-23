@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportStatusBar expect to render without error 1`] = `
+<Grid
+  hasGutter={true}
+>
+  <GridItem
+    span={9}
+  >
+    <MultiSegmentBar
+      data={
+        Array [
+          Object {
+            "color": "var(--pf-global--palette--blue-400)",
+            "label": "Compliant: 5",
+            "name": "Compliant",
+            "value": 5,
+          },
+          Object {
+            "color": "var(--pf-global--palette--blue-200)",
+            "label": "Non-Compliant: 5",
+            "name": "Non-Compliant",
+            "value": 5,
+          },
+          Object {
+            "color": "var(--pf-global--palette--gold-300)",
+            "label": "Unsupported: 2",
+            "name": "Unsupported",
+            "value": 2,
+          },
+          Object {
+            "color": "var(--pf-global--BackgroundColor--light-300)",
+            "label": "Never reported: 3",
+            "name": "Never reported",
+            "value": 3,
+          },
+        ]
+      }
+    />
+  </GridItem>
+  <GridItem
+    span={3}
+  >
+    <span>
+      50%
+    </span>
+  </GridItem>
+</Grid>
+`;
+
+exports[`ReportStatusBar expect to render without error with no reporting systems 1`] = `
+<Grid
+  hasGutter={true}
+>
+  <GridItem
+    span={9}
+  >
+    <MultiSegmentBar
+      data={
+        Array [
+          Object {
+            "color": "var(--pf-global--palette--blue-400)",
+            "label": "Compliant: 0",
+            "name": "Compliant",
+            "value": 0,
+          },
+          Object {
+            "color": "var(--pf-global--palette--blue-200)",
+            "label": "Non-Compliant: 0",
+            "name": "Non-Compliant",
+            "value": 0,
+          },
+          Object {
+            "color": "var(--pf-global--palette--gold-300)",
+            "label": "Unsupported: 2",
+            "name": "Unsupported",
+            "value": 2,
+          },
+          Object {
+            "color": "var(--pf-global--BackgroundColor--light-300)",
+            "label": "Never reported: 13",
+            "name": "Never reported",
+            "value": 13,
+          },
+        ]
+      }
+    />
+  </GridItem>
+  <GridItem
+    span={3}
+  >
+    <span>
+      0%
+    </span>
+  </GridItem>
+</Grid>
+`;
