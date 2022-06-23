@@ -19,7 +19,7 @@ objects:
           - /apps/compliance
       image: ${IMAGE}:${IMAGE_TAG}
       navItems:
-        - appId: "Compliance"
+        - appId: "compliance"
           title: "Compliance"
           href: "/insights/compliance"
           product: "Red Hat Insights"
@@ -38,4 +38,3 @@ parameters:
     required: true
   - name: IMAGE
     value: quay.io/cloudservices/compliance-frontend
-
