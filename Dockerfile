@@ -12,7 +12,7 @@ ENV WORKDIR /compliance/
 RUN mkdir -p $WORKDIR
 WORKDIR $WORKDIR
 
-COPY package*.json $WORKDIR
+COPY . $WORKDIR
 COPY ./entrypoint.sh /
 
 # nvm environment variables
