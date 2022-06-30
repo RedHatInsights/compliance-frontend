@@ -2,7 +2,7 @@ version: '3'
 services:
     frontend:
         env_file: .env
-        build: .
+        build: ./Dockerfile.local
         image: compliance-frontend_frontend
         network_mode: host
         # Use ports instead of host network mode when on Docker for Mac or in a VM
