@@ -118,7 +118,7 @@ const systemsRoutes = [
   {
     path: '/systems',
     title: defaultSystemsTitle,
-    requiredPermissions: defaultPermissions,
+    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
@@ -129,7 +129,7 @@ const systemsRoutes = [
     path: '/systems/:inventoryId',
     title: `$entityTitle - ${defaultSystemsTitle}`,
     defaultTitle: defaultSystemsTitle,
-    requiredPermissions: defaultPermissions,
+    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails'
