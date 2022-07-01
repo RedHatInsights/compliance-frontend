@@ -133,12 +133,7 @@ exports[`OperatingSystem expect to render without error 1`] = `
 exports[`PDFExportDownload expect to render without error 1`] = `
 <BackgroundLink
   className="pf-u-mr-md"
-  component={
-    Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "render": [Function],
-    }
-  }
+  component={[Function]}
   ouiaId="ReportsDownloadReportPDFLink"
   to="/reports/ID1/pdf"
   variant="plain"

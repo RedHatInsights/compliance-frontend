@@ -2,6 +2,11 @@ import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 
 const policies = rawPolicies.edges.map((profile) => profile.node);
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  Link: () => 'Mocked Link',
+  useLocation: jest.fn(),
+}));
 
 describe('PoliciesTable', () => {
   const defaultProps = {

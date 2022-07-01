@@ -2,9 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Button } from '@patternfly/react-core';
 
-const LinkButton = ({ navigate, children, to, ...props }, ref) => {
+const LinkButton = ({ navigate, children, to, ...props }) => {
   return (
-    <Button ref={ref} onClick={() => navigate(to)} {...props}>
+    <Button onClick={() => navigate(to)} {...props}>
       {children}
     </Button>
   );
@@ -16,4 +16,4 @@ LinkButton.propTypes = {
   to: propTypes.oneOfType([propTypes.string, propTypes.object]),
 };
 
-export default React.forwardRef(LinkButton);
+export default LinkButton;

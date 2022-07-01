@@ -113,12 +113,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "hash": "details",
               }
             }
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             hash=""
             ouiaId="EditPolicyButton"
             state={

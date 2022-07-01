@@ -17,12 +17,7 @@ exports[`NoPoliciesState with a system having policies 1`] = `
     </EmptyStateBody>
     <EmptyStatePrimary>
       <BackgroundLink
-        component={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "render": [Function],
-          }
-        }
+        component={[Function]}
         ouiaId="CreateNewPolicyButton"
         to="/scappolicies/new"
         variant="primary"

@@ -95,12 +95,7 @@ exports[`ReportDetails expect to render without error 1`] = `
         >
           <BackgroundLink
             className="pf-u-mr-md"
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
@@ -136,12 +131,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             Download PDF
           </BackgroundLink>
           <BackgroundLink
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             isInline={true}
             ouiaId="ReportDetailsDeleteReportLink"
             state={
@@ -1200,12 +1190,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         >
           <BackgroundLink
             className="pf-u-mr-md"
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
@@ -1241,12 +1226,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             Download PDF
           </BackgroundLink>
           <BackgroundLink
-            component={
-              Object {
-                "$$typeof": Symbol(react.forward_ref),
-                "render": [Function],
-              }
-            }
+            component={[Function]}
             isInline={true}
             ouiaId="ReportDetailsDeleteReportLink"
             state={
