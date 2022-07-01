@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '@patternfly/react-core';
 import ComplianceEmptyState from '../ComplianceEmptyState';
-import { BackgroundLink } from 'PresentationalComponents';
+import { BackgroundLink, LinkButton } from 'PresentationalComponents';
 
 const ReportsEmptyState = () => (
   <ComplianceEmptyState
@@ -9,7 +8,7 @@ const ReportsEmptyState = () => (
     mainButton={
       <BackgroundLink
         to="/scappolicies/new"
-        component={Button}
+        component={LinkButton}
         variant="primary"
         ouiaId="CreateNewPolicyButton"
       >

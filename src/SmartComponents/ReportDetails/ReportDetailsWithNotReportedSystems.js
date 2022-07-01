@@ -7,7 +7,6 @@ import gql from 'graphql-tag';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Button,
   Grid,
   GridItem,
   Text,
@@ -27,6 +26,7 @@ import {
   StateViewPart,
   UnsupportedSSGVersion,
   SubPageTitle,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useFeature from 'Utilities/hooks/useFeature';
@@ -137,7 +137,7 @@ export const ReportDetails = ({ route }) => {
                 <BackgroundLink
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
-                  component={Button}
+                  component={LinkButton}
                   ouiaId="ReportDetailsDownloadReportPDFLink"
                   variant="primary"
                   className="pf-u-mr-md"
@@ -148,7 +148,7 @@ export const ReportDetails = ({ route }) => {
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
-                component={Button}
+                component={LinkButton}
                 variant="link"
                 ouiaId="ReportDetailsDeleteReportLink"
                 isInline

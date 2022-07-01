@@ -1,8 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Button } from '@patternfly/react-core';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import { BackgroundLink } from 'PresentationalComponents';
+import { BackgroundLink, LinkButton } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns } from './Columns';
@@ -13,7 +12,7 @@ import useActionResolver from './hooks/useActionResolvers';
 const DedicatedAction = () => (
   <BackgroundLink
     to="/scappolicies/new"
-    component={Button}
+    component={LinkButton}
     variant="primary"
     ouiaId="CreateNewPolicyButton"
   >

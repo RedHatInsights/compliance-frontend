@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { ToolbarItem, Button } from '@patternfly/react-core';
-import { BackgroundLink } from 'PresentationalComponents';
+import { ToolbarItem } from '@patternfly/react-core';
+import { BackgroundLink, LinkButton } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
 
 const EditRulesButtonToolbarItem = ({ policy }) => {
@@ -16,7 +16,7 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
         backgroundLocation={{ hash: anchor }}
         variant="primary"
         ouiaId="EditRulesButton"
-        component={Button}
+        component={LinkButton}
       >
         Edit rules
       </BackgroundLink>

@@ -3,7 +3,7 @@ import { findRouteByPath } from '@/Routes';
 
 const useRoutePermissions = (to) => {
   const route = findRouteByPath(to);
-  return usePermissions('compliance', route?.requiredPermissions, false, true);
+  return usePermissions('compliance', route?.requiredPermissions, false, false);
 };
 
 export default useRoutePermissions;

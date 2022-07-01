@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Button, TextContent, Text, Progress } from '@patternfly/react-core';
+import { TextContent, Text, Progress } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
 import {
   BackgroundLink,
@@ -8,6 +8,7 @@ import {
   GreySmallText,
   UnsupportedSSGVersion,
   LinkWithPermission as Link,
+  LinkButton,
 } from 'PresentationalComponents';
 
 export const Name = (profile) => (
@@ -105,7 +106,7 @@ CompliantSystems.propTypes = {
 
 export const PDFExportDownload = ({ id }) => (
   <BackgroundLink
-    component={Button}
+    component={LinkButton}
     ouiaId="ReportsDownloadReportPDFLink"
     variant="plain"
     className="pf-u-mr-md"

@@ -6,7 +6,6 @@ import { useQuery } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Button,
   Grid,
   GridItem,
   Tab,
@@ -26,6 +25,7 @@ import {
   RoutedTabs,
   BreadcrumbLinkItem,
   BackgroundLink,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
@@ -168,7 +168,7 @@ export const PolicyDetails = ({ route }) => {
                     backgroundLocation={{ hash: 'details' }}
                     variant="secondary"
                     ouiaId="EditPolicyButton"
-                    component={Button}
+                    component={LinkButton}
                   >
                     Edit policy
                   </BackgroundLink>

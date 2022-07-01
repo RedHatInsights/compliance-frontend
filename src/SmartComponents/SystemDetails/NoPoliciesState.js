@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackgroundLink } from 'PresentationalComponents';
+import { BackgroundLink, LinkButton } from 'PresentationalComponents';
 import { PlusCircleIcon } from '@patternfly/react-icons';
 import {
   Title,
@@ -28,7 +28,7 @@ const NoPoliciesState = () => (
           to="/scappolicies/new"
           variant="primary"
           ouiaId="CreateNewPolicyButton"
-          component={Button}
+          component={LinkButton}
         >
           Create new policy
         </BackgroundLink>

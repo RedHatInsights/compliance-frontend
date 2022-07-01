@@ -14,7 +14,7 @@ const WithPermission = ({
     'compliance',
     requiredPermissions,
     false,
-    true
+    false
   );
 
   if (rbacEnabled) {
