@@ -2,8 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Tooltip } from '@patternfly/react-core';
 import { Link } from 'react-router-dom';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
-import { findRouteByPath } from '@/Routes';
+import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 import useFeature from 'Utilities/hooks/useFeature';
 
 const NoOp = ({ children }) => children;
@@ -12,13 +11,7 @@ NoOp.propTypes = {
 };
 
 export const LinkWithRBAC = ({ to, children, ...linkProps }) => {
-  const route = findRouteByPath(to);
-  const { hasAccess, isLoading } = usePermissions(
-    'compliance',
-    route?.requiredPermissions,
-    true,
-    true
-  );
+  const { hasAccess, isLoading } = useRoutePermissions(to);
   const hasPermission = !isLoading && hasAccess;
   const TooltipOrDiv = !hasPermission ? Tooltip : NoOp;
 
