@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Button, Grid } from '@patternfly/react-core';
+import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -15,6 +15,7 @@ import {
   PoliciesTable,
   StateView,
   StateViewPart,
+  LinkButton,
 } from 'PresentationalComponents';
 
 const QUERY = gql`
@@ -55,10 +56,13 @@ const QUERY = gql`
 export const CompliancePolicies = () => {
   const location = useLocation();
   const createLink = (
-    <BackgroundLink to="/scappolicies/new">
-      <Button variant="primary" ouiaId="CreateNewPolicyButton">
-        Create new policy
-      </Button>
+    <BackgroundLink
+      to="/scappolicies/new"
+      component={LinkButton}
+      variant="primary"
+      ouiaId="CreateNewPolicyButton"
+    >
+      Create new policy
     </BackgroundLink>
   );
   let { data, error, loading, refetch } = useQuery(QUERY);

@@ -11,7 +11,6 @@ import { ChartDonut, ChartThemeVariant } from '@patternfly/react-charts';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Button,
   Grid,
   GridItem,
   Text,
@@ -32,6 +31,7 @@ import {
   StateViewPart,
   UnsupportedSSGVersion,
   SubPageTitle,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useFeature from 'Utilities/hooks/useFeature';
@@ -164,27 +164,23 @@ export const ReportDetails = ({ route }) => {
                 <BackgroundLink
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
+                  component={LinkButton}
+                  ouiaId="ReportDetailsDownloadReportPDFLink"
+                  variant="plain"
+                  className="pf-u-mr-md"
                 >
-                  <Button
-                    ouiaId="ReportDetailsDownloadReportPDFLink"
-                    variant="primary"
-                    className="pf-u-mr-md"
-                  >
-                    Download PDF
-                  </Button>
+                  Download PDF
                 </BackgroundLink>
               )}
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
+                component={LinkButton}
+                variant="link"
+                ouiaId="ReportDetailsDeleteReportLink"
+                isInline
               >
-                <Button
-                  variant="link"
-                  ouiaId="ReportDetailsDeleteReportLink"
-                  isInline
-                >
-                  Delete report
-                </Button>
+                Delete report
               </BackgroundLink>
             </GridItem>
           </Grid>

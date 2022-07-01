@@ -94,6 +94,9 @@ exports[`ReportDetails expect to render without error 1`] = `
           xl={3}
         >
           <BackgroundLink
+            className="pf-u-mr-md"
+            component={[Function]}
+            ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
                 "profile": Object {
@@ -123,16 +126,14 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/pdf"
+            variant="plain"
           >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
+            Download PDF
           </BackgroundLink>
           <BackgroundLink
+            component={[Function]}
+            isInline={true}
+            ouiaId="ReportDetailsDeleteReportLink"
             state={
               Object {
                 "profile": Object {
@@ -162,14 +163,9 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/delete"
+            variant="link"
           >
-            <Button
-              isInline={true}
-              ouiaId="ReportDetailsDeleteReportLink"
-              variant="link"
-            >
-              Delete report
-            </Button>
+            Delete report
           </BackgroundLink>
         </GridItem>
       </Grid>
@@ -1193,6 +1189,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           xl={3}
         >
           <BackgroundLink
+            className="pf-u-mr-md"
+            component={[Function]}
+            ouiaId="ReportDetailsDownloadReportPDFLink"
             state={
               Object {
                 "profile": Object {
@@ -1222,16 +1221,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/pdf"
+            variant="plain"
           >
-            <Button
-              className="pf-u-mr-md"
-              ouiaId="ReportDetailsDownloadReportPDFLink"
-              variant="primary"
-            >
-              Download PDF
-            </Button>
+            Download PDF
           </BackgroundLink>
           <BackgroundLink
+            component={[Function]}
+            isInline={true}
+            ouiaId="ReportDetailsDeleteReportLink"
             state={
               Object {
                 "profile": Object {
@@ -1261,14 +1258,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/delete"
+            variant="link"
           >
-            <Button
-              isInline={true}
-              ouiaId="ReportDetailsDeleteReportLink"
-              variant="link"
-            >
-              Delete report
-            </Button>
+            Delete report
           </BackgroundLink>
         </GridItem>
       </Grid>
