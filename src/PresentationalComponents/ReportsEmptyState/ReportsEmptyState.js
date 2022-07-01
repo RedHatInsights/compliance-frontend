@@ -7,10 +7,13 @@ const ReportsEmptyState = () => (
   <ComplianceEmptyState
     title={'No policies are reporting'}
     mainButton={
-      <BackgroundLink to="/scappolicies/new">
-        <Button variant="primary" ouiaId="CreateNewPolicyButton">
-          Create new policy
-        </Button>
+      <BackgroundLink
+        to="/scappolicies/new"
+        component={Button}
+        variant="primary"
+        ouiaId="CreateNewPolicyButton"
+      >
+        Create new policy
       </BackgroundLink>
     }
   />
