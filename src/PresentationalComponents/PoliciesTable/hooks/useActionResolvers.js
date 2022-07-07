@@ -12,7 +12,7 @@ const useActionResolver = (policies) => {
 
   const onClick = (to, { itemId: policyId }) => {
     const policy = policies.find((policy) => policy.id === policyId);
-    history.push(`/scappolicies/${policyId}/delete`, {
+    history.push(to, {
       policy,
       background: location,
       state: { policy },
