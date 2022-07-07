@@ -1,8 +1,3 @@
-import { orderByArray } from 'Utilities/helpers';
-import { SEVERITY_LEVELS } from '@/constants';
-import groupBy from 'lodash/groupBy';
-import sortBy from 'lodash/sortBy';
-
 // TODO move to utilities
 // to make these helpers available elsewhere and then use where needed
 
@@ -71,59 +66,41 @@ export const nonReportingSystemsData = (systems) => {
   return systems.filter((system) => !reportingSystemIds.includes(system.id));
 };
 
-export const sortBySystemsCount = (rules) =>
-  sortBy(rules, 'systemsCount').reverse();
-
-const sortBySeverity = (rules, order = 'asc') =>
-  orderByArray(rules, 'severity', SEVERITY_LEVELS, order);
-
-export const topTenRulesSortedBySeverityAndSystemCount = (
-  failedRulesWithCountsArray
+export const prepareForExport = (
+  exportSettings,
+  systems,
+  topTenFailedRules
 ) => {
-  const topTenRulesBySeverity = sortBySeverity(
-    failedRulesWithCountsArray,
-    'asc'
-  ).slice(0, 10);
-  const rulesGroupedBySeverity = groupBy(topTenRulesBySeverity, 'severity');
+  const compliantSystems = compliantSystemsData(systems);
+  const nonCompliantSystems = nonCompliantSystemsData(systems);
+  const unsupportedSystems = unsupportedSystemsData(systems);
+  const nonReportingSystems = nonReportingSystemsData(systems);
 
-  return SEVERITY_LEVELS.flatMap((rulesGroupKey) =>
-    sortBySystemsCount(rulesGroupedBySeverity[rulesGroupKey] || [])
-  );
-};
+  return {
+    totalHostCount: systems.length,
 
-// Returns the "top ten" failed rules by system count
-// or just random "top 10" rules by severity
-export const topTenFromRulesWithCounts = (failedRulesWithCounts) =>
-  topTenRulesSortedBySeverityAndSystemCount(
-    Object.values(failedRulesWithCounts)
-  );
+    compliantSystemCount: compliantSystems.length,
+    ...(exportSettings.compliantSystems && {
+      compliantSystems: compliantSystems,
+    }),
 
-// Sums up rules and adds the number of systems failed for each
-// TODO refactor.
-const getFailedRulesWithCounts = (systems) => {
-  const failedRulesWithCounts = {};
-  const countIfFailed = (rule) => {
-    if (!rule.compliant) {
-      const failedRuleCount = failedRulesWithCounts[rule.refId];
-      if (failedRuleCount) {
-        failedRulesWithCounts[rule.refId]['systemsCount']++;
-      } else {
-        failedRulesWithCounts[rule.refId] = {
-          systemsCount: 1,
-          ...rule,
-        };
-      }
-    }
+    nonCompliantSystemCount: nonCompliantSystems.length,
+    ...(exportSettings.nonCompliantSystems && {
+      nonCompliantSystems: nonCompliantSystems,
+    }),
+
+    unsupportedSystemCount: unsupportedSystems.length,
+    ...(exportSettings.unsupportedSystems && {
+      unsupportedSystems: unsupportedSystems,
+    }),
+
+    ...(exportSettings.topTenFailedRules && {
+      topTenFailedRules,
+    }),
+    nonReportingSystemCount: nonReportingSystems.length,
+    ...(exportSettings.nonReportingSystems && {
+      nonReportingSystems: nonReportingSystems,
+    }),
+    ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
   };
-
-  systems.forEach((system) => {
-    system.testResultProfiles?.forEach((profile) => {
-      profile.rules.forEach((rule) => countIfFailed(rule));
-    });
-  });
-
-  return failedRulesWithCounts;
 };
-
-export const topTenFailedRulesData = (systems) =>
-  topTenFromRulesWithCounts(getFailedRulesWithCounts(systems));

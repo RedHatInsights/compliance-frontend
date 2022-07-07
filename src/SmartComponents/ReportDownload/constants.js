@@ -34,33 +34,11 @@ export const GET_SYSTEMS = gql`
           osMinorVersion
           insightsId
           testResultProfiles(policyId: $policyId) {
-            id
-            name
-            refId
             lastScanned
             compliant
-            external
             score
             supported
             ssgVersion
-            osMajorVersion
-            rules {
-              refId
-              title
-              compliant
-              remediationAvailable
-              severity
-              identifier
-            }
-          }
-          policies(policyId: $policyId) {
-            id
-            name
-          }
-          tags {
-            namespace
-            key
-            value
           }
         }
       }
@@ -94,6 +72,26 @@ export const GET_PROFILE = gql`
       businessObjective {
         id
         title
+      }
+    }
+  }
+`;
+
+export const GET_RULES = gql`
+  query getProfiles($filter: String!, $policyId: ID!) {
+    profiles(search: $filter) {
+      totalCount
+      edges {
+        node {
+          topFailedRules(policyId: $policyId) {
+            refId
+            title
+            remediationAvailable
+            severity
+            identifier
+            failedCount
+          }
+        }
       }
     }
   }
