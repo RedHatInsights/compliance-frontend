@@ -154,7 +154,7 @@ exports[`Router expect to render without error 1`] = `
         "path": "/reports/:report_id/pdf",
         "requiredPermissions": Array [
           "compliance:*:*",
-          "compliance:report_export:read",
+          "compliance:report:read",
         ],
         "title": "Export report - Reports",
       },
@@ -592,7 +592,7 @@ exports[`Router expect to render without error 1`] = `
       requiredPermissions={
         Array [
           "compliance:*:*",
-          "compliance:report_export:read",
+          "compliance:report:read",
         ]
       }
     >
@@ -613,7 +613,7 @@ exports[`Router expect to render without error 1`] = `
             "path": "/reports/:report_id/pdf",
             "requiredPermissions": Array [
               "compliance:*:*",
-              "compliance:report_export:read",
+              "compliance:report:read",
             ],
             "setTitle": [Function],
             "title": "Export report - Reports",

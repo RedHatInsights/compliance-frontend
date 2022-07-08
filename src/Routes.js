@@ -40,10 +40,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id/pdf',
     title: `Export report - ${defaultReportTitle}`,
-    requiredPermissions: [
-      ...defaultPermissions,
-      'compliance:report_export:read',
-    ],
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
     modal: true,
     component: lazy(() =>
