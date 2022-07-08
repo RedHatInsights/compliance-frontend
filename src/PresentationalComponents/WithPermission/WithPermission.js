@@ -12,7 +12,9 @@ const WithPermission = ({
   const rbacEnabled = useFeature('rbac');
   const { hasAccess, isLoading } = usePermissions(
     'compliance',
-    requiredPermissions
+    requiredPermissions,
+    false,
+    false
   );
 
   if (rbacEnabled) {

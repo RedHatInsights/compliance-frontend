@@ -7,7 +7,7 @@ const reportsRoutes = [
   {
     path: '/reports',
     title: defaultReportTitle,
-    requiredPermissions: ['compliance:reports:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "Reports" */ './SmartComponents/Reports/Reports'
@@ -17,7 +17,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id',
     title: `Report: $entityTitle - ${defaultReportTitle}`,
-    requiredPermissions: ['compliance:reports:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
     component: lazy(() =>
       import(
@@ -28,7 +28,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id/delete',
     title: `Delete report - ${defaultReportTitle}`,
-    requiredPermissions: ['compliance:reports:delete'],
+    requiredPermissions: [...defaultPermissions, 'compliance:report:delete'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "DeleteReport" */ 'SmartComponents/DeleteReport/DeleteReport'
@@ -40,7 +40,7 @@ const reportsRoutes = [
   {
     path: '/reports/:report_id/pdf',
     title: `Export report - ${defaultReportTitle}`,
-    requiredPermissions: ['compliance:report_export:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
     modal: true,
     component: lazy(() =>
@@ -56,7 +56,7 @@ const policiesRoutes = [
   {
     path: '/scappolicies',
     title: defaultPoliciesTitle,
-    requiredPermissions: ['compliance:policy:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "CompliancePolicies" */ 'SmartComponents/CompliancePolicies/CompliancePolicies'
@@ -66,7 +66,7 @@ const policiesRoutes = [
   {
     path: '/scappolicies/new',
     title: defaultPoliciesTitle,
-    requiredPermissions: ['compliance:policy:create'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:create'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "CreatePolicy" */ 'SmartComponents/CreatePolicy/CreatePolicy'
@@ -77,7 +77,7 @@ const policiesRoutes = [
   {
     path: '/scappolicies/:policy_id',
     title: `$entityTitle - ${defaultPoliciesTitle}`,
-    requiredPermissions: ['compliance:policy:read'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     defaultTitle: defaultPoliciesTitle,
     component: lazy(() =>
       import(
@@ -89,7 +89,7 @@ const policiesRoutes = [
     path: '/scappolicies/:policy_id/edit',
     title: `$entityTitle - ${defaultPoliciesTitle}`,
     defaultTitle: defaultPoliciesTitle,
-    requiredPermissions: ['compliance:policy:update'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:update'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "EditPolicy" */ 'SmartComponents/EditPolicy/EditPolicy'
@@ -100,7 +100,7 @@ const policiesRoutes = [
   {
     path: '/scappolicies/:policy_id/delete',
     title: `Delete policy - ${defaultPoliciesTitle}`,
-    requiredPermissions: ['compliance:policy:delete'],
+    requiredPermissions: [...defaultPermissions, 'compliance:policy:delete'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "DeletePolicy" */ 'SmartComponents/DeletePolicy/DeletePolicy'
@@ -115,7 +115,7 @@ const systemsRoutes = [
   {
     path: '/systems',
     title: defaultSystemsTitle,
-    requiredPermissions: defaultPermissions,
+    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "ComplianceSystems" */ 'SmartComponents/ComplianceSystems/ComplianceSystems'
@@ -126,7 +126,7 @@ const systemsRoutes = [
     path: '/systems/:inventoryId',
     title: `$entityTitle - ${defaultSystemsTitle}`,
     defaultTitle: defaultSystemsTitle,
-    requiredPermissions: defaultPermissions,
+    requiredPermissions: [...defaultPermissions, 'compliance:system:read'],
     component: lazy(() =>
       import(
         /* webpackChunkName: "SystemDetails" */ 'SmartComponents/SystemDetails/SystemDetails'

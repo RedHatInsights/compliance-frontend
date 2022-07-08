@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BackgroundLink expect to render LinkWithPermission 1`] = `
-<DocumentFragment>
-  Mocked Link
-</DocumentFragment>
-`;
-
 exports[`BackgroundLink expect to render without error 1`] = `
 <DocumentFragment>
   Mocked Link

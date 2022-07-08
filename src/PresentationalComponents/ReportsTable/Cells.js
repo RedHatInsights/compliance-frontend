@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Button, TextContent, Text, Progress } from '@patternfly/react-core';
+import { TextContent, Text, Progress } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
 import {
   BackgroundLink,
@@ -8,6 +8,7 @@ import {
   GreySmallText,
   UnsupportedSSGVersion,
   LinkWithPermission as Link,
+  LinkButton,
 } from 'PresentationalComponents';
 
 export const Name = (profile) => (
@@ -103,16 +104,18 @@ CompliantSystems.propTypes = {
   unsupportedHostCount: propTypes.number,
 };
 
-export const PDFExportDownload = (profile) => {
-  return (
-    <BackgroundLink to={`/reports/${profile.id}/pdf`}>
-      <Button
-        ouiaId="ReportsDownloadReportPDFLink"
-        variant="plain"
-        className="pf-u-mr-md"
-      >
-        <DownloadIcon />
-      </Button>
-    </BackgroundLink>
-  );
+export const PDFExportDownload = ({ id }) => (
+  <BackgroundLink
+    component={LinkButton}
+    ouiaId="ReportsDownloadReportPDFLink"
+    variant="plain"
+    className="pf-u-mr-md"
+    to={`/reports/${id}/pdf`}
+  >
+    <DownloadIcon />
+  </BackgroundLink>
+);
+
+PDFExportDownload.propTypes = {
+  id: propTypes.string,
 };
