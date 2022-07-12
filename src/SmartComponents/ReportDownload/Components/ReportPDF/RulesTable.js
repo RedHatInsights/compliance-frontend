@@ -10,12 +10,12 @@ const capitalize = (str = '') => str.charAt(0).toUpperCase() + str.slice(1);
 
 const RulesTable = ({ rules }) => {
   const headerRow = ['Rule name', 'ID', 'Severity', 'Failed systems'];
-  const failedRuleRows = rules.map((rule) => [
+  const failedRuleRows = rules.slice(0, 10).map((rule) => [
     rule.title,
     identifierLabel(rule),
     // TODO: Add icon svg for severity
     capitalize(rule?.severity),
-    `${rule.systemsCount}`,
+    `${rule.failedCount}`,
   ]);
 
   return <Table withHeader rows={[headerRow, ...failedRuleRows]} />;

@@ -12,7 +12,7 @@ const buildRule = (
   ...attributes,
 });
 
-const buildRules = (count = 5, attributes = {}, offset = 0) =>
+export const buildRules = (count = 5, attributes = {}, offset = 0) =>
   callAndSort(buildRule, count, { funcArguments: [attributes], offset });
 
 const buildProfile = (currentCount, attributes = {}) => ({

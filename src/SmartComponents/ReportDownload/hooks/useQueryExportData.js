@@ -1,13 +1,6 @@
 import { useApolloClient } from '@apollo/client';
-import useFeature from 'Utilities/hooks/useFeature';
-import { GET_SYSTEMS } from '../constants';
-import {
-  compliantSystemsData,
-  nonCompliantSystemsData,
-  unsupportedSystemsData,
-  nonReportingSystemsData,
-  topTenFailedRulesData,
-} from './helpers';
+import { GET_SYSTEMS, GET_RULES } from '../constants';
+import { prepareForExport } from './helpers';
 
 const fetchBatched = (fetchFunction, total, batchSize = 50) => {
   const pages = Math.ceil(total / batchSize) || 1;
@@ -18,53 +11,9 @@ const fetchBatched = (fetchFunction, total, batchSize = 50) => {
   );
 };
 
-// Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
-const useQueryExportData = (
-  exportSettings,
-  { id: policyId, totalHostCount } = {},
-  { onComplete, onError } = {
-    onComplete: () => undefined,
-    onError: () => undefined,
-  }
-) => {
-  const systemsNotReporting = useFeature('systemsNotReporting');
-
+const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
   const client = useApolloClient();
 
-  const prepareForExport = (systems) => {
-    const compliantSystems = compliantSystemsData(systems);
-    const nonCompliantSystems = nonCompliantSystemsData(systems);
-    const unsupportedSystems = unsupportedSystemsData(systems);
-    const nonReportingSystems = nonReportingSystemsData(systems);
-
-    return {
-      totalHostCount: systems.length,
-      ...(exportSettings.compliantSystems && {
-        compliantSystems: compliantSystems,
-      }),
-      compliantSystemCount: compliantSystems.length,
-      ...(exportSettings.nonCompliantSystems && {
-        nonCompliantSystems: nonCompliantSystems,
-      }),
-      nonCompliantSystemCount: nonCompliantSystems.length,
-      ...(exportSettings.unsupportedSystems && {
-        unsupportedSystems: unsupportedSystems,
-      }),
-      unsupportedSystemCount: unsupportedSystems.length,
-      ...(exportSettings.topTenFailedRules && {
-        topTenFailedRules: topTenFailedRulesData(systems),
-      }),
-      ...(systemsNotReporting
-        ? {
-            nonReportingSystemCount: nonReportingSystems.length,
-            ...(exportSettings.nonReportingSystems && {
-              nonReportingSystems: nonReportingSystems,
-            }),
-          }
-        : {}),
-      ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
-    };
-  };
   const fetchFunction = (perPage, page) =>
     client.query({
       query: GET_SYSTEMS,
@@ -78,24 +27,66 @@ const useQueryExportData = (
       },
     });
 
-  return () =>
-    fetchBatched(fetchFunction, totalHostCount)
-      .then((results) =>
-        results.flatMap(({ data }) => data.systems.edges.map((e) => e.node))
-      )
-      .then((systems) => {
-        const exportData = prepareForExport(systems);
-        onComplete && onComplete(exportData);
-        return exportData;
-      })
-      .catch((error) => {
-        if (onError) {
-          onError(error);
-          return [];
-        } else {
-          throw error;
-        }
-      });
+  return async () =>
+    (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
+      ({
+        data: {
+          systems: { edges },
+        },
+      }) => edges.map(({ node }) => node)
+    );
+};
+
+const useFetchRules = ({ id: policyId } = {}) => {
+  const client = useApolloClient();
+
+  const fetchFunction = (perPage = 10, page = 1) =>
+    client.query({
+      query: GET_RULES,
+      fetchResults: true,
+      fetchPolicy: 'no-cache',
+      variables: {
+        perPage,
+        page,
+        filter: `policy_id = ${policyId}`,
+        policyId,
+      },
+    });
+
+  return async () =>
+    (await fetchFunction()).data.profiles?.edges.flatMap(
+      (edge) => edge.node.topFailedRules
+    );
+};
+
+// Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
+const useQueryExportData = (
+  exportSettings,
+  policy,
+  { onComplete, onError } = {
+    onComplete: () => undefined,
+    onError: () => undefined,
+  }
+) => {
+  const fetchSystems = useSystemsFetch(policy);
+  const fetchRules = useFetchRules(policy);
+
+  return async () => {
+    try {
+      const systems = await fetchSystems();
+      const rules = await fetchRules();
+      const exportData = prepareForExport(exportSettings, systems, rules);
+      onComplete?.(exportData);
+      return exportData;
+    } catch (error) {
+      if (onError) {
+        onError?.(error);
+        return [];
+      } else {
+        throw error;
+      }
+    }
+  };
 };
 
 export default useQueryExportData;
