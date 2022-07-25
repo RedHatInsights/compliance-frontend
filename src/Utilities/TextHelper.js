@@ -1,8 +1,8 @@
 export const isNumberRange = (value) => value && !!value.match(/\d\d*-\d\d*/);
 
 export const fixedPercentage = (value, fixed = 0, withPercent = true) => {
-  const fixedValue = value ? parseFloat(value).toFixed(fixed) : undefined;
-  return fixedValue ? fixedValue + (withPercent ? '%' : '') : 'N/A';
+  const fixedValue = parseFloat(value)?.toFixed(fixed);
+  return fixedValue + (withPercent ? '%' : '');
 };
 
 export const pluralize = (value, singular, plural) => {

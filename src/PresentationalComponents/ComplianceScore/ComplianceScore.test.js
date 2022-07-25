@@ -14,6 +14,19 @@ describe('auxiliary functions to reducer', () => {
     expect(toJson(dangerIcon)).toMatchSnapshot();
   });
 
+  it('should show 0% score instead if the system score is 0', () => {
+    const system = {
+      rulesPassed: 30,
+      rulesFailed: 300,
+      score: 0,
+      supported: true,
+      compliant: false,
+    };
+
+    const dangerIcon = mount(<ComplianceScore {...system} />);
+    expect(toJson(dangerIcon)).toMatchSnapshot();
+  });
+
   it('should show a success icon if the host is compliant', () => {
     const system = {
       rulesPassed: 30,
