@@ -11,6 +11,13 @@ import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 
 expect.extend(filterHelpers);
 
+window.ResizeObserver = class {
+  constructor() {}
+
+  observe() {}
+  disconnect() {}
+};
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Link: () => 'Mocked Link',
