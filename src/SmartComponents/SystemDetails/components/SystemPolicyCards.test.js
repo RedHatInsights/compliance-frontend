@@ -1,11 +1,7 @@
 import React from 'react';
 import SystemPolicyCards from './SystemPolicyCards';
-import { IntlProvider } from 'react-intl';
 import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-jest.mock('react-content-loader', () => ({
-  Instagram: 'Instagram',
-}));
 
 describe('SystemPolicyCards component', () => {
   const currentTime = new Date('2021-03-06T06:20:13Z');
@@ -50,18 +46,14 @@ describe('SystemPolicyCards component', () => {
 
   it('should render loading state', () => {
     const wrappper = mount(
-      <IntlProvider locale={navigator.language}>
-        <SystemPolicyCards policies={policies} loading={true} />
-      </IntlProvider>
+      <SystemPolicyCards policies={policies} loading={true} />
     );
     expect(toJson(wrappper)).toMatchSnapshot();
   });
 
   it('should render real table', () => {
     const wrappper = mount(
-      <IntlProvider locale={navigator.language}>
-        <SystemPolicyCards policies={policies} loading={false} />
-      </IntlProvider>
+      <SystemPolicyCards policies={policies} loading={false} />
     );
     expect(toJson(wrappper)).toMatchSnapshot();
   });

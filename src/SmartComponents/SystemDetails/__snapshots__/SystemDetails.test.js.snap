@@ -1,238 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SystemDetails expect to render a 500 error 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
-          "name": "test.host.local",
-        },
-      },
-      "error": Object {
-        "error": "Test Error loading",
-        "networkError": Object {
-          "statusCode": 500,
-        },
-      },
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader>
-      <Breadcrumb
-        ouiaId="SystemDetailsPathBreadcrumb"
+<Fragment>
+  <PageHeader>
+    <Breadcrumb
+      ouiaId="SystemDetailsPathBreadcrumb"
+    >
+      <BreadcrumbLinkItem
+        to="/"
       >
-        <BreadcrumbLinkItem
-          to="/"
-        >
-          Compliance
-        </BreadcrumbLinkItem>
-        <BreadcrumbLinkItem
-          to="/systems"
-        >
-          Systems
-        </BreadcrumbLinkItem>
-        <BreadcrumbItem
-          isActive={true}
-        >
-          test.host.local
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <InventoryDetails />
-    </PageHeader>
-    <Connect(InternalMain)>
-      <SystemDetails
-        hidePassed={true}
-        inventoryId={1}
+        Compliance
+      </BreadcrumbLinkItem>
+      <BreadcrumbLinkItem
+        to="/systems"
+      >
+        Systems
+      </BreadcrumbLinkItem>
+      <BreadcrumbItem
+        isActive={true}
       />
-    </Connect(InternalMain)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <PageHeader>
-      <Skeleton
-        size="md"
-      />
-    </PageHeader>
-  </StateViewPart>
-</StateViewWithError>
+    </Breadcrumb>
+    <InventoryDetails />
+  </PageHeader>
+  <Connect(InternalMain)>
+    <ComplianceDetails
+      hidePassed={true}
+      inventoryId={1}
+      onLoaded={[Function]}
+    />
+  </Connect(InternalMain)>
+</Fragment>
 `;
 
 exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
-          "name": "test.host.local",
-        },
-      },
-      "error": false,
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader>
-      <Breadcrumb
-        ouiaId="SystemDetailsPathBreadcrumb"
+<Fragment>
+  <PageHeader>
+    <Breadcrumb
+      ouiaId="SystemDetailsPathBreadcrumb"
+    >
+      <BreadcrumbLinkItem
+        to="/"
       >
-        <BreadcrumbLinkItem
-          to="/"
-        >
-          Compliance
-        </BreadcrumbLinkItem>
-        <BreadcrumbLinkItem
-          to="/systems"
-        >
-          Systems
-        </BreadcrumbLinkItem>
-        <BreadcrumbItem
-          isActive={true}
-        >
-          test.host.local
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <InventoryDetails />
-    </PageHeader>
-    <Connect(InternalMain)>
-      <SystemDetails
-        hidePassed={true}
-        inventoryId={1}
+        Compliance
+      </BreadcrumbLinkItem>
+      <BreadcrumbLinkItem
+        to="/systems"
+      >
+        Systems
+      </BreadcrumbLinkItem>
+      <BreadcrumbItem
+        isActive={true}
       />
-    </Connect(InternalMain)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <PageHeader>
-      <Skeleton
-        size="md"
-      />
-    </PageHeader>
-  </StateViewPart>
-</StateViewWithError>
+    </Breadcrumb>
+    <InventoryDetails />
+  </PageHeader>
+  <Connect(InternalMain)>
+    <ComplianceDetails
+      hidePassed={true}
+      inventoryId={1}
+      onLoaded={[Function]}
+    />
+  </Connect(InternalMain)>
+</Fragment>
 `;
 
 exports[`SystemDetails expect to render loading 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
-          "name": "test.host.local",
-        },
-      },
-      "error": false,
-      "loading": true,
-    }
-  }
->
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader>
-      <Breadcrumb
-        ouiaId="SystemDetailsPathBreadcrumb"
+<Fragment>
+  <PageHeader>
+    <Breadcrumb
+      ouiaId="SystemDetailsPathBreadcrumb"
+    >
+      <BreadcrumbLinkItem
+        to="/"
       >
-        <BreadcrumbLinkItem
-          to="/"
-        >
-          Compliance
-        </BreadcrumbLinkItem>
-        <BreadcrumbLinkItem
-          to="/systems"
-        >
-          Systems
-        </BreadcrumbLinkItem>
-        <BreadcrumbItem
-          isActive={true}
-        >
-          test.host.local
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <InventoryDetails />
-    </PageHeader>
-    <Connect(InternalMain)>
-      <SystemDetails
-        hidePassed={true}
-        inventoryId={1}
+        Compliance
+      </BreadcrumbLinkItem>
+      <BreadcrumbLinkItem
+        to="/systems"
+      >
+        Systems
+      </BreadcrumbLinkItem>
+      <BreadcrumbItem
+        isActive={true}
       />
-    </Connect(InternalMain)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <PageHeader>
-      <Skeleton
-        size="md"
-      />
-    </PageHeader>
-  </StateViewPart>
-</StateViewWithError>
+    </Breadcrumb>
+    <InventoryDetails />
+  </PageHeader>
+  <Connect(InternalMain)>
+    <ComplianceDetails
+      hidePassed={true}
+      inventoryId={1}
+      onLoaded={[Function]}
+    />
+  </Connect(InternalMain)>
+</Fragment>
 `;
 
 exports[`SystemDetails expect to render without error 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
-          "name": "test.host.local",
-        },
-      },
-      "error": false,
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="data"
-  >
-    <PageHeader>
-      <Breadcrumb
-        ouiaId="SystemDetailsPathBreadcrumb"
+<Fragment>
+  <PageHeader>
+    <Breadcrumb
+      ouiaId="SystemDetailsPathBreadcrumb"
+    >
+      <BreadcrumbLinkItem
+        to="/"
       >
-        <BreadcrumbLinkItem
-          to="/"
-        >
-          Compliance
-        </BreadcrumbLinkItem>
-        <BreadcrumbLinkItem
-          to="/systems"
-        >
-          Systems
-        </BreadcrumbLinkItem>
-        <BreadcrumbItem
-          isActive={true}
-        >
-          test.host.local
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <InventoryDetails />
-    </PageHeader>
-    <Connect(InternalMain)>
-      <SystemDetails
-        hidePassed={true}
-        inventoryId={1}
+        Compliance
+      </BreadcrumbLinkItem>
+      <BreadcrumbLinkItem
+        to="/systems"
+      >
+        Systems
+      </BreadcrumbLinkItem>
+      <BreadcrumbItem
+        isActive={true}
       />
-    </Connect(InternalMain)>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="loading"
-  >
-    <PageHeader>
-      <Skeleton
-        size="md"
-      />
-    </PageHeader>
-  </StateViewPart>
-</StateViewWithError>
+    </Breadcrumb>
+    <InventoryDetails />
+  </PageHeader>
+  <Connect(InternalMain)>
+    <ComplianceDetails
+      hidePassed={true}
+      inventoryId={1}
+      onLoaded={[Function]}
+    />
+  </Connect(InternalMain)>
+</Fragment>
 `;

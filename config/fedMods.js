@@ -5,8 +5,5 @@ module.exports = {
     __dirname,
     `../src/${process.env.NODE_ENV === 'development' ? 'Dev' : ''}AppEntry`
   ),
-  './SystemDetail': resolve(
-    __dirname,
-    '../src/SmartComponents/SystemDetails/ComplianceDetail'
-  ),
+  './SystemDetail': resolve(__dirname, '../src/modules/SystemDetails'),
 };

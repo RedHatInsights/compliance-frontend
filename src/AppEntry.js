@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/helpers';
 import { init } from 'Store';
+import apolloClient from '@/Utilities/apolloClient';
+
 import App from './App';
 
-import { COMPLIANCE_API_ROOT } from '@/constants';
+const AppEntry = ({ logger }) => {
+  const [registry, setRegistry] = useState();
 
-const client = new ApolloClient({
-  link: new HttpLink({
-    credentials: 'include',
-    uri: COMPLIANCE_API_ROOT + '/graphql',
-  }),
-  cache: new InMemoryCache(),
-});
+  useEffect(() => {
+    setRegistry(init(logger));
+  }, []);
 
-const AppEntry = ({ logger }) => (
-  <Provider store={init(logger).getStore()}>
-    <IntlProvider locale={navigator.language}>
-      <Router basename={getBaseName(window.location.pathname)}>
-        <ApolloProvider client={client}>
-          <App />
-        </ApolloProvider>
-      </Router>
-    </IntlProvider>
-  </Provider>
-);
+  return registry ? (
+    <Provider store={registry.getStore()}>
+      <IntlProvider locale={navigator.language}>
+        <Router basename={getBaseName(window.location.pathname)}>
+          <ApolloProvider client={apolloClient}>
+            <App />
+          </ApolloProvider>
+        </Router>
+      </IntlProvider>
+    </Provider>
+  ) : (
+    ''
+  );
+};
 
 AppEntry.propTypes = {
   logger: PropTypes.any,
