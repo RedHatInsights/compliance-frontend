@@ -1,0 +1,33 @@
+name: Stage environment sync
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Merge master -> qa-beta
+        uses: robotology/gh-action-nightly-merge@v1.3.3
+        with:
+          allow_ff: true
+          ff_only: true
+          stable_branch: master
+          user_name: compliance-github-bot
+          development_branch: qa-beta
+          push_token: 'GITHUB_TOKEN'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open pull request master -> qa-stable
+        id: pull
+        uses: tretuna/sync-branches@1.4.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FROM_BRANCH: master
+          TO_BRANCH: qa-stable
+          TEAM_REVIEWERS: '["compliance"]'
