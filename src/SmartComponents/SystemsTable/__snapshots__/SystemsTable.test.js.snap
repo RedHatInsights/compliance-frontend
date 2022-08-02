@@ -858,11 +858,19 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
                 "items": Array [
                   Object {
                     "label": "Compliant",
-                    "value": "true",
+                    "value": "compliant = true AND supported_ssg = true",
                   },
                   Object {
                     "label": "Non-compliant",
-                    "value": "false",
+                    "value": "compliant = false AND supported_ssg = true",
+                  },
+                  Object {
+                    "label": "Not supported",
+                    "value": "supported_ssg = false",
+                  },
+                  Object {
+                    "label": "Never reported",
+                    "value": "reported = false",
                   },
                 ],
                 "onChange": [Function],
