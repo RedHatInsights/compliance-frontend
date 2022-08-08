@@ -38,7 +38,6 @@ const SUPPORTED_PROFILES = gql`
             benchmark {
               id
               refId
-              osMajorVersion
             }
           }
         }
