@@ -4,6 +4,7 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 // eslint-disable-next-line max-len
 import ComplianceRemediationButton from '@/PresentationalComponents/ComplianceRemediationButton';
+import EditSystemsButtonToolbarItem from '../PolicyDetails/EditSystemsButtonToolbarItem';
 import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
@@ -233,6 +234,11 @@ export const SystemsTable = ({
               ),
             }),
           })}
+          {...{
+            dedicatedAction: (
+              <EditSystemsButtonToolbarItem systems={selectedSystems} />
+            ),
+          }}
           {...(enableExport && { exportConfig })}
           {...(showActions && {
             actions: [
