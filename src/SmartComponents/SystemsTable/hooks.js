@@ -2,6 +2,8 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { useApolloClient, useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
+import useExport from '@redhat-cloud-services/frontend-components-utilities/useTableTools/useExport';
+import { useBulkSelect } from '@redhat-cloud-services/frontend-components-utilities/useTableTools/useBulkSelect';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import {
   osMinorVersionFilter,
@@ -9,29 +11,14 @@ import {
   GET_SYSTEMS_TAGS,
   GET_SYSTEMS_OSES,
 } from './constants';
-import useExport from 'Utilities/hooks/useTableTools/useExport';
-import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-
-const groupByMajorVersion = (versions = [], showFilter = []) => {
-  const showVersion = (version) => {
-    if (showFilter.length > 0) {
-      return showFilter.map(String).includes(String(version));
-    } else {
-      return true;
-    }
-  };
-
-  return versions.reduce((acc, currentValue) => {
-    if (showVersion(currentValue.major)) {
-      acc[String(currentValue.major)] = [
-        ...new Set([...(acc[currentValue.major] || []), currentValue.minor]),
-      ];
-    }
-
-    return acc;
-  }, []);
-};
+import {
+  groupByMajorVersion,
+  renameInventoryAttributes,
+  fetchBatched,
+  buildApiFilters,
+  toIdFilter,
+} from './helpers';
 
 export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
   let { data } = useQuery(GET_SYSTEMS_OSES, {
@@ -61,20 +48,6 @@ export const useSystemsFilter = (
 
   return filter;
 };
-
-const renameInventoryAttributes = ({
-  culledTimestamp,
-  staleWarningTimestamp,
-  staleTimestamp,
-  insightsId,
-  ...system
-}) => ({
-  ...system,
-  insights_id: insightsId,
-  culled_timestamp: culledTimestamp,
-  stale_warning_timestamp: staleWarningTimestamp,
-  stale_timestamp: staleTimestamp,
-});
 
 export const useFetchSystems = ({
   query,
@@ -121,36 +94,6 @@ export const useFetchSystems = ({
           throw error;
         }
       });
-};
-
-const fetchBatched = (fetchFunction, total, filter, batchSize = 50) => {
-  const pages = Math.ceil(total / batchSize) || 1;
-  return Promise.all(
-    [...new Array(pages)].map((_, pageIdx) =>
-      fetchFunction(batchSize, pageIdx + 1, filter)
-    )
-  );
-};
-
-const buildApiFilters = (filters = {}) => {
-  const { tagFilters, ...otherFilters } = filters;
-  const tagsApiFilter = tagFilters
-    ? {
-        tags: tagFilters.flatMap((tagFilter) =>
-          tagFilter.values.map(
-            (tag) =>
-              `${encodeURIComponent(tagFilter.key)}/${encodeURIComponent(
-                tag.tagKey
-              )}=${encodeURIComponent(tag.value)}`
-          )
-        ),
-      }
-    : {};
-
-  return {
-    ...otherFilters,
-    ...tagsApiFilter,
-  };
 };
 
 export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
@@ -233,11 +176,8 @@ export const useInventoryUtilities = (
 
   useEffect(() => {
     debounceResetPage();
-  }, [activeFilters]);
+  }, [JSON.stringify(activeFilters)]);
 };
-
-const toIdFilter = (ids) =>
-  ids?.length > 0 ? `id ^ (${ids.join(',')})` : undefined;
 
 export const useSystemsExport = ({
   columns,

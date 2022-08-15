@@ -152,9 +152,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   const osVersions = sortBy(Object.keys(osMajorVersions).map(Number)).reverse();
 
   const items =
-    osVersions.length > 0
-      ? osVersions.map(toSystemsOsMinorFilterConfigurationItem(osMajorVersions))
-      : [emptyFilterDropDownItem];
+    osVersions.length > 0 ? osVersionsWithMinor : [emptyFilterDropDownItem];
 
   return [
     {

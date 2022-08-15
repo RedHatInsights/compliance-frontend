@@ -1,12 +1,13 @@
 import React from 'react';
-import { Switch } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import { Switch } from '@patternfly/react-core';
 
-const SelectedFilterSwitch = ({ isChecked, setActiveFilter }) => (
+const SelectedFilterSwitch = ({ isChecked, setActiveFilter, ...props }) => (
   <Switch
     label="Selected only"
     isChecked={isChecked}
     onChange={() => setActiveFilter('selected', !isChecked)}
+    {...props}
   />
 );
 

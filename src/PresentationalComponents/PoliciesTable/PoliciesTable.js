@@ -2,11 +2,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { BackgroundLink, LinkButton } from 'PresentationalComponents';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import TableToolsTable from '@redhat-cloud-services/frontend-components/TableToolsTable';
 import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns } from './Columns';
 import * as Filters from './Filters';
-import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 import useActionResolver from './hooks/useActionResolvers';
 
 const DedicatedAction = () => (
@@ -45,7 +44,6 @@ export const PoliciesTable = ({ policies }) => {
           columns: exportableColumns,
         },
         manageColumns: manageColumnsEnabled,
-        emptyRows: emptyRows('policies', columns.length),
       }}
     />
   );

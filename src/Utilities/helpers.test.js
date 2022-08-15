@@ -7,7 +7,7 @@ import {
 } from './helpers';
 import items, {
   severityLevels,
-} from './hooks/useTableTools/__fixtures__/items';
+} from '@redhat-cloud-services/frontend-components-utilities/useTableTools/__fixtures__/items';
 
 describe('uniq', () => {
   it('should deduplicate items', () => {

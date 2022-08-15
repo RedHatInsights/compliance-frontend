@@ -1,8 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import TableToolsTable from '@redhat-cloud-services/frontend-components/TableToolsTable';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
 import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
@@ -41,6 +40,48 @@ const ReportsTable = ({ profiles }) => {
             operatingSystemFilter(operatingSystems)) ||
             []),
           ...policyComplianceFilter,
+          {
+            type: 'radio',
+            label: 'Radio Filter',
+            items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
+              label: option,
+              value: option,
+            })),
+            filter: (items) => items,
+          },
+          {
+            type: 'UNKNOWNTYPE',
+            label: 'Invalid Filter',
+            items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
+              label: option,
+              value: option,
+            })),
+            filter: (items) => items,
+          },
+          {
+            type: 'group',
+            label: 'Filter group',
+            items: [
+              {
+                label: 'Parent 1',
+                value: 1,
+                groupSelectable: true,
+                items: [
+                  { label: 'Child 1.1', value: 1.1 },
+                  { label: 'Child 2.2', value: 1.2 },
+                ],
+              },
+              {
+                label: 'Parent 2',
+                value: 2,
+                items: [
+                  { label: 'Child 2.1', value: 2.1 },
+                  { label: 'Child 2.2', value: 2.2 },
+                ],
+              },
+            ],
+            filter: () => [],
+          },
         ],
       }}
       options={{
@@ -50,7 +91,6 @@ const ReportsTable = ({ profiles }) => {
           columns: exportableColumns,
         },
         manageColumns: manageColumnsEnabled,
-        emptyRows: emptyRows('reports', columns.length),
       }}
     />
   );

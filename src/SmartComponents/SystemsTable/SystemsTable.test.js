@@ -12,7 +12,7 @@ import {
   useOsMinorVersionFilter,
   useFetchSystems,
 } from './hooks';
-import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers';
+import { filterHelpers } from '@redhat-cloud-services/frontend-components-utilities/useTableTools/testHelpers';
 expect.extend(filterHelpers);
 
 import { osMinorVersionFilter as mockOsMinorVersionFilter } from './__mocks__/osMinorVersionFilter';
