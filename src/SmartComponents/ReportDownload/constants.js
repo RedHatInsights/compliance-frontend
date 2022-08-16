@@ -33,13 +33,13 @@ export const GET_SYSTEMS = gql`
           osMajorVersion
           osMinorVersion
           insightsId
-          rulesFailed
           testResultProfiles(policyId: $policyId) {
             lastScanned
             compliant
             score
             supported
             ssgVersion
+            rulesFailed
           }
         }
       }
