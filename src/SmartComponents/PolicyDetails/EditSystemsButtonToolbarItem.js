@@ -1,38 +1,40 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { BackgroundLink, LinkButton } from 'PresentationalComponents';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { ToolbarItem } from '@patternfly/react-core';
 
-class EditSystemsButtonToolbarItem extends React.Component {
-  render() {
-    const { systems } = this.props;
-    return (
-      <React.Fragment>
-        <BackgroundLink
-          to={`/scappolicies/${systems}/edit`}
-          state={{ systems }}
-          variant="primary"
-          ouiaId="EditSystemsButton"
-          component={LinkButton}
-        >
-          Edit systems
-        </BackgroundLink>
-      </React.Fragment>
-    );
-  }
-}
-/*
+const EditSystemsButtonToolbarItem = ({
+  to,
+  state,
+  hash,
+  backgroundLocation,
+  variant,
+  ouiaId,
+}) => {
+  return (
+    <ToolbarItem>
+      <BackgroundLink
+        to={to}
+        state={state}
+        hash={hash}
+        backgroundLocation={backgroundLocation}
+        variant={variant}
+        ouiaId={ouiaId}
+        component={LinkButton}
+      >
+        Edit systems
+      </BackgroundLink>
+    </ToolbarItem>
+  );
+};
+
 EditSystemsButtonToolbarItem.propTypes = {
-};
- */
-EditSystemsButtonToolbarItem.defaultProps = {
-  allSystems: [],
+  to: propTypes.string.required,
+  state: propTypes.object,
+  hash: propTypes.object,
+  backgroundLocation: propTypes.object,
+  variant: propTypes.string.required,
+  ouiaId: propTypes.string.required,
 };
 
-export default connect(
-  () => ({}),
-  (dispatch) => ({
-    addNotification: (notification) => dispatch(addNotification(notification)),
-  })
-)(EditSystemsButtonToolbarItem);
+export default EditSystemsButtonToolbarItem;

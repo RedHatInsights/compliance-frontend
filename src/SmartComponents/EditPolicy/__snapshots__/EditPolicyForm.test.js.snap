@@ -3,27 +3,10 @@
 exports[`EditPolicyForm expect to render without error 1`] = `
 <Form>
   <RoutedTabs
-    defaultTab="details"
+    defaultTab="systems"
     level={0}
-    ouiaId="EditPolicy"
+    ouiaId="EditSystems"
   >
-    <Tab
-      eventKey="details"
-      ouiaId="Details"
-      title={
-        <TabTitleText>
-          Details
-        </TabTitleText>
-      }
-    >
-      <EditPolicyDetailsTab
-        policy={
-          Object {
-            "name": "parentpolicy",
-          }
-        }
-      />
-    </Tab>
     <Tab
       eventKey="rules"
       ouiaId="Rules"
