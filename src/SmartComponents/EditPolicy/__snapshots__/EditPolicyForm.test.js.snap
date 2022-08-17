@@ -157,7 +157,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
                  *
               </span>
             </label>
-             
+
           </div>
           <div
             class="pf-c-form__group-control"
@@ -190,7 +190,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
                 Business objective
               </span>
             </label>
-             
+
             <span>
                
               <svg
@@ -243,7 +243,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
                 Compliance threshold (%)
               </span>
             </label>
-             
+
             <span>
                
               <svg
@@ -303,7 +303,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       <div
         class="ins-c-table__empty"
       >
-         
+
         <div
           class="ins-c-spinner"
           role="status"
@@ -498,7 +498,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
                  *
               </span>
             </label>
-             
+
           </div>
           <div
             class="pf-c-form__group-control"
@@ -531,7 +531,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
                 Business objective
               </span>
             </label>
-             
+
             <span>
                
               <svg
@@ -584,7 +584,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
                 Compliance threshold (%)
               </span>
             </label>
-             
+
             <span>
                
               <svg
@@ -644,7 +644,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       <div
         class="ins-c-table__empty"
       >
-         
+
         <div
           class="ins-c-spinner"
           role="status"
