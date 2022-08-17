@@ -54,8 +54,12 @@ const PolicyDetailsDescription = ({ policy }) => {
       <CardBody>
         <TextContent>
           <Text component={TextVariants.h5}>
-            Compliance threshold
-            <Button onClick={handleToggle} variant="plain">
+            Compliance threshold (%)
+            <Button
+              onClick={handleToggle}
+              variant="plain"
+              style={{ 'margin-left': '5px' }}
+            >
               <i
                 className="fas fa-pencil-alt"
                 aria-hidden="true"
@@ -66,10 +70,11 @@ const PolicyDetailsDescription = ({ policy }) => {
           </Text>
           {isEditOpen && inlineId === 'complianceThreshold' ? (
             <EditPolicyDetailsInline
-              text={thresholdText}
-              variant="inline"
+              text={policy.complianceThreshold}
+              variant="threshold"
               policyData={policy}
               buttonId={inlineId}
+              setCloseHook={setIsEditOpen}
             />
           ) : (
             <Text className="threshold-tooltip" component={TextVariants.p}>
@@ -78,7 +83,11 @@ const PolicyDetailsDescription = ({ policy }) => {
           )}
           <Text component={TextVariants.h5}>
             Business objective
-            <Button onClick={handleToggle} variant="plain">
+            <Button
+              onClick={handleToggle}
+              variant="plain"
+              style={{ 'margin-left': '5px' }}
+            >
               <i
                 className="fas fa-pencil-alt"
                 aria-hidden="true"
@@ -90,17 +99,26 @@ const PolicyDetailsDescription = ({ policy }) => {
           {isEditOpen && inlineId === 'businessObjective' ? (
             <EditPolicyDetailsInline
               text={businessText}
-              variant="inline"
+              variant="business"
               policyData={policy}
               buttonId={inlineId}
+              setCloseHook={setIsEditOpen}
             />
           ) : (
             <Text component={TextVariants.p}>{businessText}</Text>
           )}
           <Text component={TextVariants.h5}>
             Policy description
-            <Button onClick={handleToggle} variant="plain">
-              <i className="fas fa-pencil-alt" aria-hidden="true" id="description" />
+            <Button
+              onClick={handleToggle}
+              variant="plain"
+              style={{ 'margin-left': '5px' }}
+            >
+              <i
+                className="fas fa-pencil-alt"
+                aria-hidden="true"
+                id="description"
+              />
             </Button>
           </Text>
           {isEditOpen && inlineId === 'description' ? (
@@ -109,6 +127,7 @@ const PolicyDetailsDescription = ({ policy }) => {
               variant="textarea"
               policyData={policy}
               buttonId={inlineId}
+              setCloseHook={setIsEditOpen}
             />
           ) : (
             <Text component={TextVariants.p}>
