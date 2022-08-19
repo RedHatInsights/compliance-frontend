@@ -506,22 +506,6 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
       ]
     }
   />
-  <Alert
-    actionLinks={
-      <AlertActionLink
-        onClick={[Function]}
-      >
-        Open rule editing
-      </AlertActionLink>
-    }
-    isInline={true}
-    title="You selected a system that has a release version previously not included in this policy."
-    variant="info"
-  >
-    <p>
-      If you have edited any rules for this policy, you will need to do so for this release version as well.
-    </p>
-  </Alert>
 </Fragment>
 `;
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
@@ -6,7 +6,6 @@ import {
   TextContent,
   Title,
 } from '@patternfly/react-core';
-import gql from 'graphql-tag';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
@@ -20,59 +19,7 @@ import {
 } from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-
-const PROFILES_QUERY = gql`
-  query Profiles($filter: String!) {
-    profiles(search: $filter) {
-      edges {
-        node {
-          id
-          name
-          refId
-          osMinorVersion
-          osMajorVersion
-          policy {
-            id
-          }
-          policyType
-          benchmark {
-            id
-            refId
-            latestSupportedOsMinorVersions
-            osMajorVersion
-            version
-          }
-          rules {
-            id
-            title
-            severity
-            rationale
-            refId
-            description
-            remediationAvailable
-            identifier
-          }
-        }
-      }
-    }
-  }
-`;
-
-const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!) {
-    benchmarks(search: $filter) {
-      nodes {
-        id
-        latestSupportedOsMinorVersions
-        profiles {
-          id
-          refId
-          ssgVersion
-        }
-      }
-    }
-  }
-`;
+import { BENCHMARKS_QUERY, PROFILES_QUERY } from './constants';
 
 const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) =>
   benchmarks.find((benchmark) =>
@@ -146,7 +93,6 @@ export const EditPolicyRulesTab = ({
   selectedRuleRefIds,
   setSelectedRuleRefIds,
   osMinorVersionCounts,
-  setNewRuleTabs,
 }) => {
   const osMajorVersion = policy?.osMajorVersion;
   const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
@@ -186,26 +132,20 @@ export const EditPolicyRulesTab = ({
   const dataState =
     !loadingState && tabsData?.length > 0 ? profilesData : undefined;
 
-  if (!loadingState) {
-    setNewRuleTabs(
-      !!tabsData.find((tab) =>
-        policy.policy.profiles.find(
-          (profile) => profile.osMinorVersion !== tab.newOsMinorVersion
-        )
-      )
-    );
-  }
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (profilesData) {
       const profiles = profilesData?.profiles.edges.map((p) => p.node) || [];
       const profilesWithOs = extendProfilesByOsMinor(
         profiles,
         profileToOsMinorMap
       );
-      setSelectedRuleRefIds((prevSelection) =>
-        profilesWithRulesToSelection(profilesWithOs, prevSelection)
-      );
+      setSelectedRuleRefIds((prevSelection) => {
+        const newSelection = profilesWithRulesToSelection(
+          profilesWithOs,
+          prevSelection
+        );
+        return newSelection;
+      });
     }
   }, [profilesData]);
   const error = benchmarksError || profilesError;
