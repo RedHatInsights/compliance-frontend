@@ -10,6 +10,7 @@ import propTypes from 'prop-types';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
+import { Prompt } from 'react-router-dom';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -21,13 +22,16 @@ const EditPolicyDetailsInline = ({
   const copiedData = policyData;
   //handling text changes
   const [inputText, setInputText] = useState(text);
-  const handleTextUpdate = (newText) => {
+  const handleTextUpdate = (newText, e) => {
     setInputText(newText);
+    setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
     setCloseHook(false);
   };
-
+  //marking page as dirty if user didn't save changes and tries to navigate away
+  const [dirty, setDirty] = useState(false);
+  //handling the save logic using useLinkToPolicy hook
   const useLinkToPolicy = () => {
     const anchor = useAnchor();
     const linkToBackground = useLinkToBackground(
@@ -80,6 +84,7 @@ const EditPolicyDetailsInline = ({
         };
 
   const [isSaving, onSave] = useOnSave(policyData, constructData);
+
   return (
     <FormGroup
       className="pf-c-inline-edit pf-m-inline-editable"
@@ -108,6 +113,7 @@ const EditPolicyDetailsInline = ({
             value={inputText}
             aria-label="Editable text input"
             onChange={handleTextUpdate}
+            id="policydetails-input"
           />
         ) : variant === 'threshold' ? (
           <div>
@@ -155,6 +161,10 @@ const EditPolicyDetailsInline = ({
           </div>
         </div>
       </div>
+      <Prompt
+        when={dirty}
+        message="You have unsaved changes on this page. Are you sure you want to leave?"
+      />
     </FormGroup>
   );
 };

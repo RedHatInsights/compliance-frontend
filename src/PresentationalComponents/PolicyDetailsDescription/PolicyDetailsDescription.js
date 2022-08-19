@@ -16,7 +16,7 @@ import {
 } from '@patternfly/react-core';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
-import EditPolicyDetailsInline from '../../Utilities/hooks/useTableTools/Components/EditPolicyDetailsInline';
+import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
 
 const PolicyDetailsDescription = ({ policy }) => {
   //handling open/close for the inline edits
