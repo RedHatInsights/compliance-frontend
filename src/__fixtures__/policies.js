@@ -17,7 +17,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: 'b71376fd-015e-4209-99af-4543e82e5dc5-policy',
@@ -29,7 +29,7 @@ export const policies = {
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
                             osMinorVersion: '9',
-                            ssgVersion: '0.1.49',
+                            benchmark: { ssgVersion: '0.1.49' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -56,7 +56,7 @@ export const policies = {
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
-                            ssgVersion: '0.1.45',
+                            benchmark: { ssgVersion: '0.1.45' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -84,7 +84,7 @@ export const policies = {
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
                             osMinorVersion: '8',
-                            ssgVersion: '0.1.46',
+                            benchmark: { ssgVersion: '0.1.46' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -132,7 +132,7 @@ export const policies = {
                             id: 'b71376fd-015e-4209-99ae',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
-                            ssg_version: '0.1.45',
+                            benchmark: { ssg_version: '0.1.45' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -180,7 +180,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 __typename: 'Profile'
             },
@@ -202,7 +202,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: 'dae0487d-3201-4ee0-af5f-b94cde2af818',
@@ -228,7 +228,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '20a9d997-62a6-40cc-a5f3-19d466eb975e',
@@ -254,7 +254,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '6d345bd2-d597-4df8-9bcf-71c41155b42c',
@@ -280,7 +280,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: 'c8e15347-9c2b-495d-8e54-503c2f9582b6',
@@ -306,7 +306,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '3c4823a1-2c16-46ae-b2fe-0cebf5a03931',
@@ -332,7 +332,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: 'f7b7977a-403b-4cd1-ab90-20b6f9a5a359',
@@ -358,7 +358,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '36abc364-6dc3-4e35-94f4-d10fa77e866e',
@@ -384,7 +384,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: 'd35c8aad-8fc8-49e8-bff0-4d9d3dc8f220',
@@ -410,7 +410,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '4c27fe09-9a7f-437c-b38b-e42272d9ccf0',
@@ -436,7 +436,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '9b034440-e3dd-4c19-8f2c-ca75e813d57d',
@@ -462,7 +462,7 @@ export const policies = {
                 ],
                 benchmark: {
                     title: 'Guide to the Secure Configuration of RHEL 7',
-                    version: '0.1.49'
+                    ssgVersion: '0.1.49'
                 },
                 policy: {
                     id: '19921ca4-8526-4651-8876-3c8587e8e125',

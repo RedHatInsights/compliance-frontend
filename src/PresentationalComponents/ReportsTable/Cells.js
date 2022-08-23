@@ -31,11 +31,12 @@ Name.propTypes = {
 export const OperatingSystem = ({
   osMajorVersion,
   unsupportedHostCount,
-  benchmark: { ssgVersion },
+  benchmark,
   policy,
 }) => {
+  const { ssgVersion } = benchmark || {};
   const supported = unsupportedHostCount === 0;
-  ssgVersion = 'SSG: ' + ssgVersion;
+  const ssgVersionLabel = 'SSG: ' + ssgVersion;
 
   return (
     <React.Fragment>

@@ -67,8 +67,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -88,6 +88,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.49",
+              },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -113,9 +116,11 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.49",
             },
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ac",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -140,9 +145,11 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.45",
             },
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.46",
+              },
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -168,7 +175,6 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.46",
             },
           ],
         },
@@ -180,8 +186,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 67,
@@ -200,6 +206,9 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "ssg_version": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ae",
               "name": "United States Government Configuration Baseline123",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -241,7 +250,6 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssg_version": "0.1.45",
             },
           ],
         },
@@ -253,8 +261,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -279,8 +287,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 69.5,
@@ -305,8 +313,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -331,8 +339,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -357,8 +365,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -383,8 +391,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -409,8 +417,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -435,8 +443,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -461,8 +469,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -487,8 +495,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -513,8 +521,8 @@ exports[`PoliciesTable expect to render SystemsCountWarning 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -818,8 +826,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -839,6 +847,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.49",
+              },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -864,9 +875,11 @@ exports[`PoliciesTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.49",
             },
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ac",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -891,9 +904,11 @@ exports[`PoliciesTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.45",
             },
             Object {
+              "benchmark": Object {
+                "ssgVersion": "0.1.46",
+              },
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -919,7 +934,6 @@ exports[`PoliciesTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.46",
             },
           ],
         },
@@ -931,8 +945,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 67,
@@ -951,6 +965,9 @@ exports[`PoliciesTable expect to render without error 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "ssg_version": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ae",
               "name": "United States Government Configuration Baseline123",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -992,7 +1009,6 @@ exports[`PoliciesTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssg_version": "0.1.45",
             },
           ],
         },
@@ -1004,8 +1020,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1030,8 +1046,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 69.5,
@@ -1056,8 +1072,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1082,8 +1098,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1108,8 +1124,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1134,8 +1150,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1160,8 +1176,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1186,8 +1202,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1212,8 +1228,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1238,8 +1254,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -1264,8 +1280,8 @@ exports[`PoliciesTable expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
+          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
-          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
