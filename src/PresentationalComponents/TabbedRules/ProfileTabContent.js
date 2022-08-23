@@ -32,7 +32,7 @@ ProfileSystemCount.propTypes = {
 
 const SSGVersionText = ({ profile, newOsMinorVersion }) => (
   <Text component={TextVariants.p}>
-    SSG version: {profile.ssgVersion}{' '}
+    SSG version: {profile?.benchmark.ssgVersion}{' '}
     <Popover
       position="right"
       bodyContent={<SSGPopoverBody {...{ profile, newOsMinorVersion }} />}

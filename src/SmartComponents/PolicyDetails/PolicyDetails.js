@@ -55,7 +55,6 @@ export const QUERY = gql`
         refId
         profiles {
           id
-          ssgVersion
           name
           refId
           osMinorVersion
@@ -65,6 +64,7 @@ export const QUERY = gql`
             title
             latestSupportedOsMinorVersions
             osMajorVersion
+            ssgVersion: version
           }
           rules {
             title
@@ -85,11 +85,6 @@ export const QUERY = gql`
       hosts {
         id
         osMinorVersion
-      }
-      benchmark {
-        id
-        title
-        version
       }
       rules {
         title

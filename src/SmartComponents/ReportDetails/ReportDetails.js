@@ -61,7 +61,7 @@ export const QUERY = gql`
       }
       benchmark {
         id
-        version
+        ssgVersion: version
       }
       businessObjective {
         id

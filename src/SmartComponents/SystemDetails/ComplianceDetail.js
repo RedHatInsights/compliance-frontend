@@ -40,7 +40,6 @@ const QUERY = gql`
         lastScanned
         score
         supported
-        ssgVersion
         osMajorVersion
         policy {
           id

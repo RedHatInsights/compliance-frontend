@@ -35,7 +35,6 @@ export const MULTIVERSION_QUERY = gql`
         refId
         profiles {
           id
-          ssgVersion
           parentProfileId
           name
           refId
@@ -46,6 +45,7 @@ export const MULTIVERSION_QUERY = gql`
             title
             latestSupportedOsMinorVersions
             osMajorVersion
+            ssgVersion: version
           }
           rules {
             title

@@ -40,7 +40,7 @@ describe('OperatingSystem', () => {
     const wrapper = shallow(
       <OperatingSystem
         {...defaultProps}
-        ssgVersion="1.2.3"
+        benchmark={{ ssgVersion: '1.2.3' }}
         policy={null}
         unsupportedHostCount={0}
       />
@@ -53,7 +53,7 @@ describe('OperatingSystem', () => {
     const wrapper = shallow(
       <OperatingSystem
         {...defaultProps}
-        ssgVersion="1.2.3"
+        benchmark={{ ssgVersion: '1.2.3' }}
         unsupportedHostCount={3}
         policy={null}
       />

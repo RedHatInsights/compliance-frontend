@@ -13,7 +13,7 @@ const UnsupportedSystemsTable = ({ systems, ssgFinder }) => {
   const rows = systems.map((system) => [
     system.name,
     `RHEL ${system.osMajorVersion}.${system.osMinorVersion}`,
-    system.testResultProfiles[0].ssgVersion,
+    system.testResultProfiles[0]?.benchmark.ssgVersion,
     ssgFinder(system.osMajorVersion, system.osMinorVersion),
   ]);
 

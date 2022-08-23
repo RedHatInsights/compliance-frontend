@@ -48,7 +48,6 @@ const PROFILES_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
           }
-          ssgVersion
           rules {
             id
             title

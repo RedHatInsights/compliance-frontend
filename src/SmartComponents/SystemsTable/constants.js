@@ -86,7 +86,9 @@ export const GET_SYSTEMS_WITH_REPORTS = gql`
             external
             score
             supported
-            ssgVersion
+            benchmark {
+              ssgVersion: version
+            }
             osMajorVersion
             rules {
               refId

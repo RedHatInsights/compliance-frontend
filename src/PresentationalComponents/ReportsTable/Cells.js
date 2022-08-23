@@ -30,8 +30,8 @@ Name.propTypes = {
 
 export const OperatingSystem = ({
   osMajorVersion,
-  ssgVersion,
   unsupportedHostCount,
+  benchmark: { ssgVersion },
   policy,
 }) => {
   const supported = unsupportedHostCount === 0;
@@ -44,9 +44,9 @@ export const OperatingSystem = ({
         <Text>
           <GreySmallText>
             {supported ? (
-              ssgVersion
+              ssgVersionLabel
             ) : (
-              <UnsupportedSSGVersion>{ssgVersion}</UnsupportedSSGVersion>
+              <UnsupportedSSGVersion>{ssgVersionLabel}</UnsupportedSSGVersion>
             )}
           </GreySmallText>
         </Text>
@@ -57,7 +57,7 @@ export const OperatingSystem = ({
 
 OperatingSystem.propTypes = {
   osMajorVersion: propTypes.string,
-  ssgVersion: propTypes.string,
+  benchmark: propTypes.object,
   unsupportedHostCount: propTypes.number,
   policy: propTypes.object,
 };
