@@ -88,13 +88,6 @@ export const GET_SYSTEMS_WITH_REPORTS = gql`
             supported
             ssgVersion
             osMajorVersion
-            rules {
-              refId
-              title
-              compliant
-              remediationAvailable
-              precedence
-            }
           }
           policies(policyId: $policyId) {
             id
