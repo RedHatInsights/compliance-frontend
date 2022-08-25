@@ -41,11 +41,7 @@ export const GET_SYSTEMS_WITH_POLICIES = gql`
             id
             name
           }
-          tags {
-            namespace
-            key
-            value
-          }
+          tags
         }
       }
     }
@@ -104,11 +100,7 @@ export const GET_SYSTEMS_WITH_REPORTS = gql`
             id
             name
           }
-          tags {
-            namespace
-            key
-            value
-          }
+          tags
         }
       }
     }
@@ -152,11 +144,7 @@ export const GET_MINIMAL_SYSTEMS = gql`
 export const GET_SYSTEMS_TAGS = gql`
   query getSystems($filter: String!, $limit: Int) {
     systems(search: $filter, limit: $limit) {
-      tags {
-        namespace
-        key
-        value
-      }
+      tags
     }
   }
 `;
@@ -164,11 +152,7 @@ export const GET_SYSTEMS_TAGS = gql`
 export const GET_SYSTEMS_OSES = gql`
   query getSystems($filter: String!) {
     systems(search: $filter) {
-      osVersions {
-        name
-        major
-        minor
-      }
+      osVersions
     }
   }
 `;
