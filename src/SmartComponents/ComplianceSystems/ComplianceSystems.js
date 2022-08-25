@@ -9,7 +9,6 @@ import PageHeader, {
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
-import { GET_SYSTEMS_WITH_POLICIES } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
 const QUERY = gql`
@@ -55,7 +54,6 @@ export const ComplianceSystems = () => {
                     transforms: [nowrap],
                   }),
                 ]}
-                query={GET_SYSTEMS_WITH_POLICIES}
                 defaultFilter={DEFAULT_FILTER}
                 systemProps={{
                   isFullView: true,
