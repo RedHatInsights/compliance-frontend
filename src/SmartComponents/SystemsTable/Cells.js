@@ -98,18 +98,6 @@ SSGVersions.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
-export const DetailsLink = ({ id, testResultProfiles = [] }) =>
-  testResultProfiles.length > 0 ? (
-    <SystemLink {...{ id }}>View Report</SystemLink>
-  ) : (
-    ''
-  );
-
-DetailsLink.propTypes = {
-  id: propTypes.string,
-  testResultProfiles: propTypes.array,
-};
-
 export const Policies = ({ policies }) =>
   (policies || []).length > 0 && (
     <Truncate

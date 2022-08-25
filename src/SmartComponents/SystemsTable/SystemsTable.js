@@ -22,12 +22,12 @@ import {
   useSystemBulkSelect,
   useTags,
 } from './hooks';
+import { constructQuery } from '../../Utilities/helpers';
 
 export const SystemsTable = ({
   columns,
   showAllSystems,
   policyId,
-  query,
   showActions,
   enableExport,
   compliantFilter,
@@ -64,6 +64,7 @@ export const SystemsTable = ({
       },
     }
   );
+
   const {
     toolbarProps: conditionalFilter,
     filterString,
@@ -97,9 +98,12 @@ export const SystemsTable = ({
     },
   });
 
+  const constructedQuery = constructQuery(columns);
+
   const systemFetchArguments = {
-    query,
+    query: constructedQuery.query,
     variables: {
+      ...constructedQuery.fragments,
       tags: currentTags,
       filter: systemsFilter,
       ...(policyId && { policyId }),

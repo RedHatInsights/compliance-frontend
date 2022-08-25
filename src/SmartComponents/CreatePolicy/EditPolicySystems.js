@@ -14,7 +14,6 @@ import {
   WizardContextConsumer,
 } from '@patternfly/react-core';
 import { SystemsTable } from 'SmartComponents';
-import { GET_SYSTEMS_WITH_POLICIES } from '../SystemsTable/constants';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -108,7 +107,6 @@ export const EditPolicySystems = ({
             remediationsEnabled={false}
             compact
             showActions={false}
-            query={GET_SYSTEMS_WITH_POLICIES}
             defaultFilter={
               osMajorVersion &&
               `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
