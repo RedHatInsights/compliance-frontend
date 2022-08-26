@@ -87,7 +87,7 @@ export const GET_SYSTEMS_WITH_REPORTS = gql`
             score
             supported
             benchmark {
-              ssgVersion: version
+              version
             }
             osMajorVersion
             rules {

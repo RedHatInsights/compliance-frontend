@@ -41,6 +41,9 @@ const QUERY = gql`
         score
         supported
         osMajorVersion
+        benchmark {
+          version
+        }
         policy {
           id
         }

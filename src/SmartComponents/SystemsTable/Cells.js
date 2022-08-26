@@ -88,7 +88,7 @@ export const SSGVersions = ({ testResultProfiles = [] }) =>
     ? testResultProfiles.map((profile) => (
         <SSGVersion
           key={`ssgversion-${profile.id}`}
-          ssgVersion={profile?.benchmark?.ssgVersion}
+          ssgVersion={profile?.benchmark?.version}
           supported={profile?.supported}
         />
       ))

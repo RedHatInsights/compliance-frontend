@@ -32,9 +32,9 @@ const PolicyRulesTab = ({ loading, policy }) => {
         <Text component={TextVariants.p}>
           <strong>What rules are shown on this list?&nbsp;</strong>
           This view shows rules that are from the latest SSG version (
-          {policy.benchmark.ssgVersion}). If you are using a different version
-          of SSG for systems in this policy, those rules will be different and
-          can be viewed on the systems details page.
+          {policy.benchmark.version}). If you are using a different version of
+          SSG for systems in this policy, those rules will be different and can
+          be viewed on the systems details page.
         </Text>
       </PageSection>
       <RulesTable

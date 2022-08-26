@@ -20,7 +20,7 @@ const buildProfile = (currentCount, attributes = {}) => ({
   lastScanned: new Date('2021-08-31T00:00:00+00:00'),
   rules: buildRules(),
   compliant: true,
-  benchmark: { ssgVersion: '0.14.5' },
+  benchmark: { version: '0.14.5' },
   supported: true,
   ...attributes,
 });

@@ -149,7 +149,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -190,7 +190,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -231,7 +231,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -271,7 +271,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -311,7 +311,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -352,7 +352,7 @@ exports[`RulesTable expect to pass on options 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -587,7 +587,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -628,7 +628,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -669,7 +669,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -709,7 +709,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -749,7 +749,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -790,7 +790,7 @@ exports[`RulesTable expect to render without error 1`] = `
         "identifier": null,
         "profile": Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",

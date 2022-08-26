@@ -745,10 +745,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                                                     "kind": "SelectionSet",
                                                     "selections": Array [
                                                       Object {
-                                                        "alias": Object {
-                                                          "kind": "Name",
-                                                          "value": "ssgVersion",
-                                                        },
+                                                        "alias": undefined,
                                                         "arguments": Array [],
                                                         "directives": Array [],
                                                         "kind": "Field",
@@ -1054,7 +1051,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 1143,
+                  "end": 1131,
                   "start": 0,
                 },
               }
@@ -1821,10 +1818,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                                                     "kind": "SelectionSet",
                                                     "selections": Array [
                                                       Object {
-                                                        "alias": Object {
-                                                          "kind": "Name",
-                                                          "value": "ssgVersion",
-                                                        },
+                                                        "alias": undefined,
                                                         "arguments": Array [],
                                                         "directives": Array [],
                                                         "kind": "Field",
@@ -2130,7 +2124,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 ],
                 "kind": "Document",
                 "loc": Object {
-                  "end": 1143,
+                  "end": 1131,
                   "start": 0,
                 },
               }

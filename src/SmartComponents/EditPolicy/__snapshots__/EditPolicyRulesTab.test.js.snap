@@ -6,7 +6,7 @@ Array [
     "newOsMinorVersion": "9",
     "profile": Object {
       "benchmark": Object {
-        "ssgVersion": "0.1.49",
+        "version": "0.1.49",
       },
       "id": "b71376fd-015e-4209-99af",
       "name": "United States Government Configuration Baseline123",
@@ -119,7 +119,7 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
             "newOsMinorVersion": "9",
             "profile": Object {
               "benchmark": Object {
-                "ssgVersion": "0.1.49",
+                "version": "0.1.49",
               },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",

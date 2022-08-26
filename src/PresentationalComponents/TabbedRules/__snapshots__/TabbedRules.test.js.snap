@@ -18,7 +18,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.49",
+                  "version": "0.1.49",
                 },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
@@ -60,7 +60,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -107,7 +107,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.45",
+                  "version": "0.1.45",
                 },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
@@ -149,7 +149,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -194,7 +194,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.46",
+                  "version": "0.1.46",
                 },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
@@ -236,7 +236,7 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -290,7 +290,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.49",
+                  "version": "0.1.49",
                 },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
@@ -331,7 +331,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -378,7 +378,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.45",
+                  "version": "0.1.45",
                 },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
@@ -419,7 +419,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -464,7 +464,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.46",
+                  "version": "0.1.46",
                 },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
@@ -505,7 +505,7 @@ exports[`TabbedRules renders tabs with default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -559,7 +559,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.49",
+                  "version": "0.1.49",
                 },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
@@ -600,7 +600,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -647,7 +647,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.45",
+                  "version": "0.1.45",
                 },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
@@ -688,7 +688,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -733,7 +733,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.46",
+                  "version": "0.1.46",
                 },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
@@ -774,7 +774,7 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
@@ -828,7 +828,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.49",
+                  "version": "0.1.49",
                 },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
@@ -869,7 +869,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.49",
+            "version": "0.1.49",
           },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
@@ -916,7 +916,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.45",
+                  "version": "0.1.45",
                 },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
@@ -957,7 +957,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.45",
+            "version": "0.1.45",
           },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
@@ -1006,7 +1006,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
             profile={
               Object {
                 "benchmark": Object {
-                  "ssgVersion": "0.1.46",
+                  "version": "0.1.46",
                 },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
@@ -1047,7 +1047,7 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       profile={
         Object {
           "benchmark": Object {
-            "ssgVersion": "0.1.46",
+            "version": "0.1.46",
           },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",

@@ -34,7 +34,7 @@ export const OperatingSystem = ({
   benchmark,
   policy,
 }) => {
-  const { ssgVersion } = benchmark || {};
+  const { version: ssgVersion } = benchmark || {};
   const supported = unsupportedHostCount === 0;
   const ssgVersionLabel = 'SSG: ' + ssgVersion;
 

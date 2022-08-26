@@ -64,7 +64,7 @@ export const QUERY = gql`
             title
             latestSupportedOsMinorVersions
             osMajorVersion
-            ssgVersion: version
+            version
           }
           rules {
             title

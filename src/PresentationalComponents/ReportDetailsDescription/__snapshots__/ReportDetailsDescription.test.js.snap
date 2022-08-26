@@ -9,8 +9,8 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
       Object {
         "__typename": "Profile",
         "benchmark": Object {
-          "ssgVersion": "0.1.49",
           "title": "Guide to the Secure Configuration of RHEL 7",
+          "version": "0.1.49",
         },
         "businessObjective": null,
         "complianceThreshold": 100,
@@ -31,7 +31,7 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
           "profiles": Array [
             Object {
               "benchmark": Object {
-                "ssgVersion": "0.1.49",
+                "version": "0.1.49",
               },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
@@ -61,7 +61,7 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
             },
             Object {
               "benchmark": Object {
-                "ssgVersion": "0.1.45",
+                "version": "0.1.45",
               },
               "id": "b71376fd-015e-4209-99ac",
               "name": "United States Government Configuration Baseline123",
@@ -90,7 +90,7 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
             },
             Object {
               "benchmark": Object {
-                "ssgVersion": "0.1.46",
+                "version": "0.1.46",
               },
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",

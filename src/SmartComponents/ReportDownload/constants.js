@@ -39,7 +39,7 @@ export const GET_SYSTEMS = gql`
             score
             supported
             benchmark {
-              ssgVersion: version
+              version
             }
             rulesFailed
           }

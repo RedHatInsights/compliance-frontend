@@ -441,10 +441,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
                                           "kind": "SelectionSet",
                                           "selections": Array [
                                             Object {
-                                              "alias": Object {
-                                                "kind": "Name",
-                                                "value": "ssgVersion",
-                                              },
+                                              "alias": undefined,
                                               "arguments": Array [],
                                               "directives": Array [],
                                               "kind": "Field",
@@ -750,7 +747,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1213,
+        "end": 1131,
         "start": 0,
       },
     }
@@ -1208,10 +1205,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
                                           "kind": "SelectionSet",
                                           "selections": Array [
                                             Object {
-                                              "alias": Object {
-                                                "kind": "Name",
-                                                "value": "ssgVersion",
-                                              },
+                                              "alias": undefined,
                                               "arguments": Array [],
                                               "directives": Array [],
                                               "kind": "Field",
@@ -1517,7 +1511,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1213,
+        "end": 1131,
         "start": 0,
       },
     }
