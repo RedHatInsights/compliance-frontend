@@ -189,7 +189,6 @@ export const EditPolicyProfilesRules = ({
     }
   }, [JSON.stringify(profiles), loadingState]);
 
-  console.log(tabsData);
   return (
     <React.Fragment>
       <TextContent className="pf-u-pb-md">
