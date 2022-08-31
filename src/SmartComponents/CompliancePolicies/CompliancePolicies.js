@@ -24,19 +24,14 @@ const QUERY = gql`
       edges {
         node {
           id
-          name
           description
           refId
           complianceThreshold
           totalHostCount
           osMajorVersion
-          policyType
           policy {
             id
-            name
-          }
-          hosts {
-            id
+            name            
           }
           businessObjective {
             id

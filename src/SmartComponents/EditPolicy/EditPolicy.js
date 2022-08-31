@@ -13,6 +13,8 @@ import {
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave, useLinkToPolicy } from './hooks';
 
+//Can we pass down all data from Complience detail page components?
+//Why is there multiple level inner queries
 export const MULTIVERSION_QUERY = gql`
   query Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -24,7 +26,6 @@ export const MULTIVERSION_QUERY = gql`
       totalHostCount
       compliantHostCount
       complianceThreshold
-      osMajorVersion
       osMajorVersion
       supportedOsVersions
       lastScanned

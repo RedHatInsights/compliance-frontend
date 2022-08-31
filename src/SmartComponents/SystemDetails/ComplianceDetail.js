@@ -19,6 +19,7 @@ import EmptyState from './EmptyState';
 
 const COMPLIANCE_API_ROOT = '/api/compliance';
 
+//Question: what is testResultProfiles? why there is overlapping same policy query?
 const QUERY = gql`
   query System($systemId: String!) {
     system(id: $systemId) {

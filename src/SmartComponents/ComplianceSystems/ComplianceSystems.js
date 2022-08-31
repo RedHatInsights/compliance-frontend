@@ -18,7 +18,6 @@ const QUERY = gql`
         node {
           id
           name
-          refId
           osMajorVersion
         }
       }

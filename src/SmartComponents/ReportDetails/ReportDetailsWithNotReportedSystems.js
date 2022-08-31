@@ -37,6 +37,7 @@ import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
 
+//can be optimized
 export const QUERY = gql`
   query Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -56,15 +57,9 @@ export const QUERY = gql`
         name
         profiles {
           benchmark {
-            profiles {
-              ssgVersion
-            }
+            version
           }
         }
-      }
-      benchmark {
-        id
-        version
       }
       businessObjective {
         id
@@ -74,6 +69,7 @@ export const QUERY = gql`
   }
 `;
 
+//what is the difference between ReportDetails and ReportDetailsWithNotreportedSystems?
 export const ReportDetails = ({ route }) => {
   const { report_id: policyId } = useParams();
   const pdfReportEnabled = useFeature('pdfReport');
@@ -92,8 +88,8 @@ export const ReportDetails = ({ route }) => {
     pageTitle = `Report: ${policyName}`;
     ssgVersions = [
       ...new Set(
-        profile.policy.profiles.flatMap(({ benchmark: { profiles } }) =>
-          profiles.map(({ ssgVersion }) => ssgVersion)
+        profile.policy.profiles.flatMap(({ benchmark: { version } }) =>
+          version
         )
       ),
     ];

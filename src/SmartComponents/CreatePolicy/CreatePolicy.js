@@ -78,7 +78,7 @@ export const CreatePolicyForm = ({
     {
       id: 5,
       name: 'Review',
-      component: <ReviewCreatedPolicy />,
+      component: <ReviewCreatedPolicy osMajorVersion={osMajorVersion}/>,
       nextButtonText: 'Finish',
       canJumpTo:
         validateRulesPage(selectedRuleRefIds) &&

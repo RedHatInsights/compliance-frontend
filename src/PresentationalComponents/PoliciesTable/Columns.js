@@ -6,10 +6,10 @@ import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
-const PolicyNameCell = ({ id, policy, policyType }) => (
+const PolicyNameCell = ({ id, policy }) => (
   <TextContent>
     <Link to={'/scappolicies/' + id}>{policy.name}</Link>
-    <GreySmallText>{policyType}</GreySmallText>
+    <GreySmallText>{policy.name}</GreySmallText>
   </TextContent>
 );
 
@@ -31,7 +31,7 @@ export const Name = {
 
 const PolicyType = {
   title: 'Policy Type',
-  renderExport: (policy) => policy.policyType,
+  renderExport: (policy) => policy.name,
 };
 
 const osString = (policy) => `RHEL ${policy.osMajorVersion}`;
