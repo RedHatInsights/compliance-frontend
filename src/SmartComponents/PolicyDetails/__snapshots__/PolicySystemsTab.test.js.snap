@@ -435,9 +435,24 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
                                         "kind": "Field",
                                         "name": Object {
                                           "kind": "Name",
-                                          "value": "ssgVersion",
+                                          "value": "benchmark",
                                         },
-                                        "selectionSet": undefined,
+                                        "selectionSet": Object {
+                                          "kind": "SelectionSet",
+                                          "selections": Array [
+                                            Object {
+                                              "alias": undefined,
+                                              "arguments": Array [],
+                                              "directives": Array [],
+                                              "kind": "Field",
+                                              "name": Object {
+                                                "kind": "Name",
+                                                "value": "version",
+                                              },
+                                              "selectionSet": undefined,
+                                            },
+                                          ],
+                                        },
                                       },
                                       Object {
                                         "alias": undefined,
@@ -732,7 +747,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1094,
+        "end": 1131,
         "start": 0,
       },
     }
@@ -1184,9 +1199,24 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
                                         "kind": "Field",
                                         "name": Object {
                                           "kind": "Name",
-                                          "value": "ssgVersion",
+                                          "value": "benchmark",
                                         },
-                                        "selectionSet": undefined,
+                                        "selectionSet": Object {
+                                          "kind": "SelectionSet",
+                                          "selections": Array [
+                                            Object {
+                                              "alias": undefined,
+                                              "arguments": Array [],
+                                              "directives": Array [],
+                                              "kind": "Field",
+                                              "name": Object {
+                                                "kind": "Name",
+                                                "value": "version",
+                                              },
+                                              "selectionSet": undefined,
+                                            },
+                                          ],
+                                        },
                                       },
                                       Object {
                                         "alias": undefined,
@@ -1481,7 +1511,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
       ],
       "kind": "Document",
       "loc": Object {
-        "end": 1094,
+        "end": 1131,
         "start": 0,
       },
     }

@@ -48,6 +48,9 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
         Array [
           Object {
             "profile": Object {
+              "benchmark": Object {
+                "version": "0.1.49",
+              },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -73,12 +76,14 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.49",
             },
             "systemCount": 2,
           },
           Object {
             "profile": Object {
+              "benchmark": Object {
+                "version": "0.1.46",
+              },
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -104,7 +109,6 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.46",
             },
             "systemCount": 1,
           },

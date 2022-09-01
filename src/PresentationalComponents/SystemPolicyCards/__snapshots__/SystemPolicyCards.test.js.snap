@@ -16,6 +16,9 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
     policies={
       Array [
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "compliant": false,
           "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -24,10 +27,12 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
           "rulesFailed": 10,
           "rulesPassed": 30,
           "score": 75,
-          "ssgVersion": "0.1.45",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "compliant": false,
           "lastScanned": null,
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7 2",
@@ -36,7 +41,6 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
           "rulesFailed": 0,
           "rulesPassed": 0,
           "score": 0,
-          "ssgVersion": "0.1.45",
           "supported": true,
         },
       ]
@@ -62,6 +66,9 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
               onClick={[Function]}
               policy={
                 Object {
+                  "benchmark": Object {
+                    "version": "0.1.45",
+                  },
                   "compliant": false,
                   "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -70,7 +77,6 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                   "rulesFailed": 10,
                   "rulesPassed": 30,
                   "score": 75,
-                  "ssgVersion": "0.1.45",
                   "supported": true,
                 }
               }
@@ -607,6 +613,9 @@ exports[`SystemPolicyCards component should render real table 1`] = `
     policies={
       Array [
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "compliant": false,
           "lastScanned": "2019-03-06T06:20:13.000Z",
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -615,10 +624,12 @@ exports[`SystemPolicyCards component should render real table 1`] = `
           "rulesFailed": 10,
           "rulesPassed": 30,
           "score": 75,
-          "ssgVersion": "0.1.45",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "compliant": false,
           "lastScanned": null,
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7 2",
@@ -627,7 +638,6 @@ exports[`SystemPolicyCards component should render real table 1`] = `
           "rulesFailed": 0,
           "rulesPassed": 0,
           "score": 0,
-          "ssgVersion": "0.1.45",
           "supported": true,
         },
       ]
@@ -653,6 +663,9 @@ exports[`SystemPolicyCards component should render real table 1`] = `
               onClick={[Function]}
               policy={
                 Object {
+                  "benchmark": Object {
+                    "version": "0.1.45",
+                  },
                   "compliant": false,
                   "lastScanned": "2019-03-06T06:20:13.000Z",
                   "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
@@ -661,7 +674,6 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                   "rulesFailed": 10,
                   "rulesPassed": 30,
                   "score": 75,
-                  "ssgVersion": "0.1.45",
                   "supported": true,
                 }
               }

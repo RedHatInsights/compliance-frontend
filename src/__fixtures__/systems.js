@@ -10,7 +10,7 @@ export const systems = [
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,
                     compliant: false,
-                    ssgVersion: '0.14.3',
+                    benchmark: { version: '0.14.3' },
                     rules: [
                         {
                             refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
@@ -85,7 +85,7 @@ export const systems = [
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,
                     compliant: false,
-                    ssgVersion: '0.14.2',
+                    benchmark: { version: '0.14.2' },
                     rules: [
                         {
                             refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
@@ -320,7 +320,7 @@ export const systems = [
                     rules: [],
                     score: 0,
                     compliant: false,
-                    ssgVersion: '0.14.5',
+                    benchmark: { version: '0.14.5' },
                     supported: true
                 }
             ],

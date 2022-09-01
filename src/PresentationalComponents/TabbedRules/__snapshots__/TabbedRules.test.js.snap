@@ -17,6 +17,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.49",
+                },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -42,7 +45,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.49",
               }
             }
           />
@@ -57,6 +59,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       handleSelect={[Function]}
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.49",
+          },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -82,7 +87,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.49",
         }
       }
       rulesTableProps={Object {}}
@@ -102,6 +106,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
             newOsMinorVersion="99"
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.45",
+                },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -126,7 +133,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.45",
               }
             }
           />
@@ -142,6 +148,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       newOsMinorVersion="99"
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -166,7 +175,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.45",
         }
       }
       rulesTableProps={Object {}}
@@ -185,6 +193,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.46",
+                },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -210,7 +221,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.46",
               }
             }
           />
@@ -225,6 +235,9 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
       handleSelect={[Function]}
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.46",
+          },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -250,7 +263,6 @@ exports[`TabbedRules passes setSelectedRuleRefIds via internal handleSelect 1`] 
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.46",
         }
       }
       rulesTableProps={Object {}}
@@ -277,6 +289,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.49",
+                },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -302,7 +317,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.49",
               }
             }
           />
@@ -316,6 +330,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.49",
+          },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -341,7 +358,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.49",
         }
       }
       rulesTableProps={Object {}}
@@ -361,6 +377,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
             newOsMinorVersion="99"
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.45",
+                },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -385,7 +404,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.45",
               }
             }
           />
@@ -400,6 +418,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
       newOsMinorVersion="99"
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -424,7 +445,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.45",
         }
       }
       rulesTableProps={Object {}}
@@ -443,6 +463,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.46",
+                },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -468,7 +491,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.46",
               }
             }
           />
@@ -482,6 +504,9 @@ exports[`TabbedRules renders tabs with default 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.46",
+          },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -507,7 +532,6 @@ exports[`TabbedRules renders tabs with default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.46",
         }
       }
       rulesTableProps={Object {}}
@@ -534,6 +558,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.49",
+                },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -559,7 +586,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.49",
               }
             }
           />
@@ -573,6 +599,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.49",
+          },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -598,7 +627,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.49",
         }
       }
       rulesTableProps={Object {}}
@@ -618,6 +646,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
             newOsMinorVersion="99"
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.45",
+                },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -642,7 +673,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.45",
               }
             }
           />
@@ -657,6 +687,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
       newOsMinorVersion="99"
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -681,7 +714,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.45",
         }
       }
       rulesTableProps={Object {}}
@@ -700,6 +732,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.46",
+                },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -725,7 +760,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.46",
               }
             }
           />
@@ -739,6 +773,9 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.46",
+          },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -764,7 +801,6 @@ exports[`TabbedRules renders tabs with second item as default 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.46",
         }
       }
       rulesTableProps={Object {}}
@@ -791,6 +827,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.49",
+                },
                 "id": "b71376fd-015e-4209-99af",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -816,7 +855,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.49",
               }
             }
           />
@@ -830,6 +868,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.49",
+          },
           "id": "b71376fd-015e-4209-99af",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -855,7 +896,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.49",
         }
       }
       rulesTableProps={Object {}}
@@ -875,6 +915,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
             newOsMinorVersion="99"
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.45",
+                },
                 "id": "b71376fd-015e-4209-99ac",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -899,7 +942,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.45",
               }
             }
           />
@@ -914,6 +956,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
       newOsMinorVersion="99"
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.45",
+          },
           "id": "b71376fd-015e-4209-99ac",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -938,7 +983,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.45",
         }
       }
       rulesTableProps={Object {}}
@@ -961,6 +1005,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
           <OsVersionText
             profile={
               Object {
+                "benchmark": Object {
+                  "version": "0.1.46",
+                },
                 "id": "b71376fd-015e-4209-99ad",
                 "name": "United States Government Configuration Baseline123",
                 "osMajorVersion": "7",
@@ -986,7 +1033,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
                     "title": "Record Attempts to Alter Time Through clock_settime",
                   },
                 ],
-                "ssgVersion": "0.1.46",
               }
             }
           />
@@ -1000,6 +1046,9 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
     <ProfileTabContent
       profile={
         Object {
+          "benchmark": Object {
+            "version": "0.1.46",
+          },
           "id": "b71376fd-015e-4209-99ad",
           "name": "United States Government Configuration Baseline123",
           "osMajorVersion": "7",
@@ -1025,7 +1074,6 @@ exports[`TabbedRules sets selected rule ref ids 1`] = `
               "title": "Record Attempts to Alter Time Through clock_settime",
             },
           ],
-          "ssgVersion": "0.1.46",
         }
       }
       rulesTableProps={Object {}}

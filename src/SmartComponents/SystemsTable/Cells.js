@@ -86,7 +86,11 @@ SSGVersion.propTypes = {
 export const SSGVersions = ({ testResultProfiles = [] }) =>
   testResultProfiles.length !== 0
     ? testResultProfiles.map((profile) => (
-        <SSGVersion key={`ssgversion-${profile.id}`} {...profile} />
+        <SSGVersion
+          key={`ssgversion-${profile.id}`}
+          ssgVersion={profile?.benchmark?.version}
+          supported={profile?.supported}
+        />
       ))
     : 'Unknown';
 

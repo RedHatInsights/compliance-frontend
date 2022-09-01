@@ -29,7 +29,7 @@ export const policies = {
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
                             osMinorVersion: '9',
-                            ssgVersion: '0.1.49',
+                            benchmark: { version: '0.1.49' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -56,7 +56,7 @@ export const policies = {
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
-                            ssgVersion: '0.1.45',
+                            benchmark: { version: '0.1.45' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -84,7 +84,7 @@ export const policies = {
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
                             osMajorVersion: '7',
                             osMinorVersion: '8',
-                            ssgVersion: '0.1.46',
+                            benchmark: { version: '0.1.46' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',
@@ -132,7 +132,7 @@ export const policies = {
                             id: 'b71376fd-015e-4209-99ae',
                             name: 'United States Government Configuration Baseline123',
                             refId: 'xccdf_org.ssgproject.content_profile_ospp123',
-                            ssg_version: '0.1.45',
+                            benchmark: { version: '0.1.45' },
                             rules: [
                                 {
                                     title: 'Record Attempts to Alter the localtime File',

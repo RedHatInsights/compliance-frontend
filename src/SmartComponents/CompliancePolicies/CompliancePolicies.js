@@ -35,11 +35,6 @@ const QUERY = gql`
             id
             name
           }
-          benchmark {
-            id
-            title
-            version
-          }
           hosts {
             id
           }

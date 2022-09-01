@@ -29,7 +29,6 @@ const QUERY = gql`
           compliantHostCount
           unsupportedHostCount
           osMajorVersion
-          ssgVersion
           complianceThreshold
           businessObjective {
             id
@@ -38,10 +37,6 @@ const QUERY = gql`
           policy {
             id
             name
-            benchmark {
-              id
-              version
-            }
           }
           benchmark {
             id

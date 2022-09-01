@@ -17,7 +17,7 @@ describe('SystemPolicyCard component', () => {
     policyType: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
     compliant: false,
     supported: true,
-    ssgVersion: '0.1.45',
+    benchmark: { version: '0.1.45' },
     policy: {
       name: 'PCI-DSS Policy',
     },

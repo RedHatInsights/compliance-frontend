@@ -137,7 +137,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "6.1",
@@ -187,7 +186,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "6.1",
@@ -237,7 +235,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "6.1",
@@ -287,7 +284,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "6.1",
@@ -337,7 +333,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "6.1",
@@ -396,7 +391,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "7.1",
@@ -446,7 +440,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "7.1",
@@ -496,7 +489,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "7.1",
@@ -546,7 +538,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "7.1",
@@ -596,7 +587,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "7.1",
@@ -655,7 +645,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "8.1",
@@ -705,7 +694,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "8.1",
@@ -755,7 +743,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "8.1",
@@ -805,7 +792,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "8.1",
@@ -855,7 +841,6 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "title": "Profile #0 Rule #4",
                         },
                       ],
-                      "ssgVersion": "0.14.5",
                       "supported": true,
                       "supportedOsVersions": Array [
                         "8.1",
