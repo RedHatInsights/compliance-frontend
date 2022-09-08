@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Tab, Badge } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
@@ -39,23 +39,22 @@ const TabbedRules = ({
   ouiaId,
   ...rulesTableProps
 }) => {
-  const handleSelect = (
-    profile,
-    newOsMinorVersion,
-    profileSelectedRuleRefIds
-  ) => {
-    const filteredSelection = (selectedRuleRefIds || []).filter(
-      (selectionItem) =>
-        !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
-    );
+  const handleSelect = useCallback(
+    (profile, newOsMinorVersion, profileSelectedRuleRefIds) => {
+      const filteredSelection = (selectedRuleRefIds || []).filter(
+        (selectionItem) =>
+          !matchesSelectionItem(selectionItem, profile, newOsMinorVersion)
+      );
 
-    const newItem = {
-      id: profile.id,
-      osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
-      ruleRefIds: profileSelectedRuleRefIds,
-    };
-    setSelectedRuleRefIds([newItem, ...filteredSelection]);
-  };
+      const newItem = {
+        id: profile.id,
+        osMinorVersion: newOsMinorVersion || profile.osMinorVersion,
+        ruleRefIds: profileSelectedRuleRefIds,
+      };
+      setSelectedRuleRefIds([newItem, ...filteredSelection]);
+    },
+    [selectedRuleRefIds]
+  );
 
   return (
     <RoutedTabs
