@@ -31,7 +31,7 @@ const QUERY = gql`
           osMajorVersion
           policy {
             id
-            name            
+            name
           }
           businessObjective {
             id

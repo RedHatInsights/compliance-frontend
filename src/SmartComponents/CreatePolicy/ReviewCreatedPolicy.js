@@ -13,64 +13,63 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
 const ReviewCreatedPolicy = ({
-
   name,
   businessObjective,
   complianceThreshold,
   parentProfileName,
   osMinorVersionCounts,
-  osMajorVersion
+  osMajorVersion,
 }) => (
-    <TextContent>
-      <Text component={TextVariants.h1}>Review</Text>
-      <Text>Review your SCAP policy before finishing.</Text>
-      <Text component={TextVariants.h3} style={{ marginTop: 0 }}>
-        {name}
-      </Text>
-      <TextList component={TextListVariants.dl}>
-        <TextListItem component={TextListItemVariants.dt}>
-          Policy type
-        </TextListItem>
-        <TextListItem component={TextListItemVariants.dd}>
-          {parentProfileName}
-        </TextListItem>
-        <TextListItem component={TextListItemVariants.dt}>
-          Compliance threshold
-        </TextListItem>
-        <TextListItem component={TextListItemVariants.dd}>
-          {complianceThreshold}%
-        </TextListItem>
-        {businessObjective && (
-          <React.Fragment>
-            <TextListItem component={TextListItemVariants.dt}>
-              Business objective
-            </TextListItem>
-            <TextListItem component={TextListItemVariants.dd}>
-              {businessObjective}
-            </TextListItem>
-          </React.Fragment>
-        )}
-        <TextListItem component={TextListItemVariants.dt}>Systems</TextListItem>
-        <TextListItem component={TextListItemVariants.dd}>
-          <TextList component={TextListVariants.dl}>
-            {osMinorVersionCounts.map(({ osMinorVersion, count }) => (
-              <React.Fragment key={osMinorVersion}>
-                <TextListItem
-                  component={TextListItemVariants.dt}
-                  style={{ fontWeight: 'normal' }}
-                >
-                  RHEL {osMajorVersion}.{osMinorVersion}
-                </TextListItem>
-                <TextListItem component={TextListItemVariants.dd}>
-                  {count} {count > 1 ? 'systems' : 'system'}
-                </TextListItem>
-              </React.Fragment>
-            ))}
-          </TextList>
-        </TextListItem>
-      </TextList>
-    </TextContent>
-  );
+  <TextContent>
+    <Text component={TextVariants.h1}>Review</Text>
+    <Text>Review your SCAP policy before finishing.</Text>
+    <Text component={TextVariants.h3} style={{ marginTop: 0 }}>
+      {name}
+    </Text>
+    <TextList component={TextListVariants.dl}>
+      <TextListItem component={TextListItemVariants.dt}>
+        Policy type
+      </TextListItem>
+      <TextListItem component={TextListItemVariants.dd}>
+        {parentProfileName}
+      </TextListItem>
+      <TextListItem component={TextListItemVariants.dt}>
+        Compliance threshold
+      </TextListItem>
+      <TextListItem component={TextListItemVariants.dd}>
+        {complianceThreshold}%
+      </TextListItem>
+      {businessObjective && (
+        <React.Fragment>
+          <TextListItem component={TextListItemVariants.dt}>
+            Business objective
+          </TextListItem>
+          <TextListItem component={TextListItemVariants.dd}>
+            {businessObjective}
+          </TextListItem>
+        </React.Fragment>
+      )}
+      <TextListItem component={TextListItemVariants.dt}>Systems</TextListItem>
+      <TextListItem component={TextListItemVariants.dd}>
+        <TextList component={TextListVariants.dl}>
+          {osMinorVersionCounts.map(({ osMinorVersion, count }) => (
+            <React.Fragment key={osMinorVersion}>
+              <TextListItem
+                component={TextListItemVariants.dt}
+                style={{ fontWeight: 'normal' }}
+              >
+                RHEL {osMajorVersion}.{osMinorVersion}
+              </TextListItem>
+              <TextListItem component={TextListItemVariants.dd}>
+                {count} {count > 1 ? 'systems' : 'system'}
+              </TextListItem>
+            </React.Fragment>
+          ))}
+        </TextList>
+      </TextListItem>
+    </TextList>
+  </TextContent>
+);
 
 ReviewCreatedPolicy.propTypes = {
   benchmarkId: propTypes.string,

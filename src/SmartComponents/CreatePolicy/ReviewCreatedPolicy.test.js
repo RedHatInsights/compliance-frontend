@@ -67,9 +67,7 @@ describe('ReviewCreatedPolicy', () => {
     }));
     component = mount(
       <Provider store={store}>
-        <ReviewCreatedPolicy 
-          osMajorVersion={'7'}
-        />
+        <ReviewCreatedPolicy osMajorVersion={'7'} />
       </Provider>
     );
     expect(toJson(component)).toMatchSnapshot();
@@ -83,9 +81,7 @@ describe('ReviewCreatedPolicy', () => {
     }));
     component = mount(
       <Provider store={store}>
-        <ReviewCreatedPolicy 
-          osMajorVersion={'7'} 
-        />
+        <ReviewCreatedPolicy osMajorVersion={'7'} />
       </Provider>
     );
     expect(toJson(component)).toMatchSnapshot();

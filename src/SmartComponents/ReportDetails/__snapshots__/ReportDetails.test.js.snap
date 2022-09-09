@@ -24,7 +24,6 @@ exports[`ReportDetails expect to render without error 1`] = `
             "id": "thepolicyid",
             "name": "the policy name",
           },
-          "policyType": "policy type",
           "refId": "121212",
           "testResultHostCount": 10,
           "unsupportedHostCount": 5,
@@ -83,7 +82,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             title="Report: the policy name"
           />
           <SubPageTitle>
-            policy type
+            the policy name
           </SubPageTitle>
         </GridItem>
         <GridItem
@@ -118,7 +117,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
-                  "policyType": "policy type",
                   "refId": "121212",
                   "testResultHostCount": 10,
                   "unsupportedHostCount": 5,
@@ -155,7 +153,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
-                  "policyType": "policy type",
                   "refId": "121212",
                   "testResultHostCount": 10,
                   "unsupportedHostCount": 5,
@@ -278,7 +275,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "id": "thepolicyid",
                   "name": "the policy name",
                 },
-                "policyType": "policy type",
                 "refId": "121212",
                 "testResultHostCount": 10,
                 "unsupportedHostCount": 5,
@@ -419,7 +415,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             "id": "thepolicyid",
             "name": "the policy name",
           },
-          "policyType": "policy type",
           "refId": "121212",
           "testResultHostCount": 10,
           "unsupportedHostCount": 5,
@@ -478,7 +473,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             title="Report: the policy name"
           />
           <SubPageTitle>
-            policy type
+            the policy name
           </SubPageTitle>
         </GridItem>
         <GridItem
@@ -513,7 +508,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
-                  "policyType": "policy type",
                   "refId": "121212",
                   "testResultHostCount": 10,
                   "unsupportedHostCount": 5,
@@ -550,7 +544,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
-                  "policyType": "policy type",
                   "refId": "121212",
                   "testResultHostCount": 10,
                   "unsupportedHostCount": 5,
@@ -673,7 +666,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "id": "thepolicyid",
                   "name": "the policy name",
                 },
-                "policyType": "policy type",
                 "refId": "121212",
                 "testResultHostCount": 10,
                 "unsupportedHostCount": 5,

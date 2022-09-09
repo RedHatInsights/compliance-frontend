@@ -86,9 +86,7 @@ export const ReportDetails = ({ route }) => {
     pageTitle = `Report: ${policyName}`;
     ssgVersions = [
       ...new Set(
-        profile.policy.profiles.flatMap(({ benchmark: { version } }) =>
-          version
-        )
+        profile.policy.profiles.flatMap(({ benchmark: { version } }) => version)
       ),
     ];
   }
