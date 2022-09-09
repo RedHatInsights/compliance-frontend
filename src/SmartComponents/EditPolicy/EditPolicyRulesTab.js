@@ -102,8 +102,8 @@ export const EditPolicyRulesTab = ({
 
   const {
     data: benchmarksData,
-    error: benchmarksError,
-    loading: benchmarksLoading,
+    error,
+    loading,
   } = useQuery(BENCHMARKS_QUERY, {
     variables: {
       filter: benchmarkSearch,
@@ -116,9 +116,7 @@ export const EditPolicyRulesTab = ({
   const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
   const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
 
-  const loadingState = benchmarksLoading ? true : undefined;
-  const dataState =
-    !loadingState && tabsData?.length > 0 ? profilesData : undefined;
+  const dataState = !loading && tabsData?.length > 0 ? tabsData : undefined;
 
   useEffect(() => {
     if (policy.policy.profiles) {
@@ -136,15 +134,14 @@ export const EditPolicyRulesTab = ({
       });
     }
   }, [policy.policy.profiles]);
-  const error = benchmarksError;
 
   return (
     <StateViewWithError
       stateValues={{
         error,
         data: !error && dataState,
-        loading: loadingState,
-        empty: !loadingState && !dataState && !error,
+        loading,
+        empty: !loading && !dataState && !error,
       }}
     >
       <StateViewPart stateKey="loading">

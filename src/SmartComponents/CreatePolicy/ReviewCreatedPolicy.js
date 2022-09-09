@@ -85,7 +85,7 @@ ReviewCreatedPolicy.propTypes = {
       count: propTypes.number,
     })
   ),
-  osMajorVersion: propTypes.string
+  osMajorVersion: propTypes.string.isRequired,
 };
 
 const selector = formValueSelector('policyForm');

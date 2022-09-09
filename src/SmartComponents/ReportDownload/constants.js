@@ -49,7 +49,6 @@ export const GET_SYSTEMS = gql`
   }
 `;
 
-//why inner policy and benchmark query? NOTE: benchmark verions is usually used with os info.
 export const GET_PROFILE = gql`
   query Profile($policyId: String!) {
     profile(id: $policyId) {
