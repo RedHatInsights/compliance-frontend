@@ -33,7 +33,6 @@ const SUPPORTED_PROFILES = gql`
             name
             refId
             description
-            complianceThreshold
             supportedOsVersions
             benchmark {
               id
