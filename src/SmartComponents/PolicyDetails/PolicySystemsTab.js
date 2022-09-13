@@ -6,7 +6,7 @@ import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITH_REPORTS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
-const PolicySystemsTab = ({ policy, dedicatedAction }) => (
+const PolicySystemsTab = ({ policy }) => (
   <SystemsTable
     columns={[
       Columns.customName({
@@ -26,7 +26,6 @@ const PolicySystemsTab = ({ policy, dedicatedAction }) => (
       policy?.hosts?.length === 0 && <NoSystemsTableWithWarning />
     }
     complianceThreshold={policy.complianceThreshold}
-    dedicatedAction={dedicatedAction}
   />
 );
 
@@ -38,7 +37,6 @@ PolicySystemsTab.propTypes = {
     hosts: propTypes.array.isRequired,
   }),
   systemTableProps: propTypes.object,
-  dedicatedAction: propTypes.object,
 };
 
 export default PolicySystemsTab;

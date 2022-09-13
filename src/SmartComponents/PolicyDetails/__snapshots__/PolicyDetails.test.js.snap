@@ -226,62 +226,6 @@ exports[`PolicyDetails expect to render without error 1`] = `
           eventKey="systems"
         >
           <PolicySystemsTab
-            dedicatedAction={
-              <EditSystemsButtonToolbarItem
-                backgroundLocation={
-                  Object {
-                    "hash": "details",
-                  }
-                }
-                hash=""
-                ouiaId="EditSystemsButton"
-                state={
-                  Object {
-                    "policy": Object {
-                      "benchmark": Object {
-                        "title": "benchmark",
-                        "version": "0.1.5",
-                      },
-                      "businessObjective": Object {
-                        "id": "1",
-                        "title": "BO 1",
-                      },
-                      "complianceThreshold": 1,
-                      "compliantHostCount": 1,
-                      "description": "profile description",
-                      "hosts": Array [],
-                      "id": "1",
-                      "name": "profile1",
-                      "osMajorVersion": "7",
-                      "policy": Object {
-                        "name": "parentpolicy",
-                        "profiles": Array [
-                          Object {
-                            "benchmark": Object {
-                              "title": "benchmark",
-                              "version": "0.1.5",
-                            },
-                            "businessObjective": Object {
-                              "id": "1",
-                              "title": "BO 1",
-                            },
-                            "description": "profile description",
-                            "id": "1",
-                            "name": "profile1",
-                            "osMinorVersion": "9",
-                            "refId": "121212",
-                          },
-                        ],
-                      },
-                      "refId": "121212",
-                      "totalHostCount": 1,
-                    },
-                  }
-                }
-                to="/scappolicies/1/edit"
-                variant="primary"
-              />
-            }
             policy={
               Object {
                 "benchmark": Object {

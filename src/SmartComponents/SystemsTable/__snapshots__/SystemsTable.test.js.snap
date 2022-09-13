@@ -66,6 +66,12 @@ exports[`SystemsTable returns 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -280,6 +286,12 @@ exports[`SystemsTable returns compact 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -594,6 +606,12 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -808,6 +826,12 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -1078,6 +1102,12 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -1284,6 +1314,12 @@ exports[`SystemsTable returns without actions 1`] = `
         }
       }
       columns={[Function]}
+      dedicatedAction={
+        <Memo(Connect(ComplianceRemediationButton))
+          allSystems={Array []}
+          selectedRules={Array []}
+        />
+      }
       disableDefaultColumns={true}
       exportConfig={
         Object {
@@ -1835,6 +1871,13 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
                 </div>
               </div>
             </div>
+            <div
+              class="pf-c-toolbar__item"
+            >
+              <button>
+                Remediation button mock
+              </button>
+            </div>
           </div>
           <div
             class="pf-c-toolbar__item pf-m-spacer-sm"
@@ -1902,6 +1945,7 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
       data-ouia-component-id="OUIA-Generated-Table-12"
       data-ouia-component-type="PF4/Table"
       data-ouia-safe="true"
+      dedicatedaction="[object Object]"
       exportconfig="[object Object]"
       fallback="[object Object]"
       filterconfig="[object Object]"

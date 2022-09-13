@@ -25,14 +25,12 @@ import {
   RoutedTabs,
   BreadcrumbLinkItem,
 } from 'PresentationalComponents';
-import { useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
-import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 
 export const QUERY = gql`
   query Profile($policyId: String!) {
@@ -103,7 +101,6 @@ export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const location = useLocation();
-  const anchor = useAnchor();
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { policyId },
   });
@@ -171,19 +168,7 @@ export const PolicyDetails = ({ route }) => {
                   )}
                 </ContentTab>
                 <ContentTab eventKey="systems">
-                  <PolicySystemsTab
-                    policy={policy}
-                    dedicatedAction={
-                      <EditSystemsButtonToolbarItem
-                        to={`/scappolicies/${policy.id}/edit`}
-                        state={{ policy }}
-                        hash={anchor}
-                        backgroundLocation={{ hash: 'details' }}
-                        variant="primary"
-                        ouiaId="EditSystemsButton"
-                      />
-                    }
-                  />
+                  <PolicySystemsTab policy={policy} />
                 </ContentTab>
               </TabSwitcher>
             </Main>

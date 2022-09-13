@@ -73,19 +73,7 @@ const EditPolicyForm = ({
 
   return (
     <Form>
-      <RoutedTabs ouiaId="EditPolicy" defaultTab="details" id="policy-tabs">
-        <Tab
-          eventKey="details"
-          ouiaId="Details"
-          title={<TabTitleText>Details</TabTitleText>}
-        >
-          <EditPolicyDetailsTab
-            policy={policy}
-            updatedPolicy={updatedPolicy}
-            setUpdatedPolicy={setUpdatedPolicy}
-          />
-        </Tab>
-
+      <RoutedTabs ouiaId="EditSystems" defaultTab="systems" id="policy-tabs">
         <Tab
           eventKey="rules"
           ouiaId="Rules"
@@ -98,7 +86,6 @@ const EditPolicyForm = ({
             osMinorVersionCounts={osMinorVersionCounts}
           />
         </Tab>
-
         <Tab
           eventKey="systems"
           ouiaId="Systems"
