@@ -170,10 +170,18 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Compliance',
-    filterString: (value) => `compliant = ${value}`,
+    filterString: (value) => `${value}`,
     items: [
-      { label: 'Compliant', value: 'true' },
-      { label: 'Non-compliant', value: 'false' },
+      {
+        label: 'Compliant',
+        value: 'compliant = true AND supported_ssg = true',
+      },
+      {
+        label: 'Non-compliant',
+        value: 'compliant = false AND supported_ssg = true',
+      },
+      { label: 'Not supported', value: 'supported_ssg = false' },
+      { label: 'Never reported', value: 'reported = false' },
     ],
   },
   {

@@ -1,14 +1,8 @@
 import React from 'react';
-import {
-  Alert,
-  AlertActionLink,
-  Text,
-  TextContent,
-} from '@patternfly/react-core';
+import { Text, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import { GET_SYSTEMS_WITH_POLICIES } from '../SystemsTable/constants';
-import { useHistory } from 'react-router-dom';
 import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
@@ -44,13 +38,7 @@ PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
 
-const EditPolicySystemsTab = ({
-  policy,
-  newRuleTabs,
-  onSystemSelect,
-  selectedSystems,
-}) => {
-  const { push, location } = useHistory();
+const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
   const { id: policyId, osMajorVersion, supportedOsVersions } = policy;
   const osMinorVersions = supportedOsVersions.map(
     (version) => version.split('.')[1]
@@ -84,25 +72,6 @@ const EditPolicySystemsTab = ({
         preselectedSystems={selectedSystems}
         onSelect={onSystemSelect}
       />
-      {newRuleTabs && (
-        <Alert
-          variant="info"
-          isInline
-          title="You selected a system that has a release version previously not included in this policy."
-          actionLinks={
-            <AlertActionLink
-              onClick={() => push({ ...location, hash: '#rules' })}
-            >
-              Open rule editing
-            </AlertActionLink>
-          }
-        >
-          <p>
-            If you have edited any rules for this policy, you will need to do so
-            for this release version as well.
-          </p>
-        </Alert>
-      )}
     </React.Fragment>
   );
 };

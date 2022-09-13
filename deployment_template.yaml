@@ -19,10 +19,21 @@ objects:
           - /apps/compliance
       image: ${IMAGE}:${IMAGE_TAG}
       navItems:
-        - appId: "compliance"
-          title: "Compliance"
-          href: "/insights/compliance"
-          product: "Red Hat Insights"
+        - expandable: true
+          title: Compliance
+          routes:
+          - appId: compliance
+            href: /insights/compliance/reports
+            product: Red Hat Insights
+            title: Reports
+          - appId: compliance
+            href: /insights/compliance/scappolicies
+            product: Red Hat Insights
+            title: SCAP Policies
+          - appId: compliance
+            href: /insights/compliance/systems
+            product: Red Hat Insights
+            title: Systems
       module:
         manifestLocation: "/apps/compliance/fed-mods.json"
         modules:

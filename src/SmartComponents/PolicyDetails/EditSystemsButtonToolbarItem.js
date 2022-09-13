@@ -27,7 +27,6 @@ const EditSystemsButtonToolbarItem = ({
     </ToolbarItem>
   );
 };
-
 EditSystemsButtonToolbarItem.propTypes = {
   to: propTypes.string.required,
   state: propTypes.object,

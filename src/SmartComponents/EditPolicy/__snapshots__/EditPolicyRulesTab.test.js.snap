@@ -5,6 +5,9 @@ Array [
   Object {
     "newOsMinorVersion": "9",
     "profile": Object {
+      "benchmark": Object {
+        "version": "0.1.49",
+      },
       "id": "b71376fd-015e-4209-99af",
       "name": "United States Government Configuration Baseline123",
       "osMajorVersion": "7",
@@ -30,7 +33,6 @@ Array [
           "title": "Record Attempts to Alter Time Through clock_settime",
         },
       ],
-      "ssgVersion": "0.1.49",
     },
     "systemCount": 1,
   },
@@ -116,6 +118,9 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
           Object {
             "newOsMinorVersion": "9",
             "profile": Object {
+              "benchmark": Object {
+                "version": "0.1.49",
+              },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -141,7 +146,6 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.49",
             },
             "systemCount": 1,
           },

@@ -13,6 +13,9 @@ Object {
       "name": "system0.hosts.example.com",
       "testResultProfiles": Array [
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #0",
@@ -198,10 +201,12 @@ Object {
               "title": "Profile #5 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #1",
@@ -387,10 +392,12 @@ Object {
               "title": "Profile #5 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #2",
@@ -576,10 +583,12 @@ Object {
               "title": "Profile #5 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #3",
@@ -765,10 +774,12 @@ Object {
               "title": "Profile #5 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #4",
@@ -954,10 +965,12 @@ Object {
               "title": "Profile #5 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": true,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #0",
@@ -993,10 +1006,12 @@ Object {
               "title": "Profile #0 Rule #4",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": true,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #1",
@@ -1032,10 +1047,12 @@ Object {
               "title": "Profile #0 Rule #4",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": true,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #2",
@@ -1071,10 +1088,12 @@ Object {
               "title": "Profile #0 Rule #4",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": true,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #3",
@@ -1110,10 +1129,12 @@ Object {
               "title": "Profile #0 Rule #4",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": true,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #4",
@@ -1149,7 +1170,6 @@ Object {
               "title": "Profile #0 Rule #4",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": true,
         },
       ],
@@ -1167,6 +1187,9 @@ Object {
       "name": "system0.hosts.example.com",
       "testResultProfiles": Array [
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #0",
@@ -1352,10 +1375,12 @@ Object {
               "title": "Profile #2 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": false,
         },
         Object {
+          "benchmark": Object {
+            "version": "0.14.5",
+          },
           "compliant": false,
           "lastScanned": 2021-08-31T00:00:00.000Z,
           "name": "Test Result Profile #1",
@@ -1541,7 +1566,6 @@ Object {
               "title": "Profile #2 Rule #14",
             },
           ],
-          "ssgVersion": "0.14.5",
           "supported": false,
         },
       ],

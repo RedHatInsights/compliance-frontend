@@ -24,6 +24,8 @@ import {
   StateViewPart,
   RoutedTabs,
   BreadcrumbLinkItem,
+  BackgroundLink,
+  LinkButton,
 } from 'PresentationalComponents';
 import { useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
@@ -32,7 +34,6 @@ import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
-import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 
 export const QUERY = gql`
   query Profile($policyId: String!) {
@@ -54,7 +55,6 @@ export const QUERY = gql`
         refId
         profiles {
           id
-          ssgVersion
           name
           refId
           osMinorVersion
@@ -64,6 +64,7 @@ export const QUERY = gql`
             title
             latestSupportedOsMinorVersions
             osMajorVersion
+            version
           }
           rules {
             title
@@ -84,11 +85,6 @@ export const QUERY = gql`
       hosts {
         id
         osMinorVersion
-      }
-      benchmark {
-        id
-        title
-        version
       }
       rules {
         title
@@ -152,6 +148,26 @@ export const PolicyDetails = ({ route }) => {
                 <GridItem xl2={11} xl={10} lg={12} md={12} sm={12}>
                   <PageHeaderTitle title={policy.name} />
                 </GridItem>
+                <GridItem
+                  className="policy-details-button"
+                  xl2={1}
+                  xl={2}
+                  lg={2}
+                  md={3}
+                  sm={3}
+                >
+                  <BackgroundLink
+                    to={`/scappolicies/${policy.id}/edit`}
+                    state={{ policy }}
+                    hash={anchor}
+                    backgroundLocation={{ hash: 'details' }}
+                    variant="secondary"
+                    ouiaId="EditPolicyButton"
+                    component={LinkButton}
+                  >
+                    Edit policy
+                  </BackgroundLink>
+                </GridItem>
               </Grid>
               <RoutedTabs
                 aria-label="Policy Tabs"
@@ -176,19 +192,7 @@ export const PolicyDetails = ({ route }) => {
                   )}
                 </ContentTab>
                 <ContentTab eventKey="systems">
-                  <PolicySystemsTab
-                    policy={policy}
-                    dedicatedAction={
-                      <EditSystemsButtonToolbarItem
-                        to={`/scappolicies/${policy.id}/edit`}
-                        state={{ policy }}
-                        hash={anchor}
-                        backgroundLocation={{ hash: 'details' }}
-                        variant="primary"
-                        ouiaId="EditSystemsButton"
-                      />
-                    }
-                  />
+                  <PolicySystemsTab policy={policy} />
                 </ContentTab>
               </TabSwitcher>
             </Main>

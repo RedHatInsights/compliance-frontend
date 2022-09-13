@@ -33,13 +33,15 @@ export const GET_SYSTEMS = gql`
           osMajorVersion
           osMinorVersion
           insightsId
-          rulesFailed
           testResultProfiles(policyId: $policyId) {
             lastScanned
             compliant
             score
             supported
-            ssgVersion
+            benchmark {
+              version
+            }
+            rulesFailed
           }
         }
       }
@@ -61,14 +63,12 @@ export const GET_PROFILE = gql`
       lastScanned
       policyType
       totalHostCount
-      ssgVersion
       policy {
         id
         name
       }
       benchmark {
         id
-        version
       }
       businessObjective {
         id

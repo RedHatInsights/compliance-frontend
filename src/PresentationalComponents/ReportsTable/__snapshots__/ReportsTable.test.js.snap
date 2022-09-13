@@ -176,6 +176,9 @@ exports[`ReportsTable expect to render without error 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "version": "0.1.49",
+              },
               "id": "b71376fd-015e-4209-99af",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -201,9 +204,11 @@ exports[`ReportsTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.49",
             },
             Object {
+              "benchmark": Object {
+                "version": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ac",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -228,9 +233,11 @@ exports[`ReportsTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.45",
             },
             Object {
+              "benchmark": Object {
+                "version": "0.1.46",
+              },
               "id": "b71376fd-015e-4209-99ad",
               "name": "United States Government Configuration Baseline123",
               "osMajorVersion": "7",
@@ -256,7 +263,6 @@ exports[`ReportsTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssgVersion": "0.1.46",
             },
           ],
         },
@@ -288,6 +294,9 @@ exports[`ReportsTable expect to render without error 1`] = `
           "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
           "profiles": Array [
             Object {
+              "benchmark": Object {
+                "version": "0.1.45",
+              },
               "id": "b71376fd-015e-4209-99ae",
               "name": "United States Government Configuration Baseline123",
               "refId": "xccdf_org.ssgproject.content_profile_ospp123",
@@ -329,7 +338,6 @@ exports[`ReportsTable expect to render without error 1`] = `
                   "title": "Record Attempts to Alter Time Through clock_settime",
                 },
               ],
-              "ssg_version": "0.1.45",
             },
           ],
         },
