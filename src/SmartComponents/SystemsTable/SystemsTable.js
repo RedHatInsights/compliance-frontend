@@ -48,6 +48,7 @@ export const SystemsTable = ({
   noSystemsTable,
   tableProps,
   ssgVersions,
+  dedicatedAction,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -233,6 +234,7 @@ export const SystemsTable = ({
               ),
             }),
           })}
+          {...(dedicatedAction ? { dedicatedAction: dedicatedAction } : {})}
           {...(enableExport && { exportConfig })}
           {...(showActions && {
             actions: [
@@ -286,6 +288,7 @@ SystemsTable.propTypes = {
   noSystemsTable: PropTypes.node,
   tableProps: PropTypes.object,
   ssgVersions: PropTypes.array,
+  dedicatedAction: PropTypes.object,
 };
 
 SystemsTable.defaultProps = {
