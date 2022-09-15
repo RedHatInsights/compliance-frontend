@@ -1,7 +1,6 @@
 import {
   Name,
   SSGVersion,
-  DetailsLink,
   Policies,
   FailedRules,
   ComplianceScore,
@@ -25,12 +24,6 @@ describe('SSGVersion', () => {
     expect(
       renderJson(<SSGVersion {...testSystem} testResultProfiles={[]} />)
     ).toMatchSnapshot();
-  });
-});
-
-describe('DetailsLink', () => {
-  it('returns', () => {
-    expect(renderJson(<DetailsLink {...testSystem} />)).toMatchSnapshot();
   });
 });
 

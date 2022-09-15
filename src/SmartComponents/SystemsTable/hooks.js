@@ -5,7 +5,6 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import {
   osMinorVersionFilter,
-  GET_MINIMAL_SYSTEMS,
   GET_SYSTEMS_TAGS,
   GET_SYSTEMS_OSES,
 } from './constants';
@@ -313,7 +312,6 @@ export const useSystemBulkSelect = ({
   const [selectedSystems, setSelectedSystems] = useState([]);
   const fetchSystems = useFetchSystems({
     ...fetchArguments,
-    query: GET_MINIMAL_SYSTEMS,
     onError: (error) => {
       dispatchNotification({
         variant: 'danger',
