@@ -9,8 +9,8 @@ import {
 import propTypes from 'prop-types';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { Prompt } from 'react-router-dom';
+import { useLinkToPolicy } from '../EditPolicy/hooks/index';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -32,19 +32,11 @@ const EditPolicyDetailsInline = ({
   //marking page as dirty if user didn't save changes and tries to navigate away
   const [dirty, setDirty] = useState(false);
   //handling the save logic using useLinkToPolicy hook
-  const useLinkToPolicy = () => {
-    const anchor = useAnchor();
-    const linkToBackground = useLinkToBackground(
-      `/scappolicies/${policyData.id}`
-    );
-    return () => {
-      linkToBackground({ hash: anchor });
-    };
-  };
+  useLinkToPolicy(policyData.id);
 
   const useOnSave = (policy, updatedPolicyHostsAndRules) => {
     const updatePolicy = usePolicy();
-    const linkToPolicy = useLinkToPolicy();
+    const linkToPolicy = useLinkToPolicy(policyData.id);
     const [isSaving, setIsSaving] = useState(false);
     const onSave = () => {
       if (isSaving) {

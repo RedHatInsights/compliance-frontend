@@ -19,19 +19,17 @@ import linkifyHtml from 'linkifyjs/html';
 import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
 
 const PolicyDetailsDescription = ({ policy }) => {
-  //handling open/close for the inline edits
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleToggle = (e) => {
     setIsEditOpen(!isEditOpen);
-    setInlindId(e.target.id);
+    setInlineId(e.target.id);
   };
   //storing the id of the clicked inline edit button
-  const [inlineId, setInlindId] = useState();
-  // focus the inline edit after activating
-  const nameInputRef = useRef();
+  const [inlineId, setInlineId] = useState();
+  const useInputFocus = useRef();
   useEffect(() => {
-    if (isEditOpen && nameInputRef && nameInputRef.current) {
-      nameInputRef.current.focus();
+    if (isEditOpen && useInputFocus && useInputFocus.current) {
+      useInputFocus.current.focus();
     }
   }, [isEditOpen]);
   //storing text to pass them to two different components each
