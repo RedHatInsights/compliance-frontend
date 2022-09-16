@@ -3,9 +3,13 @@ import { usePolicy } from 'Mutations';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
-export const useLinkToPolicy = () => {
+export const useLinkToPolicy = (table, address) => {
   const anchor = useAnchor();
-  const linkToBackground = useLinkToBackground('/scappolicies');
+  //added the ternary operator to utilize the same hook for the policy table and policy details
+  let linkToBackground = '';
+  table === false
+    ? (linkToBackground = useLinkToBackground('/scappolicies'))
+    : (linkToBackground = useLinkToBackground(`/scappolicies/${address}`));
   return () => {
     linkToBackground({ hash: anchor });
   };
@@ -13,7 +17,7 @@ export const useLinkToPolicy = () => {
 
 export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
   const updatePolicy = usePolicy();
-  const linkToPolicy = useLinkToPolicy();
+  const linkToPolicy = useLinkToPolicy(false);
   const [isSaving, setIsSaving] = useState(false);
   const onSave = () => {
     if (isSaving) {
