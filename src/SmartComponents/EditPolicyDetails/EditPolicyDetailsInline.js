@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Button,
   FormGroup,
   Text,
   TextArea,
   TextInput,
+  TextVariants,
 } from '@patternfly/react-core';
+import {
+  PolicyThresholdTooltip,
+  PolicyBusinessObjectiveTooltip,
+} from 'PresentationalComponents';
+import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import propTypes from 'prop-types';
 import { Prompt } from 'react-router-dom';
 import { useOnSavePolicyDetails } from '../EditPolicy/hooks';
 
 const EditPolicyDetailsInline = ({
   text,
-  variant,
   policyData,
-  buttonId,
-  setCloseHook,
+  variant,
+  propertyName,
+  inlineClosedText,
+  inlineTitleText,
+  showTextUnderInline,
+  textUnderInline,
+  typeOfInput,
 }) => {
   const copiedData = policyData;
   const [inputText, setInputText] = useState(text);
@@ -24,16 +34,17 @@ const EditPolicyDetailsInline = ({
     setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
-    setCloseHook(false);
+    setIsEditOpen(false);
+    setDirty(false);
   };
   //marking page as dirty if user didn't save changes and tries to navigate away
   const [dirty, setDirty] = useState(false);
   const constructData =
-    buttonId === 'businessObjective'
-      ? { ...copiedData, [buttonId]: { title: inputText } }
+    propertyName === 'businessObjective'
+      ? { ...copiedData, [propertyName]: { title: inputText } }
       : {
           ...copiedData,
-          [buttonId]: inputText,
+          [propertyName]: inputText,
         };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(
@@ -43,11 +54,37 @@ const EditPolicyDetailsInline = ({
     policyData.id
   );
 
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const handleToggle = () => {
+    setIsEditOpen(!isEditOpen);
+  };
+  const useInputFocus = useRef();
+  useEffect(() => {
+    if (isEditOpen && useInputFocus && useInputFocus.current) {
+      useInputFocus.current.focus();
+    }
+  }, [isEditOpen]);
+
   return (
     <FormGroup
       className="pf-c-inline-edit pf-m-inline-editable"
       id="single-editable-example"
     >
+      <Text component={TextVariants.h5}>
+        {inlineTitleText}
+        <Button
+          onClick={handleToggle}
+          variant="plain"
+          style={{ 'margin-left': '5px' }}
+        >
+          <i className="fas fa-pencil-alt" aria-hidden="true" />
+        </Button>
+        {variant === 'threshold' ? (
+          <PolicyThresholdTooltip />
+        ) : variant === 'business' ? (
+          <PolicyBusinessObjectiveTooltip />
+        ) : null}
+      </Text>
       <Text
         className="pf-c-inline-edit__value"
         id="single-editable --pf-global--spacer--xs"
@@ -64,60 +101,64 @@ const EditPolicyDetailsInline = ({
         />
       </div>
       <div className="pf-c-inline-edit__group">
-        {variant === 'business' ? (
-          <TextInput
-            className="pf-c-form-control pf-u-w-33-on-lg"
-            type="text"
-            value={inputText}
-            aria-label="Editable text input"
-            onChange={handleTextUpdate}
-            id="policydetails-input"
-          />
-        ) : variant === 'threshold' ? (
-          <div>
-            <TextInput
-              className="pf-c-form-control pf-u-w-100-on-lg"
-              type="text"
-              value={inputText}
-              aria-label="Editable text input"
-              onChange={handleTextUpdate}
-            />
-            <Text>A value of 95% or higher is recommended</Text>
-          </div>
+        {isEditOpen ? (
+          <>
+            {variant !== 'description' ? (
+              <div>
+                <TextInput
+                  className="pf-c-form-control pf-u-w-100-on-lg"
+                  type={typeOfInput}
+                  value={inputText}
+                  aria-label="editable text input"
+                  onChange={handleTextUpdate}
+                  id="policydetails-input"
+                />
+                {showTextUnderInline ? <Text>{textUnderInline}</Text> : null}
+              </div>
+            ) : (
+              <TextArea
+                resizeOrientation="vertical"
+                className="pf-c-form-control pf-u-w-33-on-lg"
+                aria-label="Editable textarea"
+                defaultValue={inputText}
+                onChange={handleTextUpdate}
+              />
+            )}
+            <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
+              <div className="pf-c-inline-edit__action pf-m-valid">
+                <Button
+                  className="pf-c-button pf-m-plain"
+                  type="button"
+                  aria-label="Save edits"
+                  isLoading={isSaving}
+                  onClick={onSave}
+                  style={{ 'margin-left': '5px' }}
+                >
+                  <i className="fas fa-check" aria-hidden="true"></i>
+                </Button>
+              </div>
+              <div className="pf-c-inline-edit__action">
+                <Button
+                  className="pf-c-button pf-m-plain"
+                  type="button"
+                  aria-label="Cancel edits"
+                  onClick={handleCloseEdit}
+                  style={{ 'margin-left': '5px' }}
+                >
+                  <i className="fas fa-times" aria-hidden="true"></i>
+                </Button>
+              </div>
+            </div>
+          </>
+        ) : variant !== 'description' ? (
+          <Text className="inlineClosedText" component={TextVariants.p}>
+            {inlineClosedText}
+          </Text>
         ) : (
-          <TextArea
-            resizeOrientation="vertical"
-            className="pf-c-form-control pf-u-w-33-on-lg"
-            aria-label="Editable textarea"
-            defaultValue={inputText}
-            onChange={handleTextUpdate}
-          />
+          <Text className="textAreaClosedText" component={TextVariants.p}>
+            <Truncate text={text} length={380} inline={true} />
+          </Text>
         )}
-        <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
-          <div className="pf-c-inline-edit__action pf-m-valid">
-            <Button
-              className="pf-c-button pf-m-plain"
-              type="button"
-              aria-label="Save edits"
-              isLoading={isSaving}
-              onClick={onSave}
-              style={{ 'margin-left': '5px' }}
-            >
-              <i className="fas fa-check" aria-hidden="true"></i>
-            </Button>
-          </div>
-          <div className="pf-c-inline-edit__action">
-            <Button
-              className="pf-c-button pf-m-plain"
-              type="button"
-              aria-label="Cancel edits"
-              onClick={handleCloseEdit}
-              style={{ 'margin-left': '5px' }}
-            >
-              <i className="fas fa-times" aria-hidden="true"></i>
-            </Button>
-          </div>
-        </div>
       </div>
       <Prompt
         when={dirty}
@@ -131,9 +172,12 @@ EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
   variant: propTypes.string,
   policyData: propTypes.obj,
-  buttonId: propTypes.string,
-  handleCloseEdit: propTypes.func,
-  setCloseHook: propTypes.hook,
+  propertyName: propTypes.string,
+  inlineClosedText: propTypes.string,
+  inlineTitleText: propTypes.string,
+  showTextUnderInline: propTypes.string,
+  textUnderInline: propTypes.string,
+  typeOfInput: propTypes.string,
 };
 
 export default EditPolicyDetailsInline;

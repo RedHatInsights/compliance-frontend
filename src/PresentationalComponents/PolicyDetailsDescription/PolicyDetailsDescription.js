@@ -6,11 +6,11 @@ import {
   CardHeader,
   CardBody,
   TextContent,
-  TextVariants,
   Text,
+  TextVariants,
 } from '@patternfly/react-core';
 import linkifyHtml from 'linkifyjs/html';
-import EditPolicyDetailsInline2 from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline2';
+import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
 
 const PolicyDetailsDescription = ({ policy }) => {
   const thresholdText = `${fixedPercentage(
@@ -31,29 +31,40 @@ const PolicyDetailsDescription = ({ policy }) => {
       </CardHeader>
       <CardBody>
         <TextContent>
-          <EditPolicyDetailsInline2
-            policyData={policy}
-            text={policy.complianceThreshold}
-            variant="threshold"
-            inlineClosedText={thresholdText}
-            inlineTitleText="Compliance threshold (%)"
-            showTextUnderInline="true"
-            textUnderInline="A value of 95% or higher is recommended"
-          />
-          <EditPolicyDetailsInline2
-            policyData={policy}
-            text={businessText}
-            variant="business"
-            inlineClosedText={businessText}
-            inlineTitleText="Business objective"
-          />
-          <EditPolicyDetailsInline2
-            policyData={policy}
-            text={descriptionText}
-            variant="description"
-            inlineClosedText={businessText}
-            inlineTitleText="Policy description"
-          />
+          <Text>
+            <EditPolicyDetailsInline
+              policyData={policy}
+              text={policy.complianceThreshold}
+              variant="threshold"
+              inlineClosedText={thresholdText}
+              inlineTitleText="Compliance threshold (%)"
+              showTextUnderInline="true"
+              textUnderInline="A value of 95% or higher is recommended"
+              propertyName="complianceThreshold"
+              typeOfInput="number"
+            />
+          </Text>
+          <Text>
+            <EditPolicyDetailsInline
+              policyData={policy}
+              text={businessText}
+              variant="business"
+              inlineClosedText={businessText}
+              inlineTitleText="Business objective"
+              propertyName="businessObjective"
+              typeOfInput="text"
+            />
+          </Text>
+          <Text>
+            <EditPolicyDetailsInline
+              policyData={policy}
+              text={descriptionText}
+              variant="description"
+              inlineClosedText={businessText}
+              inlineTitleText="Policy description"
+              propertyName="description"
+            />
+          </Text>
           <Text component={TextVariants.h5}>Operating system</Text>
           <Text component={TextVariants.p}>RHEL {policy.osMajorVersion}</Text>
           <Text component={TextVariants.h5}>Policy type </Text>

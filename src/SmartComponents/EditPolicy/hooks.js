@@ -5,7 +5,7 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 
 export const useLinkToPolicy = () => {
   const anchor = useAnchor();
-  const linkToBackground = useLinkToBackground();
+  const linkToBackground = useLinkToBackground('/scappolicies');
   return () => {
     linkToBackground({ hash: anchor });
   };
@@ -44,7 +44,6 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
 
   return [isSaving, onSave];
 };
-
 export const useSavePolicyDetails = (policyId) => {
   const anchor = useAnchor();
   const linkToBackground = useLinkToBackground(`/scappolicies/${policyId}`);
@@ -63,9 +62,6 @@ export const useOnSavePolicyDetails = (
   const savePolicyDetails = useSavePolicyDetails(policyId);
   const [isSaving, setIsSaving] = useState(false);
   const onSave = () => {
-    if (isSaving) {
-      return Promise.resolve({});
-    }
     setIsSaving(true);
     closingFunction();
     updatePolicy(policy, updatedPolicyHostsAndRules)
