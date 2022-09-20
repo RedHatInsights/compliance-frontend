@@ -77,7 +77,7 @@ export const EditPolicy = ({ route }) => {
     variables: { policyId },
   });
   const policy = data?.profile;
-  const linkToPolicy = useLinkToPolicy(false);
+  const linkToPolicy = useLinkToPolicy();
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
   const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
   const [selectedSystems, setSelectedSystems] = useState([]);

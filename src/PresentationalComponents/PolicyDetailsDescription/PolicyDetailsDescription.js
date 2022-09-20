@@ -24,7 +24,6 @@ const PolicyDetailsDescription = ({ policy }) => {
     setIsEditOpen(!isEditOpen);
     setInlineId(e.target.id);
   };
-  //storing the id of the clicked inline edit button
   const [inlineId, setInlineId] = useState();
   const useInputFocus = useRef();
   useEffect(() => {
@@ -32,7 +31,6 @@ const PolicyDetailsDescription = ({ policy }) => {
       useInputFocus.current.focus();
     }
   }, [isEditOpen]);
-  //storing text to pass them to two different components each
   const thresholdText = `${fixedPercentage(
     policy.complianceThreshold,
     1
