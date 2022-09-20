@@ -5,8 +5,7 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 
 export const useLinkToPolicy = () => {
   const anchor = useAnchor();
-  //added the ternary operator to utilize the same hook for the policy table and policy details
-  const linkToBackground = useLinkToBackground('/scappolicies');
+  const linkToBackground = useLinkToBackground();
   return () => {
     linkToBackground({ hash: anchor });
   };
@@ -14,7 +13,7 @@ export const useLinkToPolicy = () => {
 
 export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
   const updatePolicy = usePolicy();
-  const linkToPolicy = useLinkToPolicy(false);
+  const linkToPolicy = useLinkToPolicy();
   const [isSaving, setIsSaving] = useState(false);
   const onSave = () => {
     if (isSaving) {
@@ -46,14 +45,22 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
   return [isSaving, onSave];
 };
 
+export const useSavePolicyDetails = (policyId) => {
+  const anchor = useAnchor();
+  const linkToBackground = useLinkToBackground(`/scappolicies/${policyId}`);
+  return () => {
+    linkToBackground({ hash: anchor });
+  };
+};
+
 export const useOnSavePolicyDetails = (
   policy,
   updatedPolicyHostsAndRules,
   closingFunction,
-  address
+  policyId
 ) => {
   const updatePolicy = usePolicy();
-  const linkToPolicy = useLinkToBackground(address);
+  const savePolicyDetails = useSavePolicyDetails(policyId);
   const [isSaving, setIsSaving] = useState(false);
   const onSave = () => {
     if (isSaving) {
@@ -69,7 +76,7 @@ export const useOnSavePolicyDetails = (
           title: 'Policy updated',
           autoDismiss: true,
         });
-        linkToPolicy();
+        savePolicyDetails();
       })
       .catch((error) => {
         setIsSaving(false);
@@ -78,7 +85,7 @@ export const useOnSavePolicyDetails = (
           title: 'Error updating policy',
           description: error.message,
         });
-        linkToPolicy();
+        savePolicyDetails();
       });
   };
   return [isSaving, onSave];

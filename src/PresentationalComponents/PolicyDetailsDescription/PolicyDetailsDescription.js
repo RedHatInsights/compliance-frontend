@@ -1,10 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import { fixedPercentage } from 'Utilities/TextHelper';
-import {
-  PolicyBusinessObjectiveTooltip,
-  PolicyThresholdTooltip,
-} from 'PresentationalComponents';
 import {
   Card,
   CardHeader,
@@ -12,25 +8,11 @@ import {
   TextContent,
   TextVariants,
   Text,
-  Button,
 } from '@patternfly/react-core';
-import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import linkifyHtml from 'linkifyjs/html';
-import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
+import EditPolicyDetailsInline2 from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline2';
 
 const PolicyDetailsDescription = ({ policy }) => {
-  const [isEditOpen, setIsEditOpen] = useState(false);
-  const handleToggle = (e) => {
-    setIsEditOpen(!isEditOpen);
-    setInlineId(e.target.id);
-  };
-  const [inlineId, setInlineId] = useState();
-  const useInputFocus = useRef();
-  useEffect(() => {
-    if (isEditOpen && useInputFocus && useInputFocus.current) {
-      useInputFocus.current.focus();
-    }
-  }, [isEditOpen]);
   const thresholdText = `${fixedPercentage(
     policy.complianceThreshold,
     1
@@ -49,87 +31,29 @@ const PolicyDetailsDescription = ({ policy }) => {
       </CardHeader>
       <CardBody>
         <TextContent>
-          <Text component={TextVariants.h5}>
-            Compliance threshold (%)
-            <Button
-              onClick={handleToggle}
-              variant="plain"
-              style={{ 'margin-left': '5px' }}
-            >
-              <i
-                className="fas fa-pencil-alt"
-                aria-hidden="true"
-                id="complianceThreshold"
-              />
-            </Button>
-            <PolicyThresholdTooltip />
-          </Text>
-          {isEditOpen && inlineId === 'complianceThreshold' ? (
-            <EditPolicyDetailsInline
-              text={policy.complianceThreshold}
-              variant="threshold"
-              policyData={policy}
-              buttonId={inlineId}
-              setCloseHook={setIsEditOpen}
-            />
-          ) : (
-            <Text className="threshold-tooltip" component={TextVariants.p}>
-              {thresholdText}
-            </Text>
-          )}
-          <Text component={TextVariants.h5}>
-            Business objective
-            <Button
-              onClick={handleToggle}
-              variant="plain"
-              style={{ 'margin-left': '5px' }}
-            >
-              <i
-                className="fas fa-pencil-alt"
-                aria-hidden="true"
-                id="businessObjective"
-              />
-            </Button>
-            <PolicyBusinessObjectiveTooltip />
-          </Text>
-          {isEditOpen && inlineId === 'businessObjective' ? (
-            <EditPolicyDetailsInline
-              text={businessText}
-              variant="business"
-              policyData={policy}
-              buttonId={inlineId}
-              setCloseHook={setIsEditOpen}
-            />
-          ) : (
-            <Text component={TextVariants.p}>{businessText}</Text>
-          )}
-          <Text component={TextVariants.h5}>
-            Policy description
-            <Button
-              onClick={handleToggle}
-              variant="plain"
-              style={{ 'margin-left': '5px' }}
-            >
-              <i
-                className="fas fa-pencil-alt"
-                aria-hidden="true"
-                id="description"
-              />
-            </Button>
-          </Text>
-          {isEditOpen && inlineId === 'description' ? (
-            <EditPolicyDetailsInline
-              text={descriptionText}
-              variant="textarea"
-              policyData={policy}
-              buttonId={inlineId}
-              setCloseHook={setIsEditOpen}
-            />
-          ) : (
-            <Text component={TextVariants.p}>
-              <Truncate text={descriptionText} length={380} inline={true} />
-            </Text>
-          )}
+          <EditPolicyDetailsInline2
+            policyData={policy}
+            text={policy.complianceThreshold}
+            variant="threshold"
+            inlineClosedText={thresholdText}
+            inlineTitleText="Compliance threshold (%)"
+            showTextUnderInline="true"
+            textUnderInline="A value of 95% or higher is recommended"
+          />
+          <EditPolicyDetailsInline2
+            policyData={policy}
+            text={businessText}
+            variant="business"
+            inlineClosedText={businessText}
+            inlineTitleText="Business objective"
+          />
+          <EditPolicyDetailsInline2
+            policyData={policy}
+            text={descriptionText}
+            variant="description"
+            inlineClosedText={businessText}
+            inlineTitleText="Policy description"
+          />
           <Text component={TextVariants.h5}>Operating system</Text>
           <Text component={TextVariants.p}>RHEL {policy.osMajorVersion}</Text>
           <Text component={TextVariants.h5}>Policy type </Text>
