@@ -7,10 +7,8 @@ import {
   TextInput,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { usePolicy } from 'Mutations';
-import { dispatchNotification } from 'Utilities/Dispatcher';
 import { Prompt } from 'react-router-dom';
-import { useLinkToPolicy } from '../EditPolicy/hooks';
+import { useOnSavePolicyDetails } from '../EditPolicy/hooks';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -20,7 +18,6 @@ const EditPolicyDetailsInline = ({
   setCloseHook,
 }) => {
   const copiedData = policyData;
-  //handling text changes
   const [inputText, setInputText] = useState(text);
   const handleTextUpdate = (newText, e) => {
     setInputText(newText);
@@ -31,42 +28,6 @@ const EditPolicyDetailsInline = ({
   };
   //marking page as dirty if user didn't save changes and tries to navigate away
   const [dirty, setDirty] = useState(false);
-  //handling the save logic using useLinkToPolicy hook
-  useLinkToPolicy(true, policyData.id);
-
-  const useOnSave = (policy, updatedPolicyHostsAndRules) => {
-    const updatePolicy = usePolicy();
-    const linkToPolicy = useLinkToPolicy(true, policyData.id);
-    const [isSaving, setIsSaving] = useState(false);
-    const onSave = () => {
-      if (isSaving) {
-        return Promise.resolve({});
-      }
-      setIsSaving(true);
-      handleCloseEdit();
-      updatePolicy(policy, updatedPolicyHostsAndRules)
-        .then(() => {
-          setIsSaving(false);
-          dispatchNotification({
-            variant: 'success',
-            title: 'Policy updated',
-            autoDismiss: true,
-          });
-          linkToPolicy();
-        })
-        .catch((error) => {
-          setIsSaving(false);
-          dispatchNotification({
-            variant: 'danger',
-            title: 'Error updating policy',
-            description: error.message,
-          });
-          linkToPolicy();
-        });
-    };
-    return [isSaving, onSave];
-  };
-
   const constructData =
     buttonId === 'businessObjective'
       ? { ...copiedData, [buttonId]: { title: inputText } }
@@ -75,7 +36,12 @@ const EditPolicyDetailsInline = ({
           [buttonId]: inputText,
         };
 
-  const [isSaving, onSave] = useOnSave(policyData, constructData);
+  const [isSaving, onSave] = useOnSavePolicyDetails(
+    policyData,
+    constructData,
+    handleCloseEdit,
+    policyData.id
+  );
 
   return (
     <FormGroup
