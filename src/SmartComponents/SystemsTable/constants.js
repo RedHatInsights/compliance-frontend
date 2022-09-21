@@ -43,14 +43,6 @@ export const GET_MINIMAL_SYSTEMS = gql`
   }
 `;
 
-export const GET_SYSTEMS_TAGS = gql`
-  query getSystems($filter: String!, $limit: Int) {
-    systems(search: $filter, limit: $limit) {
-      tags
-    }
-  }
-`;
-
 export const GET_SYSTEMS_OSES = gql`
   query getSystems($filter: String!) {
     systems(search: $filter) {
