@@ -50,7 +50,6 @@ export const QUERY = gql`
       complianceThreshold
       osMajorVersion
       lastScanned
-      policyType
       policy {
         id
         name
@@ -115,7 +114,7 @@ export const ReportDetails = ({ route }) => {
           <Grid hasGutter>
             <GridItem sm={9} md={9} lg={9} xl={9}>
               <PageHeaderTitle title={pageTitle} />
-              <SubPageTitle>{profile.policyType}</SubPageTitle>
+              <SubPageTitle>{policyName}</SubPageTitle>
             </GridItem>
             <GridItem
               className="report-details-button"
