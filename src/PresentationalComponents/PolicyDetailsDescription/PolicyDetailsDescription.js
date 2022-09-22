@@ -8,6 +8,7 @@ import {
   TextContent,
   Text,
   TextVariants,
+  TextArea,
 } from '@patternfly/react-core';
 import linkifyHtml from 'linkifyjs/html';
 import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
@@ -33,36 +34,41 @@ const PolicyDetailsDescription = ({ policy }) => {
         <TextContent>
           <Text>
             <EditPolicyDetailsInline
-              policyData={policy}
+              value={policy}
               text={policy.complianceThreshold}
               variant="threshold"
               inlineClosedText={thresholdText}
-              inlineTitleText="Compliance threshold (%)"
+              label="Compliance threshold (%)"
               showTextUnderInline="true"
               textUnderInline="A value of 95% or higher is recommended"
               propertyName="complianceThreshold"
               typeOfInput="number"
+              className="pf-c-form-control pf-u-w-100-on-lg"
+              aria-label="editable text input"
+              id="policydetails-input-threshold"
             />
           </Text>
           <Text>
             <EditPolicyDetailsInline
-              policyData={policy}
+              value={policy}
               text={businessText}
               variant="business"
               inlineClosedText={businessText}
-              inlineTitleText="Business objective"
+              label="Business objective"
               propertyName="businessObjective"
               typeOfInput="text"
             />
           </Text>
           <Text>
             <EditPolicyDetailsInline
-              policyData={policy}
+              component={TextArea}
+              value={policy}
               text={descriptionText}
               variant="description"
               inlineClosedText={businessText}
-              inlineTitleText="Policy description"
+              label="Policy description"
               propertyName="description"
+              className="pf-c-form-control pf-u-w-100-on-lg"
             />
           </Text>
           <Text component={TextVariants.h5}>Operating system</Text>

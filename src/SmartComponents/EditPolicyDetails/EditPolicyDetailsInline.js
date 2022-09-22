@@ -3,7 +3,6 @@ import {
   Button,
   FormGroup,
   Text,
-  TextArea,
   TextInput,
   TextVariants,
 } from '@patternfly/react-core';
@@ -15,22 +14,30 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import propTypes from 'prop-types';
 import { Prompt } from 'react-router-dom';
 import { useOnSavePolicyDetails } from '../EditPolicy/hooks';
+import { thresholdValid } from '../CreatePolicy/validate';
 
 const EditPolicyDetailsInline = ({
   text,
-  policyData,
+  value,
   variant,
   propertyName,
   inlineClosedText,
-  inlineTitleText,
+  label,
   showTextUnderInline,
   textUnderInline,
   typeOfInput,
+  Component = TextInput,
+  ...props
 }) => {
-  const copiedData = policyData;
+  const copiedData = value;
   const [inputText, setInputText] = useState(text);
+  const [validThreshold, setValidateThreshold] = useState();
   const handleTextUpdate = (newText, e) => {
-    setInputText(newText);
+    e.target.id === 'policydetails-input-threshold'
+      ? thresholdValid(newText) === true
+        ? setInputText(newText)
+        : setValidateThreshold(false)
+      : setInputText(newText);
     setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
@@ -48,10 +55,10 @@ const EditPolicyDetailsInline = ({
         };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(
-    policyData,
+    value,
     constructData,
     handleCloseEdit,
-    policyData.id
+    value.id
   );
 
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -68,10 +75,10 @@ const EditPolicyDetailsInline = ({
   return (
     <FormGroup
       className="pf-c-inline-edit pf-m-inline-editable"
-      id="single-editable-example"
+      validated={validThreshold ? 'default' : 'error'}
     >
       <Text component={TextVariants.h5}>
-        {inlineTitleText}
+        {label}
         <Button
           onClick={handleToggle}
           variant="plain"
@@ -85,10 +92,7 @@ const EditPolicyDetailsInline = ({
           <PolicyBusinessObjectiveTooltip />
         ) : null}
       </Text>
-      <Text
-        className="pf-c-inline-edit__value"
-        id="single-editable --pf-global--spacer--xs"
-      >
+      <Text className="pf-c-inline-edit__value" id="pf-global--spacer--xs">
         {text}
       </Text>
       <div className="pf-c-inline-edit__action pf-m-enable-editable">
@@ -97,33 +101,20 @@ const EditPolicyDetailsInline = ({
           type="button"
           id="edit-button"
           aria-label="Edit"
-          aria-labelledby="single-editable-example-edit-button single-editable"
+          aria-labelledby="single-editable-edit-button"
         />
       </div>
       <div className="pf-c-inline-edit__group">
         {isEditOpen ? (
           <>
-            {variant !== 'description' ? (
-              <div>
-                <TextInput
-                  className="pf-c-form-control pf-u-w-100-on-lg"
-                  type={typeOfInput}
-                  value={inputText}
-                  aria-label="editable text input"
-                  onChange={handleTextUpdate}
-                  id="policydetails-input"
-                />
-                {showTextUnderInline ? <Text>{textUnderInline}</Text> : null}
-              </div>
-            ) : (
-              <TextArea
-                resizeOrientation="vertical"
-                className="pf-c-form-control pf-u-w-33-on-lg"
-                aria-label="Editable textarea"
-                defaultValue={inputText}
+            <div>
+              <Component
+                value={inputText}
                 onChange={handleTextUpdate}
+                {...props}
               />
-            )}
+              {showTextUnderInline ? <Text>{textUnderInline}</Text> : null}
+            </div>
             <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
               <div className="pf-c-inline-edit__action pf-m-valid">
                 <Button
@@ -151,7 +142,7 @@ const EditPolicyDetailsInline = ({
             </div>
           </>
         ) : variant !== 'description' ? (
-          <Text className="inlineClosedText" component={TextVariants.p}>
+          <Text className="labelClosedText" component={TextVariants.p}>
             {inlineClosedText}
           </Text>
         ) : (
@@ -171,13 +162,14 @@ const EditPolicyDetailsInline = ({
 EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
   variant: propTypes.string,
-  policyData: propTypes.obj,
+  value: propTypes.obj,
   propertyName: propTypes.string,
   inlineClosedText: propTypes.string,
-  inlineTitleText: propTypes.string,
+  label: propTypes.string,
   showTextUnderInline: propTypes.string,
   textUnderInline: propTypes.string,
   typeOfInput: propTypes.string,
+  Component: propTypes.component,
 };
 
 export default EditPolicyDetailsInline;
