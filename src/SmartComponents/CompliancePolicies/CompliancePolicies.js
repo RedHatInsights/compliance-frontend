@@ -24,6 +24,7 @@ const QUERY = gql`
       edges {
         node {
           id
+          name
           description
           refId
           complianceThreshold
