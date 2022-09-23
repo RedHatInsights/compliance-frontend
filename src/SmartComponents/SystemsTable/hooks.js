@@ -3,11 +3,7 @@ import { useApolloClient, useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
-import {
-  osMinorVersionFilter,
-  GET_SYSTEMS_TAGS,
-  GET_SYSTEMS_OSES,
-} from './constants';
+import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
@@ -366,86 +362,5 @@ export const useSystemBulkSelect = ({
   return {
     selectedSystems,
     ...bulkSelect,
-  };
-};
-
-const searchTags = (search, tags) =>
-  tags.filter((tagItem) => {
-    if (search || search === '') {
-      const tagString = `${tagItem?.key}=${tagItem?.value}`;
-      return tagString.indexOf(search) !== -1;
-    } else {
-      return true;
-    }
-  });
-
-const useFetchTag = () => {
-  const apiClient = useApolloClient();
-
-  return async (page, per_page, search, fetchArguments) => {
-    const fetchedTags = await apiClient
-      .query({
-        query: GET_SYSTEMS_TAGS,
-        ...fetchArguments,
-      })
-      .then(
-        ({
-          data: {
-            systems: { tags },
-          },
-        }) =>
-          searchTags(search, tags).map((tag) => ({
-            tag,
-          }))
-      );
-
-    const start = per_page * page - per_page;
-    const end = start + per_page;
-
-    return {
-      total: fetchedTags.length,
-      results: fetchedTags.slice(start, end),
-    };
-  };
-};
-
-export const useTags = (fetchArguments) => {
-  const [currentTags, setCurrentTags] = useState();
-  const fetchTags = useFetchTag();
-
-  const getTags = async (search, config) => {
-    const { page, perPage: per_page } = config.pagination || {
-      perPage: 10,
-      page: 1,
-    };
-    const { total, results: tagsList } = await fetchTags(
-      page,
-      per_page,
-      search,
-      fetchArguments
-    );
-
-    return {
-      page,
-      per_page,
-      total,
-      results: tagsList,
-    };
-  };
-
-  return {
-    props: {
-      hideFilters: {
-        name: true,
-        tags: false,
-        registeredWith: true,
-        operatingSystem: true,
-        stale: true,
-      },
-      showTags: true,
-    },
-    currentTags,
-    setCurrentTags,
-    getTags,
   };
 };

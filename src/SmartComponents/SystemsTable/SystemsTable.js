@@ -20,7 +20,6 @@ import {
   useSystemsExport,
   useSystemsFilter,
   useSystemBulkSelect,
-  useTags,
 } from './hooks';
 import { constructQuery } from '../../Utilities/helpers';
 
@@ -55,6 +54,8 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [currentTags, setCurrentTags] = useState([]);
+
   const osMinorVersionFilter = useOsMinorVersionFilter(
     showOsMinorVersionFilter,
     {
@@ -85,18 +86,6 @@ export const SystemsTable = ({
     showOnlySystemsWithTestResults,
     defaultFilter
   );
-
-  const {
-    props: tagsProps,
-    currentTags,
-    setCurrentTags,
-    getTags,
-  } = useTags({
-    variables: {
-      filter: systemsFilter,
-      ...(policyId && { policyId }),
-    },
-  });
 
   const constructedQuery = constructQuery(columns);
 
@@ -136,7 +125,6 @@ export const SystemsTable = ({
     setItems(result.entities);
     setIsLoaded(true);
     setCurrentTags && setCurrentTags(result.meta.tags);
-
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
@@ -161,7 +149,6 @@ export const SystemsTable = ({
     selected: selectedIds,
     total,
     fetchArguments: {
-      tags: currentTags,
       ...systemFetchArguments,
     },
   });
@@ -211,13 +198,13 @@ export const SystemsTable = ({
         )}
         <InventoryTable
           {...systemProps}
-          {...tagsProps}
           disableDefaultColumns
           columns={mergedColumns}
           noSystemsTable={noSystemsTable}
           ref={inventory}
           getEntities={getEntities}
-          getTags={getTags}
+          hideFilters={{ all: true, tags: false }}
+          showTags
           onLoad={defaultOnLoad(columns)}
           tableProps={{
             ...bulkSelectTableProps,
