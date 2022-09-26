@@ -42,7 +42,7 @@ const PolicyDetailsDescription = ({ policy }) => {
               showTextUnderInline="true"
               textUnderInline="A value of 95% or higher is recommended"
               propertyName="complianceThreshold"
-              typeOfInput="number"
+              type="number"
               className="pf-c-form-control pf-u-w-100-on-lg"
               aria-label="editable text input"
               id="policydetails-input-threshold"

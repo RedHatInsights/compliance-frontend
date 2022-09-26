@@ -9,6 +9,7 @@ import {
 import {
   PolicyThresholdTooltip,
   PolicyBusinessObjectiveTooltip,
+  ComplianceThresholdHelperText,
 } from 'PresentationalComponents';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import propTypes from 'prop-types';
@@ -31,13 +32,18 @@ const EditPolicyDetailsInline = ({
 }) => {
   const copiedData = value;
   const [inputText, setInputText] = useState(text);
-  const [validThreshold, setValidateThreshold] = useState();
+  const [validThreshold, setValidThreshold] = useState(true);
   const handleTextUpdate = (newText, e) => {
-    e.target.id === 'policydetails-input-threshold'
-      ? thresholdValid(newText) === true
-        ? setInputText(newText)
-        : setValidateThreshold(false)
-      : setInputText(newText);
+    if (e.target.id === 'policydetails-input-threshold') {
+      if (thresholdValid(newText) === true) {
+        setInputText(newText);
+        setValidThreshold(true);
+        setDirty(!!e.target.value);
+      } else {
+        setValidThreshold(false);
+      }
+    }
+    setInputText(newText);
     setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
@@ -73,10 +79,7 @@ const EditPolicyDetailsInline = ({
   }, [isEditOpen]);
 
   return (
-    <FormGroup
-      className="pf-c-inline-edit pf-m-inline-editable"
-      validated={validThreshold ? 'default' : 'error'}
-    >
+    <FormGroup className="pf-c-inline-edit pf-m-inline-editable">
       <Text component={TextVariants.h5}>
         {label}
         <Button
@@ -113,7 +116,12 @@ const EditPolicyDetailsInline = ({
                 onChange={handleTextUpdate}
                 {...props}
               />
-              {showTextUnderInline ? <Text>{textUnderInline}</Text> : null}
+              {showTextUnderInline && validThreshold ? (
+                <Text>{textUnderInline}</Text>
+              ) : null}
+              {!validThreshold ? (
+                <ComplianceThresholdHelperText threshold={TextInput} />
+              ) : null}
             </div>
             <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
               <div className="pf-c-inline-edit__action pf-m-valid">
@@ -121,6 +129,7 @@ const EditPolicyDetailsInline = ({
                   className="pf-c-button pf-m-plain"
                   type="button"
                   aria-label="Save edits"
+                  isDisabled={!validThreshold ? true : false}
                   isLoading={isSaving}
                   onClick={onSave}
                   style={{ 'margin-left': '5px' }}
