@@ -19,7 +19,7 @@ import {
 } from 'PresentationalComponents/TabbedRules';
 import { sortingByProp } from 'Utilities/helpers';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import { BENCHMARKS_QUERY, PROFILES_QUERY } from './constants';
+import { BENCHMARKS_QUERY } from './constants';
 
 const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) =>
   benchmarks.find((benchmark) =>
@@ -102,8 +102,8 @@ export const EditPolicyRulesTab = ({
 
   const {
     data: benchmarksData,
-    error: benchmarksError,
-    loading: benchmarksLoading,
+    error,
+    loading,
   } = useQuery(BENCHMARKS_QUERY, {
     variables: {
       filter: benchmarkSearch,
@@ -115,26 +115,12 @@ export const EditPolicyRulesTab = ({
 
   const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
   const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
-  const filter = Object.keys(profileToOsMinorMap)
-    .map((i) => `id = ${i}`)
-    .join(' OR ');
-  const {
-    data: profilesData,
-    error: profilesError,
-    loading: profilesLoading,
-  } = useQuery(PROFILES_QUERY, {
-    variables: {
-      filter,
-    },
-    skip: filter.length === 0,
-  });
-  const loadingState = profilesLoading || benchmarksLoading ? true : undefined;
-  const dataState =
-    !loadingState && tabsData?.length > 0 ? profilesData : undefined;
+
+  const dataState = !loading && tabsData?.length > 0 ? tabsData : undefined;
 
   useEffect(() => {
-    if (profilesData) {
-      const profiles = profilesData?.profiles.edges.map((p) => p.node) || [];
+    if (policy.policy.profiles) {
+      const profiles = policy.policy.profiles;
       const profilesWithOs = extendProfilesByOsMinor(
         profiles,
         profileToOsMinorMap
@@ -147,16 +133,15 @@ export const EditPolicyRulesTab = ({
         return newSelection;
       });
     }
-  }, [profilesData]);
-  const error = benchmarksError || profilesError;
+  }, [policy.policy.profiles]);
 
   return (
     <StateViewWithError
       stateValues={{
         error,
         data: !error && dataState,
-        loading: loadingState,
-        empty: !loadingState && !dataState && !error,
+        loading,
+        empty: !loading && !dataState && !error,
       }}
     >
       <StateViewPart stateKey="loading">

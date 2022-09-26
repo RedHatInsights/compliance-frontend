@@ -13,12 +13,15 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
     }
   }
 >
-  <Connect(ReviewCreatedPolicy)>
+  <Connect(ReviewCreatedPolicy)
+    osMajorVersion="7"
+  >
     <ReviewCreatedPolicy
       benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
       complianceThreshold={100}
       dispatch={[Function]}
       name="C2S for Red Hat Enterprise Linux 6"
+      osMajorVersion="7"
       osMinorVersionCounts={
         Array [
           Object {
@@ -254,12 +257,15 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
     }
   }
 >
-  <Connect(ReviewCreatedPolicy)>
+  <Connect(ReviewCreatedPolicy)
+    osMajorVersion="7"
+  >
     <ReviewCreatedPolicy
       benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
       complianceThreshold={100}
       dispatch={[Function]}
       name="C2S for Red Hat Enterprise Linux 6"
+      osMajorVersion="7"
       osMinorVersionCounts={
         Array [
           Object {
@@ -276,18 +282,207 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
       refId="xccdf_org.ssgproject.content_profile_C2S"
       rulesCount={1}
     >
-      <Spinner>
+      <TextContent>
         <div
-          className="ins-c-spinner"
-          role="status"
+          className="pf-c-content"
         >
-          <span
-            className="pf-u-screen-reader"
+          <Text
+            component="h1"
           >
-            Loading...
-          </span>
+            <h1
+              className=""
+              data-ouia-component-id="OUIA-Generated-Text-4"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
+              data-pf-content={true}
+            >
+              Review
+            </h1>
+          </Text>
+          <Text>
+            <p
+              className=""
+              data-ouia-component-id="OUIA-Generated-Text-5"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
+              data-pf-content={true}
+            >
+              Review your SCAP policy before finishing.
+            </p>
+          </Text>
+          <Text
+            component="h3"
+            style={
+              Object {
+                "marginTop": 0,
+              }
+            }
+          >
+            <h3
+              className=""
+              data-ouia-component-id="OUIA-Generated-Text-6"
+              data-ouia-component-type="PF4/Text"
+              data-ouia-safe={true}
+              data-pf-content={true}
+              style={
+                Object {
+                  "marginTop": 0,
+                }
+              }
+            >
+              C2S for Red Hat Enterprise Linux 6
+            </h3>
+          </Text>
+          <TextList
+            component="dl"
+          >
+            <dl
+              className=""
+              data-pf-content={true}
+            >
+              <TextListItem
+                component="dt"
+              >
+                <dt
+                  className=""
+                  data-pf-content={true}
+                >
+                  Policy type
+                </dt>
+              </TextListItem>
+              <TextListItem
+                component="dd"
+              >
+                <dd
+                  className=""
+                  data-pf-content={true}
+                >
+                  C2S for Red Hat Enterprise Linux 6
+                </dd>
+              </TextListItem>
+              <TextListItem
+                component="dt"
+              >
+                <dt
+                  className=""
+                  data-pf-content={true}
+                >
+                  Compliance threshold
+                </dt>
+              </TextListItem>
+              <TextListItem
+                component="dd"
+              >
+                <dd
+                  className=""
+                  data-pf-content={true}
+                >
+                  100
+                  %
+                </dd>
+              </TextListItem>
+              <TextListItem
+                component="dt"
+              >
+                <dt
+                  className=""
+                  data-pf-content={true}
+                >
+                  Systems
+                </dt>
+              </TextListItem>
+              <TextListItem
+                component="dd"
+              >
+                <dd
+                  className=""
+                  data-pf-content={true}
+                >
+                  <TextList
+                    component="dl"
+                  >
+                    <dl
+                      className=""
+                      data-pf-content={true}
+                    >
+                      <TextListItem
+                        component="dt"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        <dt
+                          className=""
+                          data-pf-content={true}
+                          style={
+                            Object {
+                              "fontWeight": "normal",
+                            }
+                          }
+                        >
+                          RHEL 
+                          7
+                          .
+                          7
+                        </dt>
+                      </TextListItem>
+                      <TextListItem
+                        component="dd"
+                      >
+                        <dd
+                          className=""
+                          data-pf-content={true}
+                        >
+                          10
+                           
+                          systems
+                        </dd>
+                      </TextListItem>
+                      <TextListItem
+                        component="dt"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        <dt
+                          className=""
+                          data-pf-content={true}
+                          style={
+                            Object {
+                              "fontWeight": "normal",
+                            }
+                          }
+                        >
+                          RHEL 
+                          7
+                          .
+                          5
+                        </dt>
+                      </TextListItem>
+                      <TextListItem
+                        component="dd"
+                      >
+                        <dd
+                          className=""
+                          data-pf-content={true}
+                        >
+                          3
+                           
+                          systems
+                        </dd>
+                      </TextListItem>
+                    </dl>
+                  </TextList>
+                </dd>
+              </TextListItem>
+            </dl>
+          </TextList>
         </div>
-      </Spinner>
+      </TextContent>
     </ReviewCreatedPolicy>
   </Connect(ReviewCreatedPolicy)>
 </Provider>
