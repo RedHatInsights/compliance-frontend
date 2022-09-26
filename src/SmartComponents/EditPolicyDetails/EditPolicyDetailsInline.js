@@ -119,9 +119,9 @@ const EditPolicyDetailsInline = ({
               {showTextUnderInline && validThreshold ? (
                 <Text>{textUnderInline}</Text>
               ) : null}
-              {!validThreshold ? (
-                <ComplianceThresholdHelperText threshold={TextInput} />
-              ) : null}
+              {!validThreshold && (
+                <ComplianceThresholdHelperText threshold={inputText} />
+              )}
             </div>
             <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
               <div className="pf-c-inline-edit__action pf-m-valid">
