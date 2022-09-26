@@ -24,7 +24,7 @@ const useDonutChart = (profile) => {
     { x: 'Unsupported', y: unsupportedHostCount },
     { x: 'Not reporting', y: notReportingHostCount },
   ];
-  const chartColorScale = (testResultHostCount === 0 && [black300.value]) || [
+  const chartColorScale = (totalHostCount === 0 && [black300.value]) || [
     blue300.value,
     blue200.value,
     chart_color_gold_300.value,
