@@ -30,6 +30,7 @@ const QUERY = gql`
           complianceThreshold
           totalHostCount
           osMajorVersion
+          policyType
           policy {
             id
             name
