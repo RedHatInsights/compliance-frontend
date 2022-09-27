@@ -27,6 +27,7 @@ const mocks = [
           id: '1',
           refId: '121212',
           name: 'profile1',
+          policyType: 'policy type',
           description: 'profile description',
           external: false,
           testResultHostCount: 10,

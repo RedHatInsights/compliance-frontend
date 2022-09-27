@@ -45,6 +45,7 @@ export const QUERY = gql`
       complianceThreshold
       osMajorVersion
       lastScanned
+      policyType
       policy {
         id
         name
