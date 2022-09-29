@@ -24,10 +24,7 @@ import {
   StateViewPart,
   RoutedTabs,
   BreadcrumbLinkItem,
-  BackgroundLink,
-  LinkButton,
 } from 'PresentationalComponents';
-import { useAnchor } from 'Utilities/Router';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
 import PolicyRulesTab from './PolicyRulesTab';
@@ -93,7 +90,6 @@ export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const location = useLocation();
-  const anchor = useAnchor();
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { policyId },
   });
@@ -136,26 +132,6 @@ export const PolicyDetails = ({ route }) => {
               <Grid gutter="lg">
                 <GridItem xl2={11} xl={10} lg={12} md={12} sm={12}>
                   <PageHeaderTitle title={policy.name} />
-                </GridItem>
-                <GridItem
-                  className="policy-details-button"
-                  xl2={1}
-                  xl={2}
-                  lg={2}
-                  md={3}
-                  sm={3}
-                >
-                  <BackgroundLink
-                    to={`/scappolicies/${policy.id}/edit`}
-                    state={{ policy }}
-                    hash={anchor}
-                    backgroundLocation={{ hash: 'details' }}
-                    variant="secondary"
-                    ouiaId="EditPolicyButton"
-                    component={LinkButton}
-                  >
-                    Edit policy
-                  </BackgroundLink>
                 </GridItem>
               </Grid>
               <RoutedTabs

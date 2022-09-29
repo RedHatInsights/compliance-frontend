@@ -44,3 +44,45 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
 
   return [isSaving, onSave];
 };
+export const useSavePolicyDetails = (policyId) => {
+  const anchor = useAnchor();
+  const linkToBackground = useLinkToBackground(`/scappolicies/${policyId}`);
+  return () => {
+    linkToBackground({ hash: anchor });
+  };
+};
+
+export const useOnSavePolicyDetails = (
+  policy,
+  updatedPolicyHostsAndRules,
+  closingFunction,
+  policyId
+) => {
+  const updatePolicy = usePolicy();
+  const savePolicyDetails = useSavePolicyDetails(policyId);
+  const [isSaving, setIsSaving] = useState(false);
+  const onSave = () => {
+    setIsSaving(true);
+    closingFunction();
+    updatePolicy(policy, updatedPolicyHostsAndRules)
+      .then(() => {
+        setIsSaving(false);
+        dispatchNotification({
+          variant: 'success',
+          title: 'Policy updated',
+          autoDismiss: true,
+        });
+        savePolicyDetails();
+      })
+      .catch((error) => {
+        setIsSaving(false);
+        dispatchNotification({
+          variant: 'danger',
+          title: 'Error updating policy',
+          description: error.message,
+        });
+        savePolicyDetails();
+      });
+  };
+  return [isSaving, onSave];
+};

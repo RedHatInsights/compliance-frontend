@@ -2,7 +2,6 @@ import React, { useCallback, useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { Form, Tab, TabTitleText } from '@patternfly/react-core';
 import { RoutedTabs } from 'PresentationalComponents';
-import EditPolicyDetailsTab from './EditPolicyDetailsTab';
 import EditPolicyRulesTab from './EditPolicyRulesTab';
 import EditPolicySystemsTab from './EditPolicySystemsTab';
 import NewRulesAlert from './components/NewRulesAlert';
@@ -25,7 +24,6 @@ const profilesToOsMinorMap = (profiles, hosts) =>
 
 const EditPolicyForm = ({
   policy,
-  updatedPolicy,
   setUpdatedPolicy,
   selectedRuleRefIds,
   setSelectedRuleRefIds,
@@ -75,19 +73,7 @@ const EditPolicyForm = ({
 
   return (
     <Form>
-      <RoutedTabs ouiaId="EditPolicy" defaultTab="details" id="policy-tabs">
-        <Tab
-          eventKey="details"
-          ouiaId="Details"
-          title={<TabTitleText>Details</TabTitleText>}
-        >
-          <EditPolicyDetailsTab
-            policy={policy}
-            updatedPolicy={updatedPolicy}
-            setUpdatedPolicy={setUpdatedPolicy}
-          />
-        </Tab>
-
+      <RoutedTabs ouiaId="EditSystems" defaultTab="systems" id="policy-tabs">
         <Tab
           eventKey="rules"
           ouiaId="Rules"
@@ -100,7 +86,6 @@ const EditPolicyForm = ({
             osMinorVersionCounts={osMinorVersionCounts}
           />
         </Tab>
-
         <Tab
           eventKey="systems"
           ouiaId="Systems"
