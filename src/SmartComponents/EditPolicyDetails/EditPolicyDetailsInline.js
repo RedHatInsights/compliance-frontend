@@ -19,7 +19,7 @@ import { thresholdValid } from '../CreatePolicy/validate';
 
 const EditPolicyDetailsInline = ({
   text,
-  value,
+  policy,
   variant,
   propertyName,
   inlineClosedText,
@@ -30,34 +30,35 @@ const EditPolicyDetailsInline = ({
   Component = TextInput,
   ...props
 }) => {
-  const copiedData = value;
-  const [inputText, setInputText] = useState(text);
+  const copiedData = policy;
+  const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
   const handleTextUpdate = (newText, e) => {
     if (e.target.id === 'policydetails-input-threshold') {
       if (thresholdValid(newText) === true) {
-        setInputText(newText);
+        setValue(newText);
         setValidThreshold(true);
         setDirty(!!e.target.value);
       } else {
         setValidThreshold(false);
       }
     }
-    setInputText(newText);
+    setValue(newText);
     setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
     setIsEditOpen(false);
     setDirty(false);
+    setValue(text);
   };
   //marking page as dirty if user didn't save changes and tries to navigate away
   const [dirty, setDirty] = useState(false);
   const constructData =
     propertyName === 'businessObjective'
-      ? { ...copiedData, [propertyName]: { title: inputText } }
+      ? { ...copiedData, [propertyName]: { title: setValue } }
       : {
           ...copiedData,
-          [propertyName]: inputText,
+          [propertyName]: setValue,
         };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(
@@ -111,16 +112,12 @@ const EditPolicyDetailsInline = ({
         {isEditOpen ? (
           <>
             <div>
-              <Component
-                value={inputText}
-                onChange={handleTextUpdate}
-                {...props}
-              />
+              <Component value={value} onChange={handleTextUpdate} {...props} />
               {showTextUnderInline && validThreshold ? (
                 <Text>{textUnderInline}</Text>
               ) : null}
               {!validThreshold && (
-                <ComplianceThresholdHelperText threshold={inputText} />
+                <ComplianceThresholdHelperText threshold={value} />
               )}
             </div>
             <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
@@ -171,7 +168,7 @@ const EditPolicyDetailsInline = ({
 EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
   variant: propTypes.string,
-  value: propTypes.obj,
+  policy: propTypes.obj,
   propertyName: propTypes.string,
   inlineClosedText: propTypes.string,
   label: propTypes.string,

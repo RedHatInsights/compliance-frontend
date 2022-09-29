@@ -34,7 +34,7 @@ const PolicyDetailsDescription = ({ policy }) => {
         <TextContent>
           <Text>
             <EditPolicyDetailsInline
-              value={policy}
+              policy={policy}
               text={policy.complianceThreshold}
               variant="threshold"
               inlineClosedText={thresholdText}
@@ -50,7 +50,7 @@ const PolicyDetailsDescription = ({ policy }) => {
           </Text>
           <Text>
             <EditPolicyDetailsInline
-              value={policy}
+              policy={policy}
               text={businessText}
               variant="business"
               inlineClosedText={businessText}
@@ -62,7 +62,7 @@ const PolicyDetailsDescription = ({ policy }) => {
           <Text>
             <EditPolicyDetailsInline
               component={TextArea}
-              value={policy}
+              policy={policy}
               text={descriptionText}
               variant="description"
               inlineClosedText={businessText}
