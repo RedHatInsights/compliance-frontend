@@ -103,6 +103,7 @@ export const constructQuery = (columns) => {
       testResultProfiles(policyId: $policyId) {
         rules {
           compliant
+          remediationAvailable
         }
       }
     }
