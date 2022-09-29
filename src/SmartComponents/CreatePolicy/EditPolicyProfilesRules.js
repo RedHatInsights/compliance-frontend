@@ -38,15 +38,9 @@ const PROFILES_QUERY = gql`
           refId
           osMinorVersion
           osMajorVersion
-          policy {
-            id
-          }
-          policyType
           benchmark {
             id
-            refId
             latestSupportedOsMinorVersions
-            osMajorVersion
           }
           rules {
             id

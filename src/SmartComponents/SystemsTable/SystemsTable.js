@@ -20,14 +20,13 @@ import {
   useSystemsExport,
   useSystemsFilter,
   useSystemBulkSelect,
-  useTags,
 } from './hooks';
+import { constructQuery } from '../../Utilities/helpers';
 
 export const SystemsTable = ({
   columns,
   showAllSystems,
   policyId,
-  query,
   showActions,
   enableExport,
   compliantFilter,
@@ -48,12 +47,15 @@ export const SystemsTable = ({
   noSystemsTable,
   tableProps,
   ssgVersions,
+  dedicatedAction,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [currentTags, setCurrentTags] = useState([]);
+
   const osMinorVersionFilter = useOsMinorVersionFilter(
     showOsMinorVersionFilter,
     {
@@ -63,6 +65,7 @@ export const SystemsTable = ({
       },
     }
   );
+
   const {
     toolbarProps: conditionalFilter,
     filterString,
@@ -84,21 +87,12 @@ export const SystemsTable = ({
     defaultFilter
   );
 
-  const {
-    props: tagsProps,
-    currentTags,
-    setCurrentTags,
-    getTags,
-  } = useTags({
-    variables: {
-      filter: systemsFilter,
-      ...(policyId && { policyId }),
-    },
-  });
+  const constructedQuery = constructQuery(columns);
 
   const systemFetchArguments = {
-    query,
+    query: constructedQuery.query,
     variables: {
+      ...constructedQuery.fragments,
       tags: currentTags,
       filter: systemsFilter,
       ...(policyId && { policyId }),
@@ -131,7 +125,6 @@ export const SystemsTable = ({
     setItems(result.entities);
     setIsLoaded(true);
     setCurrentTags && setCurrentTags(result.meta.tags);
-
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
@@ -156,7 +149,6 @@ export const SystemsTable = ({
     selected: selectedIds,
     total,
     fetchArguments: {
-      tags: currentTags,
       ...systemFetchArguments,
     },
   });
@@ -206,13 +198,13 @@ export const SystemsTable = ({
         )}
         <InventoryTable
           {...systemProps}
-          {...tagsProps}
           disableDefaultColumns
           columns={mergedColumns}
           noSystemsTable={noSystemsTable}
           ref={inventory}
           getEntities={getEntities}
-          getTags={getTags}
+          hideFilters={{ all: true, tags: false }}
+          showTags
           onLoad={defaultOnLoad(columns)}
           tableProps={{
             ...bulkSelectTableProps,
@@ -233,6 +225,7 @@ export const SystemsTable = ({
               ),
             }),
           })}
+          {...(dedicatedAction ? { dedicatedAction: dedicatedAction } : {})}
           {...(enableExport && { exportConfig })}
           {...(showActions && {
             actions: [
@@ -286,6 +279,7 @@ SystemsTable.propTypes = {
   noSystemsTable: PropTypes.node,
   tableProps: PropTypes.object,
   ssgVersions: PropTypes.array,
+  dedicatedAction: PropTypes.object,
 };
 
 SystemsTable.defaultProps = {

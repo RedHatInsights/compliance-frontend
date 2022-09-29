@@ -9,106 +9,6 @@ import { getRegistry } from '@redhat-cloud-services/frontend-components-utilitie
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
-export const GET_SYSTEMS_WITH_POLICIES = gql`
-  query getSystems(
-    $filter: String!
-    $policyId: ID
-    $perPage: Int
-    $page: Int
-    $sortBy: [String!]
-    $tags: [String!]
-  ) {
-    systems(
-      search: $filter
-      limit: $perPage
-      offset: $page
-      sortBy: $sortBy
-      tags: $tags
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          name
-          osMajorVersion
-          osMinorVersion
-          culledTimestamp
-          staleWarningTimestamp
-          staleTimestamp
-          insightsId
-          updated
-          policies(policyId: $policyId) {
-            id
-            name
-          }
-          tags
-        }
-      }
-    }
-  }
-`;
-
-export const GET_SYSTEMS_WITH_REPORTS = gql`
-  query getSystems(
-    $filter: String!
-    $policyId: ID
-    $perPage: Int
-    $page: Int
-    $sortBy: [String!]
-    $tags: [String!]
-  ) {
-    systems(
-      search: $filter
-      limit: $perPage
-      offset: $page
-      sortBy: $sortBy
-      tags: $tags
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          name
-          osMajorVersion
-          osMinorVersion
-          culledTimestamp
-          staleWarningTimestamp
-          staleTimestamp
-          insightsId
-          lastScanned
-          updated
-          testResultProfiles(policyId: $policyId) {
-            id
-            name
-            refId
-            lastScanned
-            compliant
-            external
-            score
-            supported
-            benchmark {
-              version
-            }
-            osMajorVersion
-            rules {
-              refId
-              title
-              compliant
-              remediationAvailable
-              precedence
-            }
-          }
-          policies(policyId: $policyId) {
-            id
-            name
-          }
-          tags
-        }
-      }
-    }
-  }
-`;
-
 export const GET_MINIMAL_SYSTEMS = gql`
   query getSystems(
     $filter: String!
@@ -139,14 +39,6 @@ export const GET_MINIMAL_SYSTEMS = gql`
           updated
         }
       }
-    }
-  }
-`;
-
-export const GET_SYSTEMS_TAGS = gql`
-  query getSystems($filter: String!, $limit: Int) {
-    systems(search: $filter, limit: $limit) {
-      tags
     }
   }
 `;

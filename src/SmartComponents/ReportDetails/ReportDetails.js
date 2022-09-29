@@ -38,7 +38,6 @@ import useFeature from 'Utilities/hooks/useFeature';
 import { SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import { GET_SYSTEMS_WITH_REPORTS } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 import { default as ReportDetailsWithNotReportedSystems } from './ReportDetailsWithNotReportedSystems';
 
@@ -54,14 +53,9 @@ export const QUERY = gql`
       complianceThreshold
       osMajorVersion
       lastScanned
-      policyType
       policy {
         id
         name
-      }
-      benchmark {
-        id
-        version
       }
       businessObjective {
         id
@@ -151,7 +145,7 @@ export const ReportDetails = ({ route }) => {
           <Grid hasGutter>
             <GridItem sm={9} md={9} lg={9} xl={9}>
               <PageHeaderTitle title={pageTitle} />
-              <SubPageTitle>{profile.policyType}</SubPageTitle>
+              <SubPageTitle>{policyName}</SubPageTitle>
             </GridItem>
             <GridItem
               className="report-details-button"
@@ -242,7 +236,6 @@ export const ReportDetails = ({ route }) => {
                   Columns.ComplianceScore,
                   Columns.LastScanned,
                 ]}
-                query={GET_SYSTEMS_WITH_REPORTS}
                 showOnlySystemsWithTestResults
                 compliantFilter
                 defaultFilter={`with_results_for_policy_id = ${profile.id}`}

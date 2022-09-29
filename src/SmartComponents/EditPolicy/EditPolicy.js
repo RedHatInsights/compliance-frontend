@@ -25,7 +25,6 @@ export const MULTIVERSION_QUERY = gql`
       compliantHostCount
       complianceThreshold
       osMajorVersion
-      osMajorVersion
       supportedOsVersions
       lastScanned
       policyType

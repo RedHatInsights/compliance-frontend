@@ -195,13 +195,9 @@ exports[`SystemsTable returns 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -415,13 +411,9 @@ exports[`SystemsTable returns compact 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -509,13 +501,9 @@ exports[`SystemsTable returns showAllSystems 1`] = `
       }
       fallback={<Spinner />}
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -735,13 +723,9 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -1011,13 +995,9 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -1231,13 +1211,9 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -1443,13 +1419,9 @@ exports[`SystemsTable returns without actions 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }
@@ -1657,13 +1629,9 @@ exports[`SystemsTable returns without remediations 1`] = `
         }
       }
       getEntities={[Function]}
-      getTags={[Function]}
       hideFilters={
         Object {
-          "name": true,
-          "operatingSystem": true,
-          "registeredWith": true,
-          "stale": true,
+          "all": true,
           "tags": false,
         }
       }

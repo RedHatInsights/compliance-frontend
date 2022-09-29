@@ -35,9 +35,6 @@ const QUERY = gql`
             id
             name
           }
-          hosts {
-            id
-          }
           businessObjective {
             id
             title

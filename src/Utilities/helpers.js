@@ -1,5 +1,6 @@
 import React from 'react';
 import natsort from 'natsort';
+import { gql } from 'graphql-tag';
 
 export const uniq = (collection) => [...new Set(collection)];
 
@@ -66,3 +67,123 @@ export const camelCase = (string) =>
     .map((string) => string.trim())
     .map((string) => string[0].toUpperCase() + string.substring(1))
     .join('');
+
+export const constructQuery = (columns) => {
+  const fragments = {};
+  const columnKeys = columns?.map((column) => column.key);
+  columnKeys?.forEach((key) => (fragments[key + 'Column'] = true));
+
+  const query = gql`
+    fragment NameColumn on System {
+      name
+    }
+
+    fragment OsColumn on System {
+      osMajorVersion
+      osMinorVersion
+    }
+
+    fragment SsgVersionColumn on System {
+      testResultProfiles(policyId: $policyId) {
+        supported
+        benchmark {
+          version
+        }
+      }
+    }
+
+    fragment PoliciesColumn on System {
+      policies(policyId: $policyId) {
+        id
+        name
+      }
+    }
+
+    fragment FailedRulesColumn on System {
+      testResultProfiles(policyId: $policyId) {
+        rules {
+          compliant
+        }
+      }
+    }
+
+    fragment ComplianceScoreColumn on System {
+      testResultProfiles(policyId: $policyId) {
+        score
+        lastScanned
+        compliant
+        rules {
+          compliant
+        }
+      }
+    }
+
+    fragment LastScannedColumn on System {
+      testResultProfiles(policyId: $policyId) {
+        lastScanned
+      }
+    }
+
+    fragment UpdatedColumn on System {
+      updated
+      culledTimestamp
+      staleWarningTimestamp
+      staleTimestamp
+    }
+
+    fragment TagsColumn on System {
+      tags
+    }
+
+    query getSystems(
+      $filter: String!
+      $policyId: ID
+      $perPage: Int
+      $page: Int
+      $sortBy: [String!]
+      $tags: [String!]
+      $nameColumn: Boolean = false
+      $operatingSystemColumn: Boolean = false
+      $ssg_versionColumn: Boolean = false
+      $policiesColumn: Boolean = false
+      $failedRulesColumn: Boolean = false
+      $complianceScoreColumn: Boolean = false
+      $lastScannedColumn: Boolean = false
+      $updatedColumn: Boolean = false
+      $tagsColumn: Boolean = false
+    ) {
+      systems(
+        search: $filter
+        limit: $perPage
+        offset: $page
+        sortBy: $sortBy
+        tags: $tags
+      ) {
+        totalCount
+        edges {
+          node {
+            id
+            lastScanned
+            testResultProfiles(policyId: $policyId) {
+              id
+            }
+            ...NameColumn @include(if: $nameColumn)
+            ...OsColumn @include(if: $operatingSystemColumn)
+            ...SsgVersionColumn @include(if: $ssg_versionColumn)
+            ...PoliciesColumn @include(if: $policiesColumn)
+            ...FailedRulesColumn @include(if: $failedRulesColumn)
+            ...ComplianceScoreColumn @include(if: $complianceScoreColumn)
+            ...LastScannedColumn @include(if: $lastScannedColumn)
+            ...UpdatedColumn @include(if: $updatedColumn)
+            ...TagsColumn @include(if: $tagsColumn)
+          }
+        }
+      }
+    }
+  `;
+
+  return {
+    query,
+    fragments,
+  };
+};

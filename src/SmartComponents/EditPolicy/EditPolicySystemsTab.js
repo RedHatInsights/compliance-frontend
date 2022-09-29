@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
-import { GET_SYSTEMS_WITH_POLICIES } from '../SystemsTable/constants';
 import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
@@ -65,7 +64,6 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
         emptyStateComponent={<EmptyState osMajorVersion={osMajorVersion} />}
         compact
         showActions={false}
-        query={GET_SYSTEMS_WITH_POLICIES}
         defaultFilter={defaultFilter}
         enableExport={false}
         remediationsEnabled={false}

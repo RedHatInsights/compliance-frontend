@@ -45,7 +45,6 @@ export const QUERY = gql`
       complianceThreshold
       osMajorVersion
       lastScanned
-      policyType
       policy {
         id
         name
@@ -82,16 +81,6 @@ export const QUERY = gql`
       hosts {
         id
         osMinorVersion
-      }
-      rules {
-        title
-        severity
-        rationale
-        refId
-        description
-        remediationAvailable
-        identifier
-        precedence
       }
     }
   }

@@ -8,7 +8,6 @@ import { renderComponent } from 'Utilities/helpers';
 import {
   Name as NameCell,
   ComplianceScore as ComplianceScoreCell,
-  DetailsLink as DetailsLinkCell,
   FailedRules as FailedRulesCell,
   LastScanned as LastScannedCell,
   Policies as PoliciesCell,
@@ -74,6 +73,7 @@ export const SsgVersion = {
 export const Policies = {
   title: 'Policies',
   transforms: [nowrap],
+  key: 'policies',
   exportKey: 'policies',
   renderExport: (policies) => policies.map(({ name }) => name).join(', '),
   props: {
@@ -83,18 +83,9 @@ export const Policies = {
   renderFunc: renderComponent(PoliciesCell),
 };
 
-export const DetailsLink = {
-  title: '',
-  export: false,
-  props: {
-    width: 20,
-    ...disableSorting,
-  },
-  renderFunc: renderComponent(DetailsLinkCell),
-};
-
 export const FailedRules = {
   title: 'Failed rules',
+  key: 'failedRules',
   exportKey: 'testResultProfiles',
   transforms: [nowrap],
   props: {
@@ -108,6 +99,7 @@ export const FailedRules = {
 
 export const ComplianceScore = {
   title: 'Compliance score',
+  key: 'complianceScore',
   exportKey: 'testResultProfiles',
   transforms: [nowrap],
   props: {
@@ -121,6 +113,7 @@ export const ComplianceScore = {
 
 export const LastScanned = {
   title: 'Last scanned',
+  key: 'lastScanned',
   transforms: [nowrap],
   exportKey: 'testResultProfiles',
   props: {
