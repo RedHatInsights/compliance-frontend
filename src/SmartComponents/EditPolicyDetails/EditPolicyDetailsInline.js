@@ -55,22 +55,23 @@ const EditPolicyDetailsInline = ({
   const [dirty, setDirty] = useState(false);
   const constructData =
     propertyName === 'businessObjective'
-      ? { ...copiedData, [propertyName]: { title: setValue } }
+      ? { ...copiedData, [propertyName]: { title: value } }
       : {
           ...copiedData,
-          [propertyName]: setValue,
+          [propertyName]: value,
         };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(
-    value,
+    policy,
     constructData,
     handleCloseEdit,
-    value.id
+    policy.id
   );
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleToggle = () => {
     setIsEditOpen(!isEditOpen);
+    setValue(text);
   };
   const useInputFocus = useRef();
   useEffect(() => {
