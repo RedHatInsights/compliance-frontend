@@ -27,6 +27,8 @@ import {
   extendProfilesByOsMinor,
 } from 'PresentationalComponents/TabbedRules';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+import ViewAffectedLink from '../ViewAffectedLink';
+import { VIEW_POLICY_RULES } from '../../constants';
 
 const PROFILES_QUERY = gql`
   query Profiles($filter: String!) {
@@ -100,6 +102,11 @@ export const EditPolicyProfilesRules = ({
     `os_major_version = ${osMajorVersion} ` +
     `and latest_supported_os_minor_version ^ "${osMinorVersions.join(',')}"`;
 
+  console.log(benchmarkSearch, 'benchSearch here');
+  console.log(osMajorVersion, ' os major here');
+  console.log(osMinorVersionCounts, ' os minorCounts here');
+
+  //this one is returning all the rules in the modal -down
   const {
     data: benchmarksData,
     error: benchmarksError,
@@ -197,6 +204,7 @@ export const EditPolicyProfilesRules = ({
           SSG for each release of RHEL.
         </Text>
       </TextContent>
+      <ViewAffectedLink message={VIEW_POLICY_RULES} policy={policy} />
 
       <StateViewWithError
         stateValues={{
