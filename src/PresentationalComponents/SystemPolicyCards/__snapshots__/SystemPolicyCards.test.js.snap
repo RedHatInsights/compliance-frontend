@@ -345,6 +345,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                     "top-start": "pf-m-top-left",
                                   }
                                 }
+                                removeFindDomNode={false}
                                 trigger={
                                   <span>
                                     (Score: 
@@ -374,7 +375,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                       >
                         <small
                           className="margin-bottom-none"
-                          data-ouia-component-id="OUIA-Generated-Text-1"
+                          data-ouia-component-id="OUIA-Generated-Text-4"
                           data-ouia-component-type="PF4/Text"
                           data-ouia-safe={true}
                           data-pf-content={true}
@@ -485,6 +486,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                         "top-start": "pf-m-top-left",
                                       }
                                     }
+                                    removeFindDomNode={false}
                                     trigger={
                                       <span>
                                         2 years ago
@@ -523,7 +525,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
             <Card>
               <article
                 className="pf-c-card"
-                data-ouia-component-id="OUIA-Generated-Card-1"
+                data-ouia-component-id="OUIA-Generated-Card-2"
                 data-ouia-component-type="PF4/Card"
                 data-ouia-safe={true}
                 id=""
@@ -549,7 +551,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
             <Card>
               <article
                 className="pf-c-card"
-                data-ouia-component-id="OUIA-Generated-Card-2"
+                data-ouia-component-id="OUIA-Generated-Card-3"
                 data-ouia-component-type="PF4/Card"
                 data-ouia-safe={true}
                 id=""
@@ -575,7 +577,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
             <Card>
               <article
                 className="pf-c-card"
-                data-ouia-component-id="OUIA-Generated-Card-3"
+                data-ouia-component-id="OUIA-Generated-Card-4"
                 data-ouia-component-type="PF4/Card"
                 data-ouia-safe={true}
                 id=""
@@ -942,6 +944,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                     "top-start": "pf-m-top-left",
                                   }
                                 }
+                                removeFindDomNode={false}
                                 trigger={
                                   <span>
                                     (Score: 
@@ -971,7 +974,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                       >
                         <small
                           className="margin-bottom-none"
-                          data-ouia-component-id="OUIA-Generated-Text-2"
+                          data-ouia-component-id="OUIA-Generated-Text-10"
                           data-ouia-component-type="PF4/Text"
                           data-ouia-safe={true}
                           data-pf-content={true}
@@ -1082,6 +1085,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                         "top-start": "pf-m-top-left",
                                       }
                                     }
+                                    removeFindDomNode={false}
                                     trigger={
                                       <span>
                                         2 years ago
