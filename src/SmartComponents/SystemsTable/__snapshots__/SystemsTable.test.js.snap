@@ -1842,9 +1842,18 @@ exports[`SystemsTable via @testing-library/react emptyStateComponent should show
             <div
               class="pf-c-toolbar__item"
             >
-              <button>
-                Remediation button mock
-              </button>
+              <div>
+                <h1>
+                  Unable to load remedaitions component
+                </h1>
+                <h2>
+                  Failed to load 
+                  RemediationButton
+                </h2>
+                <code>
+                  More info can be found in browser console output.
+                </code>
+              </div>
             </div>
           </div>
           <div
