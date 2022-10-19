@@ -77,7 +77,7 @@ const PolicyRules = () => {
                 rules: data.profile.rules,
               },
             ]}
-            removeColumnDropdown={true}
+            manageColumns={true}
             options={{ pagination: false }}
           />
         </div>

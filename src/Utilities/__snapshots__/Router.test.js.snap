@@ -99,6 +99,22 @@ exports[`Router expect to render without error 1`] = `
             "_status": -1,
           },
         },
+        "path": "/policies/:policy_id/default_ruleset",
+        "requiredPermissions": Array [
+          "compliance:*:*",
+          "compliance:policy:read",
+        ],
+        "title": "Default policy rules - SCAP policies",
+      },
+      Object {
+        "component": Object {
+          "$$typeof": Symbol(react.lazy),
+          "_init": [Function],
+          "_payload": Object {
+            "_result": [Function],
+            "_status": -1,
+          },
+        },
         "path": "/reports",
         "requiredPermissions": Array [
           "compliance:*:*",
@@ -271,6 +287,43 @@ exports[`Router expect to render without error 1`] = `
               ],
               "setTitle": [Function],
               "title": "$entityTitle - SCAP policies",
+            }
+          }
+        />
+      </WithPermission>
+    </Route>
+    <Route
+      exact={true}
+      key="fullpage-route--policies/:policy_id/default_ruleset"
+      path="/policies/:policy_id/default_ruleset"
+    >
+      <WithPermission
+        requiredPermissions={
+          Array [
+            "compliance:*:*",
+            "compliance:policy:read",
+          ]
+        }
+      >
+        <lazy
+          route={
+            Object {
+              "component": Object {
+                "$$typeof": Symbol(react.lazy),
+                "_init": [Function],
+                "_payload": Object {
+                  "_result": [Function],
+                  "_status": -1,
+                },
+              },
+              "isCurrent": false,
+              "path": "/policies/:policy_id/default_ruleset",
+              "requiredPermissions": Array [
+                "compliance:*:*",
+                "compliance:policy:read",
+              ],
+              "setTitle": [Function],
+              "title": "Default policy rules - SCAP policies",
             }
           }
         />

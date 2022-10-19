@@ -4,7 +4,6 @@ import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import useFeature from 'Utilities/hooks/useFeature';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
 import emptyRows from './EmptyRows';
@@ -23,12 +22,9 @@ const RulesTable = ({
   hidePassed = false,
   options,
   activeFilters,
-  removeColumnDropdown,
+  manageColumns,
   ...rulesTableProps
 }) => {
-  const manageColumnsEnabled = !removeColumnDropdown
-    ? useFeature('manageColumns')
-    : null;
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : useState([]);
@@ -90,7 +86,7 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
-        manageColumns: manageColumnsEnabled,
+        manageColumns,
       }}
       {...rulesTableProps}
     />
@@ -110,7 +106,7 @@ RulesTable.propTypes = {
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
-  removeColumnDropdown: propTypes.bool,
+  manageColumns: propTypes.bool,
 };
 
 export default RulesTable;
