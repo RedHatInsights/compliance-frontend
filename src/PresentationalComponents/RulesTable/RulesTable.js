@@ -23,9 +23,12 @@ const RulesTable = ({
   hidePassed = false,
   options,
   activeFilters,
+  removeColumnDropdown,
   ...rulesTableProps
 }) => {
-  const manageColumnsEnabled = useFeature('manageColumns');
+  const manageColumnsEnabled = !removeColumnDropdown
+    ? useFeature('manageColumns')
+    : null;
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : useState([]);
@@ -107,6 +110,7 @@ RulesTable.propTypes = {
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
+  removeColumnDropdown: propTypes.bool,
 };
 
 export default RulesTable;

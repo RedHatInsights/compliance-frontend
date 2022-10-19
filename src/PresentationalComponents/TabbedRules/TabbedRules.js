@@ -37,6 +37,7 @@ const TabbedRules = ({
   columns,
   level = 0,
   ouiaId,
+  policy,
   ...rulesTableProps
 }) => {
   const handleSelect = useCallback(
@@ -94,6 +95,7 @@ const TabbedRules = ({
                 newOsMinorVersion
               ),
               handleSelect: setSelectedRuleRefIds ? handleSelect : undefined,
+              policy,
             }}
           />
         </Tab>
@@ -123,6 +125,7 @@ TabbedRules.propTypes = {
     id: propTypes.string,
     osMinorVersion: propTypes.string,
   }),
+  policy: propTypes.object,
   level: propTypes.number,
   ouiaId: propTypes.string,
 };

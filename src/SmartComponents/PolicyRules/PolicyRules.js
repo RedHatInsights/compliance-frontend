@@ -1,36 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTable';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+import PageHeader, {
+  PageHeaderTitle,
+} from '@redhat-cloud-services/frontend-components/PageHeader';
+import { Text, TextContent } from '@patternfly/react-core';
 
 const PROFILES_QUERY = gql`
-  query Profiles($filter: String!) {
-    profiles(search: $filter) {
-      edges {
-        node {
-          id
-          name
-          refId
-          osMinorVersion
-          osMajorVersion
-          benchmark {
-            id
-            latestSupportedOsMinorVersions
-          }
-          rules {
-            id
-            title
-            severity
-            rationale
-            refId
-            description
-            remediationAvailable
-            identifier
-          }
-        }
+  query Profile($policyId: String!) {
+    profile(id: $policyId) {
+      id
+      name
+      refId
+      osMinorVersion
+      osMajorVersion
+      benchmark {
+        version
+      }
+      rules {
+        id
+        title
+        severity
+        rationale
+        refId
+        description
+        remediationAvailable
+        identifier
       }
     }
   }
@@ -38,40 +37,50 @@ const PROFILES_QUERY = gql`
 
 const PolicyRules = () => {
   const { policy_id: policyId } = useParams();
-  const location = useLocation();
-  const filter = `id = ${policyId}`;
 
-  const { data, loading, error, refetch } = useQuery(PROFILES_QUERY, {
+  const { data, loading } = useQuery(PROFILES_QUERY, {
     variables: {
-      filter: filter,
+      policyId: policyId,
     },
-    skip: skipProfilesQuery,
   });
-  const skipProfilesQuery = filter.length === 0;
-
-  useEffect(() => {
-    refetch();
-  }, [location, refetch]);
-
-  console.log(data, 'here data');
 
   return (
     <React.Fragment>
-      {data && (
-        <RulesTable
-          remediationsEnabled={false}
-          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-          loading={loading}
-          profileRules={[
-            {
-              profile: {
-                refId: data.profiles.edges[0].node.refId,
-                name: data.profiles.edges[0].node.name,
-              },
-              rules: data.profiles.edges[0].node.rules,
-            },
-          ]}
+      <PageHeader className="pf-u-pt-xl pf-u-pl-xl">
+        <PageHeaderTitle
+          title={`Compliance | Default rules for ${data?.profile.name} policy`}
         />
+        <TextContent className="pf-u-mb-md pf-u-mt-md">
+          <Text>
+            This is a read-only view of the full set of rules and their
+            description for
+            <b>{data?.profile.name} policy</b> operating on
+            <br />
+            <b>RHEL {data?.profile.osMajorVersion}</b> -{' '}
+            <b>SSG version: {data?.profile.benchmark.version}</b>
+          </Text>
+          <Text>Rule selection must be made in the policy modal</Text>
+        </TextContent>
+      </PageHeader>
+      {data && (
+        <div className="pf-u-p-xl" style={{ background: '#fff' }}>
+          <RulesTable
+            remediationsEnabled={false}
+            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+            loading={loading}
+            profileRules={[
+              {
+                profile: {
+                  refId: data.profile.refId,
+                  name: data.profile.name,
+                },
+                rules: data.profile.rules,
+              },
+            ]}
+            removeColumnDropdown={true}
+            options={{ pagination: false }}
+          />
+        </div>
       )}
     </React.Fragment>
   );

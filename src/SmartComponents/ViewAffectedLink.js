@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import { ExportIcon } from '@patternfly/react-icons';
 
 const ViewAffectedLink = ({ message, policy }) => {
-  console.log(policy, ' here');
   return (
     <React.Fragment>
-      <Link key={`${policy.id}`} to={`/policies/${policy.id}/default_ruleset`}>
+      <Link
+        key={`${policy?.id}`}
+        to={`/policies/${policy?.id}/default_ruleset`}
+      >
         {message}
+        <ExportIcon className="pf-u-ml-sm" />
       </Link>
     </React.Fragment>
   );

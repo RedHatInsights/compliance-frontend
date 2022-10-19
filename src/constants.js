@@ -50,7 +50,7 @@ const LowSeverityIcon = (
     />
   </svg>
 );
-export const VIEW_POLICY_RULES = 'View policy Rules';
+export const VIEW_POLICY_RULES = 'View policy rules';
 export const HIGH_SEVERITY = (
   <React.Fragment>
     <ExclamationCircleIcon className="ins-u-failed" /> High
