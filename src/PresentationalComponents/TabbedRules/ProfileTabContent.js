@@ -23,8 +23,8 @@ import {
 } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
-import ViewAffectedLink from '../../SmartComponents/ViewAffectedLink';
 import { VIEW_POLICY_RULES } from '../../constants';
+import ViewAffectedLink from '../ViewAffectedLink/ViewAffectedLink';
 
 const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>

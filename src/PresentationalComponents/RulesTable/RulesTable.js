@@ -86,7 +86,7 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
-        manageColumns,
+        manageColumns: true,
       }}
       {...rulesTableProps}
     />

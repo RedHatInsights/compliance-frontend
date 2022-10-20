@@ -8,7 +8,7 @@ import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { Text, TextContent } from '@patternfly/react-core';
+import { Spinner, Text, TextContent } from '@patternfly/react-core';
 
 const PROFILES_QUERY = gql`
   query Profile($policyId: String!) {
@@ -44,7 +44,11 @@ const PolicyRules = () => {
     },
   });
 
-  return (
+  return loading ? (
+    <PageHeader>
+      <Spinner />
+    </PageHeader>
+  ) : (
     <React.Fragment>
       <PageHeader className="pf-u-pt-xl pf-u-pl-xl">
         <PageHeaderTitle
@@ -77,7 +81,7 @@ const PolicyRules = () => {
                 rules: data.profile.rules,
               },
             ]}
-            manageColumns={true}
+            manageColumns={false}
             options={{ pagination: false }}
           />
         </div>
