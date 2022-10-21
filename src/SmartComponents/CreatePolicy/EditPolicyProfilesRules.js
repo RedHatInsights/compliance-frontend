@@ -197,6 +197,7 @@ export const EditPolicyProfilesRules = ({
           SSG for each release of RHEL.
         </Text>
       </TextContent>
+
       <StateViewWithError
         stateValues={{
           error,
@@ -231,7 +232,6 @@ export const EditPolicyProfilesRules = ({
             level={1}
             setSelectedRuleRefIds={setSelectedRuleRefIds}
             ouiaId="RHELVersions"
-            policy={policy}
           />
         </StateViewPart>
       </StateViewWithError>

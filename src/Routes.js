@@ -114,7 +114,7 @@ const policiesRoutes = [
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     component: lazy(() =>
       import(
-        /* webpackChunkName: "PolicyRules" */ 'PresentationalComponents/PolicyRules/PolicyRules'
+        /* webpackChunkName: "PolicyRules" */ 'SmartComponents/PolicyRules/PolicyRules'
       )
     ),
   },

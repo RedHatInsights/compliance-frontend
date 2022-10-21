@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { useLocation } from 'react-router-dom';
 import {
   Text,
   TextVariants,
@@ -11,8 +10,6 @@ import {
   Spinner,
   Badge,
   Popover,
-  Flex,
-  FlexItem,
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
@@ -23,8 +20,6 @@ import {
 } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
-import { VIEW_POLICY_RULES } from '../../constants';
-import ViewAffectedLink from '../ViewAffectedLink/ViewAffectedLink';
 
 const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
@@ -100,7 +95,6 @@ const ProfileTabContent = ({
   selectedRuleRefIds,
   rulesTableProps,
   newOsMinorVersion,
-  policy,
 }) => {
   const {
     data: benchmark,
@@ -113,7 +107,6 @@ const ProfileTabContent = ({
     skip: !handleSelect || !profile.benchmark?.id,
   });
   const rules = handleSelect ? benchmark?.benchmark?.rules : profile?.rules;
-  const { hash } = useLocation();
 
   return (
     <React.Fragment>
@@ -125,16 +118,7 @@ const ProfileTabContent = ({
             </span>
             <ProfileSystemCount count={systemCount} />
           </Text>
-          <Flex>
-            <FlexItem>
-              <SSGVersionText {...{ profile, newOsMinorVersion }} />
-            </FlexItem>
-            {hash !== '#rules' && (
-              <FlexItem align={{ default: 'alignRight' }}>
-                <ViewAffectedLink message={VIEW_POLICY_RULES} policy={policy} />
-              </FlexItem>
-            )}
-          </Flex>
+          <SSGVersionText {...{ profile, newOsMinorVersion }} />
         </TextContent>
       </Grid>
       <StateViewWithError stateValues={{ error, loading, rules }}>
@@ -177,7 +161,6 @@ ProfileTabContent.propTypes = {
   systemCount: propTypes.object,
   selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
-  policy: propTypes.object,
 };
 
 export default ProfileTabContent;

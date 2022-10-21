@@ -81,8 +81,7 @@ const PolicyRules = () => {
                 rules: data.profile.rules,
               },
             ]}
-            manageColumns={false}
-            options={{ pagination: false }}
+            options={{ pagination: false, manageColumns: false }}
           />
         </div>
       )}

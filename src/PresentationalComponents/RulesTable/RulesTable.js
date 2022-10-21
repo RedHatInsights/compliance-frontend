@@ -22,7 +22,6 @@ const RulesTable = ({
   hidePassed = false,
   options,
   activeFilters,
-  manageColumns,
   ...rulesTableProps
 }) => {
   const [selectedRules, setSelectedRules] = handleSelect
@@ -86,7 +85,6 @@ const RulesTable = ({
         emptyRows: emptyRows(columns),
         selectedFilter,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
-        manageColumns: true,
       }}
       {...rulesTableProps}
     />
@@ -106,7 +104,6 @@ RulesTable.propTypes = {
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
-  manageColumns: propTypes.bool,
 };
 
 export default RulesTable;

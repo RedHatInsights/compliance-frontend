@@ -50,7 +50,7 @@ const LowSeverityIcon = (
     />
   </svg>
 );
-export const VIEW_POLICY_RULES = 'View policy rules';
+
 export const HIGH_SEVERITY = (
   <React.Fragment>
     <ExclamationCircleIcon className="ins-u-failed" /> High
@@ -216,6 +216,7 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
       });
     },
   },
+  manageColumns: true,
 };
 
 export const features = {
