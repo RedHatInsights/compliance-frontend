@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import propTypes from 'prop-types';
-import RulesTable from '../../PresentationalComponents/RulesTable/RulesTable';
-import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import RulesTable from '../../PresentationalComponents/RulesTable/RulesTable';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import { Spinner, Text, TextContent } from '@patternfly/react-core';
 
 const PROFILES_QUERY = gql`
