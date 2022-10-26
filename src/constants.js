@@ -216,6 +216,7 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
       });
     },
   },
+  manageColumns: true,
 };
 
 export const features = {
