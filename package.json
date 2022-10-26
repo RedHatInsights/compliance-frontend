@@ -146,8 +146,8 @@
     "start:proxy:beta": "BETA=true npm run start:proxy",
     "start:federated": "fec static --config config/dev.webpack.config.js",
     "travis:build": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack --config config/prod.webpack.config.js",
-    "travis:verify": "npm-run-all travis:build lint test coverage",
-    "verify": "npm-run-all build lint test",
+    "travis:verify": "npm-run-all test coverage travis:build lint",
+    "verify": "npm-run-all test build lint",
     "nightly": "npm run travis:verify",
     "bump:redhatservices": "npm install @redhat-cloud-services/frontend-components-notifications@latest @redhat-cloud-services/frontend-components-utilities@latest @redhat-cloud-services/frontend-components-config@latest @redhat-cloud-services/frontend-components@latest",
     "bump:patternfly": "npm install @patternfly/react-core@latest @patternfly/react-table@latest @patternfly/react-charts@latest @patternfly/react-tokens@latest @patternfly/react-icons@latest"
