@@ -1,36 +1,29 @@
-import { policies } from '@/__fixtures__/policies';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
-import buildFilterConfig from './Filters';
-import RulesTable from './RulesTable';
-import configureStore from 'redux-mock-store';
-import { Provider } from 'react-redux';
-
-const mockStore = configureStore();
 expect.extend(filterHelpers);
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
-    () => (() => (<span>Button</span>))); // eslint-disable-line
+import { policies } from '@/__fixtures__/policies';
+import buildSystems from '@/__factories__/systems';
+
+import buildFilterConfig from './Filters';
+import RulesTable from './RulesTable';
+
+// eslint-disable-next-line react/display-name,react/prop-types
+jest.mock('PresentationalComponents/ComplianceRemediationButton', () => () => (
+  <span>Button</span>
+));
 
 describe('RulesTable', () => {
-  let store;
   const profiles = policies.edges[0].node.policy.profiles.map((profile) => ({
     ...profile,
     profile,
   }));
   const defaultProps = {
     profileRules: profiles,
-    system: {
-      id: 1,
-    },
+    system: buildSystems()[0],
   };
 
-  beforeEach(() => {
-    store = mockStore({});
-  });
-
   it('expect to render without error', () => {
-    let wrapper = shallow(<RulesTable {...defaultProps} />);
+    const wrapper = shallow(<RulesTable {...defaultProps} />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
@@ -55,13 +48,7 @@ describe('RulesTable', () => {
       ansibleSupportFilter: false,
     }).filter((filter) => filter.label !== 'Severity');
 
-    const component = (
-      <Provider store={store}>
-        <RulesTable {...defaultProps} />
-      </Provider>
-    );
-
-    expect(component).toHaveFiltersFor(filterConfig);
+    expect(<RulesTable {...defaultProps} />).toHaveFiltersFor(filterConfig);
   });
 
   it('expect to pass dedicatedAction', () => {
