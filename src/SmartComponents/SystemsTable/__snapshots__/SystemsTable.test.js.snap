@@ -67,9 +67,8 @@ exports[`SystemsTable returns 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}
@@ -283,9 +282,8 @@ exports[`SystemsTable returns compact 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}
@@ -595,9 +593,8 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}
@@ -811,9 +808,8 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}
@@ -1083,9 +1079,8 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}
@@ -1291,9 +1286,8 @@ exports[`SystemsTable returns without actions 1`] = `
       }
       columns={[Function]}
       dedicatedAction={
-        <Memo(Connect(ComplianceRemediationButton))
+        <ComplianceRemediationButton
           allSystems={Array []}
-          selectedRules={Array []}
         />
       }
       disableDefaultColumns={true}

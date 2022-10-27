@@ -33,6 +33,6 @@ export const buildUnsupportedSystems = (count = 5) =>
     ],
   });
 
-const buildSystems = (count = 5) => callAndSort(buildSystem, count);
+const buildSystems = (count = 5, attr) => callAndSort(buildSystem, count, attr);
 
 export default buildSystems;

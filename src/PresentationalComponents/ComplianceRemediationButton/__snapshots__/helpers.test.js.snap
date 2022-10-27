@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`provideData when passed systems it returns an object with an array of issues with systems 1`] = `
+Object {
+  "issues": Array [
+    Object {
+      "description": "Profile #5 Rule #0",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_0",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #1",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_1",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #2",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_2",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #3",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_3",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #4",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_4",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #5",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_5",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #6",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_6",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #7",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_7",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #8",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_8",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #9",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_9",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #10",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_10",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #11",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_11",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #12",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_12",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #13",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_13",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+    Object {
+      "description": "Profile #5 Rule #14",
+      "id": "ssg:rhel0|0|xccdf_org.ssgproject.profile_5_rule_14",
+      "systems": Array [
+        "system-id-0",
+        "system-id-1",
+        "system-id-2",
+        "system-id-3",
+        "system-id-4",
+      ],
+    },
+  ],
+}
+`;

@@ -41,14 +41,7 @@ const RulesTable = ({
 
   const remediationAction = ({ selected }) => (
     <ComplianceRemediationButton
-      allSystems={[
-        {
-          id: system.id,
-          profiles: system.testResultProfiles,
-          ruleObjectsFailed: [],
-          supported: system.supported,
-        },
-      ]}
+      allSystems={selected.length > 0 ? [system] : undefined}
       selectedRules={selectedRulesWithRemediations(selected)}
     />
   );

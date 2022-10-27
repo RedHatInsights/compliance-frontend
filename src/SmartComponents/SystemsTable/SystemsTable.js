@@ -218,10 +218,7 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <ComplianceRemediationButton
-                  allSystems={selectedSystems}
-                  selectedRules={[]}
-                />
+                <ComplianceRemediationButton allSystems={selectedSystems} />
               ),
             }),
           })}

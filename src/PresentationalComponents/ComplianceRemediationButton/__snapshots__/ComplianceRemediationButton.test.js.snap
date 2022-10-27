@@ -3,16 +3,15 @@
 exports[`ComplianceRemediationButton expect to render without error 1`] = `
 <div>
   <div>
-    <h1>
-      Unable to load remedaitions component
-    </h1>
-    <h2>
-      Failed to load 
-      RemediationButton
-    </h2>
-    <code>
-      More info can be found in browser console output.
-    </code>
+    Button
+  </div>
+</div>
+`;
+
+exports[`ComplianceRemediationButton expect to render without error and selected rules 1`] = `
+<div>
+  <div>
+    Button
   </div>
 </div>
 `;
