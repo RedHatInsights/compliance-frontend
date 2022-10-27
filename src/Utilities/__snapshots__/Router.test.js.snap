@@ -99,7 +99,7 @@ exports[`Router expect to render without error 1`] = `
             "_status": -1,
           },
         },
-        "path": "/policies/:policy_id/default_ruleset",
+        "path": "/scappolicies/:policy_id/default_ruleset",
         "requiredPermissions": Array [
           "compliance:*:*",
           "compliance:policy:read",
@@ -294,8 +294,8 @@ exports[`Router expect to render without error 1`] = `
     </Route>
     <Route
       exact={true}
-      key="fullpage-route--policies/:policy_id/default_ruleset"
-      path="/policies/:policy_id/default_ruleset"
+      key="fullpage-route--scappolicies/:policy_id/default_ruleset"
+      path="/scappolicies/:policy_id/default_ruleset"
     >
       <WithPermission
         requiredPermissions={
@@ -317,7 +317,7 @@ exports[`Router expect to render without error 1`] = `
                 },
               },
               "isCurrent": false,
-              "path": "/policies/:policy_id/default_ruleset",
+              "path": "/scappolicies/:policy_id/default_ruleset",
               "requiredPermissions": Array [
                 "compliance:*:*",
                 "compliance:policy:read",
