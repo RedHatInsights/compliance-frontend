@@ -1,36 +1,45 @@
-import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
-import { init } from 'Store';
 import ComplianceRemediationButton from './ComplianceRemediationButton';
+import { buildNonCompliantSystems } from '@/__factories__/systems';
 
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useDispatch: () => jest.fn(),
+jest.mock(
+  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
+  () =>
+    // eslint-disable-next-line react/display-name,react/prop-types
+    ({ onRemediationCreated, dataProvider }) => {
+      onRemediationCreated?.({
+        getNotification: () => ({}),
+      });
+
+      dataProvider?.();
+
+      return <div>Button</div>;
+    }
+);
+
+jest.mock('Utilities/Dispatcher', () => ({
+  ...jest.requireActual('Utilities/Dispatcher'),
+  dispatchNotification: () => ({}),
 }));
 
 describe('ComplianceRemediationButton', () => {
-  const store = init().getStore();
-  const defaultProps = {
-    allSystems: [],
-    selectedRules: [],
-  };
-
-  beforeEach(() => {
-    window.insights = {
-      chrome: {
-        getUserPermissions: () => Promise.resolve([]),
-      },
-      experimental: {
-        loadRemediations: () => Promise.resolve([]),
-      },
-    };
-  });
+  const nonComplianceSystems = buildNonCompliantSystems();
 
   it('expect to render without error', () => {
     const component = (
-      <Provider store={store}>
-        <ComplianceRemediationButton {...defaultProps} />
-      </Provider>
+      <ComplianceRemediationButton allSystems={nonComplianceSystems} />
+    );
+    const { container } = render(component);
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('expect to render without error and selected rules', () => {
+    const component = (
+      <ComplianceRemediationButton
+        allSystems={nonComplianceSystems}
+        selectedRules={[{ refId: 'xccdf_org.ssgproject.profile_5_rule_13' }]}
+      />
     );
     const { container } = render(component);
 

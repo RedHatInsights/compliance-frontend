@@ -1,142 +1,43 @@
-import React from 'react';
-import sortBy from 'lodash/sortBy';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Button } from '@patternfly/react-core';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
-import flatten from 'lodash/flatten';
-import { connect } from 'react-redux';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { dispatchNotification } from 'Utilities/Dispatcher';
+import { provideData } from './helpers';
 
-const FallbackButton = () => (
-  <Button variant="primary" isDisabled>
-    Remediate
-  </Button>
-);
+const ComplianceRemediationButton = ({ allSystems, selectedRules }) => {
+  const remediationData = useMemo(
+    () =>
+      provideData({
+        systems: allSystems,
+        selectedRules,
+      }),
+    [
+      allSystems?.map(({ id }) => id).join(),
+      selectedRules?.map(({ refId }) => refId).join(),
+    ]
+  );
 
-class ComplianceRemediationButton extends React.Component {
-  formatRule = ({ title, refId }, profile, system, osMajorVersion) => ({
-    id: `ssg:rhel${osMajorVersion}|${
-      profile.split('xccdf_org.ssgproject.content_profile_')[1]
-    }|${refId}`,
-    description: title,
-    systems: [system],
-  });
-
-  uniqIssuesBySystem = (issues) => {
-    const issueIds = issues.map((issue) => issue.id);
-    return issues.filter((issue, index) => {
-      const originalIssueIndex = issueIds.indexOf(issue.id);
-      return originalIssueIndex === index
-        ? true
-        : (issues[originalIssueIndex].systems = Array.from(
-            new Set(issues[originalIssueIndex].systems.concat(issue.systems))
-          )) && false;
-    });
-  };
-
-  ruleProfile = (rule, system) => {
-    const profile = system.profiles.find((profile) =>
-      profile.rules.find((profileRule) => rule.refId === profileRule.refId)
-    );
-    if (!profile) {
-      console.log('No profile', rule, system);
-      return;
-    }
-
-    return profile;
-  };
-
-  rulesWithRemediations = (rules, system) => {
-    return rules
-      .filter(
-        (rule) =>
-          rule.remediationAvailable &&
-          this.ruleProfile(rule, system)?.supported &&
-          rule.compliant === false
-      )
-      .map((rule) => {
-        const profile = this.ruleProfile(rule, system);
-        return this.formatRule(
-          rule,
-          profile.refId,
-          system.id,
-          profile.osMajorVersion
-        );
-      });
-  };
-
-  sortByPrecedence = (issues) => sortBy(issues, ['precedence']);
-
-  dataProvider = () => {
-    const { allSystems, selectedRules } = this.props;
-    const result = { systems: [], issues: [] };
-
-    allSystems
-      .filter((system) => system.supported)
-      .forEach(async (system) => {
-        result.systems.push(system.id);
-
-        if (selectedRules.length !== 0) {
-          result.issues.push(this.rulesWithRemediations(selectedRules, system));
-        } else {
-          result.issues.push(
-            this.rulesWithRemediations(system.ruleObjectsFailed, system)
-          );
-        }
-      });
-
-    return Promise.all(result.issues).then((issues) => {
-      result.issues = this.sortByPrecedence(
-        this.uniqIssuesBySystem(flatten(issues))
-      );
-      return result;
-    });
-  };
-
-  notEmptyData = async () => {
-    const data = await this.dataProvider();
-    return data.issues.length > 0 && data.systems.length > 0;
-  };
-
-  remediationAvailable = () => {
-    const { allSystems, selectedRules } = this.props;
-    let rules = selectedRules.length
-      ? selectedRules
-      : allSystems.flatMap((system) => system.ruleObjectsFailed);
-
-    return rules.some(
-      (rule) =>
-        rule.remediationAvailable &&
-        (rule.profiles?.some((profile) => profile.supported) ||
-          allSystems.some(
-            (system) => this.ruleProfile(rule, system)?.supported
-          )) &&
-        rule.compliant === false
-    );
-  };
-
-  render() {
-    const { addNotification } = this.props;
-
-    return (
-      <React.Fragment>
-        <RemediationButton
-          isDisabled={!(this.remediationAvailable() && this.notEmptyData())}
-          onRemediationCreated={(result) =>
-            addNotification(result.getNotification())
-          }
-          dataProvider={this.dataProvider}
-          buttonProps={{
-            ouiaId: 'RemediateButton',
-          }}
-          fallback={<FallbackButton />}
-        >
+  return (
+    <RemediationButton
+      isDisabled={!(remediationData.issues?.length > 0)}
+      onRemediationCreated={(result) =>
+        dispatchNotification(result.getNotification())
+      }
+      dataProvider={async () => remediationData}
+      buttonProps={{
+        ouiaId: 'RemediateButton',
+      }}
+      fallback={
+        <Button variant="primary" isDisabled>
           Remediate
-        </RemediationButton>
-      </React.Fragment>
-    );
-  }
-}
+        </Button>
+      }
+    >
+      Remediate
+    </RemediationButton>
+  );
+};
 
 ComplianceRemediationButton.propTypes = {
   selectedRules: propTypes.array,
@@ -168,13 +69,4 @@ ComplianceRemediationButton.propTypes = {
   addNotification: propTypes.func,
 };
 
-ComplianceRemediationButton.defaultProps = {
-  allSystems: [],
-};
-
-export default connect(
-  () => ({}),
-  (dispatch) => ({
-    addNotification: (notification) => dispatch(addNotification(notification)),
-  })
-)(ComplianceRemediationButton);
+export default ComplianceRemediationButton;

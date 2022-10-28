@@ -101,9 +101,15 @@ export const constructQuery = (columns) => {
 
     fragment FailedRulesColumn on System {
       testResultProfiles(policyId: $policyId) {
+        refId
+        supported
+        osMajorVersion
         rules {
+          refId
+          title
           compliant
           remediationAvailable
+          precedence
         }
       }
     }
