@@ -14,6 +14,18 @@ global.React = React;
 global.toJson = toJson;
 global.fetch = function () {};
 
+if (!process.env.DEBUG) {
+  global.console.log = () => {
+    return;
+  };
+  global.console.warn = () => {
+    return;
+  };
+  global.console.info = () => {
+    return;
+  };
+}
+
 global.renderJson = (component) => toJson(shallow(component));
 global.window.__scalprum__ = {
   scalprumOptions: {

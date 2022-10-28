@@ -35,12 +35,13 @@ exports[`MultiSegmentBar expect to render without error 1`] = `
           Array [
             Object {
               "label": "test1",
-              "name": undefined,
+              "name": "test1",
               "x": "",
               "y": 5,
             },
           ]
         }
+        key="test1"
         labelComponent={
           <ChartTooltip
             dx={-34.791666666666664}
@@ -55,12 +56,13 @@ exports[`MultiSegmentBar expect to render without error 1`] = `
           Array [
             Object {
               "label": "test2",
-              "name": undefined,
+              "name": "test2",
               "x": "",
               "y": 7,
             },
           ]
         }
+        key="test2"
         labelComponent={
           <ChartTooltip
             dx={-48.708333333333336}

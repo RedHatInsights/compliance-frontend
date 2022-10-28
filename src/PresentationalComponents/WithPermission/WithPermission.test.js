@@ -1,61 +1,47 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import WithPermission from './WithPermission';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
-import useFeature from 'Utilities/hooks/useFeature';
-jest.mock('Utilities/hooks/useFeature');
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 jest.mock('@redhat-cloud-services/frontend-components-utilities/RBACHook');
 
 describe('WithPermission', () => {
-  it('expect to render without error', () => {
-    useFeature.mockImplementation(() => true);
+  it('expect to render without error', async () => {
     usePermissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
-    const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
-    );
 
-    expect(asFragment()).toMatchSnapshot();
+    render(<WithPermission>NEEDS PERMISSION</WithPermission>);
+    expect(await screen.queryAllByText('NEEDS PERMISSION').length).toEqual(1);
   });
 
-  it('expect to render with rbac disabled', () => {
-    useFeature.mockImplementation(() => false);
-    usePermissions.mockImplementation(() => ({
-      hasAccess: true,
-      isLoading: false,
-    }));
-    const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
-    );
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('expect to render "No permissions" with no access', () => {
-    useFeature.mockImplementation(() => true);
+  it('expect to render "No permissions" with no access', async () => {
     usePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));
-    const { asFragment } = render(
-      <WithPermission>NEEDS PERMISSION</WithPermission>
-    );
 
-    expect(asFragment()).toMatchSnapshot();
+    render(<WithPermission>NEEDS PERMISSION</WithPermission>);
+    expect(await screen.queryAllByText('NEEDS PERMISSION').length).toEqual(0);
   });
 
-  it('expect to render nothing when hidden and no access', () => {
-    useFeature.mockImplementation(() => true);
+  it('expect to render nothing when loading', async () => {
+    usePermissions.mockImplementation(() => ({
+      hasAccess: false,
+      isLoading: true,
+    }));
+
+    render(<WithPermission>NEEDS PERMISSION</WithPermission>);
+    expect(await screen.queryAllByText('NEEDS PERMISSION').length).toEqual(0);
+  });
+
+  it('expect to render nothing when hidden', async () => {
     usePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));
-    const { asFragment } = render(
-      <WithPermission hide>NEEDS PERMISSION</WithPermission>
-    );
 
-    expect(asFragment()).toMatchSnapshot();
+    render(<WithPermission hide>NEEDS PERMISSION</WithPermission>);
+    expect(await screen.queryAllByText('NEEDS PERMISSION').length).toEqual(0);
   });
 });

@@ -52,10 +52,10 @@ const MultiSegmentBar = ({
         <ChartStack horizontal colorScale={data.map((point) => point.color)}>
           {data.map((point) => (
             <ChartBar
-              key={point.title}
+              key={point.name}
               data={[
                 {
-                  name: point.title,
+                  name: point.name,
                   x: '',
                   y: point.value,
                   label: point.label,

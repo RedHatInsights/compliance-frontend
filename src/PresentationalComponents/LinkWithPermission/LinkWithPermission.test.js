@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import LinkWithPermission, { LinkWithRBAC } from './LinkWithPermission';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
-import useFeature from 'Utilities/hooks/useFeature';
-jest.mock('Utilities/hooks/useFeature');
+import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
+
+jest.mock('Utilities/hooks/useRoutePermissions');
 
 import propTypes from 'prop-types';
 const Link = ({ children, isDisabled, ...props }) => {
@@ -25,51 +25,23 @@ jest.mock('react-router-dom', () => ({
   Link,
 }));
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/RBACHook',
-  () => ({
-    ...jest.requireActual(
-      '@redhat-cloud-services/frontend-components-utilities/RBACHook'
-    ),
-    usePermissions: jest.fn(() => ({
-      hasAccess: true,
-      isLoading: false,
-    })),
-  })
-);
-
 const linkText = 'Test Link';
 
 describe('LinkWithPermission', () => {
-  beforeEach(() => {
-    usePermissions.mockImplementation(() => ({
-      hasAccess: false,
+  it('expect to render without error', () => {
+    useRoutePermissions.mockImplementation(() => ({
+      hasAccess: true,
       isLoading: false,
     }));
-  });
-
-  it('expect to render without error', () => {
-    useFeature.mockImplementation(() => false);
     render(<LinkWithPermission to="/reports">{linkText}</LinkWithPermission>);
 
     expect(screen.getByText(linkText)).not.toBeDisabled();
   });
-
-  it('expect to render a disabled button if rbac is enabled', () => {
-    useFeature.mockImplementation(() => true);
-    render(<LinkWithPermission to="/reports">{linkText}</LinkWithPermission>);
-
-    expect(screen.getByText(linkText)).toBeDisabled();
-  });
 });
 
 describe('LinkWithRBAC', () => {
-  beforeEach(() => {
-    useFeature.mockImplementation(() => true);
-  });
-
   it('expect to render without error', () => {
-    usePermissions.mockImplementation(() => ({
+    useRoutePermissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
@@ -79,7 +51,7 @@ describe('LinkWithRBAC', () => {
   });
 
   it('expect to render without error and disabled', () => {
-    usePermissions.mockImplementation(() => ({
+    useRoutePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));

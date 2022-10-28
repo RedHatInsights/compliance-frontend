@@ -10,6 +10,7 @@ import {
   Spinner,
   Badge,
   Popover,
+  Button,
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
@@ -119,6 +120,13 @@ const ProfileTabContent = ({
             <ProfileSystemCount count={systemCount} />
           </Text>
           <SSGVersionText {...{ profile, newOsMinorVersion }} />
+          <Button
+            onClick={() =>
+              handleSelect(profile, newOsMinorVersion, selectedRuleRefIds)
+            }
+          >
+            Reset
+          </Button>
         </TextContent>
       </Grid>
       <StateViewWithError stateValues={{ error, loading, rules }}>
