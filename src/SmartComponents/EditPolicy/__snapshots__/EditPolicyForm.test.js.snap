@@ -104,15 +104,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
         class="inventory"
       >
         <div>
-          <h1>
-            Unable to load inventory component
-          </h1>
-          <h2>
-            Failed to load section
-          </h2>
-          <code>
-            More info can be found in browser console output.
-          </code>
+          Async Component: inventory - ./InventoryTable
         </div>
       </section>
     </section>
@@ -224,15 +216,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
         class="inventory"
       >
         <div>
-          <h1>
-            Unable to load inventory component
-          </h1>
-          <h2>
-            Failed to load section
-          </h2>
-          <code>
-            More info can be found in browser console output.
-          </code>
+          Async Component: inventory - ./InventoryTable
         </div>
       </section>
     </section>

@@ -2,11 +2,10 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 import { SystemsTable } from './SystemsTable';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-import {
-  DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-  COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
-} from '@/constants';
+// import {
+//   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
+//   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
+// } from '@/constants';
 import {
   useGetEntities,
   useOsMinorVersionFilter,
@@ -16,7 +15,6 @@ import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers';
 expect.extend(filterHelpers);
 
 import { osMinorVersionFilter as mockOsMinorVersionFilter } from './__mocks__/osMinorVersionFilter';
-import InventoryTableMock from './__mocks__/InventoryTableMock';
 import useFetchSystemsMockBuilder from './__mocks__/useFetchSystemsMockBuilder';
 
 jest.mock('@apollo/client', () => ({
@@ -41,13 +39,7 @@ useGetEntities.mockImplementation(
 );
 useOsMinorVersionFilter.mockImplementation(() => mockOsMinorVersionFilter);
 
-jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
-  ...jest.requireActual('@redhat-cloud-services/frontend-components/Inventory'),
-  InventoryTable: jest.fn(),
-}));
-InventoryTable.mockImplementation((props) => <InventoryTableMock {...props} />);
-
-describe.skip('SystemsTable', () => {
+describe('SystemsTable', () => {
   const store = init().getStore();
 
   it('returns', () => {
@@ -86,34 +78,6 @@ describe.skip('SystemsTable', () => {
     expect(
       renderJson(<SystemsTable showOnlySystemsWithTestResults />)
     ).toMatchSnapshot();
-  });
-
-  it('expect to have filters properly rendered', () => {
-    const component = (
-      <Provider store={store}>
-        <SystemsTable
-          showOsMinorVersionFilter
-          compliantFilter
-          remediationsEnabled={false}
-        />
-      </Provider>
-    );
-
-    expect(component).toHaveFiltersFor([
-      ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-      ...COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
-      {
-        type: 'group',
-        label: 'Operating system',
-        items: [
-          {
-            label: 'RHEL 7',
-            value: 1,
-            items: [{ label: 'RHEL 7.9', value: 1 }],
-          },
-        ],
-      },
-    ]);
   });
 
   describe('via @testing-library/react', () => {

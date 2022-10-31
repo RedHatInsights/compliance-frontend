@@ -3,7 +3,10 @@
 exports[`ComplianceRemediationButton expect to render without error 1`] = `
 <div>
   <div>
-    Button
+    Async Component: 
+    remediations
+     - 
+    ./RemediationButton
   </div>
 </div>
 `;
@@ -11,7 +14,10 @@ exports[`ComplianceRemediationButton expect to render without error 1`] = `
 exports[`ComplianceRemediationButton expect to render without error and selected rules 1`] = `
 <div>
   <div>
-    Button
+    Async Component: 
+    remediations
+     - 
+    ./RemediationButton
   </div>
 </div>
 `;

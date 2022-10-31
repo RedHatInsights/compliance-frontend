@@ -2,21 +2,6 @@ import { render } from '@testing-library/react';
 import ComplianceRemediationButton from './ComplianceRemediationButton';
 import { buildNonCompliantSystems } from '@/__factories__/systems';
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
-  () =>
-    // eslint-disable-next-line react/display-name,react/prop-types
-    ({ onRemediationCreated, dataProvider }) => {
-      onRemediationCreated?.({
-        getNotification: () => ({}),
-      });
-
-      dataProvider?.();
-
-      return <div>Button</div>;
-    }
-);
-
 jest.mock('Utilities/Dispatcher', () => ({
   ...jest.requireActual('Utilities/Dispatcher'),
   dispatchNotification: () => ({}),
