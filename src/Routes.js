@@ -109,7 +109,7 @@ const policiesRoutes = [
     modal: true,
   },
   {
-    path: '/policies/:policy_id/default_ruleset',
+    path: '/scappolicies/:policy_id/default_ruleset',
     title: `Default policy rules - ${defaultPoliciesTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:policy:read'],
     component: lazy(() =>
