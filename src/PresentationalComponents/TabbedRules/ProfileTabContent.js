@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
@@ -23,7 +23,8 @@ import {
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 import { Link } from 'react-router-dom';
-import { ExternalLinkAltIcon, RebootingIcon } from '@patternfly/react-icons';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import ResetRules from '../ResetRules/ResetRules';
 
 const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
@@ -99,7 +100,8 @@ const ProfileTabContent = ({
   selectedRuleRefIds,
   rulesTableProps,
   newOsMinorVersion,
-  revealLinks,
+  resetLink,
+  rulesPageLink,
 }) => {
   const {
     data: benchmark,
@@ -113,13 +115,6 @@ const ProfileTabContent = ({
   });
   const rules = handleSelect ? benchmark?.benchmark?.rules : profile?.rules;
   const [originalRules, setOriginalRules] = useState([]);
-  useEffect(() => {
-    !loading ? setOriginalRules(selectedRuleRefIds) : {};
-  }, [loading]);
-
-  const resetRules = () => {
-    handleSelect && handleSelect(profile, newOsMinorVersion, originalRules);
-  };
 
   return (
     <React.Fragment>
@@ -135,8 +130,8 @@ const ProfileTabContent = ({
             <FlexItem>
               <SSGVersionText {...{ profile, newOsMinorVersion }} />
             </FlexItem>
-            {revealLinks && (
-              <FlexItem align={{ default: 'alignRight' }}>
+            <FlexItem align={{ default: 'alignRight' }}>
+              {rulesPageLink && (
                 <Link
                   to={`/scappolicies/${profile?.id}/default_ruleset`}
                   target="_blank"
@@ -145,12 +140,19 @@ const ProfileTabContent = ({
                   View policy rules
                   <ExternalLinkAltIcon className="pf-u-ml-sm" />
                 </Link>
-                <a className="pf-u-ml-lg pf-u-mr-xl" onClick={resetRules}>
-                  <RebootingIcon className="pf-u-mr-sm" />
-                  Reset to default
-                </a>
-              </FlexItem>
-            )}
+              )}
+              {resetLink && (
+                <ResetRules
+                  handleSelect={handleSelect}
+                  updateRules={setOriginalRules}
+                  profile={profile}
+                  newOsMinorVersion={newOsMinorVersion}
+                  originalRules={originalRules}
+                  loading={loading}
+                  selectedRuleRefIds={selectedRuleRefIds}
+                />
+              )}
+            </FlexItem>
           </Flex>
         </TextContent>
       </Grid>
@@ -194,7 +196,8 @@ ProfileTabContent.propTypes = {
   systemCount: propTypes.object,
   selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
-  revealLinks: propTypes.bool,
+  resetLink: propTypes.bool,
+  rulesPageLink: propTypes.bool,
 };
 
 export default ProfileTabContent;

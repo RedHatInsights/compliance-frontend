@@ -37,7 +37,8 @@ const TabbedRules = ({
   columns,
   level = 0,
   ouiaId,
-  revealLinks,
+  resetLink,
+  rulesPageLink,
   ...rulesTableProps
 }) => {
   const handleSelect = useCallback(
@@ -95,7 +96,8 @@ const TabbedRules = ({
                 newOsMinorVersion
               ),
               handleSelect: setSelectedRuleRefIds ? handleSelect : undefined,
-              revealLinks: revealLinks,
+              resetLink: resetLink,
+              rulesPageLink: rulesPageLink,
             }}
           />
         </Tab>
@@ -127,7 +129,8 @@ TabbedRules.propTypes = {
   }),
   level: propTypes.number,
   ouiaId: propTypes.string,
-  revealLinks: propTypes.bool,
+  resetLink: propTypes.bool,
+  rulesPageLink: propTypes.bool,
 };
 
 export default TabbedRules;

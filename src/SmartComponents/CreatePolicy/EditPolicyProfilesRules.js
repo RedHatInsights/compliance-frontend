@@ -232,7 +232,8 @@ export const EditPolicyProfilesRules = ({
             level={1}
             setSelectedRuleRefIds={setSelectedRuleRefIds}
             ouiaId="RHELVersions"
-            revealLinks={true}
+            resetLink={true}
+            rulesPageLink={true}
           />
         </StateViewPart>
       </StateViewWithError>
