@@ -14,6 +14,9 @@ import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 const PolicyRulesTab = ({ loading, policy }) => {
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+  const profile = policy.policy.profiles.find(
+    (profile) => profile.refId === policy.refId
+  );
 
   return (
     <React.Fragment>
@@ -32,7 +35,7 @@ const PolicyRulesTab = ({ loading, policy }) => {
         <Text component={TextVariants.p}>
           <strong>What rules are shown on this list?&nbsp;</strong>
           This view shows rules that are from the latest SSG version (
-          {policy.benchmark.version}). If you are using a different version of
+          {profile?.benchmark.version}). If you are using a different version of
           SSG for systems in this policy, those rules will be different and can
           be viewed on the systems details page.
         </Text>
@@ -44,7 +47,7 @@ const PolicyRulesTab = ({ loading, policy }) => {
         profileRules={[
           {
             profile: { refId: policy.refId, name: policy.name },
-            rules: policy.rules,
+            rules: profile?.rules || [],
           },
         ]}
         options={{
@@ -60,8 +63,14 @@ PolicyRulesTab.propTypes = {
   policy: propTypes.shape({
     name: propTypes.string,
     refId: propTypes.string,
-    rules: propTypes.array,
-    benchmark: propTypes.object,
+    policy: propTypes.shape({
+      profiles: propTypes.shape([
+        {
+          rules: propTypes.array,
+          benchmark: propTypes.object,
+        },
+      ]).isRequired,
+    }),
   }),
 };
 
