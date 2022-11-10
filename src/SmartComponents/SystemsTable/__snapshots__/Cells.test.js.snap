@@ -5,15 +5,17 @@ exports[`ComplianceScore returns 1`] = `
   <Tooltip
     content="The system compliance score is calculated by OpenSCAP and is a normalized weighted sum of rules selected for this policy."
   >
-    <CompliantIcon
-      compliant={false}
-      key="system-compliance-icon-undefined"
-      rulesFailed={28}
-      rulesPassed={24}
-      score={10}
-      supported={true}
-    />
-     10%
+    <div>
+      <CompliantIcon
+        compliant={false}
+        key="system-compliance-icon-undefined"
+        rulesFailed={28}
+        rulesPassed={24}
+        score={10}
+        supported={true}
+      />
+       10%
+    </div>
   </Tooltip>
 </Text>
 `;
