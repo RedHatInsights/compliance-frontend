@@ -4,13 +4,13 @@ import { PlusCircleIcon } from '@patternfly/react-icons';
 import {
   Title,
   Bullseye,
-  Button,
   EmptyState,
   EmptyStateBody,
   EmptyStatePrimary,
   EmptyStateSecondaryActions,
   EmptyStateIcon,
 } from '@patternfly/react-core';
+import { Link } from 'react-router-dom';
 
 const NoPoliciesState = () => (
   <Bullseye>
@@ -34,9 +34,9 @@ const NoPoliciesState = () => (
         </BackgroundLink>
       </EmptyStatePrimary>
       <EmptyStateSecondaryActions>
-        <Button variant="link" component="a" href="/scappolicies">
+        <Link variant="plain" to="/scappolicies">
           View compliance policies
-        </Button>
+        </Link>
       </EmptyStateSecondaryActions>
     </EmptyState>
   </Bullseye>

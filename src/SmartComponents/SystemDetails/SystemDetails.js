@@ -9,7 +9,7 @@ import Skeleton, {
 } from '@redhat-cloud-services/frontend-components/Skeleton';
 import Main from '@redhat-cloud-services/frontend-components/Main';
 import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
-import { SystemDetails as ComplianceSystemDetails } from './ComplianceDetail';
+import Details from './ComplianceDetail';
 import {
   BreadcrumbLinkItem,
   StateViewWithError,
@@ -48,7 +48,7 @@ export const SystemDetails = ({ route }) => {
           <InventoryDetails />
         </PageHeader>
         <Main>
-          <ComplianceSystemDetails hidePassed inventoryId={inventoryId} />
+          <Details hidePassed inventoryId={inventoryId} />
         </Main>
       </StateViewPart>
       <StateViewPart stateKey="loading">

@@ -2,14 +2,17 @@ import React, { useEffect, Suspense, Fragment } from 'react';
 import propTypes from 'prop-types';
 import {
   Route as ReactRoute,
+  MemoryRouter,
   Switch,
   Redirect,
   useHistory,
   useLocation,
   matchPath,
 } from 'react-router-dom';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
+import { routes as defaultRoutes } from '../Routes';
 
 const Route = (route) => {
   const {
@@ -84,6 +87,58 @@ const Router = ({ routes }) => {
 
 Router.propTypes = {
   routes: propTypes.array,
+};
+
+const RedirectComponent = ({ chromeHistory, isBeta, ...route }) => {
+  useEffect(() => {
+    const path =
+      (isBeta() ? '/beta' : '') + '/insights/compliance' + route.path;
+
+    // NOTE: This may stop working with the (chrome/platform) migration to react router v6.
+    // Hence the fallback.
+    if (chromeHistory) {
+      chromeHistory.push(path);
+    } else {
+      location.pathname = path;
+    }
+  }, []);
+  return <></>;
+};
+
+const InsightsRedirect = (route) => (
+  <ReactRoute path={route.path}>
+    <RedirectComponent {...route} />
+  </ReactRoute>
+);
+
+RedirectComponent.propTypes = {
+  chromeHistory: propTypes.object,
+  isBeta: propTypes.string,
+};
+
+export const FederatedModuleRouter = ({ routes = defaultRoutes, children }) => {
+  const { chromeHistory, isBeta } = useChrome();
+
+  return (
+    <MemoryRouter>
+      <Suspense fallback={Fragment}>
+        <Switch>
+          {routes.map((route, idx) => (
+            <InsightsRedirect
+              key={'redirect-' + idx}
+              {...{ ...route, chromeHistory, isBeta }}
+            />
+          ))}
+        </Switch>
+        {children}
+      </Suspense>
+    </MemoryRouter>
+  );
+};
+
+FederatedModuleRouter.propTypes = {
+  routes: propTypes.array,
+  children: propTypes.node,
 };
 
 export const useLinkToBackground = (fallbackRoute) => {
