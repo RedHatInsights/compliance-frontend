@@ -38,11 +38,13 @@ const ComplianceScore = (system) => (
           'is a normalized weighted sum of rules selected for this policy.'
         }
       >
-        <CompliantIcon
-          key={`system-compliance-icon-${system.id}`}
-          {...system}
-        />
-        {complianceScoreString(system)}
+        <div>
+          <CompliantIcon
+            key={`system-compliance-icon-${system.id}`}
+            {...system}
+          />
+          {complianceScoreString(system)}
+        </div>
       </Tooltip>
     ) : (
       complianceScoreString(system)
