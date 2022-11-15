@@ -5,19 +5,12 @@ import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from '@apollo/client';
 
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
-import { IntlProvider } from 'react-intl';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { init } from 'Store';
-import EmptyState from './EmptyState';
 
-const COMPLIANCE_API_ROOT = '/api/compliance';
+import EmptyState from './EmptyState';
 
 const QUERY = gql`
   query System($systemId: String!) {
@@ -169,7 +162,7 @@ SystemQuery.defaultProps = {
   loading: true,
 };
 
-export const SystemDetails = ({ inventoryId, hidePassed, ...props }) => {
+export const Details = ({ inventoryId, hidePassed, ...props }) => {
   let { data, error, loading } = useQuery(QUERY, {
     variables: { systemId: inventoryId },
     fetchPolicy: 'no-cache',
@@ -201,50 +194,9 @@ export const SystemDetails = ({ inventoryId, hidePassed, ...props }) => {
   );
 };
 
-SystemDetails.propTypes = {
+Details.propTypes = {
   inventoryId: propTypes.string,
   hidePassed: propTypes.bool,
 };
 
-const WrappedSystemDetails = ({
-  customItnl,
-  customRouter,
-  intlProps,
-  client,
-  ...props
-}) => {
-  const IntlWrapper = customItnl ? IntlProvider : React.Fragment;
-  const RouterWrapper = customRouter ? Router : React.Fragment;
-  const store = init().getStore();
-
-  return (
-    <RouterWrapper>
-      <IntlWrapper {...(customItnl && intlProps)}>
-        <ApolloProvider client={client}>
-          <Provider store={store}>
-            <SystemDetails {...props} />
-          </Provider>
-        </ApolloProvider>
-      </IntlWrapper>
-    </RouterWrapper>
-  );
-};
-
-WrappedSystemDetails.propTypes = {
-  customItnl: propTypes.bool,
-  intlProps: propTypes.any,
-  customRouter: propTypes.bool,
-  client: propTypes.object,
-};
-
-WrappedSystemDetails.defaultProps = {
-  client: new ApolloClient({
-    link: new HttpLink({
-      uri: COMPLIANCE_API_ROOT + '/graphql',
-      credentials: 'include',
-    }),
-    cache: new InMemoryCache(),
-  }),
-};
-
-export default WrappedSystemDetails;
+export default Details;

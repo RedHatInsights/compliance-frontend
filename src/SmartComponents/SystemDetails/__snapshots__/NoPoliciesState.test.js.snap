@@ -26,13 +26,12 @@ exports[`NoPoliciesState with a system having policies 1`] = `
       </BackgroundLink>
     </EmptyStatePrimary>
     <EmptyStateSecondaryActions>
-      <Button
-        component="a"
-        href="/scappolicies"
-        variant="link"
+      <Link
+        to="/scappolicies"
+        variant="plain"
       >
         View compliance policies
-      </Button>
+      </Link>
     </EmptyStateSecondaryActions>
   </EmptyState>
 </Bullseye>
