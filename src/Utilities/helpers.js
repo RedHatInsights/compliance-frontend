@@ -170,7 +170,6 @@ export const constructQuery = (columns) => {
         edges {
           node {
             id
-            lastScanned
             testResultProfiles(policyId: $policyId) {
               id
             }
