@@ -1,13 +1,13 @@
 import useCreateBusinessObjective from './useCreateBusinessObjective';
 import usePolicyMutation from './usePolicyMutation';
 import useAssociateSystems from './useAssociateSystems';
-import useAssociateRules from './useAssociateRules';
+import useTailorProfile from './useTailorProfile';
 
 const usePolicy = () => {
   const createBusinessObjective = useCreateBusinessObjective();
   const policyMutation = usePolicyMutation();
   const associateSystems = useAssociateSystems();
-  const associateRules = useAssociateRules();
+  const tailorProfile = useTailorProfile();
 
   return async (policy, updatedPolicy, onProgress) => {
     const selectedRuleRefIds = updatedPolicy?.selectedRuleRefIds || [];
@@ -43,7 +43,7 @@ const usePolicy = () => {
     dispatchProgress();
 
     for (const profileSelectedRuleRefIds of selectedRuleRefIds) {
-      await associateRules(profileSelectedRuleRefIds, profiles);
+      await tailorProfile(profileSelectedRuleRefIds, profiles);
       dispatchProgress();
     }
 

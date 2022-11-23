@@ -44,8 +44,8 @@ export const ASSOCIATE_PROFILES_TO_SYSTEM = gql`
 `;
 
 export const ASSOCIATE_RULES_TO_PROFILE = gql`
-  mutation associateRules($input: associateRulesInput!) {
-    associateRules(input: $input) {
+  mutation tailorProfile($input: tailorProfileInput!) {
+    tailorProfile(input: $input) {
       profile {
         id
       }

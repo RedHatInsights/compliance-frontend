@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client';
-import useAssociateRules from './useAssociateRules';
+import useTailorProfile from './useTailorProfile';
 jest.mock('@apollo/client');
 
-describe('useAssociateRules', () => {
+describe('useTailorProfile', () => {
   afterEach(() => {
     useMutation.mockReset();
   });
@@ -23,8 +23,8 @@ describe('useAssociateRules', () => {
     });
     useMutation.mockImplementation(() => [associateMutation]);
 
-    const associateRules = useAssociateRules();
-    await associateRules(profileSelectedRuleRefIds, profiles);
+    const tailorProfile = useTailorProfile();
+    await tailorProfile(profileSelectedRuleRefIds, profiles);
 
     expect(associateMutation).toHaveBeenCalled();
   });
@@ -52,8 +52,8 @@ describe('useAssociateRules', () => {
     });
     useMutation.mockImplementation(() => [associateMutation]);
 
-    const associateRules = useAssociateRules();
-    await associateRules(profileSelectedRuleRefIds, profiles);
+    const tailorProfile = useTailorProfile();
+    await tailorProfile(profileSelectedRuleRefIds, profiles);
 
     expect(associateMutation).toHaveBeenCalled();
   });
@@ -72,10 +72,10 @@ describe('useAssociateRules', () => {
     });
     useMutation.mockImplementation(() => [associateMutation]);
 
-    const associateRules = useAssociateRules();
+    const tailorProfile = useTailorProfile();
 
     try {
-      await associateRules(profileSelectedRuleRefIds, profiles);
+      await tailorProfile(profileSelectedRuleRefIds, profiles);
       throw new Error('Must throw an error');
     } catch (error) {
       expect(error).toEqual(new Error('bam!'));

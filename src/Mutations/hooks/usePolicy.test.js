@@ -1,13 +1,13 @@
 import useCreateBusinessObjective from './useCreateBusinessObjective';
 import usePolicyMutation from './usePolicyMutation';
 import useAssociateSystems from './useAssociateSystems';
-import useAssociateRules from './useAssociateRules';
+import useTailorProfile from './useTailorProfile';
 import { default as usePolicyHook } from './usePolicy';
 
 jest.mock('./useCreateBusinessObjective');
 jest.mock('./usePolicyMutation');
 jest.mock('./useAssociateSystems');
-jest.mock('./useAssociateRules');
+jest.mock('./useTailorProfile');
 
 describe('usePolicy', () => {
   afterEach(() => {
@@ -37,12 +37,12 @@ describe('usePolicy', () => {
     const associateSystems = jest.fn(async () => ({
       policy: { profiles: [] },
     }));
-    const associateRules = jest.fn(async () => {});
+    const tailorProfile = jest.fn(async () => {});
 
     useCreateBusinessObjective.mockReturnValue(createBusinessObjective);
     usePolicyMutation.mockReturnValue(policyMutation);
     useAssociateSystems.mockReturnValue(associateSystems);
-    useAssociateRules.mockReturnValue(associateRules);
+    useTailorProfile.mockReturnValue(tailorProfile);
 
     const usePolicy = usePolicyHook();
     await usePolicy(null, updatedPolicy, onProgress);
@@ -50,7 +50,7 @@ describe('usePolicy', () => {
     expect(createBusinessObjective).toBeCalled();
     expect(policyMutation).toBeCalledWith(undefined, updatedPolicy, null);
     expect(associateSystems).toBeCalled();
-    expect(associateRules).not.toBeCalled();
+    expect(tailorProfile).not.toBeCalled();
 
     expect(progressCount).toBe(3);
   });
@@ -94,12 +94,12 @@ describe('usePolicy', () => {
     const associateSystems = jest.fn(async () => ({
       policy: { profiles: newPolicyProfiles },
     }));
-    const associateRules = jest.fn(async () => {});
+    const tailorProfile = jest.fn(async () => {});
 
     useCreateBusinessObjective.mockReturnValue(createBusinessObjective);
     usePolicyMutation.mockReturnValue(policyMutation);
     useAssociateSystems.mockReturnValue(associateSystems);
-    useAssociateRules.mockReturnValue(associateRules);
+    useTailorProfile.mockReturnValue(tailorProfile);
 
     const usePolicy = usePolicyHook();
     await usePolicy(null, updatedPolicy, onProgress);
@@ -107,15 +107,15 @@ describe('usePolicy', () => {
     expect(createBusinessObjective).toBeCalledWith(null, businessObjective);
     expect(policyMutation).toBeCalledWith(undefined, updatedPolicy, 'BOid');
     expect(associateSystems).toBeCalledWith({ id: '3' }, hosts);
-    expect(associateRules).toBeCalledWith(
+    expect(tailorProfile).toBeCalledWith(
       profile1SelectedRuleRefIds,
       newPolicyProfiles
     );
-    expect(associateRules).toBeCalledWith(
+    expect(tailorProfile).toBeCalledWith(
       profile2SelectedRuleRefIds,
       newPolicyProfiles
     );
-    expect(associateRules).toBeCalledTimes(2);
+    expect(tailorProfile).toBeCalledTimes(2);
     expect(progressCount).toBe(5);
   });
 
@@ -166,12 +166,12 @@ describe('usePolicy', () => {
     const associateSystems = jest.fn(async () => ({
       policy: { profiles: newPolicyProfiles },
     }));
-    const associateRules = jest.fn(async () => {});
+    const tailorProfile = jest.fn(async () => {});
 
     useCreateBusinessObjective.mockReturnValue(createBusinessObjective);
     usePolicyMutation.mockReturnValue(policyMutation);
     useAssociateSystems.mockReturnValue(associateSystems);
-    useAssociateRules.mockReturnValue(associateRules);
+    useTailorProfile.mockReturnValue(tailorProfile);
 
     const usePolicy = usePolicyHook();
     await usePolicy(oldPolicy, updatedPolicy, onProgress);
@@ -182,15 +182,15 @@ describe('usePolicy', () => {
     );
     expect(policyMutation).toBeCalledWith('3', updatedPolicy, 'BOid');
     expect(associateSystems).toBeCalledWith(oldPolicy, hosts);
-    expect(associateRules).toBeCalledWith(
+    expect(tailorProfile).toBeCalledWith(
       profile1SelectedRuleRefIds,
       newPolicyProfiles
     );
-    expect(associateRules).toBeCalledWith(
+    expect(tailorProfile).toBeCalledWith(
       profile2SelectedRuleRefIds,
       newPolicyProfiles
     );
-    expect(associateRules).toBeCalledTimes(2);
+    expect(tailorProfile).toBeCalledTimes(2);
     expect(progressCount).toBe(5);
   });
 });
