@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 import useFeature from 'Utilities/hooks/useFeature';
 
@@ -10,8 +10,7 @@ const WithPermission = ({
   hide = false,
 }) => {
   const rbacEnabled = useFeature('rbac');
-  const { hasAccess, isLoading } = usePermissions(
-    'compliance',
+  const { hasAccess, isLoading } = usePermissionsWithContext(
     requiredPermissions,
     false,
     false
