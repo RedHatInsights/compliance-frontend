@@ -1,15 +1,30 @@
+import { useEffect, useMemo } from 'react';
 import { features } from '@/constants';
 import { useLocation, useHistory } from 'react-router-dom';
 export const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
 
+const getFlagValue = (feature) => {
+  const defaultValue = features[feature];
+  const storedValue = !!localStorage.getItem(
+    `${LOCAL_STORE_FEATURE_PREFIX}:${feature}`
+  );
+
+  return storedValue || defaultValue;
+};
+
 const setFeatureFlag = (featureValue, feature) => {
-  const value = featureValue === 'enable';
+  const value = featureValue === 'enable' || featureValue === 'true';
+  const debugFeatures = getFlagValue('debugFeatures');
 
   if (!value) {
-    console.log(`Removing feature setting of ${feature}`);
+    if (debugFeatures) {
+      console.log(`Removing feature setting of ${feature}`);
+    }
     localStorage.removeItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`);
   } else {
-    console.log(`Setting feature value for ${feature} to ${value}`);
+    if (debugFeatures) {
+      console.log(`Setting feature value for ${feature} to ${value}`);
+    }
     localStorage.setItem(`${LOCAL_STORE_FEATURE_PREFIX}:${feature}`, value);
   }
 };
@@ -28,25 +43,18 @@ export const useSetFlagsFromUrl = () => {
   history.push(path);
 };
 
-const getFlagValue = (feature) => {
-  const defaultValue = features[feature];
-  const storedValue = !!localStorage.getItem(
-    `${LOCAL_STORE_FEATURE_PREFIX}:${feature}`
-  );
-
-  return storedValue || defaultValue;
-};
-
 // A hook to query feature values
 const useFeature = (feature) => {
-  if (!feature) {
-    return;
-  }
+  const debugFeatures = useMemo(() => getFlagValue('debugFeatures'), []);
+  const featureEnabled = useMemo(() => getFlagValue(feature), [feature]);
 
-  const featureEnabled = getFlagValue(feature);
+  useEffect(() => {
+    if (debugFeatures) {
+      console.log(`Feature ${feature} is set to ${featureEnabled}`);
+    }
+  }, [feature, featureEnabled, debugFeatures]);
 
-  console.log(`Feature ${feature} is set to ${featureEnabled}`);
-  return featureEnabled;
+  return !feature ? undefined : featureEnabled;
 };
 
 export default useFeature;
