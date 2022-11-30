@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { ASSOCIATE_RULES_TO_PROFILE } from '../graphql/mutations';
 
-const useTailorProfile = () => {
-  const [tailorProfile] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
+const useAssociateRules = () => {
+  const [associateRules] = useMutation(ASSOCIATE_RULES_TO_PROFILE);
 
   return async ({ id, osMinorVersion, ruleRefIds }, profiles) => {
     const profile = profiles.find(
@@ -16,11 +16,11 @@ const useTailorProfile = () => {
       ruleRefIds,
     };
 
-    const { error } = await tailorProfile({ variables: { input: ruleInput } });
+    const { error } = await associateRules({ variables: { input: ruleInput } });
     if (error) {
       throw error;
     }
   };
 };
 
-export default useTailorProfile;
+export default useAssociateRules;
