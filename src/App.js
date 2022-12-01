@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
 import { Routes } from './Routes';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
+import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
+
 import './App.scss';
 import { useSetFlagsFromUrl } from 'Utilities/hooks/useFeature';
 
@@ -36,10 +38,10 @@ const App = (props) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <RBACProvider appName="compliance">
       <NotificationsPortal />
       <Routes childProps={props} />
-    </React.Fragment>
+    </RBACProvider>
   );
 };
 
