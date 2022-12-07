@@ -3,8 +3,7 @@ import propTypes from 'prop-types';
 // eslint-disable-next-line rulesdir/disallow-fec-relative-imports
 import { Table } from '@redhat-cloud-services/frontend-components-pdf-generator';
 
-const identifierLabel = ({ identifier }) =>
-  JSON.parse(identifier || '{}').label || '';
+const identifierLabel = ({ identifier }) => (identifier || '{}').label || '';
 
 const capitalize = (str = '') => str.charAt(0).toUpperCase() + str.slice(1);
 
