@@ -76,6 +76,8 @@ export const constructQuery = (columns) => {
   const query = gql`
     fragment NameColumn on System {
       name
+      osMajorVersion
+      osMinorVersion
     }
 
     fragment OsColumn on System {
