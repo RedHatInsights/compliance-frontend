@@ -15,7 +15,7 @@ const ResetRules = ({
     if (!loading) {
       updateRules(selectedRuleRefIds);
     }
-  }, [loading]);
+  }, [loading, originalRules]);
 
   const resetDefaultRules = () => {
     handleSelect && handleSelect(profile, newOsMinorVersion, originalRules);
