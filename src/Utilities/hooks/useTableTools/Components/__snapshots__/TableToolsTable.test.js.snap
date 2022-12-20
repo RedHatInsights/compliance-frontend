@@ -555,7 +555,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
         }
       }
       variant="bottom"
-      widgetId="pagination-options-menu"
+      widgetId="options-menu"
     />
   </TableToolbar>
 </Fragment>
