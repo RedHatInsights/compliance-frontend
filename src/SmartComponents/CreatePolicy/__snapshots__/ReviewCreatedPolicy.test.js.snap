@@ -94,14 +94,12 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           >
             <dl
               className=""
-              data-pf-content={true}
             >
               <TextListItem
                 component="dt"
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Policy type
                 </dt>
@@ -111,7 +109,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   C2S for Red Hat Enterprise Linux 6
                 </dd>
@@ -121,7 +118,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Compliance threshold
                 </dt>
@@ -131,7 +127,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   100
                   %
@@ -142,7 +137,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Systems
                 </dt>
@@ -152,14 +146,12 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   <TextList
                     component="dl"
                   >
                     <dl
                       className=""
-                      data-pf-content={true}
                     >
                       <TextListItem
                         component="dt"
@@ -171,7 +163,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       >
                         <dt
                           className=""
-                          data-pf-content={true}
                           style={
                             Object {
                               "fontWeight": "normal",
@@ -189,7 +180,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       >
                         <dd
                           className=""
-                          data-pf-content={true}
                         >
                           10
                            
@@ -206,7 +196,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       >
                         <dt
                           className=""
-                          data-pf-content={true}
                           style={
                             Object {
                               "fontWeight": "normal",
@@ -224,7 +213,6 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       >
                         <dd
                           className=""
-                          data-pf-content={true}
                         >
                           3
                            
@@ -338,14 +326,12 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
           >
             <dl
               className=""
-              data-pf-content={true}
             >
               <TextListItem
                 component="dt"
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Policy type
                 </dt>
@@ -355,7 +341,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   C2S for Red Hat Enterprise Linux 6
                 </dd>
@@ -365,7 +350,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Compliance threshold
                 </dt>
@@ -375,7 +359,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   100
                   %
@@ -386,7 +369,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               >
                 <dt
                   className=""
-                  data-pf-content={true}
                 >
                   Systems
                 </dt>
@@ -396,14 +378,12 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               >
                 <dd
                   className=""
-                  data-pf-content={true}
                 >
                   <TextList
                     component="dl"
                   >
                     <dl
                       className=""
-                      data-pf-content={true}
                     >
                       <TextListItem
                         component="dt"
@@ -415,7 +395,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       >
                         <dt
                           className=""
-                          data-pf-content={true}
                           style={
                             Object {
                               "fontWeight": "normal",
@@ -433,7 +412,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       >
                         <dd
                           className=""
-                          data-pf-content={true}
                         >
                           10
                            
@@ -450,7 +428,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       >
                         <dt
                           className=""
-                          data-pf-content={true}
                           style={
                             Object {
                               "fontWeight": "normal",
@@ -468,7 +445,6 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       >
                         <dd
                           className=""
-                          data-pf-content={true}
                         >
                           3
                            
