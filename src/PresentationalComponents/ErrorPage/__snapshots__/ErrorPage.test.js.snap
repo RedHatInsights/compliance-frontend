@@ -10,36 +10,4 @@ exports[`ErrorPage expect to render a 403 error 1`] = `
 
 exports[`ErrorPage expect to render an invalid object 1`] = `<InvalidObject />`;
 
-exports[`ErrorPage expect to render without error 1`] = `
-<section
-  className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet"
->
-  <ExclamationCircleIcon
-    color="currentColor"
-    noVerticalAlign={false}
-    size="xl"
-    style={
-      Object {
-        "color": "var(--pf-global--danger-color--100)",
-      }
-    }
-  />
-  <Title
-    headingLevel="h1"
-  >
-    There was an error
-  </Title>
-  <Text>
-    If you need to contact Red Hat Support about this, this is the exact error:
-    <Text>
-      An error message
-    </Text>
-  </Text>
-  <Button
-    ouiaId="ErrorPageGoBackButton"
-    variant="link"
-  >
-    Go back
-  </Button>
-</section>
-`;
+exports[`ErrorPage expect to render without error 1`] = `<ErrorState />`;

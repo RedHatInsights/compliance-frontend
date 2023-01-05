@@ -1,11 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Title, Button, Text } from '@patternfly/react-core';
-import { ExclamationCircleIcon } from '@patternfly/react-icons';
 import InvalidObject from '@redhat-cloud-services/frontend-components/InvalidObject';
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
+import { ErrorState } from '@redhat-cloud-services/frontend-components/ErrorState';
 
-const ErrorPage = ({ error, ...props }) => {
+const ErrorPage = ({ error }) => {
   if (error.networkError && error.networkError.statusCode === 401) {
     window.insights.chrome.auth.logout(true);
     return false;
@@ -19,30 +18,7 @@ const ErrorPage = ({ error, ...props }) => {
     return <InvalidObject />;
   }
 
-  return (
-    <section
-      {...props}
-      className="pf-l-page__main-section pf-c-page__main-section ins-c-component_invalid-componet"
-    >
-      <ExclamationCircleIcon
-        size="xl"
-        style={{ color: 'var(--pf-global--danger-color--100)' }}
-      />
-      <Title headingLevel="h1">There was an error</Title>
-      <Text>
-        If you need to contact Red Hat Support about this, this is the exact
-        error:
-        <Text>{error.message}</Text>
-      </Text>
-      <Button
-        variant="link"
-        ouiaId="ErrorPageGoBackButton"
-        onClick={history.goBack}
-      >
-        Go back
-      </Button>
-    </section>
-  );
+  return <ErrorState />;
 };
 
 ErrorPage.propTypes = {
