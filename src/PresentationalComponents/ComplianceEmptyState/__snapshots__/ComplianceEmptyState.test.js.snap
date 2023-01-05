@@ -14,12 +14,11 @@ exports[`ComplianceEmptyState expect to render different message if many policie
     title="Compliance"
   />
   <Title
-    headingLevel="h1"
+    headingLevel="h2"
     size="lg"
   >
     No policies
   </Title>
-  <br />
   <EmptyStateBody>
     <TextContent>
       <a
@@ -79,12 +78,11 @@ exports[`ComplianceEmptyState expect to render different message if one policy e
     title="Compliance"
   />
   <Title
-    headingLevel="h1"
+    headingLevel="h2"
     size="lg"
   >
     No policies
   </Title>
-  <br />
   <EmptyStateBody>
     <TextContent>
       <a
@@ -144,12 +142,11 @@ exports[`ComplianceEmptyState expect to render without error if no policies exis
     title="Compliance"
   />
   <Title
-    headingLevel="h1"
+    headingLevel="h2"
     size="lg"
   >
     No policies
   </Title>
-  <br />
   <EmptyStateBody>
     <TextContent>
       The Compliance service uses SCAP policies to track your organization's adherence to compliance requirements.

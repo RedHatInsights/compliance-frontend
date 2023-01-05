@@ -57,18 +57,19 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
         title="Compliance"
         icon={CloudSecurityIcon}
       />
-      <Title headingLevel="h1" size="lg">
+      <Title headingLevel="h2" size="lg">
         {title}
       </Title>
-      <br />
       <EmptyStateBody>
-        {policiesCount > 0 && (
+        {policiesCount > 0 ? (
           <TextContent>
             <a href="insights/compliance/scappolicies">
               {policiesCount} {policyWord}
             </a>{' '}
             {haveWord} been created but {haveWord} no reports.
           </TextContent>
+        ) : (
+          <></>
         )}
         <TextContent>
           The Compliance service uses SCAP policies to track your
