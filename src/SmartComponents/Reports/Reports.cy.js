@@ -8,6 +8,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { Provider } from 'react-redux';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import { init } from 'Store';
+import fixtures from '../../../cypress/fixtures/reports.json';
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -32,43 +33,11 @@ const mountComponent = () => {
 
 describe('Reports table tests', () => {
   beforeEach(() => {
-    Cypress.config('interceptions', {
-      data: {
-        profiles: {
-          edges: [
-            {
-              node: {
-                benchmark: {
-                  id: '21231231',
-                  version: '0.1.63',
-                  __typename: 'Benchmark',
-                },
-                id: '1',
-                refId: '121212',
-                name: 'profile1',
-                description: 'profile description',
-                testResultHostCount: 1,
-                osMajorVersion: '7',
-                totalHostCount: 2323,
-                unsupportedHostCount: 1,
-                complianceThreshold: 1,
-                compliantHostCount: 1,
-                policy: {
-                  id: '2323232323',
-                  name: 'C2S',
-                  __typename: 'Profile',
-                },
-                businessObjective: {
-                  id: '1',
-                  title: 'BO 1',
-                },
-              },
-            },
-          ],
-        },
+    cy.intercept('*', {
+      statusCode: 201,
+      body: {
+        data: fixtures,
       },
-      error: false,
-      loading: false,
     });
     mountComponent();
   });
@@ -79,12 +48,11 @@ describe('Reports table tests', () => {
   });
 
   it('expect to render emptystate', () => {
-    Cypress.config('interceptions', {
-      data: {
-        profiles: { edges: [] },
+    cy.intercept('*', {
+      statusCode: 201,
+      body: {
+        data: fixtures,
       },
-      error: false,
-      loading: false,
     });
     cy.get('table').should('have.length', 1);
   });

@@ -21,5 +21,9 @@ import './commands';
 import '@patternfly/patternfly/patternfly.scss';
 import { mount } from 'cypress/react';
 Cypress.Commands.add('mount', mount);
+Cypress.on(
+  'uncaught:exception',
+  (err) => !err.message.includes('ResizeObserver loop limit exceeded')
+);
 // Example use:
 // cy.mount(<MyComponent />)
