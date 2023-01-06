@@ -5,7 +5,6 @@ import {
   Title,
   TextContent,
   Button,
-  Bullseye,
   EmptyState,
   EmptyStateBody,
   EmptyStatePrimary,
@@ -28,7 +27,7 @@ const QUERY = gql`
 `;
 
 const ComplianceEmptyState = ({ title, mainButton, client }) => {
-  let { data, error, loading } = useQuery(QUERY, {
+  const { data, error, loading } = useQuery(QUERY, {
     fetchPolicy: 'network-only',
     client,
   });
@@ -48,56 +47,55 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
   const haveWord = policiesCount > 1 ? 'have' : 'has';
 
   return (
-    <Bullseye>
-      <EmptyState>
-        <EmptyStateIcon
-          style={{
-            fontWeight: '500',
-            color: 'var(--pf-global--primary-color--100)',
-          }}
-          size="xl"
-          title="Compliance"
-          icon={CloudSecurityIcon}
-        />
-        <Title headingLevel="h1" size="lg">
-          {title}
-        </Title>
-        <br />
-        <EmptyStateBody>
-          {policiesCount > 0 && (
-            <TextContent>
-              <a href="insights/compliance/scappolicies">
-                {policiesCount} {policyWord}
-              </a>{' '}
-              {haveWord} been created but {haveWord} no reports.
-            </TextContent>
-          )}
+    <EmptyState>
+      <EmptyStateIcon
+        style={{
+          fontWeight: '500',
+          color: 'var(--pf-global--primary-color--100)',
+        }}
+        size="xl"
+        title="Compliance"
+        icon={CloudSecurityIcon}
+      />
+      <Title headingLevel="h2" size="lg">
+        {title}
+      </Title>
+      <EmptyStateBody>
+        {policiesCount > 0 ? (
           <TextContent>
-            The Compliance service uses SCAP policies to track your
-            organization&#39;s adherence to compliance requirements.
+            <a href="insights/compliance/scappolicies">
+              {policiesCount} {policyWord}
+            </a>{' '}
+            {haveWord} been created but {haveWord} no reports.
           </TextContent>
-          <TextContent>
-            Get started by adding a policy, or read documentation about how to
-            connect OpenSCAP to the Compliance service.
-          </TextContent>
-        </EmptyStateBody>
-        <EmptyStatePrimary>{mainButton}</EmptyStatePrimary>
-        <EmptyStateSecondaryActions>
-          <Button
-            variant="link"
-            component="a"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={
-              `https://access.redhat.com/documentation/en-us/red_hat_insights/` +
-              `2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index`
-            }
-          >
-            Learn about OpenSCAP and Compliance
-          </Button>
-        </EmptyStateSecondaryActions>
-      </EmptyState>
-    </Bullseye>
+        ) : (
+          <></>
+        )}
+        <TextContent>
+          The Compliance service uses SCAP policies to track your
+          organization&#39;s adherence to compliance requirements.
+        </TextContent>
+        <TextContent>
+          Get started by adding a policy, or read documentation about how to
+          connect OpenSCAP to the Compliance service.
+        </TextContent>
+      </EmptyStateBody>
+      <EmptyStatePrimary>{mainButton}</EmptyStatePrimary>
+      <EmptyStateSecondaryActions>
+        <Button
+          variant="link"
+          component="a"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={
+            `https://access.redhat.com/documentation/en-us/red_hat_insights/` +
+            `2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index`
+          }
+        >
+          Learn about OpenSCAP and Compliance
+        </Button>
+      </EmptyStateSecondaryActions>
+    </EmptyState>
   );
 };
 

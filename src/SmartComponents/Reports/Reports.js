@@ -79,24 +79,25 @@ export const Reports = () => {
   }
 
   return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
-      <StateViewPart stateKey="loading">
-        <ReportsHeader />
-        <Main>
-          <SkeletonTable colSize={3} rowSize={10} />
-        </Main>
-      </StateViewPart>
-      <StateViewPart stateKey="data">
-        <ReportsHeader />
-        <Main>
-          {showView ? (
-            <ReportsTable {...{ profiles }} />
-          ) : (
-            <ReportsEmptyState />
-          )}
-        </Main>
-      </StateViewPart>
-    </StateViewWithError>
+    <>
+      <ReportsHeader />
+      <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewPart stateKey="loading">
+          <Main>
+            <SkeletonTable colSize={3} rowSize={10} />
+          </Main>
+        </StateViewPart>
+        <StateViewPart stateKey="data">
+          <Main>
+            {showView ? (
+              <ReportsTable {...{ profiles }} />
+            ) : (
+              <ReportsEmptyState />
+            )}
+          </Main>
+        </StateViewPart>
+      </StateViewWithError>
+    </>
   );
 };
 
