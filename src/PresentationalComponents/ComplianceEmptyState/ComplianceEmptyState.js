@@ -28,7 +28,7 @@ const QUERY = gql`
 `;
 
 const ComplianceEmptyState = ({ title, mainButton, client }) => {
-  let { data, error, loading } = useQuery(QUERY, {
+  const { data, error, loading } = useQuery(QUERY, {
     fetchPolicy: 'network-only',
     client,
   });
@@ -39,7 +39,7 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
 
   if (error) {
     const errorMsg = `Oops! Error loading System data: ${error}`;
-    return <ErrorCard message={errorMsg} />;
+    return <ErrorCard errorMsg={errorMsg} />;
   }
 
   const policiesCount = data.profiles.totalCount;
