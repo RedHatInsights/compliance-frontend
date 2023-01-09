@@ -94,8 +94,7 @@
     ],
     "exclude": [
       "src/**/*.spec.ct.js",
-      "src/**/*.test.js",
-      "src/**/*.cy.js"
+      "src/**/*.test.js"
     ]
   },
   "devDependencies": {
@@ -111,6 +110,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@commitlint/travis-cli": "^17.1.2",
+    "@cypress/code-coverage": "^3.10.0",
     "@cypress/react": "^7.0.2",
     "@cypress/webpack-dev-server": "^3.2.2",
     "@patternfly/patternfly": "^4.222.4",
@@ -124,6 +124,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
+    "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-polyfill": "^6.26.0",
@@ -150,10 +151,10 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
-    "test": "jest --passWithNoTests",
+    "test": "npm run test:jest",
     "test:nocoverage": "jest --passWithNoTests --no-coverage",
     "test:snapshots": "jest -u --passWithNoTests --no-coverage",
-    "test:ct": "cypress run --component",
+    "test:ct": "BABEL_ENV=componentTest cypress run --component",
     "test:openct": "cypress open --component",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",

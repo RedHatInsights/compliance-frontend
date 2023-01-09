@@ -21,3 +21,4 @@ yarn.lock
 
 .DS_Store
 coverage
+codecov*
