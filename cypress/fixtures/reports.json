@@ -1,0 +1,63 @@
+{
+    "profiles": {
+        "edges": [
+            {
+                "node": {
+                    "id": "8ef0a77b-09c6-4652-b341-2b3ac2ce47f3",
+                    "name": "Protection Profile for General Purpose Operating Systems",
+                    "refId": "xccdf_org.ssgproject.content_profile_ospp",
+                    "description": "This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2.1).\n\nThis configuration profile is consistent with CNSSI-1253, which requires\nU.S. National Security Systems to adhere to certain configuration\nparameters. Accordingly, this configuration profile is suitable for\nuse in U.S. National Security Systems.",
+                    "policyType": "Protection Profile for General Purpose Operating Systems",
+                    "totalHostCount": 1,
+                    "testResultHostCount": 1,
+                    "compliantHostCount": 0,
+                    "unsupportedHostCount": 0,
+                    "osMajorVersion": "8",
+                    "complianceThreshold": 100,
+                    "businessObjective": null,
+                    "policy": {
+                        "id": "8ef0a77b-09c6-4652-b341-2b3ac2ce47f3",
+                        "name": "Protection Profile for General Purpose Operating Systems",
+                        "__typename": "Profile"
+                    },
+                    "benchmark": {
+                        "id": "307f951d-a72b-46b2-9d3d-5963750ccddd",
+                        "version": "0.1.60",
+                        "__typename": "Benchmark"
+                    },
+                    "__typename": "Profile"
+                },
+                "__typename": "ProfileEdge"
+            },
+            {
+                "node": {
+                    "id": "1de468f1-5d4b-499a-88ce-82c040e6d1a0",
+                    "name": "CIS Red Hat Enterprise Linux 8 Benchmark for Level 2 - Server",
+                    "refId": "xccdf_org.ssgproject.content_profile_cis",
+                    "description": "This profile defines a baseline that aligns to the \"Level 2 - Server\"\nconfiguration from the Center for Internet Security® Red Hat Enterprise\nLinux 8 Benchmark™, v1.0.1, released 2021-05-19.\n\nThis profile includes Center for Internet Security®\nRed Hat Enterprise Linux 8 CIS Benchmarks™ content.",
+                    "policyType": "CIS Red Hat Enterprise Linux 8 Benchmark for Level 2 - Server",
+                    "totalHostCount": 6,
+                    "testResultHostCount": 0,
+                    "compliantHostCount": 0,
+                    "unsupportedHostCount": 1,
+                    "osMajorVersion": "8",
+                    "complianceThreshold": 99,
+                    "businessObjective": null,
+                    "policy": {
+                        "id": "1de468f1-5d4b-499a-88ce-82c040e6d1a0",
+                        "name": "CIS Red Hat Enterprise Linux 8 Benchmark for Level 2 - Server",
+                        "__typename": "Profile"
+                    },
+                    "benchmark": {
+                        "id": "153f8a4a-0513-4ac1-bee0-3f37c7467c7d",
+                        "version": "0.1.57",
+                        "__typename": "Benchmark"
+                    },
+                    "__typename": "Profile"
+                },
+                "__typename": "ProfileEdge"
+            }
+        ],
+        "__typename": "ProfileConnection"
+    }
+  }
