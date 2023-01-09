@@ -46,7 +46,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "collectCoverage": true,
-    "coverageDirectory": "./coverage/",
+    "coverageDirectory": "./jest-coverage/",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/**/stories/*",
@@ -151,7 +151,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
-    "test": "npm run test:jest",
+    "test": "jest --passWithNoTests",
     "test:nocoverage": "jest --passWithNoTests --no-coverage",
     "test:snapshots": "jest -u --passWithNoTests --no-coverage",
     "test:ct": "BABEL_ENV=componentTest cypress run --component",
