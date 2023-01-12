@@ -9,7 +9,7 @@ exports[`ComplianceSystems expect to render without error 1`] = `
       title="Compliance systems"
     />
   </PageHeader>
-  <Connect(InternalMain)>
+  <Main>
     <StateViewWithError
       stateValues={
         Object {
@@ -23,6 +23,6 @@ exports[`ComplianceSystems expect to render without error 1`] = `
         stateKey="data"
       />
     </StateViewWithError>
-  </Connect(InternalMain)>
+  </Main>
 </Fragment>
 `;
