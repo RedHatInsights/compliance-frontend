@@ -184,72 +184,38 @@ exports[`ReportDetails expect to render without error 1`] = `
             <div
               className="chart-container"
             >
-              <ChartDonut
-                colorScale={
-                  Array [
-                    "#06c",
-                    "#519de9",
-                  ]
-                }
-                constrainToVisibleArea={true}
-                data={
-                  Array [
-                    Object {
-                      "x": "Compliant",
-                      "y": 5,
-                    },
-                    Object {
-                      "x": "Non-compliant",
-                      "y": 5,
-                    },
-                  ]
-                }
-                identifier="profile1"
-                innerRadius={88}
-                legendData={
-                  Array [
-                    Object {
-                      "name": "5 systems compliant",
-                    },
-                    Object {
-                      "name": "5 systems non-compliant",
-                    },
-                  ]
-                }
-                legendOrientation="vertical"
-                legendPosition="right"
-                padding={
+              <ReportChart
+                chartClass="report-details-chart-container"
+                hasLegend={true}
+                profile={
                   Object {
-                    "bottom": 20,
-                    "left": 0,
-                    "right": 250,
-                    "top": 20,
+                    "benchmark": Object {
+                      "version": "0.1.4",
+                    },
+                    "businessObjective": Object {
+                      "id": "1",
+                      "title": "BO 1",
+                    },
+                    "complianceThreshold": 1,
+                    "compliantHostCount": 5,
+                    "description": "profile description",
+                    "external": false,
+                    "id": "1",
+                    "name": "profile1",
+                    "osMajorVersion": "7",
+                    "policy": Object {
+                      "id": "thepolicyid",
+                      "name": "the policy name",
+                    },
+                    "policyType": "policy type",
+                    "refId": "121212",
+                    "testResultHostCount": 10,
+                    "unsupportedHostCount": 5,
                   }
                 }
-                style={
-                  Object {
-                    "fontSize": 20,
-                  }
-                }
-                subTitle="Compliant"
-                themeVariant="light"
-                title="50%"
-                width={462}
               />
             </div>
           </div>
-          <Text>
-            <UnsupportedSSGVersion
-              showHelpIcon={true}
-            >
-              <strong
-                className="ins-c-warning-text"
-              >
-                5
-                 systems not supported
-              </strong>
-            </UnsupportedSSGVersion>
-          </Text>
         </GridItem>
         <GridItem
           lg={12}
@@ -578,72 +544,38 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             <div
               className="chart-container"
             >
-              <ChartDonut
-                colorScale={
-                  Array [
-                    "#06c",
-                    "#519de9",
-                  ]
-                }
-                constrainToVisibleArea={true}
-                data={
-                  Array [
-                    Object {
-                      "x": "Compliant",
-                      "y": 5,
-                    },
-                    Object {
-                      "x": "Non-compliant",
-                      "y": 5,
-                    },
-                  ]
-                }
-                identifier="profile1"
-                innerRadius={88}
-                legendData={
-                  Array [
-                    Object {
-                      "name": "5 systems compliant",
-                    },
-                    Object {
-                      "name": "5 systems non-compliant",
-                    },
-                  ]
-                }
-                legendOrientation="vertical"
-                legendPosition="right"
-                padding={
+              <ReportChart
+                chartClass="report-details-chart-container"
+                hasLegend={true}
+                profile={
                   Object {
-                    "bottom": 20,
-                    "left": 0,
-                    "right": 250,
-                    "top": 20,
+                    "benchmark": Object {
+                      "version": "0.1.4",
+                    },
+                    "businessObjective": Object {
+                      "id": "1",
+                      "title": "BO 1",
+                    },
+                    "complianceThreshold": 1,
+                    "compliantHostCount": 5,
+                    "description": "profile description",
+                    "external": false,
+                    "id": "1",
+                    "name": "profile1",
+                    "osMajorVersion": "7",
+                    "policy": Object {
+                      "id": "thepolicyid",
+                      "name": "the policy name",
+                    },
+                    "policyType": "policy type",
+                    "refId": "121212",
+                    "testResultHostCount": 10,
+                    "unsupportedHostCount": 5,
                   }
                 }
-                style={
-                  Object {
-                    "fontSize": 20,
-                  }
-                }
-                subTitle="Compliant"
-                themeVariant="light"
-                title="50%"
-                width={462}
               />
             </div>
           </div>
-          <Text>
-            <UnsupportedSSGVersion
-              showHelpIcon={true}
-            >
-              <strong
-                className="ins-c-warning-text"
-              >
-                5
-                 systems not supported
-              </strong>
-            </UnsupportedSSGVersion>
-          </Text>
         </GridItem>
         <GridItem
           lg={12}

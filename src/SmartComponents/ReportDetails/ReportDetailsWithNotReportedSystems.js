@@ -9,7 +9,6 @@ import {
   BreadcrumbItem,
   Grid,
   GridItem,
-  Text,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -24,7 +23,6 @@ import {
   ReportDetailsDescription,
   StateViewWithError,
   StateViewPart,
-  UnsupportedSSGVersion,
   SubPageTitle,
   LinkButton,
 } from 'PresentationalComponents';
@@ -150,16 +148,11 @@ export const ReportDetails = ({ route }) => {
           </Grid>
           <Grid hasGutter>
             <GridItem sm={12} md={12} lg={12} xl={6}>
-              <ReportChart profile={profile} />
-              {profile.unsupportedHostCount > 0 && (
-                <Text ouiaId="UnsupportedSSGCountNotification">
-                  <UnsupportedSSGVersion showHelpIcon>
-                    <strong className="ins-c-warning-text">
-                      {profile.unsupportedHostCount} systems not supported
-                    </strong>
-                  </UnsupportedSSGVersion>
-                </Text>
-              )}
+              <ReportChart
+                profile={profile}
+                hasLegend={true}
+                chartClass="report-details-chart-container"
+              />
             </GridItem>
             <GridItem sm={12} md={12} lg={12} xl={6}>
               <ReportDetailsDescription profile={profile} />

@@ -8,9 +8,9 @@ import {
   GreySmallText,
   UnsupportedSSGVersion,
   LinkWithPermission as Link,
-  ReportStatusBar,
   LinkButton,
 } from 'PresentationalComponents';
+import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
 
 export const Name = (profile) => (
   <TextContent>
@@ -63,40 +63,14 @@ OperatingSystem.propTypes = {
   policy: propTypes.object,
 };
 
-export const CompliantSystems = ({
-  testResultHostCount = 0,
-  compliantHostCount = 0,
-  unsupportedHostCount = 0,
-  totalHostCount = 0,
-}) => {
-  const tooltipText =
-    'Insights cannot provide a compliance score for systems running an unsupported ' +
-    'version of the SSG at the time this report was created, as the SSG version was not supported by RHEL.';
+export const CompliantSystems = (profile) => {
   return (
     <React.Fragment>
-      <ReportStatusBar
-        hostCounts={{
-          totalResults: testResultHostCount,
-          compliant: compliantHostCount,
-          unsupported: unsupportedHostCount,
-          total: totalHostCount,
-        }}
+      <ReportChart
+        profile={profile}
+        hasLegend={false}
+        chartClass="report-table-chart-container"
       />
-
-      <GreySmallText>
-        {`${compliantHostCount} of ${testResultHostCount} systems `}
-
-        {unsupportedHostCount > 0 && (
-          <UnsupportedSSGVersion
-            {...{ tooltipText }}
-            style={{ marginLeft: '.5em' }}
-          >
-            <strong className="ins-c-warning-text">
-              {unsupportedHostCount} unsupported
-            </strong>
-          </UnsupportedSSGVersion>
-        )}
-      </GreySmallText>
     </React.Fragment>
   );
 };
