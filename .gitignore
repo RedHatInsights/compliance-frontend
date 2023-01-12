@@ -21,3 +21,12 @@ yarn.lock
 
 .DS_Store
 coverage
+codecov*
+jest-coverage/*
+*coverage
+.nyc_output
+
+# cypress
+cypress/downloads
+cypress/screenshots
+cypress/videos
