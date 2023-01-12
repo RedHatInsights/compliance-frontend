@@ -19,19 +19,19 @@ exports[`Reports expect to render emptystate 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Connect(InternalMain)>
+      <Main>
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Connect(InternalMain)>
+      <Main>
         <ReportsEmptyState />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>
@@ -52,19 +52,19 @@ exports[`Reports expect to render loading 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Connect(InternalMain)>
+      <Main>
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Connect(InternalMain)>
+      <Main>
         <ReportsEmptyState />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>
@@ -105,17 +105,17 @@ exports[`Reports expect to render without error 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Connect(InternalMain)>
+      <Main>
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Connect(InternalMain)>
+      <Main>
         <ReportsTable
           profiles={
             Array [
@@ -135,7 +135,7 @@ exports[`Reports expect to render without error 1`] = `
             ]
           }
         />
-      </Connect(InternalMain)>
+      </Main>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>
