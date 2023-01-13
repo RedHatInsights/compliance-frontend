@@ -54,6 +54,7 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
 
   const osMinorVersionFilter = useOsMinorVersionFilter(
@@ -87,9 +88,10 @@ export const SystemsTable = ({
     defaultFilter
   );
 
-  const constructedQuery = constructQuery(columns);
+  const constructedQuery = useMemo(() => constructQuery(columns), [columns]);
 
-  const systemFetchArguments = {
+  const systemFetchArguments = useMemo(
+    () => ({
     query: constructedQuery.query,
     variables: {
       ...constructedQuery.fragments,
@@ -97,7 +99,9 @@ export const SystemsTable = ({
       filter: systemsFilter,
       ...(policyId && { policyId }),
     },
-  };
+    }),
+    [constructedQuery, currentTags, systemsFilter, policyId]
+  );
 
   const preselection = useMemo(
     () => preselectedSystems.map(({ id }) => id),
@@ -123,8 +127,10 @@ export const SystemsTable = ({
   const onComplete = (result) => {
     setTotal(result.meta.totalCount);
     setItems(result.entities);
+    setPerPage(result.perPage);
     setIsLoaded(true);
     setCurrentTags && setCurrentTags(result.meta.tags);
+
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&

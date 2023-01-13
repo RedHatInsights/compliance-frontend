@@ -7,6 +7,7 @@ import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
+import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -118,13 +119,23 @@ export const useFetchSystems = ({
       });
 };
 
-const fetchBatched = (fetchFunction, total, filter, batchSize = 50) => {
+const useFetchBatched = () => {
+  const { isResolving: isLoading, resolve } = usePromiseQueue();
+
+  return {
+    isLoading,
+    fetchBatched: (fetchFunction, total, filter, batchSize = 50) => {
   const pages = Math.ceil(total / batchSize) || 1;
-  return Promise.all(
-    [...new Array(pages)].map((_, pageIdx) =>
-      fetchFunction(batchSize, pageIdx + 1, filter)
+
+      const results = resolve(
+        [...new Array(pages)].map(
+          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
     )
   );
+
+      return results;
+    },
+  };
 };
 
 const buildApiFilters = (filters = {}) => {
@@ -240,6 +251,7 @@ export const useSystemsExport = ({
   total,
   fetchArguments,
 }) => {
+  const { isLoading, fetchBatched } = useFetchBatched();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
   const fetchSystems = useFetchSystems({
     query: fetchArguments.query,
@@ -277,7 +289,7 @@ export const useSystemsExport = ({
   } = useExport({
     exporter,
     columns,
-    isDisabled: total === 0,
+    isDisabled: total === 0 || isLoading,
     onStart: () => {
       dispatchNotification({
         variant: 'info',
