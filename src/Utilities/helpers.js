@@ -103,27 +103,18 @@ export const constructQuery = (columns) => {
 
     fragment FailedRulesColumn on System {
       testResultProfiles(policyId: $policyId) {
-        refId
+        rulesFailed
         supported
         osMajorVersion
-        rules {
-          refId
-          title
-          compliant
-          remediationAvailable
-          precedence
-        }
+        score
       }
     }
 
     fragment ComplianceScoreColumn on System {
       testResultProfiles(policyId: $policyId) {
-        score
-        lastScanned
         compliant
-        rules {
-          compliant
-        }
+        supported
+        score
       }
     }
 

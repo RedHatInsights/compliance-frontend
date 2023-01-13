@@ -1,23 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ComplianceScore returns 1`] = `
-<Text>
-  <Tooltip
-    content="The system compliance score is calculated by OpenSCAP and is a normalized weighted sum of rules selected for this policy."
-  >
-    <div>
-      <CompliantIcon
-        compliant={false}
-        key="system-compliance-icon-undefined"
-        rulesFailed={28}
-        rulesPassed={24}
-        score={10}
-        supported={true}
-      />
-       10%
-    </div>
-  </Tooltip>
-</Text>
+<ComplianceScore
+  compliant={false}
+  score={40}
+  supported={true}
+/>
 `;
 
 exports[`ComplianceScore returns no error without testResultProfiles 1`] = `"N/A"`;

@@ -11,6 +11,7 @@ export const systems = [
                     supported: true,
                     compliant: false,
                     benchmark: { version: '0.14.3' },
+                    rulesFailed: 28,
                     rules: [
                         {
                             refId: 'xccdf_org.ssgproject.content_rule_security_patches_up_to_date',
