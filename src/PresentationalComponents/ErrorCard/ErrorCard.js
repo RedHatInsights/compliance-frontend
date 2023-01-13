@@ -1,15 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Card, CardHeader, CardBody } from '@patternfly/react-core';
-import { NotEqualIcon } from '@patternfly/react-icons';
+import { Card, CardBody } from '@patternfly/react-core';
+import { ErrorState } from '@redhat-cloud-services/frontend-components/ErrorState';
 
 const ErrorCard = ({ errorMsg }) => (
   <Card className="ins-error-card">
-    <CardHeader>
-      <NotEqualIcon />
-    </CardHeader>
     <CardBody>
-      <div>{errorMsg}</div>
+      <ErrorState errorDescription={errorMsg} />
     </CardBody>
   </Card>
 );

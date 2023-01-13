@@ -4,17 +4,10 @@ exports[`ErrorCard expect to render with error 1`] = `
 <Card
   className="ins-error-card"
 >
-  <CardHeader>
-    <NotEqualIcon
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
-    />
-  </CardHeader>
   <CardBody>
-    <div>
-      Some kind of error
-    </div>
+    <ErrorState
+      errorDescription="Some kind of error"
+    />
   </CardBody>
 </Card>
 `;
@@ -23,15 +16,8 @@ exports[`ErrorCard expect to render without error 1`] = `
 <Card
   className="ins-error-card"
 >
-  <CardHeader>
-    <NotEqualIcon
-      color="currentColor"
-      noVerticalAlign={false}
-      size="sm"
-    />
-  </CardHeader>
   <CardBody>
-    <div />
+    <ErrorState />
   </CardBody>
 </Card>
 `;
