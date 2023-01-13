@@ -38,7 +38,7 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
 
   if (error) {
     const errorMsg = `Oops! Error loading System data: ${error}`;
-    return <ErrorCard message={errorMsg} />;
+    return <ErrorCard errorMsg={errorMsg} />;
   }
 
   const policiesCount = data.profiles.totalCount;
