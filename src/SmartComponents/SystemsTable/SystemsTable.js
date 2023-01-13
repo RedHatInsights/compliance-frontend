@@ -92,13 +92,13 @@ export const SystemsTable = ({
 
   const systemFetchArguments = useMemo(
     () => ({
-    query: constructedQuery.query,
-    variables: {
-      ...constructedQuery.fragments,
-      tags: currentTags,
-      filter: systemsFilter,
-      ...(policyId && { policyId }),
-    },
+      query: constructedQuery.query,
+      variables: {
+        ...constructedQuery.fragments,
+        tags: currentTags,
+        filter: systemsFilter,
+        ...(policyId && { policyId }),
+      },
     }),
     [constructedQuery, currentTags, systemsFilter, policyId]
   );
@@ -110,16 +110,15 @@ export const SystemsTable = ({
 
   const {
     selectedIds,
-    selectedSystems,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
+    perPage,
     onSelect: onSelectProp,
     preselected: preselection,
     fetchArguments: systemFetchArguments,
     currentPageIds: items.map(({ id }) => id),
-    systemsCache: items,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
