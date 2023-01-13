@@ -26,6 +26,7 @@
     "graphql-tag": "^2.12.6",
     "json-api-normalizer": "1.0.1",
     "linkifyjs": "^2.1.9",
+    "p-all": "^4.0.0",
     "react": "^17.0.2",
     "react-content-loader": "^6.2.0",
     "react-dom": "^17.0.2",
@@ -63,7 +64,7 @@
       "<rootDir>/src/"
     ],
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(@patternfly/react-tokens/|@patternfly/react-icons/)).*$"
+      "<rootDir>/node_modules/(?!(@patternfly/react-tokens/|@patternfly/react-icons/|p-all)).*$"
     ],
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy",
