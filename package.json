@@ -109,7 +109,7 @@
     "@cypress/webpack-dev-server": "^3.2.2",
     "@patternfly/patternfly": "^4.222.4",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "1.2.1",
-    "@redhat-cloud-services/frontend-components-config": "^4.6.36",
+    "@redhat-cloud-services/frontend-components-config": "^4.6.38",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
