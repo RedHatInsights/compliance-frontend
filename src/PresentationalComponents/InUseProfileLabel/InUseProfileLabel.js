@@ -8,7 +8,11 @@ const InUseProfileLabel = ({ compact }) => (
     content="A policy of this type is already in use.
         Only one policy per policy type can be created for a major release of RHEL."
   >
-    <Label color="orange" style={{ lineHeight: '1.5em' }} compact={compact}>
+    <Label
+      color="orange"
+      style={{ lineHeight: '1.5em', marginRight: '16px' }}
+      compact={compact}
+    >
       In use
     </Label>
   </Tooltip>

@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { fitContent } from '@patternfly/react-table';
+import { fitContent, info } from '@patternfly/react-table';
 import { InUseProfileLabel } from 'PresentationalComponents';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { renderComponent } from 'Utilities/helpers';
@@ -10,7 +10,8 @@ import PolicyTypeDetailsRow from './PolicyTypeDetailsRow';
 const NameCell = ({ name, disabled }) => {
   return (
     <>
-      {name} {disabled && <InUseProfileLabel compact />}
+      {disabled && <InUseProfileLabel compact />}
+      {name}
     </>
   );
 };
@@ -45,6 +46,12 @@ const PolicyTypeTable = ({ profiles, onChange, selectedProfile }) => (
       {
         title: 'Policy name',
         key: 'name',
+        transforms: [
+          info({
+            tooltip:
+              'In use policies have already been used and therefore can not be applied to another SCAP Policy under the selected OS.',
+          }),
+        ],
         sortByProp: 'name',
         renderFunc: renderComponent(NameCell),
       },
