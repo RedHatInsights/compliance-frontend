@@ -25,22 +25,8 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   isOpen={true}
   onClose={[Function]}
   ouiaId="DeletePolicyModal"
-  title={
-    <React.Fragment>
-      <ExclamationTriangleIcon
-        className="ins-u-warning"
-        color="currentColor"
-        noVerticalAlign={false}
-        size="sm"
-      />
-      <Text
-        className="policy-delete-header-text"
-        component="span"
-      >
-        Delete policy?
-      </Text>
-    </React.Fragment>
-  }
+  title="Delete policy?"
+  titleIconVariant="warning"
   variant="small"
 >
   <Text
