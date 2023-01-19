@@ -47,7 +47,8 @@ const DeleteReport = () => {
     <ComplianceModal
       isOpen
       variant={ModalVariant.small}
-      title="Delete report"
+      title="Delete report?"
+      titleIconVariant="warning"
       ouiaId="DeleteReportModal"
       onClose={onClose}
       actions={[
