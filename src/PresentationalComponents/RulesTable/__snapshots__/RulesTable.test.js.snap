@@ -33,7 +33,10 @@ exports[`RulesTable expect to pass on options 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "compliant",
-        "title": "Passed",
+        "title": "Rule state",
+        "transforms": Array [
+          [Function],
+        ],
       },
       Object {
         "renderExport": [Function],
@@ -115,7 +118,7 @@ exports[`RulesTable expect to pass on options 1`] = `
               "value": "failed",
             },
           ],
-          "label": "Passed",
+          "label": "Rule state",
           "type": "checkbox",
         },
         Object {
@@ -471,7 +474,10 @@ exports[`RulesTable expect to render without error 1`] = `
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "compliant",
-        "title": "Passed",
+        "title": "Rule state",
+        "transforms": Array [
+          [Function],
+        ],
       },
       Object {
         "renderExport": [Function],
@@ -553,7 +559,7 @@ exports[`RulesTable expect to render without error 1`] = `
               "value": "failed",
             },
           ],
-          "label": "Passed",
+          "label": "Rule state",
           "type": "checkbox",
         },
         Object {

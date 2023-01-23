@@ -59,9 +59,9 @@ const BASE_FILTER_CONFIGURATION = [
   },
 ];
 
-const PASS_FILTER_CONFIG = {
+const RULE_STATE_FILTER_CONFIG = {
   type: conditionalFilterType.checkbox,
-  label: 'Passed',
+  label: 'Rule state',
   items: [
     { label: 'Passed rules', value: 'passed' },
     { label: 'Failed rules', value: 'failed' },
@@ -102,14 +102,14 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
 };
 
 const buildFilterConfig = ({
-  showPassFailFilter,
+  showRuleStateFilter,
   policies,
   ansibleSupportFilter,
 }) => {
   const config = [...BASE_FILTER_CONFIGURATION];
 
-  if (showPassFailFilter) {
-    config.push(PASS_FILTER_CONFIG);
+  if (showRuleStateFilter) {
+    config.push(RULE_STATE_FILTER_CONFIG);
   }
 
   if (policies && policies.length > 1) {
