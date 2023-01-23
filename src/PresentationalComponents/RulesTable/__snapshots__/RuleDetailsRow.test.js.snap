@@ -10,13 +10,17 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
   }
 >
   <Stack
-    className="margin-bottom-lg"
     id="rule-description-rule-child-row-xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime"
+    style={
+      Object {
+        "marginBottom": "var(--pf-global--spacer--md)",
+      }
+    }
   >
     <StackItem
       style={
         Object {
-          "marginBottom": "var(--pf-global--spacer--sm)",
+          "marginBottom": "var(--pf-global--spacer--xs)",
         }
       }
     >
@@ -36,8 +40,12 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
     </StackItem>
   </Stack>
   <Stack
-    className="margin-bottom-lg"
     id="rule-identifiers-references-rule-child-row-xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime"
+    style={
+      Object {
+        "marginBottom": "var(--pf-global--spacer--md)",
+      }
+    }
   >
     <Grid />
   </Stack>
@@ -52,7 +60,7 @@ exports[`RuleDetailsRow expect to render without error 1`] = `
     <StackItem
       style={
         Object {
-          "marginBottom": "var(--pf-global--spacer--sm)",
+          "marginBottom": "var(--pf-global--spacer--xs)",
         }
       }
     >
