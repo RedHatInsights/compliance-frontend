@@ -70,6 +70,7 @@ export const QUERY = gql`
             refId
             description
             remediationAvailable
+            references
             identifier
             precedence
           }
