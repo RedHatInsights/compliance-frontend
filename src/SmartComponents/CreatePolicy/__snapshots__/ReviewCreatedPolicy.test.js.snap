@@ -181,9 +181,22 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                         <dd
                           className=""
                         >
-                          10
-                           
-                          systems
+                          <Label
+                            color="grey"
+                            isCompact={true}
+                          >
+                            <span
+                              className="pf-c-label pf-m-compact"
+                            >
+                              <span
+                                className="pf-c-label__content"
+                              >
+                                10
+                                 
+                                systems
+                              </span>
+                            </span>
+                          </Label>
                         </dd>
                       </TextListItem>
                       <TextListItem
@@ -214,9 +227,22 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                         <dd
                           className=""
                         >
-                          3
-                           
-                          systems
+                          <Label
+                            color="grey"
+                            isCompact={true}
+                          >
+                            <span
+                              className="pf-c-label pf-m-compact"
+                            >
+                              <span
+                                className="pf-c-label__content"
+                              >
+                                3
+                                 
+                                systems
+                              </span>
+                            </span>
+                          </Label>
                         </dd>
                       </TextListItem>
                     </dl>
@@ -413,9 +439,22 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                         <dd
                           className=""
                         >
-                          10
-                           
-                          systems
+                          <Label
+                            color="grey"
+                            isCompact={true}
+                          >
+                            <span
+                              className="pf-c-label pf-m-compact"
+                            >
+                              <span
+                                className="pf-c-label__content"
+                              >
+                                10
+                                 
+                                systems
+                              </span>
+                            </span>
+                          </Label>
                         </dd>
                       </TextListItem>
                       <TextListItem
@@ -446,9 +485,22 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                         <dd
                           className=""
                         >
-                          3
-                           
-                          systems
+                          <Label
+                            color="grey"
+                            isCompact={true}
+                          >
+                            <span
+                              className="pf-c-label pf-m-compact"
+                            >
+                              <span
+                                className="pf-c-label__content"
+                              >
+                                3
+                                 
+                                systems
+                              </span>
+                            </span>
+                          </Label>
                         </dd>
                       </TextListItem>
                     </dl>
