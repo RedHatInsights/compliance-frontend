@@ -1,4 +1,4 @@
-import { nowrap } from '@patternfly/react-table';
+import { fitContent, nowrap } from '@patternfly/react-table';
 import { renderComponent } from 'Utilities/helpers';
 import {
   Rule,
@@ -32,10 +32,11 @@ export const Severity = {
 };
 
 export const Passed = {
-  title: 'Passed',
+  title: 'Rule state',
   sortByProp: 'compliant',
   renderExport: (rule) => (rule?.compliant ? 'Yes' : 'No'),
   renderFunc: renderComponent(PassedCell),
+  transforms: [fitContent],
 };
 
 export const Remediation = {
