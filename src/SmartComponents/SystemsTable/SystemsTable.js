@@ -134,7 +134,8 @@ export const SystemsTable = ({
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
       activeFilterValues.length === 0 &&
-      result?.meta?.tags?.length === 0
+      (typeof result?.meta?.tags === 'undefined' ||
+        result?.meta?.tags?.length === 0)
     ) {
       setIsEmpty(true);
     }
