@@ -1,18 +1,30 @@
 import { useApolloClient } from '@apollo/client';
 import { GET_SYSTEMS, GET_RULES } from '../constants';
 import { prepareForExport } from './helpers';
+import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 
-const fetchBatched = (fetchFunction, total, batchSize = 50) => {
-  const pages = Math.ceil(total / batchSize) || 1;
-  return Promise.all(
-    [...new Array(pages)].map((_, pageIdx) =>
-      fetchFunction(batchSize, pageIdx + 1)
-    )
-  );
+const useFetchBatched = () => {
+  const { isResolving: isLoading, resolve } = usePromiseQueue();
+
+  return {
+    isLoading,
+    fetchBatched: (fetchFunction, total, filter, batchSize = 50) => {
+      const pages = Math.ceil(total / batchSize) || 1;
+
+      const results = resolve(
+        [...new Array(pages)].map(
+          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
+        )
+      );
+
+      return results;
+    },
+  };
 };
 
 const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
   const client = useApolloClient();
+  const { fetchBatched } = useFetchBatched();
 
   const fetchFunction = (perPage, page) =>
     client.query({

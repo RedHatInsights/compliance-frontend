@@ -67,3 +67,13 @@ export const provideData = ({ systems, selectedRules } = {}) => {
     ...(issues.length > 0 ? { issues } : {}),
   };
 };
+
+export const remediationData = (results) => {
+  if (results) {
+    return provideData({
+      systems: results.reduce((acc, { edges }) => {
+        return [...acc, ...edges.map(({ node }) => node)];
+      }, []),
+    });
+  }
+};

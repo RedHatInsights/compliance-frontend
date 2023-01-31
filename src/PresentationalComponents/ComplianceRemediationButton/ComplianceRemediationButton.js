@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
-import { Button } from '@patternfly/react-core';
 import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import { provideData } from './helpers';
+import FallbackButton from './components/FallBackButton';
 
 const ComplianceRemediationButton = ({ allSystems, selectedRules }) => {
   const remediationData = useMemo(
@@ -28,11 +28,7 @@ const ComplianceRemediationButton = ({ allSystems, selectedRules }) => {
       buttonProps={{
         ouiaId: 'RemediateButton',
       }}
-      fallback={
-        <Button variant="primary" isDisabled>
-          Remediate
-        </Button>
-      }
+      fallback={<FallbackButton />}
     >
       Remediate
     </RemediationButton>
