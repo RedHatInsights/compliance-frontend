@@ -16,8 +16,11 @@ const RuleDetailsRow = ({ item: rule }) => {
 
   return (
     <div key={key} style={{ marginTop: 'var(--pf-global--spacer--lg)' }}>
-      <Stack id={`rule-description-${key}`} className="margin-bottom-lg">
-        <StackItem style={{ marginBottom: 'var(--pf-global--spacer--sm)' }}>
+      <Stack
+        id={`rule-description-${key}`}
+        style={{ marginBottom: 'var(--pf-global--spacer--md)' }}
+      >
+        <StackItem style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}>
           <Text className="pf-c-form__label" component={TextVariants.h5}>
             <b>Description</b>
           </Text>
@@ -26,33 +29,33 @@ const RuleDetailsRow = ({ item: rule }) => {
       </Stack>
       <Stack
         id={`rule-identifiers-references-${key}`}
-        className="margin-bottom-lg"
+        style={{ marginBottom: 'var(--pf-global--spacer--md)' }}
       >
         <Grid>
-          {identifier && identifier.length > 0 && (
+          {identifier && (
             <GridItem span={2}>
-              <Text className="pf-c-form__label" component={TextVariants.h5}>
+              <Text
+                className="pf-c-form__label"
+                component={TextVariants.h5}
+                style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}
+              >
                 <b>Identifier</b>
               </Text>
               <Text>
-                {identifier
-                  .map((ident, idx) => (
-                    <ConditionalLink
-                      href={ident.system}
-                      target="_blank"
-                      key={`${refId}-identifier-${idx}`}
-                    >
-                      {ident.label}
-                    </ConditionalLink>
-                  ))
-                  .reduce((prev, next) => [prev, ', ', next])}
+                <ConditionalLink href={identifier.system} target="_blank">
+                  {identifier.label}
+                </ConditionalLink>
               </Text>
             </GridItem>
           )}
 
           {references && references.length > 0 && (
             <GridItem span={10}>
-              <Text className="pf-c-form__label" component={TextVariants.h5}>
+              <Text
+                className="pf-c-form__label"
+                component={TextVariants.h5}
+                style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}
+              >
                 <b>References</b>
               </Text>
               <Text>
@@ -78,7 +81,7 @@ const RuleDetailsRow = ({ item: rule }) => {
           id={`rule-rationale-${key}`}
           style={{ marginBottom: 'var(--pf-global--spacer--lg)' }}
         >
-          <StackItem style={{ marginBottom: 'var(--pf-global--spacer--sm)' }}>
+          <StackItem style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}>
             <Text className="pf-c-form__label" component={TextVariants.h5}>
               <b>Rationale</b>
             </Text>

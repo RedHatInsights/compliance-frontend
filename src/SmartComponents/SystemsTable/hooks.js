@@ -1,12 +1,14 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useApolloClient, useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
+import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
+import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -118,13 +120,23 @@ export const useFetchSystems = ({
       });
 };
 
-const fetchBatched = (fetchFunction, total, filter, batchSize = 50) => {
-  const pages = Math.ceil(total / batchSize) || 1;
-  return Promise.all(
-    [...new Array(pages)].map((_, pageIdx) =>
-      fetchFunction(batchSize, pageIdx + 1, filter)
-    )
-  );
+const useFetchBatched = () => {
+  const { isResolving: isLoading, resolve } = usePromiseQueue();
+
+  return {
+    isLoading,
+    fetchBatched: (fetchFunction, total, filter, batchSize = 50) => {
+      const pages = Math.ceil(total / batchSize) || 1;
+
+      const results = resolve(
+        [...new Array(pages)].map(
+          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
+        )
+      );
+
+      return results;
+    },
+  };
 };
 
 const buildApiFilters = (filters = {}) => {
@@ -240,6 +252,7 @@ export const useSystemsExport = ({
   total,
   fetchArguments,
 }) => {
+  const { isLoading, fetchBatched } = useFetchBatched();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
   const fetchSystems = useFetchSystems({
     query: fetchArguments.query,
@@ -277,7 +290,7 @@ export const useSystemsExport = ({
   } = useExport({
     exporter,
     columns,
-    isDisabled: total === 0,
+    isDisabled: total === 0 || isLoading,
     onStart: () => {
       dispatchNotification({
         variant: 'info',
@@ -302,8 +315,8 @@ export const useSystemBulkSelect = ({
   preselected,
   fetchArguments,
   currentPageIds,
-  systemsCache = [],
 }) => {
+  const { isLoading, fetchBatched } = useFetchBatched();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
   const fetchSystems = useFetchSystems({
@@ -330,19 +343,8 @@ export const useSystemBulkSelect = ({
     return results.flatMap((result) => result.entities);
   };
 
-  const cachedOrFetch = async (selectedIds) => {
-    const cachedSystems = systemsCache.filter(({ id }) =>
-      selectedIds.includes(id)
-    );
-    const cachedIds = cachedSystems.map(({ id }) => id);
-    const fetchIds = selectedIds.filter((id) => !cachedIds.includes(id));
-    const fetchedSystems = await fetchFunc(fetchIds);
-
-    return [...cachedSystems, ...fetchedSystems];
-  };
-
   const onSelectCallback = async (selectedIds) => {
-    const systems = await cachedOrFetch(selectedIds);
+    const systems = await fetchFunc(selectedIds);
     setSelectedSystems(systems);
     onSelect && onSelect(systems);
   };
@@ -359,8 +361,23 @@ export const useSystemBulkSelect = ({
     itemIdsInTable,
     itemIdsOnPage: () => currentPageIds,
   });
+
   return {
     selectedSystems,
     ...bulkSelect,
+    toolbarProps: {
+      ...bulkSelect.toolbarProps,
+      bulkSelect: {
+        ...bulkSelect.toolbarProps.bulkSelect,
+        ...(isLoading
+          ? {
+              isDisabled: true,
+              toggleProps: {
+                children: [<Spinner size="md" key="spinner" />],
+              },
+            }
+          : {}),
+      },
+    },
   };
 };

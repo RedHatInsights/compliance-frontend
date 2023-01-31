@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Label,
   Text,
   TextVariants,
   TextContent,
@@ -61,7 +62,9 @@ const ReviewCreatedPolicy = ({
                 RHEL {osMajorVersion}.{osMinorVersion}
               </TextListItem>
               <TextListItem component={TextListItemVariants.dd}>
-                {count} {count > 1 ? 'systems' : 'system'}
+                <Label color="grey" isCompact={true}>
+                  {count} {count > 1 ? 'systems' : 'system'}
+                </Label>
               </TextListItem>
             </React.Fragment>
           ))}

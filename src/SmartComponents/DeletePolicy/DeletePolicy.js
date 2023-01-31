@@ -1,5 +1,4 @@
 import { Button, Checkbox, ModalVariant, Text } from '@patternfly/react-core';
-import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -43,14 +42,8 @@ const DeletePolicy = () => {
   return (
     <ComplianceModal
       variant={ModalVariant.small}
-      title={
-        <React.Fragment>
-          <ExclamationTriangleIcon className="ins-u-warning" />
-          <Text component="span" className="policy-delete-header-text">
-            Delete policy?
-          </Text>
-        </React.Fragment>
-      }
+      title="Delete policy?"
+      titleIconVariant="warning"
       ouiaId="DeletePolicyModal"
       isOpen
       onClose={onClose}

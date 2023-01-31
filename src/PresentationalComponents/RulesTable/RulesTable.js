@@ -30,8 +30,8 @@ const RulesTable = ({
   const rules = toRulesArrayWithProfile(profileRules);
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
-  const showPassFailFilter =
-    columns.filter((c) => c.title === 'Passed').length > 0;
+  const showRuleStateFilter =
+    columns.filter((c) => c.title === 'Rule state').length > 0;
   const policies = profileRules
     .filter(({ profile }) => !!profile)
     .map(({ profile }) => ({
@@ -54,7 +54,7 @@ const RulesTable = ({
       isStickyHeader
       filters={{
         filterConfig: buildFilterConfig({
-          showPassFailFilter,
+          showRuleStateFilter,
           policies,
           ansibleSupportFilter,
         }),

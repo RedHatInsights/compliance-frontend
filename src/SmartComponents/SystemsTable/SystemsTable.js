@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
 // eslint-disable-next-line max-len
-import ComplianceRemediationButton from '@/PresentationalComponents/ComplianceRemediationButton';
+import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
 import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
@@ -54,6 +54,7 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
 
   const osMinorVersionFilter = useOsMinorVersionFilter(
@@ -87,17 +88,20 @@ export const SystemsTable = ({
     defaultFilter
   );
 
-  const constructedQuery = constructQuery(columns);
+  const constructedQuery = useMemo(() => constructQuery(columns), [columns]);
 
-  const systemFetchArguments = {
-    query: constructedQuery.query,
-    variables: {
-      ...constructedQuery.fragments,
-      tags: currentTags,
-      filter: systemsFilter,
-      ...(policyId && { policyId }),
-    },
-  };
+  const systemFetchArguments = useMemo(
+    () => ({
+      query: constructedQuery.query,
+      variables: {
+        ...constructedQuery.fragments,
+        tags: currentTags,
+        filter: systemsFilter,
+        ...(policyId && { policyId }),
+      },
+    }),
+    [constructedQuery, currentTags, systemsFilter, policyId]
+  );
 
   const preselection = useMemo(
     () => preselectedSystems.map(({ id }) => id),
@@ -106,16 +110,15 @@ export const SystemsTable = ({
 
   const {
     selectedIds,
-    selectedSystems,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
+    perPage,
     onSelect: onSelectProp,
     preselected: preselection,
     fetchArguments: systemFetchArguments,
     currentPageIds: items.map(({ id }) => id),
-    systemsCache: items,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -123,13 +126,16 @@ export const SystemsTable = ({
   const onComplete = (result) => {
     setTotal(result.meta.totalCount);
     setItems(result.entities);
+    setPerPage(result.perPage);
     setIsLoaded(true);
     setCurrentTags && setCurrentTags(result.meta.tags);
+
     if (
       emptyStateComponent &&
       result.meta.totalCount === 0 &&
       activeFilterValues.length === 0 &&
-      result?.meta?.tags?.length === 0
+      (typeof result?.meta?.tags === 'undefined' ||
+        result?.meta?.tags?.length === 0)
     ) {
       setIsEmpty(true);
     }
@@ -218,7 +224,7 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <ComplianceRemediationButton allSystems={selectedSystems} />
+                <RemediationButton policyId={policyId} systems={selectedIds} />
               ),
             }),
           })}

@@ -16,7 +16,6 @@ describe('auxiliary functions to reducer', () => {
 
   it('should show 0% score instead if the system score is 0', () => {
     const system = {
-      rulesPassed: 30,
       rulesFailed: 300,
       score: 0,
       supported: true,
@@ -29,9 +28,9 @@ describe('auxiliary functions to reducer', () => {
 
   it('should show a success icon if the host is compliant', () => {
     const system = {
-      rulesPassed: 30,
       rulesFailed: 3,
       score: 91,
+      supported: true,
       profiles: [{ compliant: true }, { compliant: true }],
     };
 
@@ -40,12 +39,7 @@ describe('auxiliary functions to reducer', () => {
   });
 
   it('should show a question mark icon if the host has no rules passed or failed', () => {
-    const system = {
-      rulesPassed: 0,
-      rulesFailed: 0,
-    };
-
-    const questionMarkIcon = mount(<ComplianceScore {...system} />);
+    const questionMarkIcon = mount(<ComplianceScore />);
     expect(toJson(questionMarkIcon)).toMatchSnapshot();
   });
 });

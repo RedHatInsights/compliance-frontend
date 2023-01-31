@@ -8,7 +8,7 @@ import { Text, Tooltip } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => {
-  if (system.rulesPassed + system.rulesFailed === 0) {
+  if (!system.supported && system.score !== 0) {
     return <QuestionCircleIcon color="var(--pf-global--disabled-color--100)" />;
   } else {
     return system.compliant ? (
@@ -20,13 +20,13 @@ const CompliantIcon = (system) => {
 };
 
 export const complianceScoreString = (system) => {
-  if (system.supported === false) {
+  if (!system.supported) {
     return ' Unsupported';
-  } else if (system.rulesPassed + system.rulesFailed === 0) {
+  } else if (!system.score && system.score !== 0) {
     return ' N/A';
+  } else {
+    return ' ' + fixedPercentage(system.score);
   }
-
-  return ' ' + fixedPercentage(system.score);
 };
 
 const ComplianceScore = (system) => (
@@ -38,13 +38,13 @@ const ComplianceScore = (system) => (
           'is a normalized weighted sum of rules selected for this policy.'
         }
       >
-        <div>
+        <span>
           <CompliantIcon
             key={`system-compliance-icon-${system.id}`}
             {...system}
           />
           {complianceScoreString(system)}
-        </div>
+        </span>
       </Tooltip>
     ) : (
       complianceScoreString(system)

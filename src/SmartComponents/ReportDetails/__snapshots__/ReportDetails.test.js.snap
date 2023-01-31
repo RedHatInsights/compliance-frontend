@@ -41,11 +41,11 @@ exports[`ReportDetails expect to render without error 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Connect(InternalMain)>
+    <Main>
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Connect(InternalMain)>
+    </Main>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -288,7 +288,7 @@ exports[`ReportDetails expect to render without error 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Connect(InternalMain)>
+    <Main>
       <Grid
         hasGutter={true}
       >
@@ -335,7 +335,6 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "isStatic": true,
                     "width": 5,
                   },
-                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                   "transforms": Array [
@@ -390,7 +389,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           />
         </GridItem>
       </Grid>
-    </Connect(InternalMain)>
+    </Main>
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -436,11 +435,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Connect(InternalMain)>
+    <Main>
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Connect(InternalMain)>
+    </Main>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -683,7 +682,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Connect(InternalMain)>
+    <Main>
       <Grid
         hasGutter={true}
       >
@@ -730,7 +729,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "isStatic": true,
                     "width": 5,
                   },
-                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                   "transforms": Array [
@@ -785,7 +783,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           />
         </GridItem>
       </Grid>
-    </Connect(InternalMain)>
+    </Main>
   </StateViewPart>
 </StateViewWithError>
 `;

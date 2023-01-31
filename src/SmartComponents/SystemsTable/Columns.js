@@ -2,7 +2,6 @@ import React from 'react';
 import { nowrap } from '@patternfly/react-table';
 import { Tooltip } from '@patternfly/react-core';
 import { complianceScoreString } from 'PresentationalComponents';
-import { profilesRulesFailed } from 'Utilities/ruleHelpers';
 import { renderComponent } from 'Utilities/helpers';
 
 import {
@@ -92,8 +91,6 @@ export const FailedRules = {
     width: 5,
     ...disableSorting,
   },
-  renderExport: (testResultProfiles) =>
-    profilesRulesFailed(testResultProfiles).length,
   renderFunc: renderComponent(FailedRulesCell),
 };
 

@@ -163,7 +163,7 @@ SystemQuery.defaultProps = {
 };
 
 export const Details = ({ inventoryId, hidePassed, ...props }) => {
-  let { data, error, loading } = useQuery(QUERY, {
+  const { data, error, loading } = useQuery(QUERY, {
     variables: { systemId: inventoryId },
     fetchPolicy: 'no-cache',
   });
@@ -174,8 +174,8 @@ export const Details = ({ inventoryId, hidePassed, ...props }) => {
   }
 
   if (error && !is404) {
-    const errorMsg = `Oops! Error loading System data: ${error}`;
-    return <ErrorCard message={errorMsg} />;
+    // network errors other than 404 are unexpected
+    return <ErrorCard />;
   }
 
   return (
