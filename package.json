@@ -10,7 +10,7 @@
     "@babel/runtime": "^7.19.4",
     "@patternfly/react-charts": "^6.94.15",
     "@patternfly/react-core": "^4.267.6",
-    "@patternfly/react-icons": "^4.93.3",
+    "@patternfly/react-icons": "^4.93.6",
     "@patternfly/react-table": "^4.112.6",
     "@patternfly/react-tokens": "^4.94.3",
     "@redhat-cloud-services/frontend-components": "^3.9.29",
