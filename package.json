@@ -9,7 +9,7 @@
     "@apollo/client": "3.4.16",
     "@babel/runtime": "^7.19.4",
     "@patternfly/react-charts": "^6.94.15",
-    "@patternfly/react-core": "^4.267.6",
+    "@patternfly/react-core": "^4.276.6",
     "@patternfly/react-icons": "^4.93.3",
     "@patternfly/react-table": "^4.112.6",
     "@patternfly/react-tokens": "^4.94.3",
