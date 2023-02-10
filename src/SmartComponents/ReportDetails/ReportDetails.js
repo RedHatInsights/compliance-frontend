@@ -112,7 +112,6 @@ export const ReportDetails = ({ route }) => {
             >
               {pdfReportEnabled && (
                 <BackgroundLink
-                  state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
                   component={LinkButton}
                   ouiaId="ReportDetailsDownloadReportPDFLink"
@@ -123,7 +122,6 @@ export const ReportDetails = ({ route }) => {
                 </BackgroundLink>
               )}
               <BackgroundLink
-                state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
                 component={LinkButton}
                 variant="link"

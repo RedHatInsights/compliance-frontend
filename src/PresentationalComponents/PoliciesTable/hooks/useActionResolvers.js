@@ -1,9 +1,8 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 
 const useActionResolver = (policies) => {
   const history = useHistory();
-  const location = useLocation();
 
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
     useRoutePermissions(`/scappolicies/XYZ/delete`);
@@ -11,11 +10,9 @@ const useActionResolver = (policies) => {
     useRoutePermissions(`/scappolicies/XYZ/edit`);
 
   const onClick = (to, { itemId: policyId }) => {
-    const policy = policies.find((policy) => policy.id === policyId);
+    const { id, name } = policies.find((policy) => policy.id === policyId);
     history.push(to, {
-      policy,
-      background: location,
-      state: { policy },
+      state: { policy: { id, name } },
     });
   };
 

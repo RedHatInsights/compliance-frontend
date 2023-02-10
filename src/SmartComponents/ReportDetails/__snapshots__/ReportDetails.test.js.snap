@@ -97,34 +97,6 @@ exports[`ReportDetails expect to render without error 1`] = `
             className="pf-u-mr-md"
             component={[Function]}
             ouiaId="ReportDetailsDownloadReportPDFLink"
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "name": "profile1",
-                  "osMajorVersion": "7",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
             to="/reports/1/pdf"
             variant="plain"
           >
@@ -134,34 +106,6 @@ exports[`ReportDetails expect to render without error 1`] = `
             component={[Function]}
             isInline={true}
             ouiaId="ReportDetailsDeleteReportLink"
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "name": "profile1",
-                  "osMajorVersion": "7",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
             to="/reports/1/delete"
             variant="link"
           >
@@ -458,34 +402,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             className="pf-u-mr-md"
             component={[Function]}
             ouiaId="ReportDetailsDownloadReportPDFLink"
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "name": "profile1",
-                  "osMajorVersion": "7",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
             to="/reports/1/pdf"
             variant="plain"
           >
@@ -495,34 +411,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             component={[Function]}
             isInline={true}
             ouiaId="ReportDetailsDeleteReportLink"
-            state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
-                    "version": "0.1.4",
-                  },
-                  "businessObjective": Object {
-                    "id": "1",
-                    "title": "BO 1",
-                  },
-                  "complianceThreshold": 1,
-                  "compliantHostCount": 5,
-                  "description": "profile description",
-                  "external": false,
-                  "id": "1",
-                  "name": "profile1",
-                  "osMajorVersion": "7",
-                  "policy": Object {
-                    "id": "thepolicyid",
-                    "name": "the policy name",
-                  },
-                  "policyType": "policy type",
-                  "refId": "121212",
-                  "testResultHostCount": 10,
-                  "unsupportedHostCount": 5,
-                },
-              }
-            }
             to="/reports/1/delete"
             variant="link"
           >

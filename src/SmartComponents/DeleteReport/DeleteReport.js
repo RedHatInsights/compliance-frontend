@@ -1,7 +1,7 @@
 import { Button, ModalVariant, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { DELETE_REPORT } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
@@ -10,10 +10,10 @@ import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeleteReport = () => {
   const history = useHistory();
-  const location = useLocation();
-  const { id } = location.state?.profile;
+  const { hash } = useLocation();
+  const { report_id: id } = useParams();
   const onClose = () => {
-    history.push(location.state.background);
+    history.push('/reports' + hash);
   };
 
   const onDelete = () => {
