@@ -88,7 +88,6 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
               }
             >
               <Card
-                isSelectable={true}
                 onClick={[Function]}
                 ouiaId="PolicyCard"
                 style={
@@ -98,7 +97,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                 }
               >
                 <article
-                  className="pf-c-card pf-m-selectable"
+                  className="pf-c-card"
                   data-ouia-component-id="PolicyCard"
                   data-ouia-component-type="PF4/Card"
                   data-ouia-safe={true}
@@ -109,7 +108,6 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                       "height": "100%",
                     }
                   }
-                  tabIndex="0"
                 >
                   <CardBody>
                     <div
@@ -688,7 +686,6 @@ exports[`SystemPolicyCards component should render real table 1`] = `
               }
             >
               <Card
-                isSelectable={true}
                 onClick={[Function]}
                 ouiaId="PolicyCard"
                 style={
@@ -698,7 +695,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                 }
               >
                 <article
-                  className="pf-c-card pf-m-selectable"
+                  className="pf-c-card"
                   data-ouia-component-id="PolicyCard"
                   data-ouia-component-type="PF4/Card"
                   data-ouia-safe={true}
@@ -709,7 +706,6 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                       "height": "100%",
                     }
                   }
-                  tabIndex="0"
                 >
                   <CardBody>
                     <div
