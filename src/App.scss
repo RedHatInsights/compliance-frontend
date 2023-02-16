@@ -129,9 +129,12 @@ button.pf-c-menu-toggle {
     color: #000;
   }
 }
-
 .reports-table {
   td {
       vertical-align: middle;
     }
+}
+
+.pf-c-table__tree-view-title-cell.compliance-rule-details .pf-c-table__check {
+  visibility: hidden
 }

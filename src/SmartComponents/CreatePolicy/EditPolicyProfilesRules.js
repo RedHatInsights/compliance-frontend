@@ -41,6 +41,7 @@ const PROFILES_QUERY = gql`
           benchmark {
             id
             latestSupportedOsMinorVersions
+            ruleTree
           }
           rules {
             id
@@ -64,6 +65,7 @@ const BENCHMARKS_QUERY = gql`
       nodes {
         id
         latestSupportedOsMinorVersions
+        ruleTree
         profiles {
           id
           refId

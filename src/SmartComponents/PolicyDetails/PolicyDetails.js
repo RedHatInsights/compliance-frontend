@@ -62,8 +62,10 @@ export const QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
+            ruleTree
           }
           rules {
+            id
             title
             severity
             rationale

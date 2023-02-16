@@ -45,6 +45,7 @@ export const MULTIVERSION_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
+            ruleTree
           }
           rules {
             title

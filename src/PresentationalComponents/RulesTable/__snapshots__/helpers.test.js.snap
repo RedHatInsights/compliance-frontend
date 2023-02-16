@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`growTableTree returns a tableTree 1`] = `
+Array [
+  Object {
+    "itemId": undefined,
+    "title": <Text>
+      RG 1
+       
+    </Text>,
+    "twigs": Array [
+      Object {
+        "itemId": undefined,
+        "leaves": Array [
+          "|1.1.2",
+          "|1.1.2",
+        ],
+        "title": <Text>
+          RG 1.1
+           
+        </Text>,
+      },
+      Object {
+        "itemId": undefined,
+        "leaves": Array [
+          "|1.1.2",
+          "|1.1.2",
+        ],
+        "title": <Text>
+          RG 1.2
+           
+        </Text>,
+      },
+    ],
+  },
+  Object {
+    "itemId": undefined,
+    "leaves": Array [
+      "|1.1.2",
+      "|1.1.2",
+    ],
+    "title": <Text>
+      RG 2
+       
+    </Text>,
+  },
+]
+`;

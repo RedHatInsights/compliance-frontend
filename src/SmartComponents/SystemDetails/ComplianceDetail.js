@@ -36,11 +36,13 @@ const QUERY = gql`
         osMajorVersion
         benchmark {
           version
+          ruleTree
         }
         policy {
           id
         }
         rules {
+          id
           title
           severity
           rationale
