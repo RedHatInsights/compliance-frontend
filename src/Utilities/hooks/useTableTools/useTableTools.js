@@ -20,9 +20,7 @@ const filteredAndSortedItems = (items, filter, sorter) => {
 const useTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
-
   const identifiedItems = useItemIdentify(items, options);
-
   const {
     columnManagerAction,
     ColumnManager,
@@ -41,7 +39,10 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps: pagintionToolbarProps,
     setPage,
     paginator,
-  } = usePaginate(options);
+  } = usePaginate({
+    ...options,
+    pagination: options.pagination && !options.tableTree,
+  });
 
   const {
     toolbarProps: conditionalFilterProps,
@@ -66,6 +67,8 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps: bulkSelectToolbarProps,
     tableProps: bulkSelectTableProps,
     selectedItems,
+    selectItems,
+    unselectItems,
   } = useBulkSelectWithItems({
     ...options,
     items: sorter(identifiedItems),
@@ -112,6 +115,11 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     paginator,
     filter,
     sorter,
+    itemIdentifier: options.identifier,
+    tableTree: options.tableTree,
+    detailsComponent: options.detailsComponent,
+    selectItems,
+    unselectItems,
   });
 
   const toolbarProps = {
@@ -128,13 +136,13 @@ const useTableTools = (items = [], columns = [], options = {}) => {
 
   const tableProps = {
     cells: managedColumns,
-    ...rowBuilderTableProps,
     ...sortableTableProps,
     ...bulkSelectTableProps,
     ...expandableProps,
     ...radioSelectTableProps,
     ...actionResolverTableProps,
     ...tablePropsOption,
+    ...rowBuilderTableProps,
   };
 
   return {

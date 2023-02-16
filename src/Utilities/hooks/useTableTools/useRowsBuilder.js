@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { emptyRows } from './Components/NoResultsTable';
+import { chopTreeIntoTable, collectLeaves } from './rowBuilderHelpers';
+import { treeRow } from '@patternfly/react-table';
 
 const columnProp = (column) =>
   column.key || column.original?.toLowerCase() || column.title?.toLowerCase();
@@ -34,9 +37,25 @@ const buildRow = (item, columns, rowTransformer, idx) =>
     return transformer ? transformer(row, item, columns, idx) : row;
   });
 
+const buildRows = (paginatedItems, columns, rowTransformer) =>
+  paginatedItems.length > 0
+    ? paginatedItems
+        .flatMap((item, idx) => buildRow(item, columns, rowTransformer, idx))
+        .filter((v) => !!v)
+    : [];
+
 const useRowsBuilder = (items, columns, options = {}) => {
-  const { transformer = [], rowTransformer = [] } = options;
+  const {
+    transformer = [],
+    rowTransformer = [],
+    tableTree,
+    itemIdentifier,
+    detailsComponent,
+    selectItems,
+    unselectItems,
+  } = options;
   const EmptyRowsComponent = options.emptyRows || emptyRows;
+  const [openItems, setOpenItems] = useState([]);
   const transformedItems = transformer
     ? applyTransformers(items, transformer)
     : items;
@@ -54,10 +73,20 @@ const useRowsBuilder = (items, columns, options = {}) => {
     : sortedItems;
 
   const rows =
-    paginatedItems.length > 0
-      ? paginatedItems
-          .flatMap((item, idx) => buildRow(item, columns, rowTransformer, idx))
-          .filter((v) => !!v)
+    items.length > 0
+      ? tableTree
+        ? chopTreeIntoTable(
+            tableTree,
+            sortedItems,
+            columns,
+            openItems,
+            rowTransformer,
+            itemIdentifier,
+            detailsComponent,
+            options?.sorter,
+            !!selectItems
+          )
+        : buildRows(paginatedItems, columns, rowTransformer)
       : EmptyRowsComponent;
 
   const pagination = options?.pagination
@@ -67,9 +96,49 @@ const useRowsBuilder = (items, columns, options = {}) => {
       }
     : undefined;
 
+  const onCollapse = (_event, _index, _isOpen, row) => {
+    if (openItems.includes(row.itemId)) {
+      setOpenItems(openItems.filter((itemId) => itemId !== row.itemId));
+    } else {
+      setOpenItems([...openItems, row.itemId]);
+    }
+  };
+
+  const onCheckedChange = (event, selected, idx, _target, row) => {
+    if (row.isTreeBranch) {
+      const leaves = collectLeaves(tableTree, row.itemId);
+      if (row.props.isChecked) {
+        unselectItems(leaves);
+      } else {
+        selectItems(leaves);
+      }
+    } else {
+      !selected ? unselectItems([row.itemId]) : selectItems([row.itemId]);
+    }
+  };
+
+  const treeColumns = (columns) => [
+    {
+      ...columns[0],
+      cellTransforms: [
+        ...(columns[0].cellTransforms || []),
+        selectItems
+          ? treeRow(onCollapse, onCheckedChange)
+          : treeRow(onCollapse),
+      ],
+    },
+    ...columns.slice(1),
+  ];
+
   return {
     tableProps: {
       rows,
+      ...(tableTree
+        ? {
+            isTreeTable: true,
+            cells: treeColumns(columns),
+          }
+        : {}),
     },
     toolbarProps: {
       pagination,

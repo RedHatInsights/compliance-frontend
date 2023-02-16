@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { sortable } from '@patternfly/react-table';
 import { orderArrayByProp, orderByArray, uniq } from 'Utilities/helpers';
 
@@ -16,7 +16,8 @@ const addSortableTransform = (columns) =>
 
 const columnOffset = (options = {}) =>
   (typeof options.onSelect === 'function' || options.hasRadioSelect ? 1 : 0) +
-  (typeof options.detailsComponent !== 'undefined');
+  (typeof options.detailsComponent !== 'undefined') +
+  (typeof options.tableTree !== 'undefined' ? -2 : 0);
 
 const useTableSort = (columns, options = {}) => {
   const [sortBy, setSortBy] = useState(
@@ -31,21 +32,29 @@ const useTableSort = (columns, options = {}) => {
       direction,
     });
   };
-  const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
-  const sorter = (items) =>
-    currentSortableColumn?.sortByArray
-      ? orderByArray(
-          items,
-          currentSortableColumn?.sortByProp,
-          currentSortableColumn?.sortByArray,
-          sortBy.direction
-        )
-      : orderArrayByProp(
-          currentSortableColumn?.sortByProp ||
-            currentSortableColumn?.sortByFunction,
-          items,
-          sortBy.direction
-        );
+
+  const sorter = useCallback(
+    (items) => {
+      const currentSortableColumn =
+        columns[sortBy.index - columnOffset(options)];
+
+      return currentSortableColumn?.sortByArray
+        ? orderByArray(
+            items,
+            currentSortableColumn?.sortByProp,
+            currentSortableColumn?.sortByArray,
+            sortBy.direction
+          )
+        : orderArrayByProp(
+            currentSortableColumn?.sortByProp ||
+              currentSortableColumn?.sortByFunction,
+            items,
+            sortBy.direction
+          );
+    },
+    [sortBy, columns]
+  );
+
   return {
     sorter,
     tableProps: {

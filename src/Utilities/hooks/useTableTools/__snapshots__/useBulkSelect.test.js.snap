@@ -4,6 +4,7 @@ exports[`useBulkSelect returns a bulk select configuration 1`] = `
 Object {
   "all": Array [
     Object {
+      "selectItems": [Function],
       "selectNone": [Function],
       "selectedIds": undefined,
       "tableProps": Object {
@@ -39,9 +40,11 @@ Object {
           },
         },
       },
+      "unselectItems": [Function],
     },
   ],
   "current": Object {
+    "selectItems": [Function],
     "selectNone": [Function],
     "selectedIds": undefined,
     "tableProps": Object {
@@ -77,6 +80,7 @@ Object {
         },
       },
     },
+    "unselectItems": [Function],
   },
   "error": undefined,
 }
@@ -84,6 +88,7 @@ Object {
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 1`] = `
 Object {
+  "selectItems": [Function],
   "selectNone": [Function],
   "selectedIds": Array [
     "ID",
@@ -121,11 +126,13 @@ Object {
       },
     },
   },
+  "unselectItems": [Function],
 }
 `;
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 2`] = `
 Object {
+  "selectItems": [Function],
   "selectNone": [Function],
   "selectedIds": Array [
     "ID",
@@ -163,11 +170,13 @@ Object {
       },
     },
   },
+  "unselectItems": [Function],
 }
 `;
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 3`] = `
 Object {
+  "selectItems": [Function],
   "selectNone": [Function],
   "selectedIds": Array [
     "ID",
@@ -205,6 +214,7 @@ Object {
       },
     },
   },
+  "unselectItems": [Function],
 }
 `;
 
@@ -406,6 +416,7 @@ Object {
   "all": Array [
     Object {
       "clearSelection": [Function],
+      "selectItems": [Function],
       "selected": Array [],
       "selectedItems": Array [],
       "tableProps": Object {
@@ -442,10 +453,12 @@ Object {
         },
       },
       "transformer": [Function],
+      "unselectItems": [Function],
     },
   ],
   "current": Object {
     "clearSelection": [Function],
+    "selectItems": [Function],
     "selected": Array [],
     "selectedItems": Array [],
     "tableProps": Object {
@@ -482,6 +495,7 @@ Object {
       },
     },
     "transformer": [Function],
+    "unselectItems": [Function],
   },
   "error": undefined,
 }
