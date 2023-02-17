@@ -2,6 +2,7 @@
 
 exports[`LoadingPoliciesTable expect to render without error 1`] = `
 <Table
+  actionsMenuAppendTo="inline"
   aria-label="policies-table"
   borders={true}
   canCollapseAll={false}

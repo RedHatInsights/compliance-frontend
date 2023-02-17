@@ -177,6 +177,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
     }
   />
   <Table
+    actionsMenuAppendTo="inline"
     aria-label="Test Table"
     borders={true}
     canCollapseAll={false}
