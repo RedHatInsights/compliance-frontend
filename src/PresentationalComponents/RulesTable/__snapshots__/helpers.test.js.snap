@@ -3,14 +3,14 @@
 exports[`growTableTree returns a tableTree 1`] = `
 Array [
   Object {
-    "itemId": undefined,
+    "itemId": "undefined",
     "title": <Text>
       RG 1
        
     </Text>,
     "twigs": Array [
       Object {
-        "itemId": undefined,
+        "itemId": "undefined",
         "leaves": Array [
           "|1.1.2",
           "|1.1.2",
@@ -21,7 +21,7 @@ Array [
         </Text>,
       },
       Object {
-        "itemId": undefined,
+        "itemId": "undefined",
         "leaves": Array [
           "|1.1.2",
           "|1.1.2",
@@ -34,7 +34,7 @@ Array [
     ],
   },
   Object {
-    "itemId": undefined,
+    "itemId": "undefined",
     "leaves": Array [
       "|1.1.2",
       "|1.1.2",

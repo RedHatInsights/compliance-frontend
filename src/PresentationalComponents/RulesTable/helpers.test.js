@@ -67,6 +67,6 @@ describe('growTableTree', () => {
   ];
 
   it('returns a tableTree', () => {
-    expect(growTableTree(ruleTree, rules)).toMatchSnapshot();
+    expect(growTableTree({ benchmark: { ruleTree } }, rules)).toMatchSnapshot();
   });
 });
