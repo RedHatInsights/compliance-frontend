@@ -96,7 +96,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
       >
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -111,7 +111,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -126,7 +126,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -146,7 +146,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
               fill="currentColor"
               height="1em"
               role="img"
-              style="cursor: pointer;"
+              style="cursor: pointer; margin-top: 3px;"
               viewBox="0 0 512 512"
               width="1em"
             >
@@ -258,7 +258,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
       >
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -273,7 +273,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -288,7 +288,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -308,7 +308,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
               fill="currentColor"
               height="1em"
               role="img"
-              style="cursor: pointer;"
+              style="cursor: pointer; margin-top: 3px;"
               viewBox="0 0 512 512"
               width="1em"
             >
@@ -420,7 +420,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
       >
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -435,7 +435,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -550,7 +550,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
       >
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -565,7 +565,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -680,7 +680,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
       >
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"
@@ -695,7 +695,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
         </li>
         <li
           class="pf-c-list__item"
-          style="vertical-align: middle; display: inline-block;"
+          style="vertical-align: middle;"
         >
           <span
             class="pf-c-list__item-icon"

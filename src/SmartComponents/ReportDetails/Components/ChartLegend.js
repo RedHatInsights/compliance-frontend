@@ -26,7 +26,7 @@ const ChartLegend = ({ legendData = [] }) => (
       <ListItem
         key={index}
         icon={<ChartIcon color={symbol?.fill} />}
-        style={{ verticalAlign: 'middle', display: 'inline-block' }}
+        style={{ verticalAlign: 'middle' }}
       >
         {name}
         {tooltip && (
@@ -49,7 +49,7 @@ const ChartLegend = ({ legendData = [] }) => (
                 &nbsp;
                 <OutlinedQuestionCircleIcon
                   className="grey-icon"
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', marginTop: '3px' }}
                 />
               </span>
             </Popover>
