@@ -53,7 +53,7 @@ exports[`ComplianceEmptyState expect to render different message if many policie
   <EmptyStateSecondaryActions>
     <Button
       component="a"
-      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
+      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
       rel="noopener noreferrer"
       target="_blank"
       variant="link"
@@ -117,7 +117,7 @@ exports[`ComplianceEmptyState expect to render different message if one policy e
   <EmptyStateSecondaryActions>
     <Button
       component="a"
-      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
+      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
       rel="noopener noreferrer"
       target="_blank"
       variant="link"
@@ -167,7 +167,7 @@ exports[`ComplianceEmptyState expect to render without error if no policies exis
   <EmptyStateSecondaryActions>
     <Button
       component="a"
-      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
+      href="https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index"
       rel="noopener noreferrer"
       target="_blank"
       variant="link"
