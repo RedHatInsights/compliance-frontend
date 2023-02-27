@@ -225,3 +225,16 @@ export const features = {
   systemsNotReporting: true,
   rbac: true,
 };
+
+export const paletteColors = {
+  black300: '#D2D2D2', // '--pf-global--palette--black-300',
+  black200: '#F0F0F0', // --pf-global--palette--black-200,
+  blue200: '#73BCF7', // '--pf-global--palette--blue-200',
+  blue300: '#2B9AF3', //'--pf-global--palette--blue-300',
+  blue400: '#0066CC', //'--pf-global--palette--blue-400',
+  gold300: '#F4C145', //--pf-global--palette--gold-300',
+};
+
+export const backgroundColors = {
+  light300: '#f0f0f0', //'--pf-global--BackgroundColor--light-300',
+};
