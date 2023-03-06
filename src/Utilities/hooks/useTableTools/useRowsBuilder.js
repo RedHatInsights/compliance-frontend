@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { emptyRows } from './Components/NoResultsTable';
 import { chopTreeIntoTable, collectLeaves } from './rowBuilderHelpers';
 import { treeRow } from '@patternfly/react-table';
@@ -53,6 +53,8 @@ const useRowsBuilder = (items, columns, options = {}) => {
     detailsComponent,
     selectItems,
     unselectItems,
+    expandOnFilter,
+    activeFilters,
   } = options;
   const EmptyRowsComponent = options.emptyRows || emptyRows;
   const [openItems, setOpenItems] = useState([]);
@@ -72,8 +74,8 @@ const useRowsBuilder = (items, columns, options = {}) => {
     ? options?.paginator(sortedItems)
     : sortedItems;
 
-  const rows =
-    sortedItems.length === 0
+  const rows = useMemo(() => {
+    return sortedItems.length === 0
       ? EmptyRowsComponent
       : (() => {
           return tableTree
@@ -86,10 +88,17 @@ const useRowsBuilder = (items, columns, options = {}) => {
                 itemIdentifier,
                 detailsComponent,
                 options?.sorter,
-                !!selectItems
+                !!selectItems,
+                !!expandOnFilter,
+                !!expandOnFilter &&
+                  Object.entries(activeFilters || {})
+                    .filter(([name]) => expandOnFilter.includes(name))
+                    .map(([, value]) => value)
+                    .filter((v) => !!v)
               )
             : buildRows(paginatedItems, columns, rowTransformer);
         })();
+  }, [sortedItems, paginatedItems, openItems, columns, activeFilters]);
 
   const pagination = options?.pagination
     ? {

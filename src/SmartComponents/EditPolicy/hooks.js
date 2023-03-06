@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { useLinkToBackground, useAnchor } from 'Utilities/Router';
 import { dispatchNotification } from 'Utilities/Dispatcher';
@@ -15,7 +15,8 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
   const updatePolicy = usePolicy();
   const linkToPolicy = useLinkToPolicy();
   const [isSaving, setIsSaving] = useState(false);
-  const onSave = () => {
+
+  const onSave = useCallback(() => {
     if (isSaving) {
       return Promise.resolve({});
     }
@@ -40,7 +41,7 @@ export const useOnSave = (policy, updatedPolicyHostsAndRules) => {
         });
         linkToPolicy();
       });
-  };
+  }, [isSaving, policy, updatedPolicyHostsAndRules]);
 
   return [isSaving, onSave];
 };

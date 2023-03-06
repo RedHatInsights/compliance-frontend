@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
@@ -25,9 +25,14 @@ const RulesTable = ({
   options,
   activeFilters,
   showFailedCounts = false,
+  setRuleValues,
+  ruleValues,
+  onRuleValueReset,
   ...rulesTableProps
 }) => {
   const ruleGroups = useFeature('ruleGroups');
+  const expandOnFilter = useFeature('expandOnFilter');
+
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : useState([]);
@@ -50,12 +55,27 @@ const RulesTable = ({
     />
   );
 
+  const DetailsRow = useMemo(
+    () =>
+      function Row(props) {
+        return (
+          <RuleDetailsRow
+            onValueChange={setRuleValues}
+            onRuleValueReset={onRuleValueReset}
+            {...props}
+          />
+        );
+      },
+    [setRuleValues]
+  );
+
   return (
     <TableToolsTable
       aria-label="Rules Table"
       items={rules}
       columns={columns}
       isStickyHeader
+      variant={ruleGroups ? 'compact' : 'default'}
       filters={{
         filterConfig: buildFilterConfig({
           showRuleStateFilter,
@@ -87,9 +107,10 @@ const RulesTable = ({
         identifier: itemIdentifier,
         onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
-        detailsComponent: RuleDetailsRow,
+        detailsComponent: DetailsRow,
         emptyRows: emptyRows(columns),
         selectedFilter,
+        ...(expandOnFilter ? { expandOnFilter: ['name'] } : {}),
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
       }}
       {...rulesTableProps}
@@ -111,6 +132,9 @@ RulesTable.propTypes = {
   options: propTypes.object,
   activeFilters: propTypes.object,
   showFailedCounts: propTypes.number,
+  setRuleValues: propTypes.func,
+  ruleValues: propTypes.object,
+  onRuleValueReset: propTypes.func,
 };
 
 export default RulesTable;

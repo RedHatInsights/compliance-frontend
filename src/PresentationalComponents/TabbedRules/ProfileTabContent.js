@@ -88,6 +88,15 @@ const BENCHMARK_QUERY = gql`
         description
         remediationAvailable
         identifier
+        values
+      }
+      valueDefinitions {
+        defaultValue
+        description
+        id
+        refId
+        title
+        valueType
       }
     }
   }
@@ -103,6 +112,9 @@ const ProfileTabContent = ({
   newOsMinorVersion,
   resetLink,
   rulesPageLink,
+  setRuleValues,
+  ruleValues,
+  onRuleValueReset,
 }) => {
   const {
     data: benchmark,
@@ -166,7 +178,14 @@ const ProfileTabContent = ({
             ansibleSupportFilter
             remediationsEnabled={false}
             columns={columns}
-            profileRules={[{ profile, rules: rules || [], benchmark }]}
+            profileRules={[
+              {
+                profile,
+                rules: rules || [],
+                valueDefinitions: profile?.benchmark?.valueDefinitions,
+                ruleValues,
+              },
+            ]}
             selectedRules={selectedRuleRefIds.map(
               (refId) => `${profile.id}|${refId}`
             )}
@@ -181,6 +200,8 @@ const ProfileTabContent = ({
                   )
                 ))
             }
+            setRuleValues={setRuleValues}
+            onRuleValueReset={onRuleValueReset}
             {...rulesTableProps}
           />
         </StateViewPart>
@@ -194,11 +215,14 @@ ProfileTabContent.propTypes = {
   newOsMinorVersion: propTypes.string,
   columns: propTypes.array,
   handleSelect: propTypes.func,
-  systemCount: propTypes.object,
+  systemCount: propTypes.number,
   selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
   resetLink: propTypes.bool,
   rulesPageLink: propTypes.bool,
+  setRuleValues: propTypes.func,
+  ruleValues: propTypes.array,
+  onRuleValueReset: propTypes.func,
 };
 
 export default ProfileTabContent;

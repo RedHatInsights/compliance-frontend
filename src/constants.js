@@ -224,7 +224,9 @@ export const features = {
   manageColumns: true,
   systemsNotReporting: true,
   rbac: true,
+  valueEditing: false,
   ruleGroups: false,
+  expandOnFilter: false,
 };
 
 export const paletteColors = {

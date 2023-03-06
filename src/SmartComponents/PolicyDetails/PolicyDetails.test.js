@@ -1,5 +1,6 @@
 import React from 'react';
 import { QUERY, PolicyDetails } from './PolicyDetails';
+import usePolicyMutation from '../../Mutations/hooks/usePolicyMutation';
 
 const mocks = [
   {
@@ -81,6 +82,12 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
 }));
+
+jest.mock('../../Mutations/hooks/usePolicyMutation');
+
+usePolicyMutation.mockImplementation(() => () => {
+  return;
+});
 
 describe('PolicyDetails', () => {
   it('expect to render without error', () => {

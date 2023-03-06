@@ -45,6 +45,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps: conditionalFilterProps,
     filter,
     selectedFilterToolbarProps,
+    activeFilters,
   } = useFilterConfig({
     ...options,
     setPage,
@@ -117,6 +118,8 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     detailsComponent: options.detailsComponent,
     selectItems,
     unselectItems,
+    expandOnFilter: options.expandOnFilter,
+    activeFilters,
   });
 
   const toolbarProps = {

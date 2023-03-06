@@ -42,6 +42,14 @@ const PROFILES_QUERY = gql`
             id
             latestSupportedOsMinorVersions
             ruleTree
+            valueDefinitions {
+              defaultValue
+              description
+              id
+              refId
+              title
+              valueType
+            }
           }
           rules {
             id
@@ -53,6 +61,7 @@ const PROFILES_QUERY = gql`
             remediationAvailable
             identifier
           }
+          values
         }
       }
     }
@@ -66,6 +75,14 @@ const BENCHMARKS_QUERY = gql`
         id
         latestSupportedOsMinorVersions
         ruleTree
+        valueDefinitions {
+          defaultValue
+          description
+          id
+          refId
+          title
+          valueType
+        }
         profiles {
           id
           refId
@@ -93,6 +110,7 @@ export const EditPolicyProfilesRules = ({
   change,
   osMajorVersion,
   osMinorVersionCounts,
+  ruleValues,
 }) => {
   const columns = [Columns.Name, Columns.Severity, Columns.Remediation];
   const osMinorVersions = osMinorVersionCounts
@@ -170,6 +188,18 @@ export const EditPolicyProfilesRules = ({
     change('selectedRuleRefIds', newSelection);
   };
 
+  const setRuleValues = (policyId, valueDefinition, valueValue) => {
+    const newRuleValues = {
+      ...(ruleValues || {}),
+      [policyId]: {
+        ...(ruleValues || {})[policyId],
+        [valueDefinition.refId]: valueValue,
+      },
+    };
+
+    change('ruleValues', newRuleValues);
+  };
+
   useLayoutEffect(() => {
     if (!loadingState) {
       const profilesWithOs = extendProfilesByOsMinor(
@@ -228,6 +258,8 @@ export const EditPolicyProfilesRules = ({
           <TabbedRules
             tabsData={tabsData}
             selectedRuleRefIds={selectedRuleRefIds}
+            setRuleValues={setRuleValues}
+            ruleValues={ruleValues}
             columns={columns}
             remediationsEnabled={false}
             selectedFilter
@@ -254,6 +286,7 @@ EditPolicyProfilesRules.propTypes = {
     })
   ),
   selectedRuleRefIds: propTypes.array,
+  ruleValues: propTypes.array,
 };
 
 const selector = formValueSelector('policyForm');
@@ -264,6 +297,7 @@ export default compose(
     osMajorVersion: selector(state, 'osMajorVersion'),
     osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
     selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
+    ruleValues: selector(state, 'ruleValues'),
   })),
   reduxForm({
     form: 'policyForm',

@@ -9,9 +9,17 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import { ConditionalLink } from 'PresentationalComponents';
+import RuleValueEdit from './components/RuleValueEdit';
 
-const RuleDetailsRow = ({ item: rule }) => {
-  const { refId, description, identifier, references, rationale } = rule;
+const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
+  const {
+    refId,
+    description,
+    identifier,
+    references,
+    rationale,
+    valueDefinitions,
+  } = rule;
   const key = `rule-child-row-${refId}`;
 
   return (
@@ -89,12 +97,23 @@ const RuleDetailsRow = ({ item: rule }) => {
           <StackItem isFilled>{rationale}</StackItem>
         </Stack>
       )}
+
+      {valueDefinitions?.length > 0 && (
+        <RuleValueEdit
+          rule={rule}
+          key={key}
+          onValueChange={onValueChange}
+          onRuleValueReset={onRuleValueReset}
+        />
+      )}
     </div>
   );
 };
 
 RuleDetailsRow.propTypes = {
   item: propTypes.object,
+  onValueChange: propTypes.func,
+  onRuleValueReset: propTypes.func,
 };
 
 export default RuleDetailsRow;

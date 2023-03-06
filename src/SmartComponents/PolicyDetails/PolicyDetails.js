@@ -31,6 +31,7 @@ import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
+import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
 
 export const QUERY = gql`
   query Profile($policyId: String!) {
@@ -56,6 +57,7 @@ export const QUERY = gql`
           refId
           osMinorVersion
           osMajorVersion
+          values
           benchmark {
             id
             title
@@ -63,6 +65,14 @@ export const QUERY = gql`
             osMajorVersion
             version
             ruleTree
+            valueDefinitions {
+              defaultValue
+              description
+              id
+              refId
+              title
+              valueType
+            }
           }
           rules {
             id
@@ -75,6 +85,7 @@ export const QUERY = gql`
             references
             identifier
             precedence
+            values
           }
         }
       }
@@ -96,15 +107,15 @@ export const PolicyDetails = ({ route }) => {
   const location = useLocation();
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { policyId },
+    fetchPolicy: 'no-cache',
   });
-  let policy;
-  let hasOsMinorProfiles = true;
-  if (data && !loading) {
-    policy = data.profile;
-    hasOsMinorProfiles = !!policy.policy.profiles.find(
-      (profile) => !!profile.osMinorVersion
-    );
-  }
+  const policy = data?.profile;
+  const hasOsMinorProfiles = !!policy?.policy.profiles.find(
+    (profile) => !!profile.osMinorVersion
+  );
+  const saveToPolicy = useSaveValueToPolicy(policy, () => {
+    refetch();
+  });
 
   useEffect(() => {
     refetch();
@@ -155,7 +166,11 @@ export const PolicyDetails = ({ route }) => {
                 </ContentTab>
                 <ContentTab eventKey="rules">
                   {hasOsMinorProfiles ? (
-                    <PolicyMultiversionRules policy={policy} />
+                    <PolicyMultiversionRules
+                      policy={policy}
+                      saveToPolicy={saveToPolicy}
+                      onRuleValueReset={() => refetch()}
+                    />
                   ) : (
                     <PolicyRulesTab policy={policy} />
                   )}

@@ -50,6 +50,7 @@ export const FinishedCreatePolicy = ({
   benchmarkId,
   systems,
   selectedRuleRefIds,
+  ruleValues: values,
 }) => {
   const [percent, setPercent] = useState(0);
   const [message, setMessage] = useState('This usually takes a minute or two.');
@@ -61,7 +62,7 @@ export const FinishedCreatePolicy = ({
     setPercent(progress * 100);
   };
 
-  useEffect(() => {
+  const submitForm = () => {
     const newPolicy = {
       cloneFromProfileId,
       description,
@@ -72,6 +73,7 @@ export const FinishedCreatePolicy = ({
       benchmarkId,
       hosts: systems,
       selectedRuleRefIds,
+      values,
     };
 
     updatePolicy(null, newPolicy, onProgress)
@@ -100,6 +102,10 @@ export const FinishedCreatePolicy = ({
           description: error.message,
         });
       });
+  };
+
+  useEffect(() => {
+    submitForm();
   }, []);
 
   return (
@@ -146,23 +152,27 @@ FinishedCreatePolicy.propTypes = {
   complianceThreshold: propTypes.number,
   onWizardFinish: propTypes.func,
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
+  ruleValues: propTypes.object,
 };
 
 export const selector = formValueSelector('policyForm');
 
 export default compose(
-  connect((state) => ({
-    benchmarkId: selector(state, 'benchmark'),
-    businessObjective: selector(state, 'businessObjective'),
-    cloneFromProfileId: selector(state, 'profile').id,
-    refId: selector(state, 'refId'),
-    name: selector(state, 'name'),
-    description: selector(state, 'description'),
-    complianceThreshold:
-      parseFloat(selector(state, 'complianceThreshold')) || 100.0,
-    systems: selector(state, 'systems'),
-    selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
-  })),
+  connect((state) => {
+    return {
+      benchmarkId: selector(state, 'benchmark'),
+      businessObjective: selector(state, 'businessObjective'),
+      cloneFromProfileId: selector(state, 'profile').id,
+      refId: selector(state, 'refId'),
+      name: selector(state, 'name'),
+      description: selector(state, 'description'),
+      complianceThreshold:
+        parseFloat(selector(state, 'complianceThreshold')) || 100.0,
+      systems: selector(state, 'systems'),
+      selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
+      ruleValues: selector(state, 'ruleValues'),
+    };
+  }),
   reduxForm({
     form: 'policyForm',
     destroyOnUnmount: true,

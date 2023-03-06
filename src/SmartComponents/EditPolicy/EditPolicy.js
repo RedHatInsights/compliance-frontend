@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
 import { Button, Spinner } from '@patternfly/react-core';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import {
@@ -12,82 +9,43 @@ import {
 } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave, useLinkToPolicy } from './hooks';
-
-export const MULTIVERSION_QUERY = gql`
-  query Profile($policyId: String!) {
-    profile(id: $policyId) {
-      id
-      name
-      refId
-      external
-      description
-      totalHostCount
-      compliantHostCount
-      complianceThreshold
-      osMajorVersion
-      supportedOsVersions
-      lastScanned
-      policyType
-      policy {
-        id
-        name
-        refId
-        profiles {
-          id
-          parentProfileId
-          name
-          refId
-          osMinorVersion
-          osMajorVersion
-          benchmark {
-            id
-            title
-            latestSupportedOsMinorVersions
-            osMajorVersion
-            version
-            ruleTree
-          }
-          rules {
-            title
-            severity
-            rationale
-            refId
-            description
-            remediationAvailable
-            identifier
-          }
-        }
-      }
-      businessObjective {
-        id
-        title
-      }
-      hosts {
-        id
-        osMinorVersion
-        osMajorVersion
-      }
-    }
-  }
-`;
+import usePolicyQueries from './hooks/usePolicyQueries.js';
 
 export const EditPolicy = ({ route }) => {
-  const { policy_id: policyId } = useParams();
-  const { data, loading, error } = useQuery(MULTIVERSION_QUERY, {
-    variables: { policyId },
-  });
-  const policy = data?.profile;
+  const { policy, loading, error } = usePolicyQueries();
+
   const linkToPolicy = useLinkToPolicy();
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
   const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
   const [selectedSystems, setSelectedSystems] = useState([]);
+  const [ruleValues, setRuleValuesState] = useState({});
+
   const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
   const updatedPolicyHostsAndRules = {
     ...updatedPolicy,
     selectedRuleRefIds,
     hosts: selectedSystems,
+    values: ruleValues,
   };
   const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules);
+
+  const setRuleValues = (policyId, valueDefinition, valueValue) => {
+    const existingValues = Object.fromEntries(
+      policy?.policy.profiles.map((profile) => {
+        return [profile.id, profile.values];
+      }) || []
+    );
+
+    setRuleValuesState((currentValues) => ({
+      ...existingValues,
+      ...currentValues,
+      [policyId]: {
+        ...existingValues[policyId],
+        ...currentValues[policyId],
+        [valueDefinition.id]: valueValue,
+      },
+    }));
+  };
 
   const actions = [
     <Button
@@ -138,6 +96,8 @@ export const EditPolicy = ({ route }) => {
               setSelectedRuleRefIds,
               selectedSystems,
               setSelectedSystems,
+              setRuleValues,
+              ruleValues,
             }}
           />
         </StateViewPart>

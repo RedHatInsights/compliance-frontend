@@ -179,6 +179,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
           eventKey="rules"
         >
           <PolicyMultiversionRules
+            onRuleValueReset={[Function]}
             policy={
               Object {
                 "benchmark": Object {
@@ -220,6 +221,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "totalHostCount": 1,
               }
             }
+            saveToPolicy={[Function]}
           />
         </ContentTab>
         <ContentTab
