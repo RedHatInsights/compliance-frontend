@@ -73,21 +73,23 @@ const useRowsBuilder = (items, columns, options = {}) => {
     : sortedItems;
 
   const rows =
-    items.length > 0
-      ? tableTree
-        ? chopTreeIntoTable(
-            tableTree,
-            sortedItems,
-            columns,
-            openItems,
-            rowTransformer,
-            itemIdentifier,
-            detailsComponent,
-            options?.sorter,
-            !!selectItems
-          )
-        : buildRows(paginatedItems, columns, rowTransformer)
-      : EmptyRowsComponent;
+    sortedItems.length === 0
+      ? EmptyRowsComponent
+      : (() => {
+          return tableTree
+            ? chopTreeIntoTable(
+                tableTree,
+                sortedItems,
+                columns,
+                openItems,
+                rowTransformer,
+                itemIdentifier,
+                detailsComponent,
+                options?.sorter,
+                !!selectItems
+              )
+            : buildRows(paginatedItems, columns, rowTransformer);
+        })();
 
   const pagination = options?.pagination
     ? {
@@ -133,7 +135,7 @@ const useRowsBuilder = (items, columns, options = {}) => {
   return {
     tableProps: {
       rows,
-      ...(tableTree
+      ...(tableTree && sortedItems.length > 0
         ? {
             isTreeTable: true,
             cells: treeColumns(columns),
