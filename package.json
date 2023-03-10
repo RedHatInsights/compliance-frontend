@@ -63,7 +63,6 @@
       "<rootDir>/src/"
     ],
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(@patternfly/react-tokens/|@patternfly/react-icons/|p-all)).*$"
     ],
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy",
