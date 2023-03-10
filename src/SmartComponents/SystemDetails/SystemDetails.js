@@ -45,7 +45,7 @@ export const SystemDetails = ({ route }) => {
             <BreadcrumbLinkItem to="/systems">Systems</BreadcrumbLinkItem>
             <BreadcrumbItem isActive>{systemName}</BreadcrumbItem>
           </Breadcrumb>
-          <InventoryDetails />
+          <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
         <Main>
           <Details hidePassed inventoryId={inventoryId} />
