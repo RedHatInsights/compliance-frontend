@@ -1,13 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Grid, GridItem } from '@patternfly/react-core';
-import {
-  global_BackgroundColor_light_300,
-  global_palette_blue_200,
-  global_palette_blue_400,
-  global_palette_gold_300,
-} from '@patternfly/react-tokens';
 import MultiSegmentBar from '../MultiSegmentBar/MultiSegmentBar';
+import { paletteColors, backgroundColors } from '../../constants';
 
 const ReportStatusBar = ({
   hostCounts: { compliant, totalResults, unsupported, total },
@@ -22,25 +17,25 @@ const ReportStatusBar = ({
   const data = [
     {
       name: 'Compliant',
-      color: global_palette_blue_400.var,
+      color: paletteColors.blue400,
       value: compliant,
       label: `Compliant: ${counts.compliant}`,
     },
     {
       name: 'Non-Compliant',
-      color: global_palette_blue_200.var,
+      color: paletteColors.blue200,
       value: counts.nonCompliant,
       label: `Non-Compliant: ${counts.nonCompliant}`,
     },
     {
       name: 'Unsupported',
-      color: global_palette_gold_300.var,
+      color: paletteColors.gold300,
       value: counts.unsupported,
       label: `Unsupported: ${counts.unsupported}`,
     },
     {
       name: 'Never reported',
-      color: global_BackgroundColor_light_300.var,
+      color: backgroundColors.light300,
       value: counts.neverReported,
       label: `Never reported: ${counts.neverReported}`,
     },

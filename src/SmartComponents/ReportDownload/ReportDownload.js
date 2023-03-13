@@ -3,7 +3,7 @@ import { Button, Spinner } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 // eslint-disable-next-line
-import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator';
+import { DownloadButton } from '@redhat-cloud-services/frontend-components-pdf-generator/dist/esm/index';
 import {
   ComplianceModal,
   StateViewWithError,
