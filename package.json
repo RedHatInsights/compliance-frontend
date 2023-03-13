@@ -12,7 +12,6 @@
     "@patternfly/react-core": "^4.267.6",
     "@patternfly/react-icons": "^4.93.3",
     "@patternfly/react-table": "^4.112.6",
-    "@patternfly/react-tokens": "^4.94.3",
     "@redhat-cloud-services/frontend-components": "^3.9.29",
     "@redhat-cloud-services/frontend-components-notifications": "^3.2.12",
     "@redhat-cloud-services/frontend-components-pdf-generator": "^2.6.18",
@@ -64,7 +63,6 @@
       "<rootDir>/src/"
     ],
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(?!(@patternfly/react-tokens/|@patternfly/react-icons/|p-all)).*$"
     ],
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy",
@@ -145,6 +143,7 @@
     "webpack-bundle-analyzer": "^4.6.1"
   },
   "scripts": {
+    "analyze": "NODE_ENV=production webpack --config config/prod.webpack.config.js --env analyze=true --mode production",
     "build": "NODE_ENV=production webpack --config config/prod.webpack.config.js",
     "test": "jest --passWithNoTests",
     "test:nocoverage": "jest --passWithNoTests --no-coverage",
