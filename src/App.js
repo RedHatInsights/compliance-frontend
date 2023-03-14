@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
+import { useLocation } from 'react-router-dom';
 import { Routes } from './Routes';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
@@ -21,12 +21,13 @@ const appNavClick = {
 };
 
 const App = (props) => {
+  const location = useLocation();
   useSetFlagsFromUrl();
   useEffect(() => {
     insights.chrome.init();
     insights.chrome?.hideGlobalFilter?.();
     insights.chrome.identifyApp('compliance');
-    const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
+    const baseComponentUrl = location.pathname.split('/')[1] || 'reports';
     const unregister = insights.chrome.on('APP_NAVIGATION', (event) => {
       if (event.domEvent) {
         props.history.push(`/${event.navId}`);
@@ -50,4 +51,4 @@ App.propTypes = {
   history: PropTypes.object,
 };
 
-export default routerParams(App);
+export default App;
