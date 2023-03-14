@@ -39,10 +39,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps: pagintionToolbarProps,
     setPage,
     paginator,
-  } = usePaginate({
-    ...options,
-    pagination: options.pagination && !options.tableTree,
-  });
+  } = usePaginate(options);
 
   const {
     toolbarProps: conditionalFilterProps,
