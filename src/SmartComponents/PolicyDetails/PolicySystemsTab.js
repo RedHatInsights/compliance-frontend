@@ -32,7 +32,6 @@ const PolicySystemsTab = ({ policy }) => {
       dedicatedAction={
         <EditSystemsButtonToolbarItem
           to={`/scappolicies/${policy.id}/edit`}
-          state={{ policy }}
           hash={anchor}
           backgroundLocation={{ hash: 'details' }}
           variant="primary"

@@ -11,7 +11,6 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
     <ToolbarItem>
       <BackgroundLink
         to={`/scappolicies/${policy.id}/edit`}
-        state={{ policy }}
         hash={anchor}
         backgroundLocation={{ hash: anchor }}
         variant="primary"

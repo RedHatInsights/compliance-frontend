@@ -78,6 +78,7 @@ const BENCHMARK_QUERY = gql`
     benchmark(id: $id) {
       id
       osMajorVersion
+      ruleTree
       rules {
         id
         title
@@ -165,7 +166,7 @@ const ProfileTabContent = ({
             ansibleSupportFilter
             remediationsEnabled={false}
             columns={columns}
-            profileRules={[{ profile, rules: rules || [] }]}
+            profileRules={[{ profile, rules: rules || [], benchmark }]}
             selectedRules={selectedRuleRefIds.map(
               (refId) => `${profile.id}|${refId}`
             )}

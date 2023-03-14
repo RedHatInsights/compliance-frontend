@@ -20,6 +20,7 @@ export const PROFILES_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
+            ruleTree
           }
           rules {
             id
@@ -43,6 +44,7 @@ export const BENCHMARKS_QUERY = gql`
       nodes {
         id
         latestSupportedOsMinorVersions
+        ruleTree
         profiles {
           id
           refId

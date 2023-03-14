@@ -29,7 +29,7 @@ const itemDetailsRow = (item, idx, options, columns) =>
   );
 
 const useExpandable = (options) => {
-  const enableExpanbale = !!options.detailsComponent;
+  const enableExpanbale = !!options.detailsComponent && !options.tableTree;
   const [openItems, setOpenItems] = useState([]);
   const onCollapse = (_event, _index, _isOpen, row) => {
     if (openItems.includes(row.itemId)) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { Tabs, Tab, TabTitleText } from '@patternfly/react-core';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
@@ -36,11 +37,13 @@ const QUERY = gql`
         osMajorVersion
         benchmark {
           version
+          ruleTree
         }
         policy {
           id
         }
         rules {
+          id
           title
           severity
           rationale
@@ -58,84 +61,64 @@ const QUERY = gql`
 `;
 
 const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
-  const [selectedPolicies, setSelectedPolicies] = useState();
+  const [selectedPolicy, setSelectedPolicy] = useState(
+    system?.testResultProfiles[0].id
+  );
   const policies = system?.testResultProfiles;
-  const setOrUnsetPolicy = (policy) => {
-    if (!policy) {
-      return;
-    }
-    const policyIncluded = selectedPolicies?.find(
-      (policyId) => policy?.id === policyId
-    );
-    if (policyIncluded) {
-      const newSelection = selectedPolicies?.filter(
-        (policyId) => policy.id !== policyId
-      );
-      setSelectedPolicies(newSelection.length > 0 ? newSelection : undefined);
-    } else {
-      setSelectedPolicies([...(selectedPolicies || []), policy?.id]);
-    }
-  };
-
-  const onDeleteFilter = (chips, clearAll) => {
-    const chipNames = chips
-      .find((chips) => chips.category === 'Policy')
-      ?.chips.map((chip) => chip.name);
-    const policyId = policies.find(({ name }) => chipNames?.includes(name))?.id;
-
-    if (policyId) {
-      !clearAll
-        ? setOrUnsetPolicy(
-            policyId
-              ? {
-                  id: policyId,
-                }
-              : {}
-          )
-        : setSelectedPolicies(undefined);
-    }
-  };
 
   return (
     <>
-      <SystemPolicyCards
-        policies={policies}
-        loading={loading}
-        selectedPolicies={selectedPolicies}
-        onCardClick={(policy) => {
-          setOrUnsetPolicy(policy);
-        }}
-      />
+      <SystemPolicyCards policies={policies} loading={loading} />
       <br />
       {system?.testResultProfiles?.length ? (
-        <RulesTable
-          ansibleSupportFilter
-          hidePassed={hidePassed}
-          system={{
-            ...system,
-            supported:
-              (system?.testResultProfiles || []).filter(
-                (profile) => profile.supported
-              ).length > 0,
-          }}
-          profileRules={system?.testResultProfiles.map((profile) => ({
-            system,
-            profile,
-            rules: profile.rules,
-          }))}
-          loading={loading}
-          options={{
-            sortBy: {
-              index: 4,
-              direction: 'asc',
-              property: 'severity',
-            },
-            onDeleteFilter,
-          }}
-          activeFilters={{
-            policy: selectedPolicies,
-          }}
-        />
+        <>
+          {system.testResultProfiles.length > 1 && (
+            <Tabs
+              activeKey={selectedPolicy}
+              style={{ background: 'var(--pf-global--BackgroundColor--100)' }}
+            >
+              {system.testResultProfiles.map((policy, idx) => {
+                return (
+                  <Tab
+                    key={'policy-tab-' + idx}
+                    eventKey={policy.id}
+                    title={<TabTitleText> {policy.name} </TabTitleText>}
+                    onClick={() => {
+                      setSelectedPolicy(policy.id);
+                    }}
+                  />
+                );
+              })}
+            </Tabs>
+          )}
+          <RulesTable
+            ansibleSupportFilter
+            hidePassed={hidePassed}
+            showFailedCounts
+            system={{
+              ...system,
+              supported:
+                (system?.testResultProfiles || []).filter(
+                  (profile) => profile.supported
+                ).length > 0,
+            }}
+            profileRules={system?.testResultProfiles
+              .filter((policy) => selectedPolicy === policy.id)
+              .map((profile) => ({
+                system,
+                profile,
+                rules: profile.rules,
+              }))}
+            loading={loading}
+            options={{
+              sortBy: {
+                index: 4,
+                direction: 'asc',
+                property: 'severity',
+              },
+            }}
+          />
+        </>
       ) : (
         <EmptyState system={system} />
       )}

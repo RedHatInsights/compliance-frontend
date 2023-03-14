@@ -9,6 +9,8 @@ import RuleDetailsRow from './RuleDetailsRow';
 import emptyRows from './EmptyRows';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
+import { growTableTree, itemIdentifier } from './helpers';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const RulesTable = ({
   system,
@@ -22,8 +24,10 @@ const RulesTable = ({
   hidePassed = false,
   options,
   activeFilters,
+  showFailedCounts = false,
   ...rulesTableProps
 }) => {
+  const ruleGroups = useFeature('ruleGroups');
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : useState([]);
@@ -69,9 +73,18 @@ const RulesTable = ({
         }),
       }}
       options={{
+        ...(ruleGroups
+          ? {
+              tableTree: growTableTree(
+                profileRules[0].profile,
+                rules,
+                showFailedCounts
+              ),
+            }
+          : {}),
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        identifier: (item) => `${item.profile.id}|${item.refId}`,
+        identifier: itemIdentifier,
         onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
         detailsComponent: RuleDetailsRow,
@@ -97,6 +110,7 @@ RulesTable.propTypes = {
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
+  showFailedCounts: propTypes.number,
 };
 
 export default RulesTable;
