@@ -62,7 +62,7 @@ const QUERY = gql`
 
 const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   const [selectedPolicy, setSelectedPolicy] = useState(
-    system?.testResultProfiles[0].id
+    system.testResultProfiles[0]?.id
   );
   const policies = system?.testResultProfiles;
 
