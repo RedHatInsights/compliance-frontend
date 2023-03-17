@@ -85,12 +85,17 @@ export const Policies = {
 export const FailedRules = {
   title: 'Failed rules',
   key: 'failedRules',
-  exportKey: 'testResultProfiles',
+  exportKey: 'profiles',
   transforms: [nowrap],
   props: {
     width: 5,
     ...disableSorting,
   },
+  renderExport: (profiles) =>
+    profiles.reduce(
+      (failedRules, { rulesFailed }) => failedRules + rulesFailed,
+      0
+    ),
   renderFunc: renderComponent(FailedRulesCell),
 };
 

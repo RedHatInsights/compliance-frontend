@@ -295,12 +295,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                   ],
                 },
                 Object {
-                  "exportKey": "testResultProfiles",
+                  "exportKey": "profiles",
                   "key": "failedRules",
                   "props": Object {
                     "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                   "transforms": Array [
@@ -655,12 +656,13 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   ],
                 },
                 Object {
-                  "exportKey": "testResultProfiles",
+                  "exportKey": "profiles",
                   "key": "failedRules",
                   "props": Object {
                     "isStatic": true,
                     "width": 5,
                   },
+                  "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
                   "transforms": Array [
