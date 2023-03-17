@@ -516,7 +516,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
               text-anchor="middle"
               x="115"
             >
-              0
+              0%
             </tspan>
             <tspan
               dx="0"
@@ -646,7 +646,7 @@ exports[`ReportChart expect to render without error with zero counts 1`] = `
               text-anchor="middle"
               x="115"
             >
-              0
+              0%
             </tspan>
             <tspan
               dx="0"

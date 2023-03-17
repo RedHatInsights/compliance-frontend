@@ -68,9 +68,11 @@ const useDonutChart = (profile) => {
   const flyoutValues = [150, 180, 170, 170];
   const legendData = useLegendData(donutValues, profile);
 
-  const compliancePercentage = testResultHostCount
-    ? fixedPercentage(Math.floor(100 * (compliantHostCount / totalHostCount)))
-    : 0;
+  const compliancePercentage = fixedPercentage(
+    totalHostCount > 0
+      ? Math.floor(100 * (compliantHostCount / totalHostCount))
+      : 0
+  );
 
   return {
     chartProps: {
