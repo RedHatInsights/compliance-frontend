@@ -91,8 +91,7 @@ Router.propTypes = {
 
 const RedirectComponent = ({ chromeHistory, isBeta, ...route }) => {
   useEffect(() => {
-    const path =
-      (isBeta() ? '/beta' : '') + '/insights/compliance' + route.path;
+    const path = `/insights/compliance${route.path}`;
 
     // NOTE: This may stop working with the (chrome/platform) migration to react router v6.
     // Hence the fallback.
