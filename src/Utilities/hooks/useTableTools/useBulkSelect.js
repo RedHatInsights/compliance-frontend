@@ -181,7 +181,7 @@ export const useBulkSelectWithItems = ({
   const setPageMemo = useMemo(() => setPage, []);
 
   useEffect(() => {
-    if (paginatedTotal === 0) {
+    if (paginatedTotal === 0 && setPage) {
       setPageMemo(-1);
     }
   }, [paginatedTotal, setPageMemo]);
