@@ -1,33 +1,32 @@
 {
     "profiles": {
         "edges": [
-            {
-                "node": {
-                    "id": "8ef0a77b-09c6-4652-b341-2b3ac2ce47f3",
-                    "name": "Protection Profile for General Purpose Operating Systems",
-                    "refId": "xccdf_org.ssgproject.content_profile_ospp",
-                    "description": "This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2.1).\n\nThis configuration profile is consistent with CNSSI-1253, which requires\nU.S. National Security Systems to adhere to certain configuration\nparameters. Accordingly, this configuration profile is suitable for\nuse in U.S. National Security Systems.",
-                    "policyType": "Protection Profile for General Purpose Operating Systems",
-                    "totalHostCount": 1,
-                    "testResultHostCount": 1,
-                    "compliantHostCount": 0,
-                    "unsupportedHostCount": 0,
-                    "osMajorVersion": "8",
-                    "complianceThreshold": 100,
-                    "businessObjective": null,
+            {   "node": {
+                    "id":"4051e704-f984-4bf6-81f4-cd2113a92d97",
+                    "name":"PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7",
+                    "refId":"xccdf_org.ssgproject.content_profile_pci-dss",
+                    "description":"Ensures PCI-DSS v3.2.1 security configuration settings are applied.",
+                    "policyType":"PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7",
+                    "totalHostCount":4,
+                    "testResultHostCount":2,
+                    "compliantHostCount":1,
+                    "unsupportedHostCount":1,
+                    "osMajorVersion":"7",
+                    "complianceThreshold":95.0,
+                    "businessObjective":null,
                     "policy": {
-                        "id": "8ef0a77b-09c6-4652-b341-2b3ac2ce47f3",
-                        "name": "Protection Profile for General Purpose Operating Systems",
-                        "__typename": "Profile"
+                        "id":"4051e704-f984-4bf6-81f4-cd2113a92d97",
+                        "name":"PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7",
+                        "__typename":"Profile"
                     },
                     "benchmark": {
-                        "id": "307f951d-a72b-46b2-9d3d-5963750ccddd",
-                        "version": "0.1.60",
-                        "__typename": "Benchmark"
+                        "id":"156f766e-082f-4e60-80e3-df8d6d908f6e",
+                        "version":"0.1.66",
+                        "__typename":"Benchmark"
                     },
-                    "__typename": "Profile"
+                    "__typename":"Profile"
                 },
-                "__typename": "ProfileEdge"
+                "__typename":"ProfileEdge"
             },
             {
                 "node": {
@@ -56,6 +55,33 @@
                     "__typename": "Profile"
                 },
                 "__typename": "ProfileEdge"
+            },
+            {   "node": {
+                    "id":"1028080b-89f7-4d6c-8f73-fa50df0c4da9",
+                    "name":"Example Server Profile",
+                    "refId":"xccdf_org.ssgproject.content_profile_CS2",
+                    "description":"This profile is an example of a customized server profile.",
+                    "policyType":"Example Server Profile",
+                    "totalHostCount":1,
+                    "testResultHostCount":1,
+                    "compliantHostCount":0,
+                    "unsupportedHostCount":0,
+                    "osMajorVersion":"6",
+                    "complianceThreshold":100.0,
+                    "businessObjective":null,
+                    "policy": {
+                        "id":"1028080b-89f7-4d6c-8f73-fa50df0c4da9",
+                        "name":"Example Server Profile",
+                        "__typename":"Profile"
+                    },
+                    "benchmark": {
+                        "id":"d35778a9-1fb9-40d8-bf9a-9b3043704b97",
+                        "version":"0.1.28",
+                        "__typename":"Benchmark"
+                    },
+                    "__typename":"Profile"
+                },
+                "__typename":"ProfileEdge"
             }
         ],
         "__typename": "ProfileConnection"
