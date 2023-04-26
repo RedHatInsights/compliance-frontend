@@ -14,7 +14,7 @@ import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportCh
 
 export const Name = (profile) => (
   <TextContent>
-    <Link to={'/reports/' + profile.id} style={{ marginRight: '.5rem' }}>
+    <Link to={`/reports/${profile.id}`} style={{ marginRight: '.5rem' }}>
       {profile.policy?.name}
     </Link>
     <React.Fragment>
@@ -85,10 +85,13 @@ CompliantSystems.propTypes = {
 export const PDFExportDownload = ({ id }) => (
   <BackgroundLink
     component={LinkButton}
-    ouiaId="ReportsDownloadReportPDFLink"
-    variant="plain"
-    className="pf-u-mr-md"
     to={`/reports/${id}/pdf`}
+    Component={LinkButton}
+    componentProps={{
+      className: 'pf-u-mr-md',
+      variant: 'primary',
+      ouiaId: 'ReportsDownloadReportPDFLink',
+    }}
   >
     <DownloadIcon />
   </BackgroundLink>

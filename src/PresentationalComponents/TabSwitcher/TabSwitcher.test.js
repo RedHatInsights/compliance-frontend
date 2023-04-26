@@ -12,9 +12,7 @@ jest.mock('react-router-dom', () => ({
     pathname: '/path/name',
     state: {},
   })),
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
+  useNavigate: jest.fn(),
 }));
 
 describe('TabSwitcher', () => {

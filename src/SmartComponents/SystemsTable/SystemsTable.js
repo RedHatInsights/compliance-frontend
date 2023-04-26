@@ -2,7 +2,9 @@ import React, { useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { TableVariant } from '@patternfly/react-table';
-// eslint-disable-next-line max-len
+import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+
 import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
 import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
@@ -10,7 +12,6 @@ import {
 } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
-import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import { policyFilter, defaultOnLoad, ssgVersionFilter } from './constants';
 import {
   useFetchSystems,
@@ -58,7 +59,7 @@ export const SystemsTable = ({
   const [total, setTotal] = useState(0);
   const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
-
+  const navigateToInventory = useNavigate('inventory');
   const osMinorVersionFilter = useOsMinorVersionFilter(
     showOsMinorVersionFilter,
     {
@@ -239,9 +240,8 @@ export const SystemsTable = ({
             actions: [
               {
                 title: 'View in inventory',
-                onClick: (_event, _index, { id }) => {
-                  window.location.href = `${window.location.origin}/insights/inventory/${id}`;
-                },
+                onClick: (_event, _index, { id }) =>
+                  navigateToInventory('/' + id),
               },
             ],
           })}

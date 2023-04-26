@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import {
   Title,
   TextContent,
@@ -63,9 +64,9 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
       <EmptyStateBody>
         {policiesCount > 0 ? (
           <TextContent>
-            <a href="insights/compliance/scappolicies">
+            <InsightsLink to="/scappolicies">
               {policiesCount} {policyWord}
-            </a>{' '}
+            </InsightsLink>{' '}
             {haveWord} been created but {haveWord} no reports.
           </TextContent>
         ) : (

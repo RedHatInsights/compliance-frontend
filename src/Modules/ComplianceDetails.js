@@ -3,7 +3,6 @@ import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
-import { FederatedModuleRouter } from '../Utilities/Router';
 import Details from '../SmartComponents/SystemDetails/ComplianceDetail';
 
 const ComplianceDetails = (props) => {
@@ -19,13 +18,11 @@ const ComplianceDetails = (props) => {
   );
 
   return (
-    <FederatedModuleRouter>
-      <ApolloProvider client={client.current}>
-        <Provider store={store.current}>
-          <Details {...props} />
-        </Provider>
-      </ApolloProvider>
-    </FederatedModuleRouter>
+    <ApolloProvider client={client.current}>
+      <Provider store={store.current}>
+        <Details {...props} />
+      </Provider>
+    </ApolloProvider>
   );
 };
 

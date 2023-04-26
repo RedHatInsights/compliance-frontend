@@ -1,8 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Button } from '@patternfly/react-core';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
-const LinkButton = ({ navigate, children, to, ...props }) => {
+const LinkButton = ({ children, to, ...props }) => {
+  const navigate = useNavigate();
+
   return (
     <Button onClick={() => navigate(to)} {...props}>
       {children}

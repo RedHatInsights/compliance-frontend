@@ -100,21 +100,15 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       role="tabpanel"
       tabindex="0"
     >
-      <section
-        class="inventory"
-      >
-        <div>
-          <h1>
-            Unable to load inventory component
-          </h1>
-          <h2>
-            Failed to load section
-          </h2>
-          <code>
-            More info can be found in browser console output.
-          </code>
-        </div>
-      </section>
+      <div
+        activefiltersconfig="[object Object]"
+        bulkselect="[object Object]"
+        fallback="[object Object]"
+        filterconfig="[object Object]"
+        hidefilters="[object Object]"
+        tableprops="[object Object]"
+        variant="compact"
+      />
     </section>
   </form>
 </DocumentFragment>
@@ -220,21 +214,15 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       role="tabpanel"
       tabindex="0"
     >
-      <section
-        class="inventory"
-      >
-        <div>
-          <h1>
-            Unable to load inventory component
-          </h1>
-          <h2>
-            Failed to load section
-          </h2>
-          <code>
-            More info can be found in browser console output.
-          </code>
-        </div>
-      </section>
+      <div
+        activefiltersconfig="[object Object]"
+        bulkselect="[object Object]"
+        fallback="[object Object]"
+        filterconfig="[object Object]"
+        hidefilters="[object Object]"
+        tableprops="[object Object]"
+        variant="compact"
+      />
     </section>
   </form>
 </DocumentFragment>

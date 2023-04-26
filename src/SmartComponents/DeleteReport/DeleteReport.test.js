@@ -3,9 +3,10 @@ import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
   useLocation: jest.fn(),
+  useNavigate: jest.fn(),
 }));
+
 jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
 

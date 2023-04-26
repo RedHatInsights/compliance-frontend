@@ -10,7 +10,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
     useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
   useLocation: jest.fn(),
-  useHistory: jest.fn(() => ({})),
+  useNavigate: jest.fn(),
 }));
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),

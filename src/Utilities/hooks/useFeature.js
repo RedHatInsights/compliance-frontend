@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { features } from '@/constants';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 export const LOCAL_STORE_FEATURE_PREFIX = 'insights:compliance';
 
 const getFlagValue = (feature) => {
@@ -32,7 +32,7 @@ const setFeatureFlag = (featureValue, feature) => {
 // Allows setting feature flag values via ?feature|(enable/disable)
 export const useSetFlagsFromUrl = () => {
   const { search, pathName: path } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   if (!search) {
     return;
   }
@@ -40,7 +40,7 @@ export const useSetFlagsFromUrl = () => {
   const urlParams = new URLSearchParams(search);
   urlParams.forEach(setFeatureFlag);
 
-  history.push(path);
+  navigate(path);
 };
 
 // A hook to query feature values

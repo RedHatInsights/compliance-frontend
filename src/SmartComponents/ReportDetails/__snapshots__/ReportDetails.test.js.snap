@@ -96,9 +96,14 @@ exports[`ReportDetails expect to render without error 1`] = `
           xl={3}
         >
           <BackgroundLink
+            Component={[Function]}
             className="pf-u-mr-md"
-            component={[Function]}
-            ouiaId="ReportDetailsDownloadReportPDFLink"
+            componentProps={
+              Object {
+                "ouiaId": "ReportDetailsDownloadReportPDFLink",
+                "variant": "primary",
+              }
+            }
             state={
               Object {
                 "profile": Object {
@@ -128,14 +133,18 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/pdf"
-            variant="plain"
           >
             Download PDF
           </BackgroundLink>
           <BackgroundLink
-            component={[Function]}
-            isInline={true}
-            ouiaId="ReportDetailsDeleteReportLink"
+            Component={[Function]}
+            componentProps={
+              Object {
+                "isInline": true,
+                "ouiaId": "ReportDetailsDeleteReportLink",
+                "variant": "link",
+              }
+            }
             state={
               Object {
                 "profile": Object {
@@ -165,7 +174,6 @@ exports[`ReportDetails expect to render without error 1`] = `
               }
             }
             to="/reports/1/delete"
-            variant="link"
           >
             Delete report
           </BackgroundLink>
@@ -462,9 +470,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           xl={3}
         >
           <BackgroundLink
+            Component={[Function]}
             className="pf-u-mr-md"
-            component={[Function]}
-            ouiaId="ReportDetailsDownloadReportPDFLink"
+            componentProps={
+              Object {
+                "ouiaId": "ReportDetailsDownloadReportPDFLink",
+                "variant": "primary",
+              }
+            }
             state={
               Object {
                 "profile": Object {
@@ -494,14 +507,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/pdf"
-            variant="plain"
           >
             Download PDF
           </BackgroundLink>
           <BackgroundLink
-            component={[Function]}
-            isInline={true}
-            ouiaId="ReportDetailsDeleteReportLink"
+            Component={[Function]}
+            componentProps={
+              Object {
+                "isInline": true,
+                "ouiaId": "ReportDetailsDeleteReportLink",
+                "variant": "link",
+              }
+            }
             state={
               Object {
                 "profile": Object {
@@ -531,7 +548,6 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
               }
             }
             to="/reports/1/delete"
-            variant="link"
           >
             Delete report
           </BackgroundLink>

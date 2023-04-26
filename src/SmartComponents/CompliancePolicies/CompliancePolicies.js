@@ -46,12 +46,14 @@ const QUERY = gql`
 
 export const CompliancePolicies = () => {
   const location = useLocation();
-  const createLink = (
+  const CreateLink = () => (
     <BackgroundLink
       to="/scappolicies/new"
-      component={LinkButton}
-      variant="primary"
-      ouiaId="CreateNewPolicyButton"
+      Component={LinkButton}
+      componentProps={{
+        variant: 'primary',
+        ouiaId: 'CreateNewPolicyButton',
+      }}
     >
       Create new policy
     </BackgroundLink>
@@ -86,11 +88,11 @@ export const CompliancePolicies = () => {
               <Grid hasGutter>
                 <ComplianceEmptyState
                   title="No policies"
-                  mainButton={createLink}
+                  mainButton={CreateLink}
                 />
               </Grid>
             ) : (
-              <PoliciesTable policies={policies} />
+              <PoliciesTable policies={policies} DedicatedAction={CreateLink} />
             )}
           </StateViewPart>
         </StateView>

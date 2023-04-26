@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-
 import BackgroundLink from './BackgroundLink';
 import { useLocation } from 'react-router-dom';
 
@@ -7,6 +6,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Link: () => 'Mocked Link',
   useLocation: jest.fn(),
+  useNavigate: jest.fn(),
 }));
 
 describe('BackgroundLink', () => {

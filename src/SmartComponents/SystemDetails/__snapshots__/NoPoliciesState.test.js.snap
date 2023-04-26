@@ -17,21 +17,25 @@ exports[`NoPoliciesState with a system having policies 1`] = `
     </EmptyStateBody>
     <EmptyStatePrimary>
       <BackgroundLink
-        component={[Function]}
-        ouiaId="CreateNewPolicyButton"
+        Component={[Function]}
+        componentProps={
+          Object {
+            "ouiaId": "CreateNewPolicyButton",
+            "variant": "primary",
+          }
+        }
         to="/scappolicies/new"
-        variant="primary"
       >
         Create new policy
       </BackgroundLink>
     </EmptyStatePrimary>
     <EmptyStateSecondaryActions>
-      <Link
+      <LinkWithPermission
         to="/scappolicies"
         variant="plain"
       >
         View compliance policies
-      </Link>
+      </LinkWithPermission>
     </EmptyStateSecondaryActions>
   </EmptyState>
 </Bullseye>

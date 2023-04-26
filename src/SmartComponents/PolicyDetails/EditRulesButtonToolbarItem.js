@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { ToolbarItem } from '@patternfly/react-core';
 import { BackgroundLink, LinkButton } from 'PresentationalComponents';
-import { useAnchor } from 'Utilities/Router';
+import useAnchor from 'Utilities/hooks/useAnchor';
 
 const EditRulesButtonToolbarItem = ({ policy }) => {
   let anchor = useAnchor();
@@ -13,9 +13,11 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
         to={`/scappolicies/${policy.id}/edit`}
         hash={anchor}
         backgroundLocation={{ hash: anchor }}
-        variant="primary"
-        ouiaId="EditRulesButton"
-        component={LinkButton}
+        Component={LinkButton}
+        componentProps={{
+          variant: 'primary',
+          ouiaId: 'EditRulesButton',
+        }}
       >
         Edit rules
       </BackgroundLink>

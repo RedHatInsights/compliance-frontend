@@ -2,15 +2,10 @@ import { useQuery } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
 import { SystemDetails } from './SystemDetails.js';
 
-jest.mock('SmartComponents', () => ({
-  InventoryDetails: () => 'MockedInventoryDetails',
-}));
-
 jest.mock('@apollo/client');
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useHistory: jest.fn(),
   useLocation: jest.fn(),
   useParams: jest.fn(() => ({
     inventoryId: 1,

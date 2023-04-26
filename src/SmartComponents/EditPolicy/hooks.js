@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
-import { useLinkToBackground, useAnchor } from 'Utilities/Router';
+import useAnchor from 'Utilities/hooks/useAnchor';
+import useLinkToBackground from 'Utilities/hooks/useLinkToBackground';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
 export const useLinkToPolicy = () => {

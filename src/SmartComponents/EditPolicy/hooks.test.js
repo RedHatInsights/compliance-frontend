@@ -6,13 +6,13 @@ jest.mock('Mutations');
 
 import { dispatchNotification } from 'Utilities/Dispatcher';
 jest.mock('Utilities/Dispatcher');
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: jest.fn(() => []),
-  useLocation: jest.fn(() => ({
-    hash: '#hash',
-  })),
+jest.mock('Utilities/hooks/useLinkToBackground', () => ({
+  __esModule: true,
+  default: () => () => ({}),
+}));
+jest.mock('Utilities/hooks/useAnchor', () => ({
+  __esModule: true,
+  default: () => () => ({}),
 }));
 
 describe('useOnSave', function () {

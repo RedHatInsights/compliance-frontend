@@ -9,7 +9,6 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
   useLocation: jest.fn(),
-  useHistory: jest.fn(() => ({})),
 }));
 jest.mock('Utilities/Dispatcher');
 jest.mock('./hooks/usePDFExport', () => () => []);

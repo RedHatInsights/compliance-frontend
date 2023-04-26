@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import propTypes from 'prop-types';
 import {
   Button,
   FormGroup,
@@ -7,10 +8,8 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import { CheckIcon, TimesIcon, PencilAltIcon } from '@patternfly/react-icons';
-
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
-import propTypes from 'prop-types';
-import { Prompt } from 'react-router-dom';
+// import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 
 const InlineEdit = ({
   value: valueProp,
@@ -25,7 +24,8 @@ const InlineEdit = ({
   ...props
 }) => {
   const input = useRef();
-  const [dirty, setDirty] = useState(false);
+  // TODO Re-enable when there is a alternative to Prompt
+  // const [dirty, setDirty] = useState(false);
   const [value, setValue] = useState(() => valueProp || defaultValue);
   const [valid, setValid] = useState(null);
   const [open, setOpen] = useState(() => isOpen || false);
@@ -35,23 +35,23 @@ const InlineEdit = ({
     setValue(newValue);
 
     if (newValue !== value) {
-      setDirty(true);
+      // setDirty(true);
       setValid(validate?.(newValue) || true);
     } else {
-      setDirty(false);
+      // setDirty(false);
       setValid(null);
     }
   };
 
   const handleCloseEdit = () => {
     setValue(valueProp || defaultValue);
-    setDirty(false);
+    // setDirty(false);
     setOpen(false);
   };
 
   const onSave = () => {
     setSaving(true);
-    setDirty(false);
+    // setDirty(false);
     onSaveProp?.(value);
   };
 
@@ -118,11 +118,11 @@ const InlineEdit = ({
           </Text>
         )}
       </div>
-
+      {/*
       <Prompt
         when={dirty}
         message="You have unsaved changes on this page. Are you sure you want to leave?"
-      />
+      /> */}
     </FormGroup>
   );
 };

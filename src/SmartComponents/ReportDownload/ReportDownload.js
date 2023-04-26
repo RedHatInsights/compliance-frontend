@@ -9,7 +9,7 @@ import {
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
-import { useLinkToBackground } from 'Utilities/Router';
+import useLinkToBackground from 'Utilities/hooks/useLinkToBackground';
 import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';

@@ -19,10 +19,10 @@ import {
   StateViewPart,
   SupportedSSGVersionsLink,
   RulesTable,
+  LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
-import { Link } from 'react-router-dom';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
 import useFeature from 'Utilities/hooks/useFeature';

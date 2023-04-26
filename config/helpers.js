@@ -21,11 +21,15 @@ const localRoutesFor = (pathPrefix, appsString) =>
 const includeFedMods = (plugins, fedMods) => ({
   plugins: [
     ...plugins,
-    // Expose federated modules for other applications
     require('@redhat-cloud-services/frontend-components-config/federated-modules')(
       {
         root: resolve(__dirname, '../'),
         exposes: fedMods,
+        shared: [
+          {
+            'react-router-dom': { singleton: true, requiredVersion: '*' },
+          },
+        ],
       }
     ),
   ],

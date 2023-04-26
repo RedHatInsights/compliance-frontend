@@ -5,14 +5,19 @@ import { BENCHMARKS_QUERY } from './constants';
 
 import { policies } from '@/__fixtures__/policies.js';
 
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
-
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import EditPolicyForm from './EditPolicyForm';
 import { useNewRulesAlertState } from './hooks';
+
+jest.mock('react-router-dom', () => ({
+  useLocation: jest.fn(() => ({
+    pathname: '/path/name',
+    state: {},
+  })),
+  useNavigate: jest.fn(),
+}));
 
 jest.mock('./hooks', () => ({
   ...jest.requireActual('./hooks'),
@@ -28,21 +33,18 @@ const reducer = (state = initialState, action) => {
 };
 
 const TestWrapper = ({ children, mocks = [] }) => {
-  const history = createMemoryHistory();
   const store = createStore(reducer, initialState);
 
   return (
     <Provider store={store}>
-      <Router history={history}>
-        <MockedProvider mocks={mocks}>{children}</MockedProvider>
-      </Router>
+      <MockedProvider mocks={mocks}>{children}</MockedProvider>
     </Provider>
   );
 };
 
 TestWrapper.propTypes = {
   children: propTypes.node,
-  mocks: propTypes.arra,
+  mocks: propTypes.array,
 };
 
 describe('EditPolicyForm', () => {
