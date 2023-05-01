@@ -78,11 +78,15 @@ const buildTreeBranch = (
   setSize,
   detailsComponent,
   sorter,
-  selectable
+  selectable,
+  expandOnFilter,
+  activeFilterValues
 ) => {
   const nextLevel = level + 1;
   const branchItemId = item.leaf || item.itemId;
-  const isExpanded = openItems.includes(branchItemId);
+  const isExpanded =
+    (expandOnFilter && activeFilterValues.flat().length > 0) ||
+    openItems.includes(branchItemId);
 
   const leaves = ((openItems) => {
     const leafItems =
@@ -93,7 +97,9 @@ const buildTreeBranch = (
           ...item,
           props: {
             ...(selectable ? { isChecked: item.rowProps?.selected } : {}),
-            isExpanded: openItems.includes(item.itemId),
+            isExpanded:
+              (expandOnFilter && activeFilterValues?.flat().length > 0) ||
+              openItems.includes(item.itemId),
             'aria-level': nextLevel,
             'aria-setsize': 1,
           },
@@ -124,7 +130,9 @@ const buildTreeBranch = (
           (twig.twigs?.length || 0) + (twig.leaves?.length || 0),
           detailsComponent,
           sorter,
-          selectable
+          selectable,
+          expandOnFilter,
+          activeFilterValues
         )
       )
     : [];
@@ -199,7 +207,9 @@ export const chopTreeIntoTable = (
   itemIdentifier = ({ id }) => id,
   detailsComponent,
   sorter,
-  selectable = false
+  selectable = false,
+  expandOnFilter,
+  activeFilterValues
 ) =>
   tableTree.reduce(
     (treeRows, item, idx) => [
@@ -216,7 +226,9 @@ export const chopTreeIntoTable = (
         undefined,
         detailsComponent,
         sorter,
-        selectable
+        selectable,
+        expandOnFilter,
+        activeFilterValues
       ),
     ],
     []

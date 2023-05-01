@@ -93,6 +93,8 @@ export const EditPolicyRulesTab = ({
   selectedRuleRefIds,
   setSelectedRuleRefIds,
   osMinorVersionCounts,
+  setRuleValues,
+  ruleValues: ruleValuesProp,
 }) => {
   const osMajorVersion = policy?.osMajorVersion;
   const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
@@ -135,6 +137,24 @@ export const EditPolicyRulesTab = ({
     }
   }, [policy.policy.profiles]);
 
+  const ruleValues = (policy) => {
+    const mergeValues = (policyId, values) => {
+      return {
+        ...values,
+        ...(ruleValuesProp?.[policyId] || {}),
+      };
+    };
+
+    return Object.fromEntries(
+      policy?.policy?.profiles?.map(
+        ({ id, values, benchmark: { valueDefinitions } }) => [
+          id,
+          mergeValues(id, values, valueDefinitions),
+        ]
+      ) || []
+    );
+  };
+
   return (
     <StateViewWithError
       stateValues={{
@@ -158,12 +178,16 @@ export const EditPolicyRulesTab = ({
           </Text>
         </TextContent>
         <TabbedRules
+          resetLink
+          rulesPageLink
+          selectedFilter
+          remediationsEnabled={false}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           tabsData={tabsData}
+          ruleValues={ruleValues(policy)}
           selectedRuleRefIds={selectedRuleRefIds}
           setSelectedRuleRefIds={setSelectedRuleRefIds}
-          remediationsEnabled={false}
-          selectedFilter
+          setRuleValues={setRuleValues}
           level={1}
           ouiaId="RHELVersions"
         />
@@ -186,6 +210,8 @@ EditPolicyRulesTab.propTypes = {
   }),
   selectedRuleRefIds: propTypes.array,
   setSelectedRuleRefIds: propTypes.func,
+  setRuleValues: propTypes.func,
+  ruleValues: propTypes.array,
 };
 
 export default EditPolicyRulesTab;

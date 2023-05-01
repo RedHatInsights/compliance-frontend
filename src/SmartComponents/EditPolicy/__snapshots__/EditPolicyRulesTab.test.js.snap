@@ -135,6 +135,15 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
       level={1}
       ouiaId="RHELVersions"
       remediationsEnabled={false}
+      resetLink={true}
+      ruleValues={
+        Object {
+          "b71376fd-015e-4209-99ac": Object {},
+          "b71376fd-015e-4209-99ad": Object {},
+          "b71376fd-015e-4209-99af": Object {},
+        }
+      }
+      rulesPageLink={true}
       selectedFilter={true}
       selectedRuleRefIds={Array []}
       setSelectedRuleRefIds={[Function]}
@@ -247,6 +256,9 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
       level={1}
       ouiaId="RHELVersions"
       remediationsEnabled={false}
+      resetLink={true}
+      ruleValues={Object {}}
+      rulesPageLink={true}
       selectedFilter={true}
       selectedRuleRefIds={Array []}
       setSelectedRuleRefIds={[Function]}

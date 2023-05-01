@@ -44,6 +44,13 @@ exports[`PolicyMultiversionRules expect to render without error 1`] = `
         }
       }
       ouiaId="RHELVersions"
+      ruleValues={
+        Object {
+          "b71376fd-015e-4209-99ac": undefined,
+          "b71376fd-015e-4209-99ad": undefined,
+          "b71376fd-015e-4209-99af": undefined,
+        }
+      }
       tabsData={
         Array [
           Object {

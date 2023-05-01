@@ -97,6 +97,7 @@ export const CreatePolicyForm = ({
   return (
     <React.Fragment>
       <Wizard
+        width={1220}
         className="compliance"
         isOpen
         onNext={onNext}

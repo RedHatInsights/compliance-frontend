@@ -6,6 +6,7 @@ const useAssociateSystems = () => {
 
   return async ({ id }, hosts) => {
     const { data, error } = await associateSystems({
+      fetchPolicy: 'no-cache',
       variables: {
         input: {
           id,

@@ -7,7 +7,11 @@ import { sortingByProp } from 'Utilities/helpers';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
-const PolicyMultiversionRules = ({ policy }) => {
+const PolicyMultiversionRules = ({
+  policy,
+  saveToPolicy,
+  onRuleValueReset,
+}) => {
   const {
     hosts,
     policy: { profiles },
@@ -31,6 +35,11 @@ const PolicyMultiversionRules = ({ policy }) => {
       <PageSection variant={PageSectionVariants.light}>
         <TabbedRules
           tabsData={tabsData}
+          setRuleValues={saveToPolicy}
+          onRuleValueReset={onRuleValueReset}
+          ruleValues={Object.fromEntries(
+            profiles.map(({ id, values }) => [id, values])
+          )}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           level={1}
           options={{
@@ -45,6 +54,8 @@ const PolicyMultiversionRules = ({ policy }) => {
 
 PolicyMultiversionRules.propTypes = {
   policy: propTypes.object.isRequired,
+  saveToPolicy: propTypes.func,
+  onRuleValueReset: propTypes.func,
 };
 
 export default PolicyMultiversionRules;
