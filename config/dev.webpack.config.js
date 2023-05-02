@@ -11,7 +11,10 @@ const hotReload = process.env.HOT_RELOAD === 'true' ? true : false;
 const proxyConfiguration = {
   rootFolder: resolve(__dirname, '../'),
   useProxy: process.env.PROXY === 'true',
-  appUrl: `${process.env.BETA === 'true' ? '/beta' : ''}/insights/${process.env.APP_ID}`,
+  appUrl: process.env.BETA
+    ? ['/beta/insights/compliance', '/preview/insights/compliance']
+    : '/insights/compliance',
+  ...(process.env.BETA && { deployment: 'beta/apps' }),
   env: `${process.env.INSIGHTS_ENV}-${process.env.BETA === 'true' ? 'beta' : 'stable'}`,
   ...(process.env.LOCAL_CHROME !== 'false' ? {
     localChrome: process.env.LOCAL_CHROME_DIR || process.env.LOCAL_CHROME,

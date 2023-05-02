@@ -235,11 +235,7 @@ export const SystemsTable = ({
               {
                 title: 'View in inventory',
                 onClick: (_event, _index, { id }) => {
-                  const beta =
-                    window.location.pathname.split('/')[1] === 'beta';
-                  window.location.href = `${window.location.origin}${
-                    beta ? '/beta' : ''
-                  }/insights/inventory/${id}`;
+                  window.location.href = `${window.location.origin}/insights/inventory/${id}`;
                 },
               },
             ],
