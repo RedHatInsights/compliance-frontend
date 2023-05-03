@@ -1,6 +1,9 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import { matchPath } from 'react-router-dom';
 import Router from './Utilities/Router';
+import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComponent';
+import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
+import axios from 'axios';
 const defaultReportTitle = 'Reports';
 const defaultPermissions = ['compliance:*:*'];
 const reportsRoutes = [
@@ -153,4 +156,30 @@ export const findRouteByPath = (to) => {
   });
   return route;
 };
-export const Routes = (...props) => <Router {...props} routes={routes} />;
+const INVENTORY_TOTAL_FETCH_URL = '/api/inventory/v1/hosts';
+export const Routes = (...props) => {
+  const [hasSystems, setHasSystems] = useState(true);
+  useEffect(() => {
+    try {
+      axios
+        .get(`${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1`)
+        .then(({ data }) => {
+          setHasSystems(data.total > 0);
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  }, [hasSystems]);
+
+  return !hasSystems ? (
+    <AsyncComponent
+      appName="dashboard"
+      module="./AppZeroState"
+      scope="dashboard"
+      ErrorComponent={<ErrorState />}
+      app="Compliance"
+    />
+  ) : (
+    <Router {...props} routes={routes} />
+  );
+};
