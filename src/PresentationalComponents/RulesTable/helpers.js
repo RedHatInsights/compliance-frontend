@@ -68,7 +68,7 @@ const growBranch = (item, axilFunction, showFailed, idPrefix) => {
 };
 
 export const growTableTree = (profile, rules, showFailed) => {
-  const { ruleTree } = profile?.benchmark;
+  const { ruleTree } = profile?.benchmark || {};
   if (!ruleTree) {
     console.log('No rule tree provided');
     return;
