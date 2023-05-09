@@ -173,6 +173,7 @@ export const Routes = (...props) => {
 
   return !hasSystems ? (
     <AsyncComponent
+      appId="compliance_zero_state"
       appName="dashboard"
       module="./AppZeroState"
       scope="dashboard"
