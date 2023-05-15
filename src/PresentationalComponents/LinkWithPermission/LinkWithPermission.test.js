@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import LinkWithPermission, { LinkWithRBAC } from './LinkWithPermission';
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import useFeature from 'Utilities/hooks/useFeature';
 jest.mock('Utilities/hooks/useFeature');
 
@@ -31,7 +31,7 @@ jest.mock(
     ...jest.requireActual(
       '@redhat-cloud-services/frontend-components-utilities/RBACHook'
     ),
-    usePermissionsWithContext: jest.fn(() => ({
+    usePermissions: jest.fn(() => ({
       hasAccess: true,
       isLoading: false,
     })),
@@ -42,7 +42,7 @@ const linkText = 'Test Link';
 
 describe('LinkWithPermission', () => {
   beforeEach(() => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    usePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));
@@ -69,7 +69,7 @@ describe('LinkWithRBAC', () => {
   });
 
   it('expect to render without error', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    usePermissions.mockImplementation(() => ({
       hasAccess: true,
       isLoading: false,
     }));
@@ -79,7 +79,7 @@ describe('LinkWithRBAC', () => {
   });
 
   it('expect to render without error and disabled', () => {
-    usePermissionsWithContext.mockImplementation(() => ({
+    usePermissions.mockImplementation(() => ({
       hasAccess: false,
       isLoading: false,
     }));

@@ -1,9 +1,10 @@
-import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 import { findRouteByPath } from '@/Routes';
 
 const useRoutePermissions = (to) => {
   const route = findRouteByPath(to);
-  return usePermissionsWithContext(
+  return usePermissions(
+    'compliance',
     route?.requiredPermissions || [],
     false,
     false
