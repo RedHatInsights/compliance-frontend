@@ -41,11 +41,13 @@ exports[`ReportDetails expect to render without error 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -254,7 +256,9 @@ exports[`ReportDetails expect to render without error 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Grid
         hasGutter={true}
       >
@@ -356,7 +360,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           />
         </GridItem>
       </Grid>
-    </Main>
+    </section>
   </StateViewPart>
 </StateViewWithError>
 `;
@@ -402,11 +406,13 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
     <PageHeader>
       <ReportDetailsContentLoader />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <EmptyTable>
         <Spinner />
       </EmptyTable>
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -615,7 +621,9 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         </GridItem>
       </Grid>
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Grid
         hasGutter={true}
       >
@@ -717,7 +725,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           />
         </GridItem>
       </Grid>
-    </Main>
+    </section>
   </StateViewPart>
 </StateViewWithError>
 `;

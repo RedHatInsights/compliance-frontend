@@ -6,7 +6,6 @@ import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
   BackgroundLink,
@@ -74,7 +73,7 @@ export const CompliancePolicies = () => {
       <PageHeader className="page-header">
         <PageHeaderTitle title="SCAP policies" />
       </PageHeader>
-      <Main>
+      <section className="pf-c-page__main-section">
         <StateView stateValues={{ error, data, loading }}>
           <StateViewPart stateKey="error">
             <ErrorPage error={error} />
@@ -95,7 +94,7 @@ export const CompliancePolicies = () => {
             )}
           </StateViewPart>
         </StateView>
-      </Main>
+      </section>
     </React.Fragment>
   );
 };

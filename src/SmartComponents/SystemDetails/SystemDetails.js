@@ -7,7 +7,7 @@ import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import Skeleton, {
   SkeletonSize,
 } from '@redhat-cloud-services/frontend-components/Skeleton';
-import Main from '@redhat-cloud-services/frontend-components/Main';
+
 import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
 import Details from './ComplianceDetail';
 import {
@@ -47,9 +47,9 @@ export const SystemDetails = ({ route }) => {
           </Breadcrumb>
           <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
-        <Main>
+        <section className="pf-c-page__main-section">
           <Details hidePassed inventoryId={inventoryId} />
-        </Main>
+        </section>
       </StateViewPart>
       <StateViewPart stateKey="loading">
         <PageHeader>
