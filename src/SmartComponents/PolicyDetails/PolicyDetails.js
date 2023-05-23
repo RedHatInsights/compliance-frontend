@@ -13,7 +13,6 @@ import {
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   PolicyDetailsDescription,
@@ -129,9 +128,9 @@ export const PolicyDetails = ({ route }) => {
         <PageHeader>
           <PolicyDetailsContentLoader />
         </PageHeader>
-        <Main>
+        <section className="pf-c-page__main-section">
           <Spinner />
-        </Main>
+        </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
         {policy && (
@@ -159,7 +158,7 @@ export const PolicyDetails = ({ route }) => {
                 <Tab title="Systems" id="policy-systems" eventKey="systems" />
               </RoutedTabs>
             </PageHeader>
-            <Main>
+            <section className="pf-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} />
@@ -179,7 +178,7 @@ export const PolicyDetails = ({ route }) => {
                   <PolicySystemsTab policy={policy} />
                 </ContentTab>
               </TabSwitcher>
-            </Main>
+            </section>
           </Fragment>
         )}
       </StateViewPart>

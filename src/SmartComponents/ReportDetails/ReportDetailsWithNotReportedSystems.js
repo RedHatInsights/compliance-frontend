@@ -13,7 +13,6 @@ import {
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
@@ -97,11 +96,11 @@ export const ReportDetails = ({ route }) => {
         <PageHeader>
           <ReportDetailsContentLoader />
         </PageHeader>
-        <Main>
+        <section className="pf-c-page__main-section">
           <EmptyTable>
             <Spinner />
           </EmptyTable>
-        </Main>
+        </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
         <PageHeader>
@@ -159,7 +158,7 @@ export const ReportDetails = ({ route }) => {
             </GridItem>
           </Grid>
         </PageHeader>
-        <Main>
+        <section className="pf-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
               <SystemsTable
@@ -185,7 +184,7 @@ export const ReportDetails = ({ route }) => {
               />
             </GridItem>
           </Grid>
-        </Main>
+        </section>
       </StateViewPart>
     </StateViewWithError>
   );
