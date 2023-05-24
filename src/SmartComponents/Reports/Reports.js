@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
+
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import {
   ReportsTable,
@@ -83,18 +83,18 @@ export const Reports = () => {
       <ReportsHeader />
       <StateViewWithError stateValues={{ error, data, loading }}>
         <StateViewPart stateKey="loading">
-          <Main>
+          <section className="pf-c-page__main-section">
             <SkeletonTable colSize={3} rowSize={10} />
-          </Main>
+          </section>
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <Main>
+          <section className="pf-c-page__main-section">
             {showView ? (
               <ReportsTable {...{ profiles }} />
             ) : (
               <ReportsEmptyState />
             )}
-          </Main>
+          </section>
         </StateViewPart>
       </StateViewWithError>
     </>

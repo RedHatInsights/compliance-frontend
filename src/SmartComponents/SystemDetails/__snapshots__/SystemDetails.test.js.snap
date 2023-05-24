@@ -46,12 +46,14 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
         inventoryId={1}
       />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Details
         hidePassed={true}
         inventoryId={1}
       />
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -106,12 +108,14 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
         inventoryId={1}
       />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Details
         hidePassed={true}
         inventoryId={1}
       />
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -166,12 +170,14 @@ exports[`SystemDetails expect to render loading 1`] = `
         inventoryId={1}
       />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Details
         hidePassed={true}
         inventoryId={1}
       />
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"
@@ -226,12 +232,14 @@ exports[`SystemDetails expect to render without error 1`] = `
         inventoryId={1}
       />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Details
         hidePassed={true}
         inventoryId={1}
       />
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="loading"

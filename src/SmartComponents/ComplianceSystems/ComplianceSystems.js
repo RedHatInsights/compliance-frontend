@@ -6,7 +6,6 @@ import { nowrap } from '@patternfly/react-table';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
@@ -36,7 +35,7 @@ export const ComplianceSystems = () => {
       <PageHeader className="page-header">
         <PageHeaderTitle title="Compliance systems" />
       </PageHeader>
-      <Main>
+      <section className="pf-c-page__main-section">
         <StateViewWithError stateValues={{ error, data, loading }}>
           <StateViewPart stateKey="data">
             {policies && (
@@ -68,7 +67,7 @@ export const ComplianceSystems = () => {
             )}
           </StateViewPart>
         </StateViewWithError>
-      </Main>
+      </section>
     </React.Fragment>
   );
 };
