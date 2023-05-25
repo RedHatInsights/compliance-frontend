@@ -9,9 +9,10 @@ import PageHeader, {
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTable';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import { Spinner, Text, TextContent } from '@patternfly/react-core';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const PROFILES_QUERY = gql`
-  query Profile($policyId: String!) {
+  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       name
@@ -20,7 +21,7 @@ const PROFILES_QUERY = gql`
       osMajorVersion
       benchmark {
         version
-        ruleTree
+        ruleTree @include(if: $enableRuleTree)
       }
       rules {
         id
@@ -37,11 +38,14 @@ const PROFILES_QUERY = gql`
 `;
 
 const PolicyRules = () => {
+  const ruleGroups = useFeature('ruleGroups');
+
   const { policy_id: policyId } = useParams();
 
   const { data, loading } = useQuery(PROFILES_QUERY, {
     variables: {
       policyId: policyId,
+      enableRuleTree: ruleGroups,
     },
   });
 

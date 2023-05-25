@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const PROFILES_QUERY = gql`
-  query Profiles($filter: String!) {
+  query Profiles($filter: String!, $enableRuleTree: Boolean = false) {
     profiles(search: $filter) {
       edges {
         node {
@@ -20,7 +20,7 @@ export const PROFILES_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
-            ruleTree
+            ruleTree @include(if: $enableRuleTree)
             valueDefinitions {
               defaultValue
               description
@@ -48,12 +48,12 @@ export const PROFILES_QUERY = gql`
 `;
 
 export const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!) {
+  query Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
     benchmarks(search: $filter) {
       nodes {
         id
         latestSupportedOsMinorVersions
-        ruleTree
+        ruleTree @include(if: $enableRuleTree)
         valueDefinitions {
           defaultValue
           description
@@ -73,7 +73,7 @@ export const BENCHMARKS_QUERY = gql`
 `;
 
 export const MULTIVERSION_QUERY = gql`
-  query Profile($policyId: String!) {
+  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       name
@@ -105,7 +105,7 @@ export const MULTIVERSION_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
-            ruleTree
+            ruleTree @include(if: $enableRuleTree)
           }
           rules {
             title
@@ -133,7 +133,7 @@ export const MULTIVERSION_QUERY = gql`
 `;
 
 export const RULE_VALUE_DEFINITIONS_QUERY = gql`
-  query Profile($policyId: String!) {
+  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       policy {
@@ -145,7 +145,7 @@ export const RULE_VALUE_DEFINITIONS_QUERY = gql`
           refId
           benchmark {
             id
-            ruleTree
+            ruleTree @include(if: $enableRuleTree)
             valueDefinitions {
               defaultValue
               description

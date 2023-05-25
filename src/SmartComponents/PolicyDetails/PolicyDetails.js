@@ -31,9 +31,10 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
+import useFeature from 'Utilities/hooks/useFeature';
 
 export const QUERY = gql`
-  query Profile($policyId: String!) {
+  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       name
@@ -63,7 +64,7 @@ export const QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
-            ruleTree
+            ruleTree @include(if: $enableRuleTree)
             valueDefinitions {
               defaultValue
               description
@@ -101,11 +102,13 @@ export const QUERY = gql`
 `;
 
 export const PolicyDetails = ({ route }) => {
+  const ruleGroups = useFeature('ruleGroups');
+
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
   const location = useLocation();
   let { data, error, loading, refetch } = useQuery(QUERY, {
-    variables: { policyId },
+    variables: { policyId, enableRuleTree: ruleGroups },
     fetchPolicy: 'no-cache',
   });
   const policy = data?.profile;

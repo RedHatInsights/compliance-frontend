@@ -27,9 +27,10 @@ import {
   extendProfilesByOsMinor,
 } from 'PresentationalComponents/TabbedRules';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const PROFILES_QUERY = gql`
-  query Profiles($filter: String!) {
+  query Profiles($filter: String!, $enableRuleTree: Boolean = false) {
     profiles(search: $filter) {
       edges {
         node {
@@ -41,7 +42,7 @@ const PROFILES_QUERY = gql`
           benchmark {
             id
             latestSupportedOsMinorVersions
-            ruleTree
+            ruleTree @include(if: $enableRuleTree)
             valueDefinitions {
               defaultValue
               description
@@ -69,12 +70,12 @@ const PROFILES_QUERY = gql`
 `;
 
 const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!) {
+  query Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
     benchmarks(search: $filter) {
       nodes {
         id
         latestSupportedOsMinorVersions
-        ruleTree
+        ruleTree @include(if: $enableRuleTree)
         valueDefinitions {
           defaultValue
           description
@@ -112,6 +113,7 @@ export const EditPolicyProfilesRules = ({
   osMinorVersionCounts,
   ruleValues,
 }) => {
+  const ruleGroups = useFeature('ruleGroups');
   const columns = [Columns.Name, Columns.Severity, Columns.Remediation];
   const osMinorVersions = osMinorVersionCounts
     .map((i) => i.osMinorVersion)
@@ -127,6 +129,7 @@ export const EditPolicyProfilesRules = ({
   } = useQuery(BENCHMARKS_QUERY, {
     variables: {
       filter: benchmarkSearch,
+      enableRuleTree: ruleGroups,
     },
     skip: osMinorVersions.length === 0,
   });
@@ -173,6 +176,7 @@ export const EditPolicyProfilesRules = ({
   } = useQuery(PROFILES_QUERY, {
     variables: {
       filter,
+      enableRuleTree: ruleGroups,
     },
     skip: skipProfilesQuery,
   });

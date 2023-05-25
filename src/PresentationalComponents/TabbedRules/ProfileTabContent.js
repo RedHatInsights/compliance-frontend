@@ -25,6 +25,7 @@ import OsVersionText from './OsVersionText';
 import { Link } from 'react-router-dom';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
+import useFeature from 'Utilities/hooks/useFeature';
 
 const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
@@ -74,11 +75,11 @@ SSGPopoverBody.propTypes = {
 };
 
 const BENCHMARK_QUERY = gql`
-  query benchmarkQuery($id: String!) {
+  query benchmarkQuery($id: String!, $enableRuleTree: Boolean = false) {
     benchmark(id: $id) {
       id
       osMajorVersion
-      ruleTree
+      ruleTree @include(if: $enableRuleTree)
       rules {
         id
         title
@@ -116,6 +117,8 @@ const ProfileTabContent = ({
   ruleValues,
   onRuleValueReset,
 }) => {
+  const ruleGroups = useFeature('ruleGroups');
+
   const {
     data: benchmark,
     error,
@@ -123,6 +126,7 @@ const ProfileTabContent = ({
   } = useQuery(BENCHMARK_QUERY, {
     variables: {
       id: profile.benchmark.id,
+      enableRuleTree: ruleGroups,
     },
     skip: !handleSelect || !profile.benchmark?.id,
   });
