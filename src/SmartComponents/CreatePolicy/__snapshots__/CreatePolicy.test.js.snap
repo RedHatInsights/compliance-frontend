@@ -24,6 +24,7 @@ exports[`CreatePolicyForm expect to render the wizard 1`] = `
   nextButtonText="Next"
   onBack={[Function]}
   onClose={[Function]}
+  onExpandDrawer={[Function]}
   onGoToStep={[Function]}
   onNext={[Function]}
   startAtStep={1}
@@ -75,7 +76,7 @@ exports[`CreatePolicyForm expect to render the wizard 1`] = `
     ]
   }
   title="Create SCAP policy"
-  width={null}
+  width={1220}
 />
 `;
 

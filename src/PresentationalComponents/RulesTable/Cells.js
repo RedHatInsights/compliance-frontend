@@ -8,6 +8,8 @@ import {
   QuestionCircleIcon,
 } from '@patternfly/react-icons';
 import RemediationCell from '../RemediationCell/RemediationCell';
+import useFeature from 'Utilities/hooks/useFeature';
+
 const ruleProps = {
   title: propTypes.string,
   identifier: propTypes.object,
@@ -17,16 +19,26 @@ const ruleProps = {
   severity: propTypes.string,
 };
 
-export const Rule = ({ title, identifier }) => (
-  <TextContent>
-    {title}
-    {identifier ? (
-      <Text component={TextVariants.small}>{identifier.label}</Text>
-    ) : (
-      ''
-    )}
-  </TextContent>
-);
+export const Rule = ({ title, identifier, compliant = true }) => {
+  const ruleGroups = useFeature('ruleGroups');
+
+  return (
+    <TextContent
+      style={{
+        ...(!compliant && ruleGroups
+          ? { fontWeight: 'bold', color: 'var(--pf-global--danger-color--100)' }
+          : {}),
+      }}
+    >
+      {title}
+      {identifier ? (
+        <Text component={TextVariants.small}>{identifier.label}</Text>
+      ) : (
+        ''
+      )}
+    </TextContent>
+  );
+};
 Rule.propTypes = ruleProps;
 
 export const Policy = ({ profile }) => profile.name;

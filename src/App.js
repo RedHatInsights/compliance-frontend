@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
-import routerParams from '@redhat-cloud-services/frontend-components-utilities/RouterParams';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Routes } from './Routes';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
+import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 import './App.scss';
 import { useSetFlagsFromUrl } from 'Utilities/hooks/useFeature';
@@ -21,15 +22,20 @@ const appNavClick = {
 };
 
 const App = (props) => {
+  const location = useLocation();
+  const chrome = useChrome();
+  const history = useHistory();
+
   useSetFlagsFromUrl();
   useEffect(() => {
-    insights.chrome.init();
-    insights.chrome?.hideGlobalFilter?.();
-    insights.chrome.identifyApp('compliance');
-    const baseComponentUrl = props.location.pathname.split('/')[1] || 'reports';
-    const unregister = insights.chrome.on('APP_NAVIGATION', (event) => {
+    chrome.init();
+    chrome.hideGlobalFilter();
+    chrome.identifyApp('compliance');
+
+    const baseComponentUrl = location.pathname.split('/')[1] || 'reports';
+    const unregister = chrome.on('APP_NAVIGATION', (event) => {
       if (event.domEvent) {
-        props.history.push(`/${event.navId}`);
+        history.push(`/${event.navId}`);
         appNavClick[baseComponentUrl](true);
       }
     });
@@ -50,4 +56,4 @@ App.propTypes = {
   history: PropTypes.object,
 };
 
-export default routerParams(App);
+export default App;

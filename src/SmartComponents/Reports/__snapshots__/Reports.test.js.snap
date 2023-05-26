@@ -19,19 +19,23 @@ exports[`Reports expect to render emptystate 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Main>
+      </section>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <ReportsEmptyState />
-      </Main>
+      </section>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>
@@ -52,19 +56,23 @@ exports[`Reports expect to render loading 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Main>
+      </section>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <ReportsEmptyState />
-      </Main>
+      </section>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>
@@ -105,17 +113,21 @@ exports[`Reports expect to render without error 1`] = `
     <StateViewPart
       stateKey="loading"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <SkeletonTable
           colSize={3}
           rowSize={10}
         />
-      </Main>
+      </section>
     </StateViewPart>
     <StateViewPart
       stateKey="data"
     >
-      <Main>
+      <section
+        className="pf-c-page__main-section"
+      >
         <ReportsTable
           profiles={
             Array [
@@ -135,7 +147,7 @@ exports[`Reports expect to render without error 1`] = `
             ]
           }
         />
-      </Main>
+      </section>
     </StateViewPart>
   </StateViewWithError>
 </Fragment>

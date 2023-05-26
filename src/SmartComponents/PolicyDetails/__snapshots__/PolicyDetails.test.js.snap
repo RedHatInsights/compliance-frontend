@@ -56,9 +56,11 @@ exports[`PolicyDetails expect to render without error 1`] = `
     <PageHeader>
       <PolicyDetailsContentLoader />
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <Spinner />
-    </Main>
+    </section>
   </StateViewPart>
   <StateViewPart
     stateKey="data"
@@ -123,7 +125,9 @@ exports[`PolicyDetails expect to render without error 1`] = `
         />
       </RoutedTabs>
     </PageHeader>
-    <Main>
+    <section
+      className="pf-c-page__main-section"
+    >
       <RoutedTabSwitcher
         defaultTab="details"
         level={0}
@@ -179,6 +183,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
           eventKey="rules"
         >
           <PolicyMultiversionRules
+            onRuleValueReset={[Function]}
             policy={
               Object {
                 "benchmark": Object {
@@ -220,6 +225,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "totalHostCount": 1,
               }
             }
+            saveToPolicy={[Function]}
           />
         </ContentTab>
         <ContentTab
@@ -270,7 +276,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
           />
         </ContentTab>
       </RoutedTabSwitcher>
-    </Main>
+    </section>
   </StateViewPart>
 </StateViewWithError>
 `;

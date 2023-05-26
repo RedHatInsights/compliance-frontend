@@ -20,6 +20,7 @@ const PROFILES_QUERY = gql`
       osMajorVersion
       benchmark {
         version
+        ruleTree
       }
       rules {
         id
@@ -74,10 +75,7 @@ const PolicyRules = () => {
             loading={loading}
             profileRules={[
               {
-                profile: {
-                  refId: data.profile.refId,
-                  name: data.profile.name,
-                },
+                profile: data.profile,
                 rules: data.profile.rules,
               },
             ]}

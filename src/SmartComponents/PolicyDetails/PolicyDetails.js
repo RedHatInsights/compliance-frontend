@@ -13,7 +13,6 @@ import {
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Main from '@redhat-cloud-services/frontend-components/Main';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   PolicyDetailsDescription,
@@ -31,6 +30,7 @@ import PolicyRulesTab from './PolicyRulesTab';
 import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
+import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
 
 export const QUERY = gql`
   query Profile($policyId: String!) {
@@ -56,14 +56,25 @@ export const QUERY = gql`
           refId
           osMinorVersion
           osMajorVersion
+          values
           benchmark {
             id
             title
             latestSupportedOsMinorVersions
             osMajorVersion
             version
+            ruleTree
+            valueDefinitions {
+              defaultValue
+              description
+              id
+              refId
+              title
+              valueType
+            }
           }
           rules {
+            id
             title
             severity
             rationale
@@ -73,6 +84,7 @@ export const QUERY = gql`
             references
             identifier
             precedence
+            values
           }
         }
       }
@@ -94,15 +106,15 @@ export const PolicyDetails = ({ route }) => {
   const location = useLocation();
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { policyId },
+    fetchPolicy: 'no-cache',
   });
-  let policy;
-  let hasOsMinorProfiles = true;
-  if (data && !loading) {
-    policy = data.profile;
-    hasOsMinorProfiles = !!policy.policy.profiles.find(
-      (profile) => !!profile.osMinorVersion
-    );
-  }
+  const policy = data?.profile;
+  const hasOsMinorProfiles = !!policy?.policy.profiles.find(
+    (profile) => !!profile.osMinorVersion
+  );
+  const saveToPolicy = useSaveValueToPolicy(policy, () => {
+    refetch();
+  });
 
   useEffect(() => {
     refetch();
@@ -116,9 +128,9 @@ export const PolicyDetails = ({ route }) => {
         <PageHeader>
           <PolicyDetailsContentLoader />
         </PageHeader>
-        <Main>
+        <section className="pf-c-page__main-section">
           <Spinner />
-        </Main>
+        </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
         {policy && (
@@ -146,14 +158,18 @@ export const PolicyDetails = ({ route }) => {
                 <Tab title="Systems" id="policy-systems" eventKey="systems" />
               </RoutedTabs>
             </PageHeader>
-            <Main>
+            <section className="pf-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} />
                 </ContentTab>
                 <ContentTab eventKey="rules">
                   {hasOsMinorProfiles ? (
-                    <PolicyMultiversionRules policy={policy} />
+                    <PolicyMultiversionRules
+                      policy={policy}
+                      saveToPolicy={saveToPolicy}
+                      onRuleValueReset={() => refetch()}
+                    />
                   ) : (
                     <PolicyRulesTab policy={policy} />
                   )}
@@ -162,7 +178,7 @@ export const PolicyDetails = ({ route }) => {
                   <PolicySystemsTab policy={policy} />
                 </ContentTab>
               </TabSwitcher>
-            </Main>
+            </section>
           </Fragment>
         )}
       </StateViewPart>

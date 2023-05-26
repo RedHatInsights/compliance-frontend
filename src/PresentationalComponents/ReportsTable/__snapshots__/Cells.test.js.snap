@@ -2,52 +2,32 @@
 
 exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
 <Fragment>
-  <ReportStatusBar
-    hostCounts={
+  <ReportChart
+    chartClass="report-table-chart-container"
+    hasLegend={false}
+    profile={
       Object {
-        "compliant": 9,
-        "total": 0,
-        "totalResults": 10,
-        "unsupported": 42,
+        "compliantHostCount": 9,
+        "testResultHostCount": 10,
+        "unsupportedHostCount": 42,
       }
     }
   />
-  <GreySmallText>
-    9 of 10 systems 
-    <UnsupportedSSGVersion
-      style={
-        Object {
-          "marginLeft": ".5em",
-        }
-      }
-      tooltipText="Insights cannot provide a compliance score for systems running an unsupported version of the SSG at the time this report was created, as the SSG version was not supported by RHEL."
-    >
-      <strong
-        className="ins-c-warning-text"
-      >
-        42
-         unsupported
-      </strong>
-    </UnsupportedSSGVersion>
-  </GreySmallText>
 </Fragment>
 `;
 
 exports[`CompliantSystems expect to render without error 1`] = `
 <Fragment>
-  <ReportStatusBar
-    hostCounts={
+  <ReportChart
+    chartClass="report-table-chart-container"
+    hasLegend={false}
+    profile={
       Object {
-        "compliant": 9,
-        "total": 0,
-        "totalResults": 10,
-        "unsupported": 0,
+        "compliantHostCount": 9,
+        "testResultHostCount": 10,
       }
     }
   />
-  <GreySmallText>
-    9 of 10 systems 
-  </GreySmallText>
 </Fragment>
 `;
 

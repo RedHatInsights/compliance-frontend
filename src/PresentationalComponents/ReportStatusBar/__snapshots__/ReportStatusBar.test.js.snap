@@ -11,25 +11,25 @@ exports[`ReportStatusBar expect to render without error 1`] = `
       data={
         Array [
           Object {
-            "color": "var(--pf-global--palette--blue-400)",
+            "color": "#0066CC",
             "label": "Compliant: 5",
             "name": "Compliant",
             "value": 5,
           },
           Object {
-            "color": "var(--pf-global--palette--blue-200)",
+            "color": "#73BCF7",
             "label": "Non-Compliant: 5",
             "name": "Non-Compliant",
             "value": 5,
           },
           Object {
-            "color": "var(--pf-global--palette--gold-300)",
+            "color": "#F4C145",
             "label": "Unsupported: 2",
             "name": "Unsupported",
             "value": 2,
           },
           Object {
-            "color": "var(--pf-global--BackgroundColor--light-300)",
+            "color": "#f0f0f0",
             "label": "Never reported: 3",
             "name": "Never reported",
             "value": 3,
@@ -59,25 +59,25 @@ exports[`ReportStatusBar expect to render without error with no reporting system
       data={
         Array [
           Object {
-            "color": "var(--pf-global--palette--blue-400)",
+            "color": "#0066CC",
             "label": "Compliant: 0",
             "name": "Compliant",
             "value": 0,
           },
           Object {
-            "color": "var(--pf-global--palette--blue-200)",
+            "color": "#73BCF7",
             "label": "Non-Compliant: 0",
             "name": "Non-Compliant",
             "value": 0,
           },
           Object {
-            "color": "var(--pf-global--palette--gold-300)",
+            "color": "#F4C145",
             "label": "Unsupported: 2",
             "name": "Unsupported",
             "value": 2,
           },
           Object {
-            "color": "var(--pf-global--BackgroundColor--light-300)",
+            "color": "#f0f0f0",
             "label": "Never reported: 13",
             "name": "Never reported",
             "value": 13,

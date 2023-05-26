@@ -43,13 +43,12 @@ module.exports = {
                 .join('-')
                 .toLowerCase()
             }.js`,
+          preventFullImport: true,
         },
-      },
-      'react-icons',
-    ],
-    [
-      'transform-imports',
-      {
+        '@patternfly/react-table': {
+          skipDefaultConversion: true,
+          transform: `@patternfly/react-table/dist/esm`,
+        },
         '@redhat-cloud-services/frontend-components': {
           transform: '@redhat-cloud-services/frontend-components/',
           preventFullImport: true,

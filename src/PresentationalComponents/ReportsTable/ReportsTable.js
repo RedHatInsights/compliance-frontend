@@ -12,6 +12,7 @@ import {
   operatingSystemFilter,
   policyComplianceFilter,
 } from './Filters';
+import '../../App.scss';
 
 const ReportsTable = ({ profiles }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
@@ -52,6 +53,7 @@ const ReportsTable = ({ profiles }) => {
         manageColumns: manageColumnsEnabled,
         emptyRows: emptyRows('reports', columns.length),
       }}
+      className={'reports-table'}
     />
   );
 };

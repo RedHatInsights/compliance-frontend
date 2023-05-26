@@ -54,7 +54,6 @@ class SystemPolicyCard extends React.Component {
           event.stopPropagation();
           onClick(policy);
         }}
-        isSelectable
         isSelected={isSelected}
         style={style}
       >

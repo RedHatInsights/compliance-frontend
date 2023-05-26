@@ -56,6 +56,7 @@ exports[`EditPolicy expect to render without error 1`] = `
           "name": "profile1",
           "policy": Object {
             "name": "parentpolicy",
+            "profiles": undefined,
           },
           "refId": "121212",
           "totalHostCount": 1,
@@ -89,13 +90,16 @@ exports[`EditPolicy expect to render without error 1`] = `
             "name": "profile1",
             "policy": Object {
               "name": "parentpolicy",
+              "profiles": undefined,
             },
             "refId": "121212",
             "totalHostCount": 1,
           }
         }
+        ruleValues={Object {}}
         selectedRuleRefIds={Array []}
         selectedSystems={Array []}
+        setRuleValues={[Function]}
         setSelectedRuleRefIds={[Function]}
         setSelectedSystems={[Function]}
         setUpdatedPolicy={[Function]}

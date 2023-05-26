@@ -5,8 +5,8 @@ import Skeleton, {
 } from '@redhat-cloud-services/frontend-components/Skeleton';
 import { registryDecorator } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import {
-  InventoryDetail,
   DetailWrapper,
+  InventoryDetailHead,
 } from '@redhat-cloud-services/frontend-components/Inventory';
 
 @registryDecorator()
@@ -23,11 +23,9 @@ class InventoryDetails extends React.Component {
             ...mergeWithDetail(),
           })
         }
+        inventoryId={this.props.inventoryId}
       >
-        <InventoryDetail
-          fallback={<Skeleton size={SkeletonSize.md} />}
-          hideBack
-        />
+        <InventoryDetailHead fallback={<Skeleton size={SkeletonSize.md} />} />
       </DetailWrapper>
     );
   }
@@ -35,6 +33,7 @@ class InventoryDetails extends React.Component {
 
 InventoryDetails.propTypes = {
   entity: propTypes.object,
+  inventoryId: propTypes.string,
 };
 
 const ConnectedInventoryDetails = (props) => {

@@ -6,12 +6,17 @@ const usePolicyMutation = () => {
   const [createProfile] = useMutation(CREATE_PROFILE);
 
   return async (id, updatedPolicy, businessObjectiveId) => {
-    const { name, description, complianceThreshold } = updatedPolicy;
+    const { name, description, complianceThreshold, values } = updatedPolicy;
     const details = {
-      name,
-      description,
-      businessObjectiveId,
-      complianceThreshold: parseFloat(complianceThreshold),
+      ...(name && { name }),
+      ...(description && { description }),
+      ...((businessObjectiveId || businessObjectiveId === null) && {
+        businessObjectiveId,
+      }),
+      ...(complianceThreshold
+        ? { complianceThreshold: parseFloat(complianceThreshold) }
+        : {}),
+      ...(values && { values }),
     };
 
     let mutatedPolicy;

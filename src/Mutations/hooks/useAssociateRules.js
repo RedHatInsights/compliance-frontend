@@ -16,7 +16,11 @@ const useAssociateRules = () => {
       ruleRefIds,
     };
 
-    const { error } = await associateRules({ variables: { input: ruleInput } });
+    const { error } = await associateRules({
+      fetchPolicy: 'no-cache',
+      variables: { input: ruleInput },
+    });
+
     if (error) {
       throw error;
     }

@@ -5,7 +5,6 @@ import { ToolbarItem } from '@patternfly/react-core';
 
 const EditSystemsButtonToolbarItem = ({
   to,
-  state,
   hash,
   backgroundLocation,
   variant,
@@ -15,7 +14,6 @@ const EditSystemsButtonToolbarItem = ({
     <ToolbarItem>
       <BackgroundLink
         to={to}
-        state={state}
         hash={hash}
         backgroundLocation={backgroundLocation}
         variant={variant}

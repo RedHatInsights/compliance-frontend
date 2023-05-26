@@ -45,6 +45,7 @@ export const useBulkSelect = ({
   itemIdsInTable,
   itemIdsOnPage,
   identifier = 'id',
+  tableTree,
 }) => {
   const enableBulkSelect = !!onSelect;
   const [selectedIds, setSelectedItemIds] = useState(preselected);
@@ -74,12 +75,13 @@ export const useBulkSelect = ({
 
   const unselectAll = () => [];
   const selectNone = () => onSelectCallback(unselectAll);
-  const selectOne = (_, selected, key, row) =>
+  const selectOne = (_, selected, key, row) => {
     onSelectCallback(() =>
       selected
         ? selectItems([row[identifier]])
         : unselectItems([row[identifier]])
     );
+  };
 
   const selectPage = () =>
     onSelectCallback(() => {
@@ -106,8 +108,12 @@ export const useBulkSelect = ({
     ? {
         selectedIds,
         selectNone,
+        selectItems: (ids) => onSelectCallback(() => selectItems(ids)),
+        unselectItems: (ids) => onSelectCallback(() => unselectItems(ids)),
         tableProps: {
-          onSelect: total > 0 ? selectOne : undefined,
+          ...(!tableTree
+            ? { onSelect: total > 0 ? selectOne : undefined }
+            : {}),
           canSelectAll: false,
         },
         toolbarProps: {
@@ -155,6 +161,7 @@ export const useBulkSelectWithItems = ({
   paginator,
   preselected,
   setPage,
+  ...options
 }) => {
   const enableBulkSelect = !!onSelect;
   const items = propItems.map((item) =>
@@ -174,12 +181,13 @@ export const useBulkSelectWithItems = ({
   const setPageMemo = useMemo(() => setPage, []);
 
   useEffect(() => {
-    if (paginatedTotal === 0) {
+    if (paginatedTotal === 0 && setPage) {
       setPageMemo(-1);
     }
   }, [paginatedTotal, setPageMemo]);
 
   const { selectNone, selectedIds, ...bulkSelect } = useBulkSelect({
+    ...options,
     total: allCount,
     onSelect,
     preselected,

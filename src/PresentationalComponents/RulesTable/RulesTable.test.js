@@ -4,6 +4,8 @@ import buildFilterConfig from './Filters';
 import RulesTable from './RulesTable';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
+import useFeature from 'Utilities/hooks/useFeature';
+jest.mock('Utilities/hooks/useFeature');
 
 const mockStore = configureStore();
 expect.extend(filterHelpers);
@@ -26,6 +28,7 @@ describe('RulesTable', () => {
   };
 
   beforeEach(() => {
+    useFeature.mockImplementation(() => false);
     store = mockStore({});
   });
 
