@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -13,43 +11,17 @@ import {
   StateViewWithError,
   ReportsEmptyState,
 } from 'PresentationalComponents';
+import useReportsFetch from '../../Utilities/hooks/useReportsFetch';
 
-const QUERY = gql`
-  query Profiles($filter: String!) {
-    profiles(search: $filter, limit: 1000) {
-      edges {
-        node {
-          id
-          name
-          refId
-          description
-          policyType
-          totalHostCount
-          testResultHostCount
-          compliantHostCount
-          unsupportedHostCount
-          osMajorVersion
-          complianceThreshold
-          businessObjective {
-            id
-            title
-          }
-          policy {
-            id
-            name
-          }
-          benchmark {
-            id
-            version
-          }
-        }
-      }
-    }
+const profilesFromEdges = (data) => {
+  // console.log('data', data);
+  const edges = (data || []).map((page) => page.data.profiles.edges).flat();
+  console.log('edges', edges);
+
+  if (edges.length > 0) {
+    return edges.map((x) => x.node);
   }
-`;
-
-const profilesFromEdges = (data) =>
-  (data?.profiles?.edges || []).map((profile) => profile.node);
+};
 
 const ReportsHeader = () => (
   <PageHeader>
@@ -61,18 +33,19 @@ export const Reports = () => {
   let profiles = [];
   let showView = false;
   const location = useLocation();
-  const filter = `has_policy_test_results = true AND external = false`;
+  // const filter = `has_policy_test_results = true AND external = false`;
 
-  let { data, error, loading, refetch } = useQuery(QUERY, {
-    variables: { filter },
-  });
+  let { loading, data, fetch } = useReportsFetch();
+  let error = data?.error;
 
   useEffect(() => {
-    refetch();
-  }, [location, refetch]);
+    console.log('fetch');
+    fetch();
+  }, [location]);
 
   if (data) {
     profiles = profilesFromEdges(data);
+    console.log('profiles', profiles);
     error = undefined;
     loading = undefined;
     showView = profiles && profiles.length > 0;
