@@ -186,3 +186,13 @@ export const constructQuery = (columns) => {
     fragments,
   };
 };
+
+export const logMultipleErrors = (...errors) => {
+  for (const error of errors) {
+    if (error) {
+      console.error(error);
+    }
+  }
+
+  return errors?.filter((v) => !!v).length > 0 || undefined;
+};

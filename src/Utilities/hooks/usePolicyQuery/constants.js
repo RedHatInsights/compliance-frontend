@@ -1,32 +1,7 @@
 import gql from 'graphql-tag';
 
-export const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
-    benchmarks(search: $filter) {
-      nodes {
-        id
-        latestSupportedOsMinorVersions
-        ruleTree @include(if: $enableRuleTree)
-        valueDefinitions {
-          defaultValue
-          description
-          id
-          refId
-          title
-          valueType
-        }
-        profiles {
-          id
-          refId
-          ssgVersion
-        }
-      }
-    }
-  }
-`;
-
-export const MULTIVERSION_QUERY = gql`
-  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+export const POLICY_QUERY = gql`
+  query Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
@@ -46,28 +21,34 @@ export const MULTIVERSION_QUERY = gql`
         refId
         profiles {
           id
-          parentProfileId
           name
           refId
           osMinorVersion
           osMajorVersion
-          values
+          parentProfileId
           benchmark {
             id
             title
             latestSupportedOsMinorVersions
             osMajorVersion
             version
-            ruleTree @include(if: $enableRuleTree)
+            profiles {
+              id
+              refId
+              ssgVersion
+            }
           }
           rules {
+            id
             title
             severity
             rationale
             refId
             description
             remediationAvailable
+            references
             identifier
+            precedence
             values
           }
         }
@@ -85,27 +66,36 @@ export const MULTIVERSION_QUERY = gql`
   }
 `;
 
-export const RULE_VALUE_DEFINITIONS_QUERY = gql`
-  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+export const POLICY_RULE_TREES_QUERY = gql`
+  query Profile($policyId: String!) {
     profile(id: $policyId) {
-      id
       policy {
-        id
-        refId
         profiles {
           id
-          parentProfileId
-          refId
           benchmark {
-            id
-            ruleTree @include(if: $enableRuleTree)
+            ruleTree
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const POLICY_VALUE_DEFINITONS_QUERY = gql`
+  query Profile($policyId: String!) {
+    profile(id: $policyId) {
+      policy {
+        profiles {
+          id
+          values
+          benchmark {
             valueDefinitions {
-              defaultValue
-              description
               id
               refId
               title
               valueType
+              defaultValue
+              description
             }
           }
         }
