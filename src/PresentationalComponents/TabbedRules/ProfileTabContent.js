@@ -75,11 +75,10 @@ SSGPopoverBody.propTypes = {
 };
 
 const BENCHMARK_QUERY = gql`
-  query benchmarkQuery($id: String!, $enableRuleTree: Boolean = false) {
+  query benchmarkQuery($id: String!) {
     benchmark(id: $id) {
       id
       osMajorVersion
-      ruleTree @include(if: $enableRuleTree)
       rules {
         id
         title
@@ -90,14 +89,6 @@ const BENCHMARK_QUERY = gql`
         remediationAvailable
         identifier
         values
-      }
-      valueDefinitions {
-        defaultValue
-        description
-        id
-        refId
-        title
-        valueType
       }
     }
   }
