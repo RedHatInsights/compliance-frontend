@@ -95,6 +95,7 @@ describe('SystemsTable', () => {
           showOsMinorVersionFilter
           compliantFilter
           remediationsEnabled={false}
+          ruleSeverityFilter
         />
       </Provider>
     );
