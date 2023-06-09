@@ -54,7 +54,7 @@ Object {
         "onSort": [Function],
         "sortBy": Object {
           "direction": "asc",
-          "index": 0,
+          "index": 1,
         },
       },
     },
@@ -110,7 +110,7 @@ Object {
       "onSort": [Function],
       "sortBy": Object {
         "direction": "asc",
-        "index": 0,
+        "index": 1,
       },
     },
   },

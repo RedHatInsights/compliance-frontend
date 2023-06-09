@@ -14,20 +14,19 @@ const TableToolsTable = ({
   toolbarProps: toolbarPropsProp,
   ...tablePropsRest
 }) => {
-  const { toolbarProps, tableProps, ColumnManager } = useTableTools(
-    items,
-    columns,
-    {
+  const { toolbarProps, tableProps, ColumnManager, TreeTableToggle } =
+    useTableTools(items, columns, {
       filters,
       toolbarProps: toolbarPropsProp,
       tableProps: tablePropsRest,
       ...options,
-    }
-  );
+    });
 
   return (
     <React.Fragment>
-      <PrimaryToolbar {...toolbarProps} />
+      <PrimaryToolbar {...toolbarProps}>
+        {TreeTableToggle && <TreeTableToggle />}
+      </PrimaryToolbar>
 
       <Table {...tableProps}>
         <TableHeader />

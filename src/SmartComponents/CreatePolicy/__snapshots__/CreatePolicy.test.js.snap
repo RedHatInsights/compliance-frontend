@@ -76,7 +76,7 @@ exports[`CreatePolicyForm expect to render the wizard 1`] = `
     ]
   }
   title="Create SCAP policy"
-  width={1220}
+  width={1300}
 />
 `;
 

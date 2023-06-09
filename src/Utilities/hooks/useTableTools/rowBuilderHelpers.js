@@ -23,7 +23,10 @@ const childRowForItem = (item, idx, DetailsComponent, colSpan) => ({
   cells: [
     {
       title: <DetailsComponent item={item} key={'item-' + item.rowId} />,
-      props: { colSpan, className: 'compliance-rule-details' },
+      props: {
+        ...(colSpan ? { colSpan } : {}),
+        className: 'compliance-rule-details',
+      },
     },
   ],
 });
@@ -250,4 +253,29 @@ export const collectLeaves = (tableTree, itemId) => {
   };
 
   return tableTree.reduce(pickBranch, []);
+};
+
+export const findParentsForItemInTree = (tableTree) => (itemId) => {
+  let parents;
+  const findParents = (branches = [], itemId, parentBranches = []) => {
+    for (let branch of branches) {
+      const hasItem =
+        branch.leaves?.some((currentItemId) => currentItemId === itemId) ||
+        branch.leaf === itemId;
+
+      if (hasItem) {
+        parents = [branch.itemId, ...parentBranches];
+        break;
+      } else {
+        findParents(branch.twigs || [], itemId, [
+          branch.itemId,
+          ...parentBranches,
+        ]);
+      }
+    }
+  };
+
+  findParents(tableTree, itemId);
+
+  return parents || [];
 };
