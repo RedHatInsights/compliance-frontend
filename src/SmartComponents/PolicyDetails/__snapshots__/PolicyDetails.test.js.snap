@@ -28,7 +28,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "benchmark": Object {
                   "ruleTree": Object {},
                   "title": "benchmark",
-                  "valueDefinitions": Object {},
+                  "valueDefinitions": Array [],
                   "version": "0.1.5",
                 },
                 "businessObjective": Object {
@@ -163,7 +163,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                       "benchmark": Object {
                         "ruleTree": Object {},
                         "title": "benchmark",
-                        "valueDefinitions": Object {},
+                        "valueDefinitions": Array [],
                         "version": "0.1.5",
                       },
                       "businessObjective": Object {
@@ -214,7 +214,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                       "benchmark": Object {
                         "ruleTree": Object {},
                         "title": "benchmark",
-                        "valueDefinitions": Object {},
+                        "valueDefinitions": Array [],
                         "version": "0.1.5",
                       },
                       "businessObjective": Object {
@@ -265,7 +265,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                       "benchmark": Object {
                         "ruleTree": Object {},
                         "title": "benchmark",
-                        "valueDefinitions": Object {},
+                        "valueDefinitions": Array [],
                         "version": "0.1.5",
                       },
                       "businessObjective": Object {

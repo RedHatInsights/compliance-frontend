@@ -29,7 +29,8 @@ const perpareInitialActiveFilters = (
 };
 
 const useFilterConfig = (options = {}) => {
-  const { filters, setPage, selectedFilter, onDeleteFilter } = options;
+  const { filters, setPage, selectedFilter, onDeleteFilter, onFilter } =
+    options;
   const enableFilters = !!filters;
   const { filterConfig = [], activeFilters: initialActiveFiltersRaw } =
     filters || {};
@@ -44,7 +45,9 @@ const useFilterConfig = (options = {}) => {
       ...prevFilters,
       [filter]: value,
     }));
-
+    if (filter === 'name') {
+      onFilter?.();
+    }
     setPage && setPage(1);
   };
 

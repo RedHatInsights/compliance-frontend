@@ -16,16 +16,18 @@ const addSortableTransform = (columns) =>
 
 const columnOffset = (options = {}) =>
   (typeof options.onSelect === 'function' || options.hasRadioSelect ? 1 : 0) +
-  (typeof options.detailsComponent !== 'undefined') +
-  (typeof options.tableTree !== 'undefined' ? -2 : 0);
+  (typeof options.detailsComponent !== 'undefined');
+
+const sortByFromOptions = (options = {}) => ({
+  index:
+    options.tableType === 'tree'
+      ? options.sortBy?.index - 1
+      : options.sortBy?.index || 1,
+  direction: options.sortBy?.direction || 'asc',
+});
 
 const useTableSort = (columns, options = {}) => {
-  const [sortBy, setSortBy] = useState(
-    options.sortBy || {
-      index: 0,
-      direction: 'asc',
-    }
-  );
+  const [sortBy, setSortBy] = useState(sortByFromOptions(options));
   const onSort = (_, index, direction) => {
     setSortBy({
       index,
@@ -36,8 +38,11 @@ const useTableSort = (columns, options = {}) => {
   const sorter = useCallback(
     (items) => {
       const currentSortableColumn =
-        columns[sortBy.index - columnOffset(options)];
-
+        columns[
+          sortBy.index -
+            (options.tableType === 'tree' ? 0 : columnOffset(options)) -
+            1
+        ];
       return currentSortableColumn?.sortByArray
         ? orderByArray(
             items,
@@ -52,7 +57,7 @@ const useTableSort = (columns, options = {}) => {
             sortBy.direction
           );
     },
-    [sortBy, columns]
+    [sortBy, columns, options.tableType]
   );
 
   return {

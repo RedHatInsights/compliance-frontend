@@ -75,7 +75,6 @@ const RulesTable = ({
       items={rules}
       columns={columns}
       isStickyHeader
-      variant={ruleGroups ? 'compact' : 'default'}
       filters={{
         filterConfig: buildFilterConfig({
           showRuleStateFilter,

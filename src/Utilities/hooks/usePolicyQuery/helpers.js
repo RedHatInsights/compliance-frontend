@@ -14,7 +14,7 @@ export const compileData = (policyData, ruleTreesData, valueDefinitionsData) =>
             const valueDefinitions =
               valueDefinitionsData?.profile.policy.profiles.find(
                 ({ id }) => id === profile.id
-              )?.benchmark.valueDefinitions || {};
+              )?.benchmark.valueDefinitions || [];
 
             const values = valueDefinitionsData?.profile.policy.profiles.find(
               ({ id }) => id === profile.id

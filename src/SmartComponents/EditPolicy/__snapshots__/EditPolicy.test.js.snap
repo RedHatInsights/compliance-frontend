@@ -34,6 +34,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   }
   title="Edit profile1"
   variant="large"
+  width={1220}
 >
   <StateViewWithError
     stateValues={

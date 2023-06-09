@@ -79,6 +79,7 @@ export const EditPolicy = ({ route }) => {
       isOpen
       position={'top'}
       style={{ minHeight: '350px' }}
+      width={1220}
       variant={'large'}
       ouiaId="EditPolicyModal"
       title={`Edit ${policy ? policy.name : ''}`}
