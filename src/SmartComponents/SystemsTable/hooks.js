@@ -9,6 +9,7 @@ import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
+import { setDisabledSelection } from '../../store/Actions/SystemActions';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -316,6 +317,7 @@ export const useSystemBulkSelect = ({
   fetchArguments,
   currentPageIds,
 }) => {
+  const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
@@ -344,8 +346,10 @@ export const useSystemBulkSelect = ({
   };
 
   const onSelectCallback = async (selectedIds) => {
+    await dispatch(setDisabledSelection(true));
     const systems = await fetchFunc(selectedIds);
     setSelectedSystems(systems);
+    await dispatch(setDisabledSelection(false));
     onSelect && onSelect(systems);
   };
 

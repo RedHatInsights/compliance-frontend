@@ -1,5 +1,6 @@
 import { applyReducerHash } from '@redhat-cloud-services/frontend-components-utilities/ReducerRegistry';
 import { sortingByProp } from 'Utilities/helpers';
+import * as ActionTypes from '../Types';
 
 const selectRows = (rows, selected) =>
   rows.map((row) => ({
@@ -21,6 +22,17 @@ export const entitiesReducer = () =>
       ...state,
       rows: selectRows(state.rows, selected),
     }),
+    [ActionTypes.SET_DISABLED_SYSTEM_SELECTION]: (state, action) => {
+      return {
+        ...state,
+        rows: state.rows.map((row) => {
+          return {
+            ...row,
+            disableSelection: action.payload,
+          };
+        }),
+      };
+    },
   });
 
 export const mapCountOsMinorVersions = (systems) => {
