@@ -29,10 +29,11 @@ export const ReportDownload = () => {
     isValid: settingsValid,
   } = useExportSettings();
 
-  const exportPDF = usePDFExport(exportSettings, policy);
   const exportFileName = `compliance-report--${
     new Date().toISOString().split('T')[0]
   }`;
+  const exportPDF = usePDFExport('compliance');
+
   const buttonLabel = 'Export report';
   const buttonProps = {
     ouiaId: 'ExportReportButton',
@@ -40,21 +41,15 @@ export const ReportDownload = () => {
     isDisabled: !settingsValid,
   };
 
-  const FallbackButton = () => <Button {...buttonProps}>{buttonLabel}</Button>;
-
   const actions = [
-    <DownloadButton
-      groupName="Red Hat Insights"
+    <Button
       key="export"
-      label={buttonLabel}
-      reportName={`Compliance:`}
-      type={policy && policy.name}
-      fileName={exportFileName}
-      asyncFunction={exportPDF}
-      buttonProps={buttonProps}
-      fallback={<FallbackButton />}
+      onClick={() => exportPDF('report', exportSettings, exportFileName)}
+      {...buttonProps}
       className="pf-u-mr-sm"
-    />,
+    >
+      {buttonLabel}
+    </Button>,
     <Button
       variant="secondary"
       key="cancel"
