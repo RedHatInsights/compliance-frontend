@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!) {
+  query CP_Benchmarks($filter: String!) {
     benchmarks(search: $filter) {
       nodes {
         id
@@ -27,7 +27,7 @@ export const BENCHMARKS_QUERY = gql`
 `;
 
 export const BENCHMARKS_RULES_TREES_QUERY = gql`
-  query Benchmarks($filter: String!) {
+  query CP_BenchmarksRuleTree($filter: String!) {
     benchmarks(search: $filter) {
       nodes {
         id
@@ -38,7 +38,7 @@ export const BENCHMARKS_RULES_TREES_QUERY = gql`
 `;
 
 export const BENCHMARKS_VALUE_DEFINITIONS_QUERY = gql`
-  query Benchmarks($filter: String!) {
+  query CP_BenchmarksValueDefinitions($filter: String!) {
     benchmarks(search: $filter) {
       nodes {
         id
@@ -64,7 +64,7 @@ export const BENCHMARKS_VALUE_DEFINITIONS_QUERY = gql`
 `;
 
 export const PROFILES_QUERY = gql`
-  query Profiles($filter: String!) {
+  query CP_Profiles($filter: String!) {
     profiles(search: $filter) {
       edges {
         node {

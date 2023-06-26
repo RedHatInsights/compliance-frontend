@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const POLICY_QUERY = gql`
-  query Profile($policyId: String!) {
+  query PQ_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
@@ -67,7 +67,7 @@ export const POLICY_QUERY = gql`
 `;
 
 export const POLICY_RULE_TREES_QUERY = gql`
-  query Profile($policyId: String!) {
+  query PQ_Profile($policyId: String!) {
     profile(id: $policyId) {
       policy {
         profiles {
@@ -82,7 +82,7 @@ export const POLICY_RULE_TREES_QUERY = gql`
 `;
 
 export const POLICY_VALUE_DEFINITONS_QUERY = gql`
-  query Profile($policyId: String!) {
+  query PQ_Profile($policyId: String!) {
     profile(id: $policyId) {
       policy {
         profiles {

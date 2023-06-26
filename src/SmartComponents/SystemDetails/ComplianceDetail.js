@@ -14,7 +14,7 @@ import useFeature from 'Utilities/hooks/useFeature';
 import EmptyState from './EmptyState';
 
 const QUERY = gql`
-  query System($systemId: String!, $enableRuleTree: Boolean = false) {
+  query CD_System($systemId: String!, $enableRuleTree: Boolean = false) {
     system(id: $systemId) {
       id
       name

@@ -10,7 +10,7 @@ export const DEFAULT_EXPORT_SETTINGS = {
 };
 
 export const GET_SYSTEMS = gql`
-  query getSystems(
+  query PDF_Systems(
     $filter: String!
     $policyId: ID
     $perPage: Int
@@ -50,7 +50,7 @@ export const GET_SYSTEMS = gql`
 `;
 
 export const GET_PROFILE = gql`
-  query Profile($policyId: String!) {
+  query PDF_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
@@ -79,7 +79,7 @@ export const GET_PROFILE = gql`
 `;
 
 export const GET_RULES = gql`
-  query getProfiles($filter: String!, $policyId: ID!) {
+  query PDF_Profiles($filter: String!, $policyId: ID!) {
     profiles(search: $filter) {
       totalCount
       edges {

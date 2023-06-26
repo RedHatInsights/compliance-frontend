@@ -12,7 +12,7 @@ import { Spinner, Text, TextContent } from '@patternfly/react-core';
 import useFeature from 'Utilities/hooks/useFeature';
 
 const PROFILES_QUERY = gql`
-  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+  query PR_Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       name

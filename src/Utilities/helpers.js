@@ -135,7 +135,7 @@ export const constructQuery = (columns) => {
       tags
     }
 
-    query getSystems(
+    query U_Systems(
       $filter: String!
       $policyId: ID
       $perPage: Int
