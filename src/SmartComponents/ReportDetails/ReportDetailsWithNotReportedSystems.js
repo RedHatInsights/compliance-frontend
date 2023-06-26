@@ -181,6 +181,7 @@ export const ReportDetails = ({ route }) => {
                 tableProps={{
                   rowWrapper: ReportedSystemRow,
                 }}
+                ruleSeverityFilter
               />
             </GridItem>
           </Grid>

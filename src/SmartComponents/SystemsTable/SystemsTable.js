@@ -22,6 +22,7 @@ import {
   useSystemBulkSelect,
 } from './hooks';
 import { constructQuery } from '../../Utilities/helpers';
+import { COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER } from '../../constants';
 
 export const SystemsTable = ({
   columns,
@@ -48,6 +49,7 @@ export const SystemsTable = ({
   tableProps,
   ssgVersions,
   dedicatedAction,
+  ruleSeverityFilter,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -79,6 +81,9 @@ export const SystemsTable = ({
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...osMinorVersionFilter,
+        ...(ruleSeverityFilter
+          ? COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER
+          : []),
       ],
     },
   });
@@ -279,6 +284,7 @@ SystemsTable.propTypes = {
   tableProps: PropTypes.object,
   ssgVersions: PropTypes.array,
   dedicatedAction: PropTypes.object,
+  ruleSeverityFilter: PropTypes.bool,
 };
 
 SystemsTable.defaultProps = {
@@ -291,6 +297,7 @@ SystemsTable.defaultProps = {
   compact: false,
   remediationsEnabled: true,
   preselectedSystems: [],
+  ruleSeverityFilter: false,
 };
 
 export default SystemsTable;

@@ -200,6 +200,20 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
   },
 ];
 
+export const COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER = [
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Failed rule severity',
+    filterString: (value) => `failed_rules_with_severity ^ (${value})`,
+    items: [
+      { label: HIGH_SEVERITY, value: 'high' },
+      { label: MEDIUM_SEVERITY, value: 'medium' },
+      { label: LOW_SEVERITY, value: 'low' },
+      { label: UNKNOWN_SEVERITY, value: 'unknown' },
+    ],
+  },
+];
+
 export const COMPLIANCE_TABLE_DEFAULTS = {
   exportable: {
     onStart: () => {
