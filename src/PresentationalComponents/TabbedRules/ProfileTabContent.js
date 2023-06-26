@@ -75,7 +75,7 @@ SSGPopoverBody.propTypes = {
 };
 
 const BENCHMARK_QUERY = gql`
-  query benchmarkQuery($id: String!) {
+  query PTC_Benchmark($id: String!) {
     benchmark(id: $id) {
       id
       osMajorVersion

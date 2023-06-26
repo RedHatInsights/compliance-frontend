@@ -35,7 +35,7 @@ import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
 
 export const QUERY = gql`
-  query Profile($policyId: String!) {
+  query RDWNRS_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name

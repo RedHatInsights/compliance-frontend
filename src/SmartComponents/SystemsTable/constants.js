@@ -10,7 +10,7 @@ import { conditionalFilterType } from '@redhat-cloud-services/frontend-component
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 
 export const GET_MINIMAL_SYSTEMS = gql`
-  query getSystems(
+  query ST_Systems(
     $filter: String!
     $perPage: Int
     $page: Int
@@ -44,7 +44,7 @@ export const GET_MINIMAL_SYSTEMS = gql`
 `;
 
 export const GET_SYSTEMS_OSES = gql`
-  query getSystems($filter: String!) {
+  query ST_SystemOS($filter: String!) {
     systems(search: $filter) {
       osVersions
     }

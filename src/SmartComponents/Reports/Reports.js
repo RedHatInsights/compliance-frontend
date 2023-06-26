@@ -15,7 +15,7 @@ import {
 } from 'PresentationalComponents';
 
 const QUERY = gql`
-  query Profiles($filter: String!) {
+  query R_Profiles($filter: String!) {
     profiles(search: $filter, limit: 1000) {
       edges {
         node {

@@ -4,7 +4,7 @@ export const DEFAULT_SYSTEMS_PER_BATCH = 3;
 export const DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES = 3;
 
 export const GET_SYSTEMS_ISSUES = gql`
-  query getSystems(
+  query CRB_Systems(
     $filter: String!
     $policyId: ID
     $perPage: Int

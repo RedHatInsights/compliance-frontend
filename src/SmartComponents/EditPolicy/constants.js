@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
+  query EP_Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
     benchmarks(search: $filter) {
       nodes {
         id
@@ -26,7 +26,7 @@ export const BENCHMARKS_QUERY = gql`
 `;
 
 export const MULTIVERSION_QUERY = gql`
-  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+  query EP_Profile($policyId: String!, $enableRuleTree: Boolean = false) {
     profile(id: $policyId) {
       id
       name
@@ -86,7 +86,10 @@ export const MULTIVERSION_QUERY = gql`
 `;
 
 export const RULE_VALUE_DEFINITIONS_QUERY = gql`
-  query Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+  query EP_ProfileValueDefinitions(
+    $policyId: String!
+    $enableRuleTree: Boolean = false
+  ) {
     profile(id: $policyId) {
       id
       policy {
