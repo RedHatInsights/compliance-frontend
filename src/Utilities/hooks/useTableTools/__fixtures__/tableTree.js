@@ -51,4 +51,9 @@ export default [
     itemId: '3rd-branch',
     leaf: item(7),
   },
+  {
+    title: '4th Branch',
+    itemId: '4th-branch',
+    leaves: [item(8)],
+  },
 ];

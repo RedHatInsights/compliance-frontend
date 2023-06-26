@@ -34,6 +34,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   }
   title="Edit profile1"
   variant="large"
+  width={1220}
 >
   <StateViewWithError
     stateValues={
@@ -56,7 +57,7 @@ exports[`EditPolicy expect to render without error 1`] = `
           "name": "profile1",
           "policy": Object {
             "name": "parentpolicy",
-            "profiles": undefined,
+            "profiles": Array [],
           },
           "refId": "121212",
           "totalHostCount": 1,
@@ -90,7 +91,7 @@ exports[`EditPolicy expect to render without error 1`] = `
             "name": "profile1",
             "policy": Object {
               "name": "parentpolicy",
-              "profiles": undefined,
+              "profiles": Array [],
             },
             "refId": "121212",
             "totalHostCount": 1,

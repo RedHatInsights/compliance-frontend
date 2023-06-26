@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { emptyRows } from './Components/NoResultsTable';
 import { chopTreeIntoTable, collectLeaves } from './rowBuilderHelpers';
 import { treeRow } from '@patternfly/react-table';
@@ -55,9 +55,12 @@ const useRowsBuilder = (items, columns, options = {}) => {
     unselectItems,
     expandOnFilter,
     activeFilters,
+    showTreeTable,
+    onCollapse,
+    openItems,
   } = options;
   const EmptyRowsComponent = options.emptyRows || emptyRows;
-  const [openItems, setOpenItems] = useState([]);
+
   const transformedItems = transformer
     ? applyTransformers(items, transformer)
     : items;
@@ -78,7 +81,7 @@ const useRowsBuilder = (items, columns, options = {}) => {
     return sortedItems.length === 0
       ? EmptyRowsComponent
       : (() => {
-          return tableTree
+          return tableTree && showTreeTable
             ? chopTreeIntoTable(
                 tableTree,
                 sortedItems,
@@ -98,7 +101,14 @@ const useRowsBuilder = (items, columns, options = {}) => {
               )
             : buildRows(paginatedItems, columns, rowTransformer);
         })();
-  }, [sortedItems, paginatedItems, openItems, columns, activeFilters]);
+  }, [
+    sortedItems,
+    paginatedItems,
+    openItems,
+    columns,
+    activeFilters,
+    showTreeTable,
+  ]);
 
   const pagination = options?.pagination
     ? {
@@ -106,14 +116,6 @@ const useRowsBuilder = (items, columns, options = {}) => {
         itemCount: filteredItems.length,
       }
     : undefined;
-
-  const onCollapse = (_event, _index, _isOpen, row) => {
-    if (openItems.includes(row.itemId)) {
-      setOpenItems(openItems.filter((itemId) => itemId !== row.itemId));
-    } else {
-      setOpenItems([...openItems, row.itemId]);
-    }
-  };
 
   const onCheckedChange = (event, selected, idx, _target, row) => {
     if (row.isTreeBranch) {
@@ -144,7 +146,7 @@ const useRowsBuilder = (items, columns, options = {}) => {
   return {
     tableProps: {
       rows,
-      ...(tableTree && sortedItems.length > 0
+      ...(tableTree && showTreeTable && sortedItems.length > 0
         ? {
             isTreeTable: true,
             cells: treeColumns(columns),

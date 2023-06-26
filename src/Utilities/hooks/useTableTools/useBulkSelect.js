@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { filterSelected } from './helper';
 
 const compileTitle = (itemsTotal, titleOption) => {
@@ -45,7 +45,7 @@ export const useBulkSelect = ({
   itemIdsInTable,
   itemIdsOnPage,
   identifier = 'id',
-  tableTree,
+  showTreeTable,
 }) => {
   const enableBulkSelect = !!onSelect;
   const [selectedIds, setSelectedItemIds] = useState(preselected);
@@ -111,7 +111,7 @@ export const useBulkSelect = ({
         selectItems: (ids) => onSelectCallback(() => selectItems(ids)),
         unselectItems: (ids) => onSelectCallback(() => unselectItems(ids)),
         tableProps: {
-          ...(!tableTree
+          ...(!showTreeTable
             ? { onSelect: total > 0 ? selectOne : undefined }
             : {}),
           canSelectAll: false,
@@ -178,13 +178,11 @@ export const useBulkSelectWithItems = ({
 
   const allCount = filtered ? filteredTotal : total;
 
-  const setPageMemo = useMemo(() => setPage, []);
-
   useEffect(() => {
     if (paginatedTotal === 0 && setPage) {
-      setPageMemo(-1);
+      setPage?.(-1);
     }
-  }, [paginatedTotal, setPageMemo]);
+  }, [paginatedTotal]);
 
   const { selectNone, selectedIds, ...bulkSelect } = useBulkSelect({
     ...options,

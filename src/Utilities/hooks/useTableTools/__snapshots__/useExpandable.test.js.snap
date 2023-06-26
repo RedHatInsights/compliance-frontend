@@ -38,6 +38,7 @@ exports[`useExpandable returns an expandable configuration 1`] = `
 Object {
   "all": Array [
     Object {
+      "openItems": Array [],
       "tableProps": Object {
         "onCollapse": [Function],
       },
@@ -45,6 +46,7 @@ Object {
     },
   ],
   "current": Object {
+    "openItems": Array [],
     "tableProps": Object {
       "onCollapse": [Function],
     },

@@ -456,7 +456,6 @@ exports[`RulesTable expect to pass on options 1`] = `
       "selectedFilter": false,
     }
   }
-  variant="default"
 />
 `;
 
@@ -915,6 +914,5 @@ exports[`RulesTable expect to render without error 1`] = `
       "selectedFilter": false,
     }
   }
-  variant="default"
 />
 `;

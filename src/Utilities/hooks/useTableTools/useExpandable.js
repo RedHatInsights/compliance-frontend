@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+import { findParentsForItemInTree } from './rowBuilderHelpers';
 
 const calculateColSpan = (columns, options) => {
   let colSpan = columns.length + 1;
@@ -29,15 +30,31 @@ const itemDetailsRow = (item, idx, options, columns) =>
   );
 
 const useExpandable = (options) => {
-  const enableExpanbale = !!options.detailsComponent && !options.tableTree;
+  const enableExpanbale = !!options.detailsComponent && !options.showTreeTable;
+  const findParentsForItem = useMemo(
+    () => findParentsForItemInTree(options.tableTree),
+    [options.tableTreee]
+  );
+
   const [openItems, setOpenItems] = useState([]);
-  const onCollapse = (_event, _index, _isOpen, row) => {
-    if (openItems.includes(row.itemId)) {
-      setOpenItems(openItems.filter((itemId) => itemId !== row.itemId));
-    } else {
-      setOpenItems([...openItems, row.itemId]);
-    }
-  };
+  const onCollapse = useCallback(
+    (_event, _index, _isOpen, row) => {
+      const parentItemIds = findParentsForItem(row.itemId);
+
+      if (openItems.includes(row.itemId)) {
+        setOpenItems((currentOpenItems) =>
+          currentOpenItems.filter((itemId) => itemId !== row.itemId)
+        );
+      } else {
+        setOpenItems((currentOpenItems) => [
+          ...currentOpenItems,
+          ...parentItemIds,
+          row.itemId,
+        ]);
+      }
+    },
+    [openItems, setOpenItems]
+  );
 
   const openItem = (row, item, columns, rowIndex) => {
     const isOpen = openItems.includes(item.itemId);
@@ -56,8 +73,14 @@ const useExpandable = (options) => {
         tableProps: {
           onCollapse,
         },
+        openItems,
       }
-    : {};
+    : {
+        tableProps: {
+          onCollapse,
+        },
+        openItems,
+      };
 };
 
 export default useExpandable;

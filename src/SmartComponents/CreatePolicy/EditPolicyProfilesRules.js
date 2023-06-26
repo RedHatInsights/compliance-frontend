@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useMemo, useLayoutEffect } from 'react';
 import {
   propTypes as reduxFormPropTypes,
   formValueSelector,
@@ -14,7 +14,6 @@ import {
   EmptyState,
   EmptyStateBody,
 } from '@patternfly/react-core';
-import gql from 'graphql-tag';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import propTypes from 'prop-types';
@@ -27,73 +26,8 @@ import {
   extendProfilesByOsMinor,
 } from 'PresentationalComponents/TabbedRules';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import useFeature from 'Utilities/hooks/useFeature';
-
-const PROFILES_QUERY = gql`
-  query Profiles($filter: String!, $enableRuleTree: Boolean = false) {
-    profiles(search: $filter) {
-      edges {
-        node {
-          id
-          name
-          refId
-          osMinorVersion
-          osMajorVersion
-          benchmark {
-            id
-            latestSupportedOsMinorVersions
-            ruleTree @include(if: $enableRuleTree)
-            valueDefinitions {
-              defaultValue
-              description
-              id
-              refId
-              title
-              valueType
-            }
-          }
-          rules {
-            id
-            title
-            severity
-            rationale
-            refId
-            description
-            remediationAvailable
-            identifier
-          }
-          values
-        }
-      }
-    }
-  }
-`;
-
-const BENCHMARKS_QUERY = gql`
-  query Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
-    benchmarks(search: $filter) {
-      nodes {
-        id
-        latestSupportedOsMinorVersions
-        ruleTree @include(if: $enableRuleTree)
-        valueDefinitions {
-          defaultValue
-          description
-          id
-          refId
-          title
-          valueType
-        }
-        profiles {
-          id
-          refId
-          osMajorVersion
-        }
-        version
-      }
-    }
-  }
-`;
+import useBenchmarksQuery from './hooks/useBenchmarksQuery';
+import { PROFILES_QUERY } from './constants';
 
 const getBenchmarkProfile = (benchmark, profileRefId) =>
   benchmark.profiles.find(
@@ -113,62 +47,60 @@ export const EditPolicyProfilesRules = ({
   osMinorVersionCounts,
   ruleValues,
 }) => {
-  const ruleGroups = useFeature('ruleGroups');
   const columns = [Columns.Name, Columns.Severity, Columns.Remediation];
   const osMinorVersions = osMinorVersionCounts
     .map((i) => i.osMinorVersion)
     .sort();
-  const benchmarkSearch =
-    `os_major_version = ${osMajorVersion} ` +
-    `and latest_supported_os_minor_version ^ "${osMinorVersions.join(',')}"`;
-
   const {
     data: benchmarksData,
     error: benchmarksError,
     loading: benchmarksLoading,
-  } = useQuery(BENCHMARKS_QUERY, {
-    variables: {
-      filter: benchmarkSearch,
-      enableRuleTree: ruleGroups,
-    },
-    skip: osMinorVersions.length === 0,
+  } = useBenchmarksQuery({
+    osMajorVersion,
+    osMinorVersions,
   });
 
   const benchmarks = benchmarksData?.benchmarks?.nodes;
 
-  let tabsData = osMinorVersionCounts.map(
-    ({ osMinorVersion, count: systemCount }) => {
-      osMinorVersion = `${osMinorVersion}`;
-      let profile;
-      if (benchmarks) {
-        const benchmark = getBenchmarkBySupportedOsMinor(
-          benchmarks,
-          osMinorVersion
-        );
-        if (benchmark) {
-          profile = getBenchmarkProfile(benchmark, policy.refId);
-          if (profile) {
-            profile = {
-              ...profile,
-              benchmark,
-            };
+  const tabsData = useMemo(
+    () =>
+      osMinorVersionCounts
+        .map(({ osMinorVersion, count: systemCount }) => {
+          osMinorVersion = `${osMinorVersion}`;
+          let profile;
+          if (benchmarks) {
+            const benchmark = getBenchmarkBySupportedOsMinor(
+              benchmarks,
+              osMinorVersion
+            );
+            if (benchmark) {
+              profile = getBenchmarkProfile(benchmark, policy.refId);
+              if (profile) {
+                profile = {
+                  ...profile,
+                  benchmark: {
+                    ...profile.benchmark,
+                    ...benchmark,
+                  },
+                };
+              }
+            }
           }
-        }
-      }
 
-      return {
-        profile,
-        systemCount,
-        newOsMinorVersion: osMinorVersion,
-      };
-    }
+          return {
+            profile,
+            systemCount,
+            newOsMinorVersion: osMinorVersion,
+          };
+        })
+        .filter(({ profile }) => !!profile),
+    [osMinorVersionCounts, benchmarks, policy]
   );
-  tabsData = tabsData.filter(({ profile }) => !!profile);
 
   const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
   const profileIds = Object.keys(profileToOsMinorMap);
   const filter = profileIds.map((i) => `id = ${i}`).join(' OR ');
-  const skipProfilesQuery = benchmarksLoading || filter.length === 0;
+
   const {
     data: profilesData,
     error: profilesError,
@@ -176,17 +108,16 @@ export const EditPolicyProfilesRules = ({
   } = useQuery(PROFILES_QUERY, {
     variables: {
       filter,
-      enableRuleTree: ruleGroups,
     },
-    skip: skipProfilesQuery,
+    skip: profileIds.length === 0,
+    fetchPolicy: 'no-cache',
   });
+
   const error = benchmarksError || profilesError;
   const dataState = profileIds?.length > 0 ? profilesData : undefined;
   const loadingState = profilesLoading || benchmarksLoading ? true : undefined;
   const noRuleSets = !error && !loadingState && profileIds?.length === 0;
-  const profiles = skipProfilesQuery
-    ? []
-    : profilesData?.profiles.edges.map((p) => p.node);
+  const profiles = profilesData?.profiles.edges.map((p) => p.node);
 
   const setSelectedRuleRefIds = (newSelection) => {
     change('selectedRuleRefIds', newSelection);

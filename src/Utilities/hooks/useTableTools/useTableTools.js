@@ -11,6 +11,7 @@ import useColumnManager from './useColumnManager';
 import { useRadioSelectWithItems } from './useRadioSelect';
 import { useActionResolverWithItems } from './useActionResolver';
 import { useExportWithItems } from './useExport';
+import useTreeTable from './useTreeTable';
 
 const filteredAndSortedItems = (items, filter, sorter) => {
   const filtered = filter ? filter(items) : items;
@@ -27,6 +28,14 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     columns: managedColumns,
   } = useColumnManager(columns, options);
 
+  const {
+    toolbarProps: treeTableToolbarProps,
+    showTreeTable,
+    TreeTableToggle,
+    setTableType,
+    tableType,
+  } = useTreeTable(options);
+
   const { toolbarProps: toolbarActionsProps } = useToolbarActions({
     ...options,
     actions: [
@@ -39,7 +48,10 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps: pagintionToolbarProps,
     setPage,
     paginator,
-  } = usePaginate(options);
+  } = usePaginate({
+    ...options,
+    showTreeTable,
+  });
 
   const {
     toolbarProps: conditionalFilterProps,
@@ -49,15 +61,22 @@ const useTableTools = (items = [], columns = [], options = {}) => {
   } = useFilterConfig({
     ...options,
     setPage,
+    onFilter: () => setTableType?.('list'),
   });
 
-  const { transformer: openItem, tableProps: expandableProps } =
-    useExpandable(options);
+  const {
+    transformer: openItem,
+    tableProps: expandableProps,
+    openItems,
+  } = useExpandable({
+    ...options,
+    showTreeTable,
+  });
 
   const { tableProps: sortableTableProps, sorter } = useTableSortWithItems(
     items,
     managedColumns,
-    options
+    { ...options, tableType }
   );
 
   const {
@@ -73,6 +92,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     filter,
     paginator,
     setPage,
+    showTreeTable,
   });
 
   const { tableProps: radioSelectTableProps } = useRadioSelectWithItems({
@@ -120,6 +140,9 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     unselectItems,
     expandOnFilter: options.expandOnFilter,
     activeFilters,
+    showTreeTable,
+    onCollapse: expandableProps?.onCollapse,
+    openItems,
   });
 
   const toolbarProps = {
@@ -132,6 +155,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     ...toolbarPropsOption,
     ...exportToolbarProps,
     ...toolbarActionsProps,
+    ...treeTableToolbarProps,
   };
 
   const tableProps = {
@@ -149,6 +173,7 @@ const useTableTools = (items = [], columns = [], options = {}) => {
     toolbarProps,
     tableProps,
     ColumnManager,
+    TreeTableToggle,
   };
 };
 

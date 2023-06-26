@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { Button, Spinner } from '@patternfly/react-core';
+import { useParams } from 'react-router-dom';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import {
   ComplianceModal,
@@ -9,10 +10,12 @@ import {
 } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave, useLinkToPolicy } from './hooks';
-import usePolicyQueries from './hooks/usePolicyQueries.js';
+import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 
 export const EditPolicy = ({ route }) => {
-  const { policy, loading, error } = usePolicyQueries();
+  const { policy_id: policyId } = useParams();
+  const { data, error, loading } = usePolicyQuery({ policyId });
+  const policy = data?.profile;
 
   const linkToPolicy = useLinkToPolicy();
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
@@ -76,6 +79,7 @@ export const EditPolicy = ({ route }) => {
       isOpen
       position={'top'}
       style={{ minHeight: '350px' }}
+      width={1220}
       variant={'large'}
       ouiaId="EditPolicyModal"
       title={`Edit ${policy ? policy.name : ''}`}

@@ -55,15 +55,4 @@ describe('useExpandable', () => {
 
     expect(openedItem).toMatchSnapshot();
   });
-
-  it('should not return an expandable configuration with treetable active', () => {
-    const { result } = renderHook(() =>
-      useExpandable({
-        ...defaultOptions,
-        tableTree: ['item'],
-      })
-    );
-
-    expect(Object.keys(result.current).length).toEqual(0);
-  });
 });

@@ -49,6 +49,25 @@ Array [
     "itemId": "item-7",
     "props": Object {},
   },
+  Object {
+    "cells": Array [
+      Object {
+        "props": Object {
+          "colSpan": 1,
+        },
+        "title": <strong>
+          4th Branch
+        </strong>,
+      },
+    ],
+    "isTreeBranch": true,
+    "itemId": "4th-branch",
+    "props": Object {
+      "aria-level": 1,
+      "aria-setsize": 1,
+      "isExpanded": false,
+    },
+  },
 ]
 `;
 
@@ -101,6 +120,25 @@ Array [
     "itemId": "item-7",
     "props": Object {},
   },
+  Object {
+    "cells": Array [
+      Object {
+        "props": Object {
+          "colSpan": 1,
+        },
+        "title": <strong>
+          4th Branch
+        </strong>,
+      },
+    ],
+    "isTreeBranch": true,
+    "itemId": "4th-branch",
+    "props": Object {
+      "aria-level": 1,
+      "aria-setsize": 1,
+      "isExpanded": false,
+    },
+  },
 ]
 `;
 
@@ -142,5 +180,6 @@ Array [
   "item-4",
   "item-5",
   "item-6",
+  "item-8",
 ]
 `;

@@ -241,6 +241,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
     isNested={false}
     isStickyHeader={false}
     isTreeTable={false}
+    onCollapse={[Function]}
     onSort={[Function]}
     ouiaSafe={true}
     role="grid"
@@ -483,7 +484,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
     sortBy={
       Object {
         "direction": "asc",
-        "index": 0,
+        "index": 1,
       }
     }
     variant={null}

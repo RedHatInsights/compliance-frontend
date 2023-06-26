@@ -177,20 +177,22 @@ export const EditPolicyRulesTab = ({
             must be customized independently.
           </Text>
         </TextContent>
-        <TabbedRules
-          resetLink
-          rulesPageLink
-          selectedFilter
-          remediationsEnabled={false}
-          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-          tabsData={tabsData}
-          ruleValues={ruleValues(policy)}
-          selectedRuleRefIds={selectedRuleRefIds}
-          setSelectedRuleRefIds={setSelectedRuleRefIds}
-          setRuleValues={setRuleValues}
-          level={1}
-          ouiaId="RHELVersions"
-        />
+        {tabsData.length > 0 && (
+          <TabbedRules
+            resetLink
+            rulesPageLink
+            selectedFilter
+            remediationsEnabled={false}
+            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+            tabsData={tabsData}
+            ruleValues={ruleValues(policy)}
+            selectedRuleRefIds={selectedRuleRefIds}
+            setSelectedRuleRefIds={setSelectedRuleRefIds}
+            setRuleValues={setRuleValues}
+            level={1}
+            ouiaId="RHELVersions"
+          />
+        )}
       </StateViewPart>
       <StateViewPart stateKey="empty">
         <EditPolicyRulesTabEmptyState />

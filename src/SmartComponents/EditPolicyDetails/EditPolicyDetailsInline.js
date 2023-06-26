@@ -169,14 +169,14 @@ const EditPolicyDetailsInline = ({
 EditPolicyDetailsInline.propTypes = {
   text: propTypes.string,
   variant: propTypes.string,
-  policy: propTypes.obj,
+  policy: propTypes.object,
   propertyName: propTypes.string,
   inlineClosedText: propTypes.string,
   label: propTypes.string,
   showTextUnderInline: propTypes.string,
   textUnderInline: propTypes.string,
   typeOfInput: propTypes.string,
-  Component: propTypes.component,
+  Component: propTypes.node,
 };
 
 export default EditPolicyDetailsInline;
