@@ -1,3 +1,5 @@
 exclude_patterns:
   - "src/__fixtures__/*.js"
   - "src/**/*.test.js"
+  - "src/**/*.cy.js"
+
