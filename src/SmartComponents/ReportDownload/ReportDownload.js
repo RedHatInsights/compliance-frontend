@@ -12,10 +12,12 @@ import { GET_PROFILE } from './constants';
 import ExportPDFForm from './ExportPDFForm/ExportPDFForm';
 import usePDFExport from '@redhat-cloud-services/frontend-components-utilities/useExportPDF';
 import useExportSettings from './hooks/useExportSettings';
+import { useDispatch } from 'react-redux';
 
 // Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {
   const { report_id: policyId } = useParams();
+  const dispatch = useDispatch();
   const linkToReport = useLinkToBackground('/reports/' + policyId);
   const { data, loading, error } = useQuery(GET_PROFILE, {
     variables: { policyId },
@@ -27,7 +29,7 @@ export const ReportDownload = () => {
     isValid: settingsValid,
   } = useExportSettings();
 
-  const exportPDF = usePDFExport('compliance');
+  const exportPDF = usePDFExport('compliance', dispatch);
 
   const buttonLabel = 'Export report';
   const buttonProps = {
