@@ -19,6 +19,5 @@ module.exports = {
   routes: {
     ...localAppRoutes,
     ...(localApis && localApis !== '' ? localRoutesFor('/api', localApis) : {}),
-    // '/api/crc-pdf-generator/v1/generate': 'http://localhost:8000',
   },
 };
