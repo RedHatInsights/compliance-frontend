@@ -27,9 +27,6 @@ export const ReportDownload = () => {
     isValid: settingsValid,
   } = useExportSettings();
 
-  const exportFileName = `compliance-report--${
-    new Date().toISOString().split('T')[0]
-  }`;
   const exportPDF = usePDFExport('compliance');
 
   const buttonLabel = 'Export report';
@@ -39,10 +36,17 @@ export const ReportDownload = () => {
     isDisabled: !settingsValid,
   };
 
+  const downloadReport = () => {
+    const exportFileName = `compliance-report--${
+      new Date().toISOString().split('T')[0]
+    }`;
+    exportPDF('report', exportFileName, exportSettings);
+  };
+
   const actions = [
     <Button
       key="export"
-      onClick={() => exportPDF('report', exportFileName, exportSettings)}
+      onClick={downloadReport}
       {...buttonProps}
       className="pf-u-mr-sm"
     >
