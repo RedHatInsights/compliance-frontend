@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`usePDFExport exportData returns a export data 1`] = `Array []`;
-
-exports[`usePDFExport exportData returns a export data with different settings 1`] = `Array []`;
-
-exports[`usePDFExport returns a export function 1`] = `[Function]`;
