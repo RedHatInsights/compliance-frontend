@@ -6,15 +6,15 @@ import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
+import useFeature from 'Utilities/hooks/useFeature';
 
 import EmptyState from './EmptyState';
 
 const QUERY = gql`
-  query System($systemId: String!) {
+  query CD_System($systemId: String!, $enableRuleTree: Boolean = false) {
     system(id: $systemId) {
       id
       name
@@ -37,7 +37,7 @@ const QUERY = gql`
         osMajorVersion
         benchmark {
           version
-          ruleTree
+          ruleTree @include(if: $enableRuleTree)
         }
         policy {
           id
@@ -146,8 +146,9 @@ SystemQuery.defaultProps = {
 };
 
 export const Details = ({ inventoryId, hidePassed, ...props }) => {
+  const ruleGroups = useFeature('ruleGroups');
   const { data, error, loading } = useQuery(QUERY, {
-    variables: { systemId: inventoryId },
+    variables: { systemId: inventoryId, enableRuleTree: ruleGroups },
     fetchPolicy: 'no-cache',
   });
   const is404 = error?.networkError?.statusCode === 404;

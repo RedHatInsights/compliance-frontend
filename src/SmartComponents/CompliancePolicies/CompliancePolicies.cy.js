@@ -421,7 +421,7 @@ describe('Policies table tests', () => {
 
     it('Row actions has correct items', () => {
       cy.ouiaType('PF4/TableRow', 'tr')
-        .get('td[data-key="5"] >> button')
+        .get('td[data-key="6"] >> button')
         .first()
         .click();
       cy.ouiaType('PF4/TableRow', 'tr')

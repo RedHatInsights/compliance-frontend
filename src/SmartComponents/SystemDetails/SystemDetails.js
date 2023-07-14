@@ -19,7 +19,7 @@ import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 
 const QUERY = gql`
-  query System($inventoryId: String!) {
+  query SD_System($inventoryId: String!) {
     system(id: $inventoryId) {
       id
       name

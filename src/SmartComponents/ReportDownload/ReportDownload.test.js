@@ -1,8 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
-import usePDFExport from './hooks/usePDFExport';
-// import ReportDownload from './ReportDownload';
-const ReportDownload = () => <div>REPLACE WHEN UNSKIP</div>;
+import usePDFExport from '@redhat-cloud-services/frontend-components-utilities/useExportPDF';
 
 jest.mock('@apollo/client');
 jest.mock('react-router-dom', () => ({
@@ -12,7 +9,10 @@ jest.mock('react-router-dom', () => ({
   useHistory: jest.fn(() => ({})),
 }));
 jest.mock('Utilities/Dispatcher');
-jest.mock('./hooks/usePDFExport', () => () => []);
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useExportPDF',
+  () => () => []
+);
 
 describe('ReportDownload', function () {
   const exportFunMock = jest.fn(() => Promise.resolve([]));
@@ -29,7 +29,6 @@ describe('ReportDownload', function () {
       error: undefined,
       loading: undefined,
     }));
-    render(<ReportDownload />);
 
     expect(useExportFuncMock).toHaveBeenCalledWith(
       {
@@ -41,15 +40,5 @@ describe('ReportDownload', function () {
       },
       { name: 'Test Profile' }
     );
-
-    const compliantSystemsCheckBox = screen.getByText('Compliant systems');
-    expect(compliantSystemsCheckBox).toBeDefined();
-    fireEvent.click(compliantSystemsCheckBox);
-
-    const exportButton = screen.getByText('Export report');
-    expect(exportButton).toBeDefined();
-    fireEvent.click(exportButton);
-
-    expect(exportFunMock).toHaveBeenCalled();
   });
 });

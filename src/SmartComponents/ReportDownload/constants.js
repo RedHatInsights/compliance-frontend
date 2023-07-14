@@ -9,48 +9,8 @@ export const DEFAULT_EXPORT_SETTINGS = {
   userNotes: undefined,
 };
 
-export const GET_SYSTEMS = gql`
-  query getSystems(
-    $filter: String!
-    $policyId: ID
-    $perPage: Int
-    $page: Int
-    $sortBy: [String!]
-    $tags: [String!]
-  ) {
-    systems(
-      search: $filter
-      limit: $perPage
-      offset: $page
-      sortBy: $sortBy
-      tags: $tags
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          name
-          osMajorVersion
-          osMinorVersion
-          insightsId
-          testResultProfiles(policyId: $policyId) {
-            lastScanned
-            compliant
-            score
-            supported
-            benchmark {
-              version
-            }
-            rulesFailed
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const GET_PROFILE = gql`
-  query Profile($policyId: String!) {
+  query PDF_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
@@ -79,7 +39,7 @@ export const GET_PROFILE = gql`
 `;
 
 export const GET_RULES = gql`
-  query getProfiles($filter: String!, $policyId: ID!) {
+  query PDF_Profiles($filter: String!, $policyId: ID!) {
     profiles(search: $filter) {
       totalCount
       edges {

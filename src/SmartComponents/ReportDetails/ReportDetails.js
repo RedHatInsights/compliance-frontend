@@ -36,7 +36,7 @@ import { default as ReportDetailsWithNotReportedSystems } from './ReportDetailsW
 import ReportChart from './Components/ReportChart';
 
 export const QUERY = gql`
-  query Profile($policyId: String!) {
+  query RD_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name

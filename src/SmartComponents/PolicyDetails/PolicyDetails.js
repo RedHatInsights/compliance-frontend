@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import propTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { useParams, useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -31,87 +29,20 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
-
-export const QUERY = gql`
-  query Profile($policyId: String!) {
-    profile(id: $policyId) {
-      id
-      name
-      refId
-      external
-      description
-      totalHostCount
-      compliantHostCount
-      complianceThreshold
-      osMajorVersion
-      lastScanned
-      policyType
-      policy {
-        id
-        name
-        refId
-        profiles {
-          id
-          name
-          refId
-          osMinorVersion
-          osMajorVersion
-          values
-          benchmark {
-            id
-            title
-            latestSupportedOsMinorVersions
-            osMajorVersion
-            version
-            ruleTree
-            valueDefinitions {
-              defaultValue
-              description
-              id
-              refId
-              title
-              valueType
-            }
-          }
-          rules {
-            id
-            title
-            severity
-            rationale
-            refId
-            description
-            remediationAvailable
-            references
-            identifier
-            precedence
-            values
-          }
-        }
-      }
-      businessObjective {
-        id
-        title
-      }
-      hosts {
-        id
-        osMinorVersion
-      }
-    }
-  }
-`;
+import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 
 export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
-  const location = useLocation();
-  let { data, error, loading, refetch } = useQuery(QUERY, {
-    variables: { policyId },
-    fetchPolicy: 'no-cache',
+  const { data, error, loading, refetch } = usePolicyQuery({
+    policyId,
   });
+  const location = useLocation();
   const policy = data?.profile;
   const hasOsMinorProfiles = !!policy?.policy.profiles.find(
     (profile) => !!profile.osMinorVersion
   );
+
   const saveToPolicy = useSaveValueToPolicy(policy, () => {
     refetch();
   });
@@ -133,7 +64,7 @@ export const PolicyDetails = ({ route }) => {
         </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
-        {policy && (
+        {policy ? (
           <Fragment>
             <PageHeader className="page-header-tabs">
               <Breadcrumb ouiaId="PolicyDetailsPathBreadcrumb">
@@ -180,6 +111,8 @@ export const PolicyDetails = ({ route }) => {
               </TabSwitcher>
             </section>
           </Fragment>
+        ) : (
+          ''
         )}
       </StateViewPart>
     </StateViewWithError>

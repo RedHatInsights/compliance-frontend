@@ -221,49 +221,6 @@ exports[`EditPolicyRulesTab expect to render without error 1`] = `
         Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.
       </Text>
     </TextContent>
-    <TabbedRules
-      columns={
-        Array [
-          Object {
-            "renderExport": [Function],
-            "renderFunc": [Function],
-            "sortByProp": "title",
-            "title": "Name",
-          },
-          Object {
-            "exportKey": "severity",
-            "renderFunc": [Function],
-            "sortByArray": Array [
-              "high",
-              "medium",
-              "low",
-              "unknown",
-            ],
-            "sortByProp": "severity",
-            "title": "Severity",
-          },
-          Object {
-            "renderExport": [Function],
-            "renderFunc": [Function],
-            "sortByFunction": [Function],
-            "title": "Remediation",
-            "transforms": Array [
-              [Function],
-            ],
-          },
-        ]
-      }
-      level={1}
-      ouiaId="RHELVersions"
-      remediationsEnabled={false}
-      resetLink={true}
-      ruleValues={Object {}}
-      rulesPageLink={true}
-      selectedFilter={true}
-      selectedRuleRefIds={Array []}
-      setSelectedRuleRefIds={[Function]}
-      tabsData={Array []}
-    />
   </StateViewPart>
   <StateViewPart
     stateKey="empty"

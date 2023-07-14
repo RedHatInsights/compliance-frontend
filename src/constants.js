@@ -19,7 +19,7 @@ export const API_HEADERS = {
 };
 
 export const supportedConfigsLink =
-  'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/con-compl-assess-overview_compl-assess-overview#con-compl-assess-supported-configurations_compl-assess-overview';
+  'https://access.redhat.com/articles/6644131';
 
 import React from 'react';
 import {
@@ -196,6 +196,20 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
       { label: '70 - 89%', value: '70-90' },
       { label: '50 - 69%', value: '50-70' },
       { label: 'Less than 50%', value: '0-50' },
+    ],
+  },
+];
+
+export const COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER = [
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Failed rule severity',
+    filterString: (value) => `failed_rules_with_severity ^ (${value})`,
+    items: [
+      { label: HIGH_SEVERITY, value: 'high' },
+      { label: MEDIUM_SEVERITY, value: 'medium' },
+      { label: LOW_SEVERITY, value: 'low' },
+      { label: UNKNOWN_SEVERITY, value: 'unknown' },
     ],
   },
 ];
