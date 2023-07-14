@@ -214,7 +214,7 @@ export const SystemsTable = ({
           noSystemsTable={noSystemsTable}
           ref={inventory}
           getEntities={getEntities}
-          hideFilters={{ all: true, tags: false }}
+          hideFilters={{ all: true, tags: false, hostGroupFilter: false }}
           showTags
           onLoad={defaultOnLoad(columns)}
           tableProps={{

@@ -56,6 +56,7 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
       <SystemsTable
         columns={[
           Columns.Name,
+          Columns.inventoryColumn('groups'),
           Columns.inventoryColumn('tags'),
           Columns.OperatingSystem,
         ]}

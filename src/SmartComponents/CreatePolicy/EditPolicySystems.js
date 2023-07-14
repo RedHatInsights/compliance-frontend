@@ -101,6 +101,7 @@ export const EditPolicySystems = ({
                 },
                 sortBy: ['name'],
               },
+              Columns.inventoryColumn('groups'),
               Columns.inventoryColumn('tags'),
               Columns.OperatingSystem,
             ]}
