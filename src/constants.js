@@ -238,8 +238,8 @@ export const features = {
   manageColumns: true,
   systemsNotReporting: true,
   rbac: true,
-  valueEditing: false,
-  ruleGroups: false,
+  valueEditing: true,
+  ruleGroups: true,
   expandOnFilter: false,
 };
 
