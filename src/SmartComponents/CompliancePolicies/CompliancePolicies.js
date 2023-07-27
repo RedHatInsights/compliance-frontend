@@ -46,7 +46,7 @@ const QUERY = gql`
 
 export const CompliancePolicies = () => {
   const location = useLocation();
-  const CreateLink = (
+  const CreateLink = () => (
     <BackgroundLink
       to="/scappolicies/new"
       Component={LinkButton}
@@ -89,7 +89,7 @@ export const CompliancePolicies = () => {
               <Grid hasGutter>
                 <ComplianceEmptyState
                   title="No policies"
-                  mainButton={CreateLink}
+                  mainButton={<CreateLink />}
                 />
               </Grid>
             ) : (
