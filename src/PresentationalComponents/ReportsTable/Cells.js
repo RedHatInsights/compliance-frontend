@@ -84,12 +84,11 @@ CompliantSystems.propTypes = {
 
 export const PDFExportDownload = ({ id }) => (
   <BackgroundLink
-    component={LinkButton}
     to={`/reports/${id}/pdf`}
     Component={LinkButton}
     componentProps={{
       className: 'pf-u-mr-md',
-      variant: 'primary',
+      variant: 'plain',
       ouiaId: 'ReportsDownloadReportPDFLink',
     }}
   >
