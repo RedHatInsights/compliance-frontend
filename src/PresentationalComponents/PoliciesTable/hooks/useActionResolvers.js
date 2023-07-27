@@ -1,4 +1,5 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 
 const useActionResolver = (policies) => {
@@ -25,19 +26,13 @@ const useActionResolver = (policies) => {
       title: 'Delete policy',
       isDisabled: !isDeleteAccessLoading && !hasDeleteAccess,
       onClick: (_event, _index, policy) =>
-        onClick(
-          `/insights/compliance/scappolicies/${policy.itemId}/delete`,
-          policy
-        ),
+        onClick(`/scappolicies/${policy.itemId}/delete`, policy),
     },
     {
       title: 'Edit policy',
       isDisabled: !isEditAccessLoading && !hasEditAccess,
       onClick: (_event, _index, policy) =>
-        onClick(
-          `/insights/compliance/scappolicies/${policy.itemId}/edit`,
-          policy
-        ),
+        onClick(`/scappolicies/${policy.itemId}/edit`, policy),
     },
   ];
 };
