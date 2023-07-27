@@ -102,6 +102,8 @@ To use them in/with Compliance and set routes for the locally running Inventory 
 $ LOCAL_APPS=inventory:8003 npm run start:proxy
 ```
 
+See also https://github.com/RedHatInsights/frontend-components/blob/master/packages/config/README.md#running-multiple-local-frontend-applications
+
 ###### Run compliance building and exposing federated modules
 
 Developing and testing changes in components that Compliance exposes is also possible in a similar way.
