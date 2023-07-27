@@ -99,12 +99,11 @@ exports[`OperatingSystem expect to render without error 1`] = `
 exports[`PDFExportDownload expect to render without error 1`] = `
 <BackgroundLink
   Component={[Function]}
-  component={[Function]}
   componentProps={
     Object {
       "className": "pf-u-mr-md",
       "ouiaId": "ReportsDownloadReportPDFLink",
-      "variant": "primary",
+      "variant": "plain",
     }
   }
   to="/reports/ID1/pdf"

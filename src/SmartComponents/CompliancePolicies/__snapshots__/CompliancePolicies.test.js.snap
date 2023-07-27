@@ -250,7 +250,20 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
         stateKey="data"
       >
         <PoliciesTable
-          DedicatedAction={[Function]}
+          DedicatedAction={
+            <BackgroundLink
+              Component={[Function]}
+              componentProps={
+                Object {
+                  "ouiaId": "CreateNewPolicyButton",
+                  "variant": "primary",
+                }
+              }
+              to="/scappolicies/new"
+            >
+              Create new policy
+            </BackgroundLink>
+          }
           policies={
             Array [
               Object {
@@ -463,7 +476,20 @@ exports[`CompliancePolicies expect to render an error 1`] = `
         stateKey="data"
       >
         <PoliciesTable
-          DedicatedAction={[Function]}
+          DedicatedAction={
+            <BackgroundLink
+              Component={[Function]}
+              componentProps={
+                Object {
+                  "ouiaId": "CreateNewPolicyButton",
+                  "variant": "primary",
+                }
+              }
+              to="/scappolicies/new"
+            >
+              Create new policy
+            </BackgroundLink>
+          }
           policies={Array []}
         />
       </StateViewPart>
@@ -728,7 +754,20 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                 "watchQuery": [Function],
               }
             }
-            mainButton={[Function]}
+            mainButton={
+              <BackgroundLink
+                Component={[Function]}
+                componentProps={
+                  Object {
+                    "ouiaId": "CreateNewPolicyButton",
+                    "variant": "primary",
+                  }
+                }
+                to="/scappolicies/new"
+              >
+                Create new policy
+              </BackgroundLink>
+            }
             title="No policies"
           />
         </Grid>
@@ -773,7 +812,20 @@ exports[`CompliancePolicies expect to render loading 1`] = `
         stateKey="data"
       >
         <PoliciesTable
-          DedicatedAction={[Function]}
+          DedicatedAction={
+            <BackgroundLink
+              Component={[Function]}
+              componentProps={
+                Object {
+                  "ouiaId": "CreateNewPolicyButton",
+                  "variant": "primary",
+                }
+              }
+              to="/scappolicies/new"
+            >
+              Create new policy
+            </BackgroundLink>
+          }
           policies={Array []}
         />
       </StateViewPart>
@@ -832,7 +884,20 @@ exports[`CompliancePolicies expect to render without error 1`] = `
         stateKey="data"
       >
         <PoliciesTable
-          DedicatedAction={[Function]}
+          DedicatedAction={
+            <BackgroundLink
+              Component={[Function]}
+              componentProps={
+                Object {
+                  "ouiaId": "CreateNewPolicyButton",
+                  "variant": "primary",
+                }
+              }
+              to="/scappolicies/new"
+            >
+              Create new policy
+            </BackgroundLink>
+          }
           policies={
             Array [
               undefined,
