@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import propTypes from 'prop-types';
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules';
@@ -28,7 +28,7 @@ export const CreatePolicyForm = ({
   systemIds,
   reset,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
     const { location } = history;
@@ -44,7 +44,7 @@ export const CreatePolicyForm = ({
 
   const onClose = () => {
     reset();
-    history.push('/scappolicies');
+    navigate('/scappolicies');
   };
 
   const steps = [

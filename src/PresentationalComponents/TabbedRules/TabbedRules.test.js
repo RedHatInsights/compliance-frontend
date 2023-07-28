@@ -7,9 +7,6 @@ jest.mock('react-router-dom', () => ({
     pathname: '/path/name',
     state: {},
   })),
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
 }));
 
 describe('TabbedRules', () => {

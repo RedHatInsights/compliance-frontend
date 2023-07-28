@@ -47,6 +47,10 @@ jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
 }));
 InventoryTable.mockImplementation((props) => <InventoryTableMock {...props} />);
 
+jest.mock('react-router-dom', () => ({
+  useNavigate: jest.fn(),
+}));
+
 describe('SystemsTable', () => {
   const store = init().getStore();
 

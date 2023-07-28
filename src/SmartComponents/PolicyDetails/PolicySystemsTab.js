@@ -5,11 +5,8 @@ import { NoSystemsTableWithWarning } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
-import { useAnchor } from 'Utilities/Router';
 
 const PolicySystemsTab = ({ policy }) => {
-  const anchor = useAnchor();
-
   return (
     <SystemsTable
       columns={[
@@ -29,15 +26,7 @@ const PolicySystemsTab = ({ policy }) => {
         policy?.hosts?.length === 0 && <NoSystemsTableWithWarning />
       }
       complianceThreshold={policy.complianceThreshold}
-      dedicatedAction={
-        <EditSystemsButtonToolbarItem
-          to={`/scappolicies/${policy.id}/edit`}
-          hash={anchor}
-          backgroundLocation={{ hash: 'details' }}
-          variant="primary"
-          ouiaId="EditSystemsButton"
-        />
-      }
+      dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
     />
   );
 };

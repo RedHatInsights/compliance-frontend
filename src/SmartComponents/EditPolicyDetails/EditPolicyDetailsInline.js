@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import propTypes from 'prop-types';
 import {
   Button,
   FormGroup,
@@ -12,8 +13,7 @@ import {
   ComplianceThresholdHelperText,
 } from 'PresentationalComponents';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
-import propTypes from 'prop-types';
-import { Prompt } from 'react-router-dom';
+// import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
 
@@ -31,6 +31,9 @@ const EditPolicyDetailsInline = ({
   ...props
 }) => {
   const copiedData = policy;
+  // TODO Re-enable when there is a alternative to Prompt
+  // const [dirty, setDirty] = useState(false);
+
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
   const handleTextUpdate = (newText, e) => {
@@ -38,21 +41,20 @@ const EditPolicyDetailsInline = ({
       if (thresholdValid(newText) === true) {
         setValue(newText);
         setValidThreshold(true);
-        setDirty(!!e.target.value);
+        // setDirty(!!e.target.value);
       } else {
         setValidThreshold(false);
       }
     }
     setValue(newText);
-    setDirty(!!e.target.value);
+    // setDirty(!!e.target.value);
   };
   const handleCloseEdit = () => {
     setIsEditOpen(false);
-    setDirty(false);
+    // setDirty(false);
     setValue(text);
   };
-  //marking page as dirty if user didn't save changes and tries to navigate away
-  const [dirty, setDirty] = useState(false);
+
   const constructData =
     propertyName === 'businessObjective'
       ? { ...copiedData, [propertyName]: { title: value } }
@@ -158,10 +160,10 @@ const EditPolicyDetailsInline = ({
           </Text>
         )}
       </div>
-      <Prompt
+      {/* <Prompt
         when={dirty}
         message="You have unsaved changes on this page. Are you sure you want to leave?"
-      />
+      /> */}
     </FormGroup>
   );
 };

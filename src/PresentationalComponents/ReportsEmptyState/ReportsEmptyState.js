@@ -8,9 +8,11 @@ const ReportsEmptyState = () => (
     mainButton={
       <BackgroundLink
         to="/scappolicies/new"
-        component={LinkButton}
-        variant="primary"
-        ouiaId="CreateNewPolicyButton"
+        Component={LinkButton}
+        componentProps={{
+          variant: 'primary',
+          ouiaId: 'CreateNewPolicyButton',
+        }}
       >
         Create new policy
       </BackgroundLink>

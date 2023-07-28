@@ -15,54 +15,51 @@ global.toJson = toJson;
 global.fetch = function () {};
 
 global.renderJson = (component) => toJson(shallow(component));
-global.window.__scalprum__ = {
-  scalprumOptions: {
-    cacheTimeout: 999999,
-  },
-  appsConfig: {
-    inventory: {
-      manifestLocation:
-        'https://console.stage.redhat.com/apps/inventory/fed-mods.json',
-      module: 'inventory#./RootApp',
-      name: 'inventory',
+
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+  __esModule: true,
+  default: () => ({
+    updateDocumentTitle: jest.fn(),
+    auth: {
+      getUser: () =>
+        Promise.resolve({
+          identity: {
+            account_number: '0',
+            type: 'User',
+            user: {
+              is_org_admin: true,
+            },
+          },
+          entitlements: {
+            hybrid_cloud: { is_entitled: true },
+            insights: { is_entitled: true },
+            openshift: { is_entitled: true },
+            smart_management: { is_entitled: false },
+          },
+        }),
     },
-    remediations: {
-      manifestLocation:
-        'https://console.stage.redhat.com/apps/remediations/fed-mods.json',
-      module: 'remediations#./RootApp',
-      name: 'remediations',
-    },
-  },
-  factories: {
-    inventory: {
-      expiration: new Date('01-01-3000'),
-      modules: {
-        './InventoryTable': {
-          __esModule: true,
-          default: () => (
-            <div>
-              <h1>Inventory mock</h1>
-            </div>
-          ),
-        },
-        './InventoryDetails': {
-          __esModule: true,
-          default: () => (
-            <div>
-              <h1>Inventory Details mock</h1>
-            </div>
-          ),
-        },
-      },
-    },
-    remediations: {
-      expiration: new Date('01-01-3000'),
-      modules: {
-        './RemediationButton': {
-          __esModule: true,
-          default: () => <button>Remediation button mock</button>,
-        },
-      },
-    },
-  },
-};
+    appAction: jest.fn(),
+    appObjectId: jest.fn(),
+    on: jest.fn(),
+    getUserPermissions: () => Promise.resolve(['inventory:*:*']),
+    isBeta: jest.fn(),
+    getApp: () => 'patch',
+    getBundle: () => 'insights',
+  }),
+  useChrome: () => ({
+    isBeta: jest.fn(),
+  }),
+}));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
+  () => ({
+    __esModule: true,
+    default: (props) => <button {...props} />,
+  })
+);
+
+jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
+  InventoryTable: (props) => <div {...props} />,
+  DetailWrapper: (props) => <div {...props} />,
+}));

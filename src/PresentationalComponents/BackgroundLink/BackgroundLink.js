@@ -9,16 +9,25 @@ const BackgroundLink = ({
   children,
   state: desiredState,
   backgroundLocation,
+  Component,
+  componentProps = {},
   ...props
 }) => {
+  const ComponentToRender = Component || Link;
   const currentLocation = useLocation();
   const background = { ...currentLocation, ...backgroundLocation };
   const state = { ...desiredState, background };
 
   return (
-    <Link to={{ pathname: to, state, hash }} {...props}>
+    <ComponentToRender
+      to={{ pathname: to, state, hash }}
+      {...{
+        ...props,
+        ...componentProps,
+      }}
+    >
       {children}
-    </Link>
+    </ComponentToRender>
   );
 };
 
@@ -28,6 +37,8 @@ BackgroundLink.propTypes = {
   hash: propTypes.string,
   state: propTypes.object,
   to: propTypes.string.isRequired,
+  Component: propTypes.node,
+  componentProps: propTypes.object,
 };
 
 export default BackgroundLink;

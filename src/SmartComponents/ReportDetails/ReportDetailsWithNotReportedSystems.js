@@ -125,10 +125,12 @@ export const ReportDetails = ({ route }) => {
                 <BackgroundLink
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
-                  component={LinkButton}
-                  ouiaId="ReportDetailsDownloadReportPDFLink"
-                  variant="primary"
                   className="pf-u-mr-md"
+                  Component={LinkButton}
+                  componentProps={{
+                    variant: 'primary',
+                    ouiaId: 'ReportDetailsDownloadReportPDFLink',
+                  }}
                 >
                   Download PDF
                 </BackgroundLink>
@@ -136,10 +138,12 @@ export const ReportDetails = ({ route }) => {
               <BackgroundLink
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
-                component={LinkButton}
-                variant="link"
-                ouiaId="ReportDetailsDeleteReportLink"
-                isInline
+                Component={LinkButton}
+                componentProps={{
+                  isInline: true,
+                  variant: 'link',
+                  ouiaId: 'ReportDetailsDeleteReportLink',
+                }}
               >
                 Delete report
               </BackgroundLink>

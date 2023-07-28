@@ -1,5 +1,9 @@
 import React from 'react';
-import { BackgroundLink, LinkButton } from 'PresentationalComponents';
+import {
+  BackgroundLink,
+  LinkButton,
+  LinkWithPermission as Link,
+} from 'PresentationalComponents';
 import { PlusCircleIcon } from '@patternfly/react-icons';
 import {
   Title,
@@ -10,7 +14,6 @@ import {
   EmptyStateSecondaryActions,
   EmptyStateIcon,
 } from '@patternfly/react-core';
-import { Link } from 'react-router-dom';
 
 const NoPoliciesState = () => (
   <Bullseye>
@@ -26,9 +29,11 @@ const NoPoliciesState = () => (
       <EmptyStatePrimary>
         <BackgroundLink
           to="/scappolicies/new"
-          variant="primary"
-          ouiaId="CreateNewPolicyButton"
-          component={LinkButton}
+          Component={LinkButton}
+          componentProps={{
+            variant: 'primary',
+            ouiaId: 'CreateNewPolicyButton',
+          }}
         >
           Create new policy
         </BackgroundLink>

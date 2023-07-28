@@ -58,3 +58,4 @@ export { default as WithPermission } from './WithPermission/WithPermission';
 export { default as LinkWithPermission } from './LinkWithPermission/LinkWithPermission';
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as InlineEdit } from './InlineEdit/InlineEdit';
+export { default as ComplianceRoute } from './ComplianceRoute/ComplianceRoute';

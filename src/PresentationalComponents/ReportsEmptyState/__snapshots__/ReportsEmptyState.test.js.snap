@@ -218,10 +218,14 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
   }
   mainButton={
     <BackgroundLink
-      component={[Function]}
-      ouiaId="CreateNewPolicyButton"
+      Component={[Function]}
+      componentProps={
+        Object {
+          "ouiaId": "CreateNewPolicyButton",
+          "variant": "primary",
+        }
+      }
       to="/scappolicies/new"
-      variant="primary"
     >
       Create new policy
     </BackgroundLink>

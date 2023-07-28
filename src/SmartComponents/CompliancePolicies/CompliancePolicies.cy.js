@@ -416,7 +416,7 @@ describe('Policies table tests', () => {
       cy.get('td[data-label="Name"] > div > a')
         .first()
         .invoke('attr', 'href')
-        .should('eq', `/scappolicies/${policyId}`);
+        .should('eq', `/insights/compliance/scappolicies/${policyId}`);
     });
 
     it('Row actions has correct items', () => {

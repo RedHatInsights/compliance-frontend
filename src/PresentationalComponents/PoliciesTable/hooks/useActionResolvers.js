@@ -1,9 +1,10 @@
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 
 const useActionResolver = (policies) => {
-  const history = useHistory();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
     useRoutePermissions(`/scappolicies/XYZ/delete`);
@@ -12,7 +13,8 @@ const useActionResolver = (policies) => {
 
   const onClick = (to, { itemId: policyId }) => {
     const policy = policies.find((policy) => policy.id === policyId);
-    history.push(to, {
+
+    navigate(to, {
       policy,
       background: location,
       state: { policy },

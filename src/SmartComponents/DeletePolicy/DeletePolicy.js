@@ -1,7 +1,8 @@
 import { Button, Checkbox, ModalVariant, Text } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useMutation } from '@apollo/client';
 import { DELETE_PROFILE } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
@@ -11,10 +12,11 @@ import { dispatchAction } from 'Utilities/Dispatcher';
 const DeletePolicy = () => {
   const [deleteEnabled, setDeleteEnabled] = useState(false);
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
+
   const { name, id } = location.state.policy;
   const onClose = () => {
-    history.push('/scappolicies');
+    navigate('/scappolicies');
   };
 
   const [deletePolicy] = useMutation(DELETE_PROFILE, {

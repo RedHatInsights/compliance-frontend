@@ -1,10 +1,12 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
 import { Alert, AlertActionLink } from '@patternfly/react-core';
 
 const NewRulesAlert = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   return (
@@ -14,7 +16,7 @@ const NewRulesAlert = () => {
       title="You selected a system that has a release version previously not included in this policy."
       actionLinks={
         <AlertActionLink
-          onClick={() => history.push({ ...location, hash: '#rules' })}
+          onClick={() => navigate({ ...location, hash: '#rules' })}
         >
           Open rule editing
         </AlertActionLink>

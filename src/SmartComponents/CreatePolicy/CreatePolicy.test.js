@@ -5,6 +5,11 @@ jest.mock('@apollo/client');
 
 import { CreatePolicyForm } from './CreatePolicy.js';
 
+jest.mock('react-router-dom', () => ({
+  useLocation: jest.fn(),
+  useNavigate: jest.fn(),
+}));
+
 describe('CreatePolicyForm', () => {
   it('expect to render the wizard', () => {
     useQuery.mockImplementation(() => ({

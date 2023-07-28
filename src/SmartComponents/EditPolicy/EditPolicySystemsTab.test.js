@@ -1,13 +1,5 @@
 import EditPolicySystemsTab from './EditPolicySystemsTab.js';
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useHistory: () => ({
-    push: jest.fn(),
-    location: {},
-  }),
-}));
-
 describe('EditPolicySystemsTab', () => {
   const defaultProps = {
     policy: {

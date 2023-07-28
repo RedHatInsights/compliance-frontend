@@ -21,13 +21,13 @@ exports[`ComplianceEmptyState expect to render different message if many policie
   </Title>
   <EmptyStateBody>
     <TextContent>
-      <a
-        href="insights/compliance/scappolicies"
+      <InsightsLink
+        to="/scappolicies"
       >
         2
          
         policies
-      </a>
+      </InsightsLink>
        
       have
        been created but 
@@ -85,13 +85,13 @@ exports[`ComplianceEmptyState expect to render different message if one policy e
   </Title>
   <EmptyStateBody>
     <TextContent>
-      <a
-        href="insights/compliance/scappolicies"
+      <InsightsLink
+        to="/scappolicies"
       >
         1
          
         policy
-      </a>
+      </InsightsLink>
        
       has
        been created but 
