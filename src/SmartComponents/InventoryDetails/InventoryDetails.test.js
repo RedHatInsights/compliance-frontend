@@ -1,11 +1,11 @@
+import { render } from '@testing-library/react';
+
 import InventoryDetails from './InventoryDetails';
 
 describe('InventoryDetails', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<InventoryDetails />);
+    const { asFragment } = render(<InventoryDetails />);
 
-    expect(
-      toJson(wrapper.find('InventoryCmp'), { mode: 'shallow' })
-    ).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,122 +1,766 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoadingPoliciesTable expect to render without error 1`] = `
-<Table
-  actionsMenuAppendTo="inline"
-  aria-label="policies-table"
-  borders={true}
-  canCollapseAll={false}
-  canSelectAll={true}
-  canSortFavorites={true}
-  cells={
-    Array [
-      Object {
-        "props": Object {
-          "width": 45,
-        },
-        "renderExport": [Function],
-        "renderFunc": [Function],
-        "sortByProp": "name",
-        "title": "Name",
-      },
-      Object {
-        "props": Object {
-          "width": 15,
-        },
-        "renderExport": [Function],
-        "renderFunc": [Function],
-        "sortByProp": "osMajorVersion",
-        "title": "Operating system",
-        "transforms": Array [
-          [Function],
-        ],
-      },
-      Object {
-        "props": Object {
-          "width": 15,
-        },
-        "renderExport": [Function],
-        "renderFunc": [Function],
-        "sortByProp": "totalHostCount",
-        "title": "Systems",
-      },
-      Object {
-        "renderExport": [Function],
-        "renderFunc": [Function],
-        "sortByFunction": [Function],
-        "title": "Business objective",
-      },
-      Object {
-        "renderExport": [Function],
-        "renderFunc": [Function],
-        "sortByProp": "complianceThreshold",
-        "title": "Compliance threshold",
-      },
-    ]
-  }
-  className=""
-  collapseAllAriaLabel=""
-  contentId="expanded-content"
-  dropdownDirection="down"
-  dropdownPosition="right"
-  expandId="expandable-toggle"
-  gridBreakPoint="grid-md"
-  isHeaderSelectDisabled={false}
-  isNested={false}
-  isStickyHeader={false}
-  isTreeTable={false}
-  ouiaId="PoliciesTable"
-  ouiaSafe={true}
-  role="grid"
-  rowLabeledBy="simple-node"
-  rows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
-            "colSpan": 5,
-            "title": <RowLoader />,
-          },
-        ],
-      },
-      Object {
-        "cells": Array [
-          Object {
-            "colSpan": 5,
-            "title": <RowLoader />,
-          },
-        ],
-      },
-      Object {
-        "cells": Array [
-          Object {
-            "colSpan": 5,
-            "title": <RowLoader />,
-          },
-        ],
-      },
-      Object {
-        "cells": Array [
-          Object {
-            "colSpan": 5,
-            "title": <RowLoader />,
-          },
-        ],
-      },
-      Object {
-        "cells": Array [
-          Object {
-            "colSpan": 5,
-            "title": <RowLoader />,
-          },
-        ],
-      },
-    ]
-  }
-  selectVariant="checkbox"
-  variant={null}
->
-  <TableHeader />
-  <TableBody />
-</Table>
+<DocumentFragment>
+  <table
+    aria-label="policies-table"
+    class="pf-c-table pf-m-grid-md"
+    data-ouia-component-id="PoliciesTable"
+    data-ouia-component-type="PF4/Table"
+    data-ouia-safe="true"
+    role="grid"
+  >
+    <thead
+      class=""
+    >
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-1"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <th
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+          scope="col"
+        >
+          Name
+        </th>
+        <th
+          class="pf-m-fit-content pf-m-width-15"
+          data-key="1"
+          data-label="Operating system"
+          scope="col"
+        >
+          Operating system
+        </th>
+        <th
+          class="pf-m-width-15"
+          data-key="2"
+          data-label="Systems"
+          scope="col"
+        >
+          Systems
+        </th>
+        <th
+          class=""
+          data-key="3"
+          data-label="Business objective"
+          scope="col"
+        >
+          Business objective
+        </th>
+        <th
+          class=""
+          data-key="4"
+          data-label="Compliance threshold"
+          scope="col"
+        >
+          Compliance threshold
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class=""
+      role="rowgroup"
+    >
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-2"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <td
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+        >
+          <svg
+            aria-labelledby="k11y4dw-aria"
+            height="20"
+            role="img"
+            width="480"
+          >
+            <title
+              id="k11y4dw-aria"
+            >
+              Loading...
+            </title>
+            <rect
+              clip-path="url(#k11y4dw-diff)"
+              height="100%"
+              role="presentation"
+              style="fill: url(#k11y4dw-animated-diff);"
+              width="100%"
+              x="0"
+              y="0"
+            />
+            <defs>
+              <clippath
+                id="k11y4dw-diff"
+              >
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="250"
+                  x="30"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="70"
+                  x="300"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="95"
+                  x="385"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="80"
+                  x="50"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="200"
+                  x="150"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="120"
+                  x="360"
+                  y="12"
+                />
+                <rect
+                  height="20"
+                  rx="0"
+                  ry="0"
+                  width="20"
+                  x="0"
+                  y="0"
+                />
+              </clippath>
+              <lineargradient
+                id="k11y4dw-animated-diff"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-2; -2; 1"
+                  />
+                </stop>
+                <stop
+                  offset="50%"
+                  stop-color="#eee"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-1; -1; 2"
+                  />
+                </stop>
+                <stop
+                  offset="100%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="0; 0; 3"
+                  />
+                </stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-3"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <td
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+        >
+          <svg
+            aria-labelledby="s5m6697-aria"
+            height="20"
+            role="img"
+            width="480"
+          >
+            <title
+              id="s5m6697-aria"
+            >
+              Loading...
+            </title>
+            <rect
+              clip-path="url(#s5m6697-diff)"
+              height="100%"
+              role="presentation"
+              style="fill: url(#s5m6697-animated-diff);"
+              width="100%"
+              x="0"
+              y="0"
+            />
+            <defs>
+              <clippath
+                id="s5m6697-diff"
+              >
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="250"
+                  x="30"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="70"
+                  x="300"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="95"
+                  x="385"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="80"
+                  x="50"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="200"
+                  x="150"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="120"
+                  x="360"
+                  y="12"
+                />
+                <rect
+                  height="20"
+                  rx="0"
+                  ry="0"
+                  width="20"
+                  x="0"
+                  y="0"
+                />
+              </clippath>
+              <lineargradient
+                id="s5m6697-animated-diff"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-2; -2; 1"
+                  />
+                </stop>
+                <stop
+                  offset="50%"
+                  stop-color="#eee"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-1; -1; 2"
+                  />
+                </stop>
+                <stop
+                  offset="100%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="0; 0; 3"
+                  />
+                </stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-4"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <td
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+        >
+          <svg
+            aria-labelledby="un0i8wc-aria"
+            height="20"
+            role="img"
+            width="480"
+          >
+            <title
+              id="un0i8wc-aria"
+            >
+              Loading...
+            </title>
+            <rect
+              clip-path="url(#un0i8wc-diff)"
+              height="100%"
+              role="presentation"
+              style="fill: url(#un0i8wc-animated-diff);"
+              width="100%"
+              x="0"
+              y="0"
+            />
+            <defs>
+              <clippath
+                id="un0i8wc-diff"
+              >
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="250"
+                  x="30"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="70"
+                  x="300"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="95"
+                  x="385"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="80"
+                  x="50"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="200"
+                  x="150"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="120"
+                  x="360"
+                  y="12"
+                />
+                <rect
+                  height="20"
+                  rx="0"
+                  ry="0"
+                  width="20"
+                  x="0"
+                  y="0"
+                />
+              </clippath>
+              <lineargradient
+                id="un0i8wc-animated-diff"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-2; -2; 1"
+                  />
+                </stop>
+                <stop
+                  offset="50%"
+                  stop-color="#eee"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-1; -1; 2"
+                  />
+                </stop>
+                <stop
+                  offset="100%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="0; 0; 3"
+                  />
+                </stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-5"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <td
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+        >
+          <svg
+            aria-labelledby="fwvjyzm-aria"
+            height="20"
+            role="img"
+            width="480"
+          >
+            <title
+              id="fwvjyzm-aria"
+            >
+              Loading...
+            </title>
+            <rect
+              clip-path="url(#fwvjyzm-diff)"
+              height="100%"
+              role="presentation"
+              style="fill: url(#fwvjyzm-animated-diff);"
+              width="100%"
+              x="0"
+              y="0"
+            />
+            <defs>
+              <clippath
+                id="fwvjyzm-diff"
+              >
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="250"
+                  x="30"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="70"
+                  x="300"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="95"
+                  x="385"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="80"
+                  x="50"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="200"
+                  x="150"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="120"
+                  x="360"
+                  y="12"
+                />
+                <rect
+                  height="20"
+                  rx="0"
+                  ry="0"
+                  width="20"
+                  x="0"
+                  y="0"
+                />
+              </clippath>
+              <lineargradient
+                id="fwvjyzm-animated-diff"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-2; -2; 1"
+                  />
+                </stop>
+                <stop
+                  offset="50%"
+                  stop-color="#eee"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-1; -1; 2"
+                  />
+                </stop>
+                <stop
+                  offset="100%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="0; 0; 3"
+                  />
+                </stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </td>
+      </tr>
+      <tr
+        class=""
+        data-ouia-component-id="OUIA-Generated-TableRow-6"
+        data-ouia-component-type="PF4/TableRow"
+        data-ouia-safe="true"
+      >
+        <td
+          class="pf-m-width-45"
+          data-key="0"
+          data-label="Name"
+        >
+          <svg
+            aria-labelledby="g7lv7v-aria"
+            height="20"
+            role="img"
+            width="480"
+          >
+            <title
+              id="g7lv7v-aria"
+            >
+              Loading...
+            </title>
+            <rect
+              clip-path="url(#g7lv7v-diff)"
+              height="100%"
+              role="presentation"
+              style="fill: url(#g7lv7v-animated-diff);"
+              width="100%"
+              x="0"
+              y="0"
+            />
+            <defs>
+              <clippath
+                id="g7lv7v-diff"
+              >
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="250"
+                  x="30"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="70"
+                  x="300"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="95"
+                  x="385"
+                  y="0"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="80"
+                  x="50"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="200"
+                  x="150"
+                  y="12"
+                />
+                <rect
+                  height="7"
+                  rx="3"
+                  ry="3"
+                  width="120"
+                  x="360"
+                  y="12"
+                />
+                <rect
+                  height="20"
+                  rx="0"
+                  ry="0"
+                  width="20"
+                  x="0"
+                  y="0"
+                />
+              </clippath>
+              <lineargradient
+                id="g7lv7v-animated-diff"
+              >
+                <stop
+                  offset="0%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-2; -2; 1"
+                  />
+                </stop>
+                <stop
+                  offset="50%"
+                  stop-color="#eee"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="-1; -1; 2"
+                  />
+                </stop>
+                <stop
+                  offset="100%"
+                  stop-color="#f5f6f7"
+                  stop-opacity="1"
+                >
+                  <animate
+                    attributeName="offset"
+                    dur="1.2s"
+                    keyTimes="0; 0.25; 1"
+                    repeatCount="indefinite"
+                    values="0; 0; 3"
+                  />
+                </stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
 `;

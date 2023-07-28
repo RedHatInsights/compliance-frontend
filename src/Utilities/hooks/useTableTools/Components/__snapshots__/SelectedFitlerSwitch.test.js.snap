@@ -1,23 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SelectedFilterSwitch expect to render without error 1`] = `
-<Switch
-  aria-label=""
-  isChecked={true}
-  isDisabled={false}
-  isReversed={false}
-  label="Selected only"
-  onChange={[Function]}
-/>
+<DocumentFragment>
+  <label
+    class="pf-c-switch"
+    data-ouia-component-id="OUIA-Generated-Switch-1"
+    data-ouia-component-type="PF4/Switch"
+    data-ouia-safe="true"
+    for="pf-1690535280906qta8r10aiik"
+  >
+    <input
+      aria-label=""
+      aria-labelledby="pf-1690535280906qta8r10aiik-on"
+      checked=""
+      class="pf-c-switch__input"
+      id="pf-1690535280906qta8r10aiik"
+      type="checkbox"
+    />
+    <span
+      class="pf-c-switch__toggle"
+    />
+    <span
+      aria-hidden="true"
+      class="pf-c-switch__label pf-m-on"
+      id="pf-1690535280906qta8r10aiik-on"
+    >
+      Selected only
+    </span>
+    <span
+      aria-hidden="true"
+      class="pf-c-switch__label pf-m-off"
+      id="pf-1690535280906qta8r10aiik-off"
+    >
+      Selected only
+    </span>
+  </label>
+</DocumentFragment>
 `;
 
 exports[`SelectedFilterSwitch expect to render without error 2`] = `
-<Switch
-  aria-label=""
-  isChecked={false}
-  isDisabled={false}
-  isReversed={false}
-  label="Selected only"
-  onChange={[Function]}
-/>
+<DocumentFragment>
+  <label
+    class="pf-c-switch"
+    data-ouia-component-id="OUIA-Generated-Switch-2"
+    data-ouia-component-type="PF4/Switch"
+    data-ouia-safe="true"
+    for="pf-16905352809302qxpgu24xqo"
+  >
+    <input
+      aria-label=""
+      aria-labelledby="pf-16905352809302qxpgu24xqo-off"
+      class="pf-c-switch__input"
+      id="pf-16905352809302qxpgu24xqo"
+      type="checkbox"
+    />
+    <span
+      class="pf-c-switch__toggle"
+    />
+    <span
+      aria-hidden="true"
+      class="pf-c-switch__label pf-m-on"
+      id="pf-16905352809302qxpgu24xqo-on"
+    >
+      Selected only
+    </span>
+    <span
+      aria-hidden="true"
+      class="pf-c-switch__label pf-m-off"
+      id="pf-16905352809302qxpgu24xqo-off"
+    >
+      Selected only
+    </span>
+  </label>
+</DocumentFragment>
 `;

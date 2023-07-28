@@ -19,9 +19,9 @@ describe('TableToolsTable', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<TableToolsTable {...defaultProps} />);
+    const { asFragment } = render(<TableToolsTable {...defaultProps} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to have filters properly rendered', () => {

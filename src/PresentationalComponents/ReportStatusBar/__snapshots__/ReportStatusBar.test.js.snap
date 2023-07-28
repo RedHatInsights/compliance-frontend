@@ -1,97 +1,811 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportStatusBar expect to render without error 1`] = `
-<Grid
-  hasGutter={true}
->
-  <GridItem
-    span={9}
+<DocumentFragment>
+  <div
+    class="pf-l-grid pf-m-gutter"
   >
-    <MultiSegmentBar
-      data={
-        Array [
-          Object {
-            "color": "#0066CC",
-            "label": "Compliant: 5",
-            "name": "Compliant",
-            "value": 5,
-          },
-          Object {
-            "color": "#73BCF7",
-            "label": "Non-Compliant: 5",
-            "name": "Non-Compliant",
-            "value": 5,
-          },
-          Object {
-            "color": "#F4C145",
-            "label": "Unsupported: 2",
-            "name": "Unsupported",
-            "value": 2,
-          },
-          Object {
-            "color": "#f0f0f0",
-            "label": "Never reported: 3",
-            "name": "Never reported",
-            "value": 3,
-          },
-        ]
-      }
-    />
-  </GridItem>
-  <GridItem
-    span={3}
-  >
-    <span>
-      50%
-    </span>
-  </GridItem>
-</Grid>
+    <div
+      class="pf-l-grid__item pf-m-9-col"
+    >
+      <div
+        style="height: 20px; padding: 0px;"
+      >
+        <div
+          class="pf-c-chart"
+          style="height: 100%; width: 100%; user-select: none; pointer-events: none; position: relative;"
+        >
+          <svg
+            height="24"
+            role="img"
+            style="pointer-events: all; width: 100%; height: 100%;"
+            viewBox="0 0 167 24"
+            width="167"
+          >
+            <g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 133.6, 20 
+A 0 0 0 0 1, 133.6, 20 
+L 133.6, 4 
+A 0 0 0 0 1, 133.6, 4 
+L 167, 4 
+A 0 0 0 0 1, 167, 4 
+L 167, 20 
+A 0 0 0 0 1, 167, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #f0f0f0; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 111.33333333333333, 20 
+A 0 0 0 0 1, 111.33333333333333, 20 
+L 111.33333333333333, 4 
+A 0 0 0 0 1, 111.33333333333333, 4 
+L 133.6, 4 
+A 0 0 0 0 1, 133.6, 4 
+L 133.6, 20 
+A 0 0 0 0 1, 133.6, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #F4C145; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 55.666666666666664, 20 
+A 0 0 0 0 1, 55.666666666666664, 20 
+L 55.666666666666664, 4 
+A 0 0 0 0 1, 55.666666666666664, 4 
+L 111.33333333333333, 4 
+A 0 0 0 0 1, 111.33333333333333, 4 
+L 111.33333333333333, 20 
+A 0 0 0 0 1, 111.33333333333333, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #73BCF7; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 0, 20 
+A 0 0 0 0 1, 0, 20 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 55.666666666666664, 4 
+A 0 0 0 0 1, 55.666666666666664, 4 
+L 55.666666666666664, 20 
+A 0 0 0 0 1, 55.666666666666664, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #0066CC; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+            </g>
+            <g
+              role="presentation"
+            >
+              <line
+                role="presentation"
+                shape-rendering="auto"
+                style="stroke: none; fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round;"
+                vector-effect="non-scaling-stroke"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="24"
+              />
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-0"
+                  x="-15"
+                  y="28.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    0.99999999990
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-1"
+                  x="-15"
+                  y="22.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    0.99999999995
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-2"
+                  x="-15"
+                  y="16.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000000
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-3"
+                  x="-15"
+                  y="10.969999999999999"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000005
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-4"
+                  x="-15"
+                  y="4.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000010
+                  </tspan>
+                </text>
+              </g>
+            </g>
+            <g
+              role="presentation"
+            >
+              <line
+                role="presentation"
+                shape-rendering="auto"
+                style="stroke: none; fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round;"
+                vector-effect="non-scaling-stroke"
+                x1="0"
+                x2="167"
+                y1="24"
+                y2="24"
+              />
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-0"
+                  x="22.266666666666666"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="22.266666666666666"
+                  >
+                    2
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-1"
+                  x="44.53333333333333"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="44.53333333333333"
+                  >
+                    4
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-2"
+                  x="66.8"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="66.8"
+                  >
+                    6
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-3"
+                  x="89.06666666666666"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="89.06666666666666"
+                  >
+                    8
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-4"
+                  x="111.33333333333333"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="111.33333333333333"
+                  >
+                    10
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-5"
+                  x="133.6"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="133.6"
+                  >
+                    12
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-6"
+                  x="155.86666666666667"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="155.86666666666667"
+                  >
+                    14
+                  </tspan>
+                </text>
+              </g>
+            </g>
+          </svg>
+          <div
+            style="z-index: 110; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+          >
+            <svg
+              height="24"
+              style="overflow: visible; width: 100%; height: 100%;"
+              viewBox="0 0 167 24"
+              width="167"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-3-col"
+    >
+      <span>
+        50%
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ReportStatusBar expect to render without error with no reporting systems 1`] = `
-<Grid
-  hasGutter={true}
->
-  <GridItem
-    span={9}
+<DocumentFragment>
+  <div
+    class="pf-l-grid pf-m-gutter"
   >
-    <MultiSegmentBar
-      data={
-        Array [
-          Object {
-            "color": "#0066CC",
-            "label": "Compliant: 0",
-            "name": "Compliant",
-            "value": 0,
-          },
-          Object {
-            "color": "#73BCF7",
-            "label": "Non-Compliant: 0",
-            "name": "Non-Compliant",
-            "value": 0,
-          },
-          Object {
-            "color": "#F4C145",
-            "label": "Unsupported: 2",
-            "name": "Unsupported",
-            "value": 2,
-          },
-          Object {
-            "color": "#f0f0f0",
-            "label": "Never reported: 13",
-            "name": "Never reported",
-            "value": 13,
-          },
-        ]
-      }
-    />
-  </GridItem>
-  <GridItem
-    span={3}
-  >
-    <span>
-      0%
-    </span>
-  </GridItem>
-</Grid>
+    <div
+      class="pf-l-grid__item pf-m-9-col"
+    >
+      <div
+        style="height: 20px; padding: 0px;"
+      >
+        <div
+          class="pf-c-chart"
+          style="height: 100%; width: 100%; user-select: none; pointer-events: none; position: relative;"
+        >
+          <svg
+            height="24"
+            role="img"
+            style="pointer-events: all; width: 100%; height: 100%;"
+            viewBox="0 0 167 24"
+            width="167"
+          >
+            <g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 22.266666666666666, 20 
+A 0 0 0 0 1, 22.266666666666666, 20 
+L 22.266666666666666, 4 
+A 0 0 0 0 1, 22.266666666666666, 4 
+L 167, 4 
+A 0 0 0 0 1, 167, 4 
+L 167, 20 
+A 0 0 0 0 1, 167, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #f0f0f0; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 0, 20 
+A 0 0 0 0 1, 0, 20 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 22.266666666666666, 4 
+A 0 0 0 0 1, 22.266666666666666, 4 
+L 22.266666666666666, 20 
+A 0 0 0 0 1, 22.266666666666666, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #F4C145; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 0, 20 
+A 0 0 0 0 1, 0, 20 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 0, 20 
+A 0 0 0 0 1, 0, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #73BCF7; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+              <g
+                role="presentation"
+              >
+                <path
+                  d="M 0, 20 
+A 0 0 0 0 1, 0, 20 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 0, 4 
+A 0 0 0 0 1, 0, 4 
+L 0, 20 
+A 0 0 0 0 1, 0, 20 
+ z"
+                  index="0"
+                  role="presentation"
+                  shape-rendering="auto"
+                  style="fill: #0066CC; stroke: var(--pf-chart-bar--data--stroke, none); stroke-width: 1; padding: 8px;"
+                />
+              </g>
+            </g>
+            <g
+              role="presentation"
+            >
+              <line
+                role="presentation"
+                shape-rendering="auto"
+                style="stroke: none; fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round;"
+                vector-effect="non-scaling-stroke"
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="24"
+              />
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-0"
+                  x="-15"
+                  y="28.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    0.99999999990
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-1"
+                  x="-15"
+                  y="22.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    0.99999999995
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-2"
+                  x="-15"
+                  y="16.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000000
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-3"
+                  x="-15"
+                  y="10.969999999999999"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000005
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-1-tickLabels-4"
+                  x="-15"
+                  y="4.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="end"
+                    x="-15"
+                  >
+                    1.00000000010
+                  </tspan>
+                </text>
+              </g>
+            </g>
+            <g
+              role="presentation"
+            >
+              <line
+                role="presentation"
+                shape-rendering="auto"
+                style="stroke: none; fill: none; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round;"
+                vector-effect="non-scaling-stroke"
+                x1="0"
+                x2="167"
+                y1="24"
+                y2="24"
+              />
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-0"
+                  x="22.266666666666666"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="22.266666666666666"
+                  >
+                    2
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-1"
+                  x="44.53333333333333"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="44.53333333333333"
+                  >
+                    4
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-2"
+                  x="66.8"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="66.8"
+                  >
+                    6
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-3"
+                  x="89.06666666666666"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="89.06666666666666"
+                  >
+                    8
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-4"
+                  x="111.33333333333333"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="111.33333333333333"
+                  >
+                    10
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-5"
+                  x="133.6"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="133.6"
+                  >
+                    12
+                  </tspan>
+                </text>
+              </g>
+              <g
+                role="presentation"
+              >
+                <text
+                  direction="inherit"
+                  dx="0"
+                  id="chart-axis-2-tickLabels-6"
+                  x="155.86666666666667"
+                  y="50.97"
+                >
+                  <tspan
+                    dx="0"
+                    dy="0"
+                    style="font-family: \\"RedHatText\\",\\"Overpass\\",overpass,helvetica,arial,sans-serif; font-size: 14px; letter-spacing: normal; padding: 10px; stroke: var(--pf-chart-global--label--stroke, transparent); fill: none;"
+                    text-anchor="middle"
+                    x="155.86666666666667"
+                  >
+                    14
+                  </tspan>
+                </text>
+              </g>
+            </g>
+          </svg>
+          <div
+            style="z-index: 110; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"
+          >
+            <svg
+              height="24"
+              style="overflow: visible; width: 100%; height: 100%;"
+              viewBox="0 0 167 24"
+              width="167"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="pf-l-grid__item pf-m-3-col"
+    >
+      <span>
+        0%
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
 `;

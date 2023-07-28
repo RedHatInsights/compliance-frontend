@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import ProfileTypeSelect from './ProfileTypeSelect';
 
 describe('ProfileTypeSelect', () => {
@@ -9,8 +10,8 @@ describe('ProfileTypeSelect', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<ProfileTypeSelect {...defaultProps} />);
+    const { asFragment } = render(<ProfileTypeSelect {...defaultProps} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

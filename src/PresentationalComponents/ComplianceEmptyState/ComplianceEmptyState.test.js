@@ -1,6 +1,5 @@
-import React from 'react';
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+
 import ComplianceEmptyState from './ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
 jest.mock('@apollo/client');
@@ -13,9 +12,9 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { asFragment } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render different message if one policy exists', () => {
@@ -24,9 +23,9 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { asFragment } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render different message if many policies exist', () => {
@@ -35,8 +34,8 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { asFragment } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

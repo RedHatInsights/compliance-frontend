@@ -1,517 +1,225 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReviewCreatedPolicy expect to render without error 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <Connect(ReviewCreatedPolicy)
-    osMajorVersion="7"
+<DocumentFragment>
+  <div
+    class="pf-c-content"
   >
-    <ReviewCreatedPolicy
-      benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-      complianceThreshold={100}
-      dispatch={[Function]}
-      name="C2S for Red Hat Enterprise Linux 6"
-      osMajorVersion="7"
-      osMinorVersionCounts={
-        Array [
-          Object {
-            "count": 10,
-            "osMinorVersion": 7,
-          },
-          Object {
-            "count": 3,
-            "osMinorVersion": 5,
-          },
-        ]
-      }
-      parentProfileName="C2S for Red Hat Enterprise Linux 6"
-      refId="xccdf_org.ssgproject.content_profile_C2S"
-      rulesCount={1}
+    <h1
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-1"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
     >
-      <TextContent>
-        <div
-          className="pf-c-content"
+      Review
+    </h1>
+    <p
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-2"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Review your SCAP policy before finishing.
+    </p>
+    <h3
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-3"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+      style="margin-top: 0px;"
+    >
+      C2S for Red Hat Enterprise Linux 6
+    </h3>
+    <dl
+      class=""
+    >
+      <dt
+        class=""
+      >
+        Policy type
+      </dt>
+      <dd
+        class=""
+      >
+        C2S for Red Hat Enterprise Linux 6
+      </dd>
+      <dt
+        class=""
+      >
+        Compliance threshold
+      </dt>
+      <dd
+        class=""
+      >
+        100%
+      </dd>
+      <dt
+        class=""
+      >
+        Systems
+      </dt>
+      <dd
+        class=""
+      >
+        <dl
+          class=""
         >
-          <Text
-            component="h1"
+          <dt
+            class=""
+            style="font-weight: normal;"
           >
-            <h1
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-1"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-            >
-              Review
-            </h1>
-          </Text>
-          <Text>
-            <p
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-2"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-            >
-              Review your SCAP policy before finishing.
-            </p>
-          </Text>
-          <Text
-            component="h3"
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
+            RHEL 7.7
+          </dt>
+          <dd
+            class=""
           >
-            <h3
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-3"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-              style={
-                Object {
-                  "marginTop": 0,
-                }
-              }
+            <span
+              class="pf-c-label pf-m-compact"
             >
-              C2S for Red Hat Enterprise Linux 6
-            </h3>
-          </Text>
-          <TextList
-            component="dl"
+              <span
+                class="pf-c-label__content"
+              >
+                10 systems
+              </span>
+            </span>
+          </dd>
+          <dt
+            class=""
+            style="font-weight: normal;"
           >
-            <dl
-              className=""
+            RHEL 7.5
+          </dt>
+          <dd
+            class=""
+          >
+            <span
+              class="pf-c-label pf-m-compact"
             >
-              <TextListItem
-                component="dt"
+              <span
+                class="pf-c-label__content"
               >
-                <dt
-                  className=""
-                >
-                  Policy type
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  C2S for Red Hat Enterprise Linux 6
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                >
-                  Compliance threshold
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  100
-                  %
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                >
-                  Systems
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  <TextList
-                    component="dl"
-                  >
-                    <dl
-                      className=""
-                    >
-                      <TextListItem
-                        component="dt"
-                        style={
-                          Object {
-                            "fontWeight": "normal",
-                          }
-                        }
-                      >
-                        <dt
-                          className=""
-                          style={
-                            Object {
-                              "fontWeight": "normal",
-                            }
-                          }
-                        >
-                          RHEL 
-                          7
-                          .
-                          7
-                        </dt>
-                      </TextListItem>
-                      <TextListItem
-                        component="dd"
-                      >
-                        <dd
-                          className=""
-                        >
-                          <Label
-                            color="grey"
-                            isCompact={true}
-                          >
-                            <span
-                              className="pf-c-label pf-m-compact"
-                            >
-                              <span
-                                className="pf-c-label__content"
-                              >
-                                10
-                                 
-                                systems
-                              </span>
-                            </span>
-                          </Label>
-                        </dd>
-                      </TextListItem>
-                      <TextListItem
-                        component="dt"
-                        style={
-                          Object {
-                            "fontWeight": "normal",
-                          }
-                        }
-                      >
-                        <dt
-                          className=""
-                          style={
-                            Object {
-                              "fontWeight": "normal",
-                            }
-                          }
-                        >
-                          RHEL 
-                          7
-                          .
-                          5
-                        </dt>
-                      </TextListItem>
-                      <TextListItem
-                        component="dd"
-                      >
-                        <dd
-                          className=""
-                        >
-                          <Label
-                            color="grey"
-                            isCompact={true}
-                          >
-                            <span
-                              className="pf-c-label pf-m-compact"
-                            >
-                              <span
-                                className="pf-c-label__content"
-                              >
-                                3
-                                 
-                                systems
-                              </span>
-                            </span>
-                          </Label>
-                        </dd>
-                      </TextListItem>
-                    </dl>
-                  </TextList>
-                </dd>
-              </TextListItem>
-            </dl>
-          </TextList>
-        </div>
-      </TextContent>
-    </ReviewCreatedPolicy>
-  </Connect(ReviewCreatedPolicy)>
-</Provider>
+                3 systems
+              </span>
+            </span>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
-<Provider
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
->
-  <Connect(ReviewCreatedPolicy)
-    osMajorVersion="7"
+<DocumentFragment>
+  <div
+    class="pf-c-content"
   >
-    <ReviewCreatedPolicy
-      benchmarkId="a5e7f1ea-e63c-40be-a17a-c2a247c11e10"
-      complianceThreshold={100}
-      dispatch={[Function]}
-      name="C2S for Red Hat Enterprise Linux 6"
-      osMajorVersion="7"
-      osMinorVersionCounts={
-        Array [
-          Object {
-            "count": 10,
-            "osMinorVersion": 7,
-          },
-          Object {
-            "count": 3,
-            "osMinorVersion": 5,
-          },
-        ]
-      }
-      parentProfileName="C2S for Red Hat Enterprise Linux 6"
-      refId="xccdf_org.ssgproject.content_profile_C2S"
-      rulesCount={1}
+    <h1
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-4"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
     >
-      <TextContent>
-        <div
-          className="pf-c-content"
+      Review
+    </h1>
+    <p
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-5"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Review your SCAP policy before finishing.
+    </p>
+    <h3
+      class=""
+      data-ouia-component-id="OUIA-Generated-Text-6"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+      style="margin-top: 0px;"
+    >
+      C2S for Red Hat Enterprise Linux 6
+    </h3>
+    <dl
+      class=""
+    >
+      <dt
+        class=""
+      >
+        Policy type
+      </dt>
+      <dd
+        class=""
+      >
+        C2S for Red Hat Enterprise Linux 6
+      </dd>
+      <dt
+        class=""
+      >
+        Compliance threshold
+      </dt>
+      <dd
+        class=""
+      >
+        100%
+      </dd>
+      <dt
+        class=""
+      >
+        Systems
+      </dt>
+      <dd
+        class=""
+      >
+        <dl
+          class=""
         >
-          <Text
-            component="h1"
+          <dt
+            class=""
+            style="font-weight: normal;"
           >
-            <h1
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-4"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-            >
-              Review
-            </h1>
-          </Text>
-          <Text>
-            <p
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-5"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-            >
-              Review your SCAP policy before finishing.
-            </p>
-          </Text>
-          <Text
-            component="h3"
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
+            RHEL 7.7
+          </dt>
+          <dd
+            class=""
           >
-            <h3
-              className=""
-              data-ouia-component-id="OUIA-Generated-Text-6"
-              data-ouia-component-type="PF4/Text"
-              data-ouia-safe={true}
-              data-pf-content={true}
-              style={
-                Object {
-                  "marginTop": 0,
-                }
-              }
+            <span
+              class="pf-c-label pf-m-compact"
             >
-              C2S for Red Hat Enterprise Linux 6
-            </h3>
-          </Text>
-          <TextList
-            component="dl"
+              <span
+                class="pf-c-label__content"
+              >
+                10 systems
+              </span>
+            </span>
+          </dd>
+          <dt
+            class=""
+            style="font-weight: normal;"
           >
-            <dl
-              className=""
+            RHEL 7.5
+          </dt>
+          <dd
+            class=""
+          >
+            <span
+              class="pf-c-label pf-m-compact"
             >
-              <TextListItem
-                component="dt"
+              <span
+                class="pf-c-label__content"
               >
-                <dt
-                  className=""
-                >
-                  Policy type
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  C2S for Red Hat Enterprise Linux 6
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                >
-                  Compliance threshold
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  100
-                  %
-                </dd>
-              </TextListItem>
-              <TextListItem
-                component="dt"
-              >
-                <dt
-                  className=""
-                >
-                  Systems
-                </dt>
-              </TextListItem>
-              <TextListItem
-                component="dd"
-              >
-                <dd
-                  className=""
-                >
-                  <TextList
-                    component="dl"
-                  >
-                    <dl
-                      className=""
-                    >
-                      <TextListItem
-                        component="dt"
-                        style={
-                          Object {
-                            "fontWeight": "normal",
-                          }
-                        }
-                      >
-                        <dt
-                          className=""
-                          style={
-                            Object {
-                              "fontWeight": "normal",
-                            }
-                          }
-                        >
-                          RHEL 
-                          7
-                          .
-                          7
-                        </dt>
-                      </TextListItem>
-                      <TextListItem
-                        component="dd"
-                      >
-                        <dd
-                          className=""
-                        >
-                          <Label
-                            color="grey"
-                            isCompact={true}
-                          >
-                            <span
-                              className="pf-c-label pf-m-compact"
-                            >
-                              <span
-                                className="pf-c-label__content"
-                              >
-                                10
-                                 
-                                systems
-                              </span>
-                            </span>
-                          </Label>
-                        </dd>
-                      </TextListItem>
-                      <TextListItem
-                        component="dt"
-                        style={
-                          Object {
-                            "fontWeight": "normal",
-                          }
-                        }
-                      >
-                        <dt
-                          className=""
-                          style={
-                            Object {
-                              "fontWeight": "normal",
-                            }
-                          }
-                        >
-                          RHEL 
-                          7
-                          .
-                          5
-                        </dt>
-                      </TextListItem>
-                      <TextListItem
-                        component="dd"
-                      >
-                        <dd
-                          className=""
-                        >
-                          <Label
-                            color="grey"
-                            isCompact={true}
-                          >
-                            <span
-                              className="pf-c-label pf-m-compact"
-                            >
-                              <span
-                                className="pf-c-label__content"
-                              >
-                                3
-                                 
-                                systems
-                              </span>
-                            </span>
-                          </Label>
-                        </dd>
-                      </TextListItem>
-                    </dl>
-                  </TextList>
-                </dd>
-              </TextListItem>
-            </dl>
-          </TextList>
-        </div>
-      </TextContent>
-    </ReviewCreatedPolicy>
-  </Connect(ReviewCreatedPolicy)>
-</Provider>
+                3 systems
+              </span>
+            </span>
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+  </div>
+</DocumentFragment>
 `;

@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ConditionalLink expect to render without error 1`] = `
-<a
-  href="https://redhat.com"
-/>
+<DocumentFragment>
+  <a
+    href="https://redhat.com"
+  />
+</DocumentFragment>
 `;
 
 exports[`ConditionalLink expect to render without error and children 1`] = `
-<a
-  href="https://redhat.com"
->
-  <span>
-    Test Child
-  </span>
-</a>
+<DocumentFragment>
+  <a
+    href="https://redhat.com"
+  >
+    <span>
+      Test Child
+    </span>
+  </a>
+</DocumentFragment>
 `;

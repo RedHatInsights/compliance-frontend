@@ -1,5 +1,4 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 import MultiSegmentBar from './MultiSegmentBar';
 
 const data = [
@@ -19,8 +18,8 @@ const data = [
 
 describe('MultiSegmentBar', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<MultiSegmentBar data={data} />);
+    const { asFragment } = render(<MultiSegmentBar data={data} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

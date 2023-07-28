@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
 import buildProfiles from '@/__factories__/profiles.js';
 import { CreateSCAPPolicy } from './CreateSCAPPolicy.js';
@@ -47,8 +48,8 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: false,
     }));
-    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
-    expect(toJson(component)).toMatchSnapshot();
+    const { asFragment } = render(<CreateSCAPPolicy {...defaultProps} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render a spinner while loading', () => {
@@ -57,8 +58,8 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: true,
     }));
-    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
-    expect(toJson(component)).toMatchSnapshot();
+    const { asFragment } = render(<CreateSCAPPolicy {...defaultProps} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render benchmarks and no policies until one is selected', () => {
@@ -67,8 +68,8 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: false,
     }));
-    const component = shallow(<CreateSCAPPolicy {...defaultProps} />);
-    expect(toJson(component)).toMatchSnapshot();
+    const { asFragment } = render(<CreateSCAPPolicy {...defaultProps} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render policies from the selected benchmark only', () => {
@@ -77,10 +78,8 @@ describe('CreateSCAPPolicy', () => {
       error: false,
       loading: false,
     }));
-    const wrapper = mount(<CreateSCAPPolicy {...defaultProps} />);
-    expect(toJson(wrapper.find('Tile'), { mode: 'deep' })).toMatchSnapshot();
-    expect(
-      toJson(wrapper.find('ProfileTypeSelect'), { mode: 'shallow' })
-    ).toMatchSnapshot();
+    const { asFragment } = render(<CreateSCAPPolicy {...defaultProps} />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 });

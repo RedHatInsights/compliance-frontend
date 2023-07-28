@@ -1,6 +1,4 @@
-import React from 'react';
-import { render } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 import SystemPolicyCard from './SystemPolicyCard';
 import { IntlProvider } from 'react-intl';
 
@@ -24,12 +22,12 @@ describe('SystemPolicyCard component', () => {
   };
 
   it('should render policy', () => {
-    const wrapper = render(
+    const { asFragment } = render(
       <IntlProvider locale={navigator.language}>
         <SystemPolicyCard policy={policy} />
       </IntlProvider>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render an unsupported policy', () => {
@@ -37,11 +35,11 @@ describe('SystemPolicyCard component', () => {
       ...policy,
       supported: false,
     };
-    const wrapper = render(
+    const { asFragment } = render(
       <IntlProvider locale={navigator.language}>
         <SystemPolicyCard policy={unsupportedPolicy} />
       </IntlProvider>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import PolicyThresholdTooltip from './PolicyThresholdTooltip';
 
 describe('PolicyThresholdTooltip', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PolicyThresholdTooltip />);
+    const { asFragment } = render(<PolicyThresholdTooltip />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

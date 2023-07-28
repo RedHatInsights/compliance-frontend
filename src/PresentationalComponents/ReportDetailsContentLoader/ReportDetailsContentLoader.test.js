@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import ReportDetailsContentLoader from './ReportDetailsContentLoader';
 
 describe('ReportDetailsContentLoader', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ReportDetailsContentLoader />);
+    const { asFragment } = render(<ReportDetailsContentLoader />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

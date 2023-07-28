@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import LoadingPoliciesTable from './LoadingPoliciesTable';
 
 describe('LoadingPoliciesTable', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<LoadingPoliciesTable />);
+    const { asFragment } = render(<LoadingPoliciesTable />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

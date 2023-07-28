@@ -1,7 +1,11 @@
+import { render } from '@testing-library/react';
+
 import { NoResultsTable } from './NoResultsTable';
 
 describe('NoResultsTable', () => {
   it('expect to render without error', () => {
-    expect(renderJson(<NoResultsTable />)).toMatchSnapshot();
+    const { asFragment } = render(<NoResultsTable />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 });

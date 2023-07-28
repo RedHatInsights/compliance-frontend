@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import ComplianceScore from './ComplianceScore';
 
 describe('auxiliary functions to reducer', () => {
@@ -10,8 +11,8 @@ describe('auxiliary functions to reducer', () => {
       compliant: false,
     };
 
-    const dangerIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(dangerIcon)).toMatchSnapshot();
+    const { asFragment } = render(<ComplianceScore {...system} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should show 0% score instead if the system score is 0', () => {
@@ -22,8 +23,8 @@ describe('auxiliary functions to reducer', () => {
       compliant: false,
     };
 
-    const dangerIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(dangerIcon)).toMatchSnapshot();
+    const { asFragment } = render(<ComplianceScore {...system} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should show a success icon if the host is compliant', () => {
@@ -34,12 +35,12 @@ describe('auxiliary functions to reducer', () => {
       profiles: [{ compliant: true }, { compliant: true }],
     };
 
-    const checkIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(checkIcon)).toMatchSnapshot();
+    const { asFragment } = render(<ComplianceScore {...system} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should show a question mark icon if the host has no rules passed or failed', () => {
-    const questionMarkIcon = mount(<ComplianceScore />);
-    expect(toJson(questionMarkIcon)).toMatchSnapshot();
+    const { asFragment } = render(<ComplianceScore />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });

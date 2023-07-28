@@ -1,15 +1,16 @@
+import { render } from '@testing-library/react';
 import SelectedFilterSwitch from './SelectedFilterSwitch';
 
 describe('SelectedFilterSwitch', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<SelectedFilterSwitch />);
+    const { asFragment } = render(<SelectedFilterSwitch />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<SelectedFilterSwitch isChecked={false} />);
+    const { asFragment } = render(<SelectedFilterSwitch isChecked={false} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -36,35 +36,35 @@ export const ComplianceSystems = () => {
         <PageHeaderTitle title="Compliance systems" />
       </PageHeader>
       <section className="pf-c-page__main-section">
-        <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewWithError
+          stateValues={{ error, data: policies?.length > 0, loading }}
+        >
           <StateViewPart stateKey="data">
-            {policies && (
-              <SystemsTable
-                columns={[
-                  Columns.customName({
-                    showLink: true,
-                  }),
-                  Columns.inventoryColumn('tags'),
-                  Columns.OS,
-                  Columns.Policies,
-                  Columns.inventoryColumn('updated', {
-                    props: { isStatic: true },
-                    transforms: [nowrap],
-                  }),
-                ]}
-                defaultFilter={DEFAULT_FILTER}
-                systemProps={{
-                  isFullView: true,
-                }}
-                showOsMinorVersionFilter={policies.map(
-                  (policy) => policy.osMajorVersion
-                )}
-                showComplianceSystemsInfo
-                enableEditPolicy={false}
-                remediationsEnabled={false}
-                policies={policies}
-              />
-            )}
+            <SystemsTable
+              columns={[
+                Columns.customName({
+                  showLink: true,
+                }),
+                Columns.inventoryColumn('tags'),
+                Columns.OS,
+                Columns.Policies,
+                Columns.inventoryColumn('updated', {
+                  props: { isStatic: true },
+                  transforms: [nowrap],
+                }),
+              ]}
+              defaultFilter={DEFAULT_FILTER}
+              systemProps={{
+                isFullView: true,
+              }}
+              showOsMinorVersionFilter={policies?.map(
+                (policy) => policy.osMajorVersion
+              )}
+              showComplianceSystemsInfo
+              enableEditPolicy={false}
+              remediationsEnabled={false}
+              policies={policies}
+            />
           </StateViewPart>
         </StateViewWithError>
       </section>

@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import PolicyBusinessObjectiveTooltip from './PolicyBusinessObjectiveTooltip';
 
 describe('PolicyBusinessObjectiveTooltip', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PolicyBusinessObjectiveTooltip />);
+    const { asFragment } = render(<PolicyBusinessObjectiveTooltip />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

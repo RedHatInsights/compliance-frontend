@@ -1,9 +1,11 @@
+import { render } from '@testing-library/react';
+
 import NoPoliciesState from './NoPoliciesState';
 
 describe('NoPoliciesState', () => {
   it('with a system having policies', () => {
-    const wrapper = shallow(<NoPoliciesState />);
+    const { asFragment } = render(<NoPoliciesState />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

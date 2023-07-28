@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import React from 'react';
 import { QUERY, PolicyDetails } from './PolicyDetails';
 import usePolicyMutation from '../../Mutations/hooks/usePolicyMutation';
@@ -91,8 +93,8 @@ usePolicyMutation.mockImplementation(() => () => {
 
 describe('PolicyDetails', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PolicyDetails />);
+    const { asFragment } = render(<PolicyDetails />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

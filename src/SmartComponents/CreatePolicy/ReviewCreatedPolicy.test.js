@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import ReviewCreatedPolicy from './ReviewCreatedPolicy.js';
 import configureStore from 'redux-mock-store';
 import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
@@ -9,7 +11,6 @@ jest.mock('@apollo/client');
 
 describe('ReviewCreatedPolicy', () => {
   let store;
-  let component;
 
   beforeEach(() => {
     store = mockStore({
@@ -65,12 +66,13 @@ describe('ReviewCreatedPolicy', () => {
       error: false,
       loading: false,
     }));
-    component = mount(
+    const { asFragment } = render(
       <Provider store={store}>
         <ReviewCreatedPolicy osMajorVersion={'7'} />
       </Provider>
     );
-    expect(toJson(component)).toMatchSnapshot();
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render a spinner while loading', () => {
@@ -79,11 +81,11 @@ describe('ReviewCreatedPolicy', () => {
       error: false,
       loading: true,
     }));
-    component = mount(
+    const { asFragment } = render(
       <Provider store={store}>
         <ReviewCreatedPolicy osMajorVersion={'7'} />
       </Provider>
     );
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

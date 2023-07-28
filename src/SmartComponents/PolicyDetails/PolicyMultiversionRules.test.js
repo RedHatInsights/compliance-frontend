@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import { policies } from '@/__fixtures__/policies';
 
@@ -13,8 +14,8 @@ describe('PolicyMultiversionRules', () => {
       ...policies.edges[0].node,
       hosts,
     };
-    const wrapper = shallow(<PolicyMultiversionRules policy={policy} />);
+    const { asFragment } = render(<PolicyMultiversionRules policy={policy} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import ReportsEmptyState from './ReportsEmptyState';
 
 describe('ReportsEmptyState', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ReportsEmptyState />);
+    const { asFragment } = render(<ReportsEmptyState />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

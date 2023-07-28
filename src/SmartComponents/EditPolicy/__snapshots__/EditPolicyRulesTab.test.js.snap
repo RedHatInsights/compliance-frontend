@@ -196,36 +196,32 @@ exports[`EditPolicyRulesTab expect to render with policy passed 1`] = `
 `;
 
 exports[`EditPolicyRulesTab expect to render without error 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": undefined,
-      "empty": true,
-      "error": undefined,
-      "loading": undefined,
-    }
-  }
->
-  <StateViewPart
-    stateKey="loading"
+<DocumentFragment>
+  <div
+    class="pf-c-empty-state"
   >
-    <EmptyTable>
-      <Spinner />
-    </EmptyTable>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
-  >
-    <TextContent>
-      <Text>
-        Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.
-      </Text>
-    </TextContent>
-  </StateViewPart>
-  <StateViewPart
-    stateKey="empty"
-  >
-    <EditPolicyRulesTabEmptyState />
-  </StateViewPart>
-</StateViewWithError>
+    <div
+      class="pf-c-empty-state__content"
+    >
+      <h5
+        class="pf-c-title pf-m-lg"
+        data-ouia-component-id="OUIA-Generated-Title-1"
+        data-ouia-component-type="PF4/Title"
+        data-ouia-safe="true"
+      >
+        No rules can be configured
+      </h5>
+      <div
+        class="pf-c-empty-state__body"
+      >
+        This policy has no associated systems, and therefore no rules can be configured.
+      </div>
+      <div
+        class="pf-c-empty-state__body"
+      >
+        Add at least one system to configure rules for this policy.
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

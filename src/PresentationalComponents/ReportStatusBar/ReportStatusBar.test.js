@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import ReportStatusBar from './ReportStatusBar';
 window.ResizeObserver = class {
   constructor() {}
@@ -15,9 +15,11 @@ const defaultHostCounts = {
 
 describe('ReportStatusBar', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ReportStatusBar hostCounts={defaultHostCounts} />);
+    const { asFragment } = render(
+      <ReportStatusBar hostCounts={defaultHostCounts} />
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render without error with no reporting systems', () => {
@@ -27,8 +29,8 @@ describe('ReportStatusBar', () => {
       totalResults: 0,
     };
 
-    const wrapper = shallow(<ReportStatusBar hostCounts={hostCounts} />);
+    const { asFragment } = render(<ReportStatusBar hostCounts={hostCounts} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

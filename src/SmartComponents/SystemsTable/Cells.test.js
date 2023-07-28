@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import {
   Name,
   SSGVersion,
@@ -11,72 +12,86 @@ const testSystem = systems[0].node;
 
 describe('Name', () => {
   it('returns', () => {
-    expect(renderJson(<Name {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<Name {...testSystem} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('SSGVersion', () => {
   it('returns', () => {
-    expect(renderJson(<SSGVersion {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<SSGVersion {...testSystem} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns no error without testResultProfiles', () => {
-    expect(
-      renderJson(<SSGVersion {...testSystem} testResultProfiles={[]} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <SSGVersion {...testSystem} testResultProfiles={[]} />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('Policies', () => {
   it('returns', () => {
-    expect(renderJson(<Policies {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<Policies {...testSystem} />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns without error without policies', () => {
-    expect(
-      renderJson(<Policies {...testSystem} policies={undefined} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <Policies {...testSystem} policies={undefined} />
+    );
+
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('FailedRules', () => {
   it('returns', () => {
-    expect(renderJson(<FailedRules {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<FailedRules {...testSystem} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns no error without testResultProfiles', () => {
-    expect(
-      renderJson(<FailedRules {...testSystem} testResultProfiles={[]} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <FailedRules {...testSystem} testResultProfiles={[]} />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('ComplianceScore', () => {
   it('returns', () => {
-    expect(renderJson(<ComplianceScore {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<ComplianceScore {...testSystem} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns no error without testResultProfiles', () => {
-    expect(
-      renderJson(<ComplianceScore {...testSystem} testResultProfiles={[]} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <ComplianceScore {...testSystem} testResultProfiles={[]} />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('LastScanned', () => {
   it('returns', () => {
-    expect(renderJson(<LastScanned {...testSystem} />)).toMatchSnapshot();
+    const { asFragment } = render(<LastScanned {...testSystem} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns NEVER', () => {
-    expect(
-      renderJson(<LastScanned {...testSystem} testResultProfiles={undefined} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <LastScanned {...testSystem} testResultProfiles={undefined} />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns no error without testResultProfiles', () => {
-    expect(
-      renderJson(<LastScanned {...testSystem} testResultProfiles={[]} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <LastScanned {...testSystem} testResultProfiles={[]} />
+    );
+    expect(asFragment()).toMatchSnapshot();
   });
 });

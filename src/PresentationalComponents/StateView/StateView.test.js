@@ -1,8 +1,9 @@
+import { render } from '@testing-library/react';
 import { StateView, StateViewPart, StateViewWithError } from './StateView';
 
 describe('StatView', () => {
   it('expect to render loading', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <StateView
         stateValues={{
           loading: true,
@@ -16,11 +17,11 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -34,11 +35,11 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render data', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -52,13 +53,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('StatViewWithError', () => {
   it('expect to render error page', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <StateViewWithError
         stateValues={{
           loading: undefined,
@@ -71,6 +72,6 @@ describe('StatViewWithError', () => {
       </StateViewWithError>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

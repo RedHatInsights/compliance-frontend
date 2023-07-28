@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
@@ -37,8 +39,8 @@ describe('DeletePolicy', () => {
   });
 
   it('expect to render an open modal without error', () => {
-    const component = shallow(<DeletePolicy />);
+    const { asFragment } = render(<DeletePolicy />);
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
 import { SystemDetails } from './SystemDetails.js';
@@ -40,23 +41,23 @@ describe('SystemDetails', () => {
   });
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<SystemDetails />);
+    const { asFragment } = render(<SystemDetails />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render loading', () => {
     useQuery.mockImplementation(() => ({ ...defaultQuery, loading: true }));
-    const wrapper = shallow(<SystemDetails />);
+    const { asFragment } = render(<SystemDetails />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render and pass hidePassed correctly', () => {
     useLocation.mockImplementation(() => ({ query: { hidePassed: true } }));
-    const wrapper = shallow(<SystemDetails />);
+    const { asFragment } = render(<SystemDetails />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render a 500 error', () => {
@@ -65,8 +66,8 @@ describe('SystemDetails', () => {
       error: 'Test Error loading',
     };
     useQuery.mockImplementation(() => ({ ...defaultQuery, error }));
-    const wrapper = shallow(<SystemDetails />);
+    const { asFragment } = render(<SystemDetails />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

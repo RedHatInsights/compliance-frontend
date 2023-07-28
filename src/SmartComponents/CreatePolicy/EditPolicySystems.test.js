@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { EditPolicySystems } from './EditPolicySystems.js';
 
 describe('EditPolicySystems', () => {
@@ -6,7 +7,7 @@ describe('EditPolicySystems', () => {
   };
 
   it('expect to render without error', async () => {
-    const component = shallow(
+    const { asFragment } = render(
       <EditPolicySystems
         {...defaultProps}
         osMajorVersion="7"
@@ -14,6 +15,6 @@ describe('EditPolicySystems', () => {
         policy={{ supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'] }}
       />
     );
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
 import { policies } from '@/__fixtures__/policies.js';
 import EditPolicyRulesTab, { toTabsData } from './EditPolicyRulesTab.js';
@@ -23,7 +24,7 @@ describe('EditPolicyRulesTab', () => {
   }));
 
   it('expect to render without error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <EditPolicyRulesTab
         setNewRuleTabs={() => {}}
         policy={{ policy: { profiles: [] } }}
@@ -32,11 +33,11 @@ describe('EditPolicyRulesTab', () => {
         osMinorVersionCounts={{}}
       />
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with policy passed', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <EditPolicyRulesTab
         setNewRuleTabs={() => {}}
         policy={policies.edges[0].node}
@@ -50,7 +51,7 @@ describe('EditPolicyRulesTab', () => {
         }}
       />
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 

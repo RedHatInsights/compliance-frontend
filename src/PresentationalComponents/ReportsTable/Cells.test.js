@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import {
   Name,
   OperatingSystem,
@@ -7,7 +8,7 @@ import {
 
 describe('Name', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <Name
         {...{
           id: 'ID',
@@ -31,13 +32,13 @@ describe('OperatingSystem', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<OperatingSystem {...defaultProps} />);
+    const { asFragment } = render(<OperatingSystem {...defaultProps} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with SSG version', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <OperatingSystem
         {...defaultProps}
         benchmark={{ version: '1.2.3' }}
@@ -46,11 +47,11 @@ describe('OperatingSystem', () => {
       />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with unsupported warning', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <OperatingSystem
         {...defaultProps}
         benchmark={{ version: '1.2.3' }}
@@ -59,7 +60,7 @@ describe('OperatingSystem', () => {
       />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
@@ -70,24 +71,24 @@ describe('CompliantSystems', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<CompliantSystems {...deftaultProps} />);
+    const { asFragment } = render(<CompliantSystems {...deftaultProps} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with unsupported hosts', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
 describe('PDFExportDownload', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PDFExportDownload id="ID1" />);
+    const { asFragment } = render(<PDFExportDownload id="ID1" />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

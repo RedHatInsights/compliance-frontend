@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import SupportedSSGVersionsLink from './SupportedSSGVersionsLink';
 
 describe('SupportedSSGVersionsLink', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<SupportedSSGVersionsLink count={0} />);
+    const { asFragment } = render(<SupportedSSGVersionsLink count={0} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

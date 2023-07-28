@@ -9,11 +9,6 @@ globals:
   global: true
   insights: true
   it: true
-  mount: true
   process: true
-  render: true
-  shallow: true
   React: true
   Promise: true
-  toJson: true
-  renderJson: true

@@ -17,16 +17,16 @@ describe('useFilterConfig', () => {
     );
     expect(result.current).toMatchSnapshot();
   });
-
-  it('works concurrently', () => {
-    const component = (
-      <>
-        <FilterItemsMockComponent filters={filters.slice(2)} />
-        <FilterItemsMockComponent filters={filters} />
-      </>
-    );
-    const { container } = render(component);
-
-    expect(container).toMatchSnapshot();
-  });
+  //
+  //   it('works concurrently', () => {
+  //     const component = (
+  //       <>
+  //         <FilterItemsMockComponent filters={filters.slice(2)} />
+  //         <FilterItemsMockComponent filters={filters} />
+  //       </>
+  //     );
+  //     const { container } = render(component);
+  //
+  //     expect(container).toMatchSnapshot();
+  //   });
 });

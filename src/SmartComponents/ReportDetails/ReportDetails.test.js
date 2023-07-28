@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { init } from 'Store';
 import { useQuery, useMutation } from '@apollo/client';
 
@@ -79,16 +80,16 @@ describe('ReportDetails', () => {
   });
 
   it('expect to render without error', () => {
-    const component = shallow(<ReportDetails {...defaultProps} />);
+    const { asFragment } = render(<ReportDetails {...defaultProps} />);
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render without error and ssg Version', () => {
-    const component = shallow(
+    const { asFragment } = render(
       <ReportDetails {...defaultProps} store={store} />
     );
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

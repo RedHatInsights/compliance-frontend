@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
 import { benchmarksQuery } from '@/__fixtures__/benchmarks_rules.js';
 
@@ -17,8 +18,8 @@ describe('CreatePolicyForm', () => {
       error: false,
       loading: false,
     }));
-    const wrapper = shallow(<CreatePolicyForm />);
-    expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
+    const { asFragment } = render(<CreatePolicyForm />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render the wizard with enableNext on systems', () => {
@@ -27,9 +28,11 @@ describe('CreatePolicyForm', () => {
       error: false,
       loading: false,
     }));
-    const wrapper = shallow(<CreatePolicyForm systemIds={['123', '456']} />);
+    const { container } = render(
+      <CreatePolicyForm systemIds={['123', '456']} />
+    );
     expect(
-      wrapper
+      container
         .find('Wizard')
         .prop('steps')
         .find(({ name }) => name === 'Systems').enableNext

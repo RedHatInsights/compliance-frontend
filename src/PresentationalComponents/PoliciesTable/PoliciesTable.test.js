@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 
@@ -14,28 +15,31 @@ describe('PoliciesTable', () => {
     history: { push: jest.fn() },
     location: {},
   };
-  let wrapper;
 
   it('expect to render without error', () => {
-    wrapper = shallow(<PoliciesTable {...defaultProps} policies={policies} />);
+    const { asFragment } = render(
+      <PoliciesTable {...defaultProps} policies={policies} />
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render emptystate', () => {
-    wrapper = shallow(<PoliciesTable {...defaultProps} policies={[]} />);
+    const { asFragment } = render(
+      <PoliciesTable {...defaultProps} policies={[]} />
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render SystemsCountWarning', () => {
-    wrapper = shallow(
+    const { asFragment } = render(
       <PoliciesTable
         {...defaultProps}
         policies={policies.map((p) => ({ ...p, totalHostCount: 0 }))}
       />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

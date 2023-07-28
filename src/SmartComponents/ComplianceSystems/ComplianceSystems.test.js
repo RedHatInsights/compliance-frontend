@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { ComplianceSystems } from './ComplianceSystems.js';
 
 jest.mock('react-redux', () => ({
@@ -18,8 +19,8 @@ jest.mock('react-router-dom', () => ({
 
 describe('ComplianceSystems', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ComplianceSystems />);
+    const { asFragment } = render(<ComplianceSystems />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

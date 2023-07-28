@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import WarningText from './WarningText';
 
 describe('WarningText', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<WarningText>Test Warning Text</WarningText>);
+    const { asFragment } = render(<WarningText>Test Warning Text</WarningText>);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

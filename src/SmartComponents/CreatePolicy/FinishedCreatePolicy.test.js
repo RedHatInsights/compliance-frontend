@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import { FinishedCreatePolicy } from './FinishedCreatePolicy.js';
 import { usePolicy } from 'Mutations';
 jest.mock('Mutations');
@@ -20,11 +22,11 @@ describe('FinishedCreatePolicy', () => {
     usePolicy.mockImplementation(() => () => Promise.resolve({}));
     const onClose = () => {};
 
-    const wrapper = shallow(
+    const { asFragment } = render(
       <FinishedCreatePolicy {...defaultProps} onClose={onClose} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it.skip('expect to render finished error state', () => {
@@ -33,10 +35,10 @@ describe('FinishedCreatePolicy', () => {
     );
     const onClose = () => {};
 
-    const wrapper = shallow(
+    const { asFragment } = render(
       <FinishedCreatePolicy {...defaultProps} onClose={onClose} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import ComplianceThresholdHelperText from './ComplianceThresholdHelperText';
 
 describe('ComplianceThresholdHelperText', () => {
@@ -6,10 +7,10 @@ describe('ComplianceThresholdHelperText', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <ComplianceThresholdHelperText {...defaultProps} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

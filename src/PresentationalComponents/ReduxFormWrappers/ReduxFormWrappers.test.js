@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { ReduxFormTextInput, ReduxFormTextArea } from './ReduxFormWrappers';
 
 describe('ReduxFormTextInput', () => {
@@ -9,9 +10,9 @@ describe('ReduxFormTextInput', () => {
       },
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextInput {...field} />);
+    const { asFragment } = render(<ReduxFormTextInput {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with defaultValue', () => {
@@ -22,9 +23,9 @@ describe('ReduxFormTextInput', () => {
       defaultValue: 'Default Value',
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextInput {...field} />);
+    const { asFragment } = render(<ReduxFormTextInput {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 
@@ -37,8 +38,8 @@ describe('ReduxFormTextArea', () => {
       selected: 'SELECTED_VALUE',
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextArea {...field} />);
+    const { asFragment } = render(<ReduxFormTextArea {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

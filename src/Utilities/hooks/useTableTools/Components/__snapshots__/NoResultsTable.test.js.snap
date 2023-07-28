@@ -1,27 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoResultsTable expect to render without error 1`] = `
-<EmptyTable>
-  <Bullseye>
-    <EmptyState
-      variant="full"
+<DocumentFragment>
+  <div
+    class="ins-c-table__empty"
+  >
+     
+    <div
+      class="pf-l-bullseye"
     >
-      <Title
-        headingLevel="h5"
-        size="lg"
+      <div
+        class="pf-c-empty-state"
       >
-        No matching 
-        results
-         found
-      </Title>
-      <EmptyStateBody>
-        This filter criteria matches no 
-        results
-        .
-        <br />
-        Try changing your filter settings.
-      </EmptyStateBody>
-    </EmptyState>
-  </Bullseye>
-</EmptyTable>
+        <div
+          class="pf-c-empty-state__content"
+        >
+          <h5
+            class="pf-c-title pf-m-lg"
+            data-ouia-component-id="OUIA-Generated-Title-1"
+            data-ouia-component-type="PF4/Title"
+            data-ouia-safe="true"
+          >
+            No matching results found
+          </h5>
+          <div
+            class="pf-c-empty-state__body"
+          >
+            This filter criteria matches no results.
+            <br />
+            Try changing your filter settings.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

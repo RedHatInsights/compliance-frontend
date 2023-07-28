@@ -1,10 +1,11 @@
+import { render } from '@testing-library/react';
 import NoResultsTable, { emptyRows } from './NoResultsTable';
 
 describe('NoResultsTable', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<NoResultsTable />);
+    const { asFragment } = render(<NoResultsTable />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
 

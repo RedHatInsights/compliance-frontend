@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ComplianceThresholdHelperText expect to render without error 1`] = `
-<Fragment>
-  <HelperText />
-</Fragment>
+<DocumentFragment>
+  <div
+    class="pf-c-helper-text"
+  />
+</DocumentFragment>
 `;

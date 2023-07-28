@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
@@ -30,8 +32,8 @@ describe('DeleteReport', () => {
   });
 
   it('expect to render an open modal without error', () => {
-    const component = mount(<DeleteReport />);
+    const { container } = render(<DeleteReport />);
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

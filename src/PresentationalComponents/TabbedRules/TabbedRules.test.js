@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
 
@@ -17,9 +18,9 @@ describe('TabbedRules', () => {
       newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
     }));
 
-    const wrapper = shallow(<TabbedRules tabsData={tabsData} />);
+    const { asFragment } = render(<TabbedRules tabsData={tabsData} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders tabs with second item as default', () => {
@@ -33,11 +34,11 @@ describe('TabbedRules', () => {
       osMinorVersion: '99',
     };
 
-    const wrapper = shallow(
+    const { asFragment } = render(
       <TabbedRules tabsData={tabsData} defaultTab={defaultTab} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('passes setSelectedRuleRefIds via internal handleSelect', () => {
@@ -47,11 +48,11 @@ describe('TabbedRules', () => {
       newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
     }));
 
-    const wrapper = shallow(
+    const { asFragment } = render(
       <TabbedRules tabsData={tabsData} setSelectedRuleRefIds={() => {}} />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('sets selected rule ref ids', () => {
@@ -70,13 +71,13 @@ describe('TabbedRules', () => {
       },
     ];
 
-    const wrapper = shallow(
+    const { asFragment } = render(
       <TabbedRules
         tabsData={tabsData}
         selectedRuleRefIds={selectedRuleRefIds}
       />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

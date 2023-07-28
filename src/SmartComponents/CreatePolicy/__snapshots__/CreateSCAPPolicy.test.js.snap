@@ -1,1157 +1,349 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CreateSCAPPolicy expect to render without error 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {},
-      "error": false,
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="loading"
+<DocumentFragment>
+  <div
+    class="pf-c-content"
   >
-    <Spinner />
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
+    <h1
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-1"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Create SCAP policy
+    </h1>
+    <p
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-2"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Select the operating system and policy type for this policy.
+    </p>
+  </div>
+  <form
+    class="pf-c-form"
+    novalidate=""
   >
-    <TextContent>
-      <Text
-        className="pf-u-mb-md"
-        component="h1"
+    <div
+      class="pf-c-form__group"
+    >
+      <div
+        class="pf-c-form__group-label"
       >
-        Create SCAP policy
-      </Text>
-      <Text
-        className="pf-u-mb-md"
-      >
-        Select the operating system and policy type for this policy.
-      </Text>
-    </TextContent>
-    <Form>
-      <FormGroup
-        fieldId="benchmark"
-        isRequired={true}
-        label="Operating system"
+        <label
+          class="pf-c-form__label"
+          for="benchmark"
+        >
+          <span
+            class="pf-c-form__label-text"
+          >
+            Operating system
+          </span>
+          <span
+            aria-hidden="true"
+            class="pf-c-form__label-required"
+          >
+             *
+          </span>
+        </label>
+         
+      </div>
+      <div
+        class="pf-c-form__group-control"
       />
-    </Form>
-  </StateViewPart>
-</StateViewWithError>
+    </div>
+  </form>
+</DocumentFragment>
 `;
 
 exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {},
-      "error": false,
-      "loading": true,
-    }
-  }
->
-  <StateViewPart
-    stateKey="loading"
+<DocumentFragment>
+  <div
+    class="ins-c-spinner"
+    role="status"
   >
-    <Spinner />
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
+    <span
+      class="pf-u-screen-reader"
+    >
+      Loading...
+    </span>
+  </div>
+  <div
+    class="pf-c-content"
   >
-    <TextContent>
-      <Text
-        className="pf-u-mb-md"
-        component="h1"
+    <h1
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-3"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Create SCAP policy
+    </h1>
+    <p
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-4"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Select the operating system and policy type for this policy.
+    </p>
+  </div>
+  <form
+    class="pf-c-form"
+    novalidate=""
+  >
+    <div
+      class="pf-c-form__group"
+    >
+      <div
+        class="pf-c-form__group-label"
       >
-        Create SCAP policy
-      </Text>
-      <Text
-        className="pf-u-mb-md"
-      >
-        Select the operating system and policy type for this policy.
-      </Text>
-    </TextContent>
-    <Form>
-      <FormGroup
-        fieldId="benchmark"
-        isRequired={true}
-        label="Operating system"
+        <label
+          class="pf-c-form__label"
+          for="benchmark"
+        >
+          <span
+            class="pf-c-form__label-text"
+          >
+            Operating system
+          </span>
+          <span
+            aria-hidden="true"
+            class="pf-c-form__label-required"
+          >
+             *
+          </span>
+        </label>
+         
+      </div>
+      <div
+        class="pf-c-form__group-control"
       />
-    </Form>
-  </StateViewPart>
-</StateViewWithError>
+    </div>
+  </form>
+</DocumentFragment>
 `;
 
 exports[`CreateSCAPPolicy should render benchmarks and no policies until one is selected 1`] = `
-<StateViewWithError
-  stateValues={
-    Object {
-      "data": Object {
-        "osMajorVersions": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
-                "osMajorVersion": 6,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
-                        "id": "6-benchmark-id",
-                        "osMajorVersion": 6,
-                        "refId": "6-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #0",
-                      "osMajorVersion": 0,
-                      "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "6.1",
-                        "6.2",
-                        "6.3",
-                        "6.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "6-benchmark-id",
-                        "osMajorVersion": 6,
-                        "refId": "6-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #1",
-                      "osMajorVersion": 1,
-                      "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "6.1",
-                        "6.2",
-                        "6.3",
-                        "6.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "6-benchmark-id",
-                        "osMajorVersion": 6,
-                        "refId": "6-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #2",
-                      "osMajorVersion": 2,
-                      "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "6.1",
-                        "6.2",
-                        "6.3",
-                        "6.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "6-benchmark-id",
-                        "osMajorVersion": 6,
-                        "refId": "6-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #3",
-                      "osMajorVersion": 3,
-                      "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "6.1",
-                        "6.2",
-                        "6.3",
-                        "6.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "6-benchmark-id",
-                        "osMajorVersion": 6,
-                        "refId": "6-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #4",
-                      "osMajorVersion": 4,
-                      "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "6.1",
-                        "6.2",
-                        "6.3",
-                        "6.4",
-                      ],
-                    },
-                  ],
-                },
-              },
-            },
-            Object {
-              "node": Object {
-                "osMajorVersion": 7,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
-                        "id": "7-benchmark-id",
-                        "osMajorVersion": 7,
-                        "refId": "7-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #0",
-                      "osMajorVersion": 0,
-                      "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "7.1",
-                        "7.2",
-                        "7.3",
-                        "7.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "7-benchmark-id",
-                        "osMajorVersion": 7,
-                        "refId": "7-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #1",
-                      "osMajorVersion": 1,
-                      "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "7.1",
-                        "7.2",
-                        "7.3",
-                        "7.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "7-benchmark-id",
-                        "osMajorVersion": 7,
-                        "refId": "7-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #2",
-                      "osMajorVersion": 2,
-                      "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "7.1",
-                        "7.2",
-                        "7.3",
-                        "7.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "7-benchmark-id",
-                        "osMajorVersion": 7,
-                        "refId": "7-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #3",
-                      "osMajorVersion": 3,
-                      "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "7.1",
-                        "7.2",
-                        "7.3",
-                        "7.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "7-benchmark-id",
-                        "osMajorVersion": 7,
-                        "refId": "7-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #4",
-                      "osMajorVersion": 4,
-                      "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "7.1",
-                        "7.2",
-                        "7.3",
-                        "7.4",
-                      ],
-                    },
-                  ],
-                },
-              },
-            },
-            Object {
-              "node": Object {
-                "osMajorVersion": 8,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
-                        "id": "8-benchmark-id",
-                        "osMajorVersion": 8,
-                        "refId": "8-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #0",
-                      "osMajorVersion": 0,
-                      "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "8.1",
-                        "8.2",
-                        "8.3",
-                        "8.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "8-benchmark-id",
-                        "osMajorVersion": 8,
-                        "refId": "8-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #1",
-                      "osMajorVersion": 1,
-                      "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "8.1",
-                        "8.2",
-                        "8.3",
-                        "8.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "8-benchmark-id",
-                        "osMajorVersion": 8,
-                        "refId": "8-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #2",
-                      "osMajorVersion": 2,
-                      "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "8.1",
-                        "8.2",
-                        "8.3",
-                        "8.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "8-benchmark-id",
-                        "osMajorVersion": 8,
-                        "refId": "8-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #3",
-                      "osMajorVersion": 3,
-                      "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "8.1",
-                        "8.2",
-                        "8.3",
-                        "8.4",
-                      ],
-                    },
-                    Object {
-                      "benchmark": Object {
-                        "id": "8-benchmark-id",
-                        "osMajorVersion": 8,
-                        "refId": "8-benchmark-refId",
-                      },
-                      "compliant": true,
-                      "lastScanned": 2021-08-31T00:00:00.000Z,
-                      "name": "Test Result Profile #4",
-                      "osMajorVersion": 4,
-                      "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_0",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #0",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_1",
-                          "remediationAvailable": true,
-                          "severity": "medium",
-                          "title": "Profile #0 Rule #1",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_2",
-                          "remediationAvailable": true,
-                          "severity": "low",
-                          "title": "Profile #0 Rule #2",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_3",
-                          "remediationAvailable": true,
-                          "severity": "unknown",
-                          "title": "Profile #0 Rule #3",
-                        },
-                        Object {
-                          "compliant": true,
-                          "precedence": 0,
-                          "refId": "xccdf_org.ssgproject.profile_0_rule_4",
-                          "remediationAvailable": true,
-                          "severity": "high",
-                          "title": "Profile #0 Rule #4",
-                        },
-                      ],
-                      "supported": true,
-                      "supportedOsVersions": Array [
-                        "8.1",
-                        "8.2",
-                        "8.3",
-                        "8.4",
-                      ],
-                    },
-                  ],
-                },
-              },
-            },
-          ],
-        },
-      },
-      "error": false,
-      "loading": false,
-    }
-  }
->
-  <StateViewPart
-    stateKey="loading"
+<DocumentFragment>
+  <div
+    class="pf-c-content"
   >
-    <Spinner />
-  </StateViewPart>
-  <StateViewPart
-    stateKey="data"
+    <h1
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-5"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Create SCAP policy
+    </h1>
+    <p
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-6"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Select the operating system and policy type for this policy.
+    </p>
+  </div>
+  <form
+    class="pf-c-form"
+    novalidate=""
   >
-    <TextContent>
-      <Text
-        className="pf-u-mb-md"
-        component="h1"
+    <div
+      class="pf-c-form__group"
+    >
+      <div
+        class="pf-c-form__group-label"
       >
-        Create SCAP policy
-      </Text>
-      <Text
-        className="pf-u-mb-md"
+        <label
+          class="pf-c-form__label"
+          for="benchmark"
+        >
+          <span
+            class="pf-c-form__label-text"
+          >
+            Operating system
+          </span>
+          <span
+            aria-hidden="true"
+            class="pf-c-form__label-required"
+          >
+             *
+          </span>
+        </label>
+         
+      </div>
+      <div
+        class="pf-c-form__group-control"
       >
-        Select the operating system and policy type for this policy.
-      </Text>
-    </TextContent>
-    <Form>
-      <FormGroup
-        fieldId="benchmark"
-        isRequired={true}
-        label="Operating system"
-      >
-        <Tile
-          className="pf-u-mr-md"
-          isSelected={false}
-          isStacked={true}
-          key="rhel6-select"
-          onClick={[Function]}
-          title="RHEL 6"
-        />
-        <Tile
-          className="pf-u-mr-md"
-          isSelected={false}
-          isStacked={true}
-          key="rhel7-select"
-          onClick={[Function]}
-          title="RHEL 7"
-        />
-        <Tile
-          className="pf-u-mr-md"
-          isSelected={false}
-          isStacked={true}
-          key="rhel8-select"
-          onClick={[Function]}
-          title="RHEL 8"
-        />
-      </FormGroup>
-    </Form>
-  </StateViewPart>
-</StateViewWithError>
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 6
+            </div>
+          </div>
+        </div>
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 7
+            </div>
+          </div>
+        </div>
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 8
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
 `;
 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
-Array [
+<DocumentFragment>
   <div
-    aria-selected={false}
-    className="pf-c-tile pf-u-mr-md"
-    onClick={[Function]}
-    role="option"
-    tabIndex={0}
+    class="pf-c-content"
+  >
+    <h1
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-7"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Create SCAP policy
+    </h1>
+    <p
+      class="pf-u-mb-md"
+      data-ouia-component-id="OUIA-Generated-Text-8"
+      data-ouia-component-type="PF4/Text"
+      data-ouia-safe="true"
+      data-pf-content="true"
+    >
+      Select the operating system and policy type for this policy.
+    </p>
+  </div>
+  <form
+    class="pf-c-form"
+    novalidate=""
   >
     <div
-      className="pf-c-tile__header pf-m-stacked"
+      class="pf-c-form__group"
     >
       <div
-        className="pf-c-tile__title"
+        class="pf-c-form__group-label"
       >
-        RHEL 6
+        <label
+          class="pf-c-form__label"
+          for="benchmark"
+        >
+          <span
+            class="pf-c-form__label-text"
+          >
+            Operating system
+          </span>
+          <span
+            aria-hidden="true"
+            class="pf-c-form__label-required"
+          >
+             *
+          </span>
+        </label>
+         
       </div>
-    </div>
-  </div>,
-  <div
-    aria-selected={false}
-    className="pf-c-tile pf-u-mr-md"
-    onClick={[Function]}
-    role="option"
-    tabIndex={0}
-  >
-    <div
-      className="pf-c-tile__header pf-m-stacked"
-    >
       <div
-        className="pf-c-tile__title"
+        class="pf-c-form__group-control"
       >
-        RHEL 7
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 6
+            </div>
+          </div>
+        </div>
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 7
+            </div>
+          </div>
+        </div>
+        <div
+          aria-selected="false"
+          class="pf-c-tile pf-u-mr-md"
+          role="option"
+          tabindex="0"
+        >
+          <div
+            class="pf-c-tile__header pf-m-stacked"
+          >
+            <div
+              class="pf-c-tile__title"
+            >
+              RHEL 8
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>,
-  <div
-    aria-selected={false}
-    className="pf-c-tile pf-u-mr-md"
-    onClick={[Function]}
-    role="option"
-    tabIndex={0}
-  >
-    <div
-      className="pf-c-tile__header pf-m-stacked"
-    >
-      <div
-        className="pf-c-tile__title"
-      >
-        RHEL 8
-      </div>
-    </div>
-  </div>,
-]
+  </form>
+</DocumentFragment>
 `;
-
-exports[`CreateSCAPPolicy should render policies from the selected benchmark only 2`] = `null`;

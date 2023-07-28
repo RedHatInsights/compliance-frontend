@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { CheckboxFieldArray } from './CheckboxGroup';
 
 describe('CheckboxFieldArray', () => {
@@ -21,21 +22,21 @@ describe('CheckboxFieldArray', () => {
   });
 
   it('expect to render with default checked fields', () => {
-    const component = shallow(
+    const { asFragment } = render(
       <CheckboxFieldArray input={input} options={options} />
     );
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render without default checked fields', () => {
     options[0].defaultChecked = undefined;
     options[1].defaultChecked = undefined;
 
-    const component = shallow(
+    const { asFragment } = render(
       <CheckboxFieldArray input={input} options={options} />
     );
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

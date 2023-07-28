@@ -1,5 +1,5 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
-
 import { Reports } from './Reports.js';
 
 jest.mock('@apollo/client');
@@ -36,9 +36,9 @@ describe('Reports', () => {
       loading: false,
     }));
 
-    const wrapper = shallow(<Reports />);
+    const { asFragment } = render(<Reports />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render emptystate', () => {
@@ -50,9 +50,9 @@ describe('Reports', () => {
       loading: false,
     }));
 
-    const wrapper = shallow(<Reports />);
+    const { asFragment } = render(<Reports />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render loading', () => {
@@ -61,8 +61,8 @@ describe('Reports', () => {
       error: false,
       loading: true,
     }));
-    const wrapper = shallow(<Reports />);
+    const { asFragment } = render(<Reports />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

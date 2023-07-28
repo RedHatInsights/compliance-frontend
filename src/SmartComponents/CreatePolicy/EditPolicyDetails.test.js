@@ -1,14 +1,16 @@
+import { render } from '@testing-library/react';
 import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
 import { EditPolicyDetails } from './EditPolicyDetails.js';
 
 describe('EditPolicyDetails', () => {
   it('expect to render without error', () => {
-    const component = shallow(
+    const { asFragment } = render(
       <EditPolicyDetails
         change={() => ({})}
         policy={policyFormValues.profile}
       />
     );
-    expect(toJson(component)).toMatchSnapshot();
+
+    expect(asFragment()).toMatchSnapshot();
   });
 });

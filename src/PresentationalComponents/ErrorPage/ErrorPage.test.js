@@ -1,8 +1,9 @@
+import { render } from '@testing-library/react';
 import ErrorPage from './ErrorPage';
 
 describe('ErrorPage', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <ErrorPage
         error={{
           message: 'An error message',
@@ -10,7 +11,7 @@ describe('ErrorPage', () => {
       />
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render an invalid object', () => {
@@ -18,9 +19,9 @@ describe('ErrorPage', () => {
       networkError: { statusCode: 404 },
       error: 'Not found',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    const { asFragment } = render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render a 403 error', () => {
@@ -28,9 +29,9 @@ describe('ErrorPage', () => {
       networkError: { statusCode: 403 },
       error: 'Not authorized',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    const { asFragment } = render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render a 401 error when logged out', () => {
@@ -41,9 +42,9 @@ describe('ErrorPage', () => {
       networkError: { statusCode: 401 },
       error: 'Test Error loading',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    const { asFragment } = render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
     expect(window.insights.chrome.auth.logout).toHaveBeenCalled();
   });
 });

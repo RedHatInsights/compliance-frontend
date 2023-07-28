@@ -55,41 +55,52 @@ describe('SystemsTable', () => {
   const store = init().getStore();
 
   it('returns', () => {
-    expect(renderJson(<SystemsTable />)).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns without actions', () => {
-    expect(renderJson(<SystemsTable showActions={false} />)).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable showActions={false} />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns without remediations', () => {
-    expect(
-      renderJson(<SystemsTable remediationsEnabled={false} />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable remediationsEnabled={false} />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns showAllSystems', () => {
-    expect(renderJson(<SystemsTable showAllSystems />)).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable showAllSystems />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns with a showComplianceSystemsInfo', () => {
-    expect(
-      renderJson(<SystemsTable showComplianceSystemsInfo />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable showComplianceSystemsInfo />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns compact', () => {
-    expect(renderJson(<SystemsTable compact />)).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable compact />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns with compliantFilter', () => {
-    expect(renderJson(<SystemsTable compliantFilter />)).toMatchSnapshot();
+    const { asFragment } = render(<SystemsTable compliantFilter />);
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('returns with showOnlySystemsWithTestResults', () => {
-    expect(
-      renderJson(<SystemsTable showOnlySystemsWithTestResults />)
-    ).toMatchSnapshot();
+    const { asFragment } = render(
+      <SystemsTable showOnlySystemsWithTestResults />
+    );
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to have filters properly rendered', () => {

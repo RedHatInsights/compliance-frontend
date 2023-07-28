@@ -1,7 +1,7 @@
+import { render } from '@testing-library/react';
 import PolicySystemsTab from './PolicySystemsTab';
 import { policies } from '@/__fixtures__/policies';
-import useFeature from 'Utilities/hooks/useFeature';
-jest.mock('Utilities/hooks/useFeature');
+
 jest.mock('react-router-dom', () => ({
   __esModule: true,
   useLocation: jest.fn().mockReturnValue({
@@ -15,11 +15,10 @@ jest.mock('react-router-dom', () => ({
 
 describe('PolicySystemsTab', () => {
   it('expect to render without error', () => {
-    useFeature.mockImplementation(() => true);
     const policy = policies.edges[0].node;
-    const wrapper = shallow(<PolicySystemsTab {...{ policy }} />);
+    const { asFragment } = render(<PolicySystemsTab {...{ policy }} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with no systems table', () => {
@@ -27,9 +26,8 @@ describe('PolicySystemsTab', () => {
       ...policies.edges[0].node,
       hosts: [],
     };
+    const { asFragment } = render(<PolicySystemsTab {...{ policy }} />);
 
-    const wrapper = shallow(<PolicySystemsTab {...{ policy }} />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

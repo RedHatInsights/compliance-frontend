@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useQuery } from '@apollo/client';
 import { profiles } from '@/__fixtures__/profiles.js';
 
@@ -42,9 +43,9 @@ describe('CompliancePolicies', () => {
       loading: undefined,
     }));
 
-    const wrapper = shallow(<CompliancePolicies />);
+    const { asFragment } = render(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render emptystate', () => {
@@ -58,9 +59,9 @@ describe('CompliancePolicies', () => {
       loading: undefined,
     }));
 
-    const wrapper = shallow(<CompliancePolicies />);
+    const { asFragment } = render(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render an error', () => {
@@ -73,9 +74,9 @@ describe('CompliancePolicies', () => {
       error,
       loading: undefined,
     }));
-    const wrapper = shallow(<CompliancePolicies />);
+    const { asFragment } = render(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render loading', () => {
@@ -84,9 +85,9 @@ describe('CompliancePolicies', () => {
       error: undefined,
       loading: true,
     }));
-    const wrapper = shallow(<CompliancePolicies />);
+    const { asFragment } = render(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render a policies table', () => {
@@ -95,8 +96,8 @@ describe('CompliancePolicies', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<CompliancePolicies />);
+    const { asFragment } = render(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

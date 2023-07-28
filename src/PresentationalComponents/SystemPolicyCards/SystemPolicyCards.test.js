@@ -1,8 +1,8 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import SystemPolicyCards from './SystemPolicyCards';
 import { IntlProvider } from 'react-intl';
-import { mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
+
 jest.mock('react-content-loader', () => ({
   Instagram: 'Instagram',
 }));
@@ -49,20 +49,22 @@ describe('SystemPolicyCards component', () => {
   });
 
   it('should render loading state', () => {
-    const wrappper = mount(
+    const { asFragment } = render(
       <IntlProvider locale={navigator.language}>
         <SystemPolicyCards policies={policies} loading={true} />
       </IntlProvider>
     );
-    expect(toJson(wrappper)).toMatchSnapshot();
+
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render real table', () => {
-    const wrappper = mount(
+    const { asFragment } = render(
       <IntlProvider locale={navigator.language}>
         <SystemPolicyCards policies={policies} loading={false} />
       </IntlProvider>
     );
-    expect(toJson(wrappper)).toMatchSnapshot();
+
+    expect(asFragment()).toMatchSnapshot();
   });
 });

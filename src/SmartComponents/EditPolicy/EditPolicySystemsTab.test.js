@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import EditPolicySystemsTab from './EditPolicySystemsTab.js';
 
 describe('EditPolicySystemsTab', () => {
@@ -11,14 +12,14 @@ describe('EditPolicySystemsTab', () => {
   };
 
   it('expect to render without error', async () => {
-    const wrapper = shallow(<EditPolicySystemsTab {...defaultProps} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+    const { asFragment } = render(<EditPolicySystemsTab {...defaultProps} />);
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render with new tabs alert', async () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <EditPolicySystemsTab {...defaultProps} newRuleTabs={true} />
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import ReportsTable from './ReportsTable';
 import {
@@ -29,9 +30,9 @@ const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ReportsTable profiles={profiles} />);
+    const { asFragment } = render(<ReportsTable profiles={profiles} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to have filters properly rendered', () => {

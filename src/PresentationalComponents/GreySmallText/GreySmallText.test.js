@@ -1,13 +1,14 @@
+import { render } from '@testing-library/react';
 import { GreySmallText } from './GreySmallText.js';
 
 describe('GreySmallText', () => {
   it('expect to render without error', () => {
-    let wrapper = shallow(
+    const { asFragment } = render(
       <GreySmallText>
         <span>THIS IS A TEST</span>
       </GreySmallText>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

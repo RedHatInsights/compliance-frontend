@@ -1,16 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GreySmallText expect to render without error 1`] = `
-<Text
-  component="small"
-  style={
-    Object {
-      "color": "var(--pf-global--Color--200)",
-    }
-  }
->
-  <span>
-    THIS IS A TEST
-  </span>
-</Text>
+<DocumentFragment>
+  <small
+    class=""
+    data-ouia-component-id="OUIA-Generated-Text-1"
+    data-ouia-component-type="PF4/Text"
+    data-ouia-safe="true"
+    data-pf-content="true"
+  >
+    <span>
+      THIS IS A TEST
+    </span>
+  </small>
+</DocumentFragment>
 `;

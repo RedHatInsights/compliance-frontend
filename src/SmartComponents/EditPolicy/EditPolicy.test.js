@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import { useLocation } from 'react-router-dom';
 import { EditPolicy, MULTIVERSION_QUERY } from './EditPolicy.js';
 jest.mock('Mutations');
@@ -86,8 +87,8 @@ describe('EditPolicy', () => {
   });
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<EditPolicy {...defaultProps} />);
+    const { asFragment } = render(<EditPolicy {...defaultProps} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

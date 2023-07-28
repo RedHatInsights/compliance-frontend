@@ -1,9 +1,10 @@
+import { render } from '@testing-library/react';
 import PolicyDetailsContentLoader from './PolicyDetailsContentLoader';
 
 describe('PolicyDetailsContentLoader', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PolicyDetailsContentLoader />);
+    const { asFragment } = render(<PolicyDetailsContentLoader />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
