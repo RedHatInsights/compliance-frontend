@@ -14,8 +14,8 @@ exports[`ComplianceSystems expect to render without error 1`] = `
   >
     <StateViewWithError
       stateValues={
-        Object {
-          "data": Array [],
+        {
+          "data": [],
           "error": undefined,
           "loading": undefined,
         }

@@ -3,7 +3,7 @@
 exports[`ReviewCreatedPolicy expect to render without error 1`] = `
 <Provider
   store={
-    Object {
+    {
       "clearActions": [Function],
       "dispatch": [Function],
       "getActions": [Function],
@@ -23,12 +23,12 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
       name="C2S for Red Hat Enterprise Linux 6"
       osMajorVersion="7"
       osMinorVersionCounts={
-        Array [
-          Object {
+        [
+          {
             "count": 10,
             "osMinorVersion": 7,
           },
-          Object {
+          {
             "count": 3,
             "osMinorVersion": 5,
           },
@@ -69,7 +69,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
           <Text
             component="h3"
             style={
-              Object {
+              {
                 "marginTop": 0,
               }
             }
@@ -81,7 +81,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
               data-ouia-safe={true}
               data-pf-content={true}
               style={
-                Object {
+                {
                   "marginTop": 0,
                 }
               }
@@ -156,7 +156,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       <TextListItem
                         component="dt"
                         style={
-                          Object {
+                          {
                             "fontWeight": "normal",
                           }
                         }
@@ -164,7 +164,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                         <dt
                           className=""
                           style={
-                            Object {
+                            {
                               "fontWeight": "normal",
                             }
                           }
@@ -202,7 +202,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                       <TextListItem
                         component="dt"
                         style={
-                          Object {
+                          {
                             "fontWeight": "normal",
                           }
                         }
@@ -210,7 +210,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
                         <dt
                           className=""
                           style={
-                            Object {
+                            {
                               "fontWeight": "normal",
                             }
                           }
@@ -261,7 +261,7 @@ exports[`ReviewCreatedPolicy expect to render without error 1`] = `
 exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
 <Provider
   store={
-    Object {
+    {
       "clearActions": [Function],
       "dispatch": [Function],
       "getActions": [Function],
@@ -281,12 +281,12 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
       name="C2S for Red Hat Enterprise Linux 6"
       osMajorVersion="7"
       osMinorVersionCounts={
-        Array [
-          Object {
+        [
+          {
             "count": 10,
             "osMinorVersion": 7,
           },
-          Object {
+          {
             "count": 3,
             "osMinorVersion": 5,
           },
@@ -327,7 +327,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
           <Text
             component="h3"
             style={
-              Object {
+              {
                 "marginTop": 0,
               }
             }
@@ -339,7 +339,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
               data-ouia-safe={true}
               data-pf-content={true}
               style={
-                Object {
+                {
                   "marginTop": 0,
                 }
               }
@@ -414,7 +414,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       <TextListItem
                         component="dt"
                         style={
-                          Object {
+                          {
                             "fontWeight": "normal",
                           }
                         }
@@ -422,7 +422,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                         <dt
                           className=""
                           style={
-                            Object {
+                            {
                               "fontWeight": "normal",
                             }
                           }
@@ -460,7 +460,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                       <TextListItem
                         component="dt"
                         style={
-                          Object {
+                          {
                             "fontWeight": "normal",
                           }
                         }
@@ -468,7 +468,7 @@ exports[`ReviewCreatedPolicy should render a spinner while loading 1`] = `
                         <dt
                           className=""
                           style={
-                            Object {
+                            {
                               "fontWeight": "normal",
                             }
                           }

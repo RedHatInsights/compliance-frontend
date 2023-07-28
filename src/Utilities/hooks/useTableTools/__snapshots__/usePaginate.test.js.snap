@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`usePaginate returns a paginate configuration 1`] = `
-Object {
-  "all": Array [
-    Object {
+{
+  "all": [
+    {
       "paginator": [Function],
       "setPage": [Function],
-      "toolbarProps": Object {
-        "pagination": Object {
+      "toolbarProps": {
+        "pagination": {
           "onPerPageSelect": [Function],
           "onSetPage": [Function],
           "page": 1,
@@ -16,11 +16,11 @@ Object {
       },
     },
   ],
-  "current": Object {
+  "current": {
     "paginator": [Function],
     "setPage": [Function],
-    "toolbarProps": Object {
-      "pagination": Object {
+    "toolbarProps": {
+      "pagination": {
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
         "page": 1,
@@ -33,32 +33,32 @@ Object {
 `;
 
 exports[`usePaginate returns a paginate configuration 2`] = `
-Array [
-  Object {
+[
+  {
     "description": "DESCRIPTION",
     "id": 6,
     "name": "TEST ITEM #6",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 7,
     "name": "TEST ITEM #7",
     "severity": "unknown",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 8,
     "name": "TEST ITEM #8",
     "severity": "high",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 9,
     "name": "TEST ITEM #9",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 10,
     "name": "TEST ITEM #10",

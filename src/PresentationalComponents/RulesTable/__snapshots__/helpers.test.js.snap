@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`growTableTree returns a tableTree 1`] = `
-Array [
-  Object {
+[
+  {
     "itemId": "undefined",
     "title": <Text>
       RG 1
        
     </Text>,
-    "twigs": Array [
-      Object {
+    "twigs": [
+      {
         "itemId": "undefined",
-        "leaves": Array [
+        "leaves": [
           "|1.1.2",
           "|1.1.2",
         ],
@@ -20,9 +20,9 @@ Array [
            
         </Text>,
       },
-      Object {
+      {
         "itemId": "undefined",
-        "leaves": Array [
+        "leaves": [
           "|1.1.2",
           "|1.1.2",
         ],
@@ -33,9 +33,9 @@ Array [
       },
     ],
   },
-  Object {
+  {
     "itemId": "undefined",
-    "leaves": Array [
+    "leaves": [
       "|1.1.2",
       "|1.1.2",
     ],

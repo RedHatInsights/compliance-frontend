@@ -44,23 +44,23 @@ exports[`TableToolsTable expect to render without error 1`] = `
 <Fragment>
   <PrimaryToolbar
     actionsConfig={
-      Object {
-        "actions": Array [
+      {
+        "actions": [
           undefined,
         ],
       }
     }
     activeFiltersConfig={
-      Object {
-        "filters": Array [],
+      {
+        "filters": [],
         "onDelete": [Function],
       }
     }
     filterConfig={
-      Object {
-        "items": Array [
-          Object {
-            "filterValues": Object {
+      {
+        "items": [
+          {
+            "filterValues": {
               "onChange": [Function],
               "value": undefined,
             },
@@ -69,18 +69,18 @@ exports[`TableToolsTable expect to render without error 1`] = `
             "placeholder": "Filter by name",
             "type": "text",
           },
-          Object {
-            "filterValues": Object {
-              "items": Array [
-                Object {
+          {
+            "filterValues": {
+              "items": [
+                {
                   "label": "OPTION 1",
                   "value": "OPTION 1",
                 },
-                Object {
+                {
                   "label": "OPTION 2",
                   "value": "OPTION 2",
                 },
-                Object {
+                {
                   "label": "OPTION 3",
                   "value": "OPTION 3",
                 },
@@ -93,18 +93,18 @@ exports[`TableToolsTable expect to render without error 1`] = `
             "placeholder": "Filter by checkbox filter",
             "type": "checkbox",
           },
-          Object {
-            "filterValues": Object {
-              "items": Array [
-                Object {
+          {
+            "filterValues": {
+              "items": [
+                {
                   "label": "OPTION 1",
                   "value": "OPTION 1",
                 },
-                Object {
+                {
                   "label": "OPTION 2",
                   "value": "OPTION 2",
                 },
-                Object {
+                {
                   "label": "OPTION 3",
                   "value": "OPTION 3",
                 },
@@ -117,18 +117,18 @@ exports[`TableToolsTable expect to render without error 1`] = `
             "placeholder": "Filter by radio filter",
             "type": "radio",
           },
-          Object {
+          {
             "className": undefined,
-            "filterValues": Object {
-              "groups": Array [
-                Object {
-                  "items": Array [
-                    Object {
+            "filterValues": {
+              "groups": [
+                {
+                  "items": [
+                    {
                       "label": "Child 1",
                       "type": "checkbox",
                       "value": 1,
                     },
-                    Object {
+                    {
                       "label": "Child 2",
                       "type": "checkbox",
                       "value": 2,
@@ -138,14 +138,14 @@ exports[`TableToolsTable expect to render without error 1`] = `
                   "type": "checkbox",
                   "value": 1,
                 },
-                Object {
-                  "items": Array [
-                    Object {
+                {
+                  "items": [
+                    {
                       "label": "Parent 2 Child 1",
                       "type": "checkbox",
                       "value": 1,
                     },
-                    Object {
+                    {
                       "label": "Parent 2 Child 2",
                       "type": "checkbox",
                       "value": 2,
@@ -167,7 +167,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
       }
     }
     pagination={
-      Object {
+      {
         "itemCount": 30,
         "onPerPageSelect": [Function],
         "onSetPage": [Function],
@@ -184,42 +184,42 @@ exports[`TableToolsTable expect to render without error 1`] = `
     canSelectAll={true}
     canSortFavorites={true}
     cells={
-      Array [
-        Object {
+      [
+        {
           "exportKey": "id",
           "sortByProperty": "id",
           "title": "ID",
         },
-        Object {
+        {
           "exportKey": "name",
           "renderFunc": [Function],
           "sortByProperty": "name",
           "title": "Name",
         },
-        Object {
+        {
           "exportKey": "name",
           "renderExport": [Function],
           "sortByProperty": "name",
           "title": "Another Name column",
         },
-        Object {
+        {
           "renderExport": [Function],
           "sortByProperty": "description",
           "title": "Description",
         },
-        Object {
+        {
           "exportKey": "severity",
           "renderFunc": [Function],
           "sortByFunction": [Function],
           "title": "Severity sorted by function",
-          "transforms": Array [
+          "transforms": [
             [Function],
           ],
         },
-        Object {
+        {
           "exportKey": "severity",
           "renderFunc": [Function],
-          "sortByArray": Array [
+          "sortByArray": [
             "high",
             "medium",
             "low",
@@ -247,232 +247,232 @@ exports[`TableToolsTable expect to render without error 1`] = `
     role="grid"
     rowLabeledBy="simple-node"
     rows={
-      Array [
-        Object {
-          "cells": Array [
-            Object {
+      [
+        {
+          "cells": [
+            {
               "title": 1,
             },
-            Object {
+            {
               "title": "TEST ITEM #1",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "medium",
             },
-            Object {
+            {
               "title": "medium",
             },
           ],
           "itemId": 1,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 2,
             },
-            Object {
+            {
               "title": "TEST ITEM #2",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "low",
             },
-            Object {
+            {
               "title": "low",
             },
           ],
           "itemId": 2,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 3,
             },
-            Object {
+            {
               "title": "TEST ITEM #3",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "unknown",
             },
-            Object {
+            {
               "title": "unknown",
             },
           ],
           "itemId": 3,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 4,
             },
-            Object {
+            {
               "title": "TEST ITEM #4",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "high",
             },
-            Object {
+            {
               "title": "high",
             },
           ],
           "itemId": 4,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 5,
             },
-            Object {
+            {
               "title": "TEST ITEM #5",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "medium",
             },
-            Object {
+            {
               "title": "medium",
             },
           ],
           "itemId": 5,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 6,
             },
-            Object {
+            {
               "title": "TEST ITEM #6",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "low",
             },
-            Object {
+            {
               "title": "low",
             },
           ],
           "itemId": 6,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 7,
             },
-            Object {
+            {
               "title": "TEST ITEM #7",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "unknown",
             },
-            Object {
+            {
               "title": "unknown",
             },
           ],
           "itemId": 7,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 8,
             },
-            Object {
+            {
               "title": "TEST ITEM #8",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "high",
             },
-            Object {
+            {
               "title": "high",
             },
           ],
           "itemId": 8,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 9,
             },
-            Object {
+            {
               "title": "TEST ITEM #9",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "medium",
             },
-            Object {
+            {
               "title": "medium",
             },
           ],
           "itemId": 9,
         },
-        Object {
-          "cells": Array [
-            Object {
+        {
+          "cells": [
+            {
               "title": 10,
             },
-            Object {
+            {
               "title": "TEST ITEM #10",
             },
-            Object {
+            {
               "title": undefined,
             },
-            Object {
+            {
               "title": "DESCRIPTION",
             },
-            Object {
+            {
               "title": "low",
             },
-            Object {
+            {
               "title": "low",
             },
           ],
@@ -482,7 +482,7 @@ exports[`TableToolsTable expect to render without error 1`] = `
     }
     selectVariant="checkbox"
     sortBy={
-      Object {
+      {
         "direction": "asc",
         "index": 1,
       }
@@ -520,27 +520,27 @@ exports[`TableToolsTable expect to render without error 1`] = `
       perPage={10}
       perPageComponent="div"
       perPageOptions={
-        Array [
-          Object {
+        [
+          {
             "title": "10",
             "value": 10,
           },
-          Object {
+          {
             "title": "20",
             "value": 20,
           },
-          Object {
+          {
             "title": "50",
             "value": 50,
           },
-          Object {
+          {
             "title": "100",
             "value": 100,
           },
         ]
       }
       titles={
-        Object {
+        {
           "currPage": "Current page",
           "items": "",
           "itemsPerPage": "Items per page",

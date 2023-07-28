@@ -3,15 +3,15 @@
 exports[`SystemDetails expect to render a 500 error 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
+    {
+      "data": {
+        "system": {
           "name": "test.host.local",
         },
       },
-      "error": Object {
+      "error": {
         "error": "Test Error loading",
-        "networkError": Object {
+        "networkError": {
           "statusCode": 500,
         },
       },
@@ -42,7 +42,7 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
           test.host.local
         </BreadcrumbItem>
       </Breadcrumb>
-      <ConnectedInventoryDetails
+      <InventoryDetails
         inventoryId={1}
       />
     </PageHeader>
@@ -70,9 +70,9 @@ exports[`SystemDetails expect to render a 500 error 1`] = `
 exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
+    {
+      "data": {
+        "system": {
           "name": "test.host.local",
         },
       },
@@ -104,7 +104,7 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
           test.host.local
         </BreadcrumbItem>
       </Breadcrumb>
-      <ConnectedInventoryDetails
+      <InventoryDetails
         inventoryId={1}
       />
     </PageHeader>
@@ -132,9 +132,9 @@ exports[`SystemDetails expect to render and pass hidePassed correctly 1`] = `
 exports[`SystemDetails expect to render loading 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
+    {
+      "data": {
+        "system": {
           "name": "test.host.local",
         },
       },
@@ -166,7 +166,7 @@ exports[`SystemDetails expect to render loading 1`] = `
           test.host.local
         </BreadcrumbItem>
       </Breadcrumb>
-      <ConnectedInventoryDetails
+      <InventoryDetails
         inventoryId={1}
       />
     </PageHeader>
@@ -194,9 +194,9 @@ exports[`SystemDetails expect to render loading 1`] = `
 exports[`SystemDetails expect to render without error 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "system": Object {
+    {
+      "data": {
+        "system": {
           "name": "test.host.local",
         },
       },
@@ -228,7 +228,7 @@ exports[`SystemDetails expect to render without error 1`] = `
           test.host.local
         </BreadcrumbItem>
       </Breadcrumb>
-      <ConnectedInventoryDetails
+      <InventoryDetails
         inventoryId={1}
       />
     </PageHeader>

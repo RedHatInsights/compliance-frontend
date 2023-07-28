@@ -5,10 +5,10 @@ exports[`Reports expect to render emptystate 1`] = `
   <ReportsHeader />
   <StateViewWithError
     stateValues={
-      Object {
-        "data": Object {
-          "profiles": Object {
-            "edges": Array [],
+      {
+        "data": {
+          "profiles": {
+            "edges": [],
           },
         },
         "error": undefined,
@@ -46,7 +46,7 @@ exports[`Reports expect to render loading 1`] = `
   <ReportsHeader />
   <StateViewWithError
     stateValues={
-      Object {
+      {
         "data": undefined,
         "error": false,
         "loading": true,
@@ -83,13 +83,13 @@ exports[`Reports expect to render without error 1`] = `
   <ReportsHeader />
   <StateViewWithError
     stateValues={
-      Object {
-        "data": Object {
-          "profiles": Object {
-            "edges": Array [
-              Object {
-                "node": Object {
-                  "businessObjective": Object {
+      {
+        "data": {
+          "profiles": {
+            "edges": [
+              {
+                "node": {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -130,9 +130,9 @@ exports[`Reports expect to render without error 1`] = `
       >
         <ReportsTable
           profiles={
-            Array [
-              Object {
-                "businessObjective": Object {
+            [
+              {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },

@@ -4,7 +4,7 @@ exports[`ReduxFormTextArea expect to render without error 1`] = `
 <TextArea
   additionalProp="Prop1"
   input={
-    Object {
+    {
       "onChange": [MockFunction],
     }
   }
@@ -18,7 +18,7 @@ exports[`ReduxFormTextInput expect to render with defaultValue 1`] = `
   additionalProp="Prop1"
   defaultValue="Default Value"
   input={
-    Object {
+    {
       "onChange": [MockFunction],
     }
   }
@@ -31,7 +31,7 @@ exports[`ReduxFormTextInput expect to render without error 1`] = `
 <TextInput
   additionalProp="Prop1"
   input={
-    Object {
+    {
       "onChange": [MockFunction],
       "value": "Value",
     }

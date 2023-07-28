@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useOnSave returns an array with a boolean and function 1`] = `
-Object {
-  "all": Array [
-    Array [
+{
+  "all": [
+    [
       false,
       [Function],
     ],
   ],
-  "current": Array [
+  "current": [
     false,
     [Function],
   ],

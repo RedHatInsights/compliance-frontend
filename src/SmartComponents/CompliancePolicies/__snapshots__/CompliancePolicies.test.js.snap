@@ -14,14 +14,14 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
   >
     <StateView
       stateValues={
-        Object {
-          "data": Object {
-            "profiles": Object {
+        {
+          "data": {
+            "profiles": {
               "__typename": "ProfileConnection",
-              "edges": Array [
-                Object {
+              "edges": [
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -30,9 +30,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_ospp23",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 68.9,
@@ -41,9 +41,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -52,9 +52,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_pci-dss - customized111",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -63,9 +63,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_ospp2",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -74,9 +74,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_pci-dss_customized",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 92,
@@ -85,9 +85,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa - customized",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 69.5,
@@ -96,9 +96,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_C2S",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -107,9 +107,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_ospp - customized",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -118,9 +118,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_osp23",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -129,9 +129,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_cjis",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -140,9 +140,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -151,9 +151,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -162,9 +162,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -173,9 +173,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_hipaa",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -184,9 +184,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_ospp",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -195,9 +195,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_standard",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -206,9 +206,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -217,9 +217,9 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                     "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
                   },
                 },
-                Object {
+                {
                   "__typename": "ProfileEdge",
-                  "node": Object {
+                  "node": {
                     "__typename": "Profile",
                     "businessObjective": null,
                     "complianceThreshold": 100,
@@ -252,8 +252,8 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
         <PoliciesTable
           DedicatedAction={[Function]}
           policies={
-            Array [
-              Object {
+            [
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -261,7 +261,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "United States Government Configuration Baseline23",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp23",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 68.9,
@@ -269,7 +269,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
                 "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -277,7 +277,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7 - customized111",
                 "refId": "xccdf_org.ssgproject.content_profile_pci-dss - customized111",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -285,7 +285,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "United States Government Configuration Baseline2",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp2",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -293,7 +293,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 8 - custom",
                 "refId": "xccdf_org.ssgproject.content_profile_pci-dss_customized",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 92,
@@ -301,7 +301,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "DISA STIG for Red Hat Enterprise Linux 7 - customized",
                 "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa - customized",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 69.5,
@@ -309,7 +309,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "C2S for Red Hat Enterprise Linux 7",
                 "refId": "xccdf_org.ssgproject.content_profile_C2S",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -317,7 +317,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "United States Government Configuration Baseline - customized",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp - customized",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -325,7 +325,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "United States Government Configuration Baseline23",
                 "refId": "xccdf_org.ssgproject.content_profile_osp23",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -333,7 +333,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "Criminal Justice Information Services (CJIS) Security Policy",
                 "refId": "xccdf_org.ssgproject.content_profile_cjis",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -341,7 +341,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
                 "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -349,7 +349,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                 "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -357,7 +357,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
                 "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -365,7 +365,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "Health Insurance Portability and Accountability Act (HIPAA)",
                 "refId": "xccdf_org.ssgproject.content_profile_hipaa",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -373,7 +373,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "United States Government Configuration Baseline",
                 "refId": "xccdf_org.ssgproject.content_profile_ospp",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -381,7 +381,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "Standard System Security Profile for Red Hat Enterprise Linux 7",
                 "refId": "xccdf_org.ssgproject.content_profile_standard",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -389,7 +389,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "DISA STIG for Red Hat Enterprise Linux 7",
                 "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -397,7 +397,7 @@ exports[`CompliancePolicies expect to render a policies table 1`] = `
                 "name": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
                 "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
               },
-              Object {
+              {
                 "__typename": "Profile",
                 "businessObjective": null,
                 "complianceThreshold": 100,
@@ -428,11 +428,11 @@ exports[`CompliancePolicies expect to render an error 1`] = `
   >
     <StateView
       stateValues={
-        Object {
+        {
           "data": undefined,
-          "error": Object {
+          "error": {
             "error": "Test Error loading",
-            "networkError": Object {
+            "networkError": {
               "statusCode": 500,
             },
           },
@@ -445,9 +445,9 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       >
         <ErrorPage
           error={
-            Object {
+            {
               "error": "Test Error loading",
-              "networkError": Object {
+              "networkError": {
                 "statusCode": 500,
               },
             }
@@ -464,7 +464,7 @@ exports[`CompliancePolicies expect to render an error 1`] = `
       >
         <PoliciesTable
           DedicatedAction={[Function]}
-          policies={Array []}
+          policies={[]}
         />
       </StateViewPart>
     </StateView>
@@ -486,10 +486,10 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
   >
     <StateView
       stateValues={
-        Object {
-          "data": Object {
-            "profiles": Object {
-              "edges": Array [],
+        {
+          "data": {
+            "profiles": {
+              "edges": [],
             },
           },
           "error": undefined,
@@ -521,7 +521,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                   "cacheKeyRoot": KeyTrie {
                     "weakness": true,
                   },
-                  "config": Object {
+                  "config": {
                     "addTypename": true,
                     "dataIdFromObject": [Function],
                     "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -529,12 +529,12 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                     "resultCaching": true,
                   },
                   "data": DepTrackingCache {
-                    "data": Object {},
+                    "data": {},
                     "depend": [Function],
                   },
                   "maybeBroadcastWatch": [Function],
                   "optimisticData": DepTrackingCache {
-                    "data": Object {},
+                    "data": {},
                     "depend": [Function],
                   },
                   "silenceBroadcast": false,
@@ -548,8 +548,8 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                   "typenameDocumentCache": Map {},
                   "watches": Set {},
                 },
-                "clearStoreCallbacks": Array [],
-                "defaultOptions": Object {},
+                "clearStoreCallbacks": [],
+                "defaultOptions": {},
                 "disableNetworkFetches": false,
                 "link": HttpLink {
                   "request": [Function],
@@ -560,7 +560,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                     "cacheKeyRoot": KeyTrie {
                       "weakness": true,
                     },
-                    "config": Object {
+                    "config": {
                       "addTypename": true,
                       "dataIdFromObject": [Function],
                       "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -568,12 +568,12 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                       "resultCaching": true,
                     },
                     "data": DepTrackingCache {
-                      "data": Object {},
+                      "data": {},
                       "depend": [Function],
                     },
                     "maybeBroadcastWatch": [Function],
                     "optimisticData": DepTrackingCache {
-                      "data": Object {},
+                      "data": {},
                       "depend": [Function],
                     },
                     "silenceBroadcast": false,
@@ -594,7 +594,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                 "queryDeduplication": true,
                 "queryManager": QueryManager {
                   "assumeImmutableResults": false,
-                  "clientAwareness": Object {
+                  "clientAwareness": {
                     "name": undefined,
                     "version": undefined,
                   },
@@ -604,7 +604,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                       "cacheKeyRoot": KeyTrie {
                         "weakness": true,
                       },
-                      "config": Object {
+                      "config": {
                         "addTypename": true,
                         "dataIdFromObject": [Function],
                         "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -612,12 +612,12 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                         "resultCaching": true,
                       },
                       "data": DepTrackingCache {
-                        "data": Object {},
+                        "data": {},
                         "depend": [Function],
                       },
                       "maybeBroadcastWatch": [Function],
                       "optimisticData": DepTrackingCache {
-                        "data": Object {},
+                        "data": {},
                         "depend": [Function],
                       },
                       "silenceBroadcast": false,
@@ -644,7 +644,7 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                       "cacheKeyRoot": KeyTrie {
                         "weakness": true,
                       },
-                      "config": Object {
+                      "config": {
                         "addTypename": true,
                         "dataIdFromObject": [Function],
                         "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -652,12 +652,12 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                         "resultCaching": true,
                       },
                       "data": DepTrackingCache {
-                        "data": Object {},
+                        "data": {},
                         "depend": [Function],
                       },
                       "maybeBroadcastWatch": [Function],
                       "optimisticData": DepTrackingCache {
-                        "data": Object {},
+                        "data": {},
                         "depend": [Function],
                       },
                       "silenceBroadcast": false,
@@ -674,28 +674,28 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                     "client": [Circular],
                   },
                   "mutationStore": MutationStore {
-                    "store": Object {},
+                    "store": {},
                   },
                   "onBroadcast": [Function],
                   "pollingInfoByQueryId": Map {},
                   "queries": Map {},
                   "queryDeduplication": true,
                   "queryStore": QueryStore {
-                    "store": Object {},
+                    "store": {},
                   },
                   "ssrMode": false,
                   "transformCache": WeakMap {},
                 },
                 "reFetchObservableQueries": [Function],
                 "resetStore": [Function],
-                "resetStoreCallbacks": Array [],
+                "resetStoreCallbacks": [],
                 "store": DataStore {
                   "cache": InMemoryCache {
                     "addTypename": true,
                     "cacheKeyRoot": KeyTrie {
                       "weakness": true,
                     },
-                    "config": Object {
+                    "config": {
                       "addTypename": true,
                       "dataIdFromObject": [Function],
                       "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -703,12 +703,12 @@ exports[`CompliancePolicies expect to render emptystate 1`] = `
                       "resultCaching": true,
                     },
                     "data": DepTrackingCache {
-                      "data": Object {},
+                      "data": {},
                       "depend": [Function],
                     },
                     "maybeBroadcastWatch": [Function],
                     "optimisticData": DepTrackingCache {
-                      "data": Object {},
+                      "data": {},
                       "depend": [Function],
                     },
                     "silenceBroadcast": false,
@@ -752,7 +752,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
   >
     <StateView
       stateValues={
-        Object {
+        {
           "data": undefined,
           "error": undefined,
           "loading": true,
@@ -774,7 +774,7 @@ exports[`CompliancePolicies expect to render loading 1`] = `
       >
         <PoliciesTable
           DedicatedAction={[Function]}
-          policies={Array []}
+          policies={[]}
         />
       </StateViewPart>
     </StateView>
@@ -796,12 +796,12 @@ exports[`CompliancePolicies expect to render without error 1`] = `
   >
     <StateView
       stateValues={
-        Object {
-          "data": Object {
-            "profiles": Object {
-              "edges": Array [
-                Object {
-                  "businessObjective": Object {
+        {
+          "data": {
+            "profiles": {
+              "edges": [
+                {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -834,7 +834,7 @@ exports[`CompliancePolicies expect to render without error 1`] = `
         <PoliciesTable
           DedicatedAction={[Function]}
           policies={
-            Array [
+            [
               undefined,
             ]
           }

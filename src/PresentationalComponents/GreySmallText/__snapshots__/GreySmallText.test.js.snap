@@ -4,7 +4,7 @@ exports[`GreySmallText expect to render without error 1`] = `
 <Text
   component="small"
   style={
-    Object {
+    {
       "color": "var(--pf-global--Color--200)",
     }
   }

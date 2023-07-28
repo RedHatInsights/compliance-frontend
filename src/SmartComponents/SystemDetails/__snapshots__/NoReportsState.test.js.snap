@@ -7,7 +7,7 @@ exports[`NoReportsState with a system having multiple policies 1`] = `
       icon={[Function]}
       size="xl"
       style={
-        Object {
+        {
           "color": "var(--pf-global--primary-color--100)",
           "fontWeight": "500",
         }
@@ -40,7 +40,7 @@ exports[`NoReportsState with a system having policies 1`] = `
       icon={[Function]}
       size="xl"
       style={
-        Object {
+        {
           "color": "var(--pf-global--primary-color--100)",
           "fontWeight": "500",
         }

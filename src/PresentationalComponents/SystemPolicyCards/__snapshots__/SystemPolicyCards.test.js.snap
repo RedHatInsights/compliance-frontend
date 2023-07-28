@@ -2,12 +2,12 @@
 
 exports[`SystemPolicyCards component should render loading state 1`] = `
 <IntlProvider
-  defaultFormats={Object {}}
+  defaultFormats={{}}
   defaultLocale="en"
   fallbackOnEmptyString={true}
-  formats={Object {}}
+  formats={{}}
   locale="en-US"
-  messages={Object {}}
+  messages={{}}
   onError={[Function]}
   onWarn={[Function]}
   textComponent={Symbol(react.fragment)}
@@ -15,9 +15,9 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
   <SystemPolicyCards
     loading={true}
     policies={
-      Array [
-        Object {
-          "benchmark": Object {
+      [
+        {
+          "benchmark": {
             "version": "0.1.45",
           },
           "compliant": false,
@@ -30,8 +30,8 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
           "score": 75,
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.1.45",
           },
           "compliant": false,
@@ -66,8 +66,8 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
             <SystemPolicyCard
               onClick={[Function]}
               policy={
-                Object {
-                  "benchmark": Object {
+                {
+                  "benchmark": {
                     "version": "0.1.45",
                   },
                   "compliant": false,
@@ -82,7 +82,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                 }
               }
               style={
-                Object {
+                {
                   "height": "100%",
                 }
               }
@@ -91,7 +91,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                 onClick={[Function]}
                 ouiaId="PolicyCard"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                   }
                 }
@@ -104,7 +104,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                   id=""
                   onClick={[Function]}
                   style={
-                    Object {
+                    {
                       "height": "100%",
                     }
                   }
@@ -154,7 +154,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                       >
                                         <span
                                           dangerouslySetInnerHTML={
-                                            Object {
+                                            {
                                               "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                                             }
                                           }
@@ -171,7 +171,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                             component="small"
                             ouiaId="PolicyCardType"
                             style={
-                              Object {
+                              {
                                 "color": "var(--pf-global--Color--200)",
                               }
                             }
@@ -183,7 +183,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               data-ouia-safe={true}
                               data-pf-content={true}
                               style={
-                                Object {
+                                {
                                   "color": "var(--pf-global--Color--200)",
                                 }
                               }
@@ -211,7 +211,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                       >
                                         <span
                                           dangerouslySetInnerHTML={
-                                            Object {
+                                            {
                                               "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                                             }
                                           }
@@ -244,7 +244,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                               height="1em"
                               role="img"
                               style={
-                                Object {
+                                {
                                   "verticalAlign": "-0.125em",
                                 }
                               }
@@ -284,7 +284,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                 distance={15}
                                 enableFlip={true}
                                 flipBehavior={
-                                  Array [
+                                  [
                                     "top",
                                     "right",
                                     "bottom",
@@ -312,7 +312,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                     id="pf-tooltip-1"
                                     role="tooltip"
                                     style={
-                                      Object {
+                                      {
                                         "maxWidth": "22em",
                                         "opacity": 0,
                                         "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -329,7 +329,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                 }
                                 popperMatchesTriggerWidth={false}
                                 positionModifiers={
-                                  Object {
+                                  {
                                     "bottom": "pf-m-bottom",
                                     "bottom-end": "pf-m-bottom-right",
                                     "bottom-start": "pf-m-bottom-left",
@@ -422,7 +422,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                     distance={15}
                                     enableFlip={true}
                                     flipBehavior={
-                                      Array [
+                                      [
                                         "top",
                                         "right",
                                         "bottom",
@@ -450,7 +450,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                         id="pf-tooltip-2"
                                         role="tooltip"
                                         style={
-                                          Object {
+                                          {
                                             "maxWidth": null,
                                             "opacity": 0,
                                             "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -470,7 +470,7 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
                                     }
                                     popperMatchesTriggerWidth={false}
                                     positionModifiers={
-                                      Object {
+                                      {
                                         "bottom": "pf-m-bottom",
                                         "bottom-end": "pf-m-bottom-right",
                                         "bottom-start": "pf-m-bottom-left",
@@ -600,12 +600,12 @@ exports[`SystemPolicyCards component should render loading state 1`] = `
 
 exports[`SystemPolicyCards component should render real table 1`] = `
 <IntlProvider
-  defaultFormats={Object {}}
+  defaultFormats={{}}
   defaultLocale="en"
   fallbackOnEmptyString={true}
-  formats={Object {}}
+  formats={{}}
   locale="en-US"
-  messages={Object {}}
+  messages={{}}
   onError={[Function]}
   onWarn={[Function]}
   textComponent={Symbol(react.fragment)}
@@ -613,9 +613,9 @@ exports[`SystemPolicyCards component should render real table 1`] = `
   <SystemPolicyCards
     loading={false}
     policies={
-      Array [
-        Object {
-          "benchmark": Object {
+      [
+        {
+          "benchmark": {
             "version": "0.1.45",
           },
           "compliant": false,
@@ -628,8 +628,8 @@ exports[`SystemPolicyCards component should render real table 1`] = `
           "score": 75,
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.1.45",
           },
           "compliant": false,
@@ -664,8 +664,8 @@ exports[`SystemPolicyCards component should render real table 1`] = `
             <SystemPolicyCard
               onClick={[Function]}
               policy={
-                Object {
-                  "benchmark": Object {
+                {
+                  "benchmark": {
                     "version": "0.1.45",
                   },
                   "compliant": false,
@@ -680,7 +680,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                 }
               }
               style={
-                Object {
+                {
                   "height": "100%",
                 }
               }
@@ -689,7 +689,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                 onClick={[Function]}
                 ouiaId="PolicyCard"
                 style={
-                  Object {
+                  {
                     "height": "100%",
                   }
                 }
@@ -702,7 +702,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                   id=""
                   onClick={[Function]}
                   style={
-                    Object {
+                    {
                       "height": "100%",
                     }
                   }
@@ -752,7 +752,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                       >
                                         <span
                                           dangerouslySetInnerHTML={
-                                            Object {
+                                            {
                                               "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                                             }
                                           }
@@ -769,7 +769,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                             component="small"
                             ouiaId="PolicyCardType"
                             style={
-                              Object {
+                              {
                                 "color": "var(--pf-global--Color--200)",
                               }
                             }
@@ -781,7 +781,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               data-ouia-safe={true}
                               data-pf-content={true}
                               style={
-                                Object {
+                                {
                                   "color": "var(--pf-global--Color--200)",
                                 }
                               }
@@ -809,7 +809,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                       >
                                         <span
                                           dangerouslySetInnerHTML={
-                                            Object {
+                                            {
                                               "__html": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
                                             }
                                           }
@@ -842,7 +842,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                               height="1em"
                               role="img"
                               style={
-                                Object {
+                                {
                                   "verticalAlign": "-0.125em",
                                 }
                               }
@@ -882,7 +882,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                 distance={15}
                                 enableFlip={true}
                                 flipBehavior={
-                                  Array [
+                                  [
                                     "top",
                                     "right",
                                     "bottom",
@@ -910,7 +910,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                     id="pf-tooltip-3"
                                     role="tooltip"
                                     style={
-                                      Object {
+                                      {
                                         "maxWidth": "22em",
                                         "opacity": 0,
                                         "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -927,7 +927,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                 }
                                 popperMatchesTriggerWidth={false}
                                 positionModifiers={
-                                  Object {
+                                  {
                                     "bottom": "pf-m-bottom",
                                     "bottom-end": "pf-m-bottom-right",
                                     "bottom-start": "pf-m-bottom-left",
@@ -1020,7 +1020,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                     distance={15}
                                     enableFlip={true}
                                     flipBehavior={
-                                      Array [
+                                      [
                                         "top",
                                         "right",
                                         "bottom",
@@ -1048,7 +1048,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                         id="pf-tooltip-4"
                                         role="tooltip"
                                         style={
-                                          Object {
+                                          {
                                             "maxWidth": null,
                                             "opacity": 0,
                                             "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -1068,7 +1068,7 @@ exports[`SystemPolicyCards component should render real table 1`] = `
                                     }
                                     popperMatchesTriggerWidth={false}
                                     positionModifiers={
-                                      Object {
+                                      {
                                         "bottom": "pf-m-bottom",
                                         "bottom-end": "pf-m-bottom-right",
                                         "bottom-start": "pf-m-bottom-left",

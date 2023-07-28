@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useFilterConfig returns a filter config configuration 1`] = `
-Object {
-  "activeFilterValues": Array [
-    Array [],
+{
+  "activeFilterValues": [
+    [],
   ],
-  "activeFilters": Object {
-    "checkboxfilter": Array [],
+  "activeFilters": {
+    "checkboxfilter": [],
     "filtergroup": undefined,
     "hiddenfilter": undefined,
     "invalidfilter": undefined,
@@ -24,29 +24,29 @@ Object {
       "checkboxFilterChip": [Function],
       "chipFor": [Function],
       "chipsFor": [Function],
-      "config": Array [
-        Object {
+      "config": [
+        {
           "filter": [Function],
           "label": "Name",
           "type": "text",
         },
-        Object {
+        {
           "filter": [Function],
           "label": "Hidden filter",
           "type": "hidden",
         },
-        Object {
+        {
           "filter": [Function],
-          "items": Array [
-            Object {
+          "items": [
+            {
               "label": "OPTION 1",
               "value": "OPTION 1",
             },
-            Object {
+            {
               "label": "OPTION 2",
               "value": "OPTION 2",
             },
-            Object {
+            {
               "label": "OPTION 3",
               "value": "OPTION 3",
             },
@@ -54,18 +54,18 @@ Object {
           "label": "Checkbox Filter",
           "type": "checkbox",
         },
-        Object {
+        {
           "filter": [Function],
-          "items": Array [
-            Object {
+          "items": [
+            {
               "label": "OPTION 1",
               "value": "OPTION 1",
             },
-            Object {
+            {
               "label": "OPTION 2",
               "value": "OPTION 2",
             },
-            Object {
+            {
               "label": "OPTION 3",
               "value": "OPTION 3",
             },
@@ -73,18 +73,18 @@ Object {
           "label": "Radio Filter",
           "type": "radio",
         },
-        Object {
+        {
           "filter": [Function],
-          "items": Array [
-            Object {
+          "items": [
+            {
               "label": "OPTION 1",
               "value": "OPTION 1",
             },
-            Object {
+            {
               "label": "OPTION 2",
               "value": "OPTION 2",
             },
-            Object {
+            {
               "label": "OPTION 3",
               "value": "OPTION 3",
             },
@@ -92,16 +92,16 @@ Object {
           "label": "Invalid Filter",
           "type": "UNKNOWNTYPE",
         },
-        Object {
+        {
           "filter": [Function],
-          "items": Array [
-            Object {
-              "items": Array [
-                Object {
+          "items": [
+            {
+              "items": [
+                {
                   "label": "Child 1",
                   "value": 1,
                 },
-                Object {
+                {
                   "label": "Child 2",
                   "value": 2,
                 },
@@ -109,13 +109,13 @@ Object {
               "label": "Parent 1",
               "value": 1,
             },
-            Object {
-              "items": Array [
-                Object {
+            {
+              "items": [
+                {
                   "label": "Parent 2 Child 1",
                   "value": 1,
                 },
-                Object {
+                {
                   "label": "Parent 2 Child 2",
                   "value": 2,
                 },
@@ -133,29 +133,29 @@ Object {
       "radioFilterChip": [Function],
       "textFilterChip": [Function],
     },
-    "config": Array [
-      Object {
+    "config": [
+      {
         "filter": [Function],
         "label": "Name",
         "type": "text",
       },
-      Object {
+      {
         "filter": [Function],
         "label": "Hidden filter",
         "type": "hidden",
       },
-      Object {
+      {
         "filter": [Function],
-        "items": Array [
-          Object {
+        "items": [
+          {
             "label": "OPTION 1",
             "value": "OPTION 1",
           },
-          Object {
+          {
             "label": "OPTION 2",
             "value": "OPTION 2",
           },
-          Object {
+          {
             "label": "OPTION 3",
             "value": "OPTION 3",
           },
@@ -163,18 +163,18 @@ Object {
         "label": "Checkbox Filter",
         "type": "checkbox",
       },
-      Object {
+      {
         "filter": [Function],
-        "items": Array [
-          Object {
+        "items": [
+          {
             "label": "OPTION 1",
             "value": "OPTION 1",
           },
-          Object {
+          {
             "label": "OPTION 2",
             "value": "OPTION 2",
           },
-          Object {
+          {
             "label": "OPTION 3",
             "value": "OPTION 3",
           },
@@ -182,18 +182,18 @@ Object {
         "label": "Radio Filter",
         "type": "radio",
       },
-      Object {
+      {
         "filter": [Function],
-        "items": Array [
-          Object {
+        "items": [
+          {
             "label": "OPTION 1",
             "value": "OPTION 1",
           },
-          Object {
+          {
             "label": "OPTION 2",
             "value": "OPTION 2",
           },
-          Object {
+          {
             "label": "OPTION 3",
             "value": "OPTION 3",
           },
@@ -201,16 +201,16 @@ Object {
         "label": "Invalid Filter",
         "type": "UNKNOWNTYPE",
       },
-      Object {
+      {
         "filter": [Function],
-        "items": Array [
-          Object {
-            "items": Array [
-              Object {
+        "items": [
+          {
+            "items": [
+              {
                 "label": "Child 1",
                 "value": 1,
               },
-              Object {
+              {
                 "label": "Child 2",
                 "value": 2,
               },
@@ -218,13 +218,13 @@ Object {
             "label": "Parent 1",
             "value": 1,
           },
-          Object {
-            "items": Array [
-              Object {
+          {
+            "items": [
+              {
                 "label": "Parent 2 Child 1",
                 "value": 1,
               },
-              Object {
+              {
                 "label": "Parent 2 Child 2",
                 "value": 2,
               },
@@ -258,15 +258,15 @@ Object {
   "filterString": [Function],
   "selectedFilterToolbarProps": undefined,
   "setActiveFilter": [Function],
-  "toolbarProps": Object {
-    "activeFiltersConfig": Object {
-      "filters": Array [],
+  "toolbarProps": {
+    "activeFiltersConfig": {
+      "filters": [],
       "onDelete": [Function],
     },
-    "filterConfig": Object {
-      "items": Array [
-        Object {
-          "filterValues": Object {
+    "filterConfig": {
+      "items": [
+        {
+          "filterValues": {
             "onChange": [Function],
             "value": undefined,
           },
@@ -275,42 +275,42 @@ Object {
           "placeholder": "Filter by name",
           "type": "text",
         },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
+        {
+          "filterValues": {
+            "items": [
+              {
                 "label": "OPTION 1",
                 "value": "OPTION 1",
               },
-              Object {
+              {
                 "label": "OPTION 2",
                 "value": "OPTION 2",
               },
-              Object {
+              {
                 "label": "OPTION 3",
                 "value": "OPTION 3",
               },
             ],
             "onChange": [Function],
-            "value": Array [],
+            "value": [],
           },
           "id": "checkboxfilter",
           "label": "Checkbox Filter",
           "placeholder": "Filter by checkbox filter",
           "type": "checkbox",
         },
-        Object {
-          "filterValues": Object {
-            "items": Array [
-              Object {
+        {
+          "filterValues": {
+            "items": [
+              {
                 "label": "OPTION 1",
                 "value": "OPTION 1",
               },
-              Object {
+              {
                 "label": "OPTION 2",
                 "value": "OPTION 2",
               },
-              Object {
+              {
                 "label": "OPTION 3",
                 "value": "OPTION 3",
               },
@@ -323,18 +323,18 @@ Object {
           "placeholder": "Filter by radio filter",
           "type": "radio",
         },
-        Object {
+        {
           "className": undefined,
-          "filterValues": Object {
-            "groups": Array [
-              Object {
-                "items": Array [
-                  Object {
+          "filterValues": {
+            "groups": [
+              {
+                "items": [
+                  {
                     "label": "Child 1",
                     "type": "checkbox",
                     "value": 1,
                   },
-                  Object {
+                  {
                     "label": "Child 2",
                     "type": "checkbox",
                     "value": 2,
@@ -344,14 +344,14 @@ Object {
                 "type": "checkbox",
                 "value": 1,
               },
-              Object {
-                "items": Array [
-                  Object {
+              {
+                "items": [
+                  {
                     "label": "Parent 2 Child 1",
                     "type": "checkbox",
                     "value": 1,
                   },
-                  Object {
+                  {
                     "label": "Parent 2 Child 2",
                     "type": "checkbox",
                     "value": 2,

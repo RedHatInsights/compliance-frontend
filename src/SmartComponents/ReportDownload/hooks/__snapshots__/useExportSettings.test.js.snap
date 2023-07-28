@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useExportSettings returns an object to get and set export settings 1`] = `
-Object {
-  "all": Array [
-    Object {
-      "exportSettings": Object {
+{
+  "all": [
+    {
+      "exportSettings": {
         "compliantSystems": false,
         "nonCompliantSystems": true,
         "nonReportingSystems": true,
@@ -16,8 +16,8 @@ Object {
       "setExportSetting": [Function],
     },
   ],
-  "current": Object {
-    "exportSettings": Object {
+  "current": {
+    "exportSettings": {
       "compliantSystems": false,
       "nonCompliantSystems": true,
       "nonReportingSystems": true,

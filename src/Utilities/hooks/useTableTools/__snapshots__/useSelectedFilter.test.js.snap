@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useSelectedFilter returns a table sort configuration 1`] = `
-Object {
-  "all": Array [
-    Object {},
+{
+  "all": [
+    {},
   ],
-  "current": Object {},
+  "current": {},
   "error": undefined,
 }
 `;

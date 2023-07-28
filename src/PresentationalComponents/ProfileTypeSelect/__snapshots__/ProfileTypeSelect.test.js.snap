@@ -28,7 +28,7 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
           </React.Fragment>
         }
         onChange={[Function]}
-        value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\"}"
+        value="{"description":"foodesc","name":"fooname","id":"fooid"}"
       />
     </GridItem>
     <GridItem
@@ -55,7 +55,7 @@ exports[`ProfileTypeSelect expect to render without error 1`] = `
           </React.Fragment>
         }
         onChange={[Function]}
-        value="{\\"description\\":\\"foodesc\\",\\"name\\":\\"fooname\\",\\"id\\":\\"fooid\\",\\"disabled\\":true}"
+        value="{"description":"foodesc","name":"fooname","id":"fooid","disabled":true}"
       />
     </GridItem>
   </Grid>

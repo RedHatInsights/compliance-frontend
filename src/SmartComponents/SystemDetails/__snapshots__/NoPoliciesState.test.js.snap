@@ -19,7 +19,7 @@ exports[`NoPoliciesState with a system having policies 1`] = `
       <BackgroundLink
         Component={[Function]}
         componentProps={
-          Object {
+          {
             "ouiaId": "CreateNewPolicyButton",
             "variant": "primary",
           }

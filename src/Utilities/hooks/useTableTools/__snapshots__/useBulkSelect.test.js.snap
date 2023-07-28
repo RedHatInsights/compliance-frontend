@@ -1,40 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useBulkSelect returns a bulk select configuration 1`] = `
-Object {
-  "all": Array [
-    Object {
+{
+  "all": [
+    {
       "selectItems": [Function],
       "selectNone": [Function],
       "selectedIds": undefined,
-      "tableProps": Object {
+      "tableProps": {
         "canSelectAll": false,
         "onSelect": undefined,
       },
-      "toolbarProps": Object {
-        "bulkSelect": Object {
+      "toolbarProps": {
+        "bulkSelect": {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -43,38 +43,38 @@ Object {
       "unselectItems": [Function],
     },
   ],
-  "current": Object {
+  "current": {
     "selectItems": [Function],
     "selectNone": [Function],
     "selectedIds": undefined,
-    "tableProps": Object {
+    "tableProps": {
       "canSelectAll": false,
       "onSelect": undefined,
     },
-    "toolbarProps": Object {
-      "bulkSelect": Object {
+    "toolbarProps": {
+      "bulkSelect": {
         "checked": false,
         "isDisabled": true,
-        "items": Array [
-          Object {
+        "items": [
+          {
             "onClick": [Function],
-            "props": Object {
+            "props": {
               "isDisabled": true,
             },
             "title": "Select none",
           },
-          Object {
+          {
             "onClick": [Function],
             "title": "Select page (0 items)",
           },
-          Object {
+          {
             "onClick": [Function],
             "title": "Unselect all (0 items)",
           },
         ],
         "onSelect": undefined,
-        "toggleProps": Object {
-          "children": Array [
+        "toggleProps": {
+          "children": [
             "0 selected",
           ],
         },
@@ -87,40 +87,40 @@ Object {
 `;
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 1`] = `
-Object {
+{
   "selectItems": [Function],
   "selectNone": [Function],
-  "selectedIds": Array [
+  "selectedIds": [
     "ID",
   ],
-  "tableProps": Object {
+  "tableProps": {
     "canSelectAll": false,
     "onSelect": [Function],
   },
-  "toolbarProps": Object {
-    "bulkSelect": Object {
+  "toolbarProps": {
+    "bulkSelect": {
       "checked": true,
       "isDisabled": false,
-      "items": Array [
-        Object {
+      "items": [
+        {
           "onClick": [Function],
-          "props": Object {
+          "props": {
             "isDisabled": false,
           },
           "title": "Select none",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Unselect page (1 items)",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Unselect all (1 items)",
         },
       ],
       "onSelect": [Function],
-      "toggleProps": Object {
-        "children": Array [
+      "toggleProps": {
+        "children": [
           "1 selected",
         ],
       },
@@ -131,40 +131,40 @@ Object {
 `;
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 2`] = `
-Object {
+{
   "selectItems": [Function],
   "selectNone": [Function],
-  "selectedIds": Array [
+  "selectedIds": [
     "ID",
   ],
-  "tableProps": Object {
+  "tableProps": {
     "canSelectAll": false,
     "onSelect": [Function],
   },
-  "toolbarProps": Object {
-    "bulkSelect": Object {
+  "toolbarProps": {
+    "bulkSelect": {
       "checked": null,
       "isDisabled": false,
-      "items": Array [
-        Object {
+      "items": [
+        {
           "onClick": [Function],
-          "props": Object {
+          "props": {
             "isDisabled": false,
           },
           "title": "Select none",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Select page (2 items)",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Select all (2 items)",
         },
       ],
       "onSelect": [Function],
-      "toggleProps": Object {
-        "children": Array [
+      "toggleProps": {
+        "children": [
           "1 selected",
         ],
       },
@@ -175,40 +175,40 @@ Object {
 `;
 
 exports[`useBulkSelect returns a bulk select configuration with the correct options 3`] = `
-Object {
+{
   "selectItems": [Function],
   "selectNone": [Function],
-  "selectedIds": Array [
+  "selectedIds": [
     "ID",
   ],
-  "tableProps": Object {
+  "tableProps": {
     "canSelectAll": false,
     "onSelect": [Function],
   },
-  "toolbarProps": Object {
-    "bulkSelect": Object {
+  "toolbarProps": {
+    "bulkSelect": {
       "checked": null,
       "isDisabled": false,
-      "items": Array [
-        Object {
+      "items": [
+        {
           "onClick": [Function],
-          "props": Object {
+          "props": {
             "isDisabled": false,
           },
           "title": "Select none",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Unselect page (1 items)",
         },
-        Object {
+        {
           "onClick": [Function],
           "title": "Select all (2 items)",
         },
       ],
       "onSelect": [Function],
-      "toggleProps": Object {
-        "children": Array [
+      "toggleProps": {
+        "children": [
           "1 selected",
         ],
       },
@@ -219,12 +219,12 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select one 1`] = `
-Object {
+{
   "description": "DESCRIPTION",
   "id": 6,
   "itemId": 6,
   "name": "TEST ITEM #6",
-  "rowProps": Object {
+  "rowProps": {
     "selected": true,
   },
   "severity": "low",
@@ -232,29 +232,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect all 1`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -262,29 +262,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect all 2`] = `
-Object {
+{
   "checked": true,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": false,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "20 selected",
     ],
   },
@@ -292,29 +292,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect all 3`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -322,29 +322,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect page 1`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -352,29 +352,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect page 2`] = `
-Object {
+{
   "checked": true,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": false,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "20 selected",
     ],
   },
@@ -382,29 +382,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a allows to select/deselect page 3`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -412,41 +412,41 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns a bulk select configuration 1`] = `
-Object {
-  "all": Array [
-    Object {
+{
+  "all": [
+    {
       "clearSelection": [Function],
       "selectItems": [Function],
-      "selected": Array [],
-      "selectedItems": Array [],
-      "tableProps": Object {
+      "selected": [],
+      "selectedItems": [],
+      "tableProps": {
         "canSelectAll": false,
         "onSelect": [Function],
       },
-      "toolbarProps": Object {
-        "bulkSelect": Object {
+      "toolbarProps": {
+        "bulkSelect": {
           "checked": false,
           "isDisabled": false,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (20 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select all (20 items)",
             },
           ],
           "onSelect": [Function],
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -456,39 +456,39 @@ Object {
       "unselectItems": [Function],
     },
   ],
-  "current": Object {
+  "current": {
     "clearSelection": [Function],
     "selectItems": [Function],
-    "selected": Array [],
-    "selectedItems": Array [],
-    "tableProps": Object {
+    "selected": [],
+    "selectedItems": [],
+    "tableProps": {
       "canSelectAll": false,
       "onSelect": [Function],
     },
-    "toolbarProps": Object {
-      "bulkSelect": Object {
+    "toolbarProps": {
+      "bulkSelect": {
         "checked": false,
         "isDisabled": false,
-        "items": Array [
-          Object {
+        "items": [
+          {
             "onClick": [Function],
-            "props": Object {
+            "props": {
               "isDisabled": true,
             },
             "title": "Select none",
           },
-          Object {
+          {
             "onClick": [Function],
             "title": "Select page (20 items)",
           },
-          Object {
+          {
             "onClick": [Function],
             "title": "Select all (20 items)",
           },
         ],
         "onSelect": [Function],
-        "toggleProps": Object {
-          "children": Array [
+        "toggleProps": {
+          "children": [
             "0 selected",
           ],
         },
@@ -502,29 +502,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns respects filtered results 1`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (5 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (5 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -532,29 +532,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns respects filtered results 2`] = `
-Object {
+{
   "checked": true,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": false,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect page (5 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect all (5 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "5 selected",
     ],
   },
@@ -562,29 +562,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns to select none after all selected 1`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },
@@ -592,29 +592,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns to select none after all selected 2`] = `
-Object {
+{
   "checked": true,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": false,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Unselect all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "20 selected",
     ],
   },
@@ -622,29 +622,29 @@ Object {
 `;
 
 exports[`useBulkSelectWithItems returns to select none after all selected 3`] = `
-Object {
+{
   "checked": false,
   "isDisabled": false,
-  "items": Array [
-    Object {
+  "items": [
+    {
       "onClick": [Function],
-      "props": Object {
+      "props": {
         "isDisabled": true,
       },
       "title": "Select none",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select page (20 items)",
     },
-    Object {
+    {
       "onClick": [Function],
       "title": "Select all (20 items)",
     },
   ],
   "onSelect": [Function],
-  "toggleProps": Object {
-    "children": Array [
+  "toggleProps": {
+    "children": [
       "0 selected",
     ],
   },

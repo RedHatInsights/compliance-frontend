@@ -3,8 +3,8 @@
 exports[`CreateSCAPPolicy expect to render without error 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {},
+    {
+      "data": {},
       "error": false,
       "loading": false,
     }
@@ -45,8 +45,8 @@ exports[`CreateSCAPPolicy expect to render without error 1`] = `
 exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {},
+    {
+      "data": {},
       "error": false,
       "loading": true,
     }
@@ -87,17 +87,17 @@ exports[`CreateSCAPPolicy should render a spinner while loading 1`] = `
 exports[`CreateSCAPPolicy should render benchmarks and no policies until one is selected 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "osMajorVersions": Object {
-          "edges": Array [
-            Object {
-              "node": Object {
+    {
+      "data": {
+        "osMajorVersions": {
+          "edges": [
+            {
+              "node": {
                 "osMajorVersion": 6,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
+                "profiles": {
+                  "edges": [
+                    {
+                      "benchmark": {
                         "id": "6-benchmark-id",
                         "osMajorVersion": 6,
                         "refId": "6-benchmark-refId",
@@ -107,8 +107,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #0",
                       "osMajorVersion": 0,
                       "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -116,7 +116,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -124,7 +124,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -132,7 +132,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -140,7 +140,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -150,15 +150,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "6.1",
                         "6.2",
                         "6.3",
                         "6.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "6-benchmark-id",
                         "osMajorVersion": 6,
                         "refId": "6-benchmark-refId",
@@ -168,8 +168,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #1",
                       "osMajorVersion": 1,
                       "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -177,7 +177,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -185,7 +185,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -193,7 +193,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -201,7 +201,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -211,15 +211,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "6.1",
                         "6.2",
                         "6.3",
                         "6.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "6-benchmark-id",
                         "osMajorVersion": 6,
                         "refId": "6-benchmark-refId",
@@ -229,8 +229,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #2",
                       "osMajorVersion": 2,
                       "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -238,7 +238,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -246,7 +246,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -254,7 +254,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -262,7 +262,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -272,15 +272,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "6.1",
                         "6.2",
                         "6.3",
                         "6.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "6-benchmark-id",
                         "osMajorVersion": 6,
                         "refId": "6-benchmark-refId",
@@ -290,8 +290,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #3",
                       "osMajorVersion": 3,
                       "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -299,7 +299,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -307,7 +307,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -315,7 +315,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -323,7 +323,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -333,15 +333,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "6.1",
                         "6.2",
                         "6.3",
                         "6.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "6-benchmark-id",
                         "osMajorVersion": 6,
                         "refId": "6-benchmark-refId",
@@ -351,8 +351,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #4",
                       "osMajorVersion": 4,
                       "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -360,7 +360,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -368,7 +368,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -376,7 +376,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -384,7 +384,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -394,7 +394,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "6.1",
                         "6.2",
                         "6.3",
@@ -405,13 +405,13 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                 },
               },
             },
-            Object {
-              "node": Object {
+            {
+              "node": {
                 "osMajorVersion": 7,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
+                "profiles": {
+                  "edges": [
+                    {
+                      "benchmark": {
                         "id": "7-benchmark-id",
                         "osMajorVersion": 7,
                         "refId": "7-benchmark-refId",
@@ -421,8 +421,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #0",
                       "osMajorVersion": 0,
                       "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -430,7 +430,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -438,7 +438,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -446,7 +446,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -454,7 +454,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -464,15 +464,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "7.1",
                         "7.2",
                         "7.3",
                         "7.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "7-benchmark-id",
                         "osMajorVersion": 7,
                         "refId": "7-benchmark-refId",
@@ -482,8 +482,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #1",
                       "osMajorVersion": 1,
                       "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -491,7 +491,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -499,7 +499,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -507,7 +507,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -515,7 +515,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -525,15 +525,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "7.1",
                         "7.2",
                         "7.3",
                         "7.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "7-benchmark-id",
                         "osMajorVersion": 7,
                         "refId": "7-benchmark-refId",
@@ -543,8 +543,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #2",
                       "osMajorVersion": 2,
                       "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -552,7 +552,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -560,7 +560,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -568,7 +568,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -576,7 +576,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -586,15 +586,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "7.1",
                         "7.2",
                         "7.3",
                         "7.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "7-benchmark-id",
                         "osMajorVersion": 7,
                         "refId": "7-benchmark-refId",
@@ -604,8 +604,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #3",
                       "osMajorVersion": 3,
                       "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -613,7 +613,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -621,7 +621,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -629,7 +629,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -637,7 +637,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -647,15 +647,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "7.1",
                         "7.2",
                         "7.3",
                         "7.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "7-benchmark-id",
                         "osMajorVersion": 7,
                         "refId": "7-benchmark-refId",
@@ -665,8 +665,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #4",
                       "osMajorVersion": 4,
                       "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -674,7 +674,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -682,7 +682,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -690,7 +690,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -698,7 +698,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -708,7 +708,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "7.1",
                         "7.2",
                         "7.3",
@@ -719,13 +719,13 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                 },
               },
             },
-            Object {
-              "node": Object {
+            {
+              "node": {
                 "osMajorVersion": 8,
-                "profiles": Object {
-                  "edges": Array [
-                    Object {
-                      "benchmark": Object {
+                "profiles": {
+                  "edges": [
+                    {
+                      "benchmark": {
                         "id": "8-benchmark-id",
                         "osMajorVersion": 8,
                         "refId": "8-benchmark-refId",
@@ -735,8 +735,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #0",
                       "osMajorVersion": 0,
                       "refId": "xccdf_org.ssgproject.content_profile_0",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -744,7 +744,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -752,7 +752,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -760,7 +760,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -768,7 +768,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -778,15 +778,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "8.1",
                         "8.2",
                         "8.3",
                         "8.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "8-benchmark-id",
                         "osMajorVersion": 8,
                         "refId": "8-benchmark-refId",
@@ -796,8 +796,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #1",
                       "osMajorVersion": 1,
                       "refId": "xccdf_org.ssgproject.content_profile_1",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -805,7 +805,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -813,7 +813,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -821,7 +821,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -829,7 +829,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -839,15 +839,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "8.1",
                         "8.2",
                         "8.3",
                         "8.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "8-benchmark-id",
                         "osMajorVersion": 8,
                         "refId": "8-benchmark-refId",
@@ -857,8 +857,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #2",
                       "osMajorVersion": 2,
                       "refId": "xccdf_org.ssgproject.content_profile_2",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -866,7 +866,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -874,7 +874,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -882,7 +882,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -890,7 +890,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -900,15 +900,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "8.1",
                         "8.2",
                         "8.3",
                         "8.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "8-benchmark-id",
                         "osMajorVersion": 8,
                         "refId": "8-benchmark-refId",
@@ -918,8 +918,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #3",
                       "osMajorVersion": 3,
                       "refId": "xccdf_org.ssgproject.content_profile_3",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -927,7 +927,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -935,7 +935,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -943,7 +943,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -951,7 +951,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -961,15 +961,15 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "8.1",
                         "8.2",
                         "8.3",
                         "8.4",
                       ],
                     },
-                    Object {
-                      "benchmark": Object {
+                    {
+                      "benchmark": {
                         "id": "8-benchmark-id",
                         "osMajorVersion": 8,
                         "refId": "8-benchmark-refId",
@@ -979,8 +979,8 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                       "name": "Test Result Profile #4",
                       "osMajorVersion": 4,
                       "refId": "xccdf_org.ssgproject.content_profile_4",
-                      "rules": Array [
-                        Object {
+                      "rules": [
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -988,7 +988,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "high",
                           "title": "Profile #0 Rule #0",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -996,7 +996,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "medium",
                           "title": "Profile #0 Rule #1",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1004,7 +1004,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "low",
                           "title": "Profile #0 Rule #2",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1012,7 +1012,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                           "severity": "unknown",
                           "title": "Profile #0 Rule #3",
                         },
-                        Object {
+                        {
                           "compliant": true,
                           "precedence": 0,
                           "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1022,7 +1022,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
                         },
                       ],
                       "supported": true,
-                      "supportedOsVersions": Array [
+                      "supportedOsVersions": [
                         "8.1",
                         "8.2",
                         "8.3",
@@ -1099,7 +1099,7 @@ exports[`CreateSCAPPolicy should render benchmarks and no policies until one is 
 `;
 
 exports[`CreateSCAPPolicy should render policies from the selected benchmark only 1`] = `
-Array [
+[
   <div
     aria-selected={false}
     className="pf-c-tile pf-u-mr-md"

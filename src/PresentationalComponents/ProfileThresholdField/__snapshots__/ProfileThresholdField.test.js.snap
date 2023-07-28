@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProfileThresholdField expect to handle ThresholdChange 1`] = `
-Object {
+{
   "threshold": 100,
   "validThreshold": true,
 }
 `;
 
 exports[`ProfileThresholdField expect to handle ThresholdChange 2`] = `
-Object {
+{
   "threshold": 50,
   "validThreshold": true,
 }
 `;
 
 exports[`ProfileThresholdField expect to handle ThresholdChange 3`] = `
-Object {
+{
   "threshold": -10,
   "validThreshold": false,
 }
@@ -44,7 +44,7 @@ exports[`ProfileThresholdField expect to render without error 1`] = `
       name="complianceThreshold"
       onChange={[Function]}
       style={
-        Object {
+        {
           "display": "block",
           "width": "60%",
         }
