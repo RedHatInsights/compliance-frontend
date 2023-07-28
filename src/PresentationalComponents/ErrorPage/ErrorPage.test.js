@@ -1,7 +1,10 @@
 import ErrorPage from './ErrorPage';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-jest.mock('@redhat-cloud-services/frontend-components/useChrome');
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
 
 describe('ErrorPage', () => {
   it('expect to render without error', () => {
