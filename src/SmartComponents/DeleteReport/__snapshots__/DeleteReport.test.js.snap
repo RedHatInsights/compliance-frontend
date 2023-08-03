@@ -7,7 +7,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
 >
   <ComplianceModal
     actions={
-      Array [
+      [
         <Button
           aria-label="delete"
           onClick={[Function]}
@@ -34,7 +34,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
   >
     <Modal
       actions={
-        Array [
+        [
           <Button
             aria-label="delete"
             onClick={[Function]}
@@ -190,7 +190,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
       >
         <ModalContent
           actions={
-            Array [
+            [
               <Button
                 aria-label="delete"
                 onClick={[Function]}
@@ -234,9 +234,9 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                 active={true}
                 className="pf-l-bullseye"
                 focusTrapOptions={
-                  Object {
+                  {
                     "clickOutsideDeactivates": true,
-                    "tabbableOptions": Object {
+                    "tabbableOptions": {
                       "displayCheck": "none",
                     },
                   }
@@ -246,9 +246,9 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                   active={true}
                   className="pf-l-bullseye"
                   focusTrapOptions={
-                    Object {
+                    {
                       "clickOutsideDeactivates": true,
-                      "tabbableOptions": Object {
+                      "tabbableOptions": {
                         "displayCheck": "none",
                       },
                     }
@@ -269,7 +269,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                       data-ouia-component-type="PF4/ModalContent"
                       data-ouia-safe={true}
                       id="pf-modal-part-0"
-                      style={Object {}}
+                      style={{}}
                       variant="small"
                     >
                       <div
@@ -283,7 +283,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                         data-ouia-safe={true}
                         id="pf-modal-part-0"
                         role="dialog"
-                        style={Object {}}
+                        style={{}}
                       >
                         <ModalBoxCloseButton
                           onClose={[Function]}
@@ -328,7 +328,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                                     height="1em"
                                     role="img"
                                     style={
-                                      Object {
+                                      {
                                         "verticalAlign": "-0.125em",
                                       }
                                     }
@@ -375,7 +375,7 @@ exports[`DeleteReport expect to render an open modal without error 1`] = `
                                       height="1em"
                                       role="img"
                                       style={
-                                        Object {
+                                        {
                                           "verticalAlign": "-0.125em",
                                         }
                                       }

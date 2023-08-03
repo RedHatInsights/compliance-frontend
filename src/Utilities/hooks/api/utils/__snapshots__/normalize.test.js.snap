@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`normalizeData normalizes API data 1`] = `
-Object {
-  "RHEL-6.10:scap-security-guide-0.1.28-4.el6": Object {
-    "attributes": Object {
+{
+  "RHEL-6.10:scap-security-guide-0.1.28-4.el6": {
+    "attributes": {
       "osMajorVersion": "6",
       "osMinorVersion": "10",
       "package": "scap-security-guide-0.1.28-4.el6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "common",
         "CS2",
@@ -26,7 +26,7 @@ Object {
     "osMajorVersion": "6",
     "osMinorVersion": "10",
     "package": "scap-security-guide-0.1.28-4.el6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "common",
       "CS2",
@@ -42,12 +42,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.28",
   },
-  "RHEL-6.6:scap-security-guide-0.1.18-3.el6": Object {
-    "attributes": Object {
+  "RHEL-6.6:scap-security-guide-0.1.18-3.el6": {
+    "attributes": {
       "osMajorVersion": "6",
       "osMinorVersion": "6",
       "package": "scap-security-guide-0.1.18-3.el6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "common",
         "CS2",
@@ -64,7 +64,7 @@ Object {
     "osMajorVersion": "6",
     "osMinorVersion": "6",
     "package": "scap-security-guide-0.1.18-3.el6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "common",
       "CS2",
@@ -78,12 +78,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.18",
   },
-  "RHEL-6.7:scap-security-guide-0.1.21-3.el6": Object {
-    "attributes": Object {
+  "RHEL-6.7:scap-security-guide-0.1.21-3.el6": {
+    "attributes": {
       "osMajorVersion": "6",
       "osMinorVersion": "7",
       "package": "scap-security-guide-0.1.21-3.el6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "common",
         "CS2",
@@ -99,7 +99,7 @@ Object {
     "osMajorVersion": "6",
     "osMinorVersion": "7",
     "package": "scap-security-guide-0.1.21-3.el6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "common",
       "CS2",
@@ -112,12 +112,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.21",
   },
-  "RHEL-6.8:scap-security-guide-0.1.28-2.el6": Object {
-    "attributes": Object {
+  "RHEL-6.8:scap-security-guide-0.1.28-2.el6": {
+    "attributes": {
       "osMajorVersion": "6",
       "osMinorVersion": "8",
       "package": "scap-security-guide-0.1.28-2.el6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "common",
         "CS2",
@@ -136,7 +136,7 @@ Object {
     "osMajorVersion": "6",
     "osMinorVersion": "8",
     "package": "scap-security-guide-0.1.28-2.el6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "common",
       "CS2",
@@ -152,12 +152,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.28",
   },
-  "RHEL-6.9:scap-security-guide-0.1.28-3.el6": Object {
-    "attributes": Object {
+  "RHEL-6.9:scap-security-guide-0.1.28-3.el6": {
+    "attributes": {
       "osMajorVersion": "6",
       "osMinorVersion": "9",
       "package": "scap-security-guide-0.1.28-3.el6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "common",
         "CS2",
@@ -176,7 +176,7 @@ Object {
     "osMajorVersion": "6",
     "osMinorVersion": "9",
     "package": "scap-security-guide-0.1.28-3.el6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "common",
       "CS2",
@@ -192,12 +192,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.28",
   },
-  "RHEL-7.1:scap-security-guide-0.1.19-2.el7": Object {
-    "attributes": Object {
+  "RHEL-7.1:scap-security-guide-0.1.19-2.el7": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "1",
       "package": "scap-security-guide-0.1.19-2.el7",
-      "profiles": Array [
+      "profiles": [
         "rht-ccp",
       ],
       "version": "0.1.19",
@@ -206,18 +206,18 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "1",
     "package": "scap-security-guide-0.1.19-2.el7",
-    "profiles": Array [
+    "profiles": [
       "rht-ccp",
     ],
     "type": "supportedSsg",
     "version": "0.1.19",
   },
-  "RHEL-7.2:scap-security-guide-0.1.25-3.el7": Object {
-    "attributes": Object {
+  "RHEL-7.2:scap-security-guide-0.1.25-3.el7": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "2",
       "package": "scap-security-guide-0.1.25-3.el7",
-      "profiles": Array [
+      "profiles": [
         "common",
         "pci-dss",
         "rht-ccp",
@@ -230,7 +230,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "2",
     "package": "scap-security-guide-0.1.25-3.el7",
-    "profiles": Array [
+    "profiles": [
       "common",
       "pci-dss",
       "rht-ccp",
@@ -240,12 +240,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.25",
   },
-  "RHEL-7.3:scap-security-guide-0.1.30-5.el7_3": Object {
-    "attributes": Object {
+  "RHEL-7.3:scap-security-guide-0.1.30-5.el7_3": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "3",
       "package": "scap-security-guide-0.1.30-5.el7_3",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "cjis-rhel7-server",
         "common",
@@ -264,7 +264,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "3",
     "package": "scap-security-guide-0.1.30-5.el7_3",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "cjis-rhel7-server",
       "common",
@@ -280,12 +280,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.30",
   },
-  "RHEL-7.4:scap-security-guide-0.1.33-6.el7_4": Object {
-    "attributes": Object {
+  "RHEL-7.4:scap-security-guide-0.1.33-6.el7_4": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "4",
       "package": "scap-security-guide-0.1.33-6.el7_4",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "cjis-rhel7-server",
         "common",
@@ -305,7 +305,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "4",
     "package": "scap-security-guide-0.1.33-6.el7_4",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "cjis-rhel7-server",
       "common",
@@ -322,12 +322,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.33",
   },
-  "RHEL-7.5:scap-security-guide-0.1.36-10.el7_5": Object {
-    "attributes": Object {
+  "RHEL-7.5:scap-security-guide-0.1.36-10.el7_5": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "5",
       "package": "scap-security-guide-0.1.36-10.el7_5",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "cjis-rhel7-server",
         "common",
@@ -347,7 +347,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "5",
     "package": "scap-security-guide-0.1.36-10.el7_5",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "cjis-rhel7-server",
       "common",
@@ -364,12 +364,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.36",
   },
-  "RHEL-7.6:scap-security-guide-0.1.40-13.el7_6": Object {
-    "attributes": Object {
+  "RHEL-7.6:scap-security-guide-0.1.40-13.el7_6": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "6",
       "package": "scap-security-guide-0.1.40-13.el7_6",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "cjis",
         "hipaa",
@@ -388,7 +388,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "6",
     "package": "scap-security-guide-0.1.40-13.el7_6",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "cjis",
       "hipaa",
@@ -404,12 +404,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.40",
   },
-  "RHEL-7.7:scap-security-guide-0.1.43-13.el7": Object {
-    "attributes": Object {
+  "RHEL-7.7:scap-security-guide-0.1.43-13.el7": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "7",
       "package": "scap-security-guide-0.1.43-13.el7",
-      "profiles": Array [
+      "profiles": [
         "C2S",
         "cjis",
         "hipaa",
@@ -429,7 +429,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "7",
     "package": "scap-security-guide-0.1.43-13.el7",
-    "profiles": Array [
+    "profiles": [
       "C2S",
       "cjis",
       "hipaa",
@@ -446,12 +446,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.43",
   },
-  "RHEL-7.8:scap-security-guide-0.1.46-11.el7": Object {
-    "attributes": Object {
+  "RHEL-7.8:scap-security-guide-0.1.46-11.el7": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "8",
       "package": "scap-security-guide-0.1.46-11.el7",
-      "profiles": Array [
+      "profiles": [
         "anssi_nt28_enhanced",
         "anssi_nt28_high",
         "anssi_nt28_intermediary",
@@ -477,7 +477,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "8",
     "package": "scap-security-guide-0.1.46-11.el7",
-    "profiles": Array [
+    "profiles": [
       "anssi_nt28_enhanced",
       "anssi_nt28_high",
       "anssi_nt28_intermediary",
@@ -500,12 +500,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.46",
   },
-  "RHEL-7.9:scap-security-guide-0.1.49-13.el7": Object {
-    "attributes": Object {
+  "RHEL-7.9:scap-security-guide-0.1.49-13.el7": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "9",
       "package": "scap-security-guide-0.1.49-13.el7",
-      "profiles": Array [
+      "profiles": [
         "anssi_nt28_enhanced",
         "anssi_nt28_high",
         "anssi_nt28_intermediary",
@@ -532,7 +532,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "9",
     "package": "scap-security-guide-0.1.49-13.el7",
-    "profiles": Array [
+    "profiles": [
       "anssi_nt28_enhanced",
       "anssi_nt28_high",
       "anssi_nt28_intermediary",
@@ -556,12 +556,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.49",
   },
-  "RHEL-7.9:scap-security-guide-0.1.52-2.el7_9": Object {
-    "attributes": Object {
+  "RHEL-7.9:scap-security-guide-0.1.52-2.el7_9": {
+    "attributes": {
       "osMajorVersion": "7",
       "osMinorVersion": "9",
       "package": "scap-security-guide-0.1.52-2.el7_9",
-      "profiles": Array [
+      "profiles": [
         "anssi_nt28_enhanced",
         "anssi_nt28_high",
         "anssi_nt28_intermediary",
@@ -588,7 +588,7 @@ Object {
     "osMajorVersion": "7",
     "osMinorVersion": "9",
     "package": "scap-security-guide-0.1.52-2.el7_9",
-    "profiles": Array [
+    "profiles": [
       "anssi_nt28_enhanced",
       "anssi_nt28_high",
       "anssi_nt28_intermediary",
@@ -612,12 +612,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.52",
   },
-  "RHEL-8.0:scap-security-guide-0.1.42-11.el8": Object {
-    "attributes": Object {
+  "RHEL-8.0:scap-security-guide-0.1.42-11.el8": {
+    "attributes": {
       "osMajorVersion": "8",
       "osMinorVersion": "0",
       "package": "scap-security-guide-0.1.42-11.el8",
-      "profiles": Array [
+      "profiles": [
         "ospp",
         "pci-dss",
       ],
@@ -627,19 +627,19 @@ Object {
     "osMajorVersion": "8",
     "osMinorVersion": "0",
     "package": "scap-security-guide-0.1.42-11.el8",
-    "profiles": Array [
+    "profiles": [
       "ospp",
       "pci-dss",
     ],
     "type": "supportedSsg",
     "version": "0.1.42",
   },
-  "RHEL-8.1:scap-security-guide-0.1.46-1.el8": Object {
-    "attributes": Object {
+  "RHEL-8.1:scap-security-guide-0.1.46-1.el8": {
+    "attributes": {
       "osMajorVersion": "8",
       "osMinorVersion": "1",
       "package": "scap-security-guide-0.1.46-1.el8",
-      "profiles": Array [
+      "profiles": [
         "ospp",
         "pci-dss",
       ],
@@ -649,19 +649,19 @@ Object {
     "osMajorVersion": "8",
     "osMinorVersion": "1",
     "package": "scap-security-guide-0.1.46-1.el8",
-    "profiles": Array [
+    "profiles": [
       "ospp",
       "pci-dss",
     ],
     "type": "supportedSsg",
     "version": "0.1.46",
   },
-  "RHEL-8.1:scap-security-guide-0.1.47-8.el8_1": Object {
-    "attributes": Object {
+  "RHEL-8.1:scap-security-guide-0.1.47-8.el8_1": {
+    "attributes": {
       "osMajorVersion": "8",
       "osMinorVersion": "1",
       "package": "scap-security-guide-0.1.47-8.el8_1",
-      "profiles": Array [
+      "profiles": [
         "ospp",
         "pci-dss",
       ],
@@ -671,19 +671,19 @@ Object {
     "osMajorVersion": "8",
     "osMinorVersion": "1",
     "package": "scap-security-guide-0.1.47-8.el8_1",
-    "profiles": Array [
+    "profiles": [
       "ospp",
       "pci-dss",
     ],
     "type": "supportedSsg",
     "version": "0.1.47",
   },
-  "RHEL-8.2:scap-security-guide-0.1.48-10.el8_2": Object {
-    "attributes": Object {
+  "RHEL-8.2:scap-security-guide-0.1.48-10.el8_2": {
+    "attributes": {
       "osMajorVersion": "8",
       "osMinorVersion": "2",
       "package": "scap-security-guide-0.1.48-10.el8_2",
-      "profiles": Array [
+      "profiles": [
         "e8",
         "ospp",
         "pci-dss",
@@ -695,7 +695,7 @@ Object {
     "osMajorVersion": "8",
     "osMinorVersion": "2",
     "package": "scap-security-guide-0.1.48-10.el8_2",
-    "profiles": Array [
+    "profiles": [
       "e8",
       "ospp",
       "pci-dss",
@@ -704,12 +704,12 @@ Object {
     "type": "supportedSsg",
     "version": "0.1.48",
   },
-  "RHEL-8.3:scap-security-guide-0.1.50-16.el8_3": Object {
-    "attributes": Object {
+  "RHEL-8.3:scap-security-guide-0.1.50-16.el8_3": {
+    "attributes": {
       "osMajorVersion": "8",
       "osMinorVersion": "3",
       "package": "scap-security-guide-0.1.50-16.el8_3",
-      "profiles": Array [
+      "profiles": [
         "cis",
         "cui",
         "e8",
@@ -724,7 +724,7 @@ Object {
     "osMajorVersion": "8",
     "osMinorVersion": "3",
     "package": "scap-security-guide-0.1.50-16.el8_3",
-    "profiles": Array [
+    "profiles": [
       "cis",
       "cui",
       "e8",

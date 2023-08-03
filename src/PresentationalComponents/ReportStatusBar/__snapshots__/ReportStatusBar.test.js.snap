@@ -9,26 +9,26 @@ exports[`ReportStatusBar expect to render without error 1`] = `
   >
     <MultiSegmentBar
       data={
-        Array [
-          Object {
+        [
+          {
             "color": "#0066CC",
             "label": "Compliant: 5",
             "name": "Compliant",
             "value": 5,
           },
-          Object {
+          {
             "color": "#73BCF7",
             "label": "Non-Compliant: 5",
             "name": "Non-Compliant",
             "value": 5,
           },
-          Object {
+          {
             "color": "#F4C145",
             "label": "Unsupported: 2",
             "name": "Unsupported",
             "value": 2,
           },
-          Object {
+          {
             "color": "#f0f0f0",
             "label": "Never reported: 3",
             "name": "Never reported",
@@ -57,26 +57,26 @@ exports[`ReportStatusBar expect to render without error with no reporting system
   >
     <MultiSegmentBar
       data={
-        Array [
-          Object {
+        [
+          {
             "color": "#0066CC",
             "label": "Compliant: 0",
             "name": "Compliant",
             "value": 0,
           },
-          Object {
+          {
             "color": "#73BCF7",
             "label": "Non-Compliant: 0",
             "name": "Non-Compliant",
             "value": 0,
           },
-          Object {
+          {
             "color": "#F4C145",
             "label": "Unsupported: 2",
             "name": "Unsupported",
             "value": 2,
           },
-          Object {
+          {
             "color": "#f0f0f0",
             "label": "Never reported: 13",
             "name": "Never reported",

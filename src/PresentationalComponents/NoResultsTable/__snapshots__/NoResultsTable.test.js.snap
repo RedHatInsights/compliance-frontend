@@ -23,11 +23,11 @@ exports[`NoResultsTable expect to render without error 1`] = `
 `;
 
 exports[`emptyRows expect to render without error 1`] = `
-Array [
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+[
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 3,
         },
         "title": [Function],

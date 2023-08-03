@@ -7,10 +7,10 @@ exports[`FilterConfigBuilder categoryLabelForValue to return a matching category
 exports[`FilterConfigBuilder categoryLabelForValue to return a matching category label 3`] = `"Search term"`;
 
 exports[`FilterConfigBuilder initialDefaultState to return a matching category label 1`] = `
-Object {
-  "compliance": Array [],
+{
+  "compliance": [],
   "name": undefined,
-  "systemsmeetingcompliance": Array [],
+  "systemsmeetingcompliance": [],
 }
 `;
 
@@ -21,12 +21,12 @@ exports[`FilterConfigBuilder labelForValue to return a matching label 2`] = `"0-
 exports[`FilterConfigBuilder labelForValue to return a matching label 3`] = `"Search term"`;
 
 exports[`FilterConfigBuilder returns a filterConfig 1`] = `
-Object {
-  "compliance": Array [],
-  "compliancescore": Array [],
-  "items": Array [
-    Object {
-      "filterValues": Object {
+{
+  "compliance": [],
+  "compliancescore": [],
+  "items": [
+    {
+      "filterValues": {
         "onChange": [Function],
         "value": "",
       },
@@ -35,14 +35,14 @@ Object {
       "placeholder": "Filter by name",
       "type": "text",
     },
-    Object {
-      "filterValues": Object {
-        "items": Array [
-          Object {
+    {
+      "filterValues": {
+        "items": [
+          {
             "label": "Compliant",
             "value": "true",
           },
-          Object {
+          {
             "label": "Non-compliant",
             "value": "false",
           },
@@ -55,22 +55,22 @@ Object {
       "placeholder": "Filter by compliance",
       "type": "checkbox",
     },
-    Object {
-      "filterValues": Object {
-        "items": Array [
-          Object {
+    {
+      "filterValues": {
+        "items": [
+          {
             "label": "90 - 100%",
             "value": "90-100",
           },
-          Object {
+          {
             "label": "70 - 89%",
             "value": "70-89",
           },
-          Object {
+          {
             "label": "50 - 69%",
             "value": "50-69",
           },
-          Object {
+          {
             "label": "Less than 50%",
             "value": "0-49",
           },

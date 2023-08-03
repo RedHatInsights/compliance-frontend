@@ -4,7 +4,6 @@ import toJson from 'enzyme-to-json';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
-import 'babel-polyfill';
 
 configure({ adapter: new Adapter() });
 

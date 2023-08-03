@@ -3,7 +3,7 @@
 exports[`EditPolicy expect to render without error 1`] = `
 <ComplianceModal
   actions={
-    Array [
+    [
       <Button
         isDisabled={null}
         isLoading={false}
@@ -28,7 +28,7 @@ exports[`EditPolicy expect to render without error 1`] = `
   ouiaId="EditPolicyModal"
   position="top"
   style={
-    Object {
+    {
       "minHeight": "350px",
     }
   }
@@ -38,15 +38,15 @@ exports[`EditPolicy expect to render without error 1`] = `
 >
   <StateViewWithError
     stateValues={
-      Object {
+      {
         "error": undefined,
         "loading": undefined,
-        "policy": Object {
-          "benchmark": Object {
+        "policy": {
+          "benchmark": {
             "title": "benchmark",
             "version": "0.1.5",
           },
-          "businessObjective": Object {
+          "businessObjective": {
             "id": "1",
             "title": "BO 1",
           },
@@ -55,9 +55,9 @@ exports[`EditPolicy expect to render without error 1`] = `
           "description": "profile description",
           "id": "1",
           "name": "profile1",
-          "policy": Object {
+          "policy": {
             "name": "parentpolicy",
-            "profiles": Array [],
+            "profiles": [],
           },
           "refId": "121212",
           "totalHostCount": 1,
@@ -75,12 +75,12 @@ exports[`EditPolicy expect to render without error 1`] = `
     >
       <EditPolicyForm
         policy={
-          Object {
-            "benchmark": Object {
+          {
+            "benchmark": {
               "title": "benchmark",
               "version": "0.1.5",
             },
-            "businessObjective": Object {
+            "businessObjective": {
               "id": "1",
               "title": "BO 1",
             },
@@ -89,17 +89,17 @@ exports[`EditPolicy expect to render without error 1`] = `
             "description": "profile description",
             "id": "1",
             "name": "profile1",
-            "policy": Object {
+            "policy": {
               "name": "parentpolicy",
-              "profiles": Array [],
+              "profiles": [],
             },
             "refId": "121212",
             "totalHostCount": 1,
           }
         }
-        ruleValues={Object {}}
-        selectedRuleRefIds={Array []}
-        selectedSystems={Array []}
+        ruleValues={{}}
+        selectedRuleRefIds={[]}
+        selectedSystems={[]}
         setRuleValues={[Function]}
         setSelectedRuleRefIds={[Function]}
         setSelectedSystems={[Function]}

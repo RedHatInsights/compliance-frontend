@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`chopTreeIntoTable returns expanded rows in a tree 1`] = `
-Array [
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+[
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -15,16 +15,16 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "1st-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 2,
       "isExpanded": false,
     },
   },
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -34,25 +34,25 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "2nd-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 2,
       "isExpanded": false,
     },
   },
-  Object {
-    "cells": Array [
-      Object {
+  {
+    "cells": [
+      {
         "title": "TEST ITEM #7",
       },
     ],
     "itemId": "item-7",
-    "props": Object {},
+    "props": {},
   },
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -62,7 +62,7 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "4th-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 1,
       "isExpanded": false,
@@ -72,11 +72,11 @@ Array [
 `;
 
 exports[`chopTreeIntoTable returns rows in a tree 1`] = `
-Array [
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+[
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -86,16 +86,16 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "1st-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 2,
       "isExpanded": false,
     },
   },
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -105,25 +105,25 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "2nd-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 2,
       "isExpanded": false,
     },
   },
-  Object {
-    "cells": Array [
-      Object {
+  {
+    "cells": [
+      {
         "title": "TEST ITEM #7",
       },
     ],
     "itemId": "item-7",
-    "props": Object {},
+    "props": {},
   },
-  Object {
-    "cells": Array [
-      Object {
-        "props": Object {
+  {
+    "cells": [
+      {
+        "props": {
           "colSpan": 1,
         },
         "title": <strong>
@@ -133,7 +133,7 @@ Array [
     ],
     "isTreeBranch": true,
     "itemId": "4th-branch",
-    "props": Object {
+    "props": {
       "aria-level": 1,
       "aria-setsize": 1,
       "isExpanded": false,
@@ -143,14 +143,14 @@ Array [
 `;
 
 exports[`collectLeaves returns leaves of a specific branch 1`] = `
-Array [
+[
   "item-2",
   "item-3",
 ]
 `;
 
 exports[`collectLeaves returns leaves of a specific branch 2`] = `
-Array [
+[
   "item-4",
   "item-5",
   "item-6",
@@ -158,22 +158,22 @@ Array [
 `;
 
 exports[`collectLeaves returns leaves of a specific branch 3`] = `
-Array [
+[
   "item-4",
 ]
 `;
 
 exports[`collectLeaves returns leaves of a specific branch 4`] = `
-Array [
+[
   "item-5",
   "item-6",
 ]
 `;
 
-exports[`collectLeaves returns leaves of a specific branch 5`] = `Array []`;
+exports[`collectLeaves returns leaves of a specific branch 5`] = `[]`;
 
 exports[`collectLeaves returns leaves of all branches 1`] = `
-Array [
+[
   "item-1",
   "item-2",
   "item-3",

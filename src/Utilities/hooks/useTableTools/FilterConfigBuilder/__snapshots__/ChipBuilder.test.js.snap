@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChipBuilder#getChipsFor returns a filterConfig 1`] = `
-Array [
-  Object {
+[
+  {
     "category": "Name",
-    "chips": Array [
-      Object {
+    "chips": [
+      {
         "name": "Text search",
       },
     ],

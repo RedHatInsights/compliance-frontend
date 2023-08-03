@@ -1,47 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`useTableSort returns a table sort configuration 1`] = `
-Object {
-  "all": Array [
-    Object {
+{
+  "all": [
+    {
       "sorter": [Function],
-      "tableProps": Object {
-        "cells": Array [
-          Object {
+      "tableProps": {
+        "cells": [
+          {
             "exportKey": "id",
             "sortByProperty": "id",
             "title": "ID",
           },
-          Object {
+          {
             "exportKey": "name",
             "renderFunc": [Function],
             "sortByProperty": "name",
             "title": "Name",
           },
-          Object {
+          {
             "exportKey": "name",
             "renderExport": [Function],
             "sortByProperty": "name",
             "title": "Another Name column",
           },
-          Object {
+          {
             "renderExport": [Function],
             "sortByProperty": "description",
             "title": "Description",
           },
-          Object {
+          {
             "exportKey": "severity",
             "renderFunc": [Function],
             "sortByFunction": [Function],
             "title": "Severity sorted by function",
-            "transforms": Array [
+            "transforms": [
               [Function],
             ],
           },
-          Object {
+          {
             "exportKey": "severity",
             "renderFunc": [Function],
-            "sortByArray": Array [
+            "sortByArray": [
               "high",
               "medium",
               "low",
@@ -52,52 +52,52 @@ Object {
           },
         ],
         "onSort": [Function],
-        "sortBy": Object {
+        "sortBy": {
           "direction": "asc",
           "index": 1,
         },
       },
     },
   ],
-  "current": Object {
+  "current": {
     "sorter": [Function],
-    "tableProps": Object {
-      "cells": Array [
-        Object {
+    "tableProps": {
+      "cells": [
+        {
           "exportKey": "id",
           "sortByProperty": "id",
           "title": "ID",
         },
-        Object {
+        {
           "exportKey": "name",
           "renderFunc": [Function],
           "sortByProperty": "name",
           "title": "Name",
         },
-        Object {
+        {
           "exportKey": "name",
           "renderExport": [Function],
           "sortByProperty": "name",
           "title": "Another Name column",
         },
-        Object {
+        {
           "renderExport": [Function],
           "sortByProperty": "description",
           "title": "Description",
         },
-        Object {
+        {
           "exportKey": "severity",
           "renderFunc": [Function],
           "sortByFunction": [Function],
           "title": "Severity sorted by function",
-          "transforms": Array [
+          "transforms": [
             [Function],
           ],
         },
-        Object {
+        {
           "exportKey": "severity",
           "renderFunc": [Function],
-          "sortByArray": Array [
+          "sortByArray": [
             "high",
             "medium",
             "low",
@@ -108,7 +108,7 @@ Object {
         },
       ],
       "onSort": [Function],
-      "sortBy": Object {
+      "sortBy": {
         "direction": "asc",
         "index": 1,
       },

@@ -9,9 +9,9 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   canSelectAll={true}
   canSortFavorites={true}
   cells={
-    Array [
-      Object {
-        "props": Object {
+    [
+      {
+        "props": {
           "width": 45,
         },
         "renderExport": [Function],
@@ -19,20 +19,20 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "sortByProp": "name",
         "title": "Name",
       },
-      Object {
-        "props": Object {
+      {
+        "props": {
           "width": 15,
         },
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "osMajorVersion",
         "title": "Operating system",
-        "transforms": Array [
+        "transforms": [
           [Function],
         ],
       },
-      Object {
-        "props": Object {
+      {
+        "props": {
           "width": 15,
         },
         "renderExport": [Function],
@@ -40,13 +40,13 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
         "sortByProp": "totalHostCount",
         "title": "Systems",
       },
-      Object {
+      {
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByFunction": [Function],
         "title": "Business objective",
       },
-      Object {
+      {
         "renderExport": [Function],
         "renderFunc": [Function],
         "sortByProp": "complianceThreshold",
@@ -70,42 +70,42 @@ exports[`LoadingPoliciesTable expect to render without error 1`] = `
   role="grid"
   rowLabeledBy="simple-node"
   rows={
-    Array [
-      Object {
-        "cells": Array [
-          Object {
+    [
+      {
+        "cells": [
+          {
             "colSpan": 5,
             "title": <RowLoader />,
           },
         ],
       },
-      Object {
-        "cells": Array [
-          Object {
+      {
+        "cells": [
+          {
             "colSpan": 5,
             "title": <RowLoader />,
           },
         ],
       },
-      Object {
-        "cells": Array [
-          Object {
+      {
+        "cells": [
+          {
             "colSpan": 5,
             "title": <RowLoader />,
           },
         ],
       },
-      Object {
-        "cells": Array [
-          Object {
+      {
+        "cells": [
+          {
             "colSpan": 5,
             "title": <RowLoader />,
           },
         ],
       },
-      Object {
-        "cells": Array [
-          Object {
+      {
+        "cells": [
+          {
             "colSpan": 5,
             "title": <RowLoader />,
           },

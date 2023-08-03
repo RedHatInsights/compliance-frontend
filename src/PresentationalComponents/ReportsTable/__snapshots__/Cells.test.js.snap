@@ -6,7 +6,7 @@ exports[`CompliantSystems expect to render with unsupported hosts 1`] = `
     chartClass="report-table-chart-container"
     hasLegend={false}
     profile={
-      Object {
+      {
         "compliantHostCount": 9,
         "testResultHostCount": 10,
         "unsupportedHostCount": 42,
@@ -22,7 +22,7 @@ exports[`CompliantSystems expect to render without error 1`] = `
     chartClass="report-table-chart-container"
     hasLegend={false}
     profile={
-      Object {
+      {
         "compliantHostCount": 9,
         "testResultHostCount": 10,
       }
@@ -35,7 +35,7 @@ exports[`Name expect to render without error 1`] = `
 <TextContent>
   <LinkWithPermission
     style={
-      Object {
+      {
         "marginRight": ".5rem",
       }
     }
@@ -46,10 +46,10 @@ exports[`Name expect to render without error 1`] = `
   <PolicyPopover
     position="right"
     profile={
-      Object {
+      {
         "id": "ID",
         "name": "NAME",
-        "policy": Object {
+        "policy": {
           "id": "POLICY_ID",
           "name": "POLICY_NAME",
         },
@@ -100,7 +100,7 @@ exports[`PDFExportDownload expect to render without error 1`] = `
 <BackgroundLink
   Component={[Function]}
   componentProps={
-    Object {
+    {
       "className": "pf-u-mr-md",
       "ouiaId": "ReportsDownloadReportPDFLink",
       "variant": "plain",

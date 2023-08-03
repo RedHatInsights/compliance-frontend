@@ -32,7 +32,7 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
         height="1em"
         role="img"
         style={
-          Object {
+          {
             "verticalAlign": "-0.125em",
           }
         }
@@ -56,7 +56,7 @@ exports[`ProgressBar expect to render failed bar without error 1`] = `
     <div
       className="pf-c-progress__indicator"
       style={
-        Object {
+        {
           "width": "50%",
         }
       }
@@ -103,7 +103,7 @@ exports[`ProgressBar expect to render progress bar without error 1`] = `
     <div
       className="pf-c-progress__indicator"
       style={
-        Object {
+        {
           "width": "0%",
         }
       }
@@ -148,7 +148,7 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
         height="1em"
         role="img"
         style={
-          Object {
+          {
             "verticalAlign": "-0.125em",
           }
         }
@@ -172,7 +172,7 @@ exports[`ProgressBar expect to render success bar without error 1`] = `
     <div
       className="pf-c-progress__indicator"
       style={
-        Object {
+        {
           "width": "100%",
         }
       }

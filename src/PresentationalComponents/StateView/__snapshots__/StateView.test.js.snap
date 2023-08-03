@@ -27,9 +27,9 @@ exports[`StatView expect to render loading 1`] = `
 exports[`StatViewWithError expect to render error page 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "data": undefined,
-      "error": Object {
+      "error": {
         "error": "ERROR",
       },
       "loading": undefined,
@@ -42,7 +42,7 @@ exports[`StatViewWithError expect to render error page 1`] = `
   >
     <ErrorPage
       error={
-        Object {
+        {
           "error": "ERROR",
         }
       }

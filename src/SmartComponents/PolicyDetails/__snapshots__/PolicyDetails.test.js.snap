@@ -3,35 +3,35 @@
 exports[`PolicyDetails expect to render without error 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "profile": Object {
-          "benchmark": Object {
+    {
+      "data": {
+        "profile": {
+          "benchmark": {
             "title": "benchmark",
             "version": "0.1.5",
           },
-          "businessObjective": Object {
+          "businessObjective": {
             "id": "1",
             "title": "BO 1",
           },
           "complianceThreshold": 1,
           "compliantHostCount": 1,
           "description": "profile description",
-          "hosts": Array [],
+          "hosts": [],
           "id": "1",
           "name": "profile1",
           "osMajorVersion": "7",
-          "policy": Object {
+          "policy": {
             "name": "parentpolicy",
-            "profiles": Array [
-              Object {
-                "benchmark": Object {
-                  "ruleTree": Object {},
+            "profiles": [
+              {
+                "benchmark": {
+                  "ruleTree": {},
                   "title": "benchmark",
-                  "valueDefinitions": Array [],
+                  "valueDefinitions": [],
                   "version": "0.1.5",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
@@ -140,33 +140,33 @@ exports[`PolicyDetails expect to render without error 1`] = `
         >
           <PolicyDetailsDescription
             policy={
-              Object {
-                "benchmark": Object {
+              {
+                "benchmark": {
                   "title": "benchmark",
                   "version": "0.1.5",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
-                "hosts": Array [],
+                "hosts": [],
                 "id": "1",
                 "name": "profile1",
                 "osMajorVersion": "7",
-                "policy": Object {
+                "policy": {
                   "name": "parentpolicy",
-                  "profiles": Array [
-                    Object {
-                      "benchmark": Object {
-                        "ruleTree": Object {},
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "ruleTree": {},
                         "title": "benchmark",
-                        "valueDefinitions": Array [],
+                        "valueDefinitions": [],
                         "version": "0.1.5",
                       },
-                      "businessObjective": Object {
+                      "businessObjective": {
                         "id": "1",
                         "title": "BO 1",
                       },
@@ -191,33 +191,33 @@ exports[`PolicyDetails expect to render without error 1`] = `
           <PolicyMultiversionRules
             onRuleValueReset={[Function]}
             policy={
-              Object {
-                "benchmark": Object {
+              {
+                "benchmark": {
                   "title": "benchmark",
                   "version": "0.1.5",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
-                "hosts": Array [],
+                "hosts": [],
                 "id": "1",
                 "name": "profile1",
                 "osMajorVersion": "7",
-                "policy": Object {
+                "policy": {
                   "name": "parentpolicy",
-                  "profiles": Array [
-                    Object {
-                      "benchmark": Object {
-                        "ruleTree": Object {},
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "ruleTree": {},
                         "title": "benchmark",
-                        "valueDefinitions": Array [],
+                        "valueDefinitions": [],
                         "version": "0.1.5",
                       },
-                      "businessObjective": Object {
+                      "businessObjective": {
                         "id": "1",
                         "title": "BO 1",
                       },
@@ -242,33 +242,33 @@ exports[`PolicyDetails expect to render without error 1`] = `
         >
           <PolicySystemsTab
             policy={
-              Object {
-                "benchmark": Object {
+              {
+                "benchmark": {
                   "title": "benchmark",
                   "version": "0.1.5",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
                 "complianceThreshold": 1,
                 "compliantHostCount": 1,
                 "description": "profile description",
-                "hosts": Array [],
+                "hosts": [],
                 "id": "1",
                 "name": "profile1",
                 "osMajorVersion": "7",
-                "policy": Object {
+                "policy": {
                   "name": "parentpolicy",
-                  "profiles": Array [
-                    Object {
-                      "benchmark": Object {
-                        "ruleTree": Object {},
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "ruleTree": {},
                         "title": "benchmark",
-                        "valueDefinitions": Array [],
+                        "valueDefinitions": [],
                         "version": "0.1.5",
                       },
-                      "businessObjective": Object {
+                      "businessObjective": {
                         "id": "1",
                         "title": "BO 1",
                       },

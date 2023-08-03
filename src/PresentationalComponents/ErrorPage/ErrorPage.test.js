@@ -1,4 +1,10 @@
 import ErrorPage from './ErrorPage';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+
+jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
 
 describe('ErrorPage', () => {
   it('expect to render without error', () => {
@@ -34,9 +40,9 @@ describe('ErrorPage', () => {
   });
 
   it('expect to render a 401 error when logged out', () => {
-    window.insights = {
-      chrome: { auth: { logout: jest.fn(() => 'Logout') } },
-    };
+    const logout = jest.fn(() => 'Logout');
+    useChrome.mockImplementation(() => ({ auth: { logout } }));
+
     const error = {
       networkError: { statusCode: 401 },
       error: 'Test Error loading',
@@ -44,6 +50,6 @@ describe('ErrorPage', () => {
     const wrapper = shallow(<ErrorPage error={error} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
-    expect(window.insights.chrome.auth.logout).toHaveBeenCalled();
+    expect(logout).toHaveBeenCalled();
   });
 });

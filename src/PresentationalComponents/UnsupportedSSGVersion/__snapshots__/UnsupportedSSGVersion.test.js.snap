@@ -3,7 +3,7 @@
 exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
 <span
   style={
-    Object {
+    {
       "display": "inline-block",
       "margin": "1em",
     }
@@ -11,7 +11,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
 >
   <TooltipOrPopover
     tooltipProps={
-      Object {
+      {
         "messageVariant": undefined,
       }
     }
@@ -20,7 +20,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     <span
       className="pf-u-mr-xs"
       style={
-        Object {
+        {
           "cursor": "pointer",
         }
       }
@@ -35,7 +35,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
   Unsupported text
   <TooltipOrPopover
     tooltipProps={
-      Object {
+      {
         "messageVariant": undefined,
       }
     }
@@ -44,7 +44,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
     <span
       className="pf-u-ml-xs"
       style={
-        Object {
+        {
           "cursor": "pointer",
         }
       }
@@ -63,7 +63,7 @@ exports[`UnsupportedSSGVersion expect to render help sign 1`] = `
 exports[`UnsupportedSSGVersion expect to render no warning sign 1`] = `
 <span
   style={
-    Object {
+    {
       "display": "inline-block",
       "margin": "1em",
     }
@@ -76,7 +76,7 @@ exports[`UnsupportedSSGVersion expect to render no warning sign 1`] = `
 exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
 <span
   style={
-    Object {
+    {
       "display": "inline-block",
       "margin": "1em",
     }
@@ -84,7 +84,7 @@ exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
 >
   <TooltipOrPopover
     tooltipProps={
-      Object {
+      {
         "messageVariant": "singular",
       }
     }
@@ -93,7 +93,7 @@ exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
     <span
       className="pf-u-mr-xs"
       style={
-        Object {
+        {
           "cursor": "pointer",
         }
       }
@@ -112,7 +112,7 @@ exports[`UnsupportedSSGVersion expect to render singular message 1`] = `
 exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
 <span
   style={
-    Object {
+    {
       "display": "inline-block",
       "margin": "1em",
     }
@@ -120,7 +120,7 @@ exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
 >
   <TooltipOrPopover
     tooltipProps={
-      Object {
+      {
         "content": <div>
           TOOLTIP TEXT
         </div>,
@@ -131,7 +131,7 @@ exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
   >
     <span
       className="pf-u-mr-xs"
-      style={Object {}}
+      style={{}}
     >
       <ExclamationTriangleIcon
         color="var(--pf-global--warning-color--100)"
@@ -147,7 +147,7 @@ exports[`UnsupportedSSGVersion expect to render tooltip 1`] = `
 exports[`UnsupportedSSGVersion expect to render without error 1`] = `
 <span
   style={
-    Object {
+    {
       "display": "inline-block",
       "margin": "1em",
     }
@@ -155,7 +155,7 @@ exports[`UnsupportedSSGVersion expect to render without error 1`] = `
 >
   <TooltipOrPopover
     tooltipProps={
-      Object {
+      {
         "messageVariant": undefined,
       }
     }
@@ -164,7 +164,7 @@ exports[`UnsupportedSSGVersion expect to render without error 1`] = `
     <span
       className="pf-u-mr-xs"
       style={
-        Object {
+        {
           "cursor": "pointer",
         }
       }

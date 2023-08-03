@@ -23,7 +23,7 @@ exports[`auxiliary functions to reducer should show 0% score instead if the syst
           distance={15}
           enableFlip={true}
           flipBehavior={
-            Array [
+            [
               "top",
               "right",
               "bottom",
@@ -51,7 +51,7 @@ exports[`auxiliary functions to reducer should show 0% score instead if the syst
               id="pf-tooltip-2"
               role="tooltip"
               style={
-                Object {
+                {
                   "maxWidth": null,
                   "opacity": 0,
                   "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -68,7 +68,7 @@ exports[`auxiliary functions to reducer should show 0% score instead if the syst
           }
           popperMatchesTriggerWidth={false}
           positionModifiers={
-            Object {
+            {
               "bottom": "pf-m-bottom",
               "bottom-end": "pf-m-bottom-right",
               "bottom-start": "pf-m-bottom-left",
@@ -120,7 +120,7 @@ exports[`auxiliary functions to reducer should show 0% score instead if the syst
                     height="1em"
                     role="img"
                     style={
-                      Object {
+                      {
                         "verticalAlign": "-0.125em",
                       }
                     }
@@ -167,7 +167,7 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
           distance={15}
           enableFlip={true}
           flipBehavior={
-            Array [
+            [
               "top",
               "right",
               "bottom",
@@ -195,7 +195,7 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
               id="pf-tooltip-1"
               role="tooltip"
               style={
-                Object {
+                {
                   "maxWidth": null,
                   "opacity": 0,
                   "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -212,7 +212,7 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
           }
           popperMatchesTriggerWidth={false}
           positionModifiers={
-            Object {
+            {
               "bottom": "pf-m-bottom",
               "bottom-end": "pf-m-bottom-right",
               "bottom-start": "pf-m-bottom-left",
@@ -266,7 +266,7 @@ exports[`auxiliary functions to reducer should show a danger icon if the host is
                     height="1em"
                     role="img"
                     style={
-                      Object {
+                      {
                         "verticalAlign": "-0.125em",
                       }
                     }
@@ -308,11 +308,11 @@ exports[`auxiliary functions to reducer should show a question mark icon if the 
 exports[`auxiliary functions to reducer should show a success icon if the host is compliant 1`] = `
 <ComplianceScore
   profiles={
-    Array [
-      Object {
+    [
+      {
         "compliant": true,
       },
-      Object {
+      {
         "compliant": true,
       },
     ]
@@ -337,7 +337,7 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
           distance={15}
           enableFlip={true}
           flipBehavior={
-            Array [
+            [
               "top",
               "right",
               "bottom",
@@ -365,7 +365,7 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
               id="pf-tooltip-3"
               role="tooltip"
               style={
-                Object {
+                {
                   "maxWidth": null,
                   "opacity": 0,
                   "transition": "opacity 300ms cubic-bezier(.54, 1.5, .38, 1.11)",
@@ -382,7 +382,7 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
           }
           popperMatchesTriggerWidth={false}
           positionModifiers={
-            Object {
+            {
               "bottom": "pf-m-bottom",
               "bottom-end": "pf-m-bottom-right",
               "bottom-start": "pf-m-bottom-left",
@@ -402,11 +402,11 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
             <span>
               <CompliantIcon
                 profiles={
-                  Array [
-                    Object {
+                  [
+                    {
                       "compliant": true,
                     },
-                    Object {
+                    {
                       "compliant": true,
                     },
                   ]
@@ -427,11 +427,11 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
               <CompliantIcon
                 key="system-compliance-icon-undefined"
                 profiles={
-                  Array [
-                    Object {
+                  [
+                    {
                       "compliant": true,
                     },
-                    Object {
+                    {
                       "compliant": true,
                     },
                   ]
@@ -452,7 +452,7 @@ exports[`auxiliary functions to reducer should show a success icon if the host i
                     height="1em"
                     role="img"
                     style={
-                      Object {
+                      {
                         "verticalAlign": "-0.125em",
                       }
                     }

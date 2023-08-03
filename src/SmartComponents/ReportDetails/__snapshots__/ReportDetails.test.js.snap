@@ -3,13 +3,13 @@
 exports[`ReportDetails expect to render without error 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "profile": Object {
-          "benchmark": Object {
+    {
+      "data": {
+        "profile": {
+          "benchmark": {
             "version": "0.1.4",
           },
-          "businessObjective": Object {
+          "businessObjective": {
             "id": "1",
             "title": "BO 1",
           },
@@ -20,7 +20,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           "id": "1",
           "name": "profile1",
           "osMajorVersion": "7",
-          "policy": Object {
+          "policy": {
             "id": "thepolicyid",
             "name": "the policy name",
           },
@@ -99,18 +99,18 @@ exports[`ReportDetails expect to render without error 1`] = `
             Component={[Function]}
             className="pf-u-mr-md"
             componentProps={
-              Object {
+              {
                 "ouiaId": "ReportDetailsDownloadReportPDFLink",
                 "variant": "primary",
               }
             }
             state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
+              {
+                "profile": {
+                  "benchmark": {
                     "version": "0.1.4",
                   },
-                  "businessObjective": Object {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -121,7 +121,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "id": "1",
                   "name": "profile1",
                   "osMajorVersion": "7",
-                  "policy": Object {
+                  "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
@@ -139,19 +139,19 @@ exports[`ReportDetails expect to render without error 1`] = `
           <BackgroundLink
             Component={[Function]}
             componentProps={
-              Object {
+              {
                 "isInline": true,
                 "ouiaId": "ReportDetailsDeleteReportLink",
                 "variant": "link",
               }
             }
             state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
+              {
+                "profile": {
+                  "benchmark": {
                     "version": "0.1.4",
                   },
-                  "businessObjective": Object {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -162,7 +162,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "id": "1",
                   "name": "profile1",
                   "osMajorVersion": "7",
-                  "policy": Object {
+                  "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
@@ -198,11 +198,11 @@ exports[`ReportDetails expect to render without error 1`] = `
                 chartClass="report-details-chart-container"
                 hasLegend={true}
                 profile={
-                  Object {
-                    "benchmark": Object {
+                  {
+                    "benchmark": {
                       "version": "0.1.4",
                     },
-                    "businessObjective": Object {
+                    "businessObjective": {
                       "id": "1",
                       "title": "BO 1",
                     },
@@ -213,7 +213,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                     "id": "1",
                     "name": "profile1",
                     "osMajorVersion": "7",
-                    "policy": Object {
+                    "policy": {
                       "id": "thepolicyid",
                       "name": "the policy name",
                     },
@@ -235,11 +235,11 @@ exports[`ReportDetails expect to render without error 1`] = `
         >
           <ReportDetailsDescription
             profile={
-              Object {
-                "benchmark": Object {
+              {
+                "benchmark": {
                   "version": "0.1.4",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
@@ -250,7 +250,7 @@ exports[`ReportDetails expect to render without error 1`] = `
                 "id": "1",
                 "name": "profile1",
                 "osMajorVersion": "7",
-                "policy": Object {
+                "policy": {
                   "id": "thepolicyid",
                   "name": "the policy name",
                 },
@@ -275,76 +275,76 @@ exports[`ReportDetails expect to render without error 1`] = `
         >
           <SystemsTable
             columns={
-              Array [
-                Object {
+              [
+                {
                   "key": "name",
-                  "props": Object {
+                  "props": {
                     "showLink": true,
                     "showOsInfo": true,
                     "width": 40,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
-                  "sortBy": Array [
+                  "sortBy": [
                     "name",
                   ],
                   "title": "Name",
                 },
-                Object {
+                {
                   "key": "tags",
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "ssg_version",
                   "renderExport": [Function],
                   "renderFunc": [Function],
-                  "sortBy": Array [
+                  "sortBy": [
                     "ssg_version",
                   ],
                   "title": "SSG version",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "profiles",
                   "key": "failedRules",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "complianceScore",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "lastScanned",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 10,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
@@ -355,14 +355,14 @@ exports[`ReportDetails expect to render without error 1`] = `
             defaultFilter="with_results_for_policy_id = 1"
             enableExport={true}
             policyId="1"
-            preselectedSystems={Array []}
+            preselectedSystems={[]}
             remediationsEnabled={true}
             ruleSeverityFilter={false}
             showActions={true}
             showComplianceSystemsInfo={false}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
-              Array [
+              [
                 "7",
               ]
             }
@@ -377,13 +377,13 @@ exports[`ReportDetails expect to render without error 1`] = `
 exports[`ReportDetails expect to render without error and ssg Version 1`] = `
 <StateViewWithError
   stateValues={
-    Object {
-      "data": Object {
-        "profile": Object {
-          "benchmark": Object {
+    {
+      "data": {
+        "profile": {
+          "benchmark": {
             "version": "0.1.4",
           },
-          "businessObjective": Object {
+          "businessObjective": {
             "id": "1",
             "title": "BO 1",
           },
@@ -394,7 +394,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "id": "1",
           "name": "profile1",
           "osMajorVersion": "7",
-          "policy": Object {
+          "policy": {
             "id": "thepolicyid",
             "name": "the policy name",
           },
@@ -473,18 +473,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             Component={[Function]}
             className="pf-u-mr-md"
             componentProps={
-              Object {
+              {
                 "ouiaId": "ReportDetailsDownloadReportPDFLink",
                 "variant": "primary",
               }
             }
             state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
+              {
+                "profile": {
+                  "benchmark": {
                     "version": "0.1.4",
                   },
-                  "businessObjective": Object {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -495,7 +495,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "id": "1",
                   "name": "profile1",
                   "osMajorVersion": "7",
-                  "policy": Object {
+                  "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
@@ -513,19 +513,19 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           <BackgroundLink
             Component={[Function]}
             componentProps={
-              Object {
+              {
                 "isInline": true,
                 "ouiaId": "ReportDetailsDeleteReportLink",
                 "variant": "link",
               }
             }
             state={
-              Object {
-                "profile": Object {
-                  "benchmark": Object {
+              {
+                "profile": {
+                  "benchmark": {
                     "version": "0.1.4",
                   },
-                  "businessObjective": Object {
+                  "businessObjective": {
                     "id": "1",
                     "title": "BO 1",
                   },
@@ -536,7 +536,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "id": "1",
                   "name": "profile1",
                   "osMajorVersion": "7",
-                  "policy": Object {
+                  "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
                   },
@@ -572,11 +572,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 chartClass="report-details-chart-container"
                 hasLegend={true}
                 profile={
-                  Object {
-                    "benchmark": Object {
+                  {
+                    "benchmark": {
                       "version": "0.1.4",
                     },
-                    "businessObjective": Object {
+                    "businessObjective": {
                       "id": "1",
                       "title": "BO 1",
                     },
@@ -587,7 +587,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "id": "1",
                     "name": "profile1",
                     "osMajorVersion": "7",
-                    "policy": Object {
+                    "policy": {
                       "id": "thepolicyid",
                       "name": "the policy name",
                     },
@@ -609,11 +609,11 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         >
           <ReportDetailsDescription
             profile={
-              Object {
-                "benchmark": Object {
+              {
+                "benchmark": {
                   "version": "0.1.4",
                 },
-                "businessObjective": Object {
+                "businessObjective": {
                   "id": "1",
                   "title": "BO 1",
                 },
@@ -624,7 +624,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "id": "1",
                 "name": "profile1",
                 "osMajorVersion": "7",
-                "policy": Object {
+                "policy": {
                   "id": "thepolicyid",
                   "name": "the policy name",
                 },
@@ -649,76 +649,76 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
         >
           <SystemsTable
             columns={
-              Array [
-                Object {
+              [
+                {
                   "key": "name",
-                  "props": Object {
+                  "props": {
                     "showLink": true,
                     "showOsInfo": true,
                     "width": 40,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
-                  "sortBy": Array [
+                  "sortBy": [
                     "name",
                   ],
                   "title": "Name",
                 },
-                Object {
+                {
                   "key": "tags",
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "ssg_version",
                   "renderExport": [Function],
                   "renderFunc": [Function],
-                  "sortBy": Array [
+                  "sortBy": [
                     "ssg_version",
                   ],
                   "title": "SSG version",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "profiles",
                   "key": "failedRules",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Failed rules",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "complianceScore",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Compliance score",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
-                Object {
+                {
                   "exportKey": "testResultProfiles",
                   "key": "lastScanned",
-                  "props": Object {
+                  "props": {
                     "isStatic": true,
                     "width": 10,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
                   "title": "Last scanned",
-                  "transforms": Array [
+                  "transforms": [
                     [Function],
                   ],
                 },
@@ -729,14 +729,14 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             defaultFilter="with_results_for_policy_id = 1"
             enableExport={true}
             policyId="1"
-            preselectedSystems={Array []}
+            preselectedSystems={[]}
             remediationsEnabled={true}
             ruleSeverityFilter={false}
             showActions={true}
             showComplianceSystemsInfo={false}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
-              Array [
+              [
                 "7",
               ]
             }

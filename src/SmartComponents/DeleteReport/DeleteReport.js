@@ -12,7 +12,7 @@ import { dispatchAction } from 'Utilities/Dispatcher';
 const DeleteReport = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = location.state?.profile;
+  const { id } = location.state?.profile || {};
   const onClose = () => {
     history.push(location.state.background);
   };

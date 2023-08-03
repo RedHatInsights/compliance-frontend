@@ -16,7 +16,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
       name="description"
       onChange={[Function]}
       style={
-        Object {
+        {
           "height": 110,
           "width": 800,
         }
@@ -36,7 +36,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
       name="business-objective"
       onChange={[Function]}
       style={
-        Object {
+        {
           "width": 300,
         }
       }
@@ -62,7 +62,7 @@ exports[`EditPolicyDetailsTab expect to render without error 1`] = `
       name="compliance-threshold"
       onChange={[Function]}
       style={
-        Object {
+        {
           "width": 150,
         }
       }

@@ -9,7 +9,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
         "cacheKeyRoot": KeyTrie {
           "weakness": true,
         },
-        "config": Object {
+        "config": {
           "addTypename": true,
           "dataIdFromObject": [Function],
           "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -17,12 +17,12 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
           "resultCaching": true,
         },
         "data": DepTrackingCache {
-          "data": Object {},
+          "data": {},
           "depend": [Function],
         },
         "maybeBroadcastWatch": [Function],
         "optimisticData": DepTrackingCache {
-          "data": Object {},
+          "data": {},
           "depend": [Function],
         },
         "silenceBroadcast": false,
@@ -33,11 +33,11 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
           "freezeResults": false,
         },
         "storeWriter": StoreWriter {},
-        "typenameDocumentCache": Array [],
-        "watches": Array [],
+        "typenameDocumentCache": Map {},
+        "watches": Set {},
       },
-      "clearStoreCallbacks": Array [],
-      "defaultOptions": Object {},
+      "clearStoreCallbacks": [],
+      "defaultOptions": {},
       "disableNetworkFetches": false,
       "link": HttpLink {
         "request": [Function],
@@ -48,7 +48,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
           "cacheKeyRoot": KeyTrie {
             "weakness": true,
           },
-          "config": Object {
+          "config": {
             "addTypename": true,
             "dataIdFromObject": [Function],
             "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -56,12 +56,12 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "resultCaching": true,
           },
           "data": DepTrackingCache {
-            "data": Object {},
+            "data": {},
             "depend": [Function],
           },
           "maybeBroadcastWatch": [Function],
           "optimisticData": DepTrackingCache {
-            "data": Object {},
+            "data": {},
             "depend": [Function],
           },
           "silenceBroadcast": false,
@@ -72,8 +72,8 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "freezeResults": false,
           },
           "storeWriter": StoreWriter {},
-          "typenameDocumentCache": Array [],
-          "watches": Array [],
+          "typenameDocumentCache": Map {},
+          "watches": Set {},
         },
         "client": [Circular],
       },
@@ -82,7 +82,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
       "queryDeduplication": true,
       "queryManager": QueryManager {
         "assumeImmutableResults": false,
-        "clientAwareness": Object {
+        "clientAwareness": {
           "name": undefined,
           "version": undefined,
         },
@@ -92,7 +92,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "cacheKeyRoot": KeyTrie {
               "weakness": true,
             },
-            "config": Object {
+            "config": {
               "addTypename": true,
               "dataIdFromObject": [Function],
               "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -100,12 +100,12 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
               "resultCaching": true,
             },
             "data": DepTrackingCache {
-              "data": Object {},
+              "data": {},
               "depend": [Function],
             },
             "maybeBroadcastWatch": [Function],
             "optimisticData": DepTrackingCache {
-              "data": Object {},
+              "data": {},
               "depend": [Function],
             },
             "silenceBroadcast": false,
@@ -116,13 +116,13 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
               "freezeResults": false,
             },
             "storeWriter": StoreWriter {},
-            "typenameDocumentCache": Array [],
-            "watches": Array [],
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
           },
         },
-        "fetchQueryRejectFns": Array [],
+        "fetchQueryRejectFns": Map {},
         "idCounter": 1,
-        "inFlightLinkObservables": Array [],
+        "inFlightLinkObservables": Map {},
         "link": HttpLink {
           "request": [Function],
         },
@@ -132,7 +132,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "cacheKeyRoot": KeyTrie {
               "weakness": true,
             },
-            "config": Object {
+            "config": {
               "addTypename": true,
               "dataIdFromObject": [Function],
               "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -140,12 +140,12 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
               "resultCaching": true,
             },
             "data": DepTrackingCache {
-              "data": Object {},
+              "data": {},
               "depend": [Function],
             },
             "maybeBroadcastWatch": [Function],
             "optimisticData": DepTrackingCache {
-              "data": Object {},
+              "data": {},
               "depend": [Function],
             },
             "silenceBroadcast": false,
@@ -156,34 +156,34 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
               "freezeResults": false,
             },
             "storeWriter": StoreWriter {},
-            "typenameDocumentCache": Array [],
-            "watches": Array [],
+            "typenameDocumentCache": Map {},
+            "watches": Set {},
           },
           "client": [Circular],
         },
         "mutationStore": MutationStore {
-          "store": Object {},
+          "store": {},
         },
         "onBroadcast": [Function],
-        "pollingInfoByQueryId": Array [],
-        "queries": Array [],
+        "pollingInfoByQueryId": Map {},
+        "queries": Map {},
         "queryDeduplication": true,
         "queryStore": QueryStore {
-          "store": Object {},
+          "store": {},
         },
         "ssrMode": false,
         "transformCache": WeakMap {},
       },
       "reFetchObservableQueries": [Function],
       "resetStore": [Function],
-      "resetStoreCallbacks": Array [],
+      "resetStoreCallbacks": [],
       "store": DataStore {
         "cache": InMemoryCache {
           "addTypename": true,
           "cacheKeyRoot": KeyTrie {
             "weakness": true,
           },
-          "config": Object {
+          "config": {
             "addTypename": true,
             "dataIdFromObject": [Function],
             "fragmentMatcher": HeuristicFragmentMatcher {},
@@ -191,12 +191,12 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "resultCaching": true,
           },
           "data": DepTrackingCache {
-            "data": Object {},
+            "data": {},
             "depend": [Function],
           },
           "maybeBroadcastWatch": [Function],
           "optimisticData": DepTrackingCache {
-            "data": Object {},
+            "data": {},
             "depend": [Function],
           },
           "silenceBroadcast": false,
@@ -207,8 +207,8 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
             "freezeResults": false,
           },
           "storeWriter": StoreWriter {},
-          "typenameDocumentCache": Array [],
-          "watches": Array [],
+          "typenameDocumentCache": Map {},
+          "watches": Set {},
         },
       },
       "typeDefs": undefined,
@@ -220,7 +220,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
     <BackgroundLink
       Component={[Function]}
       componentProps={
-        Object {
+        {
           "ouiaId": "CreateNewPolicyButton",
           "variant": "primary",
         }

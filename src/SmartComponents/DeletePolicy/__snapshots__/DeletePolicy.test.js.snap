@@ -3,7 +3,7 @@
 exports[`DeletePolicy expect to render an open modal without error 1`] = `
 <ComplianceModal
   actions={
-    Array [
+    [
       <Button
         aria-label="delete"
         isDisabled={true}

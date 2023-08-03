@@ -29,42 +29,42 @@ exports[`CreatePolicyForm expect to render the wizard 1`] = `
   onNext={[Function]}
   startAtStep={1}
   steps={
-    Array [
-      Object {
+    [
+      {
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 1,
         "name": "Create SCAP policy",
       },
-      Object {
+      {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 2,
         "name": "Details",
       },
-      Object {
+      {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 3,
         "name": "Systems",
       },
-      Object {
+      {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm)) />,
         "enableNext": false,
         "id": 4,
         "name": "Rules",
       },
-      Object {
+      {
         "canJumpTo": false,
         "component": <Memo(Connect(ReviewCreatedPolicy)) />,
         "id": 5,
         "name": "Review",
         "nextButtonText": "Finish",
       },
-      Object {
+      {
         "canJumpTo": false,
         "component": <Memo(Connect(ReduxForm))
           onWizardFinish={[Function]}

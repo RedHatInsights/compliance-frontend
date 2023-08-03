@@ -3,7 +3,7 @@
 exports[`SystemsTable returns 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -23,43 +23,43 @@ exports[`SystemsTable returns 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -69,22 +69,22 @@ exports[`SystemsTable returns 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -93,54 +93,54 @@ exports[`SystemsTable returns 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -150,30 +150,30 @@ exports[`SystemsTable returns 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -196,7 +196,7 @@ exports[`SystemsTable returns 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -204,7 +204,7 @@ exports[`SystemsTable returns 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -219,7 +219,7 @@ exports[`SystemsTable returns 1`] = `
 exports[`SystemsTable returns compact 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -239,43 +239,43 @@ exports[`SystemsTable returns compact 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -285,22 +285,22 @@ exports[`SystemsTable returns compact 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -309,54 +309,54 @@ exports[`SystemsTable returns compact 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -366,30 +366,30 @@ exports[`SystemsTable returns compact 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -412,7 +412,7 @@ exports[`SystemsTable returns compact 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -420,7 +420,7 @@ exports[`SystemsTable returns compact 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -435,7 +435,7 @@ exports[`SystemsTable returns compact 1`] = `
 exports[`SystemsTable returns showAllSystems 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -455,37 +455,37 @@ exports[`SystemsTable returns showAllSystems 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -494,7 +494,7 @@ exports[`SystemsTable returns showAllSystems 1`] = `
       columns={[Function]}
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
@@ -502,7 +502,7 @@ exports[`SystemsTable returns showAllSystems 1`] = `
       fallback={<Spinner />}
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -510,7 +510,7 @@ exports[`SystemsTable returns showAllSystems 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -525,7 +525,7 @@ exports[`SystemsTable returns showAllSystems 1`] = `
 exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -551,43 +551,43 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
     />
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -597,22 +597,22 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -621,54 +621,54 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -678,30 +678,30 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -724,7 +724,7 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -732,7 +732,7 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -747,7 +747,7 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
 exports[`SystemsTable returns with compliantFilter 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -767,43 +767,43 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -813,22 +813,22 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -837,22 +837,22 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
-              "filterValues": Object {
-                "items": Array [
-                  Object {
+            {
+              "filterValues": {
+                "items": [
+                  {
                     "label": "Compliant",
                     "value": "compliant = true AND supported_ssg = true",
                   },
-                  Object {
+                  {
                     "label": "Non-compliant",
                     "value": "compliant = false AND supported_ssg = true",
                   },
-                  Object {
+                  {
                     "label": "Not supported",
                     "value": "supported_ssg = false",
                   },
-                  Object {
+                  {
                     "label": "Never reported",
                     "value": "reported = false",
                   },
@@ -865,22 +865,22 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
               "placeholder": "Filter by compliance",
               "type": "checkbox",
             },
-            Object {
-              "filterValues": Object {
-                "items": Array [
-                  Object {
+            {
+              "filterValues": {
+                "items": [
+                  {
                     "label": "90 - 100%",
                     "value": "90-101",
                   },
-                  Object {
+                  {
                     "label": "70 - 89%",
                     "value": "70-90",
                   },
-                  Object {
+                  {
                     "label": "50 - 69%",
                     "value": "50-70",
                   },
-                  Object {
+                  {
                     "label": "Less than 50%",
                     "value": "0-50",
                   },
@@ -893,54 +893,54 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
               "placeholder": "Filter by compliance score",
               "type": "checkbox",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -950,30 +950,30 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -996,7 +996,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -1004,7 +1004,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -1019,7 +1019,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
 exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -1039,43 +1039,43 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -1085,22 +1085,22 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -1109,54 +1109,54 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -1166,30 +1166,30 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -1212,7 +1212,7 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -1220,7 +1220,7 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -1235,7 +1235,7 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
 exports[`SystemsTable returns without actions 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -1255,35 +1255,35 @@ exports[`SystemsTable returns without actions 1`] = `
   >
     <mockConstructor
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -1293,22 +1293,22 @@ exports[`SystemsTable returns without actions 1`] = `
       dedicatedAction={
         <RemediationButton
           policyId=""
-          systems={Array []}
+          systems={[]}
         />
       }
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -1317,54 +1317,54 @@ exports[`SystemsTable returns without actions 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -1374,30 +1374,30 @@ exports[`SystemsTable returns without actions 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -1420,7 +1420,7 @@ exports[`SystemsTable returns without actions 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -1428,7 +1428,7 @@ exports[`SystemsTable returns without actions 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,
@@ -1443,7 +1443,7 @@ exports[`SystemsTable returns without actions 1`] = `
 exports[`SystemsTable returns without remediations 1`] = `
 <StateView
   stateValues={
-    Object {
+    {
       "empty": false,
       "error": undefined,
       "noError": true,
@@ -1463,43 +1463,43 @@ exports[`SystemsTable returns without remediations 1`] = `
   >
     <mockConstructor
       actions={
-        Array [
-          Object {
+        [
+          {
             "onClick": [Function],
             "title": "View in inventory",
           },
         ]
       }
       activeFiltersConfig={
-        Object {
-          "filters": Array [],
+        {
+          "filters": [],
           "onDelete": [Function],
         }
       }
       bulkSelect={
-        Object {
+        {
           "checked": false,
           "isDisabled": true,
-          "items": Array [
-            Object {
+          "items": [
+            {
               "onClick": [Function],
-              "props": Object {
+              "props": {
                 "isDisabled": true,
               },
               "title": "Select none",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Select page (0 items)",
             },
-            Object {
+            {
               "onClick": [Function],
               "title": "Unselect all (0 items)",
             },
           ],
           "onSelect": undefined,
-          "toggleProps": Object {
-            "children": Array [
+          "toggleProps": {
+            "children": [
               "0 selected",
             ],
           },
@@ -1508,17 +1508,17 @@ exports[`SystemsTable returns without remediations 1`] = `
       columns={[Function]}
       disableDefaultColumns={true}
       exportConfig={
-        Object {
+        {
           "isDisabled": true,
           "onSelect": [Function],
         }
       }
       fallback={<Spinner />}
       filterConfig={
-        Object {
-          "items": Array [
-            Object {
-              "filterValues": Object {
+        {
+          "items": [
+            {
+              "filterValues": {
                 "onChange": [Function],
                 "value": undefined,
               },
@@ -1527,54 +1527,54 @@ exports[`SystemsTable returns without remediations 1`] = `
               "placeholder": "Filter by name",
               "type": "text",
             },
-            Object {
+            {
               "className": undefined,
-              "filterValues": Object {
-                "groups": Array [
-                  Object {
+              "filterValues": {
+                "groups": [
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 7.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.4",
                         "type": "checkbox",
                         "value": "4",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.5",
                         "type": "checkbox",
                         "value": "5",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.6",
                         "type": "checkbox",
                         "value": "6",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.7",
                         "type": "checkbox",
                         "value": "7",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.8",
                         "type": "checkbox",
                         "value": "8",
                       },
-                      Object {
+                      {
                         "label": "RHEL 7.9",
                         "type": "checkbox",
                         "value": "9",
@@ -1584,30 +1584,30 @@ exports[`SystemsTable returns without remediations 1`] = `
                     "type": "checkbox",
                     "value": "7",
                   },
-                  Object {
+                  {
                     "groupSelectable": true,
-                    "items": Array [
-                      Object {
+                    "items": [
+                      {
                         "label": "RHEL 8.0",
                         "type": "checkbox",
                         "value": "0",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.1",
                         "type": "checkbox",
                         "value": "1",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.2",
                         "type": "checkbox",
                         "value": "2",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.3",
                         "type": "checkbox",
                         "value": "3",
                       },
-                      Object {
+                      {
                         "label": "RHEL 8.4",
                         "type": "checkbox",
                         "value": "4",
@@ -1630,7 +1630,7 @@ exports[`SystemsTable returns without remediations 1`] = `
       }
       getEntities={[Function]}
       hideFilters={
-        Object {
+        {
           "all": true,
           "tags": false,
         }
@@ -1638,7 +1638,7 @@ exports[`SystemsTable returns without remediations 1`] = `
       onLoad={[Function]}
       showTags={true}
       tableProps={
-        Object {
+        {
           "canSelectAll": false,
           "isStickyHeader": true,
           "onSelect": undefined,

@@ -3,7 +3,7 @@
 exports[`MultiSegmentBar expect to render without error 1`] = `
 <div
   style={
-    Object {
+    {
       "height": "20px",
       "padding": 0,
     }
@@ -22,7 +22,7 @@ exports[`MultiSegmentBar expect to render without error 1`] = `
   >
     <ChartStack
       colorScale={
-        Array [
+        [
           "#fff",
           "#000",
         ]
@@ -32,8 +32,8 @@ exports[`MultiSegmentBar expect to render without error 1`] = `
       <ChartBar
         barWidth={16}
         data={
-          Array [
-            Object {
+          [
+            {
               "label": "test1",
               "name": undefined,
               "x": "",
@@ -52,8 +52,8 @@ exports[`MultiSegmentBar expect to render without error 1`] = `
       <ChartBar
         barWidth={16}
         data={
-          Array [
-            Object {
+          [
+            {
               "label": "test2",
               "name": undefined,
               "x": "",

@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useQueryExportData queryExportData returns catches errors 1`] = `Array []`;
+exports[`useQueryExportData queryExportData returns catches errors 1`] = `[]`;
 
 exports[`useQueryExportData queryExportData returns data 1`] = `
-Object {
+{
   "compliantSystemCount": 1,
   "nonCompliantSystemCount": 1,
-  "nonCompliantSystems": Array [
-    Object {
+  "nonCompliantSystems": [
+    {
       "compliant": false,
       "id": "system-id-0",
       "name": "system0.hosts.example.com",
-      "testResultProfiles": Array [
-        Object {
-          "benchmark": Object {
+      "testResultProfiles": [
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -21,8 +21,8 @@ Object {
           "name": "Test Result Profile #0",
           "osMajorVersion": 0,
           "refId": "xccdf_org.ssgproject.content_profile_0",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -30,7 +30,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -38,7 +38,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -46,7 +46,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -54,7 +54,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -62,7 +62,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -70,7 +70,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -78,7 +78,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -86,7 +86,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -94,7 +94,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -102,7 +102,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -110,7 +110,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -118,7 +118,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -126,7 +126,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -134,7 +134,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -142,7 +142,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -150,7 +150,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -158,7 +158,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -166,7 +166,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -174,7 +174,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -182,7 +182,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -190,7 +190,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -198,7 +198,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -206,7 +206,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -214,7 +214,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -222,7 +222,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -230,7 +230,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -238,7 +238,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -246,7 +246,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -254,7 +254,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -262,7 +262,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -270,7 +270,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -278,7 +278,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -286,7 +286,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -294,7 +294,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -305,8 +305,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -314,8 +314,8 @@ Object {
           "name": "Test Result Profile #1",
           "osMajorVersion": 1,
           "refId": "xccdf_org.ssgproject.content_profile_1",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -323,7 +323,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -331,7 +331,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -339,7 +339,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -347,7 +347,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -355,7 +355,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -363,7 +363,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -371,7 +371,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -379,7 +379,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -387,7 +387,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -395,7 +395,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -403,7 +403,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -411,7 +411,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -419,7 +419,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -427,7 +427,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -435,7 +435,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -443,7 +443,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -451,7 +451,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -459,7 +459,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -467,7 +467,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -475,7 +475,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -483,7 +483,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -491,7 +491,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -499,7 +499,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -507,7 +507,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -515,7 +515,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -523,7 +523,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -531,7 +531,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -539,7 +539,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -547,7 +547,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -555,7 +555,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -563,7 +563,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -571,7 +571,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -579,7 +579,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -587,7 +587,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -598,8 +598,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -607,8 +607,8 @@ Object {
           "name": "Test Result Profile #2",
           "osMajorVersion": 2,
           "refId": "xccdf_org.ssgproject.content_profile_2",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -616,7 +616,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -624,7 +624,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -632,7 +632,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -640,7 +640,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -648,7 +648,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -656,7 +656,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -664,7 +664,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -672,7 +672,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -680,7 +680,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -688,7 +688,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -696,7 +696,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -704,7 +704,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -712,7 +712,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -720,7 +720,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -728,7 +728,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -736,7 +736,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -744,7 +744,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -752,7 +752,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -760,7 +760,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -768,7 +768,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -776,7 +776,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -784,7 +784,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -792,7 +792,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -800,7 +800,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -808,7 +808,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -816,7 +816,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -824,7 +824,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -832,7 +832,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -840,7 +840,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -848,7 +848,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -856,7 +856,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -864,7 +864,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -872,7 +872,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -880,7 +880,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -891,8 +891,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -900,8 +900,8 @@ Object {
           "name": "Test Result Profile #3",
           "osMajorVersion": 3,
           "refId": "xccdf_org.ssgproject.content_profile_3",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -909,7 +909,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -917,7 +917,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -925,7 +925,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -933,7 +933,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -941,7 +941,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -949,7 +949,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -957,7 +957,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -965,7 +965,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -973,7 +973,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -981,7 +981,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -989,7 +989,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -997,7 +997,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -1005,7 +1005,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -1013,7 +1013,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -1021,7 +1021,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -1029,7 +1029,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -1037,7 +1037,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -1045,7 +1045,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -1053,7 +1053,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -1061,7 +1061,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -1069,7 +1069,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -1077,7 +1077,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -1085,7 +1085,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -1093,7 +1093,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -1101,7 +1101,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -1109,7 +1109,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -1117,7 +1117,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -1125,7 +1125,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -1133,7 +1133,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -1141,7 +1141,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -1149,7 +1149,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -1157,7 +1157,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -1165,7 +1165,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -1173,7 +1173,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -1184,8 +1184,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -1193,8 +1193,8 @@ Object {
           "name": "Test Result Profile #4",
           "osMajorVersion": 4,
           "refId": "xccdf_org.ssgproject.content_profile_4",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -1202,7 +1202,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -1210,7 +1210,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -1218,7 +1218,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -1226,7 +1226,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -1234,7 +1234,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -1242,7 +1242,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -1250,7 +1250,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -1258,7 +1258,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -1266,7 +1266,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -1274,7 +1274,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -1282,7 +1282,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -1290,7 +1290,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -1298,7 +1298,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -1306,7 +1306,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -1314,7 +1314,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -1322,7 +1322,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -1330,7 +1330,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -1338,7 +1338,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -1346,7 +1346,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -1354,7 +1354,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 25,
               "refId": "xccdf_org.ssgproject.profile_5_rule_5",
@@ -1362,7 +1362,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 30,
               "refId": "xccdf_org.ssgproject.profile_5_rule_6",
@@ -1370,7 +1370,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 35,
               "refId": "xccdf_org.ssgproject.profile_5_rule_7",
@@ -1378,7 +1378,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 40,
               "refId": "xccdf_org.ssgproject.profile_5_rule_8",
@@ -1386,7 +1386,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 45,
               "refId": "xccdf_org.ssgproject.profile_5_rule_9",
@@ -1394,7 +1394,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 50,
               "refId": "xccdf_org.ssgproject.profile_5_rule_10",
@@ -1402,7 +1402,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 55,
               "refId": "xccdf_org.ssgproject.profile_5_rule_11",
@@ -1410,7 +1410,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 60,
               "refId": "xccdf_org.ssgproject.profile_5_rule_12",
@@ -1418,7 +1418,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 65,
               "refId": "xccdf_org.ssgproject.profile_5_rule_13",
@@ -1426,7 +1426,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 70,
               "refId": "xccdf_org.ssgproject.profile_5_rule_14",
@@ -1434,7 +1434,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_5_rule_0",
@@ -1442,7 +1442,7 @@ Object {
               "severity": "high",
               "title": "Profile #5 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 5,
               "refId": "xccdf_org.ssgproject.profile_5_rule_1",
@@ -1450,7 +1450,7 @@ Object {
               "severity": "medium",
               "title": "Profile #5 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_5_rule_2",
@@ -1458,7 +1458,7 @@ Object {
               "severity": "low",
               "title": "Profile #5 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 15,
               "refId": "xccdf_org.ssgproject.profile_5_rule_3",
@@ -1466,7 +1466,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #5 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_5_rule_4",
@@ -1477,8 +1477,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": true,
@@ -1486,8 +1486,8 @@ Object {
           "name": "Test Result Profile #0",
           "osMajorVersion": 0,
           "refId": "xccdf_org.ssgproject.content_profile_0",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -1495,7 +1495,7 @@ Object {
               "severity": "high",
               "title": "Profile #0 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -1503,7 +1503,7 @@ Object {
               "severity": "medium",
               "title": "Profile #0 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1511,7 +1511,7 @@ Object {
               "severity": "low",
               "title": "Profile #0 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1519,7 +1519,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #0 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1530,8 +1530,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": true,
@@ -1539,8 +1539,8 @@ Object {
           "name": "Test Result Profile #1",
           "osMajorVersion": 1,
           "refId": "xccdf_org.ssgproject.content_profile_1",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -1548,7 +1548,7 @@ Object {
               "severity": "high",
               "title": "Profile #0 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -1556,7 +1556,7 @@ Object {
               "severity": "medium",
               "title": "Profile #0 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1564,7 +1564,7 @@ Object {
               "severity": "low",
               "title": "Profile #0 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1572,7 +1572,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #0 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1583,8 +1583,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": true,
@@ -1592,8 +1592,8 @@ Object {
           "name": "Test Result Profile #2",
           "osMajorVersion": 2,
           "refId": "xccdf_org.ssgproject.content_profile_2",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -1601,7 +1601,7 @@ Object {
               "severity": "high",
               "title": "Profile #0 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -1609,7 +1609,7 @@ Object {
               "severity": "medium",
               "title": "Profile #0 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1617,7 +1617,7 @@ Object {
               "severity": "low",
               "title": "Profile #0 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1625,7 +1625,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #0 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1636,8 +1636,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": true,
@@ -1645,8 +1645,8 @@ Object {
           "name": "Test Result Profile #3",
           "osMajorVersion": 3,
           "refId": "xccdf_org.ssgproject.content_profile_3",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -1654,7 +1654,7 @@ Object {
               "severity": "high",
               "title": "Profile #0 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -1662,7 +1662,7 @@ Object {
               "severity": "medium",
               "title": "Profile #0 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1670,7 +1670,7 @@ Object {
               "severity": "low",
               "title": "Profile #0 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1678,7 +1678,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #0 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1689,8 +1689,8 @@ Object {
           ],
           "supported": true,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": true,
@@ -1698,8 +1698,8 @@ Object {
           "name": "Test Result Profile #4",
           "osMajorVersion": 4,
           "refId": "xccdf_org.ssgproject.content_profile_4",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_0",
@@ -1707,7 +1707,7 @@ Object {
               "severity": "high",
               "title": "Profile #0 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_1",
@@ -1715,7 +1715,7 @@ Object {
               "severity": "medium",
               "title": "Profile #0 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_2",
@@ -1723,7 +1723,7 @@ Object {
               "severity": "low",
               "title": "Profile #0 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_3",
@@ -1731,7 +1731,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #0 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_0_rule_4",
@@ -1746,18 +1746,18 @@ Object {
     },
   ],
   "nonReportingSystemCount": 0,
-  "nonReportingSystems": Array [],
+  "nonReportingSystems": [],
   "topTenFailedRules": undefined,
   "totalHostCount": 3,
   "unsupportedSystemCount": 1,
-  "unsupportedSystems": Array [
-    Object {
+  "unsupportedSystems": [
+    {
       "compliant": false,
       "id": "system-id-0",
       "name": "system0.hosts.example.com",
-      "testResultProfiles": Array [
-        Object {
-          "benchmark": Object {
+      "testResultProfiles": [
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -1765,8 +1765,8 @@ Object {
           "name": "Test Result Profile #0",
           "osMajorVersion": 0,
           "refId": "xccdf_org.ssgproject.content_profile_0",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -1774,7 +1774,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -1782,7 +1782,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -1790,7 +1790,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -1798,7 +1798,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",
@@ -1806,7 +1806,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_2_rule_5",
@@ -1814,7 +1814,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 12,
               "refId": "xccdf_org.ssgproject.profile_2_rule_6",
@@ -1822,7 +1822,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 14,
               "refId": "xccdf_org.ssgproject.profile_2_rule_7",
@@ -1830,7 +1830,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 16,
               "refId": "xccdf_org.ssgproject.profile_2_rule_8",
@@ -1838,7 +1838,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 18,
               "refId": "xccdf_org.ssgproject.profile_2_rule_9",
@@ -1846,7 +1846,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_2_rule_10",
@@ -1854,7 +1854,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 22,
               "refId": "xccdf_org.ssgproject.profile_2_rule_11",
@@ -1862,7 +1862,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 24,
               "refId": "xccdf_org.ssgproject.profile_2_rule_12",
@@ -1870,7 +1870,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 26,
               "refId": "xccdf_org.ssgproject.profile_2_rule_13",
@@ -1878,7 +1878,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 28,
               "refId": "xccdf_org.ssgproject.profile_2_rule_14",
@@ -1886,7 +1886,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -1894,7 +1894,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -1902,7 +1902,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -1910,7 +1910,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -1918,7 +1918,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",
@@ -1926,7 +1926,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_2_rule_5",
@@ -1934,7 +1934,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 12,
               "refId": "xccdf_org.ssgproject.profile_2_rule_6",
@@ -1942,7 +1942,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 14,
               "refId": "xccdf_org.ssgproject.profile_2_rule_7",
@@ -1950,7 +1950,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 16,
               "refId": "xccdf_org.ssgproject.profile_2_rule_8",
@@ -1958,7 +1958,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 18,
               "refId": "xccdf_org.ssgproject.profile_2_rule_9",
@@ -1966,7 +1966,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_2_rule_10",
@@ -1974,7 +1974,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 22,
               "refId": "xccdf_org.ssgproject.profile_2_rule_11",
@@ -1982,7 +1982,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 24,
               "refId": "xccdf_org.ssgproject.profile_2_rule_12",
@@ -1990,7 +1990,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 26,
               "refId": "xccdf_org.ssgproject.profile_2_rule_13",
@@ -1998,7 +1998,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 28,
               "refId": "xccdf_org.ssgproject.profile_2_rule_14",
@@ -2006,7 +2006,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -2014,7 +2014,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -2022,7 +2022,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -2030,7 +2030,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -2038,7 +2038,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",
@@ -2049,8 +2049,8 @@ Object {
           ],
           "supported": false,
         },
-        Object {
-          "benchmark": Object {
+        {
+          "benchmark": {
             "version": "0.14.5",
           },
           "compliant": false,
@@ -2058,8 +2058,8 @@ Object {
           "name": "Test Result Profile #1",
           "osMajorVersion": 1,
           "refId": "xccdf_org.ssgproject.content_profile_1",
-          "rules": Array [
-            Object {
+          "rules": [
+            {
               "compliant": false,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -2067,7 +2067,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -2075,7 +2075,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -2083,7 +2083,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -2091,7 +2091,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",
@@ -2099,7 +2099,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #4",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_2_rule_5",
@@ -2107,7 +2107,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #5",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 12,
               "refId": "xccdf_org.ssgproject.profile_2_rule_6",
@@ -2115,7 +2115,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #6",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 14,
               "refId": "xccdf_org.ssgproject.profile_2_rule_7",
@@ -2123,7 +2123,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #7",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 16,
               "refId": "xccdf_org.ssgproject.profile_2_rule_8",
@@ -2131,7 +2131,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #8",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 18,
               "refId": "xccdf_org.ssgproject.profile_2_rule_9",
@@ -2139,7 +2139,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #9",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_2_rule_10",
@@ -2147,7 +2147,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #10",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 22,
               "refId": "xccdf_org.ssgproject.profile_2_rule_11",
@@ -2155,7 +2155,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #11",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 24,
               "refId": "xccdf_org.ssgproject.profile_2_rule_12",
@@ -2163,7 +2163,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #12",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 26,
               "refId": "xccdf_org.ssgproject.profile_2_rule_13",
@@ -2171,7 +2171,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #13",
             },
-            Object {
+            {
               "compliant": false,
               "precedence": 28,
               "refId": "xccdf_org.ssgproject.profile_2_rule_14",
@@ -2179,7 +2179,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -2187,7 +2187,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -2195,7 +2195,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -2203,7 +2203,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -2211,7 +2211,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",
@@ -2219,7 +2219,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #4",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 10,
               "refId": "xccdf_org.ssgproject.profile_2_rule_5",
@@ -2227,7 +2227,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #5",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 12,
               "refId": "xccdf_org.ssgproject.profile_2_rule_6",
@@ -2235,7 +2235,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #6",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 14,
               "refId": "xccdf_org.ssgproject.profile_2_rule_7",
@@ -2243,7 +2243,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #7",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 16,
               "refId": "xccdf_org.ssgproject.profile_2_rule_8",
@@ -2251,7 +2251,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #8",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 18,
               "refId": "xccdf_org.ssgproject.profile_2_rule_9",
@@ -2259,7 +2259,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #9",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 20,
               "refId": "xccdf_org.ssgproject.profile_2_rule_10",
@@ -2267,7 +2267,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #10",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 22,
               "refId": "xccdf_org.ssgproject.profile_2_rule_11",
@@ -2275,7 +2275,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #11",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 24,
               "refId": "xccdf_org.ssgproject.profile_2_rule_12",
@@ -2283,7 +2283,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #12",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 26,
               "refId": "xccdf_org.ssgproject.profile_2_rule_13",
@@ -2291,7 +2291,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #13",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 28,
               "refId": "xccdf_org.ssgproject.profile_2_rule_14",
@@ -2299,7 +2299,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #14",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 0,
               "refId": "xccdf_org.ssgproject.profile_2_rule_0",
@@ -2307,7 +2307,7 @@ Object {
               "severity": "high",
               "title": "Profile #2 Rule #0",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 2,
               "refId": "xccdf_org.ssgproject.profile_2_rule_1",
@@ -2315,7 +2315,7 @@ Object {
               "severity": "medium",
               "title": "Profile #2 Rule #1",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 4,
               "refId": "xccdf_org.ssgproject.profile_2_rule_2",
@@ -2323,7 +2323,7 @@ Object {
               "severity": "low",
               "title": "Profile #2 Rule #2",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 6,
               "refId": "xccdf_org.ssgproject.profile_2_rule_3",
@@ -2331,7 +2331,7 @@ Object {
               "severity": "unknown",
               "title": "Profile #2 Rule #3",
             },
-            Object {
+            {
               "compliant": true,
               "precedence": 8,
               "refId": "xccdf_org.ssgproject.profile_2_rule_4",

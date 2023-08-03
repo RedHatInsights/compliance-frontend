@@ -4,32 +4,32 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
 <Fragment>
   <SystemsTable
     columns={
-      Array [
-        Object {
+      [
+        {
           "key": "name",
-          "props": Object {
+          "props": {
             "width": 40,
           },
           "renderExport": [Function],
           "renderFunc": [Function],
-          "sortBy": Array [
+          "sortBy": [
             "name",
           ],
           "title": "Name",
         },
-        Object {
+        {
           "key": "tags",
         },
-        Object {
+        {
           "key": "operatingSystem",
           "renderExport": [Function],
           "renderFunc": [Function],
-          "sortBy": Array [
+          "sortBy": [
             "osMajorVersion",
             "osMinorVersion",
           ],
           "title": "Operating system",
-          "transforms": Array [
+          "transforms": [
             [Function],
           ],
         },
@@ -50,14 +50,14 @@ exports[`EditPolicySystemsTab expect to render with new tabs alert 1`] = `
         osMajorVersion="7"
       />
     }
-    preselectedSystems={Array []}
+    preselectedSystems={[]}
     remediationsEnabled={false}
     ruleSeverityFilter={false}
     showActions={false}
     showComplianceSystemsInfo={false}
     showOnlySystemsWithTestResults={false}
     showOsMinorVersionFilter={
-      Array [
+      [
         "7",
       ]
     }
@@ -69,32 +69,32 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
 <Fragment>
   <SystemsTable
     columns={
-      Array [
-        Object {
+      [
+        {
           "key": "name",
-          "props": Object {
+          "props": {
             "width": 40,
           },
           "renderExport": [Function],
           "renderFunc": [Function],
-          "sortBy": Array [
+          "sortBy": [
             "name",
           ],
           "title": "Name",
         },
-        Object {
+        {
           "key": "tags",
         },
-        Object {
+        {
           "key": "operatingSystem",
           "renderExport": [Function],
           "renderFunc": [Function],
-          "sortBy": Array [
+          "sortBy": [
             "osMajorVersion",
             "osMinorVersion",
           ],
           "title": "Operating system",
-          "transforms": Array [
+          "transforms": [
             [Function],
           ],
         },
@@ -115,14 +115,14 @@ exports[`EditPolicySystemsTab expect to render without error 1`] = `
         osMajorVersion="7"
       />
     }
-    preselectedSystems={Array []}
+    preselectedSystems={[]}
     remediationsEnabled={false}
     ruleSeverityFilter={false}
     showActions={false}
     showComplianceSystemsInfo={false}
     showOnlySystemsWithTestResults={false}
     showOsMinorVersionFilter={
-      Array [
+      [
         "7",
       ]
     }

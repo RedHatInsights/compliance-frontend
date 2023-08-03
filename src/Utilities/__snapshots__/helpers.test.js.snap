@@ -15,62 +15,62 @@ exports[`getPropery should return values of keys 1`] = `"value-level-3"`;
 exports[`getPropery should return values of keys 2`] = `"value-level-2"`;
 
 exports[`orderByArray sorts an array asc 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "DESCRIPTION",
     "id": 4,
     "name": "TEST ITEM #4",
     "severity": "high",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 8,
     "name": "TEST ITEM #8",
     "severity": "high",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 1,
     "name": "TEST ITEM #1",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 5,
     "name": "TEST ITEM #5",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 9,
     "name": "TEST ITEM #9",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 2,
     "name": "TEST ITEM #2",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 6,
     "name": "TEST ITEM #6",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 10,
     "name": "TEST ITEM #10",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 3,
     "name": "TEST ITEM #3",
     "severity": "unknown",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 7,
     "name": "TEST ITEM #7",
@@ -80,62 +80,62 @@ Array [
 `;
 
 exports[`orderByArray sorts an array desc 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "DESCRIPTION",
     "id": 7,
     "name": "TEST ITEM #7",
     "severity": "unknown",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 3,
     "name": "TEST ITEM #3",
     "severity": "unknown",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 10,
     "name": "TEST ITEM #10",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 6,
     "name": "TEST ITEM #6",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 2,
     "name": "TEST ITEM #2",
     "severity": "low",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 9,
     "name": "TEST ITEM #9",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 5,
     "name": "TEST ITEM #5",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 1,
     "name": "TEST ITEM #1",
     "severity": "medium",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 8,
     "name": "TEST ITEM #8",
     "severity": "high",
   },
-  Object {
+  {
     "description": "DESCRIPTION",
     "id": 4,
     "name": "TEST ITEM #4",
