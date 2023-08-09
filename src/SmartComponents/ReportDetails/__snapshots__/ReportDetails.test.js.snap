@@ -310,11 +310,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "exportKey": "profiles",
                   "key": "failedRules",
                   "props": {
-                    "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": [
+                    "rulesFailed",
+                  ],
                   "title": "Failed rules",
                   "transforms": [
                     [Function],
@@ -324,11 +326,13 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "exportKey": "testResultProfiles",
                   "key": "complianceScore",
                   "props": {
-                    "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": [
+                    "score",
+                  ],
                   "title": "Compliance score",
                   "transforms": [
                     [Function],
@@ -684,11 +688,13 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "exportKey": "profiles",
                   "key": "failedRules",
                   "props": {
-                    "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": [
+                    "rulesFailed",
+                  ],
                   "title": "Failed rules",
                   "transforms": [
                     [Function],
@@ -698,11 +704,13 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "exportKey": "testResultProfiles",
                   "key": "complianceScore",
                   "props": {
-                    "isStatic": true,
                     "width": 5,
                   },
                   "renderExport": [Function],
                   "renderFunc": [Function],
+                  "sortBy": [
+                    "score",
+                  ],
                   "title": "Compliance score",
                   "transforms": [
                     [Function],
