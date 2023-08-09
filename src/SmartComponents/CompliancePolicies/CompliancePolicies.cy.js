@@ -36,7 +36,7 @@ const policies = Object.assign([], fixtures['profiles']['edges']);
 describe('Policies table tests', () => {
   beforeEach(() => {
     cy.intercept('*', {
-      statusCode: 201,
+      statusCode: 200,
       body: {
         data: fixtures,
       },

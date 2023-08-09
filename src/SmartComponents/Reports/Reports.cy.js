@@ -36,7 +36,7 @@ const profilesResp = Object.assign([], fixtures['profiles']['edges']);
 describe('Reports table tests', () => {
   beforeEach(() => {
     cy.intercept('*', {
-      statusCode: 201,
+      statusCode: 200,
       body: {
         data: fixtures,
       },
@@ -44,7 +44,7 @@ describe('Reports table tests', () => {
     mountComponent();
   });
   describe('defaults', () => {
-    it('The Pathways table renders', () => {
+    it('The Reports table renders', () => {
       cy.get('table').should('have.length', 1);
     });
   });
@@ -268,7 +268,7 @@ describe('Reports table tests', () => {
 
   it('expect to render emptystate', () => {
     cy.intercept('*', {
-      statusCode: 201,
+      statusCode: 200,
       body: {
         data: fixtures,
       },
