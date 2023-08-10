@@ -50,7 +50,7 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
   const defaultFilter = osFilter
     ? `${osFilter} or policy_id = ${policyId}`
     : `policy_id = ${policyId}`;
-
+  console.log('POL', policy);
   return (
     <React.Fragment>
       <SystemsTable

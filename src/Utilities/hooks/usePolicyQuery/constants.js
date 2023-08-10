@@ -1,5 +1,28 @@
 import gql from 'graphql-tag';
 
+export const POLICY_QUERY_MINIMAL = gql`
+  query PQ_ProfileMinimal($policyId: String!) {
+    profile(id: $policyId) {
+      id
+      name
+      refId
+      external
+      description
+      totalHostCount
+      compliantHostCount
+      complianceThreshold
+      osMajorVersion
+      supportedOsVersions
+      lastScanned
+      policyType
+      businessObjective {
+        id
+        title
+      }
+    }
+  }
+`;
+
 export const POLICY_QUERY = gql`
   query PQ_Profile($policyId: String!) {
     profile(id: $policyId) {

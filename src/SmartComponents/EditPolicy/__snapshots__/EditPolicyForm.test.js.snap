@@ -18,12 +18,12 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
         role="tablist"
       >
         <li
-          class="pf-c-tabs__item"
+          class="pf-c-tabs__item pf-m-current"
           role="presentation"
         >
           <button
             aria-controls="pf-tab-section-rules-policy-tabs"
-            aria-selected="false"
+            aria-selected="true"
             class="pf-c-tabs__link"
             data-ouia-component-id="Rules"
             data-ouia-component-type="PF4/TabButton"
@@ -40,12 +40,12 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
           </button>
         </li>
         <li
-          class="pf-c-tabs__item pf-m-current"
+          class="pf-c-tabs__item"
           role="presentation"
         >
           <button
             aria-controls="pf-tab-section-systems-policy-tabs"
-            aria-selected="true"
+            aria-selected="false"
             class="pf-c-tabs__link"
             data-ouia-component-id="Systems"
             data-ouia-component-type="PF4/TabButton"
@@ -69,7 +69,6 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       data-ouia-component-id="Rules"
       data-ouia-component-type="PF4/TabContent"
       data-ouia-safe="true"
-      hidden=""
       id="pf-tab-section-rules-policy-tabs"
       role="tabpanel"
       tabindex="0"
@@ -96,6 +95,7 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       data-ouia-component-id="Systems"
       data-ouia-component-type="PF4/TabContent"
       data-ouia-safe="true"
+      hidden=""
       id="pf-tab-section-systems-policy-tabs"
       role="tabpanel"
       tabindex="0"
@@ -132,12 +132,12 @@ exports[`EditPolicyForm expect to render without error 1`] = `
         role="tablist"
       >
         <li
-          class="pf-c-tabs__item"
+          class="pf-c-tabs__item pf-m-current"
           role="presentation"
         >
           <button
             aria-controls="pf-tab-section-rules-policy-tabs"
-            aria-selected="false"
+            aria-selected="true"
             class="pf-c-tabs__link"
             data-ouia-component-id="Rules"
             data-ouia-component-type="PF4/TabButton"
@@ -154,12 +154,12 @@ exports[`EditPolicyForm expect to render without error 1`] = `
           </button>
         </li>
         <li
-          class="pf-c-tabs__item pf-m-current"
+          class="pf-c-tabs__item"
           role="presentation"
         >
           <button
             aria-controls="pf-tab-section-systems-policy-tabs"
-            aria-selected="true"
+            aria-selected="false"
             class="pf-c-tabs__link"
             data-ouia-component-id="Systems"
             data-ouia-component-type="PF4/TabButton"
@@ -183,7 +183,6 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       data-ouia-component-id="Rules"
       data-ouia-component-type="PF4/TabContent"
       data-ouia-safe="true"
-      hidden=""
       id="pf-tab-section-rules-policy-tabs"
       role="tabpanel"
       tabindex="0"
@@ -210,6 +209,7 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       data-ouia-component-id="Systems"
       data-ouia-component-type="PF4/TabContent"
       data-ouia-safe="true"
+      hidden=""
       id="pf-tab-section-systems-policy-tabs"
       role="tabpanel"
       tabindex="0"

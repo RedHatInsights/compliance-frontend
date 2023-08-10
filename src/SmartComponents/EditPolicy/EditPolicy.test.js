@@ -1,17 +1,24 @@
 import { useLocation } from 'react-router-dom';
 import { EditPolicy, MULTIVERSION_QUERY } from './EditPolicy.js';
 jest.mock('Mutations');
+
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useSelector: jest.fn(() => ({})),
   useDispatch: jest.fn(() => ({})),
 }));
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
     useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
   useLocation: jest.fn(),
-  useNavigate: jest.fn(),
 }));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
+
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
@@ -51,6 +58,7 @@ const mocks = [
     },
   },
 ];
+
 jest.mock('@apollo/client', () => ({
   useQuery: () => ({
     data: mocks[0].result.data,
@@ -69,19 +77,6 @@ describe('EditPolicy', () => {
   beforeEach(() => {
     useLocation.mockImplementation(() => ({
       hash: '#details',
-      state: {
-        policy: {
-          id: 'POLICY_ID',
-          name: 'Policy Name',
-          osMajorVersion: '8',
-          businessObjective: {
-            title: 'BO title',
-            id: 1,
-          },
-          complianceThreshold: '30',
-          hosts: [],
-        },
-      },
     }));
   });
 

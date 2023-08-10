@@ -1,11 +1,13 @@
-import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
 
 jest.mock('react-router-dom', () => ({
-  useLocation: jest.fn(),
-  useNavigate: jest.fn(),
+  useParams: jest.fn(() => ({ policy_id: '1' })), // eslint-disable-line
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
 
 jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
@@ -14,11 +16,6 @@ import DeleteReport from './DeleteReport.js';
 
 describe('DeleteReport', () => {
   beforeEach(() => {
-    useLocation.mockImplementation(() => ({
-      state: {
-        profile: { id: 'ID1' },
-      },
-    }));
     useMutation.mockImplementation((query, options) => {
       return [
         function () {

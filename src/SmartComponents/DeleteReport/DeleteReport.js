@@ -1,7 +1,7 @@
 import { Button, ModalVariant, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useMutation } from '@apollo/client';
 import { DELETE_REPORT } from 'Mutations';
@@ -11,10 +11,10 @@ import { dispatchAction } from 'Utilities/Dispatcher';
 
 const DeleteReport = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { id } = location.state?.profile || {};
+  const { report_id: id } = useParams();
+
   const onClose = () => {
-    history.push(location.state.background);
+    navigate(-1);
   };
 
   const onDelete = () => {
@@ -44,6 +44,7 @@ const DeleteReport = () => {
       onClose();
     },
   });
+
   return (
     <ComplianceModal
       isOpen

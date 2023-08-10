@@ -1,6 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { BackgroundLink, LinkButton } from 'PresentationalComponents';
+import {
+  LinkWithPermission as Link,
+  LinkButton,
+} from 'PresentationalComponents';
 import { ToolbarItem } from '@patternfly/react-core';
 import useAnchor from 'Utilities/hooks/useAnchor';
 
@@ -9,10 +12,12 @@ const EditSystemsButtonToolbarItem = ({ policy }) => {
 
   return (
     <ToolbarItem>
-      <BackgroundLink
-        to={`/scappolicies/${policy.id}/edit`}
-        hash={hash}
-        backgroundLocation={{ hash: 'details' }}
+      <Link
+        to={{
+          pathname: `/scappolicies/${policy.id}/edit`,
+          hash,
+        }}
+        state={{ returnTo: { pathname: `/scappolicies/${policy.id}`, hash } }}
         Component={LinkButton}
         componentProps={{
           variant: 'primary',
@@ -20,7 +25,7 @@ const EditSystemsButtonToolbarItem = ({ policy }) => {
         }}
       >
         Edit systems
-      </BackgroundLink>
+      </Link>
     </ToolbarItem>
   );
 };

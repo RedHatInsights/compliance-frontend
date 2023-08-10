@@ -11,7 +11,7 @@ import useActionResolver from './hooks/useActionResolvers';
 export const PoliciesTable = ({ policies, DedicatedAction }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
   const filters = Object.values(Filters);
-  const actionResolver = useActionResolver(policies);
+  const actionResolver = useActionResolver();
 
   return (
     <TableToolsTable

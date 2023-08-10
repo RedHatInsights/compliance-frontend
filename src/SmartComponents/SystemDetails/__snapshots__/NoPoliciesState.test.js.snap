@@ -16,7 +16,7 @@ exports[`NoPoliciesState with a system having policies 1`] = `
       To assess and monitor compliance against a SCAP policy for this system, add it to an existing policy or create a new policy.
     </EmptyStateBody>
     <EmptyStatePrimary>
-      <BackgroundLink
+      <LinkWithPermission
         Component={[Function]}
         componentProps={
           {
@@ -27,7 +27,7 @@ exports[`NoPoliciesState with a system having policies 1`] = `
         to="/scappolicies/new"
       >
         Create new policy
-      </BackgroundLink>
+      </LinkWithPermission>
     </EmptyStatePrimary>
     <EmptyStateSecondaryActions>
       <LinkWithPermission

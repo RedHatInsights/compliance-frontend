@@ -9,7 +9,14 @@ NoOp.propTypes = {
   children: propTypes.node,
 };
 
-export const LinkWithPermission = ({ to, children, ...linkProps }) => {
+export const LinkWithPermission = ({
+  to,
+  children,
+  Component,
+  componentProps = {},
+  ...linkProps
+}) => {
+  const ComponentToRender = Component || Link;
   const { hasAccess, isLoading } = useRoutePermissions(to);
   const hasPermission = !isLoading && hasAccess;
   const TooltipOrDiv = !hasPermission ? Tooltip : NoOp;
@@ -18,9 +25,15 @@ export const LinkWithPermission = ({ to, children, ...linkProps }) => {
     <TooltipOrDiv
       content={<div>You do not have permissions to perform this action</div>}
     >
-      <Link app="compliance" to={to} {...linkProps} isDisabled={!hasPermission}>
+      <ComponentToRender
+        app="compliance"
+        to={to}
+        {...componentProps}
+        {...linkProps}
+        isDisabled={!hasPermission}
+      >
         {children}
-      </Link>
+      </ComponentToRender>
     </TooltipOrDiv>
   );
 };
@@ -28,6 +41,8 @@ export const LinkWithPermission = ({ to, children, ...linkProps }) => {
 LinkWithPermission.propTypes = {
   to: propTypes.oneOfType([propTypes.string, propTypes.object]),
   children: propTypes.node,
+  Component: propTypes.node,
+  componentProps: propTypes.object,
 };
 
 export default LinkWithPermission;

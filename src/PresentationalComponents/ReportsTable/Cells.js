@@ -3,7 +3,6 @@ import propTypes from 'prop-types';
 import { TextContent, Text } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
 import {
-  BackgroundLink,
   PolicyPopover,
   GreySmallText,
   UnsupportedSSGVersion,
@@ -83,7 +82,7 @@ CompliantSystems.propTypes = {
 };
 
 export const PDFExportDownload = ({ id }) => (
-  <BackgroundLink
+  <Link
     to={`/reports/${id}/pdf`}
     Component={LinkButton}
     componentProps={{
@@ -93,7 +92,7 @@ export const PDFExportDownload = ({ id }) => (
     }}
   >
     <DownloadIcon />
-  </BackgroundLink>
+  </Link>
 );
 
 PDFExportDownload.propTypes = {

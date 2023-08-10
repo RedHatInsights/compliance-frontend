@@ -7,8 +7,12 @@ import { CreatePolicyForm } from './CreatePolicy.js';
 
 jest.mock('react-router-dom', () => ({
   useLocation: jest.fn(),
-  useNavigate: jest.fn(),
 }));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
 
 describe('CreatePolicyForm', () => {
   it('expect to render the wizard', () => {

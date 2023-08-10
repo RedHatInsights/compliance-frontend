@@ -54,7 +54,9 @@ export const PolicyDetails = ({ route }) => {
   useTitleEntity(route, policy?.name);
 
   return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
+    <StateViewWithError
+      stateValues={{ error, data: policy && !loading, loading }}
+    >
       <StateViewPart stateKey="loading">
         <PageHeader>
           <PolicyDetailsContentLoader />
@@ -92,7 +94,7 @@ export const PolicyDetails = ({ route }) => {
             <section className="pf-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
-                  <PolicyDetailsDescription policy={policy} />
+                  <PolicyDetailsDescription policy={policy} refetch={refetch} />
                 </ContentTab>
                 <ContentTab eventKey="rules">
                   {hasOsMinorProfiles ? (

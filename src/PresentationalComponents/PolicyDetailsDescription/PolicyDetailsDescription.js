@@ -13,7 +13,7 @@ import {
 import linkifyHtml from 'linkifyjs/html';
 import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/EditPolicyDetailsInline';
 
-const PolicyDetailsDescription = ({ policy }) => {
+const PolicyDetailsDescription = ({ policy, refetch }) => {
   const thresholdText = `${fixedPercentage(
     policy.complianceThreshold,
     1
@@ -35,6 +35,7 @@ const PolicyDetailsDescription = ({ policy }) => {
           <Text>
             <EditPolicyDetailsInline
               policy={policy}
+              refetch={refetch}
               text={policy.complianceThreshold}
               variant="threshold"
               inlineClosedText={thresholdText}
@@ -51,6 +52,7 @@ const PolicyDetailsDescription = ({ policy }) => {
           <Text>
             <EditPolicyDetailsInline
               policy={policy}
+              refetch={refetch}
               text={businessText}
               variant="business"
               inlineClosedText={businessText}
@@ -61,8 +63,9 @@ const PolicyDetailsDescription = ({ policy }) => {
           </Text>
           <Text>
             <EditPolicyDetailsInline
-              component={TextArea}
               policy={policy}
+              refetch={refetch}
+              component={TextArea}
               text={descriptionText}
               variant="description"
               inlineClosedText={businessText}
@@ -84,6 +87,7 @@ const PolicyDetailsDescription = ({ policy }) => {
 };
 PolicyDetailsDescription.propTypes = {
   policy: propTypes.object,
+  refetch: propTypes.func,
 };
 
 export default PolicyDetailsDescription;

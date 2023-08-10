@@ -22,8 +22,12 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   Link: () => 'Mocked Link',
   useLocation: jest.fn(),
-  useNavigate: jest.fn(),
 }));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
 
 const profiles = rawPolicies.edges.map((profile) => profile.node);
 

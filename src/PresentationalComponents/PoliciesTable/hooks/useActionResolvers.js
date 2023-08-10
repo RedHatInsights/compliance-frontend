@@ -1,9 +1,7 @@
-import { useLocation } from 'react-router-dom';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
 
-const useActionResolver = (policies) => {
-  const location = useLocation();
+const useActionResolver = () => {
   const navigate = useNavigate();
 
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
@@ -11,28 +9,18 @@ const useActionResolver = (policies) => {
   const { hasAccess: hasEditAccess, isLoading: isEditAccessLoading } =
     useRoutePermissions(`/scappolicies/XYZ/edit`);
 
-  const onClick = (to, { itemId: policyId }) => {
-    const policy = policies.find((policy) => policy.id === policyId);
-
-    navigate(to, {
-      policy,
-      background: location,
-      state: { policy },
-    });
-  };
-
   return () => [
     {
       title: 'Delete policy',
       isDisabled: !isDeleteAccessLoading && !hasDeleteAccess,
       onClick: (_event, _index, policy) =>
-        onClick(`/scappolicies/${policy.itemId}/delete`, policy),
+        navigate(`/scappolicies/${policy.itemId}/delete`),
     },
     {
       title: 'Edit policy',
       isDisabled: !isEditAccessLoading && !hasEditAccess,
       onClick: (_event, _index, policy) =>
-        onClick(`/scappolicies/${policy.itemId}/edit`, policy),
+        navigate(`/scappolicies/${policy.itemId}/edit`),
     },
   ];
 };

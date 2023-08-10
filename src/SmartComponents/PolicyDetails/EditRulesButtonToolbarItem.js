@@ -1,18 +1,23 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { ToolbarItem } from '@patternfly/react-core';
-import { BackgroundLink, LinkButton } from 'PresentationalComponents';
+import {
+  LinkWithPermission as Link,
+  LinkButton,
+} from 'PresentationalComponents';
 import useAnchor from 'Utilities/hooks/useAnchor';
 
 const EditRulesButtonToolbarItem = ({ policy }) => {
-  let anchor = useAnchor();
+  let hash = useAnchor();
 
   return (
     <ToolbarItem>
-      <BackgroundLink
-        to={`/scappolicies/${policy.id}/edit`}
-        hash={anchor}
-        backgroundLocation={{ hash: anchor }}
+      <Link
+        to={{
+          pathname: `/scappolicies/${policy.id}/edit`,
+          hash,
+        }}
+        state={{ returnTo: { pathname: `/scappolicies/${policy.id}`, hash } }}
         Component={LinkButton}
         componentProps={{
           variant: 'primary',
@@ -20,7 +25,7 @@ const EditRulesButtonToolbarItem = ({ policy }) => {
         }}
       >
         Edit rules
-      </BackgroundLink>
+      </Link>
     </ToolbarItem>
   );
 };

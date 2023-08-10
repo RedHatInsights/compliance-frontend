@@ -97,7 +97,7 @@ exports[`OperatingSystem expect to render without error 1`] = `
 `;
 
 exports[`PDFExportDownload expect to render without error 1`] = `
-<BackgroundLink
+<LinkWithPermission
   Component={[Function]}
   componentProps={
     {
@@ -113,5 +113,5 @@ exports[`PDFExportDownload expect to render without error 1`] = `
     noVerticalAlign={false}
     size="sm"
   />
-</BackgroundLink>
+</LinkWithPermission>
 `;
