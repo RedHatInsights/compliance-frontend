@@ -87,9 +87,9 @@ export const FailedRules = {
   key: 'failedRules',
   exportKey: 'profiles',
   transforms: [nowrap],
+  sortBy: ['rules_failed'],
   props: {
     width: 5,
-    ...disableSorting,
   },
   renderExport: (profiles) =>
     profiles.reduce(
