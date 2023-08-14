@@ -87,9 +87,9 @@ export const FailedRules = {
   key: 'failedRules',
   exportKey: 'profiles',
   transforms: [nowrap],
+  sortBy: ['rulesFailed'],
   props: {
     width: 5,
-    ...disableSorting,
   },
   renderExport: (profiles) =>
     profiles.reduce(
@@ -103,10 +103,10 @@ export const ComplianceScore = {
   title: 'Compliance score',
   key: 'complianceScore',
   exportKey: 'testResultProfiles',
+  sortBy: ['score'],
   transforms: [nowrap],
   props: {
     width: 5,
-    ...disableSorting,
   },
   renderExport: (testResultProfiles) =>
     complianceScoreString(complianceScoreData(testResultProfiles)).trim(),
