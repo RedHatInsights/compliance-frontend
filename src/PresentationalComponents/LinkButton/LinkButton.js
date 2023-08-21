@@ -1,10 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Button } from '@patternfly/react-core';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
 const LinkButton = ({ children, to, ...props }) => {
-  const navigate = useNavigate();
+  const navigate = useInsightsNavigate('compliance');
 
   return (
     <Button onClick={() => navigate(to)} {...props}>
