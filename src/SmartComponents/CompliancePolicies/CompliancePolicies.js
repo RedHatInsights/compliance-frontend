@@ -8,7 +8,7 @@ import PageHeader, {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
-  BackgroundLink,
+  LinkWithPermission as Link,
   ErrorPage,
   LoadingPoliciesTable,
   PoliciesTable,
@@ -47,7 +47,7 @@ const QUERY = gql`
 export const CompliancePolicies = () => {
   const location = useLocation();
   const CreateLink = () => (
-    <BackgroundLink
+    <Link
       to="/scappolicies/new"
       Component={LinkButton}
       componentProps={{
@@ -56,7 +56,7 @@ export const CompliancePolicies = () => {
       }}
     >
       Create new policy
-    </BackgroundLink>
+    </Link>
   );
 
   let { data, error, loading, refetch } = useQuery(QUERY);

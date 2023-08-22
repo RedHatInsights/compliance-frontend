@@ -1,20 +1,36 @@
-import { Button, Checkbox, ModalVariant, Text } from '@patternfly/react-core';
-import propTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
+import propTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import {
+  Button,
+  Checkbox,
+  ModalVariant,
+  Text,
+  Spinner,
+} from '@patternfly/react-core';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { DELETE_PROFILE } from 'Mutations';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { ComplianceModal } from 'PresentationalComponents';
+import {
+  ComplianceModal,
+  StateViewWithError,
+  StateViewPart,
+} from 'PresentationalComponents';
 import { dispatchAction } from 'Utilities/Dispatcher';
+import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 
 const DeletePolicy = () => {
   const [deleteEnabled, setDeleteEnabled] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const { name, id } = location.state.policy;
+  const { policy_id: policyId } = useParams();
+  const { data, error, loading } = usePolicyQuery({
+    policyId,
+    minimal: true,
+  });
+  const {
+    profile: { name, id },
+  } = data || { profile: {} };
   const onClose = () => {
     navigate('/scappolicies');
   };
@@ -70,16 +86,23 @@ const DeletePolicy = () => {
         </Button>,
       ]}
     >
-      <Text className="policy-delete-body-text">
-        Deleting the policy <b>{name}</b> will also delete its associated
-        reports.
-      </Text>
-      <Checkbox
-        label="I understand this will delete the policy and all associated reports"
-        id={`deleting-policy-check-${id}`}
-        isChecked={deleteEnabled}
-        onChange={setDeleteEnabled}
-      />
+      <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewPart stateKey="loading">
+          <Spinner />
+        </StateViewPart>
+        <StateViewPart stateKey="data">
+          <Text className="policy-delete-body-text">
+            Deleting the policy <b>{name}</b> will also delete its associated
+            reports.
+          </Text>
+          <Checkbox
+            label="I understand this will delete the policy and all associated reports"
+            id={`deleting-policy-check-${id}`}
+            isChecked={deleteEnabled}
+            onChange={setDeleteEnabled}
+          />
+        </StateViewPart>
+      </StateViewWithError>
     </ComplianceModal>
   );
 };

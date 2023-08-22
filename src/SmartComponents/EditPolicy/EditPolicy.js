@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { Button, Spinner } from '@patternfly/react-core';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import {
   ComplianceModal,
@@ -9,15 +10,15 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
-import { useOnSave, useLinkToPolicy } from './hooks';
+import { useOnSave } from './hooks';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 
 export const EditPolicy = ({ route }) => {
+  const navigate = useNavigate();
   const { policy_id: policyId } = useParams();
+  const location = useLocation();
   const { data, error, loading } = usePolicyQuery({ policyId });
   const policy = data?.profile;
-
-  const linkToPolicy = useLinkToPolicy();
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
   const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
   const [selectedSystems, setSelectedSystems] = useState([]);
@@ -30,7 +31,12 @@ export const EditPolicy = ({ route }) => {
     hosts: selectedSystems,
     values: ruleValues,
   };
-  const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules);
+  const onSaveCallback = () => navigate(location.state?.returnTo || -1);
+
+  const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules, {
+    onSave: onSaveCallback,
+    onError: onSaveCallback,
+  });
 
   const setRuleValues = (policyId, valueDefinition, valueValue) => {
     const existingValues = Object.fromEntries(
@@ -66,7 +72,7 @@ export const EditPolicy = ({ route }) => {
       key="cancel"
       ouiaId="EditPolicyCancelButton"
       variant="link"
-      onClick={() => linkToPolicy()}
+      onClick={onSaveCallback}
     >
       Cancel
     </Button>,
@@ -83,14 +89,16 @@ export const EditPolicy = ({ route }) => {
       variant={'large'}
       ouiaId="EditPolicyModal"
       title={`Edit ${policy ? policy.name : ''}`}
-      onClose={() => linkToPolicy()}
+      onClose={onSaveCallback}
       actions={actions}
     >
-      <StateViewWithError stateValues={{ policy, loading, error }}>
+      <StateViewWithError
+        stateValues={{ data: policy && !loading, loading, error }}
+      >
         <StateViewPart stateKey="loading">
           <Spinner />
         </StateViewPart>
-        <StateViewPart stateKey="policy">
+        <StateViewPart stateKey="data">
           <EditPolicyForm
             {...{
               policy,

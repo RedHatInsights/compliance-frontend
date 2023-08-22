@@ -6,10 +6,7 @@ jest.mock('Mutations');
 
 import { dispatchNotification } from 'Utilities/Dispatcher';
 jest.mock('Utilities/Dispatcher');
-jest.mock('Utilities/hooks/useLinkToBackground', () => ({
-  __esModule: true,
-  default: () => () => ({}),
-}));
+
 jest.mock('Utilities/hooks/useAnchor', () => ({
   __esModule: true,
   default: () => () => ({}),

@@ -3,22 +3,23 @@ export const compileData = (policyData, ruleTreesData, valueDefinitionsData) =>
     profile: {
       ...policyData.profile,
       policy: {
-        ...(policyData?.profile.policy || {}),
+        ...(policyData?.profile?.policy || {}),
         profiles:
-          policyData?.profile.policy.profiles?.map((profile) => {
+          policyData?.profile?.policy?.profiles?.map((profile) => {
             const ruleTree =
-              ruleTreesData?.profile.policy.profiles.find(
+              ruleTreesData?.profile?.policy?.profiles?.find(
                 ({ id }) => id === profile.id
               )?.benchmark.ruleTree || {};
 
             const valueDefinitions =
-              valueDefinitionsData?.profile.policy.profiles.find(
+              valueDefinitionsData?.profile?.policy?.profiles?.find(
                 ({ id }) => id === profile.id
               )?.benchmark.valueDefinitions || [];
 
-            const values = valueDefinitionsData?.profile.policy.profiles.find(
-              ({ id }) => id === profile.id
-            )?.values;
+            const values =
+              valueDefinitionsData?.profile?.policy?.profiles?.find(
+                ({ id }) => id === profile.id
+              )?.values;
 
             return {
               ...profile,

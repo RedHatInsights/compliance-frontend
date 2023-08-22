@@ -4,50 +4,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
 <StateViewWithError
   stateValues={
     {
-      "data": {
-        "profile": {
-          "benchmark": {
-            "title": "benchmark",
-            "version": "0.1.5",
-          },
-          "businessObjective": {
-            "id": "1",
-            "title": "BO 1",
-          },
-          "complianceThreshold": 1,
-          "compliantHostCount": 1,
-          "description": "profile description",
-          "hosts": [],
-          "id": "1",
-          "name": "profile1",
-          "osMajorVersion": "7",
-          "policy": {
-            "name": "parentpolicy",
-            "profiles": [
-              {
-                "benchmark": {
-                  "ruleTree": {},
-                  "title": "benchmark",
-                  "valueDefinitions": [],
-                  "version": "0.1.5",
-                },
-                "businessObjective": {
-                  "id": "1",
-                  "title": "BO 1",
-                },
-                "description": "profile description",
-                "id": "1",
-                "name": "profile1",
-                "osMinorVersion": "9",
-                "refId": "121212",
-                "values": undefined,
-              },
-            ],
-          },
-          "refId": "121212",
-          "totalHostCount": 1,
-        },
-      },
+      "data": true,
       "error": undefined,
       "loading": undefined,
     }
@@ -183,6 +140,7 @@ exports[`PolicyDetails expect to render without error 1`] = `
                 "totalHostCount": 1,
               }
             }
+            refetch={[Function]}
           />
         </ContentTab>
         <ContentTab

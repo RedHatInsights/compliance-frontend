@@ -9,7 +9,7 @@ import {
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
-import useLinkToBackground from 'Utilities/hooks/useLinkToBackground';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
@@ -18,7 +18,7 @@ import useExportSettings from './hooks/useExportSettings';
 // Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {
   const { report_id: policyId } = useParams();
-  const linkToReport = useLinkToBackground('/reports/' + policyId);
+  const navigate = useNavigate();
   const { data, loading, error } = useQuery(GET_PROFILE, {
     variables: { policyId },
   });
@@ -54,14 +54,14 @@ export const ReportDownload = () => {
       buttonProps={buttonProps}
       fallback={<FallbackButton />}
       className="pf-u-mr-sm"
+      onSuccess={() => navigate(-1)}
     />,
     <Button
       variant="secondary"
       key="cancel"
       ouiaId="ExportReportCancelButton"
-      onClick={(event) => {
-        event.preventDefault();
-        window.history.back();
+      onClick={() => {
+        navigate(-1);
       }}
     >
       Cancel
@@ -74,7 +74,7 @@ export const ReportDownload = () => {
       width="440px"
       ouiaId="DownloadReportModal"
       title="Compliance report"
-      onClose={() => linkToReport()}
+      onClose={() => navigate(-1)}
       actions={actions}
     >
       <StateViewWithError stateValues={{ error, data, loading }}>

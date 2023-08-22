@@ -4,12 +4,13 @@ import { logMultipleErrors } from 'Utilities/helpers';
 import useFeature from 'Utilities/hooks/useFeature';
 import {
   POLICY_QUERY,
+  POLICY_QUERY_MINIMAL,
   POLICY_RULE_TREES_QUERY,
   POLICY_VALUE_DEFINITONS_QUERY,
 } from './constants';
 import { compileData } from './helpers';
 
-const usePolicyQuery = ({ policyId, skip: skipCondition }) => {
+const usePolicyQuery = ({ policyId, skip: skipCondition, minimal }) => {
   const ruleGroupsEnabled = useFeature('ruleGroups');
   const valueEditingEnabled = useFeature('valueEditing');
   const skip = policyId === 'new' || skipCondition;
@@ -19,7 +20,7 @@ const usePolicyQuery = ({ policyId, skip: skipCondition }) => {
     error: policyError,
     loading: policyLoading,
     refetch: refecthPolicy,
-  } = useQuery(POLICY_QUERY, {
+  } = useQuery(minimal ? POLICY_QUERY_MINIMAL : POLICY_QUERY, {
     variables: { policyId },
     skip,
     fetchPolicy: 'no-cache',
@@ -32,7 +33,7 @@ const usePolicyQuery = ({ policyId, skip: skipCondition }) => {
     refetch: refecthRuleTrees,
   } = useQuery(POLICY_RULE_TREES_QUERY, {
     variables: { policyId },
-    skip: !ruleGroupsEnabled || skip,
+    skip: !ruleGroupsEnabled || minimal || skip,
     fetchPolicy: 'no-cache',
   });
 
@@ -43,7 +44,7 @@ const usePolicyQuery = ({ policyId, skip: skipCondition }) => {
     refetch: refecthValueDefinitions,
   } = useQuery(POLICY_VALUE_DEFINITONS_QUERY, {
     variables: { policyId },
-    skip: !valueEditingEnabled || skip,
+    skip: !valueEditingEnabled || minimal || skip,
     fetchPolicy: 'no-cache',
   });
 

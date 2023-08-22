@@ -1,12 +1,15 @@
 import React from 'react';
 import ComplianceEmptyState from '../ComplianceEmptyState';
-import { BackgroundLink, LinkButton } from 'PresentationalComponents';
+import {
+  LinkWithPermission as Link,
+  LinkButton,
+} from 'PresentationalComponents';
 
 const ReportsEmptyState = () => (
   <ComplianceEmptyState
     title={'No policies are reporting'}
     mainButton={
-      <BackgroundLink
+      <Link
         to="/scappolicies/new"
         Component={LinkButton}
         componentProps={{
@@ -15,7 +18,7 @@ const ReportsEmptyState = () => (
         }}
       >
         Create new policy
-      </BackgroundLink>
+      </Link>
     }
   />
 );

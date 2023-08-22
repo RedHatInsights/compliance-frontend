@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BackgroundLink,
   LinkButton,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
@@ -27,7 +26,7 @@ const NoPoliciesState = () => (
         add it to an existing policy or create a new policy.
       </EmptyStateBody>
       <EmptyStatePrimary>
-        <BackgroundLink
+        <Link
           to="/scappolicies/new"
           Component={LinkButton}
           componentProps={{
@@ -36,7 +35,7 @@ const NoPoliciesState = () => (
           }}
         >
           Create new policy
-        </BackgroundLink>
+        </Link>
       </EmptyStatePrimary>
       <EmptyStateSecondaryActions>
         <Link variant="plain" to="/scappolicies">

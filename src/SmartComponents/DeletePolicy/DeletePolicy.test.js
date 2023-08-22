@@ -9,13 +9,22 @@ jest.mock('Utilities/Dispatcher');
 jest.mock('@apollo/client', () => ({
   ...jest.requireActual('@apollo/client'),
   useMutation: jest.fn(() => ({})),
+  useQuery: () => ({
+    data: { profile: { name: 'Test Policy 1', id: 'teste_polict_ID' } },
+    error: undefined,
+    loading: undefined,
+  }),
 }));
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: jest.fn(() => ({})),
-  useNavigate: jest.fn(),
 }));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
 
 describe('DeletePolicy', () => {
   const policy = { id: 1, name: 'foo' };

@@ -95,7 +95,7 @@ exports[`ReportDetails expect to render without error 1`] = `
           sm={3}
           xl={3}
         >
-          <BackgroundLink
+          <LinkWithPermission
             Component={[Function]}
             className="pf-u-mr-md"
             componentProps={
@@ -135,8 +135,8 @@ exports[`ReportDetails expect to render without error 1`] = `
             to="/reports/1/pdf"
           >
             Download PDF
-          </BackgroundLink>
-          <BackgroundLink
+          </LinkWithPermission>
+          <LinkWithPermission
             Component={[Function]}
             componentProps={
               {
@@ -176,7 +176,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             to="/reports/1/delete"
           >
             Delete report
-          </BackgroundLink>
+          </LinkWithPermission>
         </GridItem>
       </Grid>
       <Grid
@@ -473,7 +473,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           sm={3}
           xl={3}
         >
-          <BackgroundLink
+          <LinkWithPermission
             Component={[Function]}
             className="pf-u-mr-md"
             componentProps={
@@ -513,8 +513,8 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             to="/reports/1/pdf"
           >
             Download PDF
-          </BackgroundLink>
-          <BackgroundLink
+          </LinkWithPermission>
+          <LinkWithPermission
             Component={[Function]}
             componentProps={
               {
@@ -554,7 +554,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             to="/reports/1/delete"
           >
             Delete report
-          </BackgroundLink>
+          </LinkWithPermission>
         </GridItem>
       </Grid>
       <Grid

@@ -39,29 +39,9 @@ exports[`EditPolicy expect to render without error 1`] = `
   <StateViewWithError
     stateValues={
       {
+        "data": true,
         "error": undefined,
         "loading": undefined,
-        "policy": {
-          "benchmark": {
-            "title": "benchmark",
-            "version": "0.1.5",
-          },
-          "businessObjective": {
-            "id": "1",
-            "title": "BO 1",
-          },
-          "complianceThreshold": 1,
-          "compliantHostCount": 1,
-          "description": "profile description",
-          "id": "1",
-          "name": "profile1",
-          "policy": {
-            "name": "parentpolicy",
-            "profiles": [],
-          },
-          "refId": "121212",
-          "totalHostCount": 1,
-        },
       }
     }
   >
@@ -71,7 +51,7 @@ exports[`EditPolicy expect to render without error 1`] = `
       <Spinner />
     </StateViewPart>
     <StateViewPart
-      stateKey="policy"
+      stateKey="data"
     >
       <EditPolicyForm
         policy={

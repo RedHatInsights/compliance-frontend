@@ -14,7 +14,7 @@ import {
 } from 'PresentationalComponents';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
-import { useOnSavePolicyDetails } from '../EditPolicy/hooks';
+import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
 
 const EditPolicyDetailsInline = ({
@@ -28,6 +28,7 @@ const EditPolicyDetailsInline = ({
   textUnderInline,
   typeOfInput,
   Component = TextInput,
+  refetch,
   ...props
 }) => {
   const copiedData = policy;
@@ -52,7 +53,7 @@ const EditPolicyDetailsInline = ({
   const handleCloseEdit = () => {
     setIsEditOpen(false);
     // setDirty(false);
-    setValue(text);
+    refetch();
   };
 
   const constructData =
@@ -63,12 +64,9 @@ const EditPolicyDetailsInline = ({
           [propertyName]: value,
         };
 
-  const [isSaving, onSave] = useOnSavePolicyDetails(
-    policy,
-    constructData,
-    handleCloseEdit,
-    policy.id
-  );
+  const [isSaving, onSave] = useOnSavePolicyDetails(policy, constructData, {
+    onSave: handleCloseEdit,
+  });
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleToggle = () => {
@@ -131,7 +129,7 @@ const EditPolicyDetailsInline = ({
                   aria-label="Save edits"
                   isDisabled={!validThreshold ? true : false}
                   isLoading={isSaving}
-                  onClick={onSave}
+                  onClick={() => onSave()}
                   style={{ 'margin-left': '5px' }}
                 >
                   <i className="fas fa-check" aria-hidden="true"></i>
@@ -179,6 +177,7 @@ EditPolicyDetailsInline.propTypes = {
   textUnderInline: propTypes.string,
   typeOfInput: propTypes.string,
   Component: propTypes.node,
+  refetch: propTypes.func,
 };
 
 export default EditPolicyDetailsInline;

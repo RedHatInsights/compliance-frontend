@@ -17,7 +17,7 @@ import PageHeader, {
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
-  BackgroundLink,
+  LinkWithPermission as Link,
   BreadcrumbLinkItem,
   ReportDetailsContentLoader,
   ReportDetailsDescription,
@@ -111,7 +111,7 @@ export const ReportDetails = ({ route }) => {
               xl={3}
             >
               {pdfReportEnabled && (
-                <BackgroundLink
+                <Link
                   state={{ profile }}
                   to={`/reports/${profile.id}/pdf`}
                   className="pf-u-mr-md"
@@ -122,9 +122,9 @@ export const ReportDetails = ({ route }) => {
                   }}
                 >
                   Download PDF
-                </BackgroundLink>
+                </Link>
               )}
-              <BackgroundLink
+              <Link
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
                 Component={LinkButton}
@@ -135,7 +135,7 @@ export const ReportDetails = ({ route }) => {
                 }}
               >
                 Delete report
-              </BackgroundLink>
+              </Link>
             </GridItem>
           </Grid>
           <Grid hasGutter>

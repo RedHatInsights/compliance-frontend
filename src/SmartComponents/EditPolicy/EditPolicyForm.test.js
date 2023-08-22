@@ -16,8 +16,12 @@ jest.mock('react-router-dom', () => ({
     pathname: '/path/name',
     state: {},
   })),
-  useNavigate: jest.fn(),
 }));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
+  () => () => ({})
+);
 
 jest.mock('./hooks', () => ({
   ...jest.requireActual('./hooks'),

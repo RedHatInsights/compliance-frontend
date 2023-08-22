@@ -217,7 +217,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
     }
   }
   mainButton={
-    <BackgroundLink
+    <LinkWithPermission
       Component={[Function]}
       componentProps={
         {
@@ -228,7 +228,7 @@ exports[`ReportsEmptyState expect to render without error 1`] = `
       to="/scappolicies/new"
     >
       Create new policy
-    </BackgroundLink>
+    </LinkWithPermission>
   }
   title="No policies are reporting"
 />

@@ -29,26 +29,53 @@ exports[`DeletePolicy expect to render an open modal without error 1`] = `
   titleIconVariant="warning"
   variant="small"
 >
-  <Text
-    className="policy-delete-body-text"
+  <StateViewWithError
+    stateValues={
+      {
+        "data": {
+          "profile": {
+            "id": "teste_polict_ID",
+            "name": "Test Policy 1",
+            "policy": {
+              "profiles": [],
+            },
+          },
+        },
+        "error": undefined,
+        "loading": undefined,
+      }
+    }
   >
-    Deleting the policy 
-    <b>
-      foo
-    </b>
-     will also delete its associated reports.
-  </Text>
-  <Checkbox
-    className=""
-    component="div"
-    id="deleting-policy-check-1"
-    isChecked={false}
-    isDisabled={false}
-    isRequired={false}
-    isValid={true}
-    label="I understand this will delete the policy and all associated reports"
-    onChange={[Function]}
-    ouiaSafe={true}
-  />
+    <StateViewPart
+      stateKey="loading"
+    >
+      <Spinner />
+    </StateViewPart>
+    <StateViewPart
+      stateKey="data"
+    >
+      <Text
+        className="policy-delete-body-text"
+      >
+        Deleting the policy 
+        <b>
+          Test Policy 1
+        </b>
+         will also delete its associated reports.
+      </Text>
+      <Checkbox
+        className=""
+        component="div"
+        id="deleting-policy-check-teste_polict_ID"
+        isChecked={false}
+        isDisabled={false}
+        isRequired={false}
+        isValid={true}
+        label="I understand this will delete the policy and all associated reports"
+        onChange={[Function]}
+        ouiaSafe={true}
+      />
+    </StateViewPart>
+  </StateViewWithError>
 </ComplianceModal>
 `;
