@@ -123,7 +123,7 @@ exports[`ReportDetailsDescription expect to render without error 1`] = `
         "policyType": "United States Government Standard",
         "refId": "xccdf_org.ssgproject.content_profile_ospp23",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       }
     }
   />

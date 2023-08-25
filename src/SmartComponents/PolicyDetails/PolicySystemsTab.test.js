@@ -23,7 +23,19 @@ describe('PolicySystemsTab', () => {
   it('expect to render with no systems table', () => {
     const policy = {
       ...policies.edges[0].node,
+      totalHostCount: 0,
       hosts: [],
+    };
+
+    const wrapper = shallow(<PolicySystemsTab {...{ policy }} />);
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('expect to render with differentHostCount info', () => {
+    const policy = {
+      ...policies.edges[0].node,
+      totalHostCount: policies.edges[0].node.totalHostCount + 1,
     };
 
     const wrapper = shallow(<PolicySystemsTab {...{ policy }} />);
