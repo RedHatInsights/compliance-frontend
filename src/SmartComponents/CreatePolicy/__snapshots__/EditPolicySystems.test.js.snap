@@ -29,6 +29,10 @@ exports[`EditPolicySystems expect to render without error 1`] = `
               "title": "Name",
             },
             {
+              "key": "groups",
+              "requiresDefault": true,
+            },
+            {
               "key": "tags",
             },
             {
