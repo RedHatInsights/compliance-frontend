@@ -166,21 +166,29 @@ export const SystemsTable = ({
   });
 
   const mergedColumns = (defaultColumns) =>
-    columns.map((column) => {
+    columns.reduce((prev, column) => {
       const isStringCol = typeof column === 'string';
       const key = isStringCol ? column : column.key;
       const defaultColumn = defaultColumns.find(
         (defaultCol) => defaultCol.key === key
       );
-      return {
-        ...defaultColumn,
-        ...(isStringCol ? { key: column } : column),
-        props: {
-          ...defaultColumn?.props,
-          ...column?.props,
-        },
-      };
-    });
+
+      if (defaultColumn === undefined && column?.requiresDefault === true) {
+        return prev; // exclude if not found in inventory
+      } else {
+        return [
+          ...prev,
+          {
+            ...defaultColumn,
+            ...(isStringCol ? { key: column } : column),
+            props: {
+              ...defaultColumn?.props,
+              ...column?.props,
+            },
+          },
+        ];
+      }
+    }, []);
 
   return (
     <StateView

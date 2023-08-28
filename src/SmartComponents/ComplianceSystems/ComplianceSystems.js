@@ -44,6 +44,9 @@ export const ComplianceSystems = () => {
                   Columns.customName({
                     showLink: true,
                   }),
+                  Columns.inventoryColumn('groups', {
+                    requiresDefault: true,
+                  }),
                   Columns.inventoryColumn('tags'),
                   Columns.OS,
                   Columns.Policies,
