@@ -135,6 +135,10 @@ export const constructQuery = (columns) => {
       tags
     }
 
+    fragment GroupsColumn on System {
+      groups
+    }
+
     query U_Systems(
       $filter: String!
       $policyId: ID
@@ -151,6 +155,7 @@ export const constructQuery = (columns) => {
       $lastScannedColumn: Boolean = false
       $updatedColumn: Boolean = false
       $tagsColumn: Boolean = false
+      $groupsColumn: Boolean = false
     ) {
       systems(
         search: $filter
@@ -175,6 +180,7 @@ export const constructQuery = (columns) => {
             ...LastScannedColumn @include(if: $lastScannedColumn)
             ...UpdatedColumn @include(if: $updatedColumn)
             ...TagsColumn @include(if: $tagsColumn)
+            ...GroupsColumn @include(if: $groupsColumn)
           }
         }
       }
