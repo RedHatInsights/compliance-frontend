@@ -173,6 +173,9 @@ export const ReportDetails = ({ route }) => {
                     showLink: true,
                     showOsInfo: true,
                   }),
+                  Columns.inventoryColumn('groups', {
+                    requiresDefault: true,
+                  }),
                   Columns.inventoryColumn('tags'),
                   Columns.SsgVersion,
                   Columns.FailedRules,

@@ -291,6 +291,10 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "title": "Name",
                 },
                 {
+                  "key": "groups",
+                  "requiresDefault": true,
+                },
+                {
                   "key": "tags",
                 },
                 {
@@ -667,6 +671,10 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                     "name",
                   ],
                   "title": "Name",
+                },
+                {
+                  "key": "groups",
+                  "requiresDefault": true,
                 },
                 {
                   "key": "tags",
