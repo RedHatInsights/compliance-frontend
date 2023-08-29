@@ -170,6 +170,10 @@ const buildApiFilters = (filters = {}) => {
       }
     : {};
 
+  /**
+   * TODO: build a separate layer/hook that integrates inventory filters with gq filter
+   */
+
   // filtering by group_name is enabled in gq filter
   if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
     otherFilters.filter = `(${hostGroupFilter

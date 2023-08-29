@@ -198,7 +198,7 @@ exports[`SystemsTable returns 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -415,7 +415,7 @@ exports[`SystemsTable returns compact 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -506,7 +506,7 @@ exports[`SystemsTable returns showAllSystems 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -729,7 +729,7 @@ exports[`SystemsTable returns with a showComplianceSystemsInfo 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -1002,7 +1002,7 @@ exports[`SystemsTable returns with compliantFilter 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -1219,7 +1219,7 @@ exports[`SystemsTable returns with showOnlySystemsWithTestResults 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -1428,7 +1428,7 @@ exports[`SystemsTable returns without actions 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }
@@ -1639,7 +1639,7 @@ exports[`SystemsTable returns without remediations 1`] = `
       hideFilters={
         {
           "all": true,
-          "hostGroupFilter": false,
+          "hostGroupFilter": true,
           "tags": false,
         }
       }

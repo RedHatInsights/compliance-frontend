@@ -119,6 +119,7 @@ export const EditPolicySystems = ({
             enableExport={false}
             preselectedSystems={selectedSystems}
             onSelect={onSystemSelect}
+            showGroupsFilter
           />
         </FormGroup>
       </Form>

@@ -51,6 +51,7 @@ export const SystemsTable = ({
   ssgVersions,
   dedicatedAction,
   ruleSeverityFilter,
+  showGroupsFilter,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -223,7 +224,11 @@ export const SystemsTable = ({
           noSystemsTable={noSystemsTable}
           ref={inventory}
           getEntities={getEntities}
-          hideFilters={{ all: true, tags: false, hostGroupFilter: false }}
+          hideFilters={{
+            all: true,
+            tags: false,
+            hostGroupFilter: !showGroupsFilter,
+          }}
           showTags
           onLoad={defaultOnLoad(columns)}
           tableProps={{
@@ -272,6 +277,7 @@ SystemsTable.propTypes = {
   compliantFilter: PropTypes.bool,
   showOnlySystemsWithTestResults: PropTypes.bool,
   showOsFilter: PropTypes.bool,
+  showGroupsFilter: PropTypes.bool,
   showComplianceSystemsInfo: PropTypes.bool,
   error: PropTypes.object,
   compact: PropTypes.bool,
@@ -306,6 +312,7 @@ SystemsTable.defaultProps = {
   remediationsEnabled: true,
   preselectedSystems: [],
   ruleSeverityFilter: false,
+  showGroupsFilter: false,
 };
 
 export default SystemsTable;

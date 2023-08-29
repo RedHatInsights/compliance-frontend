@@ -71,6 +71,7 @@ exports[`EditPolicySystems expect to render without error 1`] = `
         ruleSeverityFilter={false}
         showActions={false}
         showComplianceSystemsInfo={false}
+        showGroupsFilter={true}
         showOnlySystemsWithTestResults={false}
         showOsMinorVersionFilter={
           [

@@ -189,6 +189,7 @@ export const ReportDetails = ({ route }) => {
                   rowWrapper: ReportedSystemRow,
                 }}
                 ruleSeverityFilter
+                showGroupsFilter
               />
             </GridItem>
           </Grid>
