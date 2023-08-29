@@ -82,8 +82,21 @@ export const useFetchSystems = ({
 }) => {
   const client = useApolloClient();
 
-  return (perPage, page, requestVariables = {}) =>
-    client
+  return (perPage, page, requestVariables = {}) => {
+    let filter = variables.filter;
+
+    // additional filtering can be sent within requestVariables
+    if (
+      requestVariables.filter !== undefined &&
+      typeof requestVariables.filter === 'string'
+    ) {
+      filter = [
+        ...filter.split(' and '),
+        ...requestVariables.filter.split(' and '),
+      ].join(' and ');
+    }
+
+    return client
       .query({
         query,
         fetchResults: true,
@@ -93,6 +106,7 @@ export const useFetchSystems = ({
           page,
           ...variables,
           ...requestVariables,
+          filter,
         },
       })
       .then(({ data }) => {
@@ -119,6 +133,7 @@ export const useFetchSystems = ({
           throw error;
         }
       });
+  };
 };
 
 const useFetchBatched = () => {
@@ -141,7 +156,7 @@ const useFetchBatched = () => {
 };
 
 const buildApiFilters = (filters = {}) => {
-  const { tagFilters, ...otherFilters } = filters;
+  const { tagFilters, hostGroupFilter, ...otherFilters } = filters;
   const tagsApiFilter = tagFilters
     ? {
         tags: tagFilters.flatMap((tagFilter) =>
@@ -154,6 +169,13 @@ const buildApiFilters = (filters = {}) => {
         ),
       }
     : {};
+
+  // filtering by group_name is enabled in gq filter
+  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
+    otherFilters.filter = `(${hostGroupFilter
+      .map((value) => `group_name = ${value}`)
+      .join(' or ')})`;
+  }
 
   return {
     ...otherFilters,
