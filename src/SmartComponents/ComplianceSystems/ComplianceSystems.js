@@ -66,6 +66,7 @@ export const ComplianceSystems = () => {
                 enableEditPolicy={false}
                 remediationsEnabled={false}
                 policies={policies}
+                showGroupsFilter
               />
             )}
           </StateViewPart>

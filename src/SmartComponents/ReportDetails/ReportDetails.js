@@ -178,6 +178,7 @@ export const ReportDetails = ({ route }) => {
                 compliantFilter
                 defaultFilter={`with_results_for_policy_id = ${profile.id}`}
                 policyId={profile.id}
+                showGroupsFilter
               />
             </GridItem>
           </Grid>

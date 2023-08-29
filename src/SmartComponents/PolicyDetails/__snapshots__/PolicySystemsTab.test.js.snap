@@ -195,6 +195,7 @@ exports[`PolicySystemsTab expect to render with no systems table 1`] = `
   ruleSeverityFilter={false}
   showActions={false}
   showComplianceSystemsInfo={false}
+  showGroupsFilter={false}
   showOnlySystemsWithTestResults={false}
   showOsMinorVersionFilter={
     [
@@ -404,6 +405,7 @@ exports[`PolicySystemsTab expect to render without error 1`] = `
   ruleSeverityFilter={false}
   showActions={false}
   showComplianceSystemsInfo={false}
+  showGroupsFilter={false}
   showOnlySystemsWithTestResults={false}
   showOsMinorVersionFilter={
     [

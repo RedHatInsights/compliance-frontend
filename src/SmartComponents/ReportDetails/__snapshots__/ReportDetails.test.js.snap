@@ -368,6 +368,7 @@ exports[`ReportDetails expect to render without error 1`] = `
             ruleSeverityFilter={false}
             showActions={true}
             showComplianceSystemsInfo={false}
+            showGroupsFilter={true}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               [
@@ -750,6 +751,7 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             ruleSeverityFilter={false}
             showActions={true}
             showComplianceSystemsInfo={false}
+            showGroupsFilter={true}
             showOnlySystemsWithTestResults={true}
             showOsMinorVersionFilter={
               [
