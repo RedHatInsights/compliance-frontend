@@ -177,7 +177,7 @@ const buildApiFilters = (filters = {}) => {
   // filtering by group_name is enabled in gq filter
   if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
     otherFilters.filter = `(${hostGroupFilter
-      .map((value) => `group_name = ${value}`)
+      .map((value) => `group_name = "${value}"`)
       .join(' or ')})`;
   }
 
