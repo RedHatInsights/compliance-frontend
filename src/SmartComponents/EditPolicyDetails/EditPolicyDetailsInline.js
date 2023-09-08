@@ -16,6 +16,7 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -34,6 +35,14 @@ const EditPolicyDetailsInline = ({
   const copiedData = policy;
   // TODO Re-enable when there is a alternative to Prompt
   // const [dirty, setDirty] = useState(false);
+
+  const { hasAccess, isLoading } = usePermissionsWithContext(
+    ['compliance:policy:write'],
+    false,
+    false
+  );
+
+  const hasPermission = !isLoading && hasAccess;
 
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
@@ -84,13 +93,15 @@ const EditPolicyDetailsInline = ({
     <FormGroup className="pf-c-inline-edit pf-m-inline-editable">
       <Text component={TextVariants.h5}>
         {label}
-        <Button
-          onClick={handleToggle}
-          variant="plain"
-          style={{ 'margin-left': '5px' }}
-        >
-          <i className="fas fa-pencil-alt" aria-hidden="true" />
-        </Button>
+        {hasPermission && (
+          <Button
+            onClick={handleToggle}
+            variant="plain"
+            style={{ 'margin-left': '5px' }}
+          >
+            <i className="fas fa-pencil-alt" aria-hidden="true" />
+          </Button>
+        )}
         {variant === 'threshold' ? (
           <PolicyThresholdTooltip />
         ) : variant === 'business' ? (
