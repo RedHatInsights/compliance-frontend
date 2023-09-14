@@ -4,7 +4,6 @@ import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
-import useFeature from 'Utilities/hooks/useFeature';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
   policyNameFilter,
@@ -15,7 +14,6 @@ import {
 import '../../App.scss';
 
 const ReportsTable = ({ profiles }) => {
-  const manageColumnsEnabled = useFeature('manageColumns');
   const policyTypes = uniq(
     profiles.map(({ policyType }) => policyType).filter((i) => !!i)
   );
@@ -46,7 +44,6 @@ const ReportsTable = ({ profiles }) => {
           ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
-        manageColumns: manageColumnsEnabled,
         emptyRows: emptyRows('reports', columns.length),
       }}
       className={'reports-table'}

@@ -234,7 +234,6 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
 };
 
 export const features = {
-  manageColumns: true,
   systemsNotReporting: true,
   rbac: true,
   valueEditing: true,
