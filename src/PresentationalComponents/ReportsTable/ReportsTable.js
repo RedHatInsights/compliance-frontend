@@ -16,7 +16,6 @@ import '../../App.scss';
 
 const ReportsTable = ({ profiles }) => {
   const manageColumnsEnabled = useFeature('manageColumns');
-  const pdfReportEnabled = useFeature('pdfReport');
   const policyTypes = uniq(
     profiles.map(({ policyType }) => policyType).filter((i) => !!i)
   );
@@ -28,10 +27,7 @@ const ReportsTable = ({ profiles }) => {
     <TableToolsTable
       aria-label="Reports"
       ouiaId="ReportsTable"
-      columns={[
-        ...columns,
-        ...((pdfReportEnabled && [PDFExportDownload]) || []),
-      ]}
+      columns={[...columns, PDFExportDownload]}
       items={profiles}
       isStickyHeader
       filters={{

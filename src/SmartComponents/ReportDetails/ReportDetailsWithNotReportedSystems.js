@@ -26,7 +26,6 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useFeature from 'Utilities/hooks/useFeature';
 import { SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -67,7 +66,6 @@ export const QUERY = gql`
 
 export const ReportDetails = ({ route }) => {
   const { report_id: policyId } = useParams();
-  const pdfReportEnabled = useFeature('pdfReport');
   const { data, error, loading } = useQuery(QUERY, {
     variables: { policyId },
     fetchPolicy: 'no-cache',
@@ -121,20 +119,18 @@ export const ReportDetails = ({ route }) => {
               lg={3}
               xl={3}
             >
-              {pdfReportEnabled && (
-                <Link
-                  state={{ profile }}
-                  to={`/reports/${profile.id}/pdf`}
-                  className="pf-u-mr-md"
-                  Component={LinkButton}
-                  componentProps={{
-                    variant: 'primary',
-                    ouiaId: 'ReportDetailsDownloadReportPDFLink',
-                  }}
-                >
-                  Download PDF
-                </Link>
-              )}
+              <Link
+                state={{ profile }}
+                to={`/reports/${profile.id}/pdf`}
+                className="pf-u-mr-md"
+                Component={LinkButton}
+                componentProps={{
+                  variant: 'primary',
+                  ouiaId: 'ReportDetailsDownloadReportPDFLink',
+                }}
+              >
+                Download PDF
+              </Link>
               <Link
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
