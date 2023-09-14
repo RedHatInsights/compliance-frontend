@@ -9,12 +9,11 @@ import gql from 'graphql-tag';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
-import useFeature from 'Utilities/hooks/useFeature';
 
 import EmptyState from './EmptyState';
 
 const QUERY = gql`
-  query CD_System($systemId: String!, $enableRuleTree: Boolean = false) {
+  query CD_System($systemId: String!) {
     system(id: $systemId) {
       id
       name
@@ -37,7 +36,7 @@ const QUERY = gql`
         osMajorVersion
         benchmark {
           version
-          ruleTree @include(if: $enableRuleTree)
+          ruleTree
         }
         policy {
           id
@@ -146,9 +145,8 @@ SystemQuery.defaultProps = {
 };
 
 export const Details = ({ inventoryId, hidePassed, ...props }) => {
-  const ruleGroups = useFeature('ruleGroups');
   const { data, error, loading } = useQuery(QUERY, {
-    variables: { systemId: inventoryId, enableRuleTree: ruleGroups },
+    variables: { systemId: inventoryId },
     fetchPolicy: 'no-cache',
   });
   const is404 = error?.networkError?.statusCode === 404;

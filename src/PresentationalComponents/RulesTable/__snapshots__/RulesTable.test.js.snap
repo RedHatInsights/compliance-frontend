@@ -454,6 +454,7 @@ exports[`RulesTable expect to pass on options 1`] = `
       "onSelect": [Function],
       "preselected": [],
       "selectedFilter": false,
+      "tableTree": undefined,
     }
   }
 />
@@ -912,6 +913,7 @@ exports[`RulesTable expect to render without error 1`] = `
       "onSelect": [Function],
       "preselected": [],
       "selectedFilter": false,
+      "tableTree": undefined,
     }
   }
 />

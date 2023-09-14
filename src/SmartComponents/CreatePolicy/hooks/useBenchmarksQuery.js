@@ -1,7 +1,6 @@
 import { useMemo, useCallback } from 'react';
 import { useQuery } from '@apollo/client';
 import { logMultipleErrors } from 'Utilities/helpers';
-import useFeature from 'Utilities/hooks/useFeature';
 import {
   BENCHMARKS_QUERY,
   BENCHMARKS_RULES_TREES_QUERY,
@@ -32,8 +31,6 @@ const useBenchmarksQuery = ({ osMajorVersion, osMinorVersions }) => {
     `os_major_version = ${osMajorVersion} ` +
     `and latest_supported_os_minor_version ^ "${osMinorVersions.join(',')}"`;
 
-  const ruleGroupsEnabled = useFeature('ruleGroups');
-
   const {
     data: benchmarksData,
     error: benchmarksError,
@@ -54,7 +51,7 @@ const useBenchmarksQuery = ({ osMajorVersion, osMinorVersions }) => {
     refetch: refecthRuleTrees,
   } = useQuery(BENCHMARKS_RULES_TREES_QUERY, {
     variables: { filter },
-    skip: osMinorVersions.length === 0 || !ruleGroupsEnabled,
+    skip: osMinorVersions.length === 0,
     fetchPolicy: 'no-cache',
   });
 

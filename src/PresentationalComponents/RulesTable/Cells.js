@@ -8,7 +8,6 @@ import {
   QuestionCircleIcon,
 } from '@patternfly/react-icons';
 import RemediationCell from '../RemediationCell/RemediationCell';
-import useFeature from 'Utilities/hooks/useFeature';
 
 const ruleProps = {
   title: propTypes.string,
@@ -20,12 +19,10 @@ const ruleProps = {
 };
 
 export const Rule = ({ title, identifier, compliant = true }) => {
-  const ruleGroups = useFeature('ruleGroups');
-
   return (
     <TextContent
       style={{
-        ...(!compliant && ruleGroups
+        ...(!compliant
           ? { fontWeight: 'bold', color: 'var(--pf-global--danger-color--100)' }
           : {}),
       }}

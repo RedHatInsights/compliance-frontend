@@ -30,7 +30,6 @@ const RulesTable = ({
   onRuleValueReset,
   ...rulesTableProps
 }) => {
-  const ruleGroups = useFeature('ruleGroups');
   const expandOnFilter = useFeature('expandOnFilter');
 
   const [selectedRules, setSelectedRules] = handleSelect
@@ -92,17 +91,13 @@ const RulesTable = ({
         }),
       }}
       options={{
-        ...(ruleGroups
-          ? {
-              tableTree: growTableTree(
-                profileRules[0].profile,
-                rules,
-                showFailedCounts
-              ),
-            }
-          : {}),
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
+        tableTree: growTableTree(
+          profileRules[0].profile,
+          rules,
+          showFailedCounts
+        ),
         identifier: itemIdentifier,
         onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
