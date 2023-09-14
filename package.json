@@ -47,6 +47,7 @@
     "coverageDirectory": "./jest-coverage/",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
+      "!src/**/*.cy.js",
       "!src/**/stories/*",
       "!src/{App,Routes,entry,entry-dev}.js",
       "!src/**/__fixtures__/*.js",
