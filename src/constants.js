@@ -234,7 +234,6 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
 };
 
 export const features = {
-  valueEditing: true,
   ruleGroups: true,
   expandOnFilter: false,
 };

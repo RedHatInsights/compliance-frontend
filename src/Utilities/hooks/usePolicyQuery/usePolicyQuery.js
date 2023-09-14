@@ -12,7 +12,6 @@ import { compileData } from './helpers';
 
 const usePolicyQuery = ({ policyId, skip: skipCondition, minimal }) => {
   const ruleGroupsEnabled = useFeature('ruleGroups');
-  const valueEditingEnabled = useFeature('valueEditing');
   const skip = policyId === 'new' || skipCondition;
 
   const {
@@ -44,7 +43,7 @@ const usePolicyQuery = ({ policyId, skip: skipCondition, minimal }) => {
     refetch: refecthValueDefinitions,
   } = useQuery(POLICY_VALUE_DEFINITONS_QUERY, {
     variables: { policyId },
-    skip: !valueEditingEnabled || minimal || skip,
+    skip: minimal || skip,
     fetchPolicy: 'no-cache',
   });
 

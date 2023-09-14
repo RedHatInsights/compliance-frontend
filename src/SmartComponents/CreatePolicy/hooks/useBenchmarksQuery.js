@@ -33,7 +33,6 @@ const useBenchmarksQuery = ({ osMajorVersion, osMinorVersions }) => {
     `and latest_supported_os_minor_version ^ "${osMinorVersions.join(',')}"`;
 
   const ruleGroupsEnabled = useFeature('ruleGroups');
-  const valueEditingEnabled = useFeature('valueEditing');
 
   const {
     data: benchmarksData,
@@ -66,7 +65,7 @@ const useBenchmarksQuery = ({ osMajorVersion, osMinorVersions }) => {
     refetch: refecthValueDefinitions,
   } = useQuery(BENCHMARKS_VALUE_DEFINITIONS_QUERY, {
     variables: { filter },
-    skip: osMinorVersions.length === 0 || !valueEditingEnabled,
+    skip: osMinorVersions.length === 0,
     fetchPolicy: 'no-cache',
   });
 
