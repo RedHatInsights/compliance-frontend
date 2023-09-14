@@ -17,6 +17,17 @@ describe('WithPermission', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('expect to render nothing when loading', () => {
+    usePermissionsWithContext.mockImplementation(() => ({
+      isLoading: true,
+    }));
+    const { asFragment } = render(
+      <WithPermission>NEEDS PERMISSION</WithPermission>
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('expect to render "No permissions" with no access', () => {
     usePermissionsWithContext.mockImplementation(() => ({
       hasAccess: false,
