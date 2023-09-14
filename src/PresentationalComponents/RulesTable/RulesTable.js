@@ -10,7 +10,6 @@ import emptyRows from './EmptyRows';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
 import { growTableTree, itemIdentifier } from './helpers';
-import useFeature from 'Utilities/hooks/useFeature';
 
 const RulesTable = ({
   system,
@@ -30,8 +29,6 @@ const RulesTable = ({
   onRuleValueReset,
   ...rulesTableProps
 }) => {
-  const expandOnFilter = useFeature('expandOnFilter');
-
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : useState([]);
@@ -104,7 +101,6 @@ const RulesTable = ({
         detailsComponent: DetailsRow,
         emptyRows: emptyRows(columns),
         selectedFilter,
-        ...(expandOnFilter ? { expandOnFilter: ['name'] } : {}),
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
       }}
       {...rulesTableProps}

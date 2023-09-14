@@ -233,9 +233,7 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
   manageColumns: true,
 };
 
-export const features = {
-  expandOnFilter: false,
-};
+export const features = {};
 
 export const paletteColors = {
   black300: '#D2D2D2', // '--pf-global--palette--black-300',

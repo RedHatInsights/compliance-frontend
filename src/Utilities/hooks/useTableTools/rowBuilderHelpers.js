@@ -82,7 +82,7 @@ const buildTreeBranch = (
   detailsComponent,
   sorter,
   selectable,
-  expandOnFilter,
+  expandOnFilter = false,
   activeFilterValues
 ) => {
   const nextLevel = level + 1;
