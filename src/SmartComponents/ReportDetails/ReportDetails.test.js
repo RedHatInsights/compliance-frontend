@@ -38,6 +38,14 @@ const mocks = [
           policy: {
             id: 'thepolicyid',
             name: 'the policy name',
+            profiles: [
+              {
+                benchmark: { version: 1 },
+              },
+              {
+                benchmark: { version: 2 },
+              },
+            ],
           },
           businessObjective: {
             id: '1',

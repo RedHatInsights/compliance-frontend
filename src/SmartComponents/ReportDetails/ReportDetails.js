@@ -13,7 +13,6 @@ import {
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
@@ -27,20 +26,20 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useFeature from 'Utilities/hooks/useFeature';
 import { SystemsTable } from 'SmartComponents';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import * as Columns from '../SystemsTable/Columns';
-import { default as ReportDetailsWithNotReportedSystems } from './ReportDetailsWithNotReportedSystems';
+import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
 
 export const QUERY = gql`
-  query RD_Profile($policyId: String!) {
+  query RDWNRS_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
       refId
+      totalHostCount
       testResultHostCount
       compliantHostCount
       unsupportedHostCount
@@ -51,6 +50,11 @@ export const QUERY = gql`
       policy {
         id
         name
+        profiles {
+          benchmark {
+            version
+          }
+        }
       }
       businessObjective {
         id
@@ -69,11 +73,17 @@ export const ReportDetails = ({ route }) => {
   let profile = {};
   let policyName;
   let pageTitle;
+  let ssgVersions = [];
 
   if (!loading && data) {
     profile = data.profile;
     policyName = profile.policy.name;
     pageTitle = `Report: ${policyName}`;
+    ssgVersions = [
+      ...new Set(
+        profile.policy.profiles.flatMap(({ benchmark: { version } }) => version)
+      ),
+    ];
   }
 
   useTitleEntity(route, policyName);
@@ -121,7 +131,6 @@ export const ReportDetails = ({ route }) => {
               >
                 Download PDF
               </Link>
-
               <Link
                 state={{ profile }}
                 to={`/reports/${profile.id}/delete`}
@@ -138,15 +147,11 @@ export const ReportDetails = ({ route }) => {
           </Grid>
           <Grid hasGutter>
             <GridItem sm={12} md={12} lg={12} xl={6}>
-              <div className="chart-inline">
-                <div className="chart-container">
-                  <ReportChart
-                    profile={profile}
-                    hasLegend={true}
-                    chartClass="report-details-chart-container"
-                  />
-                </div>
-              </div>
+              <ReportChart
+                profile={profile}
+                hasLegend={true}
+                chartClass="report-details-chart-container"
+              />
             </GridItem>
             <GridItem sm={12} md={12} lg={12} xl={6}>
               <ReportDetailsDescription profile={profile} />
@@ -158,6 +163,7 @@ export const ReportDetails = ({ route }) => {
             <GridItem span={12}>
               <SystemsTable
                 showOsMinorVersionFilter={[profile.osMajorVersion]}
+                ssgVersions={ssgVersions}
                 columns={[
                   Columns.customName({
                     showLink: true,
@@ -172,10 +178,13 @@ export const ReportDetails = ({ route }) => {
                   Columns.ComplianceScore,
                   Columns.LastScanned,
                 ]}
-                showOnlySystemsWithTestResults
                 compliantFilter
-                defaultFilter={`with_results_for_policy_id = ${profile.id}`}
+                defaultFilter={`policy_id = ${profile.id}`}
                 policyId={profile.id}
+                tableProps={{
+                  rowWrapper: ReportedSystemRow,
+                }}
+                ruleSeverityFilter
                 showGroupsFilter
               />
             </GridItem>
@@ -190,14 +199,4 @@ ReportDetails.propTypes = {
   route: propTypes.object,
 };
 
-const ReportDetailsFeatureWrapper = (props) => {
-  const systemsNotReporting = useFeature('systemsNotReporting');
-
-  return systemsNotReporting ? (
-    <ReportDetailsWithNotReportedSystems {...props} />
-  ) : (
-    <ReportDetails {...props} />
-  );
-};
-
-export default ReportDetailsFeatureWrapper;
+export default ReportDetails;
