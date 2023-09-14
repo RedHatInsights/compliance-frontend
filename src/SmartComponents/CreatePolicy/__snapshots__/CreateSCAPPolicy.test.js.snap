@@ -1153,5 +1153,3 @@ exports[`CreateSCAPPolicy should render policies from the selected benchmark onl
   </div>,
 ]
 `;
-
-exports[`CreateSCAPPolicy should render policies from the selected benchmark only 2`] = `null`;
