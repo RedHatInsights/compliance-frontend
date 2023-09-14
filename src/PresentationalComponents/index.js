@@ -2,7 +2,6 @@ export { default as LoadingPoliciesTable } from './LoadingPoliciesTable/LoadingP
 export { default as ErrorPage } from './ErrorPage/ErrorPage';
 export { default as ErrorCard } from './ErrorCard/ErrorCard';
 export { default as GreySmallText } from './GreySmallText/GreySmallText';
-export { default as MultiSegmentBar } from './MultiSegmentBar/MultiSegmentBar';
 export {
   default as ComplianceScore,
   complianceScoreString,
