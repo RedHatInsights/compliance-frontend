@@ -58,11 +58,7 @@ exports[`WithPermission expect to render "No permissions" with no access 1`] = `
 
 exports[`WithPermission expect to render nothing when hidden and no access 1`] = `<DocumentFragment />`;
 
-exports[`WithPermission expect to render with rbac disabled 1`] = `
-<DocumentFragment>
-  NEEDS PERMISSION
-</DocumentFragment>
-`;
+exports[`WithPermission expect to render nothing when loading 1`] = `<DocumentFragment />`;
 
 exports[`WithPermission expect to render without error 1`] = `
 <DocumentFragment>

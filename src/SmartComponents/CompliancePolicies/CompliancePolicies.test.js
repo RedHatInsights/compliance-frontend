@@ -1,66 +1,58 @@
+import propTypes from 'prop-types';
+import { MemoryRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { render } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import { profiles } from '@/__fixtures__/profiles.js';
-
-jest.mock('@apollo/client');
-jest.mock('react-router-dom');
-
-window.insights = {
-  chrome: { isBeta: jest.fn(() => true) },
-};
-
 import { CompliancePolicies } from './CompliancePolicies.js';
 
-window.insights = {
-  chrome: { isBeta: jest.fn(() => true) },
-};
+jest.mock('@apollo/client');
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useLocation: jest.fn(() => ({})),
-}));
+const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
+TestWrapper.propTypes = { children: propTypes.node };
 
 describe('CompliancePolicies', () => {
-  it('expect to render without error', () => {
+  const queryRefetch = jest.fn();
+  const queryDefaults = {
+    error: undefined,
+    loading: undefined,
+    refetch: queryRefetch,
+  };
+  it('expect to render without error', async () => {
     useQuery.mockImplementation(() => ({
-      data: {
-        profiles: {
-          edges: [
-            {
-              id: '1',
-              refId: '121212',
-              name: 'profile1',
-              complianceThreshold: 90.0,
-              businessObjective: {
-                id: '1',
-                title: 'BO 1',
-              },
-            },
-          ],
-        },
-      },
-      error: undefined,
-      loading: undefined,
+      ...queryDefaults,
+      data: profiles,
     }));
 
-    const wrapper = shallow(<CompliancePolicies />);
+    const { container } = render(
+      <TestWrapper>
+        <CompliancePolicies />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      container.querySelectorAll('[data-ouia-component-type="PF4/TableRow"]')
+        .length
+    ).toEqual(11);
   });
 
   it('expect to render emptystate', () => {
     useQuery.mockImplementation(() => ({
+      ...queryDefaults,
       data: {
         profiles: {
           edges: [],
         },
       },
-      error: undefined,
-      loading: undefined,
     }));
 
-    const wrapper = shallow(<CompliancePolicies />);
+    render(
+      <TestWrapper>
+        <CompliancePolicies />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.findByText('No policies')).not.toBeNull();
   });
 
   it('expect to render an error', () => {
@@ -69,34 +61,35 @@ describe('CompliancePolicies', () => {
       error: 'Test Error loading',
     };
     useQuery.mockImplementation(() => ({
-      data: undefined,
+      ...queryDefaults,
       error,
-      loading: undefined,
     }));
-    const wrapper = shallow(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    render(
+      <TestWrapper>
+        <CompliancePolicies />
+      </TestWrapper>
+    );
+
+    expect(screen.findByText(error.error)).not.toBeNull();
   });
 
   it('expect to render loading', () => {
     useQuery.mockImplementation(() => ({
-      data: undefined,
-      error: undefined,
+      ...queryDefaults,
       loading: true,
     }));
-    const wrapper = shallow(<CompliancePolicies />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
+    const { container } = render(
+      <TestWrapper>
+        <CompliancePolicies />
+      </TestWrapper>
+    );
 
-  it('expect to render a policies table', () => {
-    useQuery.mockImplementation(() => ({
-      data: profiles,
-      error: undefined,
-      loading: undefined,
-    }));
-    const wrapper = shallow(<CompliancePolicies />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.findByText('No policies')).not.toBeNull();
+    expect(
+      container.querySelectorAll('[data-ouia-component-type="PF4/TableRow"]')
+        .length
+    ).toEqual(6);
   });
 });

@@ -233,16 +233,6 @@ export const COMPLIANCE_TABLE_DEFAULTS = {
   manageColumns: true,
 };
 
-export const features = {
-  pdfReport: true,
-  manageColumns: true,
-  systemsNotReporting: true,
-  rbac: true,
-  valueEditing: true,
-  ruleGroups: true,
-  expandOnFilter: false,
-};
-
 export const paletteColors = {
   black300: '#D2D2D2', // '--pf-global--palette--black-300',
   black200: '#F0F0F0', // --pf-global--palette--black-200,

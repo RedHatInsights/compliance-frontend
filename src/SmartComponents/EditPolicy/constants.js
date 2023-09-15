@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 
 export const BENCHMARKS_QUERY = gql`
-  query EP_Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
+  query EP_Benchmarks($filter: String!) {
     benchmarks(search: $filter) {
       nodes {
         id
         latestSupportedOsMinorVersions
-        ruleTree @include(if: $enableRuleTree)
+        ruleTree
         valueDefinitions {
           defaultValue
           description
@@ -26,7 +26,7 @@ export const BENCHMARKS_QUERY = gql`
 `;
 
 export const MULTIVERSION_QUERY = gql`
-  query EP_Profile($policyId: String!, $enableRuleTree: Boolean = false) {
+  query EP_Profile($policyId: String!) {
     profile(id: $policyId) {
       id
       name
@@ -58,7 +58,7 @@ export const MULTIVERSION_QUERY = gql`
             latestSupportedOsMinorVersions
             osMajorVersion
             version
-            ruleTree @include(if: $enableRuleTree)
+            ruleTree
           }
           rules {
             title
@@ -86,10 +86,7 @@ export const MULTIVERSION_QUERY = gql`
 `;
 
 export const RULE_VALUE_DEFINITIONS_QUERY = gql`
-  query EP_ProfileValueDefinitions(
-    $policyId: String!
-    $enableRuleTree: Boolean = false
-  ) {
+  query EP_ProfileValueDefinitions($policyId: String!) {
     profile(id: $policyId) {
       id
       policy {
@@ -101,7 +98,7 @@ export const RULE_VALUE_DEFINITIONS_QUERY = gql`
           refId
           benchmark {
             id
-            ruleTree @include(if: $enableRuleTree)
+            ruleTree
             valueDefinitions {
               defaultValue
               description

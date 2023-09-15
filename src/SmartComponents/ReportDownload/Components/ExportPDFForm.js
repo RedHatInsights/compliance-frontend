@@ -7,73 +7,66 @@ import {
   TextArea,
   Checkbox,
 } from '@patternfly/react-core';
-import useFeature from 'Utilities/hooks/useFeature';
 
-const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => {
-  const systemsNotReporting = useFeature('systemsNotReporting');
+const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
+  <Form>
+    <FormGroup isInline fieldId="simple-form-checkbox-group" label="Policy">
+      <Text>{policy.name}</Text>
+    </FormGroup>
 
-  return (
-    <Form>
-      <FormGroup isInline fieldId="simple-form-checkbox-group" label="Policy">
-        <Text>{policy.name}</Text>
-      </FormGroup>
+    <FormGroup
+      fieldId="simple-form-checkbox-group"
+      label="System data to include"
+    >
+      <Checkbox
+        label="Non-compliant systems"
+        id="non-compliant-systems-export-setting"
+        aria-label="Non-compliant systems"
+        onChange={setExportSetting('nonCompliantSystems')}
+        isChecked={exportSettings.nonCompliantSystems}
+      />
+      <Checkbox
+        label="Systems with unsupported configuration"
+        id="unsupported-systems-export-setting"
+        aria-label="Systems with unsupported configuration"
+        onChange={setExportSetting('unsupportedSystems')}
+        isChecked={exportSettings.unsupportedSystems}
+      />
+      <Checkbox
+        label="Systems with no reports"
+        id="nonreporting-systems-export-setting"
+        aria-label="Systems never reported"
+        onChange={setExportSetting('nonReportingSystems')}
+        isChecked={exportSettings.nonReportingSystems}
+      />
+      <Checkbox
+        id="compliant-systems-export-setting"
+        onChange={setExportSetting('compliantSystems')}
+        isChecked={exportSettings.compliantSystems}
+        label="Compliant systems"
+        aria-label="Compliant systems"
+      />
+    </FormGroup>
 
-      <FormGroup
-        fieldId="simple-form-checkbox-group"
-        label="System data to include"
-      >
-        <Checkbox
-          label="Non-compliant systems"
-          id="non-compliant-systems-export-setting"
-          aria-label="Non-compliant systems"
-          onChange={setExportSetting('nonCompliantSystems')}
-          isChecked={exportSettings.nonCompliantSystems}
-        />
-        <Checkbox
-          label="Systems with unsupported configuration"
-          id="unsupported-systems-export-setting"
-          aria-label="Systems with unsupported configuration"
-          onChange={setExportSetting('unsupportedSystems')}
-          isChecked={exportSettings.unsupportedSystems}
-        />
-        {systemsNotReporting && (
-          <Checkbox
-            label="Systems with no reports"
-            id="nonreporting-systems-export-setting"
-            aria-label="Systems never reported"
-            onChange={setExportSetting('nonReportingSystems')}
-            isChecked={exportSettings.nonReportingSystems}
-          />
-        )}
-        <Checkbox
-          id="compliant-systems-export-setting"
-          onChange={setExportSetting('compliantSystems')}
-          isChecked={exportSettings.compliantSystems}
-          label="Compliant systems"
-          aria-label="Compliant systems"
-        />
-      </FormGroup>
+    <FormGroup label="Rule data to include" fieldId="checkbox01">
+      <Checkbox
+        id="failed-rules-export-setting"
+        label="Top failed rules (Up to 10)"
+        aria-label="Rule data to include"
+        onChange={setExportSetting('topTenFailedRules')}
+        isChecked={exportSettings.topTenFailedRules}
+      />
+    </FormGroup>
 
-      <FormGroup label="Rule data to include" fieldId="checkbox01">
-        <Checkbox
-          id="failed-rules-export-setting"
-          label="Top failed rules (Up to 10)"
-          aria-label="Rule data to include"
-          onChange={setExportSetting('topTenFailedRules')}
-          isChecked={exportSettings.topTenFailedRules}
-        />
-      </FormGroup>
-
-      <FormGroup label="User notes (optional)" fieldId="checkbox01">
-        <TextArea
-          aria-label="User notes (optional)"
-          onChange={setExportSetting('userNotes')}
-          value={exportSettings.userNotes}
-        />
-      </FormGroup>
-    </Form>
-  );
-};
+    <FormGroup label="User notes (optional)" fieldId="checkbox01">
+      <TextArea
+        aria-label="User notes (optional)"
+        onChange={setExportSetting('userNotes')}
+        value={exportSettings.userNotes}
+      />
+    </FormGroup>
+  </Form>
+);
 
 ExportPDFForm.propTypes = {
   policy: propTypes.object,

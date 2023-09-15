@@ -79,8 +79,5 @@ describe('CreateSCAPPolicy', () => {
     }));
     const wrapper = mount(<CreateSCAPPolicy {...defaultProps} />);
     expect(toJson(wrapper.find('Tile'), { mode: 'deep' })).toMatchSnapshot();
-    expect(
-      toJson(wrapper.find('ProfileTypeSelect'), { mode: 'shallow' })
-    ).toMatchSnapshot();
   });
 });

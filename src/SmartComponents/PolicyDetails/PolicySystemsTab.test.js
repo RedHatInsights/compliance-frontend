@@ -1,7 +1,6 @@
 import PolicySystemsTab from './PolicySystemsTab';
 import { policies } from '@/__fixtures__/policies';
-import useFeature from 'Utilities/hooks/useFeature';
-jest.mock('Utilities/hooks/useFeature');
+
 jest.mock('react-router-dom', () => ({
   __esModule: true,
   useLocation: jest.fn().mockReturnValue({
@@ -15,7 +14,6 @@ jest.mock('react-router-dom', () => ({
 
 describe('PolicySystemsTab', () => {
   it('expect to render without error', () => {
-    useFeature.mockImplementation(() => true);
     const policy = policies.edges[0].node;
     const wrapper = shallow(<PolicySystemsTab {...{ policy }} />);
 

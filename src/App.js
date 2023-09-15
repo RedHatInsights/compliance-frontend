@@ -6,12 +6,10 @@ import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACPro
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import './App.scss';
-import { useSetFlagsFromUrl } from 'Utilities/hooks/useFeature';
 
 const App = (props) => {
   const chrome = useChrome();
 
-  useSetFlagsFromUrl();
   useEffect(() => {
     chrome.hideGlobalFilter();
   }, []);

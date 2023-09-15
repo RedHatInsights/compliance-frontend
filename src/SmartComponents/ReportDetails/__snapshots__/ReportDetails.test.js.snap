@@ -23,6 +23,18 @@ exports[`ReportDetails expect to render without error 1`] = `
           "policy": {
             "id": "thepolicyid",
             "name": "the policy name",
+            "profiles": [
+              {
+                "benchmark": {
+                  "version": 1,
+                },
+              },
+              {
+                "benchmark": {
+                  "version": 2,
+                },
+              },
+            ],
           },
           "policyType": "policy type",
           "refId": "121212",
@@ -124,6 +136,18 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
+                    "profiles": [
+                      {
+                        "benchmark": {
+                          "version": 1,
+                        },
+                      },
+                      {
+                        "benchmark": {
+                          "version": 2,
+                        },
+                      },
+                    ],
                   },
                   "policyType": "policy type",
                   "refId": "121212",
@@ -165,6 +189,18 @@ exports[`ReportDetails expect to render without error 1`] = `
                   "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
+                    "profiles": [
+                      {
+                        "benchmark": {
+                          "version": 1,
+                        },
+                      },
+                      {
+                        "benchmark": {
+                          "version": 2,
+                        },
+                      },
+                    ],
                   },
                   "policyType": "policy type",
                   "refId": "121212",
@@ -188,44 +224,48 @@ exports[`ReportDetails expect to render without error 1`] = `
           sm={12}
           xl={6}
         >
-          <div
-            className="chart-inline"
-          >
-            <div
-              className="chart-container"
-            >
-              <ReportChart
-                chartClass="report-details-chart-container"
-                hasLegend={true}
-                profile={
-                  {
-                    "benchmark": {
-                      "version": "0.1.4",
+          <ReportChart
+            chartClass="report-details-chart-container"
+            hasLegend={true}
+            profile={
+              {
+                "benchmark": {
+                  "version": "0.1.4",
+                },
+                "businessObjective": {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 5,
+                "description": "profile description",
+                "external": false,
+                "id": "1",
+                "name": "profile1",
+                "osMajorVersion": "7",
+                "policy": {
+                  "id": "thepolicyid",
+                  "name": "the policy name",
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "version": 1,
+                      },
                     },
-                    "businessObjective": {
-                      "id": "1",
-                      "title": "BO 1",
+                    {
+                      "benchmark": {
+                        "version": 2,
+                      },
                     },
-                    "complianceThreshold": 1,
-                    "compliantHostCount": 5,
-                    "description": "profile description",
-                    "external": false,
-                    "id": "1",
-                    "name": "profile1",
-                    "osMajorVersion": "7",
-                    "policy": {
-                      "id": "thepolicyid",
-                      "name": "the policy name",
-                    },
-                    "policyType": "policy type",
-                    "refId": "121212",
-                    "testResultHostCount": 10,
-                    "unsupportedHostCount": 5,
-                  }
-                }
-              />
-            </div>
-          </div>
+                  ],
+                },
+                "policyType": "policy type",
+                "refId": "121212",
+                "testResultHostCount": 10,
+                "unsupportedHostCount": 5,
+              }
+            }
+          />
         </GridItem>
         <GridItem
           lg={12}
@@ -253,6 +293,18 @@ exports[`ReportDetails expect to render without error 1`] = `
                 "policy": {
                   "id": "thepolicyid",
                   "name": "the policy name",
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "version": 1,
+                      },
+                    },
+                    {
+                      "benchmark": {
+                        "version": 2,
+                      },
+                    },
+                  ],
                 },
                 "policyType": "policy type",
                 "refId": "121212",
@@ -360,20 +412,31 @@ exports[`ReportDetails expect to render without error 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="with_results_for_policy_id = 1"
+            defaultFilter="policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={[]}
             remediationsEnabled={true}
-            ruleSeverityFilter={false}
+            ruleSeverityFilter={true}
             showActions={true}
             showComplianceSystemsInfo={false}
             showGroupsFilter={true}
-            showOnlySystemsWithTestResults={true}
+            showOnlySystemsWithTestResults={false}
             showOsMinorVersionFilter={
               [
                 "7",
               ]
+            }
+            ssgVersions={
+              [
+                1,
+                2,
+              ]
+            }
+            tableProps={
+              {
+                "rowWrapper": [Function],
+              }
             }
           />
         </GridItem>
@@ -406,6 +469,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           "policy": {
             "id": "thepolicyid",
             "name": "the policy name",
+            "profiles": [
+              {
+                "benchmark": {
+                  "version": 1,
+                },
+              },
+              {
+                "benchmark": {
+                  "version": 2,
+                },
+              },
+            ],
           },
           "policyType": "policy type",
           "refId": "121212",
@@ -507,6 +582,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
+                    "profiles": [
+                      {
+                        "benchmark": {
+                          "version": 1,
+                        },
+                      },
+                      {
+                        "benchmark": {
+                          "version": 2,
+                        },
+                      },
+                    ],
                   },
                   "policyType": "policy type",
                   "refId": "121212",
@@ -548,6 +635,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                   "policy": {
                     "id": "thepolicyid",
                     "name": "the policy name",
+                    "profiles": [
+                      {
+                        "benchmark": {
+                          "version": 1,
+                        },
+                      },
+                      {
+                        "benchmark": {
+                          "version": 2,
+                        },
+                      },
+                    ],
                   },
                   "policyType": "policy type",
                   "refId": "121212",
@@ -571,44 +670,48 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
           sm={12}
           xl={6}
         >
-          <div
-            className="chart-inline"
-          >
-            <div
-              className="chart-container"
-            >
-              <ReportChart
-                chartClass="report-details-chart-container"
-                hasLegend={true}
-                profile={
-                  {
-                    "benchmark": {
-                      "version": "0.1.4",
+          <ReportChart
+            chartClass="report-details-chart-container"
+            hasLegend={true}
+            profile={
+              {
+                "benchmark": {
+                  "version": "0.1.4",
+                },
+                "businessObjective": {
+                  "id": "1",
+                  "title": "BO 1",
+                },
+                "complianceThreshold": 1,
+                "compliantHostCount": 5,
+                "description": "profile description",
+                "external": false,
+                "id": "1",
+                "name": "profile1",
+                "osMajorVersion": "7",
+                "policy": {
+                  "id": "thepolicyid",
+                  "name": "the policy name",
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "version": 1,
+                      },
                     },
-                    "businessObjective": {
-                      "id": "1",
-                      "title": "BO 1",
+                    {
+                      "benchmark": {
+                        "version": 2,
+                      },
                     },
-                    "complianceThreshold": 1,
-                    "compliantHostCount": 5,
-                    "description": "profile description",
-                    "external": false,
-                    "id": "1",
-                    "name": "profile1",
-                    "osMajorVersion": "7",
-                    "policy": {
-                      "id": "thepolicyid",
-                      "name": "the policy name",
-                    },
-                    "policyType": "policy type",
-                    "refId": "121212",
-                    "testResultHostCount": 10,
-                    "unsupportedHostCount": 5,
-                  }
-                }
-              />
-            </div>
-          </div>
+                  ],
+                },
+                "policyType": "policy type",
+                "refId": "121212",
+                "testResultHostCount": 10,
+                "unsupportedHostCount": 5,
+              }
+            }
+          />
         </GridItem>
         <GridItem
           lg={12}
@@ -636,6 +739,18 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
                 "policy": {
                   "id": "thepolicyid",
                   "name": "the policy name",
+                  "profiles": [
+                    {
+                      "benchmark": {
+                        "version": 1,
+                      },
+                    },
+                    {
+                      "benchmark": {
+                        "version": 2,
+                      },
+                    },
+                  ],
                 },
                 "policyType": "policy type",
                 "refId": "121212",
@@ -743,20 +858,31 @@ exports[`ReportDetails expect to render without error and ssg Version 1`] = `
             }
             compact={false}
             compliantFilter={true}
-            defaultFilter="with_results_for_policy_id = 1"
+            defaultFilter="policy_id = 1"
             enableExport={true}
             policyId="1"
             preselectedSystems={[]}
             remediationsEnabled={true}
-            ruleSeverityFilter={false}
+            ruleSeverityFilter={true}
             showActions={true}
             showComplianceSystemsInfo={false}
             showGroupsFilter={true}
-            showOnlySystemsWithTestResults={true}
+            showOnlySystemsWithTestResults={false}
             showOsMinorVersionFilter={
               [
                 "7",
               ]
+            }
+            ssgVersions={
+              [
+                1,
+                2,
+              ]
+            }
+            tableProps={
+              {
+                "rowWrapper": [Function],
+              }
             }
           />
         </GridItem>

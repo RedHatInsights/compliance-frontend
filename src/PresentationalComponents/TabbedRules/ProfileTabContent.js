@@ -25,7 +25,6 @@ import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
-import useFeature from 'Utilities/hooks/useFeature';
 
 const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
@@ -108,8 +107,6 @@ const ProfileTabContent = ({
   ruleValues,
   onRuleValueReset,
 }) => {
-  const ruleGroups = useFeature('ruleGroups');
-
   const {
     data: benchmark,
     error,
@@ -117,7 +114,6 @@ const ProfileTabContent = ({
   } = useQuery(BENCHMARK_QUERY, {
     variables: {
       id: profile.benchmark.id,
-      enableRuleTree: ruleGroups,
     },
     skip: !handleSelect || !profile.benchmark?.id,
   });
