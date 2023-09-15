@@ -41,7 +41,7 @@ export const LinkWithPermission = ({
 LinkWithPermission.propTypes = {
   to: propTypes.oneOfType([propTypes.string, propTypes.object]),
   children: propTypes.node,
-  Component: propTypes.node,
+  Component: propTypes.oneOfType([propTypes.func, propTypes.node]),
   componentProps: propTypes.object,
 };
 

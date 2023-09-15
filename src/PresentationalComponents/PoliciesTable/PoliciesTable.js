@@ -38,7 +38,7 @@ export const PoliciesTable = ({ policies, DedicatedAction }) => {
 
 PoliciesTable.propTypes = {
   policies: propTypes.array.isRequired,
-  DedicatedAction: propTypes.node,
+  DedicatedAction: propTypes.oneOfType([propTypes.node, propTypes.func]),
 };
 
 PoliciesTable.defaultProps = {
