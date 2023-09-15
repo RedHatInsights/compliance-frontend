@@ -27,33 +27,35 @@ export const profilesWithRulesToSelection = (
 ) => {
   const { only } = options;
   const additionalSelection = profiles
-    .map((profile) => {
-      const foundSelection = prevSelection.find((selectionItem) =>
-        matchesSelectionItem(selectionItem, profile)
-      );
-      if (!foundSelection) {
-        if (!profile.rules) {
-          console.error(
-            `Profile ${profile.id} is missing rules for selection!`
+    ? profiles
+        .map((profile) => {
+          const foundSelection = prevSelection.find((selectionItem) =>
+            matchesSelectionItem(selectionItem, profile)
           );
-        }
+          if (!foundSelection) {
+            if (!profile.rules) {
+              console.error(
+                `Profile ${profile.id} is missing rules for selection!`
+              );
+            }
 
-        if (!profile.osMinorVersion) {
-          console.error(
-            `Profile ${profile.id} is missing osMinorVersion for selection!`
-          );
-        }
+            if (!profile.osMinorVersion) {
+              console.error(
+                `Profile ${profile.id} is missing osMinorVersion for selection!`
+              );
+            }
 
-        return {
-          id: profile.id,
-          osMinorVersion: profile.osMinorVersion,
-          ruleRefIds: profile.rules?.map((rule) => rule.refId) || [],
-        };
-      } else if (only) {
-        return foundSelection;
-      }
-    })
-    .filter((v) => !!v);
+            return {
+              id: profile.id,
+              osMinorVersion: profile.osMinorVersion,
+              ruleRefIds: profile.rules?.map((rule) => rule.refId) || [],
+            };
+          } else if (only) {
+            return foundSelection;
+          }
+        })
+        .filter((v) => !!v)
+    : [];
 
   return only
     ? additionalSelection

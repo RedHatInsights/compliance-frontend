@@ -14,7 +14,7 @@ import {
 } from 'PresentationalComponents';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
-import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
+import useOnSavePolicy from 'Utilities/hooks/useOnSavePolicy';
 import { thresholdValid } from '../CreatePolicy/validate';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
@@ -73,7 +73,7 @@ const EditPolicyDetailsInline = ({
           [propertyName]: value,
         };
 
-  const [isSaving, onSave] = useOnSavePolicyDetails(policy, constructData, {
+  const [isSaving, onSave] = useOnSavePolicy({
     onSave: handleCloseEdit,
   });
 
@@ -140,7 +140,7 @@ const EditPolicyDetailsInline = ({
                   aria-label="Save edits"
                   isDisabled={!validThreshold ? true : false}
                   isLoading={isSaving}
-                  onClick={() => onSave()}
+                  onClick={() => onSave(policy, constructData)}
                   style={{ 'margin-left': '5px' }}
                 >
                   <i className="fas fa-check" aria-hidden="true"></i>

@@ -1,4 +1,7 @@
 import gql from 'graphql-tag';
+import FormTabLayout from './components/FormTabLayout';
+import SystemsField from './components/SystemsField/SystemsField';
+import RulesField from './components/RulesField/RulesField';
 
 export const BENCHMARKS_QUERY = gql`
   query EP_Benchmarks($filter: String!, $enableRuleTree: Boolean = false) {
@@ -116,3 +119,31 @@ export const RULE_VALUE_DEFINITIONS_QUERY = gql`
     }
   }
 `;
+
+export const formComponentMapper = {
+  rules: RulesField,
+  systems: SystemsField,
+  tabs: FormTabLayout,
+};
+
+export const formSchema = {
+  fields: [
+    {
+      name: 'layout',
+      component: 'tabs',
+      fields: [
+        {
+          name: 'rules',
+          label: 'Rules',
+          component: 'rules',
+        },
+        {
+          name: 'systems',
+          label: 'Systems',
+          component: 'systems',
+          rulesField: 'rules',
+        },
+      ],
+    },
+  ],
+};
