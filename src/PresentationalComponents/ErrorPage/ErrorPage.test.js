@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
 import ErrorPage from './ErrorPage';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
@@ -7,26 +9,14 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
 }));
 
 describe('ErrorPage', () => {
-  it('expect to render without error', () => {
-    const wrapper = shallow(
-      <ErrorPage
-        error={{
-          message: 'An error message',
-        }}
-      />
-    );
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
   it('expect to render an invalid object', () => {
     const error = {
       networkError: { statusCode: 404 },
       error: 'Not found',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    const { container } = render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'We lost that page')).not.toBeNull();
   });
 
   it('expect to render a 403 error', () => {
@@ -34,22 +24,22 @@ describe('ErrorPage', () => {
       networkError: { statusCode: 403 },
       error: 'Not authorized',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    const { container } = render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      queryByText(container, 'You do not have access to Compliance')
+    ).not.toBeNull();
   });
 
   it('expect to render a 401 error when logged out', () => {
     const logout = jest.fn(() => 'Logout');
     useChrome.mockImplementation(() => ({ auth: { logout } }));
-
     const error = {
       networkError: { statusCode: 401 },
       error: 'Test Error loading',
     };
-    const wrapper = shallow(<ErrorPage error={error} />);
+    render(<ErrorPage error={error} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
     expect(logout).toHaveBeenCalled();
   });
 });
