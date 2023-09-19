@@ -27,7 +27,7 @@ const ComplianceThresholdHelperText = ({ threshold }) => {
 };
 
 ComplianceThresholdHelperText.propTypes = {
-  threshold: propTypes.string,
+  threshold: propTypes.oneOfType([propTypes.string, propTypes.number]),
 };
 
 export default ComplianceThresholdHelperText;
