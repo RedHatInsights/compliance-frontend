@@ -24,7 +24,7 @@ describe('request', () => {
 
   it('calls fetch', async () => {
     const result = await ApiClient.request('/path', {}, 'get');
-    expect(result).toMatchObject(objectResolver);
+    expect(result).toMatchObject(await objectResolver);
     expect(window.fetch).toHaveBeenCalled();
   });
 
