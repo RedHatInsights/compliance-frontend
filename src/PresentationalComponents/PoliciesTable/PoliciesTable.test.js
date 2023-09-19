@@ -1,45 +1,57 @@
+import { render } from '@testing-library/react';
+import { queryByLabelText, within } from '@testing-library/dom';
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 
 const policies = rawPolicies.edges.map((profile) => profile.node);
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  Link: () => 'Mocked Link',
-  useLocation: jest.fn(),
-}));
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
   () => () => ({})
 );
 
+jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
+  __esModule: true,
+  default: ({ children, isDisabled, ...props }) => {
+    return (
+      <button {...props} disabled={isDisabled}>
+        {children}
+      </button>
+    );
+  },
+}));
+
 describe('PoliciesTable', () => {
-  const defaultProps = {
-    history: { push: jest.fn() },
-    location: {},
-  };
-  let wrapper;
-
   it('expect to render without error', () => {
-    wrapper = shallow(<PoliciesTable {...defaultProps} policies={policies} />);
+    const { container } = render(<PoliciesTable policies={policies} />);
+    const table = queryByLabelText(container, 'Policies');
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      within(table).queryByText('C2S for Red Hat Enterprise Linux 7', {
+        selector: 'small',
+      })
+    ).not.toBeNull();
   });
 
   it('expect to render emptystate', () => {
-    wrapper = shallow(<PoliciesTable {...defaultProps} policies={[]} />);
+    const { container } = render(<PoliciesTable policies={[]} />);
+    const table = queryByLabelText(container, 'Policies');
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      within(table).queryByText('No matching policies found')
+    ).not.toBeNull();
   });
 
-  it('expect to render SystemsCountWarning', () => {
-    wrapper = shallow(
+  it('expect to render SystemsCountWarning for all policies with 0 total hosts', () => {
+    const { container } = render(
       <PoliciesTable
-        {...defaultProps}
         policies={policies.map((p) => ({ ...p, totalHostCount: 0 }))}
       />
     );
+    const table = queryByLabelText(container, 'Policies');
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(table.querySelectorAll('svg[class="ins-u-warning"]').length).toEqual(
+      10
+    );
   });
 });
