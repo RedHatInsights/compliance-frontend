@@ -1,10 +1,23 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
+
 import ComplianceEmptyState from './ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
+
 jest.mock('@apollo/client');
 jest.mock('apollo-boost');
+
+jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
+  __esModule: true,
+  default: ({ children, isDisabled, ...props }) => {
+    return (
+      <button {...props} disabled={isDisabled}>
+        {children}
+      </button>
+    );
+  },
+}));
 
 describe('ComplianceEmptyState', () => {
   it('expect to render without error if no policies exist', () => {
@@ -13,9 +26,9 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { container } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'No policies')).not.toBeNull();
   });
 
   it('expect to render different message if one policy exists', () => {
@@ -24,9 +37,12 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { container } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, '1 policy')).not.toBeNull();
+    expect(
+      queryByText(container, 'has been created but has no reports.')
+    ).not.toBeNull();
   });
 
   it('expect to render different message if many policies exist', () => {
@@ -35,8 +51,8 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    const { container } = render(<ComplianceEmptyState client={{}} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, '2 policies')).not.toBeNull();
   });
 });
