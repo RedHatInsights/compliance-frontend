@@ -1,15 +1,24 @@
+import { render } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
+
 import ErrorCard from './ErrorCard';
 
 describe('ErrorCard', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ErrorCard />);
+    const { container } = render(<ErrorCard />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      queryByText(
+        container,
+        'There was a problem processing the request. Please try again.'
+      )
+    ).not.toBeNull();
   });
 
   it('expect to render with error', () => {
-    const wrapper = shallow(<ErrorCard errorMsg="Some kind of error" />);
+    const errorText = 'Some kind of error';
+    const { container } = render(<ErrorCard errorMsg="Some kind of error" />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, errorText)).not.toBeNull();
   });
 });
