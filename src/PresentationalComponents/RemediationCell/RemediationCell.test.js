@@ -6,12 +6,12 @@ describe('RemediationCell', () => {
   it('expect to render "Manual" by default', () => {
     const component = <RemediationCell />;
     const { container } = render(component);
-    expect(queryByText(container, 'Manual')).toMatchSnapshot();
+    expect(queryByText(container, 'Manual')).not.toBeNull();
   });
 
   it('expect to render "Palybook"', () => {
     const component = <RemediationCell hasPlaybook={true} />;
     const { container } = render(component);
-    expect(queryByText(container, 'Playbook')).toMatchSnapshot();
+    expect(queryByText(container, 'Playbook')).not.toBeNull();
   });
 });
