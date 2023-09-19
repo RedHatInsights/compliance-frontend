@@ -1,8 +1,11 @@
+import { render } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
+
 import { StateView, StateViewPart, StateViewWithError } from './StateView';
 
 describe('StatView', () => {
   it('expect to render loading', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <StateView
         stateValues={{
           loading: true,
@@ -16,11 +19,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'LOADING')).not.toBeNull();
+    expect(queryByText(container, 'DATA')).toBeNull();
+    expect(queryByText(container, 'ERROR')).toBeNull();
   });
 
   it('expect to render error', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -34,11 +39,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'ERROR')).not.toBeNull();
+    expect(queryByText(container, 'LOADING')).toBeNull();
+    expect(queryByText(container, 'DATA')).toBeNull();
   });
 
   it('expect to render data', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -52,13 +59,15 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'DATA')).not.toBeNull();
+    expect(queryByText(container, 'LOADING')).toBeNull();
+    expect(queryByText(container, 'ERROR')).toBeNull();
   });
 });
 
 describe('StatViewWithError', () => {
   it('expect to render error page', () => {
-    const wrapper = shallow(
+    const { container } = render(
       <StateViewWithError
         stateValues={{
           loading: undefined,
@@ -71,6 +80,13 @@ describe('StatViewWithError', () => {
       </StateViewWithError>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      queryByText(
+        container,
+        'There was a problem processing the request. Please try again.'
+      )
+    ).not.toBeNull();
+    expect(queryByText(container, 'LOADING')).toBeNull();
+    expect(queryByText(container, 'DATA')).toBeNull();
   });
 });
