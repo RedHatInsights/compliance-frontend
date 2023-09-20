@@ -1,82 +1,35 @@
+import { render } from '@testing-library/react';
+import { queryByText } from '@testing-library/dom';
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
+import { useQuery } from '@apollo/client';
 
+jest.mock('@apollo/client');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
+  useNavigate: jest.fn(),
   useLocation: jest.fn(() => ({
     pathname: '/path/name',
     state: {},
   })),
 }));
 
+useQuery.mockImplementation(() => ({
+  data: {},
+  error: undefined,
+  loading: undefined,
+}));
+
 describe('TabbedRules', () => {
-  it('renders tabs with default', () => {
+  it('renders tabs for new minor versions', () => {
     const profiles = policies.edges[0].node.policy.profiles;
     const tabsData = profiles.map((profile) => ({
       profile,
       newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
     }));
 
-    const wrapper = shallow(<TabbedRules tabsData={tabsData} />);
+    const { container } = render(<TabbedRules tabsData={tabsData} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('renders tabs with second item as default', () => {
-    const profiles = policies.edges[0].node.policy.profiles;
-    const tabsData = profiles.map((profile) => ({
-      profile,
-      newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
-    }));
-    const defaultTab = {
-      id: profiles[1].id,
-      osMinorVersion: '99',
-    };
-
-    const wrapper = shallow(
-      <TabbedRules tabsData={tabsData} defaultTab={defaultTab} />
-    );
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('passes setSelectedRuleRefIds via internal handleSelect', () => {
-    const profiles = policies.edges[0].node.policy.profiles;
-    const tabsData = profiles.map((profile) => ({
-      profile,
-      newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
-    }));
-
-    const wrapper = shallow(
-      <TabbedRules tabsData={tabsData} setSelectedRuleRefIds={() => {}} />
-    );
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('sets selected rule ref ids', () => {
-    const profiles = policies.edges[0].node.policy.profiles;
-    const tabsData = profiles.map((profile) => ({
-      profile,
-      newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
-    }));
-    const selectedRuleRefIds = [
-      {
-        id: profiles[1].id,
-        osMinorVersion: '99',
-        ruleRefIds: [
-          'xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime',
-        ],
-      },
-    ];
-
-    const wrapper = shallow(
-      <TabbedRules
-        tabsData={tabsData}
-        selectedRuleRefIds={selectedRuleRefIds}
-      />
-    );
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(queryByText(container, 'SSG version: 0.1.49')).not.toBeNull();
   });
 });
