@@ -90,10 +90,18 @@ export const useFetchSystems = ({
       requestVariables.filter !== undefined &&
       typeof requestVariables.filter === 'string'
     ) {
-      filter = [
+      variables.filter = [
         ...filter.split(' and '),
         ...requestVariables.filter.split(' and '),
       ].join(' and ');
+    }
+
+    if (requestVariables.exclusiveFilter) {
+      const { exclusiveFilter, requestVariablesRest } = requestVariables;
+      requestVariables = {
+        ...requestVariablesRest,
+        filter: exclusiveFilter,
+      };
     }
 
     return client
@@ -106,7 +114,6 @@ export const useFetchSystems = ({
           page,
           ...variables,
           ...requestVariables,
-          filter,
         },
       })
       .then(({ data }) => {
@@ -365,17 +372,19 @@ export const useSystemBulkSelect = ({
 
     const idFilter = toIdFilter(fetchIds);
     const results = await fetchBatched(fetchSystems, fetchIds.length, {
-      ...(idFilter && { filter: idFilter }),
+      ...(idFilter && { exclusiveFilter: idFilter }),
     });
 
     return results.flatMap((result) => result.entities);
   };
 
   const onSelectCallback = async (selectedIds) => {
-    await dispatch(setDisabledSelection(true));
+    dispatch(setDisabledSelection(true));
+
     const systems = await fetchFunc(selectedIds);
     setSelectedSystems(systems);
-    await dispatch(setDisabledSelection(false));
+
+    dispatch(setDisabledSelection(false));
     onSelect && onSelect(systems);
   };
 
