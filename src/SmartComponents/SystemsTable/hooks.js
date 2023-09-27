@@ -1,15 +1,15 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useApolloClient, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
+import useFetchSystems from './hooks/useFetchSystems';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -58,89 +58,6 @@ export const useSystemsFilter = (
     : combindedFilter;
 
   return filter;
-};
-
-const renameInventoryAttributes = ({
-  culledTimestamp,
-  staleWarningTimestamp,
-  staleTimestamp,
-  insightsId,
-  ...system
-}) => ({
-  ...system,
-  insights_id: insightsId,
-  culled_timestamp: culledTimestamp,
-  stale_warning_timestamp: staleWarningTimestamp,
-  stale_timestamp: staleTimestamp,
-});
-
-export const useFetchSystems = ({
-  query,
-  onComplete,
-  variables = {},
-  onError,
-}) => {
-  const client = useApolloClient();
-
-  return (perPage, page, requestVariables = {}) => {
-    let filter = variables.filter;
-
-    // additional filtering can be sent within requestVariables
-    if (
-      requestVariables.filter !== undefined &&
-      typeof requestVariables.filter === 'string'
-    ) {
-      variables.filter = [
-        ...filter.split(' and '),
-        ...requestVariables.filter.split(' and '),
-      ].join(' and ');
-    }
-
-    if (requestVariables.exclusiveFilter) {
-      const { exclusiveFilter, requestVariablesRest } = requestVariables;
-      requestVariables = {
-        ...requestVariablesRest,
-        filter: exclusiveFilter,
-      };
-    }
-
-    return client
-      .query({
-        query,
-        fetchResults: true,
-        fetchPolicy: 'no-cache',
-        variables: {
-          perPage,
-          page,
-          ...variables,
-          ...requestVariables,
-        },
-      })
-      .then(({ data }) => {
-        const systems = data?.systems?.edges?.map((e) => e.node) || [];
-        const entities = systemsWithRuleObjectsFailed(systems).map(
-          renameInventoryAttributes
-        );
-        const result = {
-          entities,
-          meta: {
-            ...(requestVariables.tags && { tags: requestVariables.tags }),
-            totalCount: data?.systems?.totalCount || 0,
-          },
-        };
-
-        onComplete && onComplete(result);
-        return result;
-      })
-      .catch((error) => {
-        if (onError) {
-          onError(error);
-          return { entities: [], meta: { totalCount: 0 } };
-        } else {
-          throw error;
-        }
-      });
-  };
 };
 
 const useFetchBatched = () => {

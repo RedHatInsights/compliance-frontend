@@ -14,7 +14,33 @@ describe('useSystemsFilter', () => {
     const { result } = renderHook(() =>
       useSystemsFilter('name = "Name"', true, 'default = "filter"')
     );
-    expect(result.current).toMatchSnapshot();
+    expect(result.current).toEqual(
+      '(default = "filter") and (has_test_results = true and name = "Name")'
+    );
+  });
+
+  it('returns a filter string without default filter', () => {
+    const { result } = renderHook(() =>
+      useSystemsFilter('name = "Name"', true)
+    );
+    expect(result.current).toEqual('has_test_results = true and name = "Name"');
+  });
+
+  it('returns a filter string without test result filter', () => {
+    const { result } = renderHook(() =>
+      useSystemsFilter('name = "Name"', false)
+    );
+    expect(result.current).toEqual('name = "Name"');
+  });
+
+  it('returns an empty string without any filter passed and results disabled', () => {
+    const { result } = renderHook(() => useSystemsFilter('', false));
+    expect(result.current).toEqual('');
+  });
+
+  it('returns only the result filter string with only the results filter enabled', () => {
+    const { result } = renderHook(() => useSystemsFilter('', true));
+    expect(result.current).toEqual('has_test_results = true');
   });
 });
 

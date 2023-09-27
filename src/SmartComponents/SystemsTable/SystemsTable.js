@@ -14,7 +14,6 @@ import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import { policyFilter, defaultOnLoad, ssgVersionFilter } from './constants';
 import {
-  useFetchSystems,
   useGetEntities,
   useOsMinorVersionFilter,
   useInventoryUtilities,
@@ -22,6 +21,7 @@ import {
   useSystemsFilter,
   useSystemBulkSelect,
 } from './hooks';
+import useFetchSystems from './hooks/useFetchSystems';
 import { constructQuery } from '../../Utilities/helpers';
 import { COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER } from '../../constants';
 

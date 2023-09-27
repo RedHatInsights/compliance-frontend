@@ -7,11 +7,8 @@ import {
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
   COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
 } from '@/constants';
-import {
-  useGetEntities,
-  useOsMinorVersionFilter,
-  useFetchSystems,
-} from './hooks';
+import { useGetEntities, useOsMinorVersionFilter } from './hooks';
+import useFetchSystems from './hooks/useFetchSystems';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers';
 expect.extend(filterHelpers);
 
@@ -32,9 +29,9 @@ jest.mock('react-redux', () => ({
 jest.mock('./hooks', () => ({
   ...jest.requireActual('./hooks'),
   useGetEntities: jest.fn(),
-  useFetchSystems: jest.fn(),
   useOsMinorVersionFilter: jest.fn(),
 }));
+jest.mock('./hooks/useFetchSystems');
 useFetchSystems.mockImplementation(useFetchSystemsMockBuilder());
 useGetEntities.mockImplementation(
   (fetchSystems) => async () => await fetchSystems()
