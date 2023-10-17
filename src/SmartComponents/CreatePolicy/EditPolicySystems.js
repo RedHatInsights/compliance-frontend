@@ -32,14 +32,14 @@ const EmptyState = ({ osMajorVersion }) => (
     </TextContent>
     <TextContent className="pf-u-mb-md">
       <Text>
-        Choose a different operating system, or connect{' '}
-        <b>RHEL {osMajorVersion}</b> systems to Insights.
+        Choose a different RHEL version, or connect <b>RHEL {osMajorVersion}</b>{' '}
+        systems to Insights.
       </Text>
     </TextContent>
     <WizardContextConsumer>
       {({ goToStepById }) => (
         <Button onClick={() => goToStepById(1)}>
-          Choose a different operating system
+          Choose a different RHEL version
         </Button>
       )}
     </WizardContextConsumer>
