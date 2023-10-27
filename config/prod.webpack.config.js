@@ -8,6 +8,7 @@ const fedMods = require('./fedMods');
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
   debug: process.env.PROXY_DEBUG === 'true',
+  ...(process.env.BETA === 'true' && { deployment: 'beta/apps' }),
 });
 
 webpackConfig.performance = {
