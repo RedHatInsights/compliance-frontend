@@ -8,18 +8,27 @@ const routes = require('./routes');
 const fedMods = require('./fedMods');
 
 const hotReload = process.env.HOT_RELOAD === 'true' ? true : false;
-
 const proxyConfiguration = {
   rootFolder: resolve(__dirname, '../'),
   useProxy: process.env.PROXY === 'true',
-  appUrl: process.env.BETA ? ['/beta/insights/compliance', '/preview/insights/compliance'] : ['/insights/compliance'],
-  deployment: process.env.BETA ? 'beta/apps' : 'apps',
-  env: process.env.BETA ? 'stage-beta' : 'stage-stable',
-  proxyVerbose: true,
-  debug: true
+  appUrl: process.env.BETA === 'true'
+    ? ['/beta/insights/compliance', '/preview/insights/compliance']
+    : '/insights/compliance',
+  ...(process.env.BETA ==='true' && { deployment: 'beta/apps' }),
+  env: `${process.env.INSIGHTS_ENV}-${process.env.BETA === 'true' ? 'beta' : 'stable'}`,
+  ...(process.env.LOCAL_CHROME !== 'false' ? {
+    localChrome: process.env.LOCAL_CHROME_DIR || process.env.LOCAL_CHROME,
+  } : {}),
+  debug: process.env.PROXY_DEBUG === 'true',
+  proxyVerbose: process.env.PROXY_VERBOSE === 'true',
+  routes,
 };
 
+if(process.env.PROXY_DEBUG === 'true') {
+  console.log('Proxy configuration:', proxyConfiguration);
+};
 const { config: webpackConfig, plugins } = config(proxyConfiguration);
+
 /**
  * Use for build optimizations
  */
