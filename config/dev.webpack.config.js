@@ -15,8 +15,11 @@ const proxyConfiguration = {
   appUrl: process.env.BETA ? ['/beta/insights/compliance', '/preview/insights/compliance'] : ['/insights/compliance'],
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
-  proxyVerbose: true,
-  debug: true
+  debug: process.env.PROXY_DEBUG === 'true',
+  proxyVerbose: process.env.PROXY_VERBOSE === 'true',
+  ...(process.env.LOCAL_CHROME !== 'false' ? {
+    localChrome: process.env.LOCAL_CHROME_DIR || process.env.LOCAL_CHROME,
+  } : {}),
 };
 
 const { config: webpackConfig, plugins } = config(proxyConfiguration);
