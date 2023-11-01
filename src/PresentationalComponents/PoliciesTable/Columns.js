@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
-import { TextContent } from '@patternfly/react-core';
+import { TextContent, Tooltip } from '@patternfly/react-core';
 import { fitContent } from '@patternfly/react-table';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 
 const PolicyNameCell = ({ id, policy, policyType }) => (
   <TextContent>
@@ -48,7 +49,21 @@ export const OperatingSystem = {
 };
 
 export const Systems = {
-  title: 'Systems',
+  title: (
+    <Tooltip
+      position="top"
+      content={
+        <Fragment>
+          This count only reflects the systems you have permission to access.
+        </Fragment>
+      }
+    >
+      <span className="pf-c-table__text">
+        Systems &nbsp;
+        <OutlinedQuestionCircleIcon className="grey-icon" />
+      </span>
+    </Tooltip>
+  ),
   props: {
     width: 15,
   },

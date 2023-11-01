@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { useParams, useLocation } from 'react-router-dom';
 import {
+  Alert,
   Breadcrumb,
   BreadcrumbItem,
   Grid,
@@ -76,9 +77,19 @@ export const PolicyDetails = ({ route }) => {
                 </BreadcrumbLinkItem>
                 <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
               </Breadcrumb>
-              <Grid gutter="lg">
+              <Grid gutter="lg" hasGutter>
                 <GridItem xl2={11} xl={10} lg={12} md={12} sm={12}>
                   <PageHeaderTitle title={policy.name} />
+                </GridItem>
+                <GridItem>
+                  <Alert
+                    isInline
+                    variant="info"
+                    ouiaId="SystemsListIsDifferentAlert"
+                    title={
+                      'These policy details only reflect the systems you have permission to access.'
+                    }
+                  />
                 </GridItem>
               </Grid>
               <RoutedTabs

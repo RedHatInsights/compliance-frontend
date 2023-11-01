@@ -78,6 +78,8 @@ export const Reports = () => {
     showView = profiles && profiles.length > 0;
   }
 
+  console.log("DATA", data)
+
   return (
     <>
       <ReportsHeader />
