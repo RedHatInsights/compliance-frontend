@@ -115,8 +115,12 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
-  const findColumnByKey = (key) =>
-    (columns || []).find((column) => column.key === key);
+  const findColumnByKey = (sortKey) =>
+    (columns || []).find(
+      (column) =>
+        column.key === sortKey || // group column has a sort key different to its main key
+        (column.key === 'groups' && sortKey === 'group_name')
+    );
 
   return async (
     _ids,
