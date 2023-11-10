@@ -141,6 +141,8 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
     return {
       results: entities.map((entity) => ({
         ...entity,
+        display_name: entity.name,
+        href: '/systems/' + entity.id,
         selected: (selected || []).map((id) => id).includes(entity.id),
       })),
       orderBy,

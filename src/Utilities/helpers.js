@@ -74,7 +74,7 @@ export const constructQuery = (columns) => {
   columnKeys?.forEach((key) => (fragments[key + 'Column'] = true));
 
   const query = gql`
-    fragment NameColumn on System {
+    fragment Display_nameColumn on System {
       name
       osMajorVersion
       osMinorVersion
@@ -146,7 +146,7 @@ export const constructQuery = (columns) => {
       $page: Int
       $sortBy: [String!]
       $tags: [String!]
-      $nameColumn: Boolean = false
+      $display_nameColumn: Boolean = false
       $operatingSystemColumn: Boolean = false
       $ssg_versionColumn: Boolean = false
       $policiesColumn: Boolean = false
@@ -171,7 +171,7 @@ export const constructQuery = (columns) => {
             testResultProfiles(policyId: $policyId) {
               id
             }
-            ...NameColumn @include(if: $nameColumn)
+            ...Display_nameColumn @include(if: $display_nameColumn)
             ...OsColumn @include(if: $operatingSystemColumn)
             ...SsgVersionColumn @include(if: $ssg_versionColumn)
             ...PoliciesColumn @include(if: $policiesColumn)

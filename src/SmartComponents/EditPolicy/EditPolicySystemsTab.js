@@ -55,7 +55,7 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
     <React.Fragment>
       <SystemsTable
         columns={[
-          Columns.Name,
+          Columns.inventoryColumn('display_name'),
           Columns.inventoryColumn('tags'),
           Columns.OperatingSystem,
         ]}

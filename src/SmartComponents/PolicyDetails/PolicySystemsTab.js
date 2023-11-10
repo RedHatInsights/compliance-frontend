@@ -10,9 +10,7 @@ const PolicySystemsTab = ({ policy }) => {
   return (
     <SystemsTable
       columns={[
-        Columns.customName({
-          showLink: true,
-        }),
+        Columns.inventoryColumn('display_name'),
         Columns.inventoryColumn('tags'),
         Columns.OS,
         Columns.SsgVersion,
