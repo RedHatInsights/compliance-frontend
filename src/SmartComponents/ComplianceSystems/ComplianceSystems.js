@@ -46,6 +46,7 @@ export const ComplianceSystems = () => {
                   }),
                   Columns.inventoryColumn('groups', {
                     requiresDefault: true,
+                    sortBy: ['groups'],
                   }),
                   Columns.inventoryColumn('tags'),
                   Columns.OS,

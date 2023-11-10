@@ -171,6 +171,7 @@ export const ReportDetails = ({ route }) => {
                   }),
                   Columns.inventoryColumn('groups', {
                     requiresDefault: true,
+                    sortBy: ['groups'],
                   }),
                   Columns.inventoryColumn('tags'),
                   Columns.SsgVersion,
