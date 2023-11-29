@@ -13,7 +13,6 @@ const proxyConfiguration = {
   rootFolder: resolve(__dirname, '../'),
   useProxy: process.env.PROXY === 'true',
   appUrl: process.env.BETA ? ['/beta/insights/compliance', '/preview/insights/compliance'] : ['/insights/compliance'],
-  deployment: process.env.BETA ? 'beta/apps' : 'apps',
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   proxyVerbose: true,
   debug: true
