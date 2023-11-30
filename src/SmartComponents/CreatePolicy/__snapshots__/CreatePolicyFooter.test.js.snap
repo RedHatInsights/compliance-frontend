@@ -11,6 +11,7 @@ exports[`CreatePolicyFooter matches snapshot 1`] = `
       data-ouia-component-id="OUIA-Generated-Button-primary-1"
       data-ouia-component-type="PF4/Button"
       data-ouia-safe="true"
+      id="test-next-button"
       type="submit"
     >
       Next
@@ -21,6 +22,7 @@ exports[`CreatePolicyFooter matches snapshot 1`] = `
       data-ouia-component-id="OUIA-Generated-Button-secondary-1"
       data-ouia-component-type="PF4/Button"
       data-ouia-safe="true"
+      id="test-back-button"
       type="button"
     >
       Back
@@ -34,6 +36,7 @@ exports[`CreatePolicyFooter matches snapshot 1`] = `
         data-ouia-component-id="OUIA-Generated-Button-link-1"
         data-ouia-component-type="PF4/Button"
         data-ouia-safe="true"
+        id="test-cancel-button"
         type="button"
       >
         Cancel
