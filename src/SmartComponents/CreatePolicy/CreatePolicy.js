@@ -108,6 +108,7 @@ export const CreatePolicyForm = ({
         title="Create SCAP policy"
         description="Create a new policy for managing SCAP compliance"
         steps={steps}
+        id="create-scap-policy-wizard"
         footer={<CreatePolicyFooter />}
       />
     </React.Fragment>
