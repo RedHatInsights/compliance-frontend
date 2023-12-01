@@ -10,6 +10,7 @@ import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';
 import FinishedCreatePolicy from './FinishedCreatePolicy';
+import CreatePolicyFooter from './CreatePolicyFooter';
 import {
   validateBenchmarkPage,
   validateDetailsPage,
@@ -107,6 +108,7 @@ export const CreatePolicyForm = ({
         title="Create SCAP policy"
         description="Create a new policy for managing SCAP compliance"
         steps={steps}
+        footer={<CreatePolicyFooter />}
       />
     </React.Fragment>
   );
