@@ -16,7 +16,8 @@ const proxyConfiguration = {
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   proxyVerbose: true,
-  debug: true
+  debug: true,
+  routes
 };
 
 const { config: webpackConfig, plugins } = config(proxyConfiguration);
