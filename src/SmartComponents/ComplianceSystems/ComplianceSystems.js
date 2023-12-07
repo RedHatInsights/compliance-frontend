@@ -33,7 +33,7 @@ export const ComplianceSystems = () => {
   return (
     <React.Fragment>
       <PageHeader className="page-header">
-        <PageHeaderTitle title="Compliance systems" />
+        <PageHeaderTitle title="Systems" />
       </PageHeader>
       <section className="pf-c-page__main-section">
         <StateViewWithError stateValues={{ error, data, loading }}>
