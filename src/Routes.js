@@ -125,7 +125,7 @@ const policiesRoutes = [
   },
 ];
 
-const defaultSystemsTitle = 'Compliance systems';
+const defaultSystemsTitle = 'Systems';
 const systemsRoutes = [
   {
     path: 'systems',
