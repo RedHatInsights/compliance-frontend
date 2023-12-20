@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { Grid } from '@patternfly/react-core';
+import { Alert, Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -75,6 +75,15 @@ export const CompliancePolicies = () => {
     <React.Fragment>
       <PageHeader className="page-header">
         <PageHeaderTitle title="SCAP policies" />
+        <Alert
+          isInline
+          variant="info"
+          ouiaId="SystemsListIsDifferentAlert"
+          title={
+            'These policies only reflect the systems you have permission to access.'
+          }
+          className="pf-u-mt-md"
+        />
       </PageHeader>
       <section className="pf-c-page__main-section">
         <StateView stateValues={{ error, data, loading }}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextContent } from '@patternfly/react-core';
+import { Alert, Text, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
@@ -24,7 +24,15 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-u-mb-md">
+    <Alert
+      isInline
+      variant="info"
+      ouiaId="SystemsListIsDifferentAlert"
+      title={
+        'These policy details only reflect the systems you have permission to access.'
+      }
+    />
+    <TextContent className="pf-u-mb-md pf-u-mt-md">
       <Text>
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.

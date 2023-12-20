@@ -938,7 +938,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "United States Government Standard",
         "refId": "xccdf_org.ssgproject.content_profile_ospp23",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1013,7 +1013,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 73",
         "refId": "xccdf_org.ssgproject.content_profile_pci-dss3",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1039,7 +1039,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "United States Government Configuration Baseline2",
         "refId": "xccdf_org.ssgproject.content_profile_ospp2",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1065,7 +1065,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "C2S for Red Hat Enterprise Linux 7",
         "refId": "xccdf_org.ssgproject.content_profile_C2S",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1091,7 +1091,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "Criminal Justice Information Services (CJIS) Security Policy",
         "refId": "xccdf_org.ssgproject.content_profile_cjis",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1117,7 +1117,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
         "refId": "xccdf_org.ssgproject.content_profile_nist-800-171-cui",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1143,7 +1143,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7",
         "refId": "xccdf_org.ssgproject.content_profile_pci-dss",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1169,7 +1169,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
         "refId": "xccdf_org.ssgproject.content_profile_rht-ccp",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1195,7 +1195,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "Health Insurance Portability and Accountability Act (HIPAA)",
         "refId": "xccdf_org.ssgproject.content_profile_hipaa",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1221,7 +1221,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "United States Government Configuration Baseline",
         "refId": "xccdf_org.ssgproject.content_profile_ospp",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1247,7 +1247,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "Standard System Security Profile for Red Hat Enterprise Linux 7",
         "refId": "xccdf_org.ssgproject.content_profile_standard",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1273,7 +1273,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "DISA STIG for Red Hat Enterprise Linux 7",
         "refId": "xccdf_org.ssgproject.content_profile_stig-rhel7-disa",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
       {
         "__typename": "Profile",
@@ -1299,7 +1299,7 @@ exports[`PoliciesTable expect to render without error 1`] = `
         "policyType": "PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 72",
         "refId": "xccdf_org.ssgproject.content_profile_pci-dss2",
         "testResultHostCount": 8,
-        "totalHostCount": 10,
+        "totalHostCount": 1,
       },
     ]
   }
