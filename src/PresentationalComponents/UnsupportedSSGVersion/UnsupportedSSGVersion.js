@@ -101,7 +101,10 @@ const UnsupportedSSGVersion = ({
   const defaultStyle = !tooltipText ? { cursor: 'pointer' } : {};
 
   return (
-    <span style={{ ...style, display: 'inline-block' }}>
+    <span
+      aria-label="Unsupported SSG Version warning"
+      style={{ ...style, display: 'inline-block' }}
+    >
       {showWarningIcon && (
         <TooltipOrPopover {...iconProps}>
           <span style={defaultStyle} className="pf-u-mr-xs">

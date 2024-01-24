@@ -26,7 +26,7 @@ jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
 
 describe('Name', () => {
   it('expect to render without error', () => {
-    const { asFragment } = render(
+    render(
       <Name
         {...{
           id: 'ID',
@@ -40,7 +40,7 @@ describe('Name', () => {
       />
     );
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByText('POLICY_NAME')).toBeInTheDocument();
   });
 });
 
@@ -49,14 +49,8 @@ describe('OperatingSystem', () => {
     osMajorVersion: '7',
   };
 
-  it('expect to render without error', () => {
-    const { asFragment } = render(<OperatingSystem {...defaultProps} />);
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it('expect to render with SSG version', () => {
-    const { asFragment } = render(
+    render(
       <OperatingSystem
         {...defaultProps}
         benchmark={{ version: '1.2.3' }}
@@ -65,11 +59,12 @@ describe('OperatingSystem', () => {
       />
     );
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByText('RHEL 7')).toBeInTheDocument();
+    expect(screen.getByText('SSG: 1.2.3')).toBeInTheDocument();
   });
 
   it('expect to render with unsupported warning', () => {
-    const { asFragment } = render(
+    render(
       <OperatingSystem
         {...defaultProps}
         benchmark={{ version: '1.2.3' }}
@@ -78,7 +73,7 @@ describe('OperatingSystem', () => {
       />
     );
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByLabelText("Unsupported SSG Version warning")).toBeInTheDocument();
   });
 });
 
@@ -88,25 +83,19 @@ describe('CompliantSystems', () => {
     compliantHostCount: 9,
   };
 
-  it('expect to render without error', () => {
-    const { asFragment } = render(<CompliantSystems {...deftaultProps} />);
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it('expect to render with unsupported hosts', () => {
-    const { asFragment } = render(
+    render(
       <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
     );
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByLabelText("Report chart")).toBeInTheDocument();
   });
 });
 
 describe('PDFExportDownload', () => {
   it('expect to render without error', () => {
-    const { asFragment } = render(<PDFExportDownload id="ID1" />);
+    render(<PDFExportDownload id="ID1" />);
 
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByLabelText("Reports PDF download link")).toBeInTheDocument();
   });
 });
