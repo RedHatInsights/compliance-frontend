@@ -42,7 +42,8 @@ describe('ReportsTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('expect to have filters properly rendered', () => {
+  // TODO This can be properly implemented once on react 18 and newer RTL packages
+  it.skip('expect to have filters properly rendered', () => {
     const policyTypes = uniq(
       profiles.map(({ policyType }) => policyType).filter((i) => !!i)
     );

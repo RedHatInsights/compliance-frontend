@@ -73,7 +73,9 @@ describe('OperatingSystem', () => {
       />
     );
 
-    expect(screen.getByLabelText("Unsupported SSG Version warning")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Unsupported SSG Version warning')
+    ).toBeInTheDocument();
   });
 });
 
@@ -84,11 +86,9 @@ describe('CompliantSystems', () => {
   };
 
   it('expect to render with unsupported hosts', () => {
-    render(
-      <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
-    );
+    render(<CompliantSystems {...deftaultProps} unsupportedHostCount={42} />);
 
-    expect(screen.getByLabelText("Report chart")).toBeInTheDocument();
+    expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
   });
 });
 
@@ -96,6 +96,8 @@ describe('PDFExportDownload', () => {
   it('expect to render without error', () => {
     render(<PDFExportDownload id="ID1" />);
 
-    expect(screen.getByLabelText("Reports PDF download link")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Reports PDF download link')
+    ).toBeInTheDocument();
   });
 });

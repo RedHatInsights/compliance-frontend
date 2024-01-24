@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { render, act } from '@testing-library/react';
 import { queryByText } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
@@ -34,7 +35,6 @@ const filterValidations = {
     console.log(`Not validating ${filter.label} of type ${filter.type}`);
     return true;
 
-    /* eslint-disable */
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);
     const filterDropDownToggle = toolbar.querySelector('.pf-c-select__toggle');
     const selectMenu = toolbar.querySelector('.pf-c-select__menu');
@@ -52,7 +52,6 @@ const filterValidations = {
       !!testItem &&
       !!testChildItem
     );
-    /* eslint-enable */
   },
   checkbox: (toolbar, filter) => {
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);

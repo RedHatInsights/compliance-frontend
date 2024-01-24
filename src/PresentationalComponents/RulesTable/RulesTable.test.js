@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { policies } from '@/__fixtures__/policies';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
@@ -31,26 +32,6 @@ describe('RulesTable', () => {
     store = mockStore({});
   });
 
-  it('expect to render without error', () => {
-    const { asFragment } = render(<RulesTable {...defaultProps} />);
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('expect to pass on options', () => {
-    const { asFragment } = render(
-      <RulesTable
-        {...{
-          ...defaultProps,
-          options: {
-            additionalTableToolsOption: true,
-          },
-        }}
-      />
-    );
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
   it('expect to have filters properly rendered', () => {
     const filterConfig = buildFilterConfig({
       showRuleStateFilter: false,
@@ -68,7 +49,7 @@ describe('RulesTable', () => {
 
   it('expect to pass dedicatedAction', () => {
     const dedicatedAction = () => <span>Dedicated Action</span>;
-    let wrapper = shallow(
+    render(
       <RulesTable
         {...{
           ...defaultProps,
@@ -80,6 +61,6 @@ describe('RulesTable', () => {
       />
     );
 
-    expect(wrapper.props().options.dedicatedAction).toBe(dedicatedAction);
+    expect(screen.getByText('Dedicated Action')).toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@
 exports[`ReportChart expect to render with not reporting hosts 1`] = `
 <div>
   <div
+    aria-label="Report chart"
     class="pf-l-grid"
   >
     <div
@@ -165,6 +166,7 @@ exports[`ReportChart expect to render with not reporting hosts 1`] = `
 exports[`ReportChart expect to render with unsupported hosts 1`] = `
 <div>
   <div
+    aria-label="Report chart"
     class="pf-l-grid"
   >
     <div
@@ -327,6 +329,7 @@ exports[`ReportChart expect to render with unsupported hosts 1`] = `
 exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
 <div>
   <div
+    aria-label="Report chart"
     class="pf-l-grid"
   >
     <div
@@ -457,6 +460,7 @@ exports[`ReportChart expect to render with zero unsupported hosts 1`] = `
 exports[`ReportChart expect to render without error with no profile 1`] = `
 <div>
   <div
+    aria-label="Report chart"
     class="pf-l-grid"
   >
     <div
@@ -587,6 +591,7 @@ exports[`ReportChart expect to render without error with no profile 1`] = `
 exports[`ReportChart expect to render without error with zero counts 1`] = `
 <div>
   <div
+    aria-label="Report chart"
     class="pf-l-grid"
   >
     <div
