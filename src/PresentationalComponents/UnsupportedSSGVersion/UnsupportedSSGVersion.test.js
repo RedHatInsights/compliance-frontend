@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+
 import UnsupportedSSGVersion from './UnsupportedSSGVersion';
 
 describe('UnsupportedSSGVersion', () => {
@@ -6,52 +8,52 @@ describe('UnsupportedSSGVersion', () => {
   };
 
   it('expect to render without error', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <UnsupportedSSGVersion {...defaultProps}>
         Unsupported text
       </UnsupportedSSGVersion>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render no warning sign', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <UnsupportedSSGVersion {...defaultProps} showWarningIcon={false}>
         Unsupported text
       </UnsupportedSSGVersion>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render tooltip', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <UnsupportedSSGVersion {...defaultProps} tooltipText="TOOLTIP TEXT">
         Unsupported text
       </UnsupportedSSGVersion>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render help sign', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <UnsupportedSSGVersion {...defaultProps} showHelpIcon={true}>
         Unsupported text
       </UnsupportedSSGVersion>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 
   it('expect to render singular message', () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <UnsupportedSSGVersion {...defaultProps} messageVariant="singular">
         Unsupported text
       </UnsupportedSSGVersion>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
