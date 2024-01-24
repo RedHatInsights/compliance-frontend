@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { ProfileThresholdField } from './ProfileThresholdField';
 
 jest.mock('redux-form', () => ({
@@ -10,20 +11,16 @@ jest.mock('redux-form', () => ({
 describe('ProfileThresholdField', () => {
   it('expect to render a threshold without error', () => {
     const threshold = 10;
-    const { container } = render(
-      <ProfileThresholdField previousThreshold={threshold} />
-    );
+    render(<ProfileThresholdField previousThreshold={threshold} />);
 
-    expect(queryByText(container, threshold)).not.toBeNull();
+    expect(screen.getByText(threshold)).toBeInTheDocument();
   });
 
   it('expect to render a validation error', () => {
-    const { container } = render(
-      <ProfileThresholdField previousThreshold={120} />
-    );
+    render(<ProfileThresholdField previousThreshold={120} />);
 
     expect(
-      queryByText(container, 'Threshold has to be a number between 0 and 100')
-    ).not.toBeNull();
+      screen.getByText('Threshold has to be a number between 0 and 100')
+    ).toBeInTheDocument();
   });
 });

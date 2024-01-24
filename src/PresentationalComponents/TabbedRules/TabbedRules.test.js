@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
 import { useQuery } from '@apollo/client';
@@ -27,9 +28,8 @@ describe('TabbedRules', () => {
       profile,
       newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
     }));
+    render(<TabbedRules tabsData={tabsData} />);
 
-    const { container } = render(<TabbedRules tabsData={tabsData} />);
-
-    expect(queryByText(container, 'SSG version: 0.1.49')).not.toBeNull();
+    expect(screen.getByText('SSG version: 0.1.49')).toBeInTheDocument();
   });
 });

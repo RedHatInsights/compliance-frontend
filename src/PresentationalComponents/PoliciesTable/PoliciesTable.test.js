@@ -1,5 +1,7 @@
-import { render } from '@testing-library/react';
-import { queryByLabelText, within } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import { within } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 
@@ -23,34 +25,34 @@ jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
 
 describe('PoliciesTable', () => {
   it('expect to render without error', () => {
-    const { container } = render(<PoliciesTable policies={policies} />);
-    const table = queryByLabelText(container, 'Policies');
+    render(<PoliciesTable policies={policies} />);
+    const table = screen.queryByLabelText('Policies');
 
     expect(
-      within(table).queryByText('C2S for Red Hat Enterprise Linux 7', {
+      within(table).getByText('C2S for Red Hat Enterprise Linux 7', {
         selector: 'small',
       })
-    ).not.toBeNull();
+    ).toBeInTheDocument();
   });
 
   it('expect to render emptystate', () => {
-    const { container } = render(<PoliciesTable policies={[]} />);
-    const table = queryByLabelText(container, 'Policies');
+    render(<PoliciesTable policies={[]} />);
+    const table = screen.queryByLabelText('Policies');
 
     expect(
-      within(table).queryByText('No matching policies found')
-    ).not.toBeNull();
+      within(table).getByText('No matching policies found')
+    ).toBeInTheDocument();
   });
 
   it('expect to render SystemsCountWarning for all policies with 0 total hosts', () => {
-    const { container } = render(
+    render(
       <PoliciesTable
         policies={policies.map((p) => ({ ...p, totalHostCount: 0 }))}
       />
     );
-    const table = queryByLabelText(container, 'Policies');
+    const table = screen.queryByLabelText('Policies');
 
-    expect(table.querySelectorAll('svg[class="ins-u-warning"]').length).toEqual(
+    expect(within(table).getAllByRole('cell', { name: /^0$/i }).length).toEqual(
       10
     );
   });

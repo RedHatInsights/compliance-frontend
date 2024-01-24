@@ -1,17 +1,17 @@
-import { render } from '@testing-library/react';
-import { queryByText, queryByLabelText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import columns from '../PoliciesTable/Columns';
 
 import LoadingPoliciesTable from './LoadingPoliciesTable';
 
 describe('LoadingPoliciesTable', () => {
   it('expect to render without error', () => {
-    const { container } = render(<LoadingPoliciesTable />);
+    render(<LoadingPoliciesTable />);
 
-    expect(queryByLabelText(container, 'policies-table')).not.toBeNull();
+    expect(screen.getByLabelText('Policies')).toBeInTheDocument();
 
     columns.forEach(({ title }) => {
-      expect(queryByText(container, title)).not.toBeNull();
+      expect(screen.getByText(title)).toBeInTheDocument();
     });
   });
 });

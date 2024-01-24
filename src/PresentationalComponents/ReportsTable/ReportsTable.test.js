@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import ReportsTable from './ReportsTable';
 import {
@@ -33,14 +33,13 @@ const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
   it('expect to render without error', () => {
-    const { container } = render(<ReportsTable profiles={profiles} />);
+    render(<ReportsTable profiles={profiles} />);
 
     expect(
-      queryByText(
-        container.querySelector('tbody>tr button'),
-        'C2S for Red Hat Enterprise Linux 7'
-      )
-    ).not.toBeNull();
+      screen.getByText('C2S for Red Hat Enterprise Linux 7', {
+        selector: 'tbody>tr button',
+      })
+    ).toBeInTheDocument();
   });
 
   it('expect to have filters properly rendered', () => {

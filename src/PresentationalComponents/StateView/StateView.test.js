@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { StateView, StateViewPart, StateViewWithError } from './StateView';
 
 describe('StatView', () => {
   it('expect to render loading', () => {
-    const { container } = render(
+    render(
       <StateView
         stateValues={{
           loading: true,
@@ -19,13 +19,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(queryByText(container, 'LOADING')).not.toBeNull();
-    expect(queryByText(container, 'DATA')).toBeNull();
-    expect(queryByText(container, 'ERROR')).toBeNull();
+    expect(screen.getByText('LOADING')).toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
+    expect(screen.queryByText('ERROR')).not.toBeInTheDocument();
   });
 
   it('expect to render error', () => {
-    const { container } = render(
+    render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -39,13 +39,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(queryByText(container, 'ERROR')).not.toBeNull();
-    expect(queryByText(container, 'LOADING')).toBeNull();
-    expect(queryByText(container, 'DATA')).toBeNull();
+    expect(screen.getByText('ERROR')).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
   });
 
   it('expect to render data', () => {
-    const { container } = render(
+    render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -59,15 +59,15 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(queryByText(container, 'DATA')).not.toBeNull();
-    expect(queryByText(container, 'LOADING')).toBeNull();
-    expect(queryByText(container, 'ERROR')).toBeNull();
+    expect(screen.getByText('DATA')).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('ERROR')).not.toBeInTheDocument();
   });
 });
 
 describe('StatViewWithError', () => {
   it('expect to render error page', () => {
-    const { container } = render(
+    render(
       <StateViewWithError
         stateValues={{
           loading: undefined,
@@ -81,12 +81,11 @@ describe('StatViewWithError', () => {
     );
 
     expect(
-      queryByText(
-        container,
+      screen.getByText(
         'There was a problem processing the request. Please try again.'
       )
-    ).not.toBeNull();
-    expect(queryByText(container, 'LOADING')).toBeNull();
-    expect(queryByText(container, 'DATA')).toBeNull();
+    ).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
   });
 });

@@ -5,7 +5,7 @@ import columns from '../PoliciesTable/Columns';
 
 const LoadingPoliciesTable = () => (
   <Table
-    aria-label="policies-table"
+    aria-label="Policies"
     ouiaId="PoliciesTable"
     cells={columns}
     rows={[...Array(5)].map(() => ({

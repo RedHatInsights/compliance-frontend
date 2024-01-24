@@ -1,13 +1,12 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
-
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import NoResultsTable, { emptyRows } from './NoResultsTable';
 
 describe('NoResultsTable', () => {
   it('expect to render without error', () => {
-    const { container } = render(<NoResultsTable />);
+    render(<NoResultsTable />);
 
-    expect(queryByText(container, 'No matching policies found')).not.toBeNull();
+    expect(screen.getByText('No matching policies found')).toBeInTheDocument();
   });
 });
 

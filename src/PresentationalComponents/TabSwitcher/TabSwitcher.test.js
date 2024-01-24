@@ -20,7 +20,7 @@ jest.mock(
   () => () => ({})
 );
 
-describe.skip('TabSwitcher', () => {
+describe('TabSwitcher', () => {
   it('expect to render first tab', () => {
     const { asFragment } = render(
       <TabSwitcher activeKey="0">

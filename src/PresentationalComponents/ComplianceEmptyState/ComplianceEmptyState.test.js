@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ComplianceEmptyState from './ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
@@ -26,9 +26,9 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const { container } = render(<ComplianceEmptyState client={{}} />);
+    render(<ComplianceEmptyState client={{}} />);
 
-    expect(queryByText(container, 'No policies')).not.toBeNull();
+    expect(screen.getByText('No policies')).toBeInTheDocument();
   });
 
   it('expect to render different message if one policy exists', () => {
@@ -37,12 +37,12 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const { container } = render(<ComplianceEmptyState client={{}} />);
+    render(<ComplianceEmptyState client={{}} />);
 
-    expect(queryByText(container, '1 policy')).not.toBeNull();
+    expect(screen.getByText('1 policy')).toBeInTheDocument();
     expect(
-      queryByText(container, 'has been created but has no reports.')
-    ).not.toBeNull();
+      screen.getByText('has been created but has no reports.')
+    ).toBeInTheDocument();
   });
 
   it('expect to render different message if many policies exist', () => {
@@ -51,8 +51,8 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const { container } = render(<ComplianceEmptyState client={{}} />);
+    render(<ComplianceEmptyState client={{}} />);
 
-    expect(queryByText(container, '2 policies')).not.toBeNull();
+    expect(screen.getByText('2 policies')).toBeInTheDocument();
   });
 });

@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
-import { queryByText, queryAllByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import SystemPolicyCards from './SystemPolicyCards';
 
 describe('SystemPolicyCards component', () => {
@@ -44,22 +45,18 @@ describe('SystemPolicyCards component', () => {
   });
 
   it('should render loading state', () => {
-    const { container } = render(
-      <SystemPolicyCards policies={policies} loading={true} />
-    );
+    render(<SystemPolicyCards policies={policies} loading={true} />);
 
     policies.forEach(({ name }) => {
-      expect(queryByText(container, name)).toBeNull();
+      expect(screen.queryByText(name)).not.toBeInTheDocument();
     });
   });
 
   it('should render policy cards', () => {
-    const { container } = render(
-      <SystemPolicyCards policies={policies} loading={false} />
-    );
+    render(<SystemPolicyCards policies={policies} loading={false} />);
 
     policies.forEach(({ name }) => {
-      expect(queryAllByText(container, name)[0]).not.toBeNull();
+      expect(screen.getAllByText(name)[0]).not.toBeNull();
     });
   });
 });

@@ -1,24 +1,23 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ErrorCard from './ErrorCard';
 
 describe('ErrorCard', () => {
   it('expect to render without error', () => {
-    const { container } = render(<ErrorCard />);
+    render(<ErrorCard />);
 
     expect(
-      queryByText(
-        container,
+      screen.getByText(
         'There was a problem processing the request. Please try again.'
       )
-    ).not.toBeNull();
+    ).toBeInTheDocument();
   });
 
   it('expect to render with error', () => {
     const errorText = 'Some kind of error';
-    const { container } = render(<ErrorCard errorMsg="Some kind of error" />);
+    render(<ErrorCard errorMsg={errorText} />);
 
-    expect(queryByText(container, errorText)).not.toBeNull();
+    expect(screen.getByText(errorText)).toBeInTheDocument();
   });
 });

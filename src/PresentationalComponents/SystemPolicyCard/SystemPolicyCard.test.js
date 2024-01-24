@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import SystemPolicyCard from './SystemPolicyCard';
 
 describe('SystemPolicyCard component', () => {
@@ -22,9 +23,9 @@ describe('SystemPolicyCard component', () => {
   };
 
   it('should render non compliant policy', () => {
-    const { container } = render(<SystemPolicyCard policy={policy} />);
+    render(<SystemPolicyCard policy={policy} />);
 
-    expect(queryByText(container, 'Not compliant')).not.toBeNull();
+    expect(screen.getByText('Not compliant')).toBeInTheDocument();
   });
 
   it('should render compliant policy', () => {
@@ -32,9 +33,9 @@ describe('SystemPolicyCard component', () => {
       ...policy,
       compliant: true,
     };
-    const { container } = render(<SystemPolicyCard policy={compliantPolicy} />);
+    render(<SystemPolicyCard policy={compliantPolicy} />);
 
-    expect(queryByText(container, 'Compliant')).not.toBeNull();
+    expect(screen.getByText('Compliant')).toBeInTheDocument();
   });
 
   it('should render an unsupported policy', () => {
@@ -42,12 +43,10 @@ describe('SystemPolicyCard component', () => {
       ...policy,
       supported: false,
     };
-    const { container } = render(
-      <SystemPolicyCard policy={unsupportedPolicy} />
-    );
+    render(<SystemPolicyCard policy={unsupportedPolicy} />);
 
     expect(
-      queryByText(container, 'Unsupported SSG version (0.1.45)')
-    ).not.toBeNull();
+      screen.getByText('Unsupported SSG version (0.1.45)')
+    ).toBeInTheDocument();
   });
 });

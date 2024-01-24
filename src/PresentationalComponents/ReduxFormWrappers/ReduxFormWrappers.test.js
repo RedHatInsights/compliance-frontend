@@ -1,5 +1,6 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { ReduxFormTextInput, ReduxFormTextArea } from './ReduxFormWrappers';
 
 describe('ReduxFormTextInput', () => {
@@ -12,9 +13,11 @@ describe('ReduxFormTextInput', () => {
       'aria-label': 'text-input',
       additionalProp: 'Prop1',
     };
-    const { container } = render(<ReduxFormTextInput {...field} />);
+    render(<ReduxFormTextInput {...field} />);
 
-    expect(container.querySelector('input').value).toEqual(field.input.value);
+    expect(screen.getByLabelText('text-input').value).toEqual(
+      field.input.value
+    );
   });
 
   it('expect to render with defaultValue', () => {
@@ -26,9 +29,11 @@ describe('ReduxFormTextInput', () => {
       defaultValue: 'Default Value',
       additionalProp: 'Prop1',
     };
-    const { container } = render(<ReduxFormTextInput {...field} />);
+    render(<ReduxFormTextInput {...field} />);
 
-    expect(container.querySelector('input').value).toEqual(field.defaultValue);
+    expect(screen.getByLabelText('text-input').value).toEqual(
+      field.defaultValue
+    );
   });
 });
 
@@ -43,8 +48,8 @@ describe('ReduxFormTextArea', () => {
       selected: 'SELECTED_VALUE',
       additionalProp: 'Prop1',
     };
-    const { container } = render(<ReduxFormTextArea {...field} />);
+    render(<ReduxFormTextArea {...field} />);
 
-    expect(queryByText(container, field.input.value)).not.toBeNull();
+    expect(screen.getByText(field.input.value)).toBeInTheDocument();
   });
 });

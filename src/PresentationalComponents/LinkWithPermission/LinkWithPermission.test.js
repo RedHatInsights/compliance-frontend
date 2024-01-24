@@ -36,6 +36,6 @@ describe('LinkWithPermission', () => {
 
     render(<LinkWithPermission to="/reports">{linkText}</LinkWithPermission>);
 
-    expect(screen.getByText(linkText)).not.toBeDisabled();
+    expect(screen.getByText(linkText)).toBeEnabled();
   });
 });
