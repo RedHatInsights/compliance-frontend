@@ -107,7 +107,11 @@ const UnsupportedSSGVersion = ({
     >
       {showWarningIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span style={defaultStyle} className="pf-u-mr-xs">
+          <span
+            style={defaultStyle}
+            className="pf-u-mr-xs"
+            aria-label={tooltipText ? 'Tooltip icon' : 'Popover icon'}
+          >
             <ExclamationTriangleIcon color="var(--pf-global--warning-color--100)" />
           </span>
         </TooltipOrPopover>
@@ -117,7 +121,11 @@ const UnsupportedSSGVersion = ({
 
       {showHelpIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span style={defaultStyle} className="pf-u-ml-xs">
+          <span
+            aria-label="Help icon"
+            style={defaultStyle}
+            className="pf-u-ml-xs"
+          >
             <OutlinedQuestionCircleIcon className="grey-icon" />
           </span>
         </TooltipOrPopover>
