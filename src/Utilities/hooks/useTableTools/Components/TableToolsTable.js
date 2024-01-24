@@ -24,7 +24,7 @@ const TableToolsTable = ({
 
   return (
     <React.Fragment>
-      <PrimaryToolbar {...toolbarProps}>
+      <PrimaryToolbar aria-label="Table toolbar" {...toolbarProps}>
         {TreeTableToggle && <TreeTableToggle />}
       </PrimaryToolbar>
 
