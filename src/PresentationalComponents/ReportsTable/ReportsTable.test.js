@@ -36,9 +36,7 @@ describe('ReportsTable', () => {
     render(<ReportsTable profiles={profiles} />);
 
     expect(
-      screen.getByText('C2S for Red Hat Enterprise Linux 7', {
-        selector: 'tbody>tr button',
-      })
+      screen.getByRole('button', { name: 'C2S for Red Hat Enterprise Linux 7' })
     ).toBeInTheDocument();
   });
 
