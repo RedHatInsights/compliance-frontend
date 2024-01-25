@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import ReportsTable from './ReportsTable';
 import {
@@ -13,30 +15,18 @@ import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 
 expect.extend(filterHelpers);
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
-jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
-  __esModule: true,
-  default: ({ children, isDisabled, ...props }) => {
-    return (
-      <button {...props} disabled={isDisabled}>
-        {children}
-      </button>
-    );
-  },
-}));
-
 const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
   it('expect to render without error', () => {
-    render(<ReportsTable profiles={profiles} />);
+    render(
+      <TestWrapper>
+        <ReportsTable profiles={profiles} />
+      </TestWrapper>
+    );
 
     expect(
-      screen.getByRole('button', { name: 'C2S for Red Hat Enterprise Linux 7' })
+      screen.getByRole('link', { name: 'C2S for Red Hat Enterprise Linux 7' })
     ).toBeInTheDocument();
   });
 

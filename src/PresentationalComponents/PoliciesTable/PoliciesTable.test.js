@@ -1,31 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import { within } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
 
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 
 const policies = rawPolicies.edges.map((profile) => profile.node);
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
-jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
-  __esModule: true,
-  default: ({ children, isDisabled, ...props }) => {
-    return (
-      <button {...props} disabled={isDisabled}>
-        {children}
-      </button>
-    );
-  },
-}));
-
 describe('PoliciesTable', () => {
   it('expect to render without error', () => {
-    render(<PoliciesTable policies={policies} />);
+    render(
+      <TestWrapper>
+        <PoliciesTable policies={policies} />
+      </TestWrapper>
+    );
     const table = screen.queryByLabelText('Policies');
 
     expect(
@@ -36,7 +25,11 @@ describe('PoliciesTable', () => {
   });
 
   it('expect to render emptystate', () => {
-    render(<PoliciesTable policies={[]} />);
+    render(
+      <TestWrapper>
+        <PoliciesTable policies={[]} />
+      </TestWrapper>
+    );
     const table = screen.queryByLabelText('Policies');
 
     expect(
@@ -46,9 +39,11 @@ describe('PoliciesTable', () => {
 
   it('expect to render SystemsCountWarning for all policies with 0 total hosts', () => {
     render(
-      <PoliciesTable
-        policies={policies.map((p) => ({ ...p, totalHostCount: 0 }))}
-      />
+      <TestWrapper>
+        <PoliciesTable
+          policies={policies.map((p) => ({ ...p, totalHostCount: 0 }))}
+        />
+      </TestWrapper>
     );
     const table = screen.queryByLabelText('Policies');
 

@@ -11,10 +11,6 @@ import { Provider } from 'react-redux';
 const mockStore = configureStore();
 expect.extend(filterHelpers);
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
-    () => (() => (<span>Button</span>))); // eslint-disable-line
-
 describe('RulesTable', () => {
   let store;
   const profiles = policies.edges[0].node.policy.profiles.map((profile) => ({

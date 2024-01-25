@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
 
 import {
   Name,
@@ -8,36 +9,22 @@ import {
   PDFExportDownload,
 } from './Cells';
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
-jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
-  __esModule: true,
-  default: ({ children, isDisabled, ...props }) => {
-    return (
-      <a {...props} disabled={isDisabled}>
-        {children}
-      </a>
-    );
-  },
-}));
-
 describe('Name', () => {
   it('expect to render without error', () => {
     render(
-      <Name
-        {...{
-          id: 'ID',
-          name: 'NAME',
-          policyType: 'POLICY_TYPE',
-          policy: {
-            id: 'POLICY_ID',
-            name: 'POLICY_NAME',
-          },
-        }}
-      />
+      <TestWrapper>
+        <Name
+          {...{
+            id: 'ID',
+            name: 'NAME',
+            policyType: 'POLICY_TYPE',
+            policy: {
+              id: 'POLICY_ID',
+              name: 'POLICY_NAME',
+            },
+          }}
+        />
+      </TestWrapper>
     );
 
     expect(screen.getByText('POLICY_NAME')).toBeInTheDocument();
@@ -51,12 +38,14 @@ describe('OperatingSystem', () => {
 
   it('expect to render with SSG version', () => {
     render(
-      <OperatingSystem
-        {...defaultProps}
-        benchmark={{ version: '1.2.3' }}
-        policy={null}
-        unsupportedHostCount={0}
-      />
+      <TestWrapper>
+        <OperatingSystem
+          {...defaultProps}
+          benchmark={{ version: '1.2.3' }}
+          policy={null}
+          unsupportedHostCount={0}
+        />
+      </TestWrapper>
     );
 
     expect(screen.getByText('RHEL 7')).toBeInTheDocument();
@@ -65,12 +54,14 @@ describe('OperatingSystem', () => {
 
   it('expect to render with unsupported warning', () => {
     render(
-      <OperatingSystem
-        {...defaultProps}
-        benchmark={{ version: '1.2.3' }}
-        unsupportedHostCount={3}
-        policy={null}
-      />
+      <TestWrapper>
+        <OperatingSystem
+          {...defaultProps}
+          benchmark={{ version: '1.2.3' }}
+          unsupportedHostCount={3}
+          policy={null}
+        />
+      </TestWrapper>
     );
 
     expect(
@@ -86,7 +77,11 @@ describe('CompliantSystems', () => {
   };
 
   it('expect to render with unsupported hosts', () => {
-    render(<CompliantSystems {...deftaultProps} unsupportedHostCount={42} />);
+    render(
+      <TestWrapper>
+        <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+      </TestWrapper>
+    );
 
     expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
   });
@@ -94,7 +89,11 @@ describe('CompliantSystems', () => {
 
 describe('PDFExportDownload', () => {
   it('expect to render without error', () => {
-    render(<PDFExportDownload id="ID1" />);
+    render(
+      <TestWrapper>
+        <PDFExportDownload id="ID1" />
+      </TestWrapper>
+    );
 
     expect(
       screen.getByLabelText('Reports PDF download link')

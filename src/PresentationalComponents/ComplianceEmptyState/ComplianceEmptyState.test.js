@@ -1,23 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-import ComplianceEmptyState from './ComplianceEmptyState';
+import TestWrapper from '@/Utilities/TestWrapper';
 import { useQuery } from '@apollo/client';
 
 jest.mock('@apollo/client');
-jest.mock('apollo-boost');
 
-jest.mock('@redhat-cloud-services/frontend-components/InsightsLink', () => ({
-  __esModule: true,
-  default: ({ children, isDisabled, ...props }) => {
-    return (
-      <button {...props} disabled={isDisabled}>
-        {children}
-      </button>
-    );
-  },
-}));
+import ComplianceEmptyState from './ComplianceEmptyState';
 
 describe('ComplianceEmptyState', () => {
   it('expect to render without error if no policies exist', () => {
@@ -26,7 +15,11 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    render(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
     expect(screen.getByText('No policies')).toBeInTheDocument();
   });
@@ -37,7 +30,11 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    render(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
     expect(screen.getByText('1 policy')).toBeInTheDocument();
     expect(
@@ -51,7 +48,11 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    render(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
     expect(screen.getByText('2 policies')).toBeInTheDocument();
   });
