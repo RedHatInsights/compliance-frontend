@@ -7,7 +7,7 @@ export const policyFormValues = {
     osMajorVersion: '6',
     latestSupportedOsMinorVersions: ['7', '8'],
     profile: {
-        complianceThreshold: 100,
+        complianceThreshold: "100",
         description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
         id: '197eb783-7bca-45c5-978d-c1e89b0118da',
         name: 'C2S for Red Hat Enterprise Linux 6',
@@ -34,7 +34,7 @@ export const benchmarksQuery = [
                 name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
                 description: 'Ensures PCI-DSS v3 related security configuration settings \\n \\ are applied.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -42,7 +42,7 @@ export const benchmarksQuery = [
                 name: 'OSPP - Protection Profile for General Purpose Operating Systems v. 4.2',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp42',
                 description: 'This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2).\n\nThis Annex is consistent with CNSSI-1253, which requires US National Security\nSystems to adhere to certain configuration parameters. Accordingly, configuration\nguidance produced according to the requirements of this Annex is suitable for use\nin US National Security Systems.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -50,7 +50,7 @@ export const benchmarksQuery = [
                 name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
                 refId: 'xccdf_org.ssgproject.content_profile_nist-800-171-cui',
                 description: 'From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in nonfederal \ninformation systems and organizations have a well-defined structure that \nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 7 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI).',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -58,7 +58,7 @@ export const benchmarksQuery = [
                 name: 'DISA STIG for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_stig-rhel7-disa',
                 description: 'This profile contains configuration checks that align to the \n  DISA STIG for Red Hat Enterprise Linux V1R4. \n  \n  In addition to being applicable to RHEL7, DISA recognizes this \n  configuration baseline as applicable to the operating system tier of \n  Red Hat technologies that are based off RHEL7, such as: \n  - Red Hat Enterprise Linux Server \n  - Red Hat Enterprise Linux Workstation and Desktop \n  - Red Hat Virtualization Hypervisor (RHV-H) \n  - Red Hat Enterprise Linux for HPC \n  - Red Hat Storage',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -66,7 +66,7 @@ export const benchmarksQuery = [
                 name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
                 description: 'This profile contains the minimum security relevant \\n \\ configuration settings recommended by Red Hat, Inc for \\n \\ Red Hat Enterprise Linux 7 instances deployed by Red Hat Certified \\n \\ Cloud Providers.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -74,7 +74,7 @@ export const benchmarksQuery = [
                 name: 'Health Insurance Portability and Accountability Act (HIPAA)',
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
                 description: 'The HIPAA Security Rule establishes U.S. national standards to protect individuals’\nelectronic personal health information that is created, received, used, or\nmaintained by a covered entity. The Security Rule requires appropriate\nadministrative, physical and technical safeguards to ensure the\nconfidentiality, integrity, and security of electronic protected health\ninformation.\n\nThis profile configures Red Hat Enterprise Linux 7 to the HIPAA Security\nRule identified for securing of electronic protected health information.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -82,7 +82,7 @@ export const benchmarksQuery = [
                 name: 'United States Government Configuration Baseline',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp',
                 description: 'This compliance profile reflects the core set of security\nrelated configuration settings for deployment of Red Hat Enterprise\nLinux 7.x into U.S. Defense, Intelligence, and Civilian agencies.\nDevelopment partners and sponsors include the U.S. National Institute\nof Standards and Technology (NIST), U.S. Department of Defense,\nthe National Security Agency, and Red Hat.\n\nThis baseline implements configuration requirements from the following\nsources:\n\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\n- NIST Controlled Unclassified Information (NIST 800-171)\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\n- U.S. Government Configuration Baseline (USGCB)\n- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)\n- DISA Operating System Security Requirements Guide (OS SRG)\n\nFor any differing configuration requirements, e.g. password lengths, the stricter\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\nsample System Security Configuration Guides are provided via the\nscap-security-guide-docs package.\n\nThis profile reflects U.S. Government consensus content and is developed through\nthe OpenSCAP/SCAP Security Guide initiative, championed by the National\nSecurity Agency. Except for differences in formatting to accommodate\npublishing processes, this profile mirrors OpenSCAP/SCAP Security Guide\ncontent as minor divergences, such as bugfixes, work through the\nconsensus and release processes.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -90,7 +90,7 @@ export const benchmarksQuery = [
                 name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
                 description: 'This profile contains rules to ensure standard security baseline\nof a Red Hat Enterprise Linux 7 system. Regardless of your system\'s workload\nall of these checks should pass.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -98,7 +98,7 @@ export const benchmarksQuery = [
                 name: 'C2S for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 description: 'This profile demonstrates compliance against the\nU.S. Government Commercial Cloud Services (C2S) baseline.\n\nThis baseline was inspired by the Center for Internet Security\n(CIS) Red Hat Enterprise Linux 7 Benchmark, v2.1.1 - 01-31-2017.\n\nFor the SCAP Security Guide project to remain in compliance with\nCIS\' terms and conditions, specifically Restrictions(8), note\nthere is no representation or claim that the C2S profile will\nensure a system is in compliance or consistency with the CIS\nbaseline.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -106,7 +106,7 @@ export const benchmarksQuery = [
                 name: 'Criminal Justice Information Services (CJIS) Security Policy',
                 refId: 'xccdf_org.ssgproject.content_profile_cjis',
                 description: 'This profile is derived from FBI\'s CJIS v5.4\nSecurity Policy. A copy of this policy can be found at the CJIS Security\nPolicy Resource Center:\n\nhttps://www.fbi.gov/services/cjis/cjis-security-policy-resource-center',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             }
         ],
@@ -124,7 +124,7 @@ export const benchmarksQuery = [
                 name: 'DISA STIG for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_stig-rhel7-disa',
                 description: 'This profile contains configuration checks that align to the\nDISA STIG for Red Hat Enterprise Linux V1R4.\n\nIn addition to being applicable to RHEL7, DISA recognizes this\nconfiguration baseline as applicable to the operating system tier of\nRed Hat technologies that are based off RHEL7, such as:\n\n- Red Hat Enterprise Linux Server\n- Red Hat Enterprise Linux Workstation and Desktop\n- Red Hat Enterprise Linux for HPC\n- Red Hat Storage',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -132,7 +132,7 @@ export const benchmarksQuery = [
                 name: 'United States Government Configuration Baseline',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp',
                 description: 'This compliance profile reflects the core set of security\nrelated configuration settings for deployment of Red Hat Enterprise\nLinux 7.x into U.S. Defense, Intelligence, and Civilian agencies.\nDevelopment partners and sponsors include the U.S. National Institute\nof Standards and Technology (NIST), U.S. Department of Defense,\nthe National Security Agency, and Red Hat.\n\nThis baseline implements configuration requirements from the following\nsources:\n\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\n- NIST Controlled Unclassified Information (NIST 800-171)\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\n- U.S. Government Configuration Baseline (USGCB)\n- NIAP Protection Profile for General Purpose Operating Systems v4.0 (OSPP v4.0)\n- DISA Operating System Security Requirements Guide (OS SRG)\n\nFor any differing configuration requirements, e.g. password lengths, the stricter\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\nsample System Security Configuration Guides are provided via the\nscap-security-guide-docs package.\n\nThis profile reflects U.S. Government consensus content and is developed through\nthe OpenSCAP/SCAP Security Guide initiative, championed by the National\nSecurity Agency. Except for differences in formatting to accommodate\npublishing processes, this profile mirrors OpenSCAP/SCAP Security Guide\ncontent as minor divergences, such as bugfixes, work through the\nconsensus and release processes.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -140,7 +140,7 @@ export const benchmarksQuery = [
                 name: 'PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
                 description: 'Ensures PCI-DSS v3.2.1 related security configuration settings are applied.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -148,7 +148,7 @@ export const benchmarksQuery = [
                 name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
                 description: 'This profile contains the minimum security relevant\nconfiguration settings recommended by Red Hat, Inc for\nRed Hat Enterprise Linux 7 instances deployed by Red Hat Certified\nCloud Providers.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -156,7 +156,7 @@ export const benchmarksQuery = [
                 name: 'C2S for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 description: 'This profile demonstrates compliance against the\nU.S. Government Commercial Cloud Services (C2S) baseline.\n\nThis baseline was inspired by the Center for Internet Security\n(CIS) Red Hat Enterprise Linux 7 Benchmark, v2.1.1 - 01-31-2017.\n\nFor the SCAP Security Guide project to remain in compliance with\nCIS\' terms and conditions, specifically Restrictions(8), note\nthere is no representation or claim that the C2S profile will\nensure a system is in compliance or consistency with the CIS\nbaseline.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -164,7 +164,7 @@ export const benchmarksQuery = [
                 name: 'OSPP - Protection Profile for General Purpose Operating Systems v. 4.2',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp42',
                 description: 'This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2).\n\nThis Annex is consistent with CNSSI-1253, which requires US National Security\nSystems to adhere to certain configuration parameters. Accordingly, configuration\nguidance produced according to the requirements of this Annex is suitable for use\nin US National Security Systems.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -172,7 +172,7 @@ export const benchmarksQuery = [
                 name: 'Criminal Justice Information Services (CJIS) Security Policy',
                 refId: 'xccdf_org.ssgproject.content_profile_cjis',
                 description: 'This profile is derived from FBI\'s CJIS v5.4\nSecurity Policy. A copy of this policy can be found at the CJIS Security\nPolicy Resource Center:\n\nhttps://www.fbi.gov/services/cjis/cjis-security-policy-resource-center',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -180,7 +180,7 @@ export const benchmarksQuery = [
                 name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
                 description: 'This profile contains rules to ensure standard security baseline\nof a Red Hat Enterprise Linux 7 system. Regardless of your system\'s workload\nall of these checks should pass.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -188,7 +188,7 @@ export const benchmarksQuery = [
                 name: 'VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Enterprise Linux Hypervisor (RHELH)',
                 refId: 'xccdf_org.ssgproject.content_profile_rhelh-vpp',
                 description: 'This compliance profile reflects the core set of security\nrelated configuration settings for deployment of Red Hat Enterprise\nLinux Hypervisor (RHELH) 7.x into U.S. Defense, Intelligence, and Civilian agencies.\nDevelopment partners and sponsors include the U.S. National Institute\nof Standards and Technology (NIST), U.S. Department of Defense,\nthe National Security Agency, and Red Hat.\n\nThis baseline implements configuration requirements from the following\nsources:\n\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\n- U.S. Government Configuration Baseline (USGCB)\n- NIAP Protection Profile for Virtualization v1.0 (VPP v1.0)\n\nFor any differing configuration requirements, e.g. password lengths, the stricter\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\nsample System Security Configuration Guides are provided via the\nscap-security-guide-docs package.\n\nThis profile reflects U.S. Government consensus content and is developed through\nthe ComplianceAsCode project, championed by the National\nSecurity Agency. Except for differences in formatting to accommodate\npublishing processes, this profile mirrors ComplianceAsCode\ncontent as minor divergences, such as bugfixes, work through the\nconsensus and release processes.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -196,7 +196,7 @@ export const benchmarksQuery = [
                 name: 'Health Insurance Portability and Accountability Act (HIPAA)',
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
                 description: 'The HIPAA Security Rule establishes U.S. national standards to protect individuals’\nelectronic personal health information that is created, received, used, or\nmaintained by a covered entity. The Security Rule requires appropriate\nadministrative, physical and technical safeguards to ensure the\nconfidentiality, integrity, and security of electronic protected health\ninformation.\n\nThis profile configures Red Hat Enterprise Linux 7 to the HIPAA Security\nRule identified for securing of electronic protected health information.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -204,7 +204,7 @@ export const benchmarksQuery = [
                 name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
                 refId: 'xccdf_org.ssgproject.content_profile_nist-800-171-cui',
                 description: 'From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in non-federal\ninformation systems and organizations have a well-defined structure that\nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 7 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI).',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             }
         ],
@@ -222,7 +222,7 @@ export const benchmarksQuery = [
                 name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
                 description: 'This is a *draft* SCAP profile for Red Hat Certified Cloud Providers',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -230,7 +230,7 @@ export const benchmarksQuery = [
                 name: 'CSCF RHEL6 MLS Core Baseline',
                 refId: 'xccdf_org.ssgproject.content_profile_CSCF-RHEL6-MLS',
                 description: ' This profile reflects the Centralized Super Computing Facility \n(CSCF) baseline for Red Hat Enterprise Linux 6. This baseline has received \ngovernment ATO through the ICD 503 process, utilizing the CNSSI 1253 cross \ndomain overlay. This profile should be considered in active development. \nAdditional tailoring will be needed, such as the creation of RBAC roles \nfor production deployment.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -238,7 +238,7 @@ export const benchmarksQuery = [
                 name: 'C2S for Red Hat Enterprise Linux 6',
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 description: 'This profile demonstrates compliance against the \nU.S. Government Commercial Cloud Services (C2S) baseline.\n\nThis baseline was inspired by the Center for Internet Security\n(CIS) Red Hat Enterprise Linux 6 Benchmark, v1.2.0 - 06-25-2013.\nFor the SCAP Security Guide project to remain in compliance with\nCIS\' terms and conditions, specifically Restrictions(8), note \nthere is no representation or claim that the C2S profile will\nensure a system is in compliance or consistency with the CIS\nbaseline. \n',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -246,7 +246,7 @@ export const benchmarksQuery = [
                 name: 'Standard System Security Profile',
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
                 description: 'This profile contains rules to ensure standard security base of Red Hat Enterprise Linux 6 system.\nRegardless of your system\'s workload all of these checks should pass.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -254,7 +254,7 @@ export const benchmarksQuery = [
                 name: 'Example Server Profile',
                 refId: 'xccdf_org.ssgproject.content_profile_CS2',
                 description: 'This profile is an example of a customized server profile.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -262,7 +262,7 @@ export const benchmarksQuery = [
                 name: 'Common Profile for General-Purpose Systems',
                 refId: 'xccdf_org.ssgproject.content_profile_common',
                 description: 'This profile contains items common to general-purpose desktop and server installations.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -270,7 +270,7 @@ export const benchmarksQuery = [
                 name: 'Server Baseline',
                 refId: 'xccdf_org.ssgproject.content_profile_server',
                 description: 'This profile is for Red Hat Enterprise Linux 6 acting as a server.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -278,7 +278,7 @@ export const benchmarksQuery = [
                 name: 'Upstream STIG for Red Hat Enterprise Linux 6 Server',
                 refId: 'xccdf_org.ssgproject.content_profile_stig-rhel6-server-upstream',
                 description: 'This profile is developed under the DoD consensus model and DISA FSO Vendor STIG process,\nserving as the upstream development environment for the Red Hat Enterprise Linux 6 Server STIG.\n\nAs a result of the upstream/downstream relationship between the SCAP Security Guide project \nand the official DISA FSO STIG baseline, users should expect variance between SSG and DISA FSO content.\nFor official DISA FSO STIG content, refer to http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx.\n\nWhile this profile is packaged by Red Hat as part of the SCAP Security Guide package, please note \nthat commercial support of this SCAP content is NOT available. This profile is provided as example \nSCAP content with no endorsement for suitability or production readiness. Support for this \nprofile is provided by the upstream SCAP Security Guide community on a best-effort basis. The\nupstream project homepage is https://fedorahosted.org/scap-security-guide/.\n',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -286,7 +286,7 @@ export const benchmarksQuery = [
                 name: 'United States Government Configuration Baseline (USGCB)',
                 refId: 'xccdf_org.ssgproject.content_profile_usgcb-rhel6-server',
                 description: 'This profile is a working draft for a USGCB submission against RHEL6 Server.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -294,7 +294,7 @@ export const benchmarksQuery = [
                 name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 6',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
                 description: 'This is a *draft* profile for PCI-DSS v3',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -302,7 +302,7 @@ export const benchmarksQuery = [
                 name: 'CNSSI 1253 Low/Low/Low',
                 refId: 'xccdf_org.ssgproject.content_profile_nist-cl-il-al',
                 description: 'This profile follows the Committee on National Security Systems Instruction\n(CNSSI) No. 1253, "Security Categorization and Control Selection for National Security\nSystems" on security controls to meet low confidentiality, low integrity, and low\nassurance."',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             }
         ],
@@ -320,7 +320,7 @@ export const benchmarksQuery = [
                 name: 'Criminal Justice Information Services (CJIS) Security Policy',
                 refId: 'xccdf_org.ssgproject.content_profile_cjis',
                 description: 'This profile is derived from FBI\'s CJIS v5.4\nSecurity Policy. A copy of this policy can be found at the CJIS Security\nPolicy Resource Center:\n\nhttps://www.fbi.gov/services/cjis/cjis-security-policy-resource-center',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -328,7 +328,7 @@ export const benchmarksQuery = [
                 name: 'Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)',
                 refId: 'xccdf_org.ssgproject.content_profile_cui',
                 description: 'From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in nonfederal\ninformation systems and organizations have a well-defined structure that\nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 8 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI)."',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -336,7 +336,7 @@ export const benchmarksQuery = [
                 name: 'Health Insurance Portability and Accountability Act (HIPAA)',
                 refId: 'xccdf_org.ssgproject.content_profile_hipaa',
                 description: 'The HIPAA Security Rule establishes U.S. national standards to protect individuals’\nelectronic personal health information that is created, received, used, or\nmaintained by a covered entity. The Security Rule requires appropriate\nadministrative, physical and technical safeguards to ensure the\nconfidentiality, integrity, and security of electronic protected health\ninformation.\n\nThis profile configures Red Hat Enterprise Linux 8 to the HIPAA Security\nRule identified for securing of electronic protected health information.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -344,7 +344,7 @@ export const benchmarksQuery = [
                 name: 'Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)',
                 refId: 'xccdf_org.ssgproject.content_profile_rht-ccp',
                 description: 'This profile contains the minimum security relevant\nconfiguration settings recommended by Red Hat, Inc for\nRed Hat Enterprise Linux 8 instances deployed by Red Hat Certified\nCloud Providers.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -352,7 +352,7 @@ export const benchmarksQuery = [
                 name: 'OSPP - Protection Profile for General Purpose Operating Systems',
                 refId: 'xccdf_org.ssgproject.content_profile_ospp',
                 description: 'This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2).',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -360,7 +360,7 @@ export const benchmarksQuery = [
                 name: 'PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 8',
                 refId: 'xccdf_org.ssgproject.content_profile_pci-dss',
                 description: 'Ensures PCI-DSS v3 related security configuration settings \\n \\ are applied.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             },
             {
@@ -368,7 +368,7 @@ export const benchmarksQuery = [
                 name: 'Standard System Security Profile for Red Hat Enterprise Linux 8',
                 refId: 'xccdf_org.ssgproject.content_profile_standard',
                 description: 'This profile contains rules to ensure standard security baseline\nof a Red Hat Enterprise Linux 8 system. Regardless of your system\'s workload\nall of these checks should pass.',
-                complianceThreshold: 100,
+                complianceThreshold: "100",
                 __typename: 'Profile'
             }
         ],
@@ -509,7 +509,7 @@ export const mutateCreateProfileMock =  {
                 name: 'C2S for Red Hat Enterprise Linux 6',
                 description: 'This profile demonstrates compliance against the U.S. Government Commercial Cloud Services (C2S)',
                 selectedRuleRefIds: ['myrulefrefid'],
-                complianceThreshold: 100
+                complianceThreshold: "100"
             }
         }
     },
@@ -556,7 +556,7 @@ export const mutateCreateProfileErrorMock =  {
                 refId: 'xccdf_org.ssgproject.content_profile_C2S',
                 selectedRuleRefIds: ['myrulefrefid'],
                 cloneFromProfileId: '197eb783-7bca-45c5-978d-c1e89b0118da',
-                complianceThreshold:100
+                complianceThreshold:"100"
             }
         }
     },

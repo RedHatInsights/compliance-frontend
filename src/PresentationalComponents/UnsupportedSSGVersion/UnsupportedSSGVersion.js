@@ -53,7 +53,7 @@ const WarningWithTooltip = ({ children, content }) => (
 );
 
 WarningWithTooltip.propTypes = {
-  content: propTypes.string,
+  content: propTypes.node,
   children: propTypes.node,
 };
 
