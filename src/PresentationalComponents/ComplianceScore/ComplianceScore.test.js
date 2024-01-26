@@ -1,3 +1,6 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import ComplianceScore from './ComplianceScore';
 
 describe('auxiliary functions to reducer', () => {
@@ -9,9 +12,9 @@ describe('auxiliary functions to reducer', () => {
       supported: true,
       compliant: false,
     };
+    render(<ComplianceScore {...system} />);
 
-    const dangerIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(dangerIcon)).toMatchSnapshot();
+    expect(screen.getByText('10%')).toBeInTheDocument();
   });
 
   it('should show 0% score instead if the system score is 0', () => {
@@ -21,9 +24,9 @@ describe('auxiliary functions to reducer', () => {
       supported: true,
       compliant: false,
     };
+    render(<ComplianceScore {...system} />);
 
-    const dangerIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(dangerIcon)).toMatchSnapshot();
+    expect(screen.getByText('0%')).toBeInTheDocument();
   });
 
   it('should show a success icon if the host is compliant', () => {
@@ -33,13 +36,14 @@ describe('auxiliary functions to reducer', () => {
       supported: true,
       profiles: [{ compliant: true }, { compliant: true }],
     };
+    render(<ComplianceScore {...system} />);
 
-    const checkIcon = mount(<ComplianceScore {...system} />);
-    expect(toJson(checkIcon)).toMatchSnapshot();
+    expect(screen.getByText('91%')).toBeInTheDocument();
   });
 
   it('should show a question mark icon if the host has no rules passed or failed', () => {
-    const questionMarkIcon = mount(<ComplianceScore />);
-    expect(toJson(questionMarkIcon)).toMatchSnapshot();
+    render(<ComplianceScore />);
+
+    expect(screen.getByText('Unsupported')).toBeInTheDocument();
   });
 });

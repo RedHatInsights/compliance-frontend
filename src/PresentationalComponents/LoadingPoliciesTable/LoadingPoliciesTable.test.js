@@ -1,9 +1,17 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import columns from '../PoliciesTable/Columns';
+
 import LoadingPoliciesTable from './LoadingPoliciesTable';
 
 describe('LoadingPoliciesTable', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<LoadingPoliciesTable />);
+    render(<LoadingPoliciesTable />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByLabelText('Policies')).toBeInTheDocument();
+
+    columns.forEach(({ title }) => {
+      expect(screen.getByText(title)).toBeInTheDocument();
+    });
   });
 });

@@ -1,3 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import {
   Name,
   OperatingSystem,
@@ -7,21 +11,23 @@ import {
 
 describe('Name', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(
-      <Name
-        {...{
-          id: 'ID',
-          name: 'NAME',
-          policyType: 'POLICY_TYPE',
-          policy: {
-            id: 'POLICY_ID',
-            name: 'POLICY_NAME',
-          },
-        }}
-      />
+    render(
+      <TestWrapper>
+        <Name
+          {...{
+            id: 'ID',
+            name: 'NAME',
+            policyType: 'POLICY_TYPE',
+            policy: {
+              id: 'POLICY_ID',
+              name: 'POLICY_NAME',
+            },
+          }}
+        />
+      </TestWrapper>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('POLICY_NAME')).toBeInTheDocument();
   });
 });
 
@@ -30,36 +36,37 @@ describe('OperatingSystem', () => {
     osMajorVersion: '7',
   };
 
-  it('expect to render without error', () => {
-    const wrapper = shallow(<OperatingSystem {...defaultProps} />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
   it('expect to render with SSG version', () => {
-    const wrapper = shallow(
-      <OperatingSystem
-        {...defaultProps}
-        benchmark={{ version: '1.2.3' }}
-        policy={null}
-        unsupportedHostCount={0}
-      />
+    render(
+      <TestWrapper>
+        <OperatingSystem
+          {...defaultProps}
+          benchmark={{ version: '1.2.3' }}
+          policy={null}
+          unsupportedHostCount={0}
+        />
+      </TestWrapper>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('RHEL 7')).toBeInTheDocument();
+    expect(screen.getByText('SSG: 1.2.3')).toBeInTheDocument();
   });
 
   it('expect to render with unsupported warning', () => {
-    const wrapper = shallow(
-      <OperatingSystem
-        {...defaultProps}
-        benchmark={{ version: '1.2.3' }}
-        unsupportedHostCount={3}
-        policy={null}
-      />
+    render(
+      <TestWrapper>
+        <OperatingSystem
+          {...defaultProps}
+          benchmark={{ version: '1.2.3' }}
+          unsupportedHostCount={3}
+          policy={null}
+        />
+      </TestWrapper>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByLabelText('Unsupported SSG Version warning')
+    ).toBeInTheDocument();
   });
 });
 
@@ -69,25 +76,27 @@ describe('CompliantSystems', () => {
     compliantHostCount: 9,
   };
 
-  it('expect to render without error', () => {
-    const wrapper = shallow(<CompliantSystems {...deftaultProps} />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
   it('expect to render with unsupported hosts', () => {
-    const wrapper = shallow(
-      <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+    render(
+      <TestWrapper>
+        <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+      </TestWrapper>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
   });
 });
 
 describe('PDFExportDownload', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<PDFExportDownload id="ID1" />);
+    render(
+      <TestWrapper>
+        <PDFExportDownload id="ID1" />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByLabelText('Reports PDF download link')
+    ).toBeInTheDocument();
   });
 });

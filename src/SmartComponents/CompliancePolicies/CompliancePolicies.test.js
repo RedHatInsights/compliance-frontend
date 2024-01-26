@@ -1,8 +1,11 @@
+import { render, screen } from '@testing-library/react';
+import { within } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { render } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+
 import { profiles } from '@/__fixtures__/profiles.js';
 import { CompliancePolicies } from './CompliancePolicies.js';
 
@@ -18,21 +21,21 @@ describe('CompliancePolicies', () => {
     loading: undefined,
     refetch: queryRefetch,
   };
-  it('expect to render without error', async () => {
+
+  it('expect to render without error', () => {
     useQuery.mockImplementation(() => ({
       ...queryDefaults,
       data: profiles,
     }));
 
-    const { container } = render(
+    render(
       <TestWrapper>
         <CompliancePolicies />
       </TestWrapper>
     );
 
     expect(
-      container.querySelectorAll('[data-ouia-component-type="PF4/TableRow"]')
-        .length
+      within(screen.getByLabelText('Policies')).queryAllByRole('row').length
     ).toEqual(11);
   });
 
@@ -52,7 +55,7 @@ describe('CompliancePolicies', () => {
       </TestWrapper>
     );
 
-    expect(screen.findByText('No policies')).not.toBeNull();
+    expect(screen.getByText('No policies')).toBeInTheDocument();
   });
 
   it('expect to render an error', () => {
@@ -71,7 +74,7 @@ describe('CompliancePolicies', () => {
       </TestWrapper>
     );
 
-    expect(screen.findByText(error.error)).not.toBeNull();
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
   });
 
   it('expect to render loading', () => {
@@ -80,16 +83,15 @@ describe('CompliancePolicies', () => {
       loading: true,
     }));
 
-    const { container } = render(
+    render(
       <TestWrapper>
         <CompliancePolicies />
       </TestWrapper>
     );
 
-    expect(screen.findByText('No policies')).not.toBeNull();
     expect(
-      container.querySelectorAll('[data-ouia-component-type="PF4/TableRow"]')
+      within(screen.getByLabelText('Policies')).getAllByText('Loading...')
         .length
-    ).toEqual(6);
+    ).toEqual(5);
   });
 });

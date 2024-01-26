@@ -83,6 +83,7 @@ CompliantSystems.propTypes = {
 
 export const PDFExportDownload = ({ id }) => (
   <Link
+    aria-label="Reports PDF download link"
     to={`/reports/${id}/pdf`}
     Component={LinkButton}
     componentProps={{

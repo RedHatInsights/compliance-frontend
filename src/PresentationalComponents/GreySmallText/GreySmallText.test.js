@@ -1,13 +1,13 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { GreySmallText } from './GreySmallText.js';
 
 describe('GreySmallText', () => {
   it('expect to render without error', () => {
-    let wrapper = shallow(
-      <GreySmallText>
-        <span>THIS IS A TEST</span>
-      </GreySmallText>
-    );
+    const testText = 'THIS IS A TEST';
+    render(<GreySmallText>{testText}</GreySmallText>);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText(testText)).toBeInTheDocument();
   });
 });

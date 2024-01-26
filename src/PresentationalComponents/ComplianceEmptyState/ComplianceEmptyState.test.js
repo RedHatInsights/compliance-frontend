@@ -1,10 +1,12 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-import ComplianceEmptyState from './ComplianceEmptyState';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
 import { useQuery } from '@apollo/client';
+
 jest.mock('@apollo/client');
-jest.mock('apollo-boost');
+
+import ComplianceEmptyState from './ComplianceEmptyState';
 
 describe('ComplianceEmptyState', () => {
   it('expect to render without error if no policies exist', () => {
@@ -13,9 +15,13 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('No policies')).toBeInTheDocument();
   });
 
   it('expect to render different message if one policy exists', () => {
@@ -24,9 +30,16 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('1 policy')).toBeInTheDocument();
+    expect(
+      screen.getByText('has been created but has no reports.')
+    ).toBeInTheDocument();
   });
 
   it('expect to render different message if many policies exist', () => {
@@ -35,8 +48,12 @@ describe('ComplianceEmptyState', () => {
       error: undefined,
       loading: undefined,
     }));
-    const wrapper = shallow(<ComplianceEmptyState client={{}} />);
+    render(
+      <TestWrapper>
+        <ComplianceEmptyState client={{}} />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('2 policies')).toBeInTheDocument();
   });
 });

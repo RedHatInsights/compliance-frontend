@@ -1,29 +1,32 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import SystemsCountWarning from './SystemsCountWarning';
 
 describe('SystemsCountWarning', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<SystemsCountWarning count={0} />);
+    render(<SystemsCountWarning count={0} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('No Systems')).toBeInTheDocument();
   });
 
   it('expect to render compact without error', () => {
-    const wrapper = shallow(
-      <SystemsCountWarning count={10} variant="compact" />
-    );
+    render(<SystemsCountWarning count={10} variant="compact" />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('No Systems')).toBeInTheDocument();
   });
 
   it('expect to render count without error', () => {
-    const wrapper = shallow(<SystemsCountWarning count={0} variant="count" />);
+    render(<SystemsCountWarning count={0} variant="count" />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('0')).toBeInTheDocument();
   });
 
   it('expect to render full without error', () => {
-    const wrapper = shallow(<SystemsCountWarning count={0} variant="full" />);
+    render(<SystemsCountWarning count={0} variant="full" />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByText('Policies without systems will not have reports.')
+    ).toBeInTheDocument();
   });
 });

@@ -1,19 +1,34 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import ConditionalLink from './ConditionalLink';
 
 describe('ConditionalLink', () => {
-  it('expect to render without error', () => {
-    const wrapper = shallow(<ConditionalLink href="https://redhat.com" />);
+  it('expect to not render a link with no href passed', () => {
+    render(
+      <ConditionalLink>
+        <span>Test Child</span>
+      </ConditionalLink>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.queryByRole('a')).not.toBeInTheDocument();
   });
 
-  it('expect to render without error and children', () => {
-    const wrapper = shallow(
+  it('expect to render a link with a href passed', () => {
+    render(<ConditionalLink href="https://redhat.com" />);
+
+    expect(screen.getByRole('link')).toBeInTheDocument();
+  });
+
+  it('expect to render a link and children with a href passed', () => {
+    render(
       <ConditionalLink href="https://redhat.com">
         <span>Test Child</span>
       </ConditionalLink>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByRole('link', { name: 'Test Child' })
+    ).toBeInTheDocument();
   });
 });

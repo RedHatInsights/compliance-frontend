@@ -1,3 +1,6 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { ReduxFormTextInput, ReduxFormTextArea } from './ReduxFormWrappers';
 
 describe('ReduxFormTextInput', () => {
@@ -7,11 +10,14 @@ describe('ReduxFormTextInput', () => {
         onChange: jest.fn(),
         value: 'Value',
       },
+      'aria-label': 'text-input',
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextInput {...field} />);
+    render(<ReduxFormTextInput {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByLabelText('text-input').value).toEqual(
+      field.input.value
+    );
   });
 
   it('expect to render with defaultValue', () => {
@@ -19,12 +25,15 @@ describe('ReduxFormTextInput', () => {
       input: {
         onChange: jest.fn(),
       },
+      'aria-label': 'text-input',
       defaultValue: 'Default Value',
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextInput {...field} />);
+    render(<ReduxFormTextInput {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByLabelText('text-input').value).toEqual(
+      field.defaultValue
+    );
   });
 });
 
@@ -33,12 +42,14 @@ describe('ReduxFormTextArea', () => {
     const field = {
       input: {
         onChange: jest.fn(),
+        value: 'Text',
       },
+      'aria-label': 'text-area',
       selected: 'SELECTED_VALUE',
       additionalProp: 'Prop1',
     };
-    const wrapper = shallow(<ReduxFormTextArea {...field} />);
+    render(<ReduxFormTextArea {...field} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText(field.input.value)).toBeInTheDocument();
   });
 });

@@ -106,6 +106,7 @@ const InlineEdit = ({
             <Truncate text={value} length={380} inline={true} />
             {enableEdit && (
               <Button
+                aria-label="Edit"
                 className="pf-u-ml-sm"
                 onClick={() => {
                   setOpen(true);

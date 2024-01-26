@@ -10,7 +10,7 @@ const ReportChart = ({ profile = {}, hasLegend = true, chartClass }) => {
   const { chartProps, legendData } = useDonutChart(profile);
 
   return (
-    <Grid className={chartClass}>
+    <Grid aria-label="Report chart" className={chartClass}>
       <GridItem span={hasLegend ? 6 : 12}>
         <ChartDonut {...chartProps} />
       </GridItem>

@@ -1,17 +1,17 @@
-import { render } from '@testing-library/react';
-import { queryByText } from '@testing-library/dom';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import RemediationCell from './RemediationCell';
 
 describe('RemediationCell', () => {
   it('expect to render "Manual" by default', () => {
-    const component = <RemediationCell />;
-    const { container } = render(component);
-    expect(queryByText(container, 'Manual')).toMatchSnapshot();
+    render(<RemediationCell />);
+
+    expect(screen.getByText('Manual')).toBeInTheDocument();
   });
 
   it('expect to render "Palybook"', () => {
-    const component = <RemediationCell hasPlaybook={true} />;
-    const { container } = render(component);
-    expect(queryByText(container, 'Playbook')).toMatchSnapshot();
+    render(<RemediationCell hasPlaybook={true} />);
+
+    expect(screen.getByText('Playbook')).toBeInTheDocument();
   });
 });

@@ -1,8 +1,11 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { StateView, StateViewPart, StateViewWithError } from './StateView';
 
 describe('StatView', () => {
   it('expect to render loading', () => {
-    const wrapper = shallow(
+    render(
       <StateView
         stateValues={{
           loading: true,
@@ -16,11 +19,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('LOADING')).toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
+    expect(screen.queryByText('ERROR')).not.toBeInTheDocument();
   });
 
   it('expect to render error', () => {
-    const wrapper = shallow(
+    render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -34,11 +39,13 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('ERROR')).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
   });
 
   it('expect to render data', () => {
-    const wrapper = shallow(
+    render(
       <StateView
         stateValues={{
           loading: undefined,
@@ -52,13 +59,15 @@ describe('StatView', () => {
       </StateView>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByText('DATA')).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('ERROR')).not.toBeInTheDocument();
   });
 });
 
 describe('StatViewWithError', () => {
   it('expect to render error page', () => {
-    const wrapper = shallow(
+    render(
       <StateViewWithError
         stateValues={{
           loading: undefined,
@@ -71,6 +80,12 @@ describe('StatViewWithError', () => {
       </StateViewWithError>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByText(
+        'There was a problem processing the request. Please try again.'
+      )
+    ).toBeInTheDocument();
+    expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
+    expect(screen.queryByText('DATA')).not.toBeInTheDocument();
   });
 });

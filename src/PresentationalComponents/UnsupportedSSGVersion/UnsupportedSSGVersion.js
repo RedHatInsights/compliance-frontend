@@ -53,7 +53,7 @@ const WarningWithTooltip = ({ children, content }) => (
 );
 
 WarningWithTooltip.propTypes = {
-  content: propTypes.string,
+  content: propTypes.node,
   children: propTypes.node,
 };
 
@@ -101,10 +101,17 @@ const UnsupportedSSGVersion = ({
   const defaultStyle = !tooltipText ? { cursor: 'pointer' } : {};
 
   return (
-    <span style={{ ...style, display: 'inline-block' }}>
+    <span
+      aria-label="Unsupported SSG Version warning"
+      style={{ ...style, display: 'inline-block' }}
+    >
       {showWarningIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span style={defaultStyle} className="pf-u-mr-xs">
+          <span
+            style={defaultStyle}
+            className="pf-u-mr-xs"
+            aria-label={tooltipText ? 'Tooltip icon' : 'Popover icon'}
+          >
             <ExclamationTriangleIcon color="var(--pf-global--warning-color--100)" />
           </span>
         </TooltipOrPopover>
@@ -114,7 +121,11 @@ const UnsupportedSSGVersion = ({
 
       {showHelpIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span style={defaultStyle} className="pf-u-ml-xs">
+          <span
+            aria-label="Help icon"
+            style={defaultStyle}
+            className="pf-u-ml-xs"
+          >
             <OutlinedQuestionCircleIcon className="grey-icon" />
           </span>
         </TooltipOrPopover>

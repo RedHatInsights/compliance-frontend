@@ -1,5 +1,6 @@
-import { render, fireEvent } from '@testing-library/react';
-import { getByText } from '@testing-library/dom';
+import { render, fireEvent, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { valueDefinitions } from '../../../__fixtures__/values.js';
 import usePolicyMutation from '../../../Mutations/hooks/usePolicyMutation';
 import RuleValueEdit from './RuleValueEdit';
@@ -17,7 +18,7 @@ usePolicyMutation.mockImplementation(() => () => {
 
 describe('RuleValueEdit', () => {
   it('expect to render values', () => {
-    const component = (
+    render(
       <RuleValueEdit
         rule={{
           valueDefinitions,
@@ -31,14 +32,13 @@ describe('RuleValueEdit', () => {
         }}
       />
     );
-    const { container } = render(component);
 
-    expect(getByText(container, 'default string value')).not.toBe(null);
-    expect(getByText(container, 'second default string value')).not.toBe(null);
+    expect(screen.getByText('default string value')).toBeInTheDocument();
+    expect(screen.getByText('second default string value')).toBeInTheDocument();
   });
 
   it('expect to render user values', () => {
-    const component = (
+    render(
       <RuleValueEdit
         rule={{
           valueDefinitions,
@@ -54,13 +54,12 @@ describe('RuleValueEdit', () => {
         }}
       />
     );
-    const { container } = render(component);
 
-    expect(getByText(container, 'second user defined value')).not.toBe(null);
+    expect(screen.getByText('second user defined value')).toBeInTheDocument();
   });
 
   it('expect to allow editing', () => {
-    const component = (
+    render(
       <RuleValueEdit
         rule={{
           valueDefinitions: [valueDefinitions[0]],
@@ -76,12 +75,11 @@ describe('RuleValueEdit', () => {
         }}
       />
     );
-    const { container } = render(component);
 
-    expect(container.querySelector('[aria-label="Save edits"]')).toBe(null);
-    const editButton = container.querySelector('button');
+    expect(screen.queryByLabelText('Save edits')).not.toBeInTheDocument();
+    const editButton = screen.getByLabelText('Edit value button');
     fireEvent.click(editButton);
 
-    expect(container.querySelector('[aria-label="Save edits"]')).not.toBe(null);
+    expect(screen.getByLabelText('Save edits')).toBeInTheDocument();
   });
 });

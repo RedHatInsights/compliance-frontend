@@ -6,6 +6,7 @@ export const systems = [
             name: 'demo.example.com',
             testResultProfiles: [
                 {
+                    id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6-profile-1',
                     name: 'Standard System Security Profile for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,
@@ -82,6 +83,7 @@ export const systems = [
                     score: 40
                 },
                 {
+                    id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6-profile-2',
                     name: 'DISA STIG for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,
@@ -157,6 +159,7 @@ export const systems = [
                     score: 0
                 },
                 {
+                    id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6-profile-3',
                     name: 'United States Government Configuration Baseline',
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,
@@ -231,6 +234,7 @@ export const systems = [
                     score: 0
                 },
                 {
+                    id: 'd5bc2459-21ce-4d11-bc0b-03ea7513dfa6-profile-4',
                     name: 'C2S for Red Hat Enterprise Linux 7',
                     lastScanned: '2019-11-21T14:32:19Z',
                     supported: true,

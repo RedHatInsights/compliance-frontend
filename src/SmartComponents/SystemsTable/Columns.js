@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/render-result-naming-convention */
 import React from 'react';
 import { nowrap } from '@patternfly/react-table';
 import { Tooltip } from '@patternfly/react-core';

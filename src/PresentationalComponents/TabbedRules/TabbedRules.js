@@ -69,6 +69,9 @@ const TabbedRules = ({
     >
       {tabsData?.map(({ profile, newOsMinorVersion, systemCount }) => (
         <Tab
+          aria-label={`Rules for RHEL ${profile.osMajorVersion}.${
+            profile.osMinorVersion || newOsMinorVersion
+          }`}
           key={eventKey(profile, newOsMinorVersion)}
           eventKey={eventKey(profile, newOsMinorVersion)}
           title={

@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/render-result-naming-convention */
 import { customColumn, compileColumnRenderFunc } from './Columns';
 
 const TestCell = () => <span>Test Cell</span>;

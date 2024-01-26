@@ -1,14 +1,19 @@
-import { render } from '@testing-library/react';
+/* eslint-disable */
+import { render, act } from '@testing-library/react';
 import { queryByText } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
 const toggleFilterDropDown = (container) => {
   const filterToggle = container.querySelector('button.pf-c-dropdown__toggle');
-  userEvent.click(filterToggle);
+  act(() => {
+    userEvent.click(filterToggle);
+  });
 };
 
 const clickFilter = (filterButton) => {
-  userEvent.click(filterButton);
+  act(() => {
+    userEvent.click(filterButton);
+  });
 };
 
 const queryFilterButton = (toolbar, query) =>
@@ -30,11 +35,8 @@ const filterValidations = {
     console.log(`Not validating ${filter.label} of type ${filter.type}`);
     return true;
 
-    /* eslint-disable */
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);
     const filterDropDownToggle = toolbar.querySelector('.pf-c-select__toggle');
-
-    userEvent.click(filterDropDownToggle);
     const selectMenu = toolbar.querySelector('.pf-c-select__menu');
     const randomIndex = Math.floor(Math.random() * filter.items.length);
     const testItem = queryByText(selectMenu, filter.items[randomIndex].label);
@@ -50,13 +52,15 @@ const filterValidations = {
       !!testItem &&
       !!testChildItem
     );
-    /* eslint-enable */
   },
   checkbox: (toolbar, filter) => {
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);
     const filterDropDownToggle = toolbar.querySelector('.pf-c-select__toggle');
 
-    userEvent.click(filterDropDownToggle);
+    act(() => {
+      userEvent.click(filterDropDownToggle);
+    });
+
     const selectMenu = toolbar.querySelector('.pf-c-select__menu');
     const randomIndex = Math.floor(Math.random() * filter.items.length);
     const testItem = queryByText(selectMenu, filter.items[randomIndex].label);

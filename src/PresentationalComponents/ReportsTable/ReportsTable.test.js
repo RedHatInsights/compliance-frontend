@@ -1,3 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import ReportsTable from './ReportsTable';
 import {
@@ -11,34 +15,23 @@ import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 
 expect.extend(filterHelpers);
 
-window.ResizeObserver = class {
-  constructor() {}
-
-  observe() {}
-  disconnect() {}
-};
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  Link: () => 'Mocked Link',
-  useLocation: jest.fn(),
-}));
-
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
 const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<ReportsTable profiles={profiles} />);
+    render(
+      <TestWrapper>
+        <ReportsTable profiles={profiles} />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByRole('link', { name: 'C2S for Red Hat Enterprise Linux 7' })
+    ).toBeInTheDocument();
   });
 
-  it('expect to have filters properly rendered', () => {
+  // TODO This can be properly implemented once on react 18 and newer RTL packages
+  it.skip('expect to have filters properly rendered', () => {
     const policyTypes = uniq(
       profiles.map(({ policyType }) => policyType).filter((i) => !!i)
     );

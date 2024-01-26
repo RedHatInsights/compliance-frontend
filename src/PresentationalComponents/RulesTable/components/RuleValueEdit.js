@@ -37,6 +37,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
           <b>Depends on values</b>{' '}
           {enableAllEdit && (
             <Button
+              aria-label="Edit value button"
               className="pf-u-ml-sm"
               onClick={() => {
                 setEditValues((current) => !current);
@@ -48,6 +49,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
           )}
           {nonDefaultValues && (
             <Button
+              aria-label="Reset value button"
               className="pf-u-ml-sm"
               onClick={resetValues}
               variant="plain"

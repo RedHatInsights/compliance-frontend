@@ -42,11 +42,11 @@ describe('ReportDownload', function () {
     );
 
     const compliantSystemsCheckBox = screen.getByText('Compliant systems');
-    expect(compliantSystemsCheckBox).toBeDefined();
+    expect(compliantSystemsCheckBox).toBeInTheDocument();
     fireEvent.click(compliantSystemsCheckBox);
 
     const exportButton = screen.getByText('Export report');
-    expect(exportButton).toBeDefined();
+    expect(exportButton).toBeInTheDocument();
     fireEvent.click(exportButton);
 
     expect(exportFunMock).toHaveBeenCalled();
