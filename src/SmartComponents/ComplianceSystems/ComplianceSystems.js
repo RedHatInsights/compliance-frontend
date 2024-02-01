@@ -10,7 +10,7 @@ import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 
-const QUERY = gql`
+export const QUERY = gql`
   {
     profiles(search: "external = false and canonical = false") {
       edges {
