@@ -1,3 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { EditPolicySystems } from './EditPolicySystems.js';
 
 describe('EditPolicySystems', () => {
@@ -6,14 +10,17 @@ describe('EditPolicySystems', () => {
   };
 
   it('expect to render without error', async () => {
-    const component = shallow(
-      <EditPolicySystems
-        {...defaultProps}
-        osMajorVersion="7"
-        selectedSystemIds={[]}
-        policy={{ supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'] }}
-      />
+    render(
+      <TestWrapper>
+        <EditPolicySystems
+          {...defaultProps}
+          osMajorVersion="7"
+          selectedSystemIds={[]}
+          policy={{ supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'] }}
+        />
+      </TestWrapper>
     );
-    expect(toJson(component)).toMatchSnapshot();
+
+    expect(screen.getByLabelText('Inventory Table')).toBeInTheDocument();
   });
 });

@@ -25,6 +25,7 @@ const buildProfile = (currentCount, attributes = {}) => ({
   compliant: true,
   benchmark: { version: '0.14.5' },
   supported: true,
+  description: `Test Profile description #${currentCount}`,
   osMajorVersion: currentCount,
   ...attributes,
 });
