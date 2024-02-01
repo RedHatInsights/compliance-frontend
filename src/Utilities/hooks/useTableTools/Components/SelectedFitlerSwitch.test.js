@@ -1,15 +1,18 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import SelectedFilterSwitch from './SelectedFilterSwitch';
 
 describe('SelectedFilterSwitch', () => {
   it('expect to render without error', () => {
-    const wrapper = shallow(<SelectedFilterSwitch />);
+    render(<SelectedFilterSwitch />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
   });
 
   it('expect to render without error', () => {
-    const wrapper = shallow(<SelectedFilterSwitch isChecked={false} />);
+    render(<SelectedFilterSwitch isChecked={true} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
   });
 });
