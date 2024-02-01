@@ -104,71 +104,9 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
         activefiltersconfig="[object Object]"
         aria-label="Inventory Table"
         bulkselect="[object Object]"
-        columns="function mergedColumns(defaultColumns) {
-    /* istanbul ignore next */
-    cov_v647o4w0s().f[7]++;
-    cov_v647o4w0s().s[34]++;
-    return columns.reduce(function (prev, column) {
-      /* istanbul ignore next */
-      cov_v647o4w0s().f[8]++;
-      var isStringCol =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[35]++, typeof column === 'string');
-      var key =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[36]++, isStringCol ?
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[9][0]++, column) :
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[9][1]++, column.key));
-      var defaultColumn =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[37]++, defaultColumns.find(function (defaultCol) {
-        /* istanbul ignore next */
-        cov_v647o4w0s().f[9]++;
-        cov_v647o4w0s().s[38]++;
-        return defaultCol.key === key;
-      }));
-      /* istanbul ignore next */
-      cov_v647o4w0s().s[39]++;
-      if (
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[11][0]++, defaultColumn === undefined) &&
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[11][1]++,
-      /* istanbul ignore next */
-      (column === null || column === void 0 ? void 0 : column.requiresDefault) === true)) {
-        /* istanbul ignore next */
-        cov_v647o4w0s().b[10][0]++;
-        cov_v647o4w0s().s[40]++;
-        return prev; // exclude if not found in inventory
-      } else {
-        /* istanbul ignore next */
-        cov_v647o4w0s().b[10][1]++;
-        cov_v647o4w0s().s[41]++;
-        return (
-          /* istanbul ignore next */
-          [].concat((0, _toConsumableArray2.default)(prev), [_objectSpread(_objectSpread(_objectSpread({}, defaultColumn), isStringCol ?
-          /* istanbul ignore next */
-          (cov_v647o4w0s().b[12][0]++, {
-            key: column
-          }) :
-          /* istanbul ignore next */
-          (cov_v647o4w0s().b[12][1]++, column)), {}, {
-            props:
-            /* istanbul ignore next */
-            _objectSpread(_objectSpread({}, defaultColumn === null || defaultColumn === void 0 ? void 0 : defaultColumn.props), column === null || column === void 0 ? void 0 : column.props)
-          })])
-        );
-      }
-    }, []);
-  }"
         disabledefaultcolumns="true"
         fallback="[object Object]"
         filterconfig="[object Object]"
-        getentities="function (_x, _x2) {
-        return _ref7.apply(this, arguments);
-      }"
         hidefilters="[object Object]"
         showtags="true"
         tableprops="[object Object]"
@@ -283,71 +221,9 @@ exports[`EditPolicyForm expect to render without error 1`] = `
         activefiltersconfig="[object Object]"
         aria-label="Inventory Table"
         bulkselect="[object Object]"
-        columns="function mergedColumns(defaultColumns) {
-    /* istanbul ignore next */
-    cov_v647o4w0s().f[7]++;
-    cov_v647o4w0s().s[34]++;
-    return columns.reduce(function (prev, column) {
-      /* istanbul ignore next */
-      cov_v647o4w0s().f[8]++;
-      var isStringCol =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[35]++, typeof column === 'string');
-      var key =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[36]++, isStringCol ?
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[9][0]++, column) :
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[9][1]++, column.key));
-      var defaultColumn =
-      /* istanbul ignore next */
-      (cov_v647o4w0s().s[37]++, defaultColumns.find(function (defaultCol) {
-        /* istanbul ignore next */
-        cov_v647o4w0s().f[9]++;
-        cov_v647o4w0s().s[38]++;
-        return defaultCol.key === key;
-      }));
-      /* istanbul ignore next */
-      cov_v647o4w0s().s[39]++;
-      if (
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[11][0]++, defaultColumn === undefined) &&
-      /* istanbul ignore next */
-      (cov_v647o4w0s().b[11][1]++,
-      /* istanbul ignore next */
-      (column === null || column === void 0 ? void 0 : column.requiresDefault) === true)) {
-        /* istanbul ignore next */
-        cov_v647o4w0s().b[10][0]++;
-        cov_v647o4w0s().s[40]++;
-        return prev; // exclude if not found in inventory
-      } else {
-        /* istanbul ignore next */
-        cov_v647o4w0s().b[10][1]++;
-        cov_v647o4w0s().s[41]++;
-        return (
-          /* istanbul ignore next */
-          [].concat((0, _toConsumableArray2.default)(prev), [_objectSpread(_objectSpread(_objectSpread({}, defaultColumn), isStringCol ?
-          /* istanbul ignore next */
-          (cov_v647o4w0s().b[12][0]++, {
-            key: column
-          }) :
-          /* istanbul ignore next */
-          (cov_v647o4w0s().b[12][1]++, column)), {}, {
-            props:
-            /* istanbul ignore next */
-            _objectSpread(_objectSpread({}, defaultColumn === null || defaultColumn === void 0 ? void 0 : defaultColumn.props), column === null || column === void 0 ? void 0 : column.props)
-          })])
-        );
-      }
-    }, []);
-  }"
         disabledefaultcolumns="true"
         fallback="[object Object]"
         filterconfig="[object Object]"
-        getentities="function (_x, _x2) {
-        return _ref7.apply(this, arguments);
-      }"
         hidefilters="[object Object]"
         showtags="true"
         tableprops="[object Object]"
