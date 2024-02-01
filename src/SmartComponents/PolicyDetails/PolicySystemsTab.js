@@ -34,7 +34,7 @@ const PolicySystemsTab = ({ policy }) => {
 PolicySystemsTab.propTypes = {
   policy: propTypes.shape({
     id: propTypes.string.isRequired,
-    complianceThreshold: propTypes.number.isRequired,
+    complianceThreshold: propTypes.string.isRequired,
     osMajorVersion: propTypes.string.isRequired,
     hosts: propTypes.array.isRequired,
   }),
