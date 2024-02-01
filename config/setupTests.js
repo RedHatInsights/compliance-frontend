@@ -50,7 +50,10 @@ const lowercasePropNames = (props) =>
   Object.fromEntries(
     Object.entries(props).map(([key, value]) => [
       recognisedAttributes.includes(key) ? key : key.toLowerCase(),
-      (!recognisedAttributes.includes(key) && value?.toString?.()) || value,
+      (!recognisedAttributes.includes(key) &&
+        typeof value !== 'function' &&
+        value?.toString?.()) ||
+        value,
     ])
   );
 
