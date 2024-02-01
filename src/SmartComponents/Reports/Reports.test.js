@@ -1,68 +1,68 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { useQuery } from '@apollo/client';
+import { profiles } from '@/__fixtures__/profiles.js';
 
 import { Reports } from './Reports.js';
 
 jest.mock('@apollo/client');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useLocation: jest.fn(() => ({})),
-}));
 
 describe('Reports', () => {
-  it('expect to render without error', () => {
+  const queryResultDefaults = {
+    error: undefined,
+    loading: undefined,
+    data: undefined,
+    refetch: jest.fn(),
+  };
+
+  it('expect to render properly and show the profile(s)', () => {
     useQuery.mockImplementation(() => ({
-      data: {
-        profiles: {
-          edges: [
-            {
-              node: {
-                id: '1',
-                refId: '121212',
-                name: 'profile1',
-                description: 'profile description',
-                testResultHostCount: 1,
-                complianceThreshold: 1,
-                compliantHostCount: 1,
-                businessObjective: {
-                  id: '1',
-                  title: 'BO 1',
-                },
-              },
-            },
-          ],
-        },
-      },
-      error: false,
-      loading: false,
+      ...queryResultDefaults,
+      data: profiles,
     }));
+    render(
+      <TestWrapper>
+        <Reports />
+      </TestWrapper>
+    );
 
-    const wrapper = shallow(<Reports />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getAllByText('PCI-DSS').length).toEqual(10);
   });
 
   it('expect to render emptystate', () => {
     useQuery.mockImplementation(() => ({
+      ...queryResultDefaults,
       data: {
         profiles: { edges: [] },
       },
-      error: false,
-      loading: false,
     }));
+    render(
+      <TestWrapper>
+        <Reports />
+      </TestWrapper>
+    );
 
-    const wrapper = shallow(<Reports />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByRole('button', { name: 'Create new policy' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Learn about OpenSCAP and Compliance' })
+    ).toBeInTheDocument();
   });
 
   it('expect to render loading', () => {
     useQuery.mockImplementation(() => ({
-      data: undefined,
-      error: false,
+      ...queryResultDefaults,
       loading: true,
     }));
-    const wrapper = shallow(<Reports />);
+    render(
+      <TestWrapper>
+        <Reports />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(screen.getByLabelText('Loading')).toBeInTheDocument();
   });
 });
