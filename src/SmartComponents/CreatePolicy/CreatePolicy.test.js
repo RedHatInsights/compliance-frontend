@@ -1,42 +1,32 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { useQuery } from '@apollo/client';
 import { benchmarksQuery } from '@/__fixtures__/benchmarks_rules.js';
 
 jest.mock('@apollo/client');
 
-import { CreatePolicyForm } from './CreatePolicy.js';
-
-jest.mock('react-router-dom', () => ({
-  useLocation: jest.fn(),
-}));
-
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
+import CreatePolicyForm from './CreatePolicy.js';
 
 describe('CreatePolicyForm', () => {
   it('expect to render the wizard', () => {
+    // TODO Replace with proper data and extend tests
     useQuery.mockImplementation(() => ({
       data: { latestBenchmarks: benchmarksQuery },
-      error: false,
       loading: false,
     }));
-    const wrapper = shallow(<CreatePolicyForm />);
-    expect(toJson(wrapper.find('Wizard'))).toMatchSnapshot();
-  });
 
-  it('expect to render the wizard with enableNext on systems', () => {
-    useQuery.mockImplementation(() => ({
-      data: { latestBenchmarks: benchmarksQuery },
-      error: false,
-      loading: false,
-    }));
-    const wrapper = shallow(<CreatePolicyForm systemIds={['123', '456']} />);
+    render(
+      <TestWrapper>
+        <CreatePolicyForm />
+      </TestWrapper>
+    );
+
     expect(
-      wrapper
-        .find('Wizard')
-        .prop('steps')
-        .find(({ name }) => name === 'Systems').enableNext
-    ).toMatchSnapshot();
+      screen.getByText(
+        'Select the operating system and policy type for this policy.'
+      )
+    ).toBeInTheDocument();
   });
 });

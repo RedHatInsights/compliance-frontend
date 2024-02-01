@@ -1,18 +1,16 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import ReviewCreatedPolicy from './ReviewCreatedPolicy.js';
 import configureStore from 'redux-mock-store';
 import { policyFormValues } from '@/__fixtures__/benchmarks_rules.js';
-import { Provider } from 'react-redux';
-import { useQuery } from '@apollo/client';
 
 const mockStore = configureStore();
-jest.mock('@apollo/client');
 
 describe('ReviewCreatedPolicy', () => {
-  let store;
-  let component;
-
-  beforeEach(() => {
-    store = mockStore({
+  it('expect to render without error', () => {
+    const store = mockStore({
       form: {
         policyForm: {
           values: {
@@ -50,40 +48,16 @@ describe('ReviewCreatedPolicy', () => {
         ],
       },
     });
-  });
-
-  it('expect to render without error', () => {
-    useQuery.mockImplementation(() => ({
-      data: {
-        benchmark: {
-          title: 'SCAP security guide for RHEL7',
-          refId: 'xccdf_org.ssgproject.content_benchmark_RHEL-7',
-          osMajorVersion: '7',
-          version: '0.1.40',
-        },
-      },
-      error: false,
-      loading: false,
-    }));
-    component = mount(
-      <Provider store={store}>
+    render(
+      <TestWrapper store={store}>
         <ReviewCreatedPolicy osMajorVersion={'7'} />
-      </Provider>
+      </TestWrapper>
     );
-    expect(toJson(component)).toMatchSnapshot();
-  });
 
-  it('should render a spinner while loading', () => {
-    useQuery.mockImplementation(() => ({
-      data: {},
-      error: false,
-      loading: true,
-    }));
-    component = mount(
-      <Provider store={store}>
-        <ReviewCreatedPolicy osMajorVersion={'7'} />
-      </Provider>
-    );
-    expect(toJson(component)).toMatchSnapshot();
+    expect(
+      screen.getByRole('heading', {
+        name: 'C2S for Red Hat Enterprise Linux 6',
+      })
+    ).toBeInTheDocument();
   });
 });

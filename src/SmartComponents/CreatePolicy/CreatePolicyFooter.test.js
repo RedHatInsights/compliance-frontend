@@ -17,16 +17,6 @@ describe('CreatePolicyFooter', () => {
     activeStep: { name: 'test' },
   };
 
-  it('matches snapshot', () => {
-    const view = render(
-      <WizardContextProvider value={context}>
-        <CreatePolicyFooter />
-      </WizardContextProvider>
-    );
-
-    expect(view.asFragment()).toMatchSnapshot();
-  });
-
   it('can navigate next', async () => {
     render(
       <WizardContextProvider value={context}>

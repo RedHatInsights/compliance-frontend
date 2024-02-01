@@ -1,6 +1,14 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { FinishedCreatePolicy } from './FinishedCreatePolicy.js';
 import { usePolicy } from 'Mutations';
 jest.mock('Mutations');
+jest.mock('Utilities/Dispatcher', () => ({
+  ...jest.requireActual('Utilities/Dispatcher'),
+  dispatchNotification: () => ({}),
+}));
 
 describe('FinishedCreatePolicy', () => {
   const defaultProps = {
@@ -20,23 +28,14 @@ describe('FinishedCreatePolicy', () => {
     usePolicy.mockImplementation(() => () => Promise.resolve({}));
     const onClose = () => {};
 
-    const wrapper = shallow(
-      <FinishedCreatePolicy {...defaultProps} onClose={onClose} />
+    render(
+      <TestWrapper>
+        <FinishedCreatePolicy {...defaultProps} onClose={onClose} />
+      </TestWrapper>
     );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it.skip('expect to render finished error state', () => {
-    usePolicy.mockImplementation(
-      () => () => Promise.reject(new Error('ERRORR'))
-    );
-    const onClose = () => {};
-
-    const wrapper = shallow(
-      <FinishedCreatePolicy {...defaultProps} onClose={onClose} />
-    );
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByRole('heading', { name: 'Creating policy' })
+    ).toBeInTheDocument();
   });
 });

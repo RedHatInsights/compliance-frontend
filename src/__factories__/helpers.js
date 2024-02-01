@@ -11,3 +11,9 @@ export const callAndSort = (func, count, options = {}) => {
     })
     .sort((item) => item[sortBy || 'id']);
 };
+
+export const wrapInEdges = (items) => ({
+  edges: items.map((item) => ({
+    node: item,
+  })),
+});
