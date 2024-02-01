@@ -1,19 +1,7 @@
-import 'jest-canvas-mock';
-import { configure, mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 
-configure({ adapter: new Adapter() });
-
-global.shallow = shallow;
-global.mount = mount;
 global.React = React;
-global.toJson = toJson;
 global.fetch = function () {};
-
-global.renderJson = (component) => toJson(shallow(component));
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,
@@ -54,11 +42,42 @@ jest.mock(
   '@redhat-cloud-services/frontend-components-remediations/RemediationButton',
   () => ({
     __esModule: true,
-    default: (props) => <button {...props} />,
+    default: (props) => <button aria-label="Remediation Button" {...props} />,
   })
 );
+const recognisedAttributes = ['onLoad'];
+const lowercasePropNames = (props) =>
+  Object.fromEntries(
+    Object.entries(props).map(([key, value]) => [
+      recognisedAttributes.includes(key) ? key : key.toLowerCase(),
+      (!recognisedAttributes.includes(key) && value?.toString?.()) || value,
+    ])
+  );
 
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
-  InventoryTable: (props) => <div {...props} />,
-  DetailWrapper: (props) => <div {...props} />,
+  InventoryTable: global.React.forwardRef(({ children, ...props }, ref) => (
+    <div ref={ref} aria-label="Inventory Table" {...lowercasePropNames(props)}>
+      {children}
+    </div>
+  )),
+  DetailWrapper: global.React.forwardRef(({ children, ...props }, ref) => (
+    <div
+      ref={ref}
+      aria-label="Inventory Details Wrapper"
+      {...lowercasePropNames(props)}
+    >
+      {children}
+    </div>
+  )),
+  InventoryDetailHead: global.React.forwardRef(
+    ({ children, ...props }, ref) => (
+      <div
+        ref={ref}
+        aria-label="Inventory Detail Head"
+        {...lowercasePropNames(props)}
+      >
+        {children}
+      </div>
+    )
+  ),
 }));
