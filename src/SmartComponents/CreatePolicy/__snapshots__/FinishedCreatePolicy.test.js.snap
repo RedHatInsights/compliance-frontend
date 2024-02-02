@@ -60,8 +60,8 @@ exports[`FinishedCreatePolicy expect to render without error 1`] = `
     >
       This usually takes a minute or two.
     </EmptyStateBody>
-    <EmtpyStateWithErrors
-      error={null}
+    <EmptyStateWithErrors
+      errors={null}
     />
     <EmptyStateSecondaryActions />
   </EmptyState>

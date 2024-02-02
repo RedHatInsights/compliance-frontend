@@ -24,7 +24,7 @@ import { withApollo } from '@apollo/client/react/hoc';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
-const EmtpyStateWithErrors = ({ errors }) =>
+const EmptyStateWithErrors = ({ errors }) =>
   errors && Array.isArray(errors) && errors.length > 0 ? (
     <EmptyStateBody className="wizard-failed-errors">
       <List>
@@ -35,7 +35,7 @@ const EmtpyStateWithErrors = ({ errors }) =>
     </EmptyStateBody>
   ) : null;
 
-EmtpyStateWithErrors.propTypes = {
+EmptyStateWithErrors.propTypes = {
   errors: propTypes.array,
 };
 
@@ -122,7 +122,7 @@ export const FinishedCreatePolicy = ({
         <EmptyStateBody className={failed && 'wizard-failed-message'}>
           {message}
         </EmptyStateBody>
-        <EmtpyStateWithErrors error={errors} />
+        <EmptyStateWithErrors errors={errors} />
         <EmptyStateSecondaryActions>
           {(percent === 100 || failed) && (
             <Button
