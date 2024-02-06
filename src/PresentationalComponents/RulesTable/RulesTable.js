@@ -37,6 +37,7 @@ const RulesTable = ({
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showRuleStateFilter =
     columns.filter((c) => c.title === 'Rule state').length > 0;
+
   const policies = profileRules
     .filter(({ profile }) => !!profile)
     .map(({ profile }) => ({
@@ -80,7 +81,7 @@ const RulesTable = ({
         ...(hidePassed && {
           activeFilters: (currentActiveFilters) => ({
             ...currentActiveFilters,
-            passed: currentActiveFilters.passed
+            rulestate: currentActiveFilters.passed
               ? currentActiveFilters.passed
               : ['failed'],
             ...activeFilters,
