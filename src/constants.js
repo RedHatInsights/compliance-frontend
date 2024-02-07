@@ -3,6 +3,7 @@ import packageJson from './../package.json';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import sortBy from 'lodash/sortBy';
+import { cloneDeep } from 'lodash';
 
 export const APP_ID = 'compliance';
 export const DEFAULT_TITLE = 'Compliance | Red Hat Insights';
@@ -116,7 +117,7 @@ const toSystemsOsMinorFilterConfigurationItem =
       .reverse()
       .map((minorVersion) => ({
         label: `RHEL ${majorVersion}.${minorVersion}`,
-        value: minorVersion,
+        value: `${majorVersion}.${minorVersion}`,
       })),
   });
 
@@ -136,19 +137,83 @@ const emptyFilterDropDownItem = {
   ],
 };
 
+/**
+ * @typedef {Object.<string, boolean>} SelectedMinorVersions
+ * @typedef {Object.<string, MinorVersions>} SelectedVersions
+ * @typedef {Number} MinorVersion
+ * @typedef {MinorVersion[]} OsVersion
+ */
+
+/**
+ * Handles transforming `{ 7: { 7.3: true, 7.5: true } }` to `{7: {3: true, 5: true}}` with handling case in which only major version is selected
+ * @param {SelectedVersions} selectedVersions
+ * @param {OsVersion[]} osMajorVersions
+ * @returns {SelectedVersions}
+ */
+const transformVersionObject = (selectedVersions, osMajorVersions) => {
+  console.log('selectedVersions', selectedVersions);
+  return Object.entries(selectedVersions).reduce((acc, entry) => {
+    const [majorVersion, minorVersions] = entry;
+    console.log('osMajorVersions', osMajorVersions); // osMajorVersions []
+
+    if (
+      Object.keys(minorVersions).includes(majorVersion) &&
+      minorVersions[majorVersion]
+    ) {
+      // if (selectedVersions has shape {8: {8: true }}) -> means major version was selected and all minor version from osMajorVersions need to be included
+      // acc[majorVersion] = osMajorVersions
+      //   .filter((v) => v['major'] === Number(majorVersion))
+      //   .reduce((acc, o) => {
+      //     acc[`${o.minor}`] = true;
+      //     return acc;
+      //   }, {});
+
+      // console.log('majorVersion', majorVersion);
+      // console.log('osMajorVersions[majorVersion]', osMajorVersions[majorVersion]);
+      acc[majorVersion] = osMajorVersions[majorVersion].reduce((acc, minor) => {
+        acc[`${minor}`] = true;
+        return acc;
+      }, {});
+
+      return acc;
+    } else {
+      acc[majorVersion] = Object.entries(minorVersions).reduce(
+        (acc, [minorVersion, toInclude]) => {
+          acc[minorVersion.split('.')[1]] = toInclude;
+          return acc;
+        },
+        {}
+      );
+      return acc;
+    }
+  }, {});
+}
+
 export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
-  const filterString = (value) => [
-    Object.keys(value)
-      .flatMap((majorVersion) =>
-        Object.keys(value[majorVersion]).map(
-          (minorVersion) =>
-            value[majorVersion][minorVersion] &&
-            `(os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion})`
+  console.log('osMajorVersions', osMajorVersions); // osMajorVersions [empty 7x, [5, 7, 8, 9], [6, 7, 8, 9]]
+  const osMajors = cloneDeep(osMajorVersions);
+
+  const filterString = function (selectedVersions) {
+
+    console.log('osMajors', osMajors); // []
+
+    const versionObject = transformVersionObject(selectedVersions, osMajors);
+
+    console.log('versionObject', versionObject);
+
+    return [
+      Object.entries(versionObject)
+        .flatMap(([majorVersion, minorVersions]) =>
+          Object.entries(minorVersions).map(
+            ([minorVersion, toInclude]) =>
+              toInclude &&
+              `( os_major_version = ${majorVersion} AND os_minor_version = ${minorVersion} )`
+          )
         )
-      )
-      .filter((v) => !!v)
-      .join(' OR '),
-  ];
+        .filter((v) => !!v)
+        .join(' OR '),
+    ];
+  };
   const osVersions = sortBy(Object.keys(osMajorVersions).map(Number)).reverse();
 
   const items =
