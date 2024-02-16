@@ -1,20 +1,11 @@
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
-
 import { MockedProvider } from '@apollo/client/testing';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
-const initialState = {};
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import { init } from 'Store';
 
 const TestWrapper = ({ children, mocks = [], routes, store: propStore }) => {
-  const store = createStore(reducer, initialState);
+  const store = init().getStore();
 
   return (
     <MemoryRouter {...(routes ? { initialEntries: routes } : {})}>
