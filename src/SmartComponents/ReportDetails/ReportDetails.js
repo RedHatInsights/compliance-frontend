@@ -2,8 +2,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { useQuery, gql } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,

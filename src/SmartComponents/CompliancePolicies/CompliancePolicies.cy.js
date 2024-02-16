@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 
 import { MemoryRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import { init } from 'Store';

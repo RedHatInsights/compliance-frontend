@@ -1,7 +1,6 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
 import propTypes from 'prop-types';
 import PageHeader, {
   PageHeaderTitle,

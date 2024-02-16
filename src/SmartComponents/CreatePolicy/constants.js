@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const BENCHMARKS_QUERY = gql`
   query CP_Benchmarks($filter: String!) {
@@ -76,6 +76,40 @@ export const PROFILES_QUERY = gql`
             latestSupportedOsMinorVersions
           }
           rules {
+            refId
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const SUPPORTED_PROFILES = gql`
+  query supportedProfilesByOSMajor {
+    osMajorVersions {
+      edges {
+        node {
+          osMajorVersion
+          profiles {
+            id
+            name
+            refId
+            description
+            supportedOsVersions
+            benchmark {
+              id
+              refId
+            }
+          }
+        }
+      }
+    }
+    profiles(search: "external = false and canonical = false") {
+      edges {
+        node {
+          id
+          refId
+          benchmark {
             refId
           }
         }
