@@ -6,11 +6,4 @@ extends:
   - "plugin:jest-dom/recommended"
 
 globals:
-  beforeAll: true
-  describe: true
-  expect: true
-  global: true
-  it: true
-  process: true
   React: true
-  Promise: true
