@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-import { useQuery, useMutation } from '@apollo/client';
 import { QUERY, ReportDetails } from './ReportDetails';
 
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
@@ -20,17 +19,17 @@ const mocks = [
     result: {
       data: {
         profile: {
-          id: '1',
-          refId: '121212',
+          id: '1234',
           name: 'profile1',
-          policyType: 'policy type',
-          description: 'profile description',
-          external: false,
+          refId: '121212',
+          totalHostCount: 10,
           testResultHostCount: 10,
-          complianceThreshold: 1,
           compliantHostCount: 5,
           unsupportedHostCount: 5,
+          complianceThreshold: 1,
           osMajorVersion: '7',
+          lastScanned: Date.now(),
+          policyType: 'policy type',
           policy: {
             id: 'thepolicyid',
             name: 'the policy name',
@@ -47,47 +46,34 @@ const mocks = [
             id: '1',
             title: 'BO 1',
           },
-          benchmark: {
-            version: '0.1.4',
-          },
         },
       },
     },
   },
 ];
 
-jest.mock('@apollo/client');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-    useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
+    useParams: jest.fn().mockReturnValue({ report_id: '1234' }), // eslint-disable-line
 }));
 
 describe('ReportDetails', () => {
   const defaultProps = {
-    match: {
-      params: {
-        policyId: '123',
-      },
+    route: {
+      defaultTitle: 'Title',
     },
   };
 
-  beforeEach(() => {
-    useMutation.mockImplementation(() => [() => {}]);
-    useQuery.mockImplementation(() => ({ data: mocks[0].result.data }));
-    window.insights = {
-      chrome: { isBeta: jest.fn(() => true) },
-    };
-  });
-
-  it('expect to render a report properly', () => {
+  it('expect to render a report properly', async () => {
     render(
       <TestWrapper mocks={mocks}>
         <ReportDetails {...defaultProps} />
       </TestWrapper>
     );
 
+    expect(screen.getAllByText('Loading...')[0]).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'Report: the policy name' })
+      await screen.findByRole('heading', { name: 'Report: the policy name' })
     ).toBeInTheDocument();
   });
 });
