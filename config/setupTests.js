@@ -45,21 +45,30 @@ jest.mock(
     default: (props) => <button aria-label="Remediation Button" {...props} />,
   })
 );
-const recognisedAttributes = ['onLoad'];
+const ignoredAttributes = ['onLoad', 'getEntities'];
+const convertValue = (key, value) => {
+  if (ignoredAttributes.includes(key)) {
+    return '[Ignored attribute]';
+  }
+
+  return (typeof value !== 'function' && value?.toString?.()) || value;
+};
+
 const lowercasePropNames = (props) =>
   Object.fromEntries(
     Object.entries(props).map(([key, value]) => [
-      recognisedAttributes.includes(key) ? key : key.toLowerCase(),
-      (!recognisedAttributes.includes(key) &&
-        typeof value !== 'function' &&
-        value?.toString?.()) ||
-        value,
+      key.toLowerCase(),
+      convertValue(key, value),
     ])
   );
 
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   InventoryTable: global.React.forwardRef(({ children, ...props }, ref) => (
-    <div ref={ref} aria-label="Inventory Table" {...lowercasePropNames(props)}>
+    <div
+      ref={{ ...ref, onRefreshData: () => ({}) }}
+      aria-label="Inventory Table"
+      {...lowercasePropNames(props)}
+    >
       {children}
     </div>
   )),
