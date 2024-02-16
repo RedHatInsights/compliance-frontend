@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { nowrap } from '@patternfly/react-table';
 import PageHeader, {
   PageHeaderTitle,

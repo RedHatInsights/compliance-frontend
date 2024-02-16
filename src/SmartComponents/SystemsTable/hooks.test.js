@@ -4,6 +4,7 @@ import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 
 jest.mock('Utilities/Dispatcher');
 jest.mock('@apollo/client', () => ({
+  ...jest.requireActual('@apollo/client'),
   useApolloClient: jest.fn(() => ({
     query: () => Promise.resolve([]),
   })),

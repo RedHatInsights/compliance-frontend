@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 import {
   Text,
   TextVariants,

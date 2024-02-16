@@ -1,6 +1,6 @@
 import React from 'react';
 import natsort from 'natsort';
-import { gql } from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const uniq = (collection) => [...new Set(collection)];
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 import App from './App';

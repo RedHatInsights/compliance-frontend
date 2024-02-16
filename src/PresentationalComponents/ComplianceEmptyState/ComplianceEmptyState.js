@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloClient, HttpLink, InMemoryCache, gql } from '@apollo/client';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 import {
   Title,
@@ -13,7 +13,6 @@ import {
   EmptyStateIcon,
 } from '@patternfly/react-core';
 import { CloudSecurityIcon } from '@patternfly/react-icons';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
