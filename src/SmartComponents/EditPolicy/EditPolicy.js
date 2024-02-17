@@ -31,7 +31,10 @@ export const EditPolicy = ({ route }) => {
     hosts: selectedSystems,
     values: ruleValues,
   };
-  const onSaveCallback = () => navigate(location.state?.returnTo || -1);
+  const onSaveCallback = () =>
+    navigate(
+      location.state?.returnTo || `/scappolicies/${policyId + location.hash}`
+    );
 
   const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules, {
     onSave: onSaveCallback,
