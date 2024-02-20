@@ -1,38 +1,49 @@
-import { callAndSort } from './helpers';
-import buildProfiles, { buildNonCompliantProfiles } from './profiles';
+import { Factory } from 'fishery';
+import { faker } from '@faker-js/faker';
+import { id, hostname } from './helpers';
+import { testResultProfiles, buildNonCompliantProfiles } from './profiles';
 
-const buildSystem = (currentCount, attributes = {}) => ({
-  id: `system-id-${currentCount}`,
-  name: `system${currentCount}.hosts.example.com`,
-  testResultProfiles: buildProfiles(5),
-  ...attributes,
+const systemsFactory = Factory.define(({ params, transientParams }) => {
+  const [osMajorVersion, osMinorVersion] = transientParams.osVersions
+    ? faker.helpers.arrayElement(transientParams.osVersions).split('.')
+    : [];
+
+  return {
+    ...id(),
+    name: hostname(),
+    ...(osMajorVersion
+      ? {
+          osMajorVersion,
+          osMinorVersion,
+        }
+      : {}),
+    ...params,
+  };
 });
 
 export const buildNonCompliantSystems = (count = 5) =>
-  callAndSort(buildSystem, count, {
-    funcArguments: [
-      {
-        compliant: false,
-        testResultProfiles: [
-          ...buildNonCompliantProfiles(),
-          ...buildProfiles(),
-        ],
-      },
+  systemsFactory.buildList(count, {
+    compliant: false,
+    testResultProfiles: [
+      ...buildNonCompliantProfiles(),
+      ...testResultProfiles.buildList(5),
     ],
   });
 
 export const buildUnsupportedSystems = (count = 5) =>
-  callAndSort(buildSystem, count, {
-    funcArguments: [
-      {
-        compliant: false,
-        testResultProfiles: [
-          ...buildNonCompliantProfiles(2, { supported: false }),
-        ],
-      },
-    ],
+  systemsFactory.buildList(count, {
+    compliant: false,
+    testResultProfiles: [...buildNonCompliantProfiles(2, { supported: false })],
   });
 
-const buildSystems = (count = 5, attr) => callAndSort(buildSystem, count, attr);
+export const buildSystemsWithTestResultProfiles = (count = 5, params = {}) =>
+  systemsFactory.buildList(count, {
+    compliant: params.compliant || false,
+    testResultProfiles: [
+      ...(!params.compliant ? buildNonCompliantProfiles() : []),
+      ...testResultProfiles.buildList(5),
+    ],
+    ...params,
+  });
 
-export default buildSystems;
+export default systemsFactory;

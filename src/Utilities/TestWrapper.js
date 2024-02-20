@@ -10,7 +10,9 @@ const TestWrapper = ({ children, mocks = [], routes, store: propStore }) => {
   return (
     <MemoryRouter {...(routes ? { initialEntries: routes } : {})}>
       <Provider store={propStore || store}>
-        <MockedProvider mocks={mocks}>{children}</MockedProvider>
+        <MockedProvider mocks={mocks} addTypename>
+          {children}
+        </MockedProvider>
       </Provider>
     </MemoryRouter>
   );
