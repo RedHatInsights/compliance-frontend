@@ -72,7 +72,7 @@ SSGPopoverBody.propTypes = {
   newOsMinorVersion: propTypes.string,
 };
 
-const BENCHMARK_QUERY = gql`
+export const BENCHMARK_QUERY = gql`
   query PTC_Benchmark($id: String!) {
     benchmark(id: $id) {
       id
