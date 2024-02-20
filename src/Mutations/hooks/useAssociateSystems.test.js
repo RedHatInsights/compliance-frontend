@@ -1,6 +1,10 @@
 import { useMutation } from '@apollo/client';
 import useAssociateSystems from './useAssociateSystems';
-jest.mock('@apollo/client');
+
+jest.mock('@apollo/client', () => ({
+  ...jest.requireActual('@apollo/client'),
+  useMutation: jest.fn(),
+}));
 
 describe('useAssociateSystems', () => {
   afterEach(() => {
