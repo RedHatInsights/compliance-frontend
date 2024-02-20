@@ -9,7 +9,11 @@ jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
 
 jest.mock('./usePDFBuilder', () => jest.fn());
-usePDFBuilder.mockImplementation(() => async () => []);
+usePDFBuilder.mockImplementation(
+  () =>
+    async (...args) =>
+      args
+);
 
 jest.mock('./useSupportedSsgFinder', () => jest.fn());
 useSupportedSsgFinder.mockImplementation(() => async () => []);
@@ -28,7 +32,7 @@ describe('usePDFExport', () => {
       result: { current: exportData },
     } = renderHook(() => usePDFExport(DEFAULT_EXPORT_SETTINGS, {}));
 
-    expect(exportData).toMatchSnapshot();
+    expect(typeof exportData).toBe('function');
   });
 
   describe('exportData', () => {
@@ -36,8 +40,9 @@ describe('usePDFExport', () => {
       const {
         result: { current: exportData },
       } = renderHook(() => usePDFExport(DEFAULT_EXPORT_SETTINGS, {}));
+      const result = await exportData();
 
-      expect(await exportData()).toMatchSnapshot();
+      expect(result[0].nonCompliantSystemCount).toBe(2);
     });
 
     it('returns a export data with different settings', async () => {
@@ -54,8 +59,9 @@ describe('usePDFExport', () => {
           {}
         )
       );
+      const result = await exportData();
 
-      expect(await exportData()).toMatchSnapshot();
+      expect(result[0].nonCompliantSystemCount).toBe(2);
     });
   });
 });
