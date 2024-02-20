@@ -32,8 +32,9 @@ export const CreatePolicyForm = ({
   const navigate = useNavigate();
   const [stepIdReached, setStepIdReached] = useState(1);
   const resetAnchor = () => {
+    // TODO replace this with proper react router hooks
     const { location } = history;
-    if (location.hash) {
+    if (location?.hash) {
       history.push({ ...location, hash: '' });
     }
   };
