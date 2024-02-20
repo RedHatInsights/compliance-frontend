@@ -1,17 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-
 import TabbedRules from './TabbedRules';
 import { policies } from '@/__fixtures__/policies';
-import { useQuery } from '@apollo/client';
-
-jest.mock('@apollo/client');
-useQuery.mockImplementation(() => ({
-  data: {},
-  error: undefined,
-  loading: undefined,
-}));
 
 describe('TabbedRules', () => {
   it('renders tabs for new minor versions', () => {
@@ -20,6 +11,7 @@ describe('TabbedRules', () => {
       profile,
       newOsMinorVersion: profile.osMinorVersion ? undefined : '99',
     }));
+
     render(
       <TestWrapper>
         <TabbedRules tabsData={tabsData} />
