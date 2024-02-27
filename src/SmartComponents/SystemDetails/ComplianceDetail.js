@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
+import natsort from 'natsort';
 
 import EmptyState from './EmptyState';
 
@@ -65,6 +66,12 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   );
   const policies = system?.testResultProfiles;
 
+  const sorter = natsort({ desc: false, insensitive: true });
+  const sortedTestResultProfiles = system?.testResultProfiles.sort(
+    (testResultProfile1, testResultProfile2) =>
+      sorter(testResultProfile1?.name, testResultProfile2?.name)
+  );
+
   return (
     <>
       <SystemPolicyCards policies={policies} loading={loading} />
@@ -76,7 +83,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
               activeKey={selectedPolicy}
               style={{ background: 'var(--pf-global--BackgroundColor--100)' }}
             >
-              {system.testResultProfiles.map((policy, idx) => {
+              {sortedTestResultProfiles.map((policy, idx) => {
                 return (
                   <Tab
                     key={'policy-tab-' + idx}
