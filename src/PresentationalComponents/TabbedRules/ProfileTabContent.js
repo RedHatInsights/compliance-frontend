@@ -36,7 +36,7 @@ ProfileSystemCount.propTypes = {
 };
 
 const SSGVersionText = ({ profile, newOsMinorVersion }) => (
-  <Text component={TextVariants.p}>
+  <Text ouiaId="SSGVersion" component={TextVariants.p}>
     SSG version: {profile?.benchmark.version}{' '}
     <Popover
       position="right"
@@ -124,7 +124,7 @@ const ProfileTabContent = ({
     <React.Fragment>
       <Grid>
         <TextContent className="pf-u-mt-md">
-          <Text component={TextVariants.h3}>
+          <Text ouiaId="RHELVersionWithBadge" component={TextVariants.h3}>
             <span className="pf-u-pr-sm">
               <OsVersionText {...{ profile, newOsMinorVersion }} />
             </span>
