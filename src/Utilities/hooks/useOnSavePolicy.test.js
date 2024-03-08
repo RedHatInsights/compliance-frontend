@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useOnSave } from './hooks';
+import useOnSavePolicy from './useOnSavePolicy';
 
 import { usePolicy } from 'Mutations';
 jest.mock('Mutations');
@@ -7,12 +7,7 @@ jest.mock('Mutations');
 import { dispatchNotification } from 'Utilities/Dispatcher';
 jest.mock('Utilities/Dispatcher');
 
-jest.mock('Utilities/hooks/useAnchor', () => ({
-  __esModule: true,
-  default: () => () => ({}),
-}));
-
-describe('useOnSave', function () {
+describe('useOnSavePolicy', function () {
   const policy = {};
   const updatedPolicy = {};
   const mockedNotification = jest.fn();
@@ -21,16 +16,13 @@ describe('useOnSave', function () {
     dispatchNotification.mockImplementation(mockedNotification);
   });
 
-  it('returns an array with a boolean and function', () => {
-    const { result } = renderHook(() => useOnSave());
-    expect(result).toMatchSnapshot();
-  });
-
   it('returns a function to call with a policy and updated policy', async () => {
     usePolicy.mockImplementation(() => {
       return () => Promise.resolve();
     });
-    const { result, waitForValueToChange } = renderHook(() => useOnSave());
+    const { result, waitForValueToChange } = renderHook(() =>
+      useOnSavePolicy()
+    );
 
     act(() => {
       result.current[1](policy, updatedPolicy);
@@ -49,7 +41,9 @@ describe('useOnSave', function () {
     usePolicy.mockImplementation(() => {
       return () => Promise.reject({});
     });
-    const { result, waitForValueToChange } = renderHook(() => useOnSave());
+    const { result, waitForValueToChange } = renderHook(() =>
+      useOnSavePolicy()
+    );
 
     act(() => {
       result.current[1](policy, updatedPolicy);

@@ -1,88 +1,46 @@
-import { useLocation } from 'react-router-dom';
-import { EditPolicy, MULTIVERSION_QUERY } from './EditPolicy.js';
-jest.mock('Mutations');
+import propTypes from 'prop-types';
+import { render } from '@testing-library/react';
+import { fireEvent, screen, within } from '@testing-library/dom';
+import { MemoryRouter } from 'react-router-dom';
+import buildPolicy from '@/__factories__/policies.js';
+import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
+import useBenchmarksQuery from 'Utilities/hooks/useBenchmarksQuery';
+import EditPolicy from './EditPolicy';
+import useOnSavePolicy from 'Utilities/hooks/useOnSavePolicy';
 
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useSelector: jest.fn(() => ({})),
-  useDispatch: jest.fn(() => ({})),
-}));
+jest.mock('Utilities/hooks/useOnSavePolicy');
+useOnSavePolicy.mockImplementation(({ onSave }) => {
+  return [false, onSave];
+});
+jest.mock('Utilities/hooks/usePolicyQuery');
+jest.mock('Utilities/hooks/useBenchmarksQuery');
+useBenchmarksQuery.mockImplementation(() => {
+  return { data: {}, loading: false, error: false };
+});
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-    useParams: jest.fn().mockReturnValue({ policy_id: '1' }), // eslint-disable-line
-  useLocation: jest.fn(),
-}));
-
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
-jest.mock('Utilities/hooks/useDocumentTitle', () => ({
-  useTitleEntity: () => ({}),
+const mockRoute = {
+  title: 'Edit Policy',
   setTitle: () => ({}),
-}));
+};
 
-const mocks = [
-  {
-    request: {
-      query: MULTIVERSION_QUERY,
-      variables: {
-        policyId: '1234',
-      },
-    },
-    result: {
-      data: {
-        profile: {
-          id: '1',
-          refId: '121212',
-          name: 'profile1',
-          description: 'profile description',
-          totalHostCount: 1,
-          complianceThreshold: 1,
-          compliantHostCount: 1,
-          policy: {
-            name: 'parentpolicy',
-          },
-          businessObjective: {
-            id: '1',
-            title: 'BO 1',
-          },
-          benchmark: {
-            title: 'benchmark',
-            version: '0.1.5',
-          },
-        },
-      },
-    },
-  },
-];
-
-jest.mock('@apollo/client', () => ({
-  useQuery: () => ({
-    data: mocks[0].result.data,
-    error: undefined,
-    loading: undefined,
-  }),
-}));
+const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
+TestWrapper.propTypes = { children: propTypes.node };
 
 describe('EditPolicy', () => {
-  const defaultProps = {
-    onClose: jest.fn(),
-    dispatch: jest.fn(),
-    change: jest.fn(),
-  };
+  it('expected to render', () => {
+    usePolicyQuery.mockImplementation(() => {
+      return { data: { profile: buildPolicy() }, loading: false, error: false };
+    });
+    render(
+      <TestWrapper>
+        <EditPolicy route={mockRoute} />
+      </TestWrapper>
+    );
 
-  beforeEach(() => {
-    useLocation.mockImplementation(() => ({
-      hash: '#details',
-    }));
-  });
+    const tabBar = screen.getByRole('tablist');
+    expect(within(tabBar).getByText('Rules')).not.toBeNull();
+    expect(within(tabBar).getByText('Systems')).not.toBeNull();
 
-  it('expect to render without error', () => {
-    const wrapper = shallow(<EditPolicy {...defaultProps} />);
-
-    expect(toJson(wrapper)).toMatchSnapshot();
+    fireEvent.click(screen.getByLabelText('Close'));
   });
 });

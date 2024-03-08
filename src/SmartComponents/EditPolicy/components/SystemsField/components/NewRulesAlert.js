@@ -6,7 +6,6 @@ import { Alert, AlertActionLink } from '@patternfly/react-core';
 
 const NewRulesAlert = () => {
   const navigate = useNavigate();
-
   const location = useLocation();
 
   return (
