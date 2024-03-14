@@ -18,8 +18,6 @@ export default (osVersions) => {
   const osMajorVersions = osMajorVersionsFromArray(osVersions);
   const osMajorVersionToSelect = faker.helpers.arrayElement(osMajorVersions);
 
-  // expect(JSON.stringify(osMajorVersions, null, '\t')).toMatchSnapshot();
-
   const [profileToSelect, randomInUseProfile] = faker.helpers.arrayElements(
     osMajorVersionToSelect.profiles
   );
@@ -28,17 +26,12 @@ export default (osVersions) => {
     {},
     { transient: { osVersions: profileToSelect.supportedOsVersions } }
   );
-  // expect(JSON.stringify(systemsToSelect, null, '\t')).toMatchSnapshot();
-  // expect(
-  //   JSON.stringify([profileToSelect, randomInUseProfile], null, '\t')
-  // ).toMatchSnapshot();
 
   const randomSystems = faker.helpers.arrayElements(systemsToSelect, {
     min: 1,
     max: systemsToSelect.length,
   });
   const randomSystemsCounts = countOsMinorVersions(randomSystems);
-  // expect(JSON.stringify(randomSystemsCounts, null, '\t')).toMatchSnapshot();
 
   const benchmarksForProfile = benchmarks.buildList(
     randomSystemsCounts.length,
@@ -52,8 +45,6 @@ export default (osVersions) => {
       },
     }
   );
-
-  expect(JSON.stringify(benchmarksForProfile, null, '\t')).toMatchSnapshot();
 
   const benchmarksFilter = `os_major_version = ${
     osMajorVersionToSelect.osMajorVersion
@@ -72,7 +63,7 @@ export default (osVersions) => {
   const mocks = [
     graphqlResult(SUPPORTED_PROFILES, {
       osMajorVersions,
-      profiles: [randomInUseProfile],
+      profiles: randomInUseProfile ? [randomInUseProfile] : [],
     }),
 
     // This silence the apollo mock provider warning on the Systems step

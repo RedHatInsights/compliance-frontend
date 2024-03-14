@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import columns from './__fixtures__/columns';
 import items from './__fixtures__/items';
 import useExport, { jsonForItems, csvForItems } from './useExport';

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import {
-  Title,
   Button,
   Bullseye,
   EmptyState,
   EmptyStateBody,
-  EmptyStateSecondaryActions,
   EmptyStateVariant,
   EmptyStateIcon,
   List,
   ListItem,
+  EmptyStateActions,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from '@patternfly/react-core';
 import {
   ProgressBar,
@@ -111,31 +112,35 @@ export const FinishedCreatePolicy = ({
   return (
     <Bullseye>
       <EmptyState variant={EmptyStateVariant.full}>
-        <EmptyStateIcon icon={WrenchIcon} />
+        <EmptyStateHeader
+          titleText="Creating policy"
+          icon={<EmptyStateIcon icon={WrenchIcon} />}
+          headingLevel="h1"
+        />
         <br />
-        <Title headingLevel="h1" size="lg">
-          Creating policy
-        </Title>
+
         <EmptyStateBody>
           <ProgressBar percent={percent} failed={failed} />
         </EmptyStateBody>
-        <EmptyStateBody className={failed && 'wizard-failed-message'}>
-          {message}
-        </EmptyStateBody>
-        <EmptyStateWithErrors errors={errors} />
-        <EmptyStateSecondaryActions>
-          {(percent === 100 || failed) && (
-            <Button
-              variant={'primary'}
-              ouiaId="ReturnToAppButton"
-              onClick={() => {
-                onWizardFinish();
-              }}
-            >
-              {failed ? 'Back' : 'Return to application'}
-            </Button>
-          )}
-        </EmptyStateSecondaryActions>
+        <EmptyStateFooter>
+          <EmptyStateBody className={failed && 'wizard-failed-message'}>
+            {message}
+          </EmptyStateBody>
+          <EmptyStateWithErrors errors={errors} />
+          <EmptyStateActions>
+            {(percent === 100 || failed) && (
+              <Button
+                variant={'primary'}
+                ouiaId="ReturnToAppButton"
+                onClick={() => {
+                  onWizardFinish();
+                }}
+              >
+                {failed ? 'Back' : 'Return to application'}
+              </Button>
+            )}
+          </EmptyStateActions>
+        </EmptyStateFooter>
       </EmptyState>
     </Bullseye>
   );

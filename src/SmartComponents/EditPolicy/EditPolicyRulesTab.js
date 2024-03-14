@@ -4,7 +4,8 @@ import {
   EmptyStateBody,
   Text,
   TextContent,
-  Title,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
@@ -33,16 +34,19 @@ const getBenchmarkProfile = (benchmark, profileRefId) =>
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>
-    <Title headingLevel="h5" size="lg">
-      No rules can be configured
-    </Title>
+    <EmptyStateHeader
+      titleText="No rules can be configured"
+      headingLevel="h5"
+    />
     <EmptyStateBody>
       This policy has no associated systems, and therefore no rules can be
       configured.
     </EmptyStateBody>
-    <EmptyStateBody>
-      Add at least one system to configure rules for this policy.
-    </EmptyStateBody>
+    <EmptyStateFooter>
+      <EmptyStateBody>
+        Add at least one system to configure rules for this policy.
+      </EmptyStateBody>
+    </EmptyStateFooter>
   </EmptyState>
 );
 

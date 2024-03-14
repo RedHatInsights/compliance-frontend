@@ -11,8 +11,8 @@ import {
   Text,
   TextContent,
   TextVariants,
-  WizardContextConsumer,
 } from '@patternfly/react-core';
+import { WizardContextConsumer } from '@patternfly/react-core/deprecated';
 import { SystemsTable } from 'SmartComponents';
 import { compose } from 'redux';
 import propTypes from 'prop-types';

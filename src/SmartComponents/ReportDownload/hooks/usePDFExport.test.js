@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useApolloClient } from '@apollo/client';
 import apolloQueryMock from '../__mocks__/apolloQueryMock';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Label } from '@patternfly/react-core';
-import ExclamationCircleIcon from '@patternfly/react-icons/dist/esm/icons/exclamation-circle-icon';
+import { ExclamationCircleIcon } from '@patternfly/react-icons';
 
 export const itemIdentifier = (item) => `${item.profile.id}|${item.refId}`;
 

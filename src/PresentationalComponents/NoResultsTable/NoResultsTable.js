@@ -4,7 +4,7 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateVariant,
-  Title,
+  EmptyStateHeader,
 } from '@patternfly/react-core';
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 
@@ -12,9 +12,10 @@ const NoResultsTable = () => (
   <EmptyTable>
     <Bullseye>
       <EmptyState variant={EmptyStateVariant.full}>
-        <Title headingLevel="h5" size="lg">
-          No matching policies found
-        </Title>
+        <EmptyStateHeader
+          titleText="No matching policies found"
+          headingLevel="h5"
+        />
         <EmptyStateBody>
           This filter criteria matches no policies. <br /> Try changing your
           filter settings.

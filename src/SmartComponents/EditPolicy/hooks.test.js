@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useOnSave } from './hooks';
 
 import { usePolicy } from 'Mutations';
@@ -16,51 +16,67 @@ describe('useOnSave', function () {
   const policy = {};
   const updatedPolicy = {};
   const mockedNotification = jest.fn();
+  const onSaveCallBack = jest.fn();
+  const onErrorCallback = jest.fn();
 
   beforeEach(() => {
+    onSaveCallBack.mockReset();
+    onErrorCallback.mockReset();
     dispatchNotification.mockImplementation(mockedNotification);
-  });
-
-  it('returns an array with a boolean and function', () => {
-    const { result } = renderHook(() => useOnSave());
-    expect(result).toMatchSnapshot();
   });
 
   it('returns a function to call with a policy and updated policy', async () => {
     usePolicy.mockImplementation(() => {
       return () => Promise.resolve();
     });
-    const { result, waitForValueToChange } = renderHook(() => useOnSave());
+    const { result } = renderHook(() =>
+      useOnSave(policy, updatedPolicy, {
+        onSave: onSaveCallBack,
+        onError: onErrorCallback,
+      })
+    );
+    const [, onSave] = result.current;
 
     act(() => {
-      result.current[1](policy, updatedPolicy);
+      onSave();
     });
 
-    await waitForValueToChange(() => result.current[0]);
+    await waitFor(() =>
+      expect(mockedNotification).toHaveBeenCalledWith({
+        variant: 'success',
+        title: 'Policy updated',
+        autoDismiss: true,
+      })
+    );
 
-    expect(mockedNotification).toHaveBeenCalledWith({
-      variant: 'success',
-      title: 'Policy updated',
-      autoDismiss: true,
-    });
+    expect(onSaveCallBack).toHaveBeenCalled();
+    expect(onErrorCallback).not.toHaveBeenCalled();
   });
 
   it('returns a function to call with a policy and updated policy and can raise an error', async () => {
     usePolicy.mockImplementation(() => {
       return () => Promise.reject({});
     });
-    const { result, waitForValueToChange } = renderHook(() => useOnSave());
-
+    const { result } = renderHook(() =>
+      useOnSave(policy, updatedPolicy, {
+        onSave: onSaveCallBack,
+        onError: onErrorCallback,
+      })
+    );
+    const [, onSave] = result.current;
     act(() => {
-      result.current[1](policy, updatedPolicy);
+      onSave();
     });
 
-    await waitForValueToChange(() => result.current[0]);
+    await waitFor(() =>
+      expect(mockedNotification).toHaveBeenCalledWith({
+        variant: 'danger',
+        title: 'Error updating policy',
+        description: undefined,
+      })
+    );
 
-    expect(mockedNotification).toHaveBeenCalledWith({
-      variant: 'danger',
-      title: 'Error updating policy',
-      description: undefined,
-    });
+    expect(onErrorCallback).toHaveBeenCalled();
+    expect(onSaveCallBack).not.toHaveBeenCalled();
   });
 });

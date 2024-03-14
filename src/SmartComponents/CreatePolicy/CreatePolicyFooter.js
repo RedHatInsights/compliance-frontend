@@ -1,9 +1,8 @@
+import { Button, ButtonVariant } from '@patternfly/react-core';
 import {
-  Button,
-  ButtonVariant,
   WizardContextConsumer,
   WizardFooter,
-} from '@patternfly/react-core';
+} from '@patternfly/react-core/deprecated';
 import React from 'react';
 
 const CreatePolicyFooter = () => (

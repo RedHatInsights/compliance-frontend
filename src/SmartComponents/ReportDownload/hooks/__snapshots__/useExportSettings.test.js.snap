@@ -2,20 +2,6 @@
 
 exports[`useExportSettings returns an object to get and set export settings 1`] = `
 {
-  "all": [
-    {
-      "exportSettings": {
-        "compliantSystems": false,
-        "nonCompliantSystems": true,
-        "nonReportingSystems": true,
-        "topTenFailedRules": true,
-        "unsupportedSystems": true,
-        "userNotes": undefined,
-      },
-      "isValid": true,
-      "setExportSetting": [Function],
-    },
-  ],
   "current": {
     "exportSettings": {
       "compliantSystems": false,
@@ -28,6 +14,5 @@ exports[`useExportSettings returns an object to get and set export settings 1`] 
     "isValid": true,
     "setExportSetting": [Function],
   },
-  "error": undefined,
 }
 `;

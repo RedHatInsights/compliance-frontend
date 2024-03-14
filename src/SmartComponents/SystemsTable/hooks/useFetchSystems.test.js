@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useApolloClient } from '@apollo/client';
 import { GET_MINIMAL_SYSTEMS } from '../constants';
 import useFetchSystems from './useFetchSystems';

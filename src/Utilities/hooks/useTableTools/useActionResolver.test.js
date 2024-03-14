@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useActionResolverWithItems } from './useActionResolver';
 import items from './__fixtures__/items';
 
