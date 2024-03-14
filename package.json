@@ -63,9 +63,11 @@
     "roots": [
       "<rootDir>/src/"
     ],
-    "transformIgnorePatterns": [],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(uuid|p-all|p-map|aggregate-error|indent-string|clean-stack))"
+    ],
     "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy",
+      "\\.(css|scss|svg)$": "identity-obj-proxy",
       "^SmartComponents$": "<rootDir>/src/SmartComponents",
       "^SmartComponents/(.*)": "<rootDir>/src/SmartComponents/$1",
       "^PresentationalComponents$": "<rootDir>/src/PresentationalComponents",
@@ -74,11 +76,7 @@
       "^Utilities/(.*)": "<rootDir>/src/Utilities/$1",
       "^Store/(.*)": "<rootDir>/src/store/$1",
       "^Store$": "<rootDir>/src/store",
-      "^@/(.*)$": "<rootDir>/src/$1",
-      "customReact": "react",
-      "PFReactCore": "@patternfly/react-core",
-      "PFReactTable": "@patternfly/react-table",
-      "classnames": "<rootDir>/node_modules/classnames/index.js"
+      "^@/(.*)$": "<rootDir>/src/$1"
     }
   },
   "nyc": {
