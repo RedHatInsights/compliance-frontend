@@ -80,11 +80,7 @@ describe('StatViewWithError', () => {
       </StateViewWithError>
     );
 
-    expect(
-      screen.getByText(
-        'There was a problem processing the request. Please try again.'
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
     expect(screen.queryByText('LOADING')).not.toBeInTheDocument();
     expect(screen.queryByText('DATA')).not.toBeInTheDocument();
   });

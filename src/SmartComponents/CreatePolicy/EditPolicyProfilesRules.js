@@ -7,12 +7,12 @@ import {
 import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
-  Title,
   Text,
   TextContent,
   TextVariants,
   EmptyState,
   EmptyStateBody,
+  EmptyStateHeader,
 } from '@patternfly/react-core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -175,9 +175,10 @@ export const EditPolicyProfilesRules = ({
       >
         <StateViewPart stateKey="noRuleSets">
           <EmptyState>
-            <Title headingLevel="h1" size="xl">
-              No rules can be configured
-            </Title>
+            <EmptyStateHeader
+              titleText="No rules can be configured"
+              headingLevel="h1"
+            />
             <EmptyStateBody>
               The policy type selected does not exist for the systems and OS
               versions selected in the previous steps.

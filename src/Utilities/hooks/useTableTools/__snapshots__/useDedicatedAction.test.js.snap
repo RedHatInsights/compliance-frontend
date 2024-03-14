@@ -2,17 +2,6 @@
 
 exports[`useDedicatedAction returns a dedicated action toolbar config 1`] = `
 {
-  "all": [
-    {
-      "toolbarProps": {
-        "dedicatedAction": <div>
-          <dedicatedAction
-            selected={[]}
-          />
-        </div>,
-      },
-    },
-  ],
   "current": {
     "toolbarProps": {
       "dedicatedAction": <div>
@@ -22,6 +11,5 @@ exports[`useDedicatedAction returns a dedicated action toolbar config 1`] = `
       </div>,
     },
   },
-  "error": undefined,
 }
 `;

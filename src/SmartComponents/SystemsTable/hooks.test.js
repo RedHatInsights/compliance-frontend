@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import { useApolloClient } from '@apollo/client';
 import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 
@@ -85,7 +85,7 @@ describe('useSystemsExport', () => {
     expect(result.current).toMatchSnapshot();
   });
 
-  it('returns a export with isDisabled true on total 0 ', () => {
+  it('returns a export with isDisabled true on total 0 ', async () => {
     const apolloClient = jest.fn(() => ({
       query: () => Promise.resolve([]),
     }));
@@ -98,8 +98,8 @@ describe('useSystemsExport', () => {
       })
     );
 
-    act(() => {
-      result.current.onSelect();
+    await act(async () => {
+      await result.current.onSelect();
     });
 
     expect(apolloClient).toHaveBeenCalled();

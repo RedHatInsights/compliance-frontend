@@ -5,43 +5,46 @@ import {
 } from 'PresentationalComponents';
 import { PlusCircleIcon } from '@patternfly/react-icons';
 import {
-  Title,
   Bullseye,
   EmptyState,
   EmptyStateBody,
-  EmptyStatePrimary,
-  EmptyStateSecondaryActions,
   EmptyStateIcon,
+  EmptyStateActions,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from '@patternfly/react-core';
 
 const NoPoliciesState = () => (
   <Bullseye>
     <EmptyState>
-      <EmptyStateIcon icon={PlusCircleIcon} />
-      <Title headingLevel="h1" size="lg">
-        This system is not part of any SCAP policies defined within Compliance.
-      </Title>
+      <EmptyStateHeader
+        titleText="This system is not part of any SCAP policies defined within Compliance."
+        icon={<EmptyStateIcon icon={PlusCircleIcon} />}
+        headingLevel="h1"
+      />
       <EmptyStateBody>
         To assess and monitor compliance against a SCAP policy for this system,
         add it to an existing policy or create a new policy.
       </EmptyStateBody>
-      <EmptyStatePrimary>
-        <Link
-          to="/scappolicies/new"
-          Component={LinkButton}
-          componentProps={{
-            variant: 'primary',
-            ouiaId: 'CreateNewPolicyButton',
-          }}
-        >
-          Create new policy
-        </Link>
-      </EmptyStatePrimary>
-      <EmptyStateSecondaryActions>
-        <Link variant="plain" to="/scappolicies">
-          View compliance policies
-        </Link>
-      </EmptyStateSecondaryActions>
+      <EmptyStateFooter>
+        <EmptyStateActions>
+          <Link
+            to="/scappolicies/new"
+            Component={LinkButton}
+            componentProps={{
+              variant: 'primary',
+              ouiaId: 'CreateNewPolicyButton',
+            }}
+          >
+            Create new policy
+          </Link>
+        </EmptyStateActions>
+        <EmptyStateActions>
+          <Link variant="plain" to="/scappolicies">
+            View compliance policies
+          </Link>
+        </EmptyStateActions>
+      </EmptyStateFooter>
     </EmptyState>
   </Bullseye>
 );

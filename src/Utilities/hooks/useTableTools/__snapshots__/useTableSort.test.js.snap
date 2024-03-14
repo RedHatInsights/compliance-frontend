@@ -2,63 +2,6 @@
 
 exports[`useTableSort returns a table sort configuration 1`] = `
 {
-  "all": [
-    {
-      "sorter": [Function],
-      "tableProps": {
-        "cells": [
-          {
-            "exportKey": "id",
-            "sortByProperty": "id",
-            "title": "ID",
-          },
-          {
-            "exportKey": "name",
-            "renderFunc": [Function],
-            "sortByProperty": "name",
-            "title": "Name",
-          },
-          {
-            "exportKey": "name",
-            "renderExport": [Function],
-            "sortByProperty": "name",
-            "title": "Another Name column",
-          },
-          {
-            "renderExport": [Function],
-            "sortByProperty": "description",
-            "title": "Description",
-          },
-          {
-            "exportKey": "severity",
-            "renderFunc": [Function],
-            "sortByFunction": [Function],
-            "title": "Severity sorted by function",
-            "transforms": [
-              [Function],
-            ],
-          },
-          {
-            "exportKey": "severity",
-            "renderFunc": [Function],
-            "sortByArray": [
-              "high",
-              "medium",
-              "low",
-              "unknown",
-            ],
-            "sortByProperty": "severity",
-            "title": "Severity by Array",
-          },
-        ],
-        "onSort": [Function],
-        "sortBy": {
-          "direction": "asc",
-          "index": 1,
-        },
-      },
-    },
-  ],
   "current": {
     "sorter": [Function],
     "tableProps": {
@@ -114,6 +57,5 @@ exports[`useTableSort returns a table sort configuration 1`] = `
       },
     },
   },
-  "error": undefined,
 }
 `;

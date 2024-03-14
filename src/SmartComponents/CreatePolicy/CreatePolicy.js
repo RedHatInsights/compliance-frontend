@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { formValueSelector, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
-import { Wizard } from '@patternfly/react-core';
+import { Wizard } from '@patternfly/react-core/deprecated';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
 import { default as EditPolicyRules } from './EditPolicyProfilesRules';
 import EditPolicySystems from './EditPolicySystems';

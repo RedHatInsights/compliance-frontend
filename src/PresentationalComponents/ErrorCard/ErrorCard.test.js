@@ -7,11 +7,7 @@ describe('ErrorCard', () => {
   it('expect to render without error', () => {
     render(<ErrorCard />);
 
-    expect(
-      screen.getByText(
-        'There was a problem processing the request. Please try again.'
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
   });
 
   it('expect to render with error', () => {

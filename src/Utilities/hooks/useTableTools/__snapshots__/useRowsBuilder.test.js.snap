@@ -2,16 +2,6 @@
 
 exports[`useRowsBuilder returns a rows configuration 1`] = `
 {
-  "all": [
-    {
-      "tableProps": {
-        "rows": [],
-      },
-      "toolbarProps": {
-        "pagination": undefined,
-      },
-    },
-  ],
   "current": {
     "tableProps": {
       "rows": [],
@@ -20,6 +10,5 @@ exports[`useRowsBuilder returns a rows configuration 1`] = `
       "pagination": undefined,
     },
   },
-  "error": undefined,
 }
 `;
