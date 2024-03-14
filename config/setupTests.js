@@ -56,10 +56,11 @@ const convertValue = (key, value) => {
 
 const lowercasePropNames = (props) =>
   Object.fromEntries(
-    Object.entries(props).map(([key, value]) => [
-      key.toLowerCase(),
-      convertValue(key, value),
-    ])
+    Object.entries(props).reduce((entries, [key, value]) => {
+      return !ignoredAttributes.includes(key)
+        ? [...entries, [key.toLowerCase(), convertValue(key, value)]]
+        : entries;
+    }, [])
   );
 
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
