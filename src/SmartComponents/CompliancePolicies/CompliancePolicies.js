@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import gql from 'graphql-tag';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,

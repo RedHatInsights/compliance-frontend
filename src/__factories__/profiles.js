@@ -1,50 +1,105 @@
-import { callAndSort } from './helpers';
-import { SEVERITY_LEVELS } from '@/constants';
+import { Factory } from 'fishery';
+import { faker } from '@faker-js/faker';
+import { refId, randomNumbersArray, id } from './helpers';
 
-const buildRule = (
-  currentCount = 0,
-  { parentCount = 0, ...attributes } = {}
-) => ({
-  refId: `xccdf_org.ssgproject.profile_${parentCount}_rule_${currentCount}`,
-  title: `Profile #${parentCount} Rule #${currentCount}`,
-  compliant: true,
-  remediationAvailable: true,
-  severity: SEVERITY_LEVELS[currentCount % SEVERITY_LEVELS.length],
-  precedence: currentCount * parentCount,
-  ...attributes,
-});
+import rules, { nonComplianceRules, manualRules } from './rules';
+import benchmarks from './benchmarks';
 
-export const buildRules = (count = 5, attributes = {}, offset = 0) =>
-  callAndSort(buildRule, count, { funcArguments: [attributes], offset });
+const profilesFactory = Factory.define(
+  ({ sequence, params, transientParams }) => {
+    const osMajorVersion = params.osMajorVersion || '1';
+    const osMinorVersions =
+      transientParams.osMinorVersions ||
+      randomNumbersArray(2).map((v) => `${v}`);
 
-const buildProfile = (currentCount, attributes = {}) => ({
-  refId: `xccdf_org.ssgproject.content_profile_${currentCount}`,
-  name: `Test Result Profile #${currentCount}`,
-  lastScanned: new Date('2021-08-31T00:00:00+00:00'),
-  rules: buildRules(),
-  compliant: true,
-  benchmark: { version: '0.14.5' },
-  supported: true,
-  osMajorVersion: currentCount,
-  ...attributes,
-});
+    return {
+      ...id(),
+      refId: refId('profile', sequence),
+      name: `Profile #${sequence}`,
+      osMajorVersion,
+      supportedOsVersions: faker.helpers
+        .arrayElements(osMinorVersions)
+        .map((osMinorVersion) => `${osMajorVersion}.${osMinorVersion}`),
+      benchmark: params.benchmark || benchmarks.build(),
+      rules: rules.buildList(2),
+      ...params,
+    };
+  }
+);
 
-const buildProfiles = (count = 5, attributes = {}) =>
-  callAndSort(buildProfile, count, { funcArguments: [attributes] });
+const rulesFromFactories = (factories, allParams, allOptions) => {
+  if (factories) {
+    return factories.flatMap(({ factory, count, params, options }) =>
+      factory.buildList(
+        count,
+        {
+          ...allParams,
+          ...params,
+        },
+        {
+          ...allOptions,
+          ...options,
+        }
+      )
+    );
+  }
+};
 
-export const buildNonCompliantProfiles = (count = 5, attributes = {}) =>
-  callAndSort(buildProfile, count, {
-    funcArguments: [
-      {
-        compliant: false,
-        rules: [
-          ...buildRules(15, { compliant: false, parentCount: count }),
-          ...buildRules(15, { parentCount: count }),
-          ...buildRules(5, { remediationAvailable: false, parentCount: count }),
+export const testResultProfiles = Factory.define(
+  ({ sequence, associations, params, transientParams }) => {
+    const profile = {
+      ...id(),
+      refId: refId('profile', sequence),
+      name: `Test Result Profile #${sequence}`,
+      lastScanned: faker.date.recent({ days: 10 }),
+      compliant: true,
+      supported: true,
+      description: faker.lorem.paragraph(),
+      osMajorVersion: '9',
+    };
+
+    return {
+      ...profile,
+      rules:
+        associations.rules ||
+        rulesFromFactories(
+          transientParams.ruleFactories || [{ factory: rules, count: 10 }],
+          {},
+          {
+            transient: { profile },
+          }
+        ),
+      ...params,
+    };
+  }
+);
+
+export const buildNonCompliantProfiles = (count = 5, attributes = {}) => {
+  return testResultProfiles.buildList(
+    count,
+    {
+      compliant: false,
+      ...attributes,
+    },
+    {
+      transient: {
+        ruleFactories: [
+          {
+            factory: rules,
+            count: 1,
+          },
+          {
+            factory: nonComplianceRules,
+            count: 1,
+          },
+          {
+            factory: manualRules,
+            count: 1,
+          },
         ],
-        ...attributes,
       },
-    ],
-  });
+    }
+  );
+};
 
-export default buildProfiles;
+export default profilesFactory;

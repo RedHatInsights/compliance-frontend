@@ -1,7 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
-import { Table, TableBody, TableHeader } from '@patternfly/react-table';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+} from '@patternfly/react-table/deprecated';
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
 import useTableTools from '../useTableTools';

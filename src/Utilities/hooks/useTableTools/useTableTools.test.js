@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import useTableTools from './useTableTools';
 import items from './__fixtures__/items';
 import columns from './__fixtures__/columns';

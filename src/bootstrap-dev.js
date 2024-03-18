@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import DevAppEntry from './DevAppEntry';
 
-ReactDOM.render(<DevAppEntry />, document.getElementById('root'));
-
-export default DevAppEntry;
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<DevAppEntry />);

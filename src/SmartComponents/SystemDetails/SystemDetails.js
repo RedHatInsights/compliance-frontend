@@ -1,7 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import Skeleton, {

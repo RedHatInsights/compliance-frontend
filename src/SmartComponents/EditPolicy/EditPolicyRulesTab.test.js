@@ -1,3 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import { useQuery } from '@apollo/client';
 import { policies } from '@/__fixtures__/policies.js';
 import EditPolicyRulesTab, { toTabsData } from './EditPolicyRulesTab.js';
@@ -22,35 +26,43 @@ describe('EditPolicyRulesTab', () => {
     loading: undefined,
   }));
 
-  it('expect to render without error', () => {
-    const wrapper = shallow(
-      <EditPolicyRulesTab
-        setNewRuleTabs={() => {}}
-        policy={{ policy: { profiles: [] } }}
-        selectedRuleRefIds={[]}
-        setSelectedRuleRefIds={() => {}}
-        osMinorVersionCounts={{}}
-      />
+  it('expect to render note when no rules can be configured', () => {
+    render(
+      <TestWrapper>
+        <EditPolicyRulesTab
+          setNewRuleTabs={() => {}}
+          policy={{ policy: { profiles: [] } }}
+          selectedRuleRefIds={[]}
+          setSelectedRuleRefIds={() => {}}
+          osMinorVersionCounts={{}}
+        />
+      </TestWrapper>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    expect(screen.getByText('No rules can be configured')).toBeInTheDocument();
   });
 
   it('expect to render with policy passed', () => {
-    const wrapper = shallow(
-      <EditPolicyRulesTab
-        setNewRuleTabs={() => {}}
-        policy={policies.edges[0].node}
-        selectedRuleRefIds={[]}
-        setSelectedRuleRefIds={() => {}}
-        osMinorVersionCounts={{
-          9: {
-            osMinorVersion: 9,
-            count: 1,
-          },
-        }}
-      />
+    render(
+      <TestWrapper>
+        <EditPolicyRulesTab
+          setNewRuleTabs={() => {}}
+          policy={policies.edges[0].node}
+          selectedRuleRefIds={[]}
+          setSelectedRuleRefIds={() => {}}
+          osMinorVersionCounts={{
+            9: {
+              osMinorVersion: 9,
+              count: 1,
+            },
+          }}
+        />
+      </TestWrapper>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    expect(
+      screen.getByRole('tab', { name: 'Rules for RHEL 7.9' })
+    ).toBeInTheDocument();
   });
 });
 

@@ -1,3 +1,7 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import EditPolicySystemsTab from './EditPolicySystemsTab.js';
 
 describe('EditPolicySystemsTab', () => {
@@ -7,18 +11,15 @@ describe('EditPolicySystemsTab', () => {
       osMajorVersion: '7',
       supportedOsVersions: ['1.2', '1.1', '1.3', '1.4'],
     },
-    newRuleTabs: false,
   };
 
-  it('expect to render without error', async () => {
-    const wrapper = shallow(<EditPolicySystemsTab {...defaultProps} />);
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-
-  it('expect to render with new tabs alert', async () => {
-    const wrapper = shallow(
-      <EditPolicySystemsTab {...defaultProps} newRuleTabs={true} />
+  it('expect to render the Inventory Table', () => {
+    render(
+      <TestWrapper>
+        <EditPolicySystemsTab {...defaultProps} />
+      </TestWrapper>
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+
+    expect(screen.getByLabelText('Inventory Table')).toBeInTheDocument();
   });
 });

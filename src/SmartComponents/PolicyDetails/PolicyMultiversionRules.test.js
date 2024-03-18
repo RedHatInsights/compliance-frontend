@@ -1,5 +1,9 @@
-import PolicyMultiversionRules from './PolicyMultiversionRules';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { policies } from '@/__fixtures__/policies';
+import TestWrapper from '@/Utilities/TestWrapper';
+
+import PolicyMultiversionRules from './PolicyMultiversionRules';
 
 describe('PolicyMultiversionRules', () => {
   it('expect to render without error', () => {
@@ -13,8 +17,16 @@ describe('PolicyMultiversionRules', () => {
       ...policies.edges[0].node,
       hosts,
     };
-    const wrapper = shallow(<PolicyMultiversionRules policy={policy} />);
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    render(
+      <TestWrapper>
+        <PolicyMultiversionRules policy={policy} />
+      </TestWrapper>
+    );
+
+    expect(screen.getAllByRole('tab').length).toEqual(
+      policy.policy.profiles.filter(({ osMinorVersion }) => !!osMinorVersion)
+        .length
+    );
   });
 });

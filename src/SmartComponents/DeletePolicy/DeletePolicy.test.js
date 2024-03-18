@@ -1,6 +1,10 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import { useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { dispatchAction } from 'Utilities/Dispatcher';
+import TestWrapper from '@/Utilities/TestWrapper';
 
 import DeletePolicy from './DeletePolicy.js';
 
@@ -21,16 +25,11 @@ jest.mock('react-router-dom', () => ({
   useLocation: jest.fn(() => ({})),
 }));
 
-jest.mock(
-  '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate',
-  () => () => ({})
-);
-
 describe('DeletePolicy', () => {
   const policy = { id: 1, name: 'foo' };
 
   beforeEach(() => {
-    useMutation.mockImplementation((query, options) => {
+    useMutation.mockImplementation((_query, options) => {
       return [
         function () {
           options.onCompleted();
@@ -45,9 +44,18 @@ describe('DeletePolicy', () => {
     dispatchAction.mockImplementation(() => {});
   });
 
-  it('expect to render an open modal without error', () => {
-    const component = shallow(<DeletePolicy />);
+  it('expect to render a modal to delete a policy', () => {
+    render(
+      <TestWrapper>
+        <DeletePolicy />
+      </TestWrapper>
+    );
 
-    expect(toJson(component)).toMatchSnapshot();
+    expect(
+      screen.getByText(
+        'I understand this will delete the policy and all associated reports'
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText('Test Policy 1')).toBeInTheDocument();
   });
 });

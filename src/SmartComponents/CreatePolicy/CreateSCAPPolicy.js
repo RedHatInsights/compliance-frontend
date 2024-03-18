@@ -8,7 +8,6 @@ import {
   TextVariants,
   Tile,
 } from '@patternfly/react-core';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
@@ -21,40 +20,7 @@ import { compose } from 'redux';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import PolicyTypesTable from './Components/PolicyTypeTable';
 import PolicyTypeTooltip from './Components/PolicyTypeTooltip';
-
-const SUPPORTED_PROFILES = gql`
-  query supportedProfilesByOSMajor {
-    osMajorVersions {
-      edges {
-        node {
-          osMajorVersion
-          profiles {
-            id
-            name
-            refId
-            description
-            supportedOsVersions
-            benchmark {
-              id
-              refId
-            }
-          }
-        }
-      }
-    }
-    profiles(search: "external = false and canonical = false") {
-      edges {
-        node {
-          id
-          refId
-          benchmark {
-            refId
-          }
-        }
-      }
-    }
-  }
-`;
+import { SUPPORTED_PROFILES } from './constants';
 
 export const CreateSCAPPolicy = ({
   change,

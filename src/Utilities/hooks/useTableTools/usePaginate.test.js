@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import usePaginate from './usePaginate';
 import items from './__fixtures__/items';
 

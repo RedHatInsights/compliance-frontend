@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const POLICY_QUERY_MINIMAL = gql`
   query PQ_ProfileMinimal($policyId: String!) {

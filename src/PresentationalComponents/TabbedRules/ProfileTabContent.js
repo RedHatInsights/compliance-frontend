@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 import {
   Text,
   TextVariants,
@@ -73,7 +72,7 @@ SSGPopoverBody.propTypes = {
   newOsMinorVersion: propTypes.string,
 };
 
-const BENCHMARK_QUERY = gql`
+export const BENCHMARK_QUERY = gql`
   query PTC_Benchmark($id: String!) {
     benchmark(id: $id) {
       id

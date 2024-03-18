@@ -1,26 +1,46 @@
+import propTypes from 'prop-types';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { reduxForm } from 'redux-form';
+import TestWrapper from '@/Utilities/TestWrapper';
 
 import { ProfileThresholdField } from './ProfileThresholdField';
 
-jest.mock('redux-form', () => ({
-  Field: ({ defaultValue, props }) => <div {...props}>{defaultValue}</div>, // eslint-disable-line
-  reduxForm: () => () => ({}),
-}));
+const Form = reduxForm({
+  form: 'policyForm',
+})(({ children }) => children);
+
+const FormTestWrapper = ({ children }) => (
+  <TestWrapper>
+    <Form>{children}</Form>
+  </TestWrapper>
+);
+FormTestWrapper.propTypes = {
+  children: propTypes.node,
+};
 
 describe('ProfileThresholdField', () => {
   it('expect to render a threshold without error', () => {
     const threshold = 10;
-    render(<ProfileThresholdField previousThreshold={threshold} />);
+    render(
+      <FormTestWrapper>
+        <ProfileThresholdField previousThreshold={threshold} />
+      </FormTestWrapper>
+    );
 
-    expect(screen.getByText(threshold)).toBeInTheDocument();
+    expect(screen.getByLabelText('compliance threshold')).toBeInTheDocument();
   });
 
   it('expect to render a validation error', () => {
-    render(<ProfileThresholdField previousThreshold={120} />);
+    render(
+      <FormTestWrapper>
+        <ProfileThresholdField previousThreshold={120} />
+      </FormTestWrapper>
+    );
 
-    expect(
-      screen.getByText('Threshold has to be a number between 0 and 100')
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText('compliance threshold')).toHaveAttribute(
+      'aria-invalid',
+      'true'
+    );
   });
 });

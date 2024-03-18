@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { nowrap } from '@patternfly/react-table';
 import PageHeader, {
   PageHeaderTitle,
@@ -10,7 +9,7 @@ import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 
-const QUERY = gql`
+export const QUERY = gql`
   {
     profiles(search: "external = false and canonical = false") {
       edges {
