@@ -90,7 +90,7 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
           rel="noopener noreferrer"
           href={
             `https://access.redhat.com/documentation/en-us/red_hat_insights/` +
-            `2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index`
+            `1-latest/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index`
           }
         >
           Learn about OpenSCAP and Compliance
