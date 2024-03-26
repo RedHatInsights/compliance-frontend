@@ -27,7 +27,14 @@ const includeFedMods = (plugins, fedMods) => ({
         exposes: fedMods,
         shared: [
           {
-            'react-router-dom': { singleton: true, requiredVersion: '*' },
+            'react-router-dom': {
+              singleton: true,
+              requiredVersion: '*',
+            },
+            axios: {
+              singleton: true,
+              requiredVersion: '^1.6.8',
+            },
           },
         ],
       }

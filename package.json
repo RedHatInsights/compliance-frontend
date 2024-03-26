@@ -5,6 +5,9 @@
   "insights": {
     "appname": "compliance"
   },
+  "overrides": {
+    "axios": "^1.6.8"
+  },
   "dependencies": {
     "@apollo/client": "3.4.16",
     "@babel/runtime": "^7.22.6",
