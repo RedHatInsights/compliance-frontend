@@ -95,6 +95,8 @@ export const SystemsTable = ({
     defaultFilter
   );
 
+  console.log('systemsFilter', systemsFilter);
+
   const constructedQuery = useMemo(() => constructQuery(columns), [columns]);
 
   const systemFetchArguments = useMemo(

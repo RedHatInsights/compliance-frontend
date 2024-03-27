@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -38,8 +38,13 @@ export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
   });
   const { osVersions } = data?.systems || {};
 
+  const fun = () => {
+    console.log('here', osVersions, showFilter);
+    return osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
+  }
+
   return showFilter
-    ? osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
+    ? fun()
     : [];
 };
 
