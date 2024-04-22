@@ -7,7 +7,11 @@ import Skeleton, {
   SkeletonSize,
 } from '@redhat-cloud-services/frontend-components/Skeleton';
 
-import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
+import {
+  PageSection,
+  Breadcrumb,
+  BreadcrumbItem,
+} from '@patternfly/react-core';
 import Details from './ComplianceDetail';
 import {
   BreadcrumbLinkItem,
@@ -46,9 +50,9 @@ export const SystemDetails = ({ route }) => {
           </Breadcrumb>
           <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
-        <section className="pf-c-page__main-section">
+        <PageSection>
           <Details hidePassed inventoryId={inventoryId} />
-        </section>
+        </PageSection>
       </StateViewPart>
       <StateViewPart stateKey="loading">
         <PageHeader>
