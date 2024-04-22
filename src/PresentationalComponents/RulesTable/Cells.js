@@ -23,7 +23,10 @@ export const Rule = ({ title, identifier, compliant = true }) => {
     <TextContent
       style={{
         ...(!compliant
-          ? { fontWeight: 'bold', color: 'var(--pf-global--danger-color--100)' }
+          ? {
+              fontWeight: 'bold',
+              color: 'var(--pf-v5-global--danger-color--100)',
+            }
           : {}),
       }}
     >

@@ -4,7 +4,7 @@ import { Text, TextVariants } from '@patternfly/react-core';
 
 export const GreySmallText = ({ children }) => (
   <Text
-    style={{ color: 'var(--pf-global--Color--200)' }}
+    style={{ color: 'var(--pf-v5-global--Color--200)' }}
     component={TextVariants.small}
   >
     {children}

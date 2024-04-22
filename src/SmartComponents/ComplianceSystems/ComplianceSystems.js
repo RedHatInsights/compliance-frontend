@@ -34,7 +34,7 @@ export const ComplianceSystems = () => {
       <PageHeader className="page-header">
         <PageHeaderTitle title="Systems" />
       </PageHeader>
-      <section className="pf-c-page__main-section">
+      <section className="pf-v5-c-page__main-section">
         <StateViewWithError stateValues={{ error, data, loading }}>
           <StateViewPart stateKey="data">
             {policies && (

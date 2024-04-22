@@ -36,8 +36,8 @@ const filterValidations = {
     return true;
 
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);
-    const filterDropDownToggle = toolbar.querySelector('.pf-c-select__toggle');
-    const selectMenu = toolbar.querySelector('.pf-c-select__menu');
+    const filterDropDownToggle = toolbar.querySelector('.pf-v5-c-select__toggle');
+    const selectMenu = toolbar.querySelector('.pf-v5-c-select__menu');
     const randomIndex = Math.floor(Math.random() * filter.items.length);
     const testItem = queryByText(selectMenu, filter.items[randomIndex].label);
     const testChildItem = queryByText(
@@ -55,13 +55,13 @@ const filterValidations = {
   },
   checkbox: (toolbar, filter) => {
     const selectable = validateAndOpenFilterSelectable(toolbar, filter);
-    const filterDropDownToggle = toolbar.querySelector('.pf-c-select__toggle');
+    const filterDropDownToggle = toolbar.querySelector('.pf-v5-c-select__toggle');
 
     act(() => {
       userEvent.click(filterDropDownToggle);
     });
 
-    const selectMenu = toolbar.querySelector('.pf-c-select__menu');
+    const selectMenu = toolbar.querySelector('.pf-v5-c-select__menu');
     const randomIndex = Math.floor(Math.random() * filter.items.length);
     const testItem = queryByText(selectMenu, filter.items[randomIndex].label);
 

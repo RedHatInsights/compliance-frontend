@@ -87,7 +87,7 @@ export const PDFExportDownload = ({ id }) => (
     to={`/reports/${id}/pdf`}
     Component={LinkButton}
     componentProps={{
-      className: 'pf-u-mr-md',
+      className: 'pf-v5-u-mr-md',
       variant: 'plain',
       ouiaId: 'ReportsDownloadReportPDFLink',
     }}

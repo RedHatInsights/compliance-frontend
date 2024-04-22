@@ -22,7 +22,7 @@ import * as Columns from '../SystemsTable/Columns';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-u-mb-md">
+    <TextContent className="pf-v5-u-mb-md">
       <Text>
         You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
         Insights and enabled for Compliance.
@@ -30,7 +30,7 @@ const EmptyState = ({ osMajorVersion }) => (
         Policies must be created with at least one system.
       </Text>
     </TextContent>
-    <TextContent className="pf-u-mb-md">
+    <TextContent className="pf-v5-u-mb-md">
       <Text>
         Choose a different RHEL version, or connect <b>RHEL {osMajorVersion}</b>{' '}
         systems to Insights.
@@ -52,7 +52,7 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-u-mb-md">
+    <TextContent className="pf-v5-u-mb-md">
       <Text>
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.
@@ -82,7 +82,7 @@ export const EditPolicySystems = ({
   );
   return (
     <React.Fragment>
-      <TextContent className="pf-u-mb-md">
+      <TextContent className="pf-v5-u-mb-md">
         <Text component={TextVariants.h1}>Systems</Text>
       </TextContent>
       <Form>

@@ -61,7 +61,7 @@ export const PolicyDetails = ({ route }) => {
         <PageHeader>
           <PolicyDetailsContentLoader />
         </PageHeader>
-        <section className="pf-c-page__main-section">
+        <section className="pf-v5-c-page__main-section">
           <Spinner />
         </section>
       </StateViewPart>
@@ -91,7 +91,7 @@ export const PolicyDetails = ({ route }) => {
                 <Tab title="Systems" id="policy-systems" eventKey="systems" />
               </RoutedTabs>
             </PageHeader>
-            <section className="pf-c-page__main-section">
+            <section className="pf-v5-c-page__main-section">
               <TabSwitcher defaultTab={defaultTab}>
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} refetch={refetch} />

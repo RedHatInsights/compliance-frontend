@@ -50,11 +50,11 @@ const PolicyRules = () => {
     </PageHeader>
   ) : (
     <React.Fragment>
-      <PageHeader className="pf-u-pt-xl pf-u-pl-xl">
+      <PageHeader className="pf-v5-u-pt-xl pf-v5-u-pl-xl">
         <PageHeaderTitle
           title={`Compliance | Default rules for ${data?.profile.name} policy`}
         />
-        <TextContent className="pf-u-mb-md pf-u-mt-md">
+        <TextContent className="pf-v5-u-mb-md pf-v5-u-mt-md">
           <Text>
             This is a read-only view of the full set of rules and their
             description for
@@ -67,7 +67,7 @@ const PolicyRules = () => {
         </TextContent>
       </PageHeader>
       {data && (
-        <div className="pf-u-p-xl" style={{ background: '#fff' }}>
+        <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
           <RulesTable
             remediationsEnabled={false}
             columns={[Columns.Name, Columns.Severity, Columns.Remediation]}

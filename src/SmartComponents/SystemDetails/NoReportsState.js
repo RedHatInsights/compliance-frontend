@@ -22,7 +22,7 @@ const NoReportsState = ({ system }) => (
             size="xl"
             style={{
               fontWeight: '500',
-              color: 'var(--pf-global--primary-color--100)',
+              color: 'var(--pf-v5-global--primary-color--100)',
             }}
           />
         }

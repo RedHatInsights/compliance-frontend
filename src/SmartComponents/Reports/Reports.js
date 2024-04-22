@@ -82,12 +82,12 @@ export const Reports = () => {
       <ReportsHeader />
       <StateViewWithError stateValues={{ error, data, loading }}>
         <StateViewPart stateKey="loading">
-          <section className="pf-c-page__main-section">
+          <section className="pf-v5-c-page__main-section">
             <SkeletonTable colSize={3} rowSize={10} />
           </section>
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <section className="pf-c-page__main-section">
+          <section className="pf-v5-c-page__main-section">
             {showView ? (
               <ReportsTable {...{ profiles }} />
             ) : (

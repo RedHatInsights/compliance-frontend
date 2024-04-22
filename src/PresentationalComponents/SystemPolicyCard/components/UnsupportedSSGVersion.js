@@ -27,7 +27,7 @@ const UnsupportedSSGVersion = ({ ssgVersion, style, ...props }) => {
               style={{
                 marginLeft: '.5em',
                 cursor: 'pointer',
-                color: 'var(--pf-global--Color--200)',
+                color: 'var(--pf-v5-global--Color--200)',
               }}
             />
           </Popover>

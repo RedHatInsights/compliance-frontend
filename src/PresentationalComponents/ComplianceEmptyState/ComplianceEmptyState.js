@@ -54,7 +54,7 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
           <EmptyStateIcon
             style={{
               fontWeight: '500',
-              color: 'var(--pf-global--primary-color--100)',
+              color: 'var(--pf-v5-global--primary-color--100)',
             }}
             size="xl"
             title="Compliance"

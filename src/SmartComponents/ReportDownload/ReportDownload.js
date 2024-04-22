@@ -53,7 +53,7 @@ export const ReportDownload = () => {
       asyncFunction={exportPDF}
       buttonProps={buttonProps}
       fallback={<FallbackButton />}
-      className="pf-u-mr-sm"
+      className="pf-v5-u-mr-sm"
       onSuccess={() => navigate(-1)}
     />,
     <Button

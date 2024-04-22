@@ -21,8 +21,8 @@ const ResetRules = ({
     handleSelect && handleSelect(profile, newOsMinorVersion, originalRules);
   };
   return (
-    <a className="pf-u-ml-lg pf-u-mr-xl" onClick={resetDefaultRules}>
-      <RebootingIcon className="pf-u-mr-sm" />
+    <a className="pf-v5-u-ml-lg pf-v5-u-mr-xl" onClick={resetDefaultRules}>
+      <RebootingIcon className="pf-v5-u-mr-sm" />
       Reset to default
     </a>
   );

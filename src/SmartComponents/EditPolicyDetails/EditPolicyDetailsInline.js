@@ -90,7 +90,7 @@ const EditPolicyDetailsInline = ({
   }, [isEditOpen]);
 
   return (
-    <FormGroup className="pf-c-inline-edit pf-m-inline-editable">
+    <FormGroup className="pf-v5-c-inline-edit pf-v5-m-inline-editable">
       <Text component={TextVariants.h5}>
         {label}
         {hasPermission && (
@@ -108,19 +108,22 @@ const EditPolicyDetailsInline = ({
           <PolicyBusinessObjectiveTooltip />
         ) : null}
       </Text>
-      <Text className="pf-c-inline-edit__value" id="pf-global--spacer--xs">
+      <Text
+        className="pf-v5-c-inline-edit__value"
+        id="pf-v5-global--spacer--xs"
+      >
         {text}
       </Text>
-      <div className="pf-c-inline-edit__action pf-m-enable-editable">
+      <div className="pf-v5-c-inline-edit__action pf-v5-m-enable-editable">
         <Button
-          className="pf-c-button pf-m-plain"
+          className="pf-v5-c-button pf-v5-m-plain"
           type="button"
           id="edit-button"
           aria-label="Edit"
           aria-labelledby="single-editable-edit-button"
         />
       </div>
-      <div className="pf-c-inline-edit__group">
+      <div className="pf-v5-c-inline-edit__group">
         {isEditOpen ? (
           <>
             <div>
@@ -132,10 +135,10 @@ const EditPolicyDetailsInline = ({
                 <ComplianceThresholdHelperText threshold={value} />
               )}
             </div>
-            <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
-              <div className="pf-c-inline-edit__action pf-m-valid">
+            <div className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group">
+              <div className="pf-v5-c-inline-edit__action pf-v5-m-valid">
                 <Button
-                  className="pf-c-button pf-m-plain"
+                  className="pf-v5-c-button pf-v5-m-plain"
                   type="button"
                   aria-label="Save edits"
                   isDisabled={!validThreshold ? true : false}
@@ -146,9 +149,9 @@ const EditPolicyDetailsInline = ({
                   <i className="fas fa-check" aria-hidden="true"></i>
                 </Button>
               </div>
-              <div className="pf-c-inline-edit__action">
+              <div className="pf-v5-c-inline-edit__action">
                 <Button
-                  className="pf-c-button pf-m-plain"
+                  className="pf-v5-c-button pf-v5-m-plain"
                   type="button"
                   aria-label="Cancel edits"
                   onClick={handleCloseEdit}

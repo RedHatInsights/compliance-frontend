@@ -24,7 +24,7 @@ const NoSystemsTableWithWarning = () => (
           <Text component={TextVariants.p}>
             Add systems to this policy from the systems page
           </Text>
-          <Text style={{ color: 'var(--pf-global--warning-color--100)' }}>
+          <Text style={{ color: 'var(--pf-v5-global--warning-color--100)' }}>
             <ExclamationTriangleIcon /> {WARNING_TEXT}
           </Text>
         </TextContent>

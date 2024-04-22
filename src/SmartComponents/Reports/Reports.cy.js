@@ -192,7 +192,7 @@ describe('Reports table tests', () => {
       cy.ouiaId('ConditionalFilter', 'button').click();
       cy.ouiaId('Policy name', 'button').click();
       cy.ouiaId('ConditionalFilter', 'input').type('Foo bar');
-      cy.get('div[class="pf-c-empty-state"]').contains(
+      cy.get('div[class="pf-v5-c-empty-state"]').contains(
         'No matching reports found'
       );
     });

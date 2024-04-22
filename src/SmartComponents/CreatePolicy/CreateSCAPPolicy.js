@@ -56,10 +56,10 @@ export const CreateSCAPPolicy = ({
       </StateViewPart>
       <StateViewPart stateKey="data">
         <TextContent>
-          <Text component={TextVariants.h1} className="pf-u-mb-md">
+          <Text component={TextVariants.h1} className="pf-v5-u-mb-md">
             Create SCAP policy
           </Text>
-          <Text className="pf-u-mb-md">
+          <Text className="pf-v5-u-mb-md">
             Select the operating system and policy type for this policy.
           </Text>
         </TextContent>
@@ -69,7 +69,7 @@ export const CreateSCAPPolicy = ({
               osMajorVersions.map(({ osMajorVersion }) => (
                 <Tile
                   key={`rhel${osMajorVersion}-select`}
-                  className="pf-u-mr-md"
+                  className="pf-v5-u-mr-md"
                   title={`RHEL ${osMajorVersion}`}
                   onClick={() => {
                     change('osMajorVersion', osMajorVersion);

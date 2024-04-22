@@ -39,7 +39,7 @@ const CreatePolicyFooter = () => (
               </Button>
             )}
             {!activeStep.hideCancelButton && (
-              <div className="pf-c-wizard__footer-cancel">
+              <div className="pf-v5-c-wizard__footer-cancel">
                 <Button
                   id={`${stepNameEdited}-cancel-button`}
                   variant={ButtonVariant.link}

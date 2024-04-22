@@ -152,7 +152,7 @@ export const EditPolicyProfilesRules = ({
 
   return (
     <React.Fragment>
-      <TextContent className="pf-u-pb-md">
+      <TextContent className="pf-v5-u-pb-md">
         <Text component={TextVariants.h1}>Rules</Text>
         <Text>
           Customize your <b>{policy.name}</b> SCAP policy by including and

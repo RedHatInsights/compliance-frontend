@@ -80,7 +80,9 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
           {system.testResultProfiles.length > 1 && (
             <Tabs
               activeKey={selectedPolicy}
-              style={{ background: 'var(--pf-global--BackgroundColor--100)' }}
+              style={{
+                background: 'var(--pf-v5-global--BackgroundColor--100)',
+              }}
             >
               {sortedTestResultProfiles.map((policy, idx) => {
                 return (
