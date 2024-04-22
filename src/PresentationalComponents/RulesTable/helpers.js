@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Label } from '@patternfly/react-core';
+import { Text, Label, Icon } from '@patternfly/react-core';
 import { ExclamationCircleIcon } from '@patternfly/react-icons';
 
 export const itemIdentifier = (item) => `${item.profile.id}|${item.refId}`;
@@ -48,7 +48,11 @@ const growBranch = (item, axilFunction, showFailed, idPrefix) => {
               {item.title}{' '}
               {showFailed && failedCount > 0 && (
                 <Label
-                  icon={<ExclamationCircleIcon className="ins-u-failed" />}
+                  icon={
+                    <Icon className="ins-u-failed">
+                      <ExclamationCircleIcon />{' '}
+                    </Icon>
+                  }
                 >
                   {failedCount}x fail
                 </Label>
