@@ -4,7 +4,6 @@ import {
   formValueSelector,
   reduxForm,
 } from 'redux-form';
-import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   Text,
@@ -186,9 +185,9 @@ export const EditPolicyProfilesRules = ({
           </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="loading">
-          <EmptyTable>
+          <EmptyState>
             <Spinner />
-          </EmptyTable>
+          </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="data">
           <TabbedRules

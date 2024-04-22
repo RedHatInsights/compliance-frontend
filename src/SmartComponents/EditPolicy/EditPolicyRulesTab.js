@@ -9,7 +9,6 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
-import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import {
@@ -169,9 +168,9 @@ export const EditPolicyRulesTab = ({
       }}
     >
       <StateViewPart stateKey="loading">
-        <EmptyTable>
+        <EmptyState>
           <Spinner />
-        </EmptyTable>
+        </EmptyState>
       </StateViewPart>
       <StateViewPart stateKey="data">
         <TextContent>
