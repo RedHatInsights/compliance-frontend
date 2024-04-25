@@ -74,18 +74,21 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       tabindex="0"
     >
       <div
-        class="ins-c-table__empty"
+        class="pf-v5-c-empty-state"
       >
-         
         <div
-          class="ins-c-spinner"
-          role="status"
+          class="pf-v5-c-empty-state__content"
         >
-          <span
-            class="pf-v5-u-screen-reader"
+          <div
+            class="ins-c-spinner"
+            role="status"
           >
-            Loading...
-          </span>
+            <span
+              class="pf-v5-u-screen-reader"
+            >
+              Loading...
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -191,18 +194,21 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       tabindex="0"
     >
       <div
-        class="ins-c-table__empty"
+        class="pf-v5-c-empty-state"
       >
-         
         <div
-          class="ins-c-spinner"
-          role="status"
+          class="pf-v5-c-empty-state__content"
         >
-          <span
-            class="pf-v5-u-screen-reader"
+          <div
+            class="ins-c-spinner"
+            role="status"
           >
-            Loading...
-          </span>
+            <span
+              class="pf-v5-u-screen-reader"
+            >
+              Loading...
+            </span>
+          </div>
         </div>
       </div>
     </section>

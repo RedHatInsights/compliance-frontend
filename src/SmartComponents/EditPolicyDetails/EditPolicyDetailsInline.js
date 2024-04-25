@@ -6,7 +6,10 @@ import {
   Text,
   TextInput,
   TextVariants,
+  Icon,
 } from '@patternfly/react-core';
+import { TimesIcon, CheckIcon } from '@patternfly/react-icons';
+
 import {
   PolicyThresholdTooltip,
   PolicyBusinessObjectiveTooltip,
@@ -46,8 +49,8 @@ const EditPolicyDetailsInline = ({
 
   const [value, setValue] = useState(text);
   const [validThreshold, setValidThreshold] = useState(true);
-  const handleTextUpdate = (newText, e) => {
-    if (e.target.id === 'policydetails-input-threshold') {
+  const handleTextUpdate = (event, newText) => {
+    if (event.target.id === 'policydetails-input-threshold') {
       if (thresholdValid(newText) === true) {
         setValue(newText);
         setValidThreshold(true);
@@ -108,21 +111,25 @@ const EditPolicyDetailsInline = ({
           <PolicyBusinessObjectiveTooltip />
         ) : null}
       </Text>
-      <Text
-        className="pf-v5-c-inline-edit__value"
-        id="pf-v5-global--spacer--xs"
-      >
-        {text}
-      </Text>
-      <div className="pf-v5-c-inline-edit__action pf-v5-m-enable-editable">
-        <Button
-          className="pf-v5-c-button pf-v5-m-plain"
-          type="button"
-          id="edit-button"
-          aria-label="Edit"
-          aria-labelledby="single-editable-edit-button"
-        />
-      </div>
+      {!isEditOpen && (
+        <>
+          <Text
+            className="pf-v5-c-inline-edit__value"
+            id="pf-v5-global--spacer--xs"
+          >
+            {text}
+          </Text>
+          <div className="pf-v5-c-inline-edit__action pf-v5-m-enable-editable">
+            <Button
+              className="pf-v5-c-button pf-v5-m-plain"
+              type="button"
+              id="edit-button"
+              aria-label="Edit"
+              aria-labelledby="single-editable-edit-button"
+            />
+          </div>
+        </>
+      )}
       <div className="pf-v5-c-inline-edit__group">
         {isEditOpen ? (
           <>
@@ -135,10 +142,21 @@ const EditPolicyDetailsInline = ({
                 <ComplianceThresholdHelperText threshold={value} />
               )}
             </div>
-            <div className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group">
-              <div className="pf-v5-c-inline-edit__action pf-v5-m-valid">
+            <div
+              className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group"
+              style={{
+                display: 'inline',
+              }}
+            >
+              <div
+                className="pf-v5-c-inline-edit__action pf-v5-m-valid"
+                style={{
+                  display: 'inline',
+                }}
+              >
                 <Button
-                  className="pf-v5-c-button pf-v5-m-plain"
+                  className="pf-v5-c-button"
+                  variant="plain"
                   type="button"
                   aria-label="Save edits"
                   isDisabled={!validThreshold ? true : false}
@@ -146,18 +164,28 @@ const EditPolicyDetailsInline = ({
                   onClick={() => onSave()}
                   style={{ 'margin-left': '5px' }}
                 >
-                  <i className="fas fa-check" aria-hidden="true"></i>
+                  <Icon>
+                    <CheckIcon />
+                  </Icon>
                 </Button>
               </div>
-              <div className="pf-v5-c-inline-edit__action">
+              <div
+                className="pf-v5-c-inline-edit__action"
+                style={{
+                  display: 'inline',
+                }}
+              >
                 <Button
-                  className="pf-v5-c-button pf-v5-m-plain"
+                  className="pf-v5-c-button"
+                  variant="plain"
                   type="button"
                   aria-label="Cancel edits"
                   onClick={handleCloseEdit}
                   style={{ 'margin-left': '5px' }}
                 >
-                  <i className="fas fa-times" aria-hidden="true"></i>
+                  <Icon>
+                    <TimesIcon />
+                  </Icon>
                 </Button>
               </div>
             </div>
