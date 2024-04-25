@@ -102,18 +102,21 @@ describe('useBulkSelectWithItems', () => {
     const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['0 selected'],
+      count: 20,
     });
 
     getSelectAll(result).onClick();
     await waitFor(() => expect(getBulkSelect(result).checked).toBe(true));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['20 selected'],
+      count: 20,
     });
 
     getSelectAll(result).onClick();
     await waitFor(() =>
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
+        count: 20,
       })
     );
   });
@@ -122,6 +125,7 @@ describe('useBulkSelectWithItems', () => {
     const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['0 selected'],
+      count: 20,
     });
 
     getSelectPage(result).onClick();
@@ -129,6 +133,7 @@ describe('useBulkSelectWithItems', () => {
     await waitFor(() => expect(getBulkSelect(result).checked).toBe(true));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['20 selected'],
+      count: 20,
     });
 
     getSelectPage(result).onClick();
@@ -136,6 +141,7 @@ describe('useBulkSelectWithItems', () => {
     await waitFor(() =>
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
+        count: 20,
       })
     );
   });
@@ -144,18 +150,21 @@ describe('useBulkSelectWithItems', () => {
     const { result } = renderHook(() => useBulkSelectWithItems(defaultOptions));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['0 selected'],
+      count: 20,
     });
 
     getSelectAll(result).onClick();
     await waitFor(() => expect(getBulkSelect(result).checked).toBe(true));
     expect(getBulkSelect(result).toggleProps).toEqual({
       children: ['20 selected'],
+      count: 20,
     });
 
     getSelectNone(result).onClick();
     await waitFor(() =>
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['0 selected'],
+        count: 20,
       })
     );
   });
@@ -174,6 +183,7 @@ describe('useBulkSelectWithItems', () => {
     await waitFor(() =>
       expect(getBulkSelect(result).toggleProps).toEqual({
         children: ['5 selected'],
+        count: 5,
       })
     );
   });
