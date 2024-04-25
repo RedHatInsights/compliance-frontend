@@ -65,13 +65,16 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
             <EditPolicyDetailsInline
               policy={policy}
               refetch={refetch}
-              component={TextArea}
+              Component={TextArea}
               text={descriptionText}
               variant="description"
               inlineClosedText={businessText}
               label="Policy description"
               propertyName="description"
-              className="pf-v5-c-form-control pf-v5-u-w-100-on-lg"
+              className="pf-v5-c-form-control"
+              style={{
+                minWidth: '50%',
+              }}
             />
           </Text>
           <Text component={TextVariants.h5}>Operating system</Text>

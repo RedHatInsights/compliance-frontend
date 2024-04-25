@@ -74,7 +74,11 @@ const InlineEdit = ({
         {open ? (
           <>
             <div>
-              <Component value={value} onChange={onChange} {...props} />
+              <Component
+                value={value}
+                onChange={(_, v) => onChange(v)}
+                {...props}
+              />
             </div>
             <div className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group">
               <div className="pf-v5-c-inline-edit__action pf-v5-m-valid">

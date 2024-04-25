@@ -29,7 +29,7 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
         name="complianceThreshold"
         id="complianceThreshold"
         isRequired={true}
-        onChange={onThresholdChange}
+        onChange={(_, v) => onThresholdChange(v)}
         validated={validThreshold ? 'default' : 'error'}
         defaultValue={threshold}
         aria-label="compliance threshold"
