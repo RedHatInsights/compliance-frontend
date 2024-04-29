@@ -1,7 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { FormGroup } from '@patternfly/react-core';
+import {
+  FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
+} from '@patternfly/react-core';
 import { ReduxFormTextInput } from 'PresentationalComponents/ReduxFormWrappers/ReduxFormWrappers';
 import {
   PolicyThresholdTooltip,
@@ -17,11 +22,6 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
   return (
     <FormGroup
       fieldId="policy-threshold"
-      validated={validThreshold ? 'default' : 'error'}
-      helperTextInvalid={
-        <ComplianceThresholdHelperText threshold={threshold} />
-      }
-      helperText="A value of 95% or higher is recommended"
       labelIcon={<PolicyThresholdTooltip />}
       label="Compliance threshold (%)"
     >
@@ -37,6 +37,17 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
         type="number"
         style={{ width: '60%', display: 'block' }}
       />
+      {validThreshold ? (
+        <FormHelperText>
+          <HelperText>
+            <HelperTextItem variant="error">
+              A value of 95% or higher is recommended
+            </HelperTextItem>
+          </HelperText>
+        </FormHelperText>
+      ) : (
+        <ComplianceThresholdHelperText threshold={threshold} />
+      )}
     </FormGroup>
   );
 };
