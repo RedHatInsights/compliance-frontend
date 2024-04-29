@@ -99,7 +99,7 @@ const DeletePolicy = () => {
             label="I understand this will delete the policy and all associated reports"
             id={`deleting-policy-check-${id}`}
             isChecked={deleteEnabled}
-            onChange={(_event, val) => setDeleteEnabled(val)}
+            onChange={(_, v) => setDeleteEnabled(v)}
           />
         </StateViewPart>
       </StateViewWithError>
