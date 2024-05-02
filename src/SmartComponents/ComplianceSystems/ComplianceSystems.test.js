@@ -1,25 +1,33 @@
-import { ComplianceSystems } from './ComplianceSystems.js';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
 
-jest.mock('react-redux', () => ({
-  ...jest.requireActual('react-redux'),
-  useDispatch: jest.fn(() => ({})),
-}));
+import { useQuery } from '@apollo/client';
+jest.mock('@apollo/client');
 
-jest.mock('@apollo/client', () => ({
-  useQuery: () => ({ data: [], error: undefined, loading: undefined }),
-}));
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useLocation: () => ({
-    pathname: '',
-  }),
-}));
+import ComplianceSystems from './ComplianceSystems.js';
 
 describe('ComplianceSystems', () => {
-  it('expect to render without error', () => {
-    const wrapper = shallow(<ComplianceSystems />);
+  it('expect to render inventory table when policies are loaded', () => {
+    useQuery.mockImplementation(() => ({
+      loading: false,
+      data: {
+        profiles: {
+          edges: [
+            {
+              node: { id: 1, name: 'RHEL', osMajorVersion: '7' },
+            },
+          ],
+        },
+      },
+    }));
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    render(
+      <TestWrapper>
+        <ComplianceSystems />
+      </TestWrapper>
+    );
+
+    expect(screen.getByLabelText('Inventory Table')).toBeInTheDocument();
   });
 });

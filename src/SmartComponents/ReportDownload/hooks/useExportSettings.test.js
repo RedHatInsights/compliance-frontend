@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import useExportSettings from './useExportSettings';
 

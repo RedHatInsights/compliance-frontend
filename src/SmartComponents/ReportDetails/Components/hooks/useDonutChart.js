@@ -1,8 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { ChartLabel } from '@patternfly/react-charts/dist/esm/components/ChartLabel/index';
-import { ChartThemeVariant } from '@patternfly/react-charts/dist/esm/components/ChartTheme/index';
-import { ChartTooltip } from '@patternfly/react-charts/dist/esm/components/ChartTooltip/index';
+import {
+  ChartTooltip,
+  ChartLabel,
+  ChartThemeColor,
+} from '@patternfly/react-charts';
 import { Icon } from '@patternfly/react-core';
 import { paletteColors } from '../../../../constants';
 import { fixedPercentage } from 'Utilities/TextHelper';
@@ -92,7 +94,7 @@ const useDonutChart = (profile) => {
       identifier: donutId,
       title: compliancePercentage,
       subTitle: 'Compliant',
-      themeVariant: ChartThemeVariant.light,
+      themeVariant: ChartThemeColor.light,
       colorScale: chartColorScale,
       style: { fontSize: 20 },
       innerRadius: 88,

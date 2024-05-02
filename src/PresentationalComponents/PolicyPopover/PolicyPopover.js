@@ -33,7 +33,10 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
         </TextContent>
       }
       footerContent={
-        <Link to={'/scappolicies/' + policy?.id} className="pf-u-font-size-md">
+        <Link
+          to={'/scappolicies/' + policy?.id}
+          className="pf-v5-u-font-size-md"
+        >
           View policy
         </Link>
       }

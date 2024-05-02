@@ -76,7 +76,7 @@ const TabbedRules = ({
           eventKey={eventKey(profile, newOsMinorVersion)}
           title={
             <span>
-              <span className="pf-u-pr-sm">
+              <span className="pf-v5-u-pr-sm">
                 <OsVersionText
                   profile={profile}
                   newOsMinorVersion={newOsMinorVersion}

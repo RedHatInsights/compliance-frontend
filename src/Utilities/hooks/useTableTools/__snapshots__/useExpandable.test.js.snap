@@ -36,15 +36,6 @@ exports[`useExpandable returns a transformer to open items 1`] = `
 
 exports[`useExpandable returns an expandable configuration 1`] = `
 {
-  "all": [
-    {
-      "openItems": [],
-      "tableProps": {
-        "onCollapse": [Function],
-      },
-      "transformer": [Function],
-    },
-  ],
   "current": {
     "openItems": [],
     "tableProps": {
@@ -52,7 +43,6 @@ exports[`useExpandable returns an expandable configuration 1`] = `
     },
     "transformer": [Function],
   },
-  "error": undefined,
 }
 `;
 

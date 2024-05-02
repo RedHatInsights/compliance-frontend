@@ -6,17 +6,7 @@ extends:
   - "plugin:jest-dom/recommended"
 
 globals:
-  beforeAll: true
-  describe: true
-  expect: true
-  global: true
-  insights: true
-  it: true
-  mount: true
-  process: true
-  render: true
-  shallow: true
   React: true
-  Promise: true
-  toJson: true
-  renderJson: true
+
+rules:
+   rulesdir/forbid-pf-relative-imports: 'off'

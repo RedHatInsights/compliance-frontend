@@ -31,14 +31,14 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
   );
 
   return (
-    <Stack style={{ marginBottom: 'var(--pf-global--spacer--lg)' }}>
-      <StackItem style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}>
-        <Text className="pf-c-form__label" component={TextVariants.h5}>
+    <Stack style={{ marginBottom: 'var(--pf-v5-global--spacer--lg)' }}>
+      <StackItem style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}>
+        <Text className="pf-v5-c-form__label" component={TextVariants.h5}>
           <b>Depends on values</b>{' '}
           {enableAllEdit && (
             <Button
               aria-label="Edit value button"
-              className="pf-u-ml-sm"
+              className="pf-v5-u-ml-sm"
               onClick={() => {
                 setEditValues((current) => !current);
               }}
@@ -50,7 +50,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
           {nonDefaultValues && (
             <Button
               aria-label="Reset value button"
-              className="pf-u-ml-sm"
+              className="pf-v5-u-ml-sm"
               onClick={resetValues}
               variant="plain"
             >

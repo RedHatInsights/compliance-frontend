@@ -67,19 +67,23 @@ const InlineEdit = ({
 
   return (
     <FormGroup
-      className="pf-c-inline-edit pf-m-inline-editable"
+      className="pf-v5-c-inline-edit pf-v5-m-inline-editable"
       style={{ display: 'inline-block' }}
     >
-      <div className="pf-c-inline-edit__group">
+      <div className="pf-v5-c-inline-edit__group">
         {open ? (
           <>
             <div>
-              <Component value={value} onChange={onChange} {...props} />
+              <Component
+                value={value}
+                onChange={(_, v) => onChange(v)}
+                {...props}
+              />
             </div>
-            <div className="pf-c-inline-edit__group pf-m-action-group pf-m-icon-group">
-              <div className="pf-c-inline-edit__action pf-m-valid">
+            <div className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group">
+              <div className="pf-v5-c-inline-edit__action pf-v5-m-valid">
                 <Button
-                  className="pf-c-button pf-m-plain pf-u-ml-sm"
+                  className="pf-v5-c-button pf-v5-m-plain pf-v5-u-ml-sm"
                   type="button"
                   aria-label="Save edits"
                   isDisabled={!valid}
@@ -89,9 +93,9 @@ const InlineEdit = ({
                   <CheckIcon />
                 </Button>
               </div>
-              <div className="pf-c-inline-edit__action">
+              <div className="pf-v5-c-inline-edit__action">
                 <Button
-                  className="pf-c-button pf-m-plain pf-u-ml-sm"
+                  className="pf-v5-c-button pf-v5-m-plain pf-v5-u-ml-sm"
                   type="button"
                   aria-label="Cancel edits"
                   onClick={handleCloseEdit}
@@ -107,7 +111,7 @@ const InlineEdit = ({
             {enableEdit && (
               <Button
                 aria-label="Edit"
-                className="pf-u-ml-sm"
+                className="pf-v5-u-ml-sm"
                 onClick={() => {
                   setOpen(true);
                 }}

@@ -23,12 +23,12 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
   const key = `rule-child-row-${refId}`;
 
   return (
-    <div key={key} style={{ marginTop: 'var(--pf-global--spacer--lg)' }}>
+    <div key={key} style={{ marginTop: 'var(--pf-v5-global--spacer--lg)' }}>
       <Stack
         id={`rule-description-${key}`}
-        style={{ marginBottom: 'var(--pf-global--spacer--md)' }}
+        style={{ marginBottom: 'var(--pf-v5-global--spacer--md)' }}
       >
-        <StackItem style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}>
+        <StackItem style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}>
           <Text className="pf-c-form__label" component={TextVariants.h5}>
             <b>Description</b>
           </Text>
@@ -37,7 +37,7 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
       </Stack>
       <Stack
         id={`rule-identifiers-references-${key}`}
-        style={{ marginBottom: 'var(--pf-global--spacer--md)' }}
+        style={{ marginBottom: 'var(--pf-v5-global--spacer--md)' }}
       >
         <Grid>
           {identifier && (
@@ -45,7 +45,7 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
               <Text
                 className="pf-c-form__label"
                 component={TextVariants.h5}
-                style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}
+                style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
               >
                 <b>Identifier</b>
               </Text>
@@ -62,7 +62,7 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
               <Text
                 className="pf-c-form__label"
                 component={TextVariants.h5}
-                style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}
+                style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
               >
                 <b>References</b>
               </Text>
@@ -87,9 +87,11 @@ const RuleDetailsRow = ({ item: rule, onValueChange, onRuleValueReset }) => {
       {rationale && (
         <Stack
           id={`rule-rationale-${key}`}
-          style={{ marginBottom: 'var(--pf-global--spacer--lg)' }}
+          style={{ marginBottom: 'var(--pf-v5-global--spacer--lg)' }}
         >
-          <StackItem style={{ marginBottom: 'var(--pf-global--spacer--xs)' }}>
+          <StackItem
+            style={{ marginBottom: 'var(--pf-v5-global--spacer--xs)' }}
+          >
             <Text className="pf-c-form__label" component={TextVariants.h5}>
               <b>Rationale</b>
             </Text>

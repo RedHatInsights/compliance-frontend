@@ -9,9 +9,9 @@ const ReportedSystemRow = ({ row, children }) => (
         ? {
             background: '#F0F0F0',
             borderLeft:
-              'var(--pf-c-table--border-width--base) solid var(--pf-c-table--BorderColor)',
+              'var(--pf-v5-c-table--border-width--base) solid var(--pf-v5-c-table--BorderColor)',
             borderRight:
-              'var(--pf-c-table--border-width--base) solid var(--pf-c-table--BorderColor)',
+              'var(--pf-v5-c-table--border-width--base) solid var(--pf-v5-c-table--BorderColor)',
           }
         : {}
     }

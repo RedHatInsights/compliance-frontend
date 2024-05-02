@@ -4,11 +4,11 @@ import {
   EmptyStateBody,
   Text,
   TextContent,
-  Title,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
-import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import {
@@ -33,16 +33,19 @@ const getBenchmarkProfile = (benchmark, profileRefId) =>
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>
-    <Title headingLevel="h5" size="lg">
-      No rules can be configured
-    </Title>
+    <EmptyStateHeader
+      titleText="No rules can be configured"
+      headingLevel="h5"
+    />
     <EmptyStateBody>
       This policy has no associated systems, and therefore no rules can be
       configured.
     </EmptyStateBody>
-    <EmptyStateBody>
-      Add at least one system to configure rules for this policy.
-    </EmptyStateBody>
+    <EmptyStateFooter>
+      <EmptyStateBody>
+        Add at least one system to configure rules for this policy.
+      </EmptyStateBody>
+    </EmptyStateFooter>
   </EmptyState>
 );
 
@@ -165,9 +168,9 @@ export const EditPolicyRulesTab = ({
       }}
     >
       <StateViewPart stateKey="loading">
-        <EmptyTable>
+        <EmptyState>
           <Spinner />
-        </EmptyTable>
+        </EmptyState>
       </StateViewPart>
       <StateViewPart stateKey="data">
         <TextContent>

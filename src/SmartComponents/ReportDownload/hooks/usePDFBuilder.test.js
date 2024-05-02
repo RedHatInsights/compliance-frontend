@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import usePDFBuilder from './usePDFBuilder';
 
 import ReportPDF from '../Components/ReportPDF';

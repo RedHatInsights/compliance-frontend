@@ -1,17 +1,29 @@
-import buildSystems, {
+import { faker } from '@faker-js/faker';
+import {
   buildNonCompliantSystems,
   buildUnsupportedSystems,
+  buildSystemsWithTestResultProfiles,
 } from '@/__factories__/systems';
 
 import { provideData } from './helpers';
 
 describe('provideData', () => {
-  const systems = buildSystems();
+  const systems = buildSystemsWithTestResultProfiles(55);
   const nonComplianceSystems = buildNonCompliantSystems();
   const unsupportedSystems = buildUnsupportedSystems();
+  const randomSystem = faker.helpers.arrayElement(nonComplianceSystems);
+  const randomNonCompliantProfile = faker.helpers.arrayElement(
+    randomSystem.testResultProfiles.filter(({ compliant }) => !compliant)
+  );
+  const randomFailedRule = faker.helpers.arrayElement(
+    randomNonCompliantProfile.rules.filter(
+      ({ compliant, remediationAvailable }) =>
+        !compliant && remediationAvailable
+    )
+  );
 
-  it('returns an object', async () => {
-    expect(await provideData()).toEqual({});
+  it('returns an object', () => {
+    expect(provideData()).toEqual({});
   });
 
   it('when passed systems it returns an object with an array of issues with systems', () => {
@@ -19,7 +31,9 @@ describe('provideData', () => {
       provideData({
         systems: [...systems, ...nonComplianceSystems, ...unsupportedSystems],
       })
-    ).toMatchSnapshot();
+        .issues.find(({ id }) => id.endsWith(randomFailedRule.refId))
+        .systems.includes(randomSystem.id)
+    ).toBeTruthy();
   });
 
   it('should not return any issues for unsupported systems', () => {
@@ -34,8 +48,8 @@ describe('provideData', () => {
     expect(
       provideData({
         systems: nonComplianceSystems,
-        selectedRules: [{ refId: 'xccdf_org.ssgproject.profile_5_rule_13' }],
-      }).issues?.length
+        selectedRules: [{ refId: randomFailedRule.refId }],
+      }).issues.length
     ).toEqual(1);
   });
 });

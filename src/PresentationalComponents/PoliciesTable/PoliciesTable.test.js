@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
@@ -24,7 +24,7 @@ describe('PoliciesTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('expect to render emptystate', () => {
+  it('expect to render emptystate', async () => {
     render(
       <TestWrapper>
         <PoliciesTable policies={[]} />
@@ -32,9 +32,11 @@ describe('PoliciesTable', () => {
     );
     const table = screen.queryByLabelText('Policies');
 
-    expect(
-      within(table).getByText('No matching policies found')
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(within(table).getByRole('heading')).toHaveTextContent(
+        'No matching policies found'
+      )
+    );
   });
 
   it('expect to render SystemsCountWarning for all policies with 0 total hosts', () => {

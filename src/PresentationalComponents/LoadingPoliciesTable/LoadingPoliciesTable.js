@@ -1,5 +1,9 @@
 import React from 'react';
-import { Table, TableHeader, TableBody } from '@patternfly/react-table';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+} from '@patternfly/react-table/deprecated';
 import RowLoader from '@redhat-cloud-services/frontend-components-utilities/RowLoader';
 import columns from '../PoliciesTable/Columns';
 

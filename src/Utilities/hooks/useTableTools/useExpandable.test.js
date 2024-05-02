@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import useExpandable from './useExpandable';
 import items from './__fixtures__/items';
 import columns from './__fixtures__/columns';

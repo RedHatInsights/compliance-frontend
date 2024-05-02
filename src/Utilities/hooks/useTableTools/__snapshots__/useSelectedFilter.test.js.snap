@@ -2,10 +2,6 @@
 
 exports[`useSelectedFilter returns a table sort configuration 1`] = `
 {
-  "all": [
-    {},
-  ],
   "current": {},
-  "error": undefined,
 }
 `;

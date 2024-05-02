@@ -1,9 +1,21 @@
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import TestWrapper from '@/Utilities/TestWrapper';
+
 import NoPoliciesState from './NoPoliciesState';
 
 describe('NoPoliciesState', () => {
-  it('with a system having policies', () => {
-    const wrapper = shallow(<NoPoliciesState />);
+  it('renders a note with a system having no policies', () => {
+    render(
+      <TestWrapper>
+        <NoPoliciesState />
+      </TestWrapper>
+    );
 
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(
+      screen.getByText(
+        'This system is not part of any SCAP policies defined within Compliance.'
+      )
+    ).toBeInTheDocument();
   });
 });
