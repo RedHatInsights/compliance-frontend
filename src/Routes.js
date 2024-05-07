@@ -21,7 +21,7 @@ const reportsRoutes = [
   },
   {
     path: 'reports/:report_id',
-    title: `Report: $entityTitle - ${defaultReportTitle}`,
+    title: `$entityTitle - ${defaultReportTitle}`,
     requiredPermissions: [...defaultPermissions, 'compliance:report:read'],
     defaultTitle: defaultReportTitle,
     component: lazy(() =>
