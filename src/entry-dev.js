@@ -1,1 +1,1 @@
-import('./bootstrap-dev');
+export * from './DevAppEntry.js';
