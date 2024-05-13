@@ -1,7 +1,5 @@
 import React from 'react';
 import CompliancePolicies from './CompliancePolicies';
-import { IntlProvider } from 'react-intl';
-
 import { MemoryRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
@@ -20,13 +18,11 @@ const client = new ApolloClient({
 const mountComponent = () => {
   cy.mount(
     <Provider store={init().getStore()}>
-      <IntlProvider locale={navigator.language}>
-        <MemoryRouter>
-          <ApolloProvider client={client}>
-            <CompliancePolicies />
-          </ApolloProvider>
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <ApolloProvider client={client}>
+          <CompliancePolicies />
+        </ApolloProvider>
+      </MemoryRouter>
     </Provider>
   );
 };

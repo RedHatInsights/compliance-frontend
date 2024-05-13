@@ -1,7 +1,5 @@
 import React from 'react';
 import Reports from './Reports';
-import { IntlProvider } from 'react-intl';
-
 import { MemoryRouter } from 'react-router-dom';
 import {
   ApolloProvider,
@@ -24,13 +22,11 @@ const client = new ApolloClient({
 const mountComponent = () => {
   cy.mount(
     <Provider store={init().getStore()}>
-      <IntlProvider locale={navigator.language}>
-        <MemoryRouter>
-          <ApolloProvider client={client}>
-            <Reports />
-          </ApolloProvider>
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <ApolloProvider client={client}>
+          <Reports />
+        </ApolloProvider>
+      </MemoryRouter>
     </Provider>
   );
 };

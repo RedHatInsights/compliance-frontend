@@ -1,10 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { AnsibeTowerIcon } from '@patternfly/react-icons';
+import { AnsibleTowerIcon } from '@patternfly/react-icons';
 
 const RemediationCell = ({ hasPlaybook = false }) => (
   <>
-    {hasPlaybook && <AnsibeTowerIcon />}
+    {hasPlaybook && <AnsibleTowerIcon />}
     {hasPlaybook ? ' Playbook' : ' Manual'}
   </>
 );
