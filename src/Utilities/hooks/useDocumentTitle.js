@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
-import { DEFAULT_TITLE, DEFAULT_TITLE_SUFFIX } from '@/constants';
-
-const defaultTitleSuffixed = (title) => `${title}${DEFAULT_TITLE_SUFFIX}`;
+import { DEFAULT_TITLE } from '@/constants';
 
 export const useTitleEntity = (route, entityTitle) => {
   const location = useLocation();
@@ -21,7 +19,7 @@ const useDocumentTitle = () => {
   const chrome = useChrome();
 
   return (title) => {
-    chrome.updateDocumentTitle(defaultTitleSuffixed(title || DEFAULT_TITLE));
+    chrome.updateDocumentTitle(title || DEFAULT_TITLE);
   };
 };
 
