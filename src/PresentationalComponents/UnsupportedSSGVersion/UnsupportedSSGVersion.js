@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Popover, Tooltip, Text } from '@patternfly/react-core';
+import { Popover, Tooltip, Text, Icon } from '@patternfly/react-core';
 import {
   ExclamationTriangleIcon,
   OutlinedQuestionCircleIcon,
@@ -11,7 +11,7 @@ const UNSUPPORTED_SINGULAR_MESSAGE =
   'This system was using an incompatible version of the SSG at the time this report was generated. ' +
   'Assessment of rules failed/passed on this system is a best-guess effort and may not be accurate.';
 
-const UNSUPPORTED_PLURAL_MESSAGE = (
+const UnsupportedPluralMessage = () => (
   <React.Fragment>
     <Text variant="p" style={{ marginBottom: '1rem' }}>
       These systems are running unsupported versions of the SCAP Security Guide
@@ -31,9 +31,11 @@ const WarningWithPopover = ({ children, variant = 'plural' }) => (
     maxWidth="25rem"
     headerContent="Unsupported SSG versions"
     bodyContent={
-      variant === 'plural'
-        ? UNSUPPORTED_PLURAL_MESSAGE
-        : UNSUPPORTED_SINGULAR_MESSAGE
+      variant === 'plural' ? (
+        <UnsupportedPluralMessage />
+      ) : (
+        UNSUPPORTED_SINGULAR_MESSAGE
+      )
     }
     footerContent={<SupportedSSGVersionsLink />}
   >
@@ -85,7 +87,6 @@ const UnsupportedSSGVersion = ({
   children,
   showWarningIcon = true,
   showHelpIcon = false,
-  style,
   tooltipText,
   messageVariant,
 }) => {
@@ -103,17 +104,19 @@ const UnsupportedSSGVersion = ({
   return (
     <span
       aria-label="Unsupported SSG Version warning"
-      style={{ ...style, display: 'inline-block' }}
+      style={{ display: 'inline-block' }}
     >
       {showWarningIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span
+          <Icon
             style={defaultStyle}
-            className="pf-u-mr-xs"
+            className="pf-v5-u-mr-xs"
             aria-label={tooltipText ? 'Tooltip icon' : 'Popover icon'}
+            status="warning"
+            isInline
           >
-            <ExclamationTriangleIcon color="var(--pf-global--warning-color--100)" />
-          </span>
+            <ExclamationTriangleIcon />
+          </Icon>
         </TooltipOrPopover>
       )}
 
@@ -121,13 +124,14 @@ const UnsupportedSSGVersion = ({
 
       {showHelpIcon && (
         <TooltipOrPopover {...iconProps}>
-          <span
+          <Icon
             aria-label="Help icon"
             style={defaultStyle}
-            className="pf-u-ml-xs"
+            className="pf-v5-u-ml-xs grey-icon"
+            isInline
           >
-            <OutlinedQuestionCircleIcon className="grey-icon" />
-          </span>
+            <OutlinedQuestionCircleIcon className="" />
+          </Icon>
         </TooltipOrPopover>
       )}
     </span>

@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider } from 'react-intl';
-import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 import App from './App';
@@ -19,11 +22,9 @@ const client = new ApolloClient({
 
 const AppEntry = ({ logger }) => (
   <Provider store={init(logger).getStore()}>
-    <IntlProvider locale={navigator.language}>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </IntlProvider>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </Provider>
 );
 

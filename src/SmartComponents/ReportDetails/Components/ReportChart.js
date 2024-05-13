@@ -17,7 +17,7 @@ const ReportChart = ({ profile = {}, hasLegend = true, chartClass }) => {
       {hasLegend ? (
         <GridItem
           span={6}
-          className="pf-u-display-flex pf-u-align-items-center"
+          className="pf-v5-u-display-flex pf-v5-u-align-items-center"
           style={{
             fontSize: '.85em',
             height: '100%',

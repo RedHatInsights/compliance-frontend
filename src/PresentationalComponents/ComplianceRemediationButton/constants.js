@@ -1,4 +1,4 @@
-import { gql } from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const DEFAULT_SYSTEMS_PER_BATCH = 3;
 export const DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES = 3;

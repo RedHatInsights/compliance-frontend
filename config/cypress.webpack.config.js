@@ -1,51 +1,34 @@
-const webpack = require('webpack');
 const { resolve } = require('path');
 const config = require('@redhat-cloud-services/frontend-components-config');
+const alias = require('./aliases');
 
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
-});
-plugins.push(
-  new webpack.DefinePlugin({
-    insights: {
-      chrome: {
-        auth: {
-          getUser: () => {
-            return Promise.resolve({});
-          },
-        },
-      },
-    },
-  })
-);
-
-webpackConfig.module.rules.push({
-  resolve: {
-    alias: {
-      '@redhat-cloud-services/frontend-components/useChrome': resolve(
-        __dirname,
-        './overrideChrome.js'
-      ),
-      '../useChrome': resolve(__dirname, './overrideChrome.js'),
-    },
-  },
 });
 
 module.exports = {
   ...webpackConfig,
   plugins,
+  module: {
+    ...webpackConfig.module,
+    rules: [
+      ...webpackConfig.module.rules,
+      {
+        resolve: {
+          alias: {
+            // TODO we should look into using only one useChrome mock for both jest and cyrpess tests
+            '@redhat-cloud-services/frontend-components/useChrome': resolve(
+              __dirname,
+              './overrideChrome.js'
+            ),
+            '../useChrome': resolve(__dirname, './overrideChrome.js'),
+          },
+        },
+      },
+    ],
+  },
   resolve: {
-    alias: {
-      PresentationalComponents: resolve(
-        __dirname,
-        '../src/PresentationalComponents'
-      ),
-      SmartComponents: resolve(__dirname, '../src/SmartComponents'),
-      Mutations: resolve(__dirname, '../src/Mutations'),
-      Utilities: resolve(__dirname, '../src/Utilities'),
-      Store: resolve(__dirname, '../src/store'),
-      '@': resolve(__dirname, '..', 'src'),
-    },
+    alias,
     fallback: {
       stream: require.resolve('stream-browserify'),
       zlib: require.resolve('browserify-zlib'),

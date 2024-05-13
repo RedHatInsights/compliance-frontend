@@ -6,16 +6,6 @@ exports[`jsonForItems returns an json export of items 1`] = `"data:application/j
 
 exports[`useExport returns an export config toolbar config 1`] = `
 {
-  "all": [
-    {
-      "toolbarProps": {
-        "exportConfig": {
-          "isDisabled": false,
-          "onSelect": [Function],
-        },
-      },
-    },
-  ],
   "current": {
     "toolbarProps": {
       "exportConfig": {
@@ -24,6 +14,5 @@ exports[`useExport returns an export config toolbar config 1`] = `
       },
     },
   },
-  "error": undefined,
 }
 `;

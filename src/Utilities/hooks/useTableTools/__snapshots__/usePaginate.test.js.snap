@@ -2,20 +2,6 @@
 
 exports[`usePaginate returns a paginate configuration 1`] = `
 {
-  "all": [
-    {
-      "paginator": [Function],
-      "setPage": [Function],
-      "toolbarProps": {
-        "pagination": {
-          "onPerPageSelect": [Function],
-          "onSetPage": [Function],
-          "page": 1,
-          "perPage": 10,
-        },
-      },
-    },
-  ],
   "current": {
     "paginator": [Function],
     "setPage": [Function],
@@ -28,7 +14,6 @@ exports[`usePaginate returns a paginate configuration 1`] = `
       },
     },
   },
-  "error": undefined,
 }
 `;
 

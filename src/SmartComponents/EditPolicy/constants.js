@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const BENCHMARKS_QUERY = gql`
   query EP_Benchmarks($filter: String!) {

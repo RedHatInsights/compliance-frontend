@@ -4,15 +4,14 @@ import {
   formValueSelector,
   reduxForm,
 } from 'redux-form';
-import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
-  Title,
   Text,
   TextContent,
   TextVariants,
   EmptyState,
   EmptyStateBody,
+  EmptyStateHeader,
 } from '@patternfly/react-core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -152,7 +151,7 @@ export const EditPolicyProfilesRules = ({
 
   return (
     <React.Fragment>
-      <TextContent className="pf-u-pb-md">
+      <TextContent className="pf-v5-u-pb-md">
         <Text component={TextVariants.h1}>Rules</Text>
         <Text>
           Customize your <b>{policy.name}</b> SCAP policy by including and
@@ -175,9 +174,10 @@ export const EditPolicyProfilesRules = ({
       >
         <StateViewPart stateKey="noRuleSets">
           <EmptyState>
-            <Title headingLevel="h1" size="xl">
-              No rules can be configured
-            </Title>
+            <EmptyStateHeader
+              titleText="No rules can be configured"
+              headingLevel="h1"
+            />
             <EmptyStateBody>
               The policy type selected does not exist for the systems and OS
               versions selected in the previous steps.
@@ -185,9 +185,9 @@ export const EditPolicyProfilesRules = ({
           </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="loading">
-          <EmptyTable>
+          <EmptyState>
             <Spinner />
-          </EmptyTable>
+          </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="data">
           <TabbedRules

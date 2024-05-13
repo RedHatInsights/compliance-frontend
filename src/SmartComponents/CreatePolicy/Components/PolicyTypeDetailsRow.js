@@ -4,7 +4,7 @@ import { Text } from '@patternfly/react-core';
 
 const PolicyTypeDetailsRow = ({ item: { description }, key }) => {
   return (
-    <Text key={key} style={{ margin: 'var(--pf-global--spacer--lg) 0' }}>
+    <Text key={key} style={{ margin: 'var(--pf-v5-global--spacer--lg) 0' }}>
       {description}
     </Text>
   );

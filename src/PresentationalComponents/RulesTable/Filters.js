@@ -1,9 +1,10 @@
+import React from 'react';
 import {
-  HIGH_SEVERITY,
-  MEDIUM_SEVERITY,
-  LOW_SEVERITY,
-  UNKNOWN_SEVERITY,
-} from './Constants';
+  HighSeverity,
+  MediumSeverity,
+  LowSeverity,
+  UnknownSeverity,
+} from './components/SeverityIcons';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 
 const filterRulesWithAllValues = (rules, values, valueCheck) =>
@@ -49,10 +50,10 @@ const BASE_FILTER_CONFIGURATION = [
     type: conditionalFilterType.checkbox,
     label: 'Severity',
     items: [
-      { label: HIGH_SEVERITY, value: 'high' },
-      { label: MEDIUM_SEVERITY, value: 'medium' },
-      { label: LOW_SEVERITY, value: 'low' },
-      { label: UNKNOWN_SEVERITY, value: 'unknown' },
+      { label: <HighSeverity />, value: 'high' },
+      { label: <MediumSeverity />, value: 'medium' },
+      { label: <LowSeverity />, value: 'low' },
+      { label: <UnknownSeverity />, value: 'unknown' },
     ],
     filter: (rules, values) =>
       anyFilterApply(rules, values, (rule, value) => rule.severity === value),

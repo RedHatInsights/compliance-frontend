@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
-import { TableVariant } from '@patternfly/react-table';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
@@ -237,7 +236,7 @@ export const SystemsTable = ({
             ...tableProps,
           }}
           fallback={<Spinner />}
-          variant={compact ? TableVariant.compact : ''}
+          {...(compact ? { variant: 'compact' } : {})}
           {...bulkSelectToolBarProps}
           {...(!showAllSystems && {
             ...conditionalFilter,

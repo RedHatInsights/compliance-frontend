@@ -51,7 +51,7 @@ const SystemPolicyCard = ({ policy, style, onClick, isSelected }) => {
           </Text>
           <Text
             ouiaId="PolicyCardType"
-            style={{ color: 'var(--pf-global--Color--200)' }}
+            style={{ color: 'var(--pf-v5-global--Color--200)' }}
             component={TextVariants.small}
           >
             <Truncate text={policyType} length={110} {...truncateDefaults} />
@@ -96,10 +96,10 @@ const SystemPolicyCard = ({ policy, style, onClick, isSelected }) => {
             ouiaId="PolicyCardUnsupportedSSG"
             ssgVersion={ssgVersion}
             style={{
-              paddingTop: 'var(--pf-c-alert--PaddingTop)',
-              paddingRight: 'var(--pf-c-card--child--PaddingRight)',
-              paddingLeft: 'var(--pf-c-card--child--PaddingLeft)',
-              paddingBottom: 'var(--pf-c-alert--PaddingBottom)',
+              paddingTop: 'var(--pf-v5-c-alert--PaddingTop)',
+              paddingRight: 'var(--pf-v5-c-card--child--PaddingRight)',
+              paddingLeft: 'var(--pf-v5-c-card--child--PaddingLeft)',
+              paddingBottom: 'var(--pf-v5-c-alert--PaddingBottom)',
             }}
           />
         </CardFooter>

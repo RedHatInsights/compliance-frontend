@@ -1,9 +1,8 @@
+import { Button, ButtonVariant } from '@patternfly/react-core';
 import {
-  Button,
-  ButtonVariant,
   WizardContextConsumer,
   WizardFooter,
-} from '@patternfly/react-core';
+} from '@patternfly/react-core/deprecated';
 import React from 'react';
 
 const CreatePolicyFooter = () => (
@@ -40,7 +39,7 @@ const CreatePolicyFooter = () => (
               </Button>
             )}
             {!activeStep.hideCancelButton && (
-              <div className="pf-c-wizard__footer-cancel">
+              <div className="pf-v5-c-wizard__footer-cancel">
                 <Button
                   id={`${stepNameEdited}-cancel-button`}
                   variant={ButtonVariant.link}

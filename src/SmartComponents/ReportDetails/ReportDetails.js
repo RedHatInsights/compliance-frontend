@@ -2,18 +2,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { useQuery, gql } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  EmptyState,
   Grid,
   GridItem,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import EmptyTable from '@redhat-cloud-services/frontend-components/EmptyTable';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   LinkWithPermission as Link,
@@ -94,10 +93,10 @@ export const ReportDetails = ({ route }) => {
         <PageHeader>
           <ReportDetailsContentLoader />
         </PageHeader>
-        <section className="pf-c-page__main-section">
-          <EmptyTable>
+        <section className="pf-v5-c-page__main-section">
+          <EmptyState>
             <Spinner />
-          </EmptyTable>
+          </EmptyState>
         </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
@@ -122,7 +121,7 @@ export const ReportDetails = ({ route }) => {
               <Link
                 state={{ profile }}
                 to={`/reports/${profile.id}/pdf`}
-                className="pf-u-mr-md"
+                className="pf-v5-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
                   variant: 'primary',
@@ -158,7 +157,7 @@ export const ReportDetails = ({ route }) => {
             </GridItem>
           </Grid>
         </PageHeader>
-        <section className="pf-c-page__main-section">
+        <section className="pf-v5-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
               <SystemsTable

@@ -4,8 +4,7 @@ import { Tabs, Tab, TabTitleText } from '@patternfly/react-core';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { useQuery, gql } from '@apollo/client';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
 import { ErrorCard } from 'PresentationalComponents';
@@ -81,7 +80,9 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
           {system.testResultProfiles.length > 1 && (
             <Tabs
               activeKey={selectedPolicy}
-              style={{ background: 'var(--pf-global--BackgroundColor--100)' }}
+              style={{
+                background: 'var(--pf-v5-global--BackgroundColor--100)',
+              }}
             >
               {sortedTestResultProfiles.map((policy, idx) => {
                 return (

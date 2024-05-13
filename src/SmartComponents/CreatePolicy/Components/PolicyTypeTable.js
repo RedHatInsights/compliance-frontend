@@ -19,7 +19,7 @@ const NameCell = ({ name, disabled }) => {
 
 NameCell.propTypes = {
   name: propTypes.string,
-  disabled: propTypes.boolean,
+  disabled: propTypes.bool,
 };
 
 const PolicyTypeTable = ({ profiles, onChange, selectedProfile }) => {

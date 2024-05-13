@@ -18,7 +18,7 @@ describe('TableToolsTable', () => {
     items: exampleItems,
   };
 
-  it('expect to have toolbar properly rendered', () => {
+  it('expect to have toolbar properly rendered', async () => {
     render(
       <TableToolsTable
         {...{
@@ -33,13 +33,15 @@ describe('TableToolsTable', () => {
     );
 
     const toolbar = screen.getByLabelText('Table toolbar');
-    expect(toolbar).toBeInTheDocument();
+    await screen.findByLabelText('Table toolbar');
 
     expect(
-      within(toolbar).getByLabelText('Conditional filter')
+      within(toolbar).getByLabelText('Conditional filter toggle')
     ).toBeInTheDocument();
 
-    expect(within(toolbar).getByLabelText('Actions')).toBeInTheDocument();
+    expect(
+      within(toolbar).getByLabelText('kebab dropdown toggle')
+    ).toBeInTheDocument();
     expect(within(toolbar).getByLabelText('Pagination')).toBeInTheDocument();
   });
 

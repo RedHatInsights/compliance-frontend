@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 import {
   Text,
   TextVariants,
@@ -56,7 +55,7 @@ SSGVersionText.propTypes = {
 };
 
 const SSGPopoverBody = ({ profile, newOsMinorVersion }) => (
-  <TextContent style={{ fontSize: 'var(--pf-c-popover--FontSize)' }}>
+  <TextContent style={{ fontSize: 'var(--pf-v5-c-popover--FontSize)' }}>
     <Text>
       This is the latest supported version of the SCAP Security Guide (SSG) for{' '}
       <OsVersionText {...{ profile, newOsMinorVersion }} />
@@ -73,7 +72,7 @@ SSGPopoverBody.propTypes = {
   newOsMinorVersion: propTypes.string,
 };
 
-const BENCHMARK_QUERY = gql`
+export const BENCHMARK_QUERY = gql`
   query PTC_Benchmark($id: String!) {
     benchmark(id: $id) {
       id
@@ -123,9 +122,9 @@ const ProfileTabContent = ({
   return (
     <React.Fragment>
       <Grid>
-        <TextContent className="pf-u-mt-md">
+        <TextContent className="pf-v5-u-mt-md">
           <Text component={TextVariants.h3}>
-            <span className="pf-u-pr-sm">
+            <span className="pf-v5-u-pr-sm">
               <OsVersionText {...{ profile, newOsMinorVersion }} />
             </span>
             <ProfileSystemCount count={systemCount} />
@@ -139,10 +138,10 @@ const ProfileTabContent = ({
                 <Link
                   to={`/scappolicies/${profile?.id}/default_ruleset`}
                   target="_blank"
-                  className="pf-u-mr-xl"
+                  className="pf-v5-u-mr-xl"
                 >
                   View policy rules
-                  <ExternalLinkAltIcon className="pf-u-ml-sm" />
+                  <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
                 </Link>
               )}
               {resetLink && (

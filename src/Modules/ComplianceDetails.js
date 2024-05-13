@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from '@apollo/client';
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 import Details from '../SmartComponents/SystemDetails/ComplianceDetail';

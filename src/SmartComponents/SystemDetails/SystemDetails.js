@@ -1,14 +1,17 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import Skeleton, {
   SkeletonSize,
 } from '@redhat-cloud-services/frontend-components/Skeleton';
 
-import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
+import {
+  PageSection,
+  Breadcrumb,
+  BreadcrumbItem,
+} from '@patternfly/react-core';
 import Details from './ComplianceDetail';
 import {
   BreadcrumbLinkItem,
@@ -47,9 +50,9 @@ export const SystemDetails = ({ route }) => {
           </Breadcrumb>
           <InventoryDetails inventoryId={inventoryId} />
         </PageHeader>
-        <section className="pf-c-page__main-section">
+        <PageSection>
           <Details hidePassed inventoryId={inventoryId} />
-        </section>
+        </PageSection>
       </StateViewPart>
       <StateViewPart stateKey="loading">
         <PageHeader>
