@@ -1,9 +1,17 @@
 const { resolve } = require('path');
 const alias = require('./config/aliases');
 const packageJson = require('./package.json');
+const { localRoutesFor } = require('./config/helpers');
 
 const bundle = 'insights';
 const appName = packageJson[bundle].appname;
+
+// TODO Move to fec webpack config similar to LOCAL_APPS
+const routes = {
+  ...(process.env.LOCAL_APIS && process.env.LOCAL_APIS !== ''
+    ? localRoutesFor('/api', process.env.LOCAL_APIS)
+    : {}),
+};
 
 module.exports = {
   appName,
@@ -31,4 +39,5 @@ module.exports = {
   resolve: {
     alias,
   },
+  routes,
 };
