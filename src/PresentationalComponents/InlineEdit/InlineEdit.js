@@ -80,25 +80,49 @@ const InlineEdit = ({
                 {...props}
               />
             </div>
-            <div className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group">
-              <div className="pf-v5-c-inline-edit__action pf-v5-m-valid">
+            <div
+              className="pf-v5-c-inline-edit__group pf-v5-m-action-group pf-v5-m-icon-group"
+              style={{
+                display: 'inline',
+              }}
+            >
+              <div
+                className="pf-v5-c-inline-edit__action pf-v5-m-valid"
+                style={{
+                  display: 'inline',
+                }}
+              >
                 <Button
-                  className="pf-v5-c-button pf-v5-m-plain pf-v5-u-ml-sm"
+                  className="pf-v5-c-button pf-v5-u-ml-sm"
+                  variant="plain"
                   type="button"
                   aria-label="Save edits"
                   isDisabled={!valid}
                   isLoading={saving}
                   onClick={onSave}
+                  style={{
+                    'margin-left': '5px',
+                    color: valid
+                      ? 'var(--pf-v5-global--primary-color--100)'
+                      : 'var(--pf-v5-c-button--disabled--Color)',
+                  }}
                 >
                   <CheckIcon />
                 </Button>
               </div>
-              <div className="pf-v5-c-inline-edit__action">
+              <div
+                className="pf-v5-c-inline-edit__action"
+                style={{
+                  display: 'inline',
+                }}
+              >
                 <Button
-                  className="pf-v5-c-button pf-v5-m-plain pf-v5-u-ml-sm"
+                  className="pf-v5-c-button pf-v5-u-ml-sm"
+                  variant="plain"
                   type="button"
                   aria-label="Cancel edits"
                   onClick={handleCloseEdit}
+                  style={{ 'margin-left': '5px' }}
                 >
                   <TimesIcon />
                 </Button>
