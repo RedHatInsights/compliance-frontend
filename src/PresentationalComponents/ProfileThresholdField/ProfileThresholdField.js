@@ -24,6 +24,7 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
       fieldId="policy-threshold"
       labelIcon={<PolicyThresholdTooltip />}
       label="Compliance threshold (%)"
+      style={{ width: '60%', display: 'block' }}
     >
       <Field
         name="complianceThreshold"
@@ -35,12 +36,11 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
         aria-label="compliance threshold"
         component={ReduxFormTextInput}
         type="number"
-        style={{ width: '60%', display: 'block' }}
       />
       {validThreshold ? (
         <FormHelperText>
           <HelperText>
-            <HelperTextItem variant="error">
+            <HelperTextItem variant="default">
               A value of 95% or higher is recommended
             </HelperTextItem>
           </HelperText>
