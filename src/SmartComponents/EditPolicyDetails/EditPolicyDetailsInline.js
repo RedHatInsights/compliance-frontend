@@ -111,25 +111,6 @@ const EditPolicyDetailsInline = ({
           <PolicyBusinessObjectiveTooltip />
         ) : null}
       </Text>
-      {!isEditOpen && (
-        <>
-          <Text
-            className="pf-v5-c-inline-edit__value"
-            id="pf-v5-global--spacer--xs"
-          >
-            {text}
-          </Text>
-          <div className="pf-v5-c-inline-edit__action pf-v5-m-enable-editable">
-            <Button
-              className="pf-v5-c-button pf-v5-m-plain"
-              type="button"
-              id="edit-button"
-              aria-label="Edit"
-              aria-labelledby="single-editable-edit-button"
-            />
-          </div>
-        </>
-      )}
       <div className="pf-v5-c-inline-edit__group">
         {isEditOpen ? (
           <>
@@ -162,7 +143,12 @@ const EditPolicyDetailsInline = ({
                   isDisabled={!validThreshold ? true : false}
                   isLoading={isSaving}
                   onClick={() => onSave()}
-                  style={{ 'margin-left': '5px' }}
+                  style={{
+                    'margin-left': '5px',
+                    color: validThreshold
+                      ? 'var(--pf-v5-global--primary-color--100)'
+                      : 'var(--pf-v5-c-button--disabled--Color)',
+                  }}
                 >
                   <Icon>
                     <CheckIcon />
