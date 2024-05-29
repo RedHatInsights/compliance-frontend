@@ -40,7 +40,7 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
       {validThreshold ? (
         <FormHelperText>
           <HelperText>
-            <HelperTextItem variant="error">
+            <HelperTextItem variant="default">
               A value of 95% or higher is recommended
             </HelperTextItem>
           </HelperText>
