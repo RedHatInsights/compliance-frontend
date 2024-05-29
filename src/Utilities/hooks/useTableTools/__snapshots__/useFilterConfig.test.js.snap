@@ -8,9 +8,9 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
   "activeFilters": {
     "checkboxfilter": [],
     "filtergroup": undefined,
-    "hiddenfilter": undefined,
+    "hiddenfilter": false,
     "invalidfilter": undefined,
-    "name": undefined,
+    "name": "",
     "radiofilter": undefined,
   },
   "addConfigItem": [Function],
@@ -268,7 +268,7 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
         {
           "filterValues": {
             "onChange": [Function],
-            "value": undefined,
+            "value": "",
           },
           "id": "name",
           "label": "Name",

@@ -146,8 +146,7 @@ class FilterConfigBuilder {
       const filterStateName = stringToId(filter.key || filter.label);
       const state =
         defaultStates[filterStateName] || this.defaultValueForFilter(filter);
-      acc[filterStateName] = state ? state : undefined;
-
+      acc[filterStateName] = typeof state !== 'undefined' ? state : undefined;
       return acc;
     }, {});
 
