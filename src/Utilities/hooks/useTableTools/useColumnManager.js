@@ -11,7 +11,7 @@ const useColumnManager = (columns = [], options = {}) => {
     )
     .filter((column) => column.managable === true);
   const [selectedColumns, setSelectedColumns] = useState(
-    columns.map(({ title }) => title)
+    columns.map(({ hiddenByDefault, title }) => !hiddenByDefault && title)
   );
   const [isManagerOpen, setIsManagerOpen] = useState(false);
   const { manageColumns: enableColumnManager } = options;
