@@ -166,7 +166,10 @@ const ComplianceRoutes = () => {
   useEffect(() => {
     try {
       axios
-        .get(`${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1`)
+        .get(
+          // look only for RHEL systems, https://issues.redhat.com/browse/RHINENG-5929
+          `${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`
+        )
         .then(({ data }) => {
           setHasSystems(data.total > 0);
         });
