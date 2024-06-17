@@ -1,18 +1,32 @@
 #!/bin/sh -ex
+# Merges coverage reports from cypress and jest tests
+# and generates an HTML report to view and json report to submit to codecov
 
-# Merge coverage reports from cypress and jest tests
-mkdir -p reports
-cp cypress-coverage/coverage-final.json reports/from-cypress.json
-cp jest-coverage/coverage-final.json reports/from-jest.json
+mkdir -p coverage/src
 
-npx nyc merge reports .nyc_output/out.json
-npx nyc report --reporter json --report-dir coverage
+cp ./coverage-cypress/coverage-final.json ./coverage/src/cypress.json
+cp ./coverage-jest/coverage-final.json ./coverage/src/jest.json
 
-# Upload the final coverage report to codecov https://docs.codecov.com/docs/codecov-uploader
-curl -Os https://uploader.codecov.io/latest/linux/codecov
-chmod +x codecov
+npx nyc merge ./coverage/src ./coverage/final.json
+npx nyc report -t ./coverage --reporter json --report-dir ./coverage/json
+npx nyc report -t ./coverage --reporter html --report-dir ./coverage/html
+
+case `uname` in
+  Darwin)
+    export CODECOV_BIN="https://uploader.codecov.io/latest/macos/codecov"
+  ;;
+  Linux)
+    export CODECOV_BIN="https://uploader.codecov.io/latest/linux/codecov"
+  ;;
+esac
 
 # Workaround for https://github.com/codecov/uploader/issues/475
 unset NODE_OPTIONS
+echo "Downloading codecov binary from $CODECOV_BIN"
 
-./codecov -t ${CODECOV_TOKEN} -f "coverage/coverage-final.json"
+curl -Os $CODECOV_BIN
+chmod +x codecov
+
+echo "Uploading to codecov"
+
+./codecov -t ${CODECOV_TOKEN} -f "./coverage/json/coverage-final.json"

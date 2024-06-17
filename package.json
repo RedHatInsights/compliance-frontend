@@ -48,16 +48,14 @@
   "jest": {
     "testEnvironment": "jsdom",
     "collectCoverage": true,
-    "coverageDirectory": "./jest-coverage/",
+    "coverageDirectory": "coverage-jest",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/**/*.cy.js",
-      "!src/**/stories/*",
-      "!src/{App,Routes,entry,entry-dev}.js",
+      "!src/{entry,entry-dev}.js",
       "!src/**/__fixtures__/*.js",
       "!src/**/__factories__/*.js",
-      "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js",
-      "!src/Utilities/{asyncComponent,ReducerRegistry,Dispatcher}.js"
+      "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js"
     ],
     "setupFiles": [
       "<rootDir>/config/setupTests.js"
@@ -82,12 +80,16 @@
     }
   },
   "nyc": {
-    "report-dir": "cypress-coverage",
+    "report-dir": "coverage-cypress",
     "include": [
-      "src/**/*"
+      "src/**/*.{js,jsx}"
     ],
     "exclude": [
-      "src/**/*.test.js"
+      "src/**/*.test.js",
+      "src/**/__fixtures__/*.js",
+      "src/**/__factories__/*.js",
+      "src/{entry,entry-dev}.js",
+      "src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js"
     ]
   },
   "devDependencies": {
@@ -135,25 +137,20 @@
   "scripts": {
     "build": "fec build",
     "test": "jest --passWithNoTests",
-    "test:nocoverage": "jest --passWithNoTests --no-coverage",
-    "test:snapshots": "jest -u --passWithNoTests --no-coverage",
     "test:ct": "BABEL_ENV=componentTest cypress run --component",
     "test:openct": "cypress open --component",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",
     "lint:js:fix": "eslint config src --fix",
     "lint:sass": "stylelint 'src/**/*.scss' --config .stylelintrc.json",
-    "prod": "NODE_ENV=production webpack serve --config config/prod.webpack.config.js",
-    "server:ctr": "node src/server/generateServerKey.js",
     "start": "fec dev",
     "start:proxy": "PROXY=true fec dev",
-    "travis:verify": "npm-run-all build lint test && npm run test:ct -- --browser chrome",
+    "travis:verify": "npm-run-all lint test && npm run test:ct -- --browser chrome && npm run build",
     "verify": "npm-run-all build lint test",
     "nightly": "npm run travis:verify",
     "bump:redhatservices": "npm install @redhat-cloud-services/frontend-components-notifications@latest @redhat-cloud-services/frontend-components-utilities@latest @redhat-cloud-services/frontend-components-config@latest @redhat-cloud-services/frontend-components@latest @redhat-cloud-services/frontend-components-remediations@latest @redhat-cloud-services/eslint-config-redhat-cloud-services@latest",
     "bump:patternfly": "npm install @patternfly/react-core@latest @patternfly/react-table@latest @patternfly/react-charts@latest @patternfly/react-tokens@latest @patternfly/react-icons@latest",
-    "coverage:clean": "rm -rf .nyc_output coverage reports",
-    "coverage": "bash coverage.sh && npm run coverage:clean",
+    "coverage": "bash coverage.sh",
     "postinstall": "ts-patch install"
   }
 }
