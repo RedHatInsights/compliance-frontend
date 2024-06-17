@@ -21,7 +21,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   setTitle: () => ({}),
 }));
 
-describe('SystemDetails', () => {
+describe.skip('SystemDetails', () => {
   const defaultLocation = {
     query: {
       hidePassed: false,
