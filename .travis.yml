@@ -12,10 +12,10 @@ jobs:
     - stage: Lint
       script: npm run lint && commitlint-travis
     - stage: Test
-      script:
-        - 'npm run test && npm run test:ct && npm run build'
-        - 'curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov'
-      after_success: ./codecov -cF jest && ./codecov -cF cypress
+      script: npm run travis:verify
+    - stage: Build
+      script: npm run build
+
 env:
     global:
     - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
