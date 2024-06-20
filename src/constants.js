@@ -10,6 +10,9 @@ export const DEFAULT_TITLE = 'Compliance';
 export const COMPLIANCE_API_ROOT = '/api/compliance';
 export const COMPLIANCE_UI_ROOT = '/rhel/compliance';
 export const INVENTORY_API_ROOT = '/api/inventory/v1';
+export const INVENTORY_TOTAL_FETCH_URL =
+  INVENTORY_API_ROOT +
+  '/hosts?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0';
 
 export const API_HEADERS = {
   'X-Insights-Compliance': packageJson.version,

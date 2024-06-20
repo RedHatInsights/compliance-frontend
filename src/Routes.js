@@ -1,8 +1,5 @@
-import React, { lazy, useEffect, useState } from 'react';
+import React, { lazy } from 'react';
 import { Route, Routes, Navigate, matchPath } from 'react-router-dom';
-import AsyncComponent from '@redhat-cloud-services/frontend-components/AsyncComponent';
-import ErrorState from '@redhat-cloud-services/frontend-components/ErrorState';
-import axios from 'axios';
 import { ComplianceRoute } from 'PresentationalComponents';
 
 const defaultReportTitle = 'Reports';
@@ -159,46 +156,17 @@ export const findRouteByPath = (to) => {
   );
 };
 
-const INVENTORY_TOTAL_FETCH_URL = '/api/inventory/v1/hosts';
-
-const ComplianceRoutes = () => {
-  const [hasSystems, setHasSystems] = useState(true);
-  useEffect(() => {
-    try {
-      axios
-        .get(
-          // look only for RHEL systems, https://issues.redhat.com/browse/RHINENG-5929
-          `${INVENTORY_TOTAL_FETCH_URL}?page=1&per_page=1&filter[system_profile][operating_system][RHEL][version][gte]=0`
-        )
-        .then(({ data }) => {
-          setHasSystems(data.total > 0);
-        });
-    } catch (e) {
-      console.log(e);
-    }
-  }, [hasSystems]);
-
-  return !hasSystems ? (
-    <AsyncComponent
-      appId="compliance_zero_state"
-      appName="dashboard"
-      module="./AppZeroState"
-      scope="dashboard"
-      ErrorComponent={<ErrorState />}
-      app="Compliance"
-    />
-  ) : (
-    <Routes>
-      {routes.map(({ path, ...route }) => (
-        <Route
-          path={path}
-          key={`route-${path.replace('/', '-')}`}
-          element={<ComplianceRoute {...{ ...route, path }} />}
-        ></Route>
-      ))}
-      <Route path="*" element={<Navigate to="reports" />} />
-    </Routes>
-  );
-};
+const ComplianceRoutes = () => (
+  <Routes>
+    {routes.map(({ path, ...route }) => (
+      <Route
+        path={path}
+        key={`route-${path.replace('/', '-')}`}
+        element={<ComplianceRoute {...{ ...route, path }} />}
+      ></Route>
+    ))}
+    <Route path="*" element={<Navigate to="reports" />} />
+  </Routes>
+);
 
 export default ComplianceRoutes;
