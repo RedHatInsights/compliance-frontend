@@ -147,7 +147,7 @@
     "server:ctr": "node src/server/generateServerKey.js",
     "start": "fec dev",
     "start:proxy": "PROXY=true fec dev",
-    "travis:verify": "npm-run-all build lint test && npm run test:ct -- --browser chrome",
+    "travis:verify": "npm-run-all lint test && ./codecov -cF jest && npm run test:ct -- --browser chrome && ./codecov -cF cypress && npm run build",
     "verify": "npm-run-all build lint test",
     "nightly": "npm run travis:verify",
     "bump:redhatservices": "npm install @redhat-cloud-services/frontend-components-notifications@latest @redhat-cloud-services/frontend-components-utilities@latest @redhat-cloud-services/frontend-components-config@latest @redhat-cloud-services/frontend-components@latest @redhat-cloud-services/frontend-components-remediations@latest @redhat-cloud-services/eslint-config-redhat-cloud-services@latest",
