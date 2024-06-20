@@ -25,6 +25,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /(node_modules|bower_components)/i,
+        use: ['babel-loader'],
+      },
     ],
   },
   resolve: {

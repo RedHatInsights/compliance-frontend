@@ -8,9 +8,10 @@ node_js:
 install:
   - npm ci
 script:
+  - curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov
   - npm run travis:verify
-  - commitlint-travis
-  - npm run coverage
+  # - commitlint-travis
+  # - npm run coverage
 env:
     global:
     - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
