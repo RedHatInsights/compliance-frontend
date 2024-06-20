@@ -15,4 +15,4 @@ chmod +x codecov
 # Workaround for https://github.com/codecov/uploader/issues/475
 unset NODE_OPTIONS
 
-./codecov -t ${CODECOV_TOKEN} -f "coverage/coverage-final.json"
+./codecov --verbose -t ${CODECOV_TOKEN} -f "coverage/coverage-final.json"

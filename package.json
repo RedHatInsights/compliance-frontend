@@ -53,7 +53,7 @@
       "src/**/*.{js,jsx}",
       "!src/**/*.cy.js",
       "!src/**/stories/*",
-      "!src/{App,Routes,entry,entry-dev}.js",
+      "!src/{App,entry,entry-dev}.js",
       "!src/**/__fixtures__/*.js",
       "!src/**/__factories__/*.js",
       "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js",
