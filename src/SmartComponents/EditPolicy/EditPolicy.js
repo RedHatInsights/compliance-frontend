@@ -31,7 +31,10 @@ export const EditPolicy = ({ route }) => {
     hosts: selectedSystems,
     values: ruleValues,
   };
-  const onSaveCallback = () => navigate(location.state?.returnTo || -1);
+  const onSaveCallback = (isClose) =>
+    navigate(
+      isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1
+    );
 
   const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules, {
     onSave: onSaveCallback,
@@ -72,7 +75,7 @@ export const EditPolicy = ({ route }) => {
       key="cancel"
       ouiaId="EditPolicyCancelButton"
       variant="link"
-      onClick={onSaveCallback}
+      onClick={() => onSaveCallback(true)}
     >
       Cancel
     </Button>,
@@ -89,7 +92,7 @@ export const EditPolicy = ({ route }) => {
       variant={'large'}
       ouiaId="EditPolicyModal"
       title={`Edit ${policy ? policy.name : ''}`}
-      onClose={onSaveCallback}
+      onClose={() => onSaveCallback(true)}
       actions={actions}
     >
       <StateViewWithError
