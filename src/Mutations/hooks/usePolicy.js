@@ -2,6 +2,18 @@ import useCreateBusinessObjective from './useCreateBusinessObjective';
 import usePolicyMutation from './usePolicyMutation';
 import useAssociateSystems from './useAssociateSystems';
 import useAssociateRules from './useAssociateRules';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
+
+export const useUpdatePolicy = () => {
+  return async (policy, updatedPolicy) => {
+    console.log('YEY', policy, updatedPolicy);
+    return await apiInstance.updatePolicy(policy.id, null, {
+      description: updatedPolicy?.description,
+      business_objective: updatedPolicy?.business_objective ?? '-',
+      compliance_threshold: parseFloat(updatedPolicy?.compliance_threshold),
+    });
+  };
+};
 
 const usePolicy = () => {
   const createBusinessObjective = useCreateBusinessObjective();
@@ -14,6 +26,14 @@ const usePolicy = () => {
     { values = {}, selectedRuleRefIds, ...updatedPolicy },
     onProgress
   ) => {
+    console.log(
+      'XDDDD',
+      policy,
+      values,
+      selectedRuleRefIds,
+      updatedPolicy,
+      onProgress
+    );
     const expectedUpdates =
       3 + Object.keys(values).length + (selectedRuleRefIds || []).length;
     let progress = 0;
@@ -22,6 +42,11 @@ const usePolicy = () => {
         onProgress(++progress / expectedUpdates);
       }
     };
+
+    console.log('progress', progress);
+    console.log('expectedUpdates', expectedUpdates);
+
+    console.log({ expectedUpdates });
 
     const businessObjectiveId = await createBusinessObjective(
       policy,

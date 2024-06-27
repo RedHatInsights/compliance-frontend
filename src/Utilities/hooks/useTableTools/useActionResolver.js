@@ -10,6 +10,7 @@ const useActionResolver = ({ actionResolver }) => {
 };
 
 export const useActionResolverWithItems = ({ items, ...optionsAndProps }) => {
+  console.log('ITEMZ', items);
   const actionResolver =
     items.length > 0
       ? useActionResolver({

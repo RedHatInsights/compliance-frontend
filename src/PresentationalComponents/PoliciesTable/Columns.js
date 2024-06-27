@@ -5,17 +5,17 @@ import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
-const PolicyNameCell = ({ id, policy, policyType }) => (
+const PolicyNameCell = ({ id, title, type }) => (
   <TextContent>
-    <Link to={'/scappolicies/' + id}>{policy.name}</Link>
-    <GreySmallText>{policyType}</GreySmallText>
+    <Link to={'/scappolicies/' + id}>{title}</Link>
+    <GreySmallText>{type}</GreySmallText>
   </TextContent>
 );
 
 PolicyNameCell.propTypes = {
   id: propTypes.string,
-  policy: propTypes.object,
-  policyType: propTypes.string,
+  title: propTypes.object,
+  type: propTypes.string,
 };
 
 export const Name = {
@@ -23,8 +23,11 @@ export const Name = {
   props: {
     width: 25,
   },
-  sortByProp: 'name',
-  renderExport: (policy) => policy.name,
+  sortByProp: 'title',
+  renderExport: (policy) => {
+    console.log('name xddd', policy);
+    return policy.title;
+  },
   renderFunc: renderComponent(PolicyNameCell),
 };
 
@@ -37,10 +40,10 @@ export const Description = {
 
 const PolicyType = {
   title: 'Policy Type',
-  renderExport: (policy) => policy.policyType,
+  renderExport: (policy) => policy.type,
 };
 
-const osString = (policy) => `RHEL ${policy.osMajorVersion}`;
+const osString = (policy) => `RHEL ${policy.os_major_version}`;
 
 export const OperatingSystem = {
   title: 'Operating system',
@@ -52,27 +55,26 @@ export const OperatingSystem = {
 export const Systems = {
   title: 'Systems',
   sortByProp: 'totalHostCount',
-  renderExport: (policy) => policy.totalHostCount,
+  renderExport: (policy) => policy.total_system_count,
   // eslint-disable-next-line react/display-name
   renderFunc: (_data, _id, policy) =>
-    policy.totalHostCount > 0 ? (
-      policy.totalHostCount
+    policy.total_system_count > 0 ? (
+      policy.total_system_count
     ) : (
-      <SystemsCountWarning count={policy.totalHostCount} variant="count" />
+      <SystemsCountWarning count={policy.total_system_count} variant="count" />
     ),
 };
 
-const businessObjectiveString = (policy) =>
-  (policy.businessObjective && policy.businessObjective.title) || '--';
+const businessObjectiveString = (policy) => policy.business_objective || '--';
 
 export const BusinessObjective = {
   title: 'Business objective',
-  sortByFunction: (policy) => policy?.businessObjective?.title,
+  sortByFunction: (policy) => policy?.business_objective,
   renderExport: businessObjectiveString,
   renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
 };
 
-const complianceThresholdString = (policy) => `${policy.complianceThreshold}%`;
+const complianceThresholdString = (policy) => `${policy.compliance_threshold}%`;
 
 export const ComplianceThreshold = {
   title: 'Compliance threshold',

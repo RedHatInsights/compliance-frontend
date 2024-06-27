@@ -5,12 +5,13 @@ const useAssociateSystems = () => {
   const [associateSystems] = useMutation(ASSOCIATE_SYSTEMS_TO_PROFILES);
 
   return async ({ id }, hosts) => {
+    console.log('HOSTS', hosts);
     const { data, error } = await associateSystems({
       fetchPolicy: 'no-cache',
       variables: {
         input: {
           id,
-          systemIds: hosts.map((h) => h.id),
+          systemIds: hosts?.map((h) => h.id),
         },
       },
     });

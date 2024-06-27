@@ -53,6 +53,7 @@ const buildRow = (item, columns, rowTransformer, detailsComponent, idx) =>
       const transformedRow = transformer
         ? transformer(row, item, columns, idx)
         : row;
+      console.log('optimus prime', transformedRow);
       const childRow =
         item.props?.isExpanded &&
         detailsComponent &&
