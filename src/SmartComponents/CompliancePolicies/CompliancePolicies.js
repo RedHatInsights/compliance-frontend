@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+// import { useQuery, gql } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -15,36 +15,44 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
+import { apiInstance, useQuery } from '../../Utilities/hooks/useQuery';
+import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
 
-const QUERY = gql`
-  {
-    profiles(search: "external = false and canonical = false") {
-      edges {
-        node {
-          id
-          name
-          description
-          refId
-          complianceThreshold
-          totalHostCount
-          osMajorVersion
-          policyType
-          policy {
-            id
-            name
-          }
-          businessObjective {
-            id
-            title
-          }
-        }
-      }
-    }
-  }
-`;
+// const QUERY = gql`
+//   {
+//     profiles(search: "external = false and canonical = false") {
+//       edges {
+//         node {
+//           id
+//           name
+//           description
+//           refId
+//           complianceThreshold
+//           totalHostCount
+//           osMajorVersion
+//           policyType
+//           policy {
+//             id
+//             name
+//           }
+//           businessObjective {
+//             id
+//             title
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export const CompliancePolicies = () => {
   const location = useLocation();
+  // let { data, error, loading, refetch } = useQuery(apiInstance.policies, {});
+  let { data, loading } = usePoliciesQuery();
+  let error = null;
+  let refetch = () => null;
+  console.log(data, loading);
+
   const CreateLink = () => (
     <Link
       to="/scappolicies/new"
@@ -58,7 +66,6 @@ export const CompliancePolicies = () => {
     </Link>
   );
 
-  let { data, error, loading, refetch } = useQuery(QUERY);
   useEffect(() => {
     refetch();
   }, [location, refetch]);
@@ -67,8 +74,10 @@ export const CompliancePolicies = () => {
   if (data) {
     error = undefined;
     loading = undefined;
-    policies = data.profiles.edges.map((profile) => profile.node);
+    policies = data;
   }
+
+  console.log('XDDD policies', policies);
 
   return (
     <React.Fragment>

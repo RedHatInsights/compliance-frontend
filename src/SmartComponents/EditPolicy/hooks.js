@@ -1,13 +1,15 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
+import { useUpdatePolicy } from '../../Mutations/hooks/usePolicy';
 
 export const useOnSave = (
   policy,
   updatedPolicyHostsAndRules,
   { onSave: onSaveCallback, onError: onErrorCallback } = {}
 ) => {
-  const updatePolicy = usePolicy();
+  // const updatePolicy = usePolicy();
+  const updatePolicy = useUpdatePolicy();
   const [isSaving, setIsSaving] = useState(false);
 
   const onSave = useCallback(() => {

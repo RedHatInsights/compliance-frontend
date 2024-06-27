@@ -15,12 +15,11 @@ import EditPolicyDetailsInline from '../../SmartComponents/EditPolicyDetails/Edi
 
 const PolicyDetailsDescription = ({ policy, refetch }) => {
   const thresholdText = `${fixedPercentage(
-    policy.complianceThreshold,
+    policy.compliance_threshold,
     1
   )} of rules must be
   passed for a system to be labeled "Compliant"`;
-  const businessText =
-    (policy.businessObjective && policy.businessObjective.title) || '-';
+  const businessText = policy.business_objective || '-';
   const descriptionText = linkifyHtml(policy.description || '');
 
   return (
@@ -36,7 +35,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
             <EditPolicyDetailsInline
               policy={policy}
               refetch={refetch}
-              text={policy.complianceThreshold}
+              text={policy.compliance_threshold}
               variant="threshold"
               inlineClosedText={thresholdText}
               label="Compliance threshold (%)"
@@ -78,11 +77,11 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
             />
           </Text>
           <Text component={TextVariants.h5}>Operating system</Text>
-          <Text component={TextVariants.p}>RHEL {policy.osMajorVersion}</Text>
+          <Text component={TextVariants.p}>RHEL {policy.os_major_version}</Text>
           <Text component={TextVariants.h5}>Policy type </Text>
-          <Text component={TextVariants.p}>{policy.policyType}</Text>
+          <Text component={TextVariants.p}>{policy.profile_title}</Text>
           <Text component={TextVariants.h5}>Reference ID</Text>
-          <Text component={TextVariants.p}>{policy.refId}</Text>
+          <Text component={TextVariants.p}>{policy.ref_id}</Text>
         </TextContent>
       </CardBody>
     </Card>

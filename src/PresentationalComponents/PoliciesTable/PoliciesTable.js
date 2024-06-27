@@ -11,6 +11,8 @@ export const PoliciesTable = ({ policies, DedicatedAction }) => {
   const filters = Object.values(Filters);
   const actionResolver = useActionResolver();
 
+  console.log('POLICIES TABLE ITEMS', policies);
+
   return (
     <TableToolsTable
       aria-label="Policies"
