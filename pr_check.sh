@@ -15,9 +15,11 @@ set -exv
 source <(curl -sSL $COMMON_BUILDER/src/frontend-build.sh)
 
 # Install bonfire repo/initialize
-CICD_URL=https://raw.githubusercontent.com/RedHatInsights/bonfire/master/cicd
+CICD_SCRIPT_URL=https://raw.githubusercontent.com/RedHatInsights/cicd-tools/main/bootstrap.sh
+export BONFIRE_REPO_ORG=Victoremepunto
+export BONFIRE_REPO_BRANCH="hotfix-image-tag"
 # shellcheck source=/dev/null
-curl -s $CICD_URL/bootstrap.sh > .cicd_bootstrap.sh && source .cicd_bootstrap.sh
+curl -s "$CICD_SCRIPT_URL" -o .cicd_bootstrap.sh && source .cicd_bootstrap.sh
 
 export DEPLOY_FRONTENDS="true"
 export IQE_ENV="ephemeral"
