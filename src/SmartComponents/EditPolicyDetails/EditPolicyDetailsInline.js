@@ -17,7 +17,7 @@ import {
 } from 'PresentationalComponents';
 import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 // import Prompt from '@redhat-cloud-services/frontend-components/Prompt';
-import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
+import { useOnSaveInline as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 

@@ -5,6 +5,6 @@ export const nameFilter = {
   label: 'Name',
   filter: (policies, value) =>
     policies.filter((policy) =>
-      policy.name.toLowerCase().includes(value.toLowerCase())
+      policy.title.toLowerCase().includes(value.toLowerCase())
     ),
 };

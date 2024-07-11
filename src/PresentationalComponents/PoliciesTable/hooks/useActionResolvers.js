@@ -20,7 +20,10 @@ const useActionResolver = () => {
       title: 'Edit policy',
       isDisabled: !isEditAccessLoading && !hasEditAccess,
       onClick: (_event, _index, policy) =>
-        navigate(`/scappolicies/${policy.itemId}/edit`),
+        navigate(
+          // `/scappolicies/${policy?.cells?.[0]?.title?.props?.old_id}/edit`
+          `/scappolicies/${policy?.itemId}/edit`
+        ),
     },
   ];
 };

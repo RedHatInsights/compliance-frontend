@@ -6,7 +6,7 @@ import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 
-const PolicySystemsTab = ({ policy }) => {
+const PolicySystemsTab = ({ policy, newPolicy }) => {
   return (
     <SystemsTable
       columns={[
@@ -26,7 +26,7 @@ const PolicySystemsTab = ({ policy }) => {
         policy?.hosts?.length === 0 && <NoSystemsTableWithWarning />
       }
       complianceThreshold={policy.complianceThreshold}
-      dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
+      dedicatedAction={<EditSystemsButtonToolbarItem policy={newPolicy} />}
     />
   );
 };
@@ -37,6 +37,9 @@ PolicySystemsTab.propTypes = {
     complianceThreshold: propTypes.string.isRequired,
     osMajorVersion: propTypes.string.isRequired,
     hosts: propTypes.array.isRequired,
+  }),
+  newPolicy: propTypes.shape({
+    id: propTypes.string.isRequired,
   }),
   dedicatedAction: propTypes.object,
   systemTableProps: propTypes.object,

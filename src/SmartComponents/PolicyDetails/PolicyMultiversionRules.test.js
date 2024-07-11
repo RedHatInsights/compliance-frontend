@@ -18,9 +18,13 @@ describe('PolicyMultiversionRules', () => {
       hosts,
     };
 
+    const newPolicy = {
+      id: '123',
+    };
+
     render(
       <TestWrapper>
-        <PolicyMultiversionRules policy={policy} />
+        <PolicyMultiversionRules policy={policy} newPolicy={newPolicy} />
       </TestWrapper>
     );
 

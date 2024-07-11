@@ -2,6 +2,18 @@ import useCreateBusinessObjective from './useCreateBusinessObjective';
 import usePolicyMutation from './usePolicyMutation';
 import useAssociateSystems from './useAssociateSystems';
 import useAssociateRules from './useAssociateRules';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
+
+export const useUpdatePolicy = () => {
+  return async (policy, updatedPolicy) => {
+    console.log('here', policy, updatedPolicy);
+    return await apiInstance.updatePolicy(policy.id, null, {
+      description: updatedPolicy?.description,
+      business_objective: updatedPolicy?.business_objective ?? '-',
+      compliance_threshold: parseFloat(updatedPolicy?.compliance_threshold),
+    });
+  };
+};
 
 const usePolicy = () => {
   const createBusinessObjective = useCreateBusinessObjective();

@@ -27,7 +27,7 @@ export const ProfileThresholdField = ({ previousThreshold }) => {
       style={{ width: '60%', display: 'block' }}
     >
       <Field
-        name="complianceThreshold"
+        name="compliance_threshold"
         id="complianceThreshold"
         isRequired={true}
         onChange={(_, v) => onThresholdChange(v)}
