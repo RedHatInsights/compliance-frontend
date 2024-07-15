@@ -3,6 +3,8 @@ sudo: required
 notifications:
   email: false
 dist: focal
+addons:
+  chrome: stable
 node_js:
   - 18
 install:
