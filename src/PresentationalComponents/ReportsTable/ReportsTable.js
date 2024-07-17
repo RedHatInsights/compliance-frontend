@@ -14,11 +14,9 @@ import {
 import '../../App.scss';
 
 const ReportsTable = ({ profiles }) => {
-  const policyTypes = uniq(
-    profiles.map(({ policyType }) => policyType).filter((i) => !!i)
-  );
+  const policyTypes = uniq(profiles.map(({ type }) => type).filter((i) => !!i));
   const operatingSystems = uniq(
-    profiles.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
+    profiles.map(({ os_major_version }) => os_major_version).filter((i) => !!i)
   );
 
   return (

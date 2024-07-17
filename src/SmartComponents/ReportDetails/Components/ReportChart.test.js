@@ -4,11 +4,11 @@ import ReportChart from './ReportChart';
 describe('ReportChart', () => {
   const defaultProps = {
     profile: {
-      name: 'TEST Profile name',
-      compliantHostCount: 0,
-      testResultHostCount: 0,
-      unsupportedHostCount: 0,
-      totalHostCount: 0,
+      title: 'TEST Profile name',
+      compliant_system_count: 0,
+      reported_system_count: 0,
+      unsupported_system_count: 0,
+      assigned_system_count: 0,
     },
   };
 
@@ -30,10 +30,10 @@ describe('ReportChart', () => {
     const props = {
       profile: {
         ...defaultProps.profile,
-        compliantHostCount: 5,
-        testResultHostCount: 5,
-        unsupportedHostCount: 0,
-        totalHostCount: 5,
+        compliant_system_count: 5,
+        reported_system_count: 5,
+        unsupported_system_count: 0,
+        assigned_system_count: 5,
       },
     };
     const component = <ReportChart {...props} />;
@@ -46,10 +46,10 @@ describe('ReportChart', () => {
     const props = {
       profile: {
         ...defaultProps.profile,
-        compliantHostCount: 5,
-        testResultHostCount: 5,
-        unsupportedHostCount: 2,
-        totalHostCount: 5,
+        compliant_system_count: 5,
+        reported_system_count: 5,
+        unsupported_system_count: 2,
+        assigned_system_count: 5,
       },
     };
     const component = <ReportChart {...props} />;
@@ -62,10 +62,10 @@ describe('ReportChart', () => {
     const props = {
       profile: {
         ...defaultProps.profile,
-        compliantHostCount: 2,
-        testResultHostCount: 5,
-        unsupportedHostCount: 0,
-        totalHostCount: 10,
+        compliant_system_count: 2,
+        reported_system_count: 5,
+        unsupported_system_count: 0,
+        assigned_system_count: 10,
       },
     };
     const component = <ReportChart {...props} />;

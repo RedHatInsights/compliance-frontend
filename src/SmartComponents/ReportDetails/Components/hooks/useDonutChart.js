@@ -44,22 +44,22 @@ DonutLabel.propTypes = {
 
 const useDonutChart = (profile) => {
   const {
-    compliantHostCount = 0,
-    testResultHostCount = 0,
-    unsupportedHostCount = 0,
-    totalHostCount = 0,
+    compliant_system_count = 0,
+    reported_system_count = 0,
+    unsupported_system_count = 0,
+    assigned_system_count = 0,
   } = profile;
   const notReportingHostCount =
-    totalHostCount - unsupportedHostCount - testResultHostCount;
-  const nonCompliantHostCount = testResultHostCount - compliantHostCount;
-  const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
+    assigned_system_count - unsupported_system_count - reported_system_count;
+  const nonCompliantHostCount = reported_system_count - compliant_system_count;
+  const donutId = profile.title?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
-    { x: 'Compliant', y: compliantHostCount },
+    { x: 'Compliant', y: compliant_system_count },
     { x: 'Non-compliant', y: nonCompliantHostCount },
-    { x: 'Unsupported', y: unsupportedHostCount },
+    { x: 'Unsupported', y: unsupported_system_count },
     { x: 'Not reporting', y: notReportingHostCount },
   ];
-  const chartColorScale = (totalHostCount === 0 && [
+  const chartColorScale = (assigned_system_count === 0 && [
     paletteColors.black300,
   ]) || [
     paletteColors.blue300,
@@ -71,8 +71,8 @@ const useDonutChart = (profile) => {
   const legendData = useLegendData(donutValues, profile);
 
   const compliancePercentage = fixedPercentage(
-    totalHostCount > 0
-      ? Math.floor(100 * (compliantHostCount / totalHostCount))
+    assigned_system_count > 0
+      ? Math.floor(100 * (compliant_system_count / assigned_system_count))
       : 0
   );
 

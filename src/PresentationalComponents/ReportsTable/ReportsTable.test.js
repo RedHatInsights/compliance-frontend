@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-import { policies as rawPolicies } from '@/__fixtures__/policies.js';
+import { reports } from '@/__fixtures__/reports.js';
 import ReportsTable from './ReportsTable';
 import {
   policyNameFilter,
@@ -15,13 +15,11 @@ import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 
 expect.extend(filterHelpers);
 
-const profiles = rawPolicies.edges.map((profile) => profile.node);
-
 describe('ReportsTable', () => {
   it('expect to render without error', () => {
     render(
       <TestWrapper>
-        <ReportsTable profiles={profiles} />
+        <ReportsTable profiles={reports} />
       </TestWrapper>
     );
 
@@ -33,12 +31,12 @@ describe('ReportsTable', () => {
   // TODO This can be properly implemented once on react 18 and newer RTL packages
   it.skip('expect to have filters properly rendered', () => {
     const policyTypes = uniq(
-      profiles.map(({ policyType }) => policyType).filter((i) => !!i)
+      reports.map(({ policyType }) => policyType).filter((i) => !!i)
     );
     const operatingSystems = uniq(
-      profiles.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
+      reports.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
     );
-    const component = <ReportsTable profiles={profiles} />;
+    const component = <ReportsTable profiles={reports} />;
 
     expect(component).toHaveFiltersFor([
       ...policyNameFilter,

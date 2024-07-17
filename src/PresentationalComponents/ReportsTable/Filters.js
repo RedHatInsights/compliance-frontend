@@ -7,7 +7,7 @@ export const policyNameFilter = [
     filter: (profiles, value) => {
       const lowerCaseValue = value.toLowerCase();
       return profiles.filter((profile) =>
-        [profile.name, profile.policy.name]
+        [profile.title, profile.profile_title]
           .join()
           .toLowerCase()
           .includes(lowerCaseValue)
@@ -21,7 +21,7 @@ export const policyTypeFilter = (policyTypes) => [
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
     filter: (profiles, values) =>
-      profiles.filter(({ policyType }) => values.includes(policyType)),
+      profiles.filter(({ type }) => values.includes(type)),
     items: policyTypes.map((policyType) => ({
       label: policyType,
       value: policyType,
@@ -34,7 +34,9 @@ export const operatingSystemFilter = (operatingSystems) => [
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
     filter: (profiles, values) =>
-      profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
+      profiles.filter(({ os_major_version }) =>
+        values.includes(os_major_version)
+      ),
     items: operatingSystems.map((operatingSystem) => ({
       label: `RHEL ${operatingSystem}`,
       value: operatingSystem,
@@ -47,9 +49,9 @@ export const policyComplianceFilter = [
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
     filter: (profiles, values) =>
-      profiles.filter(({ testResultHostCount, compliantHostCount }) => {
+      profiles.filter(({ reported_system_count, compliant_system_count }) => {
         const compliantHostsPercent = Math.round(
-          (100 / testResultHostCount) * compliantHostCount
+          (100 / reported_system_count) * compliant_system_count
         );
         const matching = values
           .map((value) => {

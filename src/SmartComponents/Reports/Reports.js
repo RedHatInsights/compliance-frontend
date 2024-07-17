@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useReports } from '../../Utilities/hooks/api/useReports';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -14,6 +14,7 @@ import {
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 // import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useQuery, gql } from '@apollo/client';
 
 const QUERY = gql`
   query R_Profiles($filter: String!) {
@@ -21,36 +22,24 @@ const QUERY = gql`
       edges {
         node {
           id
-          name
           refId
-          description
-          policyType
-          totalHostCount
-          testResultHostCount
-          compliantHostCount
-          unsupportedHostCount
-          osMajorVersion
-          complianceThreshold
-          businessObjective {
-            id
-            title
-          }
-          policy {
-            id
-            name
-          }
-          benchmark {
-            id
-            version
-          }
         }
       }
     }
   }
 `;
-
-const profilesFromEdges = (data) =>
+const reportIdsFromEdges = (data) =>
   (data?.profiles?.edges || []).map((profile) => profile.node);
+
+//TODO: remove completely after ReportDownload page is migrated
+const replaceOldReportId = (data = [], dataFromGQL) =>
+  data.map((reportFromRest) => ({
+    ...reportFromRest,
+    oldId:
+      dataFromGQL.find(
+        (reportFromGQL) => reportFromGQL.refId === reportFromRest.ref_id
+      )?.id || reportFromRest.id,
+  }));
 
 const ReportsHeader = () => (
   <PageHeader>
@@ -63,30 +52,49 @@ export const Reports = () => {
   // const serialisedTableState = useSerialisedTableState();
   // console.log('Async TableState', serialisedTableState);
 
-  let profiles = [];
   let showView = false;
   const location = useLocation();
   const filter = `has_policy_test_results = true AND external = false`;
 
-  let { data, error, loading, refetch } = useQuery(QUERY, {
+  let {
+    data: { data },
+    error,
+    loading,
+    refetch,
+  } = useReports(filter);
+
+  //TODO: remove completely after ReportDownload page is migrated
+  let {
+    data: dataFromGQL,
+    error: errorFromGQL,
+    loading: loadingFromGQL,
+    refetch: refetchFromGQL,
+  } = useQuery(QUERY, {
     variables: { filter },
   });
 
   useEffect(() => {
     refetch();
+    refetchFromGQL();
   }, [location, refetch]);
 
-  if (data) {
-    profiles = profilesFromEdges(data);
+  if (data && dataFromGQL) {
+    data = replaceOldReportId(data, reportIdsFromEdges(dataFromGQL));
     error = undefined;
     loading = undefined;
-    showView = profiles && profiles.length > 0;
+    showView = data && data.length > 0;
   }
 
   return (
     <>
       <ReportsHeader />
-      <StateViewWithError stateValues={{ error, data, loading }}>
+      <StateViewWithError
+        stateValues={{
+          error: error || errorFromGQL,
+          loading: loading || loadingFromGQL,
+          data,
+        }}
+      >
         <StateViewPart stateKey="loading">
           <section className="pf-v5-c-page__main-section">
             <SkeletonTable colSize={3} rowSize={10} />
@@ -95,7 +103,7 @@ export const Reports = () => {
         <StateViewPart stateKey="data">
           <section className="pf-v5-c-page__main-section">
             {showView ? (
-              <ReportsTable {...{ profiles }} />
+              <ReportsTable profiles={data} />
             ) : (
               <ReportsEmptyState />
             )}

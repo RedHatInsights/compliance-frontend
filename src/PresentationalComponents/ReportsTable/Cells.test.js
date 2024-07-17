@@ -16,12 +16,9 @@ describe('Name', () => {
         <Name
           {...{
             id: 'ID',
-            name: 'NAME',
-            policyType: 'POLICY_TYPE',
-            policy: {
-              id: 'POLICY_ID',
-              name: 'POLICY_NAME',
-            },
+            title: 'NAME',
+            type: 'POLICY_TYPE',
+            profile_title: 'POLICY_NAME',
           }}
         />
       </TestWrapper>
@@ -33,7 +30,7 @@ describe('Name', () => {
 
 describe('OperatingSystem', () => {
   const defaultProps = {
-    osMajorVersion: '7',
+    os_major_version: '7',
   };
 
   it('expect to render with SSG version', () => {
@@ -43,7 +40,7 @@ describe('OperatingSystem', () => {
           {...defaultProps}
           benchmark={{ version: '1.2.3' }}
           policy={null}
-          unsupportedHostCount={0}
+          unsupported_system_count={0}
         />
       </TestWrapper>
     );
@@ -58,7 +55,7 @@ describe('OperatingSystem', () => {
         <OperatingSystem
           {...defaultProps}
           benchmark={{ version: '1.2.3' }}
-          unsupportedHostCount={3}
+          unsupported_system_count={3}
           policy={null}
         />
       </TestWrapper>
@@ -72,14 +69,14 @@ describe('OperatingSystem', () => {
 
 describe('CompliantSystems', () => {
   const deftaultProps = {
-    testResultHostCount: 10,
-    compliantHostCount: 9,
+    reported_system_count: 10,
+    compliant_system_count: 9,
   };
 
   it('expect to render with unsupported hosts', () => {
     render(
       <TestWrapper>
-        <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+        <CompliantSystems {...deftaultProps} unsupported_system_count={42} />
       </TestWrapper>
     );
 
