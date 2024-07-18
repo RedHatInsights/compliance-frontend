@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import PageHeader, {
@@ -12,6 +12,8 @@ import {
   StateViewWithError,
   ReportsEmptyState,
 } from 'PresentationalComponents';
+import TableToolsProvider from 'Utilities/hooks/useTableToolsv2/components/TableToolsProvider';
+import { TableContext } from 'Utilities/hooks/useTableToolsv2/utils';
 
 const QUERY = gql`
   query R_Profiles($filter: String!) {
@@ -59,8 +61,13 @@ const ReportsHeader = () => (
 export const Reports = () => {
   let profiles = [];
   let showView = false;
+  // noooout sure why we use this to trigger a refetch... ?
   const location = useLocation();
   const filter = `has_policy_test_results = true AND external = false`;
+  // TODO Extract into hook in table tools
+  const { tableState } = useContext(TableContext);
+
+  console.log(tableState);
 
   let { data, error, loading, refetch } = useQuery(QUERY, {
     variables: { filter },
@@ -100,4 +107,10 @@ export const Reports = () => {
   );
 };
 
-export default Reports;
+const ReportsWithProvider = () => (
+  <TableToolsProvider>
+    <Reports />
+  </TableToolsProvider>
+);
+
+export default ReportsWithProvider;

@@ -4,6 +4,7 @@ export const policyNameFilter = [
   {
     type: conditionalFilterType.text,
     label: 'Policy name',
+    toApiFilter: (values) => {},
     filter: (profiles, value) => {
       const lowerCaseValue = value.toLowerCase();
       return profiles.filter((profile) =>
@@ -20,6 +21,7 @@ export const policyTypeFilter = (policyTypes) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
+    toApiFilter: (values) => {},
     filter: (profiles, values) =>
       profiles.filter(({ policyType }) => values.includes(policyType)),
     items: policyTypes.map((policyType) => ({
@@ -33,6 +35,7 @@ export const operatingSystemFilter = (operatingSystems) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
+    toApiFilter: (values) => {},
     filter: (profiles, values) =>
       profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
@@ -46,6 +49,7 @@ export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
+    toApiFilter: (values) => {},
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(
