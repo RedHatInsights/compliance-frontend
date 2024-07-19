@@ -119,7 +119,7 @@ class FilterConfigBuilder {
     }
   };
 
-  buildConfiguration = (handler, states, props = {}, initConfig) => ({
+  buildConfiguration = (handler, states = {}, props = {}, initConfig) => ({
     ...props,
     items: (initConfig || this.config)
       .map((item) =>

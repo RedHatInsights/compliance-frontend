@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import useTableState from './useTableState';
 
 const usePaginate = (options = {}) => {
   const { perPage = 10 } = options;
   const enablePagination =
     options.pagination !== false && !options.showTreeTable;
-  const [paginationState, setPaginationState] = useState({
+  const [paginationState, setPaginationState] = useTableState('pagination', {
     perPage,
     page: 1,
   });

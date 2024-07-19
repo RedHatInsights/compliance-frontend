@@ -18,6 +18,7 @@ const filteredAndSortedItems = (items, filter, sorter) => {
   return sorter ? sorter(filtered) : filtered;
 };
 
+// TODO this needs an option to enable disable item filtering, paginating, sorting, etc.
 const useTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;

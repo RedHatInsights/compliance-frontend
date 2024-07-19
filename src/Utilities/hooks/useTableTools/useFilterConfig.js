@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import FilterConfigBuilder from './FilterConfigBuilder/FilterConfigBuilder';
 import useSelectedFilter from './useSelectedFilter';
+import useTableState from './useTableState';
 
 const filterValues = (activeFilters) =>
   Object.values(activeFilters).filter((value) => {
@@ -35,7 +36,7 @@ const useFilterConfig = (options = {}) => {
   const { filterConfig = [], activeFilters: initialActiveFiltersRaw } =
     filters || {};
 
-  const [activeFilters, setActiveFilters] = useState({});
+  const [activeFilters, setActiveFilters] = useTableState('filters', {});
   const initialActiveFilters = perpareInitialActiveFilters(
     initialActiveFiltersRaw,
     activeFilters
