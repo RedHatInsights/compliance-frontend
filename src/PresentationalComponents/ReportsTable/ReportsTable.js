@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import { uniq } from 'Utilities/helpers';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
