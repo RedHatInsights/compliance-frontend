@@ -3,14 +3,21 @@ sudo: required
 notifications:
   email: false
 dist: focal
+addons:
+  chrome: stable
 node_js:
   - 18
 install:
   - npm ci
-script:
-  - commitlint-travis
-  - curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov
-  - npm run travis:verify
+jobs:
+  include:
+    - stage: Lint
+      script: npm run lint && commitlint-travis
+    - stage: Test
+      script:
+        - 'npm run test && npm run test:ct -- --browser chrome && npm run build'
+        - 'curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov'
+      after_success: ./codecov -cF jest && ./codecov -cF cypress
 env:
     global:
     - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
