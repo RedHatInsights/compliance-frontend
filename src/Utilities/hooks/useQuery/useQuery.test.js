@@ -11,9 +11,7 @@ describe('useQuery', () => {
   });
 
   it('keeps loading', () => {
-    const { result } = renderHook(() =>
-      useQuery(() => new Promise(() => {}), [{}])
-    );
+    const { result } = renderHook(() => useQuery(() => new Promise(() => {})));
     expect(result.current).toMatchObject({
       data: undefined,
       error: undefined,
@@ -24,7 +22,7 @@ describe('useQuery', () => {
   it('returns an error', async () => {
     const error = 'this is an error';
     apiInstance.systems.mockRejectedValue(error);
-    const { result } = renderHook(() => useQuery(apiInstance.systems, [{}]));
+    const { result } = renderHook(() => useQuery(apiInstance.systems));
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -67,8 +65,10 @@ describe('useQuery', () => {
     };
     apiInstance.systems.mockResolvedValue(data);
     const { result } = renderHook(() =>
-      useQuery(apiInstance.systems, ['123', '456'])
+      useQuery(apiInstance.systems, { params: ['123', '456'] })
     );
+
+    const originalRefetch = result.current.refetch;
 
     expect(apiInstance.systems).toHaveBeenCalledTimes(1);
 
@@ -87,6 +87,8 @@ describe('useQuery', () => {
     });
 
     expect(apiInstance.systems).toHaveBeenCalledTimes(2);
+    // Verify the function is still the same
+    expect(result.current.refetch).toEqual(originalRefetch);
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -114,7 +116,7 @@ describe('useQuery', () => {
 
     apiInstance.systems.mockResolvedValue(data);
     const { result, rerender } = renderHook(
-      ({ param }) => useQuery(apiInstance.systems, [param]),
+      ({ param }) => useQuery(apiInstance.systems, { params: [param] }),
       {
         initialProps,
       }
@@ -158,13 +160,16 @@ describe('useQuery', () => {
 
     const initialProps = {
       apiInstance: apiInstance.systems,
-      param,
-      skip,
+      options: {
+        params: [param],
+        skip,
+      },
     };
 
     apiInstance.systems.mockResolvedValue(data);
     const { result, rerender } = renderHook(
-      ({ param, skip }) => useQuery(apiInstance.systems, [param], skip),
+      ({ param, skip }) =>
+        useQuery(apiInstance.systems, { params: [param], skip }),
       {
         initialProps,
       }
