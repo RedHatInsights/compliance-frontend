@@ -16,7 +16,8 @@ import useAsyncTableTools from '../../hooks/useAsyncTableTools';
  * @param {Object} [props]
  *
  *  **Props:**
- *    * items - an array of items/objects to render table rows form
+ *
+ *    * items -  An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
  *    * columns - an array of column objects to render items with
  *    * filters - an array of filters
  *    * options - an object of options that will be passed along to the `useAsyncTableTools` hook

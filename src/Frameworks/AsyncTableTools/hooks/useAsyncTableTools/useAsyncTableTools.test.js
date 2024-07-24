@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
 import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
 import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
@@ -10,6 +10,16 @@ describe('useAsyncTableTools', () => {
 
   const defaultArguments = [exampleItems, columns, {}];
 
+  it('returns a object with tableProps and toolbarProps even with no items, columns or options passed', () => {
+    const { result } = renderHook(
+      () => useAsyncTableTools([], []),
+      DEFAULT_RENDER_OPTIONS
+    );
+
+    expect(result.current.tableProps).toBeDefined();
+    expect(result.current.toolbarProps).toBeDefined();
+  });
+
   it('returns a object with tableProps and toolbarProps', () => {
     const { result } = renderHook(
       () => useAsyncTableTools(...defaultArguments),
@@ -18,5 +28,18 @@ describe('useAsyncTableTools', () => {
 
     expect(result.current.tableProps).toBeDefined();
     expect(result.current.toolbarProps).toBeDefined();
+  });
+
+  it('returns a object with tableProps and toolbarProps', async () => {
+    const asyncFunction = jest.fn(async () => exampleItems);
+
+    renderHook(
+      () => useAsyncTableTools(asyncFunction, columns),
+      DEFAULT_RENDER_OPTIONS
+    );
+
+    await waitFor(() => {
+      return expect(asyncFunction).toHaveBeenCalled();
+    });
   });
 });

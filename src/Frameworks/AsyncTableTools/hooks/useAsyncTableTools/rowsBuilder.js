@@ -19,13 +19,14 @@ const rowsBuilder = (items, columns, options = {}) => {
     options.emptyRows || emptyRows(undefined, columns.length);
 
   const rows =
-    items.length > 0
+    items &&
+    (items.length > 0
       ? items.flatMap((item) => itemRow(item, columns)).filter((v) => !!v)
-      : EmptyRowsComponent;
+      : EmptyRowsComponent);
 
   return {
     tableProps: {
-      rows,
+      ...(rows ? { rows } : {}),
     },
   };
 };

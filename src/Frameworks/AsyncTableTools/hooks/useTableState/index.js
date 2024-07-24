@@ -9,9 +9,9 @@ export const useSerialisedTableState = () => {
 };
 
 export const useRawTableState = () => {
-  const { tableSate } = useContext(TableContext);
+  const { tableState } = useContext(TableContext);
 
-  return tableSate;
+  return tableState;
 };
 
 export { default } from './useTableState';
