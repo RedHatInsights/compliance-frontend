@@ -1,3 +1,4 @@
+import usePagination from '../usePagination';
 import rowsBuilder from './rowsBuilder';
 
 /**
@@ -17,6 +18,8 @@ const useAsyncTableTools = (items = [], columns = [], options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
 
+  const { toolbarProps: pagintionToolbarProps } = usePagination(options);
+
   const {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
@@ -25,6 +28,7 @@ const useAsyncTableTools = (items = [], columns = [], options = {}) => {
   });
 
   const toolbarProps = {
+    ...pagintionToolbarProps,
     ...rowBuilderToolbarProps,
     ...toolbarPropsOption,
   };
