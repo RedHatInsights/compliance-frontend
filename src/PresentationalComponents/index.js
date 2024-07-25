@@ -50,3 +50,4 @@ export { default as LinkWithPermission } from './LinkWithPermission/LinkWithPerm
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as InlineEdit } from './InlineEdit/InlineEdit';
 export { default as ComplianceRoute } from './ComplianceRoute/ComplianceRoute';
+export { default as ComplianceTable } from './ComplianceTable/ComplianceTable';

@@ -17,6 +17,9 @@ export const API_HEADERS = {
   Accept: 'application/json',
 };
 
+// Change to true to enable and test the async table component in the ComplianceTable component
+export const ENABLE_ASYNC_TABLE_HOOKS = false;
+
 export const supportedConfigsLink =
   'https://access.redhat.com/articles/6644131';
 
