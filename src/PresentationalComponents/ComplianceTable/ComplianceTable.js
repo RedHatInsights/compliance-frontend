@@ -2,7 +2,7 @@ import React from 'react';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
-import { paginationSerialiser } from './serialisers';
+import { paginationSerialiser, filtersSerialiser } from './serialisers';
 
 /**
  *  This component serves as a place to either use the non-async TableTools or the AsyncTableTools
@@ -19,7 +19,10 @@ const ComplianceTable = (props) =>
     <AsyncTableToolsTable
       {...props}
       options={{
-        serialisers: { pagination: paginationSerialiser },
+        serialisers: {
+          pagination: paginationSerialiser,
+          filters: filtersSerialiser,
+        },
       }}
     />
   ) : (
