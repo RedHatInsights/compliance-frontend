@@ -3,7 +3,6 @@ import { within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-// import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
 import fixtures from '../../../cypress/fixtures/compliancePolicies2.json';
 
@@ -19,9 +18,9 @@ describe('PoliciesTable', () => {
     const table = screen.queryByLabelText('Policies');
 
     expect(
-      within(table).getByText(
+      within(table).getAllByText(
         'Protection Profile for General Purpose Operating Systems'
-      )
+      )[0]
     ).toBeInTheDocument();
   });
 

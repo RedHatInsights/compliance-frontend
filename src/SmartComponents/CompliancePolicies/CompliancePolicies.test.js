@@ -6,7 +6,6 @@ import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import { profiles } from '@/__fixtures__/profiles.js';
 import { CompliancePolicies } from './CompliancePolicies.js';
 import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
 import fixtures from '../../../cypress/fixtures/compliancePolicies2.json';
@@ -27,26 +26,10 @@ describe('CompliancePolicies', () => {
   };
 
   it('expect to render without error', () => {
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
-      data: profiles,
-    }));
-    const useQuery2 = () => ({
+    usePoliciesQuery.mockImplementation(() => ({
       ...queryDefaults,
       data: fixtures,
-    });
-
-    usePoliciesQuery.mockImplementation(() => {
-      const { data, error, refetch } = useQuery2();
-
-      const policiesWithOldId = data
-        ? data?.data?.map((policy) => {
-            return { ...policy, old_id: policy.id };
-          })
-        : null;
-
-      return { data: policiesWithOldId, loading: false, error, refetch };
-    });
+    }));
 
     render(
       <TestWrapper>
@@ -68,24 +51,11 @@ describe('CompliancePolicies', () => {
         },
       },
     }));
-    const useQuery2 = () => ({
+
+    usePoliciesQuery.mockImplementation(() => ({
       ...queryDefaults,
-      data: {
-        data: [],
-      },
-    });
-
-    usePoliciesQuery.mockImplementation(() => {
-      const { data, error, refetch } = useQuery2();
-
-      const policiesWithOldId = data
-        ? data?.data?.map((policy) => {
-            return { ...policy, old_id: policy.id };
-          })
-        : null;
-
-      return { data: policiesWithOldId, loading: false, error, refetch };
-    });
+      data: { data: [] },
+    }));
 
     render(
       <TestWrapper>
@@ -101,27 +71,11 @@ describe('CompliancePolicies', () => {
       networkError: { statusCode: 500 },
       error: 'Test Error loading',
     };
-    useQuery.mockImplementation(() => ({
+
+    usePoliciesQuery.mockImplementation(() => ({
       ...queryDefaults,
       error,
     }));
-
-    const useQuery2 = () => ({
-      ...queryDefaults,
-      error,
-    });
-
-    usePoliciesQuery.mockImplementation(() => {
-      const { data, error, loading, refetch } = useQuery2();
-
-      const policiesWithOldId = data
-        ? data?.data?.map((policy) => {
-            return { ...policy, old_id: policy.id };
-          })
-        : null;
-
-      return { data: policiesWithOldId, loading, error, refetch };
-    });
 
     render(
       <TestWrapper>

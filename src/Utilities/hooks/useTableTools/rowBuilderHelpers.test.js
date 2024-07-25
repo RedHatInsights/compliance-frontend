@@ -38,7 +38,6 @@ describe('collectLeaves', () => {
 });
 
 describe('findParentsForItemInTree', () => {
-  console.log(tableTree);
   it('returns the parents for a first level a given itemId', () => {
     expect(findParentsForItemInTree(tableTree)('item-8')).toEqual([
       '4th-branch',

@@ -6,7 +6,6 @@ import { apiInstance } from '../../Utilities/hooks/useQuery';
 
 export const useUpdatePolicy = () => {
   return async (policy, updatedPolicy) => {
-    console.log('here', policy, updatedPolicy);
     return await apiInstance.updatePolicy(policy.id, null, {
       description: updatedPolicy?.description,
       business_objective: updatedPolicy?.business_objective ?? '-',

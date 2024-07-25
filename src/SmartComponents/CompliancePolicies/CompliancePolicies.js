@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-// import { useQuery, gql } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -15,40 +14,11 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
-// import { apiInstance, useQuery } from '../../Utilities/hooks/useQuery';
 import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
-
-// const QUERY = gql`
-//   {
-//     profiles(search: "external = false and canonical = false") {
-//       edges {
-//         node {
-//           id
-//           name
-//           description
-//           refId
-//           complianceThreshold
-//           totalHostCount
-//           osMajorVersion
-//           policyType
-//           policy {
-//             id
-//             name
-//           }
-//           businessObjective {
-//             id
-//             title
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export const CompliancePolicies = () => {
   const location = useLocation();
-  let { data, loading, error } = usePoliciesQuery();
-  let refetch = () => null;
+  let { data, loading, error, refetch } = usePoliciesQuery();
 
   const CreateLink = () => (
     <Link
@@ -68,11 +38,14 @@ export const CompliancePolicies = () => {
   }, [location, refetch]);
   let policies;
 
-  if (data) {
+  if (Array.isArray(data?.data)) {
     error = undefined;
-    loading = undefined;
-    policies = data;
+    loading = false;
+    policies = data.data;
+    console.log('POLICIES', policies);
   }
+
+  console.log('EMPTY STATE?', policies && policies.length === 0);
 
   return (
     <React.Fragment>

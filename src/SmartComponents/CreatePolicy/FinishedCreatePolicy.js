@@ -15,7 +15,7 @@ import {
 } from '@patternfly/react-core';
 import {
   ProgressBar,
-  LinkWithPermission as Link,
+  // LinkWithPermission as Link,
 } from 'PresentationalComponents';
 import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
@@ -78,19 +78,21 @@ export const FinishedCreatePolicy = ({
     };
 
     updatePolicy(null, newPolicy, onProgress)
-      .then(({ id }) => {
+      // .then(({ _id }) => {
+      .then(() => {
         setPercent(100);
         setMessage();
         dispatchNotification({
           variant: 'success',
           title: `Created policy "${name}"`,
           autoDismiss: true,
-          description: (
-            <span>
-              From the <strong>SCAP Policies</strong> list, open{' '}
-              <Link to={`/scappolicies/${id}`}>{name}</Link>.
-            </span>
-          ),
+          // TODO: Not fixable yet
+          // description: (
+          //   <span>
+          //     From the <strong>SCAP Policies</strong> list, open{' '}
+          //     <Link to={`/scappolicies/${id}`}>{name}</Link>.
+          //   </span>
+          // ),
         });
       })
       .catch((error) => {

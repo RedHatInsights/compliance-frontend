@@ -134,13 +134,6 @@ describe('Policies table tests', () => {
       let businessObjectives = policies.map(
         (policy) => policy.business_objective
       );
-      // policies.forEach((item) => {
-      //   if (item['node']['businessObjective']) {
-      //     businessObjectives.push(item['node']['businessObjective']['title']);
-      //   } else {
-      //     businessObjectives.push(null);
-      //   }
-      // });
 
       const ascendingSorted = [...businessObjectives].sort();
       const descendingSorted = [...businessObjectives].sort().reverse();

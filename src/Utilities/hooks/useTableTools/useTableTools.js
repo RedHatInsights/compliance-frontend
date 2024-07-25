@@ -15,7 +15,6 @@ import useTreeTable from './useTreeTable';
 
 const filteredAndSortedItems = (items, filter, sorter) => {
   const filtered = filter ? filter(items) : items;
-  console.log('FILTERESD', filtered);
   return sorter ? sorter(filtered) : filtered;
 };
 

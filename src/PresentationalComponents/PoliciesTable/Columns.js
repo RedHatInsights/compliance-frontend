@@ -5,17 +5,17 @@ import { LinkWithPermission as Link } from 'PresentationalComponents';
 import { GreySmallText, SystemsCountWarning } from 'PresentationalComponents';
 import { renderComponent } from 'Utilities/helpers';
 
-const PolicyNameCell = ({ id, title, type }) => (
+const PolicyNameCell = ({ id, title, profile_title }) => (
   <TextContent>
     <Link to={'/scappolicies/' + id}>{title}</Link>
-    <GreySmallText>{type}</GreySmallText>
+    <GreySmallText>{profile_title}</GreySmallText>
   </TextContent>
 );
 
 PolicyNameCell.propTypes = {
   id: propTypes.string,
   title: propTypes.object,
-  type: propTypes.string,
+  profile_title: propTypes.string,
 };
 
 export const Name = {

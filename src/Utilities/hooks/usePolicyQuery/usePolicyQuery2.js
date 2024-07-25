@@ -1,4 +1,4 @@
-import { apiInstance, useQuery } from '../useQuery';
+import useQuery, { apiInstance } from '../useQuery';
 
 const usePolicyQuery = ({ policyId }) => {
   const {
@@ -6,13 +6,16 @@ const usePolicyQuery = ({ policyId }) => {
     loading: policyLoading,
     error: policyError,
     refetch: policyRefetch,
-  } = useQuery(apiInstance.policy, policyId);
+  } = useQuery(apiInstance.policy, { params: [policyId] });
 
   const {
     data: tailoringData,
     loading: tailoringLoading,
     error: tailoringError,
-  } = useQuery(apiInstance.tailorings, policyId, null, 1, 0);
+  } = useQuery(apiInstance.tailorings, {
+    params: [policyId, null, 1, 0],
+    skip: !!policyData,
+  });
 
   const loading = policyLoading || tailoringLoading;
 
