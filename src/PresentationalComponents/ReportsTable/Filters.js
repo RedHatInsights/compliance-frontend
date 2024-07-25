@@ -4,6 +4,7 @@ export const policyNameFilter = [
   {
     type: conditionalFilterType.text,
     label: 'Policy name',
+    filterAttribute: 'name',
     filter: (profiles, value) => {
       const lowerCaseValue = value.toLowerCase();
       return profiles.filter((profile) =>
@@ -20,6 +21,7 @@ export const policyTypeFilter = (policyTypes) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
+    filterAttribute: 'policy_type',
     filter: (profiles, values) =>
       profiles.filter(({ policyType }) => values.includes(policyType)),
     items: policyTypes.map((policyType) => ({
@@ -33,6 +35,7 @@ export const operatingSystemFilter = (operatingSystems) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
+    filterAttribute: 'operating_system',
     filter: (profiles, values) =>
       profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
