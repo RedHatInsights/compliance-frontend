@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import useSelectionManager from '../useSelectionManager';
 import { toFilterConfig, toIdedFilters } from './filterConfigHelpers';
 import { toFilterChips } from './filterChipHelpers';
@@ -21,21 +21,21 @@ const useFilterConfig = (options = {}) => {
     initialActiveFilters,
     { withGroups: true }
   );
+
   const { onFilterUpdate, onFilterDelete } = useEventHandlers({
     ...options,
     activeFilters,
     selectionActions,
   });
 
-  const builtFilterConfig = toFilterConfig(
-    filterConfig,
-    activeFilters,
-    onFilterUpdate
+  const builtFilterConfig = useMemo(
+    () => toFilterConfig(filterConfig, activeFilters, onFilterUpdate),
+    [filterConfig, activeFilters, onFilterUpdate]
   );
 
   const [, setTableState] = useTableState(
     'filters',
-    activeFilters,
+    initialActiveFilters,
     serialisers?.filters
       ? {
           serialiser: (state) =>

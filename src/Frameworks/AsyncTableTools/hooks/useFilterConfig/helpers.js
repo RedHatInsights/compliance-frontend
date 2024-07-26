@@ -10,9 +10,8 @@ export const findWithString = (value) => (item) =>
 export const defaultPlaceholder = (label) => `Filter by ${label.toLowerCase()}`;
 
 export const defaultOnChange = (handler, label) => ({
-  onChange: (_event, selectedValues, selectedValue) => {
-    handler(label, selectedValue, selectedValues);
-  },
+  onChange: (_event, selectedValues, selectedValue) =>
+    handler(label, selectedValue, selectedValues),
 });
 
 export const flattenConfigItems = (configItem) =>
@@ -24,21 +23,15 @@ export const flattenConfigItems = (configItem) =>
 export const configItemItemByLabel = (configItem, label) =>
   configItem.items.find(({ label: itemLabel }) => itemLabel === label);
 
-export const itemForValueInGroups = (configItem, value) => {
-  const flatItems = flattenConfigItems(configItem);
-  const item = flatItems.find(({ value: itemValue }) => {
-    return `${itemValue}` === `${value}`;
-  });
-  return item;
-};
+export const itemForValueInGroups = (configItem, value) =>
+  flattenConfigItems(configItem).find(
+    ({ value: itemValue }) => `${itemValue}` === `${value}`
+  );
 
-export const itemForLabelInGroups = (configItem, label) => {
-  const flatItems = flattenConfigItems(configItem);
-  const item = flatItems.find(({ label: ItemLabel }) => {
-    return `${ItemLabel}` === `${label}`;
-  });
-  return item;
-};
+export const itemForLabelInGroups = (configItem, label) =>
+  flattenConfigItems(configItem).find(
+    ({ label: ItemLabel }) => `${ItemLabel}` === `${label}`
+  );
 
 export const isNotEmpty = (value) =>
   (isArray(value) && value?.length > 0) ||
