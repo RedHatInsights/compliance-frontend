@@ -52,4 +52,24 @@ describe('filtersSerialiser', () => {
       )
     ).toEqual("radio = 'OPTION 1' AND checkbox IN ('OPTION 1', 'OPTION 2')");
   });
+
+  it('should use a filterSerialiser if provided in the filter config', () => {
+    const filterSerialiser = jest.fn(() => 'filterSerialiser');
+
+    expect(
+      filtersSerialiser(
+        {
+          name: 'OPTION 1',
+        },
+        [
+          {
+            ...filtersWithIds[0],
+            filterSerialiser,
+          },
+        ]
+      )
+    ).toEqual('filterSerialiser');
+
+    expect(filterSerialiser).toHaveBeenCalled();
+  });
 });
