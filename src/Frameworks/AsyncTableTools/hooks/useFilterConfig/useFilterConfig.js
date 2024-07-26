@@ -5,11 +5,23 @@ import { toFilterChips } from './filterChipHelpers';
 import useTableState from '../useTableState';
 import useEventHandlers from './useEventHandlers';
 
-// TODO add tests
+/**
+ * @typedef {object} FilterConfig
+ * @property {object} toolbarProps Object containing PrimaryToolbar props
+ * @property {object} toolbarProps.filterConfig Object containing the filterConfig prop for the PrimaryToolbar
+ * @property {object} toolbarProps.activeFiltersConfig Object containing the activeFiltersConfigs prop for the PrimaryToolbar
+ */
+
 /**
  * Provides `PrimaryToolbar` props for the `ConditionalFilter` component filter configuration.
  *
- * @param {Object} [options]
+ * @param {object} [options]
+ * @param {object} [options.filters.filterConfig] An object containing filter definition
+ * @param {object} [options.filters.activeFilters] An object containing an initial active filters state
+ * @param {object} [options.serialisers.filters] A function to serialise the filter table state
+ *
+ * @returns {FilterConfig} props for PrimaryToolbar/ConditionalFilter component
+ *
  */
 const useFilterConfig = (options = {}) => {
   const { filters, serialisers } = options;

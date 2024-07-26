@@ -27,6 +27,7 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
       "config": [
         {
           "filter": [Function],
+          "filterAttribute": "name",
           "label": "Name",
           "type": "text",
         },
@@ -37,18 +38,19 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
         },
         {
           "filter": [Function],
+          "filterAttribute": "checkbox",
           "items": [
             {
               "label": "OPTION 1",
-              "value": "OPTION 1",
+              "value": "OPTION 1-value",
             },
             {
               "label": "OPTION 2",
-              "value": "OPTION 2",
+              "value": "OPTION 2-value",
             },
             {
               "label": "OPTION 3",
-              "value": "OPTION 3",
+              "value": "OPTION 3-value",
             },
           ],
           "label": "Checkbox Filter",
@@ -56,18 +58,19 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
         },
         {
           "filter": [Function],
+          "filterAttribute": "radio",
           "items": [
             {
               "label": "OPTION 1",
-              "value": "OPTION 1",
+              "value": "OPTION 1-value",
             },
             {
               "label": "OPTION 2",
-              "value": "OPTION 2",
+              "value": "OPTION 2-value",
             },
             {
               "label": "OPTION 3",
-              "value": "OPTION 3",
+              "value": "OPTION 3-value",
             },
           ],
           "label": "Radio Filter",
@@ -78,15 +81,15 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
           "items": [
             {
               "label": "OPTION 1",
-              "value": "OPTION 1",
+              "value": "OPTION 1-value",
             },
             {
               "label": "OPTION 2",
-              "value": "OPTION 2",
+              "value": "OPTION 2-value",
             },
             {
               "label": "OPTION 3",
-              "value": "OPTION 3",
+              "value": "OPTION 3-value",
             },
           ],
           "label": "Invalid Filter",
@@ -136,6 +139,7 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
     "config": [
       {
         "filter": [Function],
+        "filterAttribute": "name",
         "label": "Name",
         "type": "text",
       },
@@ -146,18 +150,19 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
       },
       {
         "filter": [Function],
+        "filterAttribute": "checkbox",
         "items": [
           {
             "label": "OPTION 1",
-            "value": "OPTION 1",
+            "value": "OPTION 1-value",
           },
           {
             "label": "OPTION 2",
-            "value": "OPTION 2",
+            "value": "OPTION 2-value",
           },
           {
             "label": "OPTION 3",
-            "value": "OPTION 3",
+            "value": "OPTION 3-value",
           },
         ],
         "label": "Checkbox Filter",
@@ -165,18 +170,19 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
       },
       {
         "filter": [Function],
+        "filterAttribute": "radio",
         "items": [
           {
             "label": "OPTION 1",
-            "value": "OPTION 1",
+            "value": "OPTION 1-value",
           },
           {
             "label": "OPTION 2",
-            "value": "OPTION 2",
+            "value": "OPTION 2-value",
           },
           {
             "label": "OPTION 3",
-            "value": "OPTION 3",
+            "value": "OPTION 3-value",
           },
         ],
         "label": "Radio Filter",
@@ -187,15 +193,15 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
         "items": [
           {
             "label": "OPTION 1",
-            "value": "OPTION 1",
+            "value": "OPTION 1-value",
           },
           {
             "label": "OPTION 2",
-            "value": "OPTION 2",
+            "value": "OPTION 2-value",
           },
           {
             "label": "OPTION 3",
-            "value": "OPTION 3",
+            "value": "OPTION 3-value",
           },
         ],
         "label": "Invalid Filter",
@@ -280,15 +286,15 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
             "items": [
               {
                 "label": "OPTION 1",
-                "value": "OPTION 1",
+                "value": "OPTION 1-value",
               },
               {
                 "label": "OPTION 2",
-                "value": "OPTION 2",
+                "value": "OPTION 2-value",
               },
               {
                 "label": "OPTION 3",
-                "value": "OPTION 3",
+                "value": "OPTION 3-value",
               },
             ],
             "onChange": [Function],
@@ -304,15 +310,15 @@ exports[`useFilterConfig returns a filter config configuration 1`] = `
             "items": [
               {
                 "label": "OPTION 1",
-                "value": "OPTION 1",
+                "value": "OPTION 1-value",
               },
               {
                 "label": "OPTION 2",
-                "value": "OPTION 2",
+                "value": "OPTION 2-value",
               },
               {
                 "label": "OPTION 3",
-                "value": "OPTION 3",
+                "value": "OPTION 3-value",
               },
             ],
             "onChange": [Function],

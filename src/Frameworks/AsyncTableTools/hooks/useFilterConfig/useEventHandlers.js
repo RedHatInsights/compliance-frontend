@@ -3,7 +3,7 @@ import { toSelectValue } from './filterConfigHelpers';
 import { toDeselectValue } from './filterChipHelpers';
 
 const useEventHandlers = ({
-  filters: { filterConfig },
+  filters: { filterConfig } = {},
   activeFilters,
   onFilterUpdate: onFilterUpdateCallback,
   onDeleteFilter,

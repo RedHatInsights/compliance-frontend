@@ -48,7 +48,7 @@ export default [
     filterAttribute: 'checkbox',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },
@@ -58,7 +58,7 @@ export default [
     filterAttribute: 'radio',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },
@@ -67,7 +67,7 @@ export default [
     label: 'Invalid Filter',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },

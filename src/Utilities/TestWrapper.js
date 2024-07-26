@@ -1,6 +1,8 @@
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/client/testing';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+
 import { Provider } from 'react-redux';
 import { init } from 'Store';
 
@@ -9,11 +11,13 @@ const TestWrapper = ({ children, mocks = [], routes, store: propStore }) => {
 
   return (
     <MemoryRouter {...(routes ? { initialEntries: routes } : {})}>
-      <Provider store={propStore || store}>
-        <MockedProvider mocks={mocks} addTypename>
-          {children}
-        </MockedProvider>
-      </Provider>
+      <TableStateProvider>
+        <Provider store={propStore || store}>
+          <MockedProvider mocks={mocks} addTypename>
+            {children}
+          </MockedProvider>
+        </Provider>
+      </TableStateProvider>
     </MemoryRouter>
   );
 };
