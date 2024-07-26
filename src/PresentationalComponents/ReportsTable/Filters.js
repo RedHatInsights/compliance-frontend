@@ -1,4 +1,5 @@
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
+// TODO unless this comment is removed, all "filterAttribute"s and "filterSerialiser"s in this file are examples!
 
 export const policyNameFilter = [
   {
@@ -35,7 +36,7 @@ export const operatingSystemFilter = (operatingSystems) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
-    filterAttribute: 'operating_system',
+    filterAttribute: 'os_major_version',
     filter: (profiles, values) =>
       profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
@@ -49,6 +50,13 @@ export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
+    filterSerialiser: (_, values) =>
+      values
+        .map((value) => {
+          const scoreRange = value.split('-');
+          return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
+        })
+        .join(' OR '),
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(
