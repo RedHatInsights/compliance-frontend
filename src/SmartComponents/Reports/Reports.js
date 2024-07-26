@@ -13,7 +13,6 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-// import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 
 const QUERY = gql`
   query R_Profiles($filter: String!) {
@@ -59,10 +58,6 @@ const ReportsHeader = () => (
 );
 
 export const Reports = () => {
-  // uncomment for development of API serialisers
-  // const serialisedTableState = useSerialisedTableState();
-  // console.log('Async TableState', serialisedTableState);
-
   let profiles = [];
   let showView = false;
   const location = useLocation();
