@@ -2,10 +2,16 @@ import { useReducer } from 'react';
 import reducer, { init as initReducer } from './reducer';
 
 /**
- * Provides a generic API to manage selection stats of one (default) or multiple groups of selections.
+ *  Provides a generic API to manage selection stats of one (default) or multiple groups of selections.
  *
- * @param {Array} preselected Array of items initially selected
- * @param {Object} [options] function to call when a selection is made
+ *  @param {Array} preselected Array of items initially selected
+ *  @param {object} [options] function to call when a selection is made
+ *
+ *  @returns {object}
+ *
+ *  @category AsyncTableTools
+ *  @subcategory Hooks
+ *
  */
 const useSelectionManager = (preselected, options = {}) => {
   const { withGroups = false } = options;

@@ -41,8 +41,13 @@
   "overrides": {
     "@react-pdf/renderer": {
       "react": "^18.2.0"
+    },
+    "better-docs": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
     }
   },
+
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",
     "bootstrap": "node_modules/patternfly/node_modules/bootstrap-sass/assets/stylesheets",
@@ -115,6 +120,7 @@
     "@types/react": "^18.2.58",
     "babel-loader": "^9.1.2",
     "babel-plugin-istanbul": "^6.1.1",
+    "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
     "cypress": "^13.13.1",
     "dotenv-defaults": "^5.0.2",

@@ -4,13 +4,30 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["src/Frameworks/AsyncTableTools", "src/Frameworks/README.md"]
+        "include": ["src/", "src/docs/README.md"]
     },
     "plugins": [
-        "plugins/markdown"
+        "plugins/markdown",
+        "node_modules/better-docs/typescript",
+        "node_modules/better-docs/category"
     ],
     "opts": {
         "destination": "./docs/",
-        "recurse": true
+        "recurse": true,
+        "template": "node_modules/better-docs"
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "search": true,
+        "better-docs": {
+            "name": "Compliance Docs",
+            "navLinks": [
+                {
+                    "label": "Compliance GitHub repository",
+                    "href": "https://github.com/RedHatInsights/compliance-frontend/"
+                }
+            ]
+        }
     }
 }

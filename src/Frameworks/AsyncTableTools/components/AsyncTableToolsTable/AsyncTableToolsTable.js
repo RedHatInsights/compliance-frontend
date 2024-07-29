@@ -11,16 +11,25 @@ import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolba
 import useAsyncTableTools from '../../hooks/useAsyncTableTools';
 
 /**
- * This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
+ *  This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
  *
- * @param {Object} [props]
+ *  @param props
+ *  @param {Array} props.items An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
+ *  @param {Array} props.columns An array of column objects to render items with
+ *  @param {Array} [props.filters] an array of filters
+ *  @param {object} [props.options] An object of options that will be passed along to the `useAsyncTableTools` hook
+ *  @param {object} [props.toolbarProps] Props to be passed on the `PrimaryToolbar` component
+ *  @param {object} [props.tableHeaderProps] Props to be passed on the TableHeader component
+ *  @param {object} [props.tableBodyProps] Props to be passed on the TableBody component
+ *  @param {object} [props.tableToolbarProps] Props to be passed on the TableToolbar (bottom toolbar) component
+ *  @param {object} [props.paginationProps] Props to be passed on the Pagination component
  *
- *  **Props:**
+ *  @returns {React.ReactElement}
  *
- *    * items -  An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
- *    * columns - an array of column objects to render items with
- *    * filters - an array of filters
- *    * options - an object of options that will be passed along to the `useAsyncTableTools` hook
+ *  @tutorial using-async-table-tools
+ *
+ *  @category AsyncTableTools
+ *  @subcategory Components
  *
  */
 const AsyncTableToolsTable = ({
