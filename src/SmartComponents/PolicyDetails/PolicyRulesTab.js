@@ -12,8 +12,10 @@ import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
-const PolicyRulesTab = ({ loading, policy }) => {
-  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+const PolicyRulesTab = ({ loading, policy, newPolicy }) => {
+  const DedicatedAction = () => (
+    <EditRulesButtonToolbarItem policy={newPolicy} />
+  );
   const profile = policy.policy.profiles.find(
     (profile) => profile.refId === policy.refId
   );
@@ -71,6 +73,9 @@ PolicyRulesTab.propTypes = {
         },
       ]).isRequired,
     }),
+  }),
+  newPolicy: propTypes.shape({
+    id: propTypes.string,
   }),
 };
 

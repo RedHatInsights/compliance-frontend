@@ -22,7 +22,6 @@ const usePolicyQuery = ({ policyId, skip: skipCondition, minimal }) => {
     skip,
     fetchPolicy: 'no-cache',
   });
-
   const {
     data: ruleTreesData,
     error: ruleTreesError,

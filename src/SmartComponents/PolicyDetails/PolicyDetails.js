@@ -29,17 +29,21 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
-import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
+import { usePolicyQueryMix } from '../../Utilities/hooks/usePolicyQuery/usePolicyQueryMix';
 
 export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
   const { policy_id: policyId } = useParams();
-  const { data, error, loading, refetch } = usePolicyQuery({
-    policyId,
-  });
+
+  const { error, loading, policyQuery, oldPolicyQuery, refetch } =
+    usePolicyQueryMix({
+      policyId,
+    });
+
   const location = useLocation();
-  const policy = data?.profile;
-  const hasOsMinorProfiles = !!policy?.policy.profiles.find(
+  const policy = policyQuery?.data?.policy?.data;
+  const oldPolicy = oldPolicyQuery.data?.profile;
+  const hasOsMinorProfiles = !!oldPolicy?.policy.profiles.find(
     (profile) => !!profile.osMinorVersion
   );
 
@@ -51,7 +55,7 @@ export const PolicyDetails = ({ route }) => {
     refetch();
   }, [location, refetch]);
 
-  useTitleEntity(route, policy?.name);
+  useTitleEntity(route, policy?.title);
 
   return (
     <StateViewWithError
@@ -66,7 +70,7 @@ export const PolicyDetails = ({ route }) => {
         </section>
       </StateViewPart>
       <StateViewPart stateKey="data">
-        {policy ? (
+        {oldPolicy ? (
           <Fragment>
             <PageHeader className="page-header-tabs">
               <Breadcrumb ouiaId="PolicyDetailsPathBreadcrumb">
@@ -74,11 +78,11 @@ export const PolicyDetails = ({ route }) => {
                 <BreadcrumbLinkItem to="/scappolicies">
                   SCAP policies
                 </BreadcrumbLinkItem>
-                <BreadcrumbItem isActive>{policy.name}</BreadcrumbItem>
+                <BreadcrumbItem isActive>{policy.title}</BreadcrumbItem>
               </Breadcrumb>
               <Grid gutter="lg">
                 <GridItem xl2={11} xl={10} lg={12} md={12} sm={12}>
-                  <PageHeaderTitle title={policy.name} />
+                  <PageHeaderTitle title={policy.title} />
                 </GridItem>
               </Grid>
               <RoutedTabs
@@ -99,16 +103,17 @@ export const PolicyDetails = ({ route }) => {
                 <ContentTab eventKey="rules">
                   {hasOsMinorProfiles ? (
                     <PolicyMultiversionRules
-                      policy={policy}
+                      policy={oldPolicy}
                       saveToPolicy={saveToPolicy}
                       onRuleValueReset={() => refetch()}
+                      newPolicy={policy}
                     />
                   ) : (
-                    <PolicyRulesTab policy={policy} />
+                    <PolicyRulesTab policy={oldPolicy} newPolicy={policy} />
                   )}
                 </ContentTab>
                 <ContentTab eventKey="systems">
-                  <PolicySystemsTab policy={policy} />
+                  <PolicySystemsTab policy={oldPolicy} newPolicy={policy} />
                 </ContentTab>
               </TabSwitcher>
             </section>

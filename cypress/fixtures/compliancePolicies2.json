@@ -1,0 +1,157 @@
+        {
+    "data": [
+        {
+            "id": "e3d37ce7-ffd6-4b50-8b3d-29b3b180b648",
+            "title": "ANSSI-BP-028 (enhanced)",
+            "description": "This profile contains configurations that align to ANSSI-BP-028 v2.0 at the enhanced hardening level.\n\nANSSI is the French National Information Security Agency, and stands for Agence nationale de la sécurité des systèmes d'information.\nANSSI-BP-028 is a configuration recommendation for GNU/Linux systems.\n\nA copy of the ANSSI-BP-028 can be found at the ANSSI website:\nhttps://www.ssi.gouv.fr/administration/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/\n\nAn English version of the ANSSI-BP-028 can also be found at the ANSSI website:\nhttps://cyber.gouv.fr/publications/configuration-recommendations-gnulinux-system",
+            "business_objective": null,
+            "compliance_threshold": 80,
+            "total_system_count": 4,
+            "type": "policy",
+            "os_major_version": 8,
+            "profile_title": "ANSSI-BP-028 (enhanced)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_anssi_bp28_enhanced"
+        },
+        {
+            "id": "564bfa34-0f5e-4770-a28c-07e2600c7c29",
+            "title": "Protection Profile for General Purpose Operating Systems",
+            "description": "This profile reflects mandatory configuration controls identified in the\nNIAP Configuration Annex to the Protection Profile for General Purpose\nOperating Systems (Protection Profile Version 4.2.1).\n\nThis configuration profile is consistent with CNSSI-1253, which requires\nU.S. National Security Systems to adhere to certain configuration\nparameters. Accordingly, this configuration profile is suitable for\nuse in U.S. National Security Systems.",
+            "business_objective": "Foo",
+            "compliance_threshold": 70,
+            "total_system_count": 0,
+            "type": "policy",
+            "os_major_version": 9,
+            "profile_title": "Protection Profile for General Purpose Operating Systems",
+            "ref_id": "xccdf_org.ssgproject.content_profile_ospp"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            "description": "From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in nonfederal\ninformation systems and organizations have a well-defined structure that\nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 8 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI).\"",
+            "business_objective": "Bar",
+            "compliance_threshold": 90,
+            "total_system_count": 6,
+            "type": "policy",
+            "os_major_version": 8,
+            "profile_title": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_ospp"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "ANSSI-BP-028 (high)",
+            "description": "This profile contains configurations that align to ANSSI-BP-028 v1.2 at the high hardening level.\n\nANSSI is the French National Information Security Agency, and stands for Agence nationale de la sécurité des systèmes d'information.\nANSSI-BP-028 is a configuration recommendation for GNU/Linux systems.\n\nA copy of the ANSSI-BP-028 can be found at the ANSSI website:\nhttps://www.ssi.gouv.fr/administration/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 1,
+            "type": "policy",
+            "os_major_version": 8,
+            "profile_title": "ANSSI-BP-028 (high)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_anssi_bp28_high"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "ANSSI-BP-028 (minimal)",
+            "description": "This profile contains configurations that align to ANSSI-BP-028 v1.2 at the minimal hardening level.\n\nANSSI is the French National Information Security Agency, and stands for Agence nationale de la sécurité des systèmes d'information.\nANSSI-BP-028 is a configuration recommendation for GNU/Linux systems.\n\nA copy of the ANSSI-BP-028 can be found at the ANSSI website:\nhttps://www.ssi.gouv.fr/administration/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 4,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "ANSSI-BP-028 (minimal)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_anssi_nt28_minimal"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "ANSSI-BP-028 (intermediary)",
+            "description": "This profile contains configurations that align to ANSSI-BP-028 v1.2 at the intermediary hardening level.\n\nANSSI is the French National Information Security Agency, and stands for Agence nationale de la sécurité des systèmes d'information.\nANSSI-BP-028 is a configuration recommendation for GNU/Linux systems.\n\nA copy of the ANSSI-BP-028 can be found at the ANSSI website:\nhttps://www.ssi.gouv.fr/administration/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/",
+            "business_objective": null,
+            "compliance_threshold": 94,
+            "total_system_count": 1,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "ANSSI-BP-028 (intermediary)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_anssi_nt28_intermediary"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "Standard System Security Profile for Red Hat Enterprise Linux 7",
+            "description": "This profile contains configurations that align to ANSSI-BP-028 v1.2 at the intermediary hardening level.\n\nANSSI is the French National Information Security Agency, and stands for Agence nationale de la sécurité des systèmes d'information.\nANSSI-BP-028 is a configuration recommendation for GNU/Linux systems.\n\nA copy of the ANSSI-BP-028 can be found at the ANSSI website:\nhttps://www.ssi.gouv.fr/administration/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 0,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "Standard System Security Profile for Red Hat Enterprise Linux 7",
+            "ref_id": "xccdf_org.ssgproject.content_profile_standard"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "Example Server Profile",
+            "description": "This profile is an example of a customized server profile.",
+            "business_objective": null,
+            "compliance_threshold": 88,
+            "total_system_count": 0,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "Example Server Profile",
+            "ref_id": "xccdf_org.ssgproject.content_profile_standard"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Virtualization",
+            "description": "This compliance profile reflects the core set of security\nrelated configuration settings for deployment of Red Hat Enterprise\nLinux Hypervisor (RHELH) 7.x into U.S. Defense, Intelligence, and Civilian agencies.\nDevelopment partners and sponsors include the U.S. National Institute\nof Standards and Technology (NIST), U.S. Department of Defense,\nthe National Security Agency, and Red Hat.\n\nThis baseline implements configuration requirements from the following\nsources:\n\n- Committee on National Security Systems Instruction No. 1253 (CNSSI 1253)\n- NIST 800-53 control selections for MODERATE impact systems (NIST 800-53)\n- U.S. Government Configuration Baseline (USGCB)\n- NIAP Protection Profile for Virtualization v1.0 (VPP v1.0)\n\nFor any differing configuration requirements, e.g. password lengths, the stricter\nsecurity setting was chosen. Security Requirement Traceability Guides (RTMs) and\nsample System Security Configuration Guides are provided via the\nscap-security-guide-docs package.\n\nThis profile reflects U.S. Government consensus content and is developed through\nthe ComplianceAsCode project, championed by the National\nSecurity Agency. Except for differences in formatting to accommodate\npublishing processes, this profile mirrors ComplianceAsCode\ncontent as minor divergences, such as bugfixes, work through the\nconsensus and release processes.",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 10,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Virtualization",
+            "ref_id": "xccdf_org.ssgproject.content_profile_rhelh-vpp"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            "description": "From NIST 800-171, Section 2.2:\nSecurity requirements for protecting the confidentiality of CUI in non-federal\ninformation systems and organizations have a well-defined structure that\nconsists of:\n\n(i) a basic security requirements section;\n(ii) a derived security requirements section.\n\nThe basic security requirements are obtained from FIPS Publication 200, which\nprovides the high-level and fundamental security requirements for federal\ninformation and information systems. The derived security requirements, which\nsupplement the basic security requirements, are taken from the security controls\nin NIST Special Publication 800-53.\n\nThis profile configures Red Hat Enterprise Linux 7 to the NIST Special\nPublication 800-53 controls identified for securing Controlled Unclassified\nInformation (CUI).",
+            "business_objective": null,
+            "compliance_threshold": 80,
+            "total_system_count": 0,
+            "type": "policy",
+            "os_major_version": 8,
+            "profile_title": "Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_cui"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+            "description": "This profile contains the minimum security relevant\nconfiguration settings recommended by Red Hat, Inc for\nRed Hat Enterprise Linux 7 instances deployed by Red Hat Certified\nCloud Providers.",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 0,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_rht-ccp"
+        },
+        {
+            "id": "2cdedae2-015c-466f-96db-06b2c1b92b85",
+            "title": "RHV hardening based on STIG for Red Hat Enterprise Linux 7",
+            "description": "This profile contains configuration checks for\nRed Hat Virtualization based on the\nthe DISA STIG for Red Hat Enterprise Linux 7.",
+            "business_objective": null,
+            "compliance_threshold": 100,
+            "total_system_count": 4,
+            "type": "policy",
+            "os_major_version": 7,
+            "profile_title": "Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)",
+            "ref_id": "xccdf_org.ssgproject.content_profile_rhelh-stig"
+        }
+    ],
+    "meta": {
+        "total": 10,
+        "limit": 10,
+        "offset": 0
+    },
+    "links": {
+        "first": "/api/compliance/v2/policies?limit=10&offset=0",
+        "last": "/api/compliance/v2/policies?limit=10&offset=0"
+    }
+}

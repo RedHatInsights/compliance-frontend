@@ -3,6 +3,26 @@ import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
 import PolicyDetails from './PolicyDetails';
+import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
+jest.mock('../../Utilities/hooks/usePolicyQuery/usePolicyQuery2');
+usePolicyQuery2.mockImplementation(() => ({
+  data: {
+    id: 1,
+    policy: {
+      data: {
+        title: 'profile1',
+        total_system_count: 1,
+        description: 'profile description',
+        os_major_version: 7,
+        compliance_threshold: 1,
+        old_id: 1,
+      },
+    },
+  },
+  loading: false,
+  error: undefined,
+  refetch: jest.fn(),
+}));
 
 jest.mock('@apollo/client', () => ({
   ...jest.requireActual('@apollo/client'),

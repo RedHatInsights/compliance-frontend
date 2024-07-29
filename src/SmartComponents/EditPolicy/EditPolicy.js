@@ -11,14 +11,16 @@ import {
 } from 'PresentationalComponents';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave } from './hooks';
-import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
+import { usePolicyQueryMix } from '../../Utilities/hooks/usePolicyQuery/usePolicyQueryMix';
 
 export const EditPolicy = ({ route }) => {
   const navigate = useNavigate();
   const { policy_id: policyId } = useParams();
   const location = useLocation();
-  const { data, error, loading } = usePolicyQuery({ policyId });
-  const policy = data?.profile;
+  const { error, loading, oldPolicyQuery } = usePolicyQueryMix({
+    policyId,
+  });
+  const policy = oldPolicyQuery.data?.profile;
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
   const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
   const [selectedSystems, setSelectedSystems] = useState([]);
@@ -41,7 +43,7 @@ export const EditPolicy = ({ route }) => {
     onError: onSaveCallback,
   });
 
-  const setRuleValues = (policyId, valueDefinition, valueValue) => {
+  const setRuleValues = (oldPolicyId, valueDefinition, valueValue) => {
     const existingValues = Object.fromEntries(
       policy?.policy.profiles.map((profile) => {
         return [profile.id, profile.values];
@@ -51,9 +53,9 @@ export const EditPolicy = ({ route }) => {
     setRuleValuesState((currentValues) => ({
       ...existingValues,
       ...currentValues,
-      [policyId]: {
-        ...existingValues[policyId],
-        ...currentValues[policyId],
+      [oldPolicyId]: {
+        ...existingValues[oldPolicyId],
+        ...currentValues[oldPolicyId],
         [valueDefinition.id]: valueValue,
       },
     }));

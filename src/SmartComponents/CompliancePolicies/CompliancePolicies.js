@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -15,36 +14,12 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
-
-const QUERY = gql`
-  {
-    profiles(search: "external = false and canonical = false") {
-      edges {
-        node {
-          id
-          name
-          description
-          refId
-          complianceThreshold
-          totalHostCount
-          osMajorVersion
-          policyType
-          policy {
-            id
-            name
-          }
-          businessObjective {
-            id
-            title
-          }
-        }
-      }
-    }
-  }
-`;
+import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
 
 export const CompliancePolicies = () => {
   const location = useLocation();
+  let { data, loading, error, refetch } = usePoliciesQuery();
+
   const CreateLink = () => (
     <Link
       to="/scappolicies/new"
@@ -58,16 +33,15 @@ export const CompliancePolicies = () => {
     </Link>
   );
 
-  let { data, error, loading, refetch } = useQuery(QUERY);
   useEffect(() => {
     refetch();
   }, [location, refetch]);
   let policies;
 
-  if (data) {
+  if (Array.isArray(data?.data)) {
     error = undefined;
-    loading = undefined;
-    policies = data.profiles.edges.map((profile) => profile.node);
+    loading = false;
+    policies = data.data;
   }
 
   return (

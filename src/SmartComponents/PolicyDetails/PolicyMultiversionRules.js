@@ -11,6 +11,7 @@ const PolicyMultiversionRules = ({
   policy,
   saveToPolicy,
   onRuleValueReset,
+  newPolicy,
 }) => {
   const {
     hosts,
@@ -28,7 +29,9 @@ const PolicyMultiversionRules = ({
       systemCount: systemCounts[profile.osMinorVersion]?.count || 0,
     }));
 
-  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
+  const DedicatedAction = () => (
+    <EditRulesButtonToolbarItem policy={newPolicy} />
+  );
 
   return (
     <React.Fragment>
@@ -56,6 +59,7 @@ PolicyMultiversionRules.propTypes = {
   policy: propTypes.object.isRequired,
   saveToPolicy: propTypes.func,
   onRuleValueReset: propTypes.func,
+  newPolicy: propTypes.object.isRequired,
 };
 
 export default PolicyMultiversionRules;

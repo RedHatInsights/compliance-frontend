@@ -10,7 +10,7 @@ const useAssociateSystems = () => {
       variables: {
         input: {
           id,
-          systemIds: hosts.map((h) => h.id),
+          systemIds: hosts?.map((h) => h.id),
         },
       },
     });
