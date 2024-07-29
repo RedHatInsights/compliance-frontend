@@ -8,12 +8,16 @@ const usePolicyQuery = ({ policyId }) => {
     refetch: policyRefetch,
   } = useQuery(apiInstance.policy, { params: [policyId] });
 
+  // We only need the first tailoring
+  const limit = 1;
+  const offset = 0;
+
   const {
     data: tailoringData,
     loading: tailoringLoading,
     error: tailoringError,
   } = useQuery(apiInstance.tailorings, {
-    params: [policyId, null, 1, 0],
+    params: [policyId, null, limit, offset],
     skip: !!policyData,
   });
 

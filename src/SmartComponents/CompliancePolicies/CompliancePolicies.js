@@ -42,10 +42,7 @@ export const CompliancePolicies = () => {
     error = undefined;
     loading = false;
     policies = data.data;
-    console.log('POLICIES', policies);
   }
-
-  console.log('EMPTY STATE?', policies && policies.length === 0);
 
   return (
     <React.Fragment>
