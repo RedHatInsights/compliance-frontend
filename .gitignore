@@ -32,3 +32,4 @@ cypress/screenshots
 cypress/videos
 
 .cache/*
+docs/*
