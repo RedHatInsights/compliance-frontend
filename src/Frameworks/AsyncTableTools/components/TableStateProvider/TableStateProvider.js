@@ -15,13 +15,12 @@ import { TableContext } from '../../hooks/useTableState';
  *
  */
 const TableStateProvider = ({ children }) => {
-  const [{ tableState, serialisedTableState }, setTableState] = useState({});
+  const [tableState, setTableState] = useState({});
 
   return (
     <TableContext.Provider
       value={{
-        tableState,
-        serialisedTableState,
+        ...tableState,
         setTableState,
       }}
     >

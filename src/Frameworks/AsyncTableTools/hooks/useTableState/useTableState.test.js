@@ -15,6 +15,14 @@ describe('useTableState', () => {
     expect(result.current[0]).toEqual(initialState);
   });
 
+  it('works without a context provider', () => {
+    const { result } = renderHook(() =>
+      useTableState('pagination', initialState)
+    );
+
+    expect(result.current[0]).toEqual(initialState);
+  });
+
   it('sets a serialised state when provided with a serialiser', () => {
     const serialiser = (state) => {
       return `offset=${state.page}&limit=${state.perPage}`;

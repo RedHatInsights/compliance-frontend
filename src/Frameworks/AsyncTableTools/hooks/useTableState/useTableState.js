@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useContext } from 'react';
+import { useEffect, useCallback, useContext, useState } from 'react';
 import { TableContext } from './';
 
 /**
@@ -17,23 +17,26 @@ import { TableContext } from './';
  */
 const useTableState = (namespace, initialState, options = {}) => {
   const { serialiser } = options;
-  const {
-    tableState,
-    serialisedTableState,
-    setTableState: setTableStateInContext,
-  } = useContext(TableContext);
+  const internalState = useState();
+  const { setTableState: setTableStateInContext, ...tableStateInContext } =
+    useContext(TableContext) || {};
+
+  const [state, setState] = setTableStateInContext
+    ? [tableStateInContext, setTableStateInContext]
+    : internalState;
+  const { tableState, serialisedTableState } = state || {};
 
   const setTableState = useCallback(
     (state) => {
-      setTableStateInContext((currentState) => ({
+      setState((currentState) => ({
         tableState: {
-          ...currentState.tableState,
+          ...(currentState?.tableState || {}),
           [namespace]: state,
         },
         ...(serialiser
           ? {
               serialisedTableState: {
-                ...currentState.serialisedTableState,
+                ...(currentState?.serialisedTableState || {}),
                 [namespace]: serialiser(state),
               },
             }
@@ -44,6 +47,13 @@ const useTableState = (namespace, initialState, options = {}) => {
   );
 
   useEffect(() => {
+    if (!setTableStateInContext) {
+      console.log(
+        '%cNo context provided for useTableState! Using internal state. Make sure a TableStateProvider is available.',
+        'background: red; color: white; font-weight: bold;'
+      );
+    }
+
     initialState && setTableState(initialState);
   }, []);
 
