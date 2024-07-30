@@ -35,7 +35,7 @@ export const operatingSystemFilter = (operatingSystems) => [
     label: 'Operating system',
     filter: (profiles, values) =>
       profiles.filter(({ os_major_version }) =>
-        values.includes(os_major_version)
+        values.includes(os_major_version.toString())
       ),
     items: operatingSystems.map((operatingSystem) => ({
       label: `RHEL ${operatingSystem}`,

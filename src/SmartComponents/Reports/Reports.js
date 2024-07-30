@@ -17,8 +17,8 @@ import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableSta
 import { useQuery, gql } from '@apollo/client';
 
 const QUERY = gql`
-  query R_Profiles($filter: String!) {
-    profiles(search: $filter, limit: 1000) {
+  query R_Profiles {
+    profiles(limit: 1000) {
       edges {
         node {
           id
@@ -28,6 +28,7 @@ const QUERY = gql`
     }
   }
 `;
+
 const reportIdsFromEdges = (data) =>
   (data?.profiles?.edges || []).map((profile) => profile.node);
 
@@ -54,14 +55,11 @@ export const Reports = () => {
 
   let showView = false;
   const location = useLocation();
-  const filter = `has_policy_test_results = true AND external = false`;
+  const params = {
+    params: ['', 100],
+  };
 
-  let {
-    data: { data },
-    error,
-    loading,
-    refetch,
-  } = useReports(filter);
+  let { data: { data } = {}, error, loading, refetch } = useReports(params);
 
   //TODO: remove completely after ReportDownload page is migrated
   let {
@@ -69,9 +67,7 @@ export const Reports = () => {
     error: errorFromGQL,
     loading: loadingFromGQL,
     refetch: refetchFromGQL,
-  } = useQuery(QUERY, {
-    variables: { filter },
-  });
+  } = useQuery(QUERY);
 
   useEffect(() => {
     refetch();

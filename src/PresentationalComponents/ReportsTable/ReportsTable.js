@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
-import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
+import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { uniq } from 'Utilities/helpers';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
@@ -16,7 +16,9 @@ import '../../App.scss';
 const ReportsTable = ({ profiles }) => {
   const policyTypes = uniq(profiles.map(({ type }) => type).filter((i) => !!i));
   const operatingSystems = uniq(
-    profiles.map(({ os_major_version }) => os_major_version).filter((i) => !!i)
+    profiles
+      .map(({ os_major_version }) => os_major_version.toString())
+      .filter((i) => !!i)
   );
 
   return (
