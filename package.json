@@ -41,8 +41,13 @@
   "overrides": {
     "@react-pdf/renderer": {
       "react": "^18.2.0"
+    },
+    "better-docs": {
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
     }
   },
+
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",
     "bootstrap": "node_modules/patternfly/node_modules/bootstrap-sass/assets/stylesheets",
@@ -115,17 +120,20 @@
     "@types/react": "^18.2.58",
     "babel-loader": "^9.1.2",
     "babel-plugin-istanbul": "^6.1.1",
+    "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
     "cypress": "^13.13.1",
     "dotenv-defaults": "^5.0.2",
     "eslint": "^8.43.0",
     "eslint-plugin-cypress": "^3.4.0",
     "eslint-plugin-jest-dom": "^5.1.0",
+    "eslint-plugin-jsdoc": "^48.9.2",
     "eslint-plugin-testing-library": "^6.2.0",
     "fishery": "^2.2.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jsdoc": "^4.0.3",
     "natsort": "^2.0.3",
     "npm-run-all": "^4.1.5",
     "sass": "^1.64.1",
@@ -156,6 +164,7 @@
     "bump:patternfly": "npm install @patternfly/react-core@latest @patternfly/react-table@latest @patternfly/react-charts@latest @patternfly/react-tokens@latest @patternfly/react-icons@latest",
     "coverage:clean": "rm -rf .nyc_output coverage reports",
     "coverage": "bash coverage.sh && npm run coverage:clean",
-    "postinstall": "ts-patch install"
+    "postinstall": "ts-patch install",
+    "docs": "jsdoc -r -u src/Frameworks/AsyncTableTools/docs --configure .jsdoc.json"
   }
 }

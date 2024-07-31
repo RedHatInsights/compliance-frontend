@@ -1,15 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**
- * Custom hook to execute a query function with parameters and optional skip condition
  *
- * @typedef {Object} Options
+ * @typedef {object} Options
  * @property {Array} [params] - An array of parameters for the query function.
  * @property {boolean} [skip=false] - A boolean flag to skip the execution of the query function.
  *
+ */
+
+/**
+ * Custom hook to execute a query function with parameters and optional skip condition
  *
  * @param {Function} fn - Function to execute
  * @param {Options} options - Includes options like params and skip
+ *
+ * @returns {object}
  *
  * @example
  * // Query is skipped if conditions are met
@@ -20,6 +25,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  *
  * @example
  * const query = useQuery(apiInstance.system, {params: ["id"]})
+ 
  */
 const useQuery = (fn, { params = [], skip = false } = {}) => {
   const [data, setData] = useState(undefined);
