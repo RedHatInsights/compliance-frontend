@@ -4,7 +4,9 @@ import useTableState from '../useTableState';
 /**
  * Provides `pagination` props and functionality for a (Primary)Toolbar
  *
- * @param {Object} [options]
+ * @param {object} [options]
+ *
+ * @param {number} options.numberOfItems - The total number of items (required).
  */
 const usePagination = (options = {}) => {
   const { perPage = 10, serialisers, numberOfItems } = options;
@@ -46,8 +48,7 @@ const usePagination = (options = {}) => {
         toolbarProps: {
           pagination: {
             ...paginationState,
-            // TODO this needs to return a proper numberOfItems retrieved from somewhere and pass down here via options
-            numberOfItems,
+            itemCount: numberOfItems,
             onSetPage: (_, page) => setPagination({ ...paginationState, page }),
             onPerPageSelect: (_, perPage) =>
               setPagination({ page: 1, perPage }),
