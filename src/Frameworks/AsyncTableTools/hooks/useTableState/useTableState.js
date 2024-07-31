@@ -9,7 +9,7 @@ import { TableContext } from './';
  *  @param {object} [options] Options for the state
  *  @param {object} [options.serialiser] A function to serialise the table state and allow access it via the useSerialisedTableState hook
  *
- *  @returns {Array}
+ *  @returns {Array} An array with the first item being the tableState, the second a function to set the state and a third optional item with the serialised state if a serialiser was provided
  *
  *  @category AsyncTableTools
  *  @subcategory Hooks

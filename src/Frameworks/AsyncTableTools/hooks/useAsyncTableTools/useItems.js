@@ -10,7 +10,7 @@ import { useSerialisedTableState, useRawTableState } from '../useTableState';
  *  @returns {Array} An array of items from the itemsProp passed in or a return from it as a function
  *
  *  @category AsyncTableTools
- *  @subcategory Hooks
+ *  @subcategory internal
  *
  */
 const useItems = (itemsProp) => {

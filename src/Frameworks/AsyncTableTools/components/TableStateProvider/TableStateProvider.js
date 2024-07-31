@@ -5,10 +5,12 @@ import { TableContext } from '../../hooks/useTableState';
 /**
  *  This component provides a context for components/hooks that want to use async tables and access it's state to perform API requests
  *
- *  @param {object} [props]
- *  @param {React.ReactElement} [props.children]
+ *  @param {object} [props] Component Props
+ *  @param {React.ReactElement} [props.children] Child components to render within
  *
  *  @returns {React.ReactElement}
+ *
+ *  @tutorial using-async-table-tools
  *
  *  @category AsyncTableTools
  *  @subcategory Components
