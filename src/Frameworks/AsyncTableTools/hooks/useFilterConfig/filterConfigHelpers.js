@@ -5,7 +5,7 @@ const getActiveFilters = (configItem, activeFilters) =>
   filterTypeHelpers(configItem.type)?.getActiveFilterValues?.(
     configItem,
     activeFilters
-  ) || activeFilters[stringToId(configItem.label)];
+  ) || activeFilters?.[stringToId(configItem.label)];
 
 const toFilterConfigItem = (configItem, handler, activeFilters) => {
   const value = getActiveFilters(configItem, activeFilters);

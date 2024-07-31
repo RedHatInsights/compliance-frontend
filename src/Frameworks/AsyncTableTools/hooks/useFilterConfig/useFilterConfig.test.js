@@ -28,7 +28,7 @@ describe('useFilterConfig', () => {
     expect(result.current.toolbarProps).not.toBeDefined();
   });
 
-  it('can add and delete filters', async () => {
+  it('can add and delete filters and clears activeFilters', async () => {
     const { result } = renderHook(
       () =>
         useFilterConfig({
@@ -59,6 +59,7 @@ describe('useFilterConfig', () => {
         },
       ])
     );
-    expect(result.current.activeFilters).toEqual({});
+
+    expect(result.current.activeFilters).toEqual(undefined);
   });
 });

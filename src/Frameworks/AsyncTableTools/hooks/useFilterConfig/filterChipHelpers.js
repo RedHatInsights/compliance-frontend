@@ -6,7 +6,7 @@ const filterChipTemplates = (configItem, value) =>
   filterTypeHelpers(configItem.type)?.filterChips(configItem, value);
 
 export const toFilterChips = (filterConfig, activeFilters) =>
-  Object.entries(activeFilters)
+  Object.entries(activeFilters || {})
     .map(([filter, value]) =>
       isNotEmpty(value)
         ? filterChipTemplates(getFilterConfigItem(filterConfig, filter), value)

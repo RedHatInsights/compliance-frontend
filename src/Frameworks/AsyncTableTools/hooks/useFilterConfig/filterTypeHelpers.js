@@ -10,7 +10,7 @@ import {
 const textType = {
   // Creates the filterValues prop for the filterConfig passed to the toolbar/table provided the current value/state
   filterValues: ({ label }, handler, value) => ({
-    value,
+    value: value || '',
     ...defaultOnChange(handler, stringToId(label)),
   }),
   // Returns (all/a) filter chip for a given filter active value(s)
