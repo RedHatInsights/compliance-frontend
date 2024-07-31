@@ -1,6 +1,10 @@
 // TODO correct the serialiser to transform state put into the tablestate to be API consumable
-export const paginationSerialiser = (state) =>
-  `offset=${state.page}&limit=${state.perPage}`;
+export const paginationSerialiser = (state) => {
+  const offset = (state.page - 1) * state.perPage;
+  const limit = state.perPage;
+
+  return `offset=${offset}&limit=${limit}`;
+};
 
 const textFilterSerialiser = (filterConfigItem, value) =>
   `${filterConfigItem.filterAttribute} ~ '${value}'`;
