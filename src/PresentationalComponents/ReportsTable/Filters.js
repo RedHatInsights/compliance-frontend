@@ -1,9 +1,11 @@
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
+// TODO unless this comment is removed, all "filterAttribute"s and "filterSerialiser"s in this file are examples!
 
 export const policyNameFilter = [
   {
     type: conditionalFilterType.text,
     label: 'Policy name',
+    filterAttribute: 'name',
     filter: (profiles, value) => {
       const lowerCaseValue = value.toLowerCase();
       return profiles.filter((profile) =>
@@ -20,6 +22,7 @@ export const policyTypeFilter = (policyTypes) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
+    filterAttribute: 'policy_type',
     filter: (profiles, values) =>
       profiles.filter(({ policyType }) => values.includes(policyType)),
     items: policyTypes.map((policyType) => ({
@@ -33,6 +36,7 @@ export const operatingSystemFilter = (operatingSystems) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Operating system',
+    filterAttribute: 'os_major_version',
     filter: (profiles, values) =>
       profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
@@ -46,6 +50,13 @@ export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
+    filterSerialiser: (_, values) =>
+      values
+        .map((value) => {
+          const scoreRange = value.split('-');
+          return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
+        })
+        .join(' OR '),
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(

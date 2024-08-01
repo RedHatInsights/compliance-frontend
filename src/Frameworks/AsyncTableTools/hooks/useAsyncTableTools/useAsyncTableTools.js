@@ -1,4 +1,5 @@
 import usePagination from '../usePagination';
+import useFilterConfig from '../useFilterConfig';
 import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 
@@ -28,6 +29,13 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     options;
   const { toolbarProps: pagintionToolbarProps } = usePagination(options);
 
+  const { toolbarProps: conditionalFilterProps } = useFilterConfig({
+    ...options,
+    // TODO enable when paginaton hook is added
+    // onFilterUpdate: () => setPage?.(1),
+    // onDeleteFilter: () => setPage?.(1),
+  });
+
   const usableItems = useItems(items);
   const {
     toolbarProps: rowBuilderToolbarProps,
@@ -38,6 +46,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
 
   const toolbarProps = {
     ...pagintionToolbarProps,
+    ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
     ...toolbarPropsOption,
   };

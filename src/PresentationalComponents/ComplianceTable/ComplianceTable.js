@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
-import { paginationSerialiser } from './serialisers';
+import { paginationSerialiser, filtersSerialiser } from './serialisers';
+import {
+  useSerialisedTableState,
+  useRawTableState,
+} from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 
 /**
  *  This component serves as a place to either use the non-async TableTools or the AsyncTableTools
@@ -14,16 +18,30 @@ import { paginationSerialiser } from './serialisers';
  *  @category Compliance
  *
  */
-const ComplianceTable = (props) =>
-  ENABLE_ASYNC_TABLE_HOOKS ? (
+const ComplianceTable = (props) => {
+  const serialisedTableState = useSerialisedTableState();
+  const tableState = useRawTableState();
+
+  useEffect(() => {
+    if (ENABLE_ASYNC_TABLE_HOOKS) {
+      console.log('Async Table enabled');
+      console.log('TableState', tableState, serialisedTableState);
+    }
+  }, [tableState, serialisedTableState]);
+
+  return ENABLE_ASYNC_TABLE_HOOKS ? (
     <AsyncTableToolsTable
       {...props}
       options={{
-        serialisers: { pagination: paginationSerialiser },
+        serialisers: {
+          pagination: paginationSerialiser,
+          filters: filtersSerialiser,
+        },
       }}
     />
   ) : (
     <TableToolsTable {...props} />
   );
+};
 
 export default ComplianceTable;

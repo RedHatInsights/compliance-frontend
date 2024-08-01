@@ -33,6 +33,7 @@ export default [
   {
     type: 'text',
     label: 'Name',
+    filterAttribute: 'name',
     filter: (items, value) =>
       items.filter((item) => item?.name.includes(value)),
   },
@@ -44,18 +45,20 @@ export default [
   {
     type: 'checkbox',
     label: 'Checkbox Filter',
+    filterAttribute: 'checkbox',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },
   {
     type: 'radio',
     label: 'Radio Filter',
+    filterAttribute: 'radio',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },
@@ -64,7 +67,7 @@ export default [
     label: 'Invalid Filter',
     items: ['OPTION 1', 'OPTION 2', 'OPTION 3'].map((option) => ({
       label: option,
-      value: option,
+      value: `${option}-value`,
     })),
     filter: (items) => items,
   },

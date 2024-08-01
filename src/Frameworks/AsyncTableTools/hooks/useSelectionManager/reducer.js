@@ -6,15 +6,15 @@ const selectionGroup = (action) => action.group || 'default';
 export const init = (withGroups) => (preselected) =>
   withGroups ? preselected || {} : { default: preselected || [] };
 
-const cleanEmpty = (state) => {
-  const newState = state;
-  Object.entries(state).forEach(([key, value]) => {
-    if (value === undefined) {
-      delete newState[key];
+const cleanEmpty = (state) =>
+  Object.entries(state).reduce((newState, [key, value]) => {
+    if (value !== undefined && value.length !== 0) {
+      return {
+        ...newState,
+        [key]: value,
+      };
     }
-  });
-  return newState;
-};
+  }, state);
 
 const set = (state = {}, action) => {
   const group = selectionGroup(action);
