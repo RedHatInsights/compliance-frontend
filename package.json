@@ -23,6 +23,7 @@
     "@redhat-cloud-services/frontend-components-remediations": "^3.2.12",
     "@redhat-cloud-services/frontend-components-utilities": "^4.0.14",
     "@redhat-cloud-services/javascript-clients-shared": "^1.2.4",
+    "@unleash/proxy-client-react": "^3.5.0",
     "axios": "^1.6.8",
     "graphql": "^16.8.1",
     "json-api-normalizer": "1.0.1",
@@ -47,7 +48,6 @@
       "react-dom": "^18.2.0"
     }
   },
-
   "sassIncludes": {
     "patternfly": "node_modules/patternfly/dist/sass",
     "bootstrap": "node_modules/patternfly/node_modules/bootstrap-sass/assets/stylesheets",
