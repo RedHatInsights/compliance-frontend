@@ -3,6 +3,9 @@ import useTableState from '../useTableState';
 
 /**
  * Provides `pagination` props and functionality for a (Primary)Toolbar
+ *  @category AsyncTableTools
+ *
+ *  @subcategory Hooks
  *
  * @param {object} [options]
  *

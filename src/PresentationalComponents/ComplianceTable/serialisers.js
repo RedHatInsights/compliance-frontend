@@ -3,7 +3,7 @@ export const paginationSerialiser = (state) => {
   const offset = (state.page - 1) * state.perPage;
   const limit = state.perPage;
 
-  return `offset=${offset}&limit=${limit}`;
+  return { offset, limit };
 };
 
 const textFilterSerialiser = (filterConfigItem, value) =>
