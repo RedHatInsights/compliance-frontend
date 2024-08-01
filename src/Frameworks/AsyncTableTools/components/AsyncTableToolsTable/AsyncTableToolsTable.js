@@ -46,12 +46,16 @@ const AsyncTableToolsTable = ({
   paginationProps,
   ...tablePropsRest
 }) => {
-  const { toolbarProps, tableProps } = useAsyncTableTools(items, columns, {
-    filters,
-    toolbarProps: toolbarPropsProp,
-    tableProps: tablePropsRest,
-    ...options,
-  });
+  const { toolbarProps, tableProps, ColumnManager } = useAsyncTableTools(
+    items,
+    columns,
+    {
+      filters,
+      toolbarProps: toolbarPropsProp,
+      tableProps: tablePropsRest,
+      ...options,
+    }
+  );
 
   return (
     <>
@@ -71,6 +75,8 @@ const AsyncTableToolsTable = ({
           />
         )}
       </TableToolbar>
+
+      {ColumnManager && <ColumnManager />}
     </>
   );
 };

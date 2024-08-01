@@ -1,8 +1,10 @@
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
+import useColumnManager from '../useColumnManager';
 import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
+import { toToolbarActions } from './helpers';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -28,6 +30,20 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
+  const {
+    columnManagerAction,
+    columns: managedColumns,
+    ColumnManager,
+  } = useColumnManager(columns, options);
+
+  const { toolbarProps: toolbarActionsProps } = toToolbarActions({
+    ...options,
+    actions: [
+      ...(options?.actions || []),
+      ...((columnManagerAction && [columnManagerAction]) || []),
+    ],
+  });
+
   const { toolbarProps: pagintionToolbarProps } = usePagination(options);
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
@@ -52,12 +68,13 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   const {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
-  } = rowsBuilder(usableItems, columns, {
+  } = rowsBuilder(usableItems, managedColumns, {
     transformers: [markRowSelected],
     emptyRows: options.emptyRows,
   });
-
+  console.log(columnManagerAction, toolbarActionsProps);
   const toolbarProps = {
+    ...toolbarActionsProps,
     ...pagintionToolbarProps,
     ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
@@ -79,6 +96,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   return {
     toolbarProps,
     tableProps,
+    ColumnManager,
   };
 };
 
