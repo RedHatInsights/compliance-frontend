@@ -5,7 +5,9 @@ import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
 import useExpandable from '../useExpandable';
+import useColumnManager from '../useColumnManager';
 import withExport from '../../utils/withExport';
+import { toToolbarActions } from './helpers';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -31,6 +33,20 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
+  const {
+    columnManagerAction,
+    columns: managedColumns,
+    ColumnManager,
+  } = useColumnManager(columns, options);
+
+  const { toolbarProps: toolbarActionsProps } = toToolbarActions({
+    ...options,
+    actions: [
+      ...(options?.actions || []),
+      ...((columnManagerAction && [columnManagerAction]) || []),
+    ],
+  });
+
   const { toolbarProps: paginationToolbarProps } = usePagination(options);
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
@@ -40,7 +56,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     // onDeleteFilter: () => setPage?.(1),
   });
 
-  const { tableProps: sortableTableProps } = useTableSort(columns, {
+  const { tableProps: sortableTableProps } = useTableSort(managedColumns, {
     ...options,
     // TODO enable when usePaginate hook is ready
     // onSort: () => setPage(1),
@@ -62,7 +78,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   const {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
-  } = rowsBuilder(usableItems, columns, {
+  } = rowsBuilder(usableItems, managedColumns, {
     transformers: [markRowSelected, openItem],
     emptyRows: options.emptyRows,
   });
@@ -73,6 +89,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   });
 
   const toolbarProps = {
+    ...toolbarActionsProps,
     ...paginationToolbarProps,
     ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
@@ -82,7 +99,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   };
 
   const tableProps = {
-    cells: columns,
+    cells: managedColumns,
+    // TODO: The sortable hook will override the `cells` prop.
+    // This is not ideal, but for now good enough
     ...sortableTableProps,
     ...rowBuilderTableProps,
     ...bulkSelectTableProps,
@@ -97,6 +116,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   return {
     toolbarProps,
     tableProps,
+    ColumnManager,
   };
 };
 
