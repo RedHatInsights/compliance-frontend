@@ -30,6 +30,17 @@ const findFilterSerialiser = (filterConfigItem) => {
   }
 };
 
+/**
+ *  Takes an AsyncTableToolsTable state and transforms it into a Compliance scoped search filter parameter
+ *
+ *  @param {object} state Table state
+ *  @param {object} filters AsyncTableToolsTable filter configuration
+ *
+ *  @returns {string | undefined} Compliance scoped search filter string
+ *
+ *  @category Compliance
+ *
+ */
 export const filtersSerialiser = (state, filters) => {
   const queryParts = Object.entries(state).reduce(
     (filterQueryParts, [filterId, value]) => {
