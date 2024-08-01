@@ -1,5 +1,18 @@
 {
-  "using-async-table-tools": {
-    "title": "Using Async Table Tools"
+  "async-table-tools": {
+    "title": "Async Table Tools Tutorials",
+    "children": {
+      "using-async-table-tools": {
+        "title": "Using Async Table Tools"
+      }
+    }
+  },
+  "compliance": {
+    "title": "Compliance Specific function Tutorials",
+    "children": {
+      "filter-serialiser": {
+        "title": "Using the Compliance `filterSerialiser`"
+      }
+    }
   }
 }
