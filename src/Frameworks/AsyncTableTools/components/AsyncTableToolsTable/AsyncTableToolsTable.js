@@ -13,10 +13,10 @@ import useAsyncTableTools from '../../hooks/useAsyncTableTools';
 /**
  *  This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
  *
- *  @param props
- *  @param {Array} props.items An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
- *  @param {Array} props.columns An array of column objects to render items with
- *  @param {Array} [props.filters] an array of filters
+ *  @param {object} props Component Props
+ *  @param {Array}  props.items An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
+ *  @param {Array}  props.columns An array of column objects to render items with
+ *  @param {Array}  [props.filters] an array of filters
  *  @param {object} [props.options] An object of options that will be passed along to the `useAsyncTableTools` hook
  *  @param {object} [props.toolbarProps] Props to be passed on the `PrimaryToolbar` component
  *  @param {object} [props.tableHeaderProps] Props to be passed on the TableHeader component
@@ -24,7 +24,7 @@ import useAsyncTableTools from '../../hooks/useAsyncTableTools';
  *  @param {object} [props.tableToolbarProps] Props to be passed on the TableToolbar (bottom toolbar) component
  *  @param {object} [props.paginationProps] Props to be passed on the Pagination component
  *
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement} Returns a `PrimaryToolbar` component, a Patternfly (v4) `Table` component and a `TableToolbarComponent` wrapped together
  *
  *  @tutorial using-async-table-tools
  *
@@ -37,6 +37,8 @@ const AsyncTableToolsTable = ({
   columns,
   filters,
   options,
+  // TODO I'm not sure if we need this level of customisation.
+  // It might actually hurt in the long run. Consider removing until we really have the case where we need this
   toolbarProps: toolbarPropsProp,
   tableHeaderProps,
   tableBodyProps,
