@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
@@ -20,6 +20,15 @@ const ReportsTable = ({ profiles }) => {
   const operatingSystems = uniq(
     profiles.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
   );
+
+  useEffect(() => {
+    localStorage.setItem('insights:compliance:asynctables', 'true');
+  }, []);
+
+  const selectionTransformer = (row, selectedIds) => ({
+    ...row,
+    selected: selectedIds.includes(row.itemId),
+  });
 
   return (
     <TableToolsTable
@@ -45,6 +54,16 @@ const ReportsTable = ({ profiles }) => {
           columns: exportableColumns,
         },
         emptyRows: emptyRows('reports', columns.length),
+        onSelect: (...args) => {
+          console.log(args, 'bulk select)');
+        },
+        total: profiles.length,
+        itemIdsInTable: () =>
+          Promise.resolve([
+            '2417de92-770f-471d-8cf8-9c35e8b68424',
+            '51b20ac0-c6c1-4d5a-b4fe-42eaf1fbce0e',
+          ]),
+        rowTransformers: [selectionTransformer],
       }}
       className={'reports-table'}
     />

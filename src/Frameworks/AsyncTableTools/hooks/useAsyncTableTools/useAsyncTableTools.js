@@ -2,6 +2,7 @@ import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
 import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
+import useBulkSelect from '../useBulkSelect';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -37,23 +38,38 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   });
 
   const usableItems = useItems(items);
+
+  const {
+    selectedIds,
+    toolbarProps: bulkSelectToolbarProps,
+    tableProps: bulkSelectTableProps,
+  } = useBulkSelect({
+    ...options,
+    setPage: () => {}, //TODO: apply proper setPage function after pagination hook
+    itemIdsOnPage: items.map(({ id }) => id),
+  });
+
   const {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
   } = rowsBuilder(usableItems, columns, {
+    transformers: options.rowTransformers,
     emptyRows: options.emptyRows,
+    selectedIds,
   });
 
   const toolbarProps = {
     ...pagintionToolbarProps,
     ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
+    ...bulkSelectToolbarProps,
     ...toolbarPropsOption,
   };
 
   const tableProps = {
     cells: columns,
     ...rowBuilderTableProps,
+    ...bulkSelectTableProps,
     ...tablePropsOption,
   };
 
