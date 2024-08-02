@@ -4,6 +4,21 @@ import { useLocation, matchPath } from 'react-router-dom';
 import { WithPermission } from 'PresentationalComponents';
 import useDocumentTitle from 'Utilities/hooks/useDocumentTitle';
 
+/**
+ *  This is component renders "routes" in Routes.js
+ *
+ *  @param {object}             props Component props
+ *  @param {React.ReactElement} props.component Component to render
+ *  @param {string}             props.title Title to set as browser title
+ *  @param {Array}              props.requiredPermissions An array of RBAC permissions required to render the component
+ *  @param {object}             props.props Props for the component to render
+ *
+ *  @returns {React.ReactElement} Returns the component for this route
+ *
+ *  @category    Compliance
+ *  @subcategory Components
+ *
+ */
 const ComplianceRoute = (props) => {
   const {
     component: Component,
