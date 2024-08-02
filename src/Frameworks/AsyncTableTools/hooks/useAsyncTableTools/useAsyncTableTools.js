@@ -46,7 +46,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   } = useBulkSelect({
     ...options,
     setPage: () => {}, //TODO: apply proper setPage function after pagination hook
-    itemIdsOnPage: items.map(({ id }) => id),
+    itemIdsOnPage: usableItems.map(({ id }) => id),
   });
 
   const {

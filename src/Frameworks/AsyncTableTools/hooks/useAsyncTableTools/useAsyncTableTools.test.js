@@ -30,7 +30,7 @@ describe('useAsyncTableTools', () => {
     expect(result.current.toolbarProps).toBeDefined();
   });
 
-  it('returns a object with tableProps and toolbarProps', async () => {
+  it('returns a object with tableProps and toolbarProps hey', async () => {
     const asyncFunction = jest.fn(async () => exampleItems);
 
     renderHook(
