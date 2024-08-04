@@ -139,14 +139,9 @@ describe('Policies table tests', () => {
     });
 
     it('Sort by Business objectives', () => {
-      let businessObjectives = [];
-      policies.forEach((item) => {
-        if (item['node']['businessObjective']) {
-          businessObjectives.push(item['node']['businessObjective']['title']);
-        } else {
-          businessObjectives.push(null);
-        }
-      });
+      const businessObjectives = policies.map(
+        (item) => item.node.businessObjective?.title ?? ''
+      );
 
       const ascendingSorted = [...businessObjectives].sort();
       const descendingSorted = [...businessObjectives].sort().reverse();
@@ -158,7 +153,7 @@ describe('Policies table tests', () => {
       cy.get('td[data-label="Business objective"]').each((item, index) => {
         if (Cypress.$(item).text() == '--') {
           assert(
-            ascendingSorted[index] === null,
+            ascendingSorted[index] === '',
             `Business objective should be null instead of ${ascendingSorted[index]}`
           );
         } else {
@@ -173,7 +168,7 @@ describe('Policies table tests', () => {
         .should('eq', 'descending');
       cy.get('td[data-label="Business objective"]').each((item, index) => {
         if (Cypress.$(item).text() == '--') {
-          assert(descendingSorted[index] === null);
+          assert(descendingSorted[index] === '');
         } else {
           expect(Cypress.$(item).text()).to.eq(descendingSorted[index]);
         }
