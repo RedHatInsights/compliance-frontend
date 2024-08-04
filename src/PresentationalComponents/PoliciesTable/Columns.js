@@ -67,7 +67,7 @@ const businessObjectiveString = (policy) =>
 
 export const BusinessObjective = {
   title: 'Business objective',
-  sortByFunction: (policy) => policy?.businessObjective?.title,
+  sortByFunction: (policy) => policy?.businessObjective?.title ?? '',
   renderExport: businessObjectiveString,
   renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
 };
