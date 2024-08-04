@@ -6,7 +6,9 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import { init } from 'Store';
-import fixtures from '../../../cypress/fixtures/compliancePolicies.json';
+import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
+import FlagProvider from '@unleash/proxy-client-react';
+import { buildPolicies, buildPoliciesV2 } from '../../__factories__/policies';
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -17,15 +19,26 @@ const client = new ApolloClient({
 });
 const mountComponent = () => {
   cy.mount(
-    <Provider store={init().getStore()}>
-      <MemoryRouter>
-        <ApolloProvider client={client}>
-          <CompliancePolicies />
-        </ApolloProvider>
-      </MemoryRouter>
-    </Provider>
+    <FlagProvider
+      config={{
+        url: 'http://localhost:8002/feature_flags',
+        clientKey: 'abc',
+        appName: 'abc',
+      }}
+    >
+      <Provider store={init().getStore()}>
+        <MemoryRouter>
+          <ApolloProvider client={client}>
+            <CompliancePolicies />
+          </ApolloProvider>
+        </MemoryRouter>
+      </Provider>
+    </FlagProvider>
   );
 };
+
+const fixtures = buildPolicies(13);
+const fixturesV2 = buildPoliciesV2(13);
 
 const policies = Object.assign([], fixtures['profiles']['edges']);
 
@@ -37,6 +50,7 @@ describe('Policies table tests', () => {
         data: fixtures,
       },
     });
+    featureFlagsInterceptors.apiV2Disabled();
     mountComponent();
   });
   describe('defaults', () => {
@@ -139,14 +153,9 @@ describe('Policies table tests', () => {
     });
 
     it('Sort by Business objectives', () => {
-      let businessObjectives = [];
-      policies.forEach((item) => {
-        if (item['node']['businessObjective']) {
-          businessObjectives.push(item['node']['businessObjective']['title']);
-        } else {
-          businessObjectives.push(null);
-        }
-      });
+      const businessObjectives = policies.map(
+        (item) => item.node.businessObjective?.title ?? ''
+      );
 
       const ascendingSorted = [...businessObjectives].sort();
       const descendingSorted = [...businessObjectives].sort().reverse();
@@ -158,7 +167,7 @@ describe('Policies table tests', () => {
       cy.get('td[data-label="Business objective"]').each((item, index) => {
         if (Cypress.$(item).text() == '--') {
           assert(
-            ascendingSorted[index] === null,
+            ascendingSorted[index] === '',
             `Business objective should be null instead of ${ascendingSorted[index]}`
           );
         } else {
@@ -173,7 +182,7 @@ describe('Policies table tests', () => {
         .should('eq', 'descending');
       cy.get('td[data-label="Business objective"]').each((item, index) => {
         if (Cypress.$(item).text() == '--') {
-          assert(descendingSorted[index] === null);
+          assert(descendingSorted[index] === '');
         } else {
           expect(Cypress.$(item).text()).to.eq(descendingSorted[index]);
         }
@@ -374,8 +383,6 @@ describe('Policies table tests', () => {
                         `Business objective has to be null but file contains ${item['businessObjective']} value`
                       );
                     } else {
-                      console.log(item);
-                      console.log(policy);
                       assert(
                         item['BusinessObjective'] ===
                           policy['node']['businessObjective']['title'],
@@ -423,6 +430,24 @@ describe('Policies table tests', () => {
         .get('li > button')
         .eq(1)
         .should('contain.text', 'Edit policy');
+    });
+  });
+});
+
+describe('Policies table tests API V2', () => {
+  beforeEach(() => {
+    cy.intercept('*', {
+      statusCode: 200,
+      body: {
+        data: fixturesV2,
+      },
+    });
+    featureFlagsInterceptors.apiV2Enabled();
+    mountComponent();
+  });
+  describe('defaults', () => {
+    it('The table renders', () => {
+      cy.get('table').should('have.length', 1);
     });
   });
 });
