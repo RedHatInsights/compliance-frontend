@@ -1,31 +1,14 @@
-import React from 'react';
 import CompliancePolicies from './CompliancePolicies';
-import { MemoryRouter } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-import { Provider } from 'react-redux';
-import { COMPLIANCE_API_ROOT } from '@/constants';
 import { init } from 'Store';
-import fixtures from '../../../cypress/fixtures/compliancePolicies.json';
+import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
+import { buildPolicies, buildPoliciesV2 } from '../../__factories__/policies';
 
-const client = new ApolloClient({
-  link: new HttpLink({
-    credentials: 'include',
-    uri: COMPLIANCE_API_ROOT + '/graphql',
-  }),
-  cache: new InMemoryCache(),
-});
 const mountComponent = () => {
-  cy.mount(
-    <Provider store={init().getStore()}>
-      <MemoryRouter>
-        <ApolloProvider client={client}>
-          <CompliancePolicies />
-        </ApolloProvider>
-      </MemoryRouter>
-    </Provider>
-  );
+  cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
 };
+
+const fixtures = buildPolicies(13);
+const fixturesV2 = buildPoliciesV2(13);
 
 const policies = Object.assign([], fixtures['profiles']['edges']);
 
@@ -37,6 +20,7 @@ describe('Policies table tests', () => {
         data: fixtures,
       },
     });
+    featureFlagsInterceptors.apiV2Disabled();
     mountComponent();
   });
   describe('defaults', () => {
@@ -369,8 +353,6 @@ describe('Policies table tests', () => {
                         `Business objective has to be null but file contains ${item['businessObjective']} value`
                       );
                     } else {
-                      console.log(item);
-                      console.log(policy);
                       assert(
                         item['BusinessObjective'] ===
                           policy['node']['businessObjective']['title'],
@@ -418,6 +400,46 @@ describe('Policies table tests', () => {
         .get('li > button')
         .eq(1)
         .should('contain.text', 'Edit policy');
+    });
+  });
+});
+
+describe('Policies table tests API V2', () => {
+  beforeEach(() => {
+    featureFlagsInterceptors.apiV2Enabled();
+    cy.intercept('**/graphql', {
+      statusCode: 200,
+      body: {
+        data: fixtures,
+      },
+    });
+    cy.intercept('**/policies*', {
+      statusCode: 200,
+      body: {
+        data: fixturesV2,
+      },
+    });
+    mountComponent();
+  });
+  describe('defaults', () => {
+    it.only('The table renders with data', () => {
+      cy.get('table').should('have.length', 1);
+
+      let policyNames = [];
+      policies.forEach((item) => {
+        policyNames.push(item['node']['name']);
+      });
+
+      // Check Name sorting
+      const ascendingSorted = [...policyNames].sort((a, b) => {
+        return a.localeCompare(b, undefined, { sensitivity: 'base' });
+      });
+      cy.get('th[data-label="Name"]')
+        .invoke('attr', 'aria-sort')
+        .should('eq', 'ascending');
+      cy.get('td[data-label="Name"] > div > div > a').each((item, index) => {
+        expect(Cypress.$(item).text()).to.eq(ascendingSorted[index]);
+      });
     });
   });
 });

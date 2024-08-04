@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -15,35 +15,13 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
+import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import PropTypes from 'prop-types';
+import dataSerialiser from '../../Utilities/dataSerialiser';
+import { QUERY, dataMap } from './constants';
 
-const QUERY = gql`
-  {
-    profiles(search: "external = false and canonical = false") {
-      edges {
-        node {
-          id
-          name
-          description
-          refId
-          complianceThreshold
-          totalHostCount
-          osMajorVersion
-          policyType
-          policy {
-            id
-            name
-          }
-          businessObjective {
-            id
-            title
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const CompliancePolicies = () => {
+export const CompliancePoliciesBase = ({ query }) => {
   const location = useLocation();
   const CreateLink = () => (
     <Link
@@ -58,7 +36,7 @@ export const CompliancePolicies = () => {
     </Link>
   );
 
-  let { data, error, loading, refetch } = useQuery(QUERY);
+  let { data, error, loading, refetch } = query;
   useEffect(() => {
     refetch();
   }, [location, refetch]);
@@ -101,4 +79,44 @@ export const CompliancePolicies = () => {
   );
 };
 
-export default CompliancePolicies;
+CompliancePoliciesBase.propTypes = {
+  query: PropTypes.shape({
+    data: PropTypes.object,
+    error: PropTypes.string,
+    loading: PropTypes.bool,
+    refetch: PropTypes.func,
+  }),
+};
+
+const CompliancePoliciesV2 = () => {
+  const query = usePoliciesQuery();
+
+  const data = query.data?.data
+    ? {
+        profiles: {
+          edges: query.data.data.map((policy) => ({
+            node: dataSerialiser(policy, dataMap),
+          })),
+        },
+      }
+    : null;
+
+  return <CompliancePoliciesBase query={{ ...query, data }} />;
+};
+
+const CompliancePoliciesGraphQL = () => {
+  const query = useQuery(QUERY);
+  return <CompliancePoliciesBase query={query} />;
+};
+
+const CompliancePoliciesWrapper = () => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
+
+  return apiV2Enabled ? (
+    <CompliancePoliciesV2 />
+  ) : (
+    <CompliancePoliciesGraphQL />
+  );
+};
+
+export default CompliancePoliciesWrapper;

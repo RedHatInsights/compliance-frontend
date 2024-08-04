@@ -7,9 +7,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { profiles } from '@/__fixtures__/profiles.js';
-import { CompliancePolicies } from './CompliancePolicies.js';
+import CompliancePolicies from './CompliancePolicies.js';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 jest.mock('@apollo/client');
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
@@ -21,6 +23,10 @@ describe('CompliancePolicies', () => {
     loading: undefined,
     refetch: queryRefetch,
   };
+
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
 
   it('expect to render without error', () => {
     useQuery.mockImplementation(() => ({
