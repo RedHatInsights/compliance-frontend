@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
 
 export const useOnSave = (
   policy,
   updatedPolicyHostsAndRules,
-  { onSave: onSaveCallback, onError: onErrorCallback } = {}
+  { onSave: onSaveCallback, onError: onErrorCallback, apiV2Enabled } = {}
 ) => {
   const updatePolicy = usePolicy();
   const [isSaving, setIsSaving] = useState(false);
@@ -16,26 +17,57 @@ export const useOnSave = (
     }
 
     setIsSaving(true);
-    updatePolicy(policy, updatedPolicyHostsAndRules)
-      .then((policy) => {
-        setIsSaving(false);
-        dispatchNotification({
-          variant: 'success',
-          title: 'Policy updated',
-          autoDismiss: true,
+    if (apiV2Enabled) {
+      updatePolicyV2(policy, updatedPolicyHostsAndRules)
+        .then(() => {
+          setIsSaving(false);
+          dispatchNotification({
+            variant: 'success',
+            title: 'Policy updated',
+            autoDismiss: true,
+          });
+          onSaveCallback?.();
+        })
+        .catch((error) => {
+          setIsSaving(false);
+          dispatchNotification({
+            variant: 'danger',
+            title: 'Error updating policy',
+            description: error.message,
+          });
+          onErrorCallback?.();
         });
-        onSaveCallback?.(policy);
-      })
-      .catch((error) => {
-        setIsSaving(false);
-        dispatchNotification({
-          variant: 'danger',
-          title: 'Error updating policy',
-          description: error.message,
+    } else {
+      updatePolicy(policy, updatedPolicyHostsAndRules)
+        .then((policy) => {
+          setIsSaving(false);
+          dispatchNotification({
+            variant: 'success',
+            title: 'Policy updated',
+            autoDismiss: true,
+          });
+          onSaveCallback?.(policy);
+        })
+        .catch((error) => {
+          setIsSaving(false);
+          dispatchNotification({
+            variant: 'danger',
+            title: 'Error updating policy',
+            description: error.message,
+          });
+          onErrorCallback?.();
         });
-        onErrorCallback?.();
-      });
+    }
   }, [isSaving, policy, updatedPolicyHostsAndRules]);
 
   return [isSaving, onSave];
+};
+
+const updatePolicyV2 = async (policy, updatedPolicy) => {
+  console.log(updatedPolicy);
+  return await apiInstance.updatePolicy(policy.id, null, {
+    description: updatedPolicy?.description,
+    business_objective: updatedPolicy?.businessObjective?.title ?? '--',
+    compliance_threshold: parseFloat(updatedPolicy?.complianceThreshold),
+  });
 };
