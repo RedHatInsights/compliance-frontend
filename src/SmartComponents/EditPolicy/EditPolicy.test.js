@@ -9,7 +9,13 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   setTitle: () => ({}),
 }));
 
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+
 describe('EditPolicy', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
   const defaultProps = {
     onClose: jest.fn(),
     dispatch: jest.fn(),

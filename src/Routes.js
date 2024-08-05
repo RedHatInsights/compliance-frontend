@@ -86,7 +86,7 @@ const policiesRoutes = [
     defaultTitle: defaultPoliciesTitle,
     component: lazy(() =>
       import(
-        /* webpackChunkName: "PolicyDetails" */ 'SmartComponents/PolicyDetails/PolicyDetails'
+        /* webpackChunkName: "PolicyDetailsWrapper" */ 'SmartComponents/PolicyDetails/PolicyDetails'
       )
     ),
   },

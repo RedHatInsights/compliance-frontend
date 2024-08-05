@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useParams, useLocation } from 'react-router-dom';
 import {
   Breadcrumb,
@@ -30,13 +30,45 @@ import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
+import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from '../../Utilities/dataSerialiser';
 
-export const PolicyDetails = ({ route }) => {
-  const defaultTab = 'details';
+export const PolicyDetailsWrapper = ({ route }) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
+
+  const PolicyDetails = apiV2Enabled ? PolicyDetailsV2 : PolicyDetailsGraphQL;
+
+  return <PolicyDetails route={route} />;
+};
+
+const PolicyDetailsGraphQL = ({ route }) => {
   const { policy_id: policyId } = useParams();
-  const { data, error, loading, refetch } = usePolicyQuery({
+  const query = usePolicyQuery({
     policyId,
   });
+
+  return <PolicyDetailsBase query={query} route={route} />;
+};
+
+const PolicyDetailsV2 = ({ route }) => {
+  const { policy_id: policyId } = useParams();
+  const query = usePolicyQuery2({ policyId });
+  const data = query?.data?.data
+    ? {
+        profile: {
+          ...dataSerialiser(query.data.data, dataMap),
+          policy: { profiles: [] },
+        },
+      }
+    : {};
+
+  return <PolicyDetailsBase query={{ ...query, data }} route={route} />;
+};
+
+export const PolicyDetailsBase = ({ route, query }) => {
+  const defaultTab = 'details';
+  const { data, error, loading, refetch } = query;
   const location = useLocation();
   const policy = data?.profile;
   const hasOsMinorProfiles = !!policy?.policy.profiles.find(
@@ -121,8 +153,37 @@ export const PolicyDetails = ({ route }) => {
   );
 };
 
-PolicyDetails.propTypes = {
-  route: propTypes.object,
+PolicyDetailsWrapper.propTypes = {
+  route: PropTypes.object,
 };
 
-export default PolicyDetails;
+PolicyDetailsGraphQL.propTypes = {
+  route: PropTypes.object,
+};
+
+PolicyDetailsV2.propTypes = {
+  route: PropTypes.object,
+};
+PolicyDetailsBase.propTypes = {
+  route: PropTypes.object,
+  query: PropTypes.shape({
+    data: PropTypes.oneOf([undefined, PropTypes.object]),
+    error: PropTypes.oneOf([undefined, PropTypes.string]),
+    loading: PropTypes.oneOf([undefined, false, true]),
+    refetch: PropTypes.func,
+  }),
+};
+
+export default PolicyDetailsWrapper;
+
+const dataMap = {
+  id: ['id', 'policy.id'],
+  title: 'name',
+  description: 'description',
+  business_objective: 'businessObjective.title',
+  compliance_threshold: 'complianceThreshold',
+  total_system_count: 'totalHostCount',
+  os_major_version: 'osMajorVersion',
+  profile_title: ['policy.name', 'policyType'],
+  ref_id: 'refId',
+};
