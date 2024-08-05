@@ -12,6 +12,9 @@ jest.mock('Utilities/hooks/useAnchor', () => ({
   default: () => () => ({}),
 }));
 
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+
 describe('useOnSave', function () {
   const policy = {};
   const updatedPolicy = {};
@@ -23,6 +26,7 @@ describe('useOnSave', function () {
     onSaveCallBack.mockReset();
     onErrorCallback.mockReset();
     dispatchNotification.mockImplementation(mockedNotification);
+    useAPIV2FeatureFlag.mockImplementation(() => false);
   });
 
   it('returns a function to call with a policy and updated policy', async () => {
