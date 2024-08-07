@@ -71,10 +71,16 @@ const useBulkSelect = ({
     }
   };
 
+  const markRowSelected = (row) => ({
+    ...row,
+    isSelected: selectedIds.includes(row.itemId),
+  });
+
   return enableBulkSelect
     ? {
         selectedIds,
         selectNone: () => clear(),
+        markRowSelected,
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
           canSelectAll: false,

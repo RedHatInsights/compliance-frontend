@@ -40,9 +40,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   const usableItems = useItems(items);
 
   const {
-    selectedIds,
     toolbarProps: bulkSelectToolbarProps,
     tableProps: bulkSelectTableProps,
+    markRowSelected,
   } = useBulkSelect({
     ...options,
     setPage: () => {}, //TODO: apply proper setPage function after pagination hook
@@ -53,9 +53,8 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
   } = rowsBuilder(usableItems, columns, {
-    transformers: options.rowTransformers,
+    transformers: [markRowSelected],
     emptyRows: options.emptyRows,
-    selectedIds,
   });
 
   const toolbarProps = {
