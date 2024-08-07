@@ -5,6 +5,7 @@ import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
 import useExpandable from '../useExpandable';
+import withExport from '../../utils/withExport';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -26,17 +27,13 @@ import useExpandable from '../useExpandable';
  *
  */
 const useAsyncTableTools = (items, columns, options = {}) => {
-  // TODO only for development purposes remove before switching to async tables by default
   console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
-  const { toolbarProps: pagintionToolbarProps } = usePagination(options);
+  const { toolbarProps: paginationToolbarProps } = usePagination(options);
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
     ...options,
-    // TODO enable when paginaton hook is added
-    // onFilterUpdate: () => setPage?.(1),
-    // onDeleteFilter: () => setPage?.(1),
   });
 
   const { tableProps: sortableTableProps } = useTableSort(columns, {
@@ -66,11 +63,21 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     emptyRows: options.emptyRows,
   });
 
+  const exportConfig = withExport({
+    exporter: options.exporter,
+    columns,
+    isDisabled: options.isExportDisabled,
+    onStart: options.onExportStart,
+    onComplete: options.onExportComplete,
+    onError: options.onExportError,
+  });
+
   const toolbarProps = {
-    ...pagintionToolbarProps,
+    ...paginationToolbarProps,
     ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
     ...bulkSelectToolbarProps,
+    ...exportConfig.toolbarProps,
     ...toolbarPropsOption,
   };
 
@@ -83,7 +90,6 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...expandableTableProps,
   };
 
-  // TODO only for development purposes remove before switching to async tables by default
   console.log('Toolbar Props: ', toolbarProps);
   console.log('Table Props: ', tableProps);
 

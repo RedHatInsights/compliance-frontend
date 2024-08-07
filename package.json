@@ -23,6 +23,7 @@
     "@redhat-cloud-services/frontend-components-remediations": "^3.2.12",
     "@redhat-cloud-services/frontend-components-utilities": "^4.0.14",
     "@redhat-cloud-services/javascript-clients-shared": "^1.2.4",
+    "@testing-library/react-hooks": "^8.0.1",
     "@unleash/proxy-client-react": "^3.5.0",
     "axios": "^1.6.8",
     "graphql": "^16.8.1",
