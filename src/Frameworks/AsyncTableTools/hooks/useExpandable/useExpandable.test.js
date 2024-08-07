@@ -23,7 +23,7 @@ describe('useExpandable', () => {
     });
   });
 
-  it('should an expands & shrink  a row', () => {
+  it('should expand & shrink  a row', () => {
     const { result } = renderHook(() => useExpandable(defaultOptions));
 
     //expand
