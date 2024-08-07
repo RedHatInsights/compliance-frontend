@@ -1,7 +1,8 @@
 import isObject from 'lodash/isObject';
 import uniq from 'lodash/uniq';
 
-const selectionGroup = (action) => action.group || 'default';
+const DEFAULT_GROUP_KEY = 'default';
+const selectionGroup = (action) => action.group || DEFAULT_GROUP_KEY;
 
 export const init = (withGroups) => (preselected) =>
   withGroups ? preselected || {} : { default: preselected || [] };
@@ -12,6 +13,11 @@ const cleanEmpty = (state) =>
       return {
         ...newState,
         [key]: value,
+      };
+    } else if (key === DEFAULT_GROUP_KEY && value === undefined) {
+      //Default selection can not be removed empty
+      return {
+        [DEFAULT_GROUP_KEY]: [],
       };
     }
   }, state);
@@ -63,8 +69,8 @@ const toggle = (state, action) => {
 };
 
 const reset = (state, action) =>
-  init(!state.hasOwnProperty('default'))(action?.preselected); // eslint-disable-line
-const clear = (state) => init(!state.hasOwnProperty('default'))(); // eslint-disable-line
+  init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))(action?.preselected); // eslint-disable-line
+const clear = (state) => init(!state.hasOwnProperty(DEFAULT_GROUP_KEY))(); // eslint-disable-line
 
 export default (state, action) =>
   ({
