@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
-import { paginationSerialiser, filtersSerialiser } from './serialisers';
 import {
   useSerialisedTableState,
   useRawTableState,
 } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { TableToolsTable } from 'Utilities/hooks/useTableTools';
+import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
+import {
+  paginationSerialiser,
+  filtersSerialiser,
+  sortSerialiser,
+} from './serialisers';
 
 /**
  *  This component serves as a place to either use the non-async TableTools or the AsyncTableTools
@@ -37,6 +41,7 @@ const ComplianceTable = (props) => {
         serialisers: {
           pagination: paginationSerialiser,
           filters: filtersSerialiser,
+          sort: sortSerialiser,
         },
         ...props.options,
       }}

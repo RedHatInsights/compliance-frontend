@@ -26,6 +26,10 @@
                 {
                     "label": "Compliance GitHub repository",
                     "href": "https://github.com/RedHatInsights/compliance-frontend/"
+                },
+                {
+                    "label": "Compliance REST API v2 Documentation",
+                    "href": "https://console.stage.redhat.com/docs/api/compliance/v2"
                 }
             ]
         }

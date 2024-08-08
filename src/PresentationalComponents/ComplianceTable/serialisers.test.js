@@ -1,7 +1,7 @@
 import { stringToId } from '@/Frameworks/AsyncTableTools/hooks/useFilterConfig/helpers';
 import filters from 'Utilities/hooks/useTableTools/__fixtures__/filters';
 
-import { filtersSerialiser } from './serialisers';
+import { filtersSerialiser, sortSerialiser } from './serialisers';
 
 const filtersWithIds = filters.map((filter) => ({
   id: stringToId(filter.label),
@@ -71,5 +71,40 @@ describe('filtersSerialiser', () => {
     ).toEqual('filterSerialiser');
 
     expect(filterSerialiser).toHaveBeenCalled();
+  });
+});
+
+describe('sortSerialiser', () => {
+  const exampleColumns = [
+    {
+      title: 'Name',
+      sortable: 'name',
+    },
+    {
+      title: 'Description',
+      sortable: 'description',
+    },
+  ];
+
+  it('returns a string consumable by the Compliance API as a "sort_by" parameter', () => {
+    expect(
+      sortSerialiser(
+        {
+          index: 0,
+          direction: 'asc',
+        },
+        exampleColumns
+      )
+    ).toEqual('name:asc');
+
+    expect(
+      sortSerialiser(
+        {
+          index: 1,
+          direction: 'desc',
+        },
+        exampleColumns
+      )
+    ).toEqual('description:desc');
   });
 });
