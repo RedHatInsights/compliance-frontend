@@ -20,6 +20,7 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import { useOnSave as useOnSavePolicyDetails } from '../EditPolicy/hooks';
 import { thresholdValid } from '../CreatePolicy/validate';
 import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 const EditPolicyDetailsInline = ({
   text,
@@ -35,6 +36,7 @@ const EditPolicyDetailsInline = ({
   refetch,
   ...props
 }) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const copiedData = policy;
   // TODO Re-enable when there is a alternative to Prompt
   // const [dirty, setDirty] = useState(false);
@@ -78,6 +80,7 @@ const EditPolicyDetailsInline = ({
 
   const [isSaving, onSave] = useOnSavePolicyDetails(policy, constructData, {
     onSave: handleCloseEdit,
+    apiV2Enabled,
   });
 
   const [isEditOpen, setIsEditOpen] = useState(false);

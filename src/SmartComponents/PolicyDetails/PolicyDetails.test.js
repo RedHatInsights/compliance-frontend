@@ -60,6 +60,11 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   setTitle: () => ({}),
 }));
 
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag', () => ({
+  __esModule: true,
+  default: () => false,
+}));
+
 describe('PolicyDetails', () => {
   it('expect to render without error', () => {
     render(
