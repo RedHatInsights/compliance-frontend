@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
@@ -37,6 +38,7 @@ const ComplianceTable = (props) => {
           pagination: paginationSerialiser,
           filters: filtersSerialiser,
         },
+        ...props.options,
       }}
     />
   ) : (
@@ -44,4 +46,7 @@ const ComplianceTable = (props) => {
   );
 };
 
+ComplianceTable.propTypes = {
+  options: propTypes.object,
+};
 export default ComplianceTable;

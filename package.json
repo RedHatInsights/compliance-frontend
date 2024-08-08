@@ -10,9 +10,9 @@
     "@babel/runtime": "^7.24.0",
     "@patternfly/patternfly": "^5.0.2",
     "@patternfly/react-charts": "^7.2.2",
-    "@patternfly/react-core": "^5.2.1",
+    "@patternfly/react-core": "^5.3.4",
     "@patternfly/react-icons": "^5.2.1",
-    "@patternfly/react-table": "^5.2.1",
+    "@patternfly/react-table": "^5.3.4",
     "@patternfly/react-tokens": "^5.2.1",
     "@react-pdf/renderer": "^1.6.17",
     "@redhat-cloud-services/compliance-client": "^0.1.7",
@@ -46,6 +46,9 @@
     "better-docs": {
       "react": "^18.2.0",
       "react-dom": "^18.2.0"
+    },
+    "vue-docgen-api": {
+      "pug": "^3.0.1"
     }
   },
   "sassIncludes": {
