@@ -9,14 +9,14 @@ const usePromiseQueue = (limit = DEFAULT_CONCURRENT_PROMISES) => {
 
   const resolve = useCallback(
     async (fns) => {
-      await setPromiseResults(undefined);
-      await setIsResolving(true);
+      setPromiseResults(undefined);
+      setIsResolving(true);
       const results = await pAll(fns, {
         concurrency: limit,
       });
 
-      await setIsResolving(false);
-      await setPromiseResults(results);
+      setIsResolving(false);
+      setPromiseResults(results);
 
       return results;
     },

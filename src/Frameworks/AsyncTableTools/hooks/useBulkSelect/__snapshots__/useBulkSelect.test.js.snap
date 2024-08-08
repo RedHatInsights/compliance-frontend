@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useBulkSelect returns a bulk select configuration 1`] = `
+{
+  "current": {
+    "markRowSelected": [Function],
+    "selectNone": [Function],
+    "selectedIds": [],
+    "tableProps": {
+      "canSelectAll": false,
+      "onSelect": undefined,
+    },
+    "toolbarProps": {
+      "bulkSelect": {
+        "checked": false,
+        "isDisabled": true,
+        "items": [
+          {
+            "onClick": [Function],
+            "props": {
+              "isDisabled": true,
+            },
+            "title": "Select none",
+          },
+          {
+            "onClick": [Function],
+            "title": "Select page (0 items)",
+          },
+        ],
+        "onSelect": undefined,
+        "toggleProps": {
+          "children": [
+            "0 selected",
+          ],
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`useBulkSelect returns a bulk select configuration with select all 1`] = `
+[
+  {
+    "onClick": [Function],
+    "props": {
+      "isDisabled": false,
+    },
+    "title": "Select none",
+  },
+  {
+    "onClick": [Function],
+    "title": "Select page (2 items)",
+  },
+]
+`;
+
+exports[`useBulkSelect returns a bulk select configuration without select all 1`] = `
+[
+  {
+    "onClick": [Function],
+    "props": {
+      "isDisabled": false,
+    },
+    "title": "Select none",
+  },
+  {
+    "onClick": [Function],
+    "title": "Select page (2 items)",
+  },
+]
+`;

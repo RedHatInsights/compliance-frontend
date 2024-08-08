@@ -15,7 +15,7 @@ import { useSerialisedTableState, useRawTableState } from '../useTableState';
  */
 const useItems = (itemsProp) => {
   const mounted = useRef(true);
-  const [items, setItems] = useState();
+  const [items, setItems] = useState([]);
   const tableState = useRawTableState();
   const serialisedTableState = useSerialisedTableState();
 
