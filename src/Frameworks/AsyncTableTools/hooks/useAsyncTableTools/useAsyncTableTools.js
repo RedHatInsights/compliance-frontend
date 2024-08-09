@@ -27,6 +27,7 @@ import withExport from '../../utils/withExport';
  *
  */
 const useAsyncTableTools = (items, columns, options = {}) => {
+  // TODO only for development purposes remove before switching to async tables by default
   console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
@@ -34,6 +35,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
     ...options,
+    // TODO enable when paginaton hook is added
+    // onFilterUpdate: () => setPage?.(1),
+    // onDeleteFilter: () => setPage?.(1),
   });
 
   const { tableProps: sortableTableProps } = useTableSort(columns, {
@@ -90,6 +94,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...expandableTableProps,
   };
 
+  // TODO only for development purposes remove before switching to async tables by default
   console.log('Toolbar Props: ', toolbarProps);
   console.log('Table Props: ', tableProps);
 

@@ -1,7 +1,7 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
+import withExport from './withExport';
 import items from '../../../../Utilities/hooks/useTableTools/__fixtures__/items';
 import columns from '../../../../Utilities/hooks/useTableTools/__fixtures__/columns';
-import withExport from './withExport';
 
 const exampleItems = items(25);
 
@@ -16,14 +16,14 @@ describe('withExport', () => {
     const { result } = renderHook(() => withExport(defaultOptions));
     expect(result.current.toolbarProps.exportConfig).toBeDefined();
     expect(result.current).toEqual({
-        toolbarProps: {
-          exportConfig: {
-            isDisabled: false,
-            onSelect: expect.any(Function),
-          },
+      toolbarProps: {
+        exportConfig: {
+          isDisabled: false,
+          onSelect: expect.any(Function),
         },
-      });
+      },
     });
+  });
 
   it('returns an export config toolbar config with disabled true', () => {
     const { result } = renderHook(() =>
