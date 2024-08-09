@@ -28,7 +28,7 @@ describe('useExpandable', () => {
 
     //expand
     act(() => {
-      result.current.tableProps.onCollapse(null, 0, 'row title', {
+      result.current.tableProps.onCollapse(null, 0, true, {
         itemId: 'test-id',
       });
     });
