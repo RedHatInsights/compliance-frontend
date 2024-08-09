@@ -13,10 +13,10 @@ const itemRow = (item, columns) => ({
   })),
 });
 
-const applyTransformations = (row, transformers, selectedIds) => {
+const applyTransformations = (row, transformers, selectedIds, index) => {
   return transformers.reduce(
     (currentRow, transformer) =>
-      transformer ? transformer(currentRow, selectedIds) : currentRow,
+      transformer ? transformer(currentRow, selectedIds, index) : currentRow,
     row
   );
 };
@@ -44,10 +44,10 @@ const rowsBuilder = (items, columns, options = {}) => {
     items &&
     (items.length > 0
       ? items
-          .flatMap((item) => {
+          .flatMap((item, index) => {
             const row = itemRow(item, columns);
 
-            return applyTransformations(row, transformers, selectedIds);
+            return applyTransformations(row, transformers, selectedIds, index);
           })
           .filter((v) => !!v)
       : EmptyRowsComponent);
