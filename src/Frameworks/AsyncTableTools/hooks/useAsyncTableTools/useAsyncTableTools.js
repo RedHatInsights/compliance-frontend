@@ -3,6 +3,7 @@ import useFilterConfig from '../useFilterConfig';
 import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
+import useExpandable from '../useExpandable';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -37,6 +38,8 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     // onDeleteFilter: () => setPage?.(1),
   });
 
+  const { tableProps: expandableTableProps, openItem } = useExpandable(options);
+
   const usableItems = useItems(items);
 
   const {
@@ -53,7 +56,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     toolbarProps: rowBuilderToolbarProps,
     tableProps: rowBuilderTableProps,
   } = rowsBuilder(usableItems, columns, {
-    transformers: [markRowSelected],
+    transformers: [markRowSelected, openItem],
     emptyRows: options.emptyRows,
   });
 
@@ -70,6 +73,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...rowBuilderTableProps,
     ...bulkSelectTableProps,
     ...tablePropsOption,
+    ...expandableTableProps,
   };
 
   // TODO only for development purposes remove before switching to async tables by default
