@@ -35,7 +35,7 @@ describe('useExpandable', () => {
 
     expect(result.current.openItems).toEqual(['test-id']);
 
-    //shrink
+    // collapse
     act(() => {
       result.current.tableProps.onCollapse(null, 0, 'row title', {
         itemId: 'test-id',
