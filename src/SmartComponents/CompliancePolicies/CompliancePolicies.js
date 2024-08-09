@@ -15,6 +15,9 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
+import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import PropTypes from 'prop-types';
 
 const QUERY = gql`
   {
@@ -43,7 +46,7 @@ const QUERY = gql`
   }
 `;
 
-export const CompliancePolicies = () => {
+export const CompliancePoliciesBase = ({ query }) => {
   const location = useLocation();
   const CreateLink = () => (
     <Link
@@ -58,7 +61,7 @@ export const CompliancePolicies = () => {
     </Link>
   );
 
-  let { data, error, loading, refetch } = useQuery(QUERY);
+  let { data, error, loading, refetch } = query;
   useEffect(() => {
     refetch();
   }, [location, refetch]);
@@ -101,4 +104,95 @@ export const CompliancePolicies = () => {
   );
 };
 
-export default CompliancePolicies;
+CompliancePoliciesBase.propTypes = {
+  query: PropTypes.shape({
+    data: PropTypes.object,
+    error: PropTypes.string,
+    loading: PropTypes.bool,
+    refetch: PropTypes.func,
+  }),
+};
+
+const CompliancePoliciesV2 = () => {
+  const query = usePoliciesQuery();
+  let policies = query.data?.data
+    ? query.data.data.map((policy) => serialize(policy))
+    : [];
+
+  const transformedData = {
+    profiles: {
+      edges: policies.map((policy) => ({ node: policy })),
+    },
+  };
+
+  return <CompliancePoliciesBase query={{ ...query, data: transformedData }} />;
+};
+
+const CompliancePoliciesGraphQL = () => {
+  let query = useQuery(QUERY);
+  return <CompliancePoliciesBase query={query} />;
+};
+
+const CompliancePoliciesWrapper = () => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
+
+  return apiV2Enabled ? (
+    <CompliancePoliciesV2 />
+  ) : (
+    <CompliancePoliciesGraphQL />
+  );
+};
+
+const serialize = (input) => {
+  const settings = {
+    id: ['id', 'policy.id'],
+    title: 'title',
+    description: 'description',
+    business_objective: 'businessObjective.title',
+    compliance_threshold: 'complianceThreshold',
+    total_system_count: 'totalHostCount',
+    os_major_version: 'osMajorVersion',
+    profile_title: ['policy.name', 'policyType'],
+    ref_id: 'refId',
+  };
+  const getValue = (obj, key) => {
+    let ref = obj;
+    if (key.includes('.')) {
+      key.split('.').forEach((element) => {
+        ref = ref[element];
+      });
+    } else {
+      ref = ref[key];
+    }
+    return ref;
+  };
+
+  let newObj = {};
+  for (const [key, setting] of Object.entries(settings)) {
+    const finalValue = getValue(input, key);
+    let runs = setting;
+    if (!Array.isArray(setting)) runs = [setting];
+
+    runs.forEach((value) => {
+      if (value.includes('.')) {
+        const split = value.split('.');
+        let ref = newObj;
+        split.forEach((el, index) => {
+          if (!Object.prototype.hasOwnProperty.call(ref, el)) {
+            ref[el] = index + 1 !== split.length ? {} : finalValue;
+          }
+          ref = ref[el];
+        });
+      } else {
+        if (key === 'os_major_version') {
+          newObj[value] = input[key].toString();
+        } else {
+          newObj[value] = input[key];
+        }
+      }
+    });
+  }
+  return newObj;
+};
+
+export default CompliancePoliciesWrapper;
