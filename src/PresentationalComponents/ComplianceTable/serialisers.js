@@ -63,3 +63,31 @@ export const filtersSerialiser = (state, filters) => {
 
   return queryParts.length > 0 ? queryParts.join(' AND ') : undefined;
 };
+
+/**
+ *  Returns a string consumable by the Compliance API as a "sort_by" parameter for a given column and direction
+ *  For columns to be sortable they need to have a "sortable" prop, which corresponds to the field name in the Compliance API
+ *
+ *  @param {object} state A "sortBy" table state
+ *  @param {number} state.index Index of the column to sort by
+ *  @param {string} state.direction Direction to sort the column by
+ *  @param {Array}  columns Columns passed in for the AsyncTableToolsTable
+ *
+ *  @returns {string} Compliance "sort_by" parameter string, like "name:desc"
+ *
+ *  @category Compliance
+ *
+ *  @example <caption>Example of a column with an sortable property</caption>
+ *
+ *  const columns = [
+ *     {
+ *       title: 'Name',
+ *       sortable: 'name' // Corresponds to the attribute/field to sort by in the API
+ *     }
+ *  ];
+ *
+ */
+export const sortSerialiser = ({ index, direction }, columns) => {
+  console.log({ index, direction }, columns);
+  return `${columns[index].sortable}:${direction}`;
+};
