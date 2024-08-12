@@ -65,6 +65,7 @@ const AsyncTableToolsTable = ({
       <TableToolbar isFooter {...tableToolbarProps}>
         {toolbarProps.pagination && (
           <Pagination
+            aria-label="Pagination-ToolBar"
             variant={PaginationVariant.bottom}
             {...toolbarProps.pagination}
             {...paginationProps}
