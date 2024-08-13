@@ -1,5 +1,6 @@
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
+import useTableSort from '../useTableSort';
 import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
@@ -37,6 +38,12 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     // onDeleteFilter: () => setPage?.(1),
   });
 
+  const { tableProps: sortableTableProps } = useTableSort(columns, {
+    ...options,
+    // TODO enable when usePaginate hook is ready
+    // onSort: () => setPage(1),
+  });
+
   const usableItems = useItems(items);
 
   const {
@@ -67,6 +74,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
 
   const tableProps = {
     cells: columns,
+    ...sortableTableProps,
     ...rowBuilderTableProps,
     ...bulkSelectTableProps,
     ...tablePropsOption,

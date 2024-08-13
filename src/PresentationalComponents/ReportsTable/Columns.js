@@ -10,6 +10,8 @@ import {
 export const Name = {
   title: 'Policy',
   sortByProp: 'name',
+  // TODO this "sortBy" is an example to test the sortability to show in the AsyncTable for the sortSerialiser
+  sortable: 'name',
   props: {
     width: 60,
   },
@@ -21,6 +23,8 @@ export const OperatingSystem = {
   title: 'Operating system',
   transforms: [fitContent],
   sortByProp: 'osMajorVersion',
+  // TODO same as with above "sortBy"
+  sortable: 'osMajorVersion',
   props: {
     width: 20,
   },
