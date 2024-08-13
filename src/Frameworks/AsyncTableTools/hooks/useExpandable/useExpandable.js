@@ -18,6 +18,7 @@ import { itemDetailsRow } from './helpers';
  */
 
 const useExpandable = (options) => {
+  const enableExpandingRow = !!options?.detailsComponent;
   const { selection: openItems, toggle } = useSelectionManager([]);
 
   const onCollapse = (_event, _index, _isOpen, { itemId }) => toggle(itemId);
@@ -37,13 +38,15 @@ const useExpandable = (options) => {
     [openItems]
   );
 
-  return {
-    openItem,
-    openItems,
-    tableProps: {
-      onCollapse,
-    },
-  };
+  return enableExpandingRow
+    ? {
+        openItem,
+        openItems,
+        tableProps: {
+          onCollapse,
+        },
+      }
+    : {};
 };
 
 export default useExpandable;
