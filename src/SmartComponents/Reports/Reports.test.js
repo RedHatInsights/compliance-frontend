@@ -1,15 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TestWrapper from '@/Utilities/TestWrapper';
+import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper.js';
 
 import { useQuery } from '@apollo/client';
 import { profiles } from '@/__fixtures__/profiles.js';
 
-import { Reports } from './Reports.js';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag.js';
+import Reports from './Reports.js';
+import { useReports } from '@/Utilities/hooks/api/useReports';
 
 jest.mock('@apollo/client');
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
+jest.mock('@/Utilities/hooks/api/useReports');
 
-describe('Reports', () => {
+describe('Reports - GraphQL', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
+
   const queryResultDefaults = {
     error: undefined,
     loading: undefined,
@@ -64,5 +72,28 @@ describe('Reports', () => {
     );
 
     expect(screen.getByLabelText('Loading')).toBeInTheDocument();
+  });
+});
+
+describe('Reports - REST', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => true);
+  });
+
+  it('should use REST api', () => {
+    useReports.mockImplementation(() => ({
+      data: [],
+      loading: false,
+      error: null,
+      refetch: () => {},
+    }));
+
+    render(
+      <TestWrapper>
+        <Reports />
+      </TestWrapper>
+    );
+
+    expect(useReports).toHaveBeenCalledWith({ params: ['', 100] });
   });
 });
