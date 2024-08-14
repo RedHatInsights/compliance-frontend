@@ -48,9 +48,12 @@ const usePagination = (options = {}) => {
     });
   };
 
+  const resetPage = () => setPage?.(1);
+
   return enablePagination
     ? {
         setPage,
+        resetPage,
         toolbarProps: {
           pagination: {
             ...paginationState,

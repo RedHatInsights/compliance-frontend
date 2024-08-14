@@ -26,6 +26,10 @@ exports[`useBulkSelect returns a bulk select configuration 1`] = `
             "onClick": [Function],
             "title": "Select page (0 items)",
           },
+          {
+            "onClick": [Function],
+            "title": "Unselect all (0 items)",
+          },
         ],
         "onSelect": undefined,
         "toggleProps": {
@@ -52,6 +56,10 @@ exports[`useBulkSelect returns a bulk select configuration with select all 1`] =
     "onClick": [Function],
     "title": "Select page (2 items)",
   },
+  {
+    "onClick": [Function],
+    "title": "Select all (2 items)",
+  },
 ]
 `;
 
@@ -67,6 +75,10 @@ exports[`useBulkSelect returns a bulk select configuration without select all 1`
   {
     "onClick": [Function],
     "title": "Select page (2 items)",
+  },
+  {
+    "onClick": [Function],
+    "title": "Select all (2 items)",
   },
 ]
 `;
