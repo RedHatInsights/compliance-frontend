@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-import { QUERY, ReportDetails } from './ReportDetails';
+import ReportsDetail from './ReportDetails';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag.js';
+import { useReport } from '@/Utilities/hooks/api/useReport';
+import { QUERY } from './constants';
 
+jest.mock('@/Utilities/hooks/api/useReport');
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
@@ -57,6 +62,10 @@ jest.mock('react-router-dom', () => ({
     useParams: jest.fn().mockReturnValue({ report_id: '1234' }), // eslint-disable-line
 }));
 
+beforeEach(() => {
+  useAPIV2FeatureFlag.mockImplementation(() => false);
+});
+
 describe('ReportDetails', () => {
   const defaultProps = {
     route: {
@@ -67,7 +76,7 @@ describe('ReportDetails', () => {
   it('expect to render a report properly', async () => {
     render(
       <TestWrapper mocks={mocks}>
-        <ReportDetails {...defaultProps} />
+        <ReportsDetail {...defaultProps} />
       </TestWrapper>
     );
 
@@ -75,5 +84,28 @@ describe('ReportDetails', () => {
     expect(
       await screen.findByRole('heading', { name: 'Report: the policy name' })
     ).toBeInTheDocument();
+  });
+});
+
+describe('Reports - REST', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => true);
+  });
+
+  it('should use REST api', () => {
+    useReport.mockImplementation(() => ({
+      data: [],
+      loading: false,
+      error: null,
+      refetch: () => {},
+    }));
+
+    render(
+      <TestWrapper>
+        <ReportsDetail />
+      </TestWrapper>
+    );
+
+    expect(useReport).toHaveBeenCalledWith('1234');
   });
 });
