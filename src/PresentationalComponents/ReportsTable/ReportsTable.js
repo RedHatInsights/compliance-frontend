@@ -13,12 +13,12 @@ import {
 } from './Filters';
 import '../../App.scss';
 
-const ReportsTable = ({ profiles }) => {
+const ReportsTable = ({ reports }) => {
   const policyTypes = uniq(
-    profiles.map(({ policyType }) => policyType).filter((i) => !!i)
+    reports.map(({ policyType }) => policyType).filter((i) => !!i)
   );
   const operatingSystems = uniq(
-    profiles.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
+    reports.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
   );
 
   return (
@@ -26,7 +26,7 @@ const ReportsTable = ({ profiles }) => {
       aria-label="Reports"
       ouiaId="ReportsTable"
       columns={[...columns, PDFExportDownload]}
-      items={profiles}
+      items={reports}
       isStickyHeader
       filters={{
         filterConfig: [
@@ -52,7 +52,7 @@ const ReportsTable = ({ profiles }) => {
 };
 
 ReportsTable.propTypes = {
-  profiles: propTypes.array,
+  reports: propTypes.any,
 };
 
 export default ReportsTable;
