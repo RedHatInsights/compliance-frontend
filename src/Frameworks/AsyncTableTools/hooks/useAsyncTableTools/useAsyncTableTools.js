@@ -5,6 +5,7 @@ import useItems from './useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
 import useExpandable from '../useExpandable';
+import withExport from '../../utils/withExport';
 
 /**
  *  @typedef {object} AsyncTableProps
@@ -30,7 +31,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
-  const { toolbarProps: pagintionToolbarProps } = usePagination(options);
+  const { toolbarProps: paginationToolbarProps } = usePagination(options);
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
     ...options,
@@ -66,11 +67,17 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     emptyRows: options.emptyRows,
   });
 
+  const exportConfig = withExport({
+    columns,
+    ...options,
+  });
+
   const toolbarProps = {
-    ...pagintionToolbarProps,
+    ...paginationToolbarProps,
     ...conditionalFilterProps,
     ...rowBuilderToolbarProps,
     ...bulkSelectToolbarProps,
+    ...exportConfig.toolbarProps,
     ...toolbarPropsOption,
   };
 
