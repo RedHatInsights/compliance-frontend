@@ -68,12 +68,8 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   });
 
   const exportConfig = withExport({
-    exporter: options.exporter,
     columns,
-    isDisabled: options.isExportDisabled,
-    onStart: options.onExportStart,
-    onComplete: options.onExportComplete,
-    onError: options.onExportError,
+    ...options,
   });
 
   const toolbarProps = {
