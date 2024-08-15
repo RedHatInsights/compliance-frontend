@@ -87,7 +87,7 @@ describe('ReportDetails', () => {
   });
 });
 
-describe('Reports - REST', () => {
+describe('Report Details - REST', () => {
   beforeEach(() => {
     useAPIV2FeatureFlag.mockImplementation(() => true);
   });
