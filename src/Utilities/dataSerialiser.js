@@ -1,4 +1,5 @@
 import set from 'lodash/set';
+import get from 'lodash/get';
 
 const serialiseObject = (object, map) => {
   if (!object || !map) {
@@ -7,11 +8,10 @@ const serialiseObject = (object, map) => {
 
   const result = {};
 
-  Object.entries(object).forEach(([key, value]) => {
-    let paths = Array.isArray(map[key]) ? map[key] : [map[key]];
+  Object.entries(map).forEach(([key, value]) => {
+    let paths = Array.isArray(value) ? value : [value];
     paths.forEach((path) => {
-      const newPath = path || key;
-      set(result, newPath, value);
+      set(result, path, get(object, key));
     });
   });
 
