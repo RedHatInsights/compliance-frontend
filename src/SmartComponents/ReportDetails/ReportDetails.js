@@ -55,7 +55,6 @@ const ReportDetailsBase = ({
 
   useTitleEntity(route, policyName);
 
-  console.log('hello data', data);
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
       <StateViewPart stateKey="loading">
@@ -172,8 +171,8 @@ ReportDetailsBase.propTypes = {
   ssgVersions: propTypes.array,
 };
 
-//depricated component
-const ReportDetailsGrapgQL = ({ route }) => {
+//deprecated component
+const ReportDetailsGraphQL = ({ route }) => {
   const { report_id: policyId } = useParams();
   const { data, error, loading } = useQuery(QUERY, {
     variables: { policyId },
@@ -197,8 +196,11 @@ const ReportDetailsGrapgQL = ({ route }) => {
   );
 };
 
-ReportDetailsGrapgQL.propTypes = {
-  route: propTypes.object,
+ReportDetailsGraphQL.propTypes = {
+  route: propTypes.shape({
+    title: propTypes.string.isRequired,
+    defaultTitle: propTypes.string.isRequired,
+  }).isRequired,
 };
 
 const ReportDetailsRest = ({ route }) => {
@@ -213,7 +215,10 @@ const ReportDetailsRest = ({ route }) => {
 };
 
 ReportDetailsRest.propTypes = {
-  route: propTypes.object,
+  route: propTypes.shape({
+    title: propTypes.string.isRequired,
+    defaultTitle: propTypes.string.isRequired,
+  }).isRequired,
 };
 
 const ReportsWrapper = (props) => {
@@ -222,7 +227,7 @@ const ReportsWrapper = (props) => {
   return isRestApiEnabled ? (
     <ReportDetailsRest {...props} />
   ) : (
-    <ReportDetailsGrapgQL {...props} />
+    <ReportDetailsGraphQL {...props} />
   );
 };
 
