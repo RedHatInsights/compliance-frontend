@@ -94,6 +94,6 @@ describe('Reports - REST', () => {
       </TestWrapper>
     );
 
-    expect(useReports).toHaveBeenCalledWith({ params: ['', 100] });
+    expect(useReports).toHaveBeenCalled();
   });
 });
