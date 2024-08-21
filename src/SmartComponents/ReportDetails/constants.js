@@ -33,11 +33,11 @@ export const QUERY = gql`
 
 export const dataMap = {
   title: 'name',
-  business_objective: 'businessObjective',
-  compliance_threshold: 'businessObjective.title',
+  business_objective: 'businessObjective.title',
+  compliance_threshold: 'complianceThreshold',
   type: 'policyType',
   os_major_version: 'osMajorVersion',
-  profile_title: 'policy.name',
+  profile_title: ['policy.name', 'policyType'],
   ref_id: 'refId',
   all_systems_exposed: 'totalHostCount',
   reported_system_count: 'testResultHostCount',
