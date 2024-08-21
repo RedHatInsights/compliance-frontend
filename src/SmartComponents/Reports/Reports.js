@@ -50,12 +50,12 @@ export const ReportsBase = ({ data, loading, error }) => {
 };
 
 ReportsBase.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   error: PropTypes.string,
   loading: PropTypes.bool,
 };
 
-//depricated component
+//deprecated component
 const ReportsWithGrahpQL = () => {
   let profiles = [];
   const location = useLocation();
@@ -79,12 +79,9 @@ const ReportsWithGrahpQL = () => {
 };
 
 const ReportsWithRest = () => {
-  const params = {
-    params: ['', 100],
-  };
   const location = useLocation();
 
-  let { data: { data } = {}, error, loading, refetch } = useReports(params);
+  let { data: { data } = {}, error, loading, refetch } = useReports();
 
   useEffect(() => {
     refetch();

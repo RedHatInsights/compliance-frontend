@@ -52,7 +52,7 @@ const ReportsTable = ({ reports }) => {
 };
 
 ReportsTable.propTypes = {
-  reports: propTypes.any,
+  reports: propTypes.array.isRequired,
 };
 
 export default ReportsTable;
