@@ -17,7 +17,7 @@
     "@patternfly/react-tokens": "^5.2.1",
     "@react-pdf/renderer": "^1.6.17",
     "@redhat-cloud-services/compliance-client": "^0.1.7",
-    "@redhat-cloud-services/frontend-components": "^4.2.13",
+    "@redhat-cloud-services/frontend-components": "^4.2.14",
     "@redhat-cloud-services/frontend-components-config-utilities": "^3.2.2",
     "@redhat-cloud-services/frontend-components-notifications": "^4.1.0",
     "@redhat-cloud-services/frontend-components-pdf-generator": "^4.0.6",
