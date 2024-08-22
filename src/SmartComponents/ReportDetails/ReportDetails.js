@@ -2,7 +2,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -31,58 +31,26 @@ import './ReportDetails.scss';
 import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
+import { useReport } from '../../Utilities/hooks/api/useReport';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import { dataMap, QUERY } from './constants';
+import dataSerialiser from '../../Utilities/dataSerialiser';
 
-export const QUERY = gql`
-  query RDWNRS_Profile($policyId: String!) {
-    profile(id: $policyId) {
-      id
-      name
-      refId
-      totalHostCount
-      testResultHostCount
-      compliantHostCount
-      unsupportedHostCount
-      complianceThreshold
-      osMajorVersion
-      lastScanned
-      policyType
-      policy {
-        id
-        name
-        profiles {
-          benchmark {
-            version
-          }
-        }
-      }
-      businessObjective {
-        id
-        title
-      }
-    }
-  }
-`;
-
-export const ReportDetails = ({ route }) => {
-  const { report_id: policyId } = useParams();
-  const { data, error, loading } = useQuery(QUERY, {
-    variables: { policyId },
-    fetchPolicy: 'no-cache',
-  });
+const ReportDetailsBase = ({
+  route,
+  data,
+  error,
+  loading,
+  ssgVersions = [],
+}) => {
   let profile = {};
   let policyName;
   let pageTitle;
-  let ssgVersions = [];
 
   if (!loading && data) {
-    profile = data.profile;
+    profile = data;
     policyName = profile.policy.name;
     pageTitle = `Report: ${policyName}`;
-    ssgVersions = [
-      ...new Set(
-        profile.policy.profiles.flatMap(({ benchmark: { version } }) => version)
-      ),
-    ];
   }
 
   useTitleEntity(route, policyName);
@@ -195,8 +163,72 @@ export const ReportDetails = ({ route }) => {
   );
 };
 
-ReportDetails.propTypes = {
+ReportDetailsBase.propTypes = {
   route: propTypes.object,
+  data: propTypes.object,
+  error: propTypes.object,
+  loading: propTypes.bool,
+  ssgVersions: propTypes.array,
 };
 
-export default ReportDetails;
+//deprecated component
+const ReportDetailsGraphQL = ({ route }) => {
+  const { report_id: policyId } = useParams();
+  const { data, error, loading } = useQuery(QUERY, {
+    variables: { policyId },
+    fetchPolicy: 'no-cache',
+  });
+
+  const ssgVersions = data
+    ? [
+        ...new Set(
+          data.profile.policy.profiles.flatMap(
+            ({ benchmark: { version } }) => version
+          )
+        ),
+      ]
+    : [];
+
+  return (
+    <ReportDetailsBase
+      {...{ route, data: data?.profile, error, loading, ssgVersions }}
+    />
+  );
+};
+
+ReportDetailsGraphQL.propTypes = {
+  route: propTypes.shape({
+    title: propTypes.string.isRequired,
+    defaultTitle: propTypes.string.isRequired,
+  }).isRequired,
+};
+
+const ReportDetailsRest = ({ route }) => {
+  const { report_id: policyId } = useParams();
+  const { data: { data } = {}, error, loading } = useReport(policyId);
+
+  return (
+    <ReportDetailsBase
+      {...{ route, data: dataSerialiser(data, dataMap), error, loading }}
+    />
+  );
+};
+
+ReportDetailsRest.propTypes = {
+  route: propTypes.shape({
+    title: propTypes.string.isRequired,
+    defaultTitle: propTypes.string.isRequired,
+  }).isRequired,
+};
+
+const ReportsWrapper = (props) => {
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+
+  return isRestApiEnabled ? (
+    <ReportDetailsRest {...props} />
+  ) : (
+    <ReportDetailsGraphQL {...props} />
+  );
+};
+
+export default ReportsWrapper;
