@@ -1,5 +1,8 @@
 import { useApolloClient } from '@apollo/client';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
+import { useCallback } from 'react';
+import { apiInstance } from '../../../Utilities/hooks/useQuery';
+import dataSerialiser from '../../../Utilities/dataSerialiser';
 
 const renameInventoryAttributes = ({
   culledTimestamp,
@@ -53,6 +56,7 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
   return (perPage, page, requestVariables) => {
     const combinedVariables = combineVariables(variables, requestVariables);
 
+    console.log('debug systems: ', perPage, page, requestVariables, query);
     return client
       .query({
         query,
@@ -91,4 +95,52 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
   };
 };
 
-export default useFetchSystems;
+export const useFetchSystemsV2 = ({
+  dataMap,
+  onComplete,
+  onError,
+  systemFetchArguments = {},
+}) => {
+  return useCallback(
+    async (perPage, page, requestVariables) => {
+      const combinedVariables = combineVariables(
+        systemFetchArguments,
+        requestVariables
+      );
+
+      try {
+        const { data: { data = [], meta = {} } = {} } =
+          await apiInstance.systems(
+            undefined,
+            perPage,
+            page,
+            combinedVariables.sortBy,
+            combinedVariables.filter
+          );
+
+        console.log(data, meta, 'debug: systems query result');
+        console.log(combinedVariables, 'debug: systems query filters');
+        const serialisedData = {
+          entities: dataSerialiser(data, dataMap),
+          meta: {
+            ...(requestVariables?.tags && { tags: requestVariables.tags }),
+            totalCount: meta.total || 0,
+          },
+        };
+
+        console.log(serialisedData, dataMap, 'debug: systems data map result');
+
+        onComplete && onComplete(serialisedData);
+        return serialisedData;
+      } catch (error) {
+        if (onError) {
+          onError(error);
+          return { entities: [], meta: { totalCount: 0 } };
+        } else {
+          throw error;
+        }
+      }
+    },
+    [systemFetchArguments]
+  );
+};

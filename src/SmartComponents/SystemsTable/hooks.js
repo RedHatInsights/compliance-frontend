@@ -9,7 +9,7 @@ import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
-import useFetchSystems from './hooks/useFetchSystems';
+import { useFetchSystems } from './hooks/useFetchSystems';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -137,6 +137,8 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       ...filterForApi,
       sortBy,
     });
+
+    console.log(fetchedEntities, 'debug fetched entities');
     const {
       entities,
       meta: { totalCount },
@@ -212,11 +214,11 @@ export const useSystemsExport = ({
   const fetchSystems = useFetchSystems({
     query: fetchArguments.query,
     variables: {
-      ...fetchArguments.variables,
+      ...fetchArguments?.variables,
       ...(fetchArguments.tags && { tags: fetchArguments.tags }),
       filter: selectionFilter
         ? `${fetchArguments.variables.filter} and (${selectionFilter})`
-        : fetchArguments.variables.filter,
+        : fetchArguments.variables?.filter,
     },
     onError: () => {
       dispatchNotification({

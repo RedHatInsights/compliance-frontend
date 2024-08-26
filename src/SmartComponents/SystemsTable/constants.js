@@ -80,3 +80,36 @@ export const ssgVersionFilter = (ssgVersions) => [
     })),
   },
 ];
+
+export const mergedColumns = (columns) => (defaultColumns) =>
+  columns.reduce((prev, column) => {
+    const isStringCol = typeof column === 'string';
+    const key = isStringCol ? column : column.key;
+    const defaultColumn = defaultColumns.find(
+      (defaultCol) => defaultCol.key === key
+    );
+
+    if (defaultColumn === undefined && column?.requiresDefault === true) {
+      return prev; // exclude if not found in inventory
+    } else {
+      return [
+        ...prev,
+        {
+          ...defaultColumn,
+          ...(isStringCol ? { key: column } : column),
+          props: {
+            ...defaultColumn?.props,
+            ...column?.props,
+          },
+        },
+      ];
+    }
+  }, []);
+
+export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST = [
+  {
+    type: conditionalFilterType.text,
+    label: 'Name',
+    filterString: (value) => `display_name ~ ${value}`,
+  },
+];
