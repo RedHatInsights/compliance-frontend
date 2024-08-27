@@ -30,6 +30,7 @@
     "json-api-normalizer": "1.0.1",
     "linkifyjs": "^2.1.9",
     "p-all": "^5.0.0",
+    "package-lock-only": "^0.0.4",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.0",
     "react-dom": "^18.2.0",

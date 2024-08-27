@@ -79,13 +79,7 @@ const ReportsWithGrahpQL = () => {
 };
 
 const ReportsWithRest = () => {
-  const location = useLocation();
-
   let { data: { data } = {}, error, loading, refetch } = useReports();
-
-  useEffect(() => {
-    refetch();
-  }, [location, refetch]);
 
   if (data) {
     data = dataSerialiser(data, dataMap);
