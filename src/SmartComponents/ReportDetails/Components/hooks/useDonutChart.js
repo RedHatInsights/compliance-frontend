@@ -76,7 +76,6 @@ const useDonutChart = (profile) => {
       : 0
   );
 
-  console.log(compliancePercentage, profile, 'compliance Percentage');
   return {
     chartProps: {
       data: donutValues,
