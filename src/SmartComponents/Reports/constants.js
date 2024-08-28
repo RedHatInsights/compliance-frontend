@@ -35,12 +35,11 @@ export const QUERY = gql`
 `;
 
 export const dataMap = {
-  title: 'name',
+  title: 'policy.name',
   business_objective: 'businessObjective',
   compliance_threshold: 'complianceThreshold',
-  type: 'policyType',
   os_major_version: 'osMajorVersion',
-  profile_title: 'policy.name',
+  profile_title: 'policyType',
   ref_id: 'refId',
   assigned_system_count: 'totalHostCount',
   reported_system_count: 'testResultHostCount',
