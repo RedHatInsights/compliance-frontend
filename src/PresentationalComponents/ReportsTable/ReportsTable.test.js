@@ -21,7 +21,7 @@ describe('ReportsTable', () => {
   it('expect to render without error', () => {
     render(
       <TestWrapper>
-        <ReportsTable profiles={profiles} />
+        <ReportsTable reports={profiles} />
       </TestWrapper>
     );
 

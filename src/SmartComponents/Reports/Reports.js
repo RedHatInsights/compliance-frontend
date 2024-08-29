@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -13,40 +13,11 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-
-const QUERY = gql`
-  query R_Profiles($filter: String!) {
-    profiles(search: $filter, limit: 1000) {
-      edges {
-        node {
-          id
-          name
-          refId
-          description
-          policyType
-          totalHostCount
-          testResultHostCount
-          compliantHostCount
-          unsupportedHostCount
-          osMajorVersion
-          complianceThreshold
-          businessObjective {
-            id
-            title
-          }
-          policy {
-            id
-            name
-          }
-          benchmark {
-            id
-            version
-          }
-        }
-      }
-    }
-  }
-`;
+import PropTypes from 'prop-types';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import { useReports } from '@/Utilities/hooks/api/useReports';
+import dataSerialiser from '@/Utilities/dataSerialiser';
+import { QUERY, dataMap } from './constants';
 
 const profilesFromEdges = (data) =>
   (data?.profiles?.edges || []).map((profile) => profile.node);
@@ -57,9 +28,36 @@ const ReportsHeader = () => (
   </PageHeader>
 );
 
-export const Reports = () => {
+export const ReportsBase = ({ data, loading, error }) => {
+  const showView = data && data.length > 0;
+  return (
+    <>
+      <ReportsHeader />
+      <StateViewWithError stateValues={{ error, data, loading }}>
+        <StateViewPart stateKey="loading">
+          <section className="pf-v5-c-page__main-section">
+            <SkeletonTable colSize={3} rowSize={10} />
+          </section>
+        </StateViewPart>
+        <StateViewPart stateKey="data">
+          <section className="pf-v5-c-page__main-section">
+            {showView ? <ReportsTable reports={data} /> : <ReportsEmptyState />}
+          </section>
+        </StateViewPart>
+      </StateViewWithError>
+    </>
+  );
+};
+
+ReportsBase.propTypes = {
+  data: PropTypes.array,
+  error: PropTypes.string,
+  loading: PropTypes.bool,
+};
+
+//deprecated component
+const ReportsWithGrahpQL = () => {
   let profiles = [];
-  let showView = false;
   const location = useLocation();
   const filter = `has_policy_test_results = true AND external = false`;
 
@@ -75,35 +73,32 @@ export const Reports = () => {
     profiles = profilesFromEdges(data);
     error = undefined;
     loading = undefined;
-    showView = profiles && profiles.length > 0;
   }
 
-  return (
-    <>
-      <ReportsHeader />
-      <StateViewWithError stateValues={{ error, data, loading }}>
-        <StateViewPart stateKey="loading">
-          <section className="pf-v5-c-page__main-section">
-            <SkeletonTable colSize={3} rowSize={10} />
-          </section>
-        </StateViewPart>
-        <StateViewPart stateKey="data">
-          <section className="pf-v5-c-page__main-section">
-            {showView ? (
-              <ReportsTable {...{ profiles }} />
-            ) : (
-              <ReportsEmptyState />
-            )}
-          </section>
-        </StateViewPart>
-      </StateViewWithError>
-    </>
-  );
+  return <ReportsBase {...{ data: profiles, error, loading, refetch }} />;
+};
+
+const ReportsWithRest = () => {
+  let { data: { data } = {}, error, loading, refetch } = useReports();
+
+  if (data) {
+    data = dataSerialiser(data, dataMap);
+    error = undefined;
+    loading = undefined;
+  }
+
+  return <ReportsBase {...{ data, error, loading, refetch }} />;
+};
+
+const ReportsWrapper = () => {
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+
+  return isRestApiEnabled ? <ReportsWithRest /> : <ReportsWithGrahpQL />;
 };
 
 const ReportsWithTableStateProvider = () => (
   <TableStateProvider>
-    <Reports />
+    <ReportsWrapper />
   </TableStateProvider>
 );
 

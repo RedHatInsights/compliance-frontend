@@ -11,6 +11,8 @@ import { Provider } from 'react-redux';
 import { COMPLIANCE_API_ROOT } from '@/constants';
 import { init } from 'Store';
 import fixtures from '../../../cypress/fixtures/reports.json';
+import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
+import FlagProvider from '@unleash/proxy-client-react';
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -21,13 +23,21 @@ const client = new ApolloClient({
 });
 const mountComponent = () => {
   cy.mount(
-    <Provider store={init().getStore()}>
-      <MemoryRouter>
-        <ApolloProvider client={client}>
-          <Reports />
-        </ApolloProvider>
-      </MemoryRouter>
-    </Provider>
+    <FlagProvider
+      config={{
+        url: 'http://localhost:8002/feature_flags',
+        clientKey: 'abc',
+        appName: 'abc',
+      }}
+    >
+      <Provider store={init().getStore()}>
+        <MemoryRouter>
+          <ApolloProvider client={client}>
+            <Reports />
+          </ApolloProvider>
+        </MemoryRouter>
+      </Provider>
+    </FlagProvider>
   );
 };
 
@@ -35,6 +45,7 @@ const profilesResp = Object.assign([], fixtures['profiles']['edges']);
 
 describe('Reports table tests', () => {
   beforeEach(() => {
+    featureFlagsInterceptors.apiV2Disabled();
     cy.intercept('*', {
       statusCode: 200,
       body: {
