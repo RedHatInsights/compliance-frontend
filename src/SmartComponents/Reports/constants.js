@@ -33,6 +33,7 @@ export const QUERY = gql`
     }
   }
 `;
+<<<<<<< HEAD
 
 export const dataMap = {
   id: 'id',
@@ -47,3 +48,5 @@ export const dataMap = {
   compliant_system_count: 'compliantHostCount',
   unsupported_system_count: 'unsupportedHostCount',
 };
+=======
+>>>>>>> 2ec09aba (feat(RHINENG-11719): migrate report download modal to REST api)

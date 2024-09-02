@@ -314,3 +314,16 @@ export const systemsDataMapper = {
   },
   updated: 'updated',
 };
+
+export const reportDataMap = {
+  title: 'policy.name',
+  business_objective: 'businessObjective',
+  compliance_threshold: 'complianceThreshold',
+  os_major_version: 'osMajorVersion',
+  profile_title: 'policyType',
+  ref_id: 'refId',
+  assigned_system_count: 'totalHostCount',
+  reported_system_count: 'testResultHostCount',
+  compliant_system_count: 'compliantHostCount',
+  unsupported_system_count: 'unsupportedHostCount',
+};
