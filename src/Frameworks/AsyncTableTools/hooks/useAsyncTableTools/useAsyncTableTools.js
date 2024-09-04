@@ -47,19 +47,18 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ],
   });
 
-  const { toolbarProps: paginationToolbarProps } = usePagination(options);
+  const { toolbarProps: paginationToolbarProps, resetPage } =
+    usePagination(options);
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig({
     ...options,
-    // TODO enable when paginaton hook is added
-    // onFilterUpdate: () => setPage?.(1),
-    // onDeleteFilter: () => setPage?.(1),
+    onFilterUpdate: resetPage,
+    onDeleteFilter: resetPage,
   });
 
   const { tableProps: sortableTableProps } = useTableSort(managedColumns, {
     ...options,
-    // TODO enable when usePaginate hook is ready
-    // onSort: () => setPage(1),
+    onSort: resetPage,
   });
   const { tableProps: expandableTableProps, openItem } = useExpandable(options);
 
@@ -71,7 +70,6 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     markRowSelected,
   } = useBulkSelect({
     ...options,
-    setPage: () => {}, //TODO: apply proper setPage function after pagination hook
     itemIdsOnPage: usableItems.map(({ id }) => id),
   });
 
@@ -99,9 +97,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   };
 
   const tableProps = {
+    // TODO we should have a hook that maintains columns.
+    // at least the columns manager and table sort hook "act" on columns, currently without a good interface
     cells: managedColumns,
-    // TODO: The sortable hook will override the `cells` prop.
-    // This is not ideal, but for now good enough
     ...sortableTableProps,
     ...rowBuilderTableProps,
     ...bulkSelectTableProps,

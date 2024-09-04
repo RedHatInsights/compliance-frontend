@@ -12,6 +12,8 @@ import { useSerialisedTableState, useRawTableState } from '../useTableState';
  *  @category AsyncTableTools
  *  @subcategory internal
  *
+ * TODO it might be good to use this hook as well to "identify" items similar to the `useItemIdentify` hook
+ *
  */
 const useItems = (itemsProp) => {
   const mounted = useRef(true);

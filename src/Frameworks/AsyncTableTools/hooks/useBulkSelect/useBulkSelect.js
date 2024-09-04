@@ -23,7 +23,7 @@ const useBulkSelect = ({
   total = 0,
   onSelect,
   preselected,
-  fetchAllIds,
+  itemIdsInTable,
   itemIdsOnPage,
   identifier = 'itemId',
 }) => {
@@ -51,23 +51,21 @@ const useBulkSelect = ({
   const title = compileTitle(selectedIdsTotal, isLoading);
 
   const selectOne = useCallback(
-    (_, selected, _key, row) => {
-      console.log(row, selected, 'unselecting row');
-      return row.selected ? deselect(row[identifier]) : select(row[identifier]);
-    },
-
+    (_, _selected, _key, row) =>
+      row.selected ? deselect(row[identifier]) : select(row[identifier]),
     [select, deselect]
   );
-  const selectPage = useCallback(() => {
-    !currentPageSelected ? select(itemIdsOnPage) : deselect(itemIdsOnPage);
-  }, [select, deselect]);
+  const selectPage = useCallback(
+    () =>
+      !currentPageSelected ? select(itemIdsOnPage) : deselect(itemIdsOnPage),
+    [select, deselect]
+  );
 
   const selectAll = async () => {
-    const items = await fetchBatched(fetchAllIds, total);
     if (allSelected) {
       clear();
     } else {
-      set(items);
+      set(await fetchBatched(itemIdsInTable, total));
     }
   };
 
@@ -79,7 +77,7 @@ const useBulkSelect = ({
   return enableBulkSelect
     ? {
         selectedIds,
-        selectNone: () => clear(),
+        selectNone: clear,
         markRowSelected,
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
@@ -107,7 +105,7 @@ const useBulkSelect = ({
                     },
                   ]
                 : []),
-              ...(fetchAllIds
+              ...(itemIdsInTable
                 ? [
                     {
                       title: `${selectOrUnselect(
