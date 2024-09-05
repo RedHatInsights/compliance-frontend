@@ -33,7 +33,7 @@ const useExportDataRest = (report, exportSettings) => {
     ] = await fetchSystems();
 
     const topTenFailedRules = await fetchRules();
-    console.log(topTenFailedRules, 'debug: rules');
+
     return prepareForExportRest(
       exportSettings,
       compliantSystems,
@@ -60,7 +60,10 @@ const useQueryExportData = (
 
   return async () => {
     try {
-      const exportData = apiV2Enabled ? fetchDataRest() : fetchDataGraphQL();
+      const exportData = apiV2Enabled
+        ? await fetchDataRest()
+        : await fetchDataGraphQL();
+
       onComplete?.(exportData);
       return exportData;
     } catch (error) {
