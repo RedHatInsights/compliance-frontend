@@ -22,7 +22,6 @@ import { reportDataMap } from '../../constants';
 
 // Provides that export settings modal accessible in the report details
 export const ReportDownloadBase = ({ report, loading, error, data }) => {
-  console.log(report, 'debug policy');
   const navigate = useNavigate();
   const {
     exportSettings,
@@ -126,7 +125,7 @@ export const ReportDownloadRest = () => {
 };
 
 export const ReportDownload = () => {
-  const isRestApiEnabled = true;
+  const isRestApiEnabled = useAPIV2FeatureFlag();
 
   return isRestApiEnabled ? <ReportDownloadRest /> : <ReportsWithGraphQL />;
 };
