@@ -19,6 +19,7 @@ const testResultDataMapper = {
   os_major_version: 'osMajorVersion',
   os_minor_version: 'osMinorVersion',
   compliant: 'testResultProfiles[0].compliant',
+  score: 'testResultProfiles[0].score',
   security_guide_version: 'testResultProfiles[0].benchmark.version',
 };
 
