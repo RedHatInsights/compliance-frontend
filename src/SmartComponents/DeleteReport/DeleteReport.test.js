@@ -43,13 +43,13 @@ jest.mock('Utilities/Dispatcher', () => ({
 }));
 
 describe('DeleteReportWrapper', () => {
-  const mockNavigate = jest.fn();
+  const navigateMocked = jest.fn();
+  useNavigate.mockImplementation(() => navigateMocked);
   const reportId = '12345';
 
   beforeEach(() => {
     jest.clearAllMocks();
     useParams.mockReturnValue({ report_id: reportId });
-    useNavigate.mockReturnValue(mockNavigate);
   });
 
   test('renders spinner when apiV2Enabled is undefined', () => {
@@ -68,14 +68,15 @@ describe('DeleteReportWrapper', () => {
 
     fireEvent.click(screen.getByText('Delete report'));
 
+    expect(apiInstance.deleteReport).toHaveBeenCalledWith(reportId);
+
     await waitFor(() => {
-      expect(apiInstance.deleteReport).toHaveBeenCalledWith(reportId);
-      expect(mockNavigate).toHaveBeenCalledWith('/reports');
+      expect(navigateMocked).toHaveBeenCalledWith('/reports');
     });
   });
 
   test('renders DeleteReportGraphQL when apiV2Enabled is false', async () => {
-    const mockMutation = jest.fn(() => Promise.resolve()); // Ensure the mock mutation resolves successfully
+    const mockMutation = jest.fn(() => Promise.resolve());
     useAPIV2FeatureFlag.mockReturnValue(false);
     useMutation.mockReturnValue([
       mockMutation,
@@ -103,7 +104,7 @@ describe('DeleteReportWrapper', () => {
     fireEvent.click(screen.getByText('Delete report'));
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith(-1);
+      expect(navigateMocked).toHaveBeenCalledWith(-1);
     });
   });
 });
