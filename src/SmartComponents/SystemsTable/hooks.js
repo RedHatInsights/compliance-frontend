@@ -9,7 +9,8 @@ import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
-import { useFetchSystems } from './hooks/useFetchSystems';
+import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -207,18 +208,38 @@ export const useSystemsExport = ({
   columns,
   selected,
   total,
-  fetchArguments,
+  fetchArguments = {},
+  dataMap,
 }) => {
   const { isLoading, fetchBatched } = useFetchBatched();
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
-  const fetchSystems = useFetchSystems({
+  const fetchSystemsGraphQL = useFetchSystems({
     query: fetchArguments.query,
     variables: {
       ...fetchArguments?.variables,
       ...(fetchArguments.tags && { tags: fetchArguments.tags }),
       filter: selectionFilter
-        ? `${fetchArguments.variables.filter} and (${selectionFilter})`
+        ? `${fetchArguments.variables?.filter} and (${selectionFilter})`
         : fetchArguments.variables?.filter,
+    },
+    onError: () => {
+      dispatchNotification({
+        variant: 'danger',
+        title: 'Couldn’t download export',
+        description: 'Reinitiate this export to try again.',
+      });
+    },
+  });
+
+  const fetchSystemsRest = useFetchSystemsV2({
+    dataMap,
+    systemFetchArguments: {
+      ...fetchArguments?.variables,
+      ...(fetchArguments.tags && { tags: fetchArguments.tags }),
+      filter: selectionFilter
+        ? `${fetchArguments.filter} and (${selectionFilter})`
+        : fetchArguments?.filter,
     },
     onError: () => {
       dispatchNotification({
@@ -234,7 +255,7 @@ export const useSystemsExport = ({
 
   const exporter = async () => {
     const fetchedItems = await fetchBatched(
-      fetchSystems,
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
       total,
       selectedFilter()
     );
@@ -272,12 +293,14 @@ export const useSystemBulkSelect = ({
   preselected,
   fetchArguments,
   currentPageIds,
+  dataMap,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
+  const apiV2Enabled = useAPIV2FeatureFlag();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
-  const fetchSystems = useFetchSystems({
+  const fetchSystemsGraphQL = useFetchSystems({
     ...fetchArguments,
     onError: (error) => {
       dispatchNotification({
@@ -288,15 +311,31 @@ export const useSystemBulkSelect = ({
     },
   });
 
+  const fetchSystemsRest = useFetchSystemsV2({
+    dataMap,
+    systemFetchArguments: fetchArguments,
+    onError: () => {
+      dispatchNotification({
+        variant: 'danger',
+        title: 'Couldn’t download export',
+        description: 'Reinitiate this export to try again.',
+      });
+    },
+  });
+
   const fetchFunc = async (fetchIds) => {
     if (fetchIds.length === 0) {
       return [];
     }
 
     const idFilter = toIdFilter(fetchIds);
-    const results = await fetchBatched(fetchSystems, fetchIds.length, {
-      ...(idFilter && { exclusiveFilter: idFilter }),
-    });
+    const results = await fetchBatched(
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+      fetchIds.length,
+      {
+        ...(idFilter && { exclusiveFilter: idFilter }),
+      }
+    );
 
     return results.flatMap((result) => result.entities);
   };
@@ -312,7 +351,10 @@ export const useSystemBulkSelect = ({
   };
 
   const itemIdsInTable = async () => {
-    const results = await fetchBatched(fetchSystems, total);
+    const results = await fetchBatched(
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+      total
+    );
     return results.flatMap((result) => result.entities.map(({ id }) => id));
   };
 

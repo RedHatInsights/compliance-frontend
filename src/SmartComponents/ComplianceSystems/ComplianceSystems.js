@@ -9,6 +9,8 @@ import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from '../../Utilities/dataSerialiser';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
 
 export const QUERY = gql`
   {
@@ -41,6 +43,20 @@ const dataMap = {
   tags: 'tags',
   updated: 'updated',
 };
+
+const fetchApi = async (page, perPage, combinedVariables) =>
+  apiInstance
+    .systems(
+      undefined,
+      perPage,
+      page,
+      combinedVariables.sortBy,
+      combinedVariables.filter
+    )
+    .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
+      data: dataSerialiser(data, dataMap),
+      meta,
+    }));
 
 export const ComplianceSystems = () => {
   const { data, error, loading } = useQuery(QUERY);
@@ -90,7 +106,7 @@ export const ComplianceSystems = () => {
                 remediationsEnabled={false}
                 policies={policies}
                 showGroupsFilter
-                dataMap={dataMap}
+                fetchApi={fetchApi}
                 apiV2Enabled={apiV2Enabled}
               />
             )}

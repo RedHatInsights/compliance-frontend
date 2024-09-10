@@ -1,8 +1,6 @@
 import { useApolloClient } from '@apollo/client';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
 import { useCallback } from 'react';
-import { apiInstance } from '../../../Utilities/hooks/useQuery';
-import dataSerialiser from '../../../Utilities/dataSerialiser';
 
 const renameInventoryAttributes = ({
   culledTimestamp,
@@ -96,7 +94,7 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
 };
 
 export const useFetchSystemsV2 = ({
-  dataMap,
+  fetchApi,
   onComplete,
   onError,
   systemFetchArguments = {},
@@ -109,26 +107,15 @@ export const useFetchSystemsV2 = ({
       );
 
       try {
-        const { data: { data = [], meta = {} } = {} } =
-          await apiInstance.systems(
-            undefined,
-            perPage,
-            page,
-            combinedVariables.sortBy,
-            combinedVariables.filter
-          );
+        const { data, meta } = await fetchApi(page, perPage, combinedVariables);
 
-        console.log(data, meta, 'debug: systems query result');
-        console.log(combinedVariables, 'debug: systems query filters');
         const serialisedData = {
-          entities: dataSerialiser(data, dataMap),
+          entities: data,
           meta: {
             ...(requestVariables?.tags && { tags: requestVariables.tags }),
             totalCount: meta.total || 0,
           },
         };
-
-        console.log(serialisedData, dataMap, 'debug: systems data map result');
 
         onComplete && onComplete(serialisedData);
         return serialisedData;

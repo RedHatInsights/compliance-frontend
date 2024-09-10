@@ -10,7 +10,7 @@ import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import {
   policyFilter,
   defaultOnLoad,
-  // ssgVersionFilter,
+  ssgVersionFilter,
   mergedColumns,
 } from './constants';
 import {
@@ -52,7 +52,7 @@ export const SystemsTable = ({
   dedicatedAction,
   // ruleSeverityFilter,
   showGroupsFilter,
-  dataMap,
+  fetchApi,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -143,9 +143,10 @@ export const SystemsTable = ({
   console.log('debug rest: ', systemFetchArguments);
   const fetchSystems = useFetchSystemsV2({
     onComplete,
-    dataMap,
+    fetchApi,
     systemFetchArguments,
   });
+
   const getEntities = useGetEntities(fetchSystems, {
     selected: selectedIds,
     columns,
@@ -268,7 +269,7 @@ SystemsTable.propTypes = {
   ssgVersions: PropTypes.array,
   dedicatedAction: PropTypes.object,
   ruleSeverityFilter: PropTypes.bool,
-  dataMap: PropTypes.object.isRequired,
+  fetchApi: PropTypes.func.isRequired,
 };
 
 SystemsTable.defaultProps = {

@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { useApolloClient } from '@apollo/client';
 import { GET_MINIMAL_SYSTEMS } from '../constants';
-import useFetchSystems from './useFetchSystems';
+import { useFetchSystems } from './useFetchSystems';
 
 jest.mock('@apollo/client');
 
