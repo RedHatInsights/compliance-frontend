@@ -11,20 +11,21 @@ import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolba
 import useAsyncTableTools from '../../hooks/useAsyncTableTools';
 
 /**
- *  This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
+ * This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
  *
- *  @param {object} props Component Props
- *  @param {Array}  props.items An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
- *  @param {Array}  props.columns An array of column objects to render items with
- *  @param {Array}  [props.filters] an array of filters
- *  @param {object} [props.options] An object of options that will be passed along to the `useAsyncTableTools` hook
- *  @param {object} [props.toolbarProps] Props to be passed on the `PrimaryToolbar` component
- *  @param {object} [props.tableHeaderProps] Props to be passed on the TableHeader component
- *  @param {object} [props.tableBodyProps] Props to be passed on the TableBody component
- *  @param {object} [props.tableToolbarProps] Props to be passed on the TableToolbar (bottom toolbar) component
- *  @param {object} [props.paginationProps] Props to be passed on the Pagination component
+ *  @param   {object}             props                     Component Props
+ *  @param   {Array}              props.items               An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
+ *  @param   {Array}              props.columns             An array of column objects to render items with
+ *  @param   {Array}              [props.filters]           an array of filters
+ *  @param   {Array}              [props.total]             Number of total items available
+ *  @param   {object}             [props.options]           An object of options that will be passed along to the `useAsyncTableTools` hook
+ *  @param   {object}             [props.toolbarProps]      Props to be passed on the `PrimaryToolbar` component
+ *  @param   {object}             [props.tableHeaderProps]  Props to be passed on the TableHeader component
+ *  @param   {object}             [props.tableBodyProps]    Props to be passed on the TableBody component
+ *  @param   {object}             [props.tableToolbarProps] Props to be passed on the TableToolbar (bottom toolbar) component
+ *  @param   {object}             [props.paginationProps]   Props to be passed on the Pagination component
  *
- *  @returns {React.ReactElement} Returns a `PrimaryToolbar` component, a Patternfly (v4) `Table` component and a `TableToolbarComponent` wrapped together
+ *  @returns {React.ReactElement}                           Returns a `PrimaryToolbar` component, a Patternfly (v4) `Table` component and a `TableToolbarComponent` wrapped together
  *
  *  @tutorial using-async-table-tools
  *
@@ -36,6 +37,7 @@ const AsyncTableToolsTable = ({
   items,
   columns,
   filters,
+  total,
   options,
   // TODO I'm not sure if we need this level of customisation.
   // It might actually hurt in the long run. Consider removing until we really have the case where we need this
@@ -53,13 +55,14 @@ const AsyncTableToolsTable = ({
       filters,
       toolbarProps: toolbarPropsProp,
       tableProps: tablePropsRest,
+      numberOfItems: total,
       ...options,
     }
   );
 
   return (
     <>
-      <PrimaryToolbar {...toolbarProps} />
+      <PrimaryToolbar aria-label="Table toolbar" {...toolbarProps} />
 
       <Table {...tableProps}>
         <TableHeader {...tableHeaderProps} />
@@ -95,6 +98,7 @@ AsyncTableToolsTable.propTypes = {
     })
   ).isRequired,
   filters: propTypes.object,
+  total: propTypes.number,
   options: propTypes.object,
   toolbarProps: propTypes.object,
   tableHeaderProps: propTypes.object,
