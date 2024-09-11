@@ -111,11 +111,18 @@ SystemDetailsRest.propTypes = {
   route: propTypes.object.isRequired,
 };
 
-export const SystemDetailsWrapper = (children) => {
+export const SystemDetailsWrapper = (props) => {
   const restApiEnabled = useAPIV2FeatureFlag();
-  const Component = restApiEnabled ? SystemDetailsRest : SystemDetailsGraphQL;
+  const Component =
+    restApiEnabled === undefined ? (
+      <></>
+    ) : restApiEnabled === true ? (
+      SystemDetailsRest
+    ) : (
+      SystemDetailsGraphQL
+    );
 
-  return <Component {...children} />;
+  return <Component {...props} />;
 };
 
 export default SystemDetailsWrapper;
