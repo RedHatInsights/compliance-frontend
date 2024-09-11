@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Button, Spinner } from '@patternfly/react-core';
 import { useParams } from 'react-router-dom';
@@ -114,7 +114,11 @@ export const ReportDownloadRest = () => {
   const { report_id: reportId } = useParams();
 
   const { data: { data } = {}, loading, error } = useReport(reportId);
-  const serialisedData = dataSerialiser(data, reportDataMap);
+  const serialisedData = useMemo(
+    () => dataSerialiser(data, reportDataMap),
+    [data]
+  );
+
   return (
     <ReportDownloadBase
       report={serialisedData}
