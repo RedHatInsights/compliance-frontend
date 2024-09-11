@@ -18,7 +18,7 @@ const policyNameFilter = [
 ];
 ```
 
-The `lable` property simple defines what the filter is called in the `ConditionalFilter`.
+The `label` property simple defines what the filter is called in the `ConditionalFilter`.
 The `type` property defines what kind of filter it is, this is used by `useFilterConfig` itself and the `filterSerialiser`.
 The `filterAttribute` property tells the `filterSerialiser`, and the text filter serialise function, which attribute to construct the scoped search query for.
 The "attributes" and what can be used in a scoped search query can be found in the API documentation of that endpoint in the `filter` parameter description.
@@ -28,7 +28,7 @@ The "attributes" and what can be used in a scoped search query can be found in t
 If a filter requires a more complex query, or just needs to query two attributes,
 A filter can provide a `filterSerialiser` function, which will then be used instead of the default one.
 
-An filter with it's own serialiser would look like this:
+A filter with its own custom serialiser would look like this:
 
 ```
 const policyNameFilter = [

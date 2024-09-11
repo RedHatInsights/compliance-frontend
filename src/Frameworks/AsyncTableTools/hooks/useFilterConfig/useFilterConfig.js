@@ -17,7 +17,7 @@ import { TABLE_STATE_NAMESPACE } from './constants';
 /**
  * Provides `PrimaryToolbar` props for the `ConditionalFilter` component filter configuration.
  *
- *  @param   {object}       [options]
+ *  @param   {object}       [options]                       AsyncTableTools options
  *  @param   {object}       [options.filters.filterConfig]  An object containing filter definition
  *  @param   {object}       [options.filters.activeFilters] An object containing an initial active filters state
  *  @param   {object}       [options.serialisers.filters]   A function to serialise the filter table state
@@ -74,7 +74,6 @@ const useFilterConfig = (options = {}) => {
             onDelete: onFilterDelete,
           },
         },
-        activeFilters,
       }
     : {};
 };

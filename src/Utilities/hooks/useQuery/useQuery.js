@@ -2,19 +2,23 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**
  *
- * @typedef {object} Options
- * @property {Array} [params] - An array of parameters for the query function.
- * @property {boolean} [skip=false] - A boolean flag to skip the execution of the query function.
+ *  @typedef {object} useQueryReturn
+ *  @property {any}      [data]    Data loaded from the response of the request
+ *  @property {Error}    [error]   An error if the request failed
+ *  @property {boolean}  [loading] Boolean of wether or not data is being requested
+ *  @property {Function} [refetch] A callback function to re-trigger a request
  *
  */
 
 /**
  * Custom hook to execute a query function with parameters and optional skip condition
  *
- * @param {Function} fn - Function to execute
- * @param {Options} options - Includes options like params and skip
+ *  @param   {Function}       fn               Function to execute
+ *  @param   {object}         [options]        Includes options like params and skip
+ *  @param   {object}         [options.params] Parameters passed to the request to make
+ *  @param   {boolean}        [options.skip]   Wether or not to skip the request
  *
- * @returns {object}
+ *  @returns {useQueryReturn}
  *
  * @example
  * // Query is skipped if conditions are met
@@ -25,7 +29,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  *
  * @example
  * const query = useQuery(apiInstance.system, {params: ["id"]})
- 
+ *
  */
 const useQuery = (fn, { params = [], skip = false } = {}) => {
   const [data, setData] = useState(undefined);

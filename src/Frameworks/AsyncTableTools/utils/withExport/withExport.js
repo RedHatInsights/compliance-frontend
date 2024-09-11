@@ -19,7 +19,7 @@ import { exportableColumns } from './helpers';
  *  @param   {Function}         [options.onComplete] Function to call when the export succeeded
  *  @param   {Function}         [options.onError]    Function to call when there was an error exporting
  *
- *  @returns {withExportReturn}                      props for PrimaryToolbar component
+ *  @returns {withExportReturn}                      Props for PrimaryToolbar component
  *
  *  @category AsyncTableTools
  *  @subcategory functions
@@ -33,6 +33,7 @@ const withExport = ({
   onComplete,
   onError,
 }) => {
+  const enableExport = !!exporter;
   const exportColumns = exportableColumns(columns);
   const exportWithFormat = async (format) => {
     onStart?.();
@@ -45,14 +46,16 @@ const withExport = ({
     }
   };
 
-  return {
-    toolbarProps: {
-      exportConfig: {
-        isDisabled,
-        onSelect: (_, format) => exportWithFormat(format),
-      },
-    },
-  };
+  return enableExport
+    ? {
+        toolbarProps: {
+          exportConfig: {
+            isDisabled,
+            onSelect: (_, format) => exportWithFormat(format),
+          },
+        },
+      }
+    : {};
 };
 
 export default withExport;

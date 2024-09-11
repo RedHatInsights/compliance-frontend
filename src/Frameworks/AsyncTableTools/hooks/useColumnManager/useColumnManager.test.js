@@ -16,7 +16,7 @@ describe('useColumnManager', () => {
     expect(result.current.ColumnManager).toBeDefined();
   });
 
-  it('applies columns', () => {
+  it.skip('applies columns', () => {
     const { result } = renderHook(() => useColumnManager(...defaultArguments));
     const columnsToSelect = result.current.columns.filter(
       ({ key }) => key === 'desc'

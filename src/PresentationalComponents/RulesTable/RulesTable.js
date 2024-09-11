@@ -29,9 +29,10 @@ const RulesTable = ({
   onRuleValueReset,
   ...rulesTableProps
 }) => {
+  const internalSelectedState = useState([]);
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
-    : useState([]);
+    : internalSelectedState;
   const rules = toRulesArrayWithProfile(profileRules);
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);

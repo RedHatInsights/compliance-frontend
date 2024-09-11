@@ -6,20 +6,25 @@ import {
 import useQuery from './useQuery';
 
 /**
- * Response object
- * @typedef {object} Query
- * @property {object} data - Response data
- * @property {boolean} loading - Loading state
- * @property {object} error - Error from the endpoint
- * @property {Function} refetch - Refetch the endpoint
+ *  @typedef {object} useComplianceQueryReturn
  *
+ *  @property {object}   data    Response data
+ *  @property {boolean}  loading Loading state
+ *  @property {object}   error   Error from the endpoint
+ *  @property {Function} refetch Refetch the endpoint
+ */
+
+/**
  *
  * Custom hook that passes serialised state from AsyncTableTools to the useQuery parameters
  * Make sure the component above is wrapped with `<TableStateProvider/>`.
  *
- * @param {Function} endpoint - Function to execute, ideally from the apiInstance
+ *  @param   {Function}                 endpoint Function to execute, ideally from the apiInstance
  *
- * @returns {Query} -
+ *  @returns {useComplianceQueryReturn}          Object containing state values and a refetch function
+ *
+ *  @category Compliance
+ *  @subcategory Hooks
  *
  * @example
  * const query = useComplianceQuery(apiInstance.policies)

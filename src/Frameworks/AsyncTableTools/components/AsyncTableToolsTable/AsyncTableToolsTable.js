@@ -86,7 +86,7 @@ const AsyncTableToolsTable = ({
 };
 
 AsyncTableToolsTable.propTypes = {
-  items: propTypes.array.isRequired,
+  items: propTypes.oneOfType([propTypes.array, propTypes.func]).isRequired,
   columns: propTypes.arrayOf(
     propTypes.shape({
       title: propTypes.node,

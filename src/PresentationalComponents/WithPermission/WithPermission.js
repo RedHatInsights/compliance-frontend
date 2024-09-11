@@ -4,15 +4,15 @@ import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-compo
 import { NotAuthorized } from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
 /**
- *  Wrapper component to either render a component if required permissions are met,
- *  Show the `NotAuthorized` page, or do not render the component at all
+ * Wrapper component to either render a component if required permissions are met,
+ * Show the `NotAuthorized` page, or do not render the component at all
  *
- *  @param {object}             props Component props
- *  @param {React.ReactElement} props.children Component to render
- *  @param {Array}              props.requiredPermissions An array of RBAC permissions required to render the component
- *  @param {boolean}            props.hide Boolean to set wether or not to hide the component if required permissions are NOT met
+ *  @param   {object}             props                     Component props
+ *  @param   {React.ReactElement} props.children            Component to render
+ *  @param   {Array}              props.requiredPermissions An array of RBAC permissions required to render the component
+ *  @param   {boolean}            props.hide                Boolean to set wether or not to hide the component if required permissions are NOT met
  *
- *  @returns {React.ReactElement} Returns the component for this route
+ *  @returns {React.ReactElement}                           Returns the component for this route
  *
  *  @category    Compliance
  *  @subcategory Components

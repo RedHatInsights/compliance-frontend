@@ -8,13 +8,12 @@ import { TABLE_STATE_NAMESPACE } from './constants';
 /**
  * Provides `pagination` props and functionality for a (Primary)Toolbar
  *
- *  @param   {object}                 [options]                  Options for the useAsyncTableTools hook
+ *  @param   {object}   [options]                        AsyncTableTools options
+ *  @param   {number}   options.numberOfItems            The total number of items (required).
+ *  @param   {number}   [options.perPage]                A number that will dictate the amount of items shown per page.
+ *  @param   {Function} [options.serialisers.pagination] A function to provide a serialiser for the table state
  *
- *  @param   {number}                 options.numberOfItems      The total number of items (required).
- *  @param   {number}                 [options.perPage]          A number that will dictate the amount of items shown per page.
- *  @param   {Function}               [options.serialisers.sort] A function to provide a serialiser for the table state
- *
- *  @returns {paginationToolbarProps}                            An object of props meant to be used in the {@link AsyncTableToolsTable}
+ *  @returns {object}                                    An object of props meant to be used in the {@link AsyncTableToolsTable}
  *
  *  @category AsyncTableTools
  *  @subcategory Hooks

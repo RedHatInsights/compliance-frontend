@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
+
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
 import useTableSort from '../useTableSort';
@@ -41,13 +43,18 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ColumnManager,
   } = useColumnManager(columns, options);
 
-  const { toolbarProps: toolbarActionsProps } = toToolbarActions({
-    ...options,
-    actions: [
-      ...(options?.actions || []),
-      ...((columnManagerAction && [columnManagerAction]) || []),
-    ],
-  });
+  const { toolbarProps: toolbarActionsProps } = useMemo(
+    () =>
+      toToolbarActions({
+        ...options,
+        actions: [
+          ...(options?.actions || []),
+          ...((columnManagerAction && [columnManagerAction]) || []),
+        ],
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(columnManagerAction), JSON.stringify(options)]
+  );
 
   const { toolbarProps: paginationToolbarProps } = usePagination(options);
 
@@ -68,16 +75,17 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     itemIdsOnPage: usableItems?.map(({ id }) => id),
   });
 
-  const {
-    toolbarProps: rowBuilderToolbarProps,
-    tableProps: rowBuilderTableProps,
-  } = rowsBuilder(usableItems, managedColumns, {
-    transformers: [markRowSelected, openItem],
-    emptyRows: options.emptyRows,
-  });
+  const { tableProps: rowBuilderTableProps } = useMemo(
+    () =>
+      rowsBuilder(usableItems, managedColumns, {
+        transformers: [markRowSelected, openItem],
+        emptyRows: options.emptyRows,
+      }),
+    [usableItems, managedColumns, markRowSelected, openItem, options.emptyRows]
+  );
 
   const exportConfig = withExport({
-    columns,
+    managedColumns,
     ...options,
   });
 
@@ -87,17 +95,18 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...paginationToolbarProps,
       ...conditionalFilterProps,
       ...bulkSelectToolbarProps,
-      ...rowBuilderToolbarProps,
       ...exportConfig.toolbarProps,
       ...toolbarPropsOption,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       toolbarActionsProps,
       paginationToolbarProps,
-      conditionalFilterProps,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      JSON.stringify(conditionalFilterProps),
       bulkSelectToolbarProps,
-      rowBuilderToolbarProps,
-      exportConfig,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      JSON.stringify(exportConfig.toolbarProps),
       toolbarPropsOption,
     ]
   );
@@ -123,12 +132,12 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ]
   );
 
-  // useEffect(() => {
-  //   // TODO only for development purposes remove before switching to async tables by default
-  //   console.log('Async Table params:', items, columns, options);
-  //   console.log('Toolbar Props: ', toolbarProps);
-  //   console.log('Table Props: ', tableProps);
-  // }, [items, columns, options, toolbarProps, tableProps]);
+  useDeepCompareEffectNoCheck(() => {
+    // TODO only for development purposes remove before switching to async tables by default
+    console.log('Async Table params:', items, columns, options);
+    console.log('Toolbar Props: ', toolbarProps);
+    console.log('Table Props: ', tableProps);
+  }, [toolbarProps, tableProps]);
 
   return {
     toolbarProps,

@@ -32,7 +32,9 @@ describe('AsyncTableToolsTable', () => {
         <AsyncTableToolsTable {...defaultProps} />
       </TableStateProvider>
     );
+
     await waitFor(() => expect(itemsFunc).toHaveBeenCalled());
+
     expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
     expect(await screen.findByText(exampleItems[1].name)).toBeInTheDocument();
   });

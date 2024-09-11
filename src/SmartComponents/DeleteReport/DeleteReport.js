@@ -22,12 +22,12 @@ import { handleDeleteReport } from '../CreatePolicy/helpers';
  * Renders the base modal for deleting a report. It provides buttons for confirming
  * or canceling the deletion.
  *
- * @param {object} props - The properties passed to the component.
- * @param {string} props.id - The ID of the report to be deleted.
- * @param {Function} props.deleteReport - Function to call when the delete button is clicked.
- * @param {Function} props.onClose - Function to call when the cancel button or modal close is triggered.
+ *  @param   {object}        props              - The properties passed to the component.
+ *  @param   {string}        props.id           - The ID of the report to be deleted.
+ *  @param   {Function}      props.deleteReport - Function to call when the delete button is clicked.
+ *  @param   {Function}      props.onClose      - Function to call when the cancel button or modal close is triggered.
  *
- * @returns {React.Element} The rendered DeleteReportBase component.
+ *  @returns {React.Element}                    The rendered DeleteReportBase component.
  */
 const DeleteReportBase = ({ id, deleteReport, onClose }) => {
   return (
@@ -76,12 +76,12 @@ DeleteReportBase.propTypes = {
  *
  * Handles report deletion using a REST API.
  *
- * @param {object} props - The properties passed to the component.
- * @param {string} props.reportId - The ID of the report to be deleted.
- * @param {Function} props.onClose - Function to call when the modal is closed.
- * @param {Function} props.onDelete - Function to call when the report is successfully deleted.
+ *  @param   {object}        props          - The properties passed to the component.
+ *  @param   {string}        props.reportId - The ID of the report to be deleted.
+ *  @param   {Function}      props.onClose  - Function to call when the modal is closed.
+ *  @param   {Function}      props.onDelete - Function to call when the report is successfully deleted.
  *
- * @returns {React.Element} The rendered DeleteReportRest component.
+ *  @returns {React.Element}                The rendered DeleteReportRest component.
  */
 const DeleteReportRest = ({ reportId, onClose, onDelete }) => {
   const deleteReport = () =>
@@ -111,12 +111,12 @@ DeleteReportRest.propTypes = {
  *
  * Handles report deletion using a GraphQL.
  *
- * @param {object} props - The properties passed to the component.
- * @param {string} props.reportId - The ID of the report to be deleted.
- * @param {Function} props.onClose - Function to call when the modal is closed.
- * @param {Function} props.onDelete - Function to call when the report is successfully deleted.
+ *  @param   {object}        props          - The properties passed to the component.
+ *  @param   {string}        props.reportId - The ID of the report to be deleted.
+ *  @param   {Function}      props.onClose  - Function to call when the modal is closed.
+ *  @param   {Function}      props.onDelete - Function to call when the report is successfully deleted.
  *
- * @returns {React.Element} The rendered DeleteReportGraphQL component.
+ *  @returns {React.Element}                The rendered DeleteReportGraphQL component.
  */
 const DeleteReportGraphQL = ({ reportId, onClose, onDelete }) => {
   const [callDeleteReport] = useMutation(DELETE_REPORT, {
@@ -150,7 +150,7 @@ DeleteReportGraphQL.propTypes = {
  *
  * This component decides to show a loading spinner or the component once apiV2 is defined
  *
- * @returns {React.Element} The rendered DeleteReportWrapper component.
+ *  @returns {React.Element} The rendered DeleteReportWrapper component.
  */
 const DeleteReportWrapper = () => {
   const { report_id: reportId } = useParams();

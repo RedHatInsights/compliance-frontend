@@ -45,7 +45,9 @@ describe('useFilterConfig', () => {
         'asd'
       )
     );
-    expect(result.current.activeFilters).toEqual({ name: ['asd'] });
+    expect(result.current.toolbarProps.activeFiltersConfig.filters).toEqual([
+      { category: 'Name', chips: [{ name: 'asd' }] },
+    ]);
 
     await act(() =>
       result.current.toolbarProps.activeFiltersConfig.onDelete(undefined, [

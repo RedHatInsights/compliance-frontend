@@ -10,15 +10,15 @@ NoOp.propTypes = {
 };
 
 /**
- *  Component to render a InsightsLink if required permissions are met or render a disabled link with tooltip if not.
+ * Component to render a InsightsLink if required permissions are met or render a disabled link with tooltip if not.
  *
- *  @param {object} props Component props
- *  @param {string | object} props.to ReactRouter to prop, which will be used to determine the required permissions for this path
- *  @param {React.ReactElement} [props.Component] Alternative "Link" component to render
- *  @param {object} [props.componentProps] Additional props for the Link component
- *  @param {React.ReactElement} props.children Component children
+ *  @param   {object}             props                  Component props
+ *  @param   {string | object}    props.to               ReactRouter to prop, which will be used to determine the required permissions for this path
+ *  @param   {React.ReactElement} [props.Component]      Alternative "Link" component to render
+ *  @param   {object}             [props.componentProps] Additional props for the Link component
+ *  @param   {React.ReactElement} props.children         Component children
  *
- *  @returns {React.ReactElement} Component
+ *  @returns {React.ReactElement}                        Component
  *
  *  @category Compliance
  *  @subcategory Components

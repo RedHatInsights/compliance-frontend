@@ -21,5 +21,9 @@ module.exports = {
       'always',
       { customSpacings: { postDelimiter: 2 } },
     ],
+    'jsdoc/check-tag-names': [
+      'warn',
+      { definedTags: ['category', 'subcategory'] },
+    ],
   },
 };

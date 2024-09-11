@@ -12,7 +12,11 @@ const useSerialisers = (serialiserNamespace, serialiser) => {
         [serialiserNamespace]: serialiser,
       };
     }
-  }, [serialiserInContext, serialiserNamespace, serialiser]);
+  }, [
+    serialiserInContext,
+    serialiserNamespace,
+    typeof serialiser !== 'undefined',
+  ]);
 
   return serialiserInContext?.current?.[serialiserNamespace];
 };

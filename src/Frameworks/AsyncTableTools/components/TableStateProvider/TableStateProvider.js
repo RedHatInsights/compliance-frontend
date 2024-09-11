@@ -8,7 +8,7 @@ import { TableContext } from '../../hooks/useTableState/constants';
  *  @param   {object}             [props]          Component Props
  *  @param   {React.ReactElement} [props.children] Child components to render within
  *
- *  @returns {React.ReactElement}
+ *  @returns {React.ReactElement}                  The passed in component wrapped in a TableContext provider
  *
  *  @tutorial using-async-table-tools
  *

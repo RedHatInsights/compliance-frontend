@@ -17,6 +17,7 @@ const fakeApi = jest.fn(() => Promise.resolve({ data: [] }));
 
 const useTableStateHelper = () => {
   const paginate = usePagination({
+    pagination: true,
     page: 1,
     perPage: 10,
     numberOfItems: 50,
@@ -59,13 +60,14 @@ describe('useComplianceQuery', () => {
 
     expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState);
 
-    act(() => result.current.paginate.setPage(2));
+    act(() =>
+      result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2)
+    );
 
     expect(fakeApi).toHaveBeenNthCalledWith(2, {
       ...initialSerializedState,
       offset: 10,
     });
-
     act(() =>
       result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50)
     );
