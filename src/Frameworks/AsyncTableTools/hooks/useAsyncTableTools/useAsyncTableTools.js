@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
 import useTableSort from '../useTableSort';
-import useItems from './useItems';
+import useItems from '../useItems';
 import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
 import useExpandable from '../useExpandable';
@@ -10,29 +11,30 @@ import withExport from '../../utils/withExport';
 import { toToolbarActions } from './helpers';
 
 /**
- *  @typedef {object} AsyncTableProps
+ *  @typedef {object} useAsyncTableToolsReturn
+ *
  *  @property {object} toolbarProps Object containing PrimaryToolbar props
- *  @property {object} tableProps Object containing Patternfly (deprecated) Table props
+ *  @property {object} tableProps   Object containing Patternfly (deprecated) Table props
  */
 
 /**
- *  This hook combines several "Table hooks" and returns props for Patternfly (v4) Table components and the FEC PrimaryToolbar
+ * This hook combines several "Table hooks" and returns props for Patternfly (v4) Table components and the FEC PrimaryToolbar
  *
- *  @param {Array | Function} items An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
- *  @param {object} columns An array of columns to render the items/rows with
- *  @param {object} [options] Options for the useAsyncTableTools hook
+ *  @param   {Array | Function}         items     An array or (async) function that returns an array of items to render or an async function to call with the tableState and serialised table state
+ *  @param   {object}                   columns   An array of columns to render the items/rows with
+ *  @param   {object}                   [options] AsyncTableTools options
  *
- *  @returns {AsyncTableProps} An object of props meant to be used in the {@link AsyncTableToolsTable}
+ *  @returns {useAsyncTableToolsReturn}           An object of props meant to be used in the {@link AsyncTableToolsTable}
  *
  *  @category AsyncTableTools
  *  @subcategory Hooks
  *
  */
 const useAsyncTableTools = (items, columns, options = {}) => {
-  // TODO only for development purposes remove before switching to async tables by default
-  console.log('Async Table params:', items, columns, options);
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
+  const { items: usableItems } = useItems(items);
+
   const {
     columnManagerAction,
     columns: managedColumns,
@@ -47,22 +49,15 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ],
   });
 
-  const { toolbarProps: paginationToolbarProps, resetPage } =
-    usePagination(options);
+  const { toolbarProps: paginationToolbarProps } = usePagination(options);
 
-  const { toolbarProps: conditionalFilterProps } = useFilterConfig({
-    ...options,
-    onFilterUpdate: resetPage,
-    onDeleteFilter: resetPage,
-  });
+  const { toolbarProps: conditionalFilterProps } = useFilterConfig(options);
 
-  const { tableProps: sortableTableProps } = useTableSort(managedColumns, {
-    ...options,
-    onSort: resetPage,
-  });
+  const { tableProps: sortableTableProps } = useTableSort(
+    managedColumns,
+    options
+  );
   const { tableProps: expandableTableProps, openItem } = useExpandable(options);
-
-  const usableItems = useItems(items);
 
   const {
     toolbarProps: bulkSelectToolbarProps,
@@ -70,7 +65,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     markRowSelected,
   } = useBulkSelect({
     ...options,
-    itemIdsOnPage: usableItems.map(({ id }) => id),
+    itemIdsOnPage: usableItems?.map(({ id }) => id),
   });
 
   const {
@@ -86,30 +81,54 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...options,
   });
 
-  const toolbarProps = {
-    ...toolbarActionsProps,
-    ...paginationToolbarProps,
-    ...conditionalFilterProps,
-    ...rowBuilderToolbarProps,
-    ...bulkSelectToolbarProps,
-    ...exportConfig.toolbarProps,
-    ...toolbarPropsOption,
-  };
+  const toolbarProps = useMemo(
+    () => ({
+      ...toolbarActionsProps,
+      ...paginationToolbarProps,
+      ...conditionalFilterProps,
+      ...bulkSelectToolbarProps,
+      ...rowBuilderToolbarProps,
+      ...exportConfig.toolbarProps,
+      ...toolbarPropsOption,
+    }),
+    [
+      toolbarActionsProps,
+      paginationToolbarProps,
+      conditionalFilterProps,
+      bulkSelectToolbarProps,
+      rowBuilderToolbarProps,
+      exportConfig,
+      toolbarPropsOption,
+    ]
+  );
 
-  const tableProps = {
-    // TODO we should have a hook that maintains columns.
-    // at least the columns manager and table sort hook "act" on columns, currently without a good interface
-    cells: managedColumns,
-    ...sortableTableProps,
-    ...rowBuilderTableProps,
-    ...bulkSelectTableProps,
-    ...tablePropsOption,
-    ...expandableTableProps,
-  };
+  const tableProps = useMemo(
+    () => ({
+      // TODO we should have a hook that maintains columns.
+      // at least the columns manager and table sort hook "act" on columns, currently without a good interface
+      cells: managedColumns,
+      ...sortableTableProps,
+      ...bulkSelectTableProps,
+      ...tablePropsOption,
+      ...expandableTableProps,
+      ...rowBuilderTableProps,
+    }),
+    [
+      managedColumns,
+      sortableTableProps,
+      bulkSelectTableProps,
+      tablePropsOption,
+      expandableTableProps,
+      rowBuilderTableProps,
+    ]
+  );
 
-  // TODO only for development purposes remove before switching to async tables by default
-  console.log('Toolbar Props: ', toolbarProps);
-  console.log('Table Props: ', tableProps);
+  // useEffect(() => {
+  //   // TODO only for development purposes remove before switching to async tables by default
+  //   console.log('Async Table params:', items, columns, options);
+  //   console.log('Toolbar Props: ', toolbarProps);
+  //   console.log('Table Props: ', tableProps);
+  // }, [items, columns, options, toolbarProps, tableProps]);
 
   return {
     toolbarProps,
