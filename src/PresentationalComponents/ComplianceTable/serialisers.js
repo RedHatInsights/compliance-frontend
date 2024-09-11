@@ -43,6 +43,7 @@ const findFilterSerialiser = (filterConfigItem) => {
  *  @returns {string | undefined} Compliance scoped search filter string
  *
  *  @category Compliance
+ *  @tutorial filter-serialiser
  *
  */
 export const filtersSerialiser = (state, filters) => {
