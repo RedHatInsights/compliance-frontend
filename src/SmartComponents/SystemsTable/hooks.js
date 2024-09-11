@@ -311,7 +311,7 @@ export const useSystemBulkSelect = ({
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = useAPIV2FeatureFlag();
+  const apiV2Enabled = false; //TODO: enable REST when the API implements ID search over endpoints. Use this hook => useAPIV2FeatureFlag();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
   const fetchSystemsGraphQL = useFetchSystems({
