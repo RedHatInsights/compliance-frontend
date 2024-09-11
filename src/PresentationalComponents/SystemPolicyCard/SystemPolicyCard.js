@@ -26,7 +26,7 @@ const SystemPolicyCard = ({ policy, style, onClick, isSelected }) => {
     policyType,
   } = policy;
   const passedPercentage = ((value, fixed = 0, withPercent = true) =>
-    value.toFixed(fixed) + (withPercent ? '%' : ''))(score);
+    Number(value).toFixed(fixed) + (withPercent ? '%' : ''))(score);
 
   const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 

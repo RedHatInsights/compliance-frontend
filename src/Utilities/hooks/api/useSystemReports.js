@@ -1,5 +1,7 @@
 import useQuery, { apiInstance } from '../useQuery';
 
-export const useSystemReports = (id) => {
-  return useQuery(apiInstance.systemReports, { params: [id] });
+export const useSystemReports = ({ systemId, limit = 10 }) => {
+  return useQuery(apiInstance.systemReports, {
+    params: [systemId, undefined, limit],
+  });
 };

@@ -1,5 +1,7 @@
 import useQuery, { apiInstance } from '../useQuery';
 
-export const useReportTestResults = (id) => {
-  return useQuery(apiInstance.reportTestResults, { params: [id] });
+export const useReportTestResults = ({ reportId, filter }) => {
+  return useQuery(apiInstance.reportTestResults, {
+    params: [reportId, undefined, undefined, undefined, undefined, filter],
+  });
 };
