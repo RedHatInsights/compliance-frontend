@@ -15,15 +15,18 @@ import {
 } from './constants';
 import {
   useGetEntities,
-  useOsMinorVersionFilter,
+  useOsMinorVersionFilterRest,
   useInventoryUtilities,
   useSystemsExport,
   useSystemsFilter,
   useSystemBulkSelect,
 } from './hooks';
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
-// import { COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER } from '../../constants';
-import { DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST } from './constants';
+import {
+  defaultSystemsFilterConfiguration,
+  compliantSystemFilterConfiguration,
+  complianceReportTableAdditionalFilter,
+} from '../../constants';
 
 export const SystemsTable = ({
   columns,
@@ -31,7 +34,7 @@ export const SystemsTable = ({
   policyId,
   showActions,
   enableExport,
-  // compliantFilter,
+  compliantFilter,
   policies,
   showOnlySystemsWithTestResults,
   showOsFilter,
@@ -48,9 +51,9 @@ export const SystemsTable = ({
   onSelect: onSelectProp,
   noSystemsTable,
   tableProps,
-  // ssgVersions,
+  ssgVersions,
   dedicatedAction,
-  // ruleSeverityFilter,
+  ruleSeverityFilter,
   showGroupsFilter,
   fetchApi,
 }) => {
@@ -62,14 +65,9 @@ export const SystemsTable = ({
   const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
-  const osMinorVersionFilter = useOsMinorVersionFilter(
+  const osMinorVersionFilter = useOsMinorVersionFilterRest(
     showOsMinorVersionFilter,
-    {
-      variables: {
-        filter: defaultFilter,
-        ...(policyId && { policyId }),
-      },
-    }
+    [defaultFilter, ...(policyId && { policyId })]
   );
 
   const {
@@ -79,14 +77,12 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST,
-        //...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
+        ...defaultSystemsFilterConfiguration(),
+        ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
-        //...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
+        ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...osMinorVersionFilter,
-        // ...(ruleSeverityFilter
-        //   ? COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER
-        //   : []),
+        ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
       ],
     },
   });
@@ -196,7 +192,7 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            tags: false,
+            tags: true, //enable when tag filtering is supported by complience-client package
             hostGroupFilter: !showGroupsFilter,
           }}
           showTags

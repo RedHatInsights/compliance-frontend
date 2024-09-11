@@ -4,6 +4,7 @@ import {
   uniq,
   sortingByProp,
   orderByArray,
+  buildOSObject,
 } from './helpers';
 import items, {
   severityLevels,
@@ -120,5 +121,25 @@ describe('getPropery', () => {
   it('should return values of keys', () => {
     expect(getProperty(object, 'level1.level2.level3.value')).toMatchSnapshot();
     expect(getProperty(object, 'level1.level2.value')).toMatchSnapshot();
+  });
+});
+
+describe('buildOSObject', () => {
+  const osArray = ['6.9', '7.8'];
+
+  it('should build an array of OS objects', () => {
+    const result = buildOSObject(osArray);
+    expect(result).toEqual([
+      { major: '6', minor: '9', name: 'RHEL' },
+      { major: '7', minor: '8', name: 'RHEL' },
+    ]);
+  });
+
+  it('should ignore invalid input', () => {
+    const result = buildOSObject([...osArray, null, undefined, 7.8]);
+    expect(result).toEqual([
+      { major: '6', minor: '9', name: 'RHEL' },
+      { major: '7', minor: '8', name: 'RHEL' },
+    ]);
   });
 });
