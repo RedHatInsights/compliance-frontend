@@ -51,8 +51,8 @@ export const GET_SYSTEMS_OSES = gql`
   }
 `;
 
-export const policyFilter = (policies, osFilter) => [
-  ...systemsPolicyFilterConfiguration(policies),
+export const policyFilter = (policies, osFilter, filterKey) => [
+  ...systemsPolicyFilterConfiguration(policies, filterKey),
   ...(osFilter ? systemsOsFilterConfiguration(policies) : []),
 ];
 
@@ -69,11 +69,16 @@ export const defaultOnLoad =
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
 
-export const ssgVersionFilter = (ssgVersions) => [
+export const SSG_VERSION_FILTER_KEY_GRAPHQL = 'ssg_version';
+export const SSG_VERSION_FILTER_KEY_REST = 'security_guide_version';
+export const ssgVersionFilter = (
+  ssgVersions,
+  filter_key = SSG_VERSION_FILTER_KEY_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'SSG Version',
-    filterString: (value) => `ssg_version = ${value}`,
+    filterString: (value) => `${filter_key} = ${value}`,
     items: ssgVersions.map((ssgVersion) => ({
       label: ssgVersion,
       value: ssgVersion,
@@ -105,11 +110,3 @@ export const mergedColumns = (columns) => (defaultColumns) =>
       ];
     }
   }, []);
-
-export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST = [
-  {
-    type: conditionalFilterType.text,
-    label: 'Name',
-    filterString: (value) => `display_name ~ ${value}`,
-  },
-];

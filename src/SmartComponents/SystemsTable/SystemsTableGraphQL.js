@@ -6,8 +6,14 @@ import useNavigate from '@redhat-cloud-services/frontend-components-utilities/us
 
 import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
 import {
-  DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-  COMPLIANT_SYSTEMS_FILTER_CONFIGURATION,
+  defaultSystemsFilterConfiguration,
+  compliantSystemFilterConfiguration,
+  complianceReportTableAdditionalFilter,
+  DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL,
+  POLICY_FILTER_KEY_GRAPHQL,
+  SSG_VERSION_FILTER_KEY_GRAPHQL,
+  FAILED_RULE_SEVERITY_FITLER_KEY_GRAPHQL,
+  COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL,
 } from '@/constants';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
@@ -27,7 +33,6 @@ import {
 } from './hooks';
 import { useFetchSystems } from './hooks/useFetchSystems';
 import { constructQuery } from '../../Utilities/helpers';
-import { COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER } from '../../constants';
 
 export const SystemsTable = ({
   columns,
@@ -82,13 +87,25 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
-        ...(compliantFilter ? COMPLIANT_SYSTEMS_FILTER_CONFIGURATION : []),
-        ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
-        ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
+        ...defaultSystemsFilterConfiguration(
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL
+        ),
+        ...(compliantFilter
+          ? compliantSystemFilterConfiguration(
+              COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL
+            )
+          : []),
+        ...(policies?.length > 0
+          ? policyFilter(policies, showOsFilter, POLICY_FILTER_KEY_GRAPHQL)
+          : []),
+        ...(ssgVersions
+          ? ssgVersionFilter(ssgVersions, SSG_VERSION_FILTER_KEY_GRAPHQL)
+          : []),
         ...osMinorVersionFilter,
         ...(ruleSeverityFilter
-          ? COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER
+          ? complianceReportTableAdditionalFilter(
+              FAILED_RULE_SEVERITY_FITLER_KEY_GRAPHQL
+            )
           : []),
       ],
     },

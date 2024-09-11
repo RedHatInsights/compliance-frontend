@@ -76,19 +76,30 @@ export const UNKNOWN_SEVERITY = (
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 
-export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION = [
+export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL = 'name';
+export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST = 'display_name';
+
+export const defaultSystemsFilterConfiguration = (
+  filterKey = DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST
+) => [
   {
     type: conditionalFilterType.text,
     label: 'Name',
-    filterString: (value) => `name ~ ${value}`,
+    filterString: (value) => `${filterKey} ~ ${value}`,
   },
 ];
 
-export const systemsPolicyFilterConfiguration = (policies) => [
+export const POLICY_FILTER_KEY_GRAPHQL = 'policy_id';
+export const POLICY_FILTER_KEY_REST = 'policies';
+
+export const systemsPolicyFilterConfiguration = (
+  policies,
+  filterKey = POLICY_FILTER_KEY_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Policy',
-    filterString: (value) => `policy_id = ${value}`,
+    filterString: (value) => `${filterKey} = ${value}`,
     items: policies.map((policy) => ({
       label: policy.name,
       value: policy.id,
@@ -170,7 +181,23 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   ];
 };
 
-export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
+export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL = {
+  compliant: 'compliant',
+  supported: 'supported_ssg',
+  neverReported: 'reported',
+  complianceScore: 'compliance_score',
+};
+
+export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST = {
+  compliant: 'compliant',
+  supported: 'supported',
+  neverReported: 'never_reported',
+  complianceScore: 'score',
+};
+
+export const compliantSystemFilterConfiguration = (
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Compliance',
@@ -178,14 +205,14 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     items: [
       {
         label: 'Compliant',
-        value: 'compliant = true AND supported_ssg = true',
+        value: `${filterKeys.compliant} = true AND ${filterKeys.supported} = true`,
       },
       {
         label: 'Non-compliant',
-        value: 'compliant = false AND supported_ssg = true',
+        value: `${filterKeys.compliant} = false AND ${filterKeys.supported} = true`,
       },
-      { label: 'Not supported', value: 'supported_ssg = false' },
-      { label: 'Never reported', value: 'reported = false' },
+      { label: 'Not supported', value: `${filterKeys.supported} = false` },
+      { label: 'Never reported', value: `${filterKeys.neverReported} = false` },
     ],
   },
   {
@@ -193,7 +220,7 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
     label: 'Compliance score',
     filterString: (value) => {
       const scoreRange = value.split('-');
-      return `(compliance_score >= ${scoreRange[0]} and compliance_score < ${scoreRange[1]})`;
+      return `(${filterKeys.complianceScore} >= ${scoreRange[0]} and ${filterKeys.complianceScore} < ${scoreRange[1]})`;
     },
     items: [
       { label: '90 - 100%', value: '90-101' },
@@ -204,11 +231,18 @@ export const COMPLIANT_SYSTEMS_FILTER_CONFIGURATION = [
   },
 ];
 
-export const COMPLIANCE_REPORT_TABLE_ADDITIONAL_FILTER = [
+export const FAILED_RULE_SEVERITY_FITLER_KEY_GRAPHQL =
+  'failed_rules_with_severity';
+
+export const FAILED_RULE_SEVERITY_FITLER_KEY_REST = 'failed_rule_severity';
+
+export const complianceReportTableAdditionalFilter = (
+  filterKey = FAILED_RULE_SEVERITY_FITLER_KEY_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Failed rule severity',
-    filterString: (value) => `failed_rules_with_severity ^ (${value})`,
+    filterString: (value) => `${filterKey} ^ (${value})`,
     items: [
       { label: HIGH_SEVERITY, value: 'high' },
       { label: MEDIUM_SEVERITY, value: 'medium' },

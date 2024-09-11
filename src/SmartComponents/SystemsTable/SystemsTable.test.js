@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-import { SystemsTable } from './SystemsTableGraphQL';
+import { SystemsTable } from './SystemsTableRest';
 
 describe('SystemsTable', () => {
   it('returns an Inventory Table', () => {
