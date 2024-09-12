@@ -14,7 +14,7 @@ import Truncate from '@redhat-cloud-services/frontend-components/Truncate';
 import UnsupportedSSGVersion from './components/UnsupportedSSGVersion';
 import CompliantIcon from './components/CompliantIcon';
 
-const SystemPolicyCard = ({ policy, style, onClick, isSelected }) => {
+const SystemPolicyCard = ({ policy, style }) => {
   const {
     rulesFailed,
     compliant,
@@ -31,15 +31,7 @@ const SystemPolicyCard = ({ policy, style, onClick, isSelected }) => {
   const truncateDefaults = { expandOnMouseOver: true, hideExpandText: true };
 
   return (
-    <Card
-      ouiaId="PolicyCard"
-      onClick={(event) => {
-        event.stopPropagation();
-        onClick(policy);
-      }}
-      isSelected={isSelected}
-      style={style}
-    >
+    <Card ouiaId="PolicyCard" style={style}>
       <CardBody>
         <TextContent className="margin-bottom-md">
           <Text
@@ -122,8 +114,6 @@ SystemPolicyCard.propTypes = {
     supported: PropTypes.bool,
   }),
   style: PropTypes.object,
-  onClick: PropTypes.func,
-  isSelected: PropTypes.bool,
 };
 
 export default SystemPolicyCard;

@@ -12,7 +12,6 @@ import { dataMap } from './constants';
 import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
 import { useParams } from 'react-router-dom';
 
-// TODO: implement onClick and isSelected features
 const SystemPolicyCard = ({ policy }) => {
   const { inventoryId } = useParams();
   const { data, loading } = useReportTestResults({
