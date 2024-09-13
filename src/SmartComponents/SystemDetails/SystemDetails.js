@@ -115,7 +115,7 @@ export const SystemDetailsWrapper = (props) => {
   const restApiEnabled = useAPIV2FeatureFlag();
   const Component =
     restApiEnabled === undefined ? (
-      <></>
+      <React.Fragment />
     ) : restApiEnabled === true ? (
       SystemDetailsRest
     ) : (

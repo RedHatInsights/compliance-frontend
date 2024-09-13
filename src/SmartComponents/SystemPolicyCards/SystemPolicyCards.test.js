@@ -39,7 +39,7 @@ describe('SystemPolicyCards', () => {
     render(<SystemPolicyCards />);
 
     expect(
-      screen.getAllByRole('progressbar', { name: 'Loading policy' })
+      screen.getAllByRole('progressbar', { name: 'Loading policies' })
     ).toHaveLength(fixturesSystemReports.data.length);
   });
 
