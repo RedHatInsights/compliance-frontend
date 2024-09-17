@@ -12,12 +12,18 @@ import {
 } from './Filters';
 import { uniq } from 'Utilities/helpers';
 import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 expect.extend(filterHelpers);
 
 const profiles = rawPolicies.edges.map((profile) => profile.node);
 
 describe('ReportsTable', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
   it('expect to render without error', () => {
     render(
       <TestWrapper>

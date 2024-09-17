@@ -3,6 +3,7 @@ import { Text } from '@patternfly/react-core';
 import { pluralize } from 'Utilities/TextHelper';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 
 const useLegendData = (donutValues, profile) => {
   const {
@@ -10,8 +11,14 @@ const useLegendData = (donutValues, profile) => {
     unsupportedHostCount = 0,
     totalHostCount = 0,
   } = profile;
-  const notReportingHostCount =
-    totalHostCount - unsupportedHostCount - testResultHostCount;
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+  let notReportingHostCount;
+  if (isRestApiEnabled) {
+    notReportingHostCount = totalHostCount - testResultHostCount;
+  } else {
+    notReportingHostCount =
+      totalHostCount - unsupportedHostCount - testResultHostCount;
+  }
 
   return [
     {

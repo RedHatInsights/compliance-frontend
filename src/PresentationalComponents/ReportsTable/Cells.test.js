@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 import {
   Name,
@@ -9,7 +10,12 @@ import {
   PDFExportDownload,
 } from './Cells';
 
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+
 describe('Name', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
   it('expect to render without error', () => {
     render(
       <TestWrapper>
@@ -98,5 +104,28 @@ describe('PDFExportDownload', () => {
     expect(
       screen.getByLabelText('Reports PDF download link')
     ).toBeInTheDocument();
+  });
+});
+
+describe('NotReportedSystemsAPIv2', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => true);
+  });
+  const deftaultProps = {
+    totalHostCount: 10,
+    testResultHostCount: 7,
+    unsupportedHostCount: 2,
+    compliantHostCount: 4,
+  };
+
+  it('expect to render with unsupported hosts', () => {
+    render(
+      <TestWrapper>
+        <CompliantSystems {...deftaultProps} />
+      </TestWrapper>
+    );
+
+    expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
+    expect(screen.getByText('40%')).toBeInTheDocument();
   });
 });

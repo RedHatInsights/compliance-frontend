@@ -10,6 +10,7 @@ import { paletteColors } from '../../../../constants';
 import { fixedPercentage } from 'Utilities/TextHelper';
 import useLegendData from './useLegendData';
 import { SquareFullIcon } from '@patternfly/react-icons';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 
 const DonutLabel = ({
   x,
@@ -42,6 +43,60 @@ DonutLabel.propTypes = {
   flyoutValues: propTypes.array,
 };
 
+// const calculateHostCounts = (
+//   totalHostCount,
+//   testResultHostCount,
+//   compliantHostCount,
+//   unsupportedHostCount
+// ) => {
+//   const isRestApiEnabled = useAPIV2FeatureFlag();
+//   let notReportingHostCount;
+//   let nonCompliantHostCount;
+//   if (isRestApiEnabled) {
+//     notReportingHostCount = totalHostCount - testResultHostCount;
+//     nonCompliantHostCount =
+//       testResultHostCount - compliantHostCount - unsupportedHostCount;
+//   } else {
+//     notReportingHostCount =
+//       totalHostCount - unsupportedHostCount - testResultHostCount;
+//     nonCompliantHostCount = testResultHostCount - compliantHostCount;
+//   }
+
+//   return { notReportingHostCount, nonCompliantHostCount };
+// };
+
+const calculateNotReportingHostCount = (
+  isRestApiEnabled,
+  totalHostCount,
+  testResultHostCount,
+  unsupportedHostCount
+) => {
+  let notReportingHostCount;
+  if (isRestApiEnabled) {
+    notReportingHostCount = totalHostCount - testResultHostCount;
+  } else {
+    notReportingHostCount =
+      totalHostCount - unsupportedHostCount - testResultHostCount;
+  }
+  return notReportingHostCount;
+};
+
+const calculatenonCompliantHostCount = (
+  isRestApiEnabled,
+  testResultHostCount,
+  compliantHostCount,
+  unsupportedHostCount
+) => {
+  let nonCompliantHostCount;
+  if (isRestApiEnabled) {
+    nonCompliantHostCount =
+      testResultHostCount - compliantHostCount - unsupportedHostCount;
+  } else {
+    nonCompliantHostCount = testResultHostCount - compliantHostCount;
+  }
+  return nonCompliantHostCount;
+};
+
 const useDonutChart = (profile) => {
   const {
     compliantHostCount = 0,
@@ -49,9 +104,21 @@ const useDonutChart = (profile) => {
     unsupportedHostCount = 0,
     totalHostCount = 0,
   } = profile;
-  const notReportingHostCount =
-    totalHostCount - unsupportedHostCount - testResultHostCount;
-  const nonCompliantHostCount = testResultHostCount - compliantHostCount;
+
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+  const notReportingHostCount = calculateNotReportingHostCount(
+    isRestApiEnabled,
+    totalHostCount,
+    testResultHostCount,
+    unsupportedHostCount
+  );
+  const nonCompliantHostCount = calculatenonCompliantHostCount(
+    isRestApiEnabled,
+    testResultHostCount,
+    compliantHostCount,
+    unsupportedHostCount
+  );
+
   const donutId = profile.name?.replace(/ /g, '') || 'donut-chart';
   const donutValues = [
     { x: 'Compliant', y: compliantHostCount },

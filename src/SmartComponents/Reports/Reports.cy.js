@@ -46,7 +46,7 @@ const profilesResp = Object.assign([], fixtures['profiles']['edges']);
 describe('Reports table tests', () => {
   beforeEach(() => {
     featureFlagsInterceptors.apiV2Disabled();
-    cy.intercept('*', {
+    cy.intercept('**/graphql', {
       statusCode: 200,
       body: {
         data: fixtures,
@@ -55,7 +55,7 @@ describe('Reports table tests', () => {
     mountComponent();
   });
   describe('defaults', () => {
-    it('The Pathways table renders', () => {
+    it('Reports table renders', () => {
       cy.get('table').should('have.length', 1);
     });
   });
@@ -278,7 +278,7 @@ describe('Reports table tests', () => {
   });
 
   it('expect to render emptystate', () => {
-    cy.intercept('*', {
+    cy.intercept('**/graphql', {
       statusCode: 200,
       body: {
         data: fixtures,

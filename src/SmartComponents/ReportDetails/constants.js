@@ -39,7 +39,7 @@ export const dataMap = {
   os_major_version: 'osMajorVersion',
   profile_title: ['policy.name', 'policyType'],
   ref_id: 'refId',
-  all_systems_exposed: 'totalHostCount',
+  assigned_system_count: 'totalHostCount',
   reported_system_count: 'testResultHostCount',
   compliant_system_count: 'compliantHostCount',
   unsupported_system_count: 'unsupportedHostCount',
