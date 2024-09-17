@@ -35,6 +35,7 @@ export const QUERY = gql`
 `;
 
 export const dataMap = {
+  id: 'id',
   title: 'policy.name',
   business_objective: 'businessObjective',
   compliance_threshold: 'complianceThreshold',
