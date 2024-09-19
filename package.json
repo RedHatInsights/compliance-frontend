@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.10",
-    "@babel/runtime": "^7.24.0",
+    "@babel/runtime": "^7.25.6",
     "@patternfly/patternfly": "^5.0.2",
     "@patternfly/react-charts": "^7.2.2",
     "@patternfly/react-component-groups": "^5.2.0",
@@ -60,16 +60,16 @@
   "jest": {
     "testEnvironment": "jsdom",
     "collectCoverage": true,
-    "coverageDirectory": "./jest-coverage/",
+    "coverageDirectory": "./coverage-jest/",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
+      "cypress/**/*.js",
+      "config/**/*.js",
+      "!src/**/*.test.js",
       "!src/**/*.cy.js",
-      "!src/**/stories/*",
-      "!src/{App,Routes,entry,entry-dev}.js",
+      "!src/{App,entry,entry-dev}.js",
       "!src/**/__fixtures__/*.js",
-      "!src/**/__factories__/*.js",
-      "!src/{SmartComponents,PresentationalComponents,Mutations,store}/index.js",
-      "!src/Utilities/{asyncComponent,ReducerRegistry,Dispatcher}.js"
+      "!src/**/__factories__/*.js"
     ],
     "setupFiles": [
       "<rootDir>/config/setupTests.js"
@@ -94,26 +94,33 @@
     }
   },
   "nyc": {
-    "report-dir": "cypress-coverage",
+    "report-dir": "coverage-cypress",
     "include": [
       "src/**/*"
     ],
     "exclude": [
-      "src/**/*.test.js"
+      "src/**/*.test.js",
+      "cypress/**/*.js",
+      "config/**/*.js",
+      "src/**/*.test.js",
+      "src/**/*.cy.js",
+      "src/{App,entry,entry-dev}.js",
+      "**/__fixtures__/**",
+      "**/__factories__/**"
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
-    "@babel/eslint-parser": "^7.23.10",
-    "@babel/plugin-transform-runtime": "^7.24.0",
-    "@babel/preset-env": "^7.24.0",
-    "@babel/preset-react": "^7.23.3",
+    "@babel/core": "^7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/travis-cli": "^19.3.0",
-    "@cypress/code-coverage": "^3.12.44",
+    "@cypress/code-coverage": "^3.13.1",
     "@cypress/react18": "^2.0.1",
-    "@cypress/webpack-dev-server": "^3.7.4",
+    "@cypress/webpack-dev-server": "^3.11.0",
     "@faker-js/faker": "^8.4.1",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^2.0.3",
     "@redhat-cloud-services/frontend-components-config": "^6.2.4",
@@ -122,8 +129,9 @@
     "@testing-library/react": "^15.0.6",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.58",
-    "babel-loader": "^9.1.2",
-    "babel-plugin-istanbul": "^6.1.1",
+    "babel-loader": "^9.2.1",
+    "babel-plugin-istanbul": "^7.0.0",
+    "babel-plugin-transform-imports": "^2.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
     "cypress": "^13.13.1",
@@ -140,6 +148,7 @@
     "jsdoc": "^4.0.3",
     "natsort": "^2.0.3",
     "npm-run-all": "^4.1.5",
+    "nyc": "^17.1.0",
     "react-intl": "^6.6.8",
     "redux-mock-store": "^1.5.4",
     "sass": "^1.64.1",
@@ -155,7 +164,8 @@
     "test:nocoverage": "jest --passWithNoTests --no-coverage",
     "test:snapshots": "jest -u --passWithNoTests --no-coverage",
     "test:ct": "BABEL_ENV=componentTest cypress run --component",
-    "test:openct": "cypress open --component",
+    "test:openct": "BABEL_ENV=componentTest cypress open --component",
+    "test:coverage": "./coverage.sh",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",
     "lint:js:fix": "eslint config src --fix",
@@ -165,10 +175,10 @@
     "start": "fec dev",
     "start:proxy": "PROXY=true fec dev",
     "verify": "npm-run-all build lint test",
+    "travis:verify": "npm run test:coverage",
     "nightly": "npm run travis:verify",
     "bump:redhatservices": "npm install @redhat-cloud-services/frontend-components-notifications@latest @redhat-cloud-services/frontend-components-utilities@latest @redhat-cloud-services/frontend-components-config@latest @redhat-cloud-services/frontend-components@latest @redhat-cloud-services/frontend-components-remediations@latest @redhat-cloud-services/eslint-config-redhat-cloud-services@latest",
     "bump:patternfly": "npm install @patternfly/react-core@latest @patternfly/react-table@latest @patternfly/react-charts@latest @patternfly/react-tokens@latest @patternfly/react-icons@latest",
-    "coverage:clean": "rm -rf .nyc_output coverage reports",
     "coverage": "bash coverage.sh && npm run coverage:clean",
     "postinstall": "ts-patch install",
     "docs": "jsdoc -r -u src/Frameworks/AsyncTableTools/docs --configure .jsdoc.json"
