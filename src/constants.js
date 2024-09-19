@@ -283,3 +283,18 @@ export const paletteColors = {
 export const backgroundColors = {
   light300: '#f0f0f0', //'--pf-global--BackgroundColor--light-300',
 };
+
+export const systemsDataMapper = {
+  display_name: 'name',
+  culled_timestamp: 'culledTimestamp',
+  os_major_version: 'osMajorVersion',
+  os_minor_version: 'osMinorVersion',
+  stale_timestamp: 'staleTimestamp',
+  stale_warning_timestamp: 'staleWarningTimestamp',
+  'policies[0].title': 'policies[0].name',
+  groups: 'groups',
+  id: 'id',
+  insights_id: 'insights_id',
+  tags: 'tags',
+  updated: 'updated',
+};

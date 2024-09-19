@@ -153,7 +153,6 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       sortBy,
     });
 
-    console.log(fetchedEntities, 'debug fetched entities');
     const {
       entities,
       meta: { totalCount },

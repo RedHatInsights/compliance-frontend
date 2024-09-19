@@ -11,6 +11,7 @@ import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '../../Utilities/dataSerialiser';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
+import { systemsDataMapper } from '../../constants';
 
 export const QUERY = gql`
   {
@@ -29,21 +30,6 @@ export const QUERY = gql`
 const DEFAULT_FILTER_GRAPHQL = 'has_test_results = true or has_policy = true';
 const DEFAULT_FILTER_REST = 'assigned_or_scanned=true';
 
-const dataMap = {
-  display_name: 'name',
-  culled_timestamp: 'culledTimestamp',
-  os_major_version: 'osMajorVersion',
-  os_minor_version: 'osMinorVersion',
-  stale_timestamp: 'staleTimestamp',
-  stale_warning_timestamp: 'staleWarningTimestamp',
-  'policies[0].title': 'policies[0].name',
-  groups: 'groups',
-  id: 'id',
-  insights_id: 'insights_id',
-  tags: 'tags',
-  updated: 'updated',
-};
-
 const fetchApi = async (page, perPage, combinedVariables) =>
   apiInstance
     .systems(
@@ -54,7 +40,7 @@ const fetchApi = async (page, perPage, combinedVariables) =>
       combinedVariables.filter
     )
     .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
-      data: dataSerialiser(data, dataMap),
+      data: dataSerialiser(data, systemsDataMapper),
       meta,
     }));
 
@@ -62,7 +48,7 @@ export const ComplianceSystems = () => {
   const { data, error, loading } = useQuery(QUERY);
   const policies = data?.profiles?.edges.map(({ node }) => node);
   const apiV2Enabled = useAPIV2FeatureFlag();
-  console.log('debug: Hello compliance systems');
+
   return (
     <React.Fragment>
       <PageHeader className="page-header">

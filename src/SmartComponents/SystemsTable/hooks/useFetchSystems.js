@@ -54,7 +54,6 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
   return (perPage, page, requestVariables) => {
     const combinedVariables = combineVariables(variables, requestVariables);
 
-    console.log('debug systems: ', perPage, page, requestVariables, query);
     return client
       .query({
         query,
@@ -128,6 +127,6 @@ export const useFetchSystemsV2 = ({
         }
       }
     },
-    [systemFetchArguments]
+    [systemFetchArguments, onComplete, onError, fetchApi]
   );
 };
