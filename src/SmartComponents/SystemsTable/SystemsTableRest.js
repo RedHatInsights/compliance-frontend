@@ -136,7 +136,6 @@ export const SystemsTable = ({
     }
   };
 
-  console.log('rest');
   const fetchSystems = useFetchSystemsV2({
     onComplete,
     fetchApi,
