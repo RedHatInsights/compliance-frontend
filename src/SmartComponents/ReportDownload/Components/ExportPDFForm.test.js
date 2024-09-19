@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import ExportPDFForm from './ExportPDFForm';
 
@@ -35,5 +36,23 @@ describe('ExportPDFForm', function () {
     const { container } = render(<ExportPDFForm {...componentProps} />);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('expect checkboxes being (un)checked', () => {
+    const componentProps = {
+      ...defaultProps,
+      exportSettings: {
+        ...DEFAULT_EXPORT_SETTINGS,
+        compliantSystems: true,
+        unsupportedSystems: false,
+        userNotes: 'NOTE',
+      },
+    };
+    render(<ExportPDFForm {...componentProps} />);
+
+    expect(screen.getByLabelText('Compliant systems')).toBeChecked();
+    expect(
+      screen.getByLabelText('Systems with unsupported configuration')
+    ).not.toBeChecked();
   });
 });
