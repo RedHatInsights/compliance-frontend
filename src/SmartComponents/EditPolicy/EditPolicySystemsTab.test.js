@@ -4,6 +4,8 @@ import TestWrapper from '@/Utilities/TestWrapper';
 
 import EditPolicySystemsTab from './EditPolicySystemsTab.js';
 
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => false));
+
 describe('EditPolicySystemsTab', () => {
   const defaultProps = {
     policy: {

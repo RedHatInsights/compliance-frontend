@@ -20,6 +20,7 @@ jest.mock('@/Utilities/hooks/useQuery', () => ({
   ...jest.requireActual('@/Utilities/hooks/useQuery'),
   apiInstance: { systemsOS: jest.fn(() => Promise.resolve([])) },
 }));
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => false));
 
 describe('useSystemsFilter', () => {
   it('returns a filter string', () => {

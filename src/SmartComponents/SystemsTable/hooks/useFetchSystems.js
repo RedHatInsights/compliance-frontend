@@ -92,12 +92,12 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
   };
 };
 
-export const useFetchSystemsV2 = ({
+export const useFetchSystemsV2 = (
   fetchApi,
   onComplete,
   onError,
-  systemFetchArguments = {},
-}) => {
+  systemFetchArguments = {}
+) => {
   return useCallback(
     async (perPage, page, requestVariables) => {
       const combinedVariables = combineVariables(
@@ -120,13 +120,11 @@ export const useFetchSystemsV2 = ({
             totalCount: meta.total || 0,
           },
         };
-
-        onComplete && onComplete(serialisedData);
+        onComplete?.(serialisedData);
         return serialisedData;
       } catch (error) {
         if (onError) {
           onError(error);
-          return { entities: [], meta: { totalCount: 0 } };
         } else {
           throw error;
         }

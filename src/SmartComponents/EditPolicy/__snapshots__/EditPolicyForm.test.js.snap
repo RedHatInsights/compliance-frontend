@@ -104,24 +104,17 @@ exports[`EditPolicyForm expect to render with alter 1`] = `
       tabindex="0"
     >
       <div
-        class="pf-v5-l-bullseye"
-      >
-        <svg
-          aria-label="Contents"
-          aria-valuetext="Loading..."
-          class="pf-v5-c-spinner pf-m-xl"
-          role="progressbar"
-          viewBox="0 0 100 100"
-        >
-          <circle
-            class="pf-v5-c-spinner__path"
-            cx="50"
-            cy="50"
-            fill="none"
-            r="45"
-          />
-        </svg>
-      </div>
+        activefiltersconfig="[object Object]"
+        aria-label="Inventory Table"
+        bulkselect="[object Object]"
+        disabledefaultcolumns="true"
+        fallback="[object Object]"
+        filterconfig="[object Object]"
+        hidefilters="[object Object]"
+        showtags="true"
+        tableprops="[object Object]"
+        variant="compact"
+      />
     </section>
   </form>
 </DocumentFragment>
@@ -231,24 +224,17 @@ exports[`EditPolicyForm expect to render without error 1`] = `
       tabindex="0"
     >
       <div
-        class="pf-v5-l-bullseye"
-      >
-        <svg
-          aria-label="Contents"
-          aria-valuetext="Loading..."
-          class="pf-v5-c-spinner pf-m-xl"
-          role="progressbar"
-          viewBox="0 0 100 100"
-        >
-          <circle
-            class="pf-v5-c-spinner__path"
-            cx="50"
-            cy="50"
-            fill="none"
-            r="45"
-          />
-        </svg>
-      </div>
+        activefiltersconfig="[object Object]"
+        aria-label="Inventory Table"
+        bulkselect="[object Object]"
+        disabledefaultcolumns="true"
+        fallback="[object Object]"
+        filterconfig="[object Object]"
+        hidefilters="[object Object]"
+        showtags="true"
+        tableprops="[object Object]"
+        variant="compact"
+      />
     </section>
   </form>
 </DocumentFragment>
