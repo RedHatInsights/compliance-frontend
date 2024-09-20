@@ -123,7 +123,7 @@ export const SystemsTable = ({
     setItems(result.entities);
     setPerPage(result.perPage);
     setIsLoaded(true);
-    setCurrentTags && setCurrentTags(result.meta.tags);
+    setCurrentTags(result.meta.tags);
 
     if (
       emptyStateComponent &&

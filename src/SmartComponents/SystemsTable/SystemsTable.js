@@ -4,23 +4,19 @@ import SystemsTableRest from './SystemsTableRest';
 import PropTypes from 'prop-types';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 
-const SystemsTable = (props) => {
-  const GatedComponent = props.apiV2Enabled
-    ? SystemsTableRest
-    : SystemsTableGraphQL;
-
-  return (
-    <>
-      {props.apiV2Enabled === undefined ? (
-        <Bullseye>
-          <Spinner />
-        </Bullseye>
-      ) : (
-        <GatedComponent {...props} />
-      )}
-    </>
-  );
-};
+const SystemsTable = (props) => (
+  <>
+    {props.apiV2Enabled === undefined ? (
+      <Bullseye>
+        <Spinner />
+      </Bullseye>
+    ) : props.apiV2Enabled ? (
+      <SystemsTableRest {...props} />
+    ) : (
+      <SystemsTableGraphQL {...props} />
+    )}
+  </>
+);
 
 SystemsTable.propTypes = {
   apiV2Enabled: PropTypes.bool.isRequired,

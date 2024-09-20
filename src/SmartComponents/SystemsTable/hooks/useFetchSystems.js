@@ -104,9 +104,14 @@ export const useFetchSystemsV2 = ({
         systemFetchArguments,
         requestVariables
       );
+      const offset = (page - 1) * perPage;
 
       try {
-        const { data, meta } = await fetchApi(page, perPage, combinedVariables);
+        const { data, meta } = await fetchApi(
+          offset,
+          perPage,
+          combinedVariables
+        );
 
         const serialisedData = {
           entities: data,
