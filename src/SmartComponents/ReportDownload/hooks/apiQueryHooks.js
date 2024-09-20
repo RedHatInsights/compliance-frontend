@@ -43,17 +43,20 @@ const useFetchBatched = () => {
 
   return {
     isLoading,
-    fetchBatched: (fetchFunction, total, filter, batchSize = 50) => {
-      const pages = Math.ceil(total / batchSize) || 1;
+    fetchBatched: useCallback(
+      (fetchFunction, total, filter, batchSize = 50) => {
+        const pages = Math.ceil(total / batchSize) || 1;
 
-      const results = resolve(
-        [...new Array(pages)].map(
-          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
-        )
-      );
+        const results = resolve(
+          [...new Array(pages)].map(
+            (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
+          )
+        );
 
-      return results;
-    },
+        return results;
+      },
+      [resolve]
+    ),
   };
 };
 
@@ -61,49 +64,61 @@ export const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
   const client = useApolloClient();
   const { fetchBatched } = useFetchBatched();
 
-  const fetchFunction = (perPage, page) =>
-    client.query({
-      query: GET_SYSTEMS,
-      fetchResults: true,
-      fetchPolicy: 'no-cache',
-      variables: {
-        perPage,
-        page,
-        filter: `policy_id = ${policyId}`,
-        policyId,
-      },
-    });
-
-  return async () =>
-    (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
-      ({
-        data: {
-          systems: { edges },
+  const fetchFunction = useCallback(
+    (perPage, page) =>
+      client.query({
+        query: GET_SYSTEMS,
+        fetchResults: true,
+        fetchPolicy: 'no-cache',
+        variables: {
+          perPage,
+          page,
+          filter: `policy_id = ${policyId}`,
+          policyId,
         },
-      }) => edges.map(({ node }) => node)
-    );
+      }),
+    [client, GET_SYSTEMS, policyId]
+  );
+
+  return useCallback(
+    async () =>
+      (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
+        ({
+          data: {
+            systems: { edges },
+          },
+        }) => edges.map(({ node }) => node)
+      ),
+    [totalHostCount]
+  );
 };
 
 export const useFetchRules = ({ id: policyId } = {}) => {
   const client = useApolloClient();
 
-  const fetchFunction = (perPage = 10, page = 1) =>
-    client.query({
-      query: GET_RULES,
-      fetchResults: true,
-      fetchPolicy: 'no-cache',
-      variables: {
-        perPage,
-        page,
-        filter: `policy_id = ${policyId}`,
-        policyId,
-      },
-    });
+  const fetchFunction = useCallback(
+    (perPage = 10, page = 1) =>
+      client.query({
+        query: GET_RULES,
+        fetchResults: true,
+        fetchPolicy: 'no-cache',
+        variables: {
+          perPage,
+          page,
+          filter: `policy_id = ${policyId}`,
+          policyId,
+        },
+      }),
+    [client, GET_RULES, policyId]
+  );
 
-  return async () =>
-    (await fetchFunction()).data.profiles?.edges.flatMap(
-      (edge) => edge.node.topFailedRules
-    );
+  return useCallback(
+    async () =>
+      (await fetchFunction()).data.profiles?.edges.flatMap(
+        (edge) => edge.node.topFailedRules
+      ),
+    []
+  );
 };
 
 export const useFetchFailedRulesRest = ({ id: reportId } = {}) => {

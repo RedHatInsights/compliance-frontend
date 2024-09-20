@@ -17,7 +17,7 @@ const useExportDataGraphQL = (report, exportSettings) => {
     const rules = await fetchRules();
 
     return prepareForExportGraphQL(exportSettings, systems, rules);
-  }, [report, exportSettings]);
+  }, [report, exportSettings, fetchSystems, fetchRules]);
 };
 
 const useExportDataRest = (report, exportSettings) => {
@@ -42,7 +42,7 @@ const useExportDataRest = (report, exportSettings) => {
       neverReported,
       topTenFailedRules
     );
-  }, [report, exportSettings]);
+  }, [report, exportSettings, fetchSystems, fetchRules]);
 };
 
 // Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
