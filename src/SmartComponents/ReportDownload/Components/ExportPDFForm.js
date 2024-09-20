@@ -22,26 +22,32 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
         label="Non-compliant systems"
         id="non-compliant-systems-export-setting"
         aria-label="Non-compliant systems"
-        onChange={setExportSetting('nonCompliantSystems')}
+        onChange={(e) =>
+          setExportSetting('nonCompliantSystems')(e.target.checked)
+        }
         isChecked={exportSettings.nonCompliantSystems}
       />
       <Checkbox
         label="Systems with unsupported configuration"
         id="unsupported-systems-export-setting"
         aria-label="Systems with unsupported configuration"
-        onChange={setExportSetting('unsupportedSystems')}
+        onChange={(e) =>
+          setExportSetting('unsupportedSystems')(e.target.checked)
+        }
         isChecked={exportSettings.unsupportedSystems}
       />
       <Checkbox
         label="Systems with no reports"
         id="nonreporting-systems-export-setting"
         aria-label="Systems never reported"
-        onChange={setExportSetting('nonReportingSystems')}
+        onChange={(e) =>
+          setExportSetting('nonReportingSystems')(e.target.checked)
+        }
         isChecked={exportSettings.nonReportingSystems}
       />
       <Checkbox
         id="compliant-systems-export-setting"
-        onChange={setExportSetting('compliantSystems')}
+        onChange={(e) => setExportSetting('compliantSystems')(e.target.checked)}
         isChecked={exportSettings.compliantSystems}
         label="Compliant systems"
         aria-label="Compliant systems"
@@ -53,7 +59,9 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
         id="failed-rules-export-setting"
         label="Top failed rules (Up to 10)"
         aria-label="Rule data to include"
-        onChange={setExportSetting('topTenFailedRules')}
+        onChange={(e) =>
+          setExportSetting('topTenFailedRules')(e.target.checked)
+        }
         isChecked={exportSettings.topTenFailedRules}
       />
     </FormGroup>
