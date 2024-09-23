@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
@@ -151,23 +151,26 @@ export const SystemsTable = ({
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
-  const onComplete = (result) => {
-    setTotal(result.meta.totalCount);
-    setItems(result.entities);
-    setPerPage(result.perPage);
-    setIsLoaded(true);
-    setCurrentTags && setCurrentTags(result.meta.tags);
+  const onComplete = useCallback(
+    (result) => {
+      setTotal(result.meta.totalCount);
+      setItems(result.entities);
+      setPerPage(result.perPage);
+      setIsLoaded(true);
+      setCurrentTags && setCurrentTags(result.meta.tags);
 
-    if (
-      emptyStateComponent &&
-      result.meta.totalCount === 0 &&
-      activeFilterValues.length === 0 &&
-      (typeof result?.meta?.tags === 'undefined' ||
-        result?.meta?.tags?.length === 0)
-    ) {
-      setIsEmpty(true);
-    }
-  };
+      if (
+        emptyStateComponent &&
+        result.meta.totalCount === 0 &&
+        activeFilterValues.length === 0 &&
+        (typeof result?.meta?.tags === 'undefined' ||
+          result?.meta?.tags?.length === 0)
+      ) {
+        setIsEmpty(true);
+      }
+    },
+    [emptyStateComponent, activeFilterValues.length]
+  );
 
   const fetchSystems = useFetchSystems({
     ...systemFetchArguments,

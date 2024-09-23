@@ -1,4 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useCallback,
+} from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -227,6 +232,14 @@ export const useSystemsExport = ({
   const { isLoading, fetchBatched } = useFetchBatched();
   const apiV2Enabled = useAPIV2FeatureFlag();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
+  const onError = useCallback(() => {
+    dispatchNotification({
+      variant: 'danger',
+      title: 'Couldn’t download export',
+      description: 'Reinitiate this export to try again.',
+    });
+  }, []);
+
   const fetchSystemsGraphQL = useFetchSystems({
     query: fetchArguments.query,
     variables: {
@@ -236,13 +249,7 @@ export const useSystemsExport = ({
         ? `${fetchArguments.variables?.filter} and (${selectionFilter})`
         : fetchArguments.variables?.filter,
     },
-    onError: () => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Couldn’t download export',
-        description: 'Reinitiate this export to try again.',
-      });
-    },
+    onError,
   });
 
   const fetchSystemsRest = useFetchSystemsV2({
@@ -254,13 +261,7 @@ export const useSystemsExport = ({
         ? `${fetchArguments.filter} and (${selectionFilter})`
         : fetchArguments?.filter,
     },
-    onError: () => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Couldn’t download export',
-        description: 'Reinitiate this export to try again.',
-      });
-    },
+    onError,
   });
 
   const selectedFilter = () =>
@@ -282,19 +283,19 @@ export const useSystemsExport = ({
     exporter,
     columns,
     isDisabled: total === 0 || isLoading,
-    onStart: () => {
+    onStart: useCallback(() => {
       dispatchNotification({
         variant: 'info',
         title: 'Preparing export',
         description: 'Once complete, your download will start automatically.',
       });
-    },
-    onComplete: () => {
+    }, []),
+    onComplete: useCallback(() => {
       dispatchNotification({
         variant: 'success',
         title: 'Downloading export',
       });
-    },
+    }, []),
   });
 
   return exportConfig;
@@ -313,27 +314,24 @@ export const useSystemBulkSelect = ({
   const apiV2Enabled = false; //TODO: enable REST when the API implements ID search over endpoints. Use this hook => useAPIV2FeatureFlag();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
+
+  const onError = useCallback((error) => {
+    dispatchNotification({
+      variant: 'danger',
+      title: 'Error selecting systems',
+      description: error.message,
+    });
+  }, []);
+
   const fetchSystemsGraphQL = useFetchSystems({
     ...fetchArguments,
-    onError: (error) => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Error selecting systems',
-        description: error.message,
-      });
-    },
+    onError,
   });
 
   const fetchSystemsRest = useFetchSystemsV2({
     dataMap,
     systemFetchArguments: fetchArguments,
-    onError: () => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Couldn’t download export',
-        description: 'Reinitiate this export to try again.',
-      });
-    },
+    onError,
   });
 
   const fetchFunc = async (fetchIds) => {
