@@ -26,6 +26,8 @@ export const Name = {
   sortByProp: 'name',
   renderExport: (policy) => policy.name,
   renderFunc: renderComponent(PolicyNameCell),
+  sortable: 'title',
+  filterAttribute: 'title',
 };
 
 export const Description = {
@@ -33,6 +35,8 @@ export const Description = {
   sortByProp: 'description',
   renderExport: (policy) => policy.description,
   hiddenByDefault: true,
+  isShown: false,
+  sortable: 'description',
 };
 
 const PolicyType = {
@@ -47,6 +51,7 @@ export const OperatingSystem = {
   sortByProp: 'osMajorVersion',
   renderExport: osString,
   renderFunc: (_data, _id, policy) => osString(policy),
+  sortable: 'os_major_version',
 };
 
 export const Systems = {
@@ -60,6 +65,8 @@ export const Systems = {
     ) : (
       <SystemsCountWarning count={policy.totalHostCount} variant="count" />
     ),
+
+  sortable: 'total_system_count',
 };
 
 const businessObjectiveString = (policy) =>
@@ -70,6 +77,7 @@ export const BusinessObjective = {
   sortByFunction: (policy) => policy?.businessObjective?.title ?? '',
   renderExport: businessObjectiveString,
   renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
+  sortable: 'business_objective',
 };
 
 const complianceThresholdString = (policy) => `${policy.complianceThreshold}%`;
@@ -79,6 +87,7 @@ export const ComplianceThreshold = {
   sortByProp: 'complianceThreshold',
   renderExport: complianceThresholdString,
   renderFunc: (_data, _id, policy) => complianceThresholdString(policy),
+  sortable: 'compliance_threshold',
 };
 
 export const exportableColumns = [

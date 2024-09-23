@@ -39,7 +39,7 @@ const useItems = (itemsProp) => {
     return () => {
       mounted.current = false;
     };
-  }, []);
+  }, [itemsProp]);
 
   return items;
 };

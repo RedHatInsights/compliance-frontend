@@ -9,6 +9,8 @@ import {
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
 import useAsyncTableTools from '../../hooks/useAsyncTableTools';
+import { SkeletonTable } from '@patternfly/react-component-groups';
+import { TableVariant } from '@patternfly/react-table';
 
 /**
  *  This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useAsyncTableTools` hook
@@ -61,10 +63,17 @@ const AsyncTableToolsTable = ({
     <>
       <PrimaryToolbar {...toolbarProps} />
 
-      <Table {...tableProps}>
-        <TableHeader {...tableHeaderProps} />
-        <TableBody {...tableBodyProps} />
-      </Table>
+      {options.loading ? (
+        <SkeletonTable
+          columns={[...tableProps.cells.map((item) => item.title)]}
+          rows={10}
+        />
+      ) : (
+        <Table {...tableProps}>
+          <TableHeader {...tableHeaderProps} />
+          <TableBody {...tableBodyProps} />
+        </Table>
+      )}
 
       <TableToolbar isFooter {...tableToolbarProps}>
         {toolbarProps.pagination && (
