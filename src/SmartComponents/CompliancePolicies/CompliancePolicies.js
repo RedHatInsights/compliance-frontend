@@ -16,10 +16,10 @@ import {
   LinkButton,
 } from 'PresentationalComponents';
 import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import PropTypes from 'prop-types';
 import dataSerialiser from '../../Utilities/dataSerialiser';
 import { QUERY, dataMap } from './constants';
+import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
 export const CompliancePoliciesBase = ({ query }) => {
   const location = useLocation();
@@ -109,14 +109,11 @@ const CompliancePoliciesGraphQL = () => {
   return <CompliancePoliciesBase query={query} />;
 };
 
-const CompliancePoliciesWrapper = () => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-
-  return apiV2Enabled ? (
-    <CompliancePoliciesV2 />
-  ) : (
-    <CompliancePoliciesGraphQL />
-  );
-};
+const CompliancePoliciesWrapper = () => (
+  <GatedComponents
+    RestComponent={CompliancePoliciesV2}
+    GraphQLComponent={CompliancePoliciesGraphQL}
+  />
+);
 
 export default CompliancePoliciesWrapper;

@@ -15,10 +15,10 @@ import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
 import useExportSettings from './hooks/useExportSettings';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import { useReport } from '../../Utilities/hooks/api/useReport';
-import dataSerialiser from '../../Utilities/dataSerialiser';
-import { reportDataMap } from '../../constants';
+import { useReport } from '@/Utilities/hooks/api/useReport';
+import dataSerialiser from '@/Utilities/dataSerialiser';
+import { reportDataMap } from '@/constants';
+import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
 // Provides that export settings modal accessible in the report details
 export const ReportDownloadBase = ({ report, loading, error, data }) => {
@@ -98,7 +98,7 @@ ReportDownloadBase.propTypes = {
   data: propTypes.object.isRequired,
 };
 
-export const ReportsWithGraphQL = () => {
+export const ReportDownloadGraphQL = () => {
   const { report_id: reportId } = useParams();
 
   const { data, loading, error } = useQuery(GET_PROFILE, {
@@ -128,10 +128,11 @@ export const ReportDownloadRest = () => {
   );
 };
 
-export const ReportDownload = () => {
-  const isRestApiEnabled = useAPIV2FeatureFlag();
-
-  return isRestApiEnabled ? <ReportDownloadRest /> : <ReportsWithGraphQL />;
-};
+export const ReportDownload = () => (
+  <GatedComponents
+    RestComponent={ReportDownloadRest}
+    GraphQLComponent={ReportDownloadGraphQL}
+  />
+);
 
 export default ReportDownload;
