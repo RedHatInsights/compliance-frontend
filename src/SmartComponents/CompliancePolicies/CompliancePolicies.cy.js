@@ -423,7 +423,7 @@ describe('Policies table tests API V2', () => {
     mountComponent();
   });
   describe('defaults', () => {
-    it.only('The table renders with data', () => {
+    it('The table renders with data', () => {
       cy.get('table').should('have.length', 1);
 
       let policyNames = [];

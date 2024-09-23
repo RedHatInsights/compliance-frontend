@@ -34,7 +34,6 @@ export const buildPolicies = (length) => ({
 
 export const buildPoliciesV2 = (length) =>
   [...Array(length)].map(() => {
-    const title = faker.lorem.words({ min: 2, max: 3 });
     const businessObjectiveString = faker.lorem.words(5);
     const businessPossibilities = [null, businessObjectiveString];
     const business_objective = faker.helpers.arrayElement(
@@ -42,14 +41,14 @@ export const buildPoliciesV2 = (length) =>
     );
     return {
       id: faker.string.uuid(),
-      title,
+      title: faker.lorem.words({ min: 2, max: 3 }),
       description: faker.lorem.sentence({ min: 2, max: 4 }),
       business_objective,
       compliance_threshold: faker.number.int({ min: 1, max: 100 }),
       total_system_count: faker.number.int(5000),
       type: 'policy',
       os_major_version: faker.number.int({ min: 6, max: 9 }),
-      profile_title: title,
+      profile_title: faker.lorem.words({ min: 3, max: 4 }),
       ref_id: faker.lorem.slug({ min: 1, max: 4 }),
     };
   });

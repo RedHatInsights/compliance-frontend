@@ -1,4 +1,9 @@
+import React from 'react';
 import { gql } from '@apollo/client';
+import {
+  LinkButton,
+  LinkWithPermission as Link,
+} from '../../PresentationalComponents';
 
 export const QUERY = gql`
   {
@@ -29,12 +34,25 @@ export const QUERY = gql`
 
 export const dataMap = {
   id: ['id', 'policy.id'],
-  title: 'name',
+  title: ['name', 'policy.name'],
   description: 'description',
   business_objective: 'businessObjective.title',
   compliance_threshold: 'complianceThreshold',
   total_system_count: 'totalHostCount',
   os_major_version: 'osMajorVersion',
-  profile_title: ['policy.name', 'policyType'],
+  profile_title: 'policyType',
   ref_id: 'refId',
 };
+
+export const CreateLink = () => (
+  <Link
+    to="/scappolicies/new"
+    Component={LinkButton}
+    componentProps={{
+      variant: 'primary',
+      ouiaId: 'CreateNewPolicyButton',
+    }}
+  >
+    Create new policy
+  </Link>
+);
