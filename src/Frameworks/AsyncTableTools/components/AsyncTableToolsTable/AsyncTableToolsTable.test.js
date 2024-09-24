@@ -1,69 +1,57 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
-import filters from 'Utilities/hooks/useTableTools/__fixtures__/filters';
 
 import TableStateProvider from '../TableStateProvider';
 import AsyncTableToolsTable from './AsyncTableToolsTable';
 
+const exampleItems = items(100).sort((item) => item.name);
+const itemsFunc = jest.fn(async () => {
+  return exampleItems.slice(0, 10);
+});
+const ariaLabel = 'Async Test Table';
+const defaultProps = {
+  'aria-label': ariaLabel,
+  columns: [
+    {
+      title: 'Name',
+      key: 'name',
+      renderFunc: (_a, _b, item) => item.name,
+    },
+  ],
+  items: itemsFunc,
+  total: exampleItems.length,
+};
+
 describe('AsyncTableToolsTable', () => {
-  const exampleItems = items(30).sort((item) => item.name);
-  const smallItems = items(5).sort((item) => item.name);
-
-  const defaultProps = {
-    columns,
-    'aria-label': 'Test Table',
-    filters: { filterConfig: filters },
-    items: exampleItems,
-  };
-  const paginationProps = {
-    columns,
-    'aria-label': 'Test Table',
-    filters: { filterConfig: filters },
-    items: smallItems,
-  };
-
-  it('expect to render', () => {
+  it('should render a basic table', async () => {
     render(
       <TableStateProvider>
-        <AsyncTableToolsTable
-          {...{
-            ...defaultProps,
-            options: {
-              preselected: [exampleItems[1].id],
-              selectedFilter: true,
-              onSelect: () => {},
-            },
-          }}
-        />
+        <AsyncTableToolsTable {...defaultProps} />
       </TableStateProvider>
     );
 
-    expect(screen.getByLabelText('Test Table')).toBeInTheDocument();
-    // expect(screen.getByLabelText('Pagination-ToolBar')).toBeInTheDocument();
+    await waitFor(() => expect(itemsFunc).toHaveBeenCalled());
+
+    expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
+    expect(await screen.findByText(exampleItems[1].name)).toBeInTheDocument();
   });
 
-  it('expect to render without pagination', () => {
+  it('should render an empty state if no items are present', async () => {
     render(
       <TableStateProvider>
-        <AsyncTableToolsTable
-          {...{
-            ...paginationProps,
-            options: {
-              preselected: [exampleItems[1].id],
-              selectedFilter: true,
-              onSelect: () => {},
-            },
-          }}
-        />
+        <AsyncTableToolsTable {...defaultProps} items={async () => []} />
       </TableStateProvider>
     );
+
+    expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
 
     expect(
-      screen.queryByLabelText('Pagination-ToolBar')
-    ).not.toBeInTheDocument();
+      await screen.findByText('No matching results found')
+    ).toBeInTheDocument();
   });
+
+  // TODO Extend with more tests for basic filtering, paginating, sorting etc.
 });

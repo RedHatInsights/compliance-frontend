@@ -3,20 +3,25 @@ import useSelectionManager from '../useSelectionManager';
 import { itemDetailsRow } from './helpers';
 
 /**
- *  @typedef {object} AsyncTableProps
- *  @property {object} toolbarProps Object containing PrimaryToolbar props
- *  @property {object} tableProps Object containing Patternfly (deprecated) Table props
+ *  @typedef {object | undefined} useExpandableReturn
+ *
+ *  @property {Function} [openItem]   "Transformer" function to be passed to the {@link rowsBuilder}
+ *  @property {object}   [tableProps] Object containing Patternfly (deprecated) Table props
+ *
  */
 
 /**
  * Provides props for a Patternfly table to manage expandable items/rows.
- *  @param {object} [options] an oblect containing detailComponent to render on expand
- *  @returns {AsyncTableProps} An object of props meant to be used in the {@link AsyncTableToolsTable}
+ *
+ *  @param   {object}              [options]                  AsyncTableTools options
+ *  @param   {object}              [options.detailsComponent] A component that should be rendered as a details row
+ *
+ *  @returns {useExpandableReturn}                            An object of props meant to be used in the {@link AsyncTableToolsTable}
  *
  *  @category AsyncTableTools
  *  @subcategory Hooks
+ *
  */
-
 const useExpandable = (options) => {
   const enableExpandingRow = !!options?.detailsComponent;
   const { selection: openItems, toggle } = useSelectionManager([]);
@@ -35,13 +40,13 @@ const useExpandable = (options) => {
 
       return expandedRow;
     },
-    [openItems]
+    [openItems, options]
   );
 
   return enableExpandingRow
     ? {
-        openItem,
         openItems,
+        openItem,
         tableProps: {
           onCollapse,
         },

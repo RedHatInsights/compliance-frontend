@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
+
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
 import {
@@ -14,11 +16,12 @@ import {
 } from './serialisers';
 
 /**
- *  This component serves as a place to either use the non-async TableTools or the AsyncTableTools
- *  And allow preparing the AsyncTableToolsTable props/options common across tables in Compliance
+ * This component serves as a place to either use the non-async TableTools or the AsyncTableTools
+ * And allow preparing the AsyncTableToolsTable props/options common across tables in Compliance
  *
- *  @param props Component props
- *  @returns {React.ReactElement} Returns either a Async or non async table depending on `ENABLE_ASYNC_TABLE_HOOKS` in `src/constants.js`
+ *  @param   {object}             props Component props
+ *
+ *  @returns {React.ReactElement}       Returns either a Async or non async table depending on `ENABLE_ASYNC_TABLE_HOOKS` in `src/constants.js`
  *
  *  @category Compliance
  *
@@ -27,7 +30,7 @@ const ComplianceTable = (props) => {
   const serialisedTableState = useSerialisedTableState();
   const tableState = useRawTableState();
 
-  useEffect(() => {
+  useDeepCompareEffectNoCheck(() => {
     if (ENABLE_ASYNC_TABLE_HOOKS) {
       console.log('Async Table enabled');
       console.log('TableState', tableState, serialisedTableState);

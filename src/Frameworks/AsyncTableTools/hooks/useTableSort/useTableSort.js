@@ -1,16 +1,28 @@
+import { useCallback, useMemo } from 'react';
 import { addSortableTransform, columnOffset } from './helpers';
 import useTableState from '../useTableState';
+import { TABLE_STATE_NAMESPACE } from './constants';
 
 /**
- *  Provides columns with the `sortable` transform mixed in for a Patternfly table.
+ *  @typedef {object} useTableSortReturn
  *
- *  @param {Array} columns Columns for a table, with a "sortable" prop
- *  @param {object} [options] AsyncTableTools options
- *  @param {object} [options.sortBy] An initial sortBy state like `{index: 1, direction: 'desc'}`
- *  @param {object} [options.onSort] A function to call after setting a new sort state.
- *  @param {object} [options.serialisers.sort] A function to provide a serialiser for the table state
+ *  @property {object}   [tableProps]         Props for a Patternfly table
+ *  @property {Function} [tableProps.onSort]  Callback function for column headers in a Patternfly table
+ *  @property {Array}    [tableProps.cells]   Array containing columns for a Patternfly table with the sortable transform applied
+ *  @property {object}   [tableProps.sortBy ] Object containing the current sortBy state
  *
- *  @returns {object}
+ */
+
+/**
+ * Provides columns with the `sortable` transform mixed in for a Patternfly table.
+ *
+ *  @param   {Array}              columns                    Columns for a table, with a "sortable" prop
+ *  @param   {object}             [options]                  AsyncTableTools options
+ *  @param   {object}             [options.sortBy]           An initial sortBy state like `{index: 1, direction: 'desc'}`
+ *  @param   {object}             [options.onSort]           A function to call after setting a new sort state.
+ *  @param   {object}             [options.serialisers.sort] A function to provide a serialiser for the table state
+ *
+ *  @returns {useTableSortReturn}                            Props for a Patternfly table to integrate sorting
  *
  *  @example
  *
@@ -22,34 +34,61 @@ import useTableState from '../useTableState';
  *
  */
 const useTableSort = (columns, options = {}) => {
-  const { sortBy: initialSortBy, serialisers } = options;
-  const defaultSortBy = {
-    index: columnOffset(options),
-    direction: 'asc',
-  };
-  const [sortBy, setSortBy] = useTableState(
-    'sort',
-    initialSortBy || defaultSortBy,
-    {
-      ...(serialisers?.sort
-        ? { serialiser: (state) => serialisers.sort(state, columns) }
-        : {}),
-    }
+  const {
+    sortBy: initialSortBy,
+    serialisers,
+    onSelect,
+    detailsComponent,
+    onSort: onSortOption,
+  } = options;
+  const defaultSortBy = useMemo(
+    () =>
+      initialSortBy || {
+        index: columnOffset({
+          detailsComponent,
+          onSelect,
+        }),
+        direction: 'asc',
+      },
+    [detailsComponent, onSelect, initialSortBy]
   );
 
-  const onSort = (_, index, direction) => {
-    setSortBy({
-      index,
-      direction,
-    });
-    options.onSort?.(index, direction);
-  };
+  const serialiser = useCallback(
+    (state) => options.serialisers.sort(state, columns),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(columns), JSON.stringify(options.serialisers)]
+  );
+  const stateOptions = useMemo(
+    () => ({
+      ...(serialisers?.sort
+        ? {
+            serialiser,
+          }
+        : {}),
+    }),
+    [serialisers, serialiser]
+  );
+  const [sortBy, setSortBy] = useTableState(
+    TABLE_STATE_NAMESPACE,
+    defaultSortBy,
+    stateOptions
+  );
+
+  const onSort = useCallback(
+    (_, index, direction) => {
+      setSortBy({
+        index,
+        direction,
+      });
+      onSortOption?.(index, direction);
+    },
+    [onSortOption, setSortBy]
+  );
 
   return {
-    sortBy,
     tableProps: {
       onSort,
-      sortBy,
+      sortBy: sortBy || defaultSortBy,
       cells: addSortableTransform(columns),
     },
   };

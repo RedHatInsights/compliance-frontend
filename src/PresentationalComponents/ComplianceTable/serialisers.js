@@ -35,14 +35,15 @@ const findFilterSerialiser = (filterConfigItem) => {
 };
 
 /**
- *  Takes an AsyncTableToolsTable state and transforms it into a Compliance scoped search filter parameter
+ * Takes an AsyncTableToolsTable state and transforms it into a Compliance scoped search filter parameter
  *
- *  @param {object} state Table state
- *  @param {object} filters AsyncTableToolsTable filter configuration
+ *  @param   {object}             state   Table state
+ *  @param   {object}             filters AsyncTableToolsTable filter configuration
  *
- *  @returns {string | undefined} Compliance scoped search filter string
+ *  @returns {string | undefined}         Compliance scoped search filter string
  *
  *  @category Compliance
+ *  @tutorial filter-serialiser
  *
  */
 export const filtersSerialiser = (state, filters) => {
@@ -65,15 +66,15 @@ export const filtersSerialiser = (state, filters) => {
 };
 
 /**
- *  Returns a string consumable by the Compliance API as a "sort_by" parameter for a given column and direction
- *  For columns to be sortable they need to have a "sortable" prop, which corresponds to the field name in the Compliance API
+ * Returns a string consumable by the Compliance API as a "sort_by" parameter for a given column and direction
+ * For columns to be sortable they need to have a "sortable" prop, which corresponds to the field name in the Compliance API
  *
- *  @param {object} state A "sortBy" table state
- *  @param {number} state.index Index of the column to sort by
- *  @param {string} state.direction Direction to sort the column by
- *  @param {Array}  columns Columns passed in for the AsyncTableToolsTable
+ *  @param   {object} state           A "sortBy" table state
+ *  @param   {number} state.index     Index of the column to sort by
+ *  @param   {string} state.direction Direction to sort the column by
+ *  @param   {Array}  columns         Columns passed in for the AsyncTableToolsTable
  *
- *  @returns {string} Compliance "sort_by" parameter string, like "name:desc"
+ *  @returns {string}                 Compliance "sort_by" parameter string, like "name:desc"
  *
  *  @category Compliance
  *
@@ -87,7 +88,5 @@ export const filtersSerialiser = (state, filters) => {
  *  ];
  *
  */
-export const sortSerialiser = ({ index, direction }, columns) => {
-  console.log({ index, direction }, columns);
-  return `${columns[index].sortable}:${direction}`;
-};
+export const sortSerialiser = ({ index, direction }, columns) =>
+  `${columns[index].sortable}:${direction}`;

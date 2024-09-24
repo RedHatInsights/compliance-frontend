@@ -17,7 +17,7 @@ const useEventHandlers = ({
       );
       onFilterUpdateCallback?.();
     },
-    [filterConfig]
+    [filterConfig, select, onFilterUpdateCallback]
   );
 
   const onFilterDelete = useCallback(
@@ -29,7 +29,15 @@ const useEventHandlers = ({
         : deselect(...toDeselectValue(filterConfig, chips[0], activeFilters));
       onDeleteFilter?.(chips, clearAll);
     },
-    [filterConfig, activeFilters, onDeleteFilter]
+    [
+      filterConfig,
+      activeFilters,
+      onDeleteFilter,
+      reset,
+      clear,
+      deselect,
+      resetOnClear,
+    ]
   );
 
   return { onFilterUpdate, onFilterDelete };

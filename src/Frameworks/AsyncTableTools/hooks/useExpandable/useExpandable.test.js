@@ -19,8 +19,8 @@ describe('useExpandable', () => {
     const { result } = renderHook(() => useExpandable(defaultOptions));
 
     expect(result.current).toEqual({
-      openItem: expect.any(Function),
       openItems: [],
+      openItem: expect.any(Function),
       tableProps: {
         onCollapse: expect.any(Function),
       },

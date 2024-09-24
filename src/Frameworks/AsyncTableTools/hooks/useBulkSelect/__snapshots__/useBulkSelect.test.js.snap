@@ -4,8 +4,6 @@ exports[`useBulkSelect returns a bulk select configuration 1`] = `
 {
   "current": {
     "markRowSelected": [Function],
-    "selectNone": [Function],
-    "selectedIds": [],
     "tableProps": {
       "canSelectAll": false,
       "onSelect": undefined,

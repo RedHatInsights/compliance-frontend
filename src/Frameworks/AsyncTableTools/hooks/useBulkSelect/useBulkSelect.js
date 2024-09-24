@@ -9,15 +9,30 @@ import {
 } from './helpers';
 
 /**
+ *  @typedef {object} useBulkSelectReturn
+ *
+ *  @property {Function} [markRowSelected] "Transformer" function to be passed to the rowsBuilder
+ *  @property {object}   [toolbarProps]    Object containing PrimaryToolbar props
+ *  @property {object}   [tableProps]      Object containing Patternfly (v4) Table props
+ *
+ */
+
+/**
  * Provides properties for a Pattternfly (based) Table and Toolbar component to implement bulk selection
  *
- * @param {number} [total] Number to show as total count
- * @param {Function} [onSelect] function to call when a selection is made
- * @param {Array} [preselected] Array of itemIds selected when initialising
- * @param {Function} [itemIdsInTable] async function that returns an array of all item ids
- * @param {Array} [itemIdsOnPage] Array of item ids visible on the page
- * @param {string} [identifies] Prop of the row containing the item ID
- * @returns {{ selectedIds , selectNone, tableProps }}
+ *  @param   {object}              [options]                AsyncTableTools options
+ *  @param   {number}              [options.total]          Number to show as total count
+ *  @param   {Function}            [options.onSelect]       function to call when a selection is made
+ *  @param   {Array}               [options.preselected]    Array of itemIds selected when initialising
+ *  @param   {Function}            [options.itemIdsInTable] Function to call to retrieve IDs when "Select All" is chosen
+ *  @param   {Array}               [options.itemIdsOnPage]  Array of item ids visible on the page
+ *  @param   {string}              [options.identifier]     Property of the items that should be used as ID to select them
+ *
+ *  @returns {useBulkSelectReturn}                          Functions and props to use for setting up bulk selection
+ *
+ *  @category AsyncTableTools
+ *  @subcategory Hooks
+ *
  */
 const useBulkSelect = ({
   total = 0,
@@ -36,7 +51,7 @@ const useBulkSelect = ({
     clear,
   } = useSelectionManager(preselected);
   const selectedIdsTotal = (selectedIds || []).length;
-  const paginatedTotal = itemIdsOnPage.length || total;
+  const paginatedTotal = itemIdsOnPage?.length || total;
   const allSelected = selectedIdsTotal === total;
   const noneSelected = selectedIdsTotal === 0;
   const currentPageSelected = checkCurrentPageSelected(
@@ -53,12 +68,12 @@ const useBulkSelect = ({
   const selectOne = useCallback(
     (_, _selected, _key, row) =>
       row.selected ? deselect(row[identifier]) : select(row[identifier]),
-    [select, deselect]
+    [select, deselect, identifier]
   );
   const selectPage = useCallback(
     () =>
       !currentPageSelected ? select(itemIdsOnPage) : deselect(itemIdsOnPage),
-    [select, deselect]
+    [select, deselect, itemIdsOnPage, currentPageSelected]
   );
 
   const selectAll = async () => {
@@ -76,8 +91,6 @@ const useBulkSelect = ({
 
   return enableBulkSelect
     ? {
-        selectedIds,
-        selectNone: clear,
         markRowSelected,
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
@@ -90,7 +103,7 @@ const useBulkSelect = ({
             items: [
               {
                 title: 'Select none',
-                onClick: () => clear(),
+                onClick: clear,
                 props: {
                   isDisabled: noneSelected,
                 },
