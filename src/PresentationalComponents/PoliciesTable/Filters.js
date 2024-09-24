@@ -7,4 +7,5 @@ export const nameFilter = {
     policies.filter((policy) =>
       policy.name.toLowerCase().includes(value.toLowerCase())
     ),
+  filterAttribute: 'title',
 };

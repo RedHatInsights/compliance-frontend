@@ -7,20 +7,20 @@ export const paginationSerialiser = (state) => {
 };
 
 const textFilterSerialiser = (filterConfigItem, value) =>
-  `${filterConfigItem.filterAttribute} ~ '${value}'`;
+  `${filterConfigItem.filterAttribute} ~ ${value}`;
 
 const checkboxFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} IN (${values
-    .map((value) => `'${value}'`)
+    .map((value) => `${value}`)
     .join(', ')})`;
 
-const raidoFilterSerialiser = (filterConfigItem, values) =>
-  `${filterConfigItem.filterAttribute} = '${values[0]}'`;
+const radioFilterSerialiser = (filterConfigItem, values) =>
+  `${filterConfigItem.filterAttribute} = ${values[0]}`;
 
 const filterSerialisers = {
   text: textFilterSerialiser,
   checkbox: checkboxFilterSerialiser,
-  radio: raidoFilterSerialiser,
+  radio: radioFilterSerialiser,
 };
 
 const findFilterSerialiser = (filterConfigItem) => {
