@@ -1,5 +1,7 @@
 exclude_patterns:
+  - ".github"
   - "src/__fixtures__/*.js"
+  - "src/__factories__/*.js"
   - "src/**/*.test.js"
   - "src/**/*.cy.js"
 
