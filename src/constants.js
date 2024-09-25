@@ -316,11 +316,12 @@ export const systemsDataMapper = {
 };
 
 export const reportDataMap = {
-  title: 'policy.name',
+  id: 'id',
+  title: 'policy.name;name',
   business_objective: 'businessObjective',
   compliance_threshold: 'complianceThreshold',
   os_major_version: 'osMajorVersion',
-  profile_title: 'name;policyType', // REST api does not return policyType. Thus, re-using profile_title
+  profile_title: 'policyType', // REST api does not return policyType. Thus, re-using profile_title
   ref_id: 'refId',
   assigned_system_count: 'totalHostCount',
   reported_system_count: 'testResultHostCount',
