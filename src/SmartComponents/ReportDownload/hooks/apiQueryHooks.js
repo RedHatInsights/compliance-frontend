@@ -5,6 +5,7 @@ import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { apiInstance } from '../../../Utilities/hooks/useQuery';
 import dataSerialiser from '../../../Utilities/dataSerialiser';
 import concat from 'lodash/concat';
+import { calculateOffset } from '@/Utilities/helpers';
 
 const COMPLIANT_SYSTEMS_FILTER = 'compliant = true';
 const NON_COMPLIANT_SYSTEMS_FILTER = 'compliant = false';
@@ -36,6 +37,11 @@ const reportSystemsDataMapper = {
 const failedRulesDataMapper = {
   count: 'failedCount',
   ref_id: 'refId',
+  id: 'id',
+  title: 'title',
+  'identifier.label': 'identifier.label',
+  'identifier.system': 'identifier.system',
+  severity: 'severity',
 };
 
 const useFetchBatched = () => {
@@ -136,7 +142,14 @@ export const useFetchFailedRulesRest = ({ id: reportId } = {}) => {
 const useFetchReportTestResults = (reportId, filter) =>
   useCallback((perPage, page) =>
     apiInstance
-      .reportTestResults(reportId, undefined, perPage, page, undefined, filter)
+      .reportTestResults(
+        reportId,
+        undefined,
+        perPage,
+        calculateOffset(page, perPage),
+        undefined,
+        filter
+      )
       .then(({ data: { data } = {} }) =>
         dataSerialiser(data || [], testResultDataMapper)
       )
@@ -145,7 +158,14 @@ const useFetchReportTestResults = (reportId, filter) =>
 const useFetchReportSystems = (reportId, filter) =>
   useCallback((perPage, page) =>
     apiInstance
-      .reportSystems(reportId, undefined, perPage, page, undefined, filter)
+      .reportSystems(
+        reportId,
+        undefined,
+        perPage,
+        calculateOffset(page, perPage),
+        undefined,
+        filter
+      )
       .then(({ data: { data } = {} }) =>
         dataSerialiser(data || [], reportSystemsDataMapper)
       )

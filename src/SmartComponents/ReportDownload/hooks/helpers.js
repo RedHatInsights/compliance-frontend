@@ -136,7 +136,7 @@ export const prepareForExportRest = (
     compliantSystems.length +
     nonCompliantSystems.length +
     unsupportedSystems.length +
-    nonCompliantSystems.length;
+    nonReportingSystems.length;
 
   return buildExportData({
     exportSettings,
