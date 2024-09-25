@@ -146,9 +146,9 @@ export const SystemsTable = ({
   };
 
   const fetchSystems = useFetchSystemsV2(
+    fetchApi,
     onComplete,
     onError,
-    fetchApi,
     systemFetchArguments
   );
 
