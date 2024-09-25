@@ -6,25 +6,24 @@ import {
   useFetchFailedRulesRest,
 } from './apiQueryHooks';
 import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
-import { useCallback } from 'react';
 
 const useExportDataGraphQL = (report, exportSettings) => {
   const fetchSystems = useSystemsFetch(report);
   const fetchRules = useFetchRules(report);
 
-  return useCallback(async () => {
+  return async () => {
     const systems = await fetchSystems();
     const rules = await fetchRules();
 
     return prepareForExportGraphQL(exportSettings, systems, rules);
-  }, [report, exportSettings, fetchSystems, fetchRules]);
+  };
 };
 
 const useExportDataRest = (report, exportSettings) => {
   const fetchSystems = useSystemsFetchRest(report);
   const fetchRules = useFetchFailedRulesRest(report);
 
-  return useCallback(async () => {
+  return async () => {
     const [
       compliantSystems,
       nonCompliantSystems,
@@ -42,7 +41,7 @@ const useExportDataRest = (report, exportSettings) => {
       neverReported,
       topTenFailedRules
     );
-  }, [report, exportSettings, fetchSystems, fetchRules]);
+  };
 };
 
 // Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
