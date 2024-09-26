@@ -107,7 +107,8 @@ export const SystemsTable = ({
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
-    toolbarProps: bulkSelectToolBarProps,
+    // eslint-disable-next-line no-unused-vars
+    toolbarProps: bulkSelectToolBarProps, //enable when filtering api endpoints by ID is possible. RHINENG-12138
   } = useSystemBulkSelect({
     total,
     perPage,
@@ -164,6 +165,7 @@ export const SystemsTable = ({
     fetchArguments: {
       ...systemFetchArguments,
     },
+    fetchApi,
   });
 
   return (
@@ -213,7 +215,7 @@ export const SystemsTable = ({
           }}
           fallback={<Spinner />}
           {...(compact ? { variant: 'compact' } : {})}
-          {...bulkSelectToolBarProps}
+          // {...bulkSelectToolBarProps} //enable when filtering api endpoints by ID is possible. RHINENG-12138
           {...(!showAllSystems && {
             ...conditionalFilter,
             ...(remediationsEnabled && {
