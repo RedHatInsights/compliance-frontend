@@ -286,15 +286,31 @@ export const backgroundColors = {
 
 export const systemsDataMapper = {
   display_name: 'name',
-  culled_timestamp: 'culledTimestamp',
+  culled_timestamp: 'culled_timestamp',
   os_major_version: 'osMajorVersion',
   os_minor_version: 'osMinorVersion',
-  stale_timestamp: 'staleTimestamp',
-  stale_warning_timestamp: 'staleWarningTimestamp',
-  'policies[0].title': 'policies[0].name',
-  groups: 'groups',
+  stale_timestamp: 'stale_timestamp',
+  stale_warning_timestamp: 'stale_warning_timestamp',
+  policies: {
+    policies: {
+      id: 'id',
+      title: 'name',
+    },
+  },
+  groups: {
+    groups: {
+      id: 'id',
+      name: 'name',
+    },
+  },
   id: 'id',
-  insights_id: 'insights_id',
-  tags: 'tags',
+  insights_id: 'insightsId',
+  tags: {
+    tags: {
+      key: 'key',
+      value: 'value',
+      namespace: 'namespace',
+    },
+  },
   updated: 'updated',
 };

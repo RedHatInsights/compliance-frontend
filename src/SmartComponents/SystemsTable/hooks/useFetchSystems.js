@@ -113,15 +113,16 @@ export const useFetchSystemsV2 = (
           combinedVariables
         );
 
-        const serialisedData = {
+        const result = {
           entities: data,
           meta: {
             ...(requestVariables?.tags && { tags: requestVariables.tags }),
             totalCount: meta.total || 0,
           },
         };
-        onComplete?.(serialisedData);
-        return serialisedData;
+
+        onComplete?.(result);
+        return result;
       } catch (error) {
         if (onError) {
           onError(error);

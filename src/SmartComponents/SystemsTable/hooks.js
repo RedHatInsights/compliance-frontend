@@ -228,6 +228,7 @@ export const useSystemsExport = ({
   total,
   fetchArguments = {},
   dataMap,
+  fetchApi,
 }) => {
   const { isLoading, fetchBatched } = useFetchBatched();
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -252,16 +253,12 @@ export const useSystemsExport = ({
     onError,
   });
 
-  const fetchSystemsRest = useFetchSystemsV2({
-    dataMap,
-    systemFetchArguments: {
-      ...fetchArguments?.variables,
-      ...(fetchArguments.tags && { tags: fetchArguments.tags }),
-      filter: selectionFilter
-        ? `${fetchArguments.filter} and (${selectionFilter})`
-        : fetchArguments?.filter,
-    },
-    onError,
+  const fetchSystemsRest = useFetchSystemsV2(fetchApi, dataMap, null, onError, {
+    ...fetchArguments?.variables,
+    ...(fetchArguments.tags && { tags: fetchArguments.tags }),
+    filter: selectionFilter
+      ? `${fetchArguments.filter} and (${selectionFilter})`
+      : fetchArguments?.filter,
   });
 
   const selectedFilter = () =>

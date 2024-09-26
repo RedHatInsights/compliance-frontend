@@ -16,6 +16,12 @@ const createNestedTestObject = () => ({
     ref_id: faker.lorem.slug(5),
     type: faker.lorem.words(3),
   },
+  policies: [
+    {
+      id: id(),
+      title: faker.lorem.words(1),
+    },
+  ],
 });
 
 describe('without map', () => {
@@ -104,6 +110,31 @@ describe('nested object with multiple output paths', () => {
       policy: {
         id: obj.id,
       },
+    });
+  });
+});
+
+describe('nested object with a value of an array type', () => {
+  it('should serialize correctly', () => {
+    const dataMap = {
+      name: 'name',
+      policies: {
+        policies: {
+          id: 'id',
+          title: 'name',
+        },
+      },
+    };
+
+    const obj = createNestedTestObject();
+    expect(dataSerialiser(obj, dataMap)).toEqual({
+      name: obj.name,
+      policies: [
+        {
+          id: obj.policies[0].id,
+          name: obj.policies[0].title,
+        },
+      ],
     });
   });
 });
