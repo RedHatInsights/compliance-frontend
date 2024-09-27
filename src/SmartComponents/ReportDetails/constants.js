@@ -32,6 +32,7 @@ export const QUERY = gql`
 `;
 
 export const dataMap = {
+  id: 'id',
   title: 'name',
   business_objective: 'businessObjective.title',
   compliance_threshold: 'complianceThreshold',

@@ -7,8 +7,8 @@ import dataSerialiser from '../../../Utilities/dataSerialiser';
 import concat from 'lodash/concat';
 import { calculateOffset } from '@/Utilities/helpers';
 
-const COMPLIANT_SYSTEMS_FILTER = 'compliant = true';
-const NON_COMPLIANT_SYSTEMS_FILTER = 'compliant = false';
+const COMPLIANT_SYSTEMS_FILTER = 'compliant = true and supported = true';
+const NON_COMPLIANT_SYSTEMS_FILTER = 'compliant = false and supported = true';
 const UNSUPPORTED_SYSTEMS_FILTER = 'supported = false';
 const NOT_REPORTING_SYSTEMS_FILTER = 'never_reported = true';
 
@@ -86,17 +86,14 @@ export const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
     [client, GET_SYSTEMS, policyId]
   );
 
-  return useCallback(
-    async () =>
-      (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
-        ({
-          data: {
-            systems: { edges },
-          },
-        }) => edges.map(({ node }) => node)
-      ),
-    [totalHostCount]
-  );
+  return async () =>
+    (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
+      ({
+        data: {
+          systems: { edges },
+        },
+      }) => edges.map(({ node }) => node)
+    );
 };
 
 export const useFetchRules = ({ id: policyId } = {}) => {
@@ -118,13 +115,10 @@ export const useFetchRules = ({ id: policyId } = {}) => {
     [client, GET_RULES, policyId]
   );
 
-  return useCallback(
-    async () =>
-      (await fetchFunction()).data.profiles?.edges.flatMap(
-        (edge) => edge.node.topFailedRules
-      ),
-    []
-  );
+  return async () =>
+    (await fetchFunction()).data.profiles?.edges.flatMap(
+      (edge) => edge.node.topFailedRules
+    );
 };
 
 export const useFetchFailedRulesRest = ({ id: reportId } = {}) => {
@@ -140,35 +134,39 @@ export const useFetchFailedRulesRest = ({ id: reportId } = {}) => {
 };
 
 const useFetchReportTestResults = (reportId, filter) =>
-  useCallback((perPage, page) =>
-    apiInstance
-      .reportTestResults(
-        reportId,
-        undefined,
-        perPage,
-        calculateOffset(page, perPage),
-        undefined,
-        filter
-      )
-      .then(({ data: { data } = {} }) =>
-        dataSerialiser(data || [], testResultDataMapper)
-      )
+  useCallback(
+    (perPage, page) =>
+      apiInstance
+        .reportTestResults(
+          reportId,
+          undefined,
+          perPage,
+          calculateOffset(page, perPage),
+          undefined,
+          filter
+        )
+        .then(({ data: { data } = {} }) =>
+          dataSerialiser(data || [], testResultDataMapper)
+        ),
+    [reportId, filter]
   );
 
 const useFetchReportSystems = (reportId, filter) =>
-  useCallback((perPage, page) =>
-    apiInstance
-      .reportSystems(
-        reportId,
-        undefined,
-        perPage,
-        calculateOffset(page, perPage),
-        undefined,
-        filter
-      )
-      .then(({ data: { data } = {} }) =>
-        dataSerialiser(data || [], reportSystemsDataMapper)
-      )
+  useCallback(
+    (perPage, page) =>
+      apiInstance
+        .reportSystems(
+          reportId,
+          undefined,
+          perPage,
+          calculateOffset(page, perPage),
+          undefined,
+          filter
+        )
+        .then(({ data: { data } = {} }) =>
+          dataSerialiser(data || [], reportSystemsDataMapper)
+        ),
+    [reportId, filter]
   );
 
 export const useSystemsFetchRest = ({
