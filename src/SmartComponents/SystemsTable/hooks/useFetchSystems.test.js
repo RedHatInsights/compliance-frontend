@@ -186,7 +186,7 @@ describe('useFetchSystems', () => {
   });
 });
 
-describe.only('useFetchSystemsV2', () => {
+describe('useFetchSystemsV2', () => {
   const fetchApi = jest.fn(() =>
     Promise.resolve({ data: { someVar: 'someVal' }, meta: { total: 1 } })
   );

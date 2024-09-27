@@ -98,7 +98,7 @@ export const useFetchSystemsV2 = (
   onError,
   systemFetchArguments = {}
 ) => {
-  return useCallback(
+  const fetchSystems = useCallback(
     async (perPage, page, requestVariables) => {
       const combinedVariables = combineVariables(
         systemFetchArguments,
@@ -133,4 +133,6 @@ export const useFetchSystemsV2 = (
     },
     [systemFetchArguments, onComplete, onError, fetchApi]
   );
+
+  return fetchSystems;
 };
