@@ -6,6 +6,7 @@ import { BENCHMARKS_QUERY } from './constants';
 import EditPolicyForm from './EditPolicyForm';
 import { useNewRulesAlertState } from './hooks';
 
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => false));
 jest.mock('./hooks', () => ({
   ...jest.requireActual('./hooks'),
   useNewRulesAlertState: jest.fn(() => [false, () => false]),

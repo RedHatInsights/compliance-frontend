@@ -1,6 +1,12 @@
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { useApolloClient } from '@apollo/client';
-import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
+import {
+  useGetEntities,
+  useSystemsFilter,
+  useSystemsExport,
+  useOsMinorVersionFilterRest,
+} from './hooks';
+import { apiInstance } from '@/Utilities/hooks/useQuery';
 
 jest.mock('Utilities/Dispatcher');
 jest.mock('@apollo/client', () => ({
@@ -9,6 +15,12 @@ jest.mock('@apollo/client', () => ({
     query: () => Promise.resolve([]),
   })),
 }));
+jest.mock('@/Utilities/hooks/useQuery', () => ({
+  __esModule: true,
+  ...jest.requireActual('@/Utilities/hooks/useQuery'),
+  apiInstance: { systemsOS: jest.fn(() => Promise.resolve([])) },
+}));
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => false));
 
 describe('useSystemsFilter', () => {
   it('returns a filter string', () => {
@@ -145,6 +157,48 @@ describe('useGetEntities', () => {
     expect(mockFetch).toHaveBeenCalledWith(10, 1, {
       filters: undefined,
       sortBy: ['nameAttribute:ASC'],
+    });
+  });
+});
+
+describe('useOsMinorVersionFilterRest', () => {
+  it('should fetch and prepare an empty filter', async () => {
+    const { result } = renderHook(() =>
+      useOsMinorVersionFilterRest(true, { filter: 'some-filter' })
+    );
+
+    await waitFor(() => expect(result.current).not.toEqual([]));
+    expect(result.current[0].items[0]).toEqual(
+      expect.objectContaining({
+        isDisabled: true,
+      })
+    );
+    expect(result.current[0].items[0].items[0]).toEqual(
+      expect.objectContaining({
+        label: (
+          <div className="ins-c-osfilter__no-os">No OS versions available</div>
+        ),
+      })
+    );
+  });
+
+  it('should fetch and prepare the filter with items', async () => {
+    apiInstance.systemsOS.mockReturnValue(Promise.resolve(['7.8']));
+    const { result } = renderHook(() =>
+      useOsMinorVersionFilterRest(true, { filter: 'some-filter' })
+    );
+
+    await waitFor(() => expect(result.current).not.toEqual([]));
+    expect(result.current[0].items[0]).toEqual({
+      groupSelectable: true,
+      items: [
+        {
+          label: 'RHEL 7.8',
+          value: '8',
+        },
+      ],
+      label: 'RHEL 7',
+      value: 7,
     });
   });
 });

@@ -51,8 +51,8 @@ export const GET_SYSTEMS_OSES = gql`
   }
 `;
 
-export const policyFilter = (policies, osFilter) => [
-  ...systemsPolicyFilterConfiguration(policies),
+export const policyFilter = (policies, osFilter, filterKey) => [
+  ...systemsPolicyFilterConfiguration(policies, filterKey),
   ...(osFilter ? systemsOsFilterConfiguration(policies) : []),
 ];
 
@@ -69,14 +69,44 @@ export const defaultOnLoad =
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
 
-export const ssgVersionFilter = (ssgVersions) => [
+export const SSG_VERSION_FILTER_KEY_GRAPHQL = 'ssg_version';
+export const SSG_VERSION_FILTER_KEY_REST = 'security_guide_version';
+export const ssgVersionFilter = (
+  ssgVersions,
+  filter_key = SSG_VERSION_FILTER_KEY_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'SSG Version',
-    filterString: (value) => `ssg_version = ${value}`,
+    filterString: (value) => `${filter_key} = ${value}`,
     items: ssgVersions.map((ssgVersion) => ({
       label: ssgVersion,
       value: ssgVersion,
     })),
   },
 ];
+
+export const mergedColumns = (columns) => (defaultColumns) =>
+  columns.reduce((prev, column) => {
+    const isStringCol = typeof column === 'string';
+    const key = isStringCol ? column : column.key;
+    const defaultColumn = defaultColumns.find(
+      (defaultCol) => defaultCol.key === key
+    );
+
+    if (defaultColumn === undefined && column?.requiresDefault === true) {
+      return prev; // exclude if not found in inventory
+    } else {
+      return [
+        ...prev,
+        {
+          ...defaultColumn,
+          ...(isStringCol ? { key: column } : column),
+          props: {
+            ...defaultColumn?.props,
+            ...column?.props,
+          },
+        },
+      ];
+    }
+  }, []);

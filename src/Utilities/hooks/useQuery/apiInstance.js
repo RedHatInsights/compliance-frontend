@@ -9,6 +9,8 @@ import deletePolicy from '@redhat-cloud-services/compliance-client/dist/DeletePo
 import report from '@redhat-cloud-services/compliance-client/dist/Report';
 import reports from '@redhat-cloud-services/compliance-client/dist/Reports';
 import deleteReport from '@redhat-cloud-services/compliance-client/dist/DeleteReport';
+import systemsOS from '@redhat-cloud-services/compliance-client/dist/SystemsOS';
+
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
 
@@ -25,6 +27,7 @@ const apiInstance = APIFactory(
     deleteReport,
     report,
     reports,
+    systemsOS,
   },
   instance
 );

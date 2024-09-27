@@ -202,3 +202,16 @@ export const logMultipleErrors = (...errors) => {
 
   return errors?.filter((v) => !!v).length > 0 || undefined;
 };
+
+export const buildOSObject = (osVersions = []) => {
+  return osVersions
+    .filter((version) => !!version && typeof version === 'string')
+    .map((version) => {
+      const [major, minor] = version.split('.');
+      return {
+        name: 'RHEL',
+        major,
+        minor,
+      };
+    });
+};

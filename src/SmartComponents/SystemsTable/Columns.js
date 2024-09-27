@@ -45,13 +45,14 @@ export const Name = compileColumnRenderFunc({
   cell: NameCell,
 });
 
-export const customName = (props) => ({
+export const customName = (props, columnConfig) => ({
   ...Name,
   props: {
     ...Name.props,
     ...props,
   },
   renderFunc: renderComponent(NameCell, props),
+  ...columnConfig,
 });
 
 export const SsgVersion = {

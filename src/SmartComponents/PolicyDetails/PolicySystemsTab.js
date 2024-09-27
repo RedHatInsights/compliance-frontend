@@ -27,6 +27,7 @@ const PolicySystemsTab = ({ policy }) => {
       }
       complianceThreshold={policy.complianceThreshold}
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
+      apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
     />
   );
 };

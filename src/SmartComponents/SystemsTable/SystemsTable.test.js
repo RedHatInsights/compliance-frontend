@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-import { SystemsTable } from './SystemsTable';
+import { SystemsTable } from './SystemsTableRest';
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => false));
 
 describe('SystemsTable', () => {
   it('returns an Inventory Table', () => {

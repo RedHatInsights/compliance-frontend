@@ -1,4 +1,9 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useCallback,
+} from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -9,7 +14,10 @@ import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
-import useFetchSystems from './hooks/useFetchSystems';
+import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
+import { buildOSObject } from '../../Utilities/helpers';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -40,6 +48,18 @@ export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
 
   return showFilter
     ? osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
+    : [];
+};
+
+export const useOsMinorVersionFilterRest = (
+  showFilter,
+  fetchArguments = {}
+) => {
+  let { data = [] } = useOperatingSystemsQuery(fetchArguments);
+  const osMapArray = buildOSObject(data);
+
+  return showFilter
+    ? osMinorVersionFilter(groupByMajorVersion(osMapArray, showFilter))
     : [];
 };
 
@@ -137,6 +157,7 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       ...filterForApi,
       sortBy,
     });
+
     const {
       entities,
       meta: { totalCount },
@@ -205,26 +226,39 @@ export const useSystemsExport = ({
   columns,
   selected,
   total,
-  fetchArguments,
+  fetchArguments = {},
+  dataMap,
+  fetchApi,
 }) => {
   const { isLoading, fetchBatched } = useFetchBatched();
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
-  const fetchSystems = useFetchSystems({
+  const onError = useCallback(() => {
+    dispatchNotification({
+      variant: 'danger',
+      title: 'Couldn’t download export',
+      description: 'Reinitiate this export to try again.',
+    });
+  }, []);
+
+  const fetchSystemsGraphQL = useFetchSystems({
     query: fetchArguments.query,
     variables: {
-      ...fetchArguments.variables,
+      ...fetchArguments?.variables,
       ...(fetchArguments.tags && { tags: fetchArguments.tags }),
       filter: selectionFilter
-        ? `${fetchArguments.variables.filter} and (${selectionFilter})`
-        : fetchArguments.variables.filter,
+        ? `${fetchArguments.variables?.filter} and (${selectionFilter})`
+        : fetchArguments.variables?.filter,
     },
-    onError: () => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Couldn’t download export',
-        description: 'Reinitiate this export to try again.',
-      });
-    },
+    onError,
+  });
+
+  const fetchSystemsRest = useFetchSystemsV2(fetchApi, dataMap, null, onError, {
+    ...fetchArguments?.variables,
+    ...(fetchArguments.tags && { tags: fetchArguments.tags }),
+    filter: selectionFilter
+      ? `${fetchArguments.filter} and (${selectionFilter})`
+      : fetchArguments?.filter,
   });
 
   const selectedFilter = () =>
@@ -232,7 +266,7 @@ export const useSystemsExport = ({
 
   const exporter = async () => {
     const fetchedItems = await fetchBatched(
-      fetchSystems,
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
       total,
       selectedFilter()
     );
@@ -246,19 +280,19 @@ export const useSystemsExport = ({
     exporter,
     columns,
     isDisabled: total === 0 || isLoading,
-    onStart: () => {
+    onStart: useCallback(() => {
       dispatchNotification({
         variant: 'info',
         title: 'Preparing export',
         description: 'Once complete, your download will start automatically.',
       });
-    },
-    onComplete: () => {
+    }, []),
+    onComplete: useCallback(() => {
       dispatchNotification({
         variant: 'success',
         title: 'Downloading export',
       });
-    },
+    }, []),
   });
 
   return exportConfig;
@@ -270,20 +304,31 @@ export const useSystemBulkSelect = ({
   preselected,
   fetchArguments,
   currentPageIds,
+  dataMap,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
+  const apiV2Enabled = false; //TODO: enable REST when the API implements ID search over endpoints. Use this hook => useAPIV2FeatureFlag();
   // This is meant as a compatibility layer and to be removed
   const [selectedSystems, setSelectedSystems] = useState([]);
-  const fetchSystems = useFetchSystems({
+
+  const onError = useCallback((error) => {
+    dispatchNotification({
+      variant: 'danger',
+      title: 'Error selecting systems',
+      description: error.message,
+    });
+  }, []);
+
+  const fetchSystemsGraphQL = useFetchSystems({
     ...fetchArguments,
-    onError: (error) => {
-      dispatchNotification({
-        variant: 'danger',
-        title: 'Error selecting systems',
-        description: error.message,
-      });
-    },
+    onError,
+  });
+
+  const fetchSystemsRest = useFetchSystemsV2({
+    dataMap,
+    systemFetchArguments: fetchArguments,
+    onError,
   });
 
   const fetchFunc = async (fetchIds) => {
@@ -292,9 +337,13 @@ export const useSystemBulkSelect = ({
     }
 
     const idFilter = toIdFilter(fetchIds);
-    const results = await fetchBatched(fetchSystems, fetchIds.length, {
-      ...(idFilter && { exclusiveFilter: idFilter }),
-    });
+    const results = await fetchBatched(
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+      fetchIds.length,
+      {
+        ...(idFilter && { exclusiveFilter: idFilter }),
+      }
+    );
 
     return results.flatMap((result) => result.entities);
   };
@@ -310,7 +359,10 @@ export const useSystemBulkSelect = ({
   };
 
   const itemIdsInTable = async () => {
-    const results = await fetchBatched(fetchSystems, total);
+    const results = await fetchBatched(
+      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+      total
+    );
     return results.flatMap((result) => result.entities.map(({ id }) => id));
   };
 

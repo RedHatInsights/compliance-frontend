@@ -8,6 +8,10 @@ import PageHeader, {
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from '../../Utilities/dataSerialiser';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
+import { systemsDataMapper } from '../../constants';
 
 export const QUERY = gql`
   {
@@ -23,11 +27,27 @@ export const QUERY = gql`
   }
 `;
 
-const DEFAULT_FILTER = 'has_test_results = true or has_policy = true';
+const DEFAULT_FILTER_GRAPHQL = 'has_test_results = true or has_policy = true';
+const DEFAULT_FILTER_REST = 'assigned_or_scanned=true';
+
+const fetchApi = async (page, perPage, combinedVariables) =>
+  apiInstance
+    .systems(
+      undefined,
+      perPage,
+      page,
+      combinedVariables.sortBy,
+      combinedVariables.filter
+    )
+    .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
+      data: dataSerialiser(data, systemsDataMapper),
+      meta,
+    }));
 
 export const ComplianceSystems = () => {
   const { data, error, loading } = useQuery(QUERY);
   const policies = data?.profiles?.edges.map(({ node }) => node);
+  const apiV2Enabled = useAPIV2FeatureFlag();
 
   return (
     <React.Fragment>
@@ -40,9 +60,12 @@ export const ComplianceSystems = () => {
             {policies && (
               <SystemsTable
                 columns={[
-                  Columns.customName({
-                    showLink: true,
-                  }),
+                  Columns.customName(
+                    {
+                      showLink: true,
+                    },
+                    { sortBy: apiV2Enabled ? ['display_name'] : ['name'] }
+                  ),
                   Columns.inventoryColumn('groups', {
                     requiresDefault: true,
                     sortBy: ['groups'],
@@ -55,7 +78,9 @@ export const ComplianceSystems = () => {
                     transforms: [nowrap],
                   }),
                 ]}
-                defaultFilter={DEFAULT_FILTER}
+                defaultFilter={
+                  apiV2Enabled ? DEFAULT_FILTER_REST : DEFAULT_FILTER_GRAPHQL
+                }
                 systemProps={{
                   isFullView: true,
                 }}
@@ -67,6 +92,8 @@ export const ComplianceSystems = () => {
                 remediationsEnabled={false}
                 policies={policies}
                 showGroupsFilter
+                fetchApi={fetchApi}
+                apiV2Enabled={apiV2Enabled}
               />
             )}
           </StateViewPart>

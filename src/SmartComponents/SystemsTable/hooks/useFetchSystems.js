@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client';
 import { systemsWithRuleObjectsFailed } from 'Utilities/ruleHelpers';
+import { useCallback } from 'react';
 
 const renameInventoryAttributes = ({
   culledTimestamp,
@@ -91,4 +92,47 @@ export const useFetchSystems = ({ query, onComplete, variables, onError }) => {
   };
 };
 
-export default useFetchSystems;
+export const useFetchSystemsV2 = (
+  fetchApi,
+  onComplete,
+  onError,
+  systemFetchArguments = {}
+) => {
+  const fetchSystems = useCallback(
+    async (perPage, page, requestVariables) => {
+      const combinedVariables = combineVariables(
+        systemFetchArguments,
+        requestVariables
+      );
+      const offset = (page - 1) * perPage;
+
+      try {
+        const { data, meta } = await fetchApi(
+          offset,
+          perPage,
+          combinedVariables
+        );
+
+        const result = {
+          entities: data,
+          meta: {
+            ...(requestVariables?.tags && { tags: requestVariables.tags }),
+            totalCount: meta.total || 0,
+          },
+        };
+
+        onComplete?.(result);
+        return result;
+      } catch (error) {
+        if (onError) {
+          onError(error);
+        } else {
+          throw error;
+        }
+      }
+    },
+    [systemFetchArguments, onComplete, onError, fetchApi]
+  );
+
+  return fetchSystems;
+};

@@ -69,6 +69,7 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
         remediationsEnabled={false}
         preselectedSystems={selectedSystems}
         onSelect={onSystemSelect}
+        apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
       />
     </React.Fragment>
   );
