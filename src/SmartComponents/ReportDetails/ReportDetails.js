@@ -208,7 +208,6 @@ const ReportDetailsRest = ({ route }) => {
   const { report_id: policyId } = useParams();
   const { data: { data } = {}, error, loading } = useReport(policyId);
 
-  console.log(dataSerialiser(data, dataMap), 'debug rest');
   return (
     <ReportDetailsBase
       {...{ route, data: dataSerialiser(data, dataMap), error, loading }}
