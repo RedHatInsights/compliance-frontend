@@ -6,7 +6,7 @@
     "appname": "compliance"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.10",
+    "@apollo/client": "^3.11.8",
     "@babel/runtime": "^7.25.6",
     "@patternfly/patternfly": "^5.4.0",
     "@patternfly/react-charts": "^7.4.0",
