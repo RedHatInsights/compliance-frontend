@@ -17,7 +17,7 @@ const serialiseObject = (object, map) => {
     return object;
   }
 
-  const result = {};
+  const result = { ...object };
 
   Object.entries(map).forEach(([key, value]) => {
     let paths = Array.isArray(value) ? value : [value];
