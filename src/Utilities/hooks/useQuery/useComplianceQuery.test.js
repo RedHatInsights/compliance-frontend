@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import useComplianceQuery from './useComplianceQuery';
 import { useSerialisedTableState } from '../../../Frameworks/AsyncTableTools/hooks/useTableState';
 import usePagination from '../../../Frameworks/AsyncTableTools/hooks/usePagination';
@@ -53,43 +53,54 @@ describe('useComplianceQuery', () => {
   beforeEach(() => {
     fakeApi.mockReset();
   });
-  it('verifies pagination', () => {
+  it('verifies pagination', async () => {
     const { result } = renderHook(() => useTableStateHelper(), {
       wrapper,
     });
 
-    expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState);
+    await waitFor(() =>
+      expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState)
+    );
 
     act(() =>
       result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2)
     );
 
-    expect(fakeApi).toHaveBeenNthCalledWith(2, {
-      ...initialSerializedState,
-      offset: 10,
-    });
+    await waitFor(() =>
+      expect(fakeApi).toHaveBeenNthCalledWith(2, {
+        ...initialSerializedState,
+        offset: 10,
+      })
+    );
+
     act(() =>
       result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50)
     );
 
-    expect(fakeApi).toHaveBeenNthCalledWith(3, {
-      ...initialSerializedState,
-      limit: 50,
-    });
+    await waitFor(() =>
+      expect(fakeApi).toHaveBeenNthCalledWith(3, {
+        ...initialSerializedState,
+        limit: 50,
+      })
+    );
   });
 
-  it('verifies sorting', () => {
+  it('verifies sorting', async () => {
     const { result } = renderHook(() => useTableStateHelper(), {
       wrapper,
     });
 
-    expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState);
+    await waitFor(() =>
+      expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState)
+    );
 
     act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
 
-    expect(fakeApi).toHaveBeenNthCalledWith(2, {
-      ...initialSerializedState,
-      sortBy: 'systems:desc',
-    });
+    await waitFor(() =>
+      expect(fakeApi).toHaveBeenNthCalledWith(2, {
+        ...initialSerializedState,
+        sortBy: 'systems:desc',
+      })
+    );
   });
 });
