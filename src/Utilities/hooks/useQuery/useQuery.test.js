@@ -1,6 +1,5 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import useQuery from './useQuery';
-
 describe('useQuery', () => {
   const apiInstance = {
     systems: jest.fn(),
@@ -10,13 +9,15 @@ describe('useQuery', () => {
     apiInstance.systems.mockReset();
   });
 
-  it('keeps loading', () => {
+  it('keeps loading', async () => {
     const { result } = renderHook(() => useQuery(() => new Promise(() => {})));
-    expect(result.current).toMatchObject({
-      data: undefined,
-      error: undefined,
-      loading: true,
-    });
+    await waitFor(() =>
+      expect(result.current).toMatchObject({
+        data: undefined,
+        error: undefined,
+        loading: true,
+      })
+    );
   });
 
   it('returns an error', async () => {
@@ -41,11 +42,13 @@ describe('useQuery', () => {
     const { result } = renderHook(() => useQuery(apiInstance.systems));
 
     // Verify query goes to loading state
-    expect(result.current).toMatchObject({
-      data: undefined,
-      error: undefined,
-      loading: true,
-    });
+    await waitFor(() =>
+      expect(result.current).toMatchObject({
+        data: undefined,
+        error: undefined,
+        loading: true,
+      })
+    );
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -70,15 +73,15 @@ describe('useQuery', () => {
 
     const originalRefetch = result.current.refetch;
 
-    expect(apiInstance.systems).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(apiInstance.systems).toHaveBeenCalledTimes(1));
 
-    await waitFor(() => {
+    await waitFor(() =>
       expect(result.current).toMatchObject({
         data,
         error: undefined,
         loading: false,
-      });
-    });
+      })
+    );
 
     // api returns different data now
     apiInstance.systems.mockResolvedValue(data2);
@@ -86,9 +89,13 @@ describe('useQuery', () => {
       result.current.refetch();
     });
 
-    expect(apiInstance.systems).toHaveBeenCalledTimes(2);
+    await waitFor(() => {
+      expect(apiInstance.systems).toHaveBeenCalledTimes(2);
+    });
+    await waitFor(() => {
+      expect(result.current.refetch).toEqual(originalRefetch);
+    });
     // Verify the function is still the same
-    expect(result.current.refetch).toEqual(originalRefetch);
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -122,7 +129,9 @@ describe('useQuery', () => {
       }
     );
 
-    expect(apiInstance.systems).toHaveBeenCalledWith(param);
+    await waitFor(() =>
+      expect(apiInstance.systems).toHaveBeenCalledWith(param)
+    );
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -136,7 +145,9 @@ describe('useQuery', () => {
     // Param changes
     rerender({ param: param2 });
 
-    expect(apiInstance.systems).toHaveBeenLastCalledWith(param2);
+    await waitFor(() =>
+      expect(apiInstance.systems).toHaveBeenLastCalledWith(param2)
+    );
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -175,7 +186,11 @@ describe('useQuery', () => {
       }
     );
 
+    // Make sure the timeout is bigger than the debounce timeout
+    // so the new mock value isn't set before the api is called
+    await new Promise((r) => setTimeout(r, 300));
     apiInstance.systems.mockResolvedValue(data2);
+
     // Param changes and skip = true
     skip = true;
     rerender({ param: param2, skip });
@@ -189,6 +204,6 @@ describe('useQuery', () => {
     });
 
     // Called only on skip = false
-    expect(apiInstance.systems).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(apiInstance.systems).toHaveBeenCalledTimes(1));
   });
 });

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 
 /**
  *
@@ -59,8 +60,10 @@ const useQuery = (fn, { params = [], skip = false } = {}) => {
     }
   }, [fnRef, paramsRef]);
 
+  const debouncedRefetch = useCallback(debounce(refetch, 200), []);
+
   useEffect(() => {
-    if (!skip) refetch();
+    if (!skip) debouncedRefetch();
   }, [JSON.stringify(paramsRef.current)]);
 
   return { data, error, loading, refetch };

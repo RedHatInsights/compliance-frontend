@@ -189,16 +189,18 @@ describe('useOsMinorVersionFilterRest', () => {
     );
 
     await waitFor(() => expect(result.current).not.toEqual([]));
-    expect(result.current[0].items[0]).toEqual({
-      groupSelectable: true,
-      items: [
-        {
-          label: 'RHEL 7.8',
-          value: '8',
-        },
-      ],
-      label: 'RHEL 7',
-      value: 7,
-    });
+    await waitFor(() =>
+      expect(result.current[0].items[0]).toEqual({
+        groupSelectable: true,
+        items: [
+          {
+            label: 'RHEL 7.8',
+            value: '8',
+          },
+        ],
+        label: 'RHEL 7',
+        value: 7,
+      })
+    );
   });
 });
