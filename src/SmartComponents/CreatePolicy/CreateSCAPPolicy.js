@@ -1,108 +1,28 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import {
-  Form,
-  FormGroup,
-  Text,
-  TextContent,
-  TextVariants,
-  Tile,
-} from '@patternfly/react-core';
-import { useQuery } from '@apollo/client';
-import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import {
-  propTypes as reduxFormPropTypes,
   formValueSelector,
   reduxForm,
+  propTypes as reduxFormPropTypes,
 } from 'redux-form';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import PolicyTypesTable from './Components/PolicyTypeTable';
-import PolicyTypeTooltip from './Components/PolicyTypeTooltip';
-import { SUPPORTED_PROFILES } from './constants';
+import { Bullseye, Spinner } from '@patternfly/react-core';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import CreateSCAPPolicyGraphQL from './CreateSCAPPolicyGraphQL';
+import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
 
-export const CreateSCAPPolicy = ({
-  change,
-  selectedProfile,
-  selectedOsMajorVersion,
-}) => {
-  const { data, error, loading } = useQuery(SUPPORTED_PROFILES, {
-    fetchPolicy: 'no-cache',
-  });
-  const isInUse = (profileRefId, benchmarkRedId) =>
-    !!data?.profiles?.edges
-      .map(({ node }) => node)
-      .find(
-        (profile) =>
-          profile.refId === profileRefId &&
-          benchmarkRedId === profile.benchmark.refId
-      );
-  const osMajorVersions = data?.osMajorVersions?.edges.map(({ node }) => node);
-  const selectedOsMajorVersionObject = osMajorVersions?.find(
-    ({ osMajorVersion }) => osMajorVersion === selectedOsMajorVersion
-  );
-  const profilesToSelect = selectedOsMajorVersionObject?.profiles.map(
-    (profile) => ({
-      ...profile,
-      disabled: isInUse(profile.refId, profile.benchmark.refId),
-    })
-  );
+const CreateSCAPPolicy = (props) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
 
-  return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
-      <StateViewPart stateKey="loading">
-        <Spinner />
-      </StateViewPart>
-      <StateViewPart stateKey="data">
-        <TextContent>
-          <Text component={TextVariants.h1} className="pf-v5-u-mb-md">
-            Create SCAP policy
-          </Text>
-          <Text className="pf-v5-u-mb-md">
-            Select the operating system and policy type for this policy.
-          </Text>
-        </TextContent>
-        <Form>
-          <FormGroup label="Operating system" isRequired fieldId="benchmark">
-            {osMajorVersions &&
-              osMajorVersions.map(({ osMajorVersion }) => (
-                <Tile
-                  key={`rhel${osMajorVersion}-select`}
-                  className="pf-v5-u-mr-md"
-                  title={`RHEL ${osMajorVersion}`}
-                  onClick={() => {
-                    change('osMajorVersion', osMajorVersion);
-                  }}
-                  isSelected={selectedOsMajorVersion === osMajorVersion}
-                  isStacked
-                />
-              ))}
-          </FormGroup>
-
-          {selectedOsMajorVersion && (
-            <FormGroup
-              isRequired
-              labelIcon={<PolicyTypeTooltip />}
-              label="Policy type"
-              fieldId="policy-type"
-            >
-              <PolicyTypesTable
-                aria-label="PolicyTypeTable"
-                profiles={profilesToSelect}
-                onChange={(policy) => {
-                  change('profile', policy);
-                  change('benchmark', policy.benchmark.id);
-                  change('selectedRuleRefIds', undefined);
-                  change('systems', []);
-                }}
-                selectedProfile={selectedProfile}
-              />
-            </FormGroup>
-          )}
-        </Form>
-      </StateViewPart>
-    </StateViewWithError>
+  return apiV2Enabled === undefined ? (
+    <Bullseye>
+      <Spinner />
+    </Bullseye>
+  ) : apiV2Enabled ? (
+    <CreateSCAPPolicyRest {...props} />
+  ) : (
+    <CreateSCAPPolicyGraphQL {...props} />
   );
 };
 
