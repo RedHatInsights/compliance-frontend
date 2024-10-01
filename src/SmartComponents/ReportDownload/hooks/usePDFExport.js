@@ -5,9 +5,9 @@ import useSupportedSsgFinder from './useSupportedSsgFinder';
 
 // Hook to provide a function that fetches the necessary data to export
 // and compile it into pages for the pdf-generator DownloadButton
-const usePDFExport = (exportSettings, policy) => {
+const usePDFExport = (exportSettings, report) => {
   const ssgFinder = useSupportedSsgFinder();
-  const queryExportData = useQueryExportData(exportSettings, policy, {
+  const queryExportData = useQueryExportData(exportSettings, report, {
     onError: () => {
       dispatchNotification({
         variant: 'danger',
@@ -22,7 +22,7 @@ const usePDFExport = (exportSettings, policy) => {
       });
     },
   });
-  const buildPDFPages = usePDFBuilder(policy);
+  const buildPDFPages = usePDFBuilder(report);
 
   const exportPDF = async () => {
     dispatchNotification({

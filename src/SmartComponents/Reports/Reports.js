@@ -14,10 +14,11 @@ import {
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import PropTypes from 'prop-types';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import { useReports } from '@/Utilities/hooks/api/useReports';
 import dataSerialiser from '@/Utilities/dataSerialiser';
-import { QUERY, dataMap } from './constants';
+import { QUERY } from './constants';
+import { reportDataMap as dataMap } from '../../constants';
+import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
 const profilesFromEdges = (data) =>
   (data?.profiles?.edges || []).map((profile) => profile.node);
@@ -90,11 +91,12 @@ const ReportsWithRest = () => {
   return <ReportsBase {...{ data, error, loading, refetch }} />;
 };
 
-const ReportsWrapper = () => {
-  const isRestApiEnabled = useAPIV2FeatureFlag();
-
-  return isRestApiEnabled ? <ReportsWithRest /> : <ReportsWithGrahpQL />;
-};
+const ReportsWrapper = () => (
+  <GatedComponents
+    RestComponent={ReportsWithRest}
+    GraphQLComponent={ReportsWithGrahpQL}
+  />
+);
 
 const ReportsWithTableStateProvider = () => (
   <TableStateProvider>

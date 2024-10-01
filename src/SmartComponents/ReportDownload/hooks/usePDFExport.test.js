@@ -7,6 +7,7 @@ import useSupportedSsgFinder from './useSupportedSsgFinder';
 
 jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
+jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
 
 jest.mock('./usePDFBuilder', () => jest.fn());
 usePDFBuilder.mockImplementation(

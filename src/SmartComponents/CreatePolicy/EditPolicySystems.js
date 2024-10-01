@@ -121,6 +121,7 @@ export const EditPolicySystems = ({
             preselectedSystems={selectedSystems}
             onSelect={onSystemSelect}
             showGroupsFilter
+            apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
           />
         </FormGroup>
       </Form>

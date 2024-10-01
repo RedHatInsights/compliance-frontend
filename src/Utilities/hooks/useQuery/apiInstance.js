@@ -10,7 +10,9 @@ import report from '@redhat-cloud-services/compliance-client/dist/Report';
 import reports from '@redhat-cloud-services/compliance-client/dist/Reports';
 import deleteReport from '@redhat-cloud-services/compliance-client/dist/DeleteReport';
 import systemsOS from '@redhat-cloud-services/compliance-client/dist/SystemsOS';
-
+import reportTestResults from '@redhat-cloud-services/compliance-client/dist/ReportTestResults';
+import reportSystems from '@redhat-cloud-services/compliance-client/dist/ReportSystems';
+import reportStats from '@redhat-cloud-services/compliance-client/dist/ReportStats';
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
 
@@ -27,7 +29,10 @@ const apiInstance = APIFactory(
     deleteReport,
     report,
     reports,
-    systemsOS,
+    systemsOS, //deprecation mark is to denote that the endpoint is solely for the Compliance frontend.
+    reportTestResults,
+    reportSystems,
+    reportStats, //deprecation mark is to denote that the endpoint is solely for the Compliance frontend.
   },
   instance
 );

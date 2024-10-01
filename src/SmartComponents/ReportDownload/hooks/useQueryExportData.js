@@ -1,93 +1,68 @@
-import { useApolloClient } from '@apollo/client';
-import { GET_SYSTEMS, GET_RULES } from '../constants';
-import { prepareForExport } from './helpers';
-import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
+import { prepareForExportGraphQL, prepareForExportRest } from './helpers';
+import {
+  useFetchRules,
+  useSystemsFetch,
+  useSystemsFetchRest,
+  useFetchFailedRulesRest,
+} from './apiQueryHooks';
+import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 
-const useFetchBatched = () => {
-  const { isResolving: isLoading, resolve } = usePromiseQueue();
+const useExportDataGraphQL = (report, exportSettings) => {
+  const fetchSystems = useSystemsFetch(report);
+  const fetchRules = useFetchRules(report);
 
-  return {
-    isLoading,
-    fetchBatched: (fetchFunction, total, filter, batchSize = 50) => {
-      const pages = Math.ceil(total / batchSize) || 1;
+  return async () => {
+    const systems = await fetchSystems();
+    const rules = await fetchRules();
 
-      const results = resolve(
-        [...new Array(pages)].map(
-          (_, pageIdx) => () => fetchFunction(batchSize, pageIdx + 1, filter)
-        )
-      );
-
-      return results;
-    },
+    return prepareForExportGraphQL(exportSettings, systems, rules);
   };
 };
 
-const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
-  const client = useApolloClient();
-  const { fetchBatched } = useFetchBatched();
+const useExportDataRest = (report, exportSettings) => {
+  const fetchSystems = useSystemsFetchRest(report);
+  const fetchRules = useFetchFailedRulesRest(report);
 
-  const fetchFunction = (perPage, page) =>
-    client.query({
-      query: GET_SYSTEMS,
-      fetchResults: true,
-      fetchPolicy: 'no-cache',
-      variables: {
-        perPage,
-        page,
-        filter: `policy_id = ${policyId}`,
-        policyId,
-      },
-    });
+  return async () => {
+    const [
+      compliantSystems,
+      nonCompliantSystems,
+      unsupportedSystems,
+      neverReported,
+    ] = await fetchSystems();
 
-  return async () =>
-    (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
-      ({
-        data: {
-          systems: { edges },
-        },
-      }) => edges.map(({ node }) => node)
+    const topTenFailedRules = await fetchRules();
+
+    return prepareForExportRest(
+      exportSettings,
+      compliantSystems,
+      nonCompliantSystems,
+      unsupportedSystems,
+      neverReported,
+      topTenFailedRules
     );
-};
-
-const useFetchRules = ({ id: policyId } = {}) => {
-  const client = useApolloClient();
-
-  const fetchFunction = (perPage = 10, page = 1) =>
-    client.query({
-      query: GET_RULES,
-      fetchResults: true,
-      fetchPolicy: 'no-cache',
-      variables: {
-        perPage,
-        page,
-        filter: `policy_id = ${policyId}`,
-        policyId,
-      },
-    });
-
-  return async () =>
-    (await fetchFunction()).data.profiles?.edges.flatMap(
-      (edge) => edge.node.topFailedRules
-    );
+  };
 };
 
 // Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
 const useQueryExportData = (
   exportSettings,
-  policy,
+  report,
   { onComplete, onError } = {
     onComplete: () => undefined,
     onError: () => undefined,
   }
 ) => {
-  const fetchSystems = useSystemsFetch(policy);
-  const fetchRules = useFetchRules(policy);
+  const apiV2Enabled = useAPIV2FeatureFlag();
+  const fetchDataGraphQL = useExportDataGraphQL(report, exportSettings);
+  const fetchDataRest = useExportDataRest(report, exportSettings);
 
   return async () => {
     try {
-      const systems = await fetchSystems();
-      const rules = await fetchRules();
-      const exportData = prepareForExport(exportSettings, systems, rules);
+      const exportData = apiV2Enabled
+        ? await fetchDataRest()
+        : await fetchDataGraphQL();
+
       onComplete?.(exportData);
       return exportData;
     } catch (error) {

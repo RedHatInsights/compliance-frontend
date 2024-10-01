@@ -15,6 +15,9 @@ export const hostname = () =>
 export const randomNumbersArray = (count, min = 0, max = 10) =>
   faker.helpers.uniqueArray(() => faker.number.int({ min, max }), count);
 
+export const randomStringsArray = (count) =>
+  faker.helpers.uniqueArray(faker.word.sample, count);
+
 const wrapInNodes = (items) => ({
   nodes: items,
 });

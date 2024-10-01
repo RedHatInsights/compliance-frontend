@@ -314,3 +314,20 @@ export const systemsDataMapper = {
   },
   updated: 'updated',
 };
+
+export const reportDataMap = {
+  id: 'id',
+  title: 'policy.name;name',
+  business_objective: 'businessObjective',
+  compliance_threshold: 'complianceThreshold',
+  os_major_version: 'osMajorVersion',
+  profile_title: 'policyType', // REST api does not return policyType. Thus, re-using profile_title
+  ref_id: 'refId',
+  assigned_system_count: 'totalHostCount',
+  reported_system_count: 'testResultHostCount',
+  compliant_system_count: 'compliantHostCount',
+  unsupported_system_count: 'unsupportedHostCount',
+  description: 'description',
+  all_systems_exposed: 'all_systems_exposed',
+  percent_compliant: 'percent_compliant',
+};

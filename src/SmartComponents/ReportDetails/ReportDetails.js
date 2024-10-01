@@ -154,6 +154,7 @@ const ReportDetailsBase = ({
                 }}
                 ruleSeverityFilter
                 showGroupsFilter
+                apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
               />
             </GridItem>
           </Grid>

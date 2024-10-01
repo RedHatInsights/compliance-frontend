@@ -66,7 +66,43 @@ export const nonReportingSystemsData = (systems) => {
   return systems.filter((system) => !reportingSystemIds.includes(system.id));
 };
 
-export const prepareForExport = (
+const buildExportData = ({
+  exportSettings,
+  totalHostCount,
+  topTenFailedRules,
+  compliantSystems,
+  nonCompliantSystems,
+  unsupportedSystems,
+  nonReportingSystems,
+}) => ({
+  totalHostCount,
+
+  compliantSystemCount: compliantSystems.length,
+  ...(exportSettings.compliantSystems && {
+    compliantSystems: compliantSystems,
+  }),
+
+  nonCompliantSystemCount: nonCompliantSystems.length,
+  ...(exportSettings.nonCompliantSystems && {
+    nonCompliantSystems: nonCompliantSystems,
+  }),
+
+  unsupportedSystemCount: unsupportedSystems.length,
+  ...(exportSettings.unsupportedSystems && {
+    unsupportedSystems: unsupportedSystems,
+  }),
+
+  ...(exportSettings.topTenFailedRules && {
+    topTenFailedRules,
+  }),
+  nonReportingSystemCount: nonReportingSystems.length,
+  ...(exportSettings.nonReportingSystems && {
+    nonReportingSystems: nonReportingSystems,
+  }),
+  ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
+});
+
+export const prepareForExportGraphQL = (
   exportSettings,
   systems,
   topTenFailedRules
@@ -76,31 +112,39 @@ export const prepareForExport = (
   const unsupportedSystems = unsupportedSystemsData(systems);
   const nonReportingSystems = nonReportingSystemsData(systems);
 
-  return {
+  return buildExportData({
+    exportSettings,
     totalHostCount: systems.length,
+    systems,
+    topTenFailedRules,
+    compliantSystems,
+    nonCompliantSystems,
+    unsupportedSystems,
+    nonReportingSystems,
+  });
+};
 
-    compliantSystemCount: compliantSystems.length,
-    ...(exportSettings.compliantSystems && {
-      compliantSystems: compliantSystems,
-    }),
+export const prepareForExportRest = (
+  exportSettings,
+  compliantSystems = [],
+  nonCompliantSystems = [],
+  unsupportedSystems = [],
+  nonReportingSystems = [],
+  topTenFailedRules = []
+) => {
+  const totalHostCount =
+    compliantSystems.length +
+    nonCompliantSystems.length +
+    unsupportedSystems.length +
+    nonReportingSystems.length;
 
-    nonCompliantSystemCount: nonCompliantSystems.length,
-    ...(exportSettings.nonCompliantSystems && {
-      nonCompliantSystems: nonCompliantSystems,
-    }),
-
-    unsupportedSystemCount: unsupportedSystems.length,
-    ...(exportSettings.unsupportedSystems && {
-      unsupportedSystems: unsupportedSystems,
-    }),
-
-    ...(exportSettings.topTenFailedRules && {
-      topTenFailedRules,
-    }),
-    nonReportingSystemCount: nonReportingSystems.length,
-    ...(exportSettings.nonReportingSystems && {
-      nonReportingSystems: nonReportingSystems,
-    }),
-    ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
-  };
+  return buildExportData({
+    exportSettings,
+    totalHostCount,
+    topTenFailedRules,
+    compliantSystems,
+    nonCompliantSystems,
+    unsupportedSystems,
+    nonReportingSystems,
+  });
 };

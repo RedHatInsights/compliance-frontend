@@ -215,3 +215,4 @@ export const buildOSObject = (osVersions = []) => {
       };
     });
 };
+export const calculateOffset = (page, perPage) => (page - 1) * perPage;

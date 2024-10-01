@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import pickBy from 'lodash/pickBy';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 
@@ -11,11 +11,14 @@ const preparedSettings = (withReporting = true) =>
 const useExportSettings = () => {
   const [exportSettings, setExportSettings] = useState(preparedSettings());
 
-  const setExportSetting = (setting) => (value) =>
-    setExportSettings({
-      ...exportSettings,
-      [setting]: value,
-    });
+  const setExportSetting = useCallback(
+    (setting) => (value) =>
+      setExportSettings({
+        ...exportSettings,
+        [setting]: value,
+      }),
+    [setExportSettings, exportSettings]
+  );
 
   const isValid = () =>
     Object.keys(exportSettings).some(
