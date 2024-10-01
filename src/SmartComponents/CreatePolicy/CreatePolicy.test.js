@@ -4,8 +4,11 @@ import '@testing-library/jest-dom';
 import { init } from 'Store';
 import TestWrapper from '@/Utilities/TestWrapper';
 import graphqlQueryMocks from './__mocks__/graphqlQueryMocks';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 import CreatePolicy from './CreatePolicy';
+
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 const store = init().getStore();
 
@@ -33,6 +36,9 @@ const nextStep = async (name, stepTests) => {
 };
 
 describe('CreatePolicy', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
   it('expect to render the Create Policy wizard', async () => {
     const {
       mocks,
