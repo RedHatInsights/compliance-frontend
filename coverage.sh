@@ -3,6 +3,8 @@
 # Merges coverage reports from cypress and jest tests
 # and generates an HTML report to view and json report to submit to codecov
 #
+set -e
+
 case $(uname) in
 Darwin)
         export CODECOV_BIN="https://uploader.codecov.io/latest/macos/codecov"
@@ -19,11 +21,12 @@ rm -rf ./coverage
 
 mkdir -p coverage/src
 
-npm run test
+npm run test || { echo "Tests failed"; exit 1; }
+
 cp ./coverage-jest/coverage-final.json ./coverage/src/jest.json
 
 if [ -f cypress.config.js ]; then
-        npm run test:ct
+        npm run test:ct || { echo "Cypress tests failed"; exit 1; }
         cp ./coverage-cypress/coverage-final.json ./coverage/src/cypress.json
 else
         echo "No cypress config found!"

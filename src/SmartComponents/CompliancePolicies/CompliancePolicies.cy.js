@@ -11,6 +11,7 @@ const fixtures = buildPolicies(13);
 const fixturesV2 = buildPoliciesV2(13);
 
 const policies = Object.assign([], fixtures['profiles']['edges']);
+const policies_v2 = Object.assign([], fixturesV2);
 
 describe('Policies table tests', () => {
   beforeEach(() => {
@@ -426,8 +427,8 @@ describe('Policies table tests API V2', () => {
       cy.get('table').should('have.length', 1);
 
       let policyNames = [];
-      policies.forEach((item) => {
-        policyNames.push(item['node']['name']);
+      policies_v2.forEach((item) => {
+        policyNames.push(item['title']);
       });
 
       // Check Name sorting
