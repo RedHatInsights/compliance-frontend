@@ -47,6 +47,7 @@ const PolicyTypeTable = ({ profiles, onChange, selectedProfile }) => {
 
   return (
     <TableToolsTable
+      aria-label="PolicyTypeTable"
       items={profiles.map((profile) => ({
         ...profile,
         rowProps: {
@@ -86,7 +87,9 @@ const PolicyTypeTable = ({ profiles, onChange, selectedProfile }) => {
 PolicyTypeTable.propTypes = {
   profiles: propTypes.array,
   onChange: propTypes.func,
-  selectedProfile: propTypes.string,
+  selectedProfile: propTypes.shape({
+    id: propTypes.string,
+  }),
 };
 
 export default PolicyTypeTable;
