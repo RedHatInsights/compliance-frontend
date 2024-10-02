@@ -40,4 +40,5 @@ module.exports = {
     alias,
   },
   routes,
+  _unstableSpdy: true,
 };
