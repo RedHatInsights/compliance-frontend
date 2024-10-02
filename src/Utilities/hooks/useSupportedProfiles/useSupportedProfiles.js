@@ -1,4 +1,4 @@
-import useQuery, { apiInstance } from '../../Utilities/hooks/useQuery';
+import useQuery, { apiInstance } from '../useQuery';
 
 const useSupportedProfiles = (selectedOsMajorVersion, skip) => {
   const { data, error, loading } = useQuery(apiInstance.supportedProfiles, {
@@ -16,7 +16,7 @@ const useSupportedProfiles = (selectedOsMajorVersion, skip) => {
       : {}),
   });
 
-  return [data?.data, error, loading];
+  return { data: data?.data, error, loading };
 };
 
 export default useSupportedProfiles;

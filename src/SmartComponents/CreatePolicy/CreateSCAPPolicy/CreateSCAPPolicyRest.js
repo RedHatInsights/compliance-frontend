@@ -2,9 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
 import CreateSCAPPolicyBase from './CreateSCAPPolicyBase';
-import useQuery, { apiInstance } from '../../Utilities/hooks/useQuery';
-import dataSerialiser from '../../Utilities/dataSerialiser';
-import useSupportedProfiles from './useSupportedProfiles';
+import dataSerialiser from '../../../Utilities/dataSerialiser';
+import useSupportedProfiles from '../../../Utilities/hooks/useSupportedProfiles/useSupportedProfiles';
+import useSecurityGuidesOS from '../../../Utilities/hooks/useSecurityGuidesOS/useSecurityGuidesOS';
 
 const profilesDataMap = {
   id: 'id',
@@ -31,12 +31,15 @@ const CreateSCAPPolicyRest = ({
     data: availableOsMajorVersions,
     error: availableOsMajorVersionsError,
     loading: availableOsMajorVersionsLoading,
-  } = useQuery(apiInstance.securityGuidesOS);
-  const [availableProfiles, availableProfilesError, availableProfilesLoading] =
-    useSupportedProfiles(
-      selectedOsMajorVersion,
-      selectedOsMajorVersion === undefined
-    );
+  } = useSecurityGuidesOS();
+  const {
+    data: availableProfiles,
+    error: availableProfilesError,
+    loading: availableProfilesLoading,
+  } = useSupportedProfiles(
+    selectedOsMajorVersion,
+    selectedOsMajorVersion === undefined
+  );
 
   return (
     <CreateSCAPPolicyBase

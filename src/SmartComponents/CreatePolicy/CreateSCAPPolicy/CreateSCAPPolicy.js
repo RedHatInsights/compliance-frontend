@@ -8,7 +8,7 @@ import {
   propTypes as reduxFormPropTypes,
 } from 'redux-form';
 import { Bullseye, Spinner } from '@patternfly/react-core';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 import CreateSCAPPolicyGraphQL from './CreateSCAPPolicyGraphQL';
 import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
 

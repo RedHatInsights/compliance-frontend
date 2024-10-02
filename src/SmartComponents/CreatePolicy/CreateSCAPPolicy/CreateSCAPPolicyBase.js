@@ -11,8 +11,8 @@ import {
   Tile,
 } from '@patternfly/react-core';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
-import PolicyTypesTable from './Components/PolicyTypeTable';
-import PolicyTypeTooltip from './Components/PolicyTypeTooltip';
+import PolicyTypesTable from '../Components/PolicyTypeTable';
+import PolicyTypeTooltip from '../Components/PolicyTypeTooltip';
 
 export const CreateSCAPPolicyBase = ({
   selectedOsMajorVersion,
@@ -59,7 +59,6 @@ export const CreateSCAPPolicyBase = ({
               fieldId="policy-type"
             >
               <PolicyTypesTable
-                aria-label="PolicyTypeTable"
                 profiles={data?.availableProfiles || []}
                 onChange={(policy) => {
                   change('profile', policy);

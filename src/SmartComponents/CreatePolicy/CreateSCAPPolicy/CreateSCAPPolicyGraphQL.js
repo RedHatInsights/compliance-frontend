@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
-import { SUPPORTED_PROFILES } from './constants';
+import { SUPPORTED_PROFILES } from '../constants';
 import CreateSCAPPolicyBase from './CreateSCAPPolicyBase';
 
 const CreateSCAPPolicyGraphQL = ({
