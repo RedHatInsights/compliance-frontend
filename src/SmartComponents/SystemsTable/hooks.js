@@ -253,11 +253,11 @@ export const useSystemsExport = ({
   });
 
   const fetchSystemsRest = useFetchSystemsV2(fetchApi, null, onError, {
-    ...fetchArguments?.variables,
     ...(fetchArguments.tags && { tags: fetchArguments.tags }),
     filter: selectionFilter
       ? `${fetchArguments.filter} and (${selectionFilter})`
       : fetchArguments?.filter,
+    ...(fetchArguments.policyId && { policyId: fetchArguments.policyId }),
   });
 
   const selectedFilter = () =>

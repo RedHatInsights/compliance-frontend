@@ -32,6 +32,7 @@ export const SystemsTable = ({
   columns,
   showAllSystems,
   policyId,
+  policyRefId,
   showActions,
   enableExport,
   compliantFilter,
@@ -67,7 +68,7 @@ export const SystemsTable = ({
   const navigateToInventory = useNavigate('inventory');
   const osMinorVersionFilter = useOsMinorVersionFilterRest(
     showOsMinorVersionFilter,
-    [defaultFilter, ...(policyId && { policyId })]
+    policyRefId ? `profile_ref_id=${policyRefId}` : defaultFilter
   );
   const [error, setError] = useState(errorProp);
 
@@ -249,6 +250,7 @@ SystemsTable.propTypes = {
   policies: PropTypes.arrayOf(PropTypes.shape({})),
   showAllSystems: PropTypes.bool,
   policyId: PropTypes.string,
+  policyRefId: PropTypes.string,
   query: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   showActions: PropTypes.bool,
   enableExport: PropTypes.bool,
