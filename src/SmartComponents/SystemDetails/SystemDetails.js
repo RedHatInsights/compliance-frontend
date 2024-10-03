@@ -11,6 +11,8 @@ import {
   PageSection,
   Breadcrumb,
   BreadcrumbItem,
+  Bullseye,
+  Spinner,
 } from '@patternfly/react-core';
 import Details from './ComplianceDetail';
 import {
@@ -115,7 +117,9 @@ export const SystemDetailsWrapper = (props) => {
   const restApiEnabled = useAPIV2FeatureFlag();
   const Component =
     restApiEnabled === undefined ? (
-      <React.Fragment />
+      <Bullseye>
+        <Spinner />
+      </Bullseye>
     ) : restApiEnabled === true ? (
       SystemDetailsRest
     ) : (

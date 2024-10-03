@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Tabs, Tab, TabTitleText } from '@patternfly/react-core';
+import { Tabs, Tab, TabTitleText, Bullseye } from '@patternfly/react-core';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
@@ -77,7 +77,9 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   return (
     <>
       {apiV2Enabled === undefined ? (
-        <></>
+        <Bullseye>
+          <Spinner />
+        </Bullseye>
       ) : apiV2Enabled === true ? (
         <SystemPolicyCardsRest />
       ) : (
