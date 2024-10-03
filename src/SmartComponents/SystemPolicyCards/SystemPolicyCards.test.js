@@ -4,13 +4,17 @@ import { render, screen } from '@testing-library/react';
 import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
 import { SystemPolicyCards } from './SystemPolicyCards';
 import { useReportTestResults } from '../../Utilities/hooks/api/useReportTestResults';
-import { fixturesReportTestResults, fixturesSystemReports } from './fixtures';
+import systemReports from '../../__factories__/systemReports';
+import testResults from '../../__factories__/testResults';
 
 jest.mock('../../Utilities/hooks/api/useSystemReports');
 jest.mock('../../Utilities/hooks/api/useReportTestResults');
 jest.mock('react-router-dom');
 
 describe('SystemPolicyCards', () => {
+  const systemReportsData = systemReports.buildList(3);
+  const testResultsData = testResults.buildList(1);
+
   beforeEach(() => {
     useParams.mockReturnValue({
       inventoryId: 'abc',
@@ -29,7 +33,7 @@ describe('SystemPolicyCards', () => {
 
   it('shows placeholders for almost loaded policies', () => {
     useSystemReports.mockImplementation(() => ({
-      data: fixturesSystemReports,
+      data: { data: systemReportsData },
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
@@ -40,33 +44,29 @@ describe('SystemPolicyCards', () => {
 
     expect(
       screen.getAllByRole('progressbar', { name: 'Loading policies' })
-    ).toHaveLength(fixturesSystemReports.data.length);
+    ).toHaveLength(systemReportsData.length);
   });
 
   it('shows card with data for loaded policy', () => {
     useSystemReports.mockImplementation(() => ({
-      data: { data: [fixturesSystemReports.data[0]] },
+      data: { data: [systemReportsData[0]] },
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
-      data: fixturesReportTestResults,
+      data: { data: testResultsData },
       loading: false,
     }));
     render(<SystemPolicyCards />);
 
     screen.getByRole('heading', {
-      name: fixturesSystemReports.data[0].title,
+      name: systemReportsData[0].title,
     });
     screen.getByText(
-      fixturesReportTestResults.data[0].compliant
-        ? 'Compliant'
-        : 'Not compliant'
+      testResultsData[0].compliant ? 'Compliant' : 'Not compliant'
     );
+    screen.getByText(`${testResultsData[0].failed_rule_count} rules failed`);
     screen.getByText(
-      `${fixturesReportTestResults.data[0].failed_rule_count} rules failed`
-    );
-    screen.getByText(
-      `SSG version: ${fixturesReportTestResults.data[0].security_guide_version}`
+      `SSG version: ${testResultsData[0].security_guide_version}`
     );
   });
 
@@ -82,7 +82,7 @@ describe('SystemPolicyCards', () => {
 
   it('requests test results with with report and system id', () => {
     useSystemReports.mockImplementation(() => ({
-      data: { data: [fixturesSystemReports.data[0]] },
+      data: { data: [systemReportsData[0]] },
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
@@ -93,7 +93,7 @@ describe('SystemPolicyCards', () => {
 
     expect(useReportTestResults).toBeCalledWith({
       filter: 'system_id=abc',
-      reportId: '0de744d1-b00d-4b6c-a524-de0eb94dbe97',
+      reportId: systemReportsData[0].id,
     });
   });
 });
