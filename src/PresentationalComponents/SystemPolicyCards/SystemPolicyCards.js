@@ -16,7 +16,7 @@ const SystemPolicyCards = ({ policies = [], loading }) => {
       ) : (
         policiesToShow.map((policy, i) => (
           <GridItem sm={12} md={12} lg={6} xl={4} key={i}>
-            <SystemPolicyCard policy={policy} style={{ height: '100%' }} />
+            <SystemPolicyCard policy={policy} />
           </GridItem>
         ))
       )}
