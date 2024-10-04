@@ -29,7 +29,7 @@ describe('SystemPolicyCards', () => {
     }));
     render(<SystemPolicyCards />);
 
-    screen.getByRole('progressbar', { name: 'Loading policies' });
+    screen.getAllByRole('progressbar', { name: 'Loading policy' });
   });
 
   it('shows placeholders for almost loaded policies', () => {
@@ -44,7 +44,7 @@ describe('SystemPolicyCards', () => {
     render(<SystemPolicyCards />);
 
     expect(
-      screen.getAllByRole('progressbar', { name: 'Loading policies' })
+      screen.getAllByRole('progressbar', { name: 'Loading policy' })
     ).toHaveLength(systemReportsData.length);
   });
 
@@ -65,7 +65,11 @@ describe('SystemPolicyCards', () => {
     screen.getByText(
       testResultsData[0].compliant ? 'Compliant' : 'Not compliant'
     );
-    screen.getByText(`${testResultsData[0].failed_rule_count} rules failed`);
+    screen.getByText(
+      `${testResultsData[0].failed_rule_count} rule${
+        testResultsData[0].failed_rule_count > 1 ? 's' : ''
+      } failed`
+    );
     screen.getByText(
       `SSG version: ${testResultsData[0].security_guide_version}`
     );
