@@ -19,6 +19,8 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import { fetchApi } from '../ComplianceSystems/ComplianceSystems';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -73,6 +75,7 @@ export const EditPolicySystems = ({
   osMajorVersion,
   selectedSystems,
 }) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const onSystemSelect = (newSelectedSystems) => {
     change('systems', newSelectedSystems);
     change('osMinorVersionCounts', countOsMinorVersions(newSelectedSystems));
@@ -80,6 +83,7 @@ export const EditPolicySystems = ({
   const osMinorVersions = policy.supportedOsVersions.map(
     (version) => version.split('.')[1]
   );
+
   return (
     <React.Fragment>
       <TextContent className="pf-v5-u-mb-md">
@@ -113,15 +117,16 @@ export const EditPolicySystems = ({
             showActions={false}
             defaultFilter={
               osMajorVersion &&
-              `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-                ','
-              )})`
+              `os_major_version = ${osMajorVersion} AND os_minor_version ^ "${osMinorVersions.join(
+                ' '
+              )}"`
             }
             enableExport={false}
             preselectedSystems={selectedSystems}
             onSelect={onSystemSelect}
             showGroupsFilter
-            apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
+            apiV2Enabled={apiV2Enabled}
+            fetchApi={fetchApi}
           />
         </FormGroup>
       </Form>
