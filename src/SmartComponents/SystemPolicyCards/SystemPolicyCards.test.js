@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
 import { SystemPolicyCards } from './SystemPolicyCards';
@@ -47,13 +48,13 @@ describe('SystemPolicyCards', () => {
     ).toHaveLength(systemReportsData.length);
   });
 
-  it('shows card with data for loaded policy', () => {
+  it('shows card with data for loaded policy', async () => {
     useSystemReports.mockImplementation(() => ({
       data: { data: [systemReportsData[0]] },
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
-      data: { data: testResultsData },
+      data: { data: testResultsData, meta: { total: 1 } },
       loading: false,
     }));
     render(<SystemPolicyCards />);
@@ -70,7 +71,7 @@ describe('SystemPolicyCards', () => {
     );
   });
 
-  it('requests system reports with system id', () => {
+  it('requests system reports with system id', async () => {
     useSystemReports.mockImplementation(() => ({
       data: null,
       loading: true,
@@ -80,7 +81,7 @@ describe('SystemPolicyCards', () => {
     expect(useSystemReports).toBeCalledWith({ limit: 100, systemId: 'abc' });
   });
 
-  it('requests test results with with report and system id', () => {
+  it('requests test results with with report and system id', async () => {
     useSystemReports.mockImplementation(() => ({
       data: { data: [systemReportsData[0]] },
       loading: false,
@@ -95,5 +96,24 @@ describe('SystemPolicyCards', () => {
       filter: 'system_id=abc',
       reportId: systemReportsData[0].id,
     });
+  });
+
+  it('does not render a card for policy with no test results', async () => {
+    useSystemReports.mockImplementation(() => ({
+      data: { data: [systemReportsData[0]] },
+      loading: false,
+    }));
+    useReportTestResults.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
+      loading: false,
+    }));
+    render(<SystemPolicyCards />);
+
+    await waitFor(() => {
+      expect(useReportTestResults).toBeCalled();
+    });
+    expect(
+      screen.queryByText(systemReportsData[0].title)
+    ).not.toBeInTheDocument();
   });
 });

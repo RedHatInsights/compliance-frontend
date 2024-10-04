@@ -19,6 +19,8 @@ const SystemPolicyCard = ({ policy }) => {
 
   return loading ? (
     <LoadingPolicyCards count={1} />
+  ) : data.meta.total === 0 ? (
+    <React.Fragment />
   ) : (
     <SystemPolicyCardPresentational
       policy={dataSerialiser({ ...data.data[0], ...policy }, dataMap)}
