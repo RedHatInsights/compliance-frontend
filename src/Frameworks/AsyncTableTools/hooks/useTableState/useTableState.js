@@ -4,7 +4,7 @@ import useDeepCompareEffect from 'use-deep-compare-effect';
 import useContextOrInternalStateAndRefs from './hooks/useContextOrInternalStateAndRefs';
 import useStateObservers from './hooks/useStateObservers';
 import useSerialisers from './hooks/useSerialisers';
-import { withSerialising, applyObserverStates } from './helpers';
+import compileState from './helpers/compileState';
 
 /**
  * Provides an interface for hooks to store their states name-spaced into the tableState in the TableContext
@@ -22,55 +22,43 @@ import { withSerialising, applyObserverStates } from './helpers';
  *
  */
 const useTableState = (namespace, initialState, options = {}) => {
-  const context = useContextOrInternalStateAndRefs();
-  const { state: contextState, serialisers: serialisersInContext } = context;
-  const [state, setState] = contextState || [];
-  const { tableState, serialisedTableState } = state || {};
-  const observersForNamespace = useStateObservers(namespace, options.observers);
-  const serialiserForNamespace = useSerialisers(namespace, options.serialiser);
+  const {
+    serialisers,
+    observers,
+    state: [state, setState],
+  } = useContextOrInternalStateAndRefs();
+
+  useStateObservers(namespace, options.observers, observers);
+  useSerialisers(namespace, options.serialiser, serialisers);
 
   const setTableState = useCallback(
-    function setStateInner(nextState) {
-      setState((currentState) => {
-        const newState = withSerialising(
+    function setTableState(newStateForNameSpace) {
+      return setState((currentState) => {
+        const newState =
+          typeof newStateForNameSpace === 'function'
+            ? newStateForNameSpace(currentState)
+            : newStateForNameSpace;
+
+        return compileState(
           namespace,
           currentState,
-          nextState,
-          serialiserForNamespace
+          newState,
+          observers.current,
+          serialisers.current
         );
-
-        if (observersForNamespace) {
-          return applyObserverStates(
-            namespace,
-            currentState,
-            newState,
-            observersForNamespace,
-            serialisersInContext
-          );
-        } else {
-          return newState;
-        }
       });
     },
-    [
-      setState,
-      namespace,
-      serialisersInContext,
-      observersForNamespace,
-      serialiserForNamespace,
-    ]
+    [observers, serialisers, setState, namespace]
   );
 
   useDeepCompareEffect(() => {
-    if (initialState) {
-      initialState && setTableState(initialState);
-    }
+    setTableState(initialState);
   }, [initialState, setTableState]);
 
   return [
-    tableState?.[namespace],
+    state?.tableState?.[namespace],
     setTableState,
-    ...(options.serialiser ? [serialisedTableState?.[namespace]] : []),
+    ...(options.serialiser ? [state?.serialisedTableState?.[namespace]] : []),
   ];
 };
 

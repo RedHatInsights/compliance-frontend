@@ -2,18 +2,18 @@ import { useContext } from 'react';
 import { TableContext } from '../constants';
 
 /**
- * Hook to access the "raw" table state
+ * Hook to access both the "raw" and the serialised  table state
  *
- *  @returns {object} raw table state
+ *  @returns {object} table state
  *
  *  @category AsyncTableTools
  *  @subcategory Hooks
  *
  */
-const useRawTableState = () => {
+const useFullTableState = () => {
   const { state } = useContext(TableContext);
 
-  return state?.[0]?.tableState;
+  return state?.[0];
 };
 
-export default useRawTableState;
+export default useFullTableState;

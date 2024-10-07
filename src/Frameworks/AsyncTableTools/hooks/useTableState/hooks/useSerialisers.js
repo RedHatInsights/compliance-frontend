@@ -1,10 +1,10 @@
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
-import useContextOrInternalStateAndRefs from './useContextOrInternalStateAndRefs';
 
-const useSerialisers = (serialiserNamespace, serialiser) => {
-  const { serialisers: serialiserInContext } =
-    useContextOrInternalStateAndRefs();
-
+const useSerialisers = (
+  serialiserNamespace,
+  serialiser,
+  serialiserInContext
+) => {
   useDeepCompareEffectNoCheck(() => {
     if (serialiser) {
       serialiserInContext.current = {
@@ -17,8 +17,6 @@ const useSerialisers = (serialiserNamespace, serialiser) => {
     serialiserNamespace,
     typeof serialiser !== 'undefined',
   ]);
-
-  return serialiserInContext?.current?.[serialiserNamespace];
 };
 
 export default useSerialisers;
