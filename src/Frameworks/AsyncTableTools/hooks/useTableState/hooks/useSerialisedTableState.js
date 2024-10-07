@@ -11,7 +11,7 @@ import { TableContext } from '../constants';
  *
  */
 const useSerialisedTableState = () => {
-  const { state } = useContext(TableContext) || {};
+  const { state } = useContext(TableContext);
 
   return state?.[0]?.serialisedTableState;
 };
