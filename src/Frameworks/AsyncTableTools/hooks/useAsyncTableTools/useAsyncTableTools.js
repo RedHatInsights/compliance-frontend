@@ -5,10 +5,10 @@ import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
 import useTableSort from '../useTableSort';
 import useItems from '../useItems';
-import rowsBuilder from './rowsBuilder';
 import useBulkSelect from '../useBulkSelect';
 import useExpandable from '../useExpandable';
 import useColumnManager from '../useColumnManager';
+import useTableView from '../useTableView';
 import withExport from '../../utils/withExport';
 import { toToolbarActions } from './helpers';
 
@@ -35,7 +35,7 @@ import { toToolbarActions } from './helpers';
 const useAsyncTableTools = (items, columns, options = {}) => {
   const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
     options;
-  const { items: usableItems } = useItems(items);
+  const { loaded, items: usableItems } = useItems(items);
 
   const {
     columnManagerAction,
@@ -64,7 +64,11 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     managedColumns,
     options
   );
-  const { tableProps: expandableTableProps, openItem } = useExpandable(options);
+  const {
+    tableProps: expandableTableProps,
+    openItem,
+    tableView: expandableTableViewOptions,
+  } = useExpandable(options);
 
   const {
     toolbarProps: bulkSelectToolbarProps,
@@ -75,14 +79,15 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     itemIdsOnPage: usableItems?.map(({ id }) => id),
   });
 
-  const { tableProps: rowBuilderTableProps } = useMemo(
-    () =>
-      rowsBuilder(usableItems, managedColumns, {
-        transformers: [markRowSelected, openItem],
-        emptyRows: options.emptyRows,
-      }),
-    [usableItems, managedColumns, markRowSelected, openItem, options.emptyRows]
-  );
+  const {
+    toolbarProps: tableViewToolbarProps,
+    tableProps: tableViewTableProps,
+    TableViewToggle,
+  } = useTableView(usableItems, managedColumns, {
+    ...options,
+    expandable: expandableTableViewOptions,
+    transformers: [markRowSelected, openItem],
+  });
 
   const exportConfig = withExport({
     managedColumns,
@@ -97,6 +102,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...bulkSelectToolbarProps,
       ...exportConfig.toolbarProps,
       ...toolbarPropsOption,
+      ...tableViewToolbarProps,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
@@ -107,6 +113,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       bulkSelectToolbarProps,
       // eslint-disable-next-line react-hooks/exhaustive-deps
       JSON.stringify(exportConfig.toolbarProps),
+      tableViewToolbarProps,
       toolbarPropsOption,
     ]
   );
@@ -118,9 +125,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       cells: managedColumns,
       ...sortableTableProps,
       ...bulkSelectTableProps,
-      ...tablePropsOption,
       ...expandableTableProps,
-      ...rowBuilderTableProps,
+      ...tableViewTableProps,
+      ...tablePropsOption,
     }),
     [
       managedColumns,
@@ -128,7 +135,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       bulkSelectTableProps,
       tablePropsOption,
       expandableTableProps,
-      rowBuilderTableProps,
+      tableViewTableProps,
     ]
   );
 
@@ -137,12 +144,15 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     console.log('Async Table params:', items, columns, options);
     console.log('Toolbar Props: ', toolbarProps);
     console.log('Table Props: ', tableProps);
-  }, [toolbarProps, tableProps]);
+  }, [toolbarProps, tableProps, items, columns, options]);
 
   return {
+    loaded,
     toolbarProps,
     tableProps,
+    // TODO We could possibly just return the configuratin/props for these components instead
     ColumnManager,
+    TableViewToggle,
   };
 };
 
