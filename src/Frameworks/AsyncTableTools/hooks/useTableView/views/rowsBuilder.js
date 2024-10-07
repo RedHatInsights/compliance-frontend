@@ -40,7 +40,7 @@ const rowsBuilder = (items, columns, options = {}) => {
   const EmptyRowsComponent =
     options.emptyRows || emptyRows(undefined, columns.length);
 
-  const rows =
+  return (
     items &&
     (items.length > 0
       ? items
@@ -50,13 +50,8 @@ const rowsBuilder = (items, columns, options = {}) => {
             return applyTransformations(row, transformers, selectedIds, index);
           })
           .filter((v) => !!v)
-      : EmptyRowsComponent);
-
-  return {
-    tableProps: {
-      ...(rows ? { rows } : {}),
-    },
-  };
+      : EmptyRowsComponent)
+  );
 };
 
 export default rowsBuilder;
