@@ -29,6 +29,7 @@ const useTableStateHelper = () => {
     { title: 'Systems', sortable: 'systems' },
   ];
   const sort = useTableSort(columns, {
+    sortBy: { index: 1, direction: 'asc' },
     serialisers: { sort: sortSerialiser },
   });
   const query = useComplianceQuery(fakeApi);
@@ -94,7 +95,7 @@ describe('useComplianceQuery', () => {
       expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState)
     );
 
-    act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
+    act(() => result.current.sort.tableProps.onSort(null, 2, 'desc'));
 
     await waitFor(() =>
       expect(fakeApi).toHaveBeenNthCalledWith(2, {

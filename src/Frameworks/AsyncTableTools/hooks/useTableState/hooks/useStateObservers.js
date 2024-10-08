@@ -1,9 +1,10 @@
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
-import useContextOrInternalStateAndRefs from './useContextOrInternalStateAndRefs';
 
-const useStateObservers = (observerNamespace, observers) => {
-  const { observers: observersInContext } = useContextOrInternalStateAndRefs();
-
+const useStateObservers = (
+  observerNamespace,
+  observers,
+  observersInContext
+) => {
   useDeepCompareEffectNoCheck(() => {
     if (observers && observersInContext) {
       for (const [observedStatekey, observerFunction] of Object.entries(
@@ -19,8 +20,6 @@ const useStateObservers = (observerNamespace, observers) => {
       }
     }
   }, [observers, observersInContext, observerNamespace]);
-
-  return observersInContext?.current?.[observerNamespace];
 };
 
 export default useStateObservers;

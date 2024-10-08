@@ -46,7 +46,12 @@ const useItems = (itemsProp) => {
     };
 
     setStateFromAsyncItems();
-  }, [setItems, itemsProp, serialisedTableState, tableState]);
+  }, [
+    setItems,
+    itemsProp,
+    JSON.stringify(serialisedTableState),
+    JSON.stringify(tableState),
+  ]);
 
   return {
     loaded,

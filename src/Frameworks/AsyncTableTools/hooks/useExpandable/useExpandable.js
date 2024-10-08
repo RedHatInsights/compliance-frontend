@@ -1,5 +1,6 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import useSelectionManager from '../useSelectionManager';
+import useTableState from '../useTableState';
 import { itemDetailsRow } from './helpers';
 
 /**
@@ -23,10 +24,14 @@ import { itemDetailsRow } from './helpers';
  *
  */
 const useExpandable = (options) => {
-  const enableExpandingRow = !!options?.detailsComponent;
+  const enableExpandingRow = !!options?.detailsComponent || !!options.treeTable;
+  const [, setOpenItemsState] = useTableState('open-items');
+
   const { selection: openItems, toggle } = useSelectionManager([]);
 
-  const onCollapse = (_event, _index, _isOpen, { itemId }) => toggle(itemId);
+  const onCollapse = (_event, _index, _isOpen, { itemId }) => {
+    toggle(itemId);
+  };
 
   const openItem = useCallback(
     (row, _selectedIds, index) => {
@@ -43,12 +48,20 @@ const useExpandable = (options) => {
     [openItems, options]
   );
 
+  useEffect(() => {
+    setOpenItemsState(openItems);
+  }, [openItems, setOpenItemsState]);
+
   return enableExpandingRow
     ? {
         openItems,
         openItem,
         tableProps: {
           onCollapse,
+        },
+        tableView: {
+          onCollapse,
+          openItems,
         },
       }
     : {};
