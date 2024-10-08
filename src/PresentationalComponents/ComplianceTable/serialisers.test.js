@@ -15,7 +15,7 @@ describe('filtersSerialiser', () => {
 
   it('should return a scoped search query for text filters', () => {
     expect(filtersSerialiser({ name: 'testvalue' }, filtersWithIds)).toEqual(
-      "name ~ 'testvalue'"
+      'name ~ "testvalue"'
     );
   });
 
@@ -27,7 +27,7 @@ describe('filtersSerialiser', () => {
         },
         filtersWithIds
       )
-    ).toEqual("checkbox IN ('OPTION 1', 'OPTION 2')");
+    ).toEqual('checkbox ^ ("OPTION 1", "OPTION 2")');
   });
 
   it('should return a scoped search query for radio filters', () => {
@@ -38,7 +38,7 @@ describe('filtersSerialiser', () => {
         },
         filtersWithIds
       )
-    ).toEqual("radio = 'OPTION 1'");
+    ).toEqual('radio = "OPTION 1"');
   });
 
   it('should return a scoped search query for multiple filters', () => {
@@ -50,7 +50,7 @@ describe('filtersSerialiser', () => {
         },
         filtersWithIds
       )
-    ).toEqual("radio = 'OPTION 1' AND checkbox IN ('OPTION 1', 'OPTION 2')");
+    ).toEqual('radio = "OPTION 1" AND checkbox ^ ("OPTION 1", "OPTION 2")');
   });
 
   it('should use a filterSerialiser if provided in the filter config', () => {
@@ -90,7 +90,7 @@ describe('sortSerialiser', () => {
     expect(
       sortSerialiser(
         {
-          index: 0,
+          index: 1,
           direction: 'asc',
         },
         exampleColumns
@@ -100,7 +100,7 @@ describe('sortSerialiser', () => {
     expect(
       sortSerialiser(
         {
-          index: 1,
+          index: 2,
           direction: 'desc',
         },
         exampleColumns

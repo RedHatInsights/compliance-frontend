@@ -11,6 +11,7 @@ import {
 export const Name = {
   title: 'Name',
   sortByProp: 'title',
+  sortable: 'title',
   renderExport: ({ title, identifier }) =>
     `${title}${identifier ? ` - ${identifier.label}` : ''}`,
   renderFunc: renderComponent(Rule),
@@ -26,6 +27,7 @@ export const Policy = {
 export const Severity = {
   title: 'Severity',
   sortByProp: 'severity',
+  sortable: 'severity',
   exportKey: 'severity',
   sortByArray: ['high', 'medium', 'low', 'unknown'],
   renderFunc: renderComponent(SeverityCell),
@@ -42,6 +44,7 @@ export const Passed = {
 export const Remediation = {
   title: 'Remediation',
   transforms: [nowrap],
+  sortable: 'remediation_available',
   sortByFunction: (rule) => rule?.remediationAvailable,
   renderExport: (rule) => (rule?.remediationAvailable ? 'Playbook' : 'Manual'),
   renderFunc: renderComponent(RemediationColumnCell),
