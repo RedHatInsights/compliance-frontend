@@ -8,6 +8,7 @@ import RulesTable from '../../RulesTable/RulesTableRest';
 import useTailoringsData from '../hooks/useTailoringsData';
 import TabHeader from './TabHeader';
 
+// TODO Pass on and enable ruleTree here when RHINENG-13519 is done
 const TailoringTab = ({
   policy,
   tailoring,
@@ -26,7 +27,7 @@ const TailoringTab = ({
     tailoring,
     tableState
   );
-  const { rules, ruleTree } = data;
+  const { rules } = data;
 
   return (
     <>
@@ -44,9 +45,9 @@ const TailoringTab = ({
         </StateViewPart>
         <StateViewPart stateKey="data">
           <RulesTable
+            securityGuideId={tailoring.security_guide_id}
             total={rules?.meta?.total}
             rules={rules?.data}
-            ruleTree={ruleTree}
             ansibleSupportFilter
             remediationsEnabled={false}
             columns={columns}

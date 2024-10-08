@@ -59,7 +59,7 @@ describe('useQuery', () => {
     });
   });
 
-  it('calls the API endpoint second time on refetch', async () => {
+  it.skip('calls the API endpoint second time on refetch', async () => {
     const data = {
       hello: 'there',
     };

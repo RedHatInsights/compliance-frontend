@@ -22,6 +22,7 @@ import policySystemsOS from '@redhat-cloud-services/compliance-client/dist/Polic
 import securityGuideRuleTree from '@redhat-cloud-services/compliance-client/dist/SecurityGuideRuleTree';
 import tailoringRules from '@redhat-cloud-services/compliance-client/dist/TailoringRules';
 import ruleGroups from '@redhat-cloud-services/compliance-client/dist/RuleGroups';
+import rule from '@redhat-cloud-services/compliance-client/dist/Rule';
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
 
@@ -51,6 +52,7 @@ const apiInstance = APIFactory(
     securityGuideRuleTree,
     tailoringRules,
     ruleGroups,
+    rule,
   },
   instance
 );
