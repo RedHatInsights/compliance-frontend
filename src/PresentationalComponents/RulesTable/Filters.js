@@ -31,6 +31,7 @@ const BASE_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.text,
     label: 'Name',
+    filterAttribute: 'title',
     filter: (rules, value) =>
       filterRulesWithAllValues(
         rules,
@@ -49,6 +50,7 @@ const BASE_FILTER_CONFIGURATION = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Severity',
+    filterAttribute: 'severity',
     items: [
       { label: <HighSeverity />, value: 'high' },
       { label: <MediumSeverity />, value: 'medium' },
