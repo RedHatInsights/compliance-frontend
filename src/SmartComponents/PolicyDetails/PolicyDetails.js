@@ -7,6 +7,8 @@ import {
   Grid,
   GridItem,
   Tab,
+  PageSection,
+  PageSectionVariants,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -21,6 +23,7 @@ import {
   StateViewPart,
   RoutedTabs,
   BreadcrumbLinkItem,
+  Tailorings,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
@@ -33,6 +36,7 @@ import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '../../Utilities/dataSerialiser';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 export const PolicyDetailsWrapper = ({ route }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -63,10 +67,10 @@ const PolicyDetailsV2 = ({ route }) => {
       }
     : {};
 
-  return <PolicyDetailsBase query={{ ...query, data }} route={route} />;
+  return <PolicyDetailsBase isAPIV2 query={{ ...query, data }} route={route} />;
 };
 
-export const PolicyDetailsBase = ({ route, query }) => {
+export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
   const defaultTab = 'details';
   const { data, error, loading, refetch } = query;
   const location = useLocation();
@@ -80,8 +84,8 @@ export const PolicyDetailsBase = ({ route, query }) => {
   });
 
   useEffect(() => {
-    refetch();
-  }, [location, refetch]);
+    !isAPIV2 && refetch();
+  }, [isAPIV2, location, refetch]);
 
   useTitleEntity(route, policy?.name);
 
@@ -128,17 +132,33 @@ export const PolicyDetailsBase = ({ route, query }) => {
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} refetch={refetch} />
                 </ContentTab>
-                <ContentTab eventKey="rules">
-                  {hasOsMinorProfiles ? (
-                    <PolicyMultiversionRules
-                      policy={policy}
-                      saveToPolicy={saveToPolicy}
-                      onRuleValueReset={() => refetch()}
-                    />
-                  ) : (
-                    <PolicyRulesTab policy={policy} />
-                  )}
-                </ContentTab>
+                {isAPIV2 ? (
+                  <ContentTab eventKey="rules">
+                    <PageSection variant={PageSectionVariants.light}>
+                      <Tailorings
+                        columns={[
+                          Columns.Name,
+                          Columns.Severity,
+                          Columns.Remediation,
+                        ]}
+                        policy={policy}
+                        level={1}
+                      />
+                    </PageSection>
+                  </ContentTab>
+                ) : (
+                  <ContentTab eventKey="rules">
+                    {hasOsMinorProfiles ? (
+                      <PolicyMultiversionRules
+                        policy={policy}
+                        saveToPolicy={saveToPolicy}
+                        onRuleValueReset={() => refetch()}
+                      />
+                    ) : (
+                      <PolicyRulesTab policy={policy} />
+                    )}
+                  </ContentTab>
+                )}
                 <ContentTab eventKey="systems">
                   <PolicySystemsTab policy={policy} />
                 </ContentTab>
@@ -172,6 +192,7 @@ PolicyDetailsBase.propTypes = {
     loading: PropTypes.oneOf([undefined, false, true]),
     refetch: PropTypes.func,
   }),
+  isAPIV2: PropTypes.bool,
 };
 
 export default PolicyDetailsWrapper;
