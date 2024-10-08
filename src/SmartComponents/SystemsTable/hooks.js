@@ -18,6 +18,8 @@ import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
+import { isPlainObject } from '@apollo/client/utilities';
+import { coerce, valid } from 'semver';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -100,7 +102,8 @@ const useFetchBatched = () => {
 };
 
 const buildApiFilters = (filters = {}) => {
-  const { tagFilters, hostGroupFilter, ...otherFilters } = filters;
+  const { tagFilters, hostGroupFilter, osFilter, ...otherFilters } = filters;
+
   const tagsApiFilter = tagFilters
     ? {
         tags: tagFilters.flatMap((tagFilter) =>
@@ -123,6 +126,29 @@ const buildApiFilters = (filters = {}) => {
     otherFilters.filter = `(${hostGroupFilter
       .map((value) => `group_name = "${value}"`)
       .join(' or ')})`;
+  }
+
+  if (osFilter !== undefined && isPlainObject(osFilter)) {
+    const filterString = [];
+    Object.entries(osFilter).forEach(([, osVersionGroups]) => {
+      const selectedOsVersions = Object.entries(osVersionGroups);
+      selectedOsVersions.shift(); //first entry contains only major version, thus ignored
+
+      selectedOsVersions.forEach(([version, isSelected]) => {
+        const parsedSemverVersion = coerce(version.split('-').pop() || null);
+
+        if (valid(parsedSemverVersion) && isSelected) {
+          filterString.push(
+            `(os_major_version=${parsedSemverVersion.major} AND os_minor_version=${parsedSemverVersion.minor})`
+          );
+        }
+      });
+    });
+
+    if (filterString.length) {
+      otherFilters.filter ||= ''; // initilise the filter if not initialised
+      otherFilters.filter += filterString.join(' OR ');
+    }
   }
 
   return {
