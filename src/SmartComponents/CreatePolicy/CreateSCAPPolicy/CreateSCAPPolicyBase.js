@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
 import {
+  Bullseye,
   Form,
   FormGroup,
   Spinner,
@@ -18,12 +19,15 @@ export const CreateSCAPPolicyBase = ({
   selectedOsMajorVersion,
   selectedProfile,
   data,
-  loading,
+  availableOsMajorVersionsLoading,
+  availableProfilesLoading,
   error,
   change,
 }) => {
   return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
+    <StateViewWithError
+      stateValues={{ error, data, loading: availableOsMajorVersionsLoading }}
+    >
       <StateViewPart stateKey="loading">
         <Spinner />
       </StateViewPart>
@@ -51,24 +55,32 @@ export const CreateSCAPPolicyBase = ({
               />
             ))}
           </FormGroup>
-          {selectedOsMajorVersion && (
-            <FormGroup
-              isRequired
-              labelIcon={<PolicyTypeTooltip />}
-              label="Policy type"
-              fieldId="policy-type"
-            >
-              <PolicyTypesTable
-                profiles={data?.availableProfiles || []}
-                onChange={(policy) => {
-                  change('profile', policy);
-                  change('benchmark', policy.benchmark.id);
-                  change('selectedRuleRefIds', undefined);
-                  change('systems', []);
-                }}
-                selectedProfile={selectedProfile}
-              />
-            </FormGroup>
+          {selectedOsMajorVersion ? (
+            availableProfilesLoading ? (
+              <Bullseye>
+                <Spinner />
+              </Bullseye>
+            ) : (
+              <FormGroup
+                isRequired
+                labelIcon={<PolicyTypeTooltip />}
+                label="Policy type"
+                fieldId="policy-type"
+              >
+                <PolicyTypesTable
+                  profiles={data?.availableProfiles || []}
+                  onChange={(policy) => {
+                    change('profile', policy);
+                    change('benchmark', policy.benchmark.id);
+                    change('selectedRuleRefIds', undefined);
+                    change('systems', []);
+                  }}
+                  selectedProfile={selectedProfile}
+                />
+              </FormGroup>
+            )
+          ) : (
+            <React.Fragment />
           )}
         </Form>
       </StateViewPart>
@@ -83,7 +95,8 @@ CreateSCAPPolicyBase.propTypes = {
     availableOsMajorVersions: propTypes.array,
     availableProfiles: propTypes.array,
   }),
-  loading: propTypes.bool,
+  availableOsMajorVersionsLoading: propTypes.bool,
+  availableProfilesLoading: propTypes.bool,
   error: propTypes.object,
   change: reduxFormPropTypes.change,
 };

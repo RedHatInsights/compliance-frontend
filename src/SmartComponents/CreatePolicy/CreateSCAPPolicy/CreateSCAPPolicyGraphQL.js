@@ -34,7 +34,8 @@ const CreateSCAPPolicyGraphQL = ({
                 availableOsMajorVersions,
                 availableProfiles,
               },
-        loading,
+        availableOsMajorVersionsLoading: loading,
+        availableProfilesLoading: loading,
         error,
         change,
       }}

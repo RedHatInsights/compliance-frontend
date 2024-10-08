@@ -109,8 +109,8 @@ describe('CreateSCAPPolicyRest', () => {
       error: undefined,
     });
     useSupportedProfilesSpy.mockReturnValue({
-      data: undefined,
-      loading: true,
+      data: [],
+      loading: false,
       error: undefined,
     });
     render(

@@ -57,7 +57,8 @@ const CreateSCAPPolicyRest = ({
                   profilesDataMap
                 ),
               },
-        loading: availableOsMajorVersionsLoading && availableProfilesLoading,
+        availableOsMajorVersionsLoading,
+        availableProfilesLoading,
         error: availableOsMajorVersionsError || availableProfilesError,
         change,
       }}
