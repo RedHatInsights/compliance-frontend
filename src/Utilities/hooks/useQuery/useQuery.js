@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 
 /**
@@ -32,41 +33,54 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  * const query = useQuery(apiInstance.system, {params: ["id"]})
  *
  */
-const useQuery = (fn, { params = [], skip = false } = {}) => {
+const useQuery = (fn, options = {}) => {
+  const { params = [], skip = false, debounced = true } = options;
+  const mounted = useRef(true);
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const fnRef = useRef(fn);
-  const paramsRef = useRef(params);
+  const debouncedFn = debounce(fn, 50);
 
-  fnRef.current = fn;
-  paramsRef.current = params;
+  const fetchFn = useCallback(
+    async (fn, params) => {
+      if (!loading) {
+        setLoading(true);
+        try {
+          const data = debounced
+            ? await debouncedFn(...params)
+            : await fn(...params);
 
-  const refetch = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await fnRef.current(...paramsRef.current);
-      if (data?.data) {
-        setData(data.data);
-      } else {
-        setData(data);
+          if (mounted.current) {
+            setData(data?.data || data);
+            setLoading(false);
+          }
+
+          return data?.data || data;
+        } catch (e) {
+          console.log(e);
+          setError(e);
+          setLoading(false);
+        }
       }
-    } catch (e) {
-      console.log(e);
-      setError(e);
-    } finally {
+    },
+    [loading, debounced, debouncedFn]
+  );
+
+  const fetch = useCallback((params) => fetchFn(fn, params), [fn, fetchFn]);
+  const refetch = useCallback(() => fetchFn(fn, params), [fetchFn, fn, params]);
+
+  useDeepCompareEffectNoCheck(() => {
+    mounted.current = true;
+    !skip && refetch();
+
+    return () => {
       setLoading(false);
-    }
-  }, [fnRef, paramsRef]);
+      mounted.current = false;
+    };
+  }, [skip, params, typeof refetch !== 'undefined']);
 
-  const debouncedRefetch = useCallback(debounce(refetch, 200), []);
-
-  useEffect(() => {
-    if (!skip) debouncedRefetch();
-  }, [JSON.stringify(paramsRef.current)]);
-
-  return { data, error, loading, refetch };
+  return { data, error, loading: loading, fetch, refetch };
 };
 
 export default useQuery;
