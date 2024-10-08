@@ -67,7 +67,10 @@ describe('SystemPolicyCards', () => {
     );
     screen.getByText(
       `${testResultsData[0].failed_rule_count} rule${
-        testResultsData[0].failed_rule_count > 1 ? 's' : ''
+        testResultsData[0].failed_rule_count > 1 ||
+        testResultsData[0].failed_rule_count === 0
+          ? 's'
+          : ''
       } failed`
     );
     screen.getByText(
