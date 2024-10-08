@@ -4,7 +4,7 @@ import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { ComplianceTable } from 'PresentationalComponents';
-import RuleDetailsRow from './RuleDetailsRow';
+import RuleDetailsRow from './components/RuleDetailsRowRest';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
 import { itemIdentifier } from './helpers';
@@ -13,6 +13,7 @@ const RulesTable = ({
   system,
   rules,
   ruleTree,
+  securityGuideId,
   columns = defaultColumns,
   remediationsEnabled = true,
   ansibleSupportFilter = false,
@@ -52,6 +53,7 @@ const RulesTable = ({
       function Row(props) {
         return (
           <RuleDetailsRow
+            securityGuideId={securityGuideId}
             onValueChange={setRuleValues}
             onRuleValueReset={onRuleValueReset}
             {...props}
@@ -86,8 +88,7 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        defaultTableView: 'tree',
-        tableTree: ruleTree,
+        ...(ruleTree ? { tableTree: ruleTree, defaultTableView: 'tree' } : {}),
         identifier: itemIdentifier,
         onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
@@ -104,6 +105,7 @@ RulesTable.propTypes = {
   profileRules: propTypes.array,
   rules: propTypes.array,
   ruleTree: propTypes.array,
+  securityGuideId: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
   system: propTypes.object,

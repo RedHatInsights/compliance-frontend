@@ -23,7 +23,9 @@ describe('treeChopper', function () {
   it('should return rows for a tree table', () => {
     const rows = treeChopper(exampleItems, columns, {
       tableTree,
-      openItems: ['1st-branch', '1st-twig', exampleItems[0].itemId],
+      expandable: {
+        openItems: ['1st-branch', '1st-twig', exampleItems[0].itemId],
+      },
       detailsComponent: ExampleDetailsRow,
     });
 
@@ -40,8 +42,8 @@ describe('treeChopper', function () {
     ).toEqual([
       ['1st-branch', { colSpan: 2 }, false],
       ['1st-twig', { colSpan: 2 }, false],
-      [exampleItems[0].itemId, undefined, false],
-      [undefined, { colSpan: 2 }, true],
+      [undefined, undefined, false],
+      ['2nd-twig', { colSpan: 2 }, false],
     ]);
   });
 });

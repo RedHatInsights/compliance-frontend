@@ -10,10 +10,7 @@ import {
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import OsVersionText from '../../TabbedRules/OsVersionText';
-import {
-  ProfileSystemCount,
-  SSGVersionText,
-} from '../../TabbedRules/ProfileTabContent';
+import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
 
 // TODO add reset link when selecting is implemented for wizard & edit policy
 const TabHeader = ({ tailoring, rulesPageLink }) => {
@@ -31,7 +28,6 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
             }}
           />
         </span>
-        <ProfileSystemCount count={'X'} />
       </Text>
       <Flex>
         <FlexItem>

@@ -61,7 +61,6 @@ const buildTreeBranch = (
   openItems,
   columns,
   rowTransformer,
-  itemIdentifier,
   idx,
   level = 1,
   setSize,
@@ -103,7 +102,6 @@ const buildTreeBranch = (
           openItems,
           columns,
           rowTransformer,
-          itemIdentifier,
           idx,
           nextLevel,
           (twig.twigs?.length || 0) + (twig.leaves?.length || 0),
@@ -184,7 +182,6 @@ const chopTreeIntoTable = (
   columns,
   openItems = [],
   rowTransformer = [],
-  itemIdentifier = ({ id }) => id,
   detailsComponent,
   selectable = false,
   expandOnFilter
@@ -198,7 +195,6 @@ const chopTreeIntoTable = (
         openItems,
         columns,
         rowTransformer,
-        itemIdentifier,
         idx,
         1,
         undefined,
@@ -217,15 +213,16 @@ const treeChopper = (items, columns, options = {}) => {
     detailsComponent,
   } = options || {};
 
-  return chopTreeIntoTable(
+  const choppedTree = chopTreeIntoTable(
     tableTree,
     items,
     columns,
     openItems,
     undefined,
-    undefined,
     detailsComponent
   );
+
+  return choppedTree;
 };
 
 export default treeChopper;

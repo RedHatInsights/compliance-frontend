@@ -6,6 +6,6 @@ import ruleTree from '@/__factories__/ruleTree';
 describe('buildTreeTable', () => {
   it('should return a treeTable for rule groups and rules', () => {
     const tree = ruleTree.build();
-    expect(buildTreeTable(tree, [])).toEqual({});
+    expect(buildTreeTable(tree, [])[0].leaves?.length).toEqual(2);
   });
 });

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import { Spinner, Tab } from '@patternfly/react-core';
 import {
@@ -39,10 +39,6 @@ const Tailorings = ({
     ],
   });
   const tailorings = data?.data;
-
-  useEffect(() => {
-    console.log('Tailssss', tailorings);
-  }, [tailorings]);
 
   return (
     <StateViewWithError stateValues={{ error, data: tailorings, loading }}>
