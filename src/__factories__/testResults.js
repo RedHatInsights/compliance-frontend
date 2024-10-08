@@ -21,6 +21,8 @@ const testResultsFactory = Factory.define(({ sequence, params }) => ({
   type: 'test_result',
   display_name: hostname(),
   groups: randomStringsArray(5),
+  compliant: Math.random() > 0.5,
+  supported: true,
   os_major_version: faker.number.int(10),
   os_minor_version: faker.number.int(100),
   security_guide_version: faker.system.semver(),

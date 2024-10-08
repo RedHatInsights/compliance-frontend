@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Tabs, Tab, TabTitleText } from '@patternfly/react-core';
+import { Tabs, Tab, TabTitleText, Bullseye } from '@patternfly/react-core';
 import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
@@ -11,6 +11,8 @@ import { ErrorCard } from 'PresentationalComponents';
 import natsort from 'natsort';
 
 import EmptyState from './EmptyState';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import { SystemPolicyCards as SystemPolicyCardsRest } from '../SystemPolicyCards/SystemPolicyCards';
 
 const QUERY = gql`
   query CD_System($systemId: String!) {
@@ -60,6 +62,7 @@ const QUERY = gql`
 `;
 
 const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const [selectedPolicy, setSelectedPolicy] = useState(
     system.testResultProfiles[0]?.id
   );
@@ -73,7 +76,15 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
 
   return (
     <>
-      <SystemPolicyCards policies={policies} loading={loading} />
+      {apiV2Enabled === undefined ? (
+        <Bullseye>
+          <Spinner />
+        </Bullseye>
+      ) : apiV2Enabled === true ? (
+        <SystemPolicyCardsRest />
+      ) : (
+        <SystemPolicyCards policies={policies} loading={loading} />
+      )}
       <br />
       {system?.testResultProfiles?.length ? (
         <>

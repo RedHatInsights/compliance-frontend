@@ -4,7 +4,8 @@ import TestWrapper from '@/Utilities/TestWrapper';
 
 import { useQuery } from '@apollo/client';
 import { useLocation } from 'react-router-dom';
-import { SystemDetails } from './SystemDetails.js';
+import SystemDetails from './SystemDetails.js';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag.js';
 
 jest.mock('@apollo/client');
 
@@ -20,6 +21,8 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
 }));
+
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag.js');
 
 describe('SystemDetails', () => {
   const defaultLocation = {
@@ -42,9 +45,10 @@ describe('SystemDetails', () => {
   beforeEach(() => {
     useLocation.mockImplementation(jest.fn(() => defaultLocation));
     useQuery.mockImplementation(() => defaultQuery);
+    useAPIV2FeatureFlag.mockReturnValue(false);
   });
 
-  it('expect to render an the inventory details', () => {
+  it('expect to render the inventory details', () => {
     render(
       <TestWrapper>
         <SystemDetails />
@@ -66,4 +70,6 @@ describe('SystemDetails', () => {
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
+
+  // TODO: add tests for the REST API component
 });
