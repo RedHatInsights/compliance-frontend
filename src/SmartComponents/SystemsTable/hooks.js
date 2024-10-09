@@ -8,7 +8,13 @@ import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
+import {
+  osMinorVersionFilter,
+  GET_SYSTEMS_OSES,
+  applyInventoryFilters,
+  groupFilterHandler,
+  osFilterHandler,
+} from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
@@ -18,8 +24,6 @@ import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
-import { isPlainObject } from '@apollo/client/utilities';
-import { coerce, valid } from 'semver';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -101,7 +105,7 @@ const useFetchBatched = () => {
   };
 };
 
-const buildApiFilters = (filters = {}) => {
+const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
   const { tagFilters, hostGroupFilter, osFilter, ...otherFilters } = filters;
 
   const tagsApiFilter = tagFilters
@@ -117,47 +121,24 @@ const buildApiFilters = (filters = {}) => {
       }
     : {};
 
-  /**
-   * TODO: build a separate layer/hook that integrates inventory filters with gq filter
-   */
-
-  // filtering by group_name is enabled in gq filter
-  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
-    otherFilters.filter = `(${hostGroupFilter
-      .map((value) => `group_name = "${value}"`)
-      .join(' or ')})`;
-  }
-
-  if (osFilter !== undefined && isPlainObject(osFilter)) {
-    const filterString = [];
-    Object.entries(osFilter).forEach(([, osVersionGroups]) => {
-      const selectedOsVersions = Object.entries(osVersionGroups);
-      selectedOsVersions.shift(); //first entry contains only major version, thus ignored
-
-      selectedOsVersions.forEach(([version, isSelected]) => {
-        const parsedSemverVersion = coerce(version.split('-').pop() || null);
-
-        if (valid(parsedSemverVersion) && isSelected) {
-          filterString.push(
-            `(os_major_version=${parsedSemverVersion.major} AND os_minor_version=${parsedSemverVersion.minor})`
-          );
-        }
-      });
-    });
-
-    if (filterString.length) {
-      otherFilters.filter ||= ''; // initilise the filter if not initialised
-      otherFilters.filter += filterString.join(' OR ');
-    }
-  }
-
   return {
     ...otherFilters,
     ...tagsApiFilter,
+    filter: applyInventoryFilters(
+      [groupFilterHandler, osFilterHandler],
+      {
+        osFilter,
+        hostGroupFilter,
+      },
+      ignoreOsMajorVersion
+    ),
   };
 };
 
-export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
+export const useGetEntities = (
+  fetchEntities,
+  { selected, columns, ignoreOsMajorVersion } = {}
+) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
@@ -177,7 +158,7 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       sortableColumn && sortableColumn.sortBy
         ? appendDirection(sortableColumn.sortBy, orderDirection)
         : undefined;
-    const filterForApi = buildApiFilters(filters);
+    const filterForApi = buildApiFilters(filters, ignoreOsMajorVersion);
 
     const fetchedEntities = await fetchEntities(perPage, page, {
       ...filterForApi,

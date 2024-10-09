@@ -16,6 +16,8 @@ const renameInventoryAttributes = ({
   stale_timestamp: staleTimestamp,
 });
 
+const splitFilter = (filter) => (filter ? filter.split(' and ') : []);
+
 const combineVariables = (standardVariables, allRequestVariables) => {
   const { exclusiveFilter, ...requestVariables } = allRequestVariables || {};
 
@@ -29,8 +31,8 @@ const combineVariables = (standardVariables, allRequestVariables) => {
 
   if (!!requestVariables && typeof requestVariables?.filter === 'string') {
     const combinedFilter = [
-      ...standardVariables.filter.split(' and '),
-      ...requestVariables.filter.split(' and '),
+      ...splitFilter(standardVariables.filter),
+      ...splitFilter(requestVariables.filter),
     ].join(' and ');
 
     return {

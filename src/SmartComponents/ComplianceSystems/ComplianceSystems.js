@@ -57,8 +57,8 @@ const fetchApi = async (page, perPage, combinedVariables) =>
       meta,
     }));
 
-const fetchCustomOSes = (...args) =>
-  apiInstance.systemsOS(...args).then(({ data }) => {
+const fetchCustomOSes = ({ filters }) =>
+  apiInstance.systemsOS(null, filters).then(({ data }) => {
     return {
       results: buildOSObject(data),
       total: data?.length || 0,

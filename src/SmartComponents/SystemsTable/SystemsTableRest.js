@@ -31,7 +31,6 @@ export const SystemsTable = ({
   columns,
   showAllSystems,
   policyId,
-  policyRefId,
   showActions,
   enableExport,
   compliantFilter,
@@ -56,6 +55,7 @@ export const SystemsTable = ({
   showGroupsFilter,
   fetchApi,
   fetchCustomOSes,
+  ignoreOsMajorVersion,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -151,6 +151,7 @@ export const SystemsTable = ({
   const getEntities = useGetEntities(fetchSystems, {
     selected: selectedIds,
     columns,
+    ignoreOsMajorVersion,
   });
 
   const exportConfig = useSystemsExport({
@@ -165,8 +166,8 @@ export const SystemsTable = ({
   });
 
   const handleOperatingSystemsFetch = useCallback(
-    () => fetchCustomOSes(null, defaultFilter), 
-    [defaultFilter, fetchCustomOSes]
+    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId]
   );
 
   return (
@@ -251,7 +252,6 @@ SystemsTable.propTypes = {
   policies: PropTypes.arrayOf(PropTypes.shape({})),
   showAllSystems: PropTypes.bool,
   policyId: PropTypes.string,
-  policyRefId: PropTypes.string,
   query: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   showActions: PropTypes.bool,
   enableExport: PropTypes.bool,
@@ -282,6 +282,7 @@ SystemsTable.propTypes = {
   ruleSeverityFilter: PropTypes.bool,
   fetchApi: PropTypes.func.isRequired,
   fetchCustomOSes: PropTypes.func.isRequired,
+  ignoreOsMajorVersion: PropTypes.bool,
 };
 
 SystemsTable.defaultProps = {
