@@ -4,6 +4,7 @@ const alias = require('./aliases');
 
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
+  https: false,
 });
 
 module.exports = {
