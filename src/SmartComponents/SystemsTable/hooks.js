@@ -8,7 +8,13 @@ import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
+import {
+  osMinorVersionFilter,
+  GET_SYSTEMS_OSES,
+  applyInventoryFilters,
+  groupFilterHandler,
+  osFilterHandler,
+} from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
@@ -99,8 +105,9 @@ const useFetchBatched = () => {
   };
 };
 
-const buildApiFilters = (filters = {}) => {
-  const { tagFilters, hostGroupFilter, ...otherFilters } = filters;
+const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
+  const { tagFilters, hostGroupFilter, osFilter, ...otherFilters } = filters;
+
   const tagsApiFilter = tagFilters
     ? {
         tags: tagFilters.flatMap((tagFilter) =>
@@ -114,24 +121,24 @@ const buildApiFilters = (filters = {}) => {
       }
     : {};
 
-  /**
-   * TODO: build a separate layer/hook that integrates inventory filters with gq filter
-   */
-
-  // filtering by group_name is enabled in gq filter
-  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
-    otherFilters.filter = `(${hostGroupFilter
-      .map((value) => `group_name = "${value}"`)
-      .join(' or ')})`;
-  }
-
   return {
     ...otherFilters,
     ...tagsApiFilter,
+    filter: applyInventoryFilters(
+      [groupFilterHandler, osFilterHandler],
+      {
+        osFilter,
+        hostGroupFilter,
+      },
+      ignoreOsMajorVersion
+    ),
   };
 };
 
-export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
+export const useGetEntities = (
+  fetchEntities,
+  { selected, columns, ignoreOsMajorVersion } = {}
+) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
@@ -151,7 +158,7 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       sortableColumn && sortableColumn.sortBy
         ? appendDirection(sortableColumn.sortBy, orderDirection)
         : undefined;
-    const filterForApi = buildApiFilters(filters);
+    const filterForApi = buildApiFilters(filters, ignoreOsMajorVersion);
 
     const fetchedEntities = await fetchEntities(perPage, page, {
       ...filterForApi,
@@ -253,11 +260,11 @@ export const useSystemsExport = ({
   });
 
   const fetchSystemsRest = useFetchSystemsV2(fetchApi, null, onError, {
-    ...fetchArguments?.variables,
     ...(fetchArguments.tags && { tags: fetchArguments.tags }),
     filter: selectionFilter
       ? `${fetchArguments.filter} and (${selectionFilter})`
       : fetchArguments?.filter,
+    ...(fetchArguments.policyId && { policyId: fetchArguments.policyId }),
   });
 
   const selectedFilter = () =>

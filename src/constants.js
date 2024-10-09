@@ -284,19 +284,13 @@ export const backgroundColors = {
   light300: '#f0f0f0', //'--pf-global--BackgroundColor--light-300',
 };
 
-export const systemsDataMapper = {
+const generalSystemMapper = {
   display_name: 'name',
   culled_timestamp: 'culled_timestamp',
   os_major_version: 'osMajorVersion',
   os_minor_version: 'osMinorVersion',
   stale_timestamp: 'stale_timestamp',
   stale_warning_timestamp: 'stale_warning_timestamp',
-  policies: {
-    policies: {
-      id: 'id',
-      title: 'name',
-    },
-  },
   groups: {
     groups: {
       id: 'id',
@@ -313,6 +307,20 @@ export const systemsDataMapper = {
     },
   },
   updated: 'updated',
+};
+
+export const systemsDataMapper = {
+  ...generalSystemMapper,
+  policies: {
+    policies: {
+      id: 'id',
+      title: 'name',
+    },
+  },
+};
+
+export const policySystemsMapper = {
+  ...generalSystemMapper,
 };
 
 export const reportDataMap = {

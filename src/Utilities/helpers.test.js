@@ -130,16 +130,16 @@ describe('buildOSObject', () => {
   it('should build an array of OS objects', () => {
     const result = buildOSObject(osArray);
     expect(result).toEqual([
-      { major: '6', minor: '9', name: 'RHEL' },
-      { major: '7', minor: '8', name: 'RHEL' },
+      { count: 0, value: { major: '6', minor: '9', name: 'RHEL' } },
+      { count: 0, value: { major: '7', minor: '8', name: 'RHEL' } },
     ]);
   });
 
   it('should ignore invalid input', () => {
     const result = buildOSObject([...osArray, null, undefined, 7.8]);
     expect(result).toEqual([
-      { major: '6', minor: '9', name: 'RHEL' },
-      { major: '7', minor: '8', name: 'RHEL' },
+      { count: 0, value: { major: '6', minor: '9', name: 'RHEL' } },
+      { count: 0, value: { major: '7', minor: '8', name: 'RHEL' } },
     ]);
   });
 });
