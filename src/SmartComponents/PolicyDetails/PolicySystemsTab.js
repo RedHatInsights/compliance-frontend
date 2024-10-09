@@ -9,6 +9,7 @@ import { apiInstance } from '../../Utilities/hooks/useQuery';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import { policySystemsMapper } from '../../constants';
 import dataSerialiser from '../../Utilities/dataSerialiser';
+import { buildOSObject } from '../../Utilities/helpers';
 
 const fetchApi = (offset, limit, fetchArguments) =>
   apiInstance
@@ -24,6 +25,14 @@ const fetchApi = (offset, limit, fetchArguments) =>
       data: dataSerialiser(data, policySystemsMapper),
       meta,
     }));
+
+const fetchCustomOSes = ({ policyId, filters }) =>
+  apiInstance.policySystemsOS(policyId, null, filters).then(({ data }) => {
+    return {
+      results: buildOSObject(data),
+      total: data?.length || 0,
+    };
+  });
 
 const PolicySystemsTab = ({ policy }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -51,6 +60,8 @@ const PolicySystemsTab = ({ policy }) => {
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
       fetchApi={fetchApi}
       apiV2Enabled={apiV2Enabled}
+      fetchCustomOSes={fetchCustomOSes}
+      ignoreOsMajorVersion
     />
   );
 };

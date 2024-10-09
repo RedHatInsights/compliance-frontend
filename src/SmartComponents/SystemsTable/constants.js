@@ -8,6 +8,8 @@ import {
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
+import isPlainObject from 'lodash/isPlainObject';
+import { coerce, valid } from 'semver';
 
 export const GET_MINIMAL_SYSTEMS = gql`
   query ST_Systems(
@@ -110,3 +112,52 @@ export const mergedColumns = (columns) => (defaultColumns) =>
       ];
     }
   }, []);
+
+export const groupFilterHandler = ({ hostGroupFilter }) => {
+  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
+    return `(${hostGroupFilter
+      .map((value) => `group_name = "${value}"`)
+      .join(' or ')})`;
+  }
+};
+
+export const osFilterHandler = ({ osFilter }, ignoreOsMajorVersion) => {
+  if (osFilter !== undefined && isPlainObject(osFilter)) {
+    const filterString = [];
+    Object.entries(osFilter).forEach(([, osVersionGroups]) => {
+      const selectedOsVersions = Object.entries(osVersionGroups);
+      selectedOsVersions.shift(); //first entry contains only major version, thus ignored
+
+      selectedOsVersions.forEach(([version, isSelected]) => {
+        const parsedSemverVersion = coerce(version.split('-').pop() || null);
+
+        if (valid(parsedSemverVersion) && isSelected) {
+          filterString.push(
+            !ignoreOsMajorVersion
+              ? `(os_major_version=${parsedSemverVersion.major} AND os_minor_version=${parsedSemverVersion.minor})`
+              : `os_minor_version=${parsedSemverVersion.minor}`
+          );
+        }
+      });
+    });
+
+    return filterString.join(' OR ');
+  }
+};
+
+export const applyInventoryFilters = (
+  handlers,
+  invFilters,
+  ...handlerArguments
+) => {
+  return handlers.reduce((resultingFilter, handler) => {
+    const currentFilter = handler(invFilters, ...handlerArguments);
+    if (currentFilter) {
+      return resultingFilter
+        ? `${resultingFilter} OR ${currentFilter}`
+        : currentFilter;
+    }
+
+    return resultingFilter;
+  }, null);
+};
