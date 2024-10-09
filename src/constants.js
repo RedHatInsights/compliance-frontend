@@ -291,28 +291,17 @@ export const systemsDataMapper = {
   os_minor_version: 'osMinorVersion',
   stale_timestamp: 'stale_timestamp',
   stale_warning_timestamp: 'stale_warning_timestamp',
-  policies: {
-    policies: {
-      id: 'id',
-      title: 'name',
-    },
-  },
-  groups: {
-    groups: {
-      id: 'id',
-      name: 'name',
-    },
-  },
+  policies: 'policies',
+  groups: 'groups',
   id: 'id',
   insights_id: 'insightsId',
-  tags: {
-    tags: {
-      key: 'key',
-      value: 'value',
-      namespace: 'namespace',
-    },
-  },
+  tags: 'tags',
   updated: 'updated',
+};
+
+export const policiesDataMapper = {
+  title: 'name',
+  id: 'id',
 };
 
 export const reportDataMap = {

@@ -11,7 +11,7 @@ import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '../../Utilities/dataSerialiser';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
-import { systemsDataMapper } from '../../constants';
+import { policiesDataMapper, systemsDataMapper } from '../../constants';
 
 export const QUERY = gql`
   {
@@ -30,6 +30,15 @@ export const QUERY = gql`
 const DEFAULT_FILTER_GRAPHQL = 'has_test_results = true or has_policy = true';
 const DEFAULT_FILTER_REST = 'assigned_or_scanned=true';
 
+const processSystemsData = (data) =>
+  dataSerialiser(
+    data.map((entry) => ({
+      ...entry,
+      policies: dataSerialiser(entry.policies, policiesDataMapper),
+    })),
+    systemsDataMapper
+  );
+
 const fetchApi = async (page, perPage, combinedVariables) =>
   apiInstance
     .systems(
@@ -40,7 +49,7 @@ const fetchApi = async (page, perPage, combinedVariables) =>
       combinedVariables.filter
     )
     .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
-      data: dataSerialiser(data, systemsDataMapper),
+      data: processSystemsData(data),
       meta,
     }));
 

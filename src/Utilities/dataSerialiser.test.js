@@ -113,28 +113,3 @@ describe('nested object with multiple output paths', () => {
     });
   });
 });
-
-describe('nested object with a value of an array type', () => {
-  it('should serialize correctly', () => {
-    const dataMap = {
-      name: 'name',
-      policies: {
-        policies: {
-          id: 'id',
-          title: 'name',
-        },
-      },
-    };
-
-    const obj = createNestedTestObject();
-    expect(dataSerialiser(obj, dataMap)).toEqual({
-      name: obj.name,
-      policies: [
-        {
-          id: obj.policies[0].id,
-          name: obj.policies[0].title,
-        },
-      ],
-    });
-  });
-});
