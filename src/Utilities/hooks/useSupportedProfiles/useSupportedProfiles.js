@@ -7,7 +7,7 @@ const useSupportedProfiles = (selectedOsMajorVersion, skip) => {
       ? {
           params: [
             undefined,
-            undefined,
+            100,
             undefined,
             undefined,
             `os_major_version=${selectedOsMajorVersion}`,
