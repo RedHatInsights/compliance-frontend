@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   ApolloProvider,
   ApolloClient,
@@ -19,12 +20,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const AppEntry = () => (
-  <Provider store={init(process?.env?.NODE_ENV || 'production').getStore()}>
+const AppEntry = ({ environment = 'production' }) => (
+  <Provider store={init(environment).getStore()}>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
   </Provider>
 );
+
+AppEntry.propTypes = {
+  environment: PropTypes.bool,
+};
 
 export default AppEntry;
