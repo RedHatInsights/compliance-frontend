@@ -40,6 +40,7 @@ describe('basic object', () => {
     };
     const obj = createBasicTestObject();
     expect(dataSerialiser(obj, dataMap)).toEqual({
+      ...obj,
       id: obj.id,
       title: obj.name,
       totalSystems: obj.total_systems,
@@ -58,6 +59,7 @@ describe('basic array ', () => {
     const items = faker.helpers.multiple(createBasicTestObject, { count: 5 });
     expect(dataSerialiser(items, dataMap)).toEqual(
       items.map((item) => ({
+        ...item,
         id: item.id,
         title: item.name,
         totalSystems: item.total_systems,
@@ -77,11 +79,15 @@ describe('nested object', () => {
     };
 
     const obj = createNestedTestObject();
+    console.log(obj);
+    console.log(dataSerialiser(obj, dataMap));
     expect(dataSerialiser(obj, dataMap)).toEqual({
+      ...obj,
       id: obj.id,
       title: obj.name,
       complianceThreshold: obj.compliance_threshold,
       policy: {
+        ...obj.policy,
         deeper: {
           refId: obj.policy.ref_id,
           and: {
@@ -104,10 +110,12 @@ describe('nested object with multiple output paths', () => {
 
     const obj = createNestedTestObject();
     expect(dataSerialiser(obj, dataMap)).toEqual({
+      ...obj,
       id: obj.id,
       title: obj.name,
       desc: obj.name,
       policy: {
+        ...obj.policy,
         id: obj.id,
       },
     });
@@ -128,13 +136,30 @@ describe('nested object with a value of an array type', () => {
 
     const obj = createNestedTestObject();
     expect(dataSerialiser(obj, dataMap)).toEqual({
+      ...obj,
       name: obj.name,
       policies: [
         {
+          ...obj.policies[0],
           id: obj.policies[0].id,
           name: obj.policies[0].title,
         },
       ],
+    });
+  });
+});
+
+describe('original object is overrided with the serializer', () => {
+  it('should add new properties and keep the original', () => {
+    const dataMap = {
+      name: 'title',
+    };
+
+    const obj = createNestedTestObject();
+
+    expect(dataSerialiser(obj, dataMap)).toEqual({
+      ...obj,
+      title: obj.name,
     });
   });
 });
