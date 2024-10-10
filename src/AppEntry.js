@@ -20,8 +20,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const AppEntry = ({ logger }) => (
-  <Provider store={init(logger).getStore()}>
+const AppEntry = ({ environment = 'production' }) => (
+  <Provider store={init(environment).getStore()}>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
@@ -29,7 +29,7 @@ const AppEntry = ({ logger }) => (
 );
 
 AppEntry.propTypes = {
-  logger: PropTypes.any,
+  environment: PropTypes.bool,
 };
 
 export default AppEntry;

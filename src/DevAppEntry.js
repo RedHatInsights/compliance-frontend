@@ -1,7 +1,6 @@
 import React from 'react';
-import logger from 'redux-logger';
 import AppEntry from './AppEntry';
 
-const DevAppEntry = () => <AppEntry logger={logger} />;
+const DevAppEntry = () => <AppEntry environment="development" />;
 
 export default DevAppEntry;

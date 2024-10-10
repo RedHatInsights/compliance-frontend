@@ -1,7 +1,7 @@
 import React from 'react';
 
 global.React = React;
-global.fetch = function () {};
+global.fetch = jest.fn();
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,
