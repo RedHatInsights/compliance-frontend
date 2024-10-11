@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import {
   useRawTableState,
   useSerialisedTableState,
-} from '../../../Frameworks/AsyncTableTools/hooks/useTableState';
+} from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import useQuery from './useQuery';
 
 /**
@@ -19,9 +19,11 @@ import useQuery from './useQuery';
  * Custom hook that passes serialised state from AsyncTableTools to the useQuery parameters
  * Make sure the component above is wrapped with `<TableStateProvider/>`.
  *
- *  @param   {Function}                 endpoint Function to execute, ideally from the apiInstance
+ *  @param   {Function}                 endpoint      Function to execute, ideally from the apiInstance
  *
- *  @returns {useComplianceQueryReturn}          Object containing state values and a refetch function
+ *  @param                              params.params
+ *  @param                              params
+ *  @returns {useComplianceQueryReturn}               Object containing state values and a refetch function
  *
  *  @category Compliance
  *  @subcategory Hooks
@@ -30,31 +32,36 @@ import useQuery from './useQuery';
  * const query = useComplianceQuery(apiInstance.policies)
  *
  */
-const useComplianceQuery = (endpoint) => {
+const useComplianceQuery = (endpoint, { params } = {}) => {
   const tableState = useRawTableState();
-  const serialisedTableState = useSerialisedTableState();
+  const {
+    filters,
+    pagination: { offset, limit } = {},
+    sort: sortBy,
+  } = useSerialisedTableState();
 
-  const { offset, limit } = serialisedTableState?.pagination || {};
+  const filter = useMemo(
+    () =>
+      params?.filter
+        ? `(${params.filter})${filters ? ` AND ${filter}` : ''}`
+        : filter,
+    [params, filters]
+  );
 
-  const filter = serialisedTableState?.filters;
-
-  const sortBy = serialisedTableState?.sort;
-
-  const params = useMemo(
-    () => [
-      {
-        limit,
-        offset,
-        filter,
-        sortBy,
-      },
-    ],
-    [limit, offset, filter, sortBy]
+  const fullParams = useMemo(
+    () => ({
+      limit,
+      offset,
+      sortBy,
+      ...params,
+      filter,
+    }),
+    [limit, offset, filter, sortBy, params]
   );
 
   const skip = !tableState;
 
-  return useQuery(endpoint, { params, skip });
+  return useQuery(endpoint, { params: fullParams, skip });
 };
 
 export default useComplianceQuery;

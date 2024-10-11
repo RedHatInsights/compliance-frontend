@@ -19,6 +19,7 @@ import systemReports from '@redhat-cloud-services/compliance-client/dist/SystemR
 import securityGuidesOS from '@redhat-cloud-services/compliance-client/dist/SecurityGuidesOS';
 import supportedProfiles from '@redhat-cloud-services/compliance-client/dist/SupportedProfiles';
 import policySystemsOS from '@redhat-cloud-services/compliance-client/dist/PolicySystemsOS';
+import reportsOs from '@redhat-cloud-services/compliance-client/dist/ReportsOS';
 
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
@@ -46,6 +47,7 @@ const apiInstance = APIFactory(
     securityGuidesOS,
     supportedProfiles,
     policySystemsOS,
+    reportsOs,
   },
   instance
 );
