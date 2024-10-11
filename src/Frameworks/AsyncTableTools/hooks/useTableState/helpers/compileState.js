@@ -1,12 +1,3 @@
-import merge from 'lodash/merge';
-import mergeWith from 'lodash/mergeWith';
-
-const preserveUndefinedCustomizer = (objValue, srcValue, key, obj) => {
-  if (objValue !== srcValue && typeof srcValue === 'undefined') {
-    obj[key] = srcValue;
-  }
-};
-
 const applySerialisers = (serialisers, newState) =>
   Object.entries(serialisers).reduce(
     (newSerialisedState, [serialiserNamespace, serialiser]) => {
@@ -56,11 +47,8 @@ const applyObservers = (namespace, observers, newState, currentState) => {
         ...applyNameSpaceObserver(
           stateKey,
           observers,
-          {
-            ...newState,
-            ...currentStateSnapshot,
-          },
-          currentState
+          currentStateSnapshot,
+          currentStateSnapshot
         ),
       }),
       {}
@@ -71,7 +59,7 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     }
 
     return updateStateRecursively(
-      merge(currentStateSnapshot, nextStateChanges),
+      { ...currentStateSnapshot, ...nextStateChanges },
       nextStateChanges
     );
   };
@@ -81,11 +69,12 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     newObserverStates
   );
 
-  return mergeWith(
-    currentState,
-    mergeWith(newState, finalObserverStates, preserveUndefinedCustomizer),
-    preserveUndefinedCustomizer
-  );
+  return {
+    ...currentState,
+    ...newState,
+    ...newObserverStates,
+    ...finalObserverStates,
+  };
 };
 
 const compileState = (

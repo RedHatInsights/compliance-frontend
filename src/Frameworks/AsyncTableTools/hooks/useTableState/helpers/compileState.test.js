@@ -138,7 +138,8 @@ describe('compileState', function () {
             }),
           },
           view: {
-            pagination: () => ({
+            pagination: (currentState) => ({
+              ...currentState,
               isDisabled: false,
             }),
           },
@@ -175,6 +176,51 @@ describe('compileState', function () {
     ).toEqual({
       tableState: {
         items: undefined,
+      },
+    });
+  });
+
+  it('should not merge states themselves', () => {
+    expect(
+      compileState(
+        'items',
+        {
+          tableState: {
+            items: ['abc'],
+          },
+        },
+        ['def'],
+        {},
+        {}
+      )
+    ).toEqual({
+      tableState: {
+        items: ['def'],
+      },
+    });
+
+    expect(
+      compileState(
+        'filters',
+        {
+          tableState: {
+            filters: {
+              check: ['abc'],
+              apple: true,
+            },
+          },
+        },
+        {
+          apple: true,
+        },
+        {},
+        {}
+      )
+    ).toEqual({
+      tableState: {
+        filters: {
+          apple: true,
+        },
       },
     });
   });
