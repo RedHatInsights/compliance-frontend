@@ -7,7 +7,7 @@ import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import { policySystemsMapper } from '../../constants';
+import { systemsDataMapper } from '../../constants';
 import dataSerialiser from '../../Utilities/dataSerialiser';
 import { buildOSObject } from '../../Utilities/helpers';
 
@@ -22,7 +22,7 @@ const fetchApi = (offset, limit, fetchArguments) =>
       fetchArguments.filter
     )
     .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
-      data: dataSerialiser(data, policySystemsMapper),
+      data: dataSerialiser(data, systemsDataMapper),
       meta,
     }));
 

@@ -14,6 +14,7 @@ import {
   applyInventoryFilters,
   groupFilterHandler,
   osFilterHandler,
+  nameFilterHandler,
 } from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
@@ -106,7 +107,13 @@ const useFetchBatched = () => {
 };
 
 const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
-  const { tagFilters, hostGroupFilter, osFilter, ...otherFilters } = filters;
+  const {
+    tagFilters,
+    hostGroupFilter,
+    osFilter,
+    hostnameOrId,
+    ...otherFilters
+  } = filters;
 
   const tagsApiFilter = tagFilters
     ? {
@@ -125,10 +132,11 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
     ...otherFilters,
     ...tagsApiFilter,
     filter: applyInventoryFilters(
-      [groupFilterHandler, osFilterHandler],
+      [groupFilterHandler, osFilterHandler, nameFilterHandler],
       {
         osFilter,
         hostGroupFilter,
+        hostnameOrId,
       },
       ignoreOsMajorVersion
     ),
@@ -171,10 +179,11 @@ export const useGetEntities = (
     } = fetchedEntities || {};
 
     return {
-      results: entities.map((entity) => ({
-        ...entity,
-        selected: (selected || []).map((id) => id).includes(entity.id),
-      })),
+      results:
+        entities?.map((entity) => ({
+          ...entity,
+          selected: (selected || []).map((id) => id).includes(entity.id),
+        })) || [],
       orderBy,
       orderDirection,
       total: totalCount,

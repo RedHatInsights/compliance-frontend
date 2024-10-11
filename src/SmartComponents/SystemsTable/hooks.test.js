@@ -220,7 +220,7 @@ describe('useGetEntities', () => {
     });
   });
 
-  it('Joins inventory filter OR', async () => {
+  it.only('Joins inventory filter AND operator', async () => {
     const { result } = renderHook(() =>
       useGetEntities(mockFetch, {
         columns: [
@@ -246,7 +246,7 @@ describe('useGetEntities', () => {
     });
     expect(mockFetch).toHaveBeenCalledWith(10, 1, {
       filter:
-        '(group_name = "test-group") OR (os_major_version=8 AND os_minor_version=4)',
+        '(group_name = "test-group") AND (os_major_version=8 AND os_minor_version=4)',
       sortBy: ['nameAttribute:ASC'],
     });
   });

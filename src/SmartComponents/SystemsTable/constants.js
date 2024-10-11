@@ -145,6 +145,9 @@ export const osFilterHandler = ({ osFilter }, ignoreOsMajorVersion) => {
   }
 };
 
+export const nameFilterHandler = ({ hostnameOrId }) =>
+  hostnameOrId && `display_name ~ ${hostnameOrId}`;
+
 export const applyInventoryFilters = (
   handlers,
   invFilters,
@@ -154,7 +157,7 @@ export const applyInventoryFilters = (
     const currentFilter = handler(invFilters, ...handlerArguments);
     if (currentFilter) {
       return resultingFilter
-        ? `${resultingFilter} OR ${currentFilter}`
+        ? `${resultingFilter} AND ${currentFilter}`
         : currentFilter;
     }
 

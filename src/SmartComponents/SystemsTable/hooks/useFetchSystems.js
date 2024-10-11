@@ -18,6 +18,30 @@ const renameInventoryAttributes = ({
 
 const splitFilter = (filter) => (filter ? filter.split(' and ') : []);
 
+const combineVariablesRest = (standardVariables, allRequestVariables) => {
+  const { exclusiveFilter, ...requestVariables } = allRequestVariables || {};
+
+  if (exclusiveFilter) {
+    return {
+      ...standardVariables,
+      ...requestVariables,
+      filter: exclusiveFilter,
+    };
+  }
+
+  const combinedFilter =
+    [
+      ...splitFilter(standardVariables.filter || ''),
+      ...splitFilter(requestVariables.filter || ''),
+    ].join(', ') || undefined; //We want 'filter: undefined' in case there is not any active filter.
+
+  return {
+    ...standardVariables,
+    ...requestVariables,
+    filter: combinedFilter,
+  };
+};
+
 const combineVariables = (standardVariables, allRequestVariables) => {
   const { exclusiveFilter, ...requestVariables } = allRequestVariables || {};
 
@@ -31,9 +55,9 @@ const combineVariables = (standardVariables, allRequestVariables) => {
 
   if (!!requestVariables && typeof requestVariables?.filter === 'string') {
     const combinedFilter = [
-      ...splitFilter(standardVariables.filter),
-      ...splitFilter(requestVariables.filter),
-    ].join(', ');
+      ...standardVariables.filter.split(' and '),
+      ...requestVariables.filter.split(' and '),
+    ].join(' and ');
 
     return {
       ...standardVariables,
@@ -102,7 +126,7 @@ export const useFetchSystemsV2 = (
 ) => {
   const fetchSystems = useCallback(
     async (perPage, page, requestVariables) => {
-      const combinedVariables = combineVariables(
+      const combinedVariables = combineVariablesRest(
         systemFetchArguments,
         requestVariables
       );
@@ -126,6 +150,7 @@ export const useFetchSystemsV2 = (
         onComplete?.(result);
         return result;
       } catch (error) {
+        console.log('error: ', error);
         if (onError) {
           onError(error);
         } else {
