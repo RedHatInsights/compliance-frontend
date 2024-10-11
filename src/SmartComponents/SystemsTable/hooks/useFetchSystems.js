@@ -33,7 +33,7 @@ const combineVariables = (standardVariables, allRequestVariables) => {
     const combinedFilter = [
       ...splitFilter(standardVariables.filter),
       ...splitFilter(requestVariables.filter),
-    ].join(' and ');
+    ].join(', ');
 
     return {
       ...standardVariables,
