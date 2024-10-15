@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import propTypes from 'prop-types';
 import { gql, useQuery } from '@apollo/client';
 import { nowrap } from '@patternfly/react-table';
 import PageHeader, {
@@ -8,10 +9,12 @@ import PageHeader, {
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import dataSerialiser from '../../Utilities/dataSerialiser';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
-import { policiesDataMapper, systemsDataMapper } from '../../constants';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from '@/Utilities/dataSerialiser';
+import { apiInstance } from '@/Utilities/hooks/useQuery';
+import { policiesDataMapper, systemsDataMapper } from '@/constants';
+import { usePoliciesQuery } from '@/Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
+import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
 export const QUERY = gql`
   {
@@ -53,9 +56,7 @@ const fetchApi = async (page, perPage, combinedVariables) =>
       meta,
     }));
 
-export const ComplianceSystems = () => {
-  const { data, error, loading } = useQuery(QUERY);
-  const policies = data?.profiles?.edges.map(({ node }) => node);
+const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
 
   return (
@@ -112,4 +113,37 @@ export const ComplianceSystems = () => {
   );
 };
 
-export default ComplianceSystems;
+ComplianceSystemsBase.propTypes = {
+  data: propTypes.array.isRequired,
+  error: propTypes.object,
+  loading: propTypes.bool,
+  policies: propTypes.array.isRequired,
+};
+
+const ComplianceSystemsGraphQL = () => {
+  const { data, error, loading } = useQuery(QUERY);
+  const policies = data?.profiles?.edges.map(({ node }) => node);
+
+  return <ComplianceSystemsBase {...{ data, error, loading, policies }} />;
+};
+
+const ComplianceSystemsRest = () => {
+  let { data: { data } = {}, error, loading } = usePoliciesQuery();
+
+  if (data) {
+    data = dataSerialiser(data, policiesDataMapper);
+  }
+
+  return (
+    <ComplianceSystemsBase
+      {...{ data, error, loading, policies: data || [] }}
+    />
+  );
+};
+
+export default () => (
+  <GatedComponents
+    RestComponent={ComplianceSystemsRest}
+    GraphQLComponent={ComplianceSystemsGraphQL}
+  />
+);
