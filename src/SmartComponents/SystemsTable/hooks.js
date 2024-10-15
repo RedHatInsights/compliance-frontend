@@ -106,7 +106,7 @@ const useFetchBatched = () => {
   };
 };
 
-const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
+const buildApiFilters = (filters = {}, ignoreOsMajorVersion, apiV2Enabled) => {
   const {
     tagFilters,
     hostGroupFilter,
@@ -128,18 +128,32 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
       }
     : {};
 
+  if (
+    hostGroupFilter !== undefined &&
+    Array.isArray(hostGroupFilter) &&
+    !apiV2Enabled
+  ) {
+    otherFilters.filter = `(${hostGroupFilter
+      .map((value) => `group_name = "${value}"`)
+      .join(' or ')})`;
+  }
+
   return {
     ...otherFilters,
     ...tagsApiFilter,
-    filter: applyInventoryFilters(
-      [groupFilterHandler, osFilterHandler, nameFilterHandler],
-      {
-        osFilter,
-        hostGroupFilter,
-        hostnameOrId,
-      },
-      ignoreOsMajorVersion
-    ),
+    ...(apiV2Enabled
+      ? {
+          filter: applyInventoryFilters(
+            [groupFilterHandler, osFilterHandler, nameFilterHandler],
+            {
+              osFilter,
+              hostGroupFilter,
+              hostnameOrId,
+            },
+            ignoreOsMajorVersion
+          ),
+        }
+      : {}),
   };
 };
 
@@ -147,6 +161,7 @@ export const useGetEntities = (
   fetchEntities,
   { selected, columns, ignoreOsMajorVersion } = {}
 ) => {
+  const apiV2Enabled = useAPIV2FeatureFlag();
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
@@ -166,7 +181,11 @@ export const useGetEntities = (
       sortableColumn && sortableColumn.sortBy
         ? appendDirection(sortableColumn.sortBy, orderDirection)
         : undefined;
-    const filterForApi = buildApiFilters(filters, ignoreOsMajorVersion);
+    const filterForApi = buildApiFilters(
+      filters,
+      ignoreOsMajorVersion,
+      apiV2Enabled
+    );
 
     const fetchedEntities = await fetchEntities(perPage, page, {
       ...filterForApi,
