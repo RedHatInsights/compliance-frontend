@@ -19,9 +19,11 @@ import useQuery from './useQuery';
  * Custom hook that passes serialised state from AsyncTableTools to the useQuery parameters
  * Make sure the component above is wrapped with `<TableStateProvider/>`.
  *
- *  @param   {Function}                 endpoint Function to execute, ideally from the apiInstance
+ *  @param   {Function}                 endpoint      Function to execute, ideally from the apiInstance
  *
- *  @returns {useComplianceQueryReturn}          Object containing state values and a refetch function
+ *  @param                              params.params
+ *  @param                              params
+ *  @returns {useComplianceQueryReturn}               Object containing state values and a refetch function
  *
  *  @category Compliance
  *  @subcategory Hooks
@@ -30,7 +32,7 @@ import useQuery from './useQuery';
  * const query = useComplianceQuery(apiInstance.policies)
  *
  */
-const useComplianceQuery = (endpoint) => {
+const useComplianceQuery = (endpoint, { params } = {}) => {
   const tableState = useRawTableState();
   const serialisedTableState = useSerialisedTableState();
 
@@ -40,21 +42,25 @@ const useComplianceQuery = (endpoint) => {
 
   const sortBy = serialisedTableState?.sort;
 
-  const params = useMemo(
+  const fullParams = useMemo(
     () => [
       {
         limit,
         offset,
         filter,
         sortBy,
+        ...params,
+        ...(params?.filter
+          ? { filter: `(${params.filter}) AMD (${filter})` }
+          : {}),
       },
     ],
-    [limit, offset, filter, sortBy]
+    [limit, offset, filter, sortBy, params]
   );
 
   const skip = !tableState;
 
-  return useQuery(endpoint, { params, skip });
+  return useQuery(endpoint, { params: fullParams, skip });
 };
 
 export default useComplianceQuery;

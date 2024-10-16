@@ -13,46 +13,39 @@ import {
 } from './Filters';
 import '../../App.scss';
 
-const ReportsTable = ({ reports }) => {
-  const policyTypes = uniq(
-    reports.map(({ policyType }) => policyType).filter((i) => !!i)
-  );
-  const operatingSystems = uniq(
-    reports.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
-  );
-
-  return (
-    <TableToolsTable
-      aria-label="Reports"
-      ouiaId="ReportsTable"
-      columns={[...columns, PDFExportDownload]}
-      items={reports}
-      isStickyHeader
-      filters={{
-        filterConfig: [
-          ...policyNameFilter,
-          ...((policyTypes.length > 0 && policyTypeFilter(policyTypes)) || []),
-          ...((operatingSystems.length > 0 &&
-            operatingSystemFilter(operatingSystems)) ||
-            []),
-          ...policyComplianceFilter,
-        ],
-      }}
-      options={{
-        ...COMPLIANCE_TABLE_DEFAULTS,
-        exportable: {
-          ...COMPLIANCE_TABLE_DEFAULTS.exportable,
-          columns: exportableColumns,
-        },
-        emptyRows: emptyRows('reports', columns.length),
-      }}
-      className={'reports-table'}
-    />
-  );
-};
+const ReportsTable = ({ reports, operatingSystems, policyTypes }) => (
+  <TableToolsTable
+    aria-label="Reports"
+    ouiaId="ReportsTable"
+    columns={[...columns, PDFExportDownload]}
+    items={reports}
+    isStickyHeader
+    filters={{
+      filterConfig: [
+        ...policyNameFilter,
+        ...(policyTypes?.length > 0 ? policyTypeFilter(policyTypes) : []),
+        ...(operatingSystems?.length > 0
+          ? operatingSystemFilter(operatingSystems)
+          : []),
+        ...policyComplianceFilter,
+      ],
+    }}
+    options={{
+      ...COMPLIANCE_TABLE_DEFAULTS,
+      exportable: {
+        ...COMPLIANCE_TABLE_DEFAULTS.exportable,
+        columns: exportableColumns,
+      },
+      emptyRows: emptyRows('reports', columns.length),
+    }}
+    className={'reports-table'}
+  />
+);
 
 ReportsTable.propTypes = {
   reports: propTypes.array.isRequired,
+  operatingSystems: propTypes.array.isRequired,
+  policyTypes: propTypes.array.isRequired,
 };
 
 export default ReportsTable;
