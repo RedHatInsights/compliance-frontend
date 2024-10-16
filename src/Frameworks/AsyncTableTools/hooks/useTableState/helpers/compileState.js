@@ -23,12 +23,7 @@ const applyNameSpaceObserver = (namespace, observers, newState, currentState) =>
         currentState?.[namespace],
         newState[namespace]
       );
-      console.log(
-        'Observer func:',
-        namespace,
-        observingState,
-        newObservingState
-      );
+
       return {
         ...newObserverStatesAcc,
         ...(typeof newObservingState !== 'undefined'
@@ -80,9 +75,7 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     }),
     {}
   );
-  console.log(newObserverStates);
-  console.log(observerObservingStates);
-  console.log(observerObservingObserverStates);
+
   return merge(
     currentState,
     merge(

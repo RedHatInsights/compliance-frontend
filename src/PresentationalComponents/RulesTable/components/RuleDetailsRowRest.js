@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Spinner } from '@patternfly/react-core';
+import { Bullseye, Spinner } from '@patternfly/react-core';
 import RuleDetailsRow from '../RuleDetailsRow';
 import { useRule } from 'Utilities/hooks/api/useRule';
 
@@ -17,7 +17,9 @@ const RuleDetailsRowRest = ({
   };
 
   return loading ? (
-    <Spinner />
+    <Bullseye>
+      <Spinner />
+    </Bullseye>
   ) : (
     <RuleDetailsRow {...{ item, onValueChange, onRuleValueReset }} />
   );
