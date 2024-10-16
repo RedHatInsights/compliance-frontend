@@ -150,7 +150,7 @@ export const useFetchSystemsV2 = (
         onComplete?.(result);
         return result;
       } catch (error) {
-        console.log('error: ', error);
+        console.error('error: ', error.message);
         if (onError) {
           onError(error);
         } else {
