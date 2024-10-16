@@ -10,6 +10,7 @@ import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import { systemsDataMapper } from '@/constants';
 import dataSerialiser from '@/Utilities/dataSerialiser';
 import { buildOSObject } from '@/Utilities/helpers';
+import NoResultsTable from '../../Utilities/hooks/useTableTools/Components/NoResultsTable';
 
 const fetchApi = (offset, limit, fetchArguments) =>
   apiInstance
@@ -54,7 +55,11 @@ const PolicySystemsTab = ({ policy }) => {
       showActions={false}
       remediationsEnabled={false}
       noSystemsTable={
-        policy?.hosts?.length === 0 && <NoSystemsTableWithWarning />
+        policy?.hosts?.length === 0 ? (
+          <NoSystemsTableWithWarning />
+        ) : (
+          <NoResultsTable kind="systems" />
+        )
       }
       complianceThreshold={policy.complianceThreshold}
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
