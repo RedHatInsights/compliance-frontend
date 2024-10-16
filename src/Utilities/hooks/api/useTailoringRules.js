@@ -2,12 +2,13 @@ import useQuery, { apiInstance } from '../useQuery';
 
 export const useTailoringRules = (
   policyId,
-  id,
-  { params = [], ...options } = {}
+  tailoringId,
+  { params = {}, ...options } = {}
 ) => {
-  const paramsToPass = [policyId, id, ...params];
+  const paramsToPass = [policyId, tailoringId, ...params];
   return useQuery(apiInstance.tailoringRules, {
     params: paramsToPass,
+    skip: !policyId && !tailoringId,
     ...options,
   });
 };

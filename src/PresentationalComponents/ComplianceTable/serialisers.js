@@ -90,10 +90,5 @@ export const filtersSerialiser = (state, filters) => {
  *  ];
  *
  */
-export const sortSerialiser = ({ index, direction } = {}, columns) => {
-  console.log(index, direction, columns, columns[index - 1]);
-  return (
-    columns[index - 1]?.sortable &&
-    `${columns[index - 1].sortable}:${direction}`
-  );
-};
+export const sortSerialiser = ({ index, direction } = {}, columns) =>
+  columns[index - 1]?.sortable && `${columns[index - 1].sortable}:${direction}`;
