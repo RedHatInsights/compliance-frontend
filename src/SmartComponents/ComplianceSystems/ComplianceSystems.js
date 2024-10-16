@@ -15,6 +15,7 @@ import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { policiesDataMapper, systemsDataMapper } from '@/constants';
 import { usePoliciesQuery } from '@/Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
+import { buildOSObject } from '../../Utilities/helpers';
 
 export const QUERY = gql`
   {
@@ -55,6 +56,14 @@ const fetchApi = async (page, perPage, combinedVariables) =>
       data: processSystemsData(data),
       meta,
     }));
+
+const fetchCustomOSes = ({ filters }) =>
+  apiInstance.systemsOS(null, filters).then(({ data }) => {
+    return {
+      results: buildOSObject(data),
+      total: data?.length || 0,
+    };
+  });
 
 const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -103,6 +112,7 @@ const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
                 policies={policies}
                 showGroupsFilter
                 fetchApi={fetchApi}
+                fetchCustomOSes={fetchCustomOSes}
                 apiV2Enabled={apiV2Enabled}
               />
             )}

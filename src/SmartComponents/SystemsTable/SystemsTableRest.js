@@ -15,7 +15,6 @@ import {
 } from './constants';
 import {
   useGetEntities,
-  useOsMinorVersionFilterRest,
   useInventoryUtilities,
   useSystemsExport,
   useSystemsFilter,
@@ -23,7 +22,6 @@ import {
 } from './hooks';
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import {
-  defaultSystemsFilterConfiguration,
   compliantSystemFilterConfiguration,
   complianceReportTableAdditionalFilter,
 } from '../../constants';
@@ -46,7 +44,6 @@ export const SystemsTable = ({
   defaultFilter,
   emptyStateComponent,
   prependComponent,
-  showOsMinorVersionFilter,
   preselectedSystems,
   onSelect: onSelectProp,
   noSystemsTable,
@@ -56,6 +53,8 @@ export const SystemsTable = ({
   ruleSeverityFilter,
   showGroupsFilter,
   fetchApi,
+  fetchCustomOSes,
+  ignoreOsMajorVersion,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -65,10 +64,6 @@ export const SystemsTable = ({
   const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
-  const osMinorVersionFilter = useOsMinorVersionFilterRest(
-    showOsMinorVersionFilter,
-    [defaultFilter, ...(policyId && { policyId })]
-  );
   const [error, setError] = useState(errorProp);
 
   const {
@@ -78,11 +73,9 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...defaultSystemsFilterConfiguration(),
         ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
-        ...osMinorVersionFilter,
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
       ],
     },
@@ -156,6 +149,7 @@ export const SystemsTable = ({
   const getEntities = useGetEntities(fetchSystems, {
     selected: selectedIds,
     columns,
+    ignoreOsMajorVersion,
   });
 
   const exportConfig = useSystemsExport({
@@ -168,6 +162,11 @@ export const SystemsTable = ({
     },
     fetchApi,
   });
+
+  const handleOperatingSystemsFetch = useCallback(
+    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId]
+  );
 
   return (
     <StateView
@@ -204,6 +203,8 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
+            name: false,
+            operatingSystem: false,
             tags: true, //enable when tag filtering is supported by complience-client package
             hostGroupFilter: !showGroupsFilter,
           }}
@@ -236,6 +237,7 @@ export const SystemsTable = ({
               },
             ],
           })}
+          fetchCustomOSes={handleOperatingSystemsFetch}
         />
       </StateViewPart>
     </StateView>
@@ -278,6 +280,8 @@ SystemsTable.propTypes = {
   dedicatedAction: PropTypes.object,
   ruleSeverityFilter: PropTypes.bool,
   fetchApi: PropTypes.func.isRequired,
+  fetchCustomOSes: PropTypes.func.isRequired,
+  ignoreOsMajorVersion: PropTypes.bool,
 };
 
 SystemsTable.defaultProps = {
