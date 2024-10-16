@@ -5,16 +5,28 @@ import { useRuleGroups } from 'Utilities/hooks/api/useRuleGroups';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import { buildTreeTable } from '../helpers';
 
+const shouldSkip = (request, { view }) =>
+  ({
+    ruleTree: view !== 'tree',
+    ruleGroups: view !== 'tree',
+    rules: false,
+  }[request]);
+
 const useTailoringsData = (
-  { id: policyId },
-  { id: tailoringId, security_guide_id },
-  tableState
+  { id: policyId } = {},
+  { id: tailoringId, security_guide_id } = {},
+  {
+    tableState = {},
+    serialisedTableState: { filters, pagination, sort } = {},
+  } = {}
 ) => {
   const {
     data: ruleTree,
     loading: ruleTreeLoading,
     error: ruleTreeError,
-  } = useSecurityGuideRuleTree(security_guide_id, { skip: !tableState });
+  } = useSecurityGuideRuleTree(security_guide_id, {
+    skip: shouldSkip('ruleTree', tableState),
+  });
   const { fetch: fetchRuleGroups } = useRuleGroups(security_guide_id, {
     skip: true,
     debounced: false,
@@ -28,12 +40,10 @@ const useTailoringsData = (
 
   const { loading: ruleGroupsLoading, data: ruleGroups } = useFetchTotalBatched(
     fetchRuleGroupsForBatch,
-    { batchSize: 60, skip: !tableState }
+    { batchSize: 60, skip: shouldSkip('ruleGroups', tableState) }
   );
-  const openRuleGroups = tableState?.tableState?.['open-items']?.filter(
-    (itemId) => {
-      return ruleGroups?.map(({ id }) => id).includes(itemId);
-    }
+  const openRuleGroups = tableState?.['open-items']?.filter((itemId) =>
+    ruleGroups?.map(({ id }) => id).includes(itemId)
   );
   const groupFilter =
     openRuleGroups?.length > 0
@@ -48,13 +58,19 @@ const useTailoringsData = (
     params: [
       undefined,
       // TODO this is a hack: The state value defaults should come from the state itself
-      tableState?.serialisedTableState?.pagination?.limit || 10,
-      tableState?.serialisedTableState?.pagination?.offset || 0,
-      tableState?.serialisedTableState?.sort || 'title:asc',
-      groupFilter,
+      pagination?.limit || 10,
+      pagination?.offset || 0,
+      sort || 'title:asc',
+      ...(filters || groupFilter
+        ? [
+            filters
+              ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
+              : groupFilter,
+          ]
+        : []),
       undefined,
     ],
-    skip: !tableState && openRuleGroups?.length === 0,
+    skip: shouldSkip('rules', tableState),
   });
 
   const loading = ruleTreeLoading && rulesLoading && ruleGroupsLoading;

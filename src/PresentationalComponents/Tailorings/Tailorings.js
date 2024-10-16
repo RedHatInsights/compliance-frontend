@@ -37,6 +37,7 @@ const Tailorings = ({
       undefined,
       'NOT(null? os_minor_version)', // TODO doublecheck if this is right
     ],
+    skip: !policy,
   });
   const tailorings = data?.data;
 

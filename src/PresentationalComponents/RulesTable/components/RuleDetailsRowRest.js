@@ -10,10 +10,7 @@ const RuleDetailsRowRest = ({
   onValueChange,
   onRuleValueReset,
 }) => {
-  const { data, loading } = useRule(securityGuideId, rule.itemId, {
-    skip: !rule?.itemId,
-  });
-
+  const { data, loading } = useRule(securityGuideId, rule.itemId);
   const item = {
     ...rule,
     ...(data?.data || {}),
