@@ -204,7 +204,7 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            tags: true, //enable when tag filtering is supported by complience-client package
+            tags: false,
             hostGroupFilter: !showGroupsFilter,
           }}
           showTags
