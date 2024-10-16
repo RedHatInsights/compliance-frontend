@@ -37,17 +37,24 @@ describe('useExpandable', () => {
   });
 
   it('should handle opening a single row', async () => {
+    const itemId = 'test-id';
     const { result } = renderHook(
       () => useExpandable(defaultOptions),
       DEFAULT_RENDER_OPTIONS
     );
 
+    act(() => {
+      result.current.tableProps.onCollapse(undefined, undefined, undefined, {
+        itemId,
+      });
+    });
+
     const openedRow = result.current.openItem(row, [], 0);
 
     expect(openedRow).toEqual([
       {
-        isOpen: false,
-        itemId: 'test-id',
+        isOpen: true,
+        itemId,
       },
       {
         cells: [

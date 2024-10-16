@@ -8,7 +8,7 @@ const useViewState = (options) => {
   const internalTableView = useRef(defaultTableView);
   // TODO Possible turn this into a table feature
   const filtersObserver = useCallback(
-    (currentTableViewState, previousFilters, nextFilters) => {
+    (_currentTableViewState, previousFilters, nextFilters) => {
       const newView =
         nextFilters?.name?.[0] !== previousFilters?.name?.[0]
           ? 'rows'
@@ -20,8 +20,7 @@ const useViewState = (options) => {
     []
   );
   const itemObserver = useCallback(
-    (currentTableViewState, _previousItems, items) => {
-      console.log('io', currentTableViewState, _previousItems, items);
+    (_currentTableViewState, _previousItems, items) => {
       let newView;
       if (typeof items === 'undefined') {
         newView = 'loading';
