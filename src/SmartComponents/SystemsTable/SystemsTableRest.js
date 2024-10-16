@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
@@ -45,7 +45,7 @@ export const SystemsTable = ({
   emptyStateComponent,
   prependComponent,
   preselectedSystems,
-  onSelect: onSelectProp,
+  onSelect,
   noSystemsTable,
   tableProps,
   ssgVersions,
@@ -61,7 +61,6 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
@@ -92,23 +91,17 @@ export const SystemsTable = ({
     ...(policyId && { policyId }),
   };
 
-  const preselection = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
-
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
-    // eslint-disable-next-line no-unused-vars
-    toolbarProps: bulkSelectToolBarProps, //enable when filtering api endpoints by ID is possible. RHINENG-12138
+    toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    perPage,
-    onSelect: onSelectProp,
-    preselected: preselection,
+    onSelect,
+    preselectedSystems,
     fetchArguments: systemFetchArguments,
-    currentPageIds: items.map(({ id }) => id),
+    currentPageItems: items,
+    fetchApi,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -117,7 +110,6 @@ export const SystemsTable = ({
     (result) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
-      setPerPage(result.perPage);
       setIsLoaded(true);
       setCurrentTags(result.meta.tags);
 
@@ -217,7 +209,7 @@ export const SystemsTable = ({
           }}
           fallback={<Spinner />}
           {...(compact ? { variant: 'compact' } : {})}
-          // {...bulkSelectToolBarProps} //enable when filtering api endpoints by ID is possible. RHINENG-12138
+          {...bulkSelectToolBarProps}
           {...(!showAllSystems && {
             ...conditionalFilter,
             ...(remediationsEnabled && {
