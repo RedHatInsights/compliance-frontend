@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useState,
-  useCallback,
-} from 'react';
+import React, { useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -18,6 +13,7 @@ import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
+import useLoadedItems from './hooks/useLoadedItems';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -300,16 +296,18 @@ export const useSystemsExport = ({
 export const useSystemBulkSelect = ({
   total,
   onSelect,
-  preselected,
+  preselectedSystems,
   fetchArguments,
-  currentPageIds,
-  dataMap,
+  currentPageItems,
+  fetchApi,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = false; //TODO: enable REST when the API implements ID search over endpoints. Use this hook => useAPIV2FeatureFlag();
-  // This is meant as a compatibility layer and to be removed
-  const [selectedSystems, setSelectedSystems] = useState([]);
+  const apiV2Enabled = useAPIV2FeatureFlag();
+  const { loadedItems, addToLoadedItems, allLoaded } = useLoadedItems(
+    currentPageItems,
+    total
+  );
 
   const onError = useCallback((error) => {
     dispatchNotification({
@@ -324,57 +322,61 @@ export const useSystemBulkSelect = ({
     onError,
   });
 
-  const fetchSystemsRest = useFetchSystemsV2({
-    dataMap,
-    systemFetchArguments: fetchArguments,
+  const fetchSystemsRest = useFetchSystemsV2(
+    fetchApi,
+    undefined,
     onError,
-  });
-
-  const fetchFunc = async (fetchIds) => {
-    if (fetchIds.length === 0) {
-      return [];
-    }
-
-    const idFilter = toIdFilter(fetchIds);
-    const results = await fetchBatched(
-      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-      fetchIds.length,
-      {
-        ...(idFilter && { exclusiveFilter: idFilter }),
-      }
-    );
-
-    return results.flatMap((result) => result.entities);
-  };
+    fetchArguments
+  );
 
   const onSelectCallback = async (selectedIds) => {
     dispatch(setDisabledSelection(true));
-
-    const systems = await fetchFunc(selectedIds);
-    setSelectedSystems(systems);
-
+    const systemsSelection = loadedItems.filter(({ id }) =>
+      selectedIds.includes(id)
+    );
+    onSelect && onSelect(systemsSelection);
     dispatch(setDisabledSelection(false));
-    onSelect && onSelect(systems);
   };
+
+  const getItemsInTable = async () => {
+    let items = [];
+
+    if (allLoaded) {
+      items = loadedItems;
+    } else {
+      const results = await fetchBatched(
+        apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+        total
+      );
+      items = results.flatMap((result) => result.entities);
+      addToLoadedItems(items);
+    }
+
+    return items;
+  };
+
+  const preselected = useMemo(
+    () => preselectedSystems.map(({ id }) => id),
+    [preselectedSystems]
+  );
 
   const itemIdsInTable = async () => {
-    const results = await fetchBatched(
-      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-      total
-    );
-    return results.flatMap((result) => result.entities.map(({ id }) => id));
+    const items = await getItemsInTable();
+
+    return items.map(({ id }) => id);
   };
+
+  const itemIdsOnPage = () => currentPageItems.map(({ id }) => id);
 
   const bulkSelect = useBulkSelect({
     total,
     onSelect: onSelectCallback,
     preselected,
     itemIdsInTable,
-    itemIdsOnPage: () => currentPageIds,
+    itemIdsOnPage,
   });
 
   return {
-    selectedSystems,
     ...bulkSelect,
     toolbarProps: {
       ...bulkSelect.toolbarProps,
