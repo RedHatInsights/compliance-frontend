@@ -51,11 +51,12 @@ const PolicySystemsTab = ({ policy }) => {
       ]}
       showOsMinorVersionFilter={[policy.osMajorVersion]}
       policyId={policy.id}
+      defaultFilter={apiV2Enabled ? null : `policy_id = ${policy.id}`}
       policyRefId={policy.refId}
       showActions={false}
       remediationsEnabled={false}
       noSystemsTable={
-        policy?.hosts?.length === 0 ? (
+        policy?.hosts?.length === 0 || policy?.totalHostCount === 0 ? (
           <NoSystemsTableWithWarning />
         ) : (
           <NoResultsTable kind="systems" />
@@ -78,6 +79,7 @@ PolicySystemsTab.propTypes = {
     osMajorVersion: propTypes.string.isRequired,
     hosts: propTypes.array.isRequired,
     refId: propTypes.string.isRequired,
+    totalHostCount: propTypes.number,
   }),
   dedicatedAction: propTypes.object,
   systemTableProps: propTypes.object,
