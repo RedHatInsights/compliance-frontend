@@ -1,21 +1,23 @@
 // TODO correct the serialiser to transform state put into the tablestate to be API consumable
 export const paginationSerialiser = (state) => {
-  const offset = (state.page - 1) * state.perPage;
-  const limit = state.perPage;
+  if (state) {
+    const offset = (state.page - 1) * state.perPage;
+    const limit = state.perPage;
 
-  return { offset, limit };
+    return { offset, limit };
+  }
 };
 
 const textFilterSerialiser = (filterConfigItem, value) =>
-  `${filterConfigItem.filterAttribute} ~ '${value}'`;
+  `${filterConfigItem.filterAttribute} ~ "${value}"`;
 
 const checkboxFilterSerialiser = (filterConfigItem, values) =>
-  `${filterConfigItem.filterAttribute} IN (${values
-    .map((value) => `'${value}'`)
+  `${filterConfigItem.filterAttribute} ^ (${values
+    .map((value) => `"${value}"`)
     .join(', ')})`;
 
 const raidoFilterSerialiser = (filterConfigItem, values) =>
-  `${filterConfigItem.filterAttribute} = '${values[0]}'`;
+  `${filterConfigItem.filterAttribute} = "${values[0]}"`;
 
 const filterSerialisers = {
   text: textFilterSerialiser,
@@ -47,7 +49,7 @@ const findFilterSerialiser = (filterConfigItem) => {
  *
  */
 export const filtersSerialiser = (state, filters) => {
-  const queryParts = Object.entries(state).reduce(
+  const queryParts = Object.entries(state || {}).reduce(
     (filterQueryParts, [filterId, value]) => {
       const filterConfigItem = filters.find((filter) => filter.id === filterId);
       const filterSerialiser = findFilterSerialiser(filterConfigItem);
@@ -88,5 +90,5 @@ export const filtersSerialiser = (state, filters) => {
  *  ];
  *
  */
-export const sortSerialiser = ({ index, direction }, columns) =>
-  `${columns[index].sortable}:${direction}`;
+export const sortSerialiser = ({ index, direction } = {}, columns) =>
+  columns[index - 1]?.sortable && `${columns[index - 1].sortable}:${direction}`;

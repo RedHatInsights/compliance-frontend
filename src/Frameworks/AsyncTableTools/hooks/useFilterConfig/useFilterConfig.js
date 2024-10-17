@@ -62,7 +62,7 @@ const useFilterConfig = (options = {}) => {
   );
 
   useEffect(() => {
-    activeFilters && setTableState(activeFilters);
+    setTableState(activeFilters);
   }, [activeFilters, setTableState]);
 
   return enableFilters

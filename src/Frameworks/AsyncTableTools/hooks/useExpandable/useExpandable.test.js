@@ -1,5 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { act } from '@testing-library/react';
+import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
+
 import useExpandable from './useExpandable';
 
 const ExampleDetailsRow = (item) => {
@@ -16,7 +18,10 @@ describe('useExpandable', () => {
   };
 
   it('returns an expandable configuration', () => {
-    const { result } = renderHook(() => useExpandable(defaultOptions));
+    const { result } = renderHook(
+      () => useExpandable(defaultOptions),
+      DEFAULT_RENDER_OPTIONS
+    );
 
     expect(result.current).toEqual({
       openItems: [],
@@ -24,18 +29,32 @@ describe('useExpandable', () => {
       tableProps: {
         onCollapse: expect.any(Function),
       },
+      tableView: {
+        onCollapse: expect.any(Function),
+        openItems: [],
+      },
     });
   });
 
   it('should handle opening a single row', async () => {
-    const { result } = renderHook(() => useExpandable(defaultOptions));
+    const itemId = 'test-id';
+    const { result } = renderHook(
+      () => useExpandable(defaultOptions),
+      DEFAULT_RENDER_OPTIONS
+    );
+
+    act(() => {
+      result.current.tableProps.onCollapse(undefined, undefined, undefined, {
+        itemId,
+      });
+    });
 
     const openedRow = result.current.openItem(row, [], 0);
 
     expect(openedRow).toEqual([
       {
-        isOpen: false,
-        itemId: 'test-id',
+        isOpen: true,
+        itemId,
       },
       {
         cells: [
@@ -50,7 +69,10 @@ describe('useExpandable', () => {
   });
 
   it('should expand & collapse a row', () => {
-    const { result } = renderHook(() => useExpandable(defaultOptions));
+    const { result } = renderHook(
+      () => useExpandable(defaultOptions),
+      DEFAULT_RENDER_OPTIONS
+    );
 
     //expand
     act(() => {
