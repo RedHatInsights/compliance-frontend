@@ -8,6 +8,7 @@ import useSecurityGuidesOS from '../../../Utilities/hooks/useSecurityGuidesOS/us
 
 const profilesDataMap = {
   id: 'id',
+  description: 'description',
   title: 'name',
   ref_id: 'refId',
   security_guide_id: 'benchmark.id',
