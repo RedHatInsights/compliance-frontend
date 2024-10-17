@@ -52,7 +52,8 @@ const rowsBuilder = (items, columns, options = {}) => {
               row,
               transformers,
               selectedIds,
-              runningIndex
+              runningIndex,
+              item
             );
             runningIndex = runningIndex + (transformedRow?.length || 0);
             return transformedRow;
