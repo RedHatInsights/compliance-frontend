@@ -35,7 +35,8 @@ const useExpandable = (options) => {
   };
 
   const openItem = useCallback(
-    (row, _selectedIds, index) => {
+    (row, _selectedIds, index, ...rest) => {
+      console.log(row, index, rest);
       const isOpen = (openItems || []).includes(row.itemId);
 
       return isOpen

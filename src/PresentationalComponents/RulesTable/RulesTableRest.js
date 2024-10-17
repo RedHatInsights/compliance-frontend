@@ -4,7 +4,7 @@ import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
 import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { ComplianceTable } from 'PresentationalComponents';
-import RuleDetailsRow from './components/RuleDetailsRowRest';
+import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
 import { itemIdentifier } from './helpers';
@@ -50,6 +50,7 @@ const RulesTable = ({
 
   const DetailsRow = useMemo(
     () =>
+      /* eslint-disable */
       function Row(props) {
         return (
           <RuleDetailsRow
@@ -57,10 +58,15 @@ const RulesTable = ({
             onValueChange={setRuleValues}
             onRuleValueReset={onRuleValueReset}
             {...props}
+            item={{
+              ...props.item,
+              ...rules.find(({ id }) => props?.item?.itemId === id),
+            }}
           />
         );
       },
-    [setRuleValues]
+    /* eslint-enable */
+    [setRuleValues, onRuleValueReset, securityGuideId, rules]
   );
 
   return (
