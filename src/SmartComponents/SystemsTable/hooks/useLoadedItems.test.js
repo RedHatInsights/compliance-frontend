@@ -10,6 +10,7 @@ describe('useLoadedItems', () => {
     expect(result.current).toStrictEqual({
       loadedItems: [],
       addToLoadedItems: expect.anything(),
+      resetLoadedItems: expect.anything(),
       allLoaded: false,
     });
   });
@@ -21,6 +22,7 @@ describe('useLoadedItems', () => {
     expect(result.current).toStrictEqual({
       loadedItems: [{ id: 'abc' }],
       addToLoadedItems: expect.anything(),
+      resetLoadedItems: expect.anything(),
       allLoaded: false,
     });
   });
@@ -37,6 +39,7 @@ describe('useLoadedItems', () => {
       expect(result.current).toStrictEqual({
         loadedItems: [{ id: 'test' }, { id: 'abc' }],
         addToLoadedItems: expect.anything(),
+        resetLoadedItems: expect.anything(),
         allLoaded: false,
       });
     });
@@ -57,6 +60,29 @@ describe('useLoadedItems', () => {
 
     await waitFor(() => {
       expect(result.current.allLoaded).toBe(false);
+    });
+  });
+
+  it('can reset loaded items', async () => {
+    loadedItems = [{ id: 'abc' }];
+    const { result } = renderHook(() => useLoadedItems(loadedItems, 1));
+
+    const {
+      loadedItems: resultLoadedItems,
+      resetLoadedItems,
+      allLoaded,
+    } = result.current;
+
+    expect(allLoaded).toBe(true);
+    expect(resultLoadedItems).toStrictEqual(loadedItems);
+    resetLoadedItems();
+
+    await waitFor(() => {
+      expect(result.current.allLoaded).toBe(false);
+    });
+
+    await waitFor(() => {
+      expect(result.current.loadedItems).toStrictEqual([]);
     });
   });
 });

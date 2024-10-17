@@ -339,10 +339,13 @@ export const useSystemBulkSelect = ({
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
   const apiV2Enabled = useAPIV2FeatureFlag();
-  const { loadedItems, addToLoadedItems, allLoaded } = useLoadedItems(
-    currentPageItems,
-    total
-  );
+  const { loadedItems, addToLoadedItems, resetLoadedItems, allLoaded } =
+    useLoadedItems(currentPageItems, total);
+
+  useEffect(() => {
+    resetLoadedItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(fetchArguments), resetLoadedItems]);
 
   const onError = useCallback((error) => {
     dispatchNotification({
