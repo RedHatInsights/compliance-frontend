@@ -62,7 +62,6 @@ export const SystemsTable = ({
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [perPage, setPerPage] = useState(50);
-  const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
 
@@ -87,10 +86,11 @@ export const SystemsTable = ({
   );
 
   const systemFetchArguments = {
-    tags: currentTags,
     filter: systemsFilter,
     ...(policyId && { policyId }),
   };
+
+  const fetchArgumentsRef = useRef();
 
   const preselection = useMemo(
     () => preselectedSystems.map(({ id }) => id),
@@ -107,19 +107,24 @@ export const SystemsTable = ({
     perPage,
     onSelect: onSelectProp,
     preselected: preselection,
-    fetchArguments: systemFetchArguments,
+    fetchArguments: fetchArgumentsRef.current,
     currentPageIds: items.map(({ id }) => id),
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
   const onComplete = useCallback(
-    (result) => {
+    (result, { tags, filter }) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
       setPerPage(result.perPage);
       setIsLoaded(true);
-      setCurrentTags(result.meta.tags);
+
+      fetchArgumentsRef.current = {
+        ...(fetchArgumentsRef.current || {}),
+        tags,
+        filter,
+      };
 
       if (
         emptyStateComponent &&
@@ -157,9 +162,7 @@ export const SystemsTable = ({
     filter: systemsFilter,
     selected: selectedIds,
     total,
-    fetchArguments: {
-      ...systemFetchArguments,
-    },
+    fetchArguments: fetchArgumentsRef.current,
     fetchApi,
   });
 
@@ -205,7 +208,7 @@ export const SystemsTable = ({
             all: true,
             name: false,
             operatingSystem: false,
-            tags: true, //enable when tag filtering is supported by complience-client package
+            tags: false,
             hostGroupFilter: !showGroupsFilter,
           }}
           showTags
