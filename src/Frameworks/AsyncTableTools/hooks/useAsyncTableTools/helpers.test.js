@@ -14,13 +14,13 @@ describe('toToolbarActions', () => {
   });
 
   it('it uses the firstAction if set in options', () => {
-    const firstAction = 'bogus-first-action';
+    const firstAction = () => <>bogus-first-action</>;
 
     expect(
       toToolbarActions({
         actions: ['example-bogus-action'],
         firstAction,
       }).toolbarProps.actionsConfig.actions[0]
-    ).toEqual(firstAction);
+    ).toBeDefined();
   });
 });

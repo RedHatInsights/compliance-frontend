@@ -4,13 +4,13 @@ import { PageSection, PageSectionVariants } from '@patternfly/react-core';
 import { TabbedRules } from 'PresentationalComponents';
 import { mapCountOsMinorVersions } from 'Store/Reducers/SystemStore';
 import { sortingByProp } from 'Utilities/helpers';
-import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 
 const PolicyMultiversionRules = ({
   policy,
   saveToPolicy,
   onRuleValueReset,
+  DedicatedAction,
 }) => {
   const {
     hosts,
@@ -28,8 +28,6 @@ const PolicyMultiversionRules = ({
       systemCount: systemCounts[profile.osMinorVersion]?.count || 0,
     }));
 
-  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
-
   return (
     <React.Fragment>
       <PageSection variant={PageSectionVariants.light}>
@@ -42,9 +40,7 @@ const PolicyMultiversionRules = ({
           )}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           level={1}
-          options={{
-            dedicatedAction: DedicatedAction,
-          }}
+          DedicatedAction={DedicatedAction}
           ouiaId="RHELVersions"
         />
       </PageSection>
@@ -56,6 +52,7 @@ PolicyMultiversionRules.propTypes = {
   policy: propTypes.object.isRequired,
   saveToPolicy: propTypes.func,
   onRuleValueReset: propTypes.func,
+  DedicatedAction: propTypes.node,
 };
 
 export default PolicyMultiversionRules;

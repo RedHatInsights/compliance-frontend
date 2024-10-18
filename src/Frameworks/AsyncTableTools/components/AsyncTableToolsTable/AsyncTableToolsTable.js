@@ -6,6 +6,7 @@ import {
   TableBody,
   TableHeader,
 } from '@patternfly/react-table/deprecated';
+import { SkeletonTable } from '@patternfly/react-component-groups';
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
 import useAsyncTableTools from '../../hooks/useAsyncTableTools';
@@ -48,26 +49,32 @@ const AsyncTableToolsTable = ({
   paginationProps,
   ...tablePropsRest
 }) => {
-  const { toolbarProps, tableProps, ColumnManager } = useAsyncTableTools(
-    items,
-    columns,
-    {
+  const { loaded, toolbarProps, tableProps, ColumnManager, TableViewToggle } =
+    useAsyncTableTools(items, columns, {
       filters,
       toolbarProps: toolbarPropsProp,
       tableProps: tablePropsRest,
       numberOfItems: total,
       ...options,
-    }
-  );
+    });
 
   return (
     <>
-      <PrimaryToolbar aria-label="Table toolbar" {...toolbarProps} />
+      <PrimaryToolbar aria-label="Table toolbar" {...toolbarProps}>
+        {TableViewToggle && <TableViewToggle />}
+      </PrimaryToolbar>
 
-      <Table {...tableProps}>
-        <TableHeader {...tableHeaderProps} />
-        <TableBody {...tableBodyProps} />
-      </Table>
+      {!loaded ? (
+        <SkeletonTable
+          rowSize={toolbarProps?.pagination?.perPage || 10}
+          columns={columns.map(({ title }) => title)}
+        />
+      ) : (
+        <Table {...tableProps}>
+          <TableHeader {...tableHeaderProps} />
+          <TableBody {...tableBodyProps} />
+        </Table>
+      )}
 
       <TableToolbar isFooter {...tableToolbarProps}>
         {toolbarProps.pagination && (
