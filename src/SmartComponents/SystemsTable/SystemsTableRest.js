@@ -233,7 +233,6 @@ export const SystemsTable = ({
             ],
           })}
           fetchCustomOSes={handleOperatingSystemsFetch}
-          // onRefresh={onRefresh}
         />
       </StateViewPart>
     </StateView>
