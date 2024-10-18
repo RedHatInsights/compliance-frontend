@@ -54,7 +54,7 @@ export const SystemsTable = ({
   prependComponent,
   showOsMinorVersionFilter,
   preselectedSystems,
-  onSelect: onSelectProp,
+  onSelect,
   noSystemsTable,
   tableProps,
   ssgVersions,
@@ -67,7 +67,6 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [perPage, setPerPage] = useState(50);
   const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
   const osMinorVersionFilter = useOsMinorVersionFilter(
@@ -131,22 +130,16 @@ export const SystemsTable = ({
     [constructedQuery, currentTags, systemsFilter, policyId]
   );
 
-  const preselection = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
-
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    perPage,
-    onSelect: onSelectProp,
-    preselected: preselection,
+    onSelect,
+    preselectedSystems,
     fetchArguments: systemFetchArguments,
-    currentPageIds: items.map(({ id }) => id),
+    currentPageItems: items,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -155,7 +148,6 @@ export const SystemsTable = ({
     (result) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
-      setPerPage(result.perPage);
       setIsLoaded(true);
       setCurrentTags && setCurrentTags(result.meta.tags);
 
