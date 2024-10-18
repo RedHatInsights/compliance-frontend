@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  QuestionCircleIcon,
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
@@ -8,20 +7,14 @@ import { Text, Tooltip, Icon } from '@patternfly/react-core';
 import { fixedPercentage } from 'Utilities/TextHelper';
 
 const CompliantIcon = (system) => {
-  if (!system.supported && system.score !== 0) {
-    return (
-      <Icon color="var(--pf-v5-global--disabled-color--100)">
-        <QuestionCircleIcon />
-      </Icon>
-    );
-  } else {
+  {
     return system.compliant ? (
-      <Icon color="var(--pf-v5-global--success-color--200)">
-        <CheckCircleIcon />
+      <Icon>
+        <CheckCircleIcon className="ins-u-passed" />
       </Icon>
     ) : (
       <Icon>
-        <ExclamationCircleIcon color="var(--pf-v5-global--danger-color--100)" />
+        <ExclamationCircleIcon className="ins-u-failed" />
       </Icon>
     );
   }
