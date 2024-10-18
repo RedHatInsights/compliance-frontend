@@ -69,7 +69,7 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
     <FormGroup label="User notes (optional)" fieldId="checkbox01">
       <TextArea
         aria-label="User notes (optional)"
-        onChange={setExportSetting('userNotes')}
+        onChange={(e) => setExportSetting('userNotes')(e.target.value)}
         value={exportSettings.userNotes}
       />
     </FormGroup>
