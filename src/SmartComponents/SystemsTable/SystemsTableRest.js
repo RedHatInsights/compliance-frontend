@@ -61,7 +61,6 @@ export const SystemsTable = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
 
@@ -86,10 +85,11 @@ export const SystemsTable = ({
   );
 
   const systemFetchArguments = {
-    tags: currentTags,
     filter: systemsFilter,
     ...(policyId && { policyId }),
   };
+
+  const fetchArgumentsRef = useRef();
 
   const {
     selectedIds,
@@ -99,7 +99,7 @@ export const SystemsTable = ({
     total,
     onSelect,
     preselectedSystems,
-    fetchArguments: systemFetchArguments,
+    fetchArguments: fetchArgumentsRef.current,
     currentPageItems: items,
     fetchApi,
   });
@@ -107,11 +107,16 @@ export const SystemsTable = ({
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
   const onComplete = useCallback(
-    (result, { tags }) => {
+    (result, { tags, filter }) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
       setIsLoaded(true);
-      setCurrentTags(tags);
+
+      fetchArgumentsRef.current = {
+        ...(fetchArgumentsRef.current || {}),
+        tags,
+        filter,
+      };
 
       if (
         emptyStateComponent &&
@@ -149,9 +154,7 @@ export const SystemsTable = ({
     filter: systemsFilter,
     selected: selectedIds,
     total,
-    fetchArguments: {
-      ...systemFetchArguments,
-    },
+    fetchArguments: fetchArgumentsRef.current,
     fetchApi,
   });
 
@@ -230,6 +233,7 @@ export const SystemsTable = ({
             ],
           })}
           fetchCustomOSes={handleOperatingSystemsFetch}
+          // onRefresh={onRefresh}
         />
       </StateViewPart>
     </StateView>
