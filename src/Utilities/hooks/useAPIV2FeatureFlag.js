@@ -5,7 +5,7 @@ const useAPIV2FeatureFlag = () => {
   const localFlag =
     localStorage.getItem('insights:compliance:apiv2') === 'true';
 
-  return localFlag || unleashFlag;
+  return true; //localFlag || unleashFlag;
 };
 
 export default useAPIV2FeatureFlag;
