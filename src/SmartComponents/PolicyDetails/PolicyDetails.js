@@ -37,6 +37,7 @@ import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '../../Utilities/dataSerialiser';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 export const PolicyDetailsWrapper = ({ route }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -88,6 +89,7 @@ export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
   }, [isAPIV2, location, refetch]);
 
   useTitleEntity(route, policy?.name);
+  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
 
   return (
     <StateViewWithError
@@ -143,6 +145,7 @@ export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
                         ]}
                         policy={policy}
                         level={1}
+                        DedicatedAction={DedicatedAction}
                       />
                     </PageSection>
                   </ContentTab>
@@ -153,6 +156,7 @@ export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
                         policy={policy}
                         saveToPolicy={saveToPolicy}
                         onRuleValueReset={() => refetch()}
+                        DedicatedAction={DedicatedAction}
                       />
                     ) : (
                       <PolicyRulesTab policy={policy} />

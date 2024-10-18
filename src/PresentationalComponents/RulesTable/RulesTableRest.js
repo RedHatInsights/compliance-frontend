@@ -27,6 +27,7 @@ const RulesTable = ({
   setRuleValues,
   ruleValues,
   onRuleValueReset,
+  DedicatedAction,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -100,6 +101,7 @@ const RulesTable = ({
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
+        dedicatedAction: DedicatedAction,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
       }}
       {...rulesTableProps}
@@ -127,6 +129,7 @@ RulesTable.propTypes = {
   setRuleValues: propTypes.func,
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
+  DedicatedAction: propTypes.node,
 };
 
 export default RulesTable;
