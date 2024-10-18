@@ -33,8 +33,11 @@ import { toToolbarActions } from './helpers';
  *
  */
 const useAsyncTableTools = (items, columns, options = {}) => {
-  const { toolbarProps: toolbarPropsOption, tableProps: tablePropsOption } =
-    options;
+  const {
+    toolbarProps: toolbarPropsOption,
+    tableProps: tablePropsOption,
+    dedicatedAction,
+  } = options;
   const { loaded, items: usableItems } = useItems(items);
 
   const {
@@ -47,6 +50,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     () =>
       toToolbarActions({
         ...options,
+        firstAction: dedicatedAction,
         actions: [
           ...(options?.actions || []),
           ...((columnManagerAction && [columnManagerAction]) || []),
