@@ -20,6 +20,7 @@ const TailoringTab = ({
   rulesPageLink,
   setRuleValues,
   onRuleValueReset,
+  onValueOverrideSave,
 }) => {
   const tableState = useFullTableState();
   const { data, error, fetchRules } = useTailoringsData(
@@ -29,6 +30,8 @@ const TailoringTab = ({
   );
   const { rules, valueDefinitions } = data;
   const rulesExporter = useRulesExporter(fetchRules);
+  const onValueSave = (_policyId, ...valueParams) =>
+    onValueOverrideSave(tailoring, ...valueParams);
 
   return (
     <>
@@ -54,6 +57,7 @@ const TailoringTab = ({
             ruleValues={tailoring.value_overrides}
             valueDefinitions={valueDefinitions}
             onRuleValueReset={onRuleValueReset}
+            onValueOverrideSave={onValueSave}
             options={{
               exporter: rulesExporter,
             }}
@@ -78,6 +82,7 @@ TailoringTab.propTypes = {
   setRuleValues: propTypes.func,
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
+  onValueOverrideSave: propTypes.func,
 };
 
 const TailoringTabProvider = (props) => (

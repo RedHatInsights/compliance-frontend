@@ -14,6 +14,7 @@ const RulesTable = ({
   rules,
   ruleTree,
   securityGuideId,
+  policyId,
   columns = defaultColumns,
   remediationsEnabled = true,
   ansibleSupportFilter = false,
@@ -26,8 +27,10 @@ const RulesTable = ({
   // showFailedCounts = false, // TODO We need systems counts
   setRuleValues,
   ruleValues,
+  valueDefinitions,
   onRuleValueReset,
   DedicatedAction,
+  onValueOverrideSave,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -53,21 +56,37 @@ const RulesTable = ({
     () =>
       /* eslint-disable */
       function Row(props) {
+        const rule = rules?.find(({ id }) => props?.item?.itemId === id)
+        const ruleValueDefinitions = rule?.value_checks?.map((checkId) => valueDefinitions.find(({id}) => id === checkId))
+        const ruleRuleValues = Object.fromEntries(Object.entries(ruleValues).filter(([id]) => rule?.value_checks.includes(id)))
+        const item = {
+          ...props.item,
+          ...rule,
+          valueDefinitions: ruleValueDefinitions,
+          profile: { id: policyId },
+          ruleValues: ruleRuleValues
+        };
+
         return (
           <RuleDetailsRow
-            securityGuideId={securityGuideId}
-            onValueChange={setRuleValues}
-            onRuleValueReset={onRuleValueReset}
             {...props}
-            item={{
-              ...props.item,
-              ...rules.find(({ id }) => props?.item?.itemId === id),
-            }}
+            securityGuideId={securityGuideId}
+            onValueChange={onValueOverrideSave}
+            onRuleValueReset={onRuleValueReset}
+            item={item}
           />
         );
       },
     /* eslint-enable */
-    [setRuleValues, onRuleValueReset, securityGuideId, rules]
+    [
+      policyId,
+      onRuleValueReset,
+      securityGuideId,
+      rules,
+      valueDefinitions,
+      ruleValues,
+      onValueOverrideSave,
+    ]
   );
 
   return (
@@ -114,6 +133,7 @@ RulesTable.propTypes = {
   rules: propTypes.array,
   ruleTree: propTypes.array,
   securityGuideId: propTypes.string,
+  policyId: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
   system: propTypes.object,
@@ -130,6 +150,8 @@ RulesTable.propTypes = {
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
   DedicatedAction: propTypes.node,
+  valueDefinitions: propTypes.object,
+  onValueOverrideSave: propTypes.func,
 };
 
 export default RulesTable;

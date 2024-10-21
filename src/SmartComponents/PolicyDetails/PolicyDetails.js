@@ -32,6 +32,7 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
+import useSaveValueOverrides from './hooks/useSaveValueOverrides';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
@@ -48,12 +49,31 @@ export const PolicyDetailsWrapper = ({ route }) => {
 };
 
 const PolicyDetailsGraphQL = ({ route }) => {
+  const location = useLocation();
   const { policy_id: policyId } = useParams();
   const query = usePolicyQuery({
     policyId,
   });
+  const {
+    data: { profile: policy },
+    refetch,
+  } = query;
 
-  return <PolicyDetailsBase query={query} route={route} />;
+  useEffect(() => {
+    refetch?.();
+  }, [location, refetch]);
+
+  const saveToPolicy = useSaveValueToPolicy(policy, () => {
+    refetch?.();
+  });
+
+  return (
+    <PolicyDetailsBase
+      query={query}
+      route={route}
+      saveToPolicy={saveToPolicy}
+    />
+  );
 };
 
 const PolicyDetailsV2 = ({ route }) => {
@@ -68,25 +88,29 @@ const PolicyDetailsV2 = ({ route }) => {
       }
     : {};
 
-  return <PolicyDetailsBase isAPIV2 query={{ ...query, data }} route={route} />;
+  const saveValueOverrides = useSaveValueOverrides();
+  const saveValue = async (...args) => {
+    await saveValueOverrides(...args);
+    query.refetch?.();
+  };
+
+  return (
+    <PolicyDetailsBase
+      isAPIV2
+      query={{ ...query, data }}
+      route={route}
+      saveToPolicy={saveValue}
+    />
+  );
 };
 
-export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
+export const PolicyDetailsBase = ({ route, query, saveToPolicy, isAPIV2 }) => {
   const defaultTab = 'details';
   const { data, error, loading, refetch } = query;
-  const location = useLocation();
   const policy = data?.profile;
   const hasOsMinorProfiles = !!policy?.policy.profiles.find(
     (profile) => !!profile.osMinorVersion
   );
-
-  const saveToPolicy = useSaveValueToPolicy(policy, () => {
-    refetch();
-  });
-
-  useEffect(() => {
-    !isAPIV2 && refetch();
-  }, [isAPIV2, location, refetch]);
 
   useTitleEntity(route, policy?.name);
   const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
@@ -138,6 +162,7 @@ export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
                   <ContentTab eventKey="rules">
                     <PageSection variant={PageSectionVariants.light}>
                       <Tailorings
+                        ouiaId="RHELVersions"
                         columns={[
                           Columns.Name,
                           Columns.Severity,
@@ -146,6 +171,7 @@ export const PolicyDetailsBase = ({ route, query, isAPIV2 }) => {
                         policy={policy}
                         level={1}
                         DedicatedAction={DedicatedAction}
+                        onValueOverrideSave={saveToPolicy}
                       />
                     </PageSection>
                   </ContentTab>
@@ -197,6 +223,7 @@ PolicyDetailsBase.propTypes = {
     refetch: PropTypes.func,
   }),
   isAPIV2: PropTypes.bool,
+  saveToPolicy: PropTypes.func,
 };
 
 export default PolicyDetailsWrapper;

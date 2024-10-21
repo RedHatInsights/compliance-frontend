@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useTailoringRules } from 'Utilities/hooks/api/useTailoringRules';
+import useTailoringRules from 'Utilities/hooks/api/useTailoringRules';
 import useSecurityGuideData from './useSecurityGuideData';
 
 const shouldSkip = (request, { view }) =>

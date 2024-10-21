@@ -16,16 +16,10 @@ import { eventKey } from './helpers';
 const Tailorings = ({
   policy,
   defaultTab,
-  selectedRuleRefIds,
-  setSelectedRuleRefIds,
   columns,
   level = 0,
   ouiaId,
-  resetLink,
-  rulesPageLink,
-  setRuleValues,
-  ruleValues,
-  onRuleValueReset,
+  onValueOverrideSave,
   ...rulesTableProps
 }) => {
   const { data, loading, error } = useTailorings({
@@ -40,6 +34,8 @@ const Tailorings = ({
     skip: !policy,
   });
   const tailorings = data?.data;
+  const onValueSave = (...valueParams) =>
+    onValueOverrideSave(policy, ...valueParams);
 
   return (
     <StateViewWithError stateValues={{ error, data: tailorings, loading }}>
@@ -74,11 +70,7 @@ const Tailorings = ({
                     tailoring,
                     columns,
                     rulesTableProps,
-                    setRuleValues,
-                    ruleValues,
-                    onRuleValueReset,
-                    resetLink: resetLink,
-                    rulesPageLink: rulesPageLink,
+                    onValueOverrideSave: onValueSave,
                   }}
                 />
               </Tab>
@@ -111,6 +103,7 @@ Tailorings.propTypes = {
   setRuleValues: propTypes.func,
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
+  onValueOverrideSave: propTypes.func,
 };
 
 export default Tailorings;
