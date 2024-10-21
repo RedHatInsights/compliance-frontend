@@ -12,12 +12,12 @@ import {
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave } from './hooks';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
+import GatedComponents from '../../PresentationalComponents/GatedComponents';
 
-export const EditPolicy = ({ route }) => {
+const EditPolicyBase = ({ route, data, error, loading }) => {
   const navigate = useNavigate();
-  const { policy_id: policyId } = useParams();
   const location = useLocation();
-  const { data, error, loading } = usePolicyQuery({ policyId });
+  const { policy_id: policyId } = useParams();
   const policy = data?.profile;
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
   const [selectedRuleRefIds, setSelectedRuleRefIds] = useState([]);
@@ -121,8 +121,30 @@ export const EditPolicy = ({ route }) => {
   );
 };
 
-EditPolicy.propTypes = {
-  route: propTypes.object,
+const EditPolicyGraphQL = (props) => {
+  const { policy_id: policyId } = useParams();
+  const { data, error, loading } = usePolicyQuery({ policyId });
+
+  console.log(data, 'debug: data');
+  return <EditPolicyBase {...{ data, error, loading, ...props }} />;
 };
+
+const EditPolicyRest = (props) => {
+  return <div>Hello rest</div>;
+};
+
+EditPolicyBase.propTypes = {
+  route: propTypes.object,
+  data: propTypes.object.isRequired,
+  error: propTypes.object.isRequired,
+  loading: propTypes.object.isRequired,
+};
+
+const EditPolicy = (props) => (
+  <GatedComponents
+    RestComponent={() => <EditPolicyRest {...props} />}
+    GraphQLComponent={() => <EditPolicyGraphQL {...props} />}
+  />
+);
 
 export default EditPolicy;

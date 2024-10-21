@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from 'react';
 import propTypes from 'prop-types';
 import { gql, useQuery } from '@apollo/client';
@@ -151,9 +150,11 @@ const ComplianceSystemsRest = () => {
   );
 };
 
-export default () => (
+const ComplianceSystems = () => (
   <GatedComponents
     RestComponent={ComplianceSystemsRest}
     GraphQLComponent={ComplianceSystemsGraphQL}
   />
 );
+
+export default ComplianceSystems;
