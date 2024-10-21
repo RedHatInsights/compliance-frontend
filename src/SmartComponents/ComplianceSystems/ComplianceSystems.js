@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from 'react';
 import propTypes from 'prop-types';
 import { gql, useQuery } from '@apollo/client';
@@ -15,7 +14,7 @@ import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { policiesDataMapper, systemsDataMapper } from '@/constants';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
-import { buildOSObject } from '../../Utilities/helpers';
+import { buildOSObject } from '@/Utilities/helpers';
 
 export const QUERY = gql`
   {
@@ -153,9 +152,11 @@ const ComplianceSystemsRest = () => {
   );
 };
 
-export default () => (
+const ComplianceSystems = () => (
   <GatedComponents
     RestComponent={ComplianceSystemsRest}
     GraphQLComponent={ComplianceSystemsGraphQL}
   />
 );
+
+export default ComplianceSystems;
