@@ -102,6 +102,7 @@ export const SystemsTable = ({
     fetchArguments: fetchArgumentsRef.current,
     currentPageItems: items,
     fetchApi,
+    apiV2Enabled: true,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -147,6 +148,7 @@ export const SystemsTable = ({
     selected: selectedIds,
     columns,
     ignoreOsMajorVersion,
+    apiV2Enabled: true,
   });
 
   const exportConfig = useSystemsExport({
@@ -156,6 +158,7 @@ export const SystemsTable = ({
     total,
     fetchArguments: fetchArgumentsRef.current,
     fetchApi,
+    apiV2Enabled: true,
   });
 
   const handleOperatingSystemsFetch = useCallback(
