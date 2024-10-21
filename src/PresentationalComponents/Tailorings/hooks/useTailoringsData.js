@@ -1,15 +1,13 @@
-import { useCallback } from 'react';
-import { useSecurityGuideRuleTree } from 'Utilities/hooks/api/useSecurityGuideRuleTree';
+import { useCallback, useMemo } from 'react';
 import { useTailoringRules } from 'Utilities/hooks/api/useTailoringRules';
-import { useRuleGroups } from 'Utilities/hooks/api/useRuleGroups';
-import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
-import { buildTreeTable } from '../helpers';
+import useSecurityGuideData from './useSecurityGuideData';
 
 const shouldSkip = (request, { view }) =>
   ({
     ruleTree: view !== 'tree',
     ruleGroups: view !== 'tree',
     rules: false,
+    valueDefinitions: false,
   }[request]);
 
 const useTailoringsData = (
@@ -21,27 +19,16 @@ const useTailoringsData = (
   } = {}
 ) => {
   const {
-    data: ruleTree,
-    loading: ruleTreeLoading,
-    error: ruleTreeError,
-  } = useSecurityGuideRuleTree(security_guide_id, {
-    skip: shouldSkip('ruleTree', tableState),
+    ruleTree,
+    ruleGroups,
+    valueDefinitions,
+    loading: securityGuideDataLoading,
+    error: securityGuideDataError,
+  } = useSecurityGuideData(security_guide_id, {
+    skipRuleTree: shouldSkip('ruleTree', tableState),
+    skipRuleGroups: shouldSkip('ruleGroups', tableState),
+    skipValueDefinitions: shouldSkip('valueDefinitions', tableState),
   });
-  const { fetch: fetchRuleGroups } = useRuleGroups(security_guide_id, {
-    skip: true,
-    debounced: false,
-  });
-
-  const fetchRuleGroupsForBatch = useCallback(
-    (offset, limit) =>
-      fetchRuleGroups([security_guide_id, undefined, limit, offset]),
-    [fetchRuleGroups, security_guide_id]
-  );
-
-  const { loading: ruleGroupsLoading, data: ruleGroups } = useFetchTotalBatched(
-    fetchRuleGroupsForBatch,
-    { batchSize: 60, skip: shouldSkip('ruleGroups', tableState) }
-  );
   const openRuleGroups = tableState?.['open-items']?.filter((itemId) =>
     ruleGroups?.map(({ id }) => id).includes(itemId)
   );
@@ -50,12 +37,8 @@ const useTailoringsData = (
       ? `rule_group_id ^ (${openRuleGroups.map((id) => `"${id}"`).join(',')})`
       : undefined;
 
-  const {
-    data: rules,
-    loading: rulesLoading,
-    error: rulesError,
-  } = useTailoringRules(policyId, tailoringId, {
-    params: [
+  const ruleParams = useMemo(
+    () => [
       undefined,
       // TODO this is a hack: The state value defaults should come from the state itself
       pagination?.limit || 10,
@@ -70,20 +53,48 @@ const useTailoringsData = (
         : []),
       undefined,
     ],
+    [filters, pagination, groupFilter, sort]
+  );
+
+  const {
+    data: rules,
+    loading: rulesLoading,
+    error: rulesError,
+    fetch: fetchTailoringRules,
+  } = useTailoringRules(policyId, tailoringId, {
+    params: ruleParams,
     skip: shouldSkip('rules', tableState),
   });
 
-  const loading = ruleTreeLoading && rulesLoading && ruleGroupsLoading;
-  const error = !!ruleTreeError && !!rulesError;
+  const fetchRules = useCallback(
+    async (offset, limit) => {
+      const fetchParams = [
+        policyId,
+        tailoringId,
+        ...ruleParams.map((value, idx) => {
+          if (idx === 1) {
+            return limit;
+          }
+          if (idx === 2) {
+            return offset;
+          }
+          return value;
+        }),
+      ];
 
-  const namedRuleTree = ruleGroups
-    ? buildTreeTable(ruleTree, ruleGroups)
-    : undefined;
+      return await fetchTailoringRules(fetchParams, false);
+    },
+    [fetchTailoringRules, policyId, tailoringId, ruleParams]
+  );
+
+  const loading = securityGuideDataLoading || rulesLoading;
+  const error = !!securityGuideDataError || !!rulesError;
 
   return {
     error,
     loading,
-    data: !loading ? { ruleTree: namedRuleTree, rules, ruleGroups } : {},
+    data: !loading ? { ruleTree, rules, ruleGroups, valueDefinitions } : {},
+    fetchRules,
   };
 };
 

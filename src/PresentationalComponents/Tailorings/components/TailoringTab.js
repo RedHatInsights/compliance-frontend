@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Grid, Spinner } from '@patternfly/react-core';
+import { Grid } from '@patternfly/react-core';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import RulesTable from '../../RulesTable/RulesTableRest';
 import useTailoringsData from '../hooks/useTailoringsData';
+import useRulesExporter from '../hooks/useRulesExporter';
 import TabHeader from './TabHeader';
 
 // TODO Pass on and enable ruleTree here when RHINENG-13519 is done
@@ -18,16 +19,16 @@ const TailoringTab = ({
   resetLink,
   rulesPageLink,
   setRuleValues,
-  ruleValues,
   onRuleValueReset,
 }) => {
   const tableState = useFullTableState();
-  const { data, error, loading } = useTailoringsData(
+  const { data, error, fetchRules } = useTailoringsData(
     policy,
     tailoring,
     tableState
   );
-  const { rules } = data;
+  const { rules, valueDefinitions } = data;
+  const rulesExporter = useRulesExporter(fetchRules);
 
   return (
     <>
@@ -39,12 +40,10 @@ const TailoringTab = ({
           systemCount={systemCount}
         />
       </Grid>
-      <StateViewWithError stateValues={{ data, error, loading }}>
-        <StateViewPart stateKey="loading">
-          <Spinner />
-        </StateViewPart>
+      <StateViewWithError stateValues={{ data, error }}>
         <StateViewPart stateKey="data">
           <RulesTable
+            policyId={policy.id}
             securityGuideId={tailoring.security_guide_id}
             total={rules?.meta?.total}
             rules={rules?.data}
@@ -52,8 +51,12 @@ const TailoringTab = ({
             remediationsEnabled={false}
             columns={columns}
             setRuleValues={setRuleValues}
-            ruleValues={ruleValues}
+            ruleValues={tailoring.value_overrides}
+            valueDefinitions={valueDefinitions}
             onRuleValueReset={onRuleValueReset}
+            options={{
+              exporter: rulesExporter,
+            }}
             {...rulesTableProps}
           />
         </StateViewPart>

@@ -20,7 +20,7 @@ export const Name = {
 export const Policy = {
   title: 'Policy',
   sortByFunction: (rule) => rule?.profile?.name,
-  renderExport: (rule) => rule?.profile?.name,
+  renderExport: (rule) => rule?.profile?.name || rule.profile_name,
   renderFunc: renderComponent(PolicyCell),
 };
 

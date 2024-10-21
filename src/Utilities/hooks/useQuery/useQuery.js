@@ -43,31 +43,39 @@ const useQuery = (fn, options = {}) => {
   const debouncedFn = debounce(fn, 50);
 
   const fetchFn = useCallback(
-    async (fn, params) => {
+    async (fn, params, setDataState = true) => {
       if (!loading) {
-        setLoading(true);
+        setDataState && setLoading(true);
         try {
-          const data = debounced
-            ? await debouncedFn(...params)
-            : await fn(...params);
+          const data =
+            debounced && setDataState
+              ? await debouncedFn(...params)
+              : await fn(...params);
 
-          if (mounted.current) {
+          if (setDataState && mounted.current) {
             setData(data?.data || data);
             setLoading(false);
+          } else {
+            return data?.data || data;
           }
-
-          return data?.data || data;
         } catch (e) {
           console.log(e);
-          setError(e);
-          setLoading(false);
+          if (setDataState) {
+            setError(e);
+            setLoading(false);
+          } else {
+            throw e;
+          }
         }
       }
     },
     [loading, debounced, debouncedFn]
   );
 
-  const fetch = useCallback((params) => fetchFn(fn, params), [fn, fetchFn]);
+  const fetch = useCallback(
+    (params, setDataState) => fetchFn(fn, params, setDataState),
+    [fn, fetchFn]
+  );
   const refetch = useCallback(() => fetchFn(fn, params), [fetchFn, fn, params]);
 
   useDeepCompareEffectNoCheck(() => {
