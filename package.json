@@ -8,7 +8,7 @@
   "dependencies": {
     "@apollo/client": "^3.9.10",
     "@babel/runtime": "^7.25.6",
-    "@patternfly/patternfly": "^5.4.0",
+    "@patternfly/patternfly": "^5.4.1",
     "@patternfly/react-charts": "^7.4.3",
     "@patternfly/react-component-groups": "^5.2.0",
     "@patternfly/react-core": "^5.4.0",
