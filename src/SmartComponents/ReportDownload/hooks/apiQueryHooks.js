@@ -143,6 +143,7 @@ const useFetchReportTestResults = (reportId, filter) =>
           perPage,
           calculateOffset(page, perPage),
           undefined,
+          undefined,
           filter
         )
         .then(({ data: { data } = {} }) =>
@@ -158,8 +159,10 @@ const useFetchReportSystems = (reportId, filter) =>
         .reportSystems(
           reportId,
           undefined,
+          undefined,
           perPage,
           calculateOffset(page, perPage),
+          undefined,
           undefined,
           filter
         )

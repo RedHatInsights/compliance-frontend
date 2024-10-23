@@ -43,12 +43,14 @@ const processSystemsData = (data) =>
     systemsDataMapper
   );
 
-const fetchApi = async (page, perPage, combinedVariables) =>
+export const fetchApi = async (page, perPage, combinedVariables) =>
   apiInstance
     .systems(
       undefined,
+      combinedVariables.tags,
       perPage,
       page,
+      combinedVariables.idsOnly,
       combinedVariables.sortBy,
       combinedVariables.filter
     )
