@@ -13,29 +13,29 @@ import PolicyRulesHeader from './PolicyRulesHeader';
 import { useProfileTree } from './useProfileTree';
 
 const PROFILES_QUERY = gql`
-query PR_Profile($policyId: String!) {
-  profile(id: $policyId) {
-    id
-    name
-    refId
-    osMinorVersion
-    osMajorVersion
-    benchmark {
-      version
-      ruleTree
-    }
-    rules {
+  query PR_Profile($policyId: String!) {
+    profile(id: $policyId) {
       id
-      title
-      severity
-      rationale
+      name
       refId
-      description
-      remediationAvailable
-      identifier
+      osMinorVersion
+      osMajorVersion
+      benchmark {
+        version
+        ruleTree
+      }
+      rules {
+        id
+        title
+        severity
+        rationale
+        refId
+        description
+        remediationAvailable
+        identifier
+      }
     }
   }
-}
 `;
 
 const PolicyRulesGraphQL = ({v2}) => {
