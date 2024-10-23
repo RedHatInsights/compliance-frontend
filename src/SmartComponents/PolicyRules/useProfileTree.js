@@ -1,12 +1,7 @@
 import useQuery, { apiInstance } from '../../Utilities/hooks/useQuery';
 
-export const useProfileTree = (security_guide_id, profile_id) => {
+export const useProfileTree = ({ securityGuideId, profileId }) => {
   return useQuery(apiInstance.profileTree, {
-    params: [
-      {
-        security_guide_id: security_guide_id,
-        profile_id: profile_id,
-      },
-    ],
+    params: [securityGuideId, profileId],
   });
 };
