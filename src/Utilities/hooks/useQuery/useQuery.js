@@ -66,7 +66,7 @@ const useQuery = (fn, { params = [], skip = false } = {}) => {
     if (!skip) debouncedRefetch();
   }, [JSON.stringify(paramsRef.current)]);
 
-  return { data, error, loading, refetch };
+  return { data, error, loading, refetch: debouncedRefetch };
 };
 
 export default useQuery;
