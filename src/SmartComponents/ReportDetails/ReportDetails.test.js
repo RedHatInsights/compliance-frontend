@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import ReportDetails from './ReportDetails';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag.js';
-import { useReport } from '@/Utilities/hooks/api/useReport';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import useReport from 'Utilities/hooks/api/useReport';
 import { QUERY } from './constants';
 import { buildReport, buildReportV2 } from '../../__factories__/report';
 

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-
 import SkeletonTable from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import {
   ReportsTable,
@@ -13,9 +13,12 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import PropTypes from 'prop-types';
-import { useReports } from '@/Utilities/hooks/api/useReports';
-import dataSerialiser from '@/Utilities/dataSerialiser';
+
+import { useComplianceQuery, apiInstance } from 'Utilities/hooks/useQuery';
+import useReportsOs from 'Utilities/hooks/api/useReportsOs';
+
+import dataSerialiser from 'Utilities/dataSerialiser';
+import { uniq } from 'Utilities/helpers';
 import { QUERY } from './constants';
 import { reportDataMap as dataMap } from '../../constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
@@ -29,7 +32,7 @@ const ReportsHeader = () => (
   </PageHeader>
 );
 
-export const ReportsBase = ({ data, loading, error }) => {
+export const ReportsBase = ({ data, loading, error, operatingSystems }) => {
   const showView = data && data.length > 0;
   return (
     <>
@@ -42,7 +45,14 @@ export const ReportsBase = ({ data, loading, error }) => {
         </StateViewPart>
         <StateViewPart stateKey="data">
           <section className="pf-v5-c-page__main-section">
-            {showView ? <ReportsTable reports={data} /> : <ReportsEmptyState />}
+            {showView ? (
+              <ReportsTable
+                reports={data}
+                operatingSystems={operatingSystems}
+              />
+            ) : (
+              <ReportsEmptyState />
+            )}
           </section>
         </StateViewPart>
       </StateViewWithError>
@@ -52,6 +62,7 @@ export const ReportsBase = ({ data, loading, error }) => {
 
 ReportsBase.propTypes = {
   data: PropTypes.array,
+  operatingSystems: PropTypes.array,
   error: PropTypes.string,
   loading: PropTypes.bool,
 };
@@ -75,33 +86,60 @@ const ReportsWithGrahpQL = () => {
     error = undefined;
     loading = undefined;
   }
+  const operatingSystems =
+    data &&
+    uniq(
+      profiles?.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
+    );
+  const policyTypes =
+    data &&
+    uniq(profiles?.map(({ policyType }) => policyType).filter((i) => !!i));
 
-  return <ReportsBase {...{ data: profiles, error, loading, refetch }} />;
+  return (
+    <ReportsBase
+      {...{
+        data: profiles,
+        operatingSystems,
+        policyTypes,
+        error,
+        loading,
+        refetch,
+      }}
+    />
+  );
 };
 
 const ReportsWithRest = () => {
-  let { data: { data } = {}, error, loading, refetch } = useReports();
+  const { data: { data } = {} } = useComplianceQuery(apiInstance.reports, {
+    params: { filter: 'with_reported_systems = true' },
+  });
+  const serialisedData = data && dataSerialiser(data, dataMap);
+  const { data: operatingSystems } = useReportsOs();
 
-  if (data) {
-    data = dataSerialiser(data, dataMap);
-    error = undefined;
-    loading = undefined;
-  }
-
-  return <ReportsBase {...{ data, error, loading, refetch }} />;
+  return (
+    <>
+      <ReportsHeader />
+      <section className="pf-v5-c-page__main-section">
+        <ReportsTable
+          reports={serialisedData}
+          operatingSystems={operatingSystems}
+        />
+      </section>
+    </>
+  );
 };
+
+const ReportsWithTableStateProvider = () => (
+  <TableStateProvider>
+    <ReportsWithRest />
+  </TableStateProvider>
+);
 
 const ReportsWrapper = () => (
   <GatedComponents
-    RestComponent={ReportsWithRest}
+    RestComponent={ReportsWithTableStateProvider}
     GraphQLComponent={ReportsWithGrahpQL}
   />
 );
 
-const ReportsWithTableStateProvider = () => (
-  <TableStateProvider>
-    <ReportsWrapper />
-  </TableStateProvider>
-);
-
-export default ReportsWithTableStateProvider;
+export default ReportsWrapper;

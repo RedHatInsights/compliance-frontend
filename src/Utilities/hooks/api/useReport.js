@@ -1,5 +1,6 @@
 import useQuery, { apiInstance } from '../useQuery';
 
-export const useReport = (id) => {
-  return useQuery(apiInstance.report, { params: [id] });
-};
+const useReport = (reportId) =>
+  useQuery(apiInstance.report, { params: [reportId] });
+
+export default useReport;
