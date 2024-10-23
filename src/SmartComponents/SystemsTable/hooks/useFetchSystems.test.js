@@ -245,9 +245,12 @@ describe('useFetchSystemsV2', () => {
     );
     await result.current(10, 1);
 
-    expect(onComplete).toHaveBeenCalledWith({
-      entities: { someVar: 'someVal' },
-      meta: { totalCount: 1 },
-    });
+    expect(onComplete).toHaveBeenCalledWith(
+      {
+        entities: { someVar: 'someVal' },
+        meta: { totalCount: 1 },
+      },
+      { customVariable: 'testVar' }
+    );
   });
 });
