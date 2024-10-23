@@ -20,6 +20,7 @@ const fetchApi = (offset, limit, fetchArguments) =>
       fetchArguments.tags,
       limit,
       offset,
+      null,
       fetchArguments.sortBy,
       fetchArguments.filter
     )
