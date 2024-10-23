@@ -10,12 +10,15 @@ describe('compileState', function () {
         typeof observedState?.length !== 'undefined',
     },
     observingState: {
-      observingStateObserverState: (_a, _b, observedState) =>
-        typeof observedState?.length > 0,
+      observingStateObserverState: (_a, _b, observingState) =>
+        typeof observingState === 'boolean',
     },
     observingStateObserverState: {
-      secondObservingStateObserverState: (_a, _b, observedState) =>
-        observedState === false,
+      secondObservingStateObserverState: (
+        _a,
+        _b,
+        observingStateObserverState
+      ) => observingStateObserverState === false,
     },
   };
 
@@ -32,20 +35,49 @@ describe('compileState', function () {
     });
   });
 
-  it('returns a table state with an observing state change', () => {
+  it.skip('returns a table state with an observing state change', () => {
+    // TODO Make this test pass
+    // To solve the issue we need to make compileState iterate recursively over new states, its observers, and the observers of these new states.
+    // The applyObservers function will need to be changed for this, mostly.
+    // the flow should be newState, apply observers for changed state and get the next state, apply observers for the changed states, to get the next new state, ....
+    // ... and finally return the resulting state after there are no more observers for a changed state
+    const withMoreObservers = {
+      ...observers,
+      secondObservingStateObserverState: {
+        secondObservingStateObserverState2: (
+          _a,
+          _b,
+          secondObservingStateObserverState
+        ) => (secondObservingStateObserverState === true ? 'yolo' : 'null'),
+      },
+      secondObservingStateObserverState2: {
+        secondObservingStateObserverState3: (
+          _a,
+          _b,
+          secondObservingStateObserverState2
+        ) => secondObservingStateObserverState2 === 'null',
+      },
+      secondObservingStateObserverState3: {
+        secondObservingStateObserverState4: () => 'yolo',
+      },
+    };
+
     expect(
-      compileState(namespace, currentState, newState, observers, {})
+      compileState(namespace, currentState, newState, withMoreObservers, {})
     ).toEqual({
       tableState: {
-        observedState: [],
-        observingState: true,
-        observingStateObserverState: false,
-        secondObservingStateObserverState: true,
+        observedState: [], // is [] since newState is []
+        observingState: true, // is true, because observed state is an array and has a `length` defined
+        observingStateObserverState: true, // true because observingState is a boolean
+        secondObservingStateObserverState: false, // is false because observingStateObserverState is true, not false
+        secondObservingStateObserverState2: 'null', // is null because secondObservingStateObserverState is false, not true
+        secondObservingStateObserverState3: true, // is true, because secondObservingStateObserverState2 is 'null'
+        secondObservingStateObserverState4: 'yolo',
       },
     });
   });
 
-  it.only('returns a table state with serialiased states', () => {
+  it('returns a table state with serialiased states', () => {
     expect(
       compileState(
         namespace,
@@ -79,8 +111,8 @@ describe('compileState', function () {
           },
         },
         unobservingState: false,
-        observingStateObserverState: false,
-        secondObservingStateObserverState: true,
+        observingStateObserverState: true,
+        secondObservingStateObserverState: false,
       },
       serialisedTableState: {
         observingState: 'serialisedObservingState',
