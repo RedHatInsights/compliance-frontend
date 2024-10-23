@@ -341,7 +341,7 @@ export const useSystemBulkSelect = ({
     useLoadedItems(currentPageItems, total);
 
   useEffect(() => {
-    resetLoadedItems();
+    resetLoadedItems(currentPageItems);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(fetchArguments), resetLoadedItems]);
 
