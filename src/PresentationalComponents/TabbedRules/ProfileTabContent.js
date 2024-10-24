@@ -25,7 +25,7 @@ import OsVersionText from './OsVersionText';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
 
-const ProfileSystemCount = ({ count = 0 }) => (
+export const ProfileSystemCount = ({ count = 0 }) => (
   <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
 );
 
@@ -34,7 +34,7 @@ ProfileSystemCount.propTypes = {
   count: propTypes.number,
 };
 
-const SSGVersionText = ({ profile, newOsMinorVersion }) => (
+export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
   <Text component={TextVariants.p}>
     SSG version: {profile?.benchmark.version}{' '}
     <Popover

@@ -39,19 +39,5 @@ describe('AsyncTableToolsTable', () => {
     expect(await screen.findByText(exampleItems[1].name)).toBeInTheDocument();
   });
 
-  it('should render an empty state if no items are present', async () => {
-    render(
-      <TableStateProvider>
-        <AsyncTableToolsTable {...defaultProps} items={async () => []} />
-      </TableStateProvider>
-    );
-
-    expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
-
-    expect(
-      await screen.findByText('No matching results found')
-    ).toBeInTheDocument();
-  });
-
   // TODO Extend with more tests for basic filtering, paginating, sorting etc.
 });

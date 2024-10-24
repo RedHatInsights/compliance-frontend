@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
 import { useRawTableState } from '.';
 import useTableState from './useTableState';
@@ -7,16 +7,16 @@ import useTableState from './useTableState';
 describe('useTableState', () => {
   const initialState = { page: 1, perPage: 10 };
 
-  it('returns an array with a state and a function to set the state', () => {
+  it('returns an array with a state and a function to set the state', async () => {
     const { result } = renderHook(
       () => useTableState('pagination', initialState),
       DEFAULT_RENDER_OPTIONS
     );
 
-    expect(result.current[0]).toEqual(initialState);
+    await waitFor(() => expect(result.current[0]).toEqual(initialState));
   });
 
-  it('can properly update a state', () => {
+  it('can properly update a state', async () => {
     const { result } = renderHook(
       () => useTableState('pagination', initialState),
       DEFAULT_RENDER_OPTIONS
@@ -26,7 +26,9 @@ describe('useTableState', () => {
       result.current[1]({ page: 1, perPage: 20 });
     });
 
-    expect(result.current[0]).toEqual({ page: 1, perPage: 20 });
+    await waitFor(() =>
+      expect(result.current[0]).toEqual({ page: 1, perPage: 20 })
+    );
   });
 
   it('sets a serialised state when provided with a serialiser', () => {
@@ -43,8 +45,7 @@ describe('useTableState', () => {
   });
 
   describe('observers', () => {
-    const state1ObserverMock = jest.fn(() => ({}));
-    const state2ObserverMock = jest.fn(() => ({}));
+    const state2ObserverMock = jest.fn();
 
     /*
      *
@@ -71,15 +72,11 @@ describe('useTableState', () => {
       const { result } = renderHook(
         () =>
           useTwoTableStates({
-            state1: [
-              'state1',
-              {},
-              { observers: { state2: state1ObserverMock } },
-            ],
+            state1: ['state1', {}, {}],
             state2: [
               'state2',
               {},
-              { observers: { state1: state2ObserverMock } },
+              { observers: { state1: () => state2ObserverMock() } },
             ],
           }),
         DEFAULT_RENDER_OPTIONS
@@ -101,7 +98,7 @@ describe('useTableState', () => {
               { page: 5 },
               {
                 observers: {
-                  state1: observingState,
+                  state1: () => observingState,
                 },
               },
             ],

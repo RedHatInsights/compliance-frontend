@@ -94,25 +94,13 @@ button.pf-v5-c-button.pf-m-tertiary {
   color: var(--pf-v5-global--warning-color--100);
 }
 
-.ins-c-inventory__list-tags {
-    display: block;
-    position: relative;
-    top: 8px;
+button[data-ouia-component-id="InlineEditPencil"],
+button[data-ouia-component-id="SaveEdits"],
+button[data-ouia-component-id="CancelEdits"],
+button[data-ouia-component-id="InlineEditReset"] {
+  padding-left: 8px;
+  padding-right: 8px;
 }
-
-button.pf-v5-c-button.pf-m-plain {
-    --pf-v5-c-button--FontSize: var(--pf-v5-c-button--m-link--m-inline--FontSize);
-    padding: 0;
-    text-align: left;
-}
-
-button.pf-v5-c-menu-toggle {
-   padding: 6px 8px;
-
-   &.ins-c-tagfilter {
-     padding: 0;
-   }
- }
 
 .ins-c-primary-toolbar__group-filter button.ins-c-osfilter__os-filter-button {
   background: #FFF;

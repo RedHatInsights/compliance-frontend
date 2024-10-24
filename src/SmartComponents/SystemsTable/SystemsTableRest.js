@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
@@ -15,7 +15,6 @@ import {
 } from './constants';
 import {
   useGetEntities,
-  useOsMinorVersionFilterRest,
   useInventoryUtilities,
   useSystemsExport,
   useSystemsFilter,
@@ -23,7 +22,6 @@ import {
 } from './hooks';
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import {
-  defaultSystemsFilterConfiguration,
   compliantSystemFilterConfiguration,
   complianceReportTableAdditionalFilter,
 } from '../../constants';
@@ -46,9 +44,8 @@ export const SystemsTable = ({
   defaultFilter,
   emptyStateComponent,
   prependComponent,
-  showOsMinorVersionFilter,
   preselectedSystems,
-  onSelect: onSelectProp,
+  onSelect,
   noSystemsTable,
   tableProps,
   ssgVersions,
@@ -56,19 +53,15 @@ export const SystemsTable = ({
   ruleSeverityFilter,
   showGroupsFilter,
   fetchApi,
+  fetchCustomOSes,
+  ignoreOsMajorVersion,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const [perPage, setPerPage] = useState(50);
-  const [currentTags, setCurrentTags] = useState([]);
   const navigateToInventory = useNavigate('inventory');
-  const osMinorVersionFilter = useOsMinorVersionFilterRest(
-    showOsMinorVersionFilter,
-    [defaultFilter, ...(policyId && { policyId })]
-  );
   const [error, setError] = useState(errorProp);
 
   const {
@@ -78,11 +71,9 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...defaultSystemsFilterConfiguration(),
         ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
-        ...osMinorVersionFilter,
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
       ],
     },
@@ -94,39 +85,39 @@ export const SystemsTable = ({
   );
 
   const systemFetchArguments = {
-    tags: currentTags,
     filter: systemsFilter,
     ...(policyId && { policyId }),
   };
 
-  const preselection = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
+  const combinedFetchArgumentsRef = useRef();
 
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
-    // eslint-disable-next-line no-unused-vars
-    toolbarProps: bulkSelectToolBarProps, //enable when filtering api endpoints by ID is possible. RHINENG-12138
+    toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    perPage,
-    onSelect: onSelectProp,
-    preselected: preselection,
-    fetchArguments: systemFetchArguments,
-    currentPageIds: items.map(({ id }) => id),
+    onSelect,
+    preselectedSystems,
+    fetchArguments: combinedFetchArgumentsRef.current,
+    currentPageItems: items,
+    fetchApi,
+    apiV2Enabled: true,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
   const onComplete = useCallback(
-    (result) => {
+    (result, { tags, filter }) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
-      setPerPage(result.perPage);
       setIsLoaded(true);
-      setCurrentTags(result.meta.tags);
+
+      combinedFetchArgumentsRef.current = {
+        ...(combinedFetchArgumentsRef.current || {}),
+        tags,
+        filter,
+      };
 
       if (
         emptyStateComponent &&
@@ -156,6 +147,8 @@ export const SystemsTable = ({
   const getEntities = useGetEntities(fetchSystems, {
     selected: selectedIds,
     columns,
+    ignoreOsMajorVersion,
+    apiV2Enabled: true,
   });
 
   const exportConfig = useSystemsExport({
@@ -163,11 +156,15 @@ export const SystemsTable = ({
     filter: systemsFilter,
     selected: selectedIds,
     total,
-    fetchArguments: {
-      ...systemFetchArguments,
-    },
+    fetchArguments: combinedFetchArgumentsRef.current,
     fetchApi,
+    apiV2Enabled: true,
   });
+
+  const handleOperatingSystemsFetch = useCallback(
+    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId]
+  );
 
   return (
     <StateView
@@ -204,7 +201,9 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            tags: true, //enable when tag filtering is supported by complience-client package
+            name: false,
+            operatingSystem: false,
+            tags: false,
             hostGroupFilter: !showGroupsFilter,
           }}
           showTags
@@ -216,7 +215,7 @@ export const SystemsTable = ({
           }}
           fallback={<Spinner />}
           {...(compact ? { variant: 'compact' } : {})}
-          // {...bulkSelectToolBarProps} //enable when filtering api endpoints by ID is possible. RHINENG-12138
+          {...bulkSelectToolBarProps}
           {...(!showAllSystems && {
             ...conditionalFilter,
             ...(remediationsEnabled && {
@@ -236,6 +235,7 @@ export const SystemsTable = ({
               },
             ],
           })}
+          fetchCustomOSes={handleOperatingSystemsFetch}
         />
       </StateViewPart>
     </StateView>
@@ -278,6 +278,8 @@ SystemsTable.propTypes = {
   dedicatedAction: PropTypes.object,
   ruleSeverityFilter: PropTypes.bool,
   fetchApi: PropTypes.func.isRequired,
+  fetchCustomOSes: PropTypes.func.isRequired,
+  ignoreOsMajorVersion: PropTypes.bool,
 };
 
 SystemsTable.defaultProps = {

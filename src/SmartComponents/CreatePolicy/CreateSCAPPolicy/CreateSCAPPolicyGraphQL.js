@@ -13,13 +13,28 @@ const CreateSCAPPolicyGraphQL = ({
   const { data, error, loading } = useQuery(SUPPORTED_PROFILES, {
     fetchPolicy: 'no-cache',
   });
+
+  const isInUse = (profileRefId, benchmarkRedId) =>
+    !!data?.profiles?.edges
+      .map(({ node }) => node)
+      .find(
+        (profile) =>
+          profile.refId === profileRefId &&
+          benchmarkRedId === profile.benchmark.refId
+      );
+
   const availableOsMajorVersions = data?.osMajorVersions?.edges?.map(
     ({ node }) => node.osMajorVersion
   );
   const selectedOsMajorVersionObject = data?.osMajorVersions?.edges?.find(
     ({ node }) => node.osMajorVersion === selectedOsMajorVersion
   );
-  const availableProfiles = selectedOsMajorVersionObject?.node?.profiles;
+  const availableProfiles = selectedOsMajorVersionObject?.node?.profiles.map(
+    (profile) => ({
+      ...profile,
+      disabled: isInUse(profile.refId, profile.benchmark.refId),
+    })
+  );
 
   return (
     <CreateSCAPPolicyBase
