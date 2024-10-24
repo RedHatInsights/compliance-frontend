@@ -89,7 +89,7 @@ export const SystemsTable = ({
     ...(policyId && { policyId }),
   };
 
-  const fetchArgumentsRef = useRef();
+  const combinedFetchArgumentsRef = useRef();
 
   const {
     selectedIds,
@@ -99,7 +99,7 @@ export const SystemsTable = ({
     total,
     onSelect,
     preselectedSystems,
-    fetchArguments: fetchArgumentsRef.current,
+    fetchArguments: combinedFetchArgumentsRef.current,
     currentPageItems: items,
     fetchApi,
     apiV2Enabled: true,
@@ -113,8 +113,8 @@ export const SystemsTable = ({
       setItems(result.entities);
       setIsLoaded(true);
 
-      fetchArgumentsRef.current = {
-        ...(fetchArgumentsRef.current || {}),
+      combinedFetchArgumentsRef.current = {
+        ...(combinedFetchArgumentsRef.current || {}),
         tags,
         filter,
       };
@@ -156,7 +156,7 @@ export const SystemsTable = ({
     filter: systemsFilter,
     selected: selectedIds,
     total,
-    fetchArguments: fetchArgumentsRef.current,
+    fetchArguments: combinedFetchArgumentsRef.current,
     fetchApi,
     apiV2Enabled: true,
   });
