@@ -7,6 +7,8 @@ import {
   Grid,
   GridItem,
   Tab,
+  PageSection,
+  PageSectionVariants,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -21,6 +23,7 @@ import {
   StateViewPart,
   RoutedTabs,
   BreadcrumbLinkItem,
+  Tailorings,
 } from 'PresentationalComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import '@/Charts.scss';
@@ -29,10 +32,13 @@ import PolicySystemsTab from './PolicySystemsTab';
 import PolicyMultiversionRules from './PolicyMultiversionRules';
 import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
+import useSaveValueOverrides from './hooks/useSaveValueOverrides';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
 import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '../../Utilities/dataSerialiser';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
+import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
 export const PolicyDetailsWrapper = ({ route }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -43,12 +49,31 @@ export const PolicyDetailsWrapper = ({ route }) => {
 };
 
 const PolicyDetailsGraphQL = ({ route }) => {
+  const location = useLocation();
   const { policy_id: policyId } = useParams();
   const query = usePolicyQuery({
     policyId,
   });
+  const {
+    data: { profile: policy },
+    refetch,
+  } = query;
 
-  return <PolicyDetailsBase query={query} route={route} />;
+  useEffect(() => {
+    refetch?.();
+  }, [location, refetch]);
+
+  const saveToPolicy = useSaveValueToPolicy(policy, () => {
+    refetch?.();
+  });
+
+  return (
+    <PolicyDetailsBase
+      query={query}
+      route={route}
+      saveToPolicy={saveToPolicy}
+    />
+  );
 };
 
 const PolicyDetailsV2 = ({ route }) => {
@@ -63,27 +88,32 @@ const PolicyDetailsV2 = ({ route }) => {
       }
     : {};
 
-  return <PolicyDetailsBase query={{ ...query, data }} route={route} />;
+  const saveValueOverrides = useSaveValueOverrides();
+  const saveValue = async (...args) => {
+    await saveValueOverrides(...args);
+    query.refetch?.();
+  };
+
+  return (
+    <PolicyDetailsBase
+      isAPIV2
+      query={{ ...query, data }}
+      route={route}
+      saveToPolicy={saveValue}
+    />
+  );
 };
 
-export const PolicyDetailsBase = ({ route, query }) => {
+export const PolicyDetailsBase = ({ route, query, saveToPolicy, isAPIV2 }) => {
   const defaultTab = 'details';
   const { data, error, loading, refetch } = query;
-  const location = useLocation();
   const policy = data?.profile;
   const hasOsMinorProfiles = !!policy?.policy.profiles.find(
     (profile) => !!profile.osMinorVersion
   );
 
-  const saveToPolicy = useSaveValueToPolicy(policy, () => {
-    refetch();
-  });
-
-  useEffect(() => {
-    refetch();
-  }, [location, refetch]);
-
   useTitleEntity(route, policy?.name);
+  const DedicatedAction = () => <EditRulesButtonToolbarItem policy={policy} />;
 
   return (
     <StateViewWithError
@@ -128,17 +158,37 @@ export const PolicyDetailsBase = ({ route, query }) => {
                 <ContentTab eventKey="details">
                   <PolicyDetailsDescription policy={policy} refetch={refetch} />
                 </ContentTab>
-                <ContentTab eventKey="rules">
-                  {hasOsMinorProfiles ? (
-                    <PolicyMultiversionRules
-                      policy={policy}
-                      saveToPolicy={saveToPolicy}
-                      onRuleValueReset={() => refetch()}
-                    />
-                  ) : (
-                    <PolicyRulesTab policy={policy} />
-                  )}
-                </ContentTab>
+                {isAPIV2 ? (
+                  <ContentTab eventKey="rules">
+                    <PageSection variant={PageSectionVariants.light}>
+                      <Tailorings
+                        ouiaId="RHELVersions"
+                        columns={[
+                          Columns.Name,
+                          Columns.Severity,
+                          Columns.Remediation,
+                        ]}
+                        policy={policy}
+                        level={1}
+                        DedicatedAction={DedicatedAction}
+                        onValueOverrideSave={saveToPolicy}
+                      />
+                    </PageSection>
+                  </ContentTab>
+                ) : (
+                  <ContentTab eventKey="rules">
+                    {hasOsMinorProfiles ? (
+                      <PolicyMultiversionRules
+                        policy={policy}
+                        saveToPolicy={saveToPolicy}
+                        onRuleValueReset={() => refetch()}
+                        DedicatedAction={DedicatedAction}
+                      />
+                    ) : (
+                      <PolicyRulesTab policy={policy} />
+                    )}
+                  </ContentTab>
+                )}
                 <ContentTab eventKey="systems">
                   <PolicySystemsTab policy={policy} />
                 </ContentTab>
@@ -172,6 +222,8 @@ PolicyDetailsBase.propTypes = {
     loading: PropTypes.oneOf([undefined, false, true]),
     refetch: PropTypes.func,
   }),
+  isAPIV2: PropTypes.bool,
+  saveToPolicy: PropTypes.func,
 };
 
 export default PolicyDetailsWrapper;

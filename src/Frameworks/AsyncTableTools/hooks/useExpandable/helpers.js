@@ -1,7 +1,7 @@
 import React from 'react';
 
 const childRowForRule = (item, idx, DetailsComponent) => ({
-  parent: idx * 2,
+  parent: idx,
   fullWidth: true,
   cells: [
     { title: <DetailsComponent item={item} key={'item-' + item.rowId} /> },
