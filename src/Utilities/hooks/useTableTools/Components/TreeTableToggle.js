@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core';
 import { ListIcon } from '@patternfly/react-icons';
-import Bars from './Bars';
+import TreeIcon from './TreeIcon';
 
 const TreeTableToggle = ({ onToggle, tableType }) => (
   <ToggleGroup>
@@ -14,7 +14,7 @@ const TreeTableToggle = ({ onToggle, tableType }) => (
       onChange={onToggle}
     />
     <ToggleGroupItem
-      icon={<Bars />}
+      icon={<TreeIcon />}
       aria-label="tree"
       isSelected={tableType === 'tree'}
       onChange={onToggle}

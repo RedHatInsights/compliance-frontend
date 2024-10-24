@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListIcon } from '@patternfly/react-icons';
-import Bars from '../../../components/Bars';
+import TreeIcon from '../../../components/TreeIcon';
 import { Spinner } from '@patternfly/react-core';
 import { treeRow } from '@patternfly/react-table';
 import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
@@ -81,7 +81,7 @@ const views = {
           }
         : {};
     },
-    icon: Bars,
+    icon: TreeIcon,
     toolbarProps: () => ({
       variant: 'compact',
     }),
