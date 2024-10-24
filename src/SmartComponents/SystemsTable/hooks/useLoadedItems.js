@@ -3,7 +3,7 @@ import unionBy from '../../../Utilities/unionBy';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 
 const useLoadedItems = (currentPageItems, total, key = 'id') => {
-  const [loadedItems, setLoadedItems] = useState([]);
+  const [loadedItems, setLoadedItems] = useState(currentPageItems);
   const [allLoaded, setAllLoaded] = useState(false); // to avoid unnecessary requests
 
   const addToLoadedItems = useCallback(
@@ -15,9 +15,9 @@ const useLoadedItems = (currentPageItems, total, key = 'id') => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const resetLoadedItems = useCallback(
-    debounce(() => {
-      setLoadedItems([]);
-      setAllLoaded(false);
+    debounce((newItems = []) => {
+      setLoadedItems(newItems);
+      setAllLoaded(total <= newItems.length);
     }, 200),
     []
   );

@@ -85,7 +85,7 @@ export const EditPolicySystems = ({
   policy,
   change,
   osMajorVersion,
-  selectedSystems,
+  selectedSystems = [],
 }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const onSelect = useOnSelect(change, countOsMinorVersions);
@@ -135,7 +135,7 @@ export const EditPolicySystems = ({
                   )})`)
             }
             enableExport={false}
-            preselectedSystems={selectedSystems}
+            preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
             showGroupsFilter
             apiV2Enabled={apiV2Enabled}
@@ -152,10 +152,6 @@ EditPolicySystems.propTypes = {
   policy: propTypes.object,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
-};
-
-EditPolicySystems.defaultProps = {
-  selectedSystems: [],
 };
 
 const selector = formValueSelector('policyForm');

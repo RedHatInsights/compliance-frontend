@@ -37,7 +37,11 @@ PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
 
-const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
+const EditPolicySystemsTab = ({
+  policy,
+  onSystemSelect,
+  selectedSystems = [],
+}) => {
   const { id: policyId, osMajorVersion, supportedOsVersions } = policy;
   const osMinorVersions = supportedOsVersions.map(
     (version) => version.split('.')[1]
@@ -67,7 +71,7 @@ const EditPolicySystemsTab = ({ policy, onSystemSelect, selectedSystems }) => {
         defaultFilter={defaultFilter}
         enableExport={false}
         remediationsEnabled={false}
-        preselectedSystems={selectedSystems}
+        preselectedSystems={selectedSystems.map(({ id }) => id)}
         onSelect={onSystemSelect}
         apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
       />
