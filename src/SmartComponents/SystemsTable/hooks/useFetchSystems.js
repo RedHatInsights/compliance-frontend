@@ -147,7 +147,7 @@ export const useFetchSystemsV2 = (
           },
         };
 
-        onComplete?.(result, requestVariables);
+        onComplete?.(result, combinedVariables);
         return result;
       } catch (error) {
         console.error('error: ', error.message);
