@@ -54,10 +54,7 @@ const PolicyDetailsGraphQL = ({ route }) => {
   const query = usePolicyQuery({
     policyId,
   });
-  const {
-    data: { profile: policy },
-    refetch,
-  } = query;
+  const { data: { profile: policy } = {}, refetch } = query;
 
   useEffect(() => {
     refetch?.();
