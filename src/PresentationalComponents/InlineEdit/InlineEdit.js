@@ -97,6 +97,7 @@ const InlineEdit = ({
                   variant="plain"
                   type="button"
                   aria-label="Save edits"
+                  ouiaId="SaveEdits"
                   isDisabled={!valid}
                   isLoading={saving}
                   onClick={onSave}
@@ -121,6 +122,7 @@ const InlineEdit = ({
                   variant="plain"
                   type="button"
                   aria-label="Cancel edits"
+                  ouiaId="CancelEdits"
                   onClick={handleCloseEdit}
                   style={{ 'margin-left': '5px' }}
                 >
@@ -135,6 +137,7 @@ const InlineEdit = ({
             {enableEdit && (
               <Button
                 aria-label="Edit"
+                ouiaId="InlineEditPencil"
                 className="pf-v5-u-ml-sm"
                 onClick={() => {
                   setOpen(true);

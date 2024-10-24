@@ -94,13 +94,13 @@ button.pf-v5-c-button.pf-m-tertiary {
   color: var(--pf-v5-global--warning-color--100);
 }
 
-button.pf-v5-c-menu-toggle {
-   padding: 6px 8px;
-
-   &.ins-c-tagfilter {
-     padding: 0;
-   }
- }
+button[data-ouia-component-id="InlineEditPencil"],
+button[data-ouia-component-id="SaveEdits"],
+button[data-ouia-component-id="CancelEdits"],
+button[data-ouia-component-id="InlineEditReset"] {
+  padding-left: 8px;
+  padding-right: 8px;
+}
 
 .ins-c-primary-toolbar__group-filter button.ins-c-osfilter__os-filter-button {
   background: #FFF;
