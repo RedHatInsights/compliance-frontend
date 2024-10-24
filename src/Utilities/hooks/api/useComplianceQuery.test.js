@@ -1,13 +1,14 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import useComplianceQuery from './useComplianceQuery';
-import { useSerialisedTableState } from '../../../Frameworks/AsyncTableTools/hooks/useTableState';
-import usePagination from '../../../Frameworks/AsyncTableTools/hooks/usePagination';
+import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import usePagination from '@/Frameworks/AsyncTableTools/hooks/usePagination';
 import {
   paginationSerialiser,
   sortSerialiser,
-} from '../../../PresentationalComponents/ComplianceTable/serialisers';
-import TableStateProvider from '../../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import useTableSort from '../../../Frameworks/AsyncTableTools/hooks/useTableSort';
+} from '@/PresentationalComponents/ComplianceTable/serialisers';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import useTableSort from '@/Frameworks/AsyncTableTools/hooks/useTableSort';
+
+import useComplianceQuery from './useComplianceQuery';
 
 const wrapper = ({ children }) => (
   <TableStateProvider>{children}</TableStateProvider>
