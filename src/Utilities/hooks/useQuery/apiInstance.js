@@ -24,6 +24,8 @@ import tailoringRules from '@redhat-cloud-services/compliance-client/dist/Tailor
 import ruleGroups from '@redhat-cloud-services/compliance-client/dist/RuleGroups';
 import valueDefinitions from '@redhat-cloud-services/compliance-client/dist/ValueDefinitions';
 import updateTailoring from '@redhat-cloud-services/compliance-client/dist/UpdateTailoring';
+import profileRules from '@redhat-cloud-services/compliance-client/dist/ProfileRules';
+import profileTree from '@redhat-cloud-services/compliance-client/dist/ProfileTree';
 
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
@@ -56,6 +58,8 @@ const apiInstance = APIFactory(
     ruleGroups,
     valueDefinitions,
     updateTailoring,
+    profileRules,
+    profileTree,
   },
   instance
 );
