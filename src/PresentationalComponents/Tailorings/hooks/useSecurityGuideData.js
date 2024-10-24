@@ -39,12 +39,11 @@ const useSecurityGuideData = (
   });
 
   const { fetch: fetchValueDefinitions } = useValueDefinitions({
-    params: { securityGuideId },
     skip: true,
   });
   const fetchValueDefinitionsForBatch = useCallback(
     (offset, limit) =>
-      fetchValueDefinitions({ securityGuideId, limit, offset }, false),
+      fetchValueDefinitions([securityGuideId, undefined, limit, offset], false),
     [fetchValueDefinitions, securityGuideId]
   );
   const {

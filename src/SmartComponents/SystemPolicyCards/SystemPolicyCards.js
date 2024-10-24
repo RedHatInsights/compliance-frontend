@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, GridItem } from '@patternfly/react-core';
 import useReportTestResults from 'Utilities/hooks/api/useReportTestResults';
-import SystemPolicyCardPresentational from '../../PresentationalComponents/SystemPolicyCard';
-import LoadingPolicyCards from '../../PresentationalComponents/SystemPolicyCards/components/LoadingPolicyCards';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+import SystemPolicyCardPresentational from 'PresentationalComponents/SystemPolicyCard';
+import LoadingPolicyCards from 'PresentationalComponents/SystemPolicyCards/components/LoadingPolicyCards';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { dataMap } from './constants';
-import useSystemReports from '../../Utilities/hooks/api/useSystemReports';
+import useSystemReports from 'Utilities/hooks/api/useSystemReports';
 import { useParams } from 'react-router-dom';
 
 const SystemPolicyCard = ({ policy }) => {

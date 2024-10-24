@@ -56,7 +56,13 @@ import useComplianceApi from './useComplianceApi';
  *
  * // Will do the same as above, but additionally add a default filter to the tables filter
  * const reportsApi = useComplianceQuery('reports', {
- *  params: { filter: 'name NOT null' }
+ *  params: { filter: 'name NOT null' },
+ *  useTableState: true
+ * })
+ *
+ * // Will use the table state for pagination and filters, but always use the 'name:asc' for every request
+ * const reportsApi = useComplianceQuery('reports', {
+ *  params: { sortBy: 'name:asc' },
  *  useTableState: true
  * })
  *

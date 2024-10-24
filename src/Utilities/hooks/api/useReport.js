@@ -1,11 +1,7 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useReport = (reportId, options) => {
-  const reportApi = useComplianceApi('report');
-  const query = useQuery(reportApi, { params: [reportId], ...options });
-
-  return query;
-};
+// TODO investigate why this endpoint requires direct arguments and does not recognise the params object.
+const useReport = (reportId, options) =>
+  useComplianceQuery('report', { params: [reportId], ...options });
 
 export default useReport;

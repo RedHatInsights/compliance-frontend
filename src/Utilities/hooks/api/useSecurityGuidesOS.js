@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useSecurityGuidesOS = (options) => {
-  const securityGuidesOSApi = useComplianceApi('securityGuidesOS');
-  const query = useQuery(securityGuidesOSApi, options);
-
-  return query;
-};
+const useSecurityGuidesOS = (options) =>
+  useComplianceQuery('securityGuidesOS', options);
 
 export default useSecurityGuidesOS;

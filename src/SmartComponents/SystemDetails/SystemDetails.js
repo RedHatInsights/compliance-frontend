@@ -22,8 +22,8 @@ import {
 } from 'PresentationalComponents';
 import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import useSystem from '../../Utilities/hooks/api/useSystem';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useSystem from 'Utilities/hooks/api/useSystem';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
 const QUERY = gql`
   query SD_System($inventoryId: String!) {

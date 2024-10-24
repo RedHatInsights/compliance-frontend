@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useUpdateTailoring = (options) => {
-  const updateTailoringApi = useComplianceApi('updateTailoring');
-  const query = useQuery(updateTailoringApi, { skip: true, ...options });
-
-  return query;
-};
+const useUpdateTailoring = (options) =>
+  useComplianceQuery('updateTailoring', { skip: true, ...options });
 
 export default useUpdateTailoring;

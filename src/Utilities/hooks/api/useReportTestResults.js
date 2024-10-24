@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useReportTestResults = (options) => {
-  const reportTestResultsApi = useComplianceApi('reportTestResults');
-  const query = useQuery(reportTestResultsApi, options);
-
-  return query;
-};
+const useReportTestResults = (options) =>
+  useComplianceQuery('reportTestResults', options);
 
 export default useReportTestResults;

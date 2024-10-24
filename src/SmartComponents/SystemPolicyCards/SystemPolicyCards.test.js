@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
+import useSystemReports from 'Utilities/hooks/api/useSystemReports';
 import { SystemPolicyCards } from './SystemPolicyCards';
-import { useReportTestResults } from '../../Utilities/hooks/api/useReportTestResults';
+import useReportTestResults from 'Utilities/hooks/api/useReportTestResults';
 import systemReports from '../../__factories__/systemReports';
 import testResults from '../../__factories__/testResults';
 
-jest.mock('../../Utilities/hooks/api/useSystemReports');
-jest.mock('../../Utilities/hooks/api/useReportTestResults');
+jest.mock('Utilities/hooks/api/useSystemReports');
+jest.mock('Utilities/hooks/api/useReportTestResults');
 jest.mock('react-router-dom');
 
 describe('SystemPolicyCards', () => {
@@ -85,7 +85,9 @@ describe('SystemPolicyCards', () => {
     }));
     render(<SystemPolicyCards />);
 
-    expect(useSystemReports).toBeCalledWith({ limit: 100, systemId: 'abc' });
+    expect(useSystemReports).toBeCalledWith({
+      params: { limit: 100, systemId: 'abc' },
+    });
   });
 
   it('requests test results with with report and system id', async () => {
@@ -100,8 +102,10 @@ describe('SystemPolicyCards', () => {
     render(<SystemPolicyCards />);
 
     expect(useReportTestResults).toBeCalledWith({
-      filter: 'system_id=abc',
-      reportId: systemReportsData[0].id,
+      params: {
+        filter: 'system_id=abc',
+        reportId: systemReportsData[0].id,
+      },
     });
   });
 

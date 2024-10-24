@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useValueDefinitions = (options) => {
-  const valueDefinitionsApi = useComplianceApi('valueDefinitions');
-  const query = useQuery(valueDefinitionsApi, options);
-
-  return query;
-};
+const useValueDefinitions = (options) =>
+  useComplianceQuery('valueDefinitions', options);
 
 export default useValueDefinitions;
