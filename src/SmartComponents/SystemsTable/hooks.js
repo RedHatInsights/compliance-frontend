@@ -17,7 +17,7 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
 import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
-import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
+import useOperatingSystemsQuery from 'Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
 import useLoadedItems from './hooks/useLoadedItems';
 
@@ -53,11 +53,8 @@ export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
     : [];
 };
 
-export const useOsMinorVersionFilterRest = (
-  showFilter,
-  fetchArguments = {}
-) => {
-  let { data = [] } = useOperatingSystemsQuery(fetchArguments);
+export const useOsMinorVersionFilterRest = (showFilter, params = {}) => {
+  let { data = [] } = useOperatingSystemsQuery({ params });
   const osMapArray = buildOSObject(data);
 
   return showFilter

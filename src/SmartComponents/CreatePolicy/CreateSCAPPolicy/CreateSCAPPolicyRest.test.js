@@ -4,9 +4,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 import userEvent from '@testing-library/user-event';
 import { supportedProfiles } from '../../../__fixtures__/supportedProfiles';
-import { apiInstance } from '../../../Utilities/hooks/useQuery';
-import * as useSecurityGuidesOS from '../../../Utilities/hooks/useSecurityGuidesOS/useSecurityGuidesOS';
-import * as useSupportedProfiles from '../../../Utilities/hooks/useSupportedProfiles/useSupportedProfiles';
+import { apiInstance } from 'Utilities/hooks/useQuery';
+import * as useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
+import * as useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
 
 const useSecurityGuidesOSSpy = jest.spyOn(useSecurityGuidesOS, 'default');

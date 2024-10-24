@@ -1,5 +1,11 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useQuery from '../useQuery';
+import useComplianceApi from './useComplianceApi';
 
-export const useSystemPolicies = (id) => {
-  return useQuery(apiInstance.systemPolicies, { params: [id] });
+const useSystemPolicies = (options) => {
+  const systemPoliciesApi = useComplianceApi('systemPolicies');
+  const query = useQuery(systemPoliciesApi, options);
+
+  return query;
 };
+
+export default useSystemPolicies;

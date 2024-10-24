@@ -24,17 +24,18 @@ import {
   SubPageTitle,
   LinkButton,
 } from 'PresentationalComponents';
-import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import { SystemsTable } from 'SmartComponents';
-import '@/Charts.scss';
-import './ReportDetails.scss';
+import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
+import useReport from 'Utilities/hooks/api/useReport';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
-import { useReport } from '../../Utilities/hooks/api/useReport';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import { dataMap, QUERY } from './constants';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+
+import '@/Charts.scss';
+import './ReportDetails.scss';
 
 const ReportDetailsBase = ({
   route,
@@ -205,8 +206,8 @@ ReportDetailsGraphQL.propTypes = {
 };
 
 const ReportDetailsRest = ({ route }) => {
-  const { report_id: policyId } = useParams();
-  const { data: { data } = {}, error, loading } = useReport(policyId);
+  const { report_id } = useParams();
+  const { data: { data } = {}, error, loading } = useReport(report_id);
 
   return (
     <ReportDetailsBase

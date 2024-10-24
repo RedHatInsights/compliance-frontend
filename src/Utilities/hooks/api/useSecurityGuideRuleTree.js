@@ -1,6 +1,13 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useQuery from '../useQuery';
+import useComplianceApi from './useComplianceApi';
 
-const useSecurityGuideRuleTree = (id, options = {}) =>
-  useQuery(apiInstance.securityGuideRuleTree, { params: [id], ...options });
+const useSecurityGuideRuleTree = (id, options = {}) => {
+  const securityGuideRuleTreeApi = useComplianceApi('securityGuideRuleTree');
+  const query = useQuery(securityGuideRuleTreeApi, {
+    params: [id],
+    ...options,
+  });
 
+  return query;
+};
 export default useSecurityGuideRuleTree;
