@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useCallback } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -391,11 +391,6 @@ export const useSystemBulkSelect = ({
     return items;
   };
 
-  const preselected = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
-
   const itemIdsInTable = async () => {
     const items = await getItemsInTable();
 
@@ -407,7 +402,7 @@ export const useSystemBulkSelect = ({
   const bulkSelect = useBulkSelect({
     total,
     onSelect: onSelectCallback,
-    preselected,
+    preselected: preselectedSystems,
     itemIdsInTable,
     itemIdsOnPage,
   });
