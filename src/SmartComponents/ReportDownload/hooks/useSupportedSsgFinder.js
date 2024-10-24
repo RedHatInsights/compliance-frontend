@@ -1,4 +1,4 @@
-import useCollection from 'Utilities/hooks/api/useCollection';
+import useCollection from 'Utilities/hooks/api_v1/useCollection';
 
 const compareAsIntegers = (firstString, secondString) =>
   parseInt(firstString) === parseInt(secondString);

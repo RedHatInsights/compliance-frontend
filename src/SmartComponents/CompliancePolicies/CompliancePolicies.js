@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
@@ -15,9 +16,8 @@ import {
   StateViewPart,
   LinkButton,
 } from 'PresentationalComponents';
-import { usePoliciesQuery } from '../../Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
-import PropTypes from 'prop-types';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { QUERY, dataMap } from './constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
@@ -89,7 +89,7 @@ CompliancePoliciesBase.propTypes = {
 };
 
 const CompliancePoliciesV2 = () => {
-  const query = usePoliciesQuery();
+  const query = usePolicies();
 
   const data = query.data?.data
     ? {

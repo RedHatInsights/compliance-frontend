@@ -20,10 +20,10 @@ import {
 } from 'PresentationalComponents';
 import { dispatchAction } from 'Utilities/Dispatcher';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
-import usePolicyQuery2 from 'Utilities/hooks/usePolicyQuery/usePolicyQuery2';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import { apiInstance } from 'Utilities/hooks/useQuery';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { dataMap } from './constants';
 
 const DeletePolicyBase = ({ query, deletePolicy, onClose }) => {
@@ -94,9 +94,7 @@ DeletePolicyBase.propTypes = {
 };
 
 const DeletePolicyRest = ({ policyId, onClose }) => {
-  const query = usePolicyQuery2({
-    policyId,
-  });
+  const query = usePolicy(policyId);
 
   const data = query.data?.data
     ? dataSerialiser(query.data.data, dataMap)

@@ -13,7 +13,7 @@ import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '@/Utilities/dataSerialiser';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { policiesDataMapper, systemsDataMapper } from '@/constants';
-import { usePoliciesQuery } from '@/Utilities/hooks/usePoliciesQuery/usePoliciesQuery';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
 import { buildOSObject } from '../../Utilities/helpers';
 
@@ -140,7 +140,7 @@ const ComplianceSystemsGraphQL = () => {
 };
 
 const ComplianceSystemsRest = () => {
-  let { data: { data } = {}, error, loading } = usePoliciesQuery();
+  let { data: { data } = {}, error, loading } = usePolicies();
 
   if (data) {
     data = dataSerialiser(data, policiesDataMapper);

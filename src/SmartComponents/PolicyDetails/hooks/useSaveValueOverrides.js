@@ -7,15 +7,14 @@ const useSaveValueOverrides = () => {
     async (policy, tailoring, valueDefintion, newValue) => {
       const { id: policyId } = policy;
       const { id: tailoringId, value_overrides } = tailoring;
-      console.log(policyId, tailoringId);
+
       const tailoringData = {
         value_overrides: {
           ...value_overrides,
           [valueDefintion.id]: newValue,
         },
       };
-      const params = [policyId, tailoringId, undefined, tailoringData];
-      console.log(params);
+      const params = { policyId, tailoringId, tailoring: tailoringData };
 
       return await submit(params, false);
     },

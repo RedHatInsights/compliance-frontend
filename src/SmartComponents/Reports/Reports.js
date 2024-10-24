@@ -14,8 +14,8 @@ import {
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import PropTypes from 'prop-types';
-import { useReports } from '@/Utilities/hooks/api/useReports';
-import dataSerialiser from '@/Utilities/dataSerialiser';
+import useReports from 'Utilities/hooks/api/useReports';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { QUERY } from './constants';
 import { reportDataMap as dataMap } from '../../constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';

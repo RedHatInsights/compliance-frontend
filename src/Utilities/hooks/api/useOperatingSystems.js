@@ -1,7 +1,6 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useOperatingSystemsQuery = (filters) => {
-  return useQuery(apiInstance.systemsOS, { params: [null, filters] });
-};
+const useOperatingSystemsQuery = (options) =>
+  useComplianceQuery('systemsOS', options);
 
 export default useOperatingSystemsQuery;

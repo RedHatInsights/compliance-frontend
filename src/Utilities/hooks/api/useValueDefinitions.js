@@ -1,9 +1,6 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useValueDefinitions = (securityGuideId, options) =>
-  useQuery(apiInstance.valueDefinitions, {
-    ...options,
-    params: [securityGuideId, ...(options.params || [])],
-  });
+const useValueDefinitions = (options) =>
+  useComplianceQuery('valueDefinitions', options);
 
 export default useValueDefinitions;
