@@ -29,6 +29,7 @@ const Tailorings = ({
       undefined,
       undefined,
       undefined,
+      undefined,
       'NOT(null? os_minor_version)', // TODO doublecheck if this is right
     ],
     skip: !policy,

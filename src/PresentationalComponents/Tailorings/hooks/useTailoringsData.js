@@ -43,6 +43,7 @@ const useTailoringsData = (
       // TODO this is a hack: The state value defaults should come from the state itself
       pagination?.limit || 10,
       pagination?.offset || 0,
+      undefined,
       sort || 'title:asc',
       ...(filters || groupFilter
         ? [
