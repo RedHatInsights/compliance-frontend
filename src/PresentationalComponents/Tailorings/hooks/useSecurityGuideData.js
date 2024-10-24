@@ -7,24 +7,27 @@ import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import { buildTreeTable } from '../helpers';
 
 const useSecurityGuideData = (
-  security_guide_id,
+  securityGuideId,
   { skipRuleTree, skipRuleGroups, skipValueDefinitions }
 ) => {
   const {
     data: ruleTree,
     loading: ruleTreeLoading,
     error: ruleTreeError,
-  } = useSecurityGuideRuleTree(security_guide_id, {
+  } = useSecurityGuideRuleTree(securityGuideId, {
     skip: skipRuleTree,
   });
 
-  const { fetch: fetchRuleGroups } = useRuleGroups(security_guide_id, {
+  const { fetch: fetchRuleGroups } = useRuleGroups({
+    params: {
+      securityGuideId,
+    },
     skip: true,
   });
   const fetchRuleGroupsForBatch = useCallback(
     (offset, limit) =>
-      fetchRuleGroups([security_guide_id, undefined, limit, offset], false),
-    [fetchRuleGroups, security_guide_id]
+      fetchRuleGroups({ securityGuideId, limit, offset }, false),
+    [fetchRuleGroups, securityGuideId]
   );
   const {
     loading: ruleGroupsLoading,
@@ -35,17 +38,14 @@ const useSecurityGuideData = (
     skip: skipRuleGroups,
   });
 
-  const { fetch: fetchValueDefinitions } = useValueDefinitions(
-    security_guide_id,
-    { skip: true }
-  );
+  const { fetch: fetchValueDefinitions } = useValueDefinitions({
+    params: { securityGuideId },
+    skip: true,
+  });
   const fetchValueDefinitionsForBatch = useCallback(
     (offset, limit) =>
-      fetchValueDefinitions(
-        [security_guide_id, undefined, limit, offset],
-        false
-      ),
-    [fetchValueDefinitions, security_guide_id]
+      fetchValueDefinitions({ securityGuideId, limit, offset }, false),
+    [fetchValueDefinitions, securityGuideId]
   );
   const {
     loading: valueDefinitionsLoading,

@@ -39,6 +39,8 @@ const useTailoringsData = (
 
   const ruleParams = useMemo(
     () => [
+      policyId,
+      tailoringId,
       undefined,
       // TODO this is a hack: The state value defaults should come from the state itself
       pagination?.limit || 10,
@@ -54,7 +56,7 @@ const useTailoringsData = (
         : []),
       undefined,
     ],
-    [filters, pagination, groupFilter, sort]
+    [filters, pagination, groupFilter, sort, policyId, tailoringId]
   );
 
   const {
@@ -62,9 +64,9 @@ const useTailoringsData = (
     loading: rulesLoading,
     error: rulesError,
     fetch: fetchTailoringRules,
-  } = useTailoringRules(policyId, tailoringId, {
+  } = useTailoringRules({
     params: ruleParams,
-    skip: shouldSkip('rules', tableState),
+    skip: (!policyId && !tailoringId) || shouldSkip('rules', tableState),
   });
 
   const fetchRules = useCallback(

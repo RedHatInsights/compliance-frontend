@@ -1,7 +1,12 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useQuery from '../useQuery';
+import useComplianceApi from './useComplianceApi';
 
-export const useTailoring = (id) =>
-  useQuery(apiInstance.tailorings, { params: [id] });
+// TODO investigate why this endpoint requires direct arguments and does not recognise the params object.
+const useTailorings = (options) => {
+  const tailoringsApi = useComplianceApi('tailorings');
+  const query = useQuery(tailoringsApi, options);
 
-export const useTailorings = (options) =>
-  useQuery(apiInstance.tailorings, options);
+  return query;
+};
+
+export default useTailorings;

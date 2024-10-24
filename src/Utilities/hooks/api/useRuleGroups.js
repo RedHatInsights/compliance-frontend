@@ -1,9 +1,11 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useQuery from '../useQuery';
+import useComplianceApi from './useComplianceApi';
 
-const useRuleGroups = (security_guide_id, options = {}) =>
-  useQuery(apiInstance.ruleGroups, {
-    params: [security_guide_id],
-    ...options,
-  });
+const useRuleGroups = (options) => {
+  const ruleGroupsApi = useComplianceApi('ruleGroups');
+  const query = useQuery(ruleGroupsApi, options);
+
+  return query;
+};
 
 export default useRuleGroups;

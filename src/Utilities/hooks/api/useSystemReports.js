@@ -1,7 +1,11 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useQuery from '../useQuery';
+import useComplianceApi from './useComplianceApi';
 
-export const useSystemReports = ({ systemId, limit = 10 }) => {
-  return useQuery(apiInstance.systemReports, {
-    params: [systemId, undefined, limit],
-  });
+const useSystemReports = (options) => {
+  const systemReportsApi = useComplianceApi('systemReports');
+  const query = useQuery(systemReportsApi, options);
+
+  return query;
 };
+
+export default useSystemReports;
