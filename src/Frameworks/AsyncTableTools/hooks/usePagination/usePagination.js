@@ -1,9 +1,5 @@
-import { useCallback, useMemo } from 'react';
-import { TABLE_STATE_NAMESPACE as FILTERS_TABLE_NAMESPACE } from '../useFilterConfig/constants';
-import { TABLE_STATE_NAMESPACE as SORT_TABLE_NAMESPACE } from '../useTableSort/constants';
-
-import useTableState from '../useTableState';
-import { TABLE_STATE_NAMESPACE } from './constants';
+import { useCallback } from 'react';
+import usePaginationState from './hooks/usePaginationState';
 
 /**
  * Provides `pagination` props and functionality for a (Primary)Toolbar
@@ -20,60 +16,45 @@ import { TABLE_STATE_NAMESPACE } from './constants';
  *
  */
 const usePagination = (options = {}) => {
-  const { perPage = 10, serialisers, numberOfItems } = options;
+  const { perPage = 10, numberOfItems } = options;
   const enablePagination =
     options?.pagination !== false && (numberOfItems || 0) > perPage;
-  const stateObservers = useMemo(
-    () => ({
-      [SORT_TABLE_NAMESPACE]: (currentState) => ({
-        ...currentState,
-        page: 1,
-      }),
-      [FILTERS_TABLE_NAMESPACE]: (currentState) => ({
-        ...currentState,
-        page: 1,
-      }),
-    }),
-    []
-  );
-  const [paginationState, setPaginationState] = useTableState(
-    TABLE_STATE_NAMESPACE,
-    {
-      perPage,
-      page: 1,
-    },
-    {
-      ...(serialisers?.pagination
-        ? { serialiser: serialisers?.pagination }
-        : {}),
-      observers: stateObservers,
-    }
-  );
+  const [paginationState, setPaginationState] = usePaginationState(options);
 
   const setPagination = useCallback(
     (newState) =>
-      setPaginationState({
+      setPaginationState((paginationState) => ({
         ...paginationState,
-        ...newState,
-      }),
-    [setPaginationState, paginationState]
+        state: {
+          ...paginationState.state,
+          ...newState,
+        },
+      })),
+    [setPaginationState]
   );
 
   const setPage = useCallback(
     (page) => {
-      const nextPage = page < 0 ? paginationState.page + page : page;
-      setPagination({
-        page: nextPage > 0 ? nextPage : 1,
+      setPaginationState((paginationState) => {
+        const nextPage = page < 0 ? paginationState.page + page : page;
+
+        return {
+          ...paginationState,
+          state: {
+            ...paginationState.state,
+            page: nextPage > 0 ? nextPage : 1,
+          },
+        };
       });
     },
-    [setPagination, paginationState]
+    [setPaginationState]
   );
 
-  return enablePagination
+  return enablePagination && !(paginationState || {}).isDisabled
     ? {
         toolbarProps: {
           pagination: {
-            ...paginationState,
+            ...(paginationState?.state || {}),
             itemCount: numberOfItems,
             onSetPage: (_, page) => setPage(page),
             onPerPageSelect: (_, perPage) =>
