@@ -11,9 +11,9 @@ import { TableContext } from '../constants';
  *
  */
 const useRawTableState = () => {
-  const { state } = useContext(TableContext);
+  const context = useContext(TableContext);
 
-  return state?.[0]?.tableState;
+  return context?.state?.[0]?.tableState;
 };
 
 export default useRawTableState;

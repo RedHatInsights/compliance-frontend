@@ -25,34 +25,45 @@ import useComplianceApi from './useComplianceApi';
 
 /**
  *
- * Hook that passes serialised state from AsyncTableTools to the useQuery parameters
- * Make sure the component above is wrapped with `<TableStateProvider/>`.
+ * Hook to use a Compliance REST API v2 endpoint with useQuery.
+ * Optionally support for using the serialised table state if a `<TableStateProvider/>` is available.
  *
- *  @param   {Function}                 endpoint                   String of the javascript-clients export for the needed endpoint
+ *  @param   {Function}                 endpoint                String of the javascript-clients export for the needed endpoint
  *
- *  @param   {object}                   [options]
- *  @param   {useComplianceQueryParams} [options.params]           API endpoint params
- *  @param   {boolean}                  [options.ignoreTableState] Force ignoring the serialised table state
+ *  @param   {object}                   [options]               Options for useComplianceQuery & useQuery
+ *  @param   {useComplianceQueryParams} [options.params]        API endpoint params
+ *  @param   {boolean}                  [options.useTableState] Use the serialised table state
  *
- *  @returns {useComplianceQueryReturn}                            Object containing state values and a refetch function
+ *  @returns {useComplianceQueryReturn}                         Object containing state values and a refetch function
  *
  *  @category Compliance
  *  @subcategory Hooks
  *
  * @example
  *
- * const policiesApi = useComplianceQuery('policies')
+ * // Will return a `useQuery` result with data, loading, error
+ * const { data, loading, error } = useComplianceQuery('policies')
  *
- * @example
- *
- * const policiesApi = useComplianceQuery('reports', {
+ * // Will return a `useQuery` result with a filter passed to the API
+ * const reportsApi = useComplianceQuery('reports', {
  *  params: { filter: 'name NOT null'}
+ * })
+ *
+ * // Will return a `useQuery` result using the sort, pagination and filter state from a TableStateProvider passed as params to the API
+ * const reportsApi = useComplianceQuery('reports', {
+ *  useTableState: true
+ * })
+ *
+ * // Will do the same as above, but additionally add a default filter to the tables filter
+ * const reportsApi = useComplianceQuery('reports', {
+ *  params: { filter: 'name NOT null' }
+ *  useTableState: true
  * })
  *
  */
 const useComplianceQuery = (
   endpoint,
-  { params, ignoreTableState = false, ...options } = {}
+  { params, useTableState = false, ...options } = {}
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
   const serialisedTableState = useSerialisedTableState();
@@ -82,8 +93,8 @@ const useComplianceQuery = (
   );
 
   const query = useQuery(apiEndpoint, {
-    params: !ignoreTableState ? paramsFromState : params,
-    skip: !serialisedTableState,
+    params: useTableState ? paramsFromState : params,
+    skip: useTableState && !serialisedTableState,
     ...options,
   });
 
