@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const usePolicy = (policyId, options) => {
-  const policyApi = useComplianceApi('policy');
-  const query = useQuery(policyApi, { params: [policyId], ...options });
-
-  return query;
-};
+const usePolicy = (policyId, options) =>
+  useComplianceQuery('policy', { params: [policyId], ...options });
 
 export default usePolicy;

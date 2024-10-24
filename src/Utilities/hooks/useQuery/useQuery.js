@@ -17,7 +17,7 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *
  *  @param   {Function}       fn               Function to execute
  *  @param   {object}         [options]        Includes options like params and skip
- *  @param   {Array}          [options.params] Parameters passed to the request to make
+ *  @param   {Array | object} [options.params] Parameters passed to the request to make. If an array is passed it will be spread as arguments!
  *  @param   {boolean}        [options.skip]   Wether or not to skip the request
  *
  *  @returns {useQueryReturn}

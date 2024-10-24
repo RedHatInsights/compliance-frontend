@@ -1,11 +1,5 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useRuleGroups = (options) => {
-  const ruleGroupsApi = useComplianceApi('ruleGroups');
-  const query = useQuery(ruleGroupsApi, options);
-
-  return query;
-};
+const useRuleGroups = (options) => useComplianceQuery('ruleGroups', options);
 
 export default useRuleGroups;

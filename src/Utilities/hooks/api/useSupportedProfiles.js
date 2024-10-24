@@ -1,11 +1,6 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useSupportedProfiles = (options) => {
-  const supportedProfilesApi = useComplianceApi('supportedProfiles');
-  const query = useQuery(supportedProfilesApi, options);
-
-  return query;
-};
+const useSupportedProfiles = (options) =>
+  useComplianceQuery('supportedProfiles', options);
 
 export default useSupportedProfiles;

@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
+import { useSystemReports } from 'Utilities/hooks/api/useSystemReports';
 import { SystemPolicyCards } from './SystemPolicyCards';
-import { useReportTestResults } from '../../Utilities/hooks/api/useReportTestResults';
+import { useReportTestResults } from 'Utilities/hooks/api/useReportTestResults';
 import systemReports from '../../__factories__/systemReports';
 import testResults from '../../__factories__/testResults';
 
-jest.mock('../../Utilities/hooks/api/useSystemReports');
-jest.mock('../../Utilities/hooks/api/useReportTestResults');
+jest.mock('Utilities/hooks/api/useSystemReports');
+jest.mock('Utilities/hooks/api/useReportTestResults');
 jest.mock('react-router-dom');
 
 describe('SystemPolicyCards', () => {

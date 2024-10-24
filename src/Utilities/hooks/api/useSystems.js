@@ -1,11 +1,5 @@
-import useQuery from '../useQuery';
-import useComplianceApi from './useComplianceApi';
+import useComplianceQuery from './useComplianceQuery';
 
-const useSystemsQuery = (options) => {
-  const systemsApi = useComplianceApi('systems');
-  const query = useQuery(systemsApi, options);
-
-  return query;
-};
+const useSystemsQuery = (options) => useComplianceQuery('systems', options);
 
 export default useSystemsQuery;
