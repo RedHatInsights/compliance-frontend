@@ -34,7 +34,7 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *
  */
 const useQuery = (fn, options = {}) => {
-  const { params = [], skip = false, debounced = true } = options;
+  const { params = {}, skip = false, debounced = true } = options;
   const mounted = useRef(true);
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);
@@ -47,10 +47,17 @@ const useQuery = (fn, options = {}) => {
       if (!loading) {
         setDataState && setLoading(true);
         try {
-          const data =
-            debounced && setDataState
-              ? await debouncedFn(...params)
-              : await fn(...params);
+          const data = await (async (params) => {
+            if (Array.isArray(params)) {
+              return debounced && setDataState
+                ? await debouncedFn(...params)
+                : await fn(...params);
+            } else {
+              return debounced && setDataState
+                ? await debouncedFn(params)
+                : await fn(params);
+            }
+          })(params);
 
           if (setDataState && mounted.current) {
             setData(data?.data || data);
@@ -73,8 +80,18 @@ const useQuery = (fn, options = {}) => {
   );
 
   const fetch = useCallback(
-    (params, setDataState) => fetchFn(fn, params, setDataState),
-    [fn, fetchFn]
+    (fetchParams, setDataState) =>
+      fetchFn(
+        fn,
+        !Array.isArray(fetchParams)
+          ? {
+              ...params,
+              ...fetchParams,
+            }
+          : fetchParams,
+        setDataState
+      ),
+    [fn, fetchFn, params]
   );
   const refetch = useCallback(() => fetchFn(fn, params), [fetchFn, fn, params]);
 
