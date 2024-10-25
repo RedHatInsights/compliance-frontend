@@ -17,8 +17,10 @@ const fetchApi = (offset, limit, fetchArguments) =>
     .policySystems(
       fetchArguments.policyId,
       null,
+      fetchArguments.tags,
       limit,
       offset,
+      null,
       fetchArguments.sortBy,
       fetchArguments.filter
     )

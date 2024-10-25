@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useCallback } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -17,7 +17,6 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
 import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
 import useLoadedItems from './hooks/useLoadedItems';
@@ -155,9 +154,8 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion, apiV2Enabled) => {
 
 export const useGetEntities = (
   fetchEntities,
-  { selected, columns, ignoreOsMajorVersion } = {}
+  { selected, columns, ignoreOsMajorVersion, apiV2Enabled } = {}
 ) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
@@ -259,9 +257,9 @@ export const useSystemsExport = ({
   total,
   fetchArguments = {},
   fetchApi,
+  apiV2Enabled,
 }) => {
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = useAPIV2FeatureFlag();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
   const onError = useCallback(() => {
     dispatchNotification({
@@ -335,15 +333,15 @@ export const useSystemBulkSelect = ({
   fetchArguments,
   currentPageItems,
   fetchApi,
+  apiV2Enabled,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = useAPIV2FeatureFlag();
   const { loadedItems, addToLoadedItems, resetLoadedItems, allLoaded } =
     useLoadedItems(currentPageItems, total);
 
   useEffect(() => {
-    resetLoadedItems();
+    resetLoadedItems(currentPageItems);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(fetchArguments), resetLoadedItems]);
 
@@ -393,11 +391,6 @@ export const useSystemBulkSelect = ({
     return items;
   };
 
-  const preselected = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
-
   const itemIdsInTable = async () => {
     const items = await getItemsInTable();
 
@@ -409,7 +402,7 @@ export const useSystemBulkSelect = ({
   const bulkSelect = useBulkSelect({
     total,
     onSelect: onSelectCallback,
-    preselected,
+    preselected: preselectedSystems,
     itemIdsInTable,
     itemIdsOnPage,
   });

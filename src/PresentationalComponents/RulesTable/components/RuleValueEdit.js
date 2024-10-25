@@ -38,6 +38,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
           {enableAllEdit && (
             <Button
               aria-label="Edit value button"
+              ouiaId="InlineEditPencil"
               className="pf-v5-u-ml-sm"
               onClick={() => {
                 setEditValues((current) => !current);
@@ -50,6 +51,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
           {nonDefaultValues && (
             <Button
               aria-label="Reset value button"
+              ouiaId="InlineEditReset"
               className="pf-v5-u-ml-sm"
               onClick={resetValues}
               variant="plain"

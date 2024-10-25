@@ -39,24 +39,28 @@ const rowsBuilder = (items, columns, options = {}) => {
   const { transformers = [], selectedIds = [] } = options;
   const EmptyRowsComponent =
     options.emptyRows || emptyRows(undefined, columns.length);
+  let runningIndex = 0;
 
-  const rows =
+  return (
     items &&
     (items.length > 0
       ? items
-          .flatMap((item, index) => {
+          .flatMap((item) => {
             const row = itemRow(item, columns);
 
-            return applyTransformations(row, transformers, selectedIds, index);
+            const transformedRow = applyTransformations(
+              row,
+              transformers,
+              selectedIds,
+              runningIndex,
+              item
+            );
+            runningIndex = runningIndex + (transformedRow?.length || 0);
+            return transformedRow;
           })
           .filter((v) => !!v)
-      : EmptyRowsComponent);
-
-  return {
-    tableProps: {
-      ...(rows ? { rows } : {}),
-    },
-  };
+      : EmptyRowsComponent)
+  );
 };
 
 export default rowsBuilder;

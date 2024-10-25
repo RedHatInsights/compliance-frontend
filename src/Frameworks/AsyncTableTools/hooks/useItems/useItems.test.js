@@ -19,12 +19,14 @@ describe('useItems', () => {
 
   it('accepts an async function returning an array as items and sets it as the state directly and set loaded to true', async () => {
     const tenItems = exampleItems.slice(0, 10);
+    const asyncItems = async () => tenItems;
     const { result } = renderHook(
-      () => useItems(async () => tenItems),
+      () => useItems(asyncItems),
       DEFAULT_RENDER_OPTIONS
     );
 
-    await waitFor(() => expect(result.current.items).toEqual(tenItems));
-    await waitFor(() => expect(result.current.loaded).toEqual(true));
+    await waitFor(() =>
+      expect(result.current).toEqual({ loaded: true, items: tenItems })
+    );
   });
 });
