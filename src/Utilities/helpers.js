@@ -209,9 +209,12 @@ export const buildOSObject = (osVersions = []) => {
     .map((version) => {
       const [major, minor] = version.split('.');
       return {
-        name: 'RHEL',
-        major,
-        minor,
+        count: 0,
+        value: {
+          name: 'RHEL',
+          major,
+          minor,
+        },
       };
     });
 };

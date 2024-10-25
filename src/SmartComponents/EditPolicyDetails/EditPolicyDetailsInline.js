@@ -8,7 +8,7 @@ import {
   TextVariants,
   Icon,
 } from '@patternfly/react-core';
-import { TimesIcon, CheckIcon } from '@patternfly/react-icons';
+import { TimesIcon, CheckIcon, PencilAltIcon } from '@patternfly/react-icons';
 
 import {
   PolicyThresholdTooltip,
@@ -101,8 +101,9 @@ const EditPolicyDetailsInline = ({
             onClick={handleToggle}
             variant="plain"
             style={{ 'margin-left': '5px' }}
+            ouiaId="InlineEditPencil"
           >
-            <i className="fas fa-pencil-alt" aria-hidden="true" />
+            <PencilAltIcon />
           </Button>
         )}
         {variant === 'threshold' ? (
@@ -140,6 +141,7 @@ const EditPolicyDetailsInline = ({
                   variant="plain"
                   type="button"
                   aria-label="Save edits"
+                  ouiaId="SaveEdits"
                   isDisabled={!validThreshold ? true : false}
                   isLoading={isSaving}
                   onClick={() => onSave()}
@@ -166,6 +168,7 @@ const EditPolicyDetailsInline = ({
                   variant="plain"
                   type="button"
                   aria-label="Cancel edits"
+                  ouiaId="CancelEdits"
                   onClick={handleCloseEdit}
                   style={{ 'margin-left': '5px' }}
                 >

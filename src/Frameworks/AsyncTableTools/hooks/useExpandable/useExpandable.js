@@ -1,5 +1,7 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import isEqual from 'lodash/isEqual';
 import useSelectionManager from '../useSelectionManager';
+import useTableState from '../useTableState';
 import { itemDetailsRow } from './helpers';
 
 /**
@@ -23,25 +25,36 @@ import { itemDetailsRow } from './helpers';
  *
  */
 const useExpandable = (options) => {
-  const enableExpandingRow = !!options?.detailsComponent;
+  const enableExpandingRow = !!options?.detailsComponent || !!options.treeTable;
   const { selection: openItems, toggle } = useSelectionManager([]);
+  // TODO If the selection manager is based on `useTableState`, observes can be used to reset open items
+  const [openItemsState, setOpenItemsState] = useTableState('open-items');
 
-  const onCollapse = (_event, _index, _isOpen, { itemId }) => toggle(itemId);
+  const onCollapse = (_event, _index, _isOpen, { itemId }) => {
+    toggle(itemId);
+  };
 
   const openItem = useCallback(
     (row, _selectedIds, index) => {
-      const expandedRow = [
-        {
-          ...row,
-          isOpen: (openItems || []).includes(row.itemId),
-        },
-        itemDetailsRow(row, index, options),
-      ];
+      const isOpen = (openItems || []).includes(row.itemId);
 
-      return expandedRow;
+      return isOpen
+        ? [
+            {
+              ...row,
+              isOpen,
+            },
+            itemDetailsRow(row, index, options),
+          ]
+        : [{ ...row, isOpen }];
     },
     [openItems, options]
   );
+
+  // TODO This is hackish. We should rather have a selection manager based on a table state
+  useEffect(() => {
+    !isEqual(openItems, openItemsState) && setOpenItemsState(openItems);
+  }, [openItems, openItemsState, setOpenItemsState]);
 
   return enableExpandingRow
     ? {
@@ -49,6 +62,10 @@ const useExpandable = (options) => {
         openItem,
         tableProps: {
           onCollapse,
+        },
+        tableView: {
+          onCollapse,
+          openItems,
         },
       }
     : {};

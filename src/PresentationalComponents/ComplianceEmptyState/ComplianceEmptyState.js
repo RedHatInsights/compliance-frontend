@@ -47,7 +47,12 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
   const haveWord = policiesCount > 1 ? 'have' : 'has';
 
   return (
-    <EmptyState>
+    <EmptyState
+      style={{
+        '--pf-v5-c-empty-state__icon--FontSize':
+          'var(--pf-v5-c-empty-state--m-xl__icon--FontSize)',
+      }}
+    >
       <EmptyStateHeader
         titleText={<>{title}</>}
         icon={
@@ -56,8 +61,6 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
               fontWeight: '500',
               color: 'var(--pf-v5-global--primary-color--100)',
             }}
-            size="xl"
-            title="Compliance"
             icon={CloudSecurityIcon}
           />
         }

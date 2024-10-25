@@ -18,6 +18,13 @@ import systemPolicies from '@redhat-cloud-services/compliance-client/dist/System
 import systemReports from '@redhat-cloud-services/compliance-client/dist/SystemReports';
 import securityGuidesOS from '@redhat-cloud-services/compliance-client/dist/SecurityGuidesOS';
 import supportedProfiles from '@redhat-cloud-services/compliance-client/dist/SupportedProfiles';
+import policySystemsOS from '@redhat-cloud-services/compliance-client/dist/PolicySystemsOS';
+import securityGuideRuleTree from '@redhat-cloud-services/compliance-client/dist/SecurityGuideRuleTree';
+import tailoringRules from '@redhat-cloud-services/compliance-client/dist/TailoringRules';
+import ruleGroups from '@redhat-cloud-services/compliance-client/dist/RuleGroups';
+import valueDefinitions from '@redhat-cloud-services/compliance-client/dist/ValueDefinitions';
+import updateTailoring from '@redhat-cloud-services/compliance-client/dist/UpdateTailoring';
+
 import { instance } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 export const BASE_URL = '/api/compliance/v2';
 
@@ -43,6 +50,12 @@ const apiInstance = APIFactory(
     systemReports,
     securityGuidesOS,
     supportedProfiles,
+    policySystemsOS,
+    securityGuideRuleTree,
+    tailoringRules,
+    ruleGroups,
+    valueDefinitions,
+    updateTailoring,
   },
   instance
 );

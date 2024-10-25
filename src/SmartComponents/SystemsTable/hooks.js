@@ -1,23 +1,25 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useState,
-  useCallback,
-} from 'react';
+import React, { useEffect, useLayoutEffect, useCallback } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
-import { osMinorVersionFilter, GET_SYSTEMS_OSES } from './constants';
+import {
+  osMinorVersionFilter,
+  GET_SYSTEMS_OSES,
+  applyInventoryFilters,
+  groupFilterHandler,
+  osFilterHandler,
+  nameFilterHandler,
+} from './constants';
 import useExport from 'Utilities/hooks/useTableTools/useExport';
 import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
 import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
 import { buildOSObject } from '../../Utilities/helpers';
+import useLoadedItems from './hooks/useLoadedItems';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -99,8 +101,15 @@ const useFetchBatched = () => {
   };
 };
 
-const buildApiFilters = (filters = {}) => {
-  const { tagFilters, hostGroupFilter, ...otherFilters } = filters;
+const buildApiFilters = (filters = {}, ignoreOsMajorVersion, apiV2Enabled) => {
+  const {
+    tagFilters,
+    hostGroupFilter,
+    osFilter,
+    hostnameOrId,
+    ...otherFilters
+  } = filters;
+
   const tagsApiFilter = tagFilters
     ? {
         tags: tagFilters.flatMap((tagFilter) =>
@@ -114,12 +123,11 @@ const buildApiFilters = (filters = {}) => {
       }
     : {};
 
-  /**
-   * TODO: build a separate layer/hook that integrates inventory filters with gq filter
-   */
-
-  // filtering by group_name is enabled in gq filter
-  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
+  if (
+    hostGroupFilter !== undefined &&
+    Array.isArray(hostGroupFilter) &&
+    !apiV2Enabled
+  ) {
     otherFilters.filter = `(${hostGroupFilter
       .map((value) => `group_name = "${value}"`)
       .join(' or ')})`;
@@ -128,10 +136,26 @@ const buildApiFilters = (filters = {}) => {
   return {
     ...otherFilters,
     ...tagsApiFilter,
+    ...(apiV2Enabled
+      ? {
+          filter: applyInventoryFilters(
+            [groupFilterHandler, osFilterHandler, nameFilterHandler],
+            {
+              osFilter,
+              hostGroupFilter,
+              hostnameOrId,
+            },
+            ignoreOsMajorVersion
+          ),
+        }
+      : {}),
   };
 };
 
-export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
+export const useGetEntities = (
+  fetchEntities,
+  { selected, columns, ignoreOsMajorVersion, apiV2Enabled } = {}
+) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
 
@@ -151,7 +175,11 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
       sortableColumn && sortableColumn.sortBy
         ? appendDirection(sortableColumn.sortBy, orderDirection)
         : undefined;
-    const filterForApi = buildApiFilters(filters);
+    const filterForApi = buildApiFilters(
+      filters,
+      ignoreOsMajorVersion,
+      apiV2Enabled
+    );
 
     const fetchedEntities = await fetchEntities(perPage, page, {
       ...filterForApi,
@@ -164,10 +192,11 @@ export const useGetEntities = (fetchEntities, { selected, columns } = {}) => {
     } = fetchedEntities || {};
 
     return {
-      results: entities.map((entity) => ({
-        ...entity,
-        selected: (selected || []).map((id) => id).includes(entity.id),
-      })),
+      results:
+        entities?.map((entity) => ({
+          ...entity,
+          selected: (selected || []).map((id) => id).includes(entity.id),
+        })) || [],
       orderBy,
       orderDirection,
       total: totalCount,
@@ -228,9 +257,9 @@ export const useSystemsExport = ({
   total,
   fetchArguments = {},
   fetchApi,
+  apiV2Enabled,
 }) => {
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = useAPIV2FeatureFlag();
   const selectionFilter = selected ? toIdFilter(selected) : undefined;
   const onError = useCallback(() => {
     dispatchNotification({
@@ -253,11 +282,11 @@ export const useSystemsExport = ({
   });
 
   const fetchSystemsRest = useFetchSystemsV2(fetchApi, null, onError, {
-    ...fetchArguments?.variables,
     ...(fetchArguments.tags && { tags: fetchArguments.tags }),
     filter: selectionFilter
       ? `${fetchArguments.filter} and (${selectionFilter})`
       : fetchArguments?.filter,
+    ...(fetchArguments.policyId && { policyId: fetchArguments.policyId }),
   });
 
   const selectedFilter = () =>
@@ -300,16 +329,21 @@ export const useSystemsExport = ({
 export const useSystemBulkSelect = ({
   total,
   onSelect,
-  preselected,
+  preselectedSystems,
   fetchArguments,
-  currentPageIds,
-  dataMap,
+  currentPageItems,
+  fetchApi,
+  apiV2Enabled,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const apiV2Enabled = false; //TODO: enable REST when the API implements ID search over endpoints. Use this hook => useAPIV2FeatureFlag();
-  // This is meant as a compatibility layer and to be removed
-  const [selectedSystems, setSelectedSystems] = useState([]);
+  const { loadedItems, addToLoadedItems, resetLoadedItems, allLoaded } =
+    useLoadedItems(currentPageItems, total);
+
+  useEffect(() => {
+    resetLoadedItems(currentPageItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(fetchArguments), resetLoadedItems]);
 
   const onError = useCallback((error) => {
     dispatchNotification({
@@ -324,57 +358,56 @@ export const useSystemBulkSelect = ({
     onError,
   });
 
-  const fetchSystemsRest = useFetchSystemsV2({
-    dataMap,
-    systemFetchArguments: fetchArguments,
+  const fetchSystemsRest = useFetchSystemsV2(
+    fetchApi,
+    undefined,
     onError,
-  });
-
-  const fetchFunc = async (fetchIds) => {
-    if (fetchIds.length === 0) {
-      return [];
-    }
-
-    const idFilter = toIdFilter(fetchIds);
-    const results = await fetchBatched(
-      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-      fetchIds.length,
-      {
-        ...(idFilter && { exclusiveFilter: idFilter }),
-      }
-    );
-
-    return results.flatMap((result) => result.entities);
-  };
+    fetchArguments
+  );
 
   const onSelectCallback = async (selectedIds) => {
     dispatch(setDisabledSelection(true));
-
-    const systems = await fetchFunc(selectedIds);
-    setSelectedSystems(systems);
-
+    const systemsSelection = loadedItems.filter(({ id }) =>
+      selectedIds.includes(id)
+    );
+    onSelect && onSelect(systemsSelection);
     dispatch(setDisabledSelection(false));
-    onSelect && onSelect(systems);
+  };
+
+  const getItemsInTable = async () => {
+    let items = [];
+
+    if (allLoaded) {
+      items = loadedItems;
+    } else {
+      const results = await fetchBatched(
+        apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
+        total
+      );
+      items = results.flatMap((result) => result.entities);
+      addToLoadedItems(items);
+    }
+
+    return items;
   };
 
   const itemIdsInTable = async () => {
-    const results = await fetchBatched(
-      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-      total
-    );
-    return results.flatMap((result) => result.entities.map(({ id }) => id));
+    const items = await getItemsInTable();
+
+    return items.map(({ id }) => id);
   };
+
+  const itemIdsOnPage = () => currentPageItems.map(({ id }) => id);
 
   const bulkSelect = useBulkSelect({
     total,
     onSelect: onSelectCallback,
-    preselected,
+    preselected: preselectedSystems,
     itemIdsInTable,
-    itemIdsOnPage: () => currentPageIds,
+    itemIdsOnPage,
   });
 
   return {
-    selectedSystems,
     ...bulkSelect,
     toolbarProps: {
       ...bulkSelect.toolbarProps,

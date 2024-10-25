@@ -7,19 +7,21 @@ import {
   EmptyStateBody,
   EmptyStateIcon,
   EmptyStateHeader,
-  EmptyStateFooter,
 } from '@patternfly/react-core';
 
 const NoReportsState = ({ system }) => (
   <Bullseye>
-    <EmptyState>
+    <EmptyState
+      style={{
+        '--pf-v5-c-empty-state__icon--FontSize':
+          'var(--pf-v5-c-empty-state--m-xl__icon--FontSize)',
+      }}
+    >
       <EmptyStateHeader
         titleText="No results reported"
         icon={
           <EmptyStateIcon
             icon={CloudSecurityIcon}
-            title="Compliance"
-            size="xl"
             style={{
               fontWeight: '500',
               color: 'var(--pf-v5-global--primary-color--100)',
@@ -33,12 +35,10 @@ const NoReportsState = ({ system }) => (
         {system?.policies?.length > 1 ? ' policies' : ' policy'}, but has not
         returned any results.
       </EmptyStateBody>
-      <EmptyStateFooter>
-        <EmptyStateBody>
-          Reports are returned when the system checks into Insights. By default,
-          systems check in every 24 hours.
-        </EmptyStateBody>
-      </EmptyStateFooter>
+      <EmptyStateBody>
+        Reports are returned when the system checks into Insights. By default,
+        systems check in every 24 hours.
+      </EmptyStateBody>
     </EmptyState>
   </Bullseye>
 );

@@ -20,6 +20,7 @@ const ruleProps = {
   profile: propTypes.object,
   compliant: propTypes.bool,
   remediationAvailable: propTypes.bool,
+  remediation_available: propTypes.bool,
   severity: propTypes.string,
 };
 
@@ -65,7 +66,12 @@ export const Passed = ({ compliant }) =>
   );
 Passed.propTypes = ruleProps;
 
-export const RemediationColumnCell = ({ remediationAvailable }) => (
-  <RemediationCell hasPlaybook={remediationAvailable} />
+export const RemediationColumnCell = ({
+  remediationAvailable,
+  remediation_available,
+}) => (
+  <RemediationCell
+    hasPlaybook={remediationAvailable || remediation_available}
+  />
 );
 RemediationColumnCell.propTypes = ruleProps;
