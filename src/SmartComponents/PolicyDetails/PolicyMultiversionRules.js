@@ -40,7 +40,9 @@ const PolicyMultiversionRules = ({
           )}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           level={1}
-          DedicatedAction={DedicatedAction}
+          options={{
+            dedicatedAction: DedicatedAction,
+          }}
           ouiaId="RHELVersions"
         />
       </PageSection>
