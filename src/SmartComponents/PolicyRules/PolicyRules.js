@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
@@ -12,6 +12,9 @@ import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import PolicyRulesHeader from './PolicyRulesHeader';
 import { useProfileTree } from './useProfileTree';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
+import { buildTreeTable } from '../../PresentationalComponents/Tailorings/helpers';
+import useFetchTotalBatched from '../../Utilities/hooks/useFetchTotalBatched';
+import useRuleGroups from '../../Utilities/hooks/api/useRuleGroups';
 
 const PROFILES_QUERY = gql`
   query PR_Profile($policyId: String!) {
@@ -41,12 +44,28 @@ const PROFILES_QUERY = gql`
 
 const PolicyRulesGraphQL = ({ v2 }) => {
   const { policy_id: policyId } = useParams();
-  const query = useQuery(PROFILES_QUERY, {
+  const { data, loading } = useQuery(PROFILES_QUERY, {
     variables: {
       policyId: policyId,
     },
   });
-  return <PolicyRulesBase query={query} v2={v2} />;
+
+  return loading ? (
+    <PageHeader>
+      <Spinner />
+    </PageHeader>
+  ) : (
+    <PolicyRulesBase
+      data={data}
+      v2={v2}
+      loading={loading}
+      name={data?.profile?.name}
+      benchmarkVersion={data?.profile?.benchmark?.version}
+      osMajorVersion={data?.profile?.osMajorVersion}
+      profile={data?.profile}
+      rules={data?.profile?.rules}
+    />
+  );
 };
 
 PolicyRulesGraphQL.propTypes = {
@@ -54,31 +73,83 @@ PolicyRulesGraphQL.propTypes = {
 };
 
 const PolicyRulesRest = ({ v2 }) => {
+  // Example hardcoded data (replace with actual data)
+  const policyTitle =
+    'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
   const profileId2 = '0a036ede-252e-4e73-bdd8-9203f93deefe';
   const securityGuidesId = '3e01872b-e90d-46bb-9b39-012adc00d9b9';
+  const [isPageLoading, setIsPageLoading] = useState(false); // Separate loading state for pagination
+  const [allData, setAllData] = useState([]); // Store accumulated data
   const [offset, setOffset] = useState(0);
   const limit = 100;
 
-  const query = usePolicyRulesList({
+  const { data, loading } = usePolicyRulesList({
     securityGuideId: securityGuidesId,
     profileId: profileId2,
     offset,
     limit,
   });
-  const ruleTreeQuery = useProfileTree({
+  const { data: ruleTreeData, loading: rulesTreeLoading } = useProfileTree({
     securityGuideId: securityGuidesId,
     profileId: profileId2,
   });
 
+  const { fetch: fetchRuleGroups } = useRuleGroups(securityGuidesId, {
+    skip: true,
+  });
+
+  const fetchRuleGroupsForBatch = useCallback(
+    (offset, limit) =>
+      fetchRuleGroups([securityGuidesId, undefined, limit, offset], false),
+    [fetchRuleGroups, securityGuidesId]
+  );
+
+  const { loading: ruleGroupsLoading, data: ruleGroupsData } =
+    useFetchTotalBatched(fetchRuleGroupsForBatch, {
+      batchSize: 60,
+    });
+
+  // Use effect to handle new data fetching and appending logic
+  useEffect(() => {
+    if (data && !loading && data?.data.length > 0) {
+      setAllData((prevData) => [...prevData, ...data.data]);
+      // Check if there is more data to fetch based on meta info
+      if (data.meta && data.meta.offset + data.meta.limit < data.meta.total) {
+        // Trigger the next page by increasing the offset
+        setOffset((prevOffset) => prevOffset + limit);
+      }
+      setIsPageLoading(false);
+    }
+  }, [data, loading, setOffset]);
+
+  if (isPageLoading || rulesTreeLoading || ruleGroupsLoading) {
+    return (
+      <PageHeader>
+        <Spinner />
+      </PageHeader>
+    );
+  }
+  const builtTree = ruleGroupsData
+    ? buildTreeTable(ruleTreeData, ruleGroupsData)
+    : undefined;
+
   return (
-    <PolicyRulesBase
-      query={query}
-      v2={v2}
-      ruleTreeQuery={ruleTreeQuery}
-      offset={offset}
-      setOffset={setOffset}
-      limit={limit}
-    />
+    <>
+      <PolicyRulesBase
+        data={allData}
+        loading={loading}
+        v2={v2}
+        offset={offset}
+        setOffset={setOffset}
+        limit={limit}
+        profile={[{ id: profileId2, name: policyTitle }]}
+        ruleTree={builtTree}
+        osMajorVersion={'passedIn paramMajor'}
+        benchmarkVersion={'passed in ParamTitle'}
+        headerName={policyTitle}
+        rules={allData}
+      />
+    </>
   );
 };
 
@@ -86,102 +157,67 @@ PolicyRulesRest.propTypes = {
   v2: propTypes.bool,
 };
 
-const PolicyRulesBase = ({ query, v2, ruleTreeQuery, setOffset, limit }) => {
-  const { data, loading } = query;
-  const { data: rulesTreeData, loading: rulesTreeLoading } = ruleTreeQuery;
-  const [allData, setAllData] = useState([]); // Store accumulated data
-  const [hasMore, setHasMore] = useState(true); // Keep track if more data is available
-  const [isPageLoading, setIsPageLoading] = useState(false); // Separate loading state for pagination
-
-  // Use effect to handle new data fetching and appending logic
-  useEffect(() => {
-    if (data && !loading && data?.data.length > 0) {
-      // Append the new data to the existing data
-      setAllData((prevData) => [...prevData, ...data.data]);
-
-      // Check if there is more data to fetch based on meta info
-      if (data.meta && data.meta.offset + data.meta.limit < data.meta.total) {
-        // Trigger the next page by increasing the offset
-        setOffset((prevOffset) => prevOffset + limit);
-      } else {
-        setHasMore(false); // No more data to fetch
-      }
-      setIsPageLoading(false);
-    }
-  }, [data, loading, setOffset, limit]);
-
-  if (isPageLoading || rulesTreeLoading) {
-    return (
-      <PageHeader>
-        <Spinner />
-      </PageHeader>
-    );
-  }
-  // Example hardcoded data (replace with actual data)
-  const policyTitle =
-    'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
-  const profileId2 = '0a036ede-252e-4e73-bdd8-9203f93deefe';
-
-  // Determine profile and rules depending on v2 (REST) or not (GraphQL)
-  const profile = v2 ? [{ id: profileId2, name: policyTitle }] : data?.profile;
-  const rules = v2 ? allData : data?.profile?.rules;
-
+const PolicyRulesBase = ({
+  loading,
+  v2,
+  profile,
+  rules,
+  osMajorVersion,
+  benchmarkVersion,
+  headerName,
+  ruleTree,
+}) => {
   return (
     <React.Fragment>
       <PolicyRulesHeader
-        name={v2 ? policyTitle : data?.profile?.name}
-        benchmarkVersion={
-          v2 ? 'passed in ParamTitle' : data?.profile?.benchmark?.version
-        }
-        osMajorVersion={
-          v2 ? 'passedIn paramMajor' : data?.profile?.osMajorVersion
-        }
+        name={headerName}
+        benchmarkVersion={benchmarkVersion}
+        osMajorVersion={osMajorVersion}
       />
-      {allData.length > 0 && (
-        <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
-          {v2 ? (
-            <TableStateProvider>
-              <RulesTableRest
-                remediationsEnabled={false}
-                columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-                rules={rules}
-                ruleValues={{}}
-                options={{ pagination: false, manageColumns: false }}
-                ruleTree={rulesTreeData}
-              />
-            </TableStateProvider>
-          ) : (
-            <RulesTable
+
+      <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
+        {v2 ? (
+          <TableStateProvider>
+            <RulesTableRest
               remediationsEnabled={false}
               columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-              loading={isPageLoading}
-              profileRules={[
-                {
-                  profile,
-                  rules,
-                },
-              ]}
+              rules={rules}
+              ruleValues={{}}
               options={{ pagination: false, manageColumns: false }}
+              ruleTree={ruleTree}
             />
-          )}
-        </div>
-      )}
+          </TableStateProvider>
+        ) : (
+          <RulesTable
+            remediationsEnabled={false}
+            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+            loading={loading}
+            profileRules={[
+              {
+                profile,
+                rules,
+              },
+            ]}
+            options={{ pagination: false, manageColumns: false }}
+          />
+        )}
+      </div>
     </React.Fragment>
   );
 };
 
 PolicyRulesBase.propTypes = {
-  query: propTypes.func,
+  loading: propTypes.bool,
   v2: propTypes.bool,
-  ruleTreeQuery: propTypes.func,
-  offset: propTypes.number,
-  setOffset: propTypes.func,
-  limit: propTypes.number,
+  profile: propTypes.array,
+  rules: propTypes.array,
+  osMajorVersion: propTypes.string,
+  benchmarkVersion: propTypes.string,
+  headerName: propTypes.string,
+  ruleTree: propTypes.any,
 };
 
 const PolicyRulesWrapper = () => {
-  //TODO: replace with new url params once passed in
-  // const { policy_id: policyId } = useParams();
   const apiV2Enabled = useAPIV2FeatureFlag();
   if (apiV2Enabled === undefined) {
     return (
