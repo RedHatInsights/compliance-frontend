@@ -27,8 +27,8 @@ const useComplianceApi = (endpoint) => {
 
   useEffect(() => {
     if (endpoint && !apiEndpoint) {
-      console.error(`Endpoint ${endpoint} does not exist!`);
-      console.log('Available endpoints:', Object.keys(complianceApi));
+      console.warn('Available endpoints:', Object.keys(complianceApi));
+      throw `Endpoint ${endpoint} does not exist!`;
     }
   }, [endpoint, apiEndpoint]);
 
