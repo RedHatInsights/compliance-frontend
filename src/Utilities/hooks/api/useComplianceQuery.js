@@ -4,15 +4,6 @@ import useQuery from '../useQuery';
 import useComplianceApi from './useComplianceApi';
 
 /**
- *  @typedef {object} useComplianceQueryReturn
- *
- *  @property {object}   data    Response data
- *  @property {boolean}  loading Loading state
- *  @property {object}   error   Error from the endpoint
- *  @property {Function} refetch Refetch the endpoint
- */
-
-/**
  *  @typedef {object} useComplianceQueryParams
  *
  *  @property {string} [filter]            Scoped search filter string for the endpoint
@@ -34,7 +25,7 @@ import useComplianceApi from './useComplianceApi';
  *  @param   {useComplianceQueryParams} [options.params]        API endpoint params
  *  @param   {boolean}                  [options.useTableState] Use the serialised table state
  *
- *  @returns {useComplianceQueryReturn}                         Object containing state values and a refetch function
+ *  @returns {useQueryReturn}                                   An object containing a data, loading and error state, as well as a fetch and refetch function.
  *
  *  @category Compliance
  *  @subcategory Hooks
@@ -87,7 +78,7 @@ const useComplianceQuery = (
     [params, filters]
   );
 
-  const paramsFromState = useMemo(
+  const paramsFromSerialisedTableState = useMemo(
     () => ({
       limit,
       offset,
@@ -99,7 +90,7 @@ const useComplianceQuery = (
   );
 
   const query = useQuery(apiEndpoint, {
-    params: useTableState ? paramsFromState : params,
+    params: useTableState ? paramsFromSerialisedTableState : params,
     skip: useTableState && !serialisedTableState,
     ...options,
   });
