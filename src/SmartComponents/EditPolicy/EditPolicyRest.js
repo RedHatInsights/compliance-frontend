@@ -69,7 +69,13 @@ export const EditPolicyRest = ({ route }) => {
     onError: onSaveCallback,
   });
 
-  const setRuleValues = (policy, tailoring, valueDefinition, newValue) => {
+  const setRuleValues = (
+    _policy,
+    tailoring,
+    valueDefinition,
+    newValue,
+    closeInlineEdit
+  ) => {
     setRuleValuesState((currentValues) => ({
       ...currentValues,
       [tailoring.id]: {
@@ -78,7 +84,7 @@ export const EditPolicyRest = ({ route }) => {
       },
     }));
 
-    console.log(tailoring, ruleValues, 'debug: value override save');
+    closeInlineEdit();
   };
   const actions = [
     <Button
@@ -116,6 +122,7 @@ export const EditPolicyRest = ({ route }) => {
 
   // console.log('debug: selected assinged', assignedRuleIds);
   // console.log(securityGuide, 'debug: securityGuide');
+  console.log(ruleValues, 'debug: value override save ruleValues');
 
   return (
     <ComplianceModal
