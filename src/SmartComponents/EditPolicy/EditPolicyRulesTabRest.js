@@ -35,8 +35,16 @@ export const EditPolicyRulesTab = ({
   policy,
   selectedRuleRefIds,
   setRuleValues,
+  setUpdatedPolicy,
 }) => {
   const [selectedRules, setSelectedRules] = useState(selectedRuleRefIds);
+
+  useEffect(() => {
+    setUpdatedPolicy((prev) => ({
+      ...prev,
+      rules: selectedRules,
+    }));
+  }, [selectedRules, setUpdatedPolicy]);
   console.log(selectedRules, 'debug: selected rules');
   return (
     <div>
@@ -79,6 +87,7 @@ EditPolicyRulesTab.propTypes = {
   setSelectedRuleRefIds: propTypes.func,
   setRuleValues: propTypes.func,
   ruleValues: propTypes.array,
+  setUpdatedPolicy: propTypes.func,
 };
 
 export default EditPolicyRulesTab;
