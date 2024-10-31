@@ -127,9 +127,9 @@ export const EditPolicySystems = ({
             defaultFilter={
               osMajorVersion &&
               (apiV2Enabled
-                ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ "${osMinorVersions.join(
+                ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
                     ' '
-                  )}"`
+                  )})`
                 : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
                     ','
                   )})`)

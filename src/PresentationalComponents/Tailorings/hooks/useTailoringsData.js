@@ -34,7 +34,7 @@ const useTailoringsData = (
   );
   const groupFilter =
     openRuleGroups?.length > 0
-      ? `rule_group_id ^ (${openRuleGroups.map((id) => `"${id}"`).join(',')})`
+      ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
       : undefined;
 
   const ruleParams = useMemo(
