@@ -11,7 +11,6 @@ import {
   complianceReportTableAdditionalFilter,
   DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL,
   POLICY_FILTER_KEY_GRAPHQL,
-  SSG_VERSION_FILTER_KEY_GRAPHQL,
   FAILED_RULE_SEVERITY_FITLER_KEY_GRAPHQL,
   COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL,
 } from '@/constants';
@@ -22,6 +21,7 @@ import {
   defaultOnLoad,
   ssgVersionFilter,
   mergedColumns,
+  SSG_VERSION_FILTER_KEY_GRAPHQL,
 } from './constants';
 import {
   useGetEntities,

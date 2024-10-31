@@ -7,7 +7,7 @@ import { profiles } from '@/__fixtures__/profiles.js';
 
 import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag.js';
 import Reports from './Reports.js';
-import { useReports } from '@/Utilities/hooks/api/useReports';
+import useReports from 'Utilities/hooks/api/useReports';
 
 jest.mock('@apollo/client');
 jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');

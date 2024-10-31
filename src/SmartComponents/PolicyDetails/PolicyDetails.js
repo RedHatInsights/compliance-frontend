@@ -34,9 +34,9 @@ import './PolicyDetails.scss';
 import useSaveValueToPolicy from './hooks/useSaveValueToPolicy';
 import useSaveValueOverrides from './hooks/useSaveValueOverrides';
 import usePolicyQuery from 'Utilities/hooks/usePolicyQuery';
-import usePolicyQuery2 from '../../Utilities/hooks/usePolicyQuery/usePolicyQuery2';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
 
@@ -75,7 +75,7 @@ const PolicyDetailsGraphQL = ({ route }) => {
 
 const PolicyDetailsV2 = ({ route }) => {
   const { policy_id: policyId } = useParams();
-  const query = usePolicyQuery2({ policyId });
+  const query = usePolicy(policyId);
   const data = query?.data?.data
     ? {
         profile: {

@@ -1,19 +1,23 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
-import useComplianceQuery from './useComplianceQuery';
-import { useSerialisedTableState } from '../../../Frameworks/AsyncTableTools/hooks/useTableState';
-import usePagination from '../../../Frameworks/AsyncTableTools/hooks/usePagination';
+import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import usePagination from '@/Frameworks/AsyncTableTools/hooks/usePagination';
 import {
   paginationSerialiser,
   sortSerialiser,
-} from '../../../PresentationalComponents/ComplianceTable/serialisers';
-import TableStateProvider from '../../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import useTableSort from '../../../Frameworks/AsyncTableTools/hooks/useTableSort';
+} from '@/PresentationalComponents/ComplianceTable/serialisers';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import useTableSort from '@/Frameworks/AsyncTableTools/hooks/useTableSort';
 
 const wrapper = ({ children }) => (
   <TableStateProvider>{children}</TableStateProvider>
 );
 
-const fakeApi = jest.fn(() => Promise.resolve({ data: [] }));
+const mockFakeApi = jest.fn(() => Promise.resolve({ data: [] }));
+
+import useComplianceQuery from './useComplianceQuery';
+
+jest.mock('../useQuery', () => ({ __esModule: true, default: jest.fn() }));
+import useQuery from '../useQuery';
 
 const useTableStateHelper = () => {
   const paginate = usePagination({
@@ -32,7 +36,7 @@ const useTableStateHelper = () => {
     sortBy: { index: 1, direction: 'asc' },
     serialisers: { sort: sortSerialiser },
   });
-  const query = useComplianceQuery(fakeApi);
+  const query = useComplianceQuery('policy', { useTableState: true });
   const serialisedState = useSerialisedTableState();
 
   return {
@@ -44,23 +48,27 @@ const useTableStateHelper = () => {
 };
 
 const initialSerializedState = {
-  offset: 0,
-  limit: 10,
-  sortBy: 'name:asc',
-  filter: undefined,
+  skip: true,
+  params: expect.anything(),
 };
 
 describe('useComplianceQuery', () => {
   beforeEach(() => {
-    fakeApi.mockReset();
+    mockFakeApi.mockReset();
+    useQuery.mockImplementation(mockFakeApi);
   });
+
   it('verifies pagination', async () => {
     const { result } = renderHook(() => useTableStateHelper(), {
       wrapper,
     });
 
     await waitFor(() =>
-      expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState)
+      expect(mockFakeApi).toHaveBeenNthCalledWith(
+        1,
+        expect.anything(),
+        initialSerializedState
+      )
     );
 
     act(() =>
@@ -68,9 +76,12 @@ describe('useComplianceQuery', () => {
     );
 
     await waitFor(() =>
-      expect(fakeApi).toHaveBeenNthCalledWith(2, {
-        ...initialSerializedState,
-        offset: 10,
+      expect(mockFakeApi).toHaveBeenNthCalledWith(3, expect.anything(), {
+        skip: false,
+        params: expect.objectContaining({
+          limit: 10,
+          offset: 10,
+        }),
       })
     );
 
@@ -79,9 +90,9 @@ describe('useComplianceQuery', () => {
     );
 
     await waitFor(() =>
-      expect(fakeApi).toHaveBeenNthCalledWith(3, {
-        ...initialSerializedState,
-        limit: 50,
+      expect(mockFakeApi).toHaveBeenNthCalledWith(4, expect.anything(), {
+        skip: false,
+        params: expect.objectContaining({ limit: 50 }),
       })
     );
   });
@@ -92,15 +103,19 @@ describe('useComplianceQuery', () => {
     });
 
     await waitFor(() =>
-      expect(fakeApi).toHaveBeenNthCalledWith(1, initialSerializedState)
+      expect(mockFakeApi).toHaveBeenNthCalledWith(
+        1,
+        expect.anything(),
+        initialSerializedState
+      )
     );
 
     act(() => result.current.sort.tableProps.onSort(null, 2, 'desc'));
 
     await waitFor(() =>
-      expect(fakeApi).toHaveBeenNthCalledWith(2, {
-        ...initialSerializedState,
-        sortBy: 'systems:desc',
+      expect(mockFakeApi).toHaveBeenNthCalledWith(3, expect.anything(), {
+        skip: false,
+        params: expect.objectContaining({ sortBy: 'systems:desc' }),
       })
     );
   });

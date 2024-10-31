@@ -14,7 +14,17 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "paths": {
+          "SmartComponents": ["./src/SmartComponents"],
+          "SmartComponents/*": ["./src/SmartComponents/*"],
+          "PresentationalComponents": ["./src/PresentationalComponents"],
+          "PresentationalComponents/*": ["./src/PresentationalComponents/*"],
+          "Mutations": ["./src/Mutations"],
+          "Mutations/*": ["./src/Mutations/*"],
+          "Utilities/*": ["./src/Utilities/*"],
+          "@/*": ["./src/*"]
+        }
     },
     "include": [
         "src/**/*.ts",

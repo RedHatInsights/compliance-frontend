@@ -1,14 +1,5 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useReports = () => {
-  return useQuery(apiInstance.reports, {
-    params: [
-      undefined,
-      100,
-      undefined,
-      undefined,
-      undefined,
-      'with_reported_systems = true',
-    ],
-  });
-};
+const useReports = (options) => useComplianceQuery('reports', options);
+
+export default useReports;

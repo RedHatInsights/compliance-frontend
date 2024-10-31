@@ -1,5 +1,6 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useSystem = (id) => {
-  return useQuery(apiInstance.system, { params: [id] });
-};
+const useSystem = (systemId, options) =>
+  useComplianceQuery('system', { params: [systemId], ...options });
+
+export default useSystem;
