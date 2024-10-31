@@ -53,7 +53,7 @@ export const SystemPolicyCards = () => {
       {loading ? (
         <LoadingPolicyCards />
       ) : (
-        (data.data || []).map((policy) => (
+        (data?.data || []).map((policy) => (
           <GridItem sm={12} md={12} lg={6} xl={4} key={policy.id}>
             <SystemPolicyCard policy={policy} inventoryId={inventoryId} />
           </GridItem>
