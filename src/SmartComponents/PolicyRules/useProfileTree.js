@@ -1,7 +1,7 @@
-import useQuery, { apiInstance } from '../../Utilities/hooks/useQuery';
+import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 
-export const useProfileTree = ({ securityGuideId, profileId }) => {
-  return useQuery(apiInstance.profileTree, {
+export const useProfileTree = ({ securityGuideId, profileId, options }) =>
+  useComplianceQuery('profileTree', {
     params: [securityGuideId, profileId],
+    ...options,
   });
-};

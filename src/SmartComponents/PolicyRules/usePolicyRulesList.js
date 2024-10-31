@@ -1,18 +1,19 @@
-import useQuery, { apiInstance } from '../../Utilities/hooks/useQuery';
+import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 
 export const usePolicyRulesList = ({
   securityGuideId,
   profileId,
   offset,
   limit,
-}) => {
-  return useQuery(apiInstance.profileRules, {
+  options,
+}) =>
+  useComplianceQuery('profileRules', {
     params: [
       securityGuideId,
       profileId,
       undefined, // xRHIDENTITY
-      limit, // Limit per request
-      offset, // Offset for pagination
+      limit,
+      offset,
     ],
+    ...options,
   });
-};
