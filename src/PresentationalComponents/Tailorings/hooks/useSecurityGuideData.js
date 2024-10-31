@@ -1,15 +1,79 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import useSecurityGuideRuleTree from 'Utilities/hooks/api/useSecurityGuideRuleTree';
-import useRuleGroups from 'Utilities/hooks/api/useRuleGroups';
-import useValueDefinitions from 'Utilities/hooks/api/useValueDefinitions';
-
-import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import { buildTreeTable } from '../helpers';
+import useBatchedRuleGroups from './useBatchedRuleGroups';
+import useBatchedValueDefinitions from './useBatchedValueDefinitions';
+import useRules from 'Utilities/hooks/api/useRules';
 
 const useSecurityGuideData = (
   securityGuideId,
-  { skipRuleTree, skipRuleGroups, skipValueDefinitions }
+  {
+    skipRuleTree,
+    skipRuleGroups,
+    skipValueDefinitions,
+    skipRules,
+    groupFilter,
+    tableState: {
+      serialisedTableState: { filters, pagination, sort } = {},
+    } = {},
+  }
 ) => {
+  const ruleParams = useMemo(
+    () => [
+      securityGuideId,
+      undefined,
+      // TODO this is a hack: The state value defaults should come from the state itself
+      pagination?.limit || 10,
+      pagination?.offset || 0,
+      undefined,
+      sort || 'title:asc',
+      ...(filters || groupFilter
+        ? [
+            filters
+              ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
+              : groupFilter,
+          ]
+        : []),
+    ],
+    [filters, pagination, groupFilter, sort, securityGuideId]
+  );
+
+  const {
+    data: rules,
+    loading: rulesLoading,
+    error: rulesError,
+    fetch: fetchSecurityGuideRules,
+  } = useRules({
+    params: ruleParams,
+    skip: skipRules,
+  });
+
+  const fetchRules = useCallback(
+    async (offset, limit) => {
+      const fetchParams = [
+        securityGuideId,
+        ...ruleParams.map((value, idx) => {
+          if (idx === 2) {
+            return limit;
+          }
+          if (idx === 3) {
+            return offset;
+          }
+          return value;
+        }),
+      ];
+
+      return await fetchSecurityGuideRules(fetchParams, false);
+    },
+    [fetchSecurityGuideRules, securityGuideId, ruleParams]
+  );
+
+  const {
+    loading: ruleGroupsLoading,
+    data: ruleGroups,
+    error: ruleGroupsError,
+  } = useBatchedRuleGroups(securityGuideId, { skip: skipRuleGroups });
+
   const {
     data: ruleTree,
     loading: ruleTreeLoading,
@@ -18,53 +82,31 @@ const useSecurityGuideData = (
     skip: skipRuleTree,
   });
 
-  const { fetch: fetchRuleGroups } = useRuleGroups({
-    params: {
-      securityGuideId,
-    },
-    skip: true,
-  });
-  const fetchRuleGroupsForBatch = useCallback(
-    (offset, limit) =>
-      fetchRuleGroups({ securityGuideId, limit, offset }, false),
-    [fetchRuleGroups, securityGuideId]
-  );
-  const {
-    loading: ruleGroupsLoading,
-    data: ruleGroups,
-    error: ruleGroupsError,
-  } = useFetchTotalBatched(fetchRuleGroupsForBatch, {
-    batchSize: 60,
-    skip: skipRuleGroups,
-  });
-
-  const { fetch: fetchValueDefinitions } = useValueDefinitions({
-    skip: true,
-  });
-  const fetchValueDefinitionsForBatch = useCallback(
-    (offset, limit) =>
-      fetchValueDefinitions([securityGuideId, undefined, limit, offset], false),
-    [fetchValueDefinitions, securityGuideId]
-  );
   const {
     loading: valueDefinitionsLoading,
     data: valueDefinitions,
     error: valueDefinitionsError,
-  } = useFetchTotalBatched(fetchValueDefinitionsForBatch, {
-    batchSize: 60,
+  } = useBatchedValueDefinitions(securityGuideId, {
     skip: skipValueDefinitions,
   });
 
-  const namedRuleTree = ruleGroups
-    ? buildTreeTable(ruleTree, ruleGroups)
-    : undefined;
+  const namedRuleTree =
+    ruleTree && ruleGroups ? buildTreeTable(ruleTree, ruleGroups) : undefined;
 
   return {
-    loading: ruleTreeLoading || ruleGroupsLoading || valueDefinitionsLoading,
-    error: ruleTreeError || ruleGroupsError || valueDefinitionsError,
-    ruleGroups,
-    ruleTree: namedRuleTree,
-    valueDefinitions,
+    loading:
+      rulesLoading ||
+      ruleTreeLoading ||
+      ruleGroupsLoading ||
+      valueDefinitionsLoading,
+    error:
+      rulesError || ruleTreeError || ruleGroupsError || valueDefinitionsError,
+    data: {
+      ...(!skipRuleGroups ? { ruleGroups } : {}),
+      ...(!skipValueDefinitions ? { valueDefinitions } : {}),
+      ...(!skipRuleTree ? { ruleTree: namedRuleTree } : {}),
+      ...(!skipRules ? { fetchRules, rules } : {}),
+    },
   };
 };
 

@@ -1,44 +1,20 @@
 import { useCallback, useMemo } from 'react';
 import useTailoringRules from 'Utilities/hooks/api/useTailoringRules';
-import useSecurityGuideData from './useSecurityGuideData';
+import useTailoringRuleTree from 'Utilities/hooks/api/useTailoringRuleTree';
 
-const shouldSkip = (request, { view }) =>
-  ({
-    ruleTree: view !== 'tree',
-    ruleGroups: view !== 'tree',
-    rules: false,
-    valueDefinitions: false,
-  }[request]);
-
-const useTailoringsData = (
-  { id: policyId } = {},
-  { id: tailoringId, security_guide_id } = {},
-  {
-    tableState = {},
+const useTailoringsData = ({
+  policy: { id: policyId } = {},
+  tailoring: { id: tailoringId } = {},
+  tableState: {
+    tableState: { view } = {},
     serialisedTableState: { filters, pagination, sort } = {},
-  } = {}
-) => {
-  const {
-    ruleTree,
-    ruleGroups,
-    valueDefinitions,
-    loading: securityGuideDataLoading,
-    error: securityGuideDataError,
-  } = useSecurityGuideData(security_guide_id, {
-    skipRuleTree: shouldSkip('ruleTree', tableState),
-    skipRuleGroups: shouldSkip('ruleGroups', tableState),
-    skipValueDefinitions: shouldSkip('valueDefinitions', tableState),
-  });
-  const openRuleGroups = tableState?.['open-items']?.filter((itemId) =>
-    ruleGroups?.map(({ id }) => id).includes(itemId)
-  );
-  const groupFilter =
-    openRuleGroups?.length > 0
-      ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
-      : undefined;
-
-  const ruleParams = useMemo(
-    () => [
+  } = {},
+  skipRuleTree,
+  skipRules,
+  groupFilter,
+}) => {
+  const ruleParams = useMemo(() => {
+    return [
       policyId,
       tailoringId,
       undefined,
@@ -55,9 +31,17 @@ const useTailoringsData = (
           ]
         : []),
       undefined,
-    ],
-    [filters, pagination, groupFilter, sort, policyId, tailoringId]
-  );
+    ];
+  }, [filters, pagination, groupFilter, sort, policyId, tailoringId]);
+
+  const {
+    data: ruleTree,
+    loading: ruleTreeLoading,
+    error: ruleTreeError,
+  } = useTailoringRuleTree({
+    params: [policyId, tailoringId],
+    skip: skipRuleTree,
+  });
 
   const {
     data: rules,
@@ -66,7 +50,7 @@ const useTailoringsData = (
     fetch: fetchTailoringRules,
   } = useTailoringRules({
     params: ruleParams,
-    skip: (!policyId && !tailoringId) || shouldSkip('rules', tableState),
+    skip: skipRules,
   });
 
   const fetchRules = useCallback(
@@ -74,29 +58,31 @@ const useTailoringsData = (
       const fetchParams = [
         policyId,
         tailoringId,
-        ...ruleParams.map((value, idx) => {
-          if (idx === 1) {
-            return limit;
-          }
-          if (idx === 2) {
-            return offset;
-          }
-          return value;
-        }),
+        ...(view === 'rows'
+          ? ruleParams.map((value, idx) => {
+              if (idx === 1) {
+                return limit;
+              }
+              if (idx === 2) {
+                return offset;
+              }
+              return value;
+            })
+          : []),
       ];
 
       return await fetchTailoringRules(fetchParams, false);
     },
-    [fetchTailoringRules, policyId, tailoringId, ruleParams]
+    [view, fetchTailoringRules, policyId, tailoringId, ruleParams]
   );
 
-  const loading = securityGuideDataLoading || rulesLoading;
-  const error = !!securityGuideDataError || !!rulesError;
+  const loading = rulesLoading || ruleTreeLoading;
+  const error = rulesError || ruleTreeError;
 
   return {
     error,
     loading,
-    data: !loading ? { ruleTree, rules, ruleGroups, valueDefinitions } : {},
+    data: !loading ? { ruleTree, rules } : { ruleTree: [], rules: [] },
     fetchRules,
   };
 };

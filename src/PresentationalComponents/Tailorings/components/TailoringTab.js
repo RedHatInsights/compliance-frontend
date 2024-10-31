@@ -1,18 +1,21 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
-import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import RulesTable from '../../RulesTable/RulesTableRest';
 import useTailoringsData from '../hooks/useTailoringsData';
+import useSecurityGuideData from '../hooks/useSecurityGuideData';
 import useRulesExporter from '../hooks/useRulesExporter';
+import { buildTreeTable, skips } from '../helpers';
 import TabHeader from './TabHeader';
 
 // TODO Pass on and enable ruleTree here when RHINENG-13519 is done
 const TailoringTab = ({
   policy,
   tailoring,
+  osMinorVersion,
+  securityGuide,
   columns,
   systemCount,
   rulesTableProps,
@@ -21,60 +24,93 @@ const TailoringTab = ({
   setRuleValues,
   onRuleValueReset,
   onValueOverrideSave,
-  handleSelect,
+  onSelect,
+  preselected,
 }) => {
   const tableState = useFullTableState();
-  const { data, error, fetchRules } = useTailoringsData(
+  const openRuleGroups = tableState?.tableState?.['open-items'];
+  const groupFilter =
+    tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
+      ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
+      : undefined;
+  const securityGuideId = securityGuide?.id || tailoring?.security_guide_id;
+  const shouldSkip = useMemo(
+    () => skips(policy, tailoring, securityGuide, tableState),
+    [policy, tailoring, securityGuide, tableState]
+  );
+  const {
+    data: {
+      ruleGroups,
+      ruleTree: securityGuideRuleTree,
+      rules: securityGuideRules,
+      valueDefinitions,
+    },
+    fetchRules: fetchSecurityGuideRules,
+  } = useSecurityGuideData(securityGuideId, {
+    skipRules: shouldSkip.securityGuide.rules,
+    skipRuleTree: shouldSkip.securityGuide.ruleTree,
+    ...(groupFilter ? { groupFilter } : {}),
+  });
+
+  const {
+    data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
+    fetchRules: fetchTailoringRules,
+  } = useTailoringsData({
     policy,
     tailoring,
-    tableState
-  );
-  const { rules, valueDefinitions } = data;
-  const rulesExporter = useRulesExporter(fetchRules);
-  const onValueSave = (_policyId, ...valueParams) =>
-    onValueOverrideSave(tailoring, ...valueParams);
+    tableState,
+    skipRules: shouldSkip.tailoring.rules,
+    skipRuleTree: shouldSkip.tailoring.ruleTree,
+    ...(groupFilter ? { groupFilter } : {}),
+  });
 
-  const appendTailoringIdToSelection = useCallback(
-    (selectedItems) => {
-      handleSelect({
-        [tailoring.id]: selectedItems,
-      });
-    },
-    [handleSelect, tailoring.id]
+  const rules = tailoringRules || securityGuideRules;
+  const ruleTree =
+    ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
+      ? buildTreeTable(tailoringRuleTree || securityGuideRuleTree, ruleGroups)
+      : undefined;
+
+  const rulesExporter = useRulesExporter(
+    fetchTailoringRules || fetchSecurityGuideRules
   );
+
+  const onValueSave = (_policyId, ...valueParams) =>
+    onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
+
+  const onSelectRule = (...ruleParams) =>
+    onSelect?.(tailoring || osMinorVersion, ...ruleParams);
+
   return (
     <>
       <Grid>
         <TabHeader
-          tailoring={tailoring}
+          tailoring={tailoring || securityGuide}
           rulesPageLink={rulesPageLink}
           resetLink={resetLink}
           systemCount={systemCount}
         />
       </Grid>
-      <StateViewWithError stateValues={{ data, error }}>
-        <StateViewPart stateKey="data">
-          <RulesTable
-            policyId={policy.id}
-            securityGuideId={tailoring.security_guide_id}
-            total={rules?.meta?.total}
-            rules={rules?.data}
-            ansibleSupportFilter
-            remediationsEnabled={false}
-            columns={columns}
-            setRuleValues={setRuleValues}
-            ruleValues={tailoring.value_overrides}
-            valueDefinitions={valueDefinitions}
-            onRuleValueReset={onRuleValueReset}
-            onValueOverrideSave={onValueSave}
-            options={{
-              exporter: rulesExporter,
-            }}
-            onSelect={appendTailoringIdToSelection}
-            {...rulesTableProps}
-          />
-        </StateViewPart>
-      </StateViewWithError>
+      <RulesTable
+        policyId={policy?.id}
+        securityGuideId={tailoring?.security_guide_id || securityGuideId}
+        total={rules?.meta?.total}
+        ruleTree={ruleTree}
+        rules={rules?.data}
+        ansibleSupportFilter
+        remediationsEnabled={false}
+        columns={columns}
+        setRuleValues={setRuleValues}
+        ruleValues={tailoring?.value_overrides || {}}
+        valueDefinitions={valueDefinitions}
+        onRuleValueReset={onRuleValueReset}
+        onValueOverrideSave={onValueSave}
+        onSelect={onSelect ? onSelectRule : undefined}
+        selectedRules={preselected}
+        options={{
+          exporter: rulesExporter,
+        }}
+        {...rulesTableProps}
+      />
     </>
   );
 };
@@ -82,6 +118,8 @@ const TailoringTab = ({
 TailoringTab.propTypes = {
   policy: propTypes.object,
   tailoring: propTypes.object,
+  securityGuide: propTypes.object,
+  osMinorVersion: propTypes.string,
   columns: propTypes.array,
   handleSelect: propTypes.func,
   systemCount: propTypes.number,
@@ -93,6 +131,8 @@ TailoringTab.propTypes = {
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
+  onSelect: propTypes.func,
+  preselected: propTypes.object,
 };
 
 const TailoringTabProvider = (props) => (

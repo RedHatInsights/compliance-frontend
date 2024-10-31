@@ -13,9 +13,14 @@ import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
 
 // TODO add reset link when selecting is implemented for wizard & edit policy
-const TabHeader = ({ tailoring, rulesPageLink }) => {
-  const { id, os_major_version, os_minor_version, security_guide_version } =
-    tailoring;
+const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
+  const {
+    id,
+    os_major_version,
+    os_minor_version,
+    security_guide_version,
+    version,
+  } = tailoring || securityGuide;
 
   return (
     <TextContent className="pf-v5-u-mt-md">
@@ -36,7 +41,7 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
               osMajorVersion: os_major_version,
               osMinorVersion: os_minor_version,
               benchmark: {
-                version: security_guide_version,
+                version: security_guide_version || version,
               },
             }}
           />
@@ -60,6 +65,7 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
 
 TabHeader.propTypes = {
   tailoring: propTypes.object,
+  securityGuide: propTypes.object,
   rulesPageLink: propTypes.bool,
 };
 
