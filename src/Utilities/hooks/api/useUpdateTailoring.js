@@ -1,10 +1,6 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useUpdateTailoring = (policyId, tailoringId, tailoring, options) =>
-  useQuery(apiInstance.updateTailoring, {
-    params: [policyId, tailoringId, tailoring],
-    skip: true,
-    ...options,
-  });
+const useUpdateTailoring = (options) =>
+  useComplianceQuery('updateTailoring', { skip: true, ...options });
 
 export default useUpdateTailoring;

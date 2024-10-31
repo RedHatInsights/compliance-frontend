@@ -2,19 +2,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, GridItem } from '@patternfly/react-core';
-import { useReportTestResults } from '../../Utilities/hooks/api/useReportTestResults';
-import SystemPolicyCardPresentational from '../../PresentationalComponents/SystemPolicyCard';
-import LoadingPolicyCards from '../../PresentationalComponents/SystemPolicyCards/components/LoadingPolicyCards';
-import dataSerialiser from '../../Utilities/dataSerialiser';
+import useReportTestResults from 'Utilities/hooks/api/useReportTestResults';
+import SystemPolicyCardPresentational from 'PresentationalComponents/SystemPolicyCard';
+import LoadingPolicyCards from 'PresentationalComponents/SystemPolicyCards/components/LoadingPolicyCards';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { dataMap } from './constants';
-import { useSystemReports } from '../../Utilities/hooks/api/useSystemReports';
+import useSystemReports from 'Utilities/hooks/api/useSystemReports';
 import { useParams } from 'react-router-dom';
 
 const SystemPolicyCard = ({ policy }) => {
   const { inventoryId } = useParams();
   const { data, loading } = useReportTestResults({
-    reportId: policy.id,
-    filter: `system_id=${inventoryId}`,
+    params: {
+      reportId: policy.id,
+      filter: `system_id=${inventoryId}`,
+    },
   });
 
   return loading ? (
@@ -40,8 +42,10 @@ SystemPolicyCard.propTypes = {
 export const SystemPolicyCards = () => {
   const { inventoryId } = useParams();
   const { data, loading } = useSystemReports({
-    systemId: inventoryId,
-    limit: 100,
+    params: {
+      systemId: inventoryId,
+      limit: 100,
+    },
   });
 
   return (
@@ -49,7 +53,7 @@ export const SystemPolicyCards = () => {
       {loading ? (
         <LoadingPolicyCards />
       ) : (
-        (data.data || []).map((policy) => (
+        (data?.data || []).map((policy) => (
           <GridItem sm={12} md={12} lg={6} xl={4} key={policy.id}>
             <SystemPolicyCard policy={policy} inventoryId={inventoryId} />
           </GridItem>

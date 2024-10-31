@@ -1,17 +1,7 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useTailoringRules = (
-  policyId,
-  tailoringId,
-  { params = {}, ...options } = {}
-) => {
-  const paramsToPass = [policyId, tailoringId, ...params];
-
-  return useQuery(apiInstance.tailoringRules, {
-    params: paramsToPass,
-    skip: !policyId && !tailoringId,
-    ...options,
-  });
-};
+// TODO investigate why this endpoint requires direct arguments and does not recognise the params object.
+const useTailoringRules = (options) =>
+  useComplianceQuery('tailoringRules', options);
 
 export default useTailoringRules;
