@@ -1,7 +1,6 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useCreatePolicy = () => {
-  return useQuery(apiInstance.createPolicy);
-};
+const useCreatePolicy = (options) =>
+  useComplianceQuery('createPolicy', options);
 
 export default useCreatePolicy;

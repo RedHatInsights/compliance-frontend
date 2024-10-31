@@ -1,7 +1,5 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useAssignRules = () => {
-  return useQuery(apiInstance.assignRules);
-};
+const useAssignRules = (options) => useComplianceQuery('assignRules', options);
 
 export default useAssignRules;
