@@ -73,7 +73,8 @@ PolicyRulesGraphQL.propTypes = {
 };
 
 const PolicyRulesRest = ({ v2 }) => {
-  // Example hardcoded data (replace with actual data)
+  //TODO: Data is currently hardcoded, once modals are migrated we can pass in IDs in TabHeader
+  // const { policy_id: policyId, security_guide_id: securityGuidesId } = useParams();
   const policyTitle =
     'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
   const profileId2 = '0a036ede-252e-4e73-bdd8-9203f93deefe';

@@ -11,6 +11,7 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
+import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 
 // TODO add reset link when selecting is implemented for wizard & edit policy
 const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
@@ -21,7 +22,9 @@ const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
     security_guide_version,
     version,
   } = tailoring || securityGuide;
-
+  const apiV2Enabled = useAPIV2FeatureFlag();
+  //TODO: once migrated, add an actualy security_guide_id
+  const security_guide_id = 'tempID';
   return (
     <TextContent className="pf-v5-u-mt-md">
       <Text component={TextVariants.h3}>
@@ -49,7 +52,11 @@ const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
         <FlexItem align={{ default: 'alignRight' }}>
           {rulesPageLink && (
             <Link
-              to={`/scappolicies/${id}/default_ruleset`}
+              to={
+                apiV2Enabled
+                  ? `/scappolicies/${id}/default_ruleset/${security_guide_id}`
+                  : `/scappolicies/${id}/default_ruleset`
+              }
               target="_blank"
               className="pf-v5-u-mr-xl"
             >
