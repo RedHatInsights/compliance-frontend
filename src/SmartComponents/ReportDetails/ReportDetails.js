@@ -36,7 +36,12 @@ import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
-import { dataMap, QUERY } from './constants';
+import {
+  dataMap,
+  fetchNeverReportedCustomOSes,
+  fetchReportingCustomOSes,
+  QUERY,
+} from './constants';
 import '@/Charts.scss';
 import './ReportDetails.scss';
 import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/useFetchReporting';
@@ -204,6 +209,7 @@ const ReportDetailsBase = ({
                       showGroupsFilter
                       apiV2Enabled={true}
                       reportId={id}
+                      fetchCustomOSes={fetchReportingCustomOSes}
                     />
                   </Tab>
 
@@ -239,6 +245,8 @@ const ReportDetailsBase = ({
                       defaultFilter={'never_reported = true'}
                       showGroupsFilter
                       apiV2Enabled={true}
+                      reportId={id}
+                      fetchCustomOSes={fetchNeverReportedCustomOSes}
                     />
                   </Tab>
                 </Tabs>

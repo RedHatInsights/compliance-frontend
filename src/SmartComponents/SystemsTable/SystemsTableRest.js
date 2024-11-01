@@ -165,8 +165,8 @@ export const SystemsTable = ({
   });
 
   const handleOperatingSystemsFetch = useCallback(
-    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
-    [defaultFilter, fetchCustomOSes, policyId]
+    () => fetchCustomOSes({ filters: defaultFilter, reportId, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId, reportId]
   );
 
   return (
