@@ -189,6 +189,7 @@ const ReportDetailsBase = ({
                           showLink: true,
                           showOsInfo: true,
                           idProperty: 'system_id',
+                          sortBy: ['display_name'],
                         }),
                         Columns.inventoryColumn('groups', {
                           requiresDefault: true,

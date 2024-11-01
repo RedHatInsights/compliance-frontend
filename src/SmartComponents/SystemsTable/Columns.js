@@ -48,6 +48,7 @@ export const Name = compileColumnRenderFunc({
 
 export const customDisplay = (props, columnConfig) => ({
   ...Name,
+  ...props,
   props: {
     ...Name.props,
     ...props,
