@@ -9,7 +9,7 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
+import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import { Tailorings } from 'PresentationalComponents';
 
@@ -45,32 +45,50 @@ export const EditPolicyRulesTab = ({
       rules: selectedRules,
     }));
   }, [selectedRules, setUpdatedPolicy]);
-  console.log(selectedRules, 'debug: selected rules');
+
+  const assignedSystemCount = policy?.total_system_count;
+
   return (
-    <div>
-      <TextContent>
-        <Text>
-          Different release versions of RHEL are associated with different
-          versions of the SCAP Security Guide (SSG), therefore each release must
-          be customized independently.
-        </Text>
-      </TextContent>
-      <Tailorings
-        policy={policy}
-        resetLink
-        rulesPageLink
-        selectedFilter
-        remediationsEnabled={false}
-        columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-        level={1}
-        ouiaId="RHELVersions"
-        onValueOverrideSave={setRuleValues}
-        handleSelect={(selectedItems) => {
-          setSelectedRules(selectedItems);
-        }}
-        selectedRules={selectedRules}
-      />
-    </div>
+    <StateView
+      stateValues={{
+        data: policy && assignedSystemCount,
+        loading: assignedSystemCount === undefined,
+        empty: assignedSystemCount === 0,
+      }}
+    >
+      <StateViewPart stateKey="loading">
+        <EmptyState>
+          <Spinner />
+        </EmptyState>
+      </StateViewPart>
+      <StateViewPart stateKey="data">
+        <TextContent>
+          <Text>
+            Different release versions of RHEL are associated with different
+            versions of the SCAP Security Guide (SSG), therefore each release
+            must be customized independently.
+          </Text>
+        </TextContent>
+        <Tailorings
+          policy={policy}
+          resetLink
+          rulesPageLink
+          selectedFilter
+          remediationsEnabled={false}
+          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+          level={1}
+          ouiaId="RHELVersions"
+          onValueOverrideSave={setRuleValues}
+          handleSelect={(selectedItems) => {
+            setSelectedRules(selectedItems);
+          }}
+          selectedRules={selectedRules}
+        />
+      </StateViewPart>
+      <StateViewPart stateKey="empty">
+        <EditPolicyRulesTabEmptyState />
+      </StateViewPart>
+    </StateView>
   );
 };
 

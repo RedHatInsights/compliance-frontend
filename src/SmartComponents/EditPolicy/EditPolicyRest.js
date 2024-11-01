@@ -11,10 +11,10 @@ import {
 } from 'PresentationalComponents';
 import EditPolicyFormRest from './EditPolicyFormRest';
 import { useOnSave } from './hooks';
-import usePolicyQuery from 'Utilities/hooks/usePolicyQuery/usePolicyQuery2';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
 import { useAssignedRules } from './hooks/useAssignedRules';
 import { useAssignedSystems } from './hooks/useAssignedSystems';
-import useSupportedProfiles from 'Utilities/hooks/useSupportedProfiles/useSupportedProfiles';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 
 export const EditPolicyRest = ({ route }) => {
   const navigate = useNavigate();
@@ -24,16 +24,19 @@ export const EditPolicyRest = ({ route }) => {
     data: { data: policy } = {},
     loading: policyLoading,
     error: policyError,
-  } = usePolicyQuery({ policyId });
+  } = usePolicy(policyId);
 
   const {
-    data: supportedProfiles,
+    data: { data: supportedProfiles } = {},
     error: supportedProfilesError,
     loading: supportedProfilesLoading,
-  } = useSupportedProfiles(
-    policy?.os_major_version,
-    policyLoading || !policy?.os_major_version
-  );
+  } = useSupportedProfiles({
+    params: {
+      filter: `os_major_version=${policy?.os_major_version}`,
+      limit: 100,
+    },
+    skip: policyLoading || !policy?.os_major_version,
+  });
 
   const securityGuide = supportedProfiles?.find(
     (profile) => profile.ref_id === policy?.ref_id
@@ -50,21 +53,14 @@ export const EditPolicyRest = ({ route }) => {
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
 
-  const [ruleValues, setRuleValuesState] = useState({}); // some rules have values, computation of rule def id and val.
+  const saveEnabled = !updatedPolicy; // && !updatedPolicy.complianceThresholdValid;
 
-  const saveEnabled = updatedPolicy && !updatedPolicy.complianceThresholdValid;
-  const updatedPolicyHostsAndRules = {
-    ...updatedPolicy,
-    selectedRuleRefIds: assignedRuleIds,
-    hosts: assignedSystems,
-    values: ruleValues,
-  };
   const onSaveCallback = (isClose) =>
     navigate(
       isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1
     );
 
-  const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules, {
+  const [isSaving, onSave] = useOnSave(policy, updatedPolicy, {
     onSave: onSaveCallback,
     onError: onSaveCallback,
   });
@@ -76,11 +72,14 @@ export const EditPolicyRest = ({ route }) => {
     newValue,
     closeInlineEdit
   ) => {
-    setRuleValuesState((currentValues) => ({
-      ...currentValues,
-      [tailoring.id]: {
-        ...tailoring.value_overrides,
-        [valueDefinition.id]: newValue,
+    setUpdatedPolicy((prev) => ({
+      ...prev,
+      value: {
+        ...prev.value,
+        [tailoring.id]: {
+          ...tailoring.value_overrides,
+          [valueDefinition.id]: newValue,
+        },
       },
     }));
 
@@ -120,10 +119,6 @@ export const EditPolicyRest = ({ route }) => {
     error: policyError || supportedProfilesError,
   };
 
-  // console.log('debug: selected assinged', assignedRuleIds);
-  // console.log(securityGuide, 'debug: securityGuide');
-  console.log(ruleValues, 'debug: value override save ruleValues');
-
   return (
     <ComplianceModal
       isOpen
@@ -149,7 +144,6 @@ export const EditPolicyRest = ({ route }) => {
               selectedRuleRefIds: assignedRuleIds,
               selectedSystems: assignedSystems,
               setRuleValues,
-              ruleValues,
               supportedOsVersions,
               securityGuide,
             }}
