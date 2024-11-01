@@ -206,7 +206,7 @@ const ReportDetailsBase = ({
                         Columns.SsgVersionRest,
                         Columns.FailedRulesRest,
                         Columns.ComplianceScoreRest,
-                        Columns.LastScanned,
+                        Columns.LastScannedRest,
                       ]}
                       // showOsMinorVersionFilter={[profile.osMajorVersion]}
                       // ssgVersions={ssgVersions}

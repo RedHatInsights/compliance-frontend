@@ -15,11 +15,7 @@ import {
   ComplianceScore as PresentationalComplianceScore,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
-import {
-  // profilesRulesFailed,
-  complianceScoreData,
-  NEVER,
-} from 'Utilities/ruleHelpers';
+import { complianceScoreData, NEVER } from 'Utilities/ruleHelpers';
 
 const SystemLink = ({ id, children }) => (
   <Link to={{ pathname: `/systems/${id}` }}>{children}</Link>
@@ -205,7 +201,10 @@ const NeverScanned = () => (
 );
 
 export const lastScanned = (profiles) => {
-  const dates = profiles.map((profile) => new Date(profile.lastScanned));
+  if (!profiles || profiles?.length === 0) {
+    return <NeverScanned />;
+  }
+  const dates = profiles?.map((profile) => new Date(profile.lastScanned));
   const last = new Date(
     Math.max.apply(
       null,
@@ -219,7 +218,8 @@ export const lastScanned = (profiles) => {
 };
 
 export const LastScanned = ({ testResultProfiles: profiles }) => {
-  const lastScannedDate = lastScanned(profiles || []);
+  console.log('profiles', profiles);
+  const lastScannedDate = lastScanned(profiles ?? []);
 
   return lastScannedDate instanceof Date ? (
     <DateFormat date={Date.parse(lastScannedDate)} type="relative" />

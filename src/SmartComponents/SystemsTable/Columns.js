@@ -121,6 +121,8 @@ export const FailedRules = {
 export const FailedRulesRest = {
   ...FailedRules,
   sortBy: ['failed_rule_count'],
+  exportKey: 'rulesFailed',
+  renderExport: (rulesFailed) => rulesFailed,
 };
 
 export const ComplianceScore = {
@@ -141,6 +143,9 @@ export const ComplianceScore = {
 export const ComplianceScoreRest = {
   ...ComplianceScore,
   sortBy: ['score'],
+  exportKey: null,
+  renderExport: (testResultProfiles) =>
+    complianceScoreString(testResultProfiles),
 };
 
 export const LastScanned = {
@@ -167,6 +172,22 @@ export const OperatingSystem = (apiV2Enabled = false) =>
     renderExport: (cell) => operatingSystemString(cell),
     cell: OperatingSystemCell,
   });
+
+export const LastScannedRest = {
+  ...LastScanned,
+  exportKey: 'testResultProfiles',
+  renderExport: (testResultProfiles) => lastScanned(testResultProfiles),
+  renderFunc: renderComponent(LastScannedCell),
+};
+
+export const OperatingSystemm = compileColumnRenderFunc({
+  title: 'Operating system',
+  key: 'operatingSystem',
+  sortBy: ['osMajorVersion', 'osMinorVersion'],
+  transforms: [nowrap],
+  renderExport: (cell) => operatingSystemString(cell),
+  cell: OperatingSystemCell,
+});
 
 export const OS = (apiV2Enabled = false) =>
   compileColumnRenderFunc({
