@@ -16,7 +16,8 @@ import {
   lastScanned,
   operatingSystemString,
   OperatingSystem as OperatingSystemCell,
-  CustomDisplayCell,
+  CustomDisplay as CustomDisplayCell,
+  FailedRulesRest as FailedRulesRestCell,
 } from './Cells';
 
 const disableSorting = { isStatic: true };
@@ -123,6 +124,7 @@ export const FailedRulesRest = {
   sortBy: ['failed_rule_count'],
   exportKey: 'rulesFailed',
   renderExport: (rulesFailed) => rulesFailed,
+  renderFunc: renderComponent(FailedRulesRestCell),
 };
 
 export const ComplianceScore = {

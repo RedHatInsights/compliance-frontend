@@ -26,7 +26,7 @@ SystemLink.propTypes = {
   children: propTypes.node,
 };
 
-export const CustomDisplayCell = (props) => {
+export const CustomDisplay = (props) => {
   const {
     osMajorVersion,
     osMinorVersion,
@@ -58,7 +58,7 @@ export const CustomDisplayCell = (props) => {
   );
 };
 
-CustomDisplayCell.propTypes = {
+CustomDisplay.propTypes = {
   id: propTypes.string,
   name: propTypes.string,
   osMajorVersion: propTypes.string,
@@ -166,6 +166,19 @@ export const FailedRules = ({ id, testResultProfiles }) => {
 FailedRules.propTypes = {
   id: propTypes.string,
   testResultProfiles: propTypes.array,
+};
+
+export const FailedRulesRest = ({ system_id, rulesFailed }) => {
+  return (
+    <SystemLink {...{ id: system_id }}>
+      {rulesFailed > 0 ? rulesFailed : 'N/A'}
+    </SystemLink>
+  );
+};
+
+FailedRulesRest.propTypes = {
+  system_id: propTypes.string,
+  rulesFailed: propTypes.number,
 };
 
 export { complianceScoreData };
