@@ -20,11 +20,9 @@ export const useIssuesFetchRest = (reportId, testResults) => {
       [...testResults].map((tr) => () => batchFetch(tr, reportId, 100))
     );
 
-    const flattenResults = results.flatMap((x) => x);
-
     const hashMap = {};
 
-    flattenResults.forEach((res) => {
+    results.flat().forEach((res) => {
       // Add each response to hash map
       res.data.data.forEach((rule) => {
         const remediation_issue_id = rule.remediation_issue_id;
