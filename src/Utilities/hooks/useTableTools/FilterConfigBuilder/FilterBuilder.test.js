@@ -59,9 +59,9 @@ describe('buildFilterString', () => {
     it('compliantSystemFilterConfiguration GraphQL', () => {
       let builder = new FilterBuilder(
         new FilterConfigBuilder(
-          compliantSystemFilterConfiguration(
-            COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL
-          )
+          compliantSystemFilterConfiguration({
+            filterKeys: COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL,
+          })
         )
       );
 

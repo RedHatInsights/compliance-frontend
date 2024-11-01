@@ -198,7 +198,7 @@ export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST = {
 export const compliantSystemFilterConfiguration = ({
   filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST,
   hideNeverReported = false,
-}) => [
+} = {}) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Compliance',
