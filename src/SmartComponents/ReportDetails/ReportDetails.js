@@ -253,6 +253,7 @@ const ReportDetailsBase = ({
                       apiV2Enabled={true}
                       reportId={id}
                       fetchCustomOSes={fetchNeverReportedCustomOSes}
+                      enableExport={false}
                     />
                   </Tab>
                 </Tabs>
