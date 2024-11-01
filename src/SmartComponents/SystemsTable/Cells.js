@@ -30,6 +30,49 @@ SystemLink.propTypes = {
   children: propTypes.node,
 };
 
+export const CustomDisplayCell = (props) => {
+  const {
+    osMajorVersion,
+    osMinorVersion,
+    showOsInfo = false,
+    showLink = false,
+    idProperty = 'id',
+    nameProperty = 'name',
+  } = props;
+  const hasOsInfo = (osMajorVersion, osMinorVersion) =>
+    !!osMajorVersion && !!osMinorVersion && showOsInfo;
+
+  const customId = props[idProperty];
+  const customName = props[nameProperty];
+
+  return (
+    <TextContent>
+      {showLink ? (
+        <SystemLink {...{ id: customId }}>{customName}</SystemLink>
+      ) : (
+        { customName }
+      )}
+
+      {hasOsInfo(osMajorVersion, osMinorVersion) && (
+        <Text component={TextVariants.small}>
+          RHEL {osMajorVersion}.{osMinorVersion}
+        </Text>
+      )}
+    </TextContent>
+  );
+};
+
+CustomDisplayCell.propTypes = {
+  id: propTypes.string,
+  name: propTypes.string,
+  osMajorVersion: propTypes.string,
+  osMinorVersion: propTypes.string,
+  showOsInfo: propTypes.bool,
+  showLink: propTypes.bool,
+  idProperty: propTypes.string,
+  nameProperty: propTypes.string,
+};
+
 export const Name = ({
   id,
   name,
@@ -37,9 +80,13 @@ export const Name = ({
   osMinorVersion,
   showOsInfo = false,
   showLink = false,
+  ...rest
 }) => {
   const hasOsInfo = (osMajorVersion, osMinorVersion) =>
     !!osMajorVersion && !!osMinorVersion && showOsInfo;
+
+  console.log('ID', id);
+  console.log('rest', rest);
 
   return (
     <TextContent>
@@ -85,13 +132,15 @@ SSGVersion.propTypes = {
 
 export const SSGVersions = ({ testResultProfiles = [] }) =>
   testResultProfiles.length !== 0
-    ? testResultProfiles.map((profile) => (
-        <SSGVersion
-          key={`ssgversion-${profile.id}`}
-          ssgVersion={profile?.benchmark?.version}
-          supported={profile?.supported}
-        />
-      ))
+    ? testResultProfiles.map((profile) => {
+        return (
+          <SSGVersion
+            key={`ssgversion-${profile.id}`}
+            ssgVersion={profile?.benchmark?.version}
+            supported={profile?.supported}
+          />
+        );
+      })
     : 'Unknown';
 
 SSGVersions.propTypes = {

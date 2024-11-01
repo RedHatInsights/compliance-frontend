@@ -1,14 +1,18 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
+  Bullseye,
   EmptyState,
   Grid,
   GridItem,
+  Tab,
+  TabTitleText,
+  Tabs,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -33,11 +37,23 @@ import * as Columns from '../SystemsTable/Columns';
 import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
 import { dataMap, QUERY } from './constants';
-
 import '@/Charts.scss';
 import './ReportDetails.scss';
+import { apiInstance } from '../../Utilities/hooks/useQuery';
+import { systemsDataMapper, testResultsDataMapper } from '@/constants';
+
+const processSystemsData = (data) => dataSerialiser(data, systemsDataMapper);
+
+const processTestResultsData = (data) =>
+  dataSerialiser(
+    data.map((entry) => ({
+      ...entry,
+    })),
+    testResultsDataMapper
+  );
 
 const ReportDetailsBase = ({
+  id,
   route,
   data,
   error,
@@ -54,7 +70,84 @@ const ReportDetailsBase = ({
     pageTitle = `Report: ${policyName}`;
   }
 
+  console.log({ profile });
+  console.log({ data });
+
   useTitleEntity(route, policyName);
+
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+
+  const [tab, setTab] = useState('reporting');
+
+  const handleTabSelect = (_, eventKey) => setTab(eventKey);
+
+  // TODO: make into a hook so total can be placed in tab
+  const fetchReporting = async (page, perPage, combinedVariables) => {
+    console.log('fetch reporting');
+    console.log(page, perPage, combinedVariables, profile.id);
+
+    const response = await apiInstance
+      .reportTestResults(
+        id,
+        undefined,
+        perPage,
+        page,
+        false,
+        combinedVariables.sortBy,
+        combinedVariables.filter
+      )
+      .then(({ data: { data = [], meta = {} } = {} } = {}) => {
+        console.log('data', data);
+        console.log('processSystemsData', processTestResultsData(data));
+        return {
+          data: processTestResultsData(data),
+          meta,
+        };
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    return {
+      ...response,
+      data: response.data.map((item) => {
+        return {
+          ...item,
+          testResultProfiles: [
+            { ...item, benchmark: { version: item.version } },
+          ],
+        };
+      }),
+    };
+  };
+
+  const fetchNeverReported = async (page, perPage, combinedVariables) => {
+    console.log('fetch never reported');
+    console.log(page, perPage, combinedVariables, profile.id);
+
+    return await apiInstance
+      .reportSystems(
+        id,
+        undefined,
+        undefined,
+        perPage,
+        page,
+        false,
+        combinedVariables.sortBy,
+        combinedVariables.filter
+      )
+      .then(({ data: { data = [], meta = {} } = {} } = {}) => {
+        console.log('data', data);
+        console.log('processSystemsData', processSystemsData(data));
+        return {
+          data: processSystemsData(data),
+          meta,
+        };
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
@@ -129,34 +222,110 @@ const ReportDetailsBase = ({
         <section className="pf-v5-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
-              <SystemsTable
-                showOsMinorVersionFilter={[profile.osMajorVersion]}
-                ssgVersions={ssgVersions}
-                columns={[
-                  Columns.customName({
-                    showLink: true,
-                    showOsInfo: true,
-                  }),
-                  Columns.inventoryColumn('groups', {
-                    requiresDefault: true,
-                    sortBy: ['groups'],
-                  }),
-                  Columns.inventoryColumn('tags'),
-                  Columns.SsgVersion,
-                  Columns.FailedRules,
-                  Columns.ComplianceScore,
-                  Columns.LastScanned,
-                ]}
-                compliantFilter
-                defaultFilter={`policy_id = ${profile.id}`}
-                policyId={profile.id}
-                tableProps={{
-                  rowWrapper: ReportedSystemRow,
-                }}
-                ruleSeverityFilter
-                showGroupsFilter
-                apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
-              />
+              {isRestApiEnabled === undefined ? (
+                <Bullseye>
+                  <Spinner />
+                </Bullseye>
+              ) : isRestApiEnabled ? (
+                <Tabs
+                  className="pf-m-light pf-v5-c-table"
+                  activeKey={tab}
+                  onSelect={handleTabSelect}
+                  mountOnEnter
+                  unmountOnExit
+                >
+                  <Tab
+                    key={'reporting'}
+                    eventKey={'reporting'}
+                    title={<TabTitleText>Reporting</TabTitleText>}
+                  >
+                    <SystemsTable
+                      systemProps={{
+                        isFullView: true,
+                      }}
+                      remediationsEnabled={true}
+                      fetchApi={fetchReporting}
+                      columns={[
+                        Columns.customDisplay({
+                          showLink: true,
+                          showOsInfo: true,
+                          idProperty: 'system_id',
+                        }),
+                        Columns.inventoryColumn('groups', {
+                          requiresDefault: true,
+                          sortBy: ['groups'],
+                        }),
+                        Columns.inventoryColumn('tags'),
+                        Columns.SsgVersionRest,
+                        Columns.FailedRulesRest,
+                        Columns.ComplianceScoreRest,
+                        Columns.LastScanned,
+                      ]}
+                      showGroupsFilter
+                      apiV2Enabled={true}
+                      reportId={id}
+                    />
+                  </Tab>
+
+                  <Tab
+                    key={'never-reported'}
+                    eventKey={'never-reported'}
+                    title={<TabTitleText>Never Reported</TabTitleText>}
+                  >
+                    <SystemsTable
+                      systemProps={{
+                        isFullView: true,
+                      }}
+                      remediationsEnabled={false}
+                      fetchApi={fetchNeverReported}
+                      columns={[
+                        Columns.customName({
+                          showLink: true,
+                          showOsInfo: true,
+                        }),
+                        Columns.inventoryColumn('groups', {
+                          requiresDefault: true,
+                          sortBy: ['groups'],
+                        }),
+                        Columns.inventoryColumn('tags'),
+                        Columns.LastScanned,
+                      ]}
+                      defaultFilter={'never_reported = true'}
+                      showGroupsFilter
+                      apiV2Enabled={true}
+                    />
+                  </Tab>
+                </Tabs>
+              ) : (
+                <SystemsTable
+                  showOsMinorVersionFilter={[profile.osMajorVersion]}
+                  ssgVersions={ssgVersions}
+                  columns={[
+                    Columns.customName({
+                      showLink: true,
+                      showOsInfo: true,
+                    }),
+                    Columns.inventoryColumn('groups', {
+                      requiresDefault: true,
+                      sortBy: ['groups'],
+                    }),
+                    Columns.inventoryColumn('tags'),
+                    Columns.SsgVersion,
+                    Columns.FailedRules,
+                    Columns.ComplianceScore,
+                    Columns.LastScanned,
+                  ]}
+                  compliantFilter
+                  defaultFilter={`policy_id = ${profile.id}`}
+                  policyId={id}
+                  tableProps={{
+                    rowWrapper: ReportedSystemRow,
+                  }}
+                  ruleSeverityFilter
+                  showGroupsFilter
+                  apiV2Enabled={false}
+                />
+              )}
             </GridItem>
           </Grid>
         </section>
@@ -166,6 +335,7 @@ const ReportDetailsBase = ({
 };
 
 ReportDetailsBase.propTypes = {
+  id: propTypes.string.isRequired,
   route: propTypes.object,
   data: propTypes.object,
   error: propTypes.object,
@@ -193,7 +363,14 @@ const ReportDetailsGraphQL = ({ route }) => {
 
   return (
     <ReportDetailsBase
-      {...{ route, data: data?.profile, error, loading, ssgVersions }}
+      {...{
+        route,
+        data: data?.profile,
+        error,
+        loading,
+        ssgVersions,
+        id: policyId,
+      }}
     />
   );
 };
@@ -211,7 +388,13 @@ const ReportDetailsRest = ({ route }) => {
 
   return (
     <ReportDetailsBase
-      {...{ route, data: dataSerialiser(data, dataMap), error, loading }}
+      {...{
+        route,
+        data: dataSerialiser(data, dataMap),
+        error,
+        loading,
+        id: report_id,
+      }}
     />
   );
 };

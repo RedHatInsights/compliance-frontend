@@ -16,6 +16,7 @@ import {
   lastScanned,
   operatingSystemString,
   OperatingSystem as OperatingSystemCell,
+  CustomDisplayCell,
 } from './Cells';
 
 const disableSorting = { isStatic: true };
@@ -45,6 +46,16 @@ export const Name = compileColumnRenderFunc({
   cell: NameCell,
 });
 
+export const customDisplay = (props, columnConfig) => ({
+  ...Name,
+  props: {
+    ...Name.props,
+    ...props,
+  },
+  renderFunc: renderComponent(CustomDisplayCell, props),
+  ...columnConfig,
+});
+
 export const customName = (props, columnConfig) => ({
   ...Name,
   props: {
@@ -69,6 +80,11 @@ export const SsgVersion = {
       )
       .join(', '),
   renderFunc: renderComponent(SsgVersionCell),
+};
+
+export const SsgVersionRest = {
+  ...SsgVersion,
+  sortBy: ['security_guide_version'],
 };
 
 export const Policies = {
@@ -101,11 +117,17 @@ export const FailedRules = {
   renderFunc: renderComponent(FailedRulesCell),
 };
 
+export const FailedRulesRest = {
+  ...FailedRules,
+  sortBy: ['failed_rule_count'],
+};
+
 export const ComplianceScore = {
   title: 'Compliance score',
   key: 'complianceScore',
   exportKey: 'testResultProfiles',
-  sortBy: ['score'],
+  sortBy: ['complianceScore'],
+  sortable: 'score',
   transforms: [nowrap],
   props: {
     width: 5,
@@ -113,6 +135,11 @@ export const ComplianceScore = {
   renderExport: (testResultProfiles) =>
     complianceScoreString(complianceScoreData(testResultProfiles)).trim(),
   renderFunc: renderComponent(ComplianceScoreCell),
+};
+
+export const ComplianceScoreRest = {
+  ...ComplianceScore,
+  sortBy: ['score'],
 };
 
 export const LastScanned = {

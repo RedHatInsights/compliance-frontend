@@ -4,7 +4,7 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
-import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
+import RemediationButtonRest from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import {
@@ -56,6 +56,7 @@ export const SystemsTable = ({
   fetchApi,
   fetchCustomOSes,
   ignoreOsMajorVersion,
+  reportId,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -222,7 +223,10 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <RemediationButton policyId={policyId} systems={selectedIds} />
+                <RemediationButtonRest
+                  reportId={reportId}
+                  systems={selectedIds}
+                />
               ),
             }),
           })}

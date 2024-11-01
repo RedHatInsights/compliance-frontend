@@ -299,6 +299,23 @@ export const systemsDataMapper = {
   updated: 'updated',
 };
 
+export const testResultsDataMapper = {
+  display_name: 'name',
+  os_major_version: 'osMajorVersion',
+  os_minor_version: 'osMinorVersion',
+  groups: 'groups',
+  id: 'id',
+  insights_id: 'insightsId',
+  tags: 'tags',
+  updated: 'updated',
+  score: ['complianceScore', 'score'],
+  failed_rule_count: 'rulesFailed',
+  security_guide_version: 'version',
+  supported: 'supported',
+  end_time: 'lastScanned',
+  system_id: 'system_id',
+};
+
 export const policiesDataMapper = {
   title: 'name',
   id: 'id',
