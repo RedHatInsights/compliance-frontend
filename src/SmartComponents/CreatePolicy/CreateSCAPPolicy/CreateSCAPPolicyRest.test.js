@@ -92,7 +92,7 @@ describe('CreateSCAPPolicyRest', () => {
       error: undefined,
     });
     useSupportedProfiles.mockReturnValue({
-      data: [],
+      data: { data: [] },
       loading: false,
       error: undefined,
     });
@@ -116,7 +116,7 @@ describe('CreateSCAPPolicyRest', () => {
       error: undefined,
     });
     useSupportedProfiles.mockReturnValue({
-      data: supportedProfiles,
+      data: { data: supportedProfiles },
       loading: false,
       error: undefined,
     });
@@ -138,7 +138,7 @@ describe('CreateSCAPPolicyRest', () => {
       error: undefined,
     });
     useSupportedProfiles.mockReturnValue({
-      data: supportedProfiles,
+      data: { data: supportedProfiles },
       loading: false,
       error: undefined,
     });
