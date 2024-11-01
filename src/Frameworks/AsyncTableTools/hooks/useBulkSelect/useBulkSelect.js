@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 import useSelectionManager from '../useSelectionManager';
 import {
   checkCurrentPageSelected,
@@ -89,12 +89,6 @@ const useBulkSelect = ({
     ...row,
     selected: selectedIds.includes(row.itemId),
   });
-
-  useEffect(() => {
-    if (onSelect && selectedIds?.length) {
-      onSelect(selectedIds);
-    }
-  }, [onSelect, selectedIds]);
 
   return enableBulkSelect
     ? {

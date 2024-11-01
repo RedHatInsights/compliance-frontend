@@ -53,7 +53,7 @@ export const EditPolicyRest = ({ route }) => {
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
 
-  const saveEnabled = !updatedPolicy; // && !updatedPolicy.complianceThresholdValid;
+  const saveEnabled = !updatedPolicy;
 
   const onSaveCallback = (isClose) =>
     navigate(

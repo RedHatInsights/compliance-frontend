@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
@@ -37,17 +37,25 @@ export const EditPolicyRulesTab = ({
   setRuleValues,
   setUpdatedPolicy,
 }) => {
-  const [selectedRules, setSelectedRules] = useState(selectedRuleRefIds);
+  const [selectedTailoringRules, setSelectedTailoringRules] =
+    useState(selectedRuleRefIds);
 
-  useEffect(() => {
-    setUpdatedPolicy((prev) => ({
-      ...prev,
-      rules: selectedRules,
-    }));
-  }, [selectedRules, setUpdatedPolicy]);
+  const handleSelect = useCallback(
+    (selectedItems) => {
+      setUpdatedPolicy((prev) => ({
+        ...prev,
+        tailoringRules: {
+          ...(prev?.tailoringRules || {}),
+          ...selectedItems,
+        },
+      }));
+
+      setSelectedTailoringRules(selectedItems);
+    },
+    [setUpdatedPolicy]
+  );
 
   const assignedSystemCount = policy?.total_system_count;
-
   return (
     <StateView
       stateValues={{
@@ -79,10 +87,8 @@ export const EditPolicyRulesTab = ({
           level={1}
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
-          handleSelect={(selectedItems) => {
-            setSelectedRules(selectedItems);
-          }}
-          selectedRules={selectedRules}
+          handleSelect={handleSelect}
+          selectedRules={selectedTailoringRules}
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">

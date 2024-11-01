@@ -40,7 +40,7 @@ const EditPolicyForm = ({
 
       setUpdatedPolicy((prev) => ({
         ...prev,
-        hosts: newSelectedSystems,
+        hosts: newSelectedSystems.map((system) => system.id),
       }));
       setNewRulesAlert(hasNewOsMinorVersions);
       setSelectedOsMinorVersions(newOsMinorVersions);
