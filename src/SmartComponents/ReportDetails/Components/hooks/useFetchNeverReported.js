@@ -13,7 +13,7 @@ const useFetchNeverReported = (reportId) => {
         .reportSystems(
           reportId,
           undefined,
-          undefined,
+          combinedVariables.tags,
           perPage,
           page,
           false,
