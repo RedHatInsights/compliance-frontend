@@ -10,6 +10,8 @@ import {
   EmptyState,
   Grid,
   GridItem,
+  Label,
+  Spinner as PFSpinner,
   Tab,
   TabTitleText,
   Tabs,
@@ -18,6 +20,7 @@ import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
+
 import {
   LinkWithPermission as Link,
   BreadcrumbLinkItem,
@@ -39,18 +42,8 @@ import ReportChart from './Components/ReportChart';
 import { dataMap, QUERY } from './constants';
 import '@/Charts.scss';
 import './ReportDetails.scss';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
-import { systemsDataMapper, testResultsDataMapper } from '@/constants';
-
-const processSystemsData = (data) => dataSerialiser(data, systemsDataMapper);
-
-const processTestResultsData = (data) =>
-  dataSerialiser(
-    data.map((entry) => ({
-      ...entry,
-    })),
-    testResultsDataMapper
-  );
+import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/useFetchReporting';
+import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hooks/useFetchNeverReported';
 
 const ReportDetailsBase = ({
   id,
@@ -70,9 +63,6 @@ const ReportDetailsBase = ({
     pageTitle = `Report: ${policyName}`;
   }
 
-  console.log({ profile });
-  console.log({ data });
-
   useTitleEntity(route, policyName);
 
   const isRestApiEnabled = useAPIV2FeatureFlag();
@@ -81,73 +71,23 @@ const ReportDetailsBase = ({
 
   const handleTabSelect = (_, eventKey) => setTab(eventKey);
 
-  // TODO: make into a hook so total can be placed in tab
-  const fetchReporting = async (page, perPage, combinedVariables) => {
-    console.log('fetch reporting');
-    console.log(page, perPage, combinedVariables, profile.id);
+  const {
+    isLoading: isLoadingReporting,
+    fetch: fetchReporting,
+    data: dataReporting,
+  } = useFetchReporting(id);
 
-    const response = await apiInstance
-      .reportTestResults(
-        id,
-        undefined,
-        perPage,
-        page,
-        false,
-        combinedVariables.sortBy,
-        combinedVariables.filter
-      )
-      .then(({ data: { data = [], meta = {} } = {} } = {}) => {
-        console.log('data', data);
-        console.log('processSystemsData', processTestResultsData(data));
-        return {
-          data: processTestResultsData(data),
-          meta,
-        };
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+  const {
+    isLoading: isLoadingNeverReported,
+    fetch: fetchNeverReported,
+    data: dataNeverReported,
+  } = useFetchNeverReported(id);
 
-    return {
-      ...response,
-      data: response.data.map((item) => {
-        return {
-          ...item,
-          testResultProfiles: [
-            { ...item, benchmark: { version: item.version } },
-          ],
-        };
-      }),
-    };
-  };
+  console.log('IS LOADING REPORTING', isLoadingReporting);
+  console.log('DATA REPORTING', dataReporting);
 
-  const fetchNeverReported = async (page, perPage, combinedVariables) => {
-    console.log('fetch never reported');
-    console.log(page, perPage, combinedVariables, profile.id);
-
-    return await apiInstance
-      .reportSystems(
-        id,
-        undefined,
-        undefined,
-        perPage,
-        page,
-        false,
-        combinedVariables.sortBy,
-        combinedVariables.filter
-      )
-      .then(({ data: { data = [], meta = {} } = {} } = {}) => {
-        console.log('data', data);
-        console.log('processSystemsData', processSystemsData(data));
-        return {
-          data: processSystemsData(data),
-          meta,
-        };
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  console.log('IS LOADING NEVER', isLoadingReporting);
+  console.log('DATA NEVER', dataReporting);
 
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
@@ -237,7 +177,14 @@ const ReportDetailsBase = ({
                   <Tab
                     key={'reporting'}
                     eventKey={'reporting'}
-                    title={<TabTitleText>Reporting</TabTitleText>}
+                    title={
+                      <TabTitleWithData
+                        text="Reporting"
+                        data={dataReporting?.meta?.total}
+                        isLoading={isLoadingReporting}
+                        color="blue"
+                      />
+                    }
                   >
                     <SystemsTable
                       systemProps={{
@@ -270,7 +217,13 @@ const ReportDetailsBase = ({
                   <Tab
                     key={'never-reported'}
                     eventKey={'never-reported'}
-                    title={<TabTitleText>Never Reported</TabTitleText>}
+                    title={
+                      <TabTitleWithData
+                        text="Never reported"
+                        data={dataNeverReported?.meta?.total}
+                        isLoading={isLoadingNeverReported}
+                      />
+                    }
                   >
                     <SystemsTable
                       systemProps={{
@@ -415,5 +368,20 @@ const ReportsWrapper = (props) => {
     <ReportDetailsGraphQL {...props} />
   );
 };
+
+const TabTitleWithData = ({ text, data, isLoading, color }) => (
+  <TabTitleText>
+    <span className="pf-v5-u-mr-sm">{text}</span>
+    {isLoading ? (
+      <PFSpinner size="md" />
+    ) : data ? (
+      <Label color={color} isCompact>
+        {data}
+      </Label>
+    ) : (
+      <></>
+    )}
+  </TabTitleText>
+);
 
 export default ReportsWrapper;

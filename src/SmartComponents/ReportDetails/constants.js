@@ -1,4 +1,6 @@
+import { systemsDataMapper, testResultsDataMapper } from '@/constants';
 import { gql } from '@apollo/client';
+import dataSerialiser from 'Utilities/dataSerialiser';
 
 export const QUERY = gql`
   query RDWNRS_Profile($policyId: String!) {
@@ -45,3 +47,14 @@ export const dataMap = {
   compliant_system_count: 'compliantHostCount',
   unsupported_system_count: 'unsupportedHostCount',
 };
+
+export const processTestResultsData = (data) =>
+  dataSerialiser(
+    data.map((entry) => ({
+      ...entry,
+    })),
+    testResultsDataMapper
+  );
+
+export const processSystemsData = (data) =>
+  dataSerialiser(data, systemsDataMapper);
