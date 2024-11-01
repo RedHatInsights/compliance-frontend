@@ -195,9 +195,10 @@ export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST = {
   complianceScore: 'score',
 };
 
-export const compliantSystemFilterConfiguration = (
-  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST
-) => [
+export const compliantSystemFilterConfiguration = ({
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST,
+  hideNeverReported = false,
+}) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Compliance',
@@ -212,7 +213,14 @@ export const compliantSystemFilterConfiguration = (
         value: `${filterKeys.compliant} = false AND ${filterKeys.supported} = true`,
       },
       { label: 'Not supported', value: `${filterKeys.supported} = false` },
-      { label: 'Never reported', value: `${filterKeys.neverReported} = false` },
+      ...(!hideNeverReported
+        ? [
+            {
+              label: 'Never reported',
+              value: `${filterKeys.neverReported} = false`,
+            },
+          ]
+        : []),
     ],
   },
   {

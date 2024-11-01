@@ -208,6 +208,10 @@ const ReportDetailsBase = ({
                         Columns.ComplianceScoreRest,
                         Columns.LastScanned,
                       ]}
+                      // showOsMinorVersionFilter={[profile.osMajorVersion]}
+                      // ssgVersions={ssgVersions}
+                      compliantFilter
+                      ruleSeverityFilter
                       showGroupsFilter
                       apiV2Enabled={true}
                       reportId={id}

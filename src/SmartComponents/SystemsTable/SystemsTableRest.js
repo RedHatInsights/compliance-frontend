@@ -74,7 +74,9 @@ export const SystemsTable = ({
     filters: {
       filterConfig: [
         ...defaultSystemsFilterConfiguration(),
-        ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
+        ...(compliantFilter
+          ? compliantSystemFilterConfiguration({ hideNeverReported: true })
+          : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),

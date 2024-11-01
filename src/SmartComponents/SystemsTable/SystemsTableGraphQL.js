@@ -90,9 +90,9 @@ export const SystemsTable = ({
           DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL
         ),
         ...(compliantFilter
-          ? compliantSystemFilterConfiguration(
-              COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL
-            )
+          ? compliantSystemFilterConfiguration({
+              filterKeys: COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL,
+            })
           : []),
         ...(policies?.length > 0
           ? policyFilter(policies, showOsFilter, POLICY_FILTER_KEY_GRAPHQL)
