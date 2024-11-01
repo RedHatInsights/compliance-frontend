@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
@@ -22,7 +21,6 @@ import { QUERY, dataMap } from './constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
 
 export const CompliancePoliciesBase = ({ query }) => {
-  const location = useLocation();
   const CreateLink = () => (
     <Link
       to="/scappolicies/new"
@@ -36,10 +34,8 @@ export const CompliancePoliciesBase = ({ query }) => {
     </Link>
   );
 
-  let { data, error, loading, refetch } = query;
-  useEffect(() => {
-    refetch();
-  }, [location, refetch]);
+  let { data, error, loading } = query;
+
   let policies;
 
   if (data) {
