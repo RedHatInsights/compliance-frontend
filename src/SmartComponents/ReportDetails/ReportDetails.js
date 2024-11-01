@@ -213,6 +213,7 @@ const ReportDetailsBase = ({
                       compliantFilter
                       ruleSeverityFilter
                       showGroupsFilter
+                      showTagsFilter={false}
                       apiV2Enabled={true}
                       reportId={id}
                       fetchCustomOSes={fetchReportingCustomOSes}
