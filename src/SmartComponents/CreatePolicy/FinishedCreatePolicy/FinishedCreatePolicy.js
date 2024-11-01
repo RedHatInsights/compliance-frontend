@@ -4,7 +4,7 @@ import { Bullseye, Spinner } from '@patternfly/react-core';
 import FinishedCreatePolicyRest from './FinishedCreatePolicyRest';
 import FinishedCreatePolicyGraphQL from './FinishedCreatePolicyGraphQL';
 
-const FinishedCreatePolicyWrapper = (props) => {
+const FinishedCreatePolicy = (props) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
 
   return apiV2Enabled === undefined ? (
@@ -18,4 +18,4 @@ const FinishedCreatePolicyWrapper = (props) => {
   );
 };
 
-export default FinishedCreatePolicyWrapper;
+export default FinishedCreatePolicy;
