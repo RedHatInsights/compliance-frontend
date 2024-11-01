@@ -57,7 +57,7 @@ const CreateSCAPPolicyRest = ({
             : {
                 availableOsMajorVersions,
                 availableProfiles: dataSerialiser(
-                  serialiseOsVersions(availableProfiles),
+                  serialiseOsVersions(availableProfiles?.data),
                   profilesDataMap
                 ),
               },
