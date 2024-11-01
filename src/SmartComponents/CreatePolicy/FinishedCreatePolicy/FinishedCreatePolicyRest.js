@@ -3,9 +3,9 @@ import FinishedCreatePolicyBase from './FinishedCreatePolicyBase';
 import useCreatePolicy from '../../../Utilities/hooks/api/useCreatePolicy';
 import useAssignRules from '../../../Utilities/hooks/api/useAssignRules';
 import useAssignSystems from '../../../Utilities/hooks/api/useAssignSystems';
-import { useTailorings } from '../../../Utilities/hooks/api/useTailorings';
+import useTailorings from '../../../Utilities/hooks/api/useTailorings';
 
-const useUpdatePolicy = () => {
+export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
   const { fetch: assignRules } = useAssignRules({ skip: true });
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
