@@ -47,8 +47,6 @@ import './ReportDetails.scss';
 import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/useFetchReporting';
 import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hooks/useFetchNeverReported';
 import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
-import { apiInstance } from 'Utilities/hooks/useQuery';
-import { buildOSObject } from 'Utilities/helpers';
 
 const ReportDetailsBase = ({
   id,
