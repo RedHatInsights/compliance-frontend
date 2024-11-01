@@ -218,7 +218,6 @@ export const lastScanned = (profiles) => {
 };
 
 export const LastScanned = ({ testResultProfiles: profiles }) => {
-  console.log('profiles', profiles);
   const lastScannedDate = lastScanned(profiles ?? []);
 
   return lastScannedDate instanceof Date ? (
