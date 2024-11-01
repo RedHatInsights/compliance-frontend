@@ -80,7 +80,12 @@ const ReportsWithGrahpQL = () => {
 };
 
 const ReportsWithRest = () => {
-  let { data: { data } = {}, error, loading, refetch } = useReports();
+  const options = {
+    params: {
+      filter: 'with_reported_systems = true',
+    },
+  };
+  let { data: { data } = {}, error, loading, refetch } = useReports(options);
 
   if (data) {
     data = dataSerialiser(data, dataMap);
