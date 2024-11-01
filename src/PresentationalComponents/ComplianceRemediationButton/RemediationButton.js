@@ -12,7 +12,6 @@ const RemediationButton = ({
   onRemediationCreated,
   ...buttonProps
 }) => {
-  console.log({ rules, systems, policyId, onRemediationCreated, buttonProps });
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
     policyId,
     rules,

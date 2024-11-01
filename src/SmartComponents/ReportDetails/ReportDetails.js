@@ -10,10 +10,7 @@ import {
   EmptyState,
   Grid,
   GridItem,
-  Label,
-  Spinner as PFSpinner,
   Tab,
-  TabTitleText,
   Tabs,
 } from '@patternfly/react-core';
 import PageHeader, {
@@ -44,6 +41,7 @@ import '@/Charts.scss';
 import './ReportDetails.scss';
 import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/useFetchReporting';
 import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hooks/useFetchNeverReported';
+import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
 
 const ReportDetailsBase = ({
   id,
@@ -82,12 +80,6 @@ const ReportDetailsBase = ({
     fetch: fetchNeverReported,
     data: dataNeverReported,
   } = useFetchNeverReported(id);
-
-  console.log('IS LOADING REPORTING', isLoadingReporting);
-  console.log('DATA REPORTING', dataReporting);
-
-  console.log('IS LOADING NEVER', isLoadingReporting);
-  console.log('DATA NEVER', dataReporting);
 
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
@@ -368,20 +360,5 @@ const ReportsWrapper = (props) => {
     <ReportDetailsGraphQL {...props} />
   );
 };
-
-const TabTitleWithData = ({ text, data, isLoading, color }) => (
-  <TabTitleText>
-    <span className="pf-v5-u-mr-sm">{text}</span>
-    {isLoading ? (
-      <PFSpinner size="md" />
-    ) : data ? (
-      <Label color={color} isCompact>
-        {data}
-      </Label>
-    ) : (
-      <></>
-    )}
-  </TabTitleText>
-);
 
 export default ReportsWrapper;

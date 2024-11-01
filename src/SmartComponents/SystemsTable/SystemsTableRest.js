@@ -286,6 +286,7 @@ SystemsTable.propTypes = {
   fetchApi: PropTypes.func.isRequired,
   fetchCustomOSes: PropTypes.func.isRequired,
   ignoreOsMajorVersion: PropTypes.bool,
+  reportId: PropTypes.string,
 };
 
 SystemsTable.defaultProps = {

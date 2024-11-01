@@ -22,7 +22,6 @@ export const useIssuesFetchRest = (reportId, testResults) => {
 
     const flattenResults = results.flatMap((x) => x);
 
-    // Save memory by using a hash map
     const hashMap = {};
 
     flattenResults.forEach((res) => {

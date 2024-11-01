@@ -11,7 +11,6 @@ const RemediationButtonRest = ({
   onRemediationCreated,
   ...buttonProps
 }) => {
-  console.log({ reportId, systems, onRemediationCreated, buttonProps });
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetchRest(
     reportId,
     systems

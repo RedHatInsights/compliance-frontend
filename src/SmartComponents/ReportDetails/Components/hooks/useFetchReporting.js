@@ -20,8 +20,6 @@ const useFetchReporting = (reportId) => {
           combinedVariables.filter
         )
         .then(({ data: { data = [], meta = {} } = {} } = {}) => {
-          console.log('data', data);
-          console.log('processSystemsData', processTestResultsData(data));
           return {
             data: processTestResultsData(data),
             meta,

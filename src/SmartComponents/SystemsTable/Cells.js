@@ -80,13 +80,9 @@ export const Name = ({
   osMinorVersion,
   showOsInfo = false,
   showLink = false,
-  ...rest
 }) => {
   const hasOsInfo = (osMajorVersion, osMinorVersion) =>
     !!osMajorVersion && !!osMinorVersion && showOsInfo;
-
-  console.log('ID', id);
-  console.log('rest', rest);
 
   return (
     <TextContent>
