@@ -114,7 +114,11 @@ export const mergedColumns = (columns) => (defaultColumns) =>
   }, []);
 
 export const groupFilterHandler = ({ hostGroupFilter }) => {
-  if (hostGroupFilter !== undefined && Array.isArray(hostGroupFilter)) {
+  if (
+    hostGroupFilter !== undefined &&
+    Array.isArray(hostGroupFilter) &&
+    hostGroupFilter.length > 0
+  ) {
     return `(${hostGroupFilter
       .map((value) => `group_name = "${value}"`)
       .join(' or ')})`;
