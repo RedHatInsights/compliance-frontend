@@ -13,8 +13,8 @@ const textFilterSerialiser = (filterConfigItem, value) =>
 
 const checkboxFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} ^ (${values
-    .map((value) => `"${value}"`)
-    .join(', ')})`;
+    .map((value) => `${value}`)
+    .join(' ')})`;
 
 const raidoFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} = "${values[0]}"`;
