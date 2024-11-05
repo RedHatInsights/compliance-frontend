@@ -21,6 +21,8 @@ import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import { fetchApi } from '../ComplianceSystems/ComplianceSystems';
+import { apiInstance } from '@/Utilities/hooks/useQuery';
+import { buildOSObject } from '../../Utilities/helpers';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -93,6 +95,24 @@ export const EditPolicySystems = ({
     (version) => version.split('.')[1]
   );
 
+  const defaultFilter = osMajorVersion
+    ? apiV2Enabled
+      ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+          ' '
+        )})`
+      : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+          ','
+        )})`
+    : '';
+
+  const fetchCustomOSes = ({ filters: defaultFilter }) =>
+    apiInstance.systemsOS(null, defaultFilter).then(({ data }) => {
+      return {
+        results: buildOSObject(data),
+        total: data?.length || 0,
+      };
+    });
+
   return (
     <React.Fragment>
       <TextContent className="pf-v5-u-mb-md">
@@ -112,7 +132,7 @@ export const EditPolicySystems = ({
                 props: {
                   width: 40,
                 },
-                sortBy: ['name'],
+                sortBy: apiV2Enabled ? ['display_name'] : ['name'],
               },
               Columns.inventoryColumn('groups', {
                 requiresDefault: true,
@@ -124,22 +144,14 @@ export const EditPolicySystems = ({
             remediationsEnabled={false}
             compact
             showActions={false}
-            defaultFilter={
-              osMajorVersion &&
-              (apiV2Enabled
-                ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-                    ' '
-                  )})`
-                : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-                    ','
-                  )})`)
-            }
+            defaultFilter={defaultFilter}
             enableExport={false}
             preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
             showGroupsFilter
             apiV2Enabled={apiV2Enabled}
             fetchApi={fetchApi}
+            fetchCustomOSes={fetchCustomOSes}
           />
         </FormGroup>
       </Form>
