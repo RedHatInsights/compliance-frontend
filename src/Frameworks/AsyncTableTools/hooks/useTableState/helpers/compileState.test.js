@@ -35,7 +35,7 @@ describe('compileState', function () {
     });
   });
 
-  it.skip('returns a table state with an observing state change', () => {
+  it('returns a table state with an observing state change', () => {
     // TODO Make this test pass
     // To solve the issue we need to make compileState iterate recursively over new states, its observers, and the observers of these new states.
     // The applyObservers function will need to be changed for this, mostly.

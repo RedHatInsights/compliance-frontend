@@ -41,51 +41,37 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     newState,
     currentState
   );
-  const observerObservingStates = Object.keys(newObserverStates).reduce(
-    (acc, observingState) => ({
-      ...acc,
-      ...applyNameSpaceObserver(
-        observingState,
-        observers,
-        {
-          ...newState,
-          ...newObserverStates,
-        },
-        currentState
-      ),
-    }),
-    {}
+
+  const recursiveApply = (accumulatedState, lastStateUpdate) => {
+    const newUpdates = Object.keys(lastStateUpdate).reduce(
+      (acc, observingState) => ({
+        ...acc,
+        ...applyNameSpaceObserver(
+          observingState,
+          observers,
+          {
+            ...newState,
+            ...accumulatedState,
+          },
+          currentState
+        ),
+      }),
+      {}
+    );
+
+    if (Object.keys(newUpdates).length === 0) {
+      return accumulatedState;
+    }
+
+    return recursiveApply(merge(accumulatedState, newUpdates), newUpdates);
+  };
+
+  const finalObserverStates = recursiveApply(
+    newObserverStates,
+    newObserverStates
   );
 
-  const observerObservingObserverStates = Object.keys(
-    observerObservingStates
-  ).reduce(
-    (acc, observingState) => ({
-      ...acc,
-      ...applyNameSpaceObserver(
-        observingState,
-        observers,
-        {
-          ...newState,
-          ...newObserverStates,
-          ...observerObservingStates,
-        },
-        currentState
-      ),
-    }),
-    {}
-  );
-
-  return merge(
-    currentState,
-    merge(
-      newState,
-      merge(
-        newObserverStates,
-        merge(observerObservingStates, observerObservingObserverStates)
-      )
-    )
-  );
+  return merge(currentState, merge(newState, finalObserverStates));
 };
 
 const compileState = (
