@@ -195,10 +195,9 @@ export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST = {
   complianceScore: 'score',
 };
 
-export const compliantSystemFilterConfiguration = ({
-  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST,
-  hideNeverReported = false,
-} = {}) => [
+export const compliantSystemFilterConfiguration = (
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST
+) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Compliance',
@@ -213,14 +212,45 @@ export const compliantSystemFilterConfiguration = ({
         value: `${filterKeys.compliant} = false AND ${filterKeys.supported} = true`,
       },
       { label: 'Not supported', value: `${filterKeys.supported} = false` },
-      ...(!hideNeverReported
-        ? [
-            {
-              label: 'Never reported',
-              value: `${filterKeys.neverReported} = false`,
-            },
-          ]
-        : []),
+      {
+        label: 'Never reported',
+        value: `${filterKeys.neverReported} = false`,
+      },
+    ],
+  },
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Compliance score',
+    filterString: (value) => {
+      const scoreRange = value.split('-');
+      return `(${filterKeys.complianceScore} >= ${scoreRange[0]} and ${filterKeys.complianceScore} < ${scoreRange[1]})`;
+    },
+    items: [
+      { label: '90 - 100%', value: '90-101' },
+      { label: '70 - 89%', value: '70-90' },
+      { label: '50 - 69%', value: '50-70' },
+      { label: 'Less than 50%', value: '0-50' },
+    ],
+  },
+];
+
+export const compliantSystemFilterRestConfiguration = (
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST
+) => [
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Compliance',
+    filterString: (value) => `${value}`,
+    items: [
+      {
+        label: 'Compliant',
+        value: `(${filterKeys.compliant} = true)`,
+      },
+      {
+        label: 'Non-compliant',
+        value: `(${filterKeys.compliant} = false)`,
+      },
+      { label: 'Not supported', value: `(${filterKeys.supported} = false)` },
     ],
   },
   {
