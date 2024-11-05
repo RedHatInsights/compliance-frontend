@@ -12,14 +12,19 @@ import { useParams } from 'react-router-dom';
 
 const SystemPolicyCard = ({ policy }) => {
   const { inventoryId } = useParams();
-  const { data, loading } = useReportTestResults({
-    params: {
-      reportId: policy.id,
-      filter: `system_id=${inventoryId}`,
-    },
+  const { data } = useReportTestResults({
+    params: [
+      policy.id,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      `system_id=${inventoryId}`,
+    ],
   });
 
-  return loading ? (
+  return data === undefined ? (
     <LoadingPolicyCards count={1} />
   ) : data.meta.total === 0 ? (
     <React.Fragment />
@@ -42,10 +47,7 @@ SystemPolicyCard.propTypes = {
 export const SystemPolicyCards = () => {
   const { inventoryId } = useParams();
   const { data, loading } = useSystemReports({
-    params: {
-      systemId: inventoryId,
-      limit: 100,
-    },
+    params: [inventoryId, null, 100],
   });
 
   return (
