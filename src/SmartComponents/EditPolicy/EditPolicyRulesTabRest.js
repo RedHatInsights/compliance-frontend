@@ -11,7 +11,7 @@ import propTypes from 'prop-types';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import { Tailorings } from 'PresentationalComponents';
+import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>

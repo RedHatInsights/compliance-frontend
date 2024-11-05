@@ -10,11 +10,13 @@ import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from '@/Utilities/dataSerialiser';
-import { apiInstance } from '@/Utilities/hooks/useQuery';
-import { policiesDataMapper, systemsDataMapper } from '@/constants';
+import { policiesDataMapper } from '@/constants';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
-import { buildOSObject } from '@/Utilities/helpers';
+import {
+  fetchSystemsApi,
+  fetchCustomOSes,
+} from 'SmartComponents/SystemsTable/constants';
 
 export const QUERY = gql`
   {
@@ -32,39 +34,6 @@ export const QUERY = gql`
 
 const DEFAULT_FILTER_GRAPHQL = 'has_test_results = true or has_policy = true';
 const DEFAULT_FILTER_REST = 'assigned_or_scanned=true';
-
-const processSystemsData = (data) =>
-  dataSerialiser(
-    data.map((entry) => ({
-      ...entry,
-      policies: dataSerialiser(entry.policies, policiesDataMapper),
-    })),
-    systemsDataMapper
-  );
-
-export const fetchApi = async (page, perPage, combinedVariables) =>
-  apiInstance
-    .systems(
-      undefined,
-      combinedVariables.tags,
-      perPage,
-      page,
-      combinedVariables.idsOnly,
-      combinedVariables.sortBy,
-      combinedVariables.filter
-    )
-    .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
-      data: processSystemsData(data),
-      meta,
-    }));
-
-const fetchCustomOSes = ({ filters }) =>
-  apiInstance.systemsOS(null, filters).then(({ data }) => {
-    return {
-      results: buildOSObject(data),
-      total: data?.length || 0,
-    };
-  });
 
 const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
@@ -112,7 +81,7 @@ const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
                 remediationsEnabled={false}
                 policies={policies}
                 showGroupsFilter
-                fetchApi={fetchApi}
+                fetchApi={fetchSystemsApi}
                 fetchCustomOSes={fetchCustomOSes}
                 apiV2Enabled={apiV2Enabled}
               />

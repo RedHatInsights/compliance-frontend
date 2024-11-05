@@ -10,6 +10,10 @@ import { conditionalFilterType } from '@redhat-cloud-services/frontend-component
 import { entitiesReducer } from 'Store/Reducers/SystemStore';
 import isPlainObject from 'lodash/isPlainObject';
 import { coerce, valid } from 'semver';
+import { apiInstance } from '@/Utilities/hooks/useQuery';
+import { buildOSObject } from '@/Utilities/helpers';
+import { policiesDataMapper, systemsDataMapper } from '@/constants';
+import dataSerialiser from '@/Utilities/dataSerialiser';
 
 export const GET_MINIMAL_SYSTEMS = gql`
   query ST_Systems(
@@ -168,3 +172,36 @@ export const applyInventoryFilters = (
     return resultingFilter;
   }, null);
 };
+
+const processSystemsData = (data) =>
+  dataSerialiser(
+    data.map((entry) => ({
+      ...entry,
+      policies: dataSerialiser(entry.policies, policiesDataMapper),
+    })),
+    systemsDataMapper
+  );
+
+export const fetchSystemsApi = async (page, perPage, combinedVariables) =>
+  apiInstance
+    .systems(
+      undefined,
+      combinedVariables.tags,
+      perPage,
+      page,
+      combinedVariables.idsOnly,
+      combinedVariables.sortBy,
+      combinedVariables.filter
+    )
+    .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
+      data: processSystemsData(data),
+      meta,
+    }));
+
+export const fetchCustomOSes = ({ filters }) =>
+  apiInstance.systemsOS(null, filters).then(({ data }) => {
+    return {
+      results: buildOSObject(data),
+      total: data?.length || 0,
+    };
+  });

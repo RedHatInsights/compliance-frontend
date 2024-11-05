@@ -3,13 +3,13 @@ import { Text, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
-import { apiInstance } from '@/Utilities/hooks/useQuery';
-import { buildOSObject } from '@/Utilities/helpers';
-import { policiesDataMapper, systemsDataMapper } from '@/constants';
-import dataSerialiser from '@/Utilities/dataSerialiser';
+import {
+  fetchSystemsApi,
+  fetchCustomOSes,
+} from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
-  <React.Fragment>
+  <div data-testid="empty-state">
     <TextContent className="pf-v5-u-mb-md">
       <Text>
         You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
@@ -19,7 +19,7 @@ const EmptyState = ({ osMajorVersion }) => (
     <TextContent className="pf-v5-u-mb-md">
       <Text>Connect RHEL {osMajorVersion} systems to Insights.</Text>
     </TextContent>
-  </React.Fragment>
+  </div>
 );
 
 EmptyState.propTypes = {
@@ -28,7 +28,7 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-v5-u-mb-md">
+    <TextContent className="pf-v5-u-mb-md" data-testid="prepend-component">
       <Text>
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.
@@ -40,39 +40,6 @@ const PrependComponent = ({ osMajorVersion }) => (
 PrependComponent.propTypes = {
   osMajorVersion: propTypes.string,
 };
-
-const processSystemsData = (data) =>
-  dataSerialiser(
-    data.map((entry) => ({
-      ...entry,
-      policies: dataSerialiser(entry.policies, policiesDataMapper),
-    })),
-    systemsDataMapper
-  );
-
-const fetchApi = async (page, perPage, combinedVariables) =>
-  apiInstance
-    .systems(
-      undefined,
-      combinedVariables.tags,
-      perPage,
-      page,
-      combinedVariables.idsOnly,
-      combinedVariables.sortBy,
-      combinedVariables.filter
-    )
-    .then(({ data: { data = [], meta = {} } = {} } = {}) => ({
-      data: processSystemsData(data),
-      meta,
-    }));
-
-const fetchCustomOSes = ({ filters }) =>
-  apiInstance.systemsOS(null, filters).then(({ data }) => {
-    return {
-      results: buildOSObject(data),
-      total: data?.length || 0,
-    };
-  });
 
 const EditPolicySystemsTab = ({
   policy,
@@ -89,30 +56,26 @@ const EditPolicySystemsTab = ({
     )}")`;
 
   return (
-    <React.Fragment>
-      <SystemsTable
-        columns={[
-          Columns.Name,
-          Columns.inventoryColumn('tags'),
-          Columns.OperatingSystem,
-        ]}
-        showOsMinorVersionFilter={[os_major_version]}
-        prependComponent={
-          <PrependComponent osMajorVersion={os_major_version} />
-        }
-        emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
-        compact
-        showActions={false}
-        defaultFilter={defaultFilter}
-        enableExport={false}
-        remediationsEnabled={false}
-        preselectedSystems={selectedSystems}
-        onSelect={onSystemSelect}
-        apiV2Enabled={true}
-        fetchApi={fetchApi}
-        fetchCustomOSes={fetchCustomOSes}
-      />
-    </React.Fragment>
+    <SystemsTable
+      columns={[
+        Columns.Name,
+        Columns.inventoryColumn('tags'),
+        Columns.OperatingSystem,
+      ]}
+      showOsMinorVersionFilter={[os_major_version]}
+      prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
+      emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
+      compact
+      showActions={false}
+      defaultFilter={defaultFilter}
+      enableExport={false}
+      remediationsEnabled={false}
+      preselectedSystems={selectedSystems}
+      onSelect={onSystemSelect}
+      apiV2Enabled={true}
+      fetchApi={fetchSystemsApi}
+      fetchCustomOSes={fetchCustomOSes}
+    />
   );
 };
 
