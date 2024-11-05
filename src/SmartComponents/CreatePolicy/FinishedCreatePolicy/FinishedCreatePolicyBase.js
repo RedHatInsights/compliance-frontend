@@ -22,7 +22,6 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withApollo } from '@apollo/client/react/hoc';
-import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const EmptyStateWithErrors = ({ errors }) =>
@@ -40,7 +39,7 @@ EmptyStateWithErrors.propTypes = {
   errors: propTypes.array,
 };
 
-export const FinishedCreatePolicy = ({
+export const FinishedCreatePolicyBase = ({
   onWizardFinish,
   cloneFromProfileId,
   description,
@@ -52,12 +51,12 @@ export const FinishedCreatePolicy = ({
   systems,
   selectedRuleRefIds,
   ruleValues: values,
+  updatePolicy,
 }) => {
   const [percent, setPercent] = useState(0);
   const [message, setMessage] = useState('This usually takes a minute or two.');
   const [errors, setErrors] = useState(null);
   const [failed, setFailed] = useState(false);
-  const updatePolicy = usePolicy();
 
   const onProgress = (progress) => {
     setPercent(progress * 100);
@@ -146,7 +145,7 @@ export const FinishedCreatePolicy = ({
   );
 };
 
-FinishedCreatePolicy.propTypes = {
+FinishedCreatePolicyBase.propTypes = {
   benchmarkId: propTypes.string.isRequired,
   businessObjective: propTypes.object,
   cloneFromProfileId: propTypes.string.isRequired,
@@ -158,6 +157,7 @@ FinishedCreatePolicy.propTypes = {
   onWizardFinish: propTypes.func,
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
   ruleValues: propTypes.object,
+  updatePolicy: propTypes.func.isRequired,
 };
 
 export const selector = formValueSelector('policyForm');
@@ -184,4 +184,4 @@ export default compose(
     forceUnregisterOnUnmount: true,
   }),
   withApollo
-)(FinishedCreatePolicy);
+)(FinishedCreatePolicyBase);

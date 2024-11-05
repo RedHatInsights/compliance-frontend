@@ -7,11 +7,10 @@ import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 
 const profilesDataMap = {
-  id: 'id',
+  id: ['id', 'benchmark.id'],
   description: 'description',
   title: 'name',
   ref_id: 'refId',
-  security_guide_id: 'benchmark.id',
   supportedOsVersions: 'supportedOsVersions',
 };
 
@@ -58,7 +57,7 @@ const CreateSCAPPolicyRest = ({
             : {
                 availableOsMajorVersions,
                 availableProfiles: dataSerialiser(
-                  serialiseOsVersions(availableProfiles),
+                  serialiseOsVersions(availableProfiles?.data),
                   profilesDataMap
                 ),
               },
