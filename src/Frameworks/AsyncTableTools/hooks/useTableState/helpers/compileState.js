@@ -17,17 +17,17 @@ const applySerialisers = (serialisers, newState) =>
 
 const applyNameSpaceObserver = (namespace, observers, newState, currentState) =>
   Object.entries(observers[namespace] || {}).reduce(
-    (newObserverStatesAcc, [observingState, observerFunction]) => {
-      const newObservingState = observerFunction(
-        currentState?.[observingState],
+    (observerResults, [observedState, observerFunction]) => {
+      const observerResult = observerFunction(
+        currentState?.[observedState],
         currentState?.[namespace],
         newState[namespace]
       );
 
       return {
-        ...newObserverStatesAcc,
-        ...(typeof newObservingState !== 'undefined'
-          ? { [observingState]: newObservingState }
+        ...observerResults,
+        ...(typeof observerResult !== 'undefined'
+          ? { [observedState]: observerResult }
           : {}),
       };
     },
@@ -42,16 +42,16 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     currentState
   );
 
-  const recursiveApply = (accumulatedState, lastStateUpdate) => {
-    const newUpdates = Object.keys(lastStateUpdate).reduce(
-      (acc, observingState) => ({
+  const updateStateRecursively = (currentStateSnapshot, pendingChanges) => {
+    const nextStateChanges = Object.keys(pendingChanges).reduce(
+      (acc, stateKey) => ({
         ...acc,
         ...applyNameSpaceObserver(
-          observingState,
+          stateKey,
           observers,
           {
             ...newState,
-            ...accumulatedState,
+            ...currentStateSnapshot,
           },
           currentState
         ),
@@ -59,14 +59,17 @@ const applyObservers = (namespace, observers, newState, currentState) => {
       {}
     );
 
-    if (Object.keys(newUpdates).length === 0) {
-      return accumulatedState;
+    if (Object.keys(nextStateChanges).length === 0) {
+      return currentStateSnapshot;
     }
 
-    return recursiveApply(merge(accumulatedState, newUpdates), newUpdates);
+    return updateStateRecursively(
+      merge(currentStateSnapshot, nextStateChanges),
+      nextStateChanges
+    );
   };
 
-  const finalObserverStates = recursiveApply(
+  const finalObserverStates = updateStateRecursively(
     newObserverStates,
     newObserverStates
   );
