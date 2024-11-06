@@ -37,11 +37,10 @@ const usePagination = (options = {}) => {
     (page) => {
       setPaginationState((paginationState) => {
         const nextPage = page < 0 ? paginationState.page + page : page;
-
         return {
-          ...paginationState,
+          ...(paginationState || {}),
           state: {
-            ...paginationState.state,
+            ...(paginationState?.state || {}),
             page: nextPage > 0 ? nextPage : 1,
           },
         };
