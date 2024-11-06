@@ -158,4 +158,24 @@ describe('compileState', function () {
       },
     });
   });
+
+  it('should set to undefined', () => {
+    expect(
+      compileState(
+        'items',
+        {
+          tableState: {
+            items: ['abc'],
+          },
+        },
+        undefined,
+        {},
+        {}
+      )
+    ).toEqual({
+      tableState: {
+        items: undefined,
+      },
+    });
+  });
 });

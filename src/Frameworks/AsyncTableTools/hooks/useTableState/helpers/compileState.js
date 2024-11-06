@@ -74,7 +74,11 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     newObserverStates
   );
 
-  return merge(currentState, merge(newState, finalObserverStates));
+  // can be replaced with mergeWith if deep merge would be required
+  return Object.assign(
+    currentState,
+    Object.assign(newState, finalObserverStates)
+  );
 };
 
 const compileState = (
