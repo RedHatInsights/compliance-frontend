@@ -139,7 +139,7 @@ export const EditPolicySystems = ({
                 sortBy: ['groups'],
               }),
               Columns.inventoryColumn('tags'),
-              Columns.OperatingSystem,
+              Columns.OperatingSystem(apiV2Enabled),
             ]}
             remediationsEnabled={false}
             compact

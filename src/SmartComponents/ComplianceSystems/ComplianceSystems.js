@@ -92,7 +92,7 @@ const ComplianceSystemsBase = ({ error, data, loading, policies }) => {
                     sortBy: ['groups'],
                   }),
                   Columns.inventoryColumn('tags'),
-                  Columns.OS,
+                  Columns.OS(apiV2Enabled),
                   Columns.Policies,
                   Columns.inventoryColumn('updated', {
                     props: { isStatic: true },
