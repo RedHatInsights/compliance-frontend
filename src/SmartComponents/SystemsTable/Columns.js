@@ -128,32 +128,38 @@ export const LastScanned = {
   renderFunc: renderComponent(LastScannedCell),
 };
 
-export const OperatingSystem = compileColumnRenderFunc({
-  title: 'Operating system',
-  key: 'operatingSystem',
-  sortBy: ['osMajorVersion', 'osMinorVersion'],
-  transforms: [nowrap],
-  renderExport: (cell) => operatingSystemString(cell),
-  cell: OperatingSystemCell,
-});
+export const OperatingSystem = (apiV2Enabled = false) =>
+  compileColumnRenderFunc({
+    title: 'Operating system',
+    key: 'operatingSystem',
+    sortBy: apiV2Enabled
+      ? ['os_version']
+      : ['osMajorVersion', 'osMinorVersion'], // Use parameter to set sortBy
+    transforms: [nowrap],
+    renderExport: (cell) => operatingSystemString(cell),
+    cell: OperatingSystemCell,
+  });
 
-export const OS = compileColumnRenderFunc({
-  title: (
-    <Tooltip content={<span>Operating System</span>}>
-      <span>OS</span>
-    </Tooltip>
-  ),
-  original: 'Operating System',
-  key: 'operatingSystem',
-  dataLabel: 'OS',
-  transforms: [nowrap],
-  sortBy: ['osMajorVersion', 'osMinorVersion'],
-  props: {
-    width: 10,
-  },
-  renderExport: (cell) => operatingSystemString(cell),
-  cell: OperatingSystemCell,
-});
+export const OS = (apiV2Enabled = false) =>
+  compileColumnRenderFunc({
+    title: (
+      <Tooltip content={<span>Operating System</span>}>
+        <span>OS</span>
+      </Tooltip>
+    ),
+    original: 'Operating System',
+    key: 'operatingSystem',
+    dataLabel: 'OS',
+    transforms: [nowrap],
+    sortBy: apiV2Enabled
+      ? ['os_version']
+      : ['osMajorVersion', 'osMinorVersion'],
+    props: {
+      width: 10,
+    },
+    renderExport: (cell) => operatingSystemString(cell),
+    cell: OperatingSystemCell,
+  });
 
 export const inventoryColumn = (column, props) => ({
   key: column,
