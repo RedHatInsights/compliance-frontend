@@ -1,4 +1,11 @@
 import merge from 'lodash/merge';
+import mergeWith from 'lodash/mergeWith';
+
+const preserveUndefinedCustomizer = (objValue, srcValue, key, obj) => {
+  if (objValue !== srcValue && typeof srcValue === 'undefined') {
+    obj[key] = srcValue;
+  }
+};
 
 const applySerialisers = (serialisers, newState) =>
   Object.entries(serialisers).reduce(
@@ -74,10 +81,10 @@ const applyObservers = (namespace, observers, newState, currentState) => {
     newObserverStates
   );
 
-  // can be replaced with mergeWith if deep merge would be required
-  return Object.assign(
+  return mergeWith(
     currentState,
-    Object.assign(newState, finalObserverStates)
+    mergeWith(newState, finalObserverStates, preserveUndefinedCustomizer),
+    preserveUndefinedCustomizer
   );
 };
 
