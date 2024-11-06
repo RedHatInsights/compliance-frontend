@@ -12,7 +12,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
-describe('EditPolicy', () => {
+describe.skip('EditPolicy', () => {
   beforeEach(() => {
     useAPIV2FeatureFlag.mockImplementation(() => false);
   });

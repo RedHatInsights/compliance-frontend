@@ -65,7 +65,7 @@ describe('EditPolicySystemsTabRest', () => {
     await waitFor(() =>
       expect(fetchSystemsApi).toHaveBeenCalledWith(0, 10, {
         filter:
-          '((os_major_version = 8) AND (os_minor_version ^ "1 2")), display_name ~ test-name',
+          'os_major_version = 8 AND os_minor_version ^ (1 2), display_name ~ test-name',
         sortBy: ['name:asc'],
         tags: [],
       })

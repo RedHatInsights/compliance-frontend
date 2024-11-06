@@ -51,9 +51,9 @@ const EditPolicySystemsTab = ({
 
   const defaultFilter =
     os_major_version &&
-    `(os_major_version = ${os_major_version}) AND (os_minor_version ^ "${supportedOsVersions.join(
+    `os_major_version = ${os_major_version} AND os_minor_version ^ (${supportedOsVersions.join(
       ' '
-    )}")`;
+    )})`;
 
   return (
     <SystemsTable
