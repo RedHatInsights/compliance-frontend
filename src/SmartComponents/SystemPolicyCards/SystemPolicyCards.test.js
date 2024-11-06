@@ -38,8 +38,7 @@ describe('SystemPolicyCards', () => {
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
-      data: null,
-      loading: true,
+      data: undefined, // indicates loading state
     }));
     render(<SystemPolicyCards />);
 
@@ -55,7 +54,6 @@ describe('SystemPolicyCards', () => {
     }));
     useReportTestResults.mockImplementation(() => ({
       data: { data: testResultsData, meta: { total: 1 } },
-      loading: false,
     }));
     render(<SystemPolicyCards />);
 
@@ -86,7 +84,7 @@ describe('SystemPolicyCards', () => {
     render(<SystemPolicyCards />);
 
     expect(useSystemReports).toBeCalledWith({
-      params: { limit: 100, systemId: 'abc' },
+      params: ['abc', null, 100],
     });
   });
 
@@ -96,16 +94,20 @@ describe('SystemPolicyCards', () => {
       loading: false,
     }));
     useReportTestResults.mockImplementation(() => ({
-      data: null,
-      loading: true,
+      data: undefined, // indicates loading state
     }));
     render(<SystemPolicyCards />);
 
     expect(useReportTestResults).toBeCalledWith({
-      params: {
-        filter: 'system_id=abc',
-        reportId: systemReportsData[0].id,
-      },
+      params: [
+        systemReportsData[0].id,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        'system_id=abc',
+      ],
     });
   });
 
@@ -116,7 +118,6 @@ describe('SystemPolicyCards', () => {
     }));
     useReportTestResults.mockImplementation(() => ({
       data: { data: [], meta: { total: 0 } },
-      loading: false,
     }));
     render(<SystemPolicyCards />);
 

@@ -85,7 +85,9 @@ CompliancePoliciesBase.propTypes = {
 };
 
 const CompliancePoliciesV2 = () => {
-  const query = usePolicies();
+  const query = usePolicies({
+    params: [undefined, 100],
+  });
 
   const data = query.data?.data
     ? {
