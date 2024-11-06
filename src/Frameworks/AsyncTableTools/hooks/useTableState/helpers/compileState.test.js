@@ -35,12 +35,7 @@ describe('compileState', function () {
     });
   });
 
-  it.skip('returns a table state with an observing state change', () => {
-    // TODO Make this test pass
-    // To solve the issue we need to make compileState iterate recursively over new states, its observers, and the observers of these new states.
-    // The applyObservers function will need to be changed for this, mostly.
-    // the flow should be newState, apply observers for changed state and get the next state, apply observers for the changed states, to get the next new state, ....
-    // ... and finally return the resulting state after there are no more observers for a changed state
+  it('returns a table state with an observing state change', () => {
     const withMoreObservers = {
       ...observers,
       secondObservingStateObserverState: {
@@ -160,6 +155,26 @@ describe('compileState', function () {
         filters: {
           name: ['t'],
         },
+      },
+    });
+  });
+
+  it('should set to undefined', () => {
+    expect(
+      compileState(
+        'items',
+        {
+          tableState: {
+            items: ['abc'],
+          },
+        },
+        undefined,
+        {},
+        {}
+      )
+    ).toEqual({
+      tableState: {
+        items: undefined,
       },
     });
   });

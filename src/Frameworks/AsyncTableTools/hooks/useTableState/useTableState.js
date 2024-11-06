@@ -36,7 +36,7 @@ const useTableState = (namespace, initialState, options = {}) => {
       return setState((currentState) => {
         const newState =
           typeof newStateForNameSpace === 'function'
-            ? newStateForNameSpace(currentState)
+            ? newStateForNameSpace(currentState?.tableState?.[namespace])
             : newStateForNameSpace;
 
         return compileState(
