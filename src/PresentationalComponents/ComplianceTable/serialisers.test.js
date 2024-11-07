@@ -90,7 +90,7 @@ describe('sortSerialiser', () => {
     expect(
       sortSerialiser(
         {
-          index: 1,
+          index: 0,
           direction: 'asc',
         },
         exampleColumns
@@ -100,7 +100,7 @@ describe('sortSerialiser', () => {
     expect(
       sortSerialiser(
         {
-          index: 2,
+          index: 1,
           direction: 'desc',
         },
         exampleColumns

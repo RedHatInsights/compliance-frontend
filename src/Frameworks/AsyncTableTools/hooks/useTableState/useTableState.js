@@ -39,13 +39,21 @@ const useTableState = (namespace, initialState, options = {}) => {
             ? newStateForNameSpace(currentState?.tableState?.[namespace])
             : newStateForNameSpace;
 
-        return compileState(
+        const nextState = compileState(
           namespace,
           currentState,
           newState,
           observers.current,
           serialisers.current
         );
+
+        console.group('State change by', namespace);
+        console.log('New state for namespace', newState);
+        console.log('Current state:', currentState?.tableState);
+        console.log('Next State:', nextState?.tableState);
+        console.groupEnd();
+
+        return nextState;
       });
     },
     [observers, serialisers, setState, namespace]

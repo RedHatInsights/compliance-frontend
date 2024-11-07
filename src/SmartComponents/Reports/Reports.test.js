@@ -7,7 +7,6 @@ import { profiles } from '@/__fixtures__/profiles.js';
 
 import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag.js';
 import Reports from './Reports.js';
-import useReports from 'Utilities/hooks/api/useReports';
 
 jest.mock('@apollo/client');
 jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
@@ -81,7 +80,7 @@ describe('Reports - REST', () => {
   });
 
   it('should use REST api', () => {
-    useReports.mockImplementation(() => ({
+    useQuery.mockImplementation(() => ({
       data: [],
       loading: false,
       error: null,
@@ -94,6 +93,6 @@ describe('Reports - REST', () => {
       </TestWrapper>
     );
 
-    expect(useReports).toHaveBeenCalled();
+    expect(useQuery).toHaveBeenCalled();
   });
 });

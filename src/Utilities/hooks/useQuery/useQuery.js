@@ -106,7 +106,7 @@ const useQuery = (fn, options = {}) => {
     };
   }, [skip, params, typeof refetch !== 'undefined']);
 
-  return { data, error, loading: loading, fetch, refetch };
+  return { data, error, loading, fetch, refetch };
 };
 
 export default useQuery;
