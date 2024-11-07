@@ -110,7 +110,7 @@ describe('useComplianceQuery', () => {
       )
     );
 
-    act(() => result.current.sort.tableProps.onSort(null, 2, 'desc'));
+    act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
 
     await waitFor(() =>
       expect(mockFakeApi).toHaveBeenNthCalledWith(3, expect.anything(), {
