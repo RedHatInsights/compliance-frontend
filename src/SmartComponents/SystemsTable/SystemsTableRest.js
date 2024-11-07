@@ -4,7 +4,7 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
-import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
+import RemediationButtonRest from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import {
@@ -23,8 +23,8 @@ import {
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import {
   defaultSystemsFilterConfiguration,
-  compliantSystemFilterConfiguration,
   complianceReportTableAdditionalFilter,
+  compliantSystemFilterRestConfiguration,
 } from '../../constants';
 
 export const SystemsTable = ({
@@ -37,6 +37,7 @@ export const SystemsTable = ({
   policies,
   showOnlySystemsWithTestResults,
   showOsFilter,
+  showTagsFilter,
   error: errorProp,
   showComplianceSystemsInfo,
   compact,
@@ -56,6 +57,7 @@ export const SystemsTable = ({
   fetchApi,
   fetchCustomOSes,
   ignoreOsMajorVersion,
+  reportId,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -64,6 +66,7 @@ export const SystemsTable = ({
   const [total, setTotal] = useState(0);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
+  const [selectedWholeItems, setSelectedWholeItems] = useState([]);
 
   const {
     toolbarProps: conditionalFilter,
@@ -73,7 +76,7 @@ export const SystemsTable = ({
     filters: {
       filterConfig: [
         ...defaultSystemsFilterConfiguration(),
-        ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
+        ...(compliantFilter ? compliantSystemFilterRestConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
@@ -93,13 +96,18 @@ export const SystemsTable = ({
 
   const combinedFetchArgumentsRef = useRef();
 
+  const onCustomSelect = (selectedItems) => {
+    setSelectedWholeItems(selectedItems);
+    onSelect?.(selectedItems);
+  };
+
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    onSelect,
+    onSelect: onCustomSelect,
     preselectedSystems,
     fetchArguments: combinedFetchArgumentsRef.current,
     currentPageItems: items,
@@ -164,8 +172,8 @@ export const SystemsTable = ({
   });
 
   const handleOperatingSystemsFetch = useCallback(
-    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
-    [defaultFilter, fetchCustomOSes, policyId]
+    () => fetchCustomOSes({ filters: defaultFilter, reportId, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId, reportId]
   );
 
   return (
@@ -205,8 +213,8 @@ export const SystemsTable = ({
             all: true,
             name: false,
             operatingSystem: false,
-            tags: false,
-            hostGroupFilter: !showGroupsFilter,
+            tags: !showTagsFilter,
+            hostGroupFilteronCustomSelect: !showGroupsFilter,
           }}
           showTags
           onLoad={defaultOnLoad(columns)}
@@ -222,7 +230,10 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <RemediationButton policyId={policyId} systems={selectedIds} />
+                <RemediationButtonRest
+                  reportId={reportId}
+                  wholeSystems={selectedWholeItems}
+                />
               ),
             }),
           })}
@@ -259,6 +270,7 @@ SystemsTable.propTypes = {
   showOsFilter: PropTypes.bool,
   showGroupsFilter: PropTypes.bool,
   showComplianceSystemsInfo: PropTypes.bool,
+  showTagsFilter: PropTypes.bool,
   error: PropTypes.object,
   compact: PropTypes.bool,
   remediationsEnabled: PropTypes.bool,
@@ -282,6 +294,7 @@ SystemsTable.propTypes = {
   fetchApi: PropTypes.func.isRequired,
   fetchCustomOSes: PropTypes.func.isRequired,
   ignoreOsMajorVersion: PropTypes.bool,
+  reportId: PropTypes.string,
 };
 
 SystemsTable.defaultProps = {
@@ -296,6 +309,7 @@ SystemsTable.defaultProps = {
   preselectedSystems: [],
   ruleSeverityFilter: false,
   showGroupsFilter: false,
+  showTagsFilter: true,
 };
 
 export default SystemsTable;
