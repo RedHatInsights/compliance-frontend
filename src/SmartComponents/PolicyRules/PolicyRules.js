@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
@@ -9,14 +9,17 @@ import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import { Spinner } from '@patternfly/react-core';
 import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
 import PolicyRulesHeader from './PolicyRulesHeader';
-import { useProfileTree } from '@/Utilities/hooks/api/useProfileTree';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import { buildTreeTable } from '@/PresentationalComponents/Tailorings/helpers';
-import useFetchTotalBatched from '@/Utilities/hooks/useFetchTotalBatched';
-import useRuleGroups from '@/Utilities/hooks/api/useRuleGroups';
 import GatedComponents from 'PresentationalComponents/GatedComponents';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
+import useRulesExporter from 'PresentationalComponents/Tailorings/hooks/useRulesExporter';
+import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { policyRulesSkips } from './helpers';
 
+const policyTitle =
+  'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
+const profileId = '0a036ede-252e-4e73-bdd8-9203f93deefe';
+const securityGuideId = '3e01872b-e90d-46bb-9b39-012adc00d9b9';
 const PROFILES_QUERY = gql`
   query PR_Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -86,111 +89,59 @@ const PolicyRulesGraphQL = () => {
   );
 };
 
+//TODO: Data is currently hardcoded, once modals are migrated we can pass in IDs in TabHeader
 const PolicyRulesRest = () => {
-  //TODO: Data is currently hardcoded, once modals are migrated we can pass in IDs in TabHeader
-  // const { policy_id: policyId, security_guide_id: securityGuidesId } = useParams();
-  const policyTitle =
-    'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
-  const profileId2 = '0a036ede-252e-4e73-bdd8-9203f93deefe';
-  const securityGuidesId = '3e01872b-e90d-46bb-9b39-012adc00d9b9';
+  const tableState = useFullTableState();
+  // const { policy_id: policyId, security_guide_id: securityGuideId } = useParams();
+  const openRuleGroups = tableState?.tableState?.['open-items'];
+  const groupFilter =
+    tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
+      ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
+      : undefined;
 
-  const {
-    data: rulesTreeData,
-    loading: rulesTreeLoading,
-    error: rulesTreeError,
-  } = useProfileTree({
-    securityGuideId: securityGuidesId,
-    profileId: profileId2,
-  });
-
-  const { fetch: fetchPolicyRulesList } = usePolicyRulesList({
-    params: {
-      profileId2,
-      securityGuidesId,
-    },
-  });
-
-  const fetchPolicyRulesListForBatch = useCallback(
-    (offset, limit) =>
-      fetchPolicyRulesList(
-        [securityGuidesId, profileId2, undefined, limit, offset],
-        false
-      ),
-    [fetchPolicyRulesList, securityGuidesId]
-  );
-  const {
-    loading: isPolicyRulesListLoading,
-    data: policyRulesListsData,
-    error: policyRulesListError,
-  } = useFetchTotalBatched(fetchPolicyRulesListForBatch, {
-    batchSize: 50,
-  });
-
-  const { fetch: fetchRuleGroups } = useRuleGroups({
-    params: {
-      securityGuidesId,
-    },
-    skip: true,
-  });
-
-  const fetchRuleGroupsForBatch = useCallback(
-    (offset, limit) =>
-      fetchRuleGroups([securityGuidesId, undefined, limit, offset], false),
-    [fetchRuleGroups, securityGuidesId]
+  const shouldSkip = useMemo(
+    () =>
+      policyRulesSkips({
+        tableState,
+        profileId,
+        securityGuideId,
+      }),
+    [tableState]
   );
 
-  const {
-    loading: ruleGroupsLoading,
-    data: ruleGroupsData,
-    error: ruleGroupsError,
-  } = useFetchTotalBatched(fetchRuleGroupsForBatch, {
-    batchSize: 60,
+  const { data, fetchRules } = usePolicyRulesList({
+    profileId,
+    securityGuideId,
+    tableState,
+    ...(groupFilter ? { groupFilter } : {}),
+    shouldSkip,
   });
 
-  let isLoading =
-    isPolicyRulesListLoading ||
-    rulesTreeLoading ||
-    ruleGroupsLoading ||
-    undefined;
-  let allErrors =
-    policyRulesListError || rulesTreeError || ruleGroupsError || undefined;
-  let allData =
-    policyRulesListsData && rulesTreeData && ruleGroupsData ? true : undefined;
+  const { rules, builtTree } = data;
 
-  const builtTree = ruleGroupsData
-    ? buildTreeTable(rulesTreeData, ruleGroupsData)
-    : undefined;
+  const rulesExporter = useRulesExporter(fetchRules);
 
   return (
-    <StateView stateValues={{ allErrors, allData, isLoading }}>
-      <StateViewPart stateKey="allErrors">
-        <ErrorPage error={allErrors} />
-      </StateViewPart>
-      <StateViewPart stateKey={'isLoading'}>
-        <PageHeader>
-          <Spinner />
-        </PageHeader>
-      </StateViewPart>
-      <StateViewPart stateKey={'allData'}>
-        <PolicyRulesBase
-          osMajorVersion={'passedIn paramMajor'}
-          benchmarkVersion={'passed in ParamTitle'}
-          headerName={policyTitle}
-          component={
-            <TableStateProvider>
-              <RulesTableRest
-                remediationsEnabled={false}
-                columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-                rules={policyRulesListsData}
-                ruleValues={{}}
-                options={{ pagination: false, manageColumns: false }}
-                ruleTree={builtTree}
-              />
-            </TableStateProvider>
-          }
+    <PolicyRulesBase
+      osMajorVersion={'passedIn paramMajor'}
+      benchmarkVersion={'passed in ParamTitle'}
+      headerName={policyTitle}
+      component={
+        <RulesTableRest
+          policyId={profileId}
+          securityGuideId={securityGuideId}
+          total={rules?.meta.total}
+          rules={rules?.data}
+          remediationsEnabled={false}
+          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+          ruleValues={{}}
+          options={{
+            exporter: rulesExporter,
+          }}
+          ruleTree={builtTree}
         />
-      </StateViewPart>
-    </StateView>
+      }
+    />
   );
 };
 
@@ -201,7 +152,7 @@ const PolicyRulesBase = ({
   component,
 }) => {
   return (
-    <React.Fragment>
+    <>
       <PolicyRulesHeader
         name={headerName}
         benchmarkVersion={benchmarkVersion}
@@ -210,7 +161,7 @@ const PolicyRulesBase = ({
       <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
         {component}
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -222,10 +173,12 @@ PolicyRulesBase.propTypes = {
 };
 
 const PolicyRulesWrapper = () => (
-  <GatedComponents
-    RestComponent={PolicyRulesRest}
-    GraphQLComponent={PolicyRulesGraphQL}
-  />
+  <TableStateProvider>
+    <GatedComponents
+      RestComponent={PolicyRulesRest}
+      GraphQLComponent={PolicyRulesGraphQL}
+    />
+  </TableStateProvider>
 );
 
 export default PolicyRulesWrapper;

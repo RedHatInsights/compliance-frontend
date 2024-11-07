@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import useSecurityGuideRuleTree from 'Utilities/hooks/api/useSecurityGuideRuleTree';
-import useBatchedRuleGroups from './useBatchedRuleGroups';
+import useBatchedRuleGroups from '../../hooks/useBatchedRuleGroups';
 import useBatchedValueDefinitions from './useBatchedValueDefinitions';
 import useRules from 'Utilities/hooks/api/useRules';
 

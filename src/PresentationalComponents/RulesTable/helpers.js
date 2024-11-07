@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Label, Icon } from '@patternfly/react-core';
 import { ExclamationCircleIcon } from '@patternfly/react-icons';
 
-export const itemIdentifier = (item) => `${item.profile.id}|${item.refId}`;
+export const itemIdentifier = (item) => `${item.profile?.id}|${item.refId}`;
 
 const growBranch = (item, axilFunction, showFailed, idPrefix) => {
   const growTwigs = (item) => {
