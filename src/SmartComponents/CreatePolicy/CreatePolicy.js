@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { Wizard } from '@patternfly/react-core/deprecated';
 import CreateSCAPPolicy from './CreateSCAPPolicy';
-import { default as EditPolicyRules } from './EditPolicyProfilesRules';
+import { default as EditPolicyRules } from './EditPolicyProfilesRules/EditPolicyProfilesRules';
 import EditPolicySystems from './EditPolicySystems';
 import EditPolicyDetails from './EditPolicyDetails';
 import ReviewCreatedPolicy from './ReviewCreatedPolicy';

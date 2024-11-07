@@ -1,9 +1,5 @@
 import React, { useMemo, useLayoutEffect } from 'react';
-import {
-  propTypes as reduxFormPropTypes,
-  formValueSelector,
-  reduxForm,
-} from 'redux-form';
+import { propTypes as reduxFormPropTypes } from 'redux-form';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import {
   Text,
@@ -13,8 +9,6 @@ import {
   EmptyStateBody,
   EmptyStateHeader,
 } from '@patternfly/react-core';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import propTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
@@ -25,8 +19,8 @@ import {
   extendProfilesByOsMinor,
 } from 'PresentationalComponents/TabbedRules';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import useBenchmarksQuery from './hooks/useBenchmarksQuery';
-import { PROFILES_QUERY } from './constants';
+import { PROFILES_QUERY } from '../constants';
+import useBenchmarksQuery from '../hooks/useBenchmarksQuery';
 
 const getBenchmarkProfile = (benchmark, profileRefId) =>
   benchmark.profiles.find(
@@ -38,7 +32,7 @@ const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) =>
     benchmark.latestSupportedOsMinorVersions?.includes(osMinorVersion)
   );
 
-export const EditPolicyProfilesRules = ({
+export const EditPolicyProfilesRulesGraphQL = ({
   policy,
   selectedRuleRefIds,
   change,
@@ -210,7 +204,7 @@ export const EditPolicyProfilesRules = ({
   );
 };
 
-EditPolicyProfilesRules.propTypes = {
+EditPolicyProfilesRulesGraphQL.propTypes = {
   policy: propTypes.object,
   change: reduxFormPropTypes.change,
   osMajorVersion: propTypes.string,
@@ -224,19 +218,4 @@ EditPolicyProfilesRules.propTypes = {
   ruleValues: propTypes.array,
 };
 
-const selector = formValueSelector('policyForm');
-
-export default compose(
-  connect((state) => ({
-    policy: selector(state, 'profile'),
-    osMajorVersion: selector(state, 'osMajorVersion'),
-    osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
-    selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
-    ruleValues: selector(state, 'ruleValues'),
-  })),
-  reduxForm({
-    form: 'policyForm',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-  })
-)(EditPolicyProfilesRules);
+export default EditPolicyProfilesRulesGraphQL;
