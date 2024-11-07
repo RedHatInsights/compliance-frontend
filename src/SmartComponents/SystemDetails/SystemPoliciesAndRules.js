@@ -1,67 +1,20 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Tabs, Tab, TabTitleText, Bullseye } from '@patternfly/react-core';
-import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
-import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
-import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
-import { useQuery, gql } from '@apollo/client';
-import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
-import './compliance.scss';
-import { ErrorCard } from 'PresentationalComponents';
 import natsort from 'natsort';
-
-import EmptyState from './EmptyState';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import { SystemPolicyCards as SystemPolicyCardsRest } from '../SystemPolicyCards/SystemPolicyCards';
+import EmptyState from './EmptyState';
+import {
+  Tabs,
+  Tab,
+  TabTitleText,
+  Bullseye,
+  Spinner,
+} from '@patternfly/react-core';
+import SystemPolicyCards from '../../PresentationalComponents/SystemPolicyCards';
 
-const QUERY = gql`
-  query CD_System($systemId: String!) {
-    system(id: $systemId) {
-      id
-      name
-      hasPolicy
-      insightsId
-      policies {
-        id
-      }
-      testResultProfiles {
-        id
-        name
-        policyType
-        refId
-        compliant
-        rulesFailed
-        rulesPassed
-        lastScanned
-        score
-        supported
-        osMajorVersion
-        benchmark {
-          version
-          ruleTree
-        }
-        policy {
-          id
-        }
-        rules {
-          id
-          title
-          severity
-          rationale
-          refId
-          description
-          compliant
-          remediationAvailable
-          references
-          identifier
-          precedence
-        }
-      }
-    }
-  }
-`;
-
-const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
+const SystemPoliciesAndRules = ({ data: { system }, loading, hidePassed }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const [selectedPolicy, setSelectedPolicy] = useState(
     system.testResultProfiles[0]?.id
@@ -144,7 +97,7 @@ const SystemQuery = ({ data: { system }, loading, hidePassed }) => {
   );
 };
 
-SystemQuery.propTypes = {
+SystemPoliciesAndRules.propTypes = {
   data: propTypes.shape({
     system: propTypes.shape({
       hasPolicy: propTypes.bool,
@@ -159,45 +112,8 @@ SystemQuery.propTypes = {
   hidePassed: propTypes.bool,
 };
 
-SystemQuery.defaultProps = {
+SystemPoliciesAndRules.defaultProps = {
   loading: true,
 };
 
-export const Details = ({ inventoryId, hidePassed, ...props }) => {
-  const { data, error, loading } = useQuery(QUERY, {
-    variables: { systemId: inventoryId },
-    fetchPolicy: 'no-cache',
-  });
-  const is404 = error?.networkError?.statusCode === 404;
-
-  if (loading) {
-    return <Spinner />;
-  }
-
-  if (error && !is404) {
-    // network errors other than 404 are unexpected
-    return <ErrorCard />;
-  }
-
-  return (
-    <div className="ins-c-compliance__scope">
-      {!data?.system || is404 ? (
-        <ComplianceEmptyState title="No policies are reporting for this system" />
-      ) : (
-        <SystemQuery
-          {...props}
-          hidePassed={hidePassed}
-          data={data}
-          loading={loading}
-        />
-      )}
-    </div>
-  );
-};
-
-Details.propTypes = {
-  inventoryId: propTypes.string,
-  hidePassed: propTypes.bool,
-};
-
-export default Details;
+export default SystemPoliciesAndRules;
