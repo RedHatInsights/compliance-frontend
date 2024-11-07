@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
@@ -19,8 +19,10 @@ import usePolicies from 'Utilities/hooks/api/usePolicies';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import { QUERY, dataMap } from './constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 
-export const CompliancePoliciesBase = ({ query }) => {
+export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
   const CreateLink = () => (
     <Link
       to="/scappolicies/new"
@@ -50,26 +52,30 @@ export const CompliancePoliciesBase = ({ query }) => {
         <PageHeaderTitle title="SCAP policies" />
       </PageHeader>
       <section className="pf-v5-c-page__main-section">
-        <StateView stateValues={{ error, data, loading }}>
-          <StateViewPart stateKey="error">
-            <ErrorPage error={error} />
-          </StateViewPart>
-          <StateViewPart stateKey="loading">
-            <LoadingPoliciesTable />
-          </StateViewPart>
-          <StateViewPart stateKey="data">
-            {policies && policies.length === 0 ? (
-              <Grid hasGutter>
-                <ComplianceEmptyState
-                  title="No policies"
-                  mainButton={<CreateLink />}
-                />
-              </Grid>
-            ) : (
-              <PoliciesTable policies={policies} DedicatedAction={CreateLink} />
-            )}
-          </StateViewPart>
-        </StateView>
+        {/* <StateView stateValues={{ error, data, loading }}> */}
+        {/*   <StateViewPart stateKey="error"> */}
+        {/*     <ErrorPage error={error} /> */}
+        {/*   </StateViewPart> */}
+        {/*   <StateViewPart stateKey="loading"> */}
+        {/*     <LoadingPoliciesTable /> */}
+        {/*   </StateViewPart> */}
+        {/*   <StateViewPart stateKey="data"> */}
+        {/*     {policies && policies.length === 0 ? ( */}
+        {/* <Grid hasGutter> */}
+        {/*   <ComplianceEmptyState */}
+        {/*     title="No policies" */}
+        {/*     mainButton={<CreateLink />} */}
+        {/*   /> */}
+        {/* </Grid> */}
+        {/* ) : ( */}
+        <PoliciesTable
+          policies={policies}
+          DedicatedAction={CreateLink}
+          numberOfItems={numberOfItems}
+        />
+        {/* )} */}
+        {/*   </StateViewPart> */}
+        {/* </StateView> */}
       </section>
     </React.Fragment>
   );
@@ -85,21 +91,32 @@ CompliancePoliciesBase.propTypes = {
 };
 
 const CompliancePoliciesV2 = () => {
-  const query = usePolicies({
-    params: [undefined, 100],
-  });
+  const numberOfItems = usePoliciesCount();
+  console.log(numberOfItems);
+  const options = {
+    useTableState: true,
+  };
+  let { data: { data } = {}, error, loading, refetch } = usePolicies(options);
 
-  const data = query.data?.data
-    ? {
-        profiles: {
-          edges: query.data.data.map((policy) => ({
-            node: dataSerialiser(policy, dataMap),
-          })),
-        },
-      }
-    : null;
+  if (data) {
+    data = {
+      profiles: {
+        edges: data.map((policy) => ({
+          node: dataSerialiser(policy, dataMap),
+        })),
+      },
+    };
 
-  return <CompliancePoliciesBase query={{ ...query, data }} />;
+    error = undefined;
+    loading = undefined;
+  }
+
+  return (
+    <CompliancePoliciesBase
+      query={{ data, error, loading, refetch }}
+      numberOfItems={numberOfItems}
+    />
+  );
 };
 
 const CompliancePoliciesGraphQL = () => {
@@ -108,10 +125,12 @@ const CompliancePoliciesGraphQL = () => {
 };
 
 const CompliancePoliciesWrapper = () => (
-  <GatedComponents
-    RestComponent={CompliancePoliciesV2}
-    GraphQLComponent={CompliancePoliciesGraphQL}
-  />
+  <TableStateProvider>
+    <GatedComponents
+      RestComponent={CompliancePoliciesV2}
+      GraphQLComponent={CompliancePoliciesGraphQL}
+    />
+  </TableStateProvider>
 );
 
 export default CompliancePoliciesWrapper;
