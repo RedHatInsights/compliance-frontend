@@ -68,26 +68,22 @@ export const customName = (props, columnConfig) => ({
   ...columnConfig,
 });
 
-export const SsgVersion = {
-  title: 'SSG version',
-  transforms: [nowrap],
-  exportKey: 'testResultProfiles',
-  sortBy: ['ssg_version'],
-  key: 'ssg_version',
-  renderExport: (testResultProfiles) =>
-    testResultProfiles
-      .map(
-        ({ supported, benchmark: { version } }) =>
-          `${!supported ? '!' : ''}${version}`
-      )
-      .join(', '),
-  renderFunc: renderComponent(SsgVersionCell),
-};
-
-export const SsgVersionRest = {
-  ...SsgVersion,
-  sortBy: ['security_guide_version'],
-};
+export const SsgVersion = (apiV2Enabled = false) =>
+  compileColumnRenderFunc({
+    title: 'SSG version',
+    transforms: [nowrap],
+    exportKey: 'testResultProfiles',
+    sortBy: apiV2Enabled ? ['security_guide_version'] : ['ssg_version'],
+    key: 'ssg_version',
+    renderExport: (testResultProfiles) =>
+      testResultProfiles
+        .map(
+          ({ supported, benchmark: { version } }) =>
+            `${!supported ? '!' : ''}${version}`
+        )
+        .join(', '),
+    cell: SsgVersionCell,
+  });
 
 export const Policies = {
   title: 'Policies',
@@ -102,53 +98,52 @@ export const Policies = {
   renderFunc: renderComponent(PoliciesCell),
 };
 
-export const FailedRules = {
-  title: 'Failed rules',
-  key: 'failedRules',
-  exportKey: 'profiles',
-  transforms: [nowrap],
-  sortBy: ['rulesFailed'],
-  props: {
-    width: 5,
-  },
-  renderExport: (profiles) =>
-    profiles.reduce(
-      (failedRules, { rulesFailed }) => failedRules + rulesFailed,
-      0
+export const FailedRules = (apiV2Enabled = false) =>
+  compileColumnRenderFunc({
+    title: 'Failed rules',
+    key: 'failedRules',
+    exportKey: apiV2Enabled ? 'rulesFailed' : 'profiles',
+    transforms: [nowrap],
+    sortBy: apiV2Enabled ? ['failed_rule_count'] : ['rulesFailed'],
+    props: {
+      width: 5,
+    },
+    renderExport: (profiles) => {
+      if (apiV2Enabled) {
+        return profiles;
+      }
+      return profiles.reduce(
+        (failedRules, { rulesFailed }) => failedRules + rulesFailed,
+        0
+      );
+    },
+    renderFunc: renderComponent(
+      apiV2Enabled ? FailedRulesRestCell : FailedRulesCell
     ),
-  renderFunc: renderComponent(FailedRulesCell),
-};
+    cell: apiV2Enabled ? FailedRulesRestCell : FailedRulesCell,
+  });
 
-export const FailedRulesRest = {
-  ...FailedRules,
-  sortBy: ['failed_rule_count'],
-  exportKey: 'rulesFailed',
-  renderExport: (rulesFailed) => rulesFailed,
-  renderFunc: renderComponent(FailedRulesRestCell),
-};
-
-export const ComplianceScore = {
-  title: 'Compliance score',
-  key: 'complianceScore',
-  exportKey: 'testResultProfiles',
-  sortBy: ['complianceScore'],
-  sortable: 'score',
-  transforms: [nowrap],
-  props: {
-    width: 5,
-  },
-  renderExport: (testResultProfiles) =>
-    complianceScoreString(complianceScoreData(testResultProfiles)).trim(),
-  renderFunc: renderComponent(ComplianceScoreCell),
-};
-
-export const ComplianceScoreRest = {
-  ...ComplianceScore,
-  sortBy: ['score'],
-  exportKey: null,
-  renderExport: (testResultProfiles) =>
-    complianceScoreString(testResultProfiles),
-};
+export const ComplianceScore = (apiV2Enabled = false) =>
+  compileColumnRenderFunc({
+    title: 'Compliance score',
+    key: 'complianceScore',
+    exportKey: apiV2Enabled ? null : 'testResultProfiles',
+    sortBy: apiV2Enabled ? ['score'] : ['complianceScore'],
+    sortable: 'score',
+    transforms: [nowrap],
+    props: {
+      width: 5,
+    },
+    renderExport: (testResultProfiles) => {
+      if (apiV2Enabled) {
+        return complianceScoreString(testResultProfiles);
+      }
+      return complianceScoreString(
+        complianceScoreData(testResultProfiles)
+      ).trim();
+    },
+    cell: ComplianceScoreCell,
+  });
 
 export const LastScanned = {
   title: 'Last scanned',
@@ -174,22 +169,6 @@ export const OperatingSystem = (apiV2Enabled = false) =>
     renderExport: (cell) => operatingSystemString(cell),
     cell: OperatingSystemCell,
   });
-
-export const LastScannedRest = {
-  ...LastScanned,
-  exportKey: 'testResultProfiles',
-  renderExport: (testResultProfiles) => lastScanned(testResultProfiles),
-  renderFunc: renderComponent(LastScannedCell),
-};
-
-export const OperatingSystemm = compileColumnRenderFunc({
-  title: 'Operating system',
-  key: 'operatingSystem',
-  sortBy: ['osMajorVersion', 'osMinorVersion'],
-  transforms: [nowrap],
-  renderExport: (cell) => operatingSystemString(cell),
-  cell: OperatingSystemCell,
-});
 
 export const OS = (apiV2Enabled = false) =>
   compileColumnRenderFunc({

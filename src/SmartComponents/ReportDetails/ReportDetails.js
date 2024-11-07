@@ -201,10 +201,10 @@ const ReportDetailsBase = ({
                           sortBy: ['groups'],
                         }),
                         Columns.inventoryColumn('tags'),
-                        Columns.SsgVersionRest,
-                        Columns.FailedRulesRest,
-                        Columns.ComplianceScoreRest,
-                        Columns.LastScannedRest,
+                        Columns.SsgVersion(true),
+                        Columns.FailedRules(true),
+                        Columns.ComplianceScore(true),
+                        Columns.LastScanned,
                       ]}
                       // showOsMinorVersionFilter={[profile.osMajorVersion]}
                       // ssgVersions={ssgVersions}
@@ -270,9 +270,9 @@ const ReportDetailsBase = ({
                       sortBy: ['groups'],
                     }),
                     Columns.inventoryColumn('tags'),
-                    Columns.SsgVersion,
-                    Columns.FailedRules,
-                    Columns.ComplianceScore,
+                    Columns.SsgVersion(false),
+                    Columns.FailedRules(false),
+                    Columns.ComplianceScore(false),
                     Columns.LastScanned,
                   ]}
                   compliantFilter
