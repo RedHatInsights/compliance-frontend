@@ -10,14 +10,23 @@ import { remediationData } from './helpers';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
 import pAll from 'p-all';
 
-export const useIssuesFetchRest = (reportId, testResults) => {
+export const useIssuesFetchRest = (reportId, wholeTestResults) => {
   const { isResolving, results, resolve } = usePromiseQueue(
     DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES
   );
   const fetch = useCallback(async () => {
+    // Keep only supported test results
+    let filteredTestResultIds = wholeTestResults
+      .filter((tr) => tr.supported)
+      .map((tr) => tr.id);
+
+    if (filteredTestResultIds.length === 0) return null;
+
     // Get rules of all test results
     const results = await resolve(
-      [...testResults].map((tr) => () => batchFetch(tr, reportId, 100))
+      [...filteredTestResultIds].map(
+        (tr) => () => batchFetch(tr, reportId, 100)
+      )
     );
 
     const hashMap = {};
@@ -43,7 +52,7 @@ export const useIssuesFetchRest = (reportId, testResults) => {
     });
 
     return hashMap && remediationDataRest(hashMap);
-  }, [reportId, testResults]);
+  }, [reportId, wholeTestResults]);
 
   const remediationDataRest = (hashMap) => ({
     issues: Object.entries(hashMap).map(([remedIssue, systems]) => ({

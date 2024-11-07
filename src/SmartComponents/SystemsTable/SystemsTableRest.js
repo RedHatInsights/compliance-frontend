@@ -66,6 +66,7 @@ export const SystemsTable = ({
   const [total, setTotal] = useState(0);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
+  const [selectedWholeItems, setSelectedWholeItems] = useState([]);
 
   const {
     toolbarProps: conditionalFilter,
@@ -95,13 +96,18 @@ export const SystemsTable = ({
 
   const combinedFetchArgumentsRef = useRef();
 
+  const onCustomSelect = (selectedItems) => {
+    setSelectedWholeItems(selectedItems);
+    onSelect?.(selectedItems);
+  };
+
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    onSelect,
+    onSelect: onCustomSelect,
     preselectedSystems,
     fetchArguments: combinedFetchArgumentsRef.current,
     currentPageItems: items,
@@ -208,7 +214,7 @@ export const SystemsTable = ({
             name: false,
             operatingSystem: false,
             tags: !showTagsFilter,
-            hostGroupFilter: !showGroupsFilter,
+            hostGroupFilteronCustomSelect: !showGroupsFilter,
           }}
           showTags
           onLoad={defaultOnLoad(columns)}
@@ -226,7 +232,7 @@ export const SystemsTable = ({
               dedicatedAction: (
                 <RemediationButtonRest
                   reportId={reportId}
-                  systems={selectedIds}
+                  wholeSystems={selectedWholeItems}
                 />
               ),
             }),

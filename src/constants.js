@@ -352,6 +352,7 @@ export const testResultsDataMapper = {
   supported: 'supported',
   end_time: 'lastScanned',
   system_id: 'system_id',
+  compliant: 'compliant',
 };
 
 export const policiesDataMapper = {
