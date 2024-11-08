@@ -1,3 +1,4 @@
+import React from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
 import useBatchedReportRuleResults from './useBatchedReportRuleResults';
@@ -16,34 +17,13 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       <Spinner />
     </Bullseye>
   ) : (
-    /*  <RulesTable
+    <RulesTable
       ansibleSupportFilter
       hidePassed={hidePassed}
       showFailedCounts
-      system={{
-        ...system,
-        supported:
-          (system?.testResultProfiles || []).filter(
-            (profile) => profile.supported
-          ).length > 0,
-      }}
-      profileRules={system?.testResultProfiles
-        .filter((policy) => selectedPolicy === policy.id)
-        .map((profile) => ({
-          system,
-          profile,
-          rules: profile.rules,
-        }))}
-      loading={loading}
-      options={{
-        sortBy: {
-          index: 4,
-          direction: 'asc',
-          property: 'severity',
-        },
-      }}
-    /> */
-    'test'
+      rules={ruleResults}
+      // provide ruleTree
+    />
   );
 };
 

@@ -130,7 +130,7 @@ const RulesTable = ({
 
 RulesTable.propTypes = {
   profileRules: propTypes.array,
-  rules: propTypes.array,
+  rules: propTypes.array.isRequired,
   ruleTree: propTypes.array,
   policyId: propTypes.string.isRequired,
   loading: propTypes.bool,
@@ -148,7 +148,7 @@ RulesTable.propTypes = {
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
   DedicatedAction: propTypes.node,
-  valueDefinitions: propTypes.object,
+  valueDefinitions: propTypes.object.isRequired,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
   total: propTypes.number,
