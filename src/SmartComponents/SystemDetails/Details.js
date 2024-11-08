@@ -28,7 +28,7 @@ export const DetailsRest = ({ inventoryId, hidePassed, ...props }) => {
         <SystemPoliciesAndRulesRest
           {...props}
           systemId={inventoryId}
-          testResults={testResults}
+          reportTestResults={testResults}
           hidePassed={hidePassed}
         />
       )}

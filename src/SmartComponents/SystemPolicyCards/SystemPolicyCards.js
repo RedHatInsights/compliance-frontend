@@ -6,12 +6,12 @@ import dataSerialiser from 'Utilities/dataSerialiser';
 import { dataMap } from './constants';
 import propTypes from 'prop-types';
 
-export const SystemPolicyCards = ({ testResults }) => (
+export const SystemPolicyCards = ({ reportTestResults }) => (
   <Grid hasGutter>
-    {testResults.map((policy) => (
-      <GridItem sm={12} md={12} lg={6} xl={4} key={policy.id}>
+    {reportTestResults.map((testResult) => (
+      <GridItem sm={12} md={12} lg={6} xl={4} key={testResult.report_id}>
         <SystemPolicyCardPresentational
-          policy={dataSerialiser({ ...policy }, dataMap)}
+          policy={dataSerialiser({ ...testResult }, dataMap)}
           style={{ height: '100%' }}
         />
       </GridItem>
@@ -20,7 +20,7 @@ export const SystemPolicyCards = ({ testResults }) => (
 );
 
 SystemPolicyCards.propTypes = {
-  testResults: propTypes.array.isRequired,
+  reportTestResults: propTypes.array.isRequired,
 };
 
 export default SystemPolicyCards;

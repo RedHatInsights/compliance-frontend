@@ -1,27 +1,30 @@
 import { useCallback } from 'react';
-import useReportTestResults from '../../Utilities/hooks/api/useReportTestResults';
 import useFetchTotalBatched from '../../Utilities/hooks/useFetchTotalBatched';
+import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
 
 // Requests GET /reports/{report_id}/test_results/{test_result_id}/rule_results
 const useBatchedReportRuleResults = (reportId, testResultId) => {
-  const { fetch: fetchReportTestResults } = useReportTestResults({
+  const { fetch: fetchReportTestResults } = useReportRuleResults({
     skip: true,
   });
   const fetchReportTestResultsBatched = useCallback(
     (offset, limit) =>
-      fetchReportTestResults({ reportId, testResultId, limit, offset }, false),
+      fetchReportTestResults(
+        [testResultId, reportId, undefined, limit, offset],
+        false
+      ),
     [fetchReportTestResults, reportId, testResultId]
   );
   const {
     loading: reportTestResultsLoading,
-    data: reportTestResults,
+    data: ruleResults,
     error: reportTestResultsError,
   } = useFetchTotalBatched(fetchReportTestResultsBatched, {
-    batchSize: 100,
+    batchSize: 60, // FIXME: setting to 100 leads to broken requests because of the huge response
   });
 
   return {
-    reportTestResults,
+    ruleResults,
     loading: reportTestResultsLoading,
     error: reportTestResultsError,
   };

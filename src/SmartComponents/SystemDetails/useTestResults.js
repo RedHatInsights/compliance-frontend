@@ -39,6 +39,7 @@ const useTestResults = (systemId) => {
                   ...data[0],
                   title: reports.data[index].title,
                   profile_title: reports.data[index].profile_title,
+                  report_id: reports.data[index].id,
                 },
               ]
         )
