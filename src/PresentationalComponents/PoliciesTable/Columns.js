@@ -24,6 +24,7 @@ export const Name = {
     width: 25,
   },
   sortByProp: 'name',
+  sortable: 'title',
   renderExport: (policy) => policy.name,
   renderFunc: renderComponent(PolicyNameCell),
 };
@@ -45,6 +46,7 @@ const osString = (policy) => `RHEL ${policy.osMajorVersion}`;
 export const OperatingSystem = {
   title: 'Operating system',
   sortByProp: 'osMajorVersion',
+  sortable: 'os_major_version',
   renderExport: osString,
   renderFunc: (_data, _id, policy) => osString(policy),
 };
@@ -52,6 +54,7 @@ export const OperatingSystem = {
 export const Systems = {
   title: 'Systems',
   sortByProp: 'totalHostCount',
+  sortable: 'total_system_count',
   renderExport: (policy) => policy.totalHostCount,
   // eslint-disable-next-line react/display-name
   renderFunc: (_data, _id, policy) =>
@@ -68,6 +71,7 @@ const businessObjectiveString = (policy) =>
 export const BusinessObjective = {
   title: 'Business objective',
   sortByFunction: (policy) => policy?.businessObjective?.title ?? '',
+  sortable: 'business_objective',
   renderExport: businessObjectiveString,
   renderFunc: (_data, _id, policy) => businessObjectiveString(policy),
 };
@@ -77,6 +81,7 @@ const complianceThresholdString = (policy) => `${policy.complianceThreshold}%`;
 export const ComplianceThreshold = {
   title: 'Compliance threshold',
   sortByProp: 'complianceThreshold',
+  sortable: 'compliance_threshold',
   renderExport: complianceThresholdString,
   renderFunc: (_data, _id, policy) => complianceThresholdString(policy),
 };
