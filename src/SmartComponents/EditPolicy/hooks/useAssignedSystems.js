@@ -14,7 +14,7 @@ const fetchPolicySystems =
       calculateOffset(page, per_page)
     );
 
-export const useAssignedSystems = (policyId, policy = [], policyLoading) => {
+const useAssignedSystems = (policyId, policy = [], policyLoading) => {
   const { isLoading, fetchBatched } = useFetchBatched();
   const [assignedSystems, setAssignedSystems] = useState([]);
 
@@ -39,3 +39,5 @@ export const useAssignedSystems = (policyId, policy = [], policyLoading) => {
     assignedSystemsLoading: isLoading,
   };
 };
+
+export default useAssignedSystems;

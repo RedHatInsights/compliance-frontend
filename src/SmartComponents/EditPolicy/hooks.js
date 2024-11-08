@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import { apiInstance } from '@/Utilities/hooks/useQuery';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import { apiInstance } from 'Utilities/hooks/useQuery';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
 const updatePolicyV2 = async (policyId, updatedPolicy) =>
   apiInstance.updatePolicy(policyId, null, {

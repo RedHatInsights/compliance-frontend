@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
-import useTailoringsQuery from '@/Utilities/hooks/api/useTailoringsQuery';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
 import useFetchBatched from '@redhat-cloud-services/frontend-components-utilities/useFetchBatched';
 import map from 'lodash/map';
 import { calculateOffset } from '@/Utilities/helpers';
@@ -64,13 +64,15 @@ const fetchTailoringRules = async (
   }
 };
 
-export const useAssignedRules = (policyId) => {
-  const { data, loading } = useTailoringsQuery(policyId);
+const useAssignedRules = (policyId) => {
+  const { data, loading } = useTailorings({
+    params: [policyId],
+  });
   const { fetchBatched } = useFetchBatched();
   const [assignedRuleIds, setAssignedRuleIds] = useState(null); // We want to explicitly set this to null, so that bulk select properly sets what is preselected items
 
   useEffect(() => {
-    if (!loading && data) {
+    if (!loading && data.length) {
       const nonCanonicalTailorings = data.filter(
         (tailoring) => tailoring.os_minor_version
       );
@@ -86,3 +88,5 @@ export const useAssignedRules = (policyId) => {
 
   return { assignedRuleIds, assignedRulesLoading: loading };
 };
+
+export default useAssignedRules;

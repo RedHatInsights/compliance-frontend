@@ -12,8 +12,8 @@ import {
 import EditPolicyFormRest from './EditPolicyFormRest';
 import { useOnSave } from './hooks';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
-import { useAssignedRules } from './hooks/useAssignedRules';
-import { useAssignedSystems } from './hooks/useAssignedSystems';
+import useAssignedRules from './hooks/useAssignedRules';
+import useAssignedSystems from './hooks/useAssignedSystems';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 
 export const EditPolicyRest = ({ route }) => {
