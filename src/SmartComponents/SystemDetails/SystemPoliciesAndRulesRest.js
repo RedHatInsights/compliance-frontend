@@ -7,7 +7,7 @@ import { Tabs, Tab, TabTitleText } from '@patternfly/react-core';
 
 const SystemPoliciesAndRulesRest = ({ systemId, testResults, hidePassed }) => {
   // FYI: test result ID and policy ID are not the same, but test result ID only identifies each tab here.
-  const [selectedPolicy, setSelectedPolicy] = useState(testResults[0].id);
+  /*   const [selectedPolicy, setSelectedPolicy] = useState(testResults[0].id);
 
   const policies = system?.testResultProfiles;
 
@@ -15,9 +15,7 @@ const SystemPoliciesAndRulesRest = ({ systemId, testResults, hidePassed }) => {
   const sortedTestResultProfiles = system?.testResultProfiles.sort(
     (testResultProfile1, testResultProfile2) =>
       sorter(testResultProfile1?.name, testResultProfile2?.name)
-  );
-
-  // TODO: test that system policy cards are displayed correctly before diving into the rules table
+  ); */
 
   return (
     <>

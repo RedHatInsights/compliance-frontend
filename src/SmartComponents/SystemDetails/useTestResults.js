@@ -7,27 +7,42 @@ const useTestResults = (systemId) => {
   const [testResultsLoading, setTestResultsLoading] = useState(true);
   const [testResults, setTestResults] = useState(undefined);
   const { data: reports, loading: reportsLoading } = useSystemReports({
-    params: { systemId },
+    params: [systemId],
   });
   const { fetch: fetchTestResults } = useReportTestResults({ skip: true });
 
   useEffect(() => {
     const collectTestResults = async () => {
       const newTestResults = await Promise.all(
-        reports.data
-          .map(({ id: policyId }) =>
-            fetchTestResults(
-              {
-                params: { reportId: policyId },
-                filter: `system_id=${systemId}`,
-              },
-              false
-            )
+        reports.data.map(({ id: policyId }) =>
+          fetchTestResults(
+            [
+              policyId,
+              undefined,
+              100,
+              undefined,
+              undefined,
+              undefined,
+              `system_id=${systemId}`,
+            ],
+            false
           )
-          .map(({ data }) => data)
+        )
       );
 
-      setTestResults(newTestResults);
+      setTestResults(
+        newTestResults.flatMap(({ meta, data }, index) =>
+          meta.total === 0
+            ? []
+            : [
+                {
+                  ...data[0],
+                  title: reports.data[index].title,
+                  profile_title: reports.data[index].profile_title,
+                },
+              ]
+        )
+      );
       setTestResultsLoading(false);
     };
 
@@ -35,7 +50,8 @@ const useTestResults = (systemId) => {
       setTestResultsLoading(true);
       collectTestResults();
     }
-  }, [reports, reportsLoading, fetchTestResults, systemId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reports, reportsLoading, systemId]);
 
   return { testResults, testResultsLoading };
 };
