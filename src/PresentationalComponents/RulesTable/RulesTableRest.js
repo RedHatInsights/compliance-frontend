@@ -13,7 +13,6 @@ const RulesTable = ({
   system,
   rules,
   ruleTree,
-  securityGuideId,
   policyId,
   columns = defaultColumns,
   remediationsEnabled = true,
@@ -70,8 +69,6 @@ const RulesTable = ({
 
         return (
           <RuleDetailsRow
-            {...props}
-            securityGuideId={securityGuideId}
             onValueChange={onValueOverrideSave}
             onRuleValueReset={onRuleValueReset}
             item={item}
@@ -82,7 +79,6 @@ const RulesTable = ({
     [
       policyId,
       onRuleValueReset,
-      securityGuideId,
       rules,
       valueDefinitions,
       ruleValues,
@@ -136,8 +132,7 @@ RulesTable.propTypes = {
   profileRules: propTypes.array,
   rules: propTypes.array,
   ruleTree: propTypes.array,
-  securityGuideId: propTypes.string,
-  policyId: propTypes.string,
+  policyId: propTypes.string.isRequired,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
   system: propTypes.object,
