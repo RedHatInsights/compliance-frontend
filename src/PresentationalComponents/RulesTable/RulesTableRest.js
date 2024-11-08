@@ -19,7 +19,6 @@ const RulesTable = ({
   remediationsEnabled = true,
   ansibleSupportFilter = false,
   selectedFilter = false,
-  handleSelect,
   selectedRules: selectedRulesProp = [],
   hidePassed = false,
   options,
@@ -31,9 +30,11 @@ const RulesTable = ({
   onRuleValueReset,
   DedicatedAction,
   onValueOverrideSave,
+  total,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
+  const handleSelect = rulesTableProps.onSelect;
   const [selectedRules, setSelectedRules] = handleSelect
     ? [selectedRulesProp, handleSelect]
     : internalSelectedState;
@@ -122,6 +123,7 @@ const RulesTable = ({
         selectedFilter,
         dedicatedAction: DedicatedAction,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        total,
       }}
       {...rulesTableProps}
     />
@@ -152,6 +154,7 @@ RulesTable.propTypes = {
   DedicatedAction: propTypes.node,
   valueDefinitions: propTypes.object,
   onValueOverrideSave: propTypes.func,
+  total: propTypes.number,
 };
 
 export default RulesTable;

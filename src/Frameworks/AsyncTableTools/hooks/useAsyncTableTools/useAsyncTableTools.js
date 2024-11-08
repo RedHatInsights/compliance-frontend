@@ -132,6 +132,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...expandableTableProps,
       ...tableViewTableProps,
       ...tablePropsOption,
+      onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
     }),
     [
       managedColumns,

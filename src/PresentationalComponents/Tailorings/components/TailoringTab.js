@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
@@ -21,6 +21,7 @@ const TailoringTab = ({
   setRuleValues,
   onRuleValueReset,
   onValueOverrideSave,
+  handleSelect,
 }) => {
   const tableState = useFullTableState();
   const { data, error, fetchRules } = useTailoringsData(
@@ -33,6 +34,14 @@ const TailoringTab = ({
   const onValueSave = (_policyId, ...valueParams) =>
     onValueOverrideSave(tailoring, ...valueParams);
 
+  const appendTailoringIdToSelection = useCallback(
+    (selectedItems) => {
+      handleSelect({
+        [tailoring.id]: selectedItems,
+      });
+    },
+    [handleSelect, tailoring.id]
+  );
   return (
     <>
       <Grid>
@@ -61,6 +70,7 @@ const TailoringTab = ({
             options={{
               exporter: rulesExporter,
             }}
+            onSelect={appendTailoringIdToSelection}
             {...rulesTableProps}
           />
         </StateViewPart>
