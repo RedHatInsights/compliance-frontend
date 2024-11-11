@@ -206,7 +206,8 @@ const ReportDetailsBase = ({
                         Columns.ComplianceScore(true),
                         Columns.LastScanned,
                       ]}
-                      // showOsMinorVersionFilter={[profile.osMajorVersion]}
+                      showOsMinorVersionFilter={[profile.osMajorVersion]}
+                      ignoreOsMajorVersion
                       // ssgVersions={ssgVersions}
                       compliantFilter
                       ruleSeverityFilter
