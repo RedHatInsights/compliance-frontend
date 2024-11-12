@@ -23,6 +23,7 @@ export const PoliciesTable = ({ policies, DedicatedAction, numberOfItems }) => {
       filters={{
         filterConfig: filters,
       }}
+      total={numberOfItems}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         actionResolver,

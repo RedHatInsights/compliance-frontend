@@ -40,11 +40,19 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
 
   let policies;
 
-  if (data) {
+  if (data || numberOfItems != null) {
     error = undefined;
     loading = undefined;
-    policies = data.profiles.edges.map((profile) => profile.node);
+    if (data) {
+      policies = data.profiles.edges.map((profile) => profile.node);
+    } else {
+      data = [];
+      policies = [];
+    }
   }
+
+  console.log(numberOfItems);
+  console.log(error, loading, data, policies);
 
   return (
     <React.Fragment>
@@ -52,30 +60,31 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
         <PageHeaderTitle title="SCAP policies" />
       </PageHeader>
       <section className="pf-v5-c-page__main-section">
-        {/* <StateView stateValues={{ error, data, loading }}> */}
-        {/*   <StateViewPart stateKey="error"> */}
-        {/*     <ErrorPage error={error} /> */}
-        {/*   </StateViewPart> */}
-        {/*   <StateViewPart stateKey="loading"> */}
-        {/*     <LoadingPoliciesTable /> */}
-        {/*   </StateViewPart> */}
-        {/*   <StateViewPart stateKey="data"> */}
-        {/*     {policies && policies.length === 0 ? ( */}
-        {/* <Grid hasGutter> */}
-        {/*   <ComplianceEmptyState */}
-        {/*     title="No policies" */}
-        {/*     mainButton={<CreateLink />} */}
-        {/*   /> */}
-        {/* </Grid> */}
-        {/* ) : ( */}
-        <PoliciesTable
-          policies={policies}
-          DedicatedAction={CreateLink}
-          numberOfItems={numberOfItems}
-        />
-        {/* )} */}
-        {/*   </StateViewPart> */}
-        {/* </StateView> */}
+        <StateView stateValues={{ error, data, loading }}>
+          <StateViewPart stateKey="error">
+            <ErrorPage error={error} />
+          </StateViewPart>
+          <StateViewPart stateKey="loading">
+            <LoadingPoliciesTable />
+          </StateViewPart>
+          <StateViewPart stateKey="data">
+            {numberOfItems === 0 ? (
+              // {numberOfItems === 0 || (policies && policies.length === 0) ? (
+              <Grid hasGutter>
+                <ComplianceEmptyState
+                  title="No policies"
+                  mainButton={<CreateLink />}
+                />
+              </Grid>
+            ) : (
+              <PoliciesTable
+                policies={policies}
+                DedicatedAction={CreateLink}
+                numberOfItems={numberOfItems}
+              />
+            )}
+          </StateViewPart>
+        </StateView>
       </section>
     </React.Fragment>
   );
@@ -92,11 +101,15 @@ CompliancePoliciesBase.propTypes = {
 
 const CompliancePoliciesV2 = () => {
   const numberOfItems = usePoliciesCount();
-  console.log(numberOfItems);
   const options = {
     useTableState: true,
   };
-  let { data: { data } = {}, error, loading, refetch } = usePolicies(options);
+  let {
+    data: { data, meta: { total } = {} } = {},
+    error,
+    loading,
+    refetch,
+  } = usePolicies(options);
 
   if (data) {
     data = {
@@ -111,11 +124,67 @@ const CompliancePoliciesV2 = () => {
     loading = undefined;
   }
 
+  const CreateLink = () => (
+    <Link
+      to="/scappolicies/new"
+      Component={LinkButton}
+      componentProps={{
+        variant: 'primary',
+        ouiaId: 'CreateNewPolicyButton',
+      }}
+    >
+      Create new policy
+    </Link>
+  );
+
+  let policies;
+
+  if (data || numberOfItems != null) {
+    error = undefined;
+    loading = undefined;
+    if (data) {
+      policies = data.profiles.edges.map((profile) => profile.node);
+    } else {
+      data = [];
+      policies = [];
+    }
+  }
+
+  console.log(numberOfItems);
+  console.log(error, loading, data, policies);
+
   return (
-    <CompliancePoliciesBase
-      query={{ data, error, loading, refetch }}
-      numberOfItems={numberOfItems}
-    />
+    <React.Fragment>
+      <PageHeader className="page-header">
+        <PageHeaderTitle title="SCAP policies" />
+      </PageHeader>
+      <section className="pf-v5-c-page__main-section">
+        <StateView stateValues={{ error, data, loading }}>
+          <StateViewPart stateKey="error">
+            <ErrorPage error={error} />
+          </StateViewPart>
+          <StateViewPart stateKey="loading">
+            <LoadingPoliciesTable />
+          </StateViewPart>
+          <StateViewPart stateKey="data">
+            {numberOfItems === 0 ? (
+              <Grid hasGutter>
+                <ComplianceEmptyState
+                  title="No policies"
+                  mainButton={<CreateLink />}
+                />
+              </Grid>
+            ) : (
+              <PoliciesTable
+                policies={policies}
+                DedicatedAction={CreateLink}
+                numberOfItems={numberOfItems}
+              />
+            )}
+          </StateViewPart>
+        </StateView>
+      </section>
+    </React.Fragment>
   );
 };
 
