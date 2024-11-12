@@ -8,7 +8,12 @@ import { emptyRows } from '../../Utilities/hooks/useTableTools/Components/NoResu
 import useActionResolver from './hooks/useActionResolvers';
 import TableToolsTable from 'PresentationalComponents/ComplianceTable/ComplianceTable';
 
-export const PoliciesTable = ({ policies, DedicatedAction, numberOfItems }) => {
+export const PoliciesTable = ({
+  policies,
+  DedicatedAction,
+  total,
+  options,
+}) => {
   const filters = Object.values(Filters);
   const actionResolver = useActionResolver();
 
@@ -23,7 +28,7 @@ export const PoliciesTable = ({ policies, DedicatedAction, numberOfItems }) => {
       filters={{
         filterConfig: filters,
       }}
-      total={numberOfItems}
+      total={total}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         actionResolver,
@@ -32,8 +37,8 @@ export const PoliciesTable = ({ policies, DedicatedAction, numberOfItems }) => {
           ...COMPLIANCE_TABLE_DEFAULTS.exportable,
           columns: exportableColumns,
         },
-        numberOfItems: numberOfItems ?? null,
         emptyRows: emptyRows('policies', columns.length),
+        ...options,
       }}
     />
   );

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import pMap from 'p-map';
 
-const useReportsExporter = (fetchData, { batchSize = 10 } = {}) => {
+const useExporter = (fetchData, { batchSize = 10 } = {}) => {
   const fetchExportData = useCallback(async () => {
     const firstPage = await fetchData(0, batchSize);
     const total = firstPage?.meta?.total;
@@ -36,4 +36,4 @@ const useReportsExporter = (fetchData, { batchSize = 10 } = {}) => {
   return exporter;
 };
 
-export default useReportsExporter;
+export default useExporter;

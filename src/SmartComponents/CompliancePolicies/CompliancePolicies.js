@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
@@ -21,8 +21,11 @@ import { QUERY, dataMap } from './constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
+import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
-export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
+export const CompliancePoliciesGraphQL = () => {
+  let { data, error, loading } = useQuery(QUERY);
+
   const CreateLink = () => (
     <Link
       to="/scappolicies/new"
@@ -36,11 +39,9 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
     </Link>
   );
 
-  let { data, error, loading } = query;
-
   let policies;
 
-  if (data || numberOfItems != null) {
+  if (data) {
     error = undefined;
     loading = undefined;
     if (data) {
@@ -50,9 +51,6 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
       policies = [];
     }
   }
-
-  console.log(numberOfItems);
-  console.log(error, loading, data, policies);
 
   return (
     <React.Fragment>
@@ -68,8 +66,7 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
             <LoadingPoliciesTable />
           </StateViewPart>
           <StateViewPart stateKey="data">
-            {numberOfItems === 0 ? (
-              // {numberOfItems === 0 || (policies && policies.length === 0) ? (
+            {policies && policies.length === 0 ? (
               <Grid hasGutter>
                 <ComplianceEmptyState
                   title="No policies"
@@ -77,11 +74,7 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
                 />
               </Grid>
             ) : (
-              <PoliciesTable
-                policies={policies}
-                DedicatedAction={CreateLink}
-                numberOfItems={numberOfItems}
-              />
+              <PoliciesTable policies={policies} DedicatedAction={CreateLink} />
             )}
           </StateViewPart>
         </StateView>
@@ -90,7 +83,7 @@ export const CompliancePoliciesBase = ({ query, numberOfItems }) => {
   );
 };
 
-CompliancePoliciesBase.propTypes = {
+CompliancePoliciesGraphQL.propTypes = {
   query: PropTypes.shape({
     data: PropTypes.object,
     error: PropTypes.string,
@@ -100,26 +93,30 @@ CompliancePoliciesBase.propTypes = {
 };
 
 const CompliancePoliciesV2 = () => {
-  const numberOfItems = usePoliciesCount();
+  // Async table needs info about total policy count before mounting
+  const totalPolicies = usePoliciesCount();
+  const totalPoliciesLoaded = totalPolicies != null;
+
   const options = {
     useTableState: true,
   };
+
   let {
-    data: { data, meta: { total } = {} } = {},
+    data: { data, meta: { total: currentTotalPolicies } = {} } = {},
     error,
     loading,
-    refetch,
+    fetch: fetchPolicies,
   } = usePolicies(options);
 
-  if (data) {
-    data = {
-      profiles: {
-        edges: data.map((policy) => ({
-          node: dataSerialiser(policy, dataMap),
-        })),
-      },
-    };
+  const fetchForExport = useCallback(
+    async (offset, limit) => await fetchPolicies({ offset, limit }, false),
+    [fetchPolicies]
+  );
 
+  const policiesExporter = useExporter(fetchForExport);
+
+  if (data) {
+    data = dataSerialiser(data, dataMap);
     error = undefined;
     loading = undefined;
   }
@@ -139,19 +136,14 @@ const CompliancePoliciesV2 = () => {
 
   let policies;
 
-  if (data || numberOfItems != null) {
+  if (data || totalPolicies != null) {
     error = undefined;
     loading = undefined;
-    if (data) {
-      policies = data.profiles.edges.map((profile) => profile.node);
-    } else {
-      data = [];
-      policies = [];
-    }
+    policies = data ?? [];
   }
 
-  console.log(numberOfItems);
-  console.log(error, loading, data, policies);
+  // Async table always needs one total value
+  const calculatedTotal = currentTotalPolicies ?? totalPolicies;
 
   return (
     <React.Fragment>
@@ -159,15 +151,17 @@ const CompliancePoliciesV2 = () => {
         <PageHeaderTitle title="SCAP policies" />
       </PageHeader>
       <section className="pf-v5-c-page__main-section">
-        <StateView stateValues={{ error, data, loading }}>
+        <StateView
+          stateValues={{ error, loaded: totalPoliciesLoaded, loading }}
+        >
           <StateViewPart stateKey="error">
             <ErrorPage error={error} />
           </StateViewPart>
           <StateViewPart stateKey="loading">
             <LoadingPoliciesTable />
           </StateViewPart>
-          <StateViewPart stateKey="data">
-            {numberOfItems === 0 ? (
+          <StateViewPart stateKey="loaded">
+            {totalPolicies === 0 ? (
               <Grid hasGutter>
                 <ComplianceEmptyState
                   title="No policies"
@@ -177,8 +171,12 @@ const CompliancePoliciesV2 = () => {
             ) : (
               <PoliciesTable
                 policies={policies}
+                total={calculatedTotal}
                 DedicatedAction={CreateLink}
-                numberOfItems={numberOfItems}
+                options={{
+                  exporter: async () =>
+                    dataSerialiser(await policiesExporter(), dataMap),
+                }}
               />
             )}
           </StateViewPart>
@@ -186,11 +184,6 @@ const CompliancePoliciesV2 = () => {
       </section>
     </React.Fragment>
   );
-};
-
-const CompliancePoliciesGraphQL = () => {
-  const query = useQuery(QUERY);
-  return <CompliancePoliciesBase query={query} />;
 };
 
 const CompliancePoliciesWrapper = () => (
