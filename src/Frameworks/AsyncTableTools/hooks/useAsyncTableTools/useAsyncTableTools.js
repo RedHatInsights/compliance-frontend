@@ -94,7 +94,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   });
 
   const exportConfig = withExport({
-    columns, // TODO This should use the managedColumns
+    columns: managedColumns,
     ...options,
   });
 
