@@ -34,6 +34,7 @@ export const Description = {
   sortByProp: 'description',
   renderExport: (policy) => policy.description,
   hiddenByDefault: true,
+  isShown: false,
 };
 
 const PolicyType = {
