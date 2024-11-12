@@ -21,6 +21,7 @@ import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const CompliancePoliciesRest = () => {
   // Async table needs info about total policy count before mounting
+  // Also required for correctly showing empty state
   const totalPolicies = usePoliciesCount();
   const totalPoliciesLoaded = totalPolicies != null;
 
