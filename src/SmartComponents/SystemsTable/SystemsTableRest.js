@@ -118,13 +118,14 @@ export const SystemsTable = ({
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
   const onComplete = useCallback(
-    (result, { tags, filter }) => {
+    (result, { tags, filter, policyId }) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
       setIsLoaded(true);
 
       combinedFetchArgumentsRef.current = {
         ...(combinedFetchArgumentsRef.current || {}),
+        policyId: policyId || undefined,
         tags,
         filter,
       };
