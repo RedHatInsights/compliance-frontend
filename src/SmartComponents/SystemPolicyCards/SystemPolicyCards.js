@@ -24,15 +24,19 @@ const SystemPolicyCard = ({ policy }) => {
     ],
   });
 
-  return data === undefined ? (
-    <LoadingPolicyCards count={1} />
-  ) : data.meta.total === 0 ? (
-    <React.Fragment />
-  ) : (
-    <SystemPolicyCardPresentational
-      policy={dataSerialiser({ ...data.data[0], ...policy }, dataMap)}
-      style={{ height: '100%' }}
-    />
+  return (
+    data?.meta.total === 0 || (
+      <GridItem sm={12} md={12} lg={6} xl={4}>
+        {data === undefined ? (
+          <LoadingPolicyCards count={1} />
+        ) : (
+          <SystemPolicyCardPresentational
+            policy={dataSerialiser({ ...data.data[0], ...policy }, dataMap)}
+            style={{ height: '100%' }}
+          />
+        )}
+      </GridItem>
+    )
   );
 };
 
@@ -55,11 +59,15 @@ export const SystemPolicyCards = () => {
       {loading ? (
         <LoadingPolicyCards />
       ) : (
-        (data?.data || []).map((policy) => (
-          <GridItem sm={12} md={12} lg={6} xl={4} key={policy.id}>
-            <SystemPolicyCard policy={policy} inventoryId={inventoryId} />
-          </GridItem>
-        ))
+        (data?.data || []).map((policy) => {
+          return (
+            <SystemPolicyCard
+              policy={policy}
+              inventoryId={inventoryId}
+              key={policy.id}
+            />
+          );
+        })
       )}
     </Grid>
   );
