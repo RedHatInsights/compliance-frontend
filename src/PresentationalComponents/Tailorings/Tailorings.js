@@ -20,6 +20,7 @@ const Tailorings = ({
   level = 0,
   ouiaId,
   onValueOverrideSave,
+  handleSelect,
   ...rulesTableProps
 }) => {
   const { data, loading, error } = useTailorings({
@@ -72,6 +73,7 @@ const Tailorings = ({
                     columns,
                     rulesTableProps,
                     onValueOverrideSave: onValueSave,
+                    handleSelect,
                   }}
                 />
               </Tab>
@@ -105,6 +107,7 @@ Tailorings.propTypes = {
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
+  handleSelect: propTypes.func,
 };
 
 export default Tailorings;

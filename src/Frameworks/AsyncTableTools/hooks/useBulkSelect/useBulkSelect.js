@@ -49,7 +49,7 @@ const useBulkSelect = ({
     select,
     deselect,
     clear,
-  } = useSelectionManager(preselected);
+  } = useSelectionManager(preselected, {}, onSelect);
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
   const allSelected = selectedIdsTotal === total;
@@ -86,7 +86,7 @@ const useBulkSelect = ({
 
   const markRowSelected = (row) => ({
     ...row,
-    isSelected: selectedIds.includes(row.itemId),
+    selected: selectedIds.includes(row.itemId),
   });
 
   return enableBulkSelect
