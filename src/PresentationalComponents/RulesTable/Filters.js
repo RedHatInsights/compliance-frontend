@@ -96,6 +96,8 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
     { label: 'Ansible remediation support', value: 'true' },
     { label: 'No Ansible remediation support', value: 'false' },
   ],
+  filterSerialiser: (_filterConfig, values) =>
+    values.map((value) => `remediation_available = ${value}`).join(' OR '),
   filter: (rules, values) =>
     anyFilterApply(
       rules,

@@ -31,12 +31,12 @@ const RulesTable = ({
   DedicatedAction,
   onValueOverrideSave,
   total,
+  onSelect,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
-  const handleSelect = rulesTableProps.onSelect;
-  const [selectedRules, setSelectedRules] = handleSelect
-    ? [selectedRulesProp, handleSelect]
+  const [selectedRules, setSelectedRules] = onSelect
+    ? [selectedRulesProp, onSelect]
     : internalSelectedState;
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
@@ -115,9 +115,11 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        ...(ruleTree ? { tableTree: ruleTree, defaultTableView: 'tree' } : {}),
+        showViewToggle: true,
+        defaultTableView: 'tree',
+        ...(ruleTree ? { tableTree: ruleTree } : {}),
         identifier: itemIdentifier,
-        onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
+        ...(onSelect ? { onSelect: onSelect || setSelectedRules } : {}),
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
@@ -143,7 +145,6 @@ RulesTable.propTypes = {
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
   selectedFilter: propTypes.bool,
-  handleSelect: propTypes.func,
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
@@ -154,6 +155,7 @@ RulesTable.propTypes = {
   DedicatedAction: propTypes.node,
   valueDefinitions: propTypes.object,
   onValueOverrideSave: propTypes.func,
+  onSelect: propTypes.func,
   total: propTypes.number,
 };
 

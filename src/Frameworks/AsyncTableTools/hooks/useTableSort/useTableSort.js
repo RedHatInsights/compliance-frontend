@@ -34,25 +34,7 @@ import { TABLE_STATE_NAMESPACE } from './constants';
  *
  */
 const useTableSort = (columns, options = {}) => {
-  const {
-    sortBy: initialSortBy,
-    serialisers,
-    onSelect,
-    detailsComponent,
-    onSort: onSortOption,
-  } = options;
-  const defaultSortBy = useMemo(
-    () =>
-      initialSortBy || {
-        index: columnOffset({
-          detailsComponent,
-          onSelect,
-        }),
-        direction: 'asc',
-      },
-    [detailsComponent, onSelect, initialSortBy]
-  );
-
+  const { sortBy: initialSortBy, serialisers, onSort: onSortOption } = options;
   const serialiser = useCallback(
     (state) => options.serialisers.sort(state, columns),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +52,10 @@ const useTableSort = (columns, options = {}) => {
   );
   const [sortBy, setSortBy] = useTableState(
     TABLE_STATE_NAMESPACE,
-    defaultSortBy,
+    initialSortBy || {
+      index: columnOffset(options),
+      direction: 'asc',
+    },
     stateOptions
   );
 
@@ -88,7 +73,7 @@ const useTableSort = (columns, options = {}) => {
   return {
     tableProps: {
       onSort,
-      sortBy: sortBy || defaultSortBy,
+      sortBy: sortBy,
       cells: addSortableTransform(columns),
     },
   };

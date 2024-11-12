@@ -76,6 +76,7 @@ const buildTreeBranch = (
     const leafItems =
       item.leaves?.map((item) => ({
         ...item,
+        ...(items?.find(({ id }) => id === item.itemId) || {}),
         props: {
           ...(selectable ? { isChecked: item.rowProps?.selected } : {}),
           isExpanded: openItems.includes(item.itemId) || false,
