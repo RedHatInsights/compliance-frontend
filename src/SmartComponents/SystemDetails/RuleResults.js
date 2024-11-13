@@ -45,6 +45,7 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       policyId={reportTestResult.report_id}
       policyName={reportTestResult.title}
       total={ruleResults?.meta?.total}
+      defaultTableView="rows"
       // TODO: provide ruleTree
     />
   );

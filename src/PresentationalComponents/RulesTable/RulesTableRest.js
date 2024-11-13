@@ -32,6 +32,7 @@ const RulesTable = ({
   onValueOverrideSave,
   total,
   onSelect,
+  defaultTableView = 'tree',
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -123,7 +124,7 @@ const RulesTable = ({
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
         showViewToggle: true,
-        defaultTableView: 'tree',
+        defaultTableView,
         ...(ruleTree ? { tableTree: ruleTree } : {}),
         identifier: itemIdentifier,
         ...(onSelect ? { onSelect: onSelect || setSelectedRules } : {}),
@@ -165,6 +166,7 @@ RulesTable.propTypes = {
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
   total: propTypes.number,
+  defaultTableView: propTypes.string,
 };
 
 export default RulesTable;
