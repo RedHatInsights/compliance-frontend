@@ -1,28 +1,51 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
-import useBatchedReportRuleResults from './useBatchedReportRuleResults';
-import { Bullseye, Spinner } from '@patternfly/react-core';
+import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
+import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
+import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
 
 const RuleResults = ({ hidePassed, reportTestResult }) => {
-  const { ruleResults, loading, error } = useBatchedReportRuleResults(
-    reportTestResult.report_id,
-    reportTestResult.id
+  const serialisedTableState = useSerialisedTableState();
+
+  const { limit, offset } = serialisedTableState?.pagination || {};
+  const filters = serialisedTableState?.filters;
+
+  const { data: ruleResults } = useReportRuleResults({
+    params: [
+      reportTestResult.id,
+      reportTestResult.report_id,
+      undefined,
+      limit,
+      offset,
+      false,
+      undefined, // TODO: sortBy,
+      filters,
+    ],
+    skip: serialisedTableState === undefined,
+  });
+
+  const rules = useMemo(
+    () =>
+      ruleResults !== undefined
+        ? ruleResults.data.map((rule) => ({
+            ...rule,
+            profile: { name: reportTestResult.title },
+          }))
+        : [],
+    [ruleResults, reportTestResult]
   );
 
-  console.log('### ruleResults', ruleResults, loading, error);
-
-  return ruleResults === undefined || loading === true ? (
-    <Bullseye>
-      <Spinner />
-    </Bullseye>
-  ) : (
+  return (
     <RulesTable
       ansibleSupportFilter
-      hidePassed={hidePassed}
+      hidePassed={false} // TODO: fix this
       showFailedCounts
-      rules={ruleResults}
-      // provide ruleTree
+      rules={rules}
+      policyId={reportTestResult.report_id}
+      policyName={reportTestResult.title}
+      total={ruleResults?.meta?.total}
+      // TODO: provide ruleTree
     />
   );
 };
@@ -32,4 +55,11 @@ RuleResults.propTypes = {
   reportTestResult: propTypes.object,
 };
 
-export default RuleResults;
+const RuleResultsWrapper = (props) => {
+  return (
+    <TableStateProvider>
+      <RuleResults {...props} />
+    </TableStateProvider>
+  );
+};
+export default RuleResultsWrapper;

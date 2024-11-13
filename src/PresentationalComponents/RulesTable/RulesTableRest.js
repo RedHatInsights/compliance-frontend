@@ -14,6 +14,7 @@ const RulesTable = ({
   rules,
   ruleTree,
   policyId,
+  policyName,
   columns = defaultColumns,
   remediationsEnabled = true,
   ansibleSupportFilter = false,
@@ -45,7 +46,7 @@ const RulesTable = ({
   // TODO implement policies filter
   const policies = [];
 
-  const remediationAction = ({ selected }) => (
+  const remediationAction = ({ selected = [] }) => (
     <ComplianceRemediationButton
       allSystems={selected.length > 0 ? [system] : undefined}
       selectedRules={selectedRulesWithRemediations(selected)}
@@ -63,7 +64,7 @@ const RulesTable = ({
           ...props.item,
           ...rule,
           valueDefinitions: ruleValueDefinitions,
-          profile: { id: policyId },
+          profile: { id: policyId, name: policyName },
           ruleValues: ruleRuleValues
         };
 
@@ -78,6 +79,7 @@ const RulesTable = ({
     /* eslint-enable */
     [
       policyId,
+      policyName,
       onRuleValueReset,
       rules,
       valueDefinitions,
@@ -99,10 +101,10 @@ const RulesTable = ({
           ansibleSupportFilter,
         }),
         ...(hidePassed && {
-          activeFilters: (currentActiveFilters) => ({
+          activeFilters: (currentActiveFilters = {}) => ({
             ...currentActiveFilters,
-            rulestate: currentActiveFilters.rulestate
-              ? currentActiveFilters.rulestate
+            ['rule-state']: currentActiveFilters['rule-state']
+              ? currentActiveFilters['rule-state']
               : ['failed'],
             ...activeFilters,
           }),
@@ -123,6 +125,7 @@ const RulesTable = ({
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
         total,
       }}
+      total={total}
       {...rulesTableProps}
     />
   );
@@ -133,6 +136,7 @@ RulesTable.propTypes = {
   rules: propTypes.array.isRequired,
   ruleTree: propTypes.array,
   policyId: propTypes.string.isRequired,
+  policyName: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
   system: propTypes.object,
