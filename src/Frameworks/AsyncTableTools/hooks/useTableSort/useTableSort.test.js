@@ -1,6 +1,6 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
+import columns from '../../__fixtures__/columns';
 import { useSerialisedTableState } from '../useTableState';
 import useTableSort from './useTableSort';
 

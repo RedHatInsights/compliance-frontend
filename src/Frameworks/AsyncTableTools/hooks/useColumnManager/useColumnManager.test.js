@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
+import columns from '../../__fixtures__/columns';
+
 import useColumnManager from './useColumnManager';
 
 describe('useColumnManager', () => {
