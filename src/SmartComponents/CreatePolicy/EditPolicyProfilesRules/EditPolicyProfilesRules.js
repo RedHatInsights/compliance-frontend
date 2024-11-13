@@ -45,7 +45,7 @@ const selector = formValueSelector('policyForm');
 
 export default compose(
   connect((state) => ({
-    policy: selector(state, 'profile'),
+    policy: selector(state, 'profile'), // TODO: use "profile" naming instead of "policy"
     osMajorVersion: selector(state, 'osMajorVersion'),
     osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
     selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
