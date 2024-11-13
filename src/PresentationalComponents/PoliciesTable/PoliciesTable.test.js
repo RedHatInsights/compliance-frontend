@@ -5,10 +5,16 @@ import TestWrapper from '@/Utilities/TestWrapper';
 
 import { policies as rawPolicies } from '@/__fixtures__/policies.js';
 import { PoliciesTable } from './PoliciesTable.js';
+import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+
+jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 const policies = rawPolicies.edges.map((profile) => profile.node);
 
 describe('PoliciesTable', () => {
+  beforeEach(() => {
+    useAPIV2FeatureFlag.mockImplementation(() => false);
+  });
   it('expect to render without error', () => {
     render(
       <TestWrapper>
