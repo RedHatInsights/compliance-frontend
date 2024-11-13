@@ -47,7 +47,7 @@ const PolicyDescription = ({ profile }) => (
         {profile.businessObjective ? profile.businessObjective.title : '--'}
       </Dd>
     </TextList>
-    <Link to={'/scappolicies/' + profile.policy.id}>View policy</Link>
+    <Link to={'/scappolicies/' + profile.id}>View policy</Link>
   </React.Fragment>
 );
 
