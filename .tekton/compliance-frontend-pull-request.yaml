@@ -203,7 +203,7 @@ spec:
           - name: url
             value: https://github.com/RedHatInsights/konflux-consoledot-frontend-build
           - name: revision
-            value: a6838b71b88dc1e84f11764c9734e4880096585d  # replace with the latest commit from https://github.com/RedHatInsights/konflux-consoledot-frontend-build/commits
+            value: c23c5a5f3024104120d4be8c2cf26dbeb29e5a22  # replace with the latest commit from https://github.com/RedHatInsights/konflux-consoledot-frontend-build/commits
           - name: pathInRepo
             value: tasks/parse-build-deploy-script/parse-build-deploy-script.yaml
       workspaces:
@@ -218,7 +218,7 @@ spec:
           - name: url
             value: https://github.com/RedHatInsights/konflux-consoledot-frontend-build
           - name: revision
-            value: a6838b71b88dc1e84f11764c9734e4880096585d  # replace with the latest commit from https://github.com/RedHatInsights/konflux-consoledot-frontend-build/commits
+            value: c23c5a5f3024104120d4be8c2cf26dbeb29e5a22  # replace with the latest commit from https://github.com/RedHatInsights/konflux-consoledot-frontend-build/commits
           - name: pathInRepo
             value: tasks/create-frontend-dockerfile/create-frontend-dockerfile.yaml
       workspaces:
