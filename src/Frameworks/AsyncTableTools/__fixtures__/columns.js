@@ -41,4 +41,13 @@ export default [
     exportKey: 'severity',
     renderFunc: (_a, _b, item) => item.severity,
   },
+  {
+    title: 'Download button',
+    key: 'download',
+    sortByProperty: 'severity',
+    sortByArray: severityLevels,
+    exportKey: 'severity',
+    manageable: false,
+    renderFunc: () => <a href="#">Download</a>,
+  },
 ];
