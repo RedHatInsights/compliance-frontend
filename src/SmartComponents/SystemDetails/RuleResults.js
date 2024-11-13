@@ -49,6 +49,7 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       policyName={reportTestResult.title}
       total={ruleResults?.meta?.total}
       defaultTableView="rows"
+      enableSelect
       // TODO: provide ruleTree
     />
   );

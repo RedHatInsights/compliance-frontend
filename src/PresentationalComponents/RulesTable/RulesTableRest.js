@@ -7,7 +7,6 @@ import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
-import { itemIdentifier } from './helpers';
 
 const RulesTable = ({
   system,
@@ -33,6 +32,7 @@ const RulesTable = ({
   total,
   onSelect,
   defaultTableView = 'tree',
+  enableSelect,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -126,8 +126,7 @@ const RulesTable = ({
         showViewToggle: true,
         defaultTableView,
         ...(ruleTree ? { tableTree: ruleTree } : {}),
-        identifier: itemIdentifier,
-        ...(onSelect ? { onSelect: onSelect || setSelectedRules } : {}),
+        ...(enableSelect ? { onSelect: setSelectedRules } : {}),
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
@@ -167,6 +166,7 @@ RulesTable.propTypes = {
   onSelect: propTypes.func,
   total: propTypes.number,
   defaultTableView: propTypes.string,
+  enableSelect: propTypes.bool,
 };
 
 export default RulesTable;
