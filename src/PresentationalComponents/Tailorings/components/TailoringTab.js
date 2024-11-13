@@ -50,6 +50,7 @@ const TailoringTab = ({
     skipRules: shouldSkip.securityGuide.rules,
     skipRuleTree: shouldSkip.securityGuide.ruleTree,
     ...(groupFilter ? { groupFilter } : {}),
+    tableState,
   });
 
   const {
