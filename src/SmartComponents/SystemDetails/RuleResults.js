@@ -4,12 +4,14 @@ import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
 import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
 import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
+import columns from './Columns';
 
 const RuleResults = ({ hidePassed, reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();
 
   const { limit, offset } = serialisedTableState?.pagination || {};
   const filters = serialisedTableState?.filters;
+  const sort = serialisedTableState?.sort;
 
   const { data: ruleResults } = useReportRuleResults({
     params: [
@@ -19,7 +21,7 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       limit,
       offset,
       false,
-      undefined, // TODO: sortBy,
+      sort,
       filters,
     ],
     skip: serialisedTableState === undefined,
@@ -42,6 +44,7 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       hidePassed={false} // TODO: fix this
       showFailedCounts
       rules={rules}
+      columns={columns}
       policyId={reportTestResult.report_id}
       policyName={reportTestResult.title}
       total={ruleResults?.meta?.total}
