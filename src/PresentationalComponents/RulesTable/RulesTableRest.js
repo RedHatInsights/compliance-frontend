@@ -55,17 +55,26 @@ const RulesTable = ({
 
   const DetailsRow = useMemo(
     () =>
-      /* eslint-disable */
       function Row(props) {
-        const rule = rules?.find(({ id }) => props?.item?.itemId === id)
-        const ruleValueDefinitions = rule?.value_checks?.map((checkId) => valueDefinitions.find(({id}) => id === checkId))
-        const ruleRuleValues = Object.fromEntries(Object.entries(ruleValues).filter(([id]) => rule?.value_checks.includes(id)))
+        // eslint-disable-next-line react/prop-types
+        const rule = rules?.find(({ id }) => props?.item?.itemId === id);
+        const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
+          valueDefinitions.find(({ id }) => id === checkId)
+        );
+        const ruleRuleValues = ruleValues
+          ? Object.fromEntries(
+              Object.entries(ruleValues).filter(([id]) =>
+                rule?.value_checks.includes(id)
+              )
+            )
+          : undefined;
         const item = {
+          // eslint-disable-next-line react/prop-types
           ...props.item,
           ...rule,
           valueDefinitions: ruleValueDefinitions,
           profile: { id: policyId, name: policyName },
-          ruleValues: ruleRuleValues
+          ruleValues: ruleRuleValues,
         };
 
         return (
