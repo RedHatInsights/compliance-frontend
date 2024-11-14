@@ -5,19 +5,18 @@ import PageHeader, {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
-  LinkWithPermission as Link,
   ErrorPage,
   LoadingPoliciesTable,
   PoliciesTable,
   StateView,
   StateViewPart,
-  LinkButton,
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import { dataMap } from './constants';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
+import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 
 const CompliancePoliciesRest = () => {
   // Async table needs info about total policy count before mounting
@@ -48,19 +47,6 @@ const CompliancePoliciesRest = () => {
     error = undefined;
     loading = undefined;
   }
-
-  const CreateLink = () => (
-    <Link
-      to="/scappolicies/new"
-      Component={LinkButton}
-      componentProps={{
-        variant: 'primary',
-        ouiaId: 'CreateNewPolicyButton',
-      }}
-    >
-      Create new policy
-    </Link>
-  );
 
   let policies;
 

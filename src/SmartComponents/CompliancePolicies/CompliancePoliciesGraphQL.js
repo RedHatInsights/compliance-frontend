@@ -7,32 +7,18 @@ import PageHeader, {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
-  LinkWithPermission as Link,
   ErrorPage,
   LoadingPoliciesTable,
   PoliciesTable,
   StateView,
   StateViewPart,
-  LinkButton,
 } from 'PresentationalComponents';
+import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 
 import { QUERY } from './constants';
 
 const CompliancePoliciesGraphQL = () => {
   let { data, error, loading } = useQuery(QUERY);
-
-  const CreateLink = () => (
-    <Link
-      to="/scappolicies/new"
-      Component={LinkButton}
-      componentProps={{
-        variant: 'primary',
-        ouiaId: 'CreateNewPolicyButton',
-      }}
-    >
-      Create new policy
-    </Link>
-  );
 
   let policies;
 
