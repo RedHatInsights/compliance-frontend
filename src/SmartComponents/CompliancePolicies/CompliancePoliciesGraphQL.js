@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/client';
 import { Grid } from '@patternfly/react-core';
@@ -6,6 +6,7 @@ import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
+import { useLocation } from 'react-router-dom';
 import {
   ErrorPage,
   LoadingPoliciesTable,
@@ -18,7 +19,8 @@ import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink
 import { QUERY } from './constants';
 
 const CompliancePoliciesGraphQL = () => {
-  let { data, error, loading } = useQuery(QUERY);
+  const location = useLocation();
+  let { data, error, loading, refetch } = useQuery(QUERY);
 
   let policies;
 
@@ -32,6 +34,10 @@ const CompliancePoliciesGraphQL = () => {
       policies = [];
     }
   }
+
+  useEffect(() => {
+    refetch();
+  }, [location, refetch]);
 
   return (
     <React.Fragment>
