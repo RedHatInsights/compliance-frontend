@@ -1,92 +1,118 @@
-import { useCallback, useMemo } from 'react';
 import useSecurityGuideRuleTree from 'Utilities/hooks/api/useSecurityGuideRuleTree';
-import useBatchedRuleGroups from '../../hooks/useBatchedRuleGroups';
+import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
+import useProfileTree from 'Utilities/hooks/api/useProfileTree';
+import useBatchedRuleGroups from './useBatchedRuleGroups';
 import useBatchedValueDefinitions from './useBatchedValueDefinitions';
-import useRules from 'Utilities/hooks/api/useRules';
+import useBatchedRules from './useBatchedRules';
+import useBatchedProfileRules from './useBatchedProfileRules';
 
-const useSecurityGuideData = (
+const useSecurityGuideData = ({
   securityGuideId,
-  {
-    skipRuleTree,
-    skipRuleGroups,
-    skipValueDefinitions,
-    skipRules,
-    groupFilter,
-    tableState: {
-      serialisedTableState: { filters, pagination, sort } = {},
-    } = {},
-  }
-) => {
-  const ruleParams = useMemo(
-    () => [
-      securityGuideId,
-      undefined,
-      // TODO this is a hack: The state value defaults should come from the state itself
-      pagination?.limit || 10,
-      pagination?.offset || 0,
-      undefined,
-      sort || 'title:asc',
-      ...(filters || groupFilter
+  profileId,
+  skipRuleTree,
+  skipRuleGroups,
+  skipValueDefinitions,
+  skipRules,
+  skipProfileRules,
+  skipProfileTree,
+  groupFilter,
+  tableState: {
+    tableState: { tableView } = {},
+    serialisedTableState: { filters, pagination, sort } = {},
+  } = {},
+}) => {
+  const {
+    data: securityGuide,
+    loading: securityGuideLoading,
+    error: securityGuideError,
+  } = useSecurityGuide({
+    params: { securityGuideId },
+    skip: !securityGuideId,
+  });
+
+  const ruleParams = {
+    securityGuideId,
+    profileId,
+    limit: pagination?.limit || 10,
+    offset: pagination?.offset || 0,
+    sortBy: sort || 'title:asc',
+    filter:
+      filters || groupFilter
         ? [
             filters
               ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
               : groupFilter,
           ]
-        : []),
-    ],
-    [filters, pagination, groupFilter, sort, securityGuideId]
-  );
+        : undefined,
+  };
 
   const {
     data: rules,
     loading: rulesLoading,
     error: rulesError,
-    fetch: fetchSecurityGuideRules,
-  } = useRules({
+    fetchBatched: fetchBatchedRules,
+  } = useBatchedRules({
     params: ruleParams,
     skip: skipRules,
+    batched: tableView === 'tree',
   });
 
-  const fetchRules = useCallback(
-    async (offset, limit) => {
-      const fetchParams = [
-        securityGuideId,
-        ...ruleParams.map((value, idx) => {
-          if (idx === 2) {
-            return limit;
-          }
-          if (idx === 3) {
-            return offset;
-          }
-          return value;
-        }),
-      ];
-
-      return await fetchSecurityGuideRules(fetchParams, false);
-    },
-    [fetchSecurityGuideRules, securityGuideId, ruleParams]
-  );
+  const {
+    data: profileRules,
+    loading: profileRulesLoading,
+    error: profileRulesError,
+    fetchBatched: fetchBatchedProfileRules,
+  } = useBatchedProfileRules({
+    params: ruleParams,
+    skip: skipProfileRules,
+    batched: tableView === 'tree',
+  });
 
   const {
     loading: ruleGroupsLoading,
     data: ruleGroups,
     error: ruleGroupsError,
-  } = useBatchedRuleGroups(securityGuideId, { skip: skipRuleGroups });
+  } = useBatchedRuleGroups({
+    params: {
+      securityGuideId,
+    },
+    skip: skipRuleGroups,
+    batched: true,
+  });
 
   const {
     data: ruleTree,
     loading: ruleTreeLoading,
     error: ruleTreeError,
-  } = useSecurityGuideRuleTree(securityGuideId, {
+  } = useSecurityGuideRuleTree({
+    params: {
+      securityGuideId,
+    },
     skip: skipRuleTree,
+  });
+
+  const {
+    data: profileTree,
+    loading: profileTreeLoading,
+    error: profileTreeError,
+  } = useProfileTree({
+    params: {
+      securityGuideId,
+      profileId,
+    },
+    skip: skipProfileTree,
   });
 
   const {
     loading: valueDefinitionsLoading,
     data: valueDefinitions,
     error: valueDefinitionsError,
-  } = useBatchedValueDefinitions(securityGuideId, {
+  } = useBatchedValueDefinitions({
+    params: {
+      securityGuideId,
+    },
     skip: skipValueDefinitions,
+    batched: true,
   });
 
   return {
@@ -94,15 +120,37 @@ const useSecurityGuideData = (
       rulesLoading ||
       ruleTreeLoading ||
       ruleGroupsLoading ||
-      valueDefinitionsLoading,
+      valueDefinitionsLoading ||
+      profileRulesLoading ||
+      profileTreeLoading ||
+      securityGuideLoading,
     error:
-      rulesError || ruleTreeError || ruleGroupsError || valueDefinitionsError,
+      rulesError ||
+      ruleTreeError ||
+      ruleGroupsError ||
+      valueDefinitionsError ||
+      profileTreeError ||
+      profileRulesError ||
+      securityGuideError,
     data: {
+      rules: { data: [], meta: { total: 0 } },
+      ...(!securityGuideId ? { securityGuide } : {}),
       ...(!skipRuleGroups ? { ruleGroups } : {}),
       ...(!skipValueDefinitions ? { valueDefinitions } : {}),
-      ...(!skipRuleTree ? { ruleTree } : {}),
-      ...(!skipRules ? { fetchRules, rules } : {}),
+      ...(!skipRuleTree ? { ruleTree: ruleTree } : {}),
+      ...(!skipProfileTree ? { ruleTree: profileTree } : {}),
+      ...(!skipRules
+        ? {
+            rules: rules,
+          }
+        : {}),
+      ...(!skipProfileRules
+        ? {
+            rules: profileRules,
+          }
+        : {}),
     },
+    fetchBatchedRules: profileId ? fetchBatchedProfileRules : fetchBatchedRules,
   };
 };
 

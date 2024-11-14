@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import { Spinner, Tab } from '@patternfly/react-core';
 import {
@@ -7,8 +7,6 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
-import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
-
 import OsVersionText from '../TabbedRules/OsVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
@@ -21,17 +19,16 @@ import { eventKey } from './helpers';
  * or the rules of a specific security guide and it's rules for a set of minor OS versions
  *
  *  @param   {object}             [props]
- *  @param   {object}             [props.policy]              A policy object from the API
- *  @param   {string}             [props.securityGuideId]     A security guide ID
- *  @param   {Array}              [props.osMinorVersions]     An array of OS minor versions to show the security guide rules for
- *  @param   {string}             [props.defaultTab]          TODO
- *  @param   {Array}              [props.columns]             An array of RulesTable columns
- *  @param   {number}             [props.level]               TODO
- *  @param   {string}             [props.ouiaId]
- *  @param   {Function}           [props.onValueOverrideSave] Callback function called when a value of a rule is saved
- *
- *  @param   {Function}           [props.onSelect]            Callback function called when any selection is made
- *  @param   {object}             [props.preselected]         An object containing the preselection of rules for each tab
+ *  @param   {object}             [props.policy]                         A policy object from the API
+ *  @param   {string}             [props.profiles]
+ *  @param   {string}             [props.defaultTab]                     TODO
+ *  @param   {Array}              [props.columns]                        An array of RulesTable columns
+ *  @param   {number}             [props.level]                          TODO
+ *  @param   {string}             [props.ouiaId]                         OuiaId to pass to the PatternFly Table
+ *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
+ *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
+ *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
+ *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *
  *  @returns {React.ReactElement}
  *
@@ -50,9 +47,6 @@ import { eventKey } from './helpers';
  *     Columns.Remediation,
  *   ]}
  *   policy={policy}
- *   level={1}
- *   DedicatedAction={DedicatedAction}
- *   onValueOverrideSave={saveToPolicy}
  * />
  *
  *  // Will show the tailorings of a policy and an additional tab for another OS minor version to show
@@ -66,9 +60,6 @@ import { eventKey } from './helpers';
  *   ]}
  *   policy={policy}
  *   osMinorVersions={[9,10]}
- *   level={1}
- *   DedicatedAction={DedicatedAction}
- *   onValueOverrideSave={saveToPolicy}
  * />
  *
  *  // Will show tabs with rules from the security guide and the specified OS minor versions
@@ -82,15 +73,34 @@ import { eventKey } from './helpers';
  *   ]}
  *   securityGuideId={'ffff-ffff-fffff'}
  *   osMinorVersions={[9,10]}
- *   level={1}
- *   DedicatedAction={DedicatedAction}
- *   onValueOverrideSave={saveToPolicy}
  * />
+ *
+ *  // Will show tabs with rules from the security guide and the specified OS minor versions
+ *  // and preselect rules with the IDs provided in preselected. The key can also be a tailorings ID
+ *
+ *  <Tailorings
+ *   ouiaId="RHELVersions"
+ *   columns={[
+ *     Columns.Name,
+ *     Columns.Severity,
+ *     Columns.Remediation,
+ *   ]}
+ *   profileRefId={XYZ}
+ *   osMinorVersions={{
+ *     9: 'ffff-ffff-fffff',
+ *    10: 'eeeee-eeeee-eeeeef',
+ *   }}
+ *   preselected={{
+ *     "9": ['RULE_ID1', 'RULE_ID2']
+ *     "10": ['RULE_ID11', 'RULE_ID5']
+ *   }}
+ * />
+ *
+ *
  */
 const Tailorings = ({
   policy,
-  securityGuideId,
-  osMinorVersions,
+  profiles,
   defaultTab,
   columns,
   level = 0,
@@ -98,6 +108,7 @@ const Tailorings = ({
   onValueOverrideSave,
   onSelect,
   preselected,
+  enableSecurityGuideRulesToggle,
   ...rulesTableProps
 }) => {
   const {
@@ -105,56 +116,34 @@ const Tailorings = ({
     loading: tailoringsLoading,
     error: tailoringsError,
   } = useTailorings({
-    params: [
-      policy?.id,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      'os_minor_version:desc',
-      'NOT(null? os_minor_version)',
-    ],
+    params: {
+      policyId: policy?.id,
+      filter: 'NOT(null? os_minor_version)',
+    },
     skip: !policy,
   });
 
-  const {
-    data: securityGuide,
-    loading: securityGuideLoading,
-    error: securityGuideError,
-  } = useSecurityGuide({
-    params: [securityGuideId],
-    skip: !securityGuideId,
-  });
-
-  const tabs = useMemo(() => {
-    return [
-      ...(policy && tailoringsData?.data ? tailoringsData.data : []),
-      ...(securityGuideId && osMinorVersions && securityGuide
-        ? osMinorVersions.map((osMinorVersion) => {
-            return {
-              ...(securityGuide?.data || {}),
-              os_minor_version: osMinorVersion,
-              os_major_version:
-                policy?.osMajorVersion || securityGuide?.data?.os_major_version,
-              isSecurityGuide: true,
-            };
-          })
-        : []),
-    ];
-  }, [policy, securityGuideId, securityGuide, tailoringsData, osMinorVersions]);
+  const tabs = [
+    ...(policy && tailoringsData?.data ? tailoringsData.data : []),
+    ...(profiles?.map((profile) => ({
+      ...profile,
+      os_major_version: profile.osMajorVersion,
+      os_minor_version: profile.osMinorVersion,
+      isSecurityGuide: true,
+    })) || []),
+  ];
 
   const onValueSave = (...valueParams) =>
-    onValueOverrideSave?.(policy || securityGuideId, ...valueParams);
+    onValueOverrideSave?.(policy, ...valueParams);
 
-  const onSelectTailoring = (...tabParams) =>
-    onSelect?.(policy || securityGuideId, ...tabParams);
+  const onSelectTailoring = (...tabParams) => onSelect?.(policy, ...tabParams);
 
   return (
     <StateViewWithError
       stateValues={{
-        error: securityGuideError || tailoringsError,
+        error: tailoringsError,
         data: tabs,
-        loading: securityGuideLoading || tailoringsLoading,
+        loading: tailoringsLoading,
       }}
     >
       <StateViewPart stateKey="loading">
@@ -186,11 +175,14 @@ const Tailorings = ({
                   {...{
                     ...(tab.isSecurityGuide
                       ? {
-                          securityGuide: tab,
+                          securityGuideId: tab.securityGuideId,
+                          profileId: tab.profileId,
+                          osMajorVersion: tab.os_major_version,
                           osMinorVersion: tab.os_minor_version,
                         }
                       : { policy, tailoring: tab }),
                     columns,
+                    enableSecurityGuideRulesToggle,
                     rulesTableProps,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
@@ -209,17 +201,9 @@ const Tailorings = ({
 };
 
 Tailorings.propTypes = {
-  policy: propTypes.object,
-  osMinorVerions: propTypes.array,
-  securityGuideId: propTypes.string,
-  osMinorVersions: propTypes.array,
-  selectedRuleRefIds: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.string,
-      ruleRefIds: propTypes.arrayOf(propTypes.string),
-    })
-  ),
   columns: propTypes.arrayOf(propTypes.object),
+  policy: propTypes.object,
+  profiles: propTypes.array,
   defaultTab: propTypes.shape({
     id: propTypes.string,
     osMinorVersion: propTypes.string,
@@ -234,6 +218,7 @@ Tailorings.propTypes = {
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
   preselected: propTypes.object,
+  enableSecurityGuideRulesToggle: propTypes.bool,
 };
 
 export default Tailorings;

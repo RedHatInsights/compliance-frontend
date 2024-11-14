@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import useBatchedRuleGroups from 'PresentationalComponents/hooks/useBatchedRuleGroups';
+import useBatchedRuleGroups from 'PresentationalComponents/Tailorings/hooks/useBatchedRuleGroups';
 import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers';
 import { act } from 'react';
 import { usePolicyRulesList } from 'Utilities/hooks/api/usePolicyRulesList';
@@ -10,8 +10,9 @@ jest.mock('Utilities/hooks/api/useProfileRules', () => jest.fn());
 jest.mock('Utilities/hooks/api/useProfileTree', () => ({
   useProfileTree: jest.fn(),
 }));
-jest.mock('PresentationalComponents/hooks/useBatchedRuleGroups', () =>
-  jest.fn()
+jest.mock(
+  'PresentationalComponents/Tailorings/hooks/useBatchedRuleGroups',
+  () => jest.fn()
 );
 jest.mock('PresentationalComponents/Tailorings/helpers', () => ({
   buildTreeTable: jest.fn(),

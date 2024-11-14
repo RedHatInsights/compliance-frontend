@@ -1,7 +1,20 @@
-import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useProfileTree = ({ securityGuideId, profileId, options }) =>
-  useComplianceQuery('profileTree', {
-    params: [securityGuideId, profileId],
-    ...options,
-  });
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { securityGuideId, profileId } = params;
+
+    return [
+      securityGuideId,
+      profileId,
+      undefined, // xRHIDENTITY
+    ];
+  }
+};
+
+const useProfileTree = (options) =>
+  useComplianceQuery('profileTree', { ...options, convertToArray });
+
+export default useProfileTree;

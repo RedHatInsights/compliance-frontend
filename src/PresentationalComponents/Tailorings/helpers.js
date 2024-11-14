@@ -32,25 +32,56 @@ export const buildTreeTable = (ruleTree, ruleGroups) => {
   return tree;
 };
 
-export const skips = (policy, tailoring, securityGuide, tableState) => {
-  const { tableView, ['open-items']: openItems } = tableState?.tableState || {};
+export const skips = ({
+  policy,
+  tailoring,
+  securityGuideId,
+  profileId,
+  tableState,
+}) => {
+  const {
+    selectedRulesOnly,
+    tableView,
+    ['open-items']: openItems,
+  } = tableState?.tableState || {};
+  const hasMissingParams = !policy && !tailoring;
+  const hasNoTableState = !tableState;
+  const isTailoringWithPolicy = !!policy && !!tailoring;
+  const isNewTailoring = !!policy && !tailoring && !!securityGuideId;
+  const hasNoOpenItems = (openItems || []).length === 0;
+  const isTreeView = tableView === 'tree';
 
   return {
+    securityGuide: {
+      ruleGroups: hasNoTableState,
+      ruleTree: hasNoTableState || isTailoringWithPolicy || selectedRulesOnly,
+      rules:
+        hasNoTableState ||
+        isTailoringWithPolicy ||
+        (isTreeView && hasNoOpenItems) ||
+        selectedRulesOnly,
+      valueDefinitions: hasNoTableState || hasNoOpenItems,
+      profile: {
+        rules:
+          hasNoTableState ||
+          isTailoringWithPolicy ||
+          (isTreeView && hasNoOpenItems) ||
+          !selectedRulesOnly ||
+          !profileId,
+        ruleTree:
+          hasNoTableState ||
+          isTailoringWithPolicy ||
+          !selectedRulesOnly ||
+          !profileId,
+      },
+    },
     tailoring: {
       rules:
-        !tableState ||
-        !(policy && tailoring) ||
-        (tableView === 'tree' && !openItems.length === 0),
-      ruleTree: !tableState || !(policy && tailoring) || tableView === 'rows',
-    },
-    securityGuide: {
-      rules:
-        !tableState ||
-        !securityGuide ||
-        (tableView === 'tree' && !openItems?.length === 0),
-      ruleTree: !tableState || !securityGuide || tableView === 'rows',
-      ruleGroups: !tableState || tableView === 'rows',
-      valueDefinitions: !tableState,
+        (isTreeView && hasNoOpenItems) ||
+        hasNoTableState ||
+        hasMissingParams ||
+        isNewTailoring,
+      ruleTree: hasNoTableState || hasMissingParams || isNewTailoring,
     },
   };
 };
