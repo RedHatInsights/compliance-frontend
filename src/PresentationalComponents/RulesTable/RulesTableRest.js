@@ -32,13 +32,13 @@ const RulesTable = ({
   total,
   onSelect,
   defaultTableView = 'tree',
-  enableSelect,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
-  const [selectedRules, setSelectedRules] = onSelect
-    ? [selectedRulesProp, onSelect]
-    : internalSelectedState;
+  const [selectedRules, setSelectedRules] =
+    typeof onSelect === 'function'
+      ? [selectedRulesProp, onSelect]
+      : internalSelectedState;
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showRuleStateFilter =
@@ -126,7 +126,7 @@ const RulesTable = ({
         showViewToggle: true,
         defaultTableView,
         ...(ruleTree ? { tableTree: ruleTree } : {}),
-        ...(enableSelect ? { onSelect: setSelectedRules } : {}),
+        ...(onSelect ? { onSelect: setSelectedRules } : {}),
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
@@ -163,10 +163,9 @@ RulesTable.propTypes = {
   DedicatedAction: propTypes.node,
   valueDefinitions: propTypes.object.isRequired,
   onValueOverrideSave: propTypes.func,
-  onSelect: propTypes.func,
+  onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
   defaultTableView: propTypes.string,
-  enableSelect: propTypes.bool,
 };
 
 export default RulesTable;
