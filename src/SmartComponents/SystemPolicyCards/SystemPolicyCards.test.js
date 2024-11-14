@@ -1,11 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import useSystemReports from 'Utilities/hooks/api/useSystemReports';
 import { SystemPolicyCards } from './SystemPolicyCards';
-import useReportTestResults from 'Utilities/hooks/api/useReportTestResults';
-import systemReports from '../../__factories__/systemReports';
 import testResults from '../../__factories__/testResults';
 
 jest.mock('Utilities/hooks/api/useSystemReports');
@@ -13,8 +10,13 @@ jest.mock('Utilities/hooks/api/useReportTestResults');
 jest.mock('react-router-dom');
 
 describe('SystemPolicyCards', () => {
-  const systemReportsData = systemReports.buildList(3);
   const testResultsData = testResults.buildList(1);
+  const testResultsMock = testResultsData.map((testResult) => ({
+    ...testResult,
+    report_id: 'abc',
+    title: 'xyz',
+    profile_title: 'xyz',
+  }));
 
   beforeEach(() => {
     useParams.mockReturnValue({
@@ -22,110 +24,25 @@ describe('SystemPolicyCards', () => {
     });
   });
 
-  it('shows placeholders in loading state', () => {
-    useSystemReports.mockImplementation(() => ({
-      data: null,
-      loading: true,
-    }));
-    render(<SystemPolicyCards />);
-
-    screen.getAllByRole('progressbar', { name: 'Loading policy' });
-  });
-
-  it('shows placeholders for almost loaded policies', () => {
-    useSystemReports.mockImplementation(() => ({
-      data: { data: systemReportsData },
-      loading: false,
-    }));
-    useReportTestResults.mockImplementation(() => ({
-      data: undefined, // indicates loading state
-    }));
-    render(<SystemPolicyCards />);
-
-    expect(
-      screen.getAllByRole('progressbar', { name: 'Loading policy' })
-    ).toHaveLength(systemReportsData.length);
-  });
-
-  it('shows card with data for loaded policy', async () => {
-    useSystemReports.mockImplementation(() => ({
-      data: { data: [systemReportsData[0]] },
-      loading: false,
-    }));
-    useReportTestResults.mockImplementation(() => ({
-      data: { data: testResultsData, meta: { total: 1 } },
-    }));
-    render(<SystemPolicyCards />);
+  it('shows card with data for loaded policy', () => {
+    render(<SystemPolicyCards reportTestResults={testResultsMock} />);
 
     screen.getByRole('heading', {
-      name: systemReportsData[0].title,
+      name: testResultsMock[0].title,
     });
     screen.getByText(
-      testResultsData[0].compliant ? 'Compliant' : 'Not compliant'
+      testResultsMock[0].compliant ? 'Compliant' : 'Not compliant'
     );
     screen.getByText(
-      `${testResultsData[0].failed_rule_count} rule${
-        testResultsData[0].failed_rule_count > 1 ||
-        testResultsData[0].failed_rule_count === 0
+      `${testResultsMock[0].failed_rule_count} rule${
+        testResultsMock[0].failed_rule_count > 1 ||
+        testResultsMock[0].failed_rule_count === 0
           ? 's'
           : ''
       } failed`
     );
     screen.getByText(
-      `SSG version: ${testResultsData[0].security_guide_version}`
+      `SSG version: ${testResultsMock[0].security_guide_version}`
     );
-  });
-
-  it('requests system reports with system id', async () => {
-    useSystemReports.mockImplementation(() => ({
-      data: null,
-      loading: true,
-    }));
-    render(<SystemPolicyCards />);
-
-    expect(useSystemReports).toBeCalledWith({
-      params: ['abc', null, 100],
-    });
-  });
-
-  it('requests test results with with report and system id', async () => {
-    useSystemReports.mockImplementation(() => ({
-      data: { data: [systemReportsData[0]] },
-      loading: false,
-    }));
-    useReportTestResults.mockImplementation(() => ({
-      data: undefined, // indicates loading state
-    }));
-    render(<SystemPolicyCards />);
-
-    expect(useReportTestResults).toBeCalledWith({
-      params: [
-        systemReportsData[0].id,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        'system_id=abc',
-      ],
-    });
-  });
-
-  it('does not render a card for policy with no test results', async () => {
-    useSystemReports.mockImplementation(() => ({
-      data: { data: [systemReportsData[0]] },
-      loading: false,
-    }));
-    useReportTestResults.mockImplementation(() => ({
-      data: { data: [], meta: { total: 0 } },
-    }));
-    render(<SystemPolicyCards />);
-
-    await waitFor(() => {
-      expect(useReportTestResults).toBeCalled();
-    });
-    expect(
-      screen.queryByText(systemReportsData[0].title)
-    ).not.toBeInTheDocument();
   });
 });
