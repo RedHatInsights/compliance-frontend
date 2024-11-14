@@ -11,6 +11,7 @@ export const PoliciesTable = ({
   policies,
   DedicatedAction,
   total,
+  loading,
   options,
 }) => {
   const filters = Object.values(Filters);
@@ -28,6 +29,7 @@ export const PoliciesTable = ({
         filterConfig: filters,
       }}
       total={total}
+      loading={loading}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         actionResolver,
@@ -47,6 +49,7 @@ PoliciesTable.propTypes = {
   policies: propTypes.array.isRequired,
   DedicatedAction: propTypes.oneOfType([propTypes.node, propTypes.func]),
   total: propTypes.number,
+  loading: propTypes.bool,
   options: propTypes.object,
 };
 

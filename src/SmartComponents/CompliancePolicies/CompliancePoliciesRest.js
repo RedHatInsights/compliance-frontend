@@ -22,7 +22,7 @@ const CompliancePoliciesRest = () => {
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
   const totalPolicies = usePoliciesCount();
-  const totalPoliciesLoaded = totalPolicies != null;
+  let totalPoliciesLoaded = totalPolicies != null;
 
   const options = {
     useTableState: true,
@@ -42,22 +42,22 @@ const CompliancePoliciesRest = () => {
 
   const policiesExporter = useExporter(fetchForExport);
 
-  if (data) {
-    data = dataSerialiser(data, dataMap);
-    error = undefined;
-    loading = undefined;
+  let showTable = data || totalPoliciesLoaded;
+
+  if (showTable) {
+    if (data) {
+      data = dataSerialiser(data, dataMap);
+      error = undefined;
+    }
+    totalPoliciesLoaded = undefined;
   }
-
-  let policies;
-
-  if (data || totalPolicies != null) {
-    error = undefined;
-    loading = undefined;
-    policies = data;
-  }
-
   // Async table always needs one total value
   const calculatedTotal = currentTotalPolicies ?? totalPolicies;
+
+  if (error) {
+    totalPoliciesLoaded = undefined;
+    showTable = undefined;
+  }
 
   return (
     <React.Fragment>
@@ -66,7 +66,11 @@ const CompliancePoliciesRest = () => {
       </PageHeader>
       <section className="pf-v5-c-page__main-section">
         <StateView
-          stateValues={{ error, loaded: totalPoliciesLoaded, loading }}
+          stateValues={{
+            error,
+            loading: totalPoliciesLoaded,
+            showTable: showTable,
+          }}
         >
           <StateViewPart stateKey="error">
             <ErrorPage error={error} />
@@ -74,7 +78,7 @@ const CompliancePoliciesRest = () => {
           <StateViewPart stateKey="loading">
             <LoadingPoliciesTable />
           </StateViewPart>
-          <StateViewPart stateKey="loaded">
+          <StateViewPart stateKey="showTable">
             {totalPolicies === 0 ? (
               <Grid hasGutter>
                 <ComplianceEmptyState
@@ -84,8 +88,9 @@ const CompliancePoliciesRest = () => {
               </Grid>
             ) : (
               <PoliciesTable
-                policies={policies}
+                policies={data}
                 total={calculatedTotal}
+                loading={loading}
                 DedicatedAction={CreateLink}
                 options={{
                   exporter: async () =>
