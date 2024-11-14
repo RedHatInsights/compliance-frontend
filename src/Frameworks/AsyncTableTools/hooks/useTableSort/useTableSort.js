@@ -34,19 +34,9 @@ import { TABLE_STATE_NAMESPACE } from './constants';
  *
  */
 const useTableSort = (columns, options = {}) => {
-  const {
-    sortBy: initialSortBy,
-    serialisers,
-    onSort: onSortOption,
-    detailsComponent,
-  } = options;
-  const hasExpandable = detailsComponent !== undefined;
+  const { sortBy: initialSortBy, serialisers, onSort: onSortOption } = options;
   const serialiser = useCallback(
-    (state) =>
-      options.serialisers.sort(state, [
-        ...(hasExpandable ? [{}] : []),
-        ...columns,
-      ]),
+    (state) => options.serialisers.sort(state, columns),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [JSON.stringify(columns), JSON.stringify(options.serialisers)]
   );
