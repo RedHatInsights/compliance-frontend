@@ -22,7 +22,7 @@ const CompliancePoliciesRest = () => {
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
   const totalPolicies = usePoliciesCount();
-  let totalPoliciesLoaded = totalPolicies != null;
+  let totalPoliciesLoading = totalPolicies == null;
 
   const options = {
     useTableState: true,
@@ -42,20 +42,20 @@ const CompliancePoliciesRest = () => {
 
   const policiesExporter = useExporter(fetchForExport);
 
-  let showTable = data || totalPoliciesLoaded;
+  let showTable = data || !totalPoliciesLoading;
 
   if (showTable) {
     if (data) {
       data = dataSerialiser(data, dataMap);
       error = undefined;
     }
-    totalPoliciesLoaded = undefined;
+    totalPoliciesLoading = undefined;
   }
   // Async table always needs one total value
   const calculatedTotal = currentTotalPolicies ?? totalPolicies;
 
   if (error) {
-    totalPoliciesLoaded = undefined;
+    totalPoliciesLoading = undefined;
     showTable = undefined;
   }
 
@@ -68,7 +68,7 @@ const CompliancePoliciesRest = () => {
         <StateView
           stateValues={{
             error,
-            loading: totalPoliciesLoaded,
+            loading: totalPoliciesLoading,
             showTable: showTable,
           }}
         >
