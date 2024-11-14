@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
 import {
@@ -22,11 +22,24 @@ import useProfileRuleIds from './useProfileRuleIds';
 
 export const EditPolicyProfilesRulesRest = ({
   policy,
-  selectedRuleRefIds = [],
+  selectedRuleRefIds,
   change,
   osMajorVersion,
   osMinorVersionCounts,
 }) => {
+  const hasCachedSelection = selectedRuleRefIds !== undefined;
+  const preselected = useMemo(
+    () =>
+      (selectedRuleRefIds || []).reduce(
+        (prev, cur) => ({
+          ...prev,
+          [cur.osMinorVersion]: cur.ruleRefIds,
+        }),
+        {}
+      ),
+    [selectedRuleRefIds]
+  );
+
   const {
     data: securityGuideData,
     loading: securityGuideLoading,
@@ -41,6 +54,11 @@ export const EditPolicyProfilesRulesRest = ({
       `os_major_version=${osMajorVersion} AND profile_ref_id=${policy.refId}`,
     ],
   });
+
+  const skipFetchingProfileRuleIds =
+    hasCachedSelection ||
+    securityGuideLoading ||
+    securityGuideData === undefined;
   const {
     profileRuleIds,
     loading: preselectedRuleIdsLoading,
@@ -48,45 +66,60 @@ export const EditPolicyProfilesRulesRest = ({
   } = useProfileRuleIds(
     securityGuideData?.data?.[0]?.id,
     policy.id,
-    securityGuideLoading || securityGuideData === undefined
+    skipFetchingProfileRuleIds
   );
 
-  const onSelect = (_securityGuideId, osMinorVersion, newSelectedRuleIds) => {
-    const updatedSelectedRuleRefIds = selectedRuleRefIds;
-
-    if (updatedSelectedRuleRefIds.length === 0) {
-      if (newSelectedRuleIds.length === 0) {
-        return;
-      }
-
-      updatedSelectedRuleRefIds.push({
-        osMinorVersion,
-        ruleRefIds: newSelectedRuleIds,
-      });
-    } else {
-      const index = updatedSelectedRuleRefIds.findIndex(
-        ({ osMinorVersion: _osMinorVersion }) =>
-          _osMinorVersion === osMinorVersion
+  const onSelect = useCallback(
+    (_securityGuideId, osMinorVersion, newSelectedRuleIds) => {
+      const updatedSelectedRuleRefIds = structuredClone(
+        selectedRuleRefIds || []
       );
 
-      if (newSelectedRuleIds.length === 0) {
-        // should completely remove the entry from the list if none selected
-        updatedSelectedRuleRefIds.splice(index, 1);
+      if (updatedSelectedRuleRefIds.length === 0) {
+        if (newSelectedRuleIds.length === 0) {
+          return;
+        }
+
+        updatedSelectedRuleRefIds.push({
+          osMinorVersion,
+          ruleRefIds: newSelectedRuleIds,
+        });
       } else {
-        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
+        const index = updatedSelectedRuleRefIds.findIndex(
+          ({ osMinorVersion: _osMinorVersion }) =>
+            _osMinorVersion === osMinorVersion
+        );
+
+        if (newSelectedRuleIds.length === 0) {
+          // should completely remove the entry from the list if none selected
+          updatedSelectedRuleRefIds.splice(index, 1);
+        } else {
+          updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
+        }
       }
-    }
-    change('selectedRuleRefIds', updatedSelectedRuleRefIds);
-  };
+      change('selectedRuleRefIds', updatedSelectedRuleRefIds);
+    },
+    [change, selectedRuleRefIds]
+  );
 
   useEffect(() => {
     // set initial selection
-    if (preselectedRuleIdsLoading === false && profileRuleIds !== undefined) {
+    if (
+      !hasCachedSelection &&
+      preselectedRuleIdsLoading === false &&
+      profileRuleIds !== undefined
+    ) {
       osMinorVersionCounts.forEach(({ osMinorVersion }) => {
         onSelect(undefined, osMinorVersion, profileRuleIds);
       });
     }
-  }, [profileRuleIds, preselectedRuleIdsLoading, osMinorVersionCounts]);
+  }, [
+    hasCachedSelection,
+    onSelect,
+    osMinorVersionCounts,
+    preselectedRuleIdsLoading,
+    profileRuleIds,
+  ]);
 
   const noRuleSets =
     !securityGuideError &&
@@ -95,10 +128,13 @@ export const EditPolicyProfilesRulesRest = ({
     !preselectedRuleIdsLoading &&
     profileRuleIds?.length === 0;
 
-  return securityGuideData === undefined ||
-    profileRuleIds === undefined ||
+  const viewLoading =
+    securityGuideData === undefined ||
     securityGuideLoading ||
-    preselectedRuleIdsLoading ? (
+    (!hasCachedSelection &&
+      (profileRuleIds === undefined || preselectedRuleIdsLoading));
+
+  return viewLoading ? (
     <Bullseye>
       <Spinner />
     </Bullseye>
@@ -149,13 +185,7 @@ export const EditPolicyProfilesRulesRest = ({
             )}
             columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
             onSelect={onSelect}
-            preselected={selectedRuleRefIds.reduce(
-              (prev, cur) => ({
-                ...prev,
-                [cur.osMinorVersion]: cur.ruleRefIds,
-              }),
-              {}
-            )}
+            preselected={preselected}
           />
         </StateViewPart>
       </StateViewWithError>
