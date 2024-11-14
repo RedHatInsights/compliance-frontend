@@ -90,12 +90,7 @@ export const EditPolicyProfilesRulesRest = ({
             _osMinorVersion === osMinorVersion
         );
 
-        if (newSelectedRuleIds.length === 0) {
-          // should completely remove the entry from the list if none selected
-          updatedSelectedRuleRefIds.splice(index, 1);
-        } else {
-          updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
-        }
+        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
       }
       change('selectedRuleRefIds', updatedSelectedRuleRefIds);
     },
@@ -109,11 +104,16 @@ export const EditPolicyProfilesRulesRest = ({
       preselectedRuleIdsLoading === false &&
       profileRuleIds !== undefined
     ) {
-      osMinorVersionCounts.forEach(({ osMinorVersion }) => {
-        onSelect(undefined, osMinorVersion, profileRuleIds);
-      });
+      change(
+        'selectedRuleRefIds',
+        osMinorVersionCounts.map(({ osMinorVersion }) => ({
+          osMinorVersion,
+          ruleRefIds: profileRuleIds,
+        }))
+      );
     }
   }, [
+    change,
     hasCachedSelection,
     onSelect,
     osMinorVersionCounts,
