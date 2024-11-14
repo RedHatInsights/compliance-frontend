@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { ColumnManagementModal } from '@patternfly/react-component-groups';
-import { getManagableColumns } from './helper';
+import { getFixedColumns } from './helper';
 
 /**
  *  @typedef {object} useColumnManagerReturn
@@ -30,11 +30,12 @@ const useColumnManager = (columns = [], options = {}) => {
     manageColumns: enableColumnManager,
     manageColumnLabel = 'Manage columns',
   } = options;
-  const managableColumns = useMemo(
-    () => getManagableColumns(columns),
-    [columns]
+  const fixedColumns = useMemo(() => getFixedColumns(columns), [columns]);
+  const manageableColumns = fixedColumns.filter(({ manageable }) => manageable);
+  const unManagableColumns = fixedColumns.filter(
+    ({ manageable }) => !manageable
   );
-  const [selectedColumns, setSelectedColumns] = useState(managableColumns);
+  const [selectedColumns, setSelectedColumns] = useState(manageableColumns);
   const [isManagerOpen, setIsManagerOpen] = useState(false);
 
   const onClick = useCallback(function innerClick() {
@@ -47,8 +48,11 @@ const useColumnManager = (columns = [], options = {}) => {
   }, []);
 
   const columnsToShow = useMemo(
-    () => selectedColumns.filter(({ isShown }) => isShown),
-    [selectedColumns]
+    () => [
+      ...selectedColumns.filter(({ isShown }) => isShown),
+      ...unManagableColumns,
+    ],
+    [selectedColumns, unManagableColumns]
   );
 
   const ColumnManager = useMemo(
@@ -74,6 +78,7 @@ const useColumnManager = (columns = [], options = {}) => {
           onClick,
         },
         ColumnManager,
+        applyColumns,
       }
     : { columns };
 };

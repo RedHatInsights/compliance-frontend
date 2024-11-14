@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
+import columns from '../../__fixtures__/columns';
+
 import useColumnManager from './useColumnManager';
 
 describe('useColumnManager', () => {
@@ -16,16 +17,24 @@ describe('useColumnManager', () => {
     expect(result.current.ColumnManager).toBeDefined();
   });
 
-  it.skip('applies columns', () => {
+  it('applies columns', () => {
     const { result } = renderHook(() => useColumnManager(...defaultArguments));
     const columnsToSelect = result.current.columns.filter(
       ({ key }) => key === 'desc'
     );
 
+    // Unmanageable columns are always visible in the table
+    const unManageableColumns = columns
+      .filter((col) => !col.manageable)
+      .map((col) => col.id);
+
     act(() => {
       result.current.applyColumns(columnsToSelect);
     });
 
-    expect(result.current.columns).toEqual(columnsToSelect);
+    const appliedIds = columnsToSelect.map((col) => col.id);
+    const resultIds = result.current.columns.map((col) => col.id);
+
+    expect(resultIds).toEqual([...appliedIds, ...unManageableColumns]);
   });
 });

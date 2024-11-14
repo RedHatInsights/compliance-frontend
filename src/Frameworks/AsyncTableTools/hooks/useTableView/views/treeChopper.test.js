@@ -1,6 +1,4 @@
-import tableTree, {
-  exampleItems,
-} from 'Utilities/hooks/useTableTools/__fixtures__/tableTree';
+import tableTree, { exampleItems } from '../../../__fixtures__/tableTree';
 
 import treeChopper from './treeChopper';
 

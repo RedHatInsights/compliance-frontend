@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
-import filterConfig from 'Utilities/hooks/useTableTools/__fixtures__/filters';
+import filterConfig from '../../__fixtures__/filters';
 
 import useFilterConfig from './useFilterConfig';
 
