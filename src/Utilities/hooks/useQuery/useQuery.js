@@ -35,7 +35,12 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *
  */
 const useQuery = (fn, options = {}) => {
-  const { params = {}, skip = false, debounced = true } = options;
+  const {
+    params = {},
+    skip = false,
+    debounced = true,
+    convertToArray,
+  } = options;
   const mounted = useRef(true);
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);
@@ -45,18 +50,23 @@ const useQuery = (fn, options = {}) => {
 
   const fetchFn = useCallback(
     async (fn, params, setDataState = true) => {
+      console.log(fn, params, setDataState);
       if (!loading) {
         setDataState && setLoading(true);
         try {
           const data = await (async (params) => {
-            if (Array.isArray(params)) {
+            const convertedParams = convertToArray
+              ? convertToArray(params)
+              : params;
+
+            if (Array.isArray(convertedParams)) {
               return debounced && setDataState
-                ? await debouncedFn(...params)
-                : await fn(...params);
+                ? await debouncedFn(...convertedParams)
+                : await fn(...convertedParams);
             } else {
               return debounced && setDataState
-                ? await debouncedFn(params)
-                : await fn(params);
+                ? await debouncedFn(convertedParams)
+                : await fn(convertedParams);
             }
           })(params);
 
@@ -77,7 +87,7 @@ const useQuery = (fn, options = {}) => {
         }
       }
     },
-    [loading, debounced, debouncedFn]
+    [loading, debounced, debouncedFn, convertToArray]
   );
 
   const fetch = useCallback(

@@ -1,24 +1,27 @@
 import { useCallback } from 'react';
 import useValueDefinitions from 'Utilities/hooks/api/useValueDefinitions';
-
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
-const useBatchedValueDefinitions = (securityGuideId, { skip } = {}) => {
+const useBatchedValueDefinitions = (options = {}) => {
+  const { skip, batched = false, params } = options;
+  console.log('VD opts', options);
   const { fetch: fetchValueDefinitions } = useValueDefinitions({
-    skip: true,
+    ...options,
+    skip: skip || batched,
   });
   const fetchValueDefinitionsForBatch = useCallback(
-    (offset, limit) =>
-      fetchValueDefinitions([securityGuideId, undefined, limit, offset], false),
-    [fetchValueDefinitions, securityGuideId]
+    (offset, limit, params = {}) =>
+      fetchValueDefinitions({ ...params, limit, offset }, false),
+    [fetchValueDefinitions]
   );
   const {
     loading: valueDefinitionsLoading,
     data: valueDefinitions,
     error: valueDefinitionsError,
   } = useFetchTotalBatched(fetchValueDefinitionsForBatch, {
-    batchSize: 60,
-    skip,
+    params,
+    skip: skip || !batched,
+    withMeta: true,
   });
 
   return {

@@ -13,26 +13,19 @@ import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
 import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 
-// TODO add reset link when selecting is implemented for wizard & edit policy
-const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
-  const {
-    id,
-    os_major_version,
-    os_minor_version,
-    security_guide_version,
-    version,
-  } = tailoring || securityGuide;
+const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
-  //TODO: once migrated, add an actualy security_guide_id
-  const security_guide_id = 'tempID';
+
   return (
     <TextContent className="pf-v5-u-mt-md">
       <Text component={TextVariants.h3}>
         <span className="pf-v5-u-pr-sm">
           <OsVersionText
             profile={{
-              osMajorVersion: os_major_version,
-              osMinorVersion: os_minor_version,
+              osMajorVersion:
+                tailoring?.os_major_version || securityGuide?.osMajorVersion,
+              osMinorVersion:
+                tailoring?.os_minor_version || securityGuide?.osMinorVersion,
             }}
           />
         </span>
@@ -41,10 +34,13 @@ const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
         <FlexItem>
           <SSGVersionText
             profile={{
-              osMajorVersion: os_major_version,
-              osMinorVersion: os_minor_version,
+              osMajorVersion:
+                tailoring?.os_major_version || securityGuide?.osMajorVersion,
+              osMinorVersion:
+                tailoring?.os_minor_version || securityGuide?.osMinorVersion,
               benchmark: {
-                version: security_guide_version || version,
+                version:
+                  tailoring?.security_guide_version || securityGuide?.version,
               },
             }}
           />
@@ -54,8 +50,8 @@ const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
             <Link
               to={
                 apiV2Enabled
-                  ? `/scappolicies/${id}/default_ruleset/${security_guide_id}`
-                  : `/scappolicies/${id}/default_ruleset`
+                  ? `/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`
+                  : `/scappolicies/${profileId}/default_ruleset`
               }
               target="_blank"
               className="pf-v5-u-mr-xl"
@@ -73,6 +69,7 @@ const TabHeader = ({ tailoring, securityGuide, rulesPageLink }) => {
 TabHeader.propTypes = {
   tailoring: propTypes.object,
   securityGuide: propTypes.object,
+  profileId: propTypes.string,
   rulesPageLink: propTypes.bool,
 };
 
