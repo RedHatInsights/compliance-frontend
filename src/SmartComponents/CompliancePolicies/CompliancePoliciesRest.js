@@ -67,7 +67,7 @@ const CompliancePoliciesRest = () => {
   if (data || totalPolicies != null) {
     error = undefined;
     loading = undefined;
-    policies = data ?? [];
+    policies = data;
   }
 
   // Async table always needs one total value

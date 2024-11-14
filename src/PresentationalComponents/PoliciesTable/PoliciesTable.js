@@ -50,8 +50,4 @@ PoliciesTable.propTypes = {
   options: propTypes.object,
 };
 
-PoliciesTable.defaultProps = {
-  policies: [],
-};
-
 export default PoliciesTable;
