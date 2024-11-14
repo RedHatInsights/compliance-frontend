@@ -5,14 +5,8 @@ import {
   CheckCircleIcon,
   ExclamationCircleIcon,
 } from '@patternfly/react-icons';
-
-import {
-  HighSeverity,
-  MediumSeverity,
-  LowSeverity,
-  UnknownSeverity,
-} from '../../PresentationalComponents/RulesTable/components/SeverityIcons';
-import RemediationCell from '../../PresentationalComponents/RemediationCell/RemediationCell';
+import RemediationCell from '@/PresentationalComponents/RemediationCell/RemediationCell';
+import { Policy, Severity } from '@/PresentationalComponents/RulesTable/Cells';
 
 const ruleResultProps = {
   title: propTypes.string,
@@ -39,17 +33,6 @@ export const Rule = ({ title, result = 'pass' }) => {
 };
 Rule.propTypes = ruleResultProps;
 
-export const Policy = ({ profile }) => profile.name;
-Policy.propTypes = ruleResultProps;
-
-export const Severity = ({ severity }) =>
-  ({
-    high: <HighSeverity />,
-    medium: <MediumSeverity />,
-    low: <LowSeverity />,
-  }[severity?.toLowerCase()] || <UnknownSeverity />);
-Severity.propTypes = ruleResultProps;
-
 export const Passed = ({ result }) =>
   result === 'pass' ? (
     <CheckCircleIcon className="ins-u-passed" />
@@ -59,6 +42,8 @@ export const Passed = ({ result }) =>
 Passed.propTypes = ruleResultProps;
 
 export const RemediationColumnCell = ({ remediation_issue_id }) => (
-  <RemediationCell hasPlaybook={remediation_issue_id} />
+  <RemediationCell hasPlaybook={remediation_issue_id !== undefined} />
 );
 RemediationColumnCell.propTypes = ruleResultProps;
+
+export { Severity, Policy };
