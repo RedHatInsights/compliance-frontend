@@ -6,7 +6,7 @@ import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults
 import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
 import columns from './Columns';
 
-const RuleResults = ({ hidePassed, reportTestResult }) => {
+const RuleResults = ({ reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();
 
   const { limit, offset } = serialisedTableState?.pagination || {};
@@ -41,7 +41,6 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
   return (
     <RulesTable
       ansibleSupportFilter
-      hidePassed={false} // TODO: fix this
       showFailedCounts
       rules={rules}
       columns={columns}
@@ -51,6 +50,7 @@ const RuleResults = ({ hidePassed, reportTestResult }) => {
       defaultTableView="rows"
       enableSelect
       // TODO: provide ruleTree
+      // TODO: hide passed rules by default
     />
   );
 };
