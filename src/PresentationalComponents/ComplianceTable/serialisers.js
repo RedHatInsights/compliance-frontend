@@ -1,3 +1,5 @@
+import { columnOffset } from '../../Frameworks/AsyncTableTools/hooks/useTableSort/helpers';
+
 // TODO correct the serialiser to transform state put into the tablestate to be API consumable
 export const paginationSerialiser = (state) => {
   if (state) {
@@ -76,6 +78,7 @@ export const filtersSerialiser = (state, filters) => {
  *  @param   {string} state.direction Direction to sort the column by
  *  @param   {Array}  columns         Columns passed in for the AsyncTableToolsTable
  *
+ *  @param            options
  *  @returns {string}                 Compliance "sort_by" parameter string, like "name:desc"
  *
  *  @category Compliance
@@ -90,5 +93,6 @@ export const filtersSerialiser = (state, filters) => {
  *  ];
  *
  */
-export const sortSerialiser = ({ index, direction } = {}, columns) =>
-  columns[index]?.sortable && `${columns[index].sortable}:${direction}`;
+export const sortSerialiser = ({ index, direction } = {}, columns, options) =>
+  columns[index - columnOffset(options)]?.sortable &&
+  `${columns[index - columnOffset(options)].sortable}:${direction}`;
