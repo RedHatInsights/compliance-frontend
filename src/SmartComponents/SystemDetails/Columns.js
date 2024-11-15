@@ -1,12 +1,20 @@
 import { renderComponent } from 'Utilities/helpers';
-import { Passed as PassedCell, RemediationColumnCell } from './Cells';
+import { Passed as PassedCell, RemediationColumnCell, Rule } from './Cells';
 import {
-  Name,
   Passed,
   Policy,
   Remediation,
   Severity,
 } from '@/PresentationalComponents/RulesTable/Columns';
+
+export const Name = {
+  title: 'Name',
+  sortByProp: 'title',
+  sortable: 'title',
+  renderExport: ({ title, identifier }) =>
+    `${title}${identifier ? ` - ${identifier.label}` : ''}`,
+  renderFunc: renderComponent(Rule),
+};
 
 export const PassedSystemDetails = {
   ...Passed,
