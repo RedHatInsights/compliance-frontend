@@ -31,8 +31,10 @@ const useFetchTotalBatched = (
         .flatMap(({ data }) => data);
 
       mounted.current && setTotalResult(allPages);
+      return allPages;
     } else {
       mounted.current && setTotalResult([firstPage.data]);
+      return [firstPage.data];
     }
   }, [typeof fetchFn !== 'undefined', resolve, batchSize]);
 
@@ -51,6 +53,7 @@ const useFetchTotalBatched = (
   return {
     loading: isResolving,
     data: totalResult,
+    fetch,
   };
 };
 

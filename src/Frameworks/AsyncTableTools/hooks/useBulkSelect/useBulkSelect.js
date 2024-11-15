@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import useSelectionManager from '../useSelectionManager';
-import useFetchBatched from '@redhat-cloud-services/frontend-components-utilities/useFetchBatched';
 import {
   checkCurrentPageSelected,
   checkboxState,
@@ -42,6 +41,7 @@ const useBulkSelect = ({
   itemIdsOnPage,
   identifier = 'itemId',
 }) => {
+  const [loading, setLoading] = useState(false);
   const enableBulkSelect = !!onSelect;
   const {
     selection: selectedIds,
@@ -62,8 +62,7 @@ const useBulkSelect = ({
   const isDisabled = total === 0;
   const checked = checkboxState(selectedIdsTotal, total);
 
-  const { isLoading, fetchBatched } = useFetchBatched();
-  const title = compileTitle(selectedIdsTotal, isLoading);
+  const title = compileTitle(selectedIdsTotal, loading);
 
   const selectOne = useCallback(
     (_, _selected, _key, row) =>
@@ -77,11 +76,13 @@ const useBulkSelect = ({
   );
 
   const selectAll = async () => {
+    setLoading(true);
     if (allSelected) {
       clear();
     } else {
-      set(await fetchBatched(itemIdsInTable, total));
+      set(await itemIdsInTable());
     }
+    setLoading(false);
   };
 
   const markRowSelected = (row) => ({

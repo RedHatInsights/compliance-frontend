@@ -9,6 +9,8 @@ import useSecurityGuideData from '../hooks/useSecurityGuideData';
 import useRulesExporter from '../hooks/useRulesExporter';
 import { buildTreeTable, skips } from '../helpers';
 import TabHeader from './TabHeader';
+import useFetchAllTailoringRuleIds from './useFetchAllTailoringRuleIds';
+import useFetchAllSecurityGuideRuleIds from './useFetchAllSecurityGuideRuleIds';
 
 // TODO Pass on and enable ruleTree here when RHINENG-13519 is done
 const TailoringTab = ({
@@ -65,6 +67,15 @@ const TailoringTab = ({
     ...(groupFilter ? { groupFilter } : {}),
   });
 
+  const fetchAllSecurityGuideRuleIds = useFetchAllSecurityGuideRuleIds({
+    securityGuideId,
+  });
+
+  const fetchAllTailoringRuleIds = useFetchAllTailoringRuleIds({
+    policyId: policy?.id,
+    tailoringId: tailoring?.id,
+  });
+
   const rules = tailoringRules || securityGuideRules;
   const ruleTree =
     ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
@@ -109,6 +120,9 @@ const TailoringTab = ({
         selectedRules={preselected}
         options={{
           exporter: rulesExporter,
+          itemIdsInTable: securityGuide?.id
+            ? fetchAllSecurityGuideRuleIds
+            : fetchAllTailoringRuleIds,
         }}
         {...rulesTableProps}
       />
