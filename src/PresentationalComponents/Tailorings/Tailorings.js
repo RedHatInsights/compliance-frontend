@@ -65,7 +65,7 @@ import { eventKey } from './helpers';
  *     Columns.Remediation,
  *   ]}
  *   policy={policy}
- *   osMinorVersion={[9,10]}
+ *   osMinorVersions={[9,10]}
  *   level={1}
  *   DedicatedAction={DedicatedAction}
  *   onValueOverrideSave={saveToPolicy}
@@ -81,7 +81,7 @@ import { eventKey } from './helpers';
  *     Columns.Remediation,
  *   ]}
  *   securityGuideId={'ffff-ffff-fffff'}
- *   osMinorVersion={[9,10]}
+ *   osMinorVersions={[9,10]}
  *   level={1}
  *   DedicatedAction={DedicatedAction}
  *   onValueOverrideSave={saveToPolicy}

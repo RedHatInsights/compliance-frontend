@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
 import useSecurityGuideRuleTree from 'Utilities/hooks/api/useSecurityGuideRuleTree';
-import { buildTreeTable } from '../helpers';
 import useBatchedRuleGroups from './useBatchedRuleGroups';
 import useBatchedValueDefinitions from './useBatchedValueDefinitions';
 import useRules from 'Utilities/hooks/api/useRules';
@@ -90,9 +89,6 @@ const useSecurityGuideData = (
     skip: skipValueDefinitions,
   });
 
-  const namedRuleTree =
-    ruleTree && ruleGroups ? buildTreeTable(ruleTree, ruleGroups) : undefined;
-
   return {
     loading:
       rulesLoading ||
@@ -104,7 +100,7 @@ const useSecurityGuideData = (
     data: {
       ...(!skipRuleGroups ? { ruleGroups } : {}),
       ...(!skipValueDefinitions ? { valueDefinitions } : {}),
-      ...(!skipRuleTree ? { ruleTree: namedRuleTree } : {}),
+      ...(!skipRuleTree ? { ruleTree } : {}),
       ...(!skipRules ? { fetchRules, rules } : {}),
     },
   };

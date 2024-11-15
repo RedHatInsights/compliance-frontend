@@ -1,11 +1,10 @@
-export const compileTitle = (itemsTotal, titleOption) => {
-  if (typeof titleOption === 'string') {
-    return titleOption;
-  } else if (typeof titleOption === 'function') {
-    return titleOption(itemsTotal);
-  } else {
-    return `${itemsTotal} selected`;
-  }
+import React from 'react';
+import { Spinner } from '@patternfly/react-core';
+
+export const compileTitle = (itemsTotal, loading) => {
+  if (loading === true) {
+    return <Spinner size="sm" />;
+  } else return `${itemsTotal} selected`;
 };
 
 export const checkboxState = (selectedItemsTotal, itemsTotal) => {
