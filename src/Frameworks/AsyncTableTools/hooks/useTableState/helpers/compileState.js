@@ -48,7 +48,7 @@ const applyObservers = (namespace, observers, newState, currentState) => {
           stateKey,
           observers,
           currentStateSnapshot,
-          currentStateSnapshot
+          currentState
         ),
       }),
       {}

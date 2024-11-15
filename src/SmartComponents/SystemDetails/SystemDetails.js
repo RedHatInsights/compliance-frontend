@@ -14,7 +14,7 @@ import {
   Bullseye,
   Spinner,
 } from '@patternfly/react-core';
-import Details from './ComplianceDetail';
+import Details from './Details';
 import {
   BreadcrumbLinkItem,
   StateViewWithError,
@@ -113,7 +113,7 @@ SystemDetailsRest.propTypes = {
   route: propTypes.object.isRequired,
 };
 
-export const SystemDetailsWrapper = (props) => {
+export const SystemDetails = (props) => {
   const restApiEnabled = useAPIV2FeatureFlag();
   const Component =
     restApiEnabled === undefined ? (
@@ -129,4 +129,4 @@ export const SystemDetailsWrapper = (props) => {
   return <Component {...props} />;
 };
 
-export default SystemDetailsWrapper;
+export default SystemDetails;

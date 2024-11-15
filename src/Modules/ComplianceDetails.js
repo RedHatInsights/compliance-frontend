@@ -7,7 +7,7 @@ import {
 } from '@apollo/client';
 import { Provider } from 'react-redux';
 import { init } from 'Store';
-import Details from '../SmartComponents/SystemDetails/ComplianceDetail';
+import Details from '../SmartComponents/SystemDetails/Details';
 import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 
 const ComplianceDetails = (props) => {

@@ -7,14 +7,13 @@ import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
-import { itemIdentifier } from './helpers';
 
 const RulesTable = ({
   system,
   rules,
   ruleTree,
-  securityGuideId,
   policyId,
+  policyName,
   columns = defaultColumns,
   remediationsEnabled = true,
   ansibleSupportFilter = false,
@@ -32,12 +31,14 @@ const RulesTable = ({
   onValueOverrideSave,
   total,
   onSelect,
+  defaultTableView = 'tree',
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
-  const [selectedRules, setSelectedRules] = onSelect
-    ? [selectedRulesProp, onSelect]
-    : internalSelectedState;
+  const [selectedRules, setSelectedRules] =
+    typeof onSelect === 'function'
+      ? [selectedRulesProp, onSelect]
+      : internalSelectedState;
   const selectedRulesWithRemediations = (selectedRules) =>
     (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showRuleStateFilter =
@@ -46,7 +47,7 @@ const RulesTable = ({
   // TODO implement policies filter
   const policies = [];
 
-  const remediationAction = ({ selected }) => (
+  const remediationAction = ({ selected = [] }) => (
     <ComplianceRemediationButton
       allSystems={selected.length > 0 ? [system] : undefined}
       selectedRules={selectedRulesWithRemediations(selected)}
@@ -55,23 +56,30 @@ const RulesTable = ({
 
   const DetailsRow = useMemo(
     () =>
-      /* eslint-disable */
       function Row(props) {
-        const rule = rules?.find(({ id }) => props?.item?.itemId === id)
-        const ruleValueDefinitions = rule?.value_checks?.map((checkId) => valueDefinitions.find(({id}) => id === checkId))
-        const ruleRuleValues = Object.fromEntries(Object.entries(ruleValues).filter(([id]) => rule?.value_checks.includes(id)))
+        // eslint-disable-next-line react/prop-types
+        const rule = rules?.find(({ id }) => props?.item?.itemId === id);
+        const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
+          valueDefinitions.find(({ id }) => id === checkId)
+        );
+        const ruleRuleValues = ruleValues
+          ? Object.fromEntries(
+              Object.entries(ruleValues).filter(([id]) =>
+                rule?.value_checks.includes(id)
+              )
+            )
+          : undefined;
         const item = {
+          // eslint-disable-next-line react/prop-types
           ...props.item,
           ...rule,
           valueDefinitions: ruleValueDefinitions,
-          profile: { id: policyId },
-          ruleValues: ruleRuleValues
+          profile: { id: policyId, name: policyName },
+          ruleValues: ruleRuleValues,
         };
 
         return (
           <RuleDetailsRow
-            {...props}
-            securityGuideId={securityGuideId}
             onValueChange={onValueOverrideSave}
             onRuleValueReset={onRuleValueReset}
             item={item}
@@ -81,8 +89,8 @@ const RulesTable = ({
     /* eslint-enable */
     [
       policyId,
+      policyName,
       onRuleValueReset,
-      securityGuideId,
       rules,
       valueDefinitions,
       ruleValues,
@@ -103,10 +111,10 @@ const RulesTable = ({
           ansibleSupportFilter,
         }),
         ...(hidePassed && {
-          activeFilters: (currentActiveFilters) => ({
+          activeFilters: (currentActiveFilters = {}) => ({
             ...currentActiveFilters,
-            rulestate: currentActiveFilters.rulestate
-              ? currentActiveFilters.rulestate
+            ['rule-state']: currentActiveFilters['rule-state']
+              ? currentActiveFilters['rule-state']
               : ['failed'],
             ...activeFilters,
           }),
@@ -116,10 +124,9 @@ const RulesTable = ({
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
         showViewToggle: true,
-        defaultTableView: 'tree',
+        defaultTableView,
         ...(ruleTree ? { tableTree: ruleTree } : {}),
-        identifier: itemIdentifier,
-        ...(onSelect ? { onSelect: onSelect || setSelectedRules } : {}),
+        ...(onSelect ? { onSelect: setSelectedRules } : {}),
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
@@ -127,6 +134,7 @@ const RulesTable = ({
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
         total,
       }}
+      total={total}
       {...rulesTableProps}
     />
   );
@@ -134,10 +142,10 @@ const RulesTable = ({
 
 RulesTable.propTypes = {
   profileRules: propTypes.array,
-  rules: propTypes.array,
+  rules: propTypes.array.isRequired,
   ruleTree: propTypes.array,
-  securityGuideId: propTypes.string,
-  policyId: propTypes.string,
+  policyId: propTypes.string.isRequired,
+  policyName: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
   system: propTypes.object,
@@ -153,10 +161,11 @@ RulesTable.propTypes = {
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
   DedicatedAction: propTypes.node,
-  valueDefinitions: propTypes.object,
+  valueDefinitions: propTypes.object.isRequired,
   onValueOverrideSave: propTypes.func,
-  onSelect: propTypes.func,
+  onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
+  defaultTableView: propTypes.string,
 };
 
 export default RulesTable;
