@@ -4,7 +4,7 @@ import useTailoringRules from '../../../Utilities/hooks/api/useTailoringRules';
 
 const useFetchAllTailoringRuleIds = ({ policyId, tailoringId }) => {
   const { fetch } = useTailoringRules({
-    skip: policyId === undefined || tailoringId === undefined,
+    skip: true,
   });
 
   const fetchBatched = useCallback(

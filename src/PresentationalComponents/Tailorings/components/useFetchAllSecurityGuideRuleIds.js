@@ -4,7 +4,7 @@ import useRules from '../../../Utilities/hooks/api/useRules';
 
 const useAllSecurityGuideRuleIds = ({ securityGuideId }) => {
   const { fetch } = useRules({
-    skip: securityGuideId === undefined,
+    skip: true,
   });
 
   const fetchBatched = useCallback(
