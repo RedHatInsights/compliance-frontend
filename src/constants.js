@@ -85,7 +85,7 @@ export const defaultSystemsFilterConfiguration = (
   {
     type: conditionalFilterType.text,
     label: 'Name',
-    filterString: (value) => `${filterKey} ~ ${value}`,
+    filterString: (value) => `${filterKey} ~ "${value}"`,
   },
 ];
 
