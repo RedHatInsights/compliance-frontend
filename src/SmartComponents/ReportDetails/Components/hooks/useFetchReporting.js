@@ -13,6 +13,7 @@ const useFetchReporting = (reportId) => {
         .reportTestResults(
           reportId,
           undefined,
+          combinedVariables.tags,
           perPage,
           page,
           false,

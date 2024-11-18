@@ -50,14 +50,14 @@ export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
-    // TODO compliance_threshold needs to be added as a search attribute in the backend
-    // filterSerialiser: (_, values) =>
-    //   values
-    //     .map((value) => {
-    //       const scoreRange = value.split('-');
-    //       return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
-    //     })
-    //     .join(' OR '),
+    filterAttribute: 'percent_compliant',
+    filterSerialiser: (_, values) =>
+      values
+        .map((value) => {
+          const scoreRange = value.split('-');
+          return `(percent_compliant >= ${scoreRange[0]} AND percent_compliant <= ${scoreRange[1]})`;
+        })
+        .join(' OR '),
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(
