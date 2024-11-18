@@ -31,6 +31,7 @@ import {
 import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useReport from 'Utilities/hooks/api/useReport';
+import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
 import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '../SystemsTable/Columns';
@@ -208,11 +209,10 @@ const ReportDetailsBase = ({
                       ]}
                       showOsMinorVersionFilter={[profile.osMajorVersion]}
                       ignoreOsMajorVersion
-                      // ssgVersions={ssgVersions}
+                      ssgVersions={ssgVersions}
                       compliantFilter
                       ruleSeverityFilter
                       showGroupsFilter
-                      showTagsFilter={false}
                       apiV2Enabled={true}
                       reportId={id}
                       fetchCustomOSes={fetchReportingCustomOSes}
@@ -346,6 +346,7 @@ ReportDetailsGraphQL.propTypes = {
 const ReportDetailsRest = ({ route }) => {
   const { report_id } = useParams();
   const { data: { data } = {}, error, loading } = useReport(report_id);
+  const { data: ssgVersions = [] } = useReportTestResultsSG(report_id);
 
   return (
     <ReportDetailsBase
@@ -354,6 +355,7 @@ const ReportDetailsRest = ({ route }) => {
         data: dataSerialiser(data, dataMap),
         error,
         loading,
+        ssgVersions,
         id: report_id,
       }}
     />

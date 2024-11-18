@@ -140,6 +140,7 @@ const useFetchReportTestResults = (reportId, filter) =>
         .reportTestResults(
           reportId,
           undefined,
+          undefined,
           perPage,
           calculateOffset(page, perPage),
           undefined,

@@ -37,7 +37,6 @@ export const SystemsTable = ({
   policies,
   showOnlySystemsWithTestResults,
   showOsFilter,
-  showTagsFilter,
   error: errorProp,
   showComplianceSystemsInfo,
   compact,
@@ -214,7 +213,7 @@ export const SystemsTable = ({
             all: true,
             name: false,
             operatingSystem: false,
-            tags: !showTagsFilter,
+            tags: false,
             hostGroupFilteronCustomSelect: !showGroupsFilter,
           }}
           showTags
@@ -271,7 +270,6 @@ SystemsTable.propTypes = {
   showOsFilter: PropTypes.bool,
   showGroupsFilter: PropTypes.bool,
   showComplianceSystemsInfo: PropTypes.bool,
-  showTagsFilter: PropTypes.bool,
   error: PropTypes.object,
   compact: PropTypes.bool,
   remediationsEnabled: PropTypes.bool,
@@ -310,7 +308,6 @@ SystemsTable.defaultProps = {
   preselectedSystems: [],
   ruleSeverityFilter: false,
   showGroupsFilter: false,
-  showTagsFilter: true,
 };
 
 export default SystemsTable;
