@@ -8,7 +8,7 @@ describe('LoadingPoliciesTable', () => {
   it('expect to render without error', () => {
     render(<LoadingPoliciesTable />);
 
-    expect(screen.getByLabelText('Policies')).toBeInTheDocument();
+    expect(screen.getByLabelText('Policies loading')).toBeInTheDocument();
 
     columns.forEach(({ title }) => {
       expect(screen.getByText(title)).toBeInTheDocument();
