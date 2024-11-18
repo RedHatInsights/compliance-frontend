@@ -150,7 +150,7 @@ export const osFilterHandler = ({ osFilter }, ignoreOsMajorVersion) => {
 };
 
 export const nameFilterHandler = ({ hostnameOrId }) =>
-  hostnameOrId && `display_name ~ ${hostnameOrId}`;
+  hostnameOrId && `display_name ~ "${hostnameOrId}"`;
 
 export const applyInventoryFilters = (
   handlers,
