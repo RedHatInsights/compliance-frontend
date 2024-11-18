@@ -20,7 +20,7 @@ import dataSerialiser from 'Utilities/dataSerialiser';
 import { reportDataMap as dataMap } from '../../constants';
 import { uniq } from 'Utilities/helpers';
 import { QUERY } from './constants';
-import useReportsExporter from './hooks/useReportsExporter';
+import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const profilesFromEdges = (data) =>
   (data?.profiles?.edges || []).map((profile) => profile.node);
@@ -123,7 +123,7 @@ const ReportsWithRest = () => {
     async (offset, limit) => await fetchReports({ offset, limit }, false),
     [fetchReports]
   );
-  const reportsExporter = useReportsExporter(fetchForExport);
+  const reportsExporter = useExporter(fetchForExport);
   const serialisedData = reportsData && dataSerialiser(reportsData, dataMap);
   const data = operatingSystems;
   const loading = !data ? true : undefined;
