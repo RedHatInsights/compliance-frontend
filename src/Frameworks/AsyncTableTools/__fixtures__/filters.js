@@ -2,7 +2,7 @@ export const exampleFilters = [
   {
     type: 'text',
     label: 'Name',
-    filterString: (value) => `name ~ ${value}`,
+    filterString: (value) => `name ~ "${value}"`,
   },
   {
     type: 'checkbox',
