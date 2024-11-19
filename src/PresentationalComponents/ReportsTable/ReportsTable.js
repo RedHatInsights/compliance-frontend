@@ -18,6 +18,7 @@ const ReportsTable = ({
   policyTypes,
   options,
   total,
+  loading,
 }) => (
   <TableToolsTable
     aria-label="Reports"
@@ -25,6 +26,7 @@ const ReportsTable = ({
     columns={[...columns, PDFExportDownload]}
     items={reports}
     total={total}
+    loading={loading}
     isStickyHeader
     filters={{
       filterConfig: [
@@ -53,6 +55,7 @@ const ReportsTable = ({
 ReportsTable.propTypes = {
   reports: propTypes.array.isRequired,
   total: propTypes.number,
+  loading: propTypes.bool,
   operatingSystems: propTypes.array.isRequired,
   policyTypes: propTypes.array.isRequired,
   options: propTypes.object,

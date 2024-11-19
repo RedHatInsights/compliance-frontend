@@ -112,8 +112,9 @@ const ReportsWithRest = () => {
   const { data: operatingSystems } = useReportsOS();
   const {
     data: { data: reportsData, meta: { total } = {} } = {},
-    fetch: fetchReports,
     error,
+    loading: reportsLoading,
+    fetch: fetchReports,
   } = useComplianceQuery('reports', {
     params: { filter: 'with_reported_systems = true' },
     useTableState: true,
@@ -142,6 +143,7 @@ const ReportsWithRest = () => {
             reports={serialisedData}
             operatingSystems={operatingSystems}
             total={total}
+            loading={reportsLoading}
             options={{
               exporter: async () =>
                 dataSerialiser(await reportsExporter(), dataMap),
