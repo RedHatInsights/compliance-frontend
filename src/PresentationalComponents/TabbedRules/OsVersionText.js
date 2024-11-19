@@ -1,6 +1,6 @@
 const OsVersionText = ({ profile, newOsMinorVersion }) =>
   `RHEL${'\u00A0'}${profile.osMajorVersion}.${
-    profile.osMinorVersion || newOsMinorVersion
+    profile.osMinorVersion != null ? profile.osMinorVersion : newOsMinorVersion
   }`;
 
 export default OsVersionText;
