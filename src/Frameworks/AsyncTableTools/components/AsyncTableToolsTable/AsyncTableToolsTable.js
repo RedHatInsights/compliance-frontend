@@ -19,13 +19,13 @@ import useAsyncTableTools from '../../hooks/useAsyncTableTools';
  *  @param   {Array}              props.columns             An array of column objects to render items with
  *  @param   {Array}              [props.filters]           an array of filters
  *  @param   {Array}              [props.total]             Number of total items available
+ *  @param   {boolean}            [props.loading]           Custom loading condition
  *  @param   {object}             [props.options]           An object of options that will be passed along to the `useAsyncTableTools` hook
  *  @param   {object}             [props.toolbarProps]      Props to be passed on the `PrimaryToolbar` component
  *  @param   {object}             [props.tableHeaderProps]  Props to be passed on the TableHeader component
  *  @param   {object}             [props.tableBodyProps]    Props to be passed on the TableBody component
  *  @param   {object}             [props.tableToolbarProps] Props to be passed on the TableToolbar (bottom toolbar) component
  *  @param   {object}             [props.paginationProps]   Props to be passed on the Pagination component
- *
  *  @returns {React.ReactElement}                           Returns a `PrimaryToolbar` component, a Patternfly (v4) `Table` component and a `TableToolbarComponent` wrapped together
  *
  *  @tutorial using-async-table-tools
@@ -39,6 +39,7 @@ const AsyncTableToolsTable = ({
   columns,
   filters,
   total,
+  loading,
   options,
   // TODO I'm not sure if we need this level of customisation.
   // It might actually hurt in the long run. Consider removing until we really have the case where we need this
@@ -58,13 +59,15 @@ const AsyncTableToolsTable = ({
       ...options,
     });
 
+  const skeletonLoading = !loaded || loading;
+
   return (
     <>
       <PrimaryToolbar aria-label="Table toolbar" {...toolbarProps}>
         {TableViewToggle && <TableViewToggle />}
       </PrimaryToolbar>
 
-      {!loaded ? (
+      {skeletonLoading ? (
         <SkeletonTable
           rowSize={toolbarProps?.pagination?.perPage || 10}
           columns={columns.map(({ title }) => title)}
@@ -106,6 +109,7 @@ AsyncTableToolsTable.propTypes = {
   ).isRequired,
   filters: propTypes.object,
   total: propTypes.number,
+  loading: propTypes.bool,
   options: propTypes.object,
   toolbarProps: propTypes.object,
   tableHeaderProps: propTypes.object,
