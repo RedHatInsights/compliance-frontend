@@ -111,7 +111,7 @@ const Tailorings = ({
       undefined,
       undefined,
       undefined,
-      undefined,
+      'os_minor_version:desc',
       'NOT(null? os_minor_version)',
     ],
     skip: !policy,
