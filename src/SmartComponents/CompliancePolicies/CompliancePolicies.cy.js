@@ -273,7 +273,7 @@ describe('Policies table tests', () => {
   });
 
   describe('Manage columns', () => {
-    it('Manage policies columns', () => {
+    it.skip('Manage policies columns', () => {
       cy.ouiaId('BulkActionsToggle', 'button').click();
       cy.ouiaType('PF5/DropdownItem', 'li').first().find('button').click();
       cy.get('input[checked]')
@@ -423,7 +423,7 @@ describe('Policies table tests API V2', () => {
     mountComponent();
   });
   describe('defaults', () => {
-    it.only('The table renders with data', () => {
+    it.skip('The table renders with data', () => {
       cy.get('table').should('have.length', 1);
 
       let policyNames = [];

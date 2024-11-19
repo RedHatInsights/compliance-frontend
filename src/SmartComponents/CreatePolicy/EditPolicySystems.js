@@ -99,7 +99,7 @@ export const EditPolicySystems = ({
     ? apiV2Enabled
       ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
           ' '
-        )})`
+        )}) AND profile_ref_id !^ (${policy.refId})`
       : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
           ','
         )})`

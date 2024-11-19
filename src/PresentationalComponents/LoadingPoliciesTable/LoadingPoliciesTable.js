@@ -1,29 +1,14 @@
 import React from 'react';
-import {
-  Table,
-  TableHeader,
-  TableBody,
-} from '@patternfly/react-table/deprecated';
-import RowLoader from '@redhat-cloud-services/frontend-components-utilities/RowLoader';
 import columns from '../PoliciesTable/Columns';
+import { SkeletonTable } from '@patternfly/react-component-groups';
 
 const LoadingPoliciesTable = () => (
-  <Table
-    aria-label="Policies"
+  <SkeletonTable
+    aria-label="Policies loading"
     ouiaId="PoliciesTable"
-    cells={columns}
-    rows={[...Array(5)].map(() => ({
-      cells: [
-        {
-          title: <RowLoader />,
-          colSpan: 5,
-        },
-      ],
-    }))}
-  >
-    <TableHeader />
-    <TableBody />
-  </Table>
+    rowSize={10}
+    columns={columns.map(({ title }) => title)}
+  />
 );
 
 export default LoadingPoliciesTable;

@@ -37,8 +37,10 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     toolbarProps: toolbarPropsOption,
     tableProps: tablePropsOption,
     dedicatedAction,
+    actionResolver,
   } = options;
   const { loaded, items: usableItems } = useItems(items);
+  const actionResolverEnabled = usableItems?.length > 0;
 
   const {
     columnManagerAction,
@@ -94,7 +96,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   });
 
   const exportConfig = withExport({
-    columns, // TODO This should use the managedColumns
+    columns: managedColumns,
     ...options,
   });
 
@@ -133,6 +135,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...tableViewTableProps,
       ...tablePropsOption,
       onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
+      actionResolver: actionResolverEnabled && actionResolver,
     }),
     [
       managedColumns,
@@ -141,6 +144,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       tablePropsOption,
       expandableTableProps,
       tableViewTableProps,
+      actionResolver,
     ]
   );
 
