@@ -136,7 +136,7 @@ TailoringTab.propTypes = {
   securityGuide: propTypes.object,
   osMinorVersion: propTypes.string,
   columns: propTypes.array,
-  handleSelect: propTypes.func,
+  onSelect: propTypes.func,
   systemCount: propTypes.number,
   selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
@@ -146,7 +146,6 @@ TailoringTab.propTypes = {
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
-  onSelect: propTypes.func,
   preselected: propTypes.object,
 };
 

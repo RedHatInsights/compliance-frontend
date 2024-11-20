@@ -6,7 +6,6 @@ import EditPolicyRulesTabRest from './EditPolicyRulesTabRest';
 import EditPolicySystemsTabRest from './EditPolicySystemsTabRest';
 import NewRulesAlert from './components/NewRulesAlert';
 import { useNewRulesAlertState } from './hooks/index';
-import uniq from 'lodash/uniq';
 
 const EditPolicyForm = ({
   policy,
@@ -29,9 +28,9 @@ const EditPolicyForm = ({
 
   const handleSystemSelect = useCallback(
     (newSelectedSystems) => {
-      const newOsMinorVersions = uniq(
-        newSelectedSystems.map((system) => system.osMinorVersion)
-      );
+      const newOsMinorVersions = [
+        ...new Set(newSelectedSystems.map((system) => system.osMinorVersion)), // get unique values
+      ];
 
       const hasNewOsMinorVersions =
         newOsMinorVersions.filter(

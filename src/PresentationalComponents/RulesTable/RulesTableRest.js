@@ -129,7 +129,6 @@ const RulesTable = ({
         showViewToggle: true,
         defaultTableView,
         ...(ruleTree ? { tableTree: ruleTree } : {}),
-        ...(onSelect ? { onSelect: setSelectedRules } : {}),
         ...(ruleTree ? { tableTree: ruleTree, defaultTableView: 'tree' } : {}),
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,

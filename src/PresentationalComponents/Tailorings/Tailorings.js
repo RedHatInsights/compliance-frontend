@@ -191,7 +191,6 @@ const Tailorings = ({
                         }
                       : { policy, tailoring: tab }),
                     columns,
-                    handleSelect,
                     rulesTableProps,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),

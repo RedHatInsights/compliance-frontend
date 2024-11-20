@@ -87,7 +87,7 @@ export const EditPolicyRulesTab = ({
           level={1}
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
-          handleSelect={handleSelect}
+          onSelect={handleSelect}
           selectedRules={selectedTailoringRules}
         />
       </StateViewPart>
