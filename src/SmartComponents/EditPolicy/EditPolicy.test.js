@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-import { EditPolicy } from './EditPolicy.js';
+import EditPolicy from './EditPolicy';
 jest.mock('Mutations');
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
@@ -12,7 +12,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
-describe.skip('EditPolicy', () => {
+describe('EditPolicy', () => {
   beforeEach(() => {
     useAPIV2FeatureFlag.mockImplementation(() => false);
   });
