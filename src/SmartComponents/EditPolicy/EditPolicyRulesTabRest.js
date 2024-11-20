@@ -36,21 +36,25 @@ export const EditPolicyRulesTab = ({
   selectedRuleRefIds,
   setRuleValues,
   setUpdatedPolicy,
+  // selectedOsMinorVersions, // TODO: use the array to render the available tabs
 }) => {
   const [selectedTailoringRules, setSelectedTailoringRules] =
     useState(selectedRuleRefIds);
 
   const handleSelect = useCallback(
-    (selectedItems) => {
+    (policy, tailoring, newSelectedRuleIds) => {
       setUpdatedPolicy((prev) => ({
         ...prev,
         tailoringRules: {
-          ...(prev?.tailoringRules || {}),
-          ...selectedItems,
+          ...prev?.tailoringRules,
+          [tailoring.id]: newSelectedRuleIds,
         },
       }));
 
-      setSelectedTailoringRules(selectedItems);
+      setSelectedTailoringRules((prev) => ({
+        ...prev,
+        [tailoring.os_minor_version]: newSelectedRuleIds,
+      }));
     },
     [setUpdatedPolicy]
   );
@@ -88,7 +92,7 @@ export const EditPolicyRulesTab = ({
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
           onSelect={handleSelect}
-          selectedRules={selectedTailoringRules}
+          preselected={selectedTailoringRules}
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">
@@ -99,19 +103,12 @@ export const EditPolicyRulesTab = ({
 };
 
 EditPolicyRulesTab.propTypes = {
-  setNewRuleTabs: propTypes.func,
   policy: propTypes.object,
-  osMinorVersionCounts: propTypes.shape({
-    osMinorVersion: propTypes.shape({
-      osMinorVersion: propTypes.number,
-      count: propTypes.number,
-    }),
-  }),
   selectedRuleRefIds: propTypes.array,
   setSelectedRuleRefIds: propTypes.func,
   setRuleValues: propTypes.func,
-  ruleValues: propTypes.array,
   setUpdatedPolicy: propTypes.func,
+  selectedOsMinorVersions: propTypes.array,
 };
 
 export default EditPolicyRulesTab;
