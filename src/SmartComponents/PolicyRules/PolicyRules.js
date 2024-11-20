@@ -2,19 +2,17 @@ import React, { useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
-import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
+import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
 import RulesTableRest from '@/PresentationalComponents/RulesTable/RulesTableRest';
-import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import { Spinner } from '@patternfly/react-core';
-import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
 import PolicyRulesHeader from './PolicyRulesHeader';
-import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import GatedComponents from 'PresentationalComponents/GatedComponents';
-import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
-import useRulesExporter from 'PresentationalComponents/Tailorings/hooks/useRulesExporter';
+import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import { policyRulesSkips } from './helpers';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
+import { Spinner } from '@patternfly/react-core';
 
 const policyTitle =
   'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
@@ -48,44 +46,30 @@ const PROFILES_QUERY = gql`
 
 const PolicyRulesGraphQL = () => {
   const { policy_id: policyId } = useParams();
-  const { data, loading, error } = useQuery(PROFILES_QUERY, {
+  const { data, loading } = useQuery(PROFILES_QUERY, {
     variables: {
       policyId: policyId,
     },
   });
 
-  return (
-    <StateView stateValues={{ error, data, loading }}>
-      <StateViewPart stateKey="error">
-        <ErrorPage error={error} />
-      </StateViewPart>
-      <StateViewPart stateKey="loading">
-        <PageHeader>
-          <Spinner />
-        </PageHeader>
-      </StateViewPart>
-      <StateViewPart stateKey="data">
-        <PolicyRulesBase
-          name={data?.profile?.name}
-          benchmarkVersion={data?.profile?.benchmark?.version}
-          osMajorVersion={data?.profile?.osMajorVersion}
-          component={
-            <RulesTable
-              remediationsEnabled={false}
-              columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-              loading={loading}
-              profileRules={[
-                {
-                  profile: data?.profile,
-                  rules: data?.profile?.rules,
-                },
-              ]}
-              options={{ pagination: false, manageColumns: false }}
-            />
-          }
-        />
-      </StateViewPart>
-    </StateView>
+  return loading ? (
+    <PageHeader>
+      <Spinner />
+    </PageHeader>
+  ) : (
+    <PolicyRulesBase
+      name={data?.profile?.name}
+      benchmarkVersion={data?.profile?.benchmark?.version}
+      osMajorVersion={data?.profile?.osMajorVersion}
+    >
+      <RulesTable
+        remediationsEnabled={false}
+        columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+        loading={loading}
+        profileRules={[{ profile: data?.profile, rules: data?.profile?.rules }]}
+        options={{ pagination: false, manageColumns: false }}
+      />
+    </PolicyRulesBase>
   );
 };
 
@@ -109,7 +93,7 @@ const PolicyRulesRest = () => {
     [tableState]
   );
 
-  const { data, fetchRules } = usePolicyRulesList({
+  const { data, loading /*fetchRules*/ } = usePolicyRulesList({
     profileId,
     securityGuideId,
     tableState,
@@ -119,29 +103,27 @@ const PolicyRulesRest = () => {
 
   const { rules, builtTree } = data;
 
-  const rulesExporter = useRulesExporter(fetchRules);
+  //TODO: Disabled for now. Bring back during polishing.
+  // const rulesExporter = useRulesExporter(fetchRules);
 
   return (
     <PolicyRulesBase
       osMajorVersion={'passedIn paramMajor'}
       benchmarkVersion={'passed in ParamTitle'}
       headerName={policyTitle}
-      component={
-        <RulesTableRest
-          policyId={profileId}
-          securityGuideId={securityGuideId}
-          total={rules?.meta.total}
-          rules={rules?.data}
-          remediationsEnabled={false}
-          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-          ruleValues={{}}
-          options={{
-            exporter: rulesExporter,
-          }}
-          ruleTree={builtTree}
-        />
-      }
-    />
+    >
+      <RulesTableRest
+        policyId={profileId}
+        securityGuideId={securityGuideId}
+        total={rules?.meta.total}
+        rules={rules?.data}
+        remediationsEnabled={false}
+        columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+        ruleValues={{}}
+        loading={loading}
+        ruleTree={builtTree}
+      />
+    </PolicyRulesBase>
   );
 };
 
@@ -149,7 +131,7 @@ const PolicyRulesBase = ({
   osMajorVersion,
   benchmarkVersion,
   headerName,
-  component,
+  children,
 }) => {
   return (
     <>
@@ -159,7 +141,7 @@ const PolicyRulesBase = ({
         osMajorVersion={osMajorVersion}
       />
       <div className="pf-v5-u-p-xl" style={{ background: '#fff' }}>
-        {component}
+        {children}
       </div>
     </>
   );
@@ -169,7 +151,7 @@ PolicyRulesBase.propTypes = {
   osMajorVersion: propTypes.string,
   benchmarkVersion: propTypes.string,
   headerName: propTypes.string,
-  component: propTypes.any,
+  children: propTypes.any,
 };
 
 const PolicyRulesWrapper = () => (
