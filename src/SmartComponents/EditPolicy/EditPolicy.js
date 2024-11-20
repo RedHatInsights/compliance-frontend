@@ -1,25 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/display-name */
-import React, { useMemo } from 'react';
+import React from 'react';
+import { Bullseye, Spinner } from '@patternfly/react-core';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import { EditPolicyGraphQL } from './EditPolicyGraphQL';
 import { EditPolicyRest } from './EditPolicyRest';
-import GatedComponents from '../../PresentationalComponents/GatedComponents';
 
 const EditPolicy = (props) => {
-  const RestComponent = useMemo(
-    () => () => <EditPolicyRest {...props} />,
-    [JSON.stringify(props)] // the route prop from react-router is not stable
-  );
-  const GraphQLComponent = useMemo(
-    () => () => <EditPolicyGraphQL {...props} />,
-    [JSON.stringify(props)] // the route prop from react-router is not stable
-  );
+  const apiV2Enabled = useAPIV2FeatureFlag();
 
-  return (
-    <GatedComponents
-      RestComponent={RestComponent}
-      GraphQLComponent={GraphQLComponent}
-    />
+  return apiV2Enabled === undefined ? (
+    <Bullseye>
+      <Spinner />
+    </Bullseye>
+  ) : apiV2Enabled === true ? (
+    <EditPolicyRest {...props} />
+  ) : (
+    <EditPolicyGraphQL {...props} />
   );
 };
 
