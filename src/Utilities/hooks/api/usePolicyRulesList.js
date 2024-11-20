@@ -1,8 +1,8 @@
-import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 import { useCallback, useMemo } from 'react';
 import { useProfileTree } from './useProfileTree';
 import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers';
 import useBatchedRuleGroups from 'PresentationalComponents/hooks/useBatchedRuleGroups';
+import useProfileRules from './useProfileRules';
 
 export const usePolicyRulesList = ({
   profileId,
@@ -12,32 +12,29 @@ export const usePolicyRulesList = ({
   shouldSkip,
 }) => {
   const ruleParams = useMemo(
-    () => [
+    () => ({
       securityGuideId,
       profileId,
-      undefined,
-      pagination?.limit || 10,
-      pagination?.offset || 0,
-      undefined,
-      sort || 'title:asc',
-      ...(filters || groupFilter
-        ? [
-            filters
-              ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
-              : groupFilter,
-          ]
-        : []),
-      undefined,
-    ],
+      limit: pagination?.limit || 10,
+      offset: pagination?.offset || 0,
+      sortBy: sort || 'title:asc',
+      filter:
+        filters || groupFilter
+          ? [
+              filters
+                ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
+                : groupFilter,
+            ]
+          : undefined,
+    }),
     [securityGuideId, profileId, pagination, sort, filters, groupFilter]
   );
-
   const {
     loading: isProfileRulesListLoading,
     data: profileRules,
     error: profileRulesListError,
     fetch: fetchProfileRulesList,
-  } = useComplianceQuery('profileRules', {
+  } = useProfileRules({
     params: ruleParams,
     skip: shouldSkip.rule,
   });
@@ -45,22 +42,15 @@ export const usePolicyRulesList = ({
   const fetchRules = useCallback(
     async (offset, limit) => {
       const fetchParams = [
-        profileId,
         securityGuideId,
-        ...ruleParams.map((value, idx) => {
-          if (idx === 3) {
-            return limit;
-          }
-          if (idx === 4) {
-            return offset;
-          }
-          return value;
-        }),
+        profileId,
+        undefined,
+        limit,
+        offset,
       ];
-
       return await fetchProfileRulesList(fetchParams, false);
     },
-    [fetchProfileRulesList, profileId, securityGuideId, ruleParams]
+    [fetchProfileRulesList, profileId, securityGuideId]
   );
 
   const {
