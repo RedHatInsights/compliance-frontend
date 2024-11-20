@@ -24,7 +24,7 @@ export const EditPolicyRest = ({ route }) => {
     data: { data: policy } = {},
     loading: policyLoading,
     error: policyError,
-  } = usePolicy(policyId);
+  } = usePolicy(policyId, { skip: policyId === undefined });
 
   const {
     data: { data: supportedProfiles } = {},
