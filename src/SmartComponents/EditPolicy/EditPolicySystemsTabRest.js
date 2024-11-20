@@ -60,7 +60,7 @@ const EditPolicySystemsTab = ({
       columns={[
         Columns.Name,
         Columns.inventoryColumn('tags'),
-        Columns.OperatingSystem,
+        Columns.OperatingSystem(),
       ]}
       showOsMinorVersionFilter={[os_major_version]}
       prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
