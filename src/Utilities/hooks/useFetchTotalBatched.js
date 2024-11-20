@@ -9,34 +9,37 @@ const useFetchTotalBatched = (
   const [totalResult, setTotalResult] = useState();
   const { isResolving, resolve } = usePromiseQueue();
 
-  const fetch = useCallback(async () => {
-    const firstPage = await fetchFn(0, batchSize);
-    const total = firstPage?.meta?.total;
+  const fetch = useCallback(
+    async (options) => {
+      const firstPage = await fetchFn(0, batchSize, options);
+      const total = firstPage?.meta?.total;
 
-    if (total > batchSize) {
-      const pages = Math.ceil(total / batchSize) || 1;
+      if (total > batchSize) {
+        const pages = Math.ceil(total / batchSize) || 1;
 
-      const results = await resolve(
-        [...new Array(pages)].map((_, pageIdx) => async () => {
-          const page = pageIdx;
-          if (page >= 1) {
-            const offset = page * batchSize;
+        const results = await resolve(
+          [...new Array(pages)].map((_, pageIdx) => async () => {
+            const page = pageIdx;
+            if (page >= 1) {
+              const offset = page * batchSize;
 
-            return await fetchFn(offset, batchSize);
-          }
-        })
-      );
-      const allPages = [firstPage, ...results]
-        .filter((v) => !!v)
-        .flatMap(({ data }) => data);
+              return await fetchFn(offset, batchSize, options);
+            }
+          })
+        );
+        const allPages = [firstPage, ...results]
+          .filter((v) => !!v)
+          .flatMap(({ data }) => data);
 
-      mounted.current && setTotalResult(allPages);
-      return allPages;
-    } else {
-      mounted.current && setTotalResult([firstPage.data]);
-      return [firstPage.data];
-    }
-  }, [typeof fetchFn !== 'undefined', resolve, batchSize]);
+        mounted.current && setTotalResult(allPages);
+        return allPages;
+      } else {
+        mounted.current && setTotalResult([firstPage.data]);
+        return [firstPage.data];
+      }
+    },
+    [typeof fetchFn !== 'undefined', resolve, batchSize]
+  );
 
   useEffect(() => {
     !skip && fetch();
