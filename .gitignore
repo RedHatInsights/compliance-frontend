@@ -32,3 +32,6 @@ cypress/videos
 
 .cache/*
 docs/*
+
+# Sentry Config File
+.env.sentry-build-plugin
