@@ -19,6 +19,7 @@ const useTestResults = (systemId) => {
             [
               policyId,
               undefined,
+              undefined,
               100,
               undefined,
               undefined,
