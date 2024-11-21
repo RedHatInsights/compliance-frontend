@@ -49,13 +49,15 @@ const useTailoringsData = ({
     batched: tableView === 'tree',
   });
 
-  const loading = rulesLoading || ruleTreeLoading;
-  const error = rulesError || ruleTreeError;
+  const loading =
+    tableView === 'tree' ? rulesLoading || ruleTreeLoading : rulesLoading;
+  const error = tableView === 'tree' ? rulesError : rulesError || ruleTreeError;
+  const data = tableView === 'tree' ? { ruleTree, rules } : { rules };
 
   return {
     error,
     loading,
-    data: !loading ? { ruleTree, rules } : undefined,
+    data: !loading ? data : {},
     fetchBatchedTailoringRules,
   };
 };

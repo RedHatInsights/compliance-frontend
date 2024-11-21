@@ -14,8 +14,8 @@ const useBatchedTailoringRules = (options = {}) => {
     skip: skip || batched,
   });
   const fetchRulesForBatch = useCallback(
-    (offset, limit, params = {}) =>
-      fetchRules({ ...params, limit, offset }, false),
+    async (offset, limit, params = {}) =>
+      await fetchRules({ ...params, limit, offset }, false),
     [fetchRules]
   );
   const {
@@ -30,7 +30,7 @@ const useBatchedTailoringRules = (options = {}) => {
   });
 
   return {
-    loading: rulesLoading || rulesBatchedLoading,
+    loading: !batched ? rulesLoading : rulesLoading || rulesBatchedLoading,
     data: rules || rulesBatched,
     error: rulesError || rulesBatchedError,
     fetch,
