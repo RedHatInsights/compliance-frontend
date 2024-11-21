@@ -1,12 +1,6 @@
 import React from 'react';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
-
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
-import {
-  useSerialisedTableState,
-  useRawTableState,
-} from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { ENABLE_ASYNC_TABLE_HOOKS } from '@/constants';
 import {
@@ -26,18 +20,8 @@ import {
  *  @category Compliance
  *
  */
-const ComplianceTable = (props) => {
-  const serialisedTableState = useSerialisedTableState();
-  const tableState = useRawTableState();
-
-  useDeepCompareEffectNoCheck(() => {
-    if (ENABLE_ASYNC_TABLE_HOOKS) {
-      console.log('Async Table enabled');
-      console.log('TableState', tableState, serialisedTableState);
-    }
-  }, [tableState, serialisedTableState]);
-
-  return ENABLE_ASYNC_TABLE_HOOKS ? (
+const ComplianceTable = (props) =>
+  ENABLE_ASYNC_TABLE_HOOKS ? (
     <AsyncTableToolsTable
       {...props}
       options={{
@@ -52,7 +36,6 @@ const ComplianceTable = (props) => {
   ) : (
     <TableToolsTable {...props} />
   );
-};
 
 ComplianceTable.propTypes = {
   options: propTypes.object,
