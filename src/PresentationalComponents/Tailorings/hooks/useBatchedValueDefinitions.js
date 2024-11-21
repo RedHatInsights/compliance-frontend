@@ -4,7 +4,6 @@ import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useBatchedValueDefinitions = (options = {}) => {
   const { skip, batched = false, params } = options;
-  console.log('VD opts', options);
   const { fetch: fetchValueDefinitions } = useValueDefinitions({
     ...options,
     skip: skip || batched,

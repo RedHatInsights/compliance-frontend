@@ -65,7 +65,6 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
 
   useDeepCompareEffectNoCheck(() => {
     mounted.current = true;
-    setTotalResult(undefined);
     !skip && fetch(params);
 
     return () => {

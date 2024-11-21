@@ -9,8 +9,8 @@ const useBatchedRuleGroups = (options = {}) => {
     skip: skip || batched,
   });
   const fetchRuleGroupsForBatch = useCallback(
-    (offset, limit, params = {}) =>
-      fetchRuleGroups({ ...params, limit, offset }, false),
+    async (offset, limit, params = {}) =>
+      await fetchRuleGroups({ ...params, limit, offset }, false),
     [fetchRuleGroups]
   );
   const {
@@ -20,6 +20,7 @@ const useBatchedRuleGroups = (options = {}) => {
   } = useFetchTotalBatched(fetchRuleGroupsForBatch, {
     params,
     skip: skip || !batched,
+    withMeta: true,
   });
 
   return {

@@ -34,7 +34,7 @@ const useTailoringsData = ({
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useTailoringRuleTree({
-    params: [policyId, tailoringId],
+    params: { policyId, tailoringId },
     skip: skipRuleTree,
   });
 
@@ -52,12 +52,11 @@ const useTailoringsData = ({
   const loading =
     tableView === 'tree' ? rulesLoading || ruleTreeLoading : rulesLoading;
   const error = tableView === 'tree' ? rulesError : rulesError || ruleTreeError;
-  const data = tableView === 'tree' ? { ruleTree, rules } : { rules };
-
+  const data = { ruleTree, rules };
   return {
     error,
     loading,
-    data: !loading ? data : {},
+    data,
     fetchBatchedTailoringRules,
   };
 };

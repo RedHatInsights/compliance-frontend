@@ -72,14 +72,13 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   );
   const {
     tableProps: expandableTableProps,
-    openItem,
     tableView: expandableTableViewOptions,
   } = useExpandable(options);
 
   const {
     toolbarProps: bulkSelectToolbarProps,
     tableProps: bulkSelectTableProps,
-    markRowSelected,
+    tableView: bulkSelectTableViewOptions,
   } = useBulkSelect({
     ...options,
     itemIdsOnPage: usableItems?.map(({ id }) => id),
@@ -92,7 +91,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   } = useTableView(usableItems, managedColumns, {
     ...options,
     expandable: expandableTableViewOptions,
-    transformers: [markRowSelected, openItem],
+    bulkSelect: bulkSelectTableViewOptions,
   });
 
   const exportConfig = withExport({
@@ -145,6 +144,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       expandableTableProps,
       tableViewTableProps,
       actionResolver,
+      actionResolverEnabled,
     ]
   );
 
