@@ -46,6 +46,7 @@ const useProfileRuleIds = ({
     {
       batchSize: 100,
       skip: true,
+      withMeta: true,
     }
   );
 
@@ -63,7 +64,7 @@ const useProfileRuleIds = ({
         .data[0].id;
       const ruleIds = (
         await fetchRulesBatched({ securityGuideId, profileId })
-      )[0].map(({ id }) => id);
+      ).data?.map(({ id }) => id);
 
       return [securityGuideId, profileId, ruleIds];
     },
