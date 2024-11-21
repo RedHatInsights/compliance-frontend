@@ -119,6 +119,7 @@ const Tailorings = ({
     params: {
       policyId: policy?.id,
       filter: 'NOT(null? os_minor_version)',
+      sortBy: 'os_minor_version:desc',
     },
     skip: !policy,
   });
