@@ -2,6 +2,10 @@ import { useMemo } from 'react';
 import useComplianceQuery from './useComplianceQuery';
 
 const convertToArray = (params) => {
+  if (!params) {
+    return [];
+  }
+
   if (Array.isArray(params)) {
     return params;
   } else {
