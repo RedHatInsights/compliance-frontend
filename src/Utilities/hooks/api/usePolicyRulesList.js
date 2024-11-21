@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useProfileTree } from './useProfileTree';
+import useProfileTree from './useProfileTree';
 import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers';
 import useBatchedRuleGroups from 'PresentationalComponents/Tailorings/hooks/useBatchedRuleGroups';
 import useProfileRules from './useProfileRules';
