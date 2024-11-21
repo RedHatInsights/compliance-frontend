@@ -20,10 +20,10 @@ import { eventKey } from './helpers';
  *
  *  @param   {object}             [props]
  *  @param   {object}             [props.policy]                         A policy object from the API
- *  @param   {string}             [props.profiles]
+ *  @param   {string}             [props.profiles]                       An array of objects containing osMajorVersion, osMinorVersion, securityGuideId, profileId props for showing additional tabs.
  *  @param   {string}             [props.defaultTab]                     TODO
  *  @param   {Array}              [props.columns]                        An array of RulesTable columns
- *  @param   {number}             [props.level]                          TODO
+ *  @param   {number}             [props.level]                          Sets the level of the tab in the URL anchor
  *  @param   {string}             [props.ouiaId]                         OuiaId to pass to the PatternFly Table
  *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
@@ -49,7 +49,7 @@ import { eventKey } from './helpers';
  *   policy={policy}
  * />
  *
- *  // Will show the tailorings of a policy and an additional tab for another OS minor version to show
+ *  // Will show the tailorings of a policy and an additional tabs for other OS minor version to show
  *
  *  <Tailorings
  *   ouiaId="RHELVersions"
@@ -59,7 +59,20 @@ import { eventKey } from './helpers';
  *     Columns.Remediation,
  *   ]}
  *   policy={policy}
- *   osMinorVersions={[9,10]}
+ *   profiles={[
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 1,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 2,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *  ]}
  * />
  *
  *  // Will show tabs with rules from the security guide and the specified OS minor versions
@@ -71,8 +84,20 @@ import { eventKey } from './helpers';
  *     Columns.Severity,
  *     Columns.Remediation,
  *   ]}
- *   securityGuideId={'ffff-ffff-fffff'}
- *   osMinorVersions={[9,10]}
+ *   profiles={[
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 1,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 2,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *  ]}
  * />
  *
  *  // Will show tabs with rules from the security guide and the specified OS minor versions
@@ -85,15 +110,24 @@ import { eventKey } from './helpers';
  *     Columns.Severity,
  *     Columns.Remediation,
  *   ]}
- *   profileRefId={XYZ}
- *   osMinorVersions={{
- *     9: 'ffff-ffff-fffff',
- *    10: 'eeeee-eeeee-eeeeef',
- *   }}
- *   preselected={{
- *     "9": ['RULE_ID1', 'RULE_ID2']
- *     "10": ['RULE_ID11', 'RULE_ID5']
- *   }}
+ *   profiles={[
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 1,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *    {
+ *      osMajorVersion: 9,
+ *      osMinorVersion: 2,
+ *      securityGuideId: 'XYZ-ABC',
+ *      profileId: 'XYZ-ABC',
+ *    },
+ *  ]}
+ *  preselected={{
+ *    "2": ['RULE_ID1', 'RULE_ID2']
+ *    "1": ['RULE_ID11', 'RULE_ID5']
+ *  }}
  * />
  *
  *
