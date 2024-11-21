@@ -77,11 +77,13 @@ const TailoringTab = ({
     skipRuleTree: shouldSkip.tailoring.ruleTree,
     ...(groupFilter ? { groupFilter } : {}),
   });
-
   const rules = tailoringRules || securityGuideRules;
   const ruleTree =
     ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
-      ? buildTreeTable(tailoringRuleTree || securityGuideRuleTree, ruleGroups)
+      ? buildTreeTable(
+          tailoringRuleTree || securityGuideRuleTree,
+          ruleGroups?.data
+        )
       : undefined;
 
   const exporter = async () =>

@@ -36,7 +36,11 @@ const applyTransformations = (row, transformers, selectedIds, index) => {
  *
  */
 const rowsBuilder = (items, columns, options = {}) => {
-  const { transformers = [], selectedIds = [] } = options;
+  const {
+    selectedIds = [],
+    expandable: { openItem } = {},
+    bulkSelect: { markRowSelected } = {},
+  } = options;
   const EmptyRowsComponent =
     options.emptyRows || emptyRows(undefined, columns.length);
   let runningIndex = 0;
@@ -50,7 +54,7 @@ const rowsBuilder = (items, columns, options = {}) => {
 
             const transformedRow = applyTransformations(
               row,
-              transformers,
+              [openItem, markRowSelected],
               selectedIds,
               runningIndex,
               item

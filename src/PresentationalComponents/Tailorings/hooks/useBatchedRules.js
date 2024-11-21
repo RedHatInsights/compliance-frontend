@@ -31,7 +31,7 @@ const useBatchedRules = (options = {}) => {
 
   return {
     loading: rulesLoading || rulesBatchedLoading,
-    data: rules || rulesBatched,
+    data: !batched ? rules : rulesBatched,
     error: rulesError || rulesBatchedError,
     fetch,
     fetchBatched,

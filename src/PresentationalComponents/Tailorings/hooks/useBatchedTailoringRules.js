@@ -31,7 +31,7 @@ const useBatchedTailoringRules = (options = {}) => {
 
   return {
     loading: !batched ? rulesLoading : rulesLoading || rulesBatchedLoading,
-    data: rules || rulesBatched,
+    data: !batched ? rules : rulesBatched,
     error: rulesError || rulesBatchedError,
     fetch,
     fetchBatched,
