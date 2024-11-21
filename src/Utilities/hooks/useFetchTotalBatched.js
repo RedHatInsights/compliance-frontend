@@ -50,13 +50,13 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
           mounted.current && setTotalResult(newTotalResult);
           loading.current = false;
 
-          return allPages;
+          return newTotalResult;
         } else {
           const newTotalResult = withMeta ? firstPage : [firstPage.data];
           mounted.current && setTotalResult(newTotalResult);
           loading.current = false;
 
-          return [firstPage.data];
+          return newTotalResult;
         }
       }
     },
