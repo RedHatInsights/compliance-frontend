@@ -67,7 +67,7 @@ const TailoringTab = ({
   });
 
   const {
-    data: { ruleTree: tailoringRuleTree, rules: tailoringRules } = {},
+    data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
     fetchBatchedTailoringRules,
   } = useTailoringsData({
     policy,
@@ -129,7 +129,7 @@ const TailoringTab = ({
         securityGuideId={tailoring?.security_guide_id || securityGuideId}
         total={rules?.meta?.total}
         ruleTree={ruleTree}
-        rules={rules?.data}
+        rules={ruleTree ? rules?.data || [] : rules?.data}
         ansibleSupportFilter
         remediationsEnabled={false}
         columns={columns}
