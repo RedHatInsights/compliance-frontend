@@ -84,7 +84,6 @@ const buildTreeBranch = (
           'aria-setsize': 1,
         },
       })) || [];
-
     const rows = buildRows(
       leafItems,
       columns,
