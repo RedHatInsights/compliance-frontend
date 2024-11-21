@@ -3,10 +3,12 @@
 exports[`useBulkSelect returns a bulk select configuration 1`] = `
 {
   "current": {
-    "markRowSelected": [Function],
     "tableProps": {
       "canSelectAll": false,
       "onSelect": undefined,
+    },
+    "tableView": {
+      "markRowSelected": [Function],
     },
     "toolbarProps": {
       "bulkSelect": {

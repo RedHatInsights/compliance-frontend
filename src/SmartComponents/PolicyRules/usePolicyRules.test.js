@@ -4,12 +4,10 @@ import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers';
 import { act } from 'react';
 import { usePolicyRulesList } from 'Utilities/hooks/api/usePolicyRulesList';
 import useProfileRules from 'Utilities/hooks/api/useProfileRules';
-import { useProfileTree } from 'Utilities/hooks/api/useProfileTree';
+import useProfileTree from 'Utilities/hooks/api/useProfileTree';
 
 jest.mock('Utilities/hooks/api/useProfileRules', () => jest.fn());
-jest.mock('Utilities/hooks/api/useProfileTree', () => ({
-  useProfileTree: jest.fn(),
-}));
+jest.mock('Utilities/hooks/api/useProfileTree', () => jest.fn());
 jest.mock(
   'PresentationalComponents/Tailorings/hooks/useBatchedRuleGroups',
   () => jest.fn()
