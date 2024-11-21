@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-// eslint-disable-next-line
-import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
+import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
 import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
@@ -32,6 +31,7 @@ const RulesTable = ({
   total,
   onSelect,
   defaultTableView = 'tree',
+  reportTestResult,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -39,18 +39,17 @@ const RulesTable = ({
     typeof onSelect === 'function'
       ? [selectedRulesProp, onSelect]
       : internalSelectedState;
-  const selectedRulesWithRemediations = (selectedRules) =>
-    (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showRuleStateFilter =
     columns.filter((c) => c.title === 'Rule state').length > 0;
 
   // TODO implement policies filter
   const policies = [];
 
-  const remediationAction = ({ selected = [] }) => (
-    <ComplianceRemediationButton
-      allSystems={selected.length > 0 ? [system] : undefined}
-      selectedRules={selectedRulesWithRemediations(selected)}
+  const remediationAction = () => (
+    <RemediationButton
+      reportTestResults={selectedRules.length > 0 ? [reportTestResult] : []}
+      selectedRuleResultIds={selectedRules}
+      reportId={policyId}
     />
   );
 
@@ -166,6 +165,7 @@ RulesTable.propTypes = {
   onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
   defaultTableView: propTypes.string,
+  reportTestResult: propTypes.object,
 };
 
 export default RulesTable;
