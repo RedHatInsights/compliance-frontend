@@ -7,18 +7,20 @@ import FallbackButton from './components/FallBackButton';
 
 const RemediationButtonRest = ({
   reportId,
-  wholeSystems,
+  reportTestResults,
+  selectedRuleResultIds,
   onRemediationCreated,
   ...buttonProps
 }) => {
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetchRest(
     reportId,
-    wholeSystems
+    reportTestResults,
+    selectedRuleResultIds
   );
 
   return (
     <RemediationRemediationButton
-      isDisabled={wholeSystems?.length === 0 || isLoadingIssues}
+      isDisabled={reportTestResults?.length === 0 || isLoadingIssues}
       onRemediationCreated={(result) => {
         dispatchNotification(result.getNotification());
       }}
@@ -37,8 +39,8 @@ const RemediationButtonRest = ({
 
 RemediationButtonRest.propTypes = {
   reportId: propTypes.string,
-  systems: propTypes.array,
-  wholeSystems: propTypes.array,
+  reportTestResults: propTypes.arrayOf(propTypes.object),
+  selectedRuleResultIds: propTypes.arrayOf(propTypes.string),
   onRemediationCreated: propTypes.func,
 };
 

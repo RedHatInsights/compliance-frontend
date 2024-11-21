@@ -49,6 +49,8 @@ const RuleResults = ({ reportTestResult }) => {
       total={ruleResults?.meta?.total}
       defaultTableView="rows"
       onSelect={true}
+      remediationsEnabled
+      reportTestResult={reportTestResult}
       // TODO: provide ruleTree
       // TODO: hide passed rules by default
     />

@@ -232,7 +232,7 @@ export const SystemsTable = ({
               dedicatedAction: (
                 <RemediationButtonRest
                   reportId={reportId}
-                  wholeSystems={selectedWholeItems}
+                  reportTestResults={selectedWholeItems}
                 />
               ),
             }),

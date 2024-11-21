@@ -10,13 +10,17 @@ import { remediationData } from './helpers';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
 import pAll from 'p-all';
 
-export const useIssuesFetchRest = (reportId, wholeTestResults) => {
+export const useIssuesFetchRest = (
+  reportId,
+  testResults,
+  selectedRuleResultIds // use to limit remediation to only selected rule results
+) => {
   const { isResolving, results, resolve } = usePromiseQueue(
     DEFAULT_CONNCURRENT_REQUESTS_FOR_ISSUES
   );
   const fetch = useCallback(async () => {
     // Keep only supported test results
-    let filteredTestResultIds = wholeTestResults
+    let filteredTestResultIds = testResults
       .filter((tr) => tr.supported)
       .map((tr) => tr.id);
 
@@ -40,6 +44,12 @@ export const useIssuesFetchRest = (reportId, wholeTestResults) => {
 
         if (!remediation_issue_id || result !== 'fail') return;
 
+        if (
+          selectedRuleResultIds !== undefined &&
+          !selectedRuleResultIds.includes(rule.id)
+        )
+          return;
+
         if (!Object.hasOwn(hashMap, remediation_issue_id)) {
           hashMap[remediation_issue_id] = [system_id];
         } else {
@@ -52,7 +62,7 @@ export const useIssuesFetchRest = (reportId, wholeTestResults) => {
     });
 
     return hashMap && remediationDataRest(hashMap);
-  }, [reportId, wholeTestResults]);
+  }, [reportId, testResults, selectedRuleResultIds]);
 
   const remediationDataRest = (hashMap) => ({
     issues: Object.entries(hashMap).map(([remedIssue, systems]) => ({
