@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
@@ -147,13 +146,6 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       actionResolverEnabled,
     ]
   );
-
-  useDeepCompareEffectNoCheck(() => {
-    // TODO only for development purposes remove before switching to async tables by default
-    console.log('Async Table params:', items, columns, options);
-    console.log('Toolbar Props: ', toolbarProps);
-    console.log('Table Props: ', tableProps);
-  }, [toolbarProps, tableProps, items, columns, options]);
 
   return {
     loaded,
