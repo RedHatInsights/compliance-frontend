@@ -16,12 +16,14 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
 /**
  * Custom hook to execute a query function with parameters and optional skip condition
  *
- *  @param   {Function}       fn               Function to execute
- *  @param   {object}         [options]        Includes options like params and skip
- *  @param   {Array | object} [options.params] Parameters passed to the request to make. If an array is passed it will be spread as arguments!
- *  @param   {boolean}        [options.skip]   Wether or not to skip the request
+ *  @param   {Function}       fn                       Function to execute
+ *  @param   {object}         [options]                Includes options like params and skip
+ *  @param   {Array | object} [options.params]         Parameters passed to the request to make. If an array is passed it will be spread as arguments!
+ *  @param   {boolean}        [options.debounce]       Enables/disables debouncing of requests
+ *  @param   {boolean}        [options.convertToArray] A function to use to convert a params object into an arguments array to pass to the fetch function
+ *  @param   {boolean}        [options.skip]           Wether or not to skip the request
  *
- *  @returns {useQueryReturn}                  An object containing a data, loading and error state, as well as a fetch and refetch function.
+ *  @returns {useQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and refetch function.
  *
  * @example
  * // Query is skipped if conditions are met
@@ -50,7 +52,6 @@ const useQuery = (fn, options = {}) => {
 
   const fetchFn = useCallback(
     async (fn, params, setDataState = true) => {
-      console.log(fn, params, setDataState);
       if (!loading) {
         setDataState && setLoading(true);
         try {
