@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
 import usePagination from '../usePagination';
 import useFilterConfig from '../useFilterConfig';
@@ -72,14 +71,13 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   );
   const {
     tableProps: expandableTableProps,
-    openItem,
     tableView: expandableTableViewOptions,
   } = useExpandable(options);
 
   const {
     toolbarProps: bulkSelectToolbarProps,
     tableProps: bulkSelectTableProps,
-    markRowSelected,
+    tableView: bulkSelectTableViewOptions,
   } = useBulkSelect({
     ...options,
     itemIdsOnPage: usableItems?.map(({ id }) => id),
@@ -92,7 +90,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
   } = useTableView(usableItems, managedColumns, {
     ...options,
     expandable: expandableTableViewOptions,
-    transformers: [markRowSelected, openItem],
+    bulkSelect: bulkSelectTableViewOptions,
   });
 
   const exportConfig = withExport({
@@ -145,15 +143,9 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       expandableTableProps,
       tableViewTableProps,
       actionResolver,
+      actionResolverEnabled,
     ]
   );
-
-  useDeepCompareEffectNoCheck(() => {
-    // TODO only for development purposes remove before switching to async tables by default
-    console.log('Async Table params:', items, columns, options);
-    console.log('Toolbar Props: ', toolbarProps);
-    console.log('Table Props: ', tableProps);
-  }, [toolbarProps, tableProps, items, columns, options]);
 
   return {
     loaded,

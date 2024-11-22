@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
+
 import {
   Bullseye,
   EmptyState,
@@ -16,7 +18,6 @@ import {
   StateViewWithError,
   Tailorings,
 } from '../../../PresentationalComponents';
-import useSecurityGuides from '../../../Utilities/hooks/api/useSecurityGuides';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from './useProfileRuleIds';
 
@@ -27,47 +28,34 @@ export const EditPolicyProfilesRulesRest = ({
   osMajorVersion,
   osMinorVersionCounts,
 }) => {
-  const hasCachedSelection = selectedRuleRefIds !== undefined;
-  const preselected = useMemo(
-    () =>
-      (selectedRuleRefIds || []).reduce(
-        (prev, cur) => ({
-          ...prev,
-          [cur.osMinorVersion]: cur.ruleRefIds,
-        }),
-        {}
-      ),
-    [selectedRuleRefIds]
-  );
-
-  const {
-    data: securityGuideData,
-    loading: securityGuideLoading,
-    error: securityGuideError,
-  } = useSecurityGuides({
-    params: [
-      undefined,
-      1,
-      undefined,
-      true,
-      'version:desc', // get the latest security guide for the chosen profile
-      `os_major_version=${osMajorVersion} AND profile_ref_id=${policy.refId}`,
-    ],
-  });
+  const preselected =
+    selectedRuleRefIds &&
+    (selectedRuleRefIds || []).reduce(
+      (prev, cur) => ({
+        ...prev,
+        [cur.osMinorVersion]: cur.ruleRefIds,
+      }),
+      {}
+    );
+  const profileRefId = policy?.refId;
 
   const skipFetchingProfileRuleIds =
-    hasCachedSelection ||
-    securityGuideLoading ||
-    securityGuideData === undefined;
+    !osMajorVersion ||
+    !profileRefId ||
+    (osMinorVersionCounts || []).length === 0;
+
   const {
-    profileRuleIds,
+    profilesAndRuleIds,
     loading: preselectedRuleIdsLoading,
     error: preselectedRuleIdsError,
-  } = useProfileRuleIds(
-    securityGuideData?.data?.[0]?.id,
-    policy.id,
-    skipFetchingProfileRuleIds
-  );
+  } = useProfileRuleIds({
+    profileRefId,
+    osMajorVersion,
+    osMinorVersions: osMinorVersionCounts.map(
+      ({ osMinorVersion }) => osMinorVersion
+    ),
+    skip: skipFetchingProfileRuleIds,
+  });
 
   const onSelect = useCallback(
     (_securityGuideId, osMinorVersion, newSelectedRuleIds) => {
@@ -97,44 +85,27 @@ export const EditPolicyProfilesRulesRest = ({
     [change, selectedRuleRefIds]
   );
 
-  useEffect(() => {
-    // set initial selection
-    if (
-      !hasCachedSelection &&
-      preselectedRuleIdsLoading === false &&
-      profileRuleIds !== undefined
-    ) {
+  useDeepCompareEffectNoCheck(() => {
+    if (profilesAndRuleIds !== undefined && selectedRuleRefIds === undefined) {
       change(
         'selectedRuleRefIds',
         osMinorVersionCounts.map(({ osMinorVersion }) => ({
           osMinorVersion,
-          ruleRefIds: profileRuleIds,
+          ruleRefIds: profilesAndRuleIds.find(
+            ({ osMinorVersion: profileOsMinorVersion }) =>
+              profileOsMinorVersion === osMinorVersion
+          ).ruleIds,
         }))
       );
     }
-  }, [
-    change,
-    hasCachedSelection,
-    onSelect,
-    osMinorVersionCounts,
-    preselectedRuleIdsLoading,
-    profileRuleIds,
-  ]);
+  }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
 
   const noRuleSets =
-    !securityGuideError &&
     !preselectedRuleIdsError &&
-    !securityGuideLoading &&
     !preselectedRuleIdsLoading &&
-    profileRuleIds?.length === 0;
+    Object.keys(profilesAndRuleIds || {}).length === 0;
 
-  const viewLoading =
-    securityGuideData === undefined ||
-    securityGuideLoading ||
-    (!hasCachedSelection &&
-      (profileRuleIds === undefined || preselectedRuleIdsLoading));
-
-  return viewLoading ? (
+  return !preselected ? (
     <Bullseye>
       <Spinner />
     </Bullseye>
@@ -154,9 +125,9 @@ export const EditPolicyProfilesRulesRest = ({
       </TextContent>
       <StateViewWithError
         stateValues={{
-          error: securityGuideError || preselectedRuleIdsError,
-          data: securityGuideData || profileRuleIds,
-          loading: securityGuideLoading || preselectedRuleIdsLoading,
+          error: preselectedRuleIdsError,
+          data: profilesAndRuleIds,
+          loading: preselectedRuleIdsLoading,
           noRuleSets,
         }}
       >
@@ -179,13 +150,11 @@ export const EditPolicyProfilesRulesRest = ({
         </StateViewPart>
         <StateViewPart stateKey="data">
           <Tailorings
-            securityGuideId={securityGuideData.data[0].id}
-            osMinorVersions={osMinorVersionCounts.map(
-              ({ osMinorVersion }) => osMinorVersion
-            )}
+            profiles={profilesAndRuleIds}
             columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
             onSelect={onSelect}
             preselected={preselected}
+            enableSecurityGuideRulesToggle
           />
         </StateViewPart>
       </StateViewWithError>

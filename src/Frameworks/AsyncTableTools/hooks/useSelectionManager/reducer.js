@@ -19,8 +19,10 @@ const cleanEmpty = (state) =>
       return {
         [DEFAULT_GROUP_KEY]: [],
       };
+    } else {
+      return newState;
     }
-  }, state);
+  }, {});
 
 const set = (state = {}, action) => {
   const group = selectionGroup(action);
