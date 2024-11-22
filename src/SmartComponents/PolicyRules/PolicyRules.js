@@ -13,11 +13,9 @@ import { policyRulesSkips } from './helpers';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Spinner } from '@patternfly/react-core';
+import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
+import useProfile from 'Utilities/hooks/api/useProfile';
 
-const policyTitle =
-  'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
-const profileId = '0a036ede-252e-4e73-bdd8-9203f93deefe';
-const securityGuideId = '3e01872b-e90d-46bb-9b39-012adc00d9b9';
 const PROFILES_QUERY = gql`
   query PR_Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -75,7 +73,9 @@ const PolicyRulesGraphQL = () => {
 
 const PolicyRulesRest = () => {
   const tableState = useFullTableState();
-  // const { policy_id: policyId, security_guide_id: securityGuideId } = useParams();
+  const { policy_id: profileId, security_guide_id: securityGuideId } =
+    useParams();
+
   const openRuleGroups = tableState?.tableState?.['open-items'];
   const groupFilter =
     tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
@@ -92,6 +92,19 @@ const PolicyRulesRest = () => {
     [tableState]
   );
 
+  const { data: securityGuideData } = useSecurityGuide({
+    params: {
+      securityGuideId: securityGuideId,
+    },
+  });
+
+  const { data: profileData } = useProfile({
+    params: {
+      securityGuideId: securityGuideId,
+      profileId: profileId,
+    },
+  });
+
   const { data, loading /*fetchRules*/ } = usePolicyRulesList({
     profileId,
     securityGuideId,
@@ -107,9 +120,9 @@ const PolicyRulesRest = () => {
 
   return (
     <PolicyRulesBase
-      osMajorVersion={'passedIn paramMajor'}
-      benchmarkVersion={'passed in ParamTitle'}
-      headerName={policyTitle}
+      osMajorVersion={securityGuideData?.data?.os_major_version}
+      benchmarkVersion={securityGuideData?.data?.version}
+      headerName={profileData?.data?.title}
     >
       <RulesTableRest
         policyId={profileId}

@@ -155,6 +155,7 @@ export const EditPolicyProfilesRulesRest = ({
             onSelect={onSelect}
             preselected={preselected}
             enableSecurityGuideRulesToggle
+            rulesPageLink={true}
           />
         </StateViewPart>
       </StateViewWithError>
