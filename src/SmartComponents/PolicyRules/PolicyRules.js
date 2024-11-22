@@ -71,7 +71,6 @@ const PolicyRulesGraphQL = () => {
   );
 };
 
-//TODO: Data is currently hardcoded, once modals are migrated we can pass in IDs in TabHeader
 const PolicyRulesRest = () => {
   const tableState = useFullTableState();
   const { policy_id: profileId, security_guide_id: securityGuideId } =
