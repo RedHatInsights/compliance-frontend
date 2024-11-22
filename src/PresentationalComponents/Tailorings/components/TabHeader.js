@@ -13,7 +13,6 @@ import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
 
 const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
-
   return (
     <TextContent className="pf-v5-u-mt-md">
       <Text component={TextVariants.h3}>
