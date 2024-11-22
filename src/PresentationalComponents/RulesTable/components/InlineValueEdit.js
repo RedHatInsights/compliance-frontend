@@ -5,10 +5,10 @@ import { validatorFor, disableEdit } from '../helpers';
 
 const InlineValueEdit = ({ value, valueDefinition, ...props }) => (
   <p>
-    {valueDefinition.title}:{' '}
+    {valueDefinition?.title}:{' '}
     <InlineEdit
-      isDisabled={disableEdit(value || valueDefinition.defaultValue)}
-      defaultValue={valueDefinition.defaultValue}
+      isDisabled={disableEdit(value || valueDefinition?.defaultValue)}
+      defaultValue={valueDefinition?.defaultValue}
       validate={validatorFor(valueDefinition)}
       {...{ ...props, value }}
     />
