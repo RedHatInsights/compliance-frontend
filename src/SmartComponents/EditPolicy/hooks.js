@@ -4,6 +4,8 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 import { apiInstance } from 'Utilities/hooks/useQuery';
 import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
+// TODO: rework the direct apiInstance calls with API hooks
+
 const updatePolicyV2 = async (policyId, updatedPolicy) =>
   apiInstance.updatePolicy(policyId, null, {
     description: updatedPolicy?.description,
@@ -19,7 +21,14 @@ const updateAssignedRules = (policyId, tailoringId, assignedSystems) =>
     ids: assignedSystems,
   });
 
-const prepareUpdatePromises = (policy, updatedPolicyHostsAndRules) => {
+const getTailorings = (policyId) =>
+  apiInstance.tailorings(
+    policyId,
+    undefined, // xRHIDENTITY
+    100 // limit
+  );
+
+const updatePolicyRest = async (policy, updatedPolicyHostsAndRules) => {
   const {
     hosts,
     tailoringRules,
@@ -28,25 +37,58 @@ const prepareUpdatePromises = (policy, updatedPolicyHostsAndRules) => {
     complianceThreshold,
   } = updatedPolicyHostsAndRules;
   const policyId = policy.id;
-  const updatePromises = [];
 
-  if (hosts) {
-    updatePromises.push(updateAssignedSystems(policyId, hosts));
-  }
+  if (hosts !== undefined && hosts.length > 0) {
+    await updateAssignedSystems(policyId, hosts);
 
-  if (tailoringRules) {
-    Object.entries(tailoringRules).forEach(([tailoringId, assignedRules]) => {
-      updatePromises.push(
-        updateAssignedRules(policyId, tailoringId, assignedRules)
+    if (tailoringRules) {
+      const response = await getTailorings(policyId); // fetch updated tailorings
+
+      console.log('### updatedTailorings response', response);
+      const updatedTailorings = response.data.data;
+      const updatedTailoringIds = updatedTailorings.map(({ id }) => id);
+
+      const tailoringRulesEntries = Object.entries(tailoringRules);
+
+      const updatedTailoringRules = tailoringRulesEntries.reduce(
+        (prev, cur) => {
+          const [tailoringOrProfileId, rules] = cur;
+
+          if (!updatedTailoringIds.includes(tailoringOrProfileId)) {
+            // convert profile ID to newly created tailoring ID
+            const tailoringId = updatedTailorings.find(
+              ({ profile_id }) => profile_id === tailoringOrProfileId
+            ).id;
+
+            return { ...prev, [tailoringId]: rules };
+          }
+
+          return { ...prev, [tailoringOrProfileId]: rules };
+        },
+        {}
       );
-    });
+
+      for (const entry of Object.entries(updatedTailoringRules)) {
+        const [tailoringId, rules] = entry;
+        await updateAssignedRules(policyId, tailoringId, rules);
+      }
+    }
+  } else {
+    if (tailoringRules) {
+      for (const entry of Object.entries(tailoringRules)) {
+        const [tailoringId, rules] = entry;
+        await updateAssignedRules(policyId, tailoringId, rules);
+      }
+    }
   }
 
   if (description || businessObjective || complianceThreshold) {
-    updatePromises.push(updatePolicyV2(policyId, updatedPolicyHostsAndRules));
+    await updatePolicyV2(policyId, {
+      description,
+      businessObjective,
+      complianceThreshold,
+    });
   }
-
-  return Promise.all(updatePromises);
 };
 
 export const useOnSave = (
@@ -56,9 +98,7 @@ export const useOnSave = (
 ) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const updatePolicyGraphQL = usePolicy();
-  const updatePolicy = apiV2Enabled
-    ? prepareUpdatePromises
-    : updatePolicyGraphQL;
+  const updatePolicy = apiV2Enabled ? updatePolicyRest : updatePolicyGraphQL;
 
   const [isSaving, setIsSaving] = useState(false);
 

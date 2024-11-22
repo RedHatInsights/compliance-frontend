@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
@@ -32,23 +32,19 @@ const EditPolicyRulesTabEmptyState = () => (
   </EmptyState>
 );
 
-const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
-
 export const EditPolicyRulesTab = ({
   policy,
-  selectedRuleRefIds,
+  assignedRuleIds,
   setRuleValues,
   setUpdatedPolicy,
   selectedOsMinorVersions,
 }) => {
   const [selectedTailoringRules, setSelectedTailoringRules] =
-    useState(selectedRuleRefIds);
+    useState(assignedRuleIds);
 
-  const skipFetchingProfileRuleIds =
-    difference(
-      selectedOsMinorVersions,
-      Object.keys(selectedRuleRefIds).map(Number)
-    ).length === 0;
+  const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
+    (version) => !Object.keys(assignedRuleIds).map(Number).includes(version)
+  );
 
   const {
     profilesAndRuleIds,
@@ -57,9 +53,31 @@ export const EditPolicyRulesTab = ({
   } = useProfileRuleIds({
     profileRefId: policy.ref_id,
     osMajorVersion: policy.os_major_version,
-    osMinorVersions: selectedOsMinorVersions,
-    skip: skipFetchingProfileRuleIds,
+    osMinorVersions: nonTailoringOsMinorVersions,
+    skip: nonTailoringOsMinorVersions.length === 0,
   });
+
+  useEffect(() => {
+    if (
+      profilesAndRuleIds !== undefined &&
+      preselectedRuleIdsLoading !== true
+    ) {
+      profilesAndRuleIds.forEach((entry) => {
+        setUpdatedPolicy((prev) => ({
+          ...prev,
+          tailoringRules: {
+            ...prev?.tailoringRules,
+            [entry.profileId]: entry.ruleIds,
+          },
+        }));
+
+        setSelectedTailoringRules((prev) => ({
+          ...prev,
+          [entry.osMinorVersion]: entry.ruleIds,
+        }));
+      });
+    }
+  }, [profilesAndRuleIds, preselectedRuleIdsLoading, setUpdatedPolicy]);
 
   const handleSelect = useCallback(
     (policy, tailoring, newSelectedRuleIds) => {
@@ -86,7 +104,8 @@ export const EditPolicyRulesTab = ({
         data: policy && assignedSystemCount,
         loading:
           assignedSystemCount === undefined ||
-          (skipFetchingProfileRuleIds && preselectedRuleIdsLoading),
+          (nonTailoringOsMinorVersions.length !== 0 &&
+            preselectedRuleIdsLoading),
         empty: assignedSystemCount === 0,
         error: preselectedRuleIdsError, // TODO: add the state view for error
       }}
@@ -129,7 +148,7 @@ export const EditPolicyRulesTab = ({
 
 EditPolicyRulesTab.propTypes = {
   policy: propTypes.object,
-  selectedRuleRefIds: propTypes.array,
+  assignedRuleIds: propTypes.array,
   setSelectedRuleRefIds: propTypes.func,
   setRuleValues: propTypes.func,
   setUpdatedPolicy: propTypes.func,

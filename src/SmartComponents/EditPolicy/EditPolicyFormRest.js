@@ -10,20 +10,20 @@ import { useNewRulesAlertState } from './hooks/index';
 const EditPolicyForm = ({
   policy,
   setUpdatedPolicy,
-  selectedRuleRefIds,
-  selectedSystems: selectedSystemsProp,
+  assignedRuleIds,
+  assignedSystems,
   setRuleValues,
   supportedOsVersions,
 }) => {
   const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState(
-    selectedSystemsProp.map((system) => system.os_minor_version)
+    assignedSystems.map((system) => system.os_minor_version)
   );
   const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
 
   const [selectedSystems, setSelectedSystems] = useState(
-    selectedSystemsProp?.map((system) => system.id)
+    assignedSystems?.map((system) => system.id)
   );
-  const preUsedOsMinorVersions = selectedSystemsProp.map(
+  const preUsedOsMinorVersions = assignedSystems.map(
     (system) => system.os_minor_version
   );
 
@@ -60,7 +60,7 @@ const EditPolicyForm = ({
           <EditPolicyRulesTabRest
             policy={policy}
             setRuleValues={setRuleValues}
-            selectedRuleRefIds={selectedRuleRefIds}
+            assignedRuleIds={assignedRuleIds}
             selectedOsMinorVersions={selectedOsMinorVersions}
             setUpdatedPolicy={setUpdatedPolicy}
           />
@@ -87,8 +87,8 @@ EditPolicyForm.propTypes = {
   policy: propTypes.object,
   updatedPolicy: propTypes.object,
   setUpdatedPolicy: propTypes.func,
-  selectedRuleRefIds: propTypes.arrayOf(propTypes.object),
-  selectedSystems: propTypes.array,
+  assignedRuleIds: propTypes.arrayOf(propTypes.object),
+  assignedSystems: propTypes.array,
   setRuleValues: propTypes.func,
   supportedOsVersions: propTypes.array,
 };

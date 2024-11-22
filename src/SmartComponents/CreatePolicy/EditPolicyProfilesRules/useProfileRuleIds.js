@@ -102,7 +102,7 @@ const useProfileRuleIds = ({
     }
 
     return () => {
-      mounted.current = false;
+      // mounted.current = false; // TODO: investigate why this is called unexpectedly
     };
   }, [osMinorVersions, skip]);
 
