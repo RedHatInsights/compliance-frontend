@@ -20,7 +20,8 @@ const RulesTable = ({
   selectedRules: selectedRulesProp = [],
   hidePassed = false,
   options,
-  activeFilters,
+  activeFiltersPassed = false, // Enable Default filter
+  activeFilters, // Default filter
   // showFailedCounts = false, // TODO We need systems counts
   setRuleValues,
   ruleValues,
@@ -118,6 +119,9 @@ const RulesTable = ({
             ...activeFilters,
           }),
         }),
+        ...(activeFiltersPassed && {
+          activeFilters: { ...activeFilters },
+        }),
       }}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
@@ -147,6 +151,7 @@ RulesTable.propTypes = {
   policyName: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
+  activeFiltersPassed: propTypes.bool,
   system: propTypes.object,
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,

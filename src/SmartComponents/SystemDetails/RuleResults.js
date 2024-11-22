@@ -13,6 +13,12 @@ const RuleResults = ({ reportTestResult }) => {
   const filters = serialisedTableState?.filters;
   const sort = serialisedTableState?.sort;
 
+  // Enable default filter
+  const activeFiltersPassed = true;
+  const activeFilters = {
+    'rule-state': ['failed'],
+  };
+
   const { data: ruleResults } = useReportRuleResults({
     params: [
       reportTestResult.id,
@@ -40,6 +46,8 @@ const RuleResults = ({ reportTestResult }) => {
 
   return (
     <RulesTable
+      activeFiltersPassed={activeFiltersPassed}
+      activeFilters={activeFilters}
       ansibleSupportFilter
       showFailedCounts
       rules={rules}
