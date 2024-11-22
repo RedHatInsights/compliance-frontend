@@ -60,7 +60,7 @@ const RulesTable = ({
         // eslint-disable-next-line react/prop-types
         const rule = rules?.find(({ id }) => props?.item?.itemId === id);
         const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
-          valueDefinitions.find(({ id }) => id === checkId)
+          valueDefinitions?.find(({ id }) => id === checkId)
         );
         const ruleRuleValues = ruleValues
           ? Object.fromEntries(

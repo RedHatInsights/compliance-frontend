@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import useComplianceQuery from './useComplianceQuery';
 
 const convertToArray = (params) => {
@@ -6,13 +5,13 @@ const convertToArray = (params) => {
     return params;
   } else {
     const {
-      securityGuideId = undefined,
-      profileId = undefined,
-      limit = undefined,
-      offset = undefined,
-      idsOnly = undefined,
-      sortBy = undefined,
-      filter = undefined,
+      securityGuideId,
+      profileId,
+      limit,
+      offset,
+      idsOnly,
+      sortBy,
+      filter,
     } = params;
 
     return [
@@ -28,14 +27,7 @@ const convertToArray = (params) => {
   }
 };
 
-const useProfileRules = ({ params, skip, ...options }) => {
-  const convertedParams = useMemo(() => convertToArray(params), [params]);
-
-  return useComplianceQuery('profileRules', {
-    ...options,
-    params: convertedParams,
-    skip,
-  });
-};
+const useProfileRules = (options) =>
+  useComplianceQuery('profileRules', { ...options, convertToArray });
 
 export default useProfileRules;

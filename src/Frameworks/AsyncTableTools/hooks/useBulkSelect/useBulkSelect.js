@@ -59,6 +59,8 @@ const useBulkSelect = ({
     selectedIds
   );
 
+  // TODO this is not totally wrong, but when the tree view is active there is currently no total, which causes the selection to be disabled there.
+  // The bug may not even be fixed here, but in the tables that use selection and the tree view. They will need to provide an appropriate total still
   const isDisabled = total === 0;
   const checked = checkboxState(selectedIdsTotal, total);
 
@@ -92,7 +94,7 @@ const useBulkSelect = ({
 
   return enableBulkSelect
     ? {
-        markRowSelected,
+        tableView: { markRowSelected },
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
           canSelectAll: false,

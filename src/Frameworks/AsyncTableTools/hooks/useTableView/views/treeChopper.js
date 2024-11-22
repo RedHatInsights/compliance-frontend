@@ -15,7 +15,7 @@ const itemRow = (item, columns) => ({
   })),
 });
 
-const childRowForItem = (item, idx, DetailsComponent, colSpan) => ({
+const childRowForItem = (item, _idx, DetailsComponent, colSpan) => ({
   props: {
     'aria-level': item.props['aria-level'],
     isDetailsRow: true,
@@ -210,15 +210,16 @@ const treeChopper = (items, columns, options = {}) => {
   const {
     tableTree,
     expandable: { openItems } = {},
+    bulkSelect: { markRowSelected } = {},
     detailsComponent,
-  } = options || {};
+  } = options;
 
   const choppedTree = chopTreeIntoTable(
     tableTree,
     items,
     columns,
     openItems,
-    undefined,
+    [markRowSelected],
     detailsComponent
   );
 

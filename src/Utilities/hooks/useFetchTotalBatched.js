@@ -1,57 +1,79 @@
-import { useCallback, useEffect, useState, useRef } from 'react';
-import usePromiseQueue from './usePromiseQueue';
+import { useCallback, useState, useRef } from 'react';
+import pAll from 'p-all';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
-const useFetchTotalBatched = (
-  fetchFn,
-  { batchSize = 10, skip = false } = {}
-) => {
-  const mounted = useRef(false);
+const DEFAULT_BATCH_SIZE = 50;
+
+const useFetchTotalBatched = (fetchFn, options = {}) => {
+  const {
+    batchSize = DEFAULT_BATCH_SIZE,
+    skip = false,
+    params,
+    // TODO Make this obsolete A batched requests result should in the end look the same as any other API request response
+    withMeta = false,
+  } = options;
+  const loading = useRef(false);
+  const mounted = useRef(true);
   const [totalResult, setTotalResult] = useState();
-  const { isResolving, resolve } = usePromiseQueue();
 
-  const fetch = useCallback(async () => {
-    const firstPage = await fetchFn(0, batchSize);
-    const total = firstPage?.meta?.total;
+  const fetch = useCallback(
+    async (params = {}) => {
+      if (!loading.current) {
+        loading.current = true;
+        const firstPage = await fetchFn(0, batchSize, params);
+        const total = firstPage?.meta?.total;
 
-    if (total > batchSize) {
-      const pages = Math.ceil(total / batchSize) || 1;
+        if (total > batchSize) {
+          const pages = Math.ceil(total / batchSize) || 1;
+          const requests = [...new Array(pages)].map(
+            (_, pageIdx) => async () => {
+              const page = pageIdx;
+              if (page >= 1) {
+                const offset = page * batchSize;
+                return await fetchFn(offset, batchSize, params);
+              }
+            }
+          );
+          const results = await pAll(requests, {
+            concurrency: 2,
+          });
 
-      const results = await resolve(
-        [...new Array(pages)].map((_, pageIdx) => async () => {
-          const page = pageIdx;
-          if (page >= 1) {
-            const offset = page * batchSize;
+          const allPages = [firstPage, ...results]
+            .filter((v) => !!v)
+            .flatMap(({ data }) => data);
+          const newTotalResult = withMeta
+            ? {
+                data: allPages,
+                meta: firstPage.meta,
+              }
+            : allPages;
+          mounted.current && setTotalResult(newTotalResult);
+          loading.current = false;
 
-            return await fetchFn(offset, batchSize);
-          }
-        })
-      );
-      const allPages = [firstPage, ...results]
-        .filter((v) => !!v)
-        .flatMap(({ data }) => data);
+          return newTotalResult;
+        } else {
+          const newTotalResult = withMeta ? firstPage : [firstPage.data];
+          mounted.current && setTotalResult(newTotalResult);
+          loading.current = false;
 
-      mounted.current && setTotalResult(allPages);
-      return allPages;
-    } else {
-      mounted.current && setTotalResult([firstPage.data]);
-      return [firstPage.data];
-    }
-  }, [typeof fetchFn !== 'undefined', resolve, batchSize]);
+          return newTotalResult;
+        }
+      }
+    },
+    [typeof fetchFn !== 'undefined', batchSize]
+  );
 
-  useEffect(() => {
-    !skip && fetch();
-  }, [skip, fetch]);
-
-  useEffect(() => {
+  useDeepCompareEffectNoCheck(() => {
     mounted.current = true;
+    !skip && fetch(params);
 
     return () => {
       mounted.current = false;
     };
-  }, []);
+  }, [skip, fetch, params]);
 
   return {
-    loading: isResolving,
+    loading: typeof totalResult === 'undefined',
     data: totalResult,
     fetch,
   };
