@@ -1,40 +1,115 @@
-import { useCallback } from 'react';
-import useProfileRules from '../../../Utilities/hooks/api/useProfileRules';
-import useFetchTotalBatched from '../../../Utilities/hooks/useFetchTotalBatched';
+import { useCallback, useState, useRef } from 'react';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
-// Requests GET /security_guides/{security_guide_id}/profiles/{profile_id}/rules?ids_only
-const useProfileRuleIds = (securityGuideId, profileId, skip) => {
+import useSecurityGuides from 'Utilities/hooks/api/useSecurityGuides';
+import useProfiles from 'Utilities/hooks/api/useProfiles';
+import useProfileRules from 'Utilities/hooks/api/useProfileRules';
+import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
+
+const useProfileRuleIds = ({
+  profileRefId,
+  osMajorVersion,
+  osMinorVersions,
+  skip,
+}) => {
+  const mounted = useRef(true);
+  const [profilesAndRuleIds, setProfilesAndRuleIds] = useState();
+  const { fetch: fetchSecurityGuide } = useSecurityGuides({
+    params: {
+      limit: 1,
+      idsOnly: true,
+      sortBy: 'version:desc',
+    },
+    skip: true,
+  });
+
+  const { fetch: fetchProfiles } = useProfiles({
+    params: {
+      limit: 1,
+      idsOnly: true,
+    },
+    skip: true,
+  });
+
   const { fetch: fetchProfileRules } = useProfileRules({
+    params: { idsOnly: true },
     skip: true,
   });
 
   const fetchProfileRulesForBatch = useCallback(
-    (offset, limit) =>
-      fetchProfileRules(
-        [securityGuideId, profileId, undefined, limit, offset, true],
-        false
-      ),
-    [fetchProfileRules, securityGuideId, profileId]
+    async (offset, limit, params) =>
+      await fetchProfileRules({ limit, offset, ...params }, false),
+    [fetchProfileRules]
   );
-  const {
-    loading: profileRuleIdsLoading,
-    data: profileRuleIds,
-    error: profileRuleIdsError,
-  } = useFetchTotalBatched(
-    skip === true ? undefined : fetchProfileRulesForBatch,
+  const { fetch: fetchRulesBatched } = useFetchTotalBatched(
+    fetchProfileRulesForBatch,
     {
       batchSize: 100,
-      skip,
+      skip: true,
+      withMeta: true,
     }
   );
 
+  const fetchProfilesAndIdsForMinorVersion = useCallback(
+    async (osMinorVersion) => {
+      const securityGuideId = (
+        await fetchSecurityGuide(
+          {
+            filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
+          },
+          false
+        )
+      ).data[0].id;
+      const profileId = (await fetchProfiles({ securityGuideId }, false))
+        .data[0].id;
+      const ruleIds = (
+        await fetchRulesBatched({ securityGuideId, profileId })
+      ).data?.map(({ id }) => id);
+
+      return [securityGuideId, profileId, ruleIds];
+    },
+    [
+      osMajorVersion,
+      fetchProfiles,
+      fetchRulesBatched,
+      fetchSecurityGuide,
+      profileRefId,
+    ]
+  );
+
+  useDeepCompareEffectNoCheck(() => {
+    const fetchMinorOsRuleIds = async () => {
+      const profilesAndRuleIds = [];
+
+      for (const osMinorVersion of osMinorVersions) {
+        const [securityGuideId, profileId, ruleIds] =
+          await fetchProfilesAndIdsForMinorVersion(osMinorVersion);
+
+        profilesAndRuleIds.push({
+          osMajorVersion,
+          osMinorVersion,
+          securityGuideId,
+          profileId,
+          ruleIds,
+        });
+      }
+
+      mounted.current && setProfilesAndRuleIds(profilesAndRuleIds);
+    };
+
+    if (osMinorVersions?.length && !skip) {
+      fetchMinorOsRuleIds();
+    }
+
+    return () => {
+      mounted.current = false;
+    };
+  }, [osMinorVersions, skip]);
+
   return {
-    profileRuleIds:
-      profileRuleIds !== undefined
-        ? profileRuleIds.flat().map(({ id }) => id)
-        : profileRuleIds,
-    loading: profileRuleIdsLoading,
-    error: profileRuleIdsError,
+    profilesAndRuleIds,
+    loading: profilesAndRuleIds === undefined ? true : undefined,
+    error: undefined, // TODO Add error handling
   };
 };
 
