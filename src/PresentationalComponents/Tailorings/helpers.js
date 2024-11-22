@@ -54,12 +54,9 @@ export const skips = ({
   return {
     securityGuide: {
       ruleGroups: hasNoTableState,
-      ruleTree: hasNoTableState || isTailoringWithPolicy || selectedRulesOnly,
+      ruleTree: hasNoTableState || selectedRulesOnly,
       rules:
-        hasNoTableState ||
-        isTailoringWithPolicy ||
-        (isTreeView && hasNoOpenItems) ||
-        selectedRulesOnly,
+        hasNoTableState || (isTreeView && hasNoOpenItems) || selectedRulesOnly,
       valueDefinitions: hasNoTableState || hasNoOpenItems,
       profile: {
         rules:
@@ -80,8 +77,13 @@ export const skips = ({
         (isTreeView && hasNoOpenItems) ||
         hasNoTableState ||
         hasMissingParams ||
-        isNewTailoring,
-      ruleTree: hasNoTableState || hasMissingParams || isNewTailoring,
+        isNewTailoring ||
+        !selectedRulesOnly,
+      ruleTree:
+        hasNoTableState ||
+        hasMissingParams ||
+        isNewTailoring ||
+        !selectedRulesOnly,
     },
   };
 };
