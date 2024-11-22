@@ -18,7 +18,7 @@ const convertToArray = (params) => {
   }
 };
 
-const useRuleGroups = (options) =>
-  useComplianceQuery('ruleGroups', { ...options, convertToArray });
+const useProfiles = (options) =>
+  useComplianceQuery('profiles', { ...options, convertToArray });
 
-export default useRuleGroups;
+export default useProfiles;

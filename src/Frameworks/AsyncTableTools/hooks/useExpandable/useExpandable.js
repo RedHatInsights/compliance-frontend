@@ -57,14 +57,13 @@ const useExpandable = (options) => {
 
   return enableExpandingRow
     ? {
-        openItems,
-        openItem,
         tableProps: {
           onCollapse,
         },
         tableView: {
           onCollapse,
           openItems,
+          openItem,
         },
       }
     : {};

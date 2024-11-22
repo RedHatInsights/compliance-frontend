@@ -24,14 +24,13 @@ describe('useExpandable', () => {
     );
 
     expect(result.current).toEqual({
-      openItems: [],
-      openItem: expect.any(Function),
       tableProps: {
         onCollapse: expect.any(Function),
       },
       tableView: {
         onCollapse: expect.any(Function),
         openItems: [],
+        openItem: expect.any(Function),
       },
     });
   });
@@ -49,7 +48,7 @@ describe('useExpandable', () => {
       });
     });
 
-    const openedRow = result.current.openItem(row, [], 0);
+    const openedRow = result.current.tableView.openItem(row, [], 0);
 
     expect(openedRow).toEqual([
       {
@@ -81,7 +80,7 @@ describe('useExpandable', () => {
       });
     });
 
-    expect(result.current.openItems).toEqual(['test-id']);
+    expect(result.current.tableView.openItems).toEqual(['test-id']);
 
     // collapse
     act(() => {
@@ -90,6 +89,6 @@ describe('useExpandable', () => {
       });
     });
 
-    expect(result.current.openItems).toEqual([]);
+    expect(result.current.tableView.openItems).toEqual([]);
   });
 });

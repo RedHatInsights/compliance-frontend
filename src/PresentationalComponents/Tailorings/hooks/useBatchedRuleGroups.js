@@ -2,23 +2,25 @@ import { useCallback } from 'react';
 import useRuleGroups from 'Utilities/hooks/api/useRuleGroups';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
-const useBatchedRuleGroups = (securityGuideId, { skip } = {}) => {
+const useBatchedRuleGroups = (options = {}) => {
+  const { skip, batched = false, params } = options;
   const { fetch: fetchRuleGroups } = useRuleGroups({
-    params: [securityGuideId],
-    skip: true,
+    ...options,
+    skip: skip || batched,
   });
   const fetchRuleGroupsForBatch = useCallback(
-    (offset, limit) =>
-      fetchRuleGroups([securityGuideId, undefined, limit, offset], false),
-    [fetchRuleGroups, securityGuideId]
+    async (offset, limit, params = {}) =>
+      await fetchRuleGroups({ ...params, limit, offset }, false),
+    [fetchRuleGroups]
   );
   const {
     loading: ruleGroupsLoading,
     data: ruleGroups,
     error: ruleGroupsError,
   } = useFetchTotalBatched(fetchRuleGroupsForBatch, {
-    batchSize: 60,
-    skip,
+    params,
+    skip: skip || !batched,
+    withMeta: true,
   });
 
   return {
