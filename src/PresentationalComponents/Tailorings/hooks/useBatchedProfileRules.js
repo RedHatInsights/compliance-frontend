@@ -15,9 +15,8 @@ const useBatchedProfileRules = (options = {}) => {
   });
 
   const fetchRulesForBatch = useCallback(
-    async (offset, limit, params = {}) => {
-      return await fetchProfileRules({ ...params, limit, offset }, false);
-    },
+    async (offset, limit, params = {}) =>
+      await fetchProfileRules({ ...params, limit, offset }, false),
     [fetchProfileRules]
   );
   const {
@@ -33,7 +32,7 @@ const useBatchedProfileRules = (options = {}) => {
 
   return {
     loading: rulesLoading || rulesBatchedLoading,
-    data: rules || rulesBatched,
+    data: !batched ? rules : rulesBatched,
     error: rulesError || rulesBatchedError,
     fetch,
     fetchBatched,

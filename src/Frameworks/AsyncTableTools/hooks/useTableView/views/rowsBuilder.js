@@ -54,7 +54,9 @@ const rowsBuilder = (items, columns, options = {}) => {
 
             const transformedRow = applyTransformations(
               row,
-              [openItem, markRowSelected],
+              // TODO the order matters, but it shouldn't.
+              // the issue is that openItems returns an array, which later markRowSelected can't process.
+              [markRowSelected, openItem],
               selectedIds,
               runningIndex,
               item
