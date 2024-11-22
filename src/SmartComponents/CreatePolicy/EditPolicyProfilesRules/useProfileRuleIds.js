@@ -27,6 +27,7 @@ const useProfileRuleIds = ({
     params: {
       limit: 1,
       idsOnly: true,
+      filter: `ref_id=${profileRefId}`,
     },
     skip: true,
   });
