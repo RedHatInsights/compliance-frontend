@@ -13,6 +13,8 @@ import { policyRulesSkips } from './helpers';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Spinner } from '@patternfly/react-core';
+import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
+import useProfile from 'Utilities/hooks/api/useProfile';
 
 const PROFILES_QUERY = gql`
   query PR_Profile($policyId: String!) {
@@ -89,6 +91,19 @@ const PolicyRulesRest = () => {
     [tableState]
   );
 
+  const { data: securityGuideData } = useSecurityGuide({
+    params: {
+      securityGuideId: securityGuideId,
+    },
+  })
+
+  const { data: profileData } = useProfile({
+    params: {
+      securityGuideId: securityGuideId,
+      profileId: profileId,
+    },
+  })
+
   const { data, loading /*fetchRules*/ } = usePolicyRulesList({
     profileId,
     securityGuideId,
@@ -104,9 +119,9 @@ const PolicyRulesRest = () => {
 
   return (
     <PolicyRulesBase
-      osMajorVersion={'passedIn paramMajor'}
-      benchmarkVersion={'passed in ParamTitle'}
-      headerName={"bar"}
+      osMajorVersion={securityGuideData?.data?.os_major_version}
+      benchmarkVersion={securityGuideData?.data?.version}
+      headerName={profileData?.data?.title}
     >
       <RulesTableRest
         policyId={profileId}

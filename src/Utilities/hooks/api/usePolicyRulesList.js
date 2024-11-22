@@ -78,7 +78,7 @@ export const usePolicyRulesList = ({
   });
 
   const builtTree = ruleGroups
-    ? buildTreeTable(rulesTreeData, ruleGroups)
+    ? buildTreeTable(rulesTreeData, ruleGroups?.data)
     : undefined;
 
   const loading =

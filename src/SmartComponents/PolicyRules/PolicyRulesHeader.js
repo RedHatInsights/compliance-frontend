@@ -16,7 +16,7 @@ const PolicyRulesHeader = ({ name, benchmarkVersion, osMajorVersion }) => {
         <Text>
           This is a read-only view of the full set of rules and their
           description for
-          <b>{name} policy</b> operating on
+          <b> {name} policy</b> operating on
           <br />
           <b>RHEL {osMajorVersion}</b> - <b>SSG version: {benchmarkVersion}</b>
         </Text>
