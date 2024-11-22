@@ -212,7 +212,7 @@ const treeChopper = (items, columns, options = {}) => {
     expandable: { openItems } = {},
     bulkSelect: { markRowSelected } = {},
     detailsComponent,
-  } = options || {};
+  } = options;
 
   const choppedTree = chopTreeIntoTable(
     tableTree,
