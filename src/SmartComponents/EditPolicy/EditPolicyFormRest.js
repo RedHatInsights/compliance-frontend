@@ -15,8 +15,9 @@ const EditPolicyForm = ({
   setRuleValues,
   supportedOsVersions,
 }) => {
-  const [selectedOsMinorVersions, setSelectedOsMinorVersions] =
-    useState(supportedOsVersions);
+  const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState(
+    selectedSystemsProp.map((system) => system.os_minor_version)
+  );
   const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
 
   const [selectedSystems, setSelectedSystems] = useState(
@@ -43,14 +44,9 @@ const EditPolicyForm = ({
       }));
       setNewRulesAlert(hasNewOsMinorVersions);
       setSelectedOsMinorVersions(newOsMinorVersions);
-      setSelectedSystems(selectedSystems);
+      setSelectedSystems(newSelectedSystems.map((system) => system.id));
     },
-    [
-      preUsedOsMinorVersions,
-      selectedSystems,
-      setNewRulesAlert,
-      setUpdatedPolicy,
-    ]
+    [preUsedOsMinorVersions, setNewRulesAlert, setUpdatedPolicy]
   );
 
   return (

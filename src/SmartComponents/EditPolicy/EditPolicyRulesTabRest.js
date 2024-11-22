@@ -12,6 +12,7 @@ import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
+import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>
@@ -31,15 +32,34 @@ const EditPolicyRulesTabEmptyState = () => (
   </EmptyState>
 );
 
+const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
+
 export const EditPolicyRulesTab = ({
   policy,
   selectedRuleRefIds,
   setRuleValues,
   setUpdatedPolicy,
-  // selectedOsMinorVersions, // TODO: use the array to render the available tabs
+  selectedOsMinorVersions,
 }) => {
   const [selectedTailoringRules, setSelectedTailoringRules] =
     useState(selectedRuleRefIds);
+
+  const skipFetchingProfileRuleIds =
+    difference(
+      selectedOsMinorVersions,
+      Object.keys(selectedRuleRefIds).map(Number)
+    ).length === 0;
+
+  const {
+    profilesAndRuleIds,
+    loading: preselectedRuleIdsLoading,
+    error: preselectedRuleIdsError,
+  } = useProfileRuleIds({
+    profileRefId: policy.ref_id,
+    osMajorVersion: policy.os_major_version,
+    osMinorVersions: selectedOsMinorVersions,
+    skip: skipFetchingProfileRuleIds,
+  });
 
   const handleSelect = useCallback(
     (policy, tailoring, newSelectedRuleIds) => {
@@ -64,8 +84,11 @@ export const EditPolicyRulesTab = ({
     <StateView
       stateValues={{
         data: policy && assignedSystemCount,
-        loading: assignedSystemCount === undefined,
+        loading:
+          assignedSystemCount === undefined ||
+          (skipFetchingProfileRuleIds && preselectedRuleIdsLoading),
         empty: assignedSystemCount === 0,
+        error: preselectedRuleIdsError, // TODO: add the state view for error
       }}
     >
       <StateViewPart stateKey="loading">
@@ -83,6 +106,7 @@ export const EditPolicyRulesTab = ({
         </TextContent>
         <Tailorings
           policy={policy}
+          profiles={profilesAndRuleIds}
           resetLink
           rulesPageLink
           selectedFilter
@@ -93,6 +117,7 @@ export const EditPolicyRulesTab = ({
           onValueOverrideSave={setRuleValues}
           onSelect={handleSelect}
           preselected={selectedTailoringRules}
+          enableSecurityGuideRulesToggle
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">
