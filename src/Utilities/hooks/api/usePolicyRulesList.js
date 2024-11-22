@@ -58,8 +58,10 @@ export const usePolicyRulesList = ({
     loading: rulesTreeLoading,
     error: rulesTreeError,
   } = useProfileTree({
-    securityGuideId: securityGuideId,
-    profileId: profileId,
+    params: {
+      securityGuideId: securityGuideId,
+      profileId: profileId,
+    },
     skip: shouldSkip.ruleTree,
   });
 
@@ -67,10 +69,16 @@ export const usePolicyRulesList = ({
     loading: ruleGroupsLoading,
     data: ruleGroups,
     error: ruleGroupsError,
-  } = useBatchedRuleGroups(securityGuideId, { skip: shouldSkip.ruleGroups });
+  } = useBatchedRuleGroups({
+    params: {
+      securityGuideId,
+    },
+    skip: shouldSkip.ruleGroups,
+    batched: true,
+  });
 
   const builtTree = ruleGroups
-    ? buildTreeTable(rulesTreeData, ruleGroups)
+    ? buildTreeTable(rulesTreeData, ruleGroups?.data)
     : undefined;
 
   const loading =
