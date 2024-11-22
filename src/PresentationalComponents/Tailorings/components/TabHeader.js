@@ -11,10 +11,8 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
-import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 
 const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
 
   return (
     <TextContent className="pf-v5-u-mt-md">
@@ -48,11 +46,7 @@ const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
         <FlexItem align={{ default: 'alignRight' }}>
           {rulesPageLink && (
             <Link
-              to={
-                apiV2Enabled
-                  ? `/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`
-                  : `/scappolicies/${profileId}/default_ruleset`
-              }
+              to={`/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`}
               target="_blank"
               className="pf-v5-u-mr-xl"
             >

@@ -133,7 +133,7 @@ const useSecurityGuideData = ({
       profileRulesError ||
       securityGuideError,
     data: {
-      ...(!securityGuideId ? { securityGuide } : {}),
+      ...(securityGuideId ? { securityGuide } : {}),
       ...(!skipRuleGroups ? { ruleGroups } : {}),
       ...(!skipValueDefinitions ? { valueDefinitions } : {}),
       ...(!skipRuleTree ? { ruleTree: ruleTree } : {}),

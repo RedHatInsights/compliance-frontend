@@ -14,10 +14,6 @@ import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableSta
 import PageHeader from '@redhat-cloud-services/frontend-components/PageHeader';
 import { Spinner } from '@patternfly/react-core';
 
-const policyTitle =
-  'CNSSI 1253 Low/Low/Low Control Baseline for Red Hat Enterprise Linux 7';
-const profileId = '0a036ede-252e-4e73-bdd8-9203f93deefe';
-const securityGuideId = '3e01872b-e90d-46bb-9b39-012adc00d9b9';
 const PROFILES_QUERY = gql`
   query PR_Profile($policyId: String!) {
     profile(id: $policyId) {
@@ -76,7 +72,7 @@ const PolicyRulesGraphQL = () => {
 //TODO: Data is currently hardcoded, once modals are migrated we can pass in IDs in TabHeader
 const PolicyRulesRest = () => {
   const tableState = useFullTableState();
-  // const { policy_id: policyId, security_guide_id: securityGuideId } = useParams();
+  const { policy_id: profileId, security_guide_id: securityGuideId } = useParams();
   const openRuleGroups = tableState?.tableState?.['open-items'];
   const groupFilter =
     tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
@@ -110,7 +106,7 @@ const PolicyRulesRest = () => {
     <PolicyRulesBase
       osMajorVersion={'passedIn paramMajor'}
       benchmarkVersion={'passed in ParamTitle'}
-      headerName={policyTitle}
+      headerName={"bar"}
     >
       <RulesTableRest
         policyId={profileId}
