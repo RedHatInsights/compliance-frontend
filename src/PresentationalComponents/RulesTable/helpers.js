@@ -107,6 +107,6 @@ const validators = {
 };
 
 export const validatorFor = (valueDefinition) =>
-  validators[valueDefinition.type] || (() => true);
+  validators[valueDefinition?.type] || (() => true);
 
 export const disableEdit = (value) => /(\n|\r|\\n|\\r)/.test(value);
