@@ -29,6 +29,7 @@ import { eventKey } from './helpers';
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
  *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
+ *  @param                        [props.rulesPageLink]
  *
  *  @returns {React.ReactElement}
  *
@@ -131,8 +132,7 @@ import { eventKey } from './helpers';
  * />
  *
  *
- */
-const Tailorings = ({
+ */ const Tailorings = ({
   policy,
   profiles,
   defaultTab,
