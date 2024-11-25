@@ -41,6 +41,7 @@ const CreateSCAPPolicyRest = ({
       filter: selectedOsMajorVersion
         ? `os_major_version=${selectedOsMajorVersion}`
         : undefined,
+      limit: 100,
     },
     skip: selectedOsMajorVersion === undefined,
   });

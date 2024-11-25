@@ -139,6 +139,7 @@ const Tailorings = ({
   columns,
   level = 0,
   ouiaId,
+  rulesPageLink,
   onValueOverrideSave,
   onSelect,
   preselected,
@@ -224,6 +225,7 @@ const Tailorings = ({
                     preselected:
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
+                    rulesPageLink: rulesPageLink,
                   }}
                 />
               </Tab>

@@ -162,7 +162,7 @@ export const SystemsTable = ({
   const exportConfig = useSystemsExport({
     columns,
     filter: systemsFilter,
-    selected: selectedIds,
+    // selected: selectedIds,
     total,
     fetchArguments: combinedFetchArgumentsRef.current,
     fetchApi,

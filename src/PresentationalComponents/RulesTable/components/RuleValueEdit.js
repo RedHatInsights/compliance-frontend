@@ -71,8 +71,8 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
             key={`rule-value-${idx}`}
             isOpen={isOpen}
             value={
-              ruleValues?.[valueDefinition.id] ||
-              ruleValues?.[valueDefinition.refId]
+              ruleValues?.[valueDefinition?.id] ||
+              ruleValues?.[valueDefinition?.refId]
             }
             valueDefinition={valueDefinition}
             onSave={onValueSave(valueDefinition)}
