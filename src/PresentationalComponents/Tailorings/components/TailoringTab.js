@@ -141,7 +141,11 @@ const TailoringTab = ({
         valueDefinitions={valueDefinitions?.data}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
-        onSelect={onSelect ? onSelectRule : undefined}
+        onSelect={
+          onSelect && tableState?.tableState?.tableView !== 'tree'
+            ? onSelectRule
+            : undefined
+        }
         selectedRules={preselected}
         options={{
           exporter,
