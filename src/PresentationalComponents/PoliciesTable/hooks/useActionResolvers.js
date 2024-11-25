@@ -1,8 +1,10 @@
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import useRoutePermissions from 'Utilities/hooks/useRoutePermissions';
+import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
 
 const useActionResolver = () => {
   const navigate = useNavigate();
+  const apiV2Enabled = useAPIV2FeatureFlag();
 
   const { hasAccess: hasDeleteAccess, isLoading: isDeleteAccessLoading } =
     useRoutePermissions(`/scappolicies/XYZ/delete`);
@@ -18,9 +20,19 @@ const useActionResolver = () => {
     },
     {
       title: 'Edit policy',
-      isDisabled: !isEditAccessLoading && !hasEditAccess,
-      onClick: (_event, _index, policy) =>
-        navigate(`/scappolicies/${policy.itemId}/edit`),
+      ...(apiV2Enabled
+        ? {
+            isAriaDisabled: true,
+            tooltipProps: {
+              content:
+                'Switch to the stable version to access this functionality',
+            },
+          }
+        : {
+            isDisabled: !isEditAccessLoading && !hasEditAccess,
+            onClick: (_event, _index, policy) =>
+              navigate(`/scappolicies/${policy.itemId}/edit`),
+          }),
     },
   ];
 };
