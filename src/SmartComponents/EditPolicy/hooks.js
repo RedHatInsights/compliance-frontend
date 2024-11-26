@@ -1,69 +1,68 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import { apiInstance } from 'Utilities/hooks/useQuery';
 import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
+import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
+import useTailorings from '../../Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
 
-// TODO: rework the direct apiInstance calls with API hooks
-
-const updatePolicyV2 = async (policyId, updatedPolicy) =>
-  apiInstance.updatePolicy(policyId, null, {
-    description: updatedPolicy?.description,
-    business_objective: updatedPolicy?.businessObjective?.title ?? '--',
-    compliance_threshold: parseFloat(updatedPolicy?.complianceThreshold),
-  });
-
-const updateAssignedSystems = (policyId, assignedSystems) =>
-  apiInstance.assignSystems(policyId, null, { ids: assignedSystems });
-
-const updateAssignedRules = (policyId, tailoringId, assignedSystems) =>
-  apiInstance.assignRules(policyId, tailoringId, null, {
-    ids: assignedSystems,
-  });
-
-const getTailorings = (policyId) =>
-  apiInstance.tailorings(
-    policyId,
-    undefined, // xRHIDENTITY
-    100 // limit
-  );
-
-const updatePolicyRest = async (policy, updatedPolicyHostsAndRules) => {
+const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
   const {
     hosts,
     tailoringRules,
     description,
     businessObjective,
     complianceThreshold,
-  } = updatedPolicyHostsAndRules;
-  const policyId = policy.id;
+  } = updatedPolicyHostsAndRules || {};
 
-  if (hosts !== undefined) {
-    await updateAssignedSystems(policyId, hosts);
-  }
+  const { fetch: assignRules } = useAssignRules({ skip: true });
+  const { fetch: assignSystems } = useAssignSystems({ skip: true });
+  const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { fetch: updatePolicy } = useUpdatePolicy({ skip: true });
 
-  if (tailoringRules) {
-    const tailoringsResponse = await getTailorings(policyId); // fetch the most up-to-date tailorings
-    const tailoringsUpdated = tailoringsResponse.data.data;
-    for (const entry of Object.entries(tailoringRules)) {
-      const [osMinorVersion, rules] = entry;
-      await updateAssignedRules(
-        policyId,
-        tailoringsUpdated.find(
-          ({ os_minor_version }) => os_minor_version === Number(osMinorVersion)
-        ).id,
-        rules
-      );
+  const updatePolicyRest = async () => {
+    const policyId = policy.id;
+
+    if (hosts !== undefined) {
+      await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
     }
-  }
 
-  if (description || businessObjective || complianceThreshold) {
-    await updatePolicyV2(policyId, {
-      description,
-      businessObjective,
-      complianceThreshold,
-    });
-  }
+    if (tailoringRules) {
+      const tailoringsResponse = await fetchTailorings(
+        {
+          policyId,
+          limit: 100,
+        },
+        false
+      ); // fetch the most up-to-date tailorings
+      const tailoringsUpdated = tailoringsResponse.data;
+      for (const entry of Object.entries(tailoringRules)) {
+        const [osMinorVersion, rules] = entry;
+        await assignRules({
+          policyId,
+          tailoringId: tailoringsUpdated.find(
+            ({ os_minor_version }) =>
+              os_minor_version === Number(osMinorVersion)
+          ).id,
+          assignRulesRequest: { ids: rules },
+        });
+      }
+    }
+
+    if (description || businessObjective || complianceThreshold) {
+      await updatePolicy({
+        policyId,
+        policyUpdate: {
+          description,
+          business_objective: businessObjective?.title ?? '--',
+          compliance_threshold: parseFloat(complianceThreshold),
+        },
+      });
+    }
+  };
+
+  return updatePolicyRest;
 };
 
 export const useOnSave = (
@@ -73,6 +72,10 @@ export const useOnSave = (
 ) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const updatePolicyGraphQL = usePolicy();
+  const updatePolicyRest = useUpdatePolicyRest(
+    policy,
+    updatedPolicyHostsAndRules
+  );
   const updatePolicy = apiV2Enabled ? updatePolicyRest : updatePolicyGraphQL;
 
   const [isSaving, setIsSaving] = useState(false);

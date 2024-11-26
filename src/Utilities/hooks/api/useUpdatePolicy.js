@@ -4,17 +4,21 @@ const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {
-    const { policyId, assignSystemsRequest } = params;
+    const { policyId, policyUpdate } = params;
 
     return [
       policyId,
       undefined, // xRHIDENTITY,
-      assignSystemsRequest,
+      policyUpdate,
     ];
   }
 };
 
-const useAssignSystems = (options) =>
-  useComplianceQuery('assignSystems', { ...options, convertToArray });
+const useUpdatePolicy = (options) =>
+  useComplianceQuery('updatePolicy', {
+    skip: true,
+    ...options,
+    convertToArray,
+  });
 
-export default useAssignSystems;
+export default useUpdatePolicy;
