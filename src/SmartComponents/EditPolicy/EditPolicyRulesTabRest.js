@@ -32,6 +32,8 @@ const EditPolicyRulesTabEmptyState = () => (
   </EmptyState>
 );
 
+const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
+
 export const EditPolicyRulesTab = ({
   policy,
   assignedRuleIds,
@@ -39,45 +41,46 @@ export const EditPolicyRulesTab = ({
   setUpdatedPolicy,
   selectedOsMinorVersions,
 }) => {
-  const [selectedTailoringRules, setSelectedTailoringRules] =
-    useState(assignedRuleIds);
-
+  const [selectedRules, setSelectedRules] = useState(assignedRuleIds);
+  const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
   const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
-    (version) => !Object.keys(assignedRuleIds).map(Number).includes(version)
+    (version) => !tailoringOsMinorVersions.includes(version)
   );
 
+  const shouldSkipProfiles =
+    nonTailoringOsMinorVersions.length === 0 ||
+    difference(nonTailoringOsMinorVersions, tailoringOsMinorVersions).length ===
+      0;
+
   const {
-    profilesAndRuleIds,
-    loading: preselectedRuleIdsLoading,
-    error: preselectedRuleIdsError,
+    profilesAndRuleIds: profilesRuleIds,
+    loading: profilesRuleIdsLoading,
+    error: profilesRuleIdsError,
   } = useProfileRuleIds({
     profileRefId: policy.ref_id,
     osMajorVersion: policy.os_major_version,
     osMinorVersions: nonTailoringOsMinorVersions,
-    skip: nonTailoringOsMinorVersions.length === 0,
+    skip: shouldSkipProfiles,
   });
 
   useEffect(() => {
-    if (
-      profilesAndRuleIds !== undefined &&
-      preselectedRuleIdsLoading !== true
-    ) {
-      profilesAndRuleIds.forEach((entry) => {
+    if (profilesRuleIds !== undefined && profilesRuleIdsLoading !== true) {
+      profilesRuleIds.forEach((entry) => {
         setUpdatedPolicy((prev) => ({
           ...prev,
           tailoringRules: {
             ...prev?.tailoringRules,
-            [entry.profileId]: entry.ruleIds,
+            [Number(entry.osMinorVersion)]: entry.ruleIds,
           },
         }));
 
-        setSelectedTailoringRules((prev) => ({
+        setSelectedRules((prev) => ({
           ...prev,
-          [entry.osMinorVersion]: entry.ruleIds,
+          [Number(entry.osMinorVersion)]: entry.ruleIds,
         }));
       });
     }
-  }, [profilesAndRuleIds, preselectedRuleIdsLoading, setUpdatedPolicy]);
+  }, [profilesRuleIds, profilesRuleIdsLoading, setUpdatedPolicy]);
 
   const handleSelect = useCallback(
     (policy, tailoring, newSelectedRuleIds) => {
@@ -85,11 +88,11 @@ export const EditPolicyRulesTab = ({
         ...prev,
         tailoringRules: {
           ...prev?.tailoringRules,
-          [tailoring.id]: newSelectedRuleIds,
+          [tailoring.os_minor_version]: newSelectedRuleIds,
         },
       }));
 
-      setSelectedTailoringRules((prev) => ({
+      setSelectedRules((prev) => ({
         ...prev,
         [tailoring.os_minor_version]: newSelectedRuleIds,
       }));
@@ -101,13 +104,15 @@ export const EditPolicyRulesTab = ({
   return (
     <StateView
       stateValues={{
-        data: policy && assignedSystemCount,
+        data:
+          policy &&
+          selectedOsMinorVersions.length > 0 &&
+          (shouldSkipProfiles || profilesRuleIds),
         loading:
           assignedSystemCount === undefined ||
-          (nonTailoringOsMinorVersions.length !== 0 &&
-            preselectedRuleIdsLoading),
-        empty: assignedSystemCount === 0,
-        error: preselectedRuleIdsError, // TODO: add the state view for error
+          (nonTailoringOsMinorVersions.length > 0 && profilesRuleIdsLoading),
+        empty: selectedOsMinorVersions.length === 0,
+        error: profilesRuleIdsError, // TODO: add the state view for error
       }}
     >
       <StateViewPart stateKey="loading">
@@ -125,7 +130,7 @@ export const EditPolicyRulesTab = ({
         </TextContent>
         <Tailorings
           policy={policy}
-          profiles={profilesAndRuleIds}
+          profiles={profilesRuleIds}
           resetLink
           rulesPageLink
           selectedFilter
@@ -135,7 +140,7 @@ export const EditPolicyRulesTab = ({
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
           onSelect={handleSelect}
-          preselected={selectedTailoringRules}
+          preselected={selectedRules}
           enableSecurityGuideRulesToggle
         />
       </StateViewPart>

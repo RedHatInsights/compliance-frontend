@@ -38,47 +38,22 @@ const updatePolicyRest = async (policy, updatedPolicyHostsAndRules) => {
   } = updatedPolicyHostsAndRules;
   const policyId = policy.id;
 
-  if (hosts !== undefined && hosts.length > 0) {
+  if (hosts !== undefined) {
     await updateAssignedSystems(policyId, hosts);
+  }
 
-    if (tailoringRules) {
-      const response = await getTailorings(policyId); // fetch updated tailorings
-
-      console.log('### updatedTailorings response', response);
-      const updatedTailorings = response.data.data;
-      const updatedTailoringIds = updatedTailorings.map(({ id }) => id);
-
-      const tailoringRulesEntries = Object.entries(tailoringRules);
-
-      const updatedTailoringRules = tailoringRulesEntries.reduce(
-        (prev, cur) => {
-          const [tailoringOrProfileId, rules] = cur;
-
-          if (!updatedTailoringIds.includes(tailoringOrProfileId)) {
-            // convert profile ID to newly created tailoring ID
-            const tailoringId = updatedTailorings.find(
-              ({ profile_id }) => profile_id === tailoringOrProfileId
-            ).id;
-
-            return { ...prev, [tailoringId]: rules };
-          }
-
-          return { ...prev, [tailoringOrProfileId]: rules };
-        },
-        {}
+  if (tailoringRules) {
+    const tailoringsResponse = await getTailorings(policyId); // fetch the most up-to-date tailorings
+    const tailoringsUpdated = tailoringsResponse.data.data;
+    for (const entry of Object.entries(tailoringRules)) {
+      const [osMinorVersion, rules] = entry;
+      await updateAssignedRules(
+        policyId,
+        tailoringsUpdated.find(
+          ({ os_minor_version }) => os_minor_version === Number(osMinorVersion)
+        ).id,
+        rules
       );
-
-      for (const entry of Object.entries(updatedTailoringRules)) {
-        const [tailoringId, rules] = entry;
-        await updateAssignedRules(policyId, tailoringId, rules);
-      }
-    }
-  } else {
-    if (tailoringRules) {
-      for (const entry of Object.entries(tailoringRules)) {
-        const [tailoringId, rules] = entry;
-        await updateAssignedRules(policyId, tailoringId, rules);
-      }
     }
   }
 
