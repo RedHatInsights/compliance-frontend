@@ -104,7 +104,10 @@ const TailoringTab = ({
     onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
 
   const onSelectRule = (...ruleParams) =>
-    onSelect?.(tailoring || osMinorVersion, ...ruleParams);
+    onSelect?.(
+      tailoring || { ...securityGuide.data, os_minor_version: osMinorVersion },
+      ...ruleParams
+    );
 
   return (
     <>
