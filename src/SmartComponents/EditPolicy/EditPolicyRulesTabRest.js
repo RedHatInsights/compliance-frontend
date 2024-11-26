@@ -154,7 +154,6 @@ export const EditPolicyRulesTab = ({
 EditPolicyRulesTab.propTypes = {
   policy: propTypes.object,
   assignedRuleIds: propTypes.array,
-  setSelectedRuleRefIds: propTypes.func,
   setRuleValues: propTypes.func,
   setUpdatedPolicy: propTypes.func,
   selectedOsMinorVersions: propTypes.array,
