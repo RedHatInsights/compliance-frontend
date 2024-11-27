@@ -14,6 +14,7 @@ const useProfileRuleIds = ({
 }) => {
   const mounted = useRef(true);
   const [profilesAndRuleIds, setProfilesAndRuleIds] = useState();
+  const [loading, setLoading] = useState(true);
   const { fetch: fetchSecurityGuide } = useSecurityGuides({
     params: {
       limit: 1,
@@ -80,13 +81,23 @@ const useProfileRuleIds = ({
 
   useDeepCompareEffectNoCheck(() => {
     const fetchMinorOsRuleIds = async () => {
-      const profilesAndRuleIds = [];
+      const profilesAndRuleIdsUpdated = structuredClone(
+        profilesAndRuleIds || []
+      );
 
       for (const osMinorVersion of osMinorVersions) {
+        if (
+          profilesAndRuleIdsUpdated.find(
+            ({ osMinorVersion: _osMinorVersion }) =>
+              _osMinorVersion === osMinorVersion
+          ) !== undefined
+        )
+          continue; // skip this version since already fetched
+
         const [securityGuideId, profileId, ruleIds] =
           await fetchProfilesAndIdsForMinorVersion(osMinorVersion);
 
-        profilesAndRuleIds.push({
+        profilesAndRuleIdsUpdated.push({
           osMajorVersion,
           osMinorVersion,
           securityGuideId,
@@ -95,10 +106,12 @@ const useProfileRuleIds = ({
         });
       }
 
-      mounted.current && setProfilesAndRuleIds(profilesAndRuleIds);
+      mounted.current && setProfilesAndRuleIds(profilesAndRuleIdsUpdated);
+      setLoading(undefined);
     };
 
     if (osMinorVersions?.length && !skip) {
+      setLoading(true);
       fetchMinorOsRuleIds();
     }
 
@@ -109,7 +122,7 @@ const useProfileRuleIds = ({
 
   return {
     profilesAndRuleIds,
-    loading: profilesAndRuleIds === undefined ? true : undefined,
+    loading,
     error: undefined, // TODO Add error handling
   };
 };
