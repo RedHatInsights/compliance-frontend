@@ -43,9 +43,7 @@ const PolicyDescription = ({ profile }) => (
         passed for a system to be labeled "Compliant"`}
       </Dd>
       <Dt>Business objective</Dt>
-      <Dd>
-        {profile.businessObjective ? profile.businessObjective.title : '--'}
-      </Dd>
+      <Dd>{profile.businessObjective?.title || '--'}</Dd>
     </TextList>
     <Link to={'/scappolicies/' + profile.id}>View policy</Link>
   </React.Fragment>
