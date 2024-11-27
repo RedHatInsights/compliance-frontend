@@ -1,8 +1,69 @@
 import { useCallback, useState } from 'react';
 import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import { apiInstance } from '../../Utilities/hooks/useQuery';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
+import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
+import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
+import useTailorings from '../../Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
+
+const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
+  const {
+    hosts,
+    tailoringRules,
+    description,
+    businessObjective,
+    complianceThreshold,
+  } = updatedPolicyHostsAndRules || {};
+
+  const { fetch: assignRules } = useAssignRules({ skip: true });
+  const { fetch: assignSystems } = useAssignSystems({ skip: true });
+  const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { fetch: updatePolicy } = useUpdatePolicy({ skip: true });
+
+  const updatePolicyRest = async () => {
+    const policyId = policy.id;
+
+    if (hosts !== undefined) {
+      await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
+    }
+
+    if (tailoringRules) {
+      const tailoringsResponse = await fetchTailorings(
+        {
+          policyId,
+          limit: 100,
+        },
+        false
+      ); // fetch the most up-to-date tailorings
+      const tailoringsUpdated = tailoringsResponse.data;
+      for (const entry of Object.entries(tailoringRules)) {
+        const [osMinorVersion, rules] = entry;
+        await assignRules({
+          policyId,
+          tailoringId: tailoringsUpdated.find(
+            ({ os_minor_version }) =>
+              os_minor_version === Number(osMinorVersion)
+          ).id,
+          assignRulesRequest: { ids: rules },
+        });
+      }
+    }
+
+    if (description || businessObjective || complianceThreshold) {
+      await updatePolicy({
+        policyId,
+        policyUpdate: {
+          description,
+          business_objective: businessObjective?.title ?? '--',
+          compliance_threshold: parseFloat(complianceThreshold),
+        },
+      });
+    }
+  };
+
+  return updatePolicyRest;
+};
 
 export const useOnSave = (
   policy,
@@ -11,7 +72,12 @@ export const useOnSave = (
 ) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const updatePolicyGraphQL = usePolicy();
-  const updatePolicy = apiV2Enabled ? updatePolicyV2 : updatePolicyGraphQL;
+  const updatePolicyRest = useUpdatePolicyRest(
+    policy,
+    updatedPolicyHostsAndRules
+  );
+  const updatePolicy = apiV2Enabled ? updatePolicyRest : updatePolicyGraphQL;
+
   const [isSaving, setIsSaving] = useState(false);
 
   const onSave = useCallback(() => {
@@ -42,12 +108,4 @@ export const useOnSave = (
   }, [isSaving, policy, updatedPolicyHostsAndRules]);
 
   return [isSaving, onSave];
-};
-
-const updatePolicyV2 = async (policy, updatedPolicy) => {
-  return await apiInstance.updatePolicy(policy.id, null, {
-    description: updatedPolicy?.description,
-    business_objective: updatedPolicy?.businessObjective?.title ?? '--',
-    compliance_threshold: parseFloat(updatedPolicy?.complianceThreshold),
-  });
 };

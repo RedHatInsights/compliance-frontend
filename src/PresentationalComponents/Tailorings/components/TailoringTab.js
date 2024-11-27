@@ -104,7 +104,10 @@ const TailoringTab = ({
     onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);
 
   const onSelectRule = (...ruleParams) =>
-    onSelect?.(tailoring || osMinorVersion, ...ruleParams);
+    onSelect?.(
+      tailoring || { ...securityGuide.data, os_minor_version: osMinorVersion },
+      ...ruleParams
+    );
 
   return (
     <>
@@ -170,7 +173,7 @@ TailoringTab.propTypes = {
   osMajorVersion: propTypes.string,
   osMinorVersion: propTypes.string,
   columns: propTypes.array,
-  handleSelect: propTypes.func,
+  onSelect: propTypes.func,
   systemCount: propTypes.number,
   selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
@@ -180,7 +183,6 @@ TailoringTab.propTypes = {
   ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
-  onSelect: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
 };

@@ -46,7 +46,6 @@ export const skips = ({
   } = tableState?.tableState || {};
   const hasMissingParams = !policy && !tailoring;
   const hasNoTableState = !tableState;
-  const isTailoringWithPolicy = !!policy && !!tailoring;
   const isNewTailoring = !!policy && !tailoring && !!securityGuideId;
   const hasNoOpenItems = (openItems || []).length === 0;
   const isTreeView = tableView === 'tree';
@@ -54,24 +53,23 @@ export const skips = ({
   return {
     securityGuide: {
       ruleGroups: hasNoTableState,
-      ruleTree: hasNoTableState || isTailoringWithPolicy || selectedRulesOnly,
+      ruleTree:
+        hasNoTableState ||
+        (selectedRulesOnly !== undefined && selectedRulesOnly),
       rules:
         hasNoTableState ||
-        isTailoringWithPolicy ||
         (isTreeView && hasNoOpenItems) ||
-        selectedRulesOnly,
+        (selectedRulesOnly !== undefined && selectedRulesOnly),
       valueDefinitions: hasNoTableState || hasNoOpenItems,
       profile: {
         rules:
           hasNoTableState ||
-          isTailoringWithPolicy ||
           (isTreeView && hasNoOpenItems) ||
-          !selectedRulesOnly ||
+          (selectedRulesOnly !== undefined && !selectedRulesOnly) ||
           !profileId,
         ruleTree:
           hasNoTableState ||
-          isTailoringWithPolicy ||
-          !selectedRulesOnly ||
+          (selectedRulesOnly !== undefined && !selectedRulesOnly) ||
           !profileId,
       },
     },
@@ -80,8 +78,13 @@ export const skips = ({
         (isTreeView && hasNoOpenItems) ||
         hasNoTableState ||
         hasMissingParams ||
-        isNewTailoring,
-      ruleTree: hasNoTableState || hasMissingParams || isNewTailoring,
+        isNewTailoring ||
+        (selectedRulesOnly !== undefined && !selectedRulesOnly),
+      ruleTree:
+        hasNoTableState ||
+        hasMissingParams ||
+        isNewTailoring ||
+        (selectedRulesOnly !== undefined && !selectedRulesOnly),
     },
   };
 };
