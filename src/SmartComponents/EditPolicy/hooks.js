@@ -87,14 +87,14 @@ export const useOnSave = (
 
     setIsSaving(true);
     updatePolicy(policy, updatedPolicyHostsAndRules)
-      .then((policy) => {
+      .then(() => {
         setIsSaving(false);
         dispatchNotification({
           variant: 'success',
           title: 'Policy updated',
           autoDismiss: true,
         });
-        onSaveCallback?.(policy);
+        onSaveCallback?.(true);
       })
       .catch((error) => {
         setIsSaving(false);
