@@ -66,21 +66,28 @@ export const EditPolicyRulesTab = ({
   useEffect(() => {
     if (profilesRuleIds !== undefined && profilesRuleIdsLoading !== true) {
       profilesRuleIds.forEach((entry) => {
-        setUpdatedPolicy((prev) => ({
-          ...prev,
-          tailoringRules: {
-            ...prev?.tailoringRules,
-            [Number(entry.osMinorVersion)]: entry.ruleIds,
-          },
-        }));
+        if (!Object.keys(selectedRules).includes(`${entry.osMinorVersion}`)) {
+          setUpdatedPolicy((prev) => ({
+            ...prev,
+            tailoringRules: {
+              ...prev?.tailoringRules,
+              [Number(entry.osMinorVersion)]: entry.ruleIds,
+            },
+          }));
 
-        setSelectedRules((prev) => ({
-          ...prev,
-          [Number(entry.osMinorVersion)]: entry.ruleIds,
-        }));
+          setSelectedRules((prev) => ({
+            ...prev,
+            [Number(entry.osMinorVersion)]: entry.ruleIds,
+          }));
+        }
       });
     }
-  }, [profilesRuleIds, profilesRuleIdsLoading, setUpdatedPolicy]);
+  }, [
+    profilesRuleIds,
+    profilesRuleIdsLoading,
+    selectedRules,
+    setUpdatedPolicy,
+  ]);
 
   const handleSelect = useCallback(
     (policy, tailoring, newSelectedRuleIds) => {
@@ -107,7 +114,7 @@ export const EditPolicyRulesTab = ({
         data:
           policy &&
           selectedOsMinorVersions.length > 0 &&
-          (shouldSkipProfiles || profilesRuleIds),
+          (shouldSkipProfiles || (profilesRuleIds && !profilesRuleIdsLoading)),
         loading:
           assignedSystemCount === undefined ||
           (nonTailoringOsMinorVersions.length > 0 && profilesRuleIdsLoading),
