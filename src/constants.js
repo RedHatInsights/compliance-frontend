@@ -358,7 +358,7 @@ export const policiesDataMapper = {
 export const reportDataMap = {
   id: 'id',
   title: 'policy.name;name',
-  business_objective: 'businessObjective',
+  business_objective: ['businessObjective', 'businessObjective.title'],
   compliance_threshold: 'complianceThreshold',
   os_major_version: 'osMajorVersion',
   profile_title: 'policyType', // REST api does not return policyType. Thus, re-using profile_title

@@ -70,7 +70,7 @@ const ReportPDF = ({ data, ssgFinder }) => {
               ['Policy type', policy.policyType],
               ['Operating system', `RHEL ${policy.osMajorVersion}`],
               ['Compliance threshold', `${policy.complianceThreshold}%`],
-              ['Business Objective', policy.businessObjective || '--'],
+              ['Business Objective', policy.businessObjective?.title || '--'],
             ]}
           />
         </Column>
