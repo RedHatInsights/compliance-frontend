@@ -60,7 +60,7 @@ export const SystemsTable = ({
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
   const [total, setTotal] = useState(0);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
@@ -110,6 +110,7 @@ export const SystemsTable = ({
     currentPageItems: items,
     fetchApi,
     apiV2Enabled: true,
+    tableLoaded: isLoaded,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
