@@ -1,6 +1,5 @@
 import React from 'react';
 import { Spinner, Bullseye } from '@patternfly/react-core';
-
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
