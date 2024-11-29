@@ -35,8 +35,11 @@ class FilterBuilder {
     const moreThanTwo =
       filterStringArray.map((f) => f.length).filter((fl) => fl > 0).length >= 2;
     return filterStringArray
-      .map((fs) => fs.join(' or '))
-      .join(moreThanTwo ? ' and ' : '');
+      .map((fs) => {
+        // Wrap `OR` groups in parentheses
+        return fs.length > 1 ? `(${fs.join(' OR ')})` : fs[0];
+      })
+      .join(moreThanTwo ? ' AND ' : '');
   };
 
   buildFilterString = (filters) => {
