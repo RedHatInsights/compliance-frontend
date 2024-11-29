@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { addSortableTransform, columnOffset } from './helpers';
-import useTableState from '../useTableState';
+import useTableState, { useRawTableState } from '../useTableState';
 import { TABLE_STATE_NAMESPACE } from './constants';
 
 /**
@@ -40,6 +40,10 @@ const useTableSort = (columns, options = {}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [JSON.stringify(columns), JSON.stringify(options.serialisers)]
   );
+
+  const { tableView } = useRawTableState() || {};
+  const offset = columnOffset({ ...options, tableView });
+
   const stateOptions = useMemo(
     () => ({
       ...(serialisers?.sort
@@ -53,7 +57,7 @@ const useTableSort = (columns, options = {}) => {
   const [sortBy, setSortBy] = useTableState(
     TABLE_STATE_NAMESPACE,
     initialSortBy || {
-      index: columnOffset(options),
+      index: 0,
       direction: 'asc',
     },
     stateOptions
@@ -62,18 +66,23 @@ const useTableSort = (columns, options = {}) => {
   const onSort = useCallback(
     (_, index, direction) => {
       setSortBy({
-        index,
+        index: index - offset,
         direction,
       });
       onSortOption?.(index, direction);
     },
-    [onSortOption, setSortBy]
+    [onSortOption, setSortBy, offset]
   );
+
+  const sortByOffset = sortBy && {
+    ...sortBy,
+    index: sortBy?.index + offset,
+  };
 
   return {
     tableProps: {
       onSort,
-      sortBy: sortBy,
+      sortBy: sortByOffset,
       cells: addSortableTransform(columns),
     },
   };

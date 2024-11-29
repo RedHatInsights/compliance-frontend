@@ -38,11 +38,7 @@ const useTableSort = (columns, options = {}) => {
   const sorter = useCallback(
     (items) => {
       const currentSortableColumn =
-        columns[
-          sortBy.index -
-            (options.tableType === 'tree' ? 0 : columnOffset(options)) -
-            1
-        ];
+        columns[sortBy.index - columnOffset(options)];
       return currentSortableColumn?.sortByArray
         ? orderByArray(
             items,
