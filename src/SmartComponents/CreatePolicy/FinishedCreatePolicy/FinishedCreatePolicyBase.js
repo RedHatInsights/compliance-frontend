@@ -50,7 +50,7 @@ export const FinishedCreatePolicyBase = ({
   benchmarkId,
   systems,
   selectedRuleRefIds,
-  ruleValues: values,
+  valueOverrides,
   updatePolicy,
 }) => {
   const [percent, setPercent] = useState(0);
@@ -73,7 +73,7 @@ export const FinishedCreatePolicyBase = ({
       benchmarkId,
       hosts: systems,
       selectedRuleRefIds,
-      values,
+      valueOverrides,
     };
 
     updatePolicy(null, newPolicy, onProgress)
@@ -156,7 +156,7 @@ FinishedCreatePolicyBase.propTypes = {
   complianceThreshold: propTypes.number,
   onWizardFinish: propTypes.func,
   selectedRuleRefIds: propTypes.arrayOf(propTypes.string).isRequired,
-  ruleValues: propTypes.object,
+  valueOverrides: propTypes.object,
   updatePolicy: propTypes.func.isRequired,
 };
 
@@ -175,7 +175,7 @@ export default compose(
         parseFloat(selector(state, 'complianceThreshold')) || 100.0,
       systems: selector(state, 'systems'),
       selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
-      ruleValues: selector(state, 'ruleValues'),
+      valueOverrides: selector(state, 'valueOverrides'),
     };
   }),
   reduxForm({
