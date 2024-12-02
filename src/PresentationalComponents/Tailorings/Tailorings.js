@@ -179,7 +179,7 @@ import NoTailorings from './NoTailorings';
     <StateViewWithError
       stateValues={{
         error: tailoringsError,
-        data: tabs && tailoringsData,
+        data: tabs && (tailoringsData || profiles),
         loading: tailoringsLoading,
       }}
     >
