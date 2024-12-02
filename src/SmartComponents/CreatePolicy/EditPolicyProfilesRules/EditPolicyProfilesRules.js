@@ -39,6 +39,7 @@ EditPolicyProfilesRules.propTypes = {
   ),
   selectedRuleRefIds: propTypes.array,
   ruleValues: propTypes.array,
+  valueOverrides: propTypes.object,
 };
 
 const selector = formValueSelector('policyForm');
@@ -50,6 +51,7 @@ export default compose(
     osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
     selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
     ruleValues: selector(state, 'ruleValues'),
+    valueOverrides: selector(state, 'valueOverrides'),
   })),
   reduxForm({
     form: 'policyForm',
