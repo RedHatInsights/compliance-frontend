@@ -25,6 +25,7 @@ import {
   defaultSystemsFilterConfiguration,
   complianceReportTableAdditionalFilter,
   compliantSystemFilterRestConfiguration,
+  DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST,
 } from '../../constants';
 
 export const SystemsTable = ({
@@ -61,7 +62,7 @@ export const SystemsTable = ({
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
   const [total, setTotal] = useState(0);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
@@ -74,7 +75,9 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...defaultSystemsFilterConfiguration(),
+        ...defaultSystemsFilterConfiguration(
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST
+        ),
         ...(compliantFilter ? compliantSystemFilterRestConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
@@ -112,6 +115,7 @@ export const SystemsTable = ({
     currentPageItems: items,
     fetchApi,
     apiV2Enabled: true,
+    tableLoaded: isLoaded,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
@@ -211,7 +215,6 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            name: false,
             operatingSystem: false,
             tags: false,
             hostGroupFilteronCustomSelect: !showGroupsFilter,

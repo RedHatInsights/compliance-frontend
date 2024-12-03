@@ -52,7 +52,10 @@ const useTailoringsData = ({
   const loading =
     tableView === 'tree' ? rulesLoading || ruleTreeLoading : rulesLoading;
   const error = tableView === 'tree' ? rulesError : rulesError || ruleTreeError;
-  const data = { ruleTree, rules };
+  const data = {
+    ...(!skipRuleTree ? { ruleTree } : {}),
+    ...(!skipRules ? { rules } : {}),
+  };
   return {
     error,
     loading,

@@ -58,7 +58,11 @@ export const EditPolicyProfilesRulesRest = ({
   });
 
   const onSelect = useCallback(
-    (_securityGuideId, osMinorVersion, newSelectedRuleIds) => {
+    (
+      _securityGuideId,
+      { os_minor_version: osMinorVersion },
+      newSelectedRuleIds
+    ) => {
       const updatedSelectedRuleRefIds = structuredClone(
         selectedRuleRefIds || []
       );

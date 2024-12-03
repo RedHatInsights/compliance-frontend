@@ -10,6 +10,7 @@ import useTailorings from 'Utilities/hooks/api/useTailorings';
 import OsVersionText from '../TabbedRules/OsVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
+import NoTailorings from './NoTailorings';
 
 // TODO Systems count on tabs -> may need API change
 // TODO defaultTab  defaultTab={getDefaultTab(tailorings, defaultTab)}
@@ -178,7 +179,7 @@ import { eventKey } from './helpers';
     <StateViewWithError
       stateValues={{
         error: tailoringsError,
-        data: tabs,
+        data: tabs && (tailoringsData || profiles),
         loading: tailoringsLoading,
       }}
     >
@@ -186,7 +187,7 @@ import { eventKey } from './helpers';
         <Spinner />
       </StateViewPart>
       <StateViewPart stateKey="data">
-        {tabs.length > 0 && (
+        {tabs.length > 0 ? (
           <RoutedTabs
             ouiaId={ouiaId}
             level={level}
@@ -231,6 +232,8 @@ import { eventKey } from './helpers';
               </Tab>
             ))}
           </RoutedTabs>
+        ) : (
+          <NoTailorings policy={policy} columns={columns} />
         )}
       </StateViewPart>
     </StateViewWithError>

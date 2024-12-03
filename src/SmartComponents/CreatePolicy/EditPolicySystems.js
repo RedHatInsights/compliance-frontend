@@ -20,9 +20,9 @@ import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import { fetchApi } from '../ComplianceSystems/ComplianceSystems';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { buildOSObject } from '../../Utilities/helpers';
+import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -150,7 +150,7 @@ export const EditPolicySystems = ({
             onSelect={onSelect}
             showGroupsFilter
             apiV2Enabled={apiV2Enabled}
-            fetchApi={fetchApi}
+            fetchApi={fetchSystemsApi}
             fetchCustomOSes={fetchCustomOSes}
           />
         </FormGroup>

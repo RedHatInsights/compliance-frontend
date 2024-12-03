@@ -22,17 +22,17 @@ export const entitiesReducer = () =>
       ...state,
       rows: selectRows(state.rows, selected),
     }),
-    [ActionTypes.SET_DISABLED_SYSTEM_SELECTION]: (state, action) => {
-      return {
-        ...state,
-        rows: state.rows.map((row) => {
-          return {
-            ...row,
-            disableSelection: action.payload,
-          };
-        }),
-      };
-    },
+    [ActionTypes.SET_DISABLED_SYSTEM_SELECTION]: (state, action) => ({
+      ...state,
+      ...(state?.rows
+        ? {
+            rows: state.rows.map((row) => ({
+              ...row,
+              disableSelection: action.payload,
+            })),
+          }
+        : {}),
+    }),
   });
 
 export const mapCountOsMinorVersions = (systems) => {

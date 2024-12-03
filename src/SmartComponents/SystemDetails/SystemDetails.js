@@ -99,7 +99,11 @@ SystemDetailsGraphQL.propTypes = {
 
 const SystemDetailsRest = ({ route }) => {
   const { inventoryId } = useParams();
-  let { data: { data } = {}, error, loading } = useSystem(inventoryId);
+  let {
+    data: { data } = {},
+    error,
+    loading,
+  } = useSystem({ params: [inventoryId] });
   const systemName = data?.display_name || inventoryId;
 
   useTitleEntity(route, systemName);
