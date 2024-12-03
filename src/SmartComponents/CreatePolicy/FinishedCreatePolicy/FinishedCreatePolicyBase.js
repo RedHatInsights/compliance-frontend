@@ -50,7 +50,7 @@ export const FinishedCreatePolicyBase = ({
   benchmarkId,
   systems,
   selectedRuleRefIds,
-  valueOverrides,
+  valueOverrides = {},
   updatePolicy,
 }) => {
   const [percent, setPercent] = useState(0);
