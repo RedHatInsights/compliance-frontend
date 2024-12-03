@@ -148,7 +148,7 @@ const emptyFilterDropDownItem = {
 
 export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   const filterString = (value) => [
-    Object.keys(value)
+    `(${Object.keys(value)
       .flatMap((majorVersion) =>
         Object.keys(value[majorVersion]).map(
           (minorVersion) =>
@@ -157,7 +157,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
         )
       )
       .filter((v) => !!v)
-      .join(' OR '),
+      .join(' OR ')})`,
   ];
   const osVersions = sortBy(Object.keys(osMajorVersions).map(Number)).reverse();
 
@@ -275,7 +275,7 @@ export const complianceReportTableAdditionalFilter = (
   {
     type: conditionalFilterType.checkbox,
     label: 'Failed rule severity',
-    filterString: (value) => `${filterKey} ^ (${value})`,
+    filterString: (value) => `${filterKey} = ${value}`,
     items: [
       { label: HIGH_SEVERITY, value: 'high' },
       { label: MEDIUM_SEVERITY, value: 'medium' },

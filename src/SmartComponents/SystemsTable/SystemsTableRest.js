@@ -22,8 +22,10 @@ import {
 } from './hooks';
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import {
+  defaultSystemsFilterConfiguration,
   complianceReportTableAdditionalFilter,
   compliantSystemFilterRestConfiguration,
+  DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST,
 } from '../../constants';
 
 export const SystemsTable = ({
@@ -73,6 +75,9 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
+        ...defaultSystemsFilterConfiguration(
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST
+        ),
         ...(compliantFilter ? compliantSystemFilterRestConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
@@ -210,7 +215,6 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            name: false,
             operatingSystem: false,
             tags: false,
             hostGroupFilteronCustomSelect: !showGroupsFilter,

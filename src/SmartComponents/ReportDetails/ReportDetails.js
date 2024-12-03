@@ -249,6 +249,7 @@ const ReportDetailsBase = ({
                         Columns.LastScanned,
                       ]}
                       defaultFilter={'never_reported = true'}
+                      ignoreOsMajorVersion
                       showGroupsFilter
                       apiV2Enabled={true}
                       reportId={id}
