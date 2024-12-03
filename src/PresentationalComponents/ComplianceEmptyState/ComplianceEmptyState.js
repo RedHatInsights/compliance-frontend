@@ -28,35 +28,13 @@ const QUERY = gql`
   }
 `;
 
-const ComplianceEmptyState = ({ title, mainButton, client }) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  let policiesCount = 0;
-  let loading = false;
-  let error = null;
-
-  if (apiV2Enabled) {
-    const {
-      data,
-      error: restError,
-      loading: restLoading,
-    } = usePolicies({ params: { limit: 1 } });
-    loading = restLoading;
-    error = restError;
-    policiesCount = data?.meta?.total;
-  } else {
-    const {
-      data,
-      error: gqlError,
-      loading: gqlLoading,
-    } = useQuery(QUERY, {
-      fetchPolicy: 'network-only',
-      client,
-    });
-    loading = gqlLoading;
-    error = gqlError;
-    policiesCount = data?.profiles?.totalCount;
-  }
-
+const ComplianceEmptyStateBase = ({
+  title,
+  mainButton,
+  policiesCount,
+  loading,
+  error,
+}) => {
   if (loading) {
     return <Spinner />;
   }
@@ -130,13 +108,15 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
   );
 };
 
-ComplianceEmptyState.propTypes = {
+ComplianceEmptyStateBase.propTypes = {
   title: propTypes.string,
   mainButton: propTypes.object,
-  client: propTypes.object,
+  policiesCount: propTypes.number,
+  error: propTypes.object,
+  loading: propTypes.bool,
 };
 
-ComplianceEmptyState.defaultProps = {
+ComplianceEmptyStateBase.defaultProps = {
   title: 'No policies',
   mainButton: (
     <Button
@@ -147,6 +127,33 @@ ComplianceEmptyState.defaultProps = {
       Create new policy
     </Button>
   ),
+};
+
+const EmptyStateGraphQL = ({ title, mainButton, client }) => {
+  const { data, error, loading } = useQuery(QUERY, {
+    fetchPolicy: 'network-only',
+    client,
+  });
+  const policiesCount = data?.profiles?.totalCount || 0;
+
+  return (
+    <ComplianceEmptyStateBase
+      title={title}
+      mainButton={mainButton}
+      policiesCount={policiesCount}
+      loading={loading}
+      error={error}
+    />
+  );
+};
+
+EmptyStateGraphQL.propTypes = {
+  title: propTypes.string,
+  mainButton: propTypes.object,
+  client: propTypes.object,
+};
+
+EmptyStateGraphQL.defaultProps = {
   client: new ApolloClient({
     link: new HttpLink({
       uri: COMPLIANCE_API_ROOT + '/graphql',
@@ -156,4 +163,34 @@ ComplianceEmptyState.defaultProps = {
   }),
 };
 
-export default ComplianceEmptyState;
+const EmptyStateRest = ({ title, mainButton }) => {
+  const { data, error, loading } = usePolicies({ params: { limit: 1 } });
+  const policiesCount = data?.meta?.total || 0;
+
+  return (
+    <ComplianceEmptyStateBase
+      title={title}
+      mainButton={mainButton}
+      policiesCount={policiesCount}
+      loading={loading}
+      error={error}
+    />
+  );
+};
+
+EmptyStateRest.propTypes = {
+  title: propTypes.string,
+  mainButton: propTypes.object,
+};
+
+const ComplianceEmptyStateWrapper = (props) => {
+  const isRestApiEnabled = useAPIV2FeatureFlag();
+
+  return isRestApiEnabled ? (
+    <EmptyStateRest {...props} />
+  ) : (
+    <EmptyStateGraphQL {...props} />
+  );
+};
+
+export default ComplianceEmptyStateWrapper;
