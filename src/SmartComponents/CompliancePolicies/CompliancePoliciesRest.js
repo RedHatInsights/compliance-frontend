@@ -3,7 +3,6 @@ import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import {
   ErrorPage,
   LoadingPoliciesTable,
@@ -17,6 +16,7 @@ import { dataMap } from './constants';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
+import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 
 const CompliancePoliciesRest = () => {
   // Async table needs info about total policy count before mounting

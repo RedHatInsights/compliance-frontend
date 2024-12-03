@@ -17,6 +17,8 @@ import { useQuery } from '@apollo/client';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import { ErrorCard } from 'PresentationalComponents';
 const COMPLIANCE_API_ROOT = '/api/compliance';
+import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
 
 const QUERY = gql`
   {
@@ -27,10 +29,33 @@ const QUERY = gql`
 `;
 
 const ComplianceEmptyState = ({ title, mainButton, client }) => {
-  const { data, error, loading } = useQuery(QUERY, {
-    fetchPolicy: 'network-only',
-    client,
-  });
+  const apiV2Enabled = useAPIV2FeatureFlag();
+  let policiesCount = 0;
+  let loading = false;
+  let error = null;
+
+  if (apiV2Enabled) {
+    const {
+      data,
+      error: restError,
+      loading: restLoading,
+    } = usePolicies({ params: { limit: 1 } });
+    loading = restLoading;
+    error = restError;
+    policiesCount = data?.meta?.total;
+  } else {
+    const {
+      data,
+      error: gqlError,
+      loading: gqlLoading,
+    } = useQuery(QUERY, {
+      fetchPolicy: 'network-only',
+      client,
+    });
+    loading = gqlLoading;
+    error = gqlError;
+    policiesCount = data?.profiles?.totalCount;
+  }
 
   if (loading) {
     return <Spinner />;
@@ -40,8 +65,6 @@ const ComplianceEmptyState = ({ title, mainButton, client }) => {
     const errorMsg = `Oops! Error loading System data: ${error}`;
     return <ErrorCard errorMsg={errorMsg} />;
   }
-
-  const policiesCount = data.profiles.totalCount;
 
   const policyWord = policiesCount > 1 ? 'policies' : 'policy';
   const haveWord = policiesCount > 1 ? 'have' : 'has';
