@@ -75,9 +75,9 @@ const RULE_STATE_FILTER_CONFIG = {
     { label: 'Failed rules', value: 'failed' },
   ],
   filterSerialiser: (_filterConfig, values) =>
-    values
+    `(${values
       .map((value) => `result = ${RULE_STATE_REST_SERIALISER[value]}`)
-      .join(' OR '),
+      .join(' OR ')})`,
   filter: (rules, values) =>
     anyFilterApply(
       rules,
@@ -106,7 +106,9 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
     { label: 'No Ansible remediation support', value: 'false' },
   ],
   filterSerialiser: (_filterConfig, values) =>
-    values.map((value) => `remediation_available = ${value}`).join(' OR '),
+    `(${values
+      .map((value) => `remediation_available = ${value}`)
+      .join(' OR ')})`,
   filter: (rules, values) =>
     anyFilterApply(
       rules,

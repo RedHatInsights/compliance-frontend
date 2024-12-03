@@ -29,7 +29,7 @@ export const QUERY = gql`
 
 export const dataMap = {
   id: ['id', 'policy.id'],
-  title: 'policy.name',
+  title: ['name', 'policy.name'],
   description: 'description',
   business_objective: 'businessObjective.title',
   compliance_threshold: 'complianceThreshold',

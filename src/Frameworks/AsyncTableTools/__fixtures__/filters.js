@@ -18,7 +18,7 @@ export const exampleFilters = [
     label: 'Systems meeting compliance',
     filterString: (value) => {
       const scoreRange = value.split('-');
-      return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
+      return `(percent_compliant >= ${scoreRange[0]} AND percent_compliant <= ${scoreRange[1]})`;
     },
     items: [
       { label: '90 - 100%', value: '90-100' },

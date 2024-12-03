@@ -214,7 +214,7 @@ describe('useGetEntities', () => {
         },
       });
       expect(mockFetch).toHaveBeenCalledWith(10, 1, {
-        filter: '(os_major_version=8 AND os_minor_version=4)',
+        filter: 'os_version ^ (8.4)',
         sortBy: ['nameAttribute:ASC'],
       });
     });
@@ -245,8 +245,7 @@ describe('useGetEntities', () => {
         },
       });
       expect(mockFetch).toHaveBeenCalledWith(10, 1, {
-        filter:
-          '(group_name = "test-group") AND (os_major_version=8 AND os_minor_version=4)',
+        filter: '(group_name = "test-group") AND os_version ^ (8.4)',
         sortBy: ['nameAttribute:ASC'],
       });
     });

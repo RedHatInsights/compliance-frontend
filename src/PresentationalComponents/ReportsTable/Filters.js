@@ -52,12 +52,12 @@ export const policyComplianceFilter = [
     label: 'Systems meeting compliance',
     filterAttribute: 'percent_compliant',
     filterSerialiser: (_, values) =>
-      values
+      `(${values
         .map((value) => {
           const scoreRange = value.split('-');
           return `(percent_compliant >= ${scoreRange[0]} AND percent_compliant <= ${scoreRange[1]})`;
         })
-        .join(' OR '),
+        .join(' OR ')})`,
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(

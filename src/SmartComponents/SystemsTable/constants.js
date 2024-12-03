@@ -131,25 +131,30 @@ export const groupFilterHandler = ({ hostGroupFilter }) => {
 
 export const osFilterHandler = ({ osFilter }, ignoreOsMajorVersion) => {
   if (osFilter !== undefined && isPlainObject(osFilter)) {
-    const filterString = [];
+    const versionList = [];
+    const filterName = ignoreOsMajorVersion ? 'os_minor_version' : 'os_version';
     Object.entries(osFilter).forEach(([, osVersionGroups]) => {
       const selectedOsVersions = Object.entries(osVersionGroups);
-      selectedOsVersions.shift(); //first entry contains only major version, thus ignored
+      selectedOsVersions.shift(); // first entry contains only major version, thus ignored
 
       selectedOsVersions.forEach(([version, isSelected]) => {
         const parsedSemverVersion = coerce(version.split('-').pop() || null);
 
         if (valid(parsedSemverVersion) && isSelected) {
-          filterString.push(
-            !ignoreOsMajorVersion
-              ? `(os_major_version=${parsedSemverVersion.major} AND os_minor_version=${parsedSemverVersion.minor})`
-              : `os_minor_version=${parsedSemverVersion.minor}`
-          );
+          if (ignoreOsMajorVersion) {
+            versionList.push(`${parsedSemverVersion.minor}`);
+          } else {
+            versionList.push(
+              `${parsedSemverVersion.major}.${parsedSemverVersion.minor}`
+            );
+          }
         }
       });
     });
 
-    return filterString.join(' OR ');
+    return versionList.length > 0
+      ? `${filterName} ^ (${versionList.join(' ')})`
+      : '';
   }
 };
 

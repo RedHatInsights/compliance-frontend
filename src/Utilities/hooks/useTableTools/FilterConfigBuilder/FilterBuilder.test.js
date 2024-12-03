@@ -70,7 +70,7 @@ describe('buildFilterString', () => {
           compliancescore: ['0-50', '50-70'],
         })
       ).toEqual(
-        '(compliance_score >= 0 and compliance_score < 50) or (compliance_score >= 50 and compliance_score < 70)'
+        '((compliance_score >= 0 and compliance_score < 50) OR (compliance_score >= 50 and compliance_score < 70))'
       );
 
       expect(
@@ -79,7 +79,7 @@ describe('buildFilterString', () => {
           compliance: ['compliant=true'],
         })
       ).toEqual(
-        'compliant=true and (compliance_score >= 90 and compliance_score < 101) or (compliance_score >= 70 and compliance_score < 90)'
+        'compliant=true AND ((compliance_score >= 90 and compliance_score < 101) OR (compliance_score >= 70 and compliance_score < 90))'
       );
     });
 
@@ -92,7 +92,9 @@ describe('buildFilterString', () => {
         builder.buildFilterString({
           compliancescore: ['0-50', '50-70'],
         })
-      ).toEqual('(score >= 0 and score < 50) or (score >= 50 and score < 70)');
+      ).toEqual(
+        '((score >= 0 and score < 50) OR (score >= 50 and score < 70))'
+      );
 
       expect(
         builder.buildFilterString({
@@ -100,7 +102,7 @@ describe('buildFilterString', () => {
           compliance: ['compliant=true'],
         })
       ).toEqual(
-        'compliant=true and (score >= 90 and score < 101) or (score >= 70 and score < 90)'
+        'compliant=true AND ((score >= 90 and score < 101) OR (score >= 70 and score < 90))'
       );
     });
   });
