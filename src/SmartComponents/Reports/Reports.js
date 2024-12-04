@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import PageHeader, {
@@ -16,6 +15,7 @@ import GatedComponents from '@/PresentationalComponents/GatedComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
+import useReportsCount from 'Utilities/hooks/useReportsCount';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import { reportDataMap as dataMap } from '../../constants';
 import { uniq } from 'Utilities/helpers';
@@ -30,41 +30,6 @@ const ReportsHeader = () => (
     <PageHeaderTitle title="Reports" />
   </PageHeader>
 );
-
-export const ReportsBase = ({ data, loading, error, operatingSystems }) => {
-  const showView = data && data.length > 0;
-  return (
-    <>
-      <ReportsHeader />
-      <StateViewWithError stateValues={{ error, data, loading }}>
-        <StateViewPart stateKey="loading">
-          <section className="pf-v5-c-page__main-section">
-            <SkeletonTable colSize={3} rowSize={10} />
-          </section>
-        </StateViewPart>
-        <StateViewPart stateKey="data">
-          <section className="pf-v5-c-page__main-section">
-            {showView ? (
-              <ReportsTable
-                reports={data}
-                operatingSystems={operatingSystems}
-              />
-            ) : (
-              <ReportsEmptyState />
-            )}
-          </section>
-        </StateViewPart>
-      </StateViewWithError>
-    </>
-  );
-};
-
-ReportsBase.propTypes = {
-  data: PropTypes.array,
-  operatingSystems: PropTypes.array,
-  error: PropTypes.string,
-  loading: PropTypes.bool,
-};
 
 //deprecated component
 const ReportsWithGrahpQL = () => {
@@ -90,25 +55,35 @@ const ReportsWithGrahpQL = () => {
     uniq(
       profiles?.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
     );
-  const policyTypes =
-    data &&
-    uniq(profiles?.map(({ policyType }) => policyType).filter((i) => !!i));
 
   return (
-    <ReportsBase
-      {...{
-        data: profiles,
-        operatingSystems,
-        policyTypes,
-        error,
-        loading,
-        refetch,
-      }}
-    />
+    <>
+      <ReportsHeader />
+      <section className="pf-v5-c-page__main-section">
+        <StateViewWithError stateValues={{ error, data: profiles, loading }}>
+          <StateViewPart stateKey="loading">
+            <SkeletonTable colSize={3} rowSize={10} />
+          </StateViewPart>
+          <StateViewPart stateKey="data">
+            {profiles && profiles.length > 0 ? (
+              <ReportsTable
+                reports={profiles}
+                operatingSystems={operatingSystems}
+              />
+            ) : (
+              <ReportsEmptyState />
+            )}
+          </StateViewPart>
+        </StateViewWithError>
+      </section>
+    </>
   );
 };
 
 const ReportsWithRest = () => {
+  // Required for correctly showing empty state
+  const totalReports = useReportsCount();
+
   const { data: operatingSystems } = useReportsOS();
   const {
     data: { data: reportsData, meta: { total } = {} } = {},
@@ -130,28 +105,32 @@ const ReportsWithRest = () => {
   const loading = !data ? true : undefined;
 
   return (
-    <StateViewWithError stateValues={{ error, data, loading }}>
-      <StateViewPart stateKey="loading">
-        <section className="pf-v5-c-page__main-section">
-          <SkeletonTable colSize={3} rowSize={10} />
-        </section>
-      </StateViewPart>
-      <StateViewPart stateKey="data">
-        <ReportsHeader />
-        <section className="pf-v5-c-page__main-section">
-          <ReportsTable
-            reports={serialisedData}
-            operatingSystems={operatingSystems}
-            total={total}
-            loading={reportsLoading}
-            options={{
-              exporter: async () =>
-                dataSerialiser(await reportsExporter(), dataMap),
-            }}
-          />
-        </section>
-      </StateViewPart>
-    </StateViewWithError>
+    <React.Fragment>
+      <ReportsHeader />
+      <section className="pf-v5-c-page__main-section">
+        <StateViewWithError stateValues={{ error, data, loading }}>
+          <StateViewPart stateKey="loading">
+            <SkeletonTable colSize={3} rowSize={10} />
+          </StateViewPart>
+          <StateViewPart stateKey="data">
+            {totalReports === 0 ? (
+              <ReportsEmptyState />
+            ) : (
+              <ReportsTable
+                reports={serialisedData}
+                operatingSystems={operatingSystems}
+                total={total}
+                loading={reportsLoading}
+                options={{
+                  exporter: async () =>
+                    dataSerialiser(await reportsExporter(), dataMap),
+                }}
+              />
+            )}
+          </StateViewPart>
+        </StateViewWithError>
+      </section>
+    </React.Fragment>
   );
 };
 
