@@ -47,14 +47,15 @@ describe('CreatePolicy', () => {
       randomSystems,
       randomSystemsCounts,
     } = graphqlQueryMocks(['7']);
-
+    console.log('Start rendering');
     render(
       <TestWrapper mocks={mocks} store={store}>
         <CreatePolicy />
       </TestWrapper>
     );
-
+    console.log('TEST 1');
     expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
+    console.log('TEST 2');
 
     await checkStep('Create SCAP policy', async () => {
       await screen.findByText('Operating system');
@@ -63,6 +64,7 @@ describe('CreatePolicy', () => {
           name: 'RHEL ' + osMajorVersionToSelect.osMajorVersion,
         })
       );
+      console.log('TEST 3');
 
       expect(screen.getByText('Policy type')).toBeInTheDocument();
 
@@ -71,21 +73,26 @@ describe('CreatePolicy', () => {
         screen.getByRole('textbox', { name: 'text input' }),
         profileToSelect.name
       );
+      console.log('TEST 4');
 
       await userEvent.click(
         screen.getByRole('radio', { name: 'Select row 0' })
       );
     });
+    console.log('TEST 5');
 
     await nextStep('Details', async () => {
       expect(screen.getByText('Policy name')).toBeInTheDocument();
     });
+    console.log('TEST 6');
 
     await nextStep('Systems', async () => {
       // Since we mock InventoryTable we need to dispatch a change manually
       dispatchFieldChange(store, 'systems', randomSystems);
       dispatchFieldChange(store, 'osMinorVersionCounts', randomSystemsCounts);
     });
+    console.log('TEST 7');
+
     // TODO add proper rules data
     //     await nextStep('Rules', async () => {
     //       expect(screen.getByText(profileToSelect.name)).toBeInTheDocument();
