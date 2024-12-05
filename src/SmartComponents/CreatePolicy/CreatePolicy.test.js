@@ -66,7 +66,6 @@ describe('CreatePolicy', () => {
       );
       console.log('TEST 3');
 
-
       expect(screen.getByText('Policy type')).toBeInTheDocument();
 
       await userEvent.type(
@@ -75,7 +74,6 @@ describe('CreatePolicy', () => {
         profileToSelect.name
       );
       console.log('TEST 4');
-
 
       await userEvent.click(
         screen.getByRole('radio', { name: 'Select row 0' })
