@@ -1,6 +1,22 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useSecurityGuideRuleTree = (id, options = {}) =>
-  useQuery(apiInstance.securityGuideRuleTree, { params: [id], ...options });
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { securityGuideId } = params;
+
+    return [
+      securityGuideId,
+      undefined, // xRHIDENTITY
+    ];
+  }
+};
+
+const useSecurityGuideRuleTree = (options = {}) =>
+  useComplianceQuery('securityGuideRuleTree', {
+    ...options,
+    convertToArray,
+  });
 
 export default useSecurityGuideRuleTree;

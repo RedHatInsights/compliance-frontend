@@ -2,9 +2,9 @@ import { renderHook, waitFor } from '@testing-library/react';
 import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
 import { Spinner } from '@patternfly/react-core';
 
-import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
-import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
-import tableTree from 'Utilities/hooks/useTableTools/__fixtures__/tableTree';
+import items from '../../__fixtures__/items';
+import columns from '../../__fixtures__/columns';
+import tableTree from '../../__fixtures__/tableTree';
 
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
 import useItems from '../useItems';

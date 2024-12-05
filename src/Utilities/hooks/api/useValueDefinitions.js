@@ -1,9 +1,24 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useValueDefinitions = (securityGuideId, options) =>
-  useQuery(apiInstance.valueDefinitions, {
-    ...options,
-    params: [securityGuideId, ...(options.params || [])],
-  });
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { securityGuideId, limit, offset, idsOnly, sortBy, filter } = params;
+
+    return [
+      securityGuideId,
+      undefined, // xRHIDENTITY
+      limit,
+      offset,
+      idsOnly,
+      sortBy,
+      filter,
+    ];
+  }
+};
+
+const useValueDefinitions = (options) =>
+  useComplianceQuery('valueDefinitions', { ...options, convertToArray });
 
 export default useValueDefinitions;

@@ -4,7 +4,7 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
-import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
+import RemediationButtonRest from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import {
@@ -22,8 +22,10 @@ import {
 } from './hooks';
 import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import {
-  compliantSystemFilterConfiguration,
+  defaultSystemsFilterConfiguration,
   complianceReportTableAdditionalFilter,
+  compliantSystemFilterRestConfiguration,
+  DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST,
 } from '../../constants';
 
 export const SystemsTable = ({
@@ -55,14 +57,16 @@ export const SystemsTable = ({
   fetchApi,
   fetchCustomOSes,
   ignoreOsMajorVersion,
+  reportId,
 }) => {
   const inventory = useRef(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
   const [total, setTotal] = useState(0);
   const navigateToInventory = useNavigate('inventory');
   const [error, setError] = useState(errorProp);
+  const [selectedWholeItems, setSelectedWholeItems] = useState([]);
 
   const {
     toolbarProps: conditionalFilter,
@@ -71,7 +75,10 @@ export const SystemsTable = ({
   } = useFilterConfig({
     filters: {
       filterConfig: [
-        ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
+        ...defaultSystemsFilterConfiguration(
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST
+        ),
+        ...(compliantFilter ? compliantSystemFilterRestConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
@@ -91,30 +98,37 @@ export const SystemsTable = ({
 
   const combinedFetchArgumentsRef = useRef();
 
+  const onCustomSelect = (selectedItems) => {
+    setSelectedWholeItems(selectedItems);
+    onSelect?.(selectedItems);
+  };
+
   const {
     selectedIds,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
     total,
-    onSelect,
+    onSelect: onCustomSelect,
     preselectedSystems,
     fetchArguments: combinedFetchArgumentsRef.current,
     currentPageItems: items,
     fetchApi,
     apiV2Enabled: true,
+    tableLoaded: isLoaded,
   });
 
   useInventoryUtilities(inventory, selectedIds, activeFilterValues);
 
   const onComplete = useCallback(
-    (result, { tags, filter }) => {
+    (result, { tags, filter, policyId }) => {
       setTotal(result.meta.totalCount);
       setItems(result.entities);
       setIsLoaded(true);
 
       combinedFetchArgumentsRef.current = {
         ...(combinedFetchArgumentsRef.current || {}),
+        policyId: policyId || undefined,
         tags,
         filter,
       };
@@ -154,7 +168,7 @@ export const SystemsTable = ({
   const exportConfig = useSystemsExport({
     columns,
     filter: systemsFilter,
-    selected: selectedIds,
+    // selected: selectedIds,
     total,
     fetchArguments: combinedFetchArgumentsRef.current,
     fetchApi,
@@ -162,8 +176,8 @@ export const SystemsTable = ({
   });
 
   const handleOperatingSystemsFetch = useCallback(
-    () => fetchCustomOSes({ filters: defaultFilter, policyId }),
-    [defaultFilter, fetchCustomOSes, policyId]
+    () => fetchCustomOSes({ filters: defaultFilter, reportId, policyId }),
+    [defaultFilter, fetchCustomOSes, policyId, reportId]
   );
 
   return (
@@ -201,10 +215,9 @@ export const SystemsTable = ({
           getEntities={getEntities}
           hideFilters={{
             all: true,
-            name: false,
             operatingSystem: false,
             tags: false,
-            hostGroupFilter: !showGroupsFilter,
+            hostGroupFilteronCustomSelect: !showGroupsFilter,
           }}
           showTags
           onLoad={defaultOnLoad(columns)}
@@ -220,7 +233,10 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <RemediationButton policyId={policyId} systems={selectedIds} />
+                <RemediationButtonRest
+                  reportId={reportId}
+                  reportTestResults={selectedWholeItems}
+                />
               ),
             }),
           })}
@@ -280,6 +296,7 @@ SystemsTable.propTypes = {
   fetchApi: PropTypes.func.isRequired,
   fetchCustomOSes: PropTypes.func.isRequired,
   ignoreOsMajorVersion: PropTypes.bool,
+  reportId: PropTypes.string,
 };
 
 SystemsTable.defaultProps = {

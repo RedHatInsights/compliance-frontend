@@ -12,19 +12,19 @@ import { LinkWithPermission as Link } from 'PresentationalComponents';
 import OsVersionText from '../../TabbedRules/OsVersionText';
 import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
 
-// TODO add reset link when selecting is implemented for wizard & edit policy
-const TabHeader = ({ tailoring, rulesPageLink }) => {
-  const { id, os_major_version, os_minor_version, security_guide_version } =
-    tailoring;
-
+const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
   return (
     <TextContent className="pf-v5-u-mt-md">
       <Text component={TextVariants.h3}>
         <span className="pf-v5-u-pr-sm">
           <OsVersionText
             profile={{
-              osMajorVersion: os_major_version,
-              osMinorVersion: os_minor_version,
+              osMajorVersion:
+                tailoring?.os_major_version || securityGuide?.osMajorVersion,
+              osMinorVersion:
+                tailoring?.os_minor_version != null
+                  ? tailoring.os_minor_version
+                  : securityGuide?.osMinorVersion,
             }}
           />
         </span>
@@ -33,10 +33,13 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
         <FlexItem>
           <SSGVersionText
             profile={{
-              osMajorVersion: os_major_version,
-              osMinorVersion: os_minor_version,
+              osMajorVersion:
+                tailoring?.os_major_version || securityGuide?.osMajorVersion,
+              osMinorVersion:
+                tailoring?.os_minor_version || securityGuide?.osMinorVersion,
               benchmark: {
-                version: security_guide_version,
+                version:
+                  tailoring?.security_guide_version || securityGuide?.version,
               },
             }}
           />
@@ -44,7 +47,7 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
         <FlexItem align={{ default: 'alignRight' }}>
           {rulesPageLink && (
             <Link
-              to={`/scappolicies/${id}/default_ruleset`}
+              to={`/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`}
               target="_blank"
               className="pf-v5-u-mr-xl"
             >
@@ -60,6 +63,8 @@ const TabHeader = ({ tailoring, rulesPageLink }) => {
 
 TabHeader.propTypes = {
   tailoring: propTypes.object,
+  securityGuide: propTypes.object,
+  profileId: propTypes.string,
   rulesPageLink: propTypes.bool,
 };
 

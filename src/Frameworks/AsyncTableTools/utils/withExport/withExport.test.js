@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import withExport from './withExport';
-import items from '../../../../Utilities/hooks/useTableTools/__fixtures__/items';
-import columns from '../../../../Utilities/hooks/useTableTools/__fixtures__/columns';
+import items from '../../__fixtures__/items';
+import columns from '../../__fixtures__/columns';
 
 const exampleItems = items(25);
 

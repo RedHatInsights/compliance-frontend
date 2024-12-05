@@ -8,9 +8,13 @@ describe('usePagination', () => {
   const defaultOptions = {
     numberOfItems: 300,
   };
-  it('returns no paginate configuration by default', () => {
+
+  it('returns no paginate configuration by default if disabled', () => {
     const { result } = renderHook(
-      () => usePagination(),
+      () =>
+        usePagination({
+          pagination: false,
+        }),
       DEFAULT_RENDER_OPTIONS
     );
     expect(result.current).toEqual({});

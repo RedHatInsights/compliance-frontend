@@ -9,7 +9,7 @@ exports[`useTableSort returns a table sort configuration 1`] = `
         {
           "exportKey": "id",
           "key": "id",
-          "managable": false,
+          "manageable": false,
           "sortByProperty": "id",
           "title": "ID",
         },

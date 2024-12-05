@@ -20,7 +20,9 @@ import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-import { fetchApi } from '../ComplianceSystems/ComplianceSystems';
+import { apiInstance } from '@/Utilities/hooks/useQuery';
+import { buildOSObject } from '../../Utilities/helpers';
+import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -85,13 +87,31 @@ export const EditPolicySystems = ({
   policy,
   change,
   osMajorVersion,
-  selectedSystems,
+  selectedSystems = [],
 }) => {
   const apiV2Enabled = useAPIV2FeatureFlag();
   const onSelect = useOnSelect(change, countOsMinorVersions);
   const osMinorVersions = policy.supportedOsVersions.map(
     (version) => version.split('.')[1]
   );
+
+  const defaultFilter = osMajorVersion
+    ? apiV2Enabled
+      ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+          ' '
+        )}) AND profile_ref_id !^ (${policy.refId})`
+      : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
+          ','
+        )})`
+    : '';
+
+  const fetchCustomOSes = ({ filters: defaultFilter }) =>
+    apiInstance.systemsOS(null, defaultFilter).then(({ data }) => {
+      return {
+        results: buildOSObject(data),
+        total: data?.length || 0,
+      };
+    });
 
   return (
     <React.Fragment>
@@ -112,34 +132,26 @@ export const EditPolicySystems = ({
                 props: {
                   width: 40,
                 },
-                sortBy: ['name'],
+                sortBy: apiV2Enabled ? ['display_name'] : ['name'],
               },
               Columns.inventoryColumn('groups', {
                 requiresDefault: true,
                 sortBy: ['groups'],
               }),
               Columns.inventoryColumn('tags'),
-              Columns.OperatingSystem,
+              Columns.OperatingSystem(apiV2Enabled),
             ]}
             remediationsEnabled={false}
             compact
             showActions={false}
-            defaultFilter={
-              osMajorVersion &&
-              (apiV2Enabled
-                ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ "${osMinorVersions.join(
-                    ' '
-                  )}"`
-                : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-                    ','
-                  )})`)
-            }
+            defaultFilter={defaultFilter}
             enableExport={false}
-            preselectedSystems={selectedSystems}
+            preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
             showGroupsFilter
             apiV2Enabled={apiV2Enabled}
-            fetchApi={fetchApi}
+            fetchApi={fetchSystemsApi}
+            fetchCustomOSes={fetchCustomOSes}
           />
         </FormGroup>
       </Form>
@@ -152,10 +164,6 @@ EditPolicySystems.propTypes = {
   policy: propTypes.object,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
-};
-
-EditPolicySystems.defaultProps = {
-  selectedSystems: [],
 };
 
 const selector = formValueSelector('policyForm');

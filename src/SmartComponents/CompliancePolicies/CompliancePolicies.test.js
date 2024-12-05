@@ -95,9 +95,6 @@ describe('CompliancePolicies', () => {
       </TestWrapper>
     );
 
-    expect(
-      within(screen.getByLabelText('Policies')).getAllByText('Loading...')
-        .length
-    ).toEqual(5);
+    expect(screen.getByLabelText('Policies loading')).toBeInTheDocument(1);
   });
 });

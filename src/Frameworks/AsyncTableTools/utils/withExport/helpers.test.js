@@ -1,14 +1,16 @@
-import items from '../../../../Utilities/hooks/useTableTools/__fixtures__/items';
-import columns from '../../../../Utilities/hooks/useTableTools/__fixtures__/columns';
+import items from '../../__fixtures__/items';
+import columns from '../../__fixtures__/columns';
 
-import { csvForItems, jsonForItems } from './helpers';
+import { csvForItems, exportableColumns, jsonForItems } from './helpers';
 
 const exampleItems = items(25);
+
+const filteredColumns = exportableColumns(columns);
 
 describe('jsonForItems', () => {
   it('returns an json export of items', () => {
     const result = jsonForItems({
-      columns,
+      columns: filteredColumns,
       items: exampleItems,
     });
 
@@ -19,7 +21,7 @@ describe('jsonForItems', () => {
 describe('csvForItems', () => {
   it('returns an csv export of items', () => {
     const result = csvForItems({
-      columns,
+      columns: filteredColumns,
       items: exampleItems,
     });
 

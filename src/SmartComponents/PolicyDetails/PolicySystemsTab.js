@@ -49,7 +49,7 @@ const PolicySystemsTab = ({ policy }) => {
           { sortBy: apiV2Enabled ? ['display_name'] : ['name'] }
         ),
         Columns.inventoryColumn('tags'),
-        Columns.OS,
+        Columns.OS(apiV2Enabled),
       ]}
       showOsMinorVersionFilter={[policy.osMajorVersion]}
       policyId={policy.id}

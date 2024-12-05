@@ -14,7 +14,7 @@ import {
   Bullseye,
   Spinner,
 } from '@patternfly/react-core';
-import Details from './ComplianceDetail';
+import Details from './Details';
 import {
   BreadcrumbLinkItem,
   StateViewWithError,
@@ -22,8 +22,8 @@ import {
 } from 'PresentationalComponents';
 import { InventoryDetails } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
-import { useSystem } from '../../Utilities/hooks/api/useSystem';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import useSystem from 'Utilities/hooks/api/useSystem';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
 const QUERY = gql`
   query SD_System($inventoryId: String!) {
@@ -99,7 +99,11 @@ SystemDetailsGraphQL.propTypes = {
 
 const SystemDetailsRest = ({ route }) => {
   const { inventoryId } = useParams();
-  let { data: { data } = {}, error, loading } = useSystem(inventoryId);
+  let {
+    data: { data } = {},
+    error,
+    loading,
+  } = useSystem({ params: [inventoryId] });
   const systemName = data?.display_name || inventoryId;
 
   useTitleEntity(route, systemName);
@@ -113,7 +117,7 @@ SystemDetailsRest.propTypes = {
   route: propTypes.object.isRequired,
 };
 
-export const SystemDetailsWrapper = (props) => {
+export const SystemDetails = (props) => {
   const restApiEnabled = useAPIV2FeatureFlag();
   const Component =
     restApiEnabled === undefined ? (
@@ -129,4 +133,4 @@ export const SystemDetailsWrapper = (props) => {
   return <Component {...props} />;
 };
 
-export default SystemDetailsWrapper;
+export default SystemDetails;

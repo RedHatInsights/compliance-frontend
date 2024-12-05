@@ -1,11 +1,10 @@
 import { conditionalFilterType } from '@redhat-cloud-services/frontend-components/ConditionalFilter';
-// TODO unless this comment is removed, all "filterAttribute"s and "filterSerialiser"s in this file are examples!
 
 export const policyNameFilter = [
   {
     type: conditionalFilterType.text,
     label: 'Policy name',
-    filterAttribute: 'name',
+    filterAttribute: 'title',
     filter: (profiles, value) => {
       const lowerCaseValue = value.toLowerCase();
       return profiles.filter((profile) =>
@@ -22,7 +21,8 @@ export const policyTypeFilter = (policyTypes) => [
   {
     type: conditionalFilterType.checkbox,
     label: 'Policy type',
-    filterAttribute: 'policy_type',
+    // TODO profile_title needs to be added as scoped_search attribute for REST API
+    // filterAttribute: 'profile_title',
     filter: (profiles, values) =>
       profiles.filter(({ policyType }) => values.includes(policyType)),
     items: policyTypes.map((policyType) => ({
@@ -41,7 +41,7 @@ export const operatingSystemFilter = (operatingSystems) => [
       profiles.filter(({ osMajorVersion }) => values.includes(osMajorVersion)),
     items: operatingSystems.map((operatingSystem) => ({
       label: `RHEL ${operatingSystem}`,
-      value: operatingSystem,
+      value: `${operatingSystem}`,
     })),
   },
 ];
@@ -50,13 +50,14 @@ export const policyComplianceFilter = [
   {
     type: conditionalFilterType.checkbox,
     label: 'Systems meeting compliance',
+    filterAttribute: 'percent_compliant',
     filterSerialiser: (_, values) =>
-      values
+      `(${values
         .map((value) => {
           const scoreRange = value.split('-');
-          return `compliance_score >= ${scoreRange[0]} and compliance_score <= ${scoreRange[1]}`;
+          return `(percent_compliant >= ${scoreRange[0]} AND percent_compliant <= ${scoreRange[1]})`;
         })
-        .join(' OR '),
+        .join(' OR ')})`,
     filter: (profiles, values) =>
       profiles.filter(({ testResultHostCount, compliantHostCount }) => {
         const compliantHostsPercent = Math.round(

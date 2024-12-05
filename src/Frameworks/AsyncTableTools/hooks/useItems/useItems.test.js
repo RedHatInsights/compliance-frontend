@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { DEFAULT_RENDER_OPTIONS } from '../../utils/testHelpers';
-import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
+import items from '../../__fixtures__/items';
 
 import useItems from './useItems';
 

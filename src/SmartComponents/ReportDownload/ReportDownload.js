@@ -15,8 +15,8 @@ import { GET_PROFILE } from './constants';
 import ExportPDFForm from './Components/ExportPDFForm';
 import usePDFExport from './hooks/usePDFExport';
 import useExportSettings from './hooks/useExportSettings';
-import { useReport } from '@/Utilities/hooks/api/useReport';
-import dataSerialiser from '@/Utilities/dataSerialiser';
+import useReport from 'Utilities/hooks/api/useReport';
+import dataSerialiser from 'Utilities/dataSerialiser';
 import { reportDataMap } from '@/constants';
 import GatedComponents from '@/PresentationalComponents/GatedComponents';
 

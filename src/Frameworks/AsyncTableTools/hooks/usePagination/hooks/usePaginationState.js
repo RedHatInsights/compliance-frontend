@@ -8,35 +8,40 @@ import { TABLE_STATE_NAMESPACE } from '../constants';
 
 const usePaginationState = (options) => {
   const { perPage = 10, serialisers } = options;
+  const defaultState = useMemo(() => {
+    return {
+      perPage,
+      page: 1,
+    };
+  }, [perPage]);
   const resetPage = useCallback(
-    (currentState) => ({
-      ...currentState,
-      state: {
-        ...(currentState?.state || {}),
-        page: 1,
-      },
-    }),
-    []
+    (currentState) => {
+      return {
+        ...currentState,
+        state: {
+          ...(currentState?.state || defaultState),
+          page: 1,
+        },
+      };
+    },
+    [defaultState]
   );
 
   const stateObservers = useMemo(
     () => ({
       [VIEW_TABLE_NAMESPACE]: (currentState, _previousView, nextView) => ({
-        ...currentState,
+        ...(currentState || { state: defaultState }),
         isDisabled: (nextView || _previousView) !== 'rows',
       }),
       [SORT_TABLE_NAMESPACE]: resetPage,
       [FILTERS_TABLE_NAMESPACE]: resetPage,
     }),
-    [resetPage]
+    [resetPage, defaultState]
   );
   const [paginationState, setPaginationState] = useTableState(
     TABLE_STATE_NAMESPACE,
     {
-      state: {
-        perPage,
-        page: 1,
-      },
+      state: defaultState,
       isDisabled: false,
     },
     {

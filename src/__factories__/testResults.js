@@ -15,7 +15,7 @@ export const tagsFactory = Factory.define(({ params }) => {
 const testResultsFactory = Factory.define(({ sequence, params }) => ({
   system_id: faker.string.uuid(),
   tags: tagsFactory.buildList(5),
-  end_time: faker.date.past(),
+  end_time: String(faker.date.past()),
   failed_rule_count: faker.number.int(10),
   score: faker.number.int(100),
   type: 'test_result',

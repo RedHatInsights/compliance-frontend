@@ -36,16 +36,25 @@ const useTableState = (namespace, initialState, options = {}) => {
       return setState((currentState) => {
         const newState =
           typeof newStateForNameSpace === 'function'
-            ? newStateForNameSpace(currentState)
+            ? newStateForNameSpace(currentState?.tableState?.[namespace])
             : newStateForNameSpace;
 
-        return compileState(
+        const nextState = compileState(
           namespace,
           currentState,
           newState,
           observers.current,
           serialisers.current
         );
+
+        // Comment out for debugging table issues
+        // console.group('State change by', namespace);
+        // console.log('New state for namespace', newState);
+        // console.log('Current state:', currentState?.tableState);
+        // console.log('Next State:', nextState?.tableState);
+        // console.groupEnd();
+
+        return nextState;
       });
     },
     [observers, serialisers, setState, namespace]

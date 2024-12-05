@@ -1,4 +1,4 @@
-import filters from 'Utilities/hooks/useTableTools/__fixtures__/filters';
+import filters from '../../__fixtures__/filters';
 import { toDeselectValue, toFilterChips } from './filterChipHelpers';
 
 describe('toFilterChips', () => {

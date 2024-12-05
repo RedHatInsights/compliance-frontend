@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useCallback } from 'react';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
@@ -17,9 +17,8 @@ import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
 import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
-import useOperatingSystemsQuery from '../../Utilities/hooks/api/useOperatingSystems';
-import { buildOSObject } from '../../Utilities/helpers';
 import useLoadedItems from './hooks/useLoadedItems';
+import useSystem from '../../Utilities/hooks/api/useSystem';
 
 const groupByMajorVersion = (versions = [], showFilter = []) => {
   const showVersion = (version) => {
@@ -50,18 +49,6 @@ export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
 
   return showFilter
     ? osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
-    : [];
-};
-
-export const useOsMinorVersionFilterRest = (
-  showFilter,
-  fetchArguments = {}
-) => {
-  let { data = [] } = useOperatingSystemsQuery(fetchArguments);
-  const osMapArray = buildOSObject(data);
-
-  return showFilter
-    ? osMinorVersionFilter(groupByMajorVersion(osMapArray, showFilter))
     : [];
 };
 
@@ -334,16 +321,40 @@ export const useSystemBulkSelect = ({
   currentPageItems,
   fetchApi,
   apiV2Enabled,
+  tableLoaded,
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const { loadedItems, addToLoadedItems, resetLoadedItems, allLoaded } =
-    useLoadedItems(currentPageItems, total);
+  const { loadedItems, addToLoadedItems, allLoaded } = useLoadedItems(
+    currentPageItems,
+    total
+  );
+  const { fetch: fetchSystem } = useSystem({ skip: true });
 
   useEffect(() => {
-    resetLoadedItems();
+    const checkFirstPreselected = async () => {
+      for (const preselectedSystemId of preselectedSystems) {
+        if (
+          currentPageItems.find(({ id }) => preselectedSystemId === id) ===
+          undefined
+        ) {
+          const system = await fetchSystem([preselectedSystemId], false);
+          addToLoadedItems([system.data]);
+        }
+      }
+    };
+
+    if (currentPageItems !== undefined && tableLoaded === true) {
+      checkFirstPreselected();
+    }
+  }, [tableLoaded, currentPageItems]);
+
+  useEffect(() => {
+    if (tableLoaded === true && currentPageItems !== undefined) {
+      addToLoadedItems(currentPageItems);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(fetchArguments), resetLoadedItems]);
+  }, [JSON.stringify(fetchArguments), addToLoadedItems]);
 
   const onError = useCallback((error) => {
     dispatchNotification({
@@ -391,23 +402,21 @@ export const useSystemBulkSelect = ({
     return items;
   };
 
-  const preselected = useMemo(
-    () => preselectedSystems.map(({ id }) => id),
-    [preselectedSystems]
-  );
-
   const itemIdsInTable = async () => {
     const items = await getItemsInTable();
 
     return items.map(({ id }) => id);
   };
 
-  const itemIdsOnPage = () => currentPageItems.map(({ id }) => id);
+  const itemIdsOnPage = () =>
+    currentPageItems !== undefined && tableLoaded === true
+      ? currentPageItems.map(({ id }) => id)
+      : [];
 
   const bulkSelect = useBulkSelect({
     total,
     onSelect: onSelectCallback,
-    preselected,
+    preselected: preselectedSystems,
     itemIdsInTable,
     itemIdsOnPage,
   });

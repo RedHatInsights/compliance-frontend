@@ -17,10 +17,15 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
     profile: { id: policyId },
     ruleValues,
   } = rule;
-  const [editValues, setEditValues] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const enableAllEdit = valueDefinitions.length === 1;
+
+  const closeInlineEdit = () => {
+    setIsOpen(false);
+  };
+
   const onValueSave = (valueDefinition) => (newValue) => {
-    onValueChange?.(policyId, valueDefinition, newValue);
+    onValueChange?.(policyId, valueDefinition, newValue, closeInlineEdit);
   };
 
   const { resetValues, nonDefaultValues } = useResetValues(
@@ -41,7 +46,7 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
               ouiaId="InlineEditPencil"
               className="pf-v5-u-ml-sm"
               onClick={() => {
-                setEditValues((current) => !current);
+                setIsOpen((current) => !current);
               }}
               variant="plain"
             >
@@ -64,10 +69,10 @@ const RuleValueEdit = ({ rule, onValueChange, onRuleValueReset }) => {
         {valueDefinitions.map((valueDefinition, idx) => (
           <InlineValueEdit
             key={`rule-value-${idx}`}
-            isOpen={editValues}
+            isOpen={isOpen}
             value={
-              ruleValues?.[valueDefinition.id] ||
-              ruleValues?.[valueDefinition.refId]
+              ruleValues?.[valueDefinition?.id] ||
+              ruleValues?.[valueDefinition?.refId]
             }
             valueDefinition={valueDefinition}
             onSave={onValueSave(valueDefinition)}

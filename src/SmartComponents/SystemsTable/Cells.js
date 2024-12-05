@@ -15,11 +15,7 @@ import {
   ComplianceScore as PresentationalComplianceScore,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
-import {
-  // profilesRulesFailed,
-  complianceScoreData,
-  NEVER,
-} from 'Utilities/ruleHelpers';
+import { complianceScoreData, NEVER } from 'Utilities/ruleHelpers';
 
 const SystemLink = ({ id, children }) => (
   <Link to={{ pathname: `/systems/${id}` }}>{children}</Link>
@@ -28,6 +24,49 @@ const SystemLink = ({ id, children }) => (
 SystemLink.propTypes = {
   id: propTypes.string,
   children: propTypes.node,
+};
+
+export const CustomDisplay = (props) => {
+  const {
+    osMajorVersion,
+    osMinorVersion,
+    showOsInfo = false,
+    showLink = false,
+    idProperty = 'id',
+    nameProperty = 'name',
+  } = props;
+  const hasOsInfo = (osMajorVersion, osMinorVersion) =>
+    !!osMajorVersion && !!osMinorVersion && showOsInfo;
+
+  const customId = props[idProperty];
+  const customName = props[nameProperty];
+
+  return (
+    <TextContent>
+      {showLink ? (
+        <SystemLink {...{ id: customId }}>{customName}</SystemLink>
+      ) : (
+        { customName }
+      )}
+
+      {hasOsInfo(osMajorVersion, osMinorVersion) && (
+        <Text component={TextVariants.small}>
+          RHEL {osMajorVersion}.{osMinorVersion}
+        </Text>
+      )}
+    </TextContent>
+  );
+};
+
+CustomDisplay.propTypes = {
+  id: propTypes.string,
+  name: propTypes.string,
+  osMajorVersion: propTypes.string,
+  osMinorVersion: propTypes.string,
+  showOsInfo: propTypes.bool,
+  showLink: propTypes.bool,
+  idProperty: propTypes.string,
+  nameProperty: propTypes.string,
 };
 
 export const Name = ({
@@ -85,13 +124,15 @@ SSGVersion.propTypes = {
 
 export const SSGVersions = ({ testResultProfiles = [] }) =>
   testResultProfiles.length !== 0
-    ? testResultProfiles.map((profile) => (
-        <SSGVersion
-          key={`ssgversion-${profile.id}`}
-          ssgVersion={profile?.benchmark?.version}
-          supported={profile?.supported}
-        />
-      ))
+    ? testResultProfiles.map((profile) => {
+        return (
+          <SSGVersion
+            key={`ssgversion-${profile.id}`}
+            ssgVersion={profile?.benchmark?.version}
+            supported={profile?.supported}
+          />
+        );
+      })
     : 'Unknown';
 
 SSGVersions.propTypes = {
@@ -127,6 +168,19 @@ FailedRules.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
+export const FailedRulesRest = ({ system_id, rulesFailed }) => {
+  return (
+    <SystemLink {...{ id: system_id }}>
+      {rulesFailed > 0 ? rulesFailed : 'N/A'}
+    </SystemLink>
+  );
+};
+
+FailedRulesRest.propTypes = {
+  system_id: propTypes.string,
+  rulesFailed: propTypes.number,
+};
+
 export { complianceScoreData };
 export const ComplianceScore = ({ testResultProfiles }) => {
   const { score, supported, compliant } = testResultProfiles[0] || {};
@@ -160,7 +214,10 @@ const NeverScanned = () => (
 );
 
 export const lastScanned = (profiles) => {
-  const dates = profiles.map((profile) => new Date(profile.lastScanned));
+  if (!profiles || profiles?.length === 0) {
+    return <NeverScanned />;
+  }
+  const dates = profiles?.map((profile) => new Date(profile.lastScanned));
   const last = new Date(
     Math.max.apply(
       null,
@@ -174,7 +231,7 @@ export const lastScanned = (profiles) => {
 };
 
 export const LastScanned = ({ testResultProfiles: profiles }) => {
-  const lastScannedDate = lastScanned(profiles || []);
+  const lastScannedDate = lastScanned(profiles ?? []);
 
   return lastScannedDate instanceof Date ? (
     <DateFormat date={Date.parse(lastScannedDate)} type="relative" />

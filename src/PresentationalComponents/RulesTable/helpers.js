@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Label, Icon } from '@patternfly/react-core';
 import { ExclamationCircleIcon } from '@patternfly/react-icons';
 
-export const itemIdentifier = (item) => `${item.profile.id}|${item.refId}`;
+export const itemIdentifier = (item) => `${item.profile?.id}|${item.refId}`;
 
 const growBranch = (item, axilFunction, showFailed, idPrefix) => {
   const growTwigs = (item) => {
@@ -107,6 +107,6 @@ const validators = {
 };
 
 export const validatorFor = (valueDefinition) =>
-  validators[valueDefinition.type] || (() => true);
+  validators[valueDefinition?.type] || (() => true);
 
 export const disableEdit = (value) => /(\n|\r|\\n|\\r)/.test(value);

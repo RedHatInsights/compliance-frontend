@@ -1,6 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import useSelectionManager from '../useSelectionManager';
-import useFetchBatched from '@redhat-cloud-services/frontend-components-utilities/useFetchBatched';
 import {
   checkCurrentPageSelected,
   checkboxState,
@@ -42,6 +41,7 @@ const useBulkSelect = ({
   itemIdsOnPage,
   identifier = 'itemId',
 }) => {
+  const [loading, setLoading] = useState(false);
   const enableBulkSelect = !!onSelect;
   const {
     selection: selectedIds,
@@ -49,7 +49,7 @@ const useBulkSelect = ({
     select,
     deselect,
     clear,
-  } = useSelectionManager(preselected);
+  } = useSelectionManager(preselected, {}, onSelect);
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
   const allSelected = selectedIdsTotal === total;
@@ -59,11 +59,12 @@ const useBulkSelect = ({
     selectedIds
   );
 
+  // TODO this is not totally wrong, but when the tree view is active there is currently no total, which causes the selection to be disabled there.
+  // The bug may not even be fixed here, but in the tables that use selection and the tree view. They will need to provide an appropriate total still
   const isDisabled = total === 0;
   const checked = checkboxState(selectedIdsTotal, total);
 
-  const { isLoading, fetchBatched } = useFetchBatched();
-  const title = compileTitle(selectedIdsTotal, isLoading);
+  const title = compileTitle(selectedIdsTotal, loading);
 
   const selectOne = useCallback(
     (_, _selected, _key, row) =>
@@ -77,21 +78,23 @@ const useBulkSelect = ({
   );
 
   const selectAll = async () => {
+    setLoading(true);
     if (allSelected) {
       clear();
     } else {
-      set(await fetchBatched(itemIdsInTable, total));
+      set(await itemIdsInTable());
     }
+    setLoading(false);
   };
 
   const markRowSelected = (row) => ({
     ...row,
-    isSelected: selectedIds.includes(row.itemId),
+    selected: selectedIds.includes(row.itemId),
   });
 
   return enableBulkSelect
     ? {
-        markRowSelected,
+        tableView: { markRowSelected },
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
           canSelectAll: false,

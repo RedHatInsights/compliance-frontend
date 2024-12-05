@@ -33,7 +33,7 @@ const combineVariablesRest = (standardVariables, allRequestVariables) => {
     [
       ...splitFilter(standardVariables.filter || ''),
       ...splitFilter(requestVariables.filter || ''),
-    ].join(', ') || undefined; //We want 'filter: undefined' in case there is not any active filter.
+    ].join(' AND ') || undefined; //We want 'filter: undefined' in case there is not any active filter.
 
   return {
     ...standardVariables,

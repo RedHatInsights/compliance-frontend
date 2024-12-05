@@ -1,6 +1,4 @@
-import tableTree, {
-  exampleItems,
-} from 'Utilities/hooks/useTableTools/__fixtures__/tableTree';
+import tableTree, { exampleItems } from '../../../__fixtures__/tableTree';
 
 import treeChopper from './treeChopper';
 
@@ -21,6 +19,7 @@ const ExampleDetailsRow = ({ item }) => {
 
 describe('treeChopper', function () {
   it('should return rows for a tree table', () => {
+    console.log(exampleItems);
     const rows = treeChopper(exampleItems, columns, {
       tableTree,
       expandable: {

@@ -8,19 +8,22 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *  @property {any}      [data]    Data loaded from the response of the request
  *  @property {Error}    [error]   An error if the request failed
  *  @property {boolean}  [loading] Boolean of wether or not data is being requested
- *  @property {Function} [refetch] A callback function to re-trigger a request
+ *  @property {Function} [refetch] A function to re-trigger a request with params coming from the options
+ *  @property {Function} [fetch]   A function to make a request on demand. It takes to arguments, a params object or array, and a boolean to control wether or not to set the "data" state or return the results directly. In case the params argument is an array any params from the options will be ignored!
  *
  */
 
 /**
  * Custom hook to execute a query function with parameters and optional skip condition
  *
- *  @param   {Function}       fn               Function to execute
- *  @param   {object}         [options]        Includes options like params and skip
- *  @param   {Array}          [options.params] Parameters passed to the request to make
- *  @param   {boolean}        [options.skip]   Wether or not to skip the request
+ *  @param   {Function}       fn                       Function to execute
+ *  @param   {object}         [options]                Includes options like params and skip
+ *  @param   {Array | object} [options.params]         Parameters passed to the request to make. If an array is passed it will be spread as arguments!
+ *  @param   {boolean}        [options.debounce]       Enables/disables debouncing of requests
+ *  @param   {boolean}        [options.convertToArray] A function to use to convert a params object into an arguments array to pass to the fetch function
+ *  @param   {boolean}        [options.skip]           Wether or not to skip the request
  *
- *  @returns {useQueryReturn}
+ *  @returns {useQueryReturn}                          An object containing a data, loading and error state, as well as a fetch and refetch function.
  *
  * @example
  * // Query is skipped if conditions are met
@@ -34,7 +37,12 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *
  */
 const useQuery = (fn, options = {}) => {
-  const { params = [], skip = false, debounced = true } = options;
+  const {
+    params = {},
+    skip = false,
+    debounced = true,
+    convertToArray,
+  } = options;
   const mounted = useRef(true);
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);
@@ -47,10 +55,21 @@ const useQuery = (fn, options = {}) => {
       if (!loading) {
         setDataState && setLoading(true);
         try {
-          const data =
-            debounced && setDataState
-              ? await debouncedFn(...params)
-              : await fn(...params);
+          const data = await (async (params) => {
+            const convertedParams = convertToArray
+              ? convertToArray(params)
+              : params;
+
+            if (Array.isArray(convertedParams)) {
+              return debounced && setDataState
+                ? await debouncedFn(...convertedParams)
+                : await fn(...convertedParams);
+            } else {
+              return debounced && setDataState
+                ? await debouncedFn(convertedParams)
+                : await fn(convertedParams);
+            }
+          })(params);
 
           if (setDataState && mounted.current) {
             setData(data?.data || data);
@@ -69,12 +88,22 @@ const useQuery = (fn, options = {}) => {
         }
       }
     },
-    [loading, debounced, debouncedFn]
+    [loading, debounced, debouncedFn, convertToArray]
   );
 
   const fetch = useCallback(
-    (params, setDataState) => fetchFn(fn, params, setDataState),
-    [fn, fetchFn]
+    (fetchParams, setDataState) =>
+      fetchFn(
+        fn,
+        !Array.isArray(fetchParams)
+          ? {
+              ...params,
+              ...fetchParams,
+            }
+          : fetchParams,
+        setDataState
+      ),
+    [fn, fetchFn, params]
   );
   const refetch = useCallback(() => fetchFn(fn, params), [fetchFn, fn, params]);
 
@@ -88,7 +117,7 @@ const useQuery = (fn, options = {}) => {
     };
   }, [skip, params, typeof refetch !== 'undefined']);
 
-  return { data, error, loading: loading, fetch, refetch };
+  return { data, error, loading, fetch, refetch };
 };
 
 export default useQuery;

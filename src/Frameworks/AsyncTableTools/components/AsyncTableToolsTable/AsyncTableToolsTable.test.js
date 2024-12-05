@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import items from 'Utilities/hooks/useTableTools/__fixtures__/items';
+import items from '../../__fixtures__/items';
 
 import TableStateProvider from '../TableStateProvider';
 import AsyncTableToolsTable from './AsyncTableToolsTable';

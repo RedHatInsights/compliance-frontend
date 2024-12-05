@@ -42,7 +42,7 @@ describe('SystemsTableRest', () => {
       expect(useSystemBulkSelect).toHaveBeenCalledWith(
         expect.objectContaining({
           fetchArguments: {
-            filter: '(someFilter ~ test), display_name ~ test-name',
+            filter: '(someFilter ~ test) AND display_name ~ "test-name"',
             tags: [],
           },
         })
@@ -52,7 +52,7 @@ describe('SystemsTableRest', () => {
     expect(useSystemsExport).toHaveBeenCalledWith(
       expect.objectContaining({
         fetchArguments: {
-          filter: '(someFilter ~ test), display_name ~ test-name',
+          filter: '(someFilter ~ test) AND display_name ~ "test-name"',
           tags: [],
         },
       })

@@ -1,9 +1,24 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-const useRuleGroups = (security_guide_id, options = {}) =>
-  useQuery(apiInstance.ruleGroups, {
-    params: [security_guide_id],
-    ...options,
-  });
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { securityGuideId, limit, offset, idsOnly, sortBy, filter } = params;
+
+    return [
+      securityGuideId,
+      undefined, // xRHIDENTITY
+      limit,
+      offset,
+      idsOnly,
+      sortBy,
+      filter,
+    ];
+  }
+};
+
+const useRuleGroups = (options) =>
+  useComplianceQuery('ruleGroups', { ...options, convertToArray });
 
 export default useRuleGroups;

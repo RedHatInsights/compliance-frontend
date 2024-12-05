@@ -16,9 +16,7 @@ import usePaginationState from './hooks/usePaginationState';
  *
  */
 const usePagination = (options = {}) => {
-  const { perPage = 10, numberOfItems } = options;
-  const enablePagination =
-    options?.pagination !== false && (numberOfItems || 0) > perPage;
+  const { numberOfItems, pagination = true } = options;
   const [paginationState, setPaginationState] = usePaginationState(options);
 
   const setPagination = useCallback(
@@ -37,11 +35,10 @@ const usePagination = (options = {}) => {
     (page) => {
       setPaginationState((paginationState) => {
         const nextPage = page < 0 ? paginationState.page + page : page;
-
         return {
-          ...paginationState,
+          ...(paginationState || {}),
           state: {
-            ...paginationState.state,
+            ...(paginationState?.state || {}),
             page: nextPage > 0 ? nextPage : 1,
           },
         };
@@ -50,7 +47,7 @@ const usePagination = (options = {}) => {
     [setPaginationState]
   );
 
-  return enablePagination && !(paginationState || {}).isDisabled
+  return pagination && !(paginationState || {}).isDisabled
     ? {
         toolbarProps: {
           pagination: {

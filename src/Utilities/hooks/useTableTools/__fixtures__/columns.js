@@ -6,7 +6,7 @@ export default [
     sortByProperty: 'id',
     exportKey: 'id',
     key: 'id',
-    managable: false,
+    manageable: false,
   },
   {
     title: 'Name',

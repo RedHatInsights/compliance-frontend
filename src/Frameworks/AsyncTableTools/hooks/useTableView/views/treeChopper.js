@@ -15,7 +15,7 @@ const itemRow = (item, columns) => ({
   })),
 });
 
-const childRowForItem = (item, idx, DetailsComponent, colSpan) => ({
+const childRowForItem = (item, _idx, DetailsComponent, colSpan) => ({
   props: {
     'aria-level': item.props['aria-level'],
     isDetailsRow: true,
@@ -76,14 +76,14 @@ const buildTreeBranch = (
     const leafItems =
       item.leaves?.map((item) => ({
         ...item,
+        ...(items?.find(({ id }) => id === item.itemId) || {}),
         props: {
-          ...(selectable ? { isChecked: item.rowProps?.selected } : {}),
+          // ...(selectable ? { isChecked: item.rowProps?.selected } : {}),
           isExpanded: openItems.includes(item.itemId) || false,
           'aria-level': nextLevel,
           'aria-setsize': 1,
         },
       })) || [];
-
     const rows = buildRows(
       leafItems,
       columns,
@@ -114,27 +114,27 @@ const buildTreeBranch = (
       })
     : [];
 
-  const isChecked = () => {
-    const anySprouts = leaves.length > 0 || twigs.length > 0;
-    const allSprouts = [...(twigs || []), ...(leaves || [])];
-    if (
-      anySprouts &&
-      allSprouts
-        .filter(({ props: { isDetailsRow } }) => !isDetailsRow)
-        .every((leaf) => leaf.props.isChecked === true)
-    ) {
-      return true;
-    }
-
-    if (
-      anySprouts &&
-      allSprouts.some((leave) => leave.props.isChecked === true)
-    ) {
-      return null;
-    }
-
-    return false;
-  };
+  //   const isChecked = () => {
+  //     const anySprouts = leaves.length > 0 || twigs.length > 0;
+  //     const allSprouts = [...(twigs || []), ...(leaves || [])];
+  //     if (
+  //       anySprouts &&
+  //       allSprouts
+  //         .filter(({ props: { isDetailsRow } }) => !isDetailsRow)
+  //         .every((leaf) => leaf.props.isChecked === true)
+  //     ) {
+  //       return true;
+  //     }
+  //
+  //     if (
+  //       anySprouts &&
+  //       allSprouts.some((leave) => leave.props.isChecked === true)
+  //     ) {
+  //       return null;
+  //     }
+  //
+  //     return false;
+  //   };
 
   const branchRow =
     level === 1 || twigs.length > 0 || leaves.length > 0
@@ -150,11 +150,11 @@ const buildTreeBranch = (
             isTreeBranch: true,
             isExpanded,
             props: {
-              ...(selectable
-                ? {
-                    isChecked: isChecked(),
-                  }
-                : {}),
+              // ...(selectable
+              //   ? {
+              //       isChecked: isChecked(),
+              //     }
+              //   : {}),
               isExpanded,
               'aria-level': level,
               'aria-setsize':
@@ -210,16 +210,18 @@ const treeChopper = (items, columns, options = {}) => {
   const {
     tableTree,
     expandable: { openItems } = {},
+    // bulkSelect: { markRowSelected } = {}, // TODO Enable selection for groups and rows in groups
     detailsComponent,
-  } = options || {};
+  } = options;
 
   const choppedTree = chopTreeIntoTable(
     tableTree,
     items,
     columns,
     openItems,
-    undefined,
-    detailsComponent
+    [],
+    detailsComponent,
+    false
   );
 
   return choppedTree;

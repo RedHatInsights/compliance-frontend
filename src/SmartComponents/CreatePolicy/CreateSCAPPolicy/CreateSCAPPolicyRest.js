@@ -2,16 +2,15 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
 import CreateSCAPPolicyBase from './CreateSCAPPolicyBase';
-import dataSerialiser from '../../../Utilities/dataSerialiser';
-import useSupportedProfiles from '../../../Utilities/hooks/useSupportedProfiles/useSupportedProfiles';
-import useSecurityGuidesOS from '../../../Utilities/hooks/useSecurityGuidesOS/useSecurityGuidesOS';
+import dataSerialiser from 'Utilities/dataSerialiser';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
+import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 
 const profilesDataMap = {
-  id: 'id',
+  id: ['id', 'benchmark.id'],
   description: 'description',
   title: 'name',
   ref_id: 'refId',
-  security_guide_id: 'benchmark.id',
   supportedOsVersions: 'supportedOsVersions',
 };
 
@@ -37,10 +36,15 @@ const CreateSCAPPolicyRest = ({
     data: availableProfiles,
     error: availableProfilesError,
     loading: availableProfilesLoading,
-  } = useSupportedProfiles(
-    selectedOsMajorVersion,
-    selectedOsMajorVersion === undefined
-  );
+  } = useSupportedProfiles({
+    params: {
+      filter: selectedOsMajorVersion
+        ? `os_major_version=${selectedOsMajorVersion}`
+        : undefined,
+      limit: 100,
+    },
+    skip: selectedOsMajorVersion === undefined,
+  });
 
   return (
     <CreateSCAPPolicyBase
@@ -54,7 +58,7 @@ const CreateSCAPPolicyRest = ({
             : {
                 availableOsMajorVersions,
                 availableProfiles: dataSerialiser(
-                  serialiseOsVersions(availableProfiles),
+                  serialiseOsVersions(availableProfiles?.data),
                   profilesDataMap
                 ),
               },

@@ -1,7 +1,24 @@
-import useQuery, { apiInstance } from '../useQuery';
+import useComplianceQuery from './useComplianceQuery';
 
-export const useTailoring = (id) =>
-  useQuery(apiInstance.tailorings, { params: [id] });
+const convertToArray = (params) => {
+  if (Array.isArray(params)) {
+    return params;
+  } else {
+    const { policyId, limit, offset, idsOnly, sortBy, filter } = params;
 
-export const useTailorings = (options) =>
-  useQuery(apiInstance.tailorings, options);
+    return [
+      policyId,
+      undefined, // xRHIDENTITY
+      limit,
+      offset,
+      idsOnly,
+      sortBy,
+      filter,
+    ];
+  }
+};
+
+const useTailorings = (options) =>
+  useComplianceQuery('tailorings', { ...options, convertToArray });
+
+export default useTailorings;

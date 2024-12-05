@@ -4,15 +4,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 import userEvent from '@testing-library/user-event';
 import { supportedProfiles } from '../../../__fixtures__/supportedProfiles';
-import { apiInstance } from '../../../Utilities/hooks/useQuery';
-import * as useSecurityGuidesOS from '../../../Utilities/hooks/useSecurityGuidesOS/useSecurityGuidesOS';
-import * as useSupportedProfiles from '../../../Utilities/hooks/useSupportedProfiles/useSupportedProfiles';
+import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
 
-const useSecurityGuidesOSSpy = jest.spyOn(useSecurityGuidesOS, 'default');
-const useSupportedProfilesSpy = jest.spyOn(useSupportedProfiles, 'default');
-const securityGuidesOSSpy = jest.spyOn(apiInstance, 'securityGuidesOS');
-const supportedProfilesSpy = jest.spyOn(apiInstance, 'supportedProfiles');
+jest.mock('Utilities/hooks/api/useSecurityGuidesOS');
+jest.mock('Utilities/hooks/api/useSupportedProfiles');
 
 describe('CreateSCAPPolicyRest', () => {
   const change = jest.fn();
@@ -22,27 +19,13 @@ describe('CreateSCAPPolicyRest', () => {
     jest.clearAllMocks();
   });
 
-  it('should request only versions in the beginning', async () => {
-    // this test should be the first to avoid mock conflicts
-    render(
-      <TestWrapper>
-        <CreateSCAPPolicyRest change={change} />
-      </TestWrapper>
-    );
-
-    await waitFor(() => {
-      expect(securityGuidesOSSpy).toBeCalledTimes(1);
-    });
-    expect(supportedProfilesSpy).toBeCalledTimes(0);
-  });
-
   it('renders progressbar on loading data', () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: undefined,
       loading: true,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
+    useSupportedProfiles.mockReturnValue({
       data: undefined,
       loading: true,
       error: undefined,
@@ -57,12 +40,12 @@ describe('CreateSCAPPolicyRest', () => {
   });
 
   it('renders available OS major versions when fetched', async () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: availableVersions,
       loading: false,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
+    useSupportedProfiles.mockReturnValue({
       data: undefined,
       loading: true,
       error: undefined,
@@ -82,12 +65,12 @@ describe('CreateSCAPPolicyRest', () => {
   });
 
   it('calls the change callback on OS select', async () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: availableVersions,
       loading: false,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
+    useSupportedProfiles.mockReturnValue({
       data: undefined,
       loading: true,
       error: undefined,
@@ -103,13 +86,13 @@ describe('CreateSCAPPolicyRest', () => {
   });
 
   it('indicates selected OS version and renders policies table', async () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: availableVersions,
       loading: false,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
-      data: [],
+    useSupportedProfiles.mockReturnValue({
+      data: { data: [] },
       loading: false,
       error: undefined,
     });
@@ -127,13 +110,13 @@ describe('CreateSCAPPolicyRest', () => {
   });
 
   it('shows available supported profiles', async () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: availableVersions,
       loading: false,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
-      data: supportedProfiles,
+    useSupportedProfiles.mockReturnValue({
+      data: { data: supportedProfiles },
       loading: false,
       error: undefined,
     });
@@ -149,13 +132,13 @@ describe('CreateSCAPPolicyRest', () => {
   });
 
   it('calls the change callback on profile select', async () => {
-    useSecurityGuidesOSSpy.mockReturnValue({
+    useSecurityGuidesOS.mockReturnValue({
       data: availableVersions,
       loading: false,
       error: undefined,
     });
-    useSupportedProfilesSpy.mockReturnValue({
-      data: supportedProfiles,
+    useSupportedProfiles.mockReturnValue({
+      data: { data: supportedProfiles },
       loading: false,
       error: undefined,
     });

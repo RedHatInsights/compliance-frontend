@@ -1,101 +1,66 @@
-import { useCallback, useMemo } from 'react';
-import useTailoringRules from 'Utilities/hooks/api/useTailoringRules';
-import useSecurityGuideData from './useSecurityGuideData';
+import useBatchedTailoringRules from './useBatchedTailoringRules';
+import useTailoringRuleTree from 'Utilities/hooks/api/useTailoringRuleTree';
 
-const shouldSkip = (request, { view }) =>
-  ({
-    ruleTree: view !== 'tree',
-    ruleGroups: view !== 'tree',
-    rules: false,
-    valueDefinitions: false,
-  }[request]);
-
-const useTailoringsData = (
-  { id: policyId } = {},
-  { id: tailoringId, security_guide_id } = {},
-  {
-    tableState = {},
+const useTailoringsData = ({
+  policy: { id: policyId } = {},
+  tailoring: { id: tailoringId } = {},
+  tableState: {
+    tableState: { tableView } = {},
     serialisedTableState: { filters, pagination, sort } = {},
-  } = {}
-) => {
-  const {
-    ruleTree,
-    ruleGroups,
-    valueDefinitions,
-    loading: securityGuideDataLoading,
-    error: securityGuideDataError,
-  } = useSecurityGuideData(security_guide_id, {
-    skipRuleTree: shouldSkip('ruleTree', tableState),
-    skipRuleGroups: shouldSkip('ruleGroups', tableState),
-    skipValueDefinitions: shouldSkip('valueDefinitions', tableState),
-  });
-  const openRuleGroups = tableState?.['open-items']?.filter((itemId) =>
-    ruleGroups?.map(({ id }) => id).includes(itemId)
-  );
-  const groupFilter =
-    openRuleGroups?.length > 0
-      ? `rule_group_id ^ (${openRuleGroups.map((id) => `"${id}"`).join(',')})`
-      : undefined;
-
-  const ruleParams = useMemo(
-    () => [
-      undefined,
-      // TODO this is a hack: The state value defaults should come from the state itself
-      pagination?.limit || 10,
-      pagination?.offset || 0,
-      undefined,
-      sort || 'title:asc',
-      ...(filters || groupFilter
+  } = {},
+  skipRuleTree,
+  skipRules,
+  groupFilter,
+}) => {
+  const ruleParams = {
+    policyId,
+    tailoringId,
+    // TODO this is a hack: The state value defaults should come from the state itself
+    limit: pagination?.limit || 10,
+    offset: pagination?.offset || 0,
+    sortBy: sort || 'title:asc',
+    filter:
+      filters || groupFilter
         ? [
             filters
               ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
               : groupFilter,
           ]
-        : []),
-      undefined,
-    ],
-    [filters, pagination, groupFilter, sort]
-  );
+        : undefined,
+  };
+
+  const {
+    data: ruleTree,
+    loading: ruleTreeLoading,
+    error: ruleTreeError,
+  } = useTailoringRuleTree({
+    params: { policyId, tailoringId },
+    skip: skipRuleTree,
+  });
 
   const {
     data: rules,
     loading: rulesLoading,
     error: rulesError,
-    fetch: fetchTailoringRules,
-  } = useTailoringRules(policyId, tailoringId, {
+    fetchBatched: fetchBatchedTailoringRules,
+  } = useBatchedTailoringRules({
     params: ruleParams,
-    skip: shouldSkip('rules', tableState),
+    skip: skipRules,
+    batched: tableView === 'tree',
   });
 
-  const fetchRules = useCallback(
-    async (offset, limit) => {
-      const fetchParams = [
-        policyId,
-        tailoringId,
-        ...ruleParams.map((value, idx) => {
-          if (idx === 1) {
-            return limit;
-          }
-          if (idx === 2) {
-            return offset;
-          }
-          return value;
-        }),
-      ];
-
-      return await fetchTailoringRules(fetchParams, false);
-    },
-    [fetchTailoringRules, policyId, tailoringId, ruleParams]
-  );
-
-  const loading = securityGuideDataLoading || rulesLoading;
-  const error = !!securityGuideDataError || !!rulesError;
-
+  const loading =
+    tableView === 'tree' ? rulesLoading || ruleTreeLoading : rulesLoading;
+  const error = tableView === 'tree' ? rulesError : rulesError || ruleTreeError;
+  const data = {
+    ...(!skipRuleTree ? { ruleTree } : {}),
+    ...(!skipRules ? { rules } : {}),
+  };
   return {
     error,
     loading,
-    data: !loading ? { ruleTree, rules, ruleGroups, valueDefinitions } : {},
-    fetchRules,
+    data,
+    fetchBatchedTailoringRules,
   };
 };
 

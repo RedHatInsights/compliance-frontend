@@ -13,8 +13,8 @@ const textFilterSerialiser = (filterConfigItem, value) =>
 
 const checkboxFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} ^ (${values
-    .map((value) => `"${value}"`)
-    .join(', ')})`;
+    .map((value) => `${value}`)
+    .join(' ')})`;
 
 const raidoFilterSerialiser = (filterConfigItem, values) =>
   `${filterConfigItem.filterAttribute} = "${values[0]}"`;
@@ -91,4 +91,4 @@ export const filtersSerialiser = (state, filters) => {
  *
  */
 export const sortSerialiser = ({ index, direction } = {}, columns) =>
-  columns[index - 1]?.sortable && `${columns[index - 1].sortable}:${direction}`;
+  columns[index]?.sortable && `${columns[index].sortable}:${direction}`; // TODO: columns and index are not matching if the first column serves for expandable button

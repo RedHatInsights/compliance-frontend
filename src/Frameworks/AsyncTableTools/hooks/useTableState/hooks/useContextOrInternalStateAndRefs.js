@@ -2,14 +2,15 @@ import { useEffect, useContext } from 'react';
 import { TableContext } from '../constants';
 
 const useContextOrInternalStateAndRefs = () => {
+  const context = useContext(TableContext);
   const {
     state: contextState,
     observers: contextObservers,
     serialisers: contextSerialisers,
-  } = useContext(TableContext);
+  } = context || {};
 
   useEffect(() => {
-    if (!contextState) {
+    if (!context) {
       console.warn(
         '%cNo context provided for useTableState.\n' +
           'Using internal state and refs.\n' +
@@ -17,7 +18,7 @@ const useContextOrInternalStateAndRefs = () => {
         'background: red; color: white; font-weight: bold;'
       );
     }
-  }, [contextState]);
+  }, [context]);
 
   return {
     state: contextState,

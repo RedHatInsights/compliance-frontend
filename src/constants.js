@@ -17,11 +17,6 @@ export const API_HEADERS = {
   Accept: 'application/json',
 };
 
-// Add a localStorage entry with the key "insights:compliance:asynctables" and value "true" to enable async tables
-export const ENABLE_ASYNC_TABLE_HOOKS = localStorage
-  ? localStorage.getItem('insights:compliance:asynctables') === 'true'
-  : false;
-
 export const supportedConfigsLink =
   'https://access.redhat.com/articles/6644131';
 
@@ -85,7 +80,7 @@ export const defaultSystemsFilterConfiguration = (
   {
     type: conditionalFilterType.text,
     label: 'Name',
-    filterString: (value) => `${filterKey} ~ ${value}`,
+    filterString: (value) => `${filterKey} ~ "${value}"`,
   },
 ];
 
@@ -153,7 +148,7 @@ const emptyFilterDropDownItem = {
 
 export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   const filterString = (value) => [
-    Object.keys(value)
+    `(${Object.keys(value)
       .flatMap((majorVersion) =>
         Object.keys(value[majorVersion]).map(
           (minorVersion) =>
@@ -162,7 +157,7 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
         )
       )
       .filter((v) => !!v)
-      .join(' OR '),
+      .join(' OR ')})`,
   ];
   const osVersions = sortBy(Object.keys(osMajorVersions).map(Number)).reverse();
 
@@ -212,7 +207,45 @@ export const compliantSystemFilterConfiguration = (
         value: `${filterKeys.compliant} = false AND ${filterKeys.supported} = true`,
       },
       { label: 'Not supported', value: `${filterKeys.supported} = false` },
-      { label: 'Never reported', value: `${filterKeys.neverReported} = false` },
+      {
+        label: 'Never reported',
+        value: `${filterKeys.neverReported} = false`,
+      },
+    ],
+  },
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Compliance score',
+    filterString: (value) => {
+      const scoreRange = value.split('-');
+      return `(${filterKeys.complianceScore} >= ${scoreRange[0]} and ${filterKeys.complianceScore} < ${scoreRange[1]})`;
+    },
+    items: [
+      { label: '90 - 100%', value: '90-101' },
+      { label: '70 - 89%', value: '70-90' },
+      { label: '50 - 69%', value: '50-70' },
+      { label: 'Less than 50%', value: '0-50' },
+    ],
+  },
+];
+
+export const compliantSystemFilterRestConfiguration = (
+  filterKeys = COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST
+) => [
+  {
+    type: conditionalFilterType.checkbox,
+    label: 'Compliance',
+    filterString: (value) => `${value}`,
+    items: [
+      {
+        label: 'Compliant',
+        value: `(${filterKeys.compliant} = true)`,
+      },
+      {
+        label: 'Non-compliant',
+        value: `(${filterKeys.compliant} = false)`,
+      },
+      { label: 'Not supported', value: `(${filterKeys.supported} = false)` },
     ],
   },
   {
@@ -242,7 +275,7 @@ export const complianceReportTableAdditionalFilter = (
   {
     type: conditionalFilterType.checkbox,
     label: 'Failed rule severity',
-    filterString: (value) => `${filterKey} ^ (${value})`,
+    filterString: (value) => `${filterKey} = ${value}`,
     items: [
       { label: HIGH_SEVERITY, value: 'high' },
       { label: MEDIUM_SEVERITY, value: 'medium' },
@@ -299,6 +332,24 @@ export const systemsDataMapper = {
   updated: 'updated',
 };
 
+export const testResultsDataMapper = {
+  display_name: 'name',
+  os_major_version: 'osMajorVersion',
+  os_minor_version: 'osMinorVersion',
+  groups: 'groups',
+  id: 'id',
+  insights_id: 'insightsId',
+  tags: 'tags',
+  updated: 'updated',
+  score: ['complianceScore', 'score'],
+  failed_rule_count: 'rulesFailed',
+  security_guide_version: 'version',
+  supported: 'supported',
+  end_time: 'lastScanned',
+  system_id: 'system_id',
+  compliant: 'compliant',
+};
+
 export const policiesDataMapper = {
   title: 'name',
   id: 'id',
@@ -307,7 +358,7 @@ export const policiesDataMapper = {
 export const reportDataMap = {
   id: 'id',
   title: 'policy.name;name',
-  business_objective: 'businessObjective',
+  business_objective: ['businessObjective', 'businessObjective.title'],
   compliance_threshold: 'complianceThreshold',
   os_major_version: 'osMajorVersion',
   profile_title: 'policyType', // REST api does not return policyType. Thus, re-using profile_title

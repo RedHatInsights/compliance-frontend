@@ -22,11 +22,14 @@ const useViewState = (options) => {
   const itemObserver = useCallback(
     (_currentTableViewState, _previousItems, items) => {
       let newView;
-      if (typeof items === 'undefined') {
+      if (
+        typeof items === 'undefined' &&
+        internalTableView.current !== 'tree'
+      ) {
         newView = 'loading';
-      } else if (items.length === 0 && internalTableView.current !== 'tree') {
+      } else if (items?.length === 0 && internalTableView.current !== 'tree') {
         newView = 'empty';
-      } else if (items.length > 0) {
+      } else if (items?.length > 0) {
         newView = internalTableView.current;
       }
 

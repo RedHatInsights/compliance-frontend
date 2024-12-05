@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-import { EditPolicy } from './EditPolicy.js';
+import EditPolicy from './EditPolicy';
 jest.mock('Mutations');
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),

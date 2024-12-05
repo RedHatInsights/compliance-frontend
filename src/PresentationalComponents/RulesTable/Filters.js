@@ -62,6 +62,11 @@ const BASE_FILTER_CONFIGURATION = [
   },
 ];
 
+const RULE_STATE_REST_SERIALISER = {
+  passed: 'pass',
+  failed: 'fail',
+};
+
 const RULE_STATE_FILTER_CONFIG = {
   type: conditionalFilterType.checkbox,
   label: 'Rule state',
@@ -69,6 +74,10 @@ const RULE_STATE_FILTER_CONFIG = {
     { label: 'Passed rules', value: 'passed' },
     { label: 'Failed rules', value: 'failed' },
   ],
+  filterSerialiser: (_filterConfig, values) =>
+    `(${values
+      .map((value) => `result = ${RULE_STATE_REST_SERIALISER[value]}`)
+      .join(' OR ')})`,
   filter: (rules, values) =>
     anyFilterApply(
       rules,
@@ -96,6 +105,10 @@ export const ANSIBLE_SUPPORT_FILTER_CONFIG = {
     { label: 'Ansible remediation support', value: 'true' },
     { label: 'No Ansible remediation support', value: 'false' },
   ],
+  filterSerialiser: (_filterConfig, values) =>
+    `(${values
+      .map((value) => `remediation_available = ${value}`)
+      .join(' OR ')})`,
   filter: (rules, values) =>
     anyFilterApply(
       rules,

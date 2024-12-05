@@ -82,8 +82,8 @@ const RulesTable = ({
         ...(hidePassed && {
           activeFilters: (currentActiveFilters) => ({
             ...currentActiveFilters,
-            rulestate: currentActiveFilters.rulestate
-              ? currentActiveFilters.rulestate
+            ['rule-state']: currentActiveFilters['rule-state']
+              ? currentActiveFilters['rule-state']
               : ['failed'],
             ...activeFilters,
           }),
