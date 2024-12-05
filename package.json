@@ -61,7 +61,6 @@
     "fontAwesome": "node_modules/patternfly/node_modules/font-awesome-sass/assets/stylesheets"
   },
   "jest": {
-    "testTimeout": 10000,
     "testEnvironment": "jsdom",
     "collectCoverage": true,
     "coverageDirectory": "./coverage-jest/",
