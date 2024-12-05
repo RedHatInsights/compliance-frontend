@@ -1,7 +1,7 @@
 export const eventKey = ({ id, os_minor_version }) =>
   `tailoring-${id}-${os_minor_version}`;
 
-export const buildTreeTable = (ruleTree, ruleGroups) => {
+export const buildTreeTable = (ruleTree, ruleGroups, selected) => {
   const growTree = (ruleTree) =>
     ruleTree
       .map((branch) => {
@@ -22,6 +22,7 @@ export const buildTreeTable = (ruleTree, ruleGroups) => {
         } else {
           return {
             itemId: branch.id,
+            ...(selected ? { isChecked: selected.includes(branch.id) } : {}),
             ...branch,
           };
         }

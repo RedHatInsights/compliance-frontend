@@ -10,7 +10,7 @@ describe('buildTreeTable', () => {
   });
 });
 
-describe.skip('skips', () => {
+describe('skips', () => {
   const policy = {};
   const tailoring = {};
   const securityGuide = {};
@@ -50,7 +50,7 @@ describe.skip('skips', () => {
     });
   });
 
-  it('should return an object with all skip options true if a tableState is present, but no policy, tailoring or SSG', () => {
+  it('should return an object with all skip options true, except SSG, if a tableState is present, but no policy, tailoring or SSG', () => {
     expect(
       skips({
         policy: undefined,
@@ -61,9 +61,9 @@ describe.skip('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: true,
-        ruleTree: true,
-        rules: true,
+        ruleGroups: false,
+        ruleTree: false,
+        rules: false,
         valueDefinitions: true,
         profile: {
           rules: true,
@@ -90,12 +90,12 @@ describe.skip('skips', () => {
     ).toEqual({
       securityGuide: {
         ruleGroups: false,
-        ruleTree: true,
-        rules: true,
+        ruleTree: false,
+        rules: false,
         valueDefinitions: true,
         profile: {
-          rules: true,
-          ruleTree: true,
+          rules: false,
+          ruleTree: false,
         },
       },
       tailoring: {
@@ -119,8 +119,8 @@ describe.skip('skips', () => {
     ).toEqual({
       securityGuide: {
         ruleGroups: false,
-        ruleTree: true,
-        rules: true,
+        ruleTree: false,
+        rules: false,
         valueDefinitions: true,
         profile: {
           rules: false,
@@ -128,8 +128,8 @@ describe.skip('skips', () => {
         },
       },
       tailoring: {
-        rules: true,
-        ruleTree: true,
+        rules: false,
+        ruleTree: false,
       },
     });
   });
@@ -156,13 +156,13 @@ describe.skip('skips', () => {
         rules: false,
         valueDefinitions: true,
         profile: {
-          rules: true,
-          ruleTree: true,
+          rules: false,
+          ruleTree: false,
         },
       },
       tailoring: {
-        rules: true,
-        ruleTree: true,
+        rules: false,
+        ruleTree: false,
       },
     });
   });
@@ -185,8 +185,8 @@ describe.skip('skips', () => {
     ).toEqual({
       securityGuide: {
         ruleGroups: false,
-        ruleTree: true,
-        rules: true,
+        ruleTree: false,
+        rules: false,
         valueDefinitions: false,
         profile: {
           rules: true,
@@ -201,9 +201,7 @@ describe.skip('skips', () => {
   });
 
   // Same as above, but with NO open items
-  // TODO When rules are skipped it'll result in the items being undefined in case the treeview is active.
-  // When the tree view is active no rules should be fetched until a group is expanded
-  it.skip('should skip tailoring rules if there are no open items', () => {
+  it('should skip tailoring rules if there are no open items', () => {
     expect(
       skips({
         policy,
@@ -220,7 +218,7 @@ describe.skip('skips', () => {
     ).toEqual({
       securityGuide: {
         ruleGroups: false,
-        ruleTree: true,
+        ruleTree: false,
         rules: true,
         valueDefinitions: true,
         profile: {

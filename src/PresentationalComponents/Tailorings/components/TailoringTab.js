@@ -82,7 +82,8 @@ const TailoringTab = ({
     ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
       ? buildTreeTable(
           tailoringRuleTree || securityGuideRuleTree,
-          ruleGroups?.data
+          ruleGroups?.data,
+          preselected
         )
       : undefined;
 
@@ -151,11 +152,7 @@ const TailoringTab = ({
         }}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
-        onSelect={
-          onSelect && tableState?.tableState?.tableView !== 'tree'
-            ? onSelectRule
-            : undefined
-        }
+        onSelect={onSelect ? onSelectRule : undefined}
         selectedRules={preselected}
         options={{
           exporter,
