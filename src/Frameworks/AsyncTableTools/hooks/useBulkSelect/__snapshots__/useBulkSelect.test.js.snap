@@ -8,7 +8,12 @@ exports[`useBulkSelect returns a bulk select configuration 1`] = `
       "onSelect": undefined,
     },
     "tableView": {
+      "clear": [Function],
+      "deselect": [Function],
       "markRowSelected": [Function],
+      "select": [Function],
+      "selectOne": [Function],
+      "set": [Function],
     },
     "toolbarProps": {
       "bulkSelect": {
