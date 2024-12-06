@@ -43,16 +43,21 @@ const InlineEdit = ({
     }
   };
 
-  const handleCloseEdit = () => {
-    setValue(valueProp || defaultValue);
+  const onCloseEdit = async () => {
+    setSaving(true);
+    const value = valueProp || defaultValue;
+    setValue(value);
+    await onSaveProp?.(value);
     // setDirty(false);
     setOpen(false);
+    setSaving(false);
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     setSaving(true);
     // setDirty(false);
-    onSaveProp?.(value);
+    await onSaveProp?.(value);
+    setSaving(false);
   };
 
   useEffect(() => {
@@ -123,7 +128,7 @@ const InlineEdit = ({
                   type="button"
                   aria-label="Cancel edits"
                   ouiaId="CancelEdits"
-                  onClick={handleCloseEdit}
+                  onClick={onCloseEdit}
                   style={{ 'margin-left': '5px' }}
                 >
                   <TimesIcon />
