@@ -7,14 +7,18 @@ import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTa
 import rowsBuilder from './rowsBuilder';
 import treeChopper from './treeChopper';
 
-const treeColumns = (columns, onCollapse) => [
+const treeColumns = (columns, onCollapse, onSelect) => [
   {
     ...columns[0],
     cellTransforms: [
       ...(columns[0].cellTransforms || []),
       treeRow(
-        (...args) => onCollapse?.(...args)
-        // TODO add Selection feature
+        (...args) => onCollapse?.(...args),
+        (...args) => {
+          console.log('on', onSelect);
+          console.log('YELLO', ...args);
+          onSelect?.(...args);
+        }
       ),
     ],
   },
@@ -70,19 +74,25 @@ const views = {
   tree: {
     tableProps: (items, columns, options) => {
       const rows = treeChopper(items, columns, options);
-      const cells = treeColumns(columns, options.expandable.onCollapse);
-
+      const cells = treeColumns(
+        columns,
+        options.expandable.onCollapse,
+        options.bulkSelect?.onSelect
+      );
+      console.log('ROWS', rows);
       return rows
         ? {
             cells,
             rows,
             isTreeTable: true,
+            onSelect: undefined,
           }
         : {};
     },
     icon: TreeviewIcon,
     toolbarProps: () => ({
       variant: 'compact',
+      bulkSelect: undefined,
     }),
     checkOptions: ({ tableTree }) => !!tableTree,
   },

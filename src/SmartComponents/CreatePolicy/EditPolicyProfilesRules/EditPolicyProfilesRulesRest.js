@@ -160,7 +160,6 @@ export const EditPolicyProfilesRulesRest = ({
             preselected={preselected}
             enableSecurityGuideRulesToggle
             rulesPageLink={true}
-            defaultTableView="rows"
           />
         </StateViewPart>
       </StateViewWithError>
