@@ -19,5 +19,5 @@ export const columnOffset = (options = {}) => {
   const init =
     (typeof options.onSelect === 'function') +
     (typeof options.detailsComponent !== 'undefined');
-  return typeof options.tableTree !== 'undefined' ? init - 1 : init;
+  return options.tableView === 'tree' ? init - 1 : init;
 };

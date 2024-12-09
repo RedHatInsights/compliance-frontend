@@ -65,10 +65,6 @@ const useAsyncTableTools = (items, columns, options = {}) => {
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig(options);
 
-  const { tableProps: sortableTableProps } = useTableSort(
-    managedColumns,
-    options
-  );
   const {
     tableProps: expandableTableProps,
     tableView: expandableTableViewOptions,
@@ -91,6 +87,11 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     ...options,
     expandable: expandableTableViewOptions,
     bulkSelect: bulkSelectTableViewOptions,
+  });
+
+  const { tableProps: sortableTableProps } = useTableSort(managedColumns, {
+    ...options,
+    onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
   });
 
   const exportConfig = withExport({
