@@ -22,7 +22,9 @@ const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
               osMajorVersion:
                 tailoring?.os_major_version || securityGuide?.osMajorVersion,
               osMinorVersion:
-                tailoring?.os_minor_version || securityGuide?.osMinorVersion,
+                tailoring?.os_minor_version != null
+                  ? tailoring.os_minor_version
+                  : securityGuide?.osMinorVersion,
             }}
           />
         </span>
