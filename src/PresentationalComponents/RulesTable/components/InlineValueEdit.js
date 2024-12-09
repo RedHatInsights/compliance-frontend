@@ -7,8 +7,12 @@ const InlineValueEdit = ({ value, valueDefinition, ...props }) => (
   <p>
     {valueDefinition?.title}:{' '}
     <InlineEdit
-      isDisabled={disableEdit(value || valueDefinition?.defaultValue)}
-      defaultValue={valueDefinition?.defaultValue}
+      isDisabled={disableEdit(
+        value || valueDefinition?.defaultValue || valueDefinition?.default_value
+      )}
+      defaultValue={
+        valueDefinition?.defaultValue || valueDefinition?.default_value
+      }
       validate={validatorFor(valueDefinition)}
       {...{ ...props, value }}
     />
