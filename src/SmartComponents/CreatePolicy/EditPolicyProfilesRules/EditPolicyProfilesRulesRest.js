@@ -156,6 +156,7 @@ export const EditPolicyProfilesRulesRest = ({
           <Tailorings
             profiles={profilesAndRuleIds}
             columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+            ouiaId="RHELVersions"
             onSelect={onSelect}
             preselected={preselected}
             enableSecurityGuideRulesToggle
