@@ -6,6 +6,7 @@ import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
+import { List } from 'react-content-loader';
 
 const RulesTable = ({
   system,
@@ -54,54 +55,63 @@ const RulesTable = ({
     />
   );
 
-  const DetailsRow = useMemo(
-    () =>
-      function Row(props) {
-        // eslint-disable-next-line react/prop-types
-        const rule = rules?.find(({ id }) => props?.item?.itemId === id);
-        const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
-          valueDefinitions?.find(({ id }) => id === checkId)
-        );
-        const ruleRuleValues = ruleValues
-          ? Object.fromEntries(
-              Object.entries(ruleValues).filter(([id]) =>
-                rule?.value_checks.includes(id)
-              )
-            )
-          : undefined;
-        const item = {
-          // eslint-disable-next-line react/prop-types
-          ...props.item,
-          ...rule,
-          valueDefinitions: ruleValueDefinitions,
-          profile: { id: policyId, name: policyName },
-          ruleValues: ruleRuleValues,
-        };
+  const DetailsRow = useMemo(() => {
+    const Row = (props) => {
+      // eslint-disable-next-line react/prop-types
+      const { itemId, valueDefinitions } = props?.item || {};
 
-        return (
-          <RuleDetailsRow
-            onValueChange={onValueOverrideSave}
-            onRuleValueReset={onRuleValueReset}
-            item={item}
-          />
-        );
-      },
-    /* eslint-enable */
-    [
-      policyId,
-      policyName,
-      onRuleValueReset,
-      rules,
-      valueDefinitions,
-      ruleValues,
-      onValueOverrideSave,
-    ]
+      const rule = rules?.find(({ id }) => itemId === id);
+      const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
+        valueDefinitions?.data?.find(({ id }) => id === checkId)
+      );
+      const ruleRuleValues = ruleValues
+        ? Object.fromEntries(
+            Object.entries(ruleValues).filter(([id]) =>
+              rule?.value_checks.includes(id)
+            )
+          )
+        : undefined;
+      const item = {
+        // eslint-disable-next-line react/prop-types
+        ...props.item,
+        ...rule,
+        itemId,
+        valueDefinitions: ruleValueDefinitions,
+        profile: { id: policyId, name: policyName },
+        ruleValues: ruleRuleValues,
+      };
+
+      return valueDefinitions === undefined ||
+        valueDefinitions.loading === true ? (
+        <List />
+      ) : (
+        <RuleDetailsRow
+          onValueChange={onValueOverrideSave}
+          onRuleValueReset={onRuleValueReset}
+          item={item}
+        />
+      );
+    };
+
+    return Row;
+  }, [
+    policyId,
+    policyName,
+    onRuleValueReset,
+    rules,
+    ruleValues,
+    onValueOverrideSave,
+  ]);
+
+  const itemsWithValueDefinitions = useMemo(
+    () => rules?.map((rule) => ({ ...rule, rowProps: { valueDefinitions } })),
+    [rules, valueDefinitions]
   );
 
   return (
     <ComplianceTable
       aria-label="Rules Table"
-      items={rules}
+      items={itemsWithValueDefinitions}
       columns={columns}
       isStickyHeader
       filters={{
@@ -166,7 +176,10 @@ RulesTable.propTypes = {
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
   DedicatedAction: propTypes.node,
-  valueDefinitions: propTypes.object.isRequired,
+  valueDefinitions: propTypes.shape({
+    data: propTypes.any,
+    loading: propTypes.bool.isRequired,
+  }),
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
