@@ -175,6 +175,7 @@ const ReportDetailsBase = ({
                   <Tab
                     key={'reporting'}
                     eventKey={'reporting'}
+                    ouiaId="Reporting"
                     title={
                       <TabTitleWithData
                         text="Reporting"
@@ -222,6 +223,7 @@ const ReportDetailsBase = ({
                   <Tab
                     key={'never-reported'}
                     eventKey={'never-reported'}
+                    ouiaId="Never reported"
                     title={
                       <TabTitleWithData
                         text="Never reported"
