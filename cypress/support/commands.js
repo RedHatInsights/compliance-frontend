@@ -84,3 +84,21 @@ Cypress.Commands.add(
     );
   }
 );
+
+Cypress.Commands.add('checkAPISorting', (endpoint, sortKey, direction) => {
+  cy.wait(endpoint)
+    .its('request.url')
+    .should(
+      'include',
+      `sort_by=${encodeURIComponent(`${sortKey}:${direction}`)}`
+    );
+});
+
+Cypress.Commands.add('checkAPIFiltering', (endpoint, filterKey, value) => {
+  cy.wait(endpoint)
+    .its('request.url')
+    .should(
+      'include',
+      `filter=${encodeURIComponent(`${filterKey} ~ ${value}`)}`
+    );
+});
