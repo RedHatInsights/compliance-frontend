@@ -5,7 +5,7 @@ import NoReportsState from './NoReportsState';
 
 describe('NoReportsState', () => {
   it('with a system having policies', () => {
-    render(<NoReportsState system={{ policies: [{}] }} />);
+    render(<NoReportsState policiesCount={1} />);
 
     expect(
       screen.getByText(
@@ -15,7 +15,7 @@ describe('NoReportsState', () => {
   });
 
   it('with a system having multiple policies', () => {
-    render(<NoReportsState system={{ policies: [{}, {}] }} />);
+    render(<NoReportsState policiesCount={2} />);
 
     expect(
       screen.getByText(
