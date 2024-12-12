@@ -19,7 +19,9 @@ const SystemPoliciesAndRules = ({ data: { system }, loading, hidePassed }) => {
   const [selectedPolicy, setSelectedPolicy] = useState(
     system.testResultProfiles[0]?.id
   );
-  const policies = system?.testResultProfiles;
+  const testResultProfiles = system?.testResultProfiles;
+  const policiesCount = system?.policies.length;
+  const insightsId = system?.insightsId;
 
   const sorter = natsort({ desc: false, insensitive: true });
   const sortedTestResultProfiles = system?.testResultProfiles.sort(
@@ -36,12 +38,12 @@ const SystemPoliciesAndRules = ({ data: { system }, loading, hidePassed }) => {
       ) : apiV2Enabled === true ? (
         <SystemPolicyCardsRest />
       ) : (
-        <SystemPolicyCards policies={policies} loading={loading} />
+        <SystemPolicyCards policies={testResultProfiles} loading={loading} />
       )}
       <br />
-      {system?.testResultProfiles?.length ? (
+      {testResultProfiles?.length ? (
         <>
-          {system.testResultProfiles.length > 1 && (
+          {testResultProfiles.length > 1 && (
             <Tabs
               activeKey={selectedPolicy}
               style={{
@@ -91,7 +93,7 @@ const SystemPoliciesAndRules = ({ data: { system }, loading, hidePassed }) => {
           />
         </>
       ) : (
-        <EmptyState system={system} />
+        <EmptyState insightsId={insightsId} policiesCount={policiesCount} />
       )}
     </>
   );
@@ -101,11 +103,14 @@ SystemPoliciesAndRules.propTypes = {
   data: propTypes.shape({
     system: propTypes.shape({
       hasPolicy: propTypes.bool,
-      policies: propTypes.shape({
-        id: propTypes.string,
-      }),
+      policies: propTypes.arrayOf(
+        propTypes.shape({
+          id: propTypes.string,
+        })
+      ),
       profiles: propTypes.array,
       testResultProfiles: propTypes.array,
+      insightsId: propTypes.string,
     }),
   }),
   loading: propTypes.bool,

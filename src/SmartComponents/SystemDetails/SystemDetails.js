@@ -52,6 +52,8 @@ const SystemDetailBase = ({
   loading,
   systemName,
   inventoryId,
+  policiesCount,
+  insightsId,
 }) => (
   <StateViewWithError stateValues={{ error, data, loading }}>
     <StateViewPart stateKey="data">
@@ -60,7 +62,12 @@ const SystemDetailBase = ({
         <InventoryDetails inventoryId={inventoryId} />
       </PageHeader>
       <PageSection>
-        <Details hidePassed inventoryId={inventoryId} />
+        <Details
+          hidePassed
+          inventoryId={inventoryId}
+          policiesCount={policiesCount}
+          insightsId={insightsId}
+        />
       </PageSection>
     </StateViewPart>
     <StateViewPart stateKey="loading">
@@ -77,6 +84,8 @@ SystemDetailBase.propTypes = {
   loading: propTypes.bool,
   systemName: propTypes.string,
   inventoryId: propTypes.string,
+  policiesCount: propTypes.number,
+  insightsId: propTypes.string,
 };
 
 const SystemDetailsGraphQL = ({ route }) => {
@@ -105,11 +114,23 @@ const SystemDetailsRest = ({ route }) => {
     loading,
   } = useSystem({ params: [inventoryId] });
   const systemName = data?.display_name || inventoryId;
+  const policiesCount = data?.policies.length;
+  const insightsId = data?.insights_id;
 
   useTitleEntity(route, systemName);
 
   return (
-    <SystemDetailBase {...{ data, error, loading, systemName, inventoryId }} />
+    <SystemDetailBase
+      {...{
+        data,
+        error,
+        loading,
+        systemName,
+        inventoryId,
+        policiesCount,
+        insightsId,
+      }}
+    />
   );
 };
 

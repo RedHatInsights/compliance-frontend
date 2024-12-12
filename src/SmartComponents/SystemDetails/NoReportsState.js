@@ -9,7 +9,7 @@ import {
   EmptyStateHeader,
 } from '@patternfly/react-core';
 
-const NoReportsState = ({ system }) => (
+const NoReportsState = ({ policiesCount }) => (
   <Bullseye>
     <EmptyState
       style={{
@@ -31,9 +31,9 @@ const NoReportsState = ({ system }) => (
         headingLevel="h1"
       />
       <EmptyStateBody>
-        This system is part of {system?.policies?.length}
-        {system?.policies?.length > 1 ? ' policies' : ' policy'}, but has not
-        returned any results.
+        This system is part of {policiesCount}
+        {policiesCount > 1 ? ' policies' : ' policy'}, but has not returned any
+        results.
       </EmptyStateBody>
       <EmptyStateBody>
         Reports are returned when the system checks into Insights. By default,
@@ -44,9 +44,7 @@ const NoReportsState = ({ system }) => (
 );
 
 NoReportsState.propTypes = {
-  system: propTypes.shape({
-    policies: propTypes.array,
-  }),
+  policiesCount: propTypes.number,
 };
 
 export default NoReportsState;
