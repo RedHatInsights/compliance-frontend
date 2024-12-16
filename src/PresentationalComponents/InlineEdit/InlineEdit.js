@@ -57,6 +57,7 @@ const InlineEdit = ({
     setSaving(true);
     // setDirty(false);
     await onSaveProp?.(value);
+    setOpen(false);
     setSaving(false);
   };
 
