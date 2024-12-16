@@ -78,7 +78,7 @@ export const useUpdatePolicy = () => {
 
       dispatchProgress();
 
-      tailorings.forEach(async (tailoring) => {
+      for (const tailoring of tailorings) {
         const rulesToAssign = selectedRuleRefIds.find(
           ({ osMinorVersion }) =>
             Number(osMinorVersion) === tailoring.os_minor_version
@@ -97,9 +97,9 @@ export const useUpdatePolicy = () => {
         );
 
         dispatchProgress();
-      });
+      }
 
-      tailorings.forEach(async (tailoring) => {
+      for (const tailoring of tailorings) {
         const tailoringValueOverrides =
           valueOverrides[tailoring.os_minor_version];
 
@@ -107,7 +107,7 @@ export const useUpdatePolicy = () => {
           tailoringValueOverrides === undefined ||
           Object.keys(tailoringValueOverrides).length === 0
         ) {
-          return;
+          continue;
         }
 
         await updateTailoring(
@@ -123,7 +123,7 @@ export const useUpdatePolicy = () => {
         );
 
         dispatchProgress();
-      });
+      }
 
       return { id: newPolicyId };
     },

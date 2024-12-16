@@ -56,7 +56,7 @@ const RulesTable = ({
   );
 
   const DetailsRow = useMemo(() => {
-    const Row = (props) => {
+    function Row(props) {
       // eslint-disable-next-line react/prop-types
       const { itemId, valueDefinitions } = props?.item || {};
 
@@ -91,7 +91,7 @@ const RulesTable = ({
           item={item}
         />
       );
-    };
+    }
 
     return Row;
   }, [
