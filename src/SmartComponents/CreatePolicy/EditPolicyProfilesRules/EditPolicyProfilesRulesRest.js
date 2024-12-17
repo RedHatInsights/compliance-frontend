@@ -27,6 +27,7 @@ export const EditPolicyProfilesRulesRest = ({
   change,
   osMajorVersion,
   osMinorVersionCounts,
+  valueOverrides = {},
 }) => {
   const preselected =
     selectedRuleRefIds &&
@@ -104,6 +105,31 @@ export const EditPolicyProfilesRulesRest = ({
     }
   }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
 
+  const onValueOverrideSave = (
+    _policy,
+    osMinorVersion,
+    valueDefinition,
+    valueOverrideValue,
+    closeInlineEdit
+  ) => {
+    let valueOverridesUpdated = structuredClone(valueOverrides);
+
+    if (valueOverrideValue === '' || valueOverrideValue === undefined) {
+      delete valueOverridesUpdated?.[osMinorVersion]?.[valueDefinition.id];
+    } else {
+      valueOverridesUpdated = {
+        ...valueOverrides,
+        [osMinorVersion]: {
+          ...valueOverrides[osMinorVersion],
+          [valueDefinition.id]: valueOverrideValue,
+        },
+      };
+    }
+
+    change('valueOverrides', valueOverridesUpdated);
+    closeInlineEdit();
+  };
+
   const noRuleSets =
     !preselectedRuleIdsError &&
     !preselectedRuleIdsLoading &&
@@ -162,6 +188,7 @@ export const EditPolicyProfilesRulesRest = ({
             enableSecurityGuideRulesToggle
             rulesPageLink={true}
             defaultTableView="rows"
+            onValueOverrideSave={onValueOverrideSave}
           />
         </StateViewPart>
       </StateViewWithError>
@@ -181,6 +208,7 @@ EditPolicyProfilesRulesRest.propTypes = {
   ),
   selectedRuleRefIds: propTypes.array,
   ruleValues: propTypes.array,
+  valueOverrides: propTypes.object,
 };
 
 export default EditPolicyProfilesRulesRest;

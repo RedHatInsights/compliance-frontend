@@ -141,7 +141,12 @@ const TailoringTab = ({
         setRuleValues={setRuleValues}
         // TODO Doublecheck if we should set default profile value_override values when creating a policy
         ruleValues={tailoring?.value_overrides || {}}
-        valueDefinitions={valueDefinitions?.data}
+        valueDefinitions={{
+          data: valueDefinitions?.data,
+          loading:
+            shouldSkip.securityGuide.valueDefinitions === false &&
+            valueDefinitions === undefined,
+        }}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={
