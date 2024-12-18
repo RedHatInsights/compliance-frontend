@@ -89,7 +89,7 @@ const TailoringTab = ({
   const exporter = async () =>
     (tailoring && policy
       ? await fetchBatchedTailoringRules()
-      : await fetchBatchedRules()
+      : [await fetchBatchedRules()]
     ).flatMap((result) => result.data);
 
   const itemIdsInTable = async () =>
