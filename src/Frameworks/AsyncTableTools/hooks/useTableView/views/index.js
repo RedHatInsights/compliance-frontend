@@ -1,25 +1,10 @@
 import React from 'react';
 import { ListIcon, TreeviewIcon } from '@patternfly/react-icons';
 import { Spinner } from '@patternfly/react-core';
-import { treeRow } from '@patternfly/react-table';
 import NoResultsTable from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
-
+import { treeColumns, getOnTreeSelect } from '../helpers';
 import rowsBuilder from './rowsBuilder';
 import treeChopper from './treeChopper';
-
-const treeColumns = (columns, onCollapse) => [
-  {
-    ...columns[0],
-    cellTransforms: [
-      ...(columns[0].cellTransforms || []),
-      treeRow(
-        (...args) => onCollapse?.(...args)
-        // TODO add Selection feature
-      ),
-    ],
-  },
-  ...columns.slice(1),
-];
 
 const views = {
   loading: {
@@ -70,19 +55,26 @@ const views = {
   tree: {
     tableProps: (items, columns, options) => {
       const rows = treeChopper(items, columns, options);
-      const cells = treeColumns(columns, options.expandable.onCollapse);
+      const onSelect = getOnTreeSelect(options);
+      const cells = treeColumns(
+        columns,
+        options.expandable?.onCollapse,
+        options.bulkSelect && onSelect
+      );
 
       return rows
         ? {
             cells,
             rows,
             isTreeTable: true,
+            onSelect: undefined,
           }
         : {};
     },
     icon: TreeviewIcon,
     toolbarProps: () => ({
       variant: 'compact',
+      bulkSelect: undefined,
     }),
     checkOptions: ({ tableTree }) => !!tableTree,
   },
