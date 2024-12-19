@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
@@ -8,28 +8,11 @@ import {
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
-import { StateViewWithError, StateViewPart } from 'PresentationalComponents';
-import {
-  TabbedRules,
-  profilesWithRulesToSelection,
-  tabsDataToOsMinorMap,
-  extendProfilesByOsMinor,
-} from 'PresentationalComponents/TabbedRules';
-import { sortingByProp } from 'Utilities/helpers';
+import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import { BENCHMARKS_QUERY } from './constants';
-
-const getBenchmarkBySupportedOsMinor = (benchmarks, osMinorVersion) =>
-  benchmarks.find((benchmark) =>
-    benchmark.latestSupportedOsMinorVersions?.includes(osMinorVersion)
-  );
-
-const getBenchmarkProfile = (benchmark, profileRefId) =>
-  benchmark.profiles.find(
-    (benchmarkProfile) => benchmarkProfile.refId === profileRefId
-  );
+import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
+import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>
@@ -49,122 +32,94 @@ const EditPolicyRulesTabEmptyState = () => (
   </EmptyState>
 );
 
-export const toTabsData = (policy, osMinorVersionCounts, benchmarks) =>
-  Object.values(osMinorVersionCounts)
-    .sort(sortingByProp('osMinorVersion', 'desc'))
-    .map(({ osMinorVersion, count: systemCount }) => {
-      osMinorVersion = `${osMinorVersion}`;
-      let profile = policy.policy.profiles.find(
-        (profile) => profile.osMinorVersion === osMinorVersion
-      );
-      let osMajorVersion = policy.osMajorVersion;
-
-      if (!profile && benchmarks) {
-        const benchmark = getBenchmarkBySupportedOsMinor(
-          benchmarks,
-          osMinorVersion
-        );
-        if (benchmark) {
-          const benchmarkProfile = getBenchmarkProfile(benchmark, policy.refId);
-          if (benchmarkProfile) {
-            profile = policy.policy.profiles.find(
-              (profile) =>
-                profile.parentProfileId === benchmarkProfile.id &&
-                profile.osMinorVersion === osMinorVersion
-            );
-
-            profile = {
-              ...benchmarkProfile,
-              benchmark,
-              osMajorVersion,
-              ...profile,
-            };
-          }
-        }
-      }
-
-      return {
-        profile,
-        systemCount,
-        newOsMinorVersion: osMinorVersion,
-      };
-    })
-    .filter(({ profile, newOsMinorVersion }) => !!profile && newOsMinorVersion);
+const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
 
 export const EditPolicyRulesTab = ({
   policy,
-  selectedRuleRefIds,
-  setSelectedRuleRefIds,
-  osMinorVersionCounts,
+  assignedRuleIds,
   setRuleValues,
-  ruleValues: ruleValuesProp,
+  setUpdatedPolicy,
+  selectedOsMinorVersions,
 }) => {
-  const osMajorVersion = policy?.osMajorVersion;
-  const osMinorVersions = Object.keys(osMinorVersionCounts).sort();
-  const benchmarkSearch =
-    `os_major_version = ${osMajorVersion} ` +
-    `and latest_supported_os_minor_version ^ "${osMinorVersions.join(',')}"`;
+  const [selectedRules, setSelectedRules] = useState(assignedRuleIds);
+  const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
+  const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
+    (version) => !tailoringOsMinorVersions.includes(version)
+  );
+
+  const shouldSkipProfiles =
+    nonTailoringOsMinorVersions.length === 0 ||
+    difference(nonTailoringOsMinorVersions, tailoringOsMinorVersions).length ===
+      0;
 
   const {
-    data: benchmarksData,
-    error,
-    loading,
-  } = useQuery(BENCHMARKS_QUERY, {
-    variables: {
-      filter: benchmarkSearch,
-    },
-    skip: osMinorVersions.length === 0,
+    profilesAndRuleIds: profilesRuleIds,
+    loading: profilesRuleIdsLoading,
+    error: profilesRuleIdsError,
+  } = useProfileRuleIds({
+    profileRefId: policy.ref_id,
+    osMajorVersion: policy.os_major_version,
+    osMinorVersions: nonTailoringOsMinorVersions,
+    skip: shouldSkipProfiles,
   });
 
-  const benchmarks = benchmarksData?.benchmarks?.nodes;
-
-  const tabsData = toTabsData(policy, osMinorVersionCounts, benchmarks);
-  const profileToOsMinorMap = tabsDataToOsMinorMap(tabsData);
-
-  const dataState = !loading && tabsData?.length > 0 ? tabsData : undefined;
-
   useEffect(() => {
-    if (policy.policy.profiles) {
-      const profiles = policy.policy.profiles;
-      const profilesWithOs = extendProfilesByOsMinor(
-        profiles,
-        profileToOsMinorMap
-      );
-      setSelectedRuleRefIds((prevSelection) => {
-        const newSelection = profilesWithRulesToSelection(
-          profilesWithOs,
-          prevSelection
-        );
-        return newSelection;
+    if (profilesRuleIds !== undefined && profilesRuleIdsLoading !== true) {
+      profilesRuleIds.forEach((entry) => {
+        if (!Object.keys(selectedRules).includes(`${entry.osMinorVersion}`)) {
+          setUpdatedPolicy((prev) => ({
+            ...prev,
+            tailoringRules: {
+              ...prev?.tailoringRules,
+              [Number(entry.osMinorVersion)]: entry.ruleIds,
+            },
+          }));
+
+          setSelectedRules((prev) => ({
+            ...prev,
+            [Number(entry.osMinorVersion)]: entry.ruleIds,
+          }));
+        }
       });
     }
-  }, [policy.policy.profiles]);
+  }, [
+    profilesRuleIds,
+    profilesRuleIdsLoading,
+    selectedRules,
+    setUpdatedPolicy,
+  ]);
 
-  const ruleValues = (policy) => {
-    const mergeValues = (policyId, values) => {
-      return {
-        ...values,
-        ...(ruleValuesProp?.[policyId] || {}),
-      };
-    };
+  const handleSelect = useCallback(
+    (policy, tailoring, newSelectedRuleIds) => {
+      setUpdatedPolicy((prev) => ({
+        ...prev,
+        tailoringRules: {
+          ...prev?.tailoringRules,
+          [tailoring.os_minor_version]: newSelectedRuleIds,
+        },
+      }));
 
-    return Object.fromEntries(
-      policy?.policy?.profiles?.map(
-        ({ id, values, benchmark: { valueDefinitions } }) => [
-          id,
-          mergeValues(id, values, valueDefinitions),
-        ]
-      ) || []
-    );
-  };
+      setSelectedRules((prev) => ({
+        ...prev,
+        [tailoring.os_minor_version]: newSelectedRuleIds,
+      }));
+    },
+    [setUpdatedPolicy]
+  );
 
+  const assignedSystemCount = policy?.total_system_count;
   return (
-    <StateViewWithError
+    <StateView
       stateValues={{
-        error,
-        data: !error && dataState,
-        loading,
-        empty: !loading && !dataState && !error,
+        data:
+          policy &&
+          selectedOsMinorVersions.length > 0 &&
+          (shouldSkipProfiles || (profilesRuleIds && !profilesRuleIdsLoading)),
+        loading:
+          assignedSystemCount === undefined ||
+          (nonTailoringOsMinorVersions.length > 0 && profilesRuleIdsLoading),
+        empty: selectedOsMinorVersions.length === 0,
+        error: profilesRuleIdsError, // TODO: add the state view for error
       }}
     >
       <StateViewPart stateKey="loading">
@@ -180,43 +135,35 @@ export const EditPolicyRulesTab = ({
             must be customized independently.
           </Text>
         </TextContent>
-        {tabsData.length > 0 && (
-          <TabbedRules
-            resetLink
-            rulesPageLink
-            selectedFilter
-            remediationsEnabled={false}
-            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-            tabsData={tabsData}
-            ruleValues={ruleValues(policy)}
-            selectedRuleRefIds={selectedRuleRefIds}
-            setSelectedRuleRefIds={setSelectedRuleRefIds}
-            setRuleValues={setRuleValues}
-            level={1}
-            ouiaId="RHELVersions"
-          />
-        )}
+        <Tailorings
+          policy={policy}
+          profiles={profilesRuleIds}
+          resetLink
+          rulesPageLink
+          selectedFilter
+          remediationsEnabled={false}
+          columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+          level={1}
+          ouiaId="RHELVersions"
+          onValueOverrideSave={setRuleValues}
+          onSelect={handleSelect}
+          preselected={selectedRules}
+          enableSecurityGuideRulesToggle
+        />
       </StateViewPart>
       <StateViewPart stateKey="empty">
         <EditPolicyRulesTabEmptyState />
       </StateViewPart>
-    </StateViewWithError>
+    </StateView>
   );
 };
 
 EditPolicyRulesTab.propTypes = {
-  setNewRuleTabs: propTypes.func,
   policy: propTypes.object,
-  osMinorVersionCounts: propTypes.shape({
-    osMinorVersion: propTypes.shape({
-      osMinorVersion: propTypes.number,
-      count: propTypes.number,
-    }),
-  }),
-  selectedRuleRefIds: propTypes.array,
-  setSelectedRuleRefIds: propTypes.func,
+  assignedRuleIds: propTypes.array,
   setRuleValues: propTypes.func,
-  ruleValues: propTypes.array,
+  setUpdatedPolicy: propTypes.func,
+  selectedOsMinorVersions: propTypes.array,
 };
 
 export default EditPolicyRulesTab;

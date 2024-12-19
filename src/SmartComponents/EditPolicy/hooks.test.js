@@ -1,17 +1,18 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useOnSave } from './hooks';
-
 import { dispatchNotification } from 'Utilities/Dispatcher';
-jest.mock('Utilities/Dispatcher');
+import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
 
+jest.mock('Utilities/Dispatcher');
 jest.mock('Utilities/hooks/useAnchor', () => ({
   __esModule: true,
   default: () => () => ({}),
 }));
+jest.mock('../../Utilities/hooks/api/useAssignSystems');
 
 describe('useOnSave', function () {
   const policy = {};
-  const updatedPolicy = {};
+  const updatedPolicy = { hosts: ['abc'] };
   const mockedNotification = jest.fn();
   const onSaveCallBack = jest.fn();
   const onErrorCallback = jest.fn();
@@ -23,6 +24,10 @@ describe('useOnSave', function () {
   });
 
   it('returns a function to call with a policy and updated policy', async () => {
+    useAssignSystems.mockReturnValue({
+      fetch: () => Promise.resolve(),
+    });
+
     const { result } = renderHook(() =>
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
@@ -47,7 +52,11 @@ describe('useOnSave', function () {
     expect(onErrorCallback).not.toHaveBeenCalled();
   });
 
-  it('returns a function to call with a policy and updated policy and can raise an error', async () => {
+  it('returns a function to call with a policy and updated policy and raises an error', async () => {
+    useAssignSystems.mockReturnValueOnce({
+      fetch: () => Promise.reject({ title: 'damn' }),
+    });
+
     const { result } = renderHook(() =>
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
