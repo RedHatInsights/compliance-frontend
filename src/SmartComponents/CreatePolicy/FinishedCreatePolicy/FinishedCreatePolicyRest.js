@@ -4,12 +4,14 @@ import useCreatePolicy from '../../../Utilities/hooks/api/useCreatePolicy';
 import useAssignRules from '../../../Utilities/hooks/api/useAssignRules';
 import useAssignSystems from '../../../Utilities/hooks/api/useAssignSystems';
 import useTailorings from '../../../Utilities/hooks/api/useTailorings';
+import useUpdateTailoring from '../../../Utilities/hooks/api/useUpdateTailoring';
 
 export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
   const { fetch: assignRules } = useAssignRules({ skip: true });
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
   const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
 
   const updatedPolicy = useCallback(
     async (
@@ -22,13 +24,15 @@ export const useUpdatePolicy = () => {
         benchmarkId,
         selectedRuleRefIds,
         hosts,
+        valueOverrides,
       },
       onProgress
     ) => {
       const minorVersions = selectedRuleRefIds.map(
         ({ osMinorVersion }) => osMinorVersion
       );
-      const expectedUpdates = 3 + minorVersions.length;
+      const expectedUpdates =
+        3 + minorVersions.length + Object.keys(valueOverrides).length;
       let progress = 0;
 
       const dispatchProgress = () => {
@@ -74,7 +78,7 @@ export const useUpdatePolicy = () => {
 
       dispatchProgress();
 
-      tailorings.forEach(async (tailoring) => {
+      for (const tailoring of tailorings) {
         const rulesToAssign = selectedRuleRefIds.find(
           ({ osMinorVersion }) =>
             Number(osMinorVersion) === tailoring.os_minor_version
@@ -93,11 +97,37 @@ export const useUpdatePolicy = () => {
         );
 
         dispatchProgress();
-      });
+      }
+
+      for (const tailoring of tailorings) {
+        const tailoringValueOverrides =
+          valueOverrides[tailoring.os_minor_version];
+
+        if (
+          tailoringValueOverrides === undefined ||
+          Object.keys(tailoringValueOverrides).length === 0
+        ) {
+          continue;
+        }
+
+        await updateTailoring(
+          [
+            newPolicyId,
+            tailoring.id,
+            undefined,
+            {
+              value_overrides: tailoringValueOverrides,
+            },
+          ],
+          false
+        );
+
+        dispatchProgress();
+      }
 
       return { id: newPolicyId };
     },
-    [createPolicy, assignRules, assignSystems, fetchTailorings]
+    [createPolicy, assignSystems, fetchTailorings, assignRules, updateTailoring]
   );
 
   return updatedPolicy;
