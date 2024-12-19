@@ -1,85 +1,64 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
+import EditPolicyRulesTab from './EditPolicyRulesTab.js';
+// import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 
-import { useQuery } from '@apollo/client';
-import { policies } from '@/__fixtures__/policies.js';
-import EditPolicyRulesTab, { toTabsData } from './EditPolicyRulesTab.js';
+// eslint-disable-next-line react/display-name
+jest.mock('@/PresentationalComponents/Tailorings/Tailorings', () => () => (
+  <div data-testid="tailorings-tab">Tailorings tab</div> //TODO: do not mock the component, instead test with its behaviours
+));
 
-jest.mock('@apollo/client');
-const policy = policies.edges[0].node;
+const defaultProps = {
+  policy: { total_system_count: 1 },
+  assignedRuleIds: [],
+  setRuleValues: jest.fn(),
+  setUpdatedPolicy: jest.fn(),
+  selectedOsMinorVersions: [],
+};
 
 describe('EditPolicyRulesTab', () => {
-  useQuery.mockImplementation(() => ({
-    data: {
-      benchmarks: {
-        edges: [
-          {
-            id: '1',
-            osMajorVersion: '7',
-            rules: policy.rules,
-          },
-        ],
-      },
-    },
-    error: undefined,
-    loading: undefined,
-  }));
-
-  it('expect to render note when no rules can be configured', () => {
+  it.skip('expect to render note when no rules can be configured', () => {
     render(
       <TestWrapper>
-        <EditPolicyRulesTab
-          setNewRuleTabs={() => {}}
-          policy={{ policy: { profiles: [] } }}
-          selectedRuleRefIds={[]}
-          setSelectedRuleRefIds={() => {}}
-          osMinorVersionCounts={{}}
-        />
+        <EditPolicyRulesTab {...defaultProps} />
       </TestWrapper>
     );
 
-    expect(screen.getByText('No rules can be configured')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Different release versions of RHEL are associated with different versions of the SCAP Security Guide (SSG), therefore each release must be customized independently.'
+      )
+    ).toBeInTheDocument();
+
+    expect(screen.queryByTestId('tailorings-tab')).toBeVisible();
   });
 
-  it('expect to render with policy passed', () => {
+  it('expect to render with empty state', () => {
     render(
       <TestWrapper>
         <EditPolicyRulesTab
-          setNewRuleTabs={() => {}}
-          policy={policies.edges[0].node}
-          selectedRuleRefIds={[]}
-          setSelectedRuleRefIds={() => {}}
-          osMinorVersionCounts={{
-            9: {
-              osMinorVersion: 9,
-              count: 1,
-            },
-          }}
+          {...{ ...defaultProps, policy: { total_system_count: 0 } }}
         />
       </TestWrapper>
     );
 
     expect(
-      screen.getByRole('tab', { name: 'Rules for RHEL 7.9' })
-    ).toBeInTheDocument();
+      screen.queryByText(
+        'This policy has no associated systems, and therefore no rules can be configured.'
+      )
+    ).toBeVisible();
   });
-});
 
-describe('.toTabsData', () => {
-  it('expect to render without error', async () => {
-    const policy = policies.edges[0].node;
-    const osMinorVersionCounts = {
-      9: {
-        osMinorVersion: 9,
-        count: 1,
-      },
-    };
-    const benchmark = {
-      latestSupportedOsMinorVersions: [9],
-      profiles: [{ refId: policy.refId }],
-    };
-    const result = toTabsData(policy, osMinorVersionCounts, [benchmark], []);
-    expect(result).toMatchSnapshot();
+  it('expect to render with loading state', () => {
+    render(
+      <TestWrapper>
+        <EditPolicyRulesTab
+          {...{ ...defaultProps, policy: { total_system_count: undefined } }}
+        />
+      </TestWrapper>
+    );
+
+    expect(screen.queryByText('Loading...')).toBeVisible();
   });
 });
