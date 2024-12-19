@@ -24,7 +24,7 @@ export const EditPolicyRest = ({ route }) => {
     data: { data: policy } = {},
     loading: policyLoading,
     error: policyError,
-  } = usePolicy(policyId, { skip: policyId === undefined });
+  } = usePolicy(policyId);
 
   const {
     data: { data: supportedProfiles } = {},
@@ -60,7 +60,7 @@ export const EditPolicyRest = ({ route }) => {
       isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1
     );
 
-  const [isSaving, onSave] = useOnSave(policy, updatedPolicy, {
+  const [isSaving, onSave] = useOnSave(policyId, updatedPolicy, {
     onSave: onSaveCallback,
     onError: onSaveCallback,
   });
