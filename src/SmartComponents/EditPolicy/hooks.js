@@ -1,13 +1,11 @@
 import { useCallback, useState } from 'react';
-import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
 import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
 import useTailorings from '../../Utilities/hooks/api/useTailorings';
 import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
 
-const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
+const useUpdatePolicyRest = (policyId, updatedPolicyHostsAndRules) => {
   const {
     hosts,
     tailoringRules,
@@ -22,8 +20,6 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
   const { fetch: updatePolicy } = useUpdatePolicy({ skip: true });
 
   const updatePolicyRest = async () => {
-    const policyId = policy.id;
-
     if (hosts !== undefined) {
       await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
     }
@@ -66,17 +62,14 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
 };
 
 export const useOnSave = (
-  policy,
+  policyId,
   updatedPolicyHostsAndRules,
   { onSave: onSaveCallback, onError: onErrorCallback } = {}
 ) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  const updatePolicyGraphQL = usePolicy();
-  const updatePolicyRest = useUpdatePolicyRest(
-    policy,
+  const updatePolicy = useUpdatePolicyRest(
+    policyId,
     updatedPolicyHostsAndRules
   );
-  const updatePolicy = apiV2Enabled ? updatePolicyRest : updatePolicyGraphQL;
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -86,7 +79,7 @@ export const useOnSave = (
     }
 
     setIsSaving(true);
-    updatePolicy(policy, updatedPolicyHostsAndRules)
+    updatePolicy()
       .then(() => {
         setIsSaving(false);
         dispatchNotification({
@@ -105,7 +98,7 @@ export const useOnSave = (
         });
         onErrorCallback?.();
       });
-  }, [isSaving, policy, updatedPolicyHostsAndRules]);
+  }, [isSaving, policyId, updatedPolicyHostsAndRules]);
 
   return [isSaving, onSave];
 };
