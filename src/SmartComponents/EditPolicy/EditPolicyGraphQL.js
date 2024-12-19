@@ -36,7 +36,7 @@ export const EditPolicyGraphQL = ({ route }) => {
       isClose ? `/scappolicies/${policyId}` : location.state?.returnTo || -1
     );
 
-  const [isSaving, onSave] = useOnSave(policy, updatedPolicyHostsAndRules, {
+  const [isSaving, onSave] = useOnSave(policyId, updatedPolicyHostsAndRules, {
     onSave: onSaveCallback,
     onError: onSaveCallback,
   });
