@@ -27,6 +27,8 @@ const childRowForItem = (item, _idx, DetailsComponent, colSpan) => ({
       ),
       props: {
         ...(colSpan ? { colSpan } : {}),
+        // TODO This removes the checkbox, however this should maybe be fixed differently
+        className: 'compliance-rule-details',
       },
     },
   ],
@@ -78,7 +80,7 @@ const buildTreeBranch = (
         ...item,
         ...(items?.find(({ id }) => id === item.itemId) || {}),
         props: {
-          // ...(selectable ? { isChecked: item.rowProps?.selected } : {}),
+          ...(selectable ? { isChecked: item.isChecked } : {}),
           isExpanded: openItems.includes(item.itemId) || false,
           'aria-level': nextLevel,
           'aria-setsize': 1,
@@ -114,27 +116,27 @@ const buildTreeBranch = (
       })
     : [];
 
-  //   const isChecked = () => {
-  //     const anySprouts = leaves.length > 0 || twigs.length > 0;
-  //     const allSprouts = [...(twigs || []), ...(leaves || [])];
-  //     if (
-  //       anySprouts &&
-  //       allSprouts
-  //         .filter(({ props: { isDetailsRow } }) => !isDetailsRow)
-  //         .every((leaf) => leaf.props.isChecked === true)
-  //     ) {
-  //       return true;
-  //     }
-  //
-  //     if (
-  //       anySprouts &&
-  //       allSprouts.some((leave) => leave.props.isChecked === true)
-  //     ) {
-  //       return null;
-  //     }
-  //
-  //     return false;
-  //   };
+  const isChecked = () => {
+    const anySprouts = leaves.length > 0 || twigs.length > 0;
+    const allSprouts = [...(twigs || []), ...(leaves || [])];
+    if (
+      anySprouts &&
+      allSprouts
+        .filter(({ props: { isDetailsRow } }) => !isDetailsRow)
+        .every((leaf) => leaf.props.isChecked === true)
+    ) {
+      return true;
+    }
+
+    if (
+      anySprouts &&
+      allSprouts.some((leave) => leave.props.isChecked === true)
+    ) {
+      return null;
+    }
+
+    return false;
+  };
 
   const branchRow =
     level === 1 || twigs.length > 0 || leaves.length > 0
@@ -150,11 +152,11 @@ const buildTreeBranch = (
             isTreeBranch: true,
             isExpanded,
             props: {
-              // ...(selectable
-              //   ? {
-              //       isChecked: isChecked(),
-              //     }
-              //   : {}),
+              ...(selectable
+                ? {
+                    isChecked: isChecked(),
+                  }
+                : {}),
               isExpanded,
               'aria-level': level,
               'aria-setsize':
@@ -210,7 +212,7 @@ const treeChopper = (items, columns, options = {}) => {
   const {
     tableTree,
     expandable: { openItems } = {},
-    // bulkSelect: { markRowSelected } = {}, // TODO Enable selection for groups and rows in groups
+    bulkSelect: { markRowSelected } = {},
     detailsComponent,
   } = options;
 
@@ -219,9 +221,9 @@ const treeChopper = (items, columns, options = {}) => {
     items,
     columns,
     openItems,
-    [],
+    [markRowSelected],
     detailsComponent,
-    false
+    true
   );
 
   return choppedTree;
