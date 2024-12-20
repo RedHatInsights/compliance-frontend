@@ -1,29 +1,25 @@
 import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
 import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
-import { buildPolicies, buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPoliciesV2 } from '../../__factories__/policies';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
 };
 
-const fixtures = buildPolicies(13);
-const fixturesV2 = buildPoliciesV2(13);
-
-const policies = Object.assign([], fixtures['profiles']['edges']);
-const policies_v2 = Object.assign([], fixturesV2);
+const policies = buildPoliciesV2(13);
 
 describe('Policies table tests', () => {
   beforeEach(() => {
-    cy.intercept('*', {
+    cy.intercept('**/policies*', {
       statusCode: 201,
       body: {
-        data: fixtures,
+        data: policies,
       },
     });
-    featureFlagsInterceptors.apiV2Disabled();
     mountComponent();
   });
+
   describe('defaults', () => {
     it('The table renders', () => {
       cy.get('table').should('have.length', 1);
@@ -35,6 +31,7 @@ describe('Policies table tests', () => {
       cy.ouiaType('PF5/Pagination', 'div').first().click();
       cy.get('[role="menuitem"]').contains('20 per page').click();
     });
+
     it('Sort by Name', () => {
       let policyNames = [];
       policies.forEach((item) => {
@@ -401,46 +398,6 @@ describe('Policies table tests', () => {
         .get('li > button')
         .eq(1)
         .should('contain.text', 'Edit policy');
-    });
-  });
-});
-
-describe('Policies table tests API V2', () => {
-  beforeEach(() => {
-    featureFlagsInterceptors.apiV2Enabled();
-    cy.intercept('**/graphql', {
-      statusCode: 200,
-      body: {
-        data: fixtures,
-      },
-    });
-    cy.intercept('**/policies*', {
-      statusCode: 200,
-      body: {
-        data: fixturesV2,
-      },
-    });
-    mountComponent();
-  });
-  describe('defaults', () => {
-    it.skip('The table renders with data', () => {
-      cy.get('table').should('have.length', 1);
-
-      let policyNames = [];
-      policies_v2.forEach((item) => {
-        policyNames.push(item['title']);
-      });
-
-      // Check Name sorting
-      const ascendingSorted = [...policyNames].sort((a, b) => {
-        return a.localeCompare(b, undefined, { sensitivity: 'base' });
-      });
-      cy.get('th[data-label="Name"]')
-        .invoke('attr', 'aria-sort')
-        .should('eq', 'ascending');
-      cy.get('td[data-label="Name"] > div > div > a').each((item, index) => {
-        expect(Cypress.$(item).text()).to.eq(ascendingSorted[index]);
-      });
     });
   });
 });

@@ -52,3 +52,4 @@ export { default as InlineEdit } from './InlineEdit/InlineEdit';
 export { default as ComplianceRoute } from './ComplianceRoute/ComplianceRoute';
 export { default as ComplianceTable } from './ComplianceTable/ComplianceTable';
 export { default as Tailorings } from './Tailorings/Tailorings';
+export { default as ComplianceEmptyState } from './ComplianceEmptyState/ComplianceEmptyState';
