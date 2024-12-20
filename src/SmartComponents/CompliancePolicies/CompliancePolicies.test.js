@@ -4,14 +4,17 @@ import '@testing-library/jest-dom';
 
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 
-import { profiles } from '@/__fixtures__/profiles.js';
+import { buildPoliciesV2 } from '../../__factories__/policies';
+
 import CompliancePolicies from './CompliancePolicies.js';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
+import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 
-jest.mock('@apollo/client');
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+jest.mock('Utilities/hooks/api/usePolicies');
+jest.mock('Utilities/hooks/usePoliciesCount');
+
+const policies = buildPoliciesV2(13);
 
 const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
@@ -25,33 +28,34 @@ describe('CompliancePolicies', () => {
   };
 
   beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => false);
+    usePolicies.mockImplementation(() => ({
+      ...queryDefaults,
+      data: policies,
+      meta: {
+        total: policies.length,
+      },
+    }));
+    usePoliciesCount.mockImplementation(() => policies.length);
   });
 
-  it('expect to render without error', () => {
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
-      data: profiles,
-    }));
-
+  it.only('expect to render without error', () => {
     render(
       <TestWrapper>
         <CompliancePolicies />
       </TestWrapper>
     );
-
+    screen.logTestingPlaygroundURL();
     expect(
       within(screen.getByLabelText('Policies')).queryAllByRole('row').length
     ).toEqual(11);
   });
 
   it('expect to render emptystate', () => {
-    useQuery.mockImplementation(() => ({
+    usePolicies.mockImplementation(() => ({
       ...queryDefaults,
-      data: {
-        profiles: {
-          edges: [],
-        },
+      data: [],
+      meta: {
+        total: 0,
       },
     }));
 
@@ -69,7 +73,7 @@ describe('CompliancePolicies', () => {
       networkError: { statusCode: 500 },
       error: 'Test Error loading',
     };
-    useQuery.mockImplementation(() => ({
+    usePolicies.mockImplementation(() => ({
       ...queryDefaults,
       error,
     }));
@@ -84,7 +88,7 @@ describe('CompliancePolicies', () => {
   });
 
   it('expect to render loading', () => {
-    useQuery.mockImplementation(() => ({
+    usePolicies.mockImplementation(() => ({
       ...queryDefaults,
       loading: true,
     }));

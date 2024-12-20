@@ -1,10 +1,6 @@
 import React from 'react';
-import { Spinner, Bullseye } from '@patternfly/react-core';
-
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import {
   paginationSerialiser,
   filtersSerialiser,
@@ -22,29 +18,19 @@ import {
  *  @category Compliance
  *
  */
-const ComplianceTable = (props) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-
-  return apiV2Enabled === undefined ? (
-    <Bullseye>
-      <Spinner />
-    </Bullseye>
-  ) : apiV2Enabled ? (
-    <AsyncTableToolsTable
-      {...props}
-      options={{
-        serialisers: {
-          pagination: paginationSerialiser,
-          filters: filtersSerialiser,
-          sort: sortSerialiser,
-        },
-        ...props.options,
-      }}
-    />
-  ) : (
-    <TableToolsTable {...props} />
-  );
-};
+const ComplianceTable = (props) => (
+  <AsyncTableToolsTable
+    {...props}
+    options={{
+      serialisers: {
+        pagination: paginationSerialiser,
+        filters: filtersSerialiser,
+        sort: sortSerialiser,
+      },
+      ...props.options,
+    }}
+  />
+);
 
 ComplianceTable.propTypes = {
   options: propTypes.object,
