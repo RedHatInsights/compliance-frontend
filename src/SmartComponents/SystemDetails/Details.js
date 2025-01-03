@@ -1,7 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Bullseye } from '@patternfly/react-core';
-import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import { useQuery } from '@apollo/client';
 import { Spinner } from '@redhat-cloud-services/frontend-components/Spinner';
 import './compliance.scss';
@@ -11,8 +10,15 @@ import SystemPoliciesAndRules from './SystemPoliciesAndRules';
 import { SYSTEM_QUERY } from './constants';
 import useTestResults from './useTestResults';
 import SystemPoliciesAndRulesRest from './SystemPoliciesAndRulesRest';
+import EmptyState from './EmptyState';
 
-export const DetailsRest = ({ inventoryId, hidePassed, ...props }) => {
+export const DetailsRest = ({
+  inventoryId,
+  hidePassed,
+  policiesCount,
+  insightsId,
+  ...props
+}) => {
   const { testResults, testResultsLoading } = useTestResults(inventoryId);
 
   return (
@@ -23,7 +29,7 @@ export const DetailsRest = ({ inventoryId, hidePassed, ...props }) => {
         </Bullseye>
       ) : testResults.length === 0 ? (
         // we render no policy cards nor rules table if there are no reporting policies
-        <ComplianceEmptyState title="No policies are reporting for this system" />
+        <EmptyState insightsId={insightsId} policiesCount={policiesCount} />
       ) : (
         <SystemPoliciesAndRulesRest
           {...props}
@@ -39,6 +45,8 @@ export const DetailsRest = ({ inventoryId, hidePassed, ...props }) => {
 DetailsRest.propTypes = {
   inventoryId: propTypes.string,
   hidePassed: propTypes.bool,
+  policiesCount: propTypes.number,
+  insightsId: propTypes.string,
 };
 
 export const DetailsGraphQL = ({ inventoryId, hidePassed, ...props }) => {
@@ -59,16 +67,12 @@ export const DetailsGraphQL = ({ inventoryId, hidePassed, ...props }) => {
 
   return (
     <div className="ins-c-compliance__scope">
-      {!data?.system || is404 ? (
-        <ComplianceEmptyState title="No policies are reporting for this system" />
-      ) : (
-        <SystemPoliciesAndRules
-          {...props}
-          hidePassed={hidePassed}
-          data={data}
-          loading={loading}
-        />
-      )}
+      <SystemPoliciesAndRules
+        {...props}
+        hidePassed={hidePassed}
+        data={data}
+        loading={loading}
+      />
     </div>
   );
 };
@@ -95,6 +99,8 @@ export const Details = (props) => {
 Details.propTypes = {
   inventoryId: propTypes.string,
   hidePassed: propTypes.bool,
+  policiesCount: propTypes.number,
+  insightsId: propTypes.string,
 };
 
 export default Details;
