@@ -82,7 +82,8 @@ const RulesTable = ({
       };
 
       return valueDefinitions === undefined ||
-        valueDefinitions.loading === true ? (
+        valueDefinitions.loading === true ||
+        valueDefinitions.data === undefined ? (
         <List />
       ) : (
         <RuleDetailsRow
