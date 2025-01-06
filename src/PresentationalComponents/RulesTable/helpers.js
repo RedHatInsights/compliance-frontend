@@ -94,7 +94,7 @@ export const checkForNonDefaultValues = (values, valueDefinitions) =>
   Object.entries(values || {}).some(([valueId, value]) => {
     const valueDefinition = valueDefinitions.find(
       (valueDefinition) =>
-        valueDefinition?.refId === valueId || valueDefinition?.id === valueId
+        valueDefinition.refId === valueId || valueDefinition.id === valueId
     );
 
     return value !== valueDefinition?.defaultValue;
