@@ -239,10 +239,15 @@ const ReportDetailsBase = ({
                       remediationsEnabled={false}
                       fetchApi={fetchNeverReported}
                       columns={[
-                        Columns.customName({
-                          showLink: true,
-                          showOsInfo: true,
-                        }),
+                        Columns.customName(
+                          {
+                            showLink: true,
+                            showOsInfo: true,
+                          },
+                          {
+                            sortBy: ['display_name'],
+                          }
+                        ),
                         Columns.inventoryColumn('groups', {
                           requiresDefault: true,
                           sortBy: ['groups'],
