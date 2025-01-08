@@ -122,7 +122,7 @@ const TailoringTab = ({
                 osMinorVersion,
               }
             }
-            profileId={profileId}
+            profileId={profileId || tailoring.profile_id}
             rulesPageLink={rulesPageLink}
             resetLink={resetLink}
             systemCount={systemCount}
