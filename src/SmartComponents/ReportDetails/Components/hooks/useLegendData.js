@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text } from '@patternfly/react-core';
-import { pluralize } from 'Utilities/TextHelper';
+import { pluralize, Text } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
 import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';

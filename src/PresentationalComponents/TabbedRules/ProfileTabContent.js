@@ -11,6 +11,7 @@ import {
   Popover,
   Flex,
   FlexItem,
+  pluralize,
 } from '@patternfly/react-core';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import {
@@ -20,7 +21,6 @@ import {
   RulesTable,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
-import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
