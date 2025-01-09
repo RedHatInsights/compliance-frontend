@@ -105,6 +105,7 @@ export const SystemsTable = ({
 
   const {
     selectedIds,
+    selectedItems,
     tableProps: bulkSelectTableProps,
     toolbarProps: bulkSelectToolBarProps,
   } = useSystemBulkSelect({
@@ -167,12 +168,8 @@ export const SystemsTable = ({
 
   const exportConfig = useSystemsExport({
     columns,
-    filter: systemsFilter,
-    // selected: selectedIds,
+    selectedItems,
     total,
-    fetchArguments: combinedFetchArgumentsRef.current,
-    fetchApi,
-    apiV2Enabled: true,
   });
 
   const handleOperatingSystemsFetch = useCallback(

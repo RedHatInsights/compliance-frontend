@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import SystemsTableRest from './SystemsTableRest';
-import { useSystemBulkSelect, useSystemsExport } from './hooks.js';
+import { useSystemBulkSelect } from './hooks.js';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 jest.mock('./hooks.js', () => ({
   ...jest.requireActual('./hooks.js'),
@@ -32,7 +32,7 @@ const mockProps = {
 };
 
 describe('SystemsTableRest', () => {
-  it('Should connect inventory with compliance filters so that full filters are passed to bulk selection and exporting', async () => {
+  it('Should connect inventory with compliance filters so that full filters are passed to bulk selection', async () => {
     render(
       <TestWrapper>
         <SystemsTableRest {...mockProps} />
@@ -47,15 +47,6 @@ describe('SystemsTableRest', () => {
           },
         })
       )
-    );
-
-    expect(useSystemsExport).toHaveBeenCalledWith(
-      expect.objectContaining({
-        fetchArguments: {
-          filter: '(someFilter ~ test) AND display_name ~ "test-name"',
-          tags: [],
-        },
-      })
     );
   });
 });
