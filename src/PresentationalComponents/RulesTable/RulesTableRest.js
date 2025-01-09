@@ -27,6 +27,7 @@ const RulesTable = ({
   setRuleValues,
   ruleValues,
   valueDefinitions,
+  skipValueDefinitions,
   onRuleValueReset,
   DedicatedAction,
   onValueOverrideSave,
@@ -81,9 +82,11 @@ const RulesTable = ({
         ruleValues: ruleRuleValues,
       };
 
-      return valueDefinitions === undefined ||
-        valueDefinitions.loading === true ||
-        valueDefinitions.data === undefined ? (
+      return (skipValueDefinitions === undefined ||
+        skipValueDefinitions === false) &&
+        (valueDefinitions === undefined ||
+          valueDefinitions.loading === true ||
+          valueDefinitions.data === undefined) ? (
         <List />
       ) : (
         <RuleDetailsRow
@@ -181,6 +184,7 @@ RulesTable.propTypes = {
     data: propTypes.any,
     loading: propTypes.bool.isRequired,
   }),
+  skipValueDefinitions: propTypes.bool,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
   total: propTypes.number,
