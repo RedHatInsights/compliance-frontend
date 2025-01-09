@@ -38,9 +38,9 @@ const usePolicyOsVersionCounts = (policyId) => {
     };
 
     getCounts();
-    // TODO: investigate why proper dependencies list results in three extra requests
+    // TODO: investigate why proper dependencies list results in infinite requests
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [policyId]);
 
   return counts;
 };
