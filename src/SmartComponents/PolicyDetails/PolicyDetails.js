@@ -34,8 +34,14 @@ import usePolicy from 'Utilities/hooks/api/usePolicy';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
+import usePolicyOsVersionCounts from '../../Utilities/hooks/api/usePolicyOsVersionCounts';
 
-export const PolicyDetailsBase = ({ route, query, saveToPolicy }) => {
+export const PolicyDetailsBase = ({
+  route,
+  query,
+  saveToPolicy,
+  versionCounts,
+}) => {
   const defaultTab = 'details';
   const { data, error, loading, refetch } = query;
   const policy = data?.profile;
@@ -99,6 +105,7 @@ export const PolicyDetailsBase = ({ route, query, saveToPolicy }) => {
                       level={1}
                       DedicatedAction={DedicatedAction}
                       onValueOverrideSave={saveToPolicy}
+                      selectedVersionCounts={versionCounts}
                     />
                   </PageSection>
                 </ContentTab>
@@ -125,11 +132,13 @@ PolicyDetailsBase.propTypes = {
     refetch: PropTypes.func,
   }),
   saveToPolicy: PropTypes.func,
+  versionCounts: PropTypes.object,
 };
 
 const PolicyDetails = ({ route }) => {
   const { policy_id: policyId } = useParams();
   const query = usePolicy(policyId);
+  const versionCounts = usePolicyOsVersionCounts(policyId);
   const data = query?.data?.data
     ? {
         profile: {
@@ -150,6 +159,7 @@ const PolicyDetails = ({ route }) => {
       query={{ ...query, data }}
       route={route}
       saveToPolicy={saveValue}
+      versionCounts={versionCounts}
     />
   );
 };
