@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
+import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
 import {
   RoutedTabs,
   StateViewWithError,
@@ -11,7 +11,6 @@ import OsVersionText from '../TabbedRules/OsVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
 import NoTailorings from './NoTailorings';
-import SystemCountBadge from './SystemCountBadge';
 
 // TODO Systems count on tabs -> may need API change
 // TODO defaultTab  defaultTab={getDefaultTab(tailorings, defaultTab)}
@@ -213,9 +212,9 @@ import SystemCountBadge from './SystemCountBadge';
                     </FlexItem>
                     {selectedVersionCounts && (
                       <FlexItem>
-                        <SystemCountBadge
-                          count={selectedVersionCounts[tab.os_minor_version]}
-                        />
+                        <Badge isRead>
+                          {selectedVersionCounts[tab.os_minor_version]}
+                        </Badge>
                       </FlexItem>
                     )}
                   </Flex>
