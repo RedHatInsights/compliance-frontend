@@ -59,6 +59,7 @@ const RuleResults = ({ reportTestResult }) => {
       onSelect={true}
       remediationsEnabled
       reportTestResult={reportTestResult}
+      skipValueDefinitions={true}
       // TODO: provide ruleTree
       // TODO: hide passed rules by default
     />
