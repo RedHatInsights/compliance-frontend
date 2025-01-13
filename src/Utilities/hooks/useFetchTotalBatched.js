@@ -17,10 +17,15 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
   const [totalResult, setTotalResult] = useState();
 
   const fetch = useCallback(
-    async (params = {}) => {
+    async (fetchParams = {}) => {
+      const allParams = {
+        ...params,
+        ...fetchParams,
+      };
+
       if (!loading.current) {
         loading.current = true;
-        const firstPage = await fetchFn(0, batchSize, params);
+        const firstPage = await fetchFn(0, batchSize, allParams);
         const total = firstPage?.meta?.total;
 
         if (total > batchSize) {
@@ -30,7 +35,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
               const page = pageIdx;
               if (page >= 1) {
                 const offset = page * batchSize;
-                return await fetchFn(offset, batchSize, params);
+                return await fetchFn(offset, batchSize, allParams);
               }
             }
           );
@@ -60,7 +65,7 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
         }
       }
     },
-    [typeof fetchFn !== 'undefined', batchSize]
+    [typeof fetchFn !== 'undefined', batchSize, JSON.stringify(params)]
   );
 
   useDeepCompareEffectNoCheck(() => {
