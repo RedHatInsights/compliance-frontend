@@ -16,7 +16,7 @@
     "@patternfly/react-table": "^5.4.0",
     "@patternfly/react-tokens": "^5.4.0",
     "@react-pdf/renderer": "^1.6.17",
-    "@redhat-cloud-services/compliance-client": "^1.1.1",
+    "@redhat-cloud-services/compliance-client": "^2.0.2",
     "@redhat-cloud-services/frontend-components": "^4.2.16",
     "@redhat-cloud-services/frontend-components-config-utilities": "^3.2.6",
     "@redhat-cloud-services/frontend-components-notifications": "^4.1.0",
