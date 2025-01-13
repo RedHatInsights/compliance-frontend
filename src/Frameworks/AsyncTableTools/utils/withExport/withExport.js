@@ -42,7 +42,7 @@ const withExport = ({
       downloadItems(exportColumns, items, format);
       onComplete?.(items);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       onError?.(error);
     }
   };
