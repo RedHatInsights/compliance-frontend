@@ -22,7 +22,7 @@ const usePolicyOsVersionCounts = (policyId) => {
           const policySystemsResponse = await fetchPolicySystems(
             {
               policyId,
-              offset: 1,
+              limit: 1,
               filter: `(os_minor_version = ${minor})`,
             },
             false

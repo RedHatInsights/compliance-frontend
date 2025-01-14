@@ -210,7 +210,7 @@ import NoTailorings from './NoTailorings';
                         }}
                       />
                     </FlexItem>
-                    {selectedVersionCounts && (
+                    {selectedVersionCounts?.[tab.os_minor_version] && (
                       <FlexItem>
                         <Badge isRead>
                           {selectedVersionCounts[tab.os_minor_version]}
