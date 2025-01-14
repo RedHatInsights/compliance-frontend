@@ -86,9 +86,11 @@ const TailoringTab = ({
         )
       : undefined;
 
+  // TODO The wrapping of the fetches in an array is odd.
+  // Figure out why this is and how we can avoid it
   const exporter = async () =>
     (tailoring && policy
-      ? await fetchBatchedTailoringRules()
+      ? [await fetchBatchedTailoringRules()]
       : [await fetchBatchedRules()]
     ).flatMap((result) => result.data);
 
