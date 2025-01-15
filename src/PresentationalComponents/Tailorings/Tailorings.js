@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Spinner, Tab } from '@patternfly/react-core';
+import { Badge, Flex, FlexItem, Spinner, Tab } from '@patternfly/react-core';
 import {
   RoutedTabs,
   StateViewWithError,
@@ -32,6 +32,7 @@ import NoTailorings from './NoTailorings';
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *  @param                        [props.rulesPageLink]
  *
+ *  @param   {object}             props.selectedVersionCounts            An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -145,6 +146,7 @@ import NoTailorings from './NoTailorings';
   onSelect,
   preselected,
   enableSecurityGuideRulesToggle,
+  selectedVersionCounts,
   ...rulesTableProps
 }) => {
   const {
@@ -199,12 +201,23 @@ import NoTailorings from './NoTailorings';
                 eventKey={eventKey(tab)}
                 aria-label={`Rules for RHEL ${tab.os_major_version}.${tab.os_minor_version}`}
                 title={
-                  <OsVersionText
-                    profile={{
-                      osMajorVersion: tab.os_major_version,
-                      osMinorVersion: tab.os_minor_version,
-                    }}
-                  />
+                  <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+                    <FlexItem>
+                      <OsVersionText
+                        profile={{
+                          osMajorVersion: tab.os_major_version,
+                          osMinorVersion: tab.os_minor_version,
+                        }}
+                      />
+                    </FlexItem>
+                    {selectedVersionCounts?.[tab.os_minor_version] && (
+                      <FlexItem>
+                        <Badge isRead>
+                          {selectedVersionCounts[tab.os_minor_version]}
+                        </Badge>
+                      </FlexItem>
+                    )}
+                  </Flex>
                 }
                 ouiaId={`RHEL ${tab.os_major_version}.${tab.os_minor_version}`}
               >
@@ -259,6 +272,7 @@ Tailorings.propTypes = {
   onSelect: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
+  selectedVersionCounts: propTypes.object,
 };
 
 export default Tailorings;

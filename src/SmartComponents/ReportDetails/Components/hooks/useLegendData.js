@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text } from '@patternfly/react-core';
-import { pluralize } from 'Utilities/TextHelper';
+import { pluralize, Text } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
 import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
@@ -22,26 +21,17 @@ const useLegendData = (donutValues, profile) => {
 
   return [
     {
-      name: `${donutValues[0].y} ${pluralize(
-        donutValues[0].y,
-        'system'
-      )} compliant`,
+      name: `${pluralize(donutValues[0].y, 'system')} compliant`,
       symbol: { fill: paletteColors.blue300 },
     },
     {
-      name: `${donutValues[1].y} ${pluralize(
-        donutValues[1].y,
-        'system'
-      )} non-compliant`,
+      name: `${pluralize(donutValues[1].y, 'system')} non-compliant`,
       symbol: { fill: paletteColors.blue200 },
     },
     ...(unsupportedHostCount > 0
       ? [
           {
-            name: `${donutValues[2].y} ${pluralize(
-              donutValues[2].y,
-              'system'
-            )} not supported`,
+            name: `${pluralize(donutValues[2].y, 'system')} not supported`,
             symbol: { fill: paletteColors.gold300 },
             popover: {
               title: 'Unsupported SSG versions',
@@ -66,13 +56,13 @@ const useLegendData = (donutValues, profile) => {
     ...(notReportingHostCount > 0
       ? [
           {
-            name: `${notReportingHostCount} ${pluralize(
+            name: `${pluralize(
               notReportingHostCount,
               'system'
             )} never reported`,
             popover: {
               title: 'Systems never reported',
-              content: `${notReportingHostCount} ${pluralize(
+              content: `${pluralize(
                 notReportingHostCount,
                 'system'
               )} are not reporting scan results. This may be because the system is disconnected, or the insights-client is not properly configured to use Compliance.`,
