@@ -1,15 +1,8 @@
 import { act, renderHook } from '@testing-library/react';
-import { useApolloClient } from '@apollo/client';
 import { useGetEntities, useSystemsFilter, useSystemsExport } from './hooks';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 jest.mock('Utilities/Dispatcher');
-jest.mock('@apollo/client', () => ({
-  ...jest.requireActual('@apollo/client'),
-  useApolloClient: jest.fn(() => ({
-    query: () => Promise.resolve([]),
-  })),
-}));
 jest.mock('@/Utilities/hooks/useQuery', () => ({
   __esModule: true,
   ...jest.requireActual('@/Utilities/hooks/useQuery'),
@@ -93,11 +86,6 @@ describe('useSystemsExport', () => {
   });
 
   it('returns a export with isDisabled true on total 0 ', async () => {
-    const apolloClient = jest.fn(() => ({
-      query: () => Promise.resolve([]),
-    }));
-    useApolloClient.mockImplementation(apolloClient);
-
     const { result } = renderHook(() =>
       useSystemsExport({
         ...defaultOptions,
@@ -108,8 +96,6 @@ describe('useSystemsExport', () => {
     await act(async () => {
       await result.current.onSelect();
     });
-
-    expect(apolloClient).toHaveBeenCalled();
   });
 });
 

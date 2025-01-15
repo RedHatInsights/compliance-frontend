@@ -235,66 +235,15 @@ export const useInventoryUtilities = (
   }, [activeFilters]);
 };
 
-const toIdFilter = (ids) =>
-  ids?.length > 0 ? `id ^ (${ids.join(',')})` : undefined;
-
-export const useSystemsExport = ({
-  columns,
-  selected,
-  total,
-  fetchArguments = {},
-  fetchApi,
-  apiV2Enabled,
-}) => {
-  const { isLoading, fetchBatched } = useFetchBatched();
-  const selectionFilter = selected ? toIdFilter(selected) : undefined;
-  const onError = useCallback(() => {
-    dispatchNotification({
-      variant: 'danger',
-      title: 'Couldn’t download export',
-      description: 'Reinitiate this export to try again.',
-    });
-  }, []);
-
-  const fetchSystemsGraphQL = useFetchSystems({
-    query: fetchArguments.query,
-    variables: {
-      ...fetchArguments?.variables,
-      ...(fetchArguments.tags && { tags: fetchArguments.tags }),
-      filter: selectionFilter
-        ? `${fetchArguments.variables?.filter} and (${selectionFilter})`
-        : fetchArguments.variables?.filter,
-    },
-    onError,
-  });
-
-  const fetchSystemsRest = useFetchSystemsV2(fetchApi, null, onError, {
-    ...(fetchArguments.tags && { tags: fetchArguments.tags }),
-    filter: selectionFilter
-      ? `${fetchArguments.filter} and (${selectionFilter})`
-      : fetchArguments?.filter,
-    ...(fetchArguments.policyId && { policyId: fetchArguments.policyId }),
-  });
-
-  const selectedFilter = () =>
-    selected?.length > 0 ? toIdFilter(selected) : undefined;
-
-  const exporter = async () => {
-    const fetchedItems = await fetchBatched(
-      apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-      total,
-      selectedFilter()
-    );
-
-    return fetchedItems.flatMap((result) => result.entities);
-  };
+export const useSystemsExport = ({ columns, selectedItems, total }) => {
+  const exporter = async () => selectedItems;
 
   const {
     toolbarProps: { exportConfig },
   } = useExport({
     exporter,
     columns,
-    isDisabled: total === 0 || isLoading,
+    isDisabled: total === 0,
     onStart: useCallback(() => {
       dispatchNotification({
         variant: 'info',
@@ -306,6 +255,13 @@ export const useSystemsExport = ({
       dispatchNotification({
         variant: 'success',
         title: 'Downloading export',
+      });
+    }, []),
+    onError: useCallback(() => {
+      dispatchNotification({
+        variant: 'danger',
+        title: 'Couldn’t download export',
+        description: 'Reinitiate this export to try again.',
       });
     }, []),
   });
@@ -421,7 +377,12 @@ export const useSystemBulkSelect = ({
     itemIdsOnPage,
   });
 
+  const selectedItems = bulkSelect?.selectedIds.map((id) =>
+    loadedItems.find((item) => id === item.id)
+  );
+
   return {
+    selectedItems,
     ...bulkSelect,
     toolbarProps: {
       ...bulkSelect.toolbarProps,
