@@ -189,6 +189,13 @@ export const EditPolicyProfilesRulesRest = ({
             rulesPageLink={true}
             defaultTableView="rows"
             onValueOverrideSave={onValueOverrideSave}
+            selectedVersionCounts={osMinorVersionCounts.reduce(
+              (prev, cur) => ({
+                ...prev,
+                [cur.osMinorVersion]: cur.count,
+              }),
+              {}
+            )}
           />
         </StateViewPart>
       </StateViewWithError>

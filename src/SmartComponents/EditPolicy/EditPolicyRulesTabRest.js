@@ -40,6 +40,7 @@ export const EditPolicyRulesTab = ({
   setRuleValues,
   setUpdatedPolicy,
   selectedOsMinorVersions,
+  selectedVersionCounts,
 }) => {
   const [selectedRules, setSelectedRules] = useState(assignedRuleIds);
   const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
@@ -149,6 +150,7 @@ export const EditPolicyRulesTab = ({
           onSelect={handleSelect}
           preselected={selectedRules}
           enableSecurityGuideRulesToggle
+          selectedVersionCounts={selectedVersionCounts}
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">
@@ -164,6 +166,7 @@ EditPolicyRulesTab.propTypes = {
   setRuleValues: propTypes.func,
   setUpdatedPolicy: propTypes.func,
   selectedOsMinorVersions: propTypes.array,
+  selectedVersionCounts: propTypes.object,
 };
 
 export default EditPolicyRulesTab;

@@ -7,6 +7,15 @@ import EditPolicySystemsTabRest from './EditPolicySystemsTabRest';
 import NewRulesAlert from './components/NewRulesAlert';
 import { useNewRulesAlertState } from './hooks/index';
 
+const getCounts = (arr) =>
+  arr.reduce(
+    (prev, cur) => ({
+      ...prev,
+      [cur]: prev[cur] ? prev[cur] + 1 : 1,
+    }),
+    {}
+  );
+
 const EditPolicyForm = ({
   policy,
   setUpdatedPolicy,
@@ -15,8 +24,11 @@ const EditPolicyForm = ({
   setRuleValues,
   supportedOsVersions,
 }) => {
-  const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState(
-    assignedSystems.map((system) => system.os_minor_version)
+  const [selectedOsMinorVersions, setSelectedOsMinorVersions] = useState([
+    ...new Set(assignedSystems.map((system) => system.os_minor_version)),
+  ]);
+  const [selectedVersionCounts, setSelectedVersionCounts] = useState(
+    getCounts(assignedSystems.map((system) => system.os_minor_version))
   );
   const [newRulesAlert, setNewRulesAlert] = useNewRulesAlertState(false);
 
@@ -44,6 +56,9 @@ const EditPolicyForm = ({
       }));
       setNewRulesAlert(hasNewOsMinorVersions);
       setSelectedOsMinorVersions(newOsMinorVersions);
+      setSelectedVersionCounts(
+        getCounts(newSelectedSystems.map((system) => system.osMinorVersion))
+      );
       setSelectedSystems(newSelectedSystems.map((system) => system.id));
     },
     [preUsedOsMinorVersions, setNewRulesAlert, setUpdatedPolicy]
@@ -62,6 +77,7 @@ const EditPolicyForm = ({
             setRuleValues={setRuleValues}
             assignedRuleIds={assignedRuleIds}
             selectedOsMinorVersions={selectedOsMinorVersions}
+            selectedVersionCounts={selectedVersionCounts}
             setUpdatedPolicy={setUpdatedPolicy}
           />
         </Tab>

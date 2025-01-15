@@ -7,7 +7,6 @@ import {
   TextContent,
   Grid,
   Spinner,
-  Badge,
   Popover,
   Flex,
   FlexItem,
@@ -20,19 +19,10 @@ import {
   RulesTable,
   LinkWithPermission as Link,
 } from 'PresentationalComponents';
-import { pluralize } from 'Utilities/TextHelper';
 import OsVersionText from './OsVersionText';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import ResetRules from '../ResetRules/ResetRules';
-
-export const ProfileSystemCount = ({ count = 0 }) => (
-  <Badge isRead>{`${count} ${pluralize(count, 'system')}`}</Badge>
-);
-
-ProfileSystemCount.propTypes = {
-  profile: propTypes.object,
-  count: propTypes.number,
-};
+import SystemCountBadge from '@/PresentationalComponents/Tailorings/SystemCountBadge';
 
 export const SSGVersionText = ({ profile, newOsMinorVersion }) => (
   <Text component={TextVariants.p}>
@@ -127,7 +117,7 @@ const ProfileTabContent = ({
             <span className="pf-v5-u-pr-sm">
               <OsVersionText {...{ profile, newOsMinorVersion }} />
             </span>
-            <ProfileSystemCount count={systemCount} />
+            <SystemCountBadge count={systemCount} />
           </Text>
           <Flex>
             <FlexItem>
