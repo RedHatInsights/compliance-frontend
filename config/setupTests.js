@@ -1,41 +1,17 @@
 import React from 'react';
+import mockChrome from './mockChrome';
 
 global.React = React;
 global.fetch = jest.fn();
 
+global.insights = {
+  chrome: mockChrome,
+};
+
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,
-  default: () => ({
-    updateDocumentTitle: jest.fn(),
-    auth: {
-      getUser: () =>
-        Promise.resolve({
-          identity: {
-            account_number: '0',
-            type: 'User',
-            user: {
-              is_org_admin: true,
-            },
-          },
-          entitlements: {
-            hybrid_cloud: { is_entitled: true },
-            insights: { is_entitled: true },
-            openshift: { is_entitled: true },
-            smart_management: { is_entitled: false },
-          },
-        }),
-    },
-    appAction: jest.fn(),
-    appObjectId: jest.fn(),
-    on: jest.fn(),
-    getUserPermissions: () => Promise.resolve(['inventory:*:*']),
-    isBeta: jest.fn(),
-    getApp: () => 'compliance',
-    getBundle: () => 'insights',
-  }),
-  useChrome: () => ({
-    isBeta: jest.fn(),
-  }),
+  default: () => mockChrome,
+  useChrome: () => mockChrome,
 }));
 
 jest.mock(

@@ -21,6 +21,8 @@ import './commands';
 import '@cypress/code-coverage/support';
 import '@patternfly/patternfly/patternfly.scss';
 import { mount } from 'cypress/react18';
+import mockChrome from '../../config/mockChrome';
+
 Cypress.Commands.add('mount', mount);
 Cypress.on(
   'uncaught:exception',
@@ -28,3 +30,6 @@ Cypress.on(
 );
 // Example use:
 // cy.mount(<MyComponent />)
+global.window.insights = {
+  chrome: mockChrome,
+};
