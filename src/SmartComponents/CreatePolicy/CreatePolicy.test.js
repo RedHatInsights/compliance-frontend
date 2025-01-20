@@ -59,7 +59,11 @@ describe('CreatePolicy', () => {
 
     await checkStep('Create SCAP policy', async () => {
       console.log('eshamard TEST 2.1')
-      await screen.findByText('Operating system', {}, { timeout: 15000 });
+      await waitFor(
+        () => expect(screen.getByText('Operating system')).toBeInTheDocument(),
+        { timeout: 15000 }
+      );
+      // await screen.findByText('Operating system', {}, { timeout: 15000 });
       console.log('eshamard TEST 2.2')
       await userEvent.click(
         screen.getByRole('option', {
