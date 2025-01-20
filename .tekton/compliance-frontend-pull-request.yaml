@@ -335,13 +335,13 @@ spec:
           - image: registry.access.redhat.com/ubi8/nodejs-20
             workingDir: /var/workdir
             name: unit-tests
-            computeResources:
-              requests:
-                memory: 7Gi
-                cpu: 1000m
-              limits:
-                memory: 14Gi
-                cpu: 2000m
+            # computeResources:
+            #   requests:
+            #     memory: 7Gi
+            #     cpu: 1000m
+            #   limits:
+            #     memory: 14Gi
+            #     cpu: 2000m
             securityContext:
               runAsUser: 0
             script: |
