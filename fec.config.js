@@ -21,33 +21,26 @@ module.exports = {
   devtool: 'hidden-source-map',
   plugins: [
     // Put the Sentry Webpack plugin after all other plugins
-    ...(process.env.SENTRY_AUTH_TOKEN
+    ...(process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG
       ? [
           sentryWebpackPlugin({
-            authToken: process.env.SENTRY_AUTH_TOKEN,
             org: 'red-hat-it',
             project: 'compliance-rhel',
+            ...(process.env.SENTRY_AUTH_TOKEN && {
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+            }),
             moduleMetadata: ({ release }) => ({
+              ...(process.env.SENTRY_AUTH_TOKEN && {
+                authToken: process.env.SENTRY_AUTH_TOKEN,
+              }),
+              release,
               dsn: `https://6410c806f0ac7b638105bb4e15eb3399@o490301.ingest.us.sentry.io/4508083145408512`,
               org: 'red-hat-it',
               project: 'compliance-rhel',
-              release,
             }),
           }),
         ]
-      : [
-          //Just injects debugIDs
-          sentryWebpackPlugin({
-            org: 'red-hat-it',
-            project: 'compliance-rhel',
-            moduleMetadata: ({ release }) => ({
-              dsn: `https://6410c806f0ac7b638105bb4e15eb3399@o490301.ingest.us.sentry.io/4508083145408512`,
-              org: 'red-hat-it',
-              project: 'compliance-rhel',
-              release,
-            }),
-          }),
-        ]),
+      : []),
   ],
   moduleFederation: {
     shared: [
