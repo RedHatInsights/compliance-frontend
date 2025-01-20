@@ -53,18 +53,20 @@ describe('CreatePolicy', () => {
         <CreatePolicy />
       </TestWrapper>
     );
-    console.log('TEST 1');
+    console.log('eshamard TEST 1');
     expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
-    console.log('TEST 2');
+    console.log('eshamard TEST 2');
 
     await checkStep('Create SCAP policy', async () => {
+      console.log('eshamard TEST 2.1')
       await screen.findByText('Operating system');
+      console.log('eshamard TEST 2.2')
       await userEvent.click(
         screen.getByRole('option', {
           name: 'RHEL ' + osMajorVersionToSelect.osMajorVersion,
         })
       );
-      console.log('TEST 3');
+      console.log('eshamard TEST 3');
 
       expect(screen.getByText('Policy type')).toBeInTheDocument();
 
