@@ -39,7 +39,7 @@ describe('CreatePolicy', () => {
   beforeEach(() => {
     useAPIV2FeatureFlag.mockImplementation(() => false);
   });
-  it.skip('expect to render the Create Policy wizard', async () => {
+  it('expect to render the Create Policy wizard', async () => {
     const {
       mocks,
       osMajorVersionToSelect,
