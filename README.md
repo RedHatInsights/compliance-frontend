@@ -52,6 +52,12 @@ To enable the routes for proxying to a local inventory add `inventory:5000` (`AP
 
 All application/service hosts for the APIs can be overridden via a environment variable like `LOCAL_INVENTORY_HOST`.
 
+## Documentation
+
+The repository contains components covered with the documentation comments using JSDoc markup language. The HTML documentation can be generated with the `npm run docs` script. Additionally, the documentation is automatically built with the [Generate and Release Documentation](/.github/workflows//docs.yml) GitHub action.
+
+The deployed documentation is available at https://redhatinsights.github.io/compliance-frontend.
+
 ## Code Notes
 
 ### Technology stack
