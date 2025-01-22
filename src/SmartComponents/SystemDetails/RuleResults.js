@@ -2,16 +2,12 @@ import React, { useMemo } from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
-import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
+import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import columns from './Columns';
+import useRuleResultsData from './hooks/useRuleResultsData';
 
 const RuleResults = ({ reportTestResult }) => {
-  const serialisedTableState = useSerialisedTableState();
-
-  const { limit, offset } = serialisedTableState?.pagination || {};
-  const filters = serialisedTableState?.filters;
-  const sort = serialisedTableState?.sort;
+  const tableState = useFullTableState();
 
   // Enable default filter
   const activeFiltersPassed = true;
@@ -19,18 +15,17 @@ const RuleResults = ({ reportTestResult }) => {
     'rule-state': ['failed'],
   };
 
-  const { data: ruleResults } = useReportRuleResults({
-    params: [
-      reportTestResult.id,
-      reportTestResult.report_id,
-      undefined,
-      limit,
-      offset,
-      false,
-      sort,
-      filters,
-    ],
-    skip: serialisedTableState === undefined,
+  const testResultId = reportTestResult.id;
+  const reportId = reportTestResult.report_id;
+
+  const {
+    data: { ruleResults: ruleResults },
+    fetchBatchedRuleResults,
+  } = useRuleResultsData({
+    testResultId,
+    reportId,
+    skipRuleResultsBatch: !tableState,
+    tableState,
   });
 
   const rules = useMemo(
@@ -43,6 +38,11 @@ const RuleResults = ({ reportTestResult }) => {
         : [],
     [ruleResults, reportTestResult]
   );
+
+  const exporter = async () => {
+    const result = await fetchBatchedRuleResults();
+    return result?.data || [];
+  };
 
   return (
     <RulesTable
@@ -60,8 +60,10 @@ const RuleResults = ({ reportTestResult }) => {
       remediationsEnabled
       reportTestResult={reportTestResult}
       skipValueDefinitions={true}
+      options={{
+        exporter,
+      }}
       // TODO: provide ruleTree
-      // TODO: hide passed rules by default
     />
   );
 };
