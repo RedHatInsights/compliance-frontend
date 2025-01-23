@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
 import columns from './Columns';
 import useRuleResultsData from './hooks/useRuleResultsData';
 
 const RuleResults = ({ reportTestResult }) => {
-  const tableState = useFullTableState();
+  const serialisedTableState = useSerialisedTableState();
 
   // Enable default filter
   const activeFiltersPassed = true;
@@ -24,8 +24,8 @@ const RuleResults = ({ reportTestResult }) => {
   } = useRuleResultsData({
     testResultId,
     reportId,
-    skipRuleResultsBatch: !tableState,
-    tableState,
+    serialisedTableState,
+    skipRules: !serialisedTableState,
   });
 
   const rules = useMemo(

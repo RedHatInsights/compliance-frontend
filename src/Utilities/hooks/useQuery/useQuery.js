@@ -52,8 +52,43 @@ const useQuery = (fn, options = {}) => {
 
   const fetchFn = useCallback(
     async (fn, params, setDataState = true) => {
-      if (!loading) {
-        setDataState && setLoading(true);
+      if (setDataState) {
+        if (!loading) {
+          setDataState && setLoading(true);
+          try {
+            const data = await (async (params) => {
+              const convertedParams = convertToArray
+                ? convertToArray(params)
+                : params;
+
+              if (Array.isArray(convertedParams)) {
+                return debounced && setDataState
+                  ? await debouncedFn(...convertedParams)
+                  : await fn(...convertedParams);
+              } else {
+                return debounced && setDataState
+                  ? await debouncedFn(convertedParams)
+                  : await fn(convertedParams);
+              }
+            })(params);
+
+            if (setDataState && mounted.current) {
+              setData(data?.data || data);
+              setLoading(false);
+            } else {
+              return data?.data || data;
+            }
+          } catch (e) {
+            console.log(e);
+            if (setDataState) {
+              setError(e);
+              setLoading(false);
+            } else {
+              throw e;
+            }
+          }
+        }
+      } else {
         try {
           const data = await (async (params) => {
             const convertedParams = convertToArray
@@ -71,20 +106,10 @@ const useQuery = (fn, options = {}) => {
             }
           })(params);
 
-          if (setDataState && mounted.current) {
-            setData(data?.data || data);
-            setLoading(false);
-          } else {
-            return data?.data || data;
-          }
+          return data?.data || data;
         } catch (e) {
           console.log(e);
-          if (setDataState) {
-            setError(e);
-            setLoading(false);
-          } else {
-            throw e;
-          }
+          throw e;
         }
       }
     },

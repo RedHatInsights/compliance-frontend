@@ -3,10 +3,8 @@ import useBatchedRuleResults from './fetchBatchedRuleResults';
 const useRuleResultsData = ({
   testResultId,
   reportId,
-  tableState: {
-    // tableState: { tableView } = {},
-    serialisedTableState: { filters, pagination, sort } = {},
-  } = {},
+  serialisedTableState: { filters, pagination, sort } = {},
+  skipRules,
 }) => {
   const ruleResultParams = {
     testResultId,
@@ -24,8 +22,7 @@ const useRuleResultsData = ({
     fetchBatched: fetchBatchedRuleResults,
   } = useBatchedRuleResults({
     params: ruleResultParams,
-    skip: false,
-    batched: false,
+    skip: skipRules,
   });
 
   return {

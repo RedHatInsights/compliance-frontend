@@ -3,7 +3,7 @@ import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useBatchedRuleResults = (options = {}) => {
-  const { skip, batched = false, params } = options;
+  const { skip, params } = options;
   const {
     data: rules,
     loading: rulesLoading,
@@ -11,7 +11,7 @@ const useBatchedRuleResults = (options = {}) => {
     fetch: fetchRules,
   } = useReportRuleResults({
     ...options,
-    skip: skip || batched,
+    skip: skip,
   });
   const fetchRulesForBatch = useCallback(
     (offset, limit, params = {}) =>
@@ -19,20 +19,17 @@ const useBatchedRuleResults = (options = {}) => {
     [fetchRules]
   );
   const {
-    loading: rulesBatchedLoading,
-    data: rulesBatched,
-    error: rulesBatchedError,
     fetch: fetchBatched,
   } = useFetchTotalBatched(fetchRulesForBatch, {
     params,
-    skip: skip || !batched,
+    skip: true,
     withMeta: true,
   });
 
   return {
-    loading: rulesLoading || rulesBatchedLoading,
-    data: !batched ? rules : rulesBatched,
-    error: rulesError || rulesBatchedError,
+    loading: rulesLoading,
+    data: rules,
+    error: rulesError,
     fetch,
     fetchBatched,
   };

@@ -139,10 +139,6 @@ const RulesTable = ({
       }}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
-        exportable: {
-          ...COMPLIANCE_TABLE_DEFAULTS.exportable,
-          columns: columns,
-        },
         ...options,
         showViewToggle: true,
         defaultTableView,
