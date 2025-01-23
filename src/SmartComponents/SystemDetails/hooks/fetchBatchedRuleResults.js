@@ -18,9 +18,7 @@ const useBatchedRuleResults = (options = {}) => {
       fetchRules({ ...params, limit, offset }, false),
     [fetchRules]
   );
-  const {
-    fetch: fetchBatched,
-  } = useFetchTotalBatched(fetchRulesForBatch, {
+  const { fetch: fetchBatched } = useFetchTotalBatched(fetchRulesForBatch, {
     params,
     skip: true,
     withMeta: true,
