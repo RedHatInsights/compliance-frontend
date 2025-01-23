@@ -28,20 +28,23 @@ const RuleResults = ({ reportTestResult }) => {
     skipRules: !serialisedTableState,
   });
 
+  const transformRules = (ruleResults, reportTestResult) => {
+    return ruleResults !== undefined
+      ? ruleResults.data.map((rule) => ({
+          ...rule,
+          profile: { name: reportTestResult.title },
+        }))
+      : [];
+  };
+
   const rules = useMemo(
-    () =>
-      ruleResults !== undefined
-        ? ruleResults.data.map((rule) => ({
-            ...rule,
-            profile: { name: reportTestResult.title },
-          }))
-        : [],
+    () => transformRules(ruleResults, reportTestResult),
     [ruleResults, reportTestResult]
   );
 
   const exporter = async () => {
-    const result = await fetchBatchedRuleResults();
-    return result?.data || [];
+    const results = await fetchBatchedRuleResults();
+    return transformRules(results, reportTestResult);
   };
 
   return (
