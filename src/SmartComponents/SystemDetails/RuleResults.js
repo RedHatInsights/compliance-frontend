@@ -1,10 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
 import columns from './Columns';
-import useRuleResultsData from './hooks/useRuleResultsData';
+import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
+
+import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const RuleResults = ({ reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();
@@ -18,19 +20,18 @@ const RuleResults = ({ reportTestResult }) => {
   const testResultId = reportTestResult.id;
   const reportId = reportTestResult.report_id;
 
-  const {
-    data: { ruleResults: ruleResults },
-    fetchBatchedRuleResults,
-  } = useRuleResultsData({
-    testResultId,
-    reportId,
-    serialisedTableState,
-    skipRules: !serialisedTableState,
+  const { data: ruleResults, fetch: fetchRuleResults } = useReportRuleResults({
+    params: {
+      testResultId,
+      reportId,
+    },
+    useTableState: true,
+    skip: serialisedTableState === undefined,
   });
 
   const transformRules = (ruleResults, reportTestResult) => {
     return ruleResults !== undefined
-      ? ruleResults.data.map((rule) => ({
+      ? ruleResults.map((rule) => ({
           ...rule,
           profile: { name: reportTestResult.title },
         }))
@@ -38,14 +39,16 @@ const RuleResults = ({ reportTestResult }) => {
   };
 
   const rules = useMemo(
-    () => transformRules(ruleResults, reportTestResult),
+    () => transformRules(ruleResults?.data, reportTestResult),
     [ruleResults, reportTestResult]
   );
 
-  const exporter = async () => {
-    const results = await fetchBatchedRuleResults();
-    return transformRules(results, reportTestResult);
-  };
+  const fetchForExport = useCallback(
+    async (offset, limit) => await fetchRuleResults({ offset, limit }, false),
+    [fetchRuleResults]
+  );
+
+  const ruleResultsExporter = useExporter(fetchForExport);
 
   return (
     <RulesTable
@@ -64,7 +67,8 @@ const RuleResults = ({ reportTestResult }) => {
       reportTestResult={reportTestResult}
       skipValueDefinitions={true}
       options={{
-        exporter,
+        exporter: async () =>
+          transformRules(await ruleResultsExporter(), reportTestResult),
       }}
       // TODO: provide ruleTree
     />
