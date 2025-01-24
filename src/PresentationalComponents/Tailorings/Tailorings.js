@@ -33,6 +33,7 @@ import NoTailorings from './NoTailorings';
  *  @param                        [props.rulesPageLink]
  *
  *  @param   {object}             props.selectedVersionCounts            An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
+ *  @param                        props.valueOverrides
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -147,6 +148,7 @@ import NoTailorings from './NoTailorings';
   preselected,
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
+  valueOverrides,
   ...rulesTableProps
 }) => {
   const {
@@ -240,6 +242,7 @@ import NoTailorings from './NoTailorings';
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
                     rulesPageLink: rulesPageLink,
+                    valueOverrides,
                   }}
                 />
               </Tab>
@@ -273,6 +276,7 @@ Tailorings.propTypes = {
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
+  valueOverrides: propTypes.object,
 };
 
 export default Tailorings;
