@@ -94,7 +94,7 @@ const useBulkSelect = ({
 
   return enableBulkSelect
     ? {
-        tableView: { markRowSelected },
+        tableView: { markRowSelected, selectOne, set, select, deselect, clear },
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
           canSelectAll: false,

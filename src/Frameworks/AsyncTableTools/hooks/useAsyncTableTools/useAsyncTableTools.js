@@ -131,10 +131,10 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...sortableTableProps,
       ...bulkSelectTableProps,
       ...expandableTableProps,
-      ...tableViewTableProps,
       ...tablePropsOption,
       onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
       actionResolver: actionResolverEnabled && actionResolver,
+      ...tableViewTableProps,
     }),
     [
       managedColumns,

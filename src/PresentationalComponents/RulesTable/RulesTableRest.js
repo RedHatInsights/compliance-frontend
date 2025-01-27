@@ -60,7 +60,6 @@ const RulesTable = ({
     function Row(props) {
       // eslint-disable-next-line react/prop-types
       const { itemId, valueDefinitions } = props?.item || {};
-
       const rule = rules?.find(({ id }) => itemId === id);
       const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
         valueDefinitions?.data?.find(({ id }) => id === checkId)
@@ -108,7 +107,7 @@ const RulesTable = ({
   ]);
 
   const itemsWithValueDefinitions = useMemo(
-    () => rules?.map((rule) => ({ ...rule, rowProps: { valueDefinitions } })),
+    () => rules?.map((rule) => ({ ...rule, valueDefinitions })),
     [rules, valueDefinitions]
   );
 

@@ -187,7 +187,6 @@ export const EditPolicyProfilesRulesRest = ({
             preselected={preselected}
             enableSecurityGuideRulesToggle
             rulesPageLink={true}
-            defaultTableView="rows"
             onValueOverrideSave={onValueOverrideSave}
             selectedVersionCounts={osMinorVersionCounts.reduce(
               (prev, cur) => ({
