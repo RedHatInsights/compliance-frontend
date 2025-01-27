@@ -138,7 +138,7 @@
     "babel-plugin-transform-imports": "^2.0.0",
     "better-docs": "^2.7.3",
     "css-loader": "^6.8.1",
-    "cypress": "^13.17.0",
+    "cypress": "^14.0.0",
     "dotenv-defaults": "^5.0.2",
     "eslint": "^8.43.0",
     "eslint-plugin-cypress": "^3.4.0",
