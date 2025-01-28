@@ -18,7 +18,7 @@ export const Name = {
 
 export const PassedSystemDetails = {
   ...Passed,
-  renderExport: ({ result }) => (result === 'pass' ? 'Yes' : 'No'),
+  renderExport: ({ result }) => (result === 'pass' ? 'passed' : 'failed'),
   renderFunc: renderComponent(PassedCell),
 };
 
