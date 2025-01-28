@@ -35,6 +35,7 @@ const RulesTable = ({
   onSelect,
   defaultTableView = 'tree',
   reportTestResult,
+  valueOverrides,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
@@ -77,6 +78,7 @@ const RulesTable = ({
         ...rule,
         itemId,
         valueDefinitions: ruleValueDefinitions,
+        valueOverrides,
         profile: { id: policyId, name: policyName },
         ruleValues: ruleRuleValues,
       };
@@ -98,23 +100,53 @@ const RulesTable = ({
 
     return Row;
   }, [
-    policyId,
-    policyName,
-    onRuleValueReset,
     rules,
     ruleValues,
+    policyId,
+    policyName,
     onValueOverrideSave,
+    onRuleValueReset,
+    valueOverrides,
   ]);
 
   const itemsWithValueDefinitions = useMemo(
-    () => rules?.map((rule) => ({ ...rule, valueDefinitions })),
-    [rules, valueDefinitions]
+    () =>
+      rules?.map((rule) => {
+        const updatedRule = { ...rule };
+
+        const updatedValueDefinitions = valueDefinitions?.data?.map(
+          (definition) => {
+            const matchingRule = rule.value_checks.find(
+              (checkId) => checkId === definition.id
+            );
+
+            if (matchingRule && valueOverrides) {
+              const override = Object.values(valueOverrides).find(
+                (overrideObj) => overrideObj[matchingRule]
+              );
+              if (override) {
+                definition.value = override[matchingRule];
+              }
+            }
+            return definition;
+          }
+        );
+        updatedRule.rowProps = {
+          valueDefinitions: {
+            data: updatedValueDefinitions,
+          },
+        };
+
+        return updatedRule;
+      }),
+    [rules, valueOverrides, valueDefinitions]
   );
 
   return (
     <ComplianceTable
       aria-label="Rules Table"
       items={itemsWithValueDefinitions}
+      valueOverrides={valueOverrides}
       columns={columns}
       isStickyHeader
       filters={{
@@ -189,6 +221,7 @@ RulesTable.propTypes = {
   total: propTypes.number,
   defaultTableView: propTypes.string,
   reportTestResult: propTypes.object,
+  valueOverrides: propTypes.object,
 };
 
 export default RulesTable;
