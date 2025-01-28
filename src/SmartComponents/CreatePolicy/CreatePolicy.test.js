@@ -47,22 +47,30 @@ describe('CreatePolicy', () => {
       randomSystems,
       randomSystemsCounts,
     } = graphqlQueryMocks(['7']);
-
+    console.log('Start rendering');
     render(
       <TestWrapper mocks={mocks} store={store}>
         <CreatePolicy />
       </TestWrapper>
     );
-
+    console.log('eshamard TEST 1');
     expect(screen.getByRole('button', { name: 'Next' })).toBeDisabled();
+    console.log('eshamard TEST 2');
 
     await checkStep('Create SCAP policy', async () => {
-      await screen.findByText('Operating system');
+      console.log('eshamard TEST 2.1')
+      await waitFor(
+        () => expect(screen.getByText('Operating system')).toBeInTheDocument(),
+        { timeout: 15000 }
+      );
+      // await screen.findByText('Operating system', {}, { timeout: 15000 });
+      console.log('eshamard TEST 2.2')
       await userEvent.click(
         screen.getByRole('option', {
           name: 'RHEL ' + osMajorVersionToSelect.osMajorVersion,
         })
       );
+      console.log('eshamard TEST 3');
 
       expect(screen.getByText('Policy type')).toBeInTheDocument();
 
@@ -71,21 +79,26 @@ describe('CreatePolicy', () => {
         screen.getByRole('textbox', { name: 'text input' }),
         profileToSelect.name
       );
+      console.log('TEST 4');
 
       await userEvent.click(
         screen.getByRole('radio', { name: 'Select row 0' })
       );
     });
+    console.log('TEST 5');
 
     await nextStep('Details', async () => {
       expect(screen.getByText('Policy name')).toBeInTheDocument();
     });
+    console.log('TEST 6');
 
     await nextStep('Systems', async () => {
       // Since we mock InventoryTable we need to dispatch a change manually
       dispatchFieldChange(store, 'systems', randomSystems);
       dispatchFieldChange(store, 'osMinorVersionCounts', randomSystemsCounts);
     });
+    console.log('TEST 7');
+
     // TODO add proper rules data
     //     await nextStep('Rules', async () => {
     //       expect(screen.getByText(profileToSelect.name)).toBeInTheDocument();
