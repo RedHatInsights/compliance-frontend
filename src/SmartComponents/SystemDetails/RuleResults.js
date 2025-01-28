@@ -1,17 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
 import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
 import columns from './Columns';
+import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
+
+import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const RuleResults = ({ reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();
-
-  const { limit, offset } = serialisedTableState?.pagination || {};
-  const filters = serialisedTableState?.filters;
-  const sort = serialisedTableState?.sort;
 
   // Enable default filter
   const activeFiltersPassed = true;
@@ -19,30 +17,38 @@ const RuleResults = ({ reportTestResult }) => {
     'rule-state': ['failed'],
   };
 
-  const { data: ruleResults } = useReportRuleResults({
-    params: [
-      reportTestResult.id,
-      reportTestResult.report_id,
-      undefined,
-      limit,
-      offset,
-      false,
-      sort,
-      filters,
-    ],
+  const testResultId = reportTestResult.id;
+  const reportId = reportTestResult.report_id;
+
+  const { data: ruleResults, fetch: fetchRuleResults } = useReportRuleResults({
+    params: {
+      testResultId,
+      reportId,
+    },
+    useTableState: true,
     skip: serialisedTableState === undefined,
   });
 
+  const transformRules = (ruleResults, reportTestResult) => {
+    return ruleResults !== undefined
+      ? ruleResults.map((rule) => ({
+          ...rule,
+          profile: { name: reportTestResult.title },
+        }))
+      : [];
+  };
+
   const rules = useMemo(
-    () =>
-      ruleResults !== undefined
-        ? ruleResults.data.map((rule) => ({
-            ...rule,
-            profile: { name: reportTestResult.title },
-          }))
-        : [],
+    () => transformRules(ruleResults?.data, reportTestResult),
     [ruleResults, reportTestResult]
   );
+
+  const fetchForExport = useCallback(
+    async (offset, limit) => await fetchRuleResults({ offset, limit }, false),
+    [fetchRuleResults]
+  );
+
+  const ruleResultsExporter = useExporter(fetchForExport);
 
   return (
     <RulesTable
@@ -60,8 +66,11 @@ const RuleResults = ({ reportTestResult }) => {
       remediationsEnabled
       reportTestResult={reportTestResult}
       skipValueDefinitions={true}
+      options={{
+        exporter: async () =>
+          transformRules(await ruleResultsExporter(), reportTestResult),
+      }}
       // TODO: provide ruleTree
-      // TODO: hide passed rules by default
     />
   );
 };
