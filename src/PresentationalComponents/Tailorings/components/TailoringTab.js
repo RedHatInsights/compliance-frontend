@@ -28,6 +28,7 @@ const TailoringTab = ({
   onSelect,
   preselected,
   enableSecurityGuideRulesToggle,
+  valueOverrides,
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
@@ -150,6 +151,7 @@ const TailoringTab = ({
             shouldSkip.securityGuide.valueDefinitions === false &&
             valueDefinitions === undefined,
         }}
+        valueOverrides={valueOverrides}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
@@ -189,6 +191,7 @@ TailoringTab.propTypes = {
   onValueOverrideSave: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
+  valueOverrides: propTypes.object,
 };
 
 const TailoringTabProvider = (props) => (

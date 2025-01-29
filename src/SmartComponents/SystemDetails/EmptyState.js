@@ -12,7 +12,7 @@ const EmptyState = ({ inventoryId, system }) => {
     params: [inventoryId],
     skip: system,
   });
-  const policiesCount = system?.policies.length || data?.policies.length;
+  const policiesCount = system?.policies.length ?? data?.policies.length;
   const insightsId = system?.insights_id || data?.insights_id;
 
   if (!system && !data) {

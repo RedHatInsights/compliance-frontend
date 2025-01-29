@@ -39,11 +39,11 @@ describe('EmptyState for systemDetails', () => {
     );
 
     expect(
-      screen.getByText('This system isn’t connected to Insights yet')
+      screen.getByText(`This system isn't connected to Insights yet`)
     ).toBeInTheDocument();
   });
 
-  it('expect to render NoPoliciesState component', () => {
+  it('expect to render NoPoliciesState component for Inventory', () => {
     useSystem.mockImplementation(() => ({
       data: { data: { display_name: 'foo', policies: [], insights_id: '123' } },
       error: undefined,
@@ -54,6 +54,30 @@ describe('EmptyState for systemDetails', () => {
         <EmptyState inventoryId={'123'} />
       </TestWrapper>
     );
+
+    expect(
+      screen.getByText(
+        'This system is not part of any SCAP policies defined within Compliance.'
+      )
+    ).toBeInTheDocument();
+  });
+
+  it.only('expect to render NoPoliciesState component for Compliance SystemDetails', () => {
+    useSystem.mockImplementation(() => ({}));
+
+    render(
+      <TestWrapper>
+        <EmptyState
+          inventoryId={'123'}
+          system={{ insights_id: '123', policies: [] }}
+        />
+      </TestWrapper>
+    );
+
+    expect(useSystem).toHaveBeenCalledWith({
+      params: ['123'],
+      skip: { insights_id: '123', policies: [] }, // Ensure correct 'skip' value
+    });
 
     expect(
       screen.getByText(
@@ -85,6 +109,8 @@ describe('EmptyState for systemDetails', () => {
   });
 
   it('expect to render NoReportsState component', () => {
+    useSystem.mockImplementation(() => ({}));
+
     render(
       <TestWrapper>
         <EmptyState
