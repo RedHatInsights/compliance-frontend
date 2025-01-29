@@ -42,7 +42,11 @@ const EditPolicyForm = ({
   const handleSystemSelect = useCallback(
     (newSelectedSystems) => {
       const newOsMinorVersions = [
-        ...new Set(newSelectedSystems.map((system) => system.osMinorVersion)), // get unique values
+        ...new Set(
+          newSelectedSystems.map(
+            (system) => system.os_minor_version ?? system.osMinorVersion
+          )
+        ), // get unique values
       ];
 
       const hasNewOsMinorVersions =
@@ -57,7 +61,11 @@ const EditPolicyForm = ({
       setNewRulesAlert(hasNewOsMinorVersions);
       setSelectedOsMinorVersions(newOsMinorVersions);
       setSelectedVersionCounts(
-        getCounts(newSelectedSystems.map((system) => system.osMinorVersion))
+        getCounts(
+          newSelectedSystems.map(
+            (system) => system.osMinorVersion ?? system.os_minor_version
+          )
+        )
       );
       setSelectedSystems(newSelectedSystems.map((system) => system.id));
     },
