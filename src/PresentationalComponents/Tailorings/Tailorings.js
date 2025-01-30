@@ -16,11 +16,13 @@ import NoTailorings from './NoTailorings';
 // TODO defaultTab  defaultTab={getDefaultTab(tailorings, defaultTab)}
 
 /**
- * This component is used to show either the tailorings with rules of a specific policy,
- * or the rules of a specific security guide and it's rules for a set of minor OS versions
+ * This component is used to show either a specific policy an it's tailorings,
+ * or a specific security guide and specific profiles,
+ * or a specific policy with it's existing tailorings and the default ruleset from the security guide for a specified set of minor OS versions.
  *
- *  @param   {object}             [props]
+ *  @param   {object}             [props]                                React component props
  *  @param   {object}             [props.policy]                         A policy object from the API
+ *  @param   {string}             [props.policy.id]                      The id used to fetch the tailorings associated with it
  *  @param   {string}             [props.profiles]                       An array of objects containing osMajorVersion, osMinorVersion, securityGuideId, profileId props for showing additional tabs.
  *  @param   {string}             [props.defaultTab]                     TODO
  *  @param   {Array}              [props.columns]                        An array of RulesTable columns
@@ -30,112 +32,17 @@ import NoTailorings from './NoTailorings';
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
  *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
+ *  @param   {object}             [props.selectedVersionCounts]          An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
+ *  @param   {object}             [props.valueOverrides]                 **deprecated** It should be calles "ruleValues"
  *  @param                        [props.rulesPageLink]
  *
- *  @param   {object}             props.selectedVersionCounts            An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
- *  @param                        props.valueOverrides
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
+ *  @tutorial how-to-use-tailorings
  *
- *
- *  @example
- *
- *  // Will show the tailorings of a policy
- *
- *  <Tailorings
- *   ouiaId="RHELVersions"
- *   columns={[
- *     Columns.Name,
- *     Columns.Severity,
- *     Columns.Remediation,
- *   ]}
- *   policy={policy}
- * />
- *
- *  // Will show the tailorings of a policy and an additional tabs for other OS minor version to show
- *
- *  <Tailorings
- *   ouiaId="RHELVersions"
- *   columns={[
- *     Columns.Name,
- *     Columns.Severity,
- *     Columns.Remediation,
- *   ]}
- *   policy={policy}
- *   profiles={[
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 1,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 2,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *  ]}
- * />
- *
- *  // Will show tabs with rules from the security guide and the specified OS minor versions
- *
- *  <Tailorings
- *   ouiaId="RHELVersions"
- *   columns={[
- *     Columns.Name,
- *     Columns.Severity,
- *     Columns.Remediation,
- *   ]}
- *   profiles={[
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 1,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 2,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *  ]}
- * />
- *
- *  // Will show tabs with rules from the security guide and the specified OS minor versions
- *  // and preselect rules with the IDs provided in preselected. The key can also be a tailorings ID
- *
- *  <Tailorings
- *   ouiaId="RHELVersions"
- *   columns={[
- *     Columns.Name,
- *     Columns.Severity,
- *     Columns.Remediation,
- *   ]}
- *   profiles={[
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 1,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *    {
- *      osMajorVersion: 9,
- *      osMinorVersion: 2,
- *      securityGuideId: 'XYZ-ABC',
- *      profileId: 'XYZ-ABC',
- *    },
- *  ]}
- *  preselected={{
- *    "2": ['RULE_ID1', 'RULE_ID2']
- *    "1": ['RULE_ID11', 'RULE_ID5']
- *  }}
- * />
- *
- *
- */ const Tailorings = ({
+ */
+const Tailorings = ({
   policy,
   profiles,
   defaultTab,
@@ -170,6 +77,7 @@ import NoTailorings from './NoTailorings';
       ...profile,
       os_major_version: profile.osMajorVersion,
       os_minor_version: profile.osMinorVersion,
+      // TODO this cam be done smarter. We can pass the properties for the tab directly here
       isSecurityGuide: true,
     })) || []),
   ];
@@ -242,7 +150,7 @@ import NoTailorings from './NoTailorings';
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
                     rulesPageLink: rulesPageLink,
-                    valueOverrides,
+                    ruleValues: valueOverrides,
                   }}
                 />
               </Tab>
@@ -258,8 +166,17 @@ import NoTailorings from './NoTailorings';
 
 Tailorings.propTypes = {
   columns: propTypes.arrayOf(propTypes.object),
-  policy: propTypes.object,
-  profiles: propTypes.array,
+  policy: propTypes.shape({
+    id: propTypes.string,
+  }),
+  profiles: propTypes.arrayOf(
+    propTypes.shape({
+      osMajorVersion: propTypes.string,
+      osMinorVersion: propTypes.string,
+      securityGuideId: propTypes.string,
+      profileId: propTypes.string,
+    })
+  ),
   defaultTab: propTypes.shape({
     id: propTypes.string,
     osMinorVersion: propTypes.string,

@@ -10,6 +10,38 @@ import { buildTreeTable, skips } from '../helpers';
 import TabHeader from './TabHeader';
 import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
 
+/**
+ * This component is used to show either the tailorings with rules of a specific policy,
+ * or the rules of a specific security guide and it's rules for a set of minor OS versions
+ *
+ *  @param   {object}             [props]                                React component props
+ *  @param   {object}             [props.policy]                         A policy object from the API
+ *  @param   {string}             [props.policy.id]                      The id used to fetch
+ *  @param   {object}             [props.tailoring]                      A tailoring object from the API
+ *  @param   {string}             [props.tailoring.id]                   A tailorings ID used to fetch the associated rules, rule groups, and value definitions for
+ *  @param   {string}             [props.securityGuideId]                The ID for a security guide that the profile should be queried with
+ *  @param   {string}             [props.profileId]                      The ID for a specific profile the rules should fetched for
+ *  @param   {string}             [props.osMajorVersion]                 A specific major OS version the profile should be queried with
+ *  @param   {string}             [props.osMinorVersion]                 A specific minor OS versions that the profile should be for
+ *  @param   {object}             [ props.ruleValues]                    An object to provide custom values for rules
+ *  @param   {Array}              [props.columns]                        A set of RulesTable columns the table should show
+ *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] This enabled the "Selected Only" toggle to appear and allows fetching the security guide rule set for the matching profile
+ *  @param                        [props.systemCount]
+ *  @param                        [props.rulesPageLink]
+ *  @param   {object}             props.rulesTableProps                  React component props to be passed on to the RulesTable component in the tab
+ *  @param                        props.resetLink
+ *  @param   {Function}           [props.setRuleValues]                  A callback called when a custom rule value is saved
+ *  @param   {Function}           [props.onRuleValueReset]               A callback called when values for a rule are reset
+ *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
+ *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
+ *  @param   {object}             [props.preselected]                    An array of rule IDs to select
+ *
+ *  @returns {React.ReactElement}
+ *
+ *  @category Compliance
+ *  @tutorial how-to-use-tailorings
+ *
+ */
 const TailoringTab = ({
   policy,
   tailoring,
@@ -17,6 +49,7 @@ const TailoringTab = ({
   osMajorVersion,
   osMinorVersion,
   profileId,
+  ruleValues,
   columns,
   systemCount,
   rulesTableProps,
@@ -28,7 +61,6 @@ const TailoringTab = ({
   onSelect,
   preselected,
   enableSecurityGuideRulesToggle,
-  valueOverrides,
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
@@ -144,6 +176,7 @@ const TailoringTab = ({
         columns={columns}
         setRuleValues={setRuleValues}
         // TODO Doublecheck if we should set default profile value_override values when creating a policy
+        // TODO in order to be clean this needs to change and we need to merge overrides passed in with the ones from tailoring
         ruleValues={tailoring?.value_overrides || {}}
         valueDefinitions={{
           data: valueDefinitions?.data,
@@ -151,7 +184,8 @@ const TailoringTab = ({
             shouldSkip.securityGuide.valueDefinitions === false &&
             valueDefinitions === undefined,
         }}
-        valueOverrides={valueOverrides}
+        // TODO follow up on above, this and everything related within the details row can go
+        valueOverrides={ruleValues}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
@@ -172,26 +206,31 @@ const TailoringTab = ({
 };
 
 TailoringTab.propTypes = {
-  policy: propTypes.object,
-  tailoring: propTypes.object,
+  policy: propTypes.shape({
+    id: propTypes.string,
+  }),
+  tailoring: propTypes.shape({
+    id: propTypes.string,
+    profile_id: propTypes.string,
+    security_guide_id: propTypes.string,
+    value_overrides: propTypes.array,
+  }),
   securityGuideId: propTypes.string,
   profileId: propTypes.string,
   osMajorVersion: propTypes.string,
   osMinorVersion: propTypes.string,
+  ruleValues: propTypes.object,
   columns: propTypes.array,
   onSelect: propTypes.func,
   systemCount: propTypes.number,
-  selectedRuleRefIds: propTypes.array,
   rulesTableProps: propTypes.object,
   resetLink: propTypes.bool,
   rulesPageLink: propTypes.bool,
   setRuleValues: propTypes.func,
-  ruleValues: propTypes.array,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
-  valueOverrides: propTypes.object,
 };
 
 const TailoringTabProvider = (props) => (
