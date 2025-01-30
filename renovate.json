@@ -17,7 +17,7 @@
       }
     ],
     "schedule": [
-      "every 60 mins"
+      "at any time"
     ]
   }
 }
