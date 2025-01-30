@@ -187,6 +187,6 @@
     "bump:patternfly": "npm update @patternfly/react-core @patternfly/react-table @patternfly/react-charts @patternfly/react-tokens @patternfly/react-icons --save",
     "coverage": "bash coverage.sh && npm run coverage:clean",
     "postinstall": "ts-patch install",
-    "docs": "jsdoc -r -u src/Frameworks/AsyncTableTools/docs --configure .jsdoc.json"
+    "docs": "jsdoc --configure .jsdoc.json"
   }
 }
