@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 // eslint-disable-next-line
-import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
+// import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
 import { TableToolsTable } from 'Utilities/hooks/useTableTools';
 import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
 import RuleDetailsRow from './RuleDetailsRow';
@@ -34,8 +34,8 @@ const RulesTable = ({
     ? [selectedRulesProp, handleSelect]
     : internalSelectedState;
   const rules = toRulesArrayWithProfile(profileRules);
-  const selectedRulesWithRemediations = (selectedRules) =>
-    (selectedRules || []).filter((rule) => rule.remediationAvailable);
+  // const selectedRulesWithRemediations = (selectedRules) =>
+  // (selectedRules || []).filter((rule) => rule.remediationAvailable);
   const showRuleStateFilter =
     columns.filter((c) => c.title === 'Rule state').length > 0;
 
@@ -46,12 +46,12 @@ const RulesTable = ({
       name: profile.name,
     }));
 
-  const remediationAction = ({ selected }) => (
-    <ComplianceRemediationButton
-      allSystems={selected.length > 0 ? [system] : undefined}
-      selectedRules={selectedRulesWithRemediations(selected)}
-    />
-  );
+  // const remediationAction = ({ selected }) => (
+  // <ComplianceRemediationButton
+  //   allSystems={selected.length > 0 ? [system] : undefined}
+  //   selectedRules={selectedRulesWithRemediations(selected)}
+  // />
+  // );
 
   const DetailsRow = useMemo(
     () =>
@@ -103,7 +103,7 @@ const RulesTable = ({
         detailsComponent: DetailsRow,
         emptyRows: emptyRows(columns),
         selectedFilter,
-        ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        // ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
       }}
       {...rulesTableProps}
     />

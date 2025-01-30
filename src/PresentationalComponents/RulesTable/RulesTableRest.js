@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
+import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButton';
 import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
