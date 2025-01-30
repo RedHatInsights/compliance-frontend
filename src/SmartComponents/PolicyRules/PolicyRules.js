@@ -3,8 +3,8 @@ import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import propTypes from 'prop-types';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
-import RulesTableRest from '@/PresentationalComponents/RulesTable/RulesTableRest';
+// import RulesTable from '@/PresentationalComponents/RulesTable/RulesTable';
+import RulesTableRest from 'PresentationalComponents/RulesTable/RulesTable';
 import PolicyRulesHeader from './PolicyRulesHeader';
 import GatedComponents from 'PresentationalComponents/GatedComponents';
 import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
@@ -60,13 +60,13 @@ const PolicyRulesGraphQL = () => {
       benchmarkVersion={data?.profile?.benchmark?.version}
       osMajorVersion={data?.profile?.osMajorVersion}
     >
-      <RulesTable
+      {/* <RulesTable
         remediationsEnabled={false}
         columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
         loading={loading}
         profileRules={[{ profile: data?.profile, rules: data?.profile?.rules }]}
         options={{ pagination: false, manageColumns: false }}
-      />
+      /> */}
     </PolicyRulesBase>
   );
 };

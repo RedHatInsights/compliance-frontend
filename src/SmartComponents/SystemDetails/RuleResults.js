@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
+import RulesTable from '../../PresentationalComponents/RulesTable/RulesTable';
 import propTypes from 'prop-types';
 import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';

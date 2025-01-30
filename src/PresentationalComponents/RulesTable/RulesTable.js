@@ -1,76 +1,153 @@
 import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-// eslint-disable-next-line
-// import ComplianceRemediationButton from 'PresentationalComponents/ComplianceRemediationButton';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import { toRulesArrayWithProfile } from 'Utilities/ruleHelpers';
+import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButton';
+import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
-import emptyRows from './EmptyRows';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
-import { growTableTree, itemIdentifier } from './helpers';
+import { List } from 'react-content-loader';
+import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
 
 const RulesTable = ({
   system,
-  profileRules,
+  rules,
+  ruleTree,
+  policyId,
+  policyName,
   columns = defaultColumns,
   remediationsEnabled = true,
   ansibleSupportFilter = false,
   selectedFilter = false,
-  handleSelect,
   selectedRules: selectedRulesProp = [],
   hidePassed = false,
   options,
-  activeFilters,
-  showFailedCounts = false,
+  activeFiltersPassed = false, // Enable Default filter
+  activeFilters, // Default filter
+  // showFailedCounts = false, // TODO We need systems counts
   setRuleValues,
   ruleValues,
+  valueDefinitions,
+  skipValueDefinitions,
   onRuleValueReset,
+  DedicatedAction,
+  onValueOverrideSave,
+  total,
+  onSelect,
+  defaultTableView = 'tree',
+  reportTestResult,
+  valueOverrides,
   ...rulesTableProps
 }) => {
   const internalSelectedState = useState([]);
-  const [selectedRules, setSelectedRules] = handleSelect
-    ? [selectedRulesProp, handleSelect]
-    : internalSelectedState;
-  const rules = toRulesArrayWithProfile(profileRules);
-  // const selectedRulesWithRemediations = (selectedRules) =>
-  // (selectedRules || []).filter((rule) => rule.remediationAvailable);
+  const [selectedRules, setSelectedRules] =
+    typeof onSelect === 'function'
+      ? [selectedRulesProp, onSelect]
+      : internalSelectedState;
   const showRuleStateFilter =
     columns.filter((c) => c.title === 'Rule state').length > 0;
 
-  const policies = profileRules
-    .filter(({ profile }) => !!profile)
-    .map(({ profile }) => ({
-      id: profile.id,
-      name: profile.name,
-    }));
+  // TODO implement policies filter
+  const policies = [];
 
-  // const remediationAction = ({ selected }) => (
-  // <ComplianceRemediationButton
-  //   allSystems={selected.length > 0 ? [system] : undefined}
-  //   selectedRules={selectedRulesWithRemediations(selected)}
-  // />
-  // );
+  const remediationAction = () => (
+    <RemediationButton
+      reportTestResults={selectedRules.length > 0 ? [reportTestResult] : []}
+      selectedRuleResultIds={selectedRules}
+      reportId={policyId}
+    />
+  );
 
-  const DetailsRow = useMemo(
+  const DetailsRow = useMemo(() => {
+    function Row(props) {
+      // eslint-disable-next-line react/prop-types
+      const { itemId, valueDefinitions } = props?.item || {};
+      const rule = rules?.find(({ id }) => itemId === id);
+      const ruleValueDefinitions = rule?.value_checks?.map((checkId) =>
+        valueDefinitions?.data?.find(({ id }) => id === checkId)
+      );
+      const ruleRuleValues = ruleValues
+        ? Object.fromEntries(
+            Object.entries(ruleValues).filter(([id]) =>
+              rule?.value_checks.includes(id)
+            )
+          )
+        : undefined;
+      const item = {
+        // eslint-disable-next-line react/prop-types
+        ...props.item,
+        ...rule,
+        itemId,
+        valueDefinitions: ruleValueDefinitions,
+        valueOverrides,
+        profile: { id: policyId, name: policyName },
+        ruleValues: ruleRuleValues,
+      };
+
+      return (skipValueDefinitions === undefined ||
+        skipValueDefinitions === false) &&
+        (valueDefinitions === undefined ||
+          valueDefinitions.loading === true ||
+          valueDefinitions.data === undefined) ? (
+        <List />
+      ) : (
+        <RuleDetailsRow
+          onValueChange={onValueOverrideSave}
+          onRuleValueReset={onRuleValueReset}
+          item={item}
+        />
+      );
+    }
+
+    return Row;
+  }, [
+    rules,
+    ruleValues,
+    policyId,
+    policyName,
+    onValueOverrideSave,
+    onRuleValueReset,
+    valueOverrides,
+  ]);
+
+  const itemsWithValueDefinitions = useMemo(
     () =>
-      function Row(props) {
-        return (
-          <RuleDetailsRow
-            onValueChange={setRuleValues}
-            onRuleValueReset={onRuleValueReset}
-            {...props}
-          />
+      rules?.map((rule) => {
+        const updatedRule = { ...rule };
+
+        const updatedValueDefinitions = valueDefinitions?.data?.map(
+          (definition) => {
+            const matchingRule = rule.value_checks.find(
+              (checkId) => checkId === definition.id
+            );
+
+            if (matchingRule && valueOverrides) {
+              const override = Object.values(valueOverrides).find(
+                (overrideObj) => overrideObj[matchingRule]
+              );
+              if (override) {
+                definition.value = override[matchingRule];
+              }
+            }
+            return definition;
+          }
         );
-      },
-    [setRuleValues]
+        updatedRule.rowProps = {
+          valueDefinitions: {
+            data: updatedValueDefinitions,
+          },
+        };
+
+        return updatedRule;
+      }),
+    [rules, valueOverrides, valueDefinitions]
   );
 
   return (
-    <TableToolsTable
+    <ComplianceTable
       aria-label="Rules Table"
-      items={rules}
+      items={itemsWithValueDefinitions}
+      valueOverrides={valueOverrides}
       columns={columns}
       isStickyHeader
       filters={{
@@ -80,7 +157,7 @@ const RulesTable = ({
           ansibleSupportFilter,
         }),
         ...(hidePassed && {
-          activeFilters: (currentActiveFilters) => ({
+          activeFilters: (currentActiveFilters = {}) => ({
             ...currentActiveFilters,
             ['rule-state']: currentActiveFilters['rule-state']
               ? currentActiveFilters['rule-state']
@@ -88,23 +165,27 @@ const RulesTable = ({
             ...activeFilters,
           }),
         }),
+        ...(activeFiltersPassed && {
+          activeFilters: { ...activeFilters },
+        }),
       }}
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        tableTree: growTableTree(
-          profileRules[0].profile,
-          rules,
-          showFailedCounts
-        ),
-        identifier: itemIdentifier,
-        onSelect: (handleSelect || remediationsEnabled) && setSelectedRules,
+        showViewToggle: true,
+        defaultTableView,
+        ...(ruleTree ? { tableTree: ruleTree } : {}),
+        ...(ruleTree ? { tableTree: ruleTree, defaultTableView: 'tree' } : {}),
+        onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
         detailsComponent: DetailsRow,
-        emptyRows: emptyRows(columns),
         selectedFilter,
-        // ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        dedicatedAction: DedicatedAction,
+        ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        emptyRows: emptyRows('rules', columns.length),
+        total,
       }}
+      total={total}
       {...rulesTableProps}
     />
   );
@@ -112,14 +193,18 @@ const RulesTable = ({
 
 RulesTable.propTypes = {
   profileRules: propTypes.array,
+  rules: propTypes.array.isRequired,
+  ruleTree: propTypes.array,
+  policyId: propTypes.string.isRequired,
+  policyName: propTypes.string,
   loading: propTypes.bool,
   hidePassed: propTypes.bool,
+  activeFiltersPassed: propTypes.bool,
   system: propTypes.object,
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
   selectedFilter: propTypes.bool,
-  handleSelect: propTypes.func,
   columns: propTypes.array,
   options: propTypes.object,
   activeFilters: propTypes.object,
@@ -127,6 +212,18 @@ RulesTable.propTypes = {
   setRuleValues: propTypes.func,
   ruleValues: propTypes.object,
   onRuleValueReset: propTypes.func,
+  DedicatedAction: propTypes.node,
+  valueDefinitions: propTypes.shape({
+    data: propTypes.any,
+    loading: propTypes.bool.isRequired,
+  }),
+  skipValueDefinitions: propTypes.bool,
+  onValueOverrideSave: propTypes.func,
+  onSelect: propTypes.oneOf([propTypes.func, propTypes.bool]),
+  total: propTypes.number,
+  defaultTableView: propTypes.string,
+  reportTestResult: propTypes.object,
+  valueOverrides: propTypes.object,
 };
 
 export default RulesTable;
