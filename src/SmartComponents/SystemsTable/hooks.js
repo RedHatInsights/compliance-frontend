@@ -1,11 +1,8 @@
 import React, { useEffect, useLayoutEffect, useCallback } from 'react';
-import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import {
-  osMinorVersionFilter,
-  GET_SYSTEMS_OSES,
   applyInventoryFilters,
   groupFilterHandler,
   osFilterHandler,
@@ -16,41 +13,9 @@ import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
-import { useFetchSystems, useFetchSystemsV2 } from './hooks/useFetchSystems';
+import { useFetchSystemsV2 } from './hooks/useFetchSystems';
 import useLoadedItems from './hooks/useLoadedItems';
 import useSystem from '../../Utilities/hooks/api/useSystem';
-
-const groupByMajorVersion = (versions = [], showFilter = []) => {
-  const showVersion = (version) => {
-    if (showFilter.length > 0) {
-      return showFilter.map(String).includes(String(version));
-    } else {
-      return true;
-    }
-  };
-
-  return versions.reduce((acc, currentValue) => {
-    if (showVersion(currentValue.major)) {
-      acc[String(currentValue.major)] = [
-        ...new Set([...(acc[currentValue.major] || []), currentValue.minor]),
-      ];
-    }
-
-    return acc;
-  }, []);
-};
-
-export const useOsMinorVersionFilter = (showFilter, fetchArguments = {}) => {
-  let { data } = useQuery(GET_SYSTEMS_OSES, {
-    skip: !showFilter,
-    ...fetchArguments,
-  });
-  const { osVersions } = data?.systems || {};
-
-  return showFilter
-    ? osMinorVersionFilter(groupByMajorVersion(osVersions, showFilter))
-    : [];
-};
 
 export const useSystemsFilter = (
   filterString,
@@ -88,7 +53,7 @@ const useFetchBatched = () => {
   };
 };
 
-const buildApiFilters = (filters = {}, ignoreOsMajorVersion, apiV2Enabled) => {
+const buildApiFilters = (filters = {}, ignoreOsMajorVersion) => {
   const {
     tagFilters,
     hostGroupFilter,
@@ -110,38 +75,24 @@ const buildApiFilters = (filters = {}, ignoreOsMajorVersion, apiV2Enabled) => {
       }
     : {};
 
-  if (
-    hostGroupFilter !== undefined &&
-    Array.isArray(hostGroupFilter) &&
-    !apiV2Enabled
-  ) {
-    otherFilters.filter = `(${hostGroupFilter
-      .map((value) => `group_name = "${value}"`)
-      .join(' or ')})`;
-  }
-
   return {
     ...otherFilters,
     ...tagsApiFilter,
-    ...(apiV2Enabled
-      ? {
-          filter: applyInventoryFilters(
-            [groupFilterHandler, osFilterHandler, nameFilterHandler],
-            {
-              osFilter,
-              hostGroupFilter,
-              hostnameOrId,
-            },
-            ignoreOsMajorVersion
-          ),
-        }
-      : {}),
+    filter: applyInventoryFilters(
+      [groupFilterHandler, osFilterHandler, nameFilterHandler],
+      {
+        osFilter,
+        hostGroupFilter,
+        hostnameOrId,
+      },
+      ignoreOsMajorVersion
+    ),
   };
 };
 
 export const useGetEntities = (
   fetchEntities,
-  { selected, columns, ignoreOsMajorVersion, apiV2Enabled } = {}
+  { selected, columns, ignoreOsMajorVersion } = {}
 ) => {
   const appendDirection = (attributes, direction) =>
     attributes.map((attribute) => `${attribute}:${direction}`);
@@ -162,11 +113,7 @@ export const useGetEntities = (
       sortableColumn && sortableColumn.sortBy
         ? appendDirection(sortableColumn.sortBy, orderDirection)
         : undefined;
-    const filterForApi = buildApiFilters(
-      filters,
-      ignoreOsMajorVersion,
-      apiV2Enabled
-    );
+    const filterForApi = buildApiFilters(filters, ignoreOsMajorVersion);
 
     const fetchedEntities = await fetchEntities(perPage, page, {
       ...filterForApi,
@@ -276,7 +223,6 @@ export const useSystemBulkSelect = ({
   fetchArguments,
   currentPageItems,
   fetchApi,
-  apiV2Enabled,
   tableLoaded,
 }) => {
   const dispatch = useDispatch();
@@ -320,11 +266,6 @@ export const useSystemBulkSelect = ({
     });
   }, []);
 
-  const fetchSystemsGraphQL = useFetchSystems({
-    ...fetchArguments,
-    onError,
-  });
-
   const fetchSystemsRest = useFetchSystemsV2(
     fetchApi,
     undefined,
@@ -347,10 +288,7 @@ export const useSystemBulkSelect = ({
     if (allLoaded) {
       items = loadedItems;
     } else {
-      const results = await fetchBatched(
-        apiV2Enabled ? fetchSystemsRest : fetchSystemsGraphQL,
-        total
-      );
+      const results = await fetchBatched(fetchSystemsRest, total);
       items = results.flatMap((result) => result.entities);
       addToLoadedItems(items);
     }

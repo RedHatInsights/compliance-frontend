@@ -8,11 +8,9 @@ import { renderComponent } from 'Utilities/helpers';
 import {
   Name as NameCell,
   ComplianceScore as ComplianceScoreCell,
-  FailedRules as FailedRulesCell,
   LastScanned as LastScannedCell,
   Policies as PoliciesCell,
   SSGVersions as SsgVersionCell,
-  complianceScoreData,
   lastScanned,
   operatingSystemString,
   OperatingSystem as OperatingSystemCell,
@@ -68,12 +66,12 @@ export const customName = (props, columnConfig) => ({
   ...columnConfig,
 });
 
-export const SsgVersion = (apiV2Enabled = false) =>
+export const SsgVersion = () =>
   compileColumnRenderFunc({
     title: 'SSG version',
     transforms: [nowrap],
     exportKey: 'testResultProfiles',
-    sortBy: apiV2Enabled ? ['security_guide_version'] : ['ssg_version'],
+    sortBy: ['security_guide_version'],
     key: 'ssg_version',
     renderExport: (testResultProfiles) =>
       testResultProfiles
@@ -98,49 +96,36 @@ export const Policies = {
   renderFunc: renderComponent(PoliciesCell),
 };
 
-export const FailedRules = (apiV2Enabled = false) =>
+export const FailedRules = () =>
   compileColumnRenderFunc({
     title: 'Failed rules',
     key: 'failedRules',
-    exportKey: apiV2Enabled ? 'rulesFailed' : 'profiles',
+    exportKey: 'rulesFailed',
     transforms: [nowrap],
-    sortBy: apiV2Enabled ? ['failed_rule_count'] : ['rulesFailed'],
+    sortBy: ['failed_rule_count'],
     props: {
       width: 5,
     },
     renderExport: (profiles) => {
-      if (apiV2Enabled) {
-        return profiles;
-      }
-      return profiles.reduce(
-        (failedRules, { rulesFailed }) => failedRules + rulesFailed,
-        0
-      );
+      return profiles;
     },
-    renderFunc: renderComponent(
-      apiV2Enabled ? FailedRulesRestCell : FailedRulesCell
-    ),
-    cell: apiV2Enabled ? FailedRulesRestCell : FailedRulesCell,
+    renderFunc: renderComponent(FailedRulesRestCell),
+    cell: FailedRulesRestCell,
   });
 
-export const ComplianceScore = (apiV2Enabled = false) =>
+export const ComplianceScore = () =>
   compileColumnRenderFunc({
     title: 'Compliance score',
     key: 'complianceScore',
-    exportKey: apiV2Enabled ? null : 'testResultProfiles',
-    sortBy: apiV2Enabled ? ['score'] : ['complianceScore'],
+    exportKey: null,
+    sortBy: ['score'],
     sortable: 'score',
     transforms: [nowrap],
     props: {
       width: 5,
     },
     renderExport: (testResultProfiles) => {
-      if (apiV2Enabled) {
-        return complianceScoreString(testResultProfiles);
-      }
-      return complianceScoreString(
-        complianceScoreData(testResultProfiles)
-      ).trim();
+      return complianceScoreString(testResultProfiles);
     },
     cell: ComplianceScoreCell,
   });
@@ -158,19 +143,17 @@ export const LastScanned = {
   renderFunc: renderComponent(LastScannedCell),
 };
 
-export const OperatingSystem = (apiV2Enabled = false) =>
+export const OperatingSystem = () =>
   compileColumnRenderFunc({
     title: 'Operating system',
     key: 'operatingSystem',
-    sortBy: apiV2Enabled
-      ? ['os_version']
-      : ['osMajorVersion', 'osMinorVersion'], // Use parameter to set sortBy
+    sortBy: ['os_version'],
     transforms: [nowrap],
     renderExport: (cell) => operatingSystemString(cell),
     cell: OperatingSystemCell,
   });
 
-export const OS = (apiV2Enabled = false) =>
+export const OS = () =>
   compileColumnRenderFunc({
     title: (
       <Tooltip content={<span>Operating System</span>}>
@@ -181,9 +164,7 @@ export const OS = (apiV2Enabled = false) =>
     key: 'operatingSystem',
     dataLabel: 'OS',
     transforms: [nowrap],
-    sortBy: apiV2Enabled
-      ? ['os_version']
-      : ['osMajorVersion', 'osMinorVersion'],
+    sortBy: ['os_version'],
     props: {
       width: 10,
     },

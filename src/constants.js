@@ -71,7 +71,6 @@ export const UNKNOWN_SEVERITY = (
 
 export const SEVERITY_LEVELS = ['high', 'medium', 'low', 'unknown'];
 
-export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_GRAPHQL = 'name';
 export const DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST = 'display_name';
 
 export const defaultSystemsFilterConfiguration = (
@@ -84,7 +83,6 @@ export const defaultSystemsFilterConfiguration = (
   },
 ];
 
-export const POLICY_FILTER_KEY_GRAPHQL = 'policy_id';
 export const POLICY_FILTER_KEY_REST = 'policies';
 
 export const systemsPolicyFilterConfiguration = (
@@ -176,13 +174,6 @@ export const systemsOsMinorFilterConfiguration = (osMajorVersions) => {
   ];
 };
 
-export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL = {
-  compliant: 'compliant',
-  supported: 'supported_ssg',
-  neverReported: 'reported',
-  complianceScore: 'compliance_score',
-};
-
 export const COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_REST = {
   compliant: 'compliant',
   supported: 'supported',
@@ -263,9 +254,6 @@ export const compliantSystemFilterRestConfiguration = (
     ],
   },
 ];
-
-export const FAILED_RULE_SEVERITY_FITLER_KEY_GRAPHQL =
-  'failed_rules_with_severity';
 
 export const FAILED_RULE_SEVERITY_FITLER_KEY_REST = 'failed_rule_severity';
 
