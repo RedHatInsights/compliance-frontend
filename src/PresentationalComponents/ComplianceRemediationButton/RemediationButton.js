@@ -6,21 +6,21 @@ import { useIssuesFetch } from './hooks';
 import FallbackButton from './components/FallBackButton';
 
 const RemediationButton = ({
-  rules,
-  systems,
-  policyId,
+  reportId,
+  reportTestResults,
+  selectedRuleResultIds,
   onRemediationCreated,
   ...buttonProps
 }) => {
   const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
-    policyId,
-    rules,
-    systems
+    reportId,
+    reportTestResults,
+    selectedRuleResultIds
   );
 
   return (
     <RemediationRemediationButton
-      isDisabled={systems?.length === 0 || isLoadingIssues}
+      isDisabled={reportTestResults?.length === 0 || isLoadingIssues}
       onRemediationCreated={(result) => {
         dispatchNotification(result.getNotification());
       }}
@@ -38,10 +38,10 @@ const RemediationButton = ({
 };
 
 RemediationButton.propTypes = {
-  rules: propTypes.array,
-  systems: propTypes.array,
+  reportId: propTypes.string,
+  reportTestResults: propTypes.arrayOf(propTypes.object),
+  selectedRuleResultIds: propTypes.arrayOf(propTypes.string),
   onRemediationCreated: propTypes.func,
-  policyId: propTypes.string,
 };
 
 export default RemediationButton;

@@ -1,32 +1,3 @@
-import { gql } from '@apollo/client';
-
-export const QUERY = gql`
-  {
-    profiles(search: "external = false and canonical = false") {
-      edges {
-        node {
-          id
-          name
-          description
-          refId
-          complianceThreshold
-          totalHostCount
-          osMajorVersion
-          policyType
-          policy {
-            id
-            name
-          }
-          businessObjective {
-            id
-            title
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const dataMap = {
   id: ['id', 'policy.id'],
   title: ['name', 'policy.name'],

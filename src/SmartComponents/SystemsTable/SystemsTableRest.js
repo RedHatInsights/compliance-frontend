@@ -4,7 +4,7 @@ import { Alert, Spinner } from '@patternfly/react-core';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 
-import RemediationButtonRest from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
+import RemediationButton from '@/PresentationalComponents/ComplianceRemediationButton/RemediationButton';
 import { ErrorPage, StateView, StateViewPart } from 'PresentationalComponents';
 import useFilterConfig from 'Utilities/hooks/useTableTools/useFilterConfig';
 import {
@@ -230,7 +230,7 @@ export const SystemsTable = ({
             ...conditionalFilter,
             ...(remediationsEnabled && {
               dedicatedAction: (
-                <RemediationButtonRest
+                <RemediationButton
                   reportId={reportId}
                   reportTestResults={selectedWholeItems}
                 />

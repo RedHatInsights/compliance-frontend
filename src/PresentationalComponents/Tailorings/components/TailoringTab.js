@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import RulesTable from '../../RulesTable/RulesTableRest';
+import RulesTable from '../../RulesTable/RulesTable';
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
 import { buildTreeTable, skips } from '../helpers';
