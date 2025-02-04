@@ -4,7 +4,7 @@
         "dictionaries": ["jsdoc"]
     },
     "source": {
-        "include": ["src/", "src/docs/README.md"]
+        "include": ["src/", "README.md"]
     },
     "plugins": [
         "plugins/markdown",
@@ -13,8 +13,9 @@
     ],
     "opts": {
         "destination": "./docs/",
+        "template": "node_modules/better-docs",
         "recurse": true,
-        "template": "node_modules/better-docs"
+        "tutorials": "./src/docs/"
     },
     "templates": {
         "cleverLinks": true,
