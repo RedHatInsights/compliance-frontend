@@ -13,7 +13,7 @@ import { useBulkSelect } from 'Utilities/hooks/useTableTools/useBulkSelect';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { setDisabledSelection } from '../../store/Actions/SystemActions';
-import { useFetchSystemsV2 } from './hooks/useFetchSystems';
+import { useFetchSystems } from './hooks/useFetchSystems';
 import useLoadedItems from './hooks/useLoadedItems';
 import useSystem from '../../Utilities/hooks/api/useSystem';
 
@@ -266,7 +266,7 @@ export const useSystemBulkSelect = ({
     });
   }, []);
 
-  const fetchSystemsRest = useFetchSystemsV2(
+  const fetchSystems = useFetchSystems(
     fetchApi,
     undefined,
     onError,
@@ -288,7 +288,7 @@ export const useSystemBulkSelect = ({
     if (allLoaded) {
       items = loadedItems;
     } else {
-      const results = await fetchBatched(fetchSystemsRest, total);
+      const results = await fetchBatched(fetchSystems, total);
       items = results.flatMap((result) => result.entities);
       addToLoadedItems(items);
     }

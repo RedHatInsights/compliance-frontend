@@ -15,7 +15,7 @@ import {
   operatingSystemString,
   OperatingSystem as OperatingSystemCell,
   CustomDisplay as CustomDisplayCell,
-  FailedRulesRest as FailedRulesRestCell,
+  FailedRules as FailedRulesCell,
 } from './Cells';
 
 const disableSorting = { isStatic: true };
@@ -109,8 +109,8 @@ export const FailedRules = () =>
     renderExport: (profiles) => {
       return profiles;
     },
-    renderFunc: renderComponent(FailedRulesRestCell),
-    cell: FailedRulesRestCell,
+    renderFunc: renderComponent(FailedRulesCell),
+    cell: FailedRulesCell,
   });
 
 export const ComplianceScore = () =>

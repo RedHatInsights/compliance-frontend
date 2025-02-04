@@ -41,10 +41,10 @@ export const defaultOnLoad =
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
 
-export const SSG_VERSION_FILTER_KEY_REST = 'security_guide_version';
+export const SSG_VERSION_FILTER_KEY = 'security_guide_version';
 export const ssgVersionFilter = (
   ssgVersions,
-  filter_key = SSG_VERSION_FILTER_KEY_REST
+  filter_key = SSG_VERSION_FILTER_KEY
 ) => [
   {
     type: conditionalFilterType.checkbox,

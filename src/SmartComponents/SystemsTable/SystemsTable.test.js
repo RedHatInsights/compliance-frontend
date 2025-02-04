@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
-import SystemsTableRest from './SystemsTable';
+import SystemsTable from './SystemsTable';
 import { useSystemBulkSelect } from './hooks.js';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 jest.mock('./hooks.js', () => ({
@@ -31,11 +31,11 @@ const mockProps = {
   defaultFilter: 'someFilter ~ test',
 };
 
-describe('SystemsTableRest', () => {
+describe('SystemsTable', () => {
   it('Should connect inventory with compliance filters so that full filters are passed to bulk selection', async () => {
     render(
       <TestWrapper>
-        <SystemsTableRest {...mockProps} />
+        <SystemsTable {...mockProps} />
       </TestWrapper>
     );
     await waitFor(() =>

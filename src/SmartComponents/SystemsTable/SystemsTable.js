@@ -20,12 +20,12 @@ import {
   useSystemsFilter,
   useSystemBulkSelect,
 } from './hooks';
-import { useFetchSystemsV2 } from './hooks/useFetchSystems';
+import { useFetchSystems } from './hooks/useFetchSystems';
 import {
   defaultSystemsFilterConfiguration,
   complianceReportTableAdditionalFilter,
-  compliantSystemFilterRestConfiguration,
-  DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST,
+  compliantSystemFilterConfiguration,
+  DEFAULT_SYSTEMS_FILTER_CONFIGURATION,
 } from '../../constants';
 
 export const SystemsTable = ({
@@ -76,9 +76,9 @@ export const SystemsTable = ({
     filters: {
       filterConfig: [
         ...defaultSystemsFilterConfiguration(
-          DEFAULT_SYSTEMS_FILTER_CONFIGURATION_REST
+          DEFAULT_SYSTEMS_FILTER_CONFIGURATION
         ),
-        ...(compliantFilter ? compliantSystemFilterRestConfiguration() : []),
+        ...(compliantFilter ? compliantSystemFilterConfiguration() : []),
         ...(policies?.length > 0 ? policyFilter(policies, showOsFilter) : []),
         ...(ssgVersions ? ssgVersionFilter(ssgVersions) : []),
         ...(ruleSeverityFilter ? complianceReportTableAdditionalFilter() : []),
@@ -151,7 +151,7 @@ export const SystemsTable = ({
     setError(apiError);
   };
 
-  const fetchSystems = useFetchSystemsV2(
+  const fetchSystems = useFetchSystems(
     fetchApi,
     onComplete,
     onError,

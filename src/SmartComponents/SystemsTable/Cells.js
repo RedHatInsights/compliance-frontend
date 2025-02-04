@@ -152,23 +152,7 @@ Policies.propTypes = {
   policies: propTypes.array,
 };
 
-export const FailedRules = ({ id, testResultProfiles }) => {
-  const rulesFailed = testResultProfiles.reduce(
-    (acc, { rulesFailed }) => acc + parseInt(rulesFailed || 0),
-    0
-  );
-
-  return (
-    <SystemLink {...{ id }}>{rulesFailed > 0 ? rulesFailed : 'N/A'}</SystemLink>
-  );
-};
-
-FailedRules.propTypes = {
-  id: propTypes.string,
-  testResultProfiles: propTypes.array,
-};
-
-export const FailedRulesRest = ({ system_id, rulesFailed }) => {
+export const FailedRules = ({ system_id, rulesFailed }) => {
   return (
     <SystemLink {...{ id: system_id }}>
       {rulesFailed > 0 ? rulesFailed : 'N/A'}
@@ -176,7 +160,7 @@ export const FailedRulesRest = ({ system_id, rulesFailed }) => {
   );
 };
 
-FailedRulesRest.propTypes = {
+FailedRules.propTypes = {
   system_id: propTypes.string,
   rulesFailed: propTypes.number,
 };

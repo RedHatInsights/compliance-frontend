@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 const splitFilter = (filter) => (filter ? filter.split(' and ') : []);
 
-const combineVariablesRest = (standardVariables, allRequestVariables) => {
+const combineVariables = (standardVariables, allRequestVariables) => {
   const { exclusiveFilter, ...requestVariables } = allRequestVariables || {};
 
   if (exclusiveFilter) {
@@ -26,7 +26,7 @@ const combineVariablesRest = (standardVariables, allRequestVariables) => {
   };
 };
 
-export const useFetchSystemsV2 = (
+export const useFetchSystems = (
   fetchApi,
   onComplete,
   onError,
@@ -34,7 +34,7 @@ export const useFetchSystemsV2 = (
 ) => {
   const fetchSystems = useCallback(
     async (perPage, page, requestVariables) => {
-      const combinedVariables = combineVariablesRest(
+      const combinedVariables = combineVariables(
         systemFetchArguments,
         requestVariables
       );

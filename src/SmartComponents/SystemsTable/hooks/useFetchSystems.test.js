@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
-import { useFetchSystemsV2 } from './useFetchSystems';
+import { useFetchSystems } from './useFetchSystems';
 
-describe('useFetchSystemsV2', () => {
+describe('useFetchSystems', () => {
   const fetchApi = jest.fn(() =>
     Promise.resolve({ data: { someVar: 'someVal' }, meta: { total: 1 } })
   );
@@ -16,7 +16,7 @@ describe('useFetchSystemsV2', () => {
     };
 
     const { result } = renderHook(() =>
-      useFetchSystemsV2(fetchApi, onComplete, onError)
+      useFetchSystems(fetchApi, onComplete, onError)
     );
 
     result.current(10, 1, requestParams).then(() => {
@@ -32,7 +32,7 @@ describe('useFetchSystemsV2', () => {
       customVariable: 'testVar',
     };
     const { result } = renderHook(() =>
-      useFetchSystemsV2(fetchApi, onComplete, onError, systemFetchArguments)
+      useFetchSystems(fetchApi, onComplete, onError, systemFetchArguments)
     );
 
     result.current(10, 1, requestParams).then(() => {
@@ -47,7 +47,7 @@ describe('useFetchSystemsV2', () => {
     const fetchApiWithError = jest.fn(() => Promise.reject(errorMessage));
 
     const { result } = renderHook(() =>
-      useFetchSystemsV2(fetchApiWithError, null, onError)
+      useFetchSystems(fetchApiWithError, null, onError)
     );
     await result.current(10, 1);
 
@@ -56,7 +56,7 @@ describe('useFetchSystemsV2', () => {
 
   it('provides serialised data to onComplete if provided', async () => {
     const { result } = renderHook(() =>
-      useFetchSystemsV2(fetchApi, onComplete, onError)
+      useFetchSystems(fetchApi, onComplete, onError)
     );
     await result.current(10, 1);
 
