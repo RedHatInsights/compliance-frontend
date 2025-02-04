@@ -1,6 +1,4 @@
 import { useCallback } from 'react';
-import { useApolloClient } from '@apollo/client';
-import { GET_SYSTEMS, GET_RULES } from '../constants';
 import usePromiseQueue from 'Utilities/hooks/usePromiseQueue';
 import { apiInstance } from '../../../Utilities/hooks/useQuery';
 import dataSerialiser from '../../../Utilities/dataSerialiser';
@@ -64,61 +62,6 @@ const useFetchBatched = () => {
       [resolve]
     ),
   };
-};
-
-export const useSystemsFetch = ({ id: policyId, totalHostCount } = {}) => {
-  const client = useApolloClient();
-  const { fetchBatched } = useFetchBatched();
-
-  const fetchFunction = useCallback(
-    (perPage, page) =>
-      client.query({
-        query: GET_SYSTEMS,
-        fetchResults: true,
-        fetchPolicy: 'no-cache',
-        variables: {
-          perPage,
-          page,
-          filter: `policy_id = ${policyId}`,
-          policyId,
-        },
-      }),
-    [client, GET_SYSTEMS, policyId]
-  );
-
-  return async () =>
-    (await fetchBatched(fetchFunction, totalHostCount)).flatMap(
-      ({
-        data: {
-          systems: { edges },
-        },
-      }) => edges.map(({ node }) => node)
-    );
-};
-
-export const useFetchRules = ({ id: policyId } = {}) => {
-  const client = useApolloClient();
-
-  const fetchFunction = useCallback(
-    (perPage = 10, page = 1) =>
-      client.query({
-        query: GET_RULES,
-        fetchResults: true,
-        fetchPolicy: 'no-cache',
-        variables: {
-          perPage,
-          page,
-          filter: `policy_id = ${policyId}`,
-          policyId,
-        },
-      }),
-    [client, GET_RULES, policyId]
-  );
-
-  return async () =>
-    (await fetchFunction()).data.profiles?.edges.flatMap(
-      (edge) => edge.node.topFailedRules
-    );
 };
 
 export const useFetchFailedRulesRest = ({ id: reportId } = {}) => {

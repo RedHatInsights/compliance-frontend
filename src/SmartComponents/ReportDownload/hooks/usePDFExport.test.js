@@ -1,33 +1,24 @@
 import { renderHook } from '@testing-library/react';
-import { useApolloClient } from '@apollo/client';
-import apolloQueryMock from '../__mocks__/apolloQueryMock';
 import { DEFAULT_EXPORT_SETTINGS } from '../constants';
 import usePDFBuilder from './usePDFBuilder';
 import useSupportedSsgFinder from './useSupportedSsgFinder';
+import useQueryExportData from './useQueryExportData';
 
-jest.mock('@apollo/client');
 jest.mock('Utilities/Dispatcher');
-jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
 
+jest.mock('./useQueryExportData', () => jest.fn());
 jest.mock('./usePDFBuilder', () => jest.fn());
-usePDFBuilder.mockImplementation(
-  () =>
-    async (...args) =>
-      args
-);
-
 jest.mock('./useSupportedSsgFinder', () => jest.fn());
+
+usePDFBuilder.mockImplementation(() => async (data) => data);
 useSupportedSsgFinder.mockImplementation(() => async () => []);
+useQueryExportData.mockImplementation(() => async () => [
+  { nonCompliantSystemCount: 2 },
+]);
 
 import usePDFExport from './usePDFExport';
 
 describe('usePDFExport', () => {
-  beforeEach(() => {
-    useApolloClient.mockImplementation(() => ({
-      query: apolloQueryMock,
-    }));
-  });
-
   it('returns a export function', () => {
     const {
       result: { current: exportData },

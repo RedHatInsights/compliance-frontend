@@ -102,28 +102,6 @@ const buildExportData = ({
   ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
 });
 
-export const prepareForExportGraphQL = (
-  exportSettings,
-  systems,
-  topTenFailedRules
-) => {
-  const compliantSystems = compliantSystemsData(systems);
-  const nonCompliantSystems = nonCompliantSystemsData(systems);
-  const unsupportedSystems = unsupportedSystemsData(systems);
-  const nonReportingSystems = nonReportingSystemsData(systems);
-
-  return buildExportData({
-    exportSettings,
-    totalHostCount: systems.length,
-    systems,
-    topTenFailedRules,
-    compliantSystems,
-    nonCompliantSystems,
-    unsupportedSystems,
-    nonReportingSystems,
-  });
-};
-
 export const prepareForExportRest = (
   exportSettings,
   compliantSystems = [],

@@ -1,23 +1,5 @@
-import { prepareForExportGraphQL, prepareForExportRest } from './helpers';
-import {
-  useFetchRules,
-  useSystemsFetch,
-  useSystemsFetchRest,
-  useFetchFailedRulesRest,
-} from './apiQueryHooks';
-import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
-
-const useExportDataGraphQL = (report, exportSettings) => {
-  const fetchSystems = useSystemsFetch(report);
-  const fetchRules = useFetchRules(report);
-
-  return async () => {
-    const systems = await fetchSystems();
-    const rules = await fetchRules();
-
-    return prepareForExportGraphQL(exportSettings, systems, rules);
-  };
-};
+import { prepareForExportRest } from './helpers';
+import { useSystemsFetchRest, useFetchFailedRulesRest } from './apiQueryHooks';
 
 const useExportDataRest = (report, exportSettings) => {
   const fetchSystems = useSystemsFetchRest(report);
@@ -44,7 +26,6 @@ const useExportDataRest = (report, exportSettings) => {
   };
 };
 
-// Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
 const useQueryExportData = (
   exportSettings,
   report,
@@ -53,15 +34,11 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  const fetchDataGraphQL = useExportDataGraphQL(report, exportSettings);
   const fetchDataRest = useExportDataRest(report, exportSettings);
 
   return async () => {
     try {
-      const exportData = apiV2Enabled
-        ? await fetchDataRest()
-        : await fetchDataGraphQL();
+      const exportData = await fetchDataRest();
 
       onComplete?.(exportData);
       return exportData;
