@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import React, { useCallback } from 'react';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -11,19 +9,13 @@ import {
   StateViewWithError,
   ReportsEmptyState,
 } from 'PresentationalComponents';
-import GatedComponents from '@/PresentationalComponents/GatedComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 import useReportsCount from 'Utilities/hooks/useReportsCount';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import { reportDataMap as dataMap } from '../../constants';
-import { uniq } from 'Utilities/helpers';
-import { QUERY } from './constants';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
-
-const profilesFromEdges = (data) =>
-  (data?.profiles?.edges || []).map((profile) => profile.node);
 
 const ReportsHeader = () => (
   <PageHeader>
@@ -31,56 +23,7 @@ const ReportsHeader = () => (
   </PageHeader>
 );
 
-//deprecated component
-const ReportsWithGrahpQL = () => {
-  let profiles = [];
-  const location = useLocation();
-  const filter = `has_policy_test_results = true AND external = false`;
-
-  let { data, error, loading, refetch } = useQuery(QUERY, {
-    variables: { filter },
-  });
-
-  useEffect(() => {
-    refetch();
-  }, [location, refetch]);
-
-  if (data) {
-    profiles = profilesFromEdges(data);
-    error = undefined;
-    loading = undefined;
-  }
-  const operatingSystems =
-    data &&
-    uniq(
-      profiles?.map(({ osMajorVersion }) => osMajorVersion).filter((i) => !!i)
-    );
-
-  return (
-    <>
-      <ReportsHeader />
-      <section className="pf-v5-c-page__main-section">
-        <StateViewWithError stateValues={{ error, data: profiles, loading }}>
-          <StateViewPart stateKey="loading">
-            <SkeletonTable colSize={3} rowSize={10} />
-          </StateViewPart>
-          <StateViewPart stateKey="data">
-            {profiles && profiles.length > 0 ? (
-              <ReportsTable
-                reports={profiles}
-                operatingSystems={operatingSystems}
-              />
-            ) : (
-              <ReportsEmptyState />
-            )}
-          </StateViewPart>
-        </StateViewWithError>
-      </section>
-    </>
-  );
-};
-
-const ReportsWithRest = () => {
+const Reports = () => {
   // Required for correctly showing empty state
   const totalReports = useReportsCount();
 
@@ -136,15 +79,8 @@ const ReportsWithRest = () => {
 
 const ReportsWithTableStateProvider = () => (
   <TableStateProvider>
-    <ReportsWithRest />
+    <Reports />
   </TableStateProvider>
 );
 
-const ReportsWrapper = () => (
-  <GatedComponents
-    RestComponent={ReportsWithTableStateProvider}
-    GraphQLComponent={ReportsWithGrahpQL}
-  />
-);
-
-export default ReportsWrapper;
+export default ReportsWithTableStateProvider;
