@@ -5,6 +5,8 @@ import CreateSCAPPolicyBase from './CreateSCAPPolicyBase';
 import dataSerialiser from 'Utilities/dataSerialiser';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 
 const profilesDataMap = {
   id: ['id', 'benchmark.id'],
@@ -32,19 +34,22 @@ const CreateSCAPPolicyRest = ({
     error: availableOsMajorVersionsError,
     loading: availableOsMajorVersionsLoading,
   } = useSecurityGuidesOS();
+  // we need table state to ensure default sorting is respected
+  const tableState = useFullTableState();
   const {
-    data: availableProfiles,
-    error: availableProfilesError,
+    data: { data: availableProfiles, meta: { total } = {} } = {},
     loading: availableProfilesLoading,
+    error: availableProfilesError,
   } = useSupportedProfiles({
     params: {
-      filter: selectedOsMajorVersion
-        ? `os_major_version=${selectedOsMajorVersion}`
-        : undefined,
-      limit: 100,
+      filter: `os_major_version=${selectedOsMajorVersion}`,
     },
-    skip: selectedOsMajorVersion === undefined,
+    useTableState: true,
+    skip: selectedOsMajorVersion === undefined || tableState === undefined,
   });
+  const serialisedProfilesData =
+    availableProfiles &&
+    dataSerialiser(serialiseOsVersions(availableProfiles), profilesDataMap);
 
   return (
     <CreateSCAPPolicyBase
@@ -52,18 +57,15 @@ const CreateSCAPPolicyRest = ({
         selectedOsMajorVersion,
         selectedProfile,
         data:
-          availableOsMajorVersions === undefined &&
-          availableProfiles === undefined
+          availableOsMajorVersions === undefined
             ? undefined
             : {
                 availableOsMajorVersions,
-                availableProfiles: dataSerialiser(
-                  serialiseOsVersions(availableProfiles?.data),
-                  profilesDataMap
-                ),
+                availableProfiles: serialisedProfilesData,
               },
         availableOsMajorVersionsLoading,
         availableProfilesLoading,
+        total,
         error: availableOsMajorVersionsError || availableProfilesError,
         change,
       }}
@@ -77,4 +79,10 @@ CreateSCAPPolicyRest.propTypes = {
   selectedOsMajorVersion: propTypes.string,
 };
 
-export default CreateSCAPPolicyRest;
+const CreateSCAPPolicyTableStateProvider = (props) => (
+  <TableStateProvider>
+    <CreateSCAPPolicyRest {...props} />
+  </TableStateProvider>
+);
+
+export default CreateSCAPPolicyTableStateProvider;
