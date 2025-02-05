@@ -15,40 +15,6 @@ import { buildOSObject } from '@/Utilities/helpers';
 import { policiesDataMapper, systemsDataMapper } from '@/constants';
 import dataSerialiser from '@/Utilities/dataSerialiser';
 
-export const GET_MINIMAL_SYSTEMS = gql`
-  query ST_Systems(
-    $filter: String!
-    $perPage: Int
-    $page: Int
-    $sortBy: [String!]
-    $tags: [String!]
-  ) {
-    systems(
-      search: $filter
-      limit: $perPage
-      offset: $page
-      sortBy: $sortBy
-      tags: $tags
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          name
-          osMajorVersion
-          osMinorVersion
-          culledTimestamp
-          staleWarningTimestamp
-          staleTimestamp
-          insightsId
-          lastScanned
-          updated
-        }
-      }
-    }
-  }
-`;
-
 export const GET_SYSTEMS_OSES = gql`
   query ST_SystemOS($filter: String!) {
     systems(search: $filter) {
@@ -75,11 +41,10 @@ export const defaultOnLoad =
       ...mergeWithEntities(entitiesReducer(INVENTORY_ACTION_TYPES, columns)),
     });
 
-export const SSG_VERSION_FILTER_KEY_GRAPHQL = 'ssg_version';
-export const SSG_VERSION_FILTER_KEY_REST = 'security_guide_version';
+export const SSG_VERSION_FILTER_KEY = 'security_guide_version';
 export const ssgVersionFilter = (
   ssgVersions,
-  filter_key = SSG_VERSION_FILTER_KEY_REST
+  filter_key = SSG_VERSION_FILTER_KEY
 ) => [
   {
     type: conditionalFilterType.checkbox,

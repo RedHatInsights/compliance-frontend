@@ -1,10 +1,7 @@
 import FilterConfigBuilder from './FilterConfigBuilder';
 import FilterBuilder from './FilterBuilder';
 import { exampleFilters } from '../__fixtures__/filters';
-import {
-  compliantSystemFilterConfiguration,
-  COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL,
-} from '@/constants';
+import { compliantSystemFilterConfiguration } from '@/constants';
 
 describe('buildFilterString', () => {
   const configBuilder = new FilterConfigBuilder(exampleFilters);
@@ -56,33 +53,6 @@ describe('buildFilterString', () => {
   });
 
   describe('builds filters from constants in use: ', () => {
-    it('compliantSystemFilterConfiguration GraphQL', () => {
-      let builder = new FilterBuilder(
-        new FilterConfigBuilder(
-          compliantSystemFilterConfiguration(
-            COMPLIANT_SYSTEM_FILTER_CONFIG_KEYS_GRAPHQL
-          )
-        )
-      );
-
-      expect(
-        builder.buildFilterString({
-          compliancescore: ['0-50', '50-70'],
-        })
-      ).toEqual(
-        '((compliance_score >= 0 and compliance_score < 50) OR (compliance_score >= 50 and compliance_score < 70))'
-      );
-
-      expect(
-        builder.buildFilterString({
-          compliancescore: ['90-101', '70-90'],
-          compliance: ['compliant=true'],
-        })
-      ).toEqual(
-        'compliant=true AND ((compliance_score >= 90 and compliance_score < 101) OR (compliance_score >= 70 and compliance_score < 90))'
-      );
-    });
-
     it('compliantSystemFilterConfiguration Rest', () => {
       let builder = new FilterBuilder(
         new FilterConfigBuilder(compliantSystemFilterConfiguration())

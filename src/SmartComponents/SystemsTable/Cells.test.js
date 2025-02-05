@@ -46,7 +46,10 @@ describe('FailedRules', () => {
   it('returns the amount of failed rules', () => {
     render(
       <TestWrapper>
-        <FailedRules {...testSystem} />
+        <FailedRules
+          system_id={testSystem.id}
+          rulesFailed={testSystem.testResultProfiles[0].rulesFailed}
+        />
       </TestWrapper>
     );
 
@@ -56,7 +59,7 @@ describe('FailedRules', () => {
   it('returns no error without testResultProfiles', () => {
     render(
       <TestWrapper>
-        <FailedRules {...testSystem} testResultProfiles={[]} />
+        <FailedRules {...testSystem} rulesFailed={0} />
       </TestWrapper>
     );
 
