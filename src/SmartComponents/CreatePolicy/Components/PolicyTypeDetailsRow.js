@@ -4,7 +4,7 @@ import { Text } from '@patternfly/react-core';
 
 const PolicyTypeDetailsRow = ({
   item: {
-    restInfo: { description },
+    rowData: { description },
   },
   key,
 }) => {

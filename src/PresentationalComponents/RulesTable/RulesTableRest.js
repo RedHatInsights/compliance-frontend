@@ -91,22 +91,22 @@ const RulesTable = ({
   const DetailsRow = useMemo(() => {
     function Row(props) {
       // eslint-disable-next-line react/prop-types
-      const { itemId, valueDefinitions, restInfo } = props?.item || {};
+      const { itemId, valueDefinitions, rowData } = props?.item || {};
 
-      const ruleValueDefinitions = restInfo.value_checks?.map((checkId) =>
+      const ruleValueDefinitions = rowData.value_checks?.map((checkId) =>
         valueDefinitions?.data?.find(({ id }) => id === checkId)
       );
 
       const ruleRuleValues = ruleValues
         ? Object.fromEntries(
             Object.entries(ruleValues).filter(([id]) =>
-              restInfo.value_checks.includes(id)
+              rowData.value_checks.includes(id)
             )
           )
         : undefined;
 
       const item = {
-        ...restInfo,
+        ...rowData,
         itemId,
         valueDefinitions: ruleValueDefinitions,
         valueOverrides,

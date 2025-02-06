@@ -13,7 +13,7 @@ const itemRow = (item, columns) => {
         ? column.renderFunc(undefined, undefined, item)
         : item[columnProp(column)],
     })),
-    restInfo: rest,
+    rowData: rest,
   };
 };
 
