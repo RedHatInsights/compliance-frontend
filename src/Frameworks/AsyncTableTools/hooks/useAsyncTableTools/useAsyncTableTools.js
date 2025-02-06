@@ -9,6 +9,7 @@ import useExpandable from '../useExpandable';
 import useColumnManager from '../useColumnManager';
 import useTableView from '../useTableView';
 import withExport from '../../utils/withExport';
+import useRadioSelect from '../useRadioSelect';
 import { toToolbarActions } from './helpers';
 
 /**
@@ -69,6 +70,11 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     tableProps: expandableTableProps,
     tableView: expandableTableViewOptions,
   } = useExpandable(options);
+
+  const { tableProps: radioSelectTableProps } = useRadioSelect({
+    ...options,
+    total: usableItems?.length || 0,
+  });
 
   const {
     toolbarProps: bulkSelectToolbarProps,
@@ -133,6 +139,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       ...expandableTableProps,
       ...tablePropsOption,
       onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
+      ...radioSelectTableProps,
       actionResolver: actionResolverEnabled && actionResolver,
       ...tableViewTableProps,
     }),
@@ -142,6 +149,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
       bulkSelectTableProps,
       tablePropsOption,
       expandableTableProps,
+      radioSelectTableProps,
       tableViewTableProps,
       actionResolver,
       actionResolverEnabled,
