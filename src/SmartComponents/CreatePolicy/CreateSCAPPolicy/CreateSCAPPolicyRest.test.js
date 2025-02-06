@@ -7,13 +7,16 @@ import { supportedProfiles } from '../../../__fixtures__/supportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
 jest.mock('Utilities/hooks/api/useSecurityGuidesOS');
 jest.mock('Utilities/hooks/api/useSupportedProfiles');
+jest.mock('Utilities/hooks/useAPIV2FeatureFlag');
 
 describe('CreateSCAPPolicyRest', () => {
   const change = jest.fn();
   const availableVersions = [6, 7, 8, 9];
+  useAPIV2FeatureFlag.mockReturnValue(true);
 
   afterEach(() => {
     jest.clearAllMocks();
