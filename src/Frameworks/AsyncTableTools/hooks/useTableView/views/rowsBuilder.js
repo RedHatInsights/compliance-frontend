@@ -3,15 +3,19 @@ import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTab
 const columnProp = (column) =>
   column.key || column.original?.toLowerCase() || column.title?.toLowerCase();
 
-const itemRow = (item, columns) => ({
-  ...item.rowProps,
-  itemId: item.itemId || item.id,
-  cells: columns.map((column) => ({
-    title: column.renderFunc
-      ? column.renderFunc(undefined, undefined, item)
-      : item[columnProp(column)],
-  })),
-});
+const itemRow = (item, columns) => {
+  const { rowProps, itemId, id, ...rest } = item;
+  return {
+    ...rowProps,
+    itemId: item.itemId || item.id,
+    cells: columns.map((column) => ({
+      title: column.renderFunc
+        ? column.renderFunc(undefined, undefined, item)
+        : item[columnProp(column)],
+    })),
+    rowData: rest,
+  };
+};
 
 const applyTransformations = (row, transformers, selectedIds, index) => {
   return transformers.reduce(

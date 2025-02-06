@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { propTypes as reduxFormPropTypes } from 'redux-form';
 import {
-  Bullseye,
   Form,
   FormGroup,
   Spinner,
@@ -21,6 +20,7 @@ export const CreateSCAPPolicyBase = ({
   data,
   availableOsMajorVersionsLoading,
   availableProfilesLoading,
+  total,
   error,
   change,
 }) => {
@@ -56,29 +56,25 @@ export const CreateSCAPPolicyBase = ({
             ))}
           </FormGroup>
           {selectedOsMajorVersion ? (
-            availableProfilesLoading ? (
-              <Bullseye>
-                <Spinner />
-              </Bullseye>
-            ) : (
-              <FormGroup
-                isRequired
-                labelIcon={<PolicyTypeTooltip />}
-                label="Policy type"
-                fieldId="policy-type"
-              >
-                <PolicyTypesTable
-                  profiles={data?.availableProfiles || []}
-                  onChange={(policy) => {
-                    change('profile', policy);
-                    change('benchmark', policy.benchmark.id);
-                    change('selectedRuleRefIds', undefined);
-                    change('systems', []);
-                  }}
-                  selectedProfile={selectedProfile}
-                />
-              </FormGroup>
-            )
+            <FormGroup
+              isRequired
+              labelIcon={<PolicyTypeTooltip />}
+              label="Policy type"
+              fieldId="policy-type"
+            >
+              <PolicyTypesTable
+                profiles={data?.availableProfiles || []}
+                onChange={(policy) => {
+                  change('profile', policy);
+                  change('benchmark', policy.benchmark.id);
+                  change('selectedRuleRefIds', undefined);
+                  change('systems', []);
+                }}
+                selectedProfile={selectedProfile}
+                loading={availableProfilesLoading}
+                total={total}
+              />
+            </FormGroup>
           ) : (
             <React.Fragment />
           )}
@@ -97,6 +93,7 @@ CreateSCAPPolicyBase.propTypes = {
   }),
   availableOsMajorVersionsLoading: propTypes.bool,
   availableProfilesLoading: propTypes.bool,
+  total: propTypes.number,
   error: propTypes.object,
   change: reduxFormPropTypes.change,
 };

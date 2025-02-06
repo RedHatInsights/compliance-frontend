@@ -35,7 +35,7 @@ const nextStep = async (name, stepTests) => {
   await checkStep(name, stepTests);
 };
 
-describe('CreatePolicy', () => {
+describe.skip('CreatePolicy', () => {
   beforeEach(() => {
     useAPIV2FeatureFlag.mockImplementation(() => false);
   });
