@@ -97,7 +97,10 @@ const useAsyncTableTools = (items, columns, options = {}) => {
 
   const { tableProps: sortableTableProps } = useTableSort(managedColumns, {
     ...options,
-    onSelect: bulkSelectTableProps?.onSelect || tablePropsOption?.onSelect,
+    onSelect:
+      bulkSelectTableProps?.onSelect ||
+      radioSelectTableProps?.onSelect ||
+      tablePropsOption?.onSelect,
   });
 
   const exportConfig = withExport({
