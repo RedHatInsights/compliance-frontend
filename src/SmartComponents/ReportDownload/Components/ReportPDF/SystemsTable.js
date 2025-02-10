@@ -7,10 +7,10 @@ import { fixedPercentage } from 'Utilities/TextHelper';
 const SystemsTable = ({ systems }) => {
   const headerRow = ['System name', 'OS', 'Failed rules', 'Compliance score'];
   const rows = systems.map((system) => [
-    system.name,
-    `RHEL ${system.osMajorVersion}.${system.osMinorVersion}`,
-    `${system.testResultProfiles[0].rulesFailed || ''}`,
-    fixedPercentage(system.testResultProfiles[0].score),
+    system.display_name,
+    `RHEL ${system.os_major_version}.${system.os_minor_version}`,
+    `${system.failed_rule_count || ''}`,
+    fixedPercentage(system.score),
   ]);
 
   return <Table withHeader rows={[headerRow, ...rows]} />;

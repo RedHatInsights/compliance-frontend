@@ -6,13 +6,13 @@ import {
   nonCompliantSystems,
   unsupportedSystems,
 } from '../../../__factories__/testResults';
-import { useSystemsFetchRest } from './apiQueryHooks';
+import { useSystemsFetch } from './apiQueryHooks';
 import systemsFactory from '../../../__factories__/systemsRest';
 
 jest.mock('./apiQueryHooks', () => ({
   ...jest.requireActual('./apiQueryHooks'),
-  useSystemsFetchRest: jest.fn(),
-  useFetchFailedRulesRest: () => () => Promise.resolve([]),
+  useSystemsFetch: jest.fn(),
+  useFetchFailedRules: () => () => Promise.resolve([]),
 }));
 
 describe('useQueryExportData', () => {
@@ -25,11 +25,11 @@ describe('useQueryExportData', () => {
     expect(typeof queryExportData).toBe('function');
   });
 
-  describe('queryExportData REST', () => {
+  describe('queryExportData', () => {
     const onComplete = jest.fn();
     const onError = jest.fn();
 
-    useSystemsFetchRest.mockImplementation(
+    useSystemsFetch.mockImplementation(
       () => () =>
         Promise.resolve([
           compliantSystems.buildList(2),
@@ -61,7 +61,7 @@ describe('useQueryExportData', () => {
     });
 
     it('returns catches errors', async () => {
-      useSystemsFetchRest.mockImplementation(() => () => Promise.reject());
+      useSystemsFetch.mockImplementation(() => () => Promise.reject());
       const {
         result: { current: queryExportData },
       } = renderHook(() =>

@@ -1,9 +1,9 @@
-import { prepareForExportRest } from './helpers';
-import { useSystemsFetchRest, useFetchFailedRulesRest } from './apiQueryHooks';
+import { prepareForExport } from './helpers';
+import { useSystemsFetch, useFetchFailedRules } from './apiQueryHooks';
 
-const useExportDataRest = (report, exportSettings) => {
-  const fetchSystems = useSystemsFetchRest(report);
-  const fetchRules = useFetchFailedRulesRest(report);
+const useExportData = (report, exportSettings) => {
+  const fetchSystems = useSystemsFetch(report);
+  const fetchRules = useFetchFailedRules(report);
 
   return async () => {
     const [
@@ -15,7 +15,7 @@ const useExportDataRest = (report, exportSettings) => {
 
     const topTenFailedRules = await fetchRules();
 
-    return prepareForExportRest(
+    return prepareForExport(
       exportSettings,
       compliantSystems,
       nonCompliantSystems,
@@ -34,11 +34,11 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
-  const fetchDataRest = useExportDataRest(report, exportSettings);
+  const fetchData = useExportData(report, exportSettings);
 
   return async () => {
     try {
-      const exportData = await fetchDataRest();
+      const exportData = await fetchData();
 
       onComplete?.(exportData);
       return exportData;

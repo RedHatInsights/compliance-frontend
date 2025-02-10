@@ -9,7 +9,6 @@ import {
   Section,
 } from '@redhat-cloud-services/frontend-components-pdf-generator';
 import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
-import { fixedPercentage } from 'Utilities/TextHelper';
 import styles from './ReportPDF/StyleSheet';
 import SystemsTable from './ReportPDF/SystemsTable';
 import UnsupportedSystemsTable from './ReportPDF/UnsupportedSystemsTable';
@@ -21,7 +20,6 @@ import ComplianceChart from './ReportPDF/ComplianceChart';
 
 const ReportPDF = ({ data, ssgFinder }) => {
   const {
-    totalHostCount,
     compliantSystems,
     compliantSystemCount,
     nonCompliantSystems,
@@ -32,13 +30,15 @@ const ReportPDF = ({ data, ssgFinder }) => {
     nonReportingSystems,
     nonReportingSystemCount,
     userNotes,
-    policy,
+    report,
   } = data;
-  const { testResultHostCount = 0, compliantHostCount = 0 } = policy;
-  const percentCompliant =
-    testResultHostCount != 0
-      ? fixedPercentage(Math.floor(100 * (compliantHostCount / totalHostCount)))
-      : 0;
+  const {
+    profile_title: profileTitle,
+    os_major_version: osMajorVersion,
+    compliance_threshold: complianceThreshold,
+    business_objective: businessObjectiveTitle,
+    percent_compliant: percentCompliant,
+  } = report;
 
   return (
     <Fragment>
@@ -67,25 +67,20 @@ const ReportPDF = ({ data, ssgFinder }) => {
           <Table
             // TODO: correct left side styling
             rows={[
-              ['Policy type', policy.policyType],
-              ['Operating system', `RHEL ${policy.osMajorVersion}`],
-              ['Compliance threshold', `${policy.complianceThreshold}%`],
-              ['Business Objective', policy.businessObjective?.title || '--'],
+              ['Policy type', profileTitle],
+              ['Operating system', `RHEL ${osMajorVersion}`],
+              ['Compliance threshold', `${complianceThreshold}%`],
+              ['Business Objective', businessObjectiveTitle || '--'],
             ]}
           />
         </Column>
         <Column>
           <ComplianceChart
-            policy={{
-              ...policy,
-              percentCompliant,
-            }}
-            {...{
-              compliantSystemCount,
-              nonCompliantSystemCount,
-              unsupportedSystemCount,
-              nonReportingSystemCount,
-            }}
+            percentCompliant={percentCompliant}
+            compliantSystemCount={compliantSystemCount}
+            nonCompliantSystemCount={nonCompliantSystemCount}
+            unsupportedSystemCount={unsupportedSystemCount}
+            nonReportingSystemCount={nonReportingSystemCount}
           />
         </Column>
       </Section>

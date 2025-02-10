@@ -6,8 +6,8 @@ import { Table } from '@redhat-cloud-services/frontend-components-pdf-generator/
 const NonReportedSystemsTable = ({ systems }) => {
   const headerRow = ['System name', 'OS'];
   const rows = systems.map((system) => [
-    system.name,
-    `RHEL ${system.osMajorVersion}.${system.osMinorVersion}`,
+    system.display_name,
+    `RHEL ${system.os_major_version}.${system.os_minor_version}`,
   ]);
 
   return <Table withHeader rows={[headerRow, ...rows]} />;

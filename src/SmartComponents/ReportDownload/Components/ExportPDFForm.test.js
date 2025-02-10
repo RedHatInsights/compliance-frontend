@@ -7,8 +7,8 @@ jest.mock('Utilities/Dispatcher');
 
 describe('ExportPDFForm', function () {
   const defaultProps = {
-    policy: {
-      name: 'Policy Test Name',
+    report: {
+      title: 'Policy Test Name',
     },
     exportSettings: {
       ...DEFAULT_EXPORT_SETTINGS,

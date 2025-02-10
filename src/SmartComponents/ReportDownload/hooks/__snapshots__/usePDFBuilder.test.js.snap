@@ -5,7 +5,7 @@ exports[`usePDFBuilder buildPages returns and array of pages 1`] = `
   <mockConstructor
     data={
       {
-        "policy": undefined,
+        "report": undefined,
       }
     }
   />,

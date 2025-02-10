@@ -31,7 +31,6 @@ const usePDFExport = (exportSettings, report) => {
       description: 'Once complete, your download will start automatically.',
     });
     const data = await queryExportData();
-    console.log('DEBUG data: ' + JSON.stringify(data));
     return await buildPDFPages(data, ssgFinder);
   };
 
