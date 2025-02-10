@@ -1,5 +1,5 @@
 apiVersion: tekton.dev/v1
-kind: PipelineRun
+kind: PipelineRunFoo
 metadata:
   annotations:
     build.appstudio.openshift.io/repo: https://github.com/RedHatInsights/compliance-frontend?rev={{revision}}
