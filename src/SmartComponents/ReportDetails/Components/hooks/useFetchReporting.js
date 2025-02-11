@@ -22,7 +22,7 @@ const useFetchReporting = (reportId) => {
         )
         .then(({ data: { data = [], meta = {} } = {} } = {}) => {
           return {
-            data: processTestResultsData(data),
+            data: processTestResultsData(data), // TODO clenup with systems table
             meta,
           };
         })

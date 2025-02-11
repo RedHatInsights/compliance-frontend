@@ -2,21 +2,19 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  Bullseye,
   EmptyState,
   Grid,
   GridItem,
+  Spinner,
   Tab,
   Tabs,
 } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 
 import {
   LinkWithPermission as Link,
@@ -32,16 +30,11 @@ import { SystemsTable } from 'SmartComponents';
 import { useTitleEntity } from 'Utilities/hooks/useDocumentTitle';
 import useReport from 'Utilities/hooks/api/useReport';
 import useReportTestResultsSG from 'Utilities/hooks/api/useReportTestResultsSG';
-import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
-import dataSerialiser from 'Utilities/dataSerialiser';
 import * as Columns from '../SystemsTable/Columns';
-import ReportedSystemRow from './Components/ReportedSystemRow';
 import ReportChart from './Components/ReportChart';
 import {
-  dataMap,
   fetchNeverReportedCustomOSes,
   fetchReportingCustomOSes,
-  QUERY,
 } from './constants';
 import '@/Charts.scss';
 import './ReportDetails.scss';
@@ -49,27 +42,21 @@ import useFetchReporting from 'SmartComponents/ReportDetails/Components/hooks/us
 import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hooks/useFetchNeverReported';
 import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
 
-const ReportDetailsBase = ({
-  id,
-  route,
-  data,
-  error,
-  loading,
-  ssgVersions = [],
-}) => {
-  let profile = {};
-  let policyName;
+const ReportDetails = ({ route }) => {
+  const { report_id } = useParams();
+  const { data: { data } = {}, error, loading } = useReport(report_id);
+  const { data: ssgVersions = [] } = useReportTestResultsSG(report_id);
+  let reportData = {};
+  let reportTitle;
   let pageTitle;
 
   if (!loading && data) {
-    profile = data;
-    policyName = profile.policy.name;
-    pageTitle = `Report: ${policyName}`;
+    reportData = data;
+    reportTitle = reportData.title;
+    pageTitle = `Report: ${reportTitle}`;
   }
 
-  useTitleEntity(route, policyName);
-
-  const isRestApiEnabled = useAPIV2FeatureFlag();
+  useTitleEntity(route, reportTitle);
 
   const [tab, setTab] = useState('reporting');
 
@@ -79,13 +66,13 @@ const ReportDetailsBase = ({
     isLoading: isLoadingReporting,
     fetch: fetchReporting,
     data: dataReporting,
-  } = useFetchReporting(id);
+  } = useFetchReporting(report_id);
 
   const {
     isLoading: isLoadingNeverReported,
     fetch: fetchNeverReported,
     data: dataNeverReported,
-  } = useFetchNeverReported(id);
+  } = useFetchNeverReported(report_id);
 
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
@@ -109,7 +96,7 @@ const ReportDetailsBase = ({
           <Grid hasGutter>
             <GridItem sm={9} md={9} lg={9} xl={9}>
               <PageHeaderTitle title={pageTitle} />
-              <SubPageTitle>{profile.policyType}</SubPageTitle>
+              <SubPageTitle>{reportData.profile_title}</SubPageTitle>
             </GridItem>
             <GridItem
               className="report-details-button"
@@ -119,8 +106,8 @@ const ReportDetailsBase = ({
               xl={3}
             >
               <Link
-                state={{ profile }}
-                to={`/reports/${profile.id}/pdf`}
+                state={{ reportData }}
+                to={`/reports/${reportData.id}/pdf`}
                 className="pf-v5-u-mr-md"
                 Component={LinkButton}
                 componentProps={{
@@ -131,8 +118,8 @@ const ReportDetailsBase = ({
                 Download PDF
               </Link>
               <Link
-                state={{ profile }}
-                to={`/reports/${profile.id}/delete`}
+                state={{ reportData }}
+                to={`/reports/${reportData.id}/delete`}
                 Component={LinkButton}
                 componentProps={{
                   isInline: true,
@@ -147,154 +134,119 @@ const ReportDetailsBase = ({
           <Grid hasGutter>
             <GridItem sm={12} md={12} lg={12} xl={6}>
               <ReportChart
-                profile={profile}
+                report={reportData}
                 hasLegend={true}
                 chartClass="report-details-chart-container"
               />
             </GridItem>
             <GridItem sm={12} md={12} lg={12} xl={6}>
-              <ReportDetailsDescription profile={profile} />
+              <ReportDetailsDescription report={reportData} />
             </GridItem>
           </Grid>
         </PageHeader>
         <section className="pf-v5-c-page__main-section">
           <Grid hasGutter>
             <GridItem span={12}>
-              {isRestApiEnabled === undefined ? (
-                <Bullseye>
-                  <Spinner />
-                </Bullseye>
-              ) : isRestApiEnabled ? (
-                <Tabs
-                  className="pf-m-light pf-v5-c-table"
-                  activeKey={tab}
-                  onSelect={handleTabSelect}
-                  mountOnEnter
-                  unmountOnExit
+              <Tabs
+                className="pf-m-light pf-v5-c-table"
+                activeKey={tab}
+                onSelect={handleTabSelect}
+                mountOnEnter
+                unmountOnExit
+              >
+                <Tab
+                  key={'reporting'}
+                  eventKey={'reporting'}
+                  ouiaId="Reporting"
+                  title={
+                    <TabTitleWithData
+                      text="Reporting"
+                      data={dataReporting?.meta?.total}
+                      isLoading={isLoadingReporting}
+                      color="blue"
+                    />
+                  }
                 >
-                  <Tab
-                    key={'reporting'}
-                    eventKey={'reporting'}
-                    ouiaId="Reporting"
-                    title={
-                      <TabTitleWithData
-                        text="Reporting"
-                        data={dataReporting?.meta?.total}
-                        isLoading={isLoadingReporting}
-                        color="blue"
-                      />
-                    }
-                  >
-                    <SystemsTable
-                      systemProps={{
-                        isFullView: true,
-                      }}
-                      remediationsEnabled={true}
-                      fetchApi={fetchReporting}
-                      columns={[
-                        Columns.customDisplay({
+                  <SystemsTable
+                    systemProps={{
+                      isFullView: true,
+                    }}
+                    remediationsEnabled={true}
+                    fetchApi={fetchReporting}
+                    columns={[
+                      Columns.customDisplay({
+                        showLink: true,
+                        showOsInfo: true,
+                        idProperty: 'system_id',
+                        sortBy: ['display_name'],
+                      }),
+                      Columns.inventoryColumn('groups', {
+                        requiresDefault: true,
+                        sortBy: ['groups'],
+                      }),
+                      Columns.inventoryColumn('tags'),
+                      Columns.SsgVersion(true),
+                      Columns.FailedRules(true),
+                      Columns.ComplianceScore(true),
+                      Columns.LastScanned,
+                    ]}
+                    showOsMinorVersionFilter={[reportData.os_major_version]}
+                    ignoreOsMajorVersion
+                    ssgVersions={ssgVersions}
+                    compliantFilter
+                    ruleSeverityFilter
+                    showGroupsFilter
+                    apiV2Enabled={true}
+                    reportId={report_id}
+                    fetchCustomOSes={fetchReportingCustomOSes}
+                  />
+                </Tab>
+
+                <Tab
+                  key={'never-reported'}
+                  eventKey={'never-reported'}
+                  ouiaId="Never reported"
+                  title={
+                    <TabTitleWithData
+                      text="Never reported"
+                      data={dataNeverReported?.meta?.total}
+                      isLoading={isLoadingNeverReported}
+                    />
+                  }
+                >
+                  <SystemsTable
+                    systemProps={{
+                      isFullView: true,
+                    }}
+                    remediationsEnabled={false}
+                    fetchApi={fetchNeverReported}
+                    columns={[
+                      Columns.customName(
+                        {
                           showLink: true,
                           showOsInfo: true,
-                          idProperty: 'system_id',
+                        },
+                        {
                           sortBy: ['display_name'],
-                        }),
-                        Columns.inventoryColumn('groups', {
-                          requiresDefault: true,
-                          sortBy: ['groups'],
-                        }),
-                        Columns.inventoryColumn('tags'),
-                        Columns.SsgVersion(true),
-                        Columns.FailedRules(true),
-                        Columns.ComplianceScore(true),
-                        Columns.LastScanned,
-                      ]}
-                      showOsMinorVersionFilter={[profile.osMajorVersion]}
-                      ignoreOsMajorVersion
-                      ssgVersions={ssgVersions}
-                      compliantFilter
-                      ruleSeverityFilter
-                      showGroupsFilter
-                      apiV2Enabled={true}
-                      reportId={id}
-                      fetchCustomOSes={fetchReportingCustomOSes}
-                    />
-                  </Tab>
-
-                  <Tab
-                    key={'never-reported'}
-                    eventKey={'never-reported'}
-                    ouiaId="Never reported"
-                    title={
-                      <TabTitleWithData
-                        text="Never reported"
-                        data={dataNeverReported?.meta?.total}
-                        isLoading={isLoadingNeverReported}
-                      />
-                    }
-                  >
-                    <SystemsTable
-                      systemProps={{
-                        isFullView: true,
-                      }}
-                      remediationsEnabled={false}
-                      fetchApi={fetchNeverReported}
-                      columns={[
-                        Columns.customName(
-                          {
-                            showLink: true,
-                            showOsInfo: true,
-                          },
-                          {
-                            sortBy: ['display_name'],
-                          }
-                        ),
-                        Columns.inventoryColumn('groups', {
-                          requiresDefault: true,
-                          sortBy: ['groups'],
-                        }),
-                        Columns.inventoryColumn('tags'),
-                        Columns.LastScanned,
-                      ]}
-                      defaultFilter={'never_reported = true'}
-                      ignoreOsMajorVersion
-                      showGroupsFilter
-                      apiV2Enabled={true}
-                      reportId={id}
-                      fetchCustomOSes={fetchNeverReportedCustomOSes}
-                      enableExport={false}
-                    />
-                  </Tab>
-                </Tabs>
-              ) : (
-                <SystemsTable
-                  showOsMinorVersionFilter={[profile.osMajorVersion]}
-                  ssgVersions={ssgVersions}
-                  columns={[
-                    Columns.customName({
-                      showLink: true,
-                      showOsInfo: true,
-                    }),
-                    Columns.inventoryColumn('groups', {
-                      requiresDefault: true,
-                      sortBy: ['groups'],
-                    }),
-                    Columns.inventoryColumn('tags'),
-                    Columns.SsgVersion(false),
-                    Columns.FailedRules(false),
-                    Columns.ComplianceScore(false),
-                    Columns.LastScanned,
-                  ]}
-                  compliantFilter
-                  defaultFilter={`policy_id = ${profile.id}`}
-                  policyId={id}
-                  tableProps={{
-                    rowWrapper: ReportedSystemRow,
-                  }}
-                  ruleSeverityFilter
-                  showGroupsFilter
-                  apiV2Enabled={false}
-                />
-              )}
+                        }
+                      ),
+                      Columns.inventoryColumn('groups', {
+                        requiresDefault: true,
+                        sortBy: ['groups'],
+                      }),
+                      Columns.inventoryColumn('tags'),
+                      Columns.LastScanned,
+                    ]}
+                    defaultFilter={'never_reported = true'}
+                    ignoreOsMajorVersion
+                    showGroupsFilter
+                    apiV2Enabled={true}
+                    reportId={report_id}
+                    fetchCustomOSes={fetchNeverReportedCustomOSes}
+                    enableExport={false}
+                  />
+                </Tab>
+              </Tabs>
             </GridItem>
           </Grid>
         </section>
@@ -303,88 +255,11 @@ const ReportDetailsBase = ({
   );
 };
 
-ReportDetailsBase.propTypes = {
-  id: propTypes.string.isRequired,
-  route: propTypes.object,
-  data: propTypes.object,
-  error: propTypes.object,
-  loading: propTypes.bool,
-  ssgVersions: propTypes.array,
-};
-
-//deprecated component
-const ReportDetailsGraphQL = ({ route }) => {
-  const { report_id: policyId } = useParams();
-  const { data, error, loading } = useQuery(QUERY, {
-    variables: { policyId },
-    fetchPolicy: 'no-cache',
-  });
-
-  const ssgVersions = data
-    ? [
-        ...new Set(
-          data.profile.policy.profiles.flatMap(
-            ({ benchmark: { version } }) => version
-          )
-        ),
-      ]
-    : [];
-
-  return (
-    <ReportDetailsBase
-      {...{
-        route,
-        data: data?.profile,
-        error,
-        loading,
-        ssgVersions,
-        id: policyId,
-      }}
-    />
-  );
-};
-
-ReportDetailsGraphQL.propTypes = {
+ReportDetails.propTypes = {
   route: propTypes.shape({
     title: propTypes.string.isRequired,
     defaultTitle: propTypes.string.isRequired,
   }).isRequired,
 };
 
-const ReportDetailsRest = ({ route }) => {
-  const { report_id } = useParams();
-  const { data: { data } = {}, error, loading } = useReport(report_id);
-  const { data: ssgVersions = [] } = useReportTestResultsSG(report_id);
-
-  return (
-    <ReportDetailsBase
-      {...{
-        route,
-        data: dataSerialiser(data, dataMap),
-        error,
-        loading,
-        ssgVersions,
-        id: report_id,
-      }}
-    />
-  );
-};
-
-ReportDetailsRest.propTypes = {
-  route: propTypes.shape({
-    title: propTypes.string.isRequired,
-    defaultTitle: propTypes.string.isRequired,
-  }).isRequired,
-};
-
-const ReportsWrapper = (props) => {
-  const isRestApiEnabled = useAPIV2FeatureFlag();
-
-  return isRestApiEnabled ? (
-    <ReportDetailsRest {...props} />
-  ) : (
-    <ReportDetailsGraphQL {...props} />
-  );
-};
-
-export default ReportsWrapper;
+export default ReportDetails;

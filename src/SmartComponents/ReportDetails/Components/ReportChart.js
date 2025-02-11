@@ -6,8 +6,8 @@ import '@/Charts.scss';
 import ChartLegend from './ChartLegend';
 import useDonutChart from './hooks/useDonutChart';
 
-const ReportChart = ({ profile = {}, hasLegend = true, chartClass }) => {
-  const { chartProps, legendData } = useDonutChart(profile);
+const ReportChart = ({ report = {}, hasLegend = true, chartClass }) => {
+  const { chartProps, legendData } = useDonutChart(report);
 
   return (
     <Grid aria-label="Report chart" className={chartClass}>
@@ -31,7 +31,7 @@ const ReportChart = ({ profile = {}, hasLegend = true, chartClass }) => {
 };
 
 ReportChart.propTypes = {
-  profile: propTypes.object,
+  report: propTypes.object,
   hasLegend: propTypes.bool,
   chartClass: propTypes.string,
 };

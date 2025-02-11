@@ -1,72 +1,44 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { TextContent, Text } from '@patternfly/react-core';
+import { TextContent } from '@patternfly/react-core';
 import { DownloadIcon } from '@patternfly/react-icons';
 import {
   PolicyPopover,
   GreySmallText,
-  UnsupportedSSGVersion,
   LinkWithPermission as Link,
   LinkButton,
 } from 'PresentationalComponents';
 import ReportChart from '../../SmartComponents/ReportDetails/Components/ReportChart';
 
-export const Name = (profile) => (
+export const Name = (report) => (
   <TextContent>
-    <Link to={`/reports/${profile.id}`} style={{ marginRight: '.5rem' }}>
-      {profile.policy?.name}
+    <Link to={`/reports/${report.id}`} style={{ marginRight: '.5rem' }}>
+      {report.title}
     </Link>
     <React.Fragment>
-      <PolicyPopover {...{ profile, position: 'right' }} />
-      <GreySmallText>{profile.policyType}</GreySmallText>
+      <PolicyPopover {...{ report, position: 'right' }} />
+      <GreySmallText>{report.profile_title}</GreySmallText>
     </React.Fragment>
   </TextContent>
 );
 
 Name.propTypes = {
-  profile: propTypes.object,
+  report: propTypes.object,
 };
 
-export const OperatingSystem = ({
-  osMajorVersion,
-  unsupportedHostCount,
-  benchmark,
-  policy,
-}) => {
-  const { version: ssgVersion } = benchmark || {};
-  const supported = unsupportedHostCount === 0;
-  const ssgVersionLabel = 'SSG: ' + ssgVersion;
-
-  return (
-    <React.Fragment>
-      RHEL {osMajorVersion}
-      {policy === null && ssgVersion && (
-        <Text>
-          <GreySmallText>
-            {supported ? (
-              ssgVersionLabel
-            ) : (
-              <UnsupportedSSGVersion>{ssgVersionLabel}</UnsupportedSSGVersion>
-            )}
-          </GreySmallText>
-        </Text>
-      )}
-    </React.Fragment>
-  );
+export const OperatingSystem = ({ os_major_version }) => {
+  return <React.Fragment>RHEL {os_major_version}</React.Fragment>;
 };
 
 OperatingSystem.propTypes = {
-  osMajorVersion: propTypes.string,
-  benchmark: propTypes.object,
-  unsupportedHostCount: propTypes.number,
-  policy: propTypes.object,
+  os_major_version: propTypes.number,
 };
 
-export const CompliantSystems = (profile) => {
+export const CompliantSystems = (report) => {
   return (
     <React.Fragment>
       <ReportChart
-        profile={profile}
+        report={report}
         hasLegend={false}
         chartClass="report-table-chart-container"
       />
@@ -75,10 +47,7 @@ export const CompliantSystems = (profile) => {
 };
 
 CompliantSystems.propTypes = {
-  testResultHostCount: propTypes.number,
-  compliantHostCount: propTypes.number,
-  unsupportedHostCount: propTypes.number,
-  totalHostCount: propTypes.number,
+  report: propTypes.object,
 };
 
 export const PDFExportDownload = ({ id }) => (

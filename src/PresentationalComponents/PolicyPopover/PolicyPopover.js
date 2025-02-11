@@ -15,28 +15,26 @@ import { fixedPercentage } from 'Utilities/TextHelper';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import propTypes from 'prop-types';
 
-const PolicyPopover = ({ profile, position = 'top' }) => {
+const PolicyPopover = ({ report, position = 'top' }) => {
   const {
-    policy,
-    policyType,
-    complianceThreshold,
-    osMajorVersion,
-    businessObjective,
-  } = profile;
+    id: reportId,
+    title,
+    profile_title,
+    compliance_threshold,
+    os_major_version,
+    business_objective,
+  } = report;
   return (
     <Popover
       {...{ position }}
       headerContent={
         <TextContent>
-          {policy?.name}
-          <Text component={TextVariants.small}>{policyType}</Text>
+          {title}
+          <Text component={TextVariants.small}>{profile_title}</Text>
         </TextContent>
       }
       footerContent={
-        <Link
-          to={'/scappolicies/' + policy?.id}
-          className="pf-v5-u-font-size-md"
-        >
+        <Link to={'/scappolicies/' + reportId} className="pf-v5-u-font-size-md">
           View policy
         </Link>
       }
@@ -47,21 +45,21 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
               Operating system
             </TextListItem>
             <TextListItem component={TextListItemVariants.dd}>
-              RHEL {osMajorVersion}
+              RHEL {os_major_version}
             </TextListItem>
             <TextListItem component={TextListItemVariants.dt}>
               Compliance threshold
             </TextListItem>
             <TextListItem component={TextListItemVariants.dd}>
-              {fixedPercentage(complianceThreshold, 1)}
+              {fixedPercentage(compliance_threshold, 1)}
             </TextListItem>
-            {businessObjective && (
+            {business_objective && (
               <React.Fragment>
                 <TextListItem component={TextListItemVariants.dt}>
                   Business objective
                 </TextListItem>
                 <TextListItem component={TextListItemVariants.dd}>
-                  {businessObjective.title}
+                  {business_objective}
                 </TextListItem>
               </React.Fragment>
             )}
@@ -77,7 +75,7 @@ const PolicyPopover = ({ profile, position = 'top' }) => {
 };
 
 PolicyPopover.propTypes = {
-  profile: propTypes.object,
+  report: propTypes.object,
   position: propTypes.string,
 };
 

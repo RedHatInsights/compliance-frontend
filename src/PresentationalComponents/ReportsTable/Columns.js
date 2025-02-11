@@ -9,24 +9,22 @@ import {
 
 export const Name = {
   title: 'Policy',
-  sortByProp: 'name',
   sortable: 'title',
   props: {
     width: 60,
   },
-  exportKey: 'name',
+  exportKey: 'title',
   renderFunc: renderComponent(NameCell),
 };
 
 export const OperatingSystem = {
   title: 'Operating system',
   transforms: [fitContent],
-  sortByProp: 'osMajorVersion',
   sortable: 'os_major_version',
   props: {
     width: 20,
   },
-  renderExport: ({ osMajorVersion }) => `RHEL ${osMajorVersion} `,
+  renderExport: ({ os_major_version }) => `RHEL ${os_major_version} `,
   renderFunc: renderComponent(OperatingSystemCell),
 };
 
@@ -34,18 +32,15 @@ export const CompliantSystems = {
   title: 'Systems meeting compliance',
   transforms: [fitContent],
   sortable: 'percent_compliant',
-  sortByFunction: ({ testResultHostCount, compliantHostCount }) =>
-    (100 / testResultHostCount) * compliantHostCount,
-  props: {
-    width: 20,
-  },
   renderExport: ({
-    testResultHostCount = 0,
-    compliantHostCount = 0,
-    unsupportedHostCount = 0,
+    reported_system_count = 0,
+    compliant_system_count = 0,
+    unsupported_system_count = 0,
   }) =>
-    `${compliantHostCount} of ${testResultHostCount} systems${
-      unsupportedHostCount > 0 ? ` | ${unsupportedHostCount} unsupported` : ''
+    `${compliant_system_count} of ${reported_system_count} systems${
+      unsupported_system_count > 0
+        ? ` | ${unsupported_system_count} unsupported`
+        : ''
     }`,
   renderFunc: renderComponent(CompliantSystemsCell),
 };
@@ -56,16 +51,6 @@ export const PDFExportDownload = {
   manageable: false,
 };
 
-const PolicyType = {
-  title: 'Policy Type',
-  renderExport: (profile) => profile.policyType,
-};
-
-export const exportableColumns = [
-  Name,
-  PolicyType,
-  OperatingSystem,
-  CompliantSystems,
-];
+export const exportableColumns = [Name, OperatingSystem, CompliantSystems];
 
 export default [Name, OperatingSystem, CompliantSystems];
