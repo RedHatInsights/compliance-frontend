@@ -8,10 +8,10 @@ import {
   Checkbox,
 } from '@patternfly/react-core';
 
-const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
+const ExportPDFForm = ({ report, setExportSetting, exportSettings }) => (
   <Form>
     <FormGroup isInline fieldId="simple-form-checkbox-group" label="Policy">
-      <Text>{policy.name}</Text>
+      <Text>{report.title}</Text>
     </FormGroup>
 
     <FormGroup
@@ -77,7 +77,7 @@ const ExportPDFForm = ({ policy, setExportSetting, exportSettings }) => (
 );
 
 ExportPDFForm.propTypes = {
-  policy: propTypes.object,
+  report: propTypes.object,
   exportSettings: propTypes.object,
   setExportSetting: propTypes.func,
 };

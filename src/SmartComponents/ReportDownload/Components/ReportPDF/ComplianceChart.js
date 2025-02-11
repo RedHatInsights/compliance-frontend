@@ -7,7 +7,7 @@ import { fixedPercentage } from 'Utilities/TextHelper';
 
 // TODO Legend table style need to be disablable
 const ComplianceChart = ({
-  policy: { percentCompliant = 0 },
+  percentCompliant = 0,
   compliantSystemCount,
   nonCompliantSystemCount,
   unsupportedSystemCount,
@@ -55,7 +55,7 @@ const ComplianceChart = ({
 };
 
 ComplianceChart.propTypes = {
-  policy: propTypes.object,
+  percentCompliant: propTypes.number,
   compliantSystemCount: propTypes.number,
   nonCompliantSystemCount: propTypes.number,
   unsupportedSystemCount: propTypes.number,

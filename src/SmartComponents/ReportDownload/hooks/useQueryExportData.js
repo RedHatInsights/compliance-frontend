@@ -1,27 +1,9 @@
-import { prepareForExportGraphQL, prepareForExportRest } from './helpers';
-import {
-  useFetchRules,
-  useSystemsFetch,
-  useSystemsFetchRest,
-  useFetchFailedRulesRest,
-} from './apiQueryHooks';
-import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
+import { prepareForExport } from './helpers';
+import { useSystemsFetch, useFetchFailedRules } from './apiQueryHooks';
 
-const useExportDataGraphQL = (report, exportSettings) => {
+const useExportData = (report, exportSettings) => {
   const fetchSystems = useSystemsFetch(report);
-  const fetchRules = useFetchRules(report);
-
-  return async () => {
-    const systems = await fetchSystems();
-    const rules = await fetchRules();
-
-    return prepareForExportGraphQL(exportSettings, systems, rules);
-  };
-};
-
-const useExportDataRest = (report, exportSettings) => {
-  const fetchSystems = useSystemsFetchRest(report);
-  const fetchRules = useFetchFailedRulesRest(report);
+  const fetchRules = useFetchFailedRules(report);
 
   return async () => {
     const [
@@ -33,7 +15,7 @@ const useExportDataRest = (report, exportSettings) => {
 
     const topTenFailedRules = await fetchRules();
 
-    return prepareForExportRest(
+    return prepareForExport(
       exportSettings,
       compliantSystems,
       nonCompliantSystems,
@@ -44,7 +26,6 @@ const useExportDataRest = (report, exportSettings) => {
   };
 };
 
-// Hook that provides a wrapper function for a preconfigured GraphQL client to fetch export data
 const useQueryExportData = (
   exportSettings,
   report,
@@ -53,15 +34,11 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  const fetchDataGraphQL = useExportDataGraphQL(report, exportSettings);
-  const fetchDataRest = useExportDataRest(report, exportSettings);
+  const fetchData = useExportData(report, exportSettings);
 
   return async () => {
     try {
-      const exportData = apiV2Enabled
-        ? await fetchDataRest()
-        : await fetchDataGraphQL();
+      const exportData = await fetchData();
 
       onComplete?.(exportData);
       return exportData;

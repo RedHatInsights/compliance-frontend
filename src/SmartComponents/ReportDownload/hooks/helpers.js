@@ -68,15 +68,12 @@ export const nonReportingSystemsData = (systems) => {
 
 const buildExportData = ({
   exportSettings,
-  totalHostCount,
   topTenFailedRules,
   compliantSystems,
   nonCompliantSystems,
   unsupportedSystems,
   nonReportingSystems,
 }) => ({
-  totalHostCount,
-
   compliantSystemCount: compliantSystems.length,
   ...(exportSettings.compliantSystems && {
     compliantSystems: compliantSystems,
@@ -102,29 +99,7 @@ const buildExportData = ({
   ...(exportSettings.userNotes && { userNotes: exportSettings.userNotes }),
 });
 
-export const prepareForExportGraphQL = (
-  exportSettings,
-  systems,
-  topTenFailedRules
-) => {
-  const compliantSystems = compliantSystemsData(systems);
-  const nonCompliantSystems = nonCompliantSystemsData(systems);
-  const unsupportedSystems = unsupportedSystemsData(systems);
-  const nonReportingSystems = nonReportingSystemsData(systems);
-
-  return buildExportData({
-    exportSettings,
-    totalHostCount: systems.length,
-    systems,
-    topTenFailedRules,
-    compliantSystems,
-    nonCompliantSystems,
-    unsupportedSystems,
-    nonReportingSystems,
-  });
-};
-
-export const prepareForExportRest = (
+export const prepareForExport = (
   exportSettings,
   compliantSystems = [],
   nonCompliantSystems = [],
@@ -132,15 +107,8 @@ export const prepareForExportRest = (
   nonReportingSystems = [],
   topTenFailedRules = []
 ) => {
-  const totalHostCount =
-    compliantSystems.length +
-    nonCompliantSystems.length +
-    unsupportedSystems.length +
-    nonReportingSystems.length;
-
   return buildExportData({
     exportSettings,
-    totalHostCount,
     topTenFailedRules,
     compliantSystems,
     nonCompliantSystems,
