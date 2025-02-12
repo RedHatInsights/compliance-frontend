@@ -52,7 +52,7 @@ const PolicyTypeTable = ({
       columns={columns}
       options={{
         detailsComponent: PolicyTypeDetailsRow,
-        onRadioSelect: (_event, _value, _rowIdx, { itemId }) =>
+        onRadioSelect: (_event, _value, _rowIdx, { item: { itemId } }) =>
           onChange && onChange(profiles.find(({ id }) => id === itemId)),
         emptyRows: emptyRows('policy types', columns.length),
       }}
