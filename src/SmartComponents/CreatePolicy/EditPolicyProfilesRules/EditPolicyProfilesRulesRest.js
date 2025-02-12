@@ -1,31 +1,28 @@
 import React, { useCallback } from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { propTypes as reduxFormPropTypes } from 'redux-form';
+import { useDeepCompareEffect } from 'use-deep-compare';
+
 import {
   Bullseye,
   EmptyState,
+  EmptyStateBody,
+  EmptyStateHeader,
   Spinner,
   Text,
   TextContent,
   TextVariants,
 } from '@patternfly/react-core';
-import propTypes from 'prop-types';
-import {
-  formValueSelector,
-  reduxForm,
-  propTypes as reduxFormPropTypes,
-} from 'redux-form';
-import { useDeepCompareEffect } from 'use-deep-compare';
 import {
   StateViewPart,
   StateViewWithError,
   Tailorings,
-} from '@/PresentationalComponents';
+} from '../../../PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import useProfileRuleIds from './useProfileRuleIds';
 
-const EditPolicyProfilesRules = ({
-  profile,
+export const EditPolicyProfilesRulesRest = ({
+  policy,
   selectedRuleRefIds,
   change,
   osMajorVersion,
@@ -41,7 +38,7 @@ const EditPolicyProfilesRules = ({
       }),
       {}
     );
-  const profileRefId = profile?.ref_id;
+  const profileRefId = policy?.refId;
 
   const skipFetchingProfileRuleIds =
     !osMajorVersion ||
@@ -133,6 +130,11 @@ const EditPolicyProfilesRules = ({
     closeInlineEdit();
   };
 
+  const noRuleSets =
+    !preselectedRuleIdsError &&
+    !preselectedRuleIdsLoading &&
+    Object.keys(profilesAndRuleIds || {}).length === 0;
+
   return !preselected ? (
     <Bullseye>
       <Spinner />
@@ -142,7 +144,7 @@ const EditPolicyProfilesRules = ({
       <TextContent className="pf-v5-u-pb-md">
         <Text component={TextVariants.h1}>Rules</Text>
         <Text>
-          Customize your <b>{profile.title}</b> SCAP policy by including and
+          Customize your <b>{policy.name}</b> SCAP policy by including and
           excluding rules.
         </Text>
         <Text>
@@ -156,8 +158,21 @@ const EditPolicyProfilesRules = ({
           error: preselectedRuleIdsError,
           data: profilesAndRuleIds,
           loading: preselectedRuleIdsLoading,
+          noRuleSets,
         }}
       >
+        <StateViewPart stateKey="noRuleSets">
+          <EmptyState>
+            <EmptyStateHeader
+              titleText="No rules can be configured"
+              headingLevel="h1"
+            />
+            <EmptyStateBody>
+              The policy type selected does not exist for the systems and OS
+              versions selected in the previous steps.
+            </EmptyStateBody>
+          </EmptyState>
+        </StateViewPart>
         <StateViewPart stateKey="loading">
           <EmptyState>
             <Spinner />
@@ -188,8 +203,8 @@ const EditPolicyProfilesRules = ({
   );
 };
 
-EditPolicyProfilesRules.propTypes = {
-  profile: propTypes.object,
+EditPolicyProfilesRulesRest.propTypes = {
+  policy: propTypes.object,
   change: reduxFormPropTypes.change,
   osMajorVersion: propTypes.string,
   osMinorVersionCounts: propTypes.arrayOf(
@@ -199,22 +214,8 @@ EditPolicyProfilesRules.propTypes = {
     })
   ),
   selectedRuleRefIds: propTypes.array,
+  ruleValues: propTypes.array,
   valueOverrides: propTypes.object,
 };
 
-const selector = formValueSelector('policyForm');
-
-export default compose(
-  connect((state) => ({
-    profile: selector(state, 'profile'),
-    osMajorVersion: selector(state, 'osMajorVersion'),
-    osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
-    selectedRuleRefIds: selector(state, 'selectedRuleRefIds'),
-    valueOverrides: selector(state, 'valueOverrides'),
-  })),
-  reduxForm({
-    form: 'policyForm',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-  })
-)(EditPolicyProfilesRules);
+export default EditPolicyProfilesRulesRest;

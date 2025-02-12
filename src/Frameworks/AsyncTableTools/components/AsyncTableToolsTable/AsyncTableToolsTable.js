@@ -55,7 +55,9 @@ const AsyncTableToolsTable = ({
       filters,
       toolbarProps: toolbarPropsProp,
       tableProps: tablePropsRest,
+      // TODO Make "numberOfItems" obsolete or make it consistently used throughout all hooks
       numberOfItems: total,
+      total,
       ...options,
     });
 
