@@ -36,6 +36,8 @@ import NoTailorings from './NoTailorings';
  *  @param   {object}             [props.valueOverrides]                 **deprecated** It should be calles "ruleValues"
  *  @param                        [props.rulesPageLink]
  *
+ *  @param                        props.skipProfile
+ *  @param                        props.additionalRules
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -56,6 +58,8 @@ const Tailorings = ({
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
   valueOverrides,
+  skipProfile,
+  additionalRules,
   ...rulesTableProps
 }) => {
   const {
@@ -144,11 +148,15 @@ const Tailorings = ({
                     columns,
                     enableSecurityGuideRulesToggle,
                     rulesTableProps,
+                    skipProfile,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
                     preselected:
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
+                    additionalRules:
+                      additionalRules?.[tab.id] ||
+                      additionalRules?.[tab.os_minor_version],
                     rulesPageLink: rulesPageLink,
                     ruleValues: valueOverrides,
                   }}
@@ -194,6 +202,8 @@ Tailorings.propTypes = {
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
   valueOverrides: propTypes.object,
+  skipProfile: propTypes.string,
+  additionalRules: propTypes.object,
 };
 
 export default Tailorings;

@@ -1,44 +1,31 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo } from 'react';
+import { useDeepCompareMemo } from 'use-deep-compare';
 import views from '../views';
 
 const useViews = (tableView = 'loading', items, columns, options) => {
-  const supportedViews = useMemo(() => {
+  const supportedViews = useDeepCompareMemo(() => {
     return Object.fromEntries(
       Object.entries(views).filter(([, { checkOptions }]) =>
         checkOptions?.(options)
       )
     );
-  }, [JSON.stringify(options)]);
+  }, [options]);
 
-  const choosableViews = useMemo(
+  const choosableViews = useDeepCompareMemo(
     () =>
       Object.fromEntries(
         Object.entries(supportedViews).filter(([, { icon }]) => icon)
       ),
     [supportedViews]
   );
-  const tableProps = useMemo(
+  const tableProps = useDeepCompareMemo(
     () =>
       supportedViews[tableView]?.tableProps?.(items, columns, options) || {},
-    [
-      supportedViews,
-      tableView,
-      JSON.stringify(items),
-      JSON.stringify(columns),
-      JSON.stringify(options),
-    ]
+    [supportedViews, tableView, items, columns, options]
   );
-  const toolbarProps = useMemo(
+  const toolbarProps = useDeepCompareMemo(
     () =>
       supportedViews[tableView]?.toolbarProps?.(items, columns, options) || {},
-    [
-      supportedViews,
-      tableView,
-      JSON.stringify(items),
-      JSON.stringify(columns),
-      JSON.stringify(options),
-    ]
+    [supportedViews, tableView, items, columns, options]
   );
 
   return { tableProps, toolbarProps, choosableViews };

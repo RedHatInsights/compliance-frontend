@@ -1,29 +1,5 @@
 import { emptyRows } from 'Utilities/hooks/useTableTools/Components/NoResultsTable';
-
-const columnProp = (column) =>
-  column.key || column.original?.toLowerCase() || column.title?.toLowerCase();
-
-const itemRow = (item, columns) => {
-  const { rowProps, itemId, id, ...rest } = item;
-  return {
-    ...rowProps,
-    itemId: item.itemId || item.id,
-    cells: columns.map((column) => ({
-      title: column.renderFunc
-        ? column.renderFunc(undefined, undefined, item)
-        : item[columnProp(column)],
-    })),
-    rowData: rest,
-  };
-};
-
-const applyTransformations = (row, transformers, selectedIds, index) => {
-  return transformers.reduce(
-    (currentRow, transformer) =>
-      transformer ? transformer(currentRow, selectedIds, index) : currentRow,
-    row
-  );
-};
+import { buildRows } from './helpers';
 
 /**
  * A function to compile a list of items and passed columns into rows for the Patternfly (v4) Table component within a `tableProps` object.
@@ -41,34 +17,21 @@ const applyTransformations = (row, transformers, selectedIds, index) => {
  */
 const rowsBuilder = (items, columns, options = {}) => {
   const {
-    selectedIds = [],
-    expandable: { openItem } = {},
-    bulkSelect: { markRowSelected } = {},
+    expandable: { enableExpandingRow, expandRow } = {},
+    bulkSelect: { enableBulkSelect, markRowSelected } = {},
   } = options;
+
   const EmptyRowsComponent =
     options.emptyRows || emptyRows(undefined, columns.length);
-  let runningIndex = 0;
+  const rowTransformers = [
+    ...(enableBulkSelect ? [markRowSelected] : []),
+    ...(enableExpandingRow ? [expandRow] : []),
+  ];
 
   return (
     items &&
     (items.length > 0
-      ? items
-          .flatMap((item) => {
-            const row = itemRow(item, columns);
-
-            const transformedRow = applyTransformations(
-              row,
-              // TODO the order matters, but it shouldn't.
-              // the issue is that openItems returns an array, which later markRowSelected can't process.
-              [markRowSelected, openItem],
-              selectedIds,
-              runningIndex,
-              item
-            );
-            runningIndex = runningIndex + (transformedRow?.length || 0);
-            return transformedRow;
-          })
-          .filter((v) => !!v)
+      ? buildRows(items, columns, rowTransformers)
       : EmptyRowsComponent)
   );
 };
