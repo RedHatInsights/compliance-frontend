@@ -3,7 +3,7 @@ import useRules from 'Utilities/hooks/api/useRules';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useBatchedRules = (options = {}) => {
-  const { skip, batched = false, params } = options;
+  const { skip, batched = false } = options;
   const {
     data: rules,
     loading: rulesLoading,
@@ -14,8 +14,7 @@ const useBatchedRules = (options = {}) => {
     skip: skip || batched,
   });
   const fetchRulesForBatch = useCallback(
-    (offset, limit, params = {}) =>
-      fetchRules({ ...params, limit, offset }, false),
+    (offset, limit) => fetchRules({ limit, offset }, false),
     [fetchRules]
   );
   const {
@@ -24,9 +23,7 @@ const useBatchedRules = (options = {}) => {
     error: rulesBatchedError,
     fetch: fetchBatched,
   } = useFetchTotalBatched(fetchRulesForBatch, {
-    params,
     skip: skip || !batched,
-    withMeta: true,
   });
 
   return {

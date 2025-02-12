@@ -48,7 +48,6 @@ const useProfileRuleIds = ({
     {
       batchSize: 100,
       skip: true,
-      withMeta: true,
     }
   );
 

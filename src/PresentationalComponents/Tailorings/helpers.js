@@ -33,6 +33,87 @@ export const buildTreeTable = (ruleTree, ruleGroups, selected) => {
   return tree;
 };
 
+export const prepareTreeTable = ({
+  profileRuleTree,
+  tailoringRuleTree,
+  securityGuideRuleTree,
+  selectedRules,
+  ruleGroups,
+}) => {
+  const tree =
+    ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
+      ? buildTreeTable(
+          tailoringRuleTree || securityGuideRuleTree,
+          ruleGroups?.data,
+          selectedRules
+        )
+      : undefined;
+
+  console.log('preparedTree', tree);
+  return tree;
+};
+
+export const prepareRules = ({
+  securityGuideRules,
+  profileRules,
+  tailoringRules,
+  valueDefinitions,
+  valueOverrides,
+}) => {
+  const rules =
+    tailoringRules?.data || profileRules?.data || securityGuideRules?.data;
+
+  const data = rules?.map((rule) => {
+    const definitions = rule.value_checks?.map((checkId) =>
+      valueDefinitions?.data?.find(({ id }) => id === checkId)
+    );
+
+    // TODO doublecheck, maybe the entries should rather be created from the value_checks
+    const ruleValues = valueOverrides
+      ? Object.fromEntries(
+          Object.entries(valueOverrides).filter(([id]) =>
+            rule.value_checks.includes(id)
+          )
+        )
+      : undefined;
+
+    return {
+      // TODO This is mostly used because we lazy load definitions
+      loaded: !!valueDefinitions?.data,
+      ...rule,
+      valueDefinitions: definitions,
+      ruleValues,
+    };
+  });
+
+  const preparedRules = {
+    ...(tailoringRules || {}),
+    ...(profileRules || {}),
+    ...(securityGuideRules || {}),
+    data,
+  };
+
+  console.log('prepareRules', preparedRules);
+  return preparedRules;
+};
+
+const noTableStateSkips = {
+  securityGuide: {
+    skipRuleTree: true,
+    skipRules: true,
+    skipRuleGroups: true,
+    skipValueDefinitions: true,
+  },
+  profile: {
+    skipRuleTree: true,
+    skipRules: true,
+  },
+  tailoring: {
+    skipRuleTree: true,
+    skipRules: true,
+  },
+};
+
 export const skips = ({
   policy,
   tailoring,
@@ -46,46 +127,49 @@ export const skips = ({
     ['open-items']: openItems,
   } = tableState?.tableState || {};
   const hasMissingParams = !policy && !tailoring;
-  const hasNoTableState = !tableState;
   const isNewTailoring = !!policy && !tailoring && !!securityGuideId;
   const hasNoOpenItems = (openItems || []).length === 0;
-  const isTreeView = tableView === 'tree';
+  const view = tableView === 'tree' ? 'tree' : 'rows';
+  const selectedRulesOnlyEnabled =
+    selectedRulesOnly !== undefined && selectedRulesOnly;
+  const selectedRulesOnlyDisabled =
+    selectedRulesOnly !== undefined && !selectedRulesOnly;
 
-  return {
-    securityGuide: {
-      ruleGroups: hasNoTableState,
-      ruleTree:
-        hasNoTableState ||
-        (selectedRulesOnly !== undefined && selectedRulesOnly),
-      rules:
-        hasNoTableState ||
-        (isTreeView && hasNoOpenItems) ||
-        (selectedRulesOnly !== undefined && selectedRulesOnly),
-      valueDefinitions: hasNoTableState || hasNoOpenItems,
+  const skip = {
+    rows: {
+      securityGuide: {
+        skipRuleTree: true,
+        skipRules: true,
+        skipRuleGroups: true,
+        skipValueDefinitions: hasNoOpenItems,
+      },
       profile: {
-        rules:
-          hasNoTableState ||
-          (isTreeView && hasNoOpenItems) ||
-          (selectedRulesOnly !== undefined && !selectedRulesOnly) ||
-          !profileId,
-        ruleTree:
-          hasNoTableState ||
-          (selectedRulesOnly !== undefined && !selectedRulesOnly) ||
-          !profileId,
+        skipRules: true,
+        skipRuleTree: true,
+      },
+      tailoring: {
+        skipRules: !tailoring,
+        skipRuleTree: true,
       },
     },
-    tailoring: {
-      rules:
-        (isTreeView && hasNoOpenItems) ||
-        hasNoTableState ||
-        hasMissingParams ||
-        isNewTailoring ||
-        (selectedRulesOnly !== undefined && !selectedRulesOnly),
-      ruleTree:
-        hasNoTableState ||
-        hasMissingParams ||
-        isNewTailoring ||
-        (selectedRulesOnly !== undefined && !selectedRulesOnly),
+    tree: {
+      securityGuide: {
+        skipRuleTree: true,
+        skipRules: true,
+        skipRuleGroups: false,
+        skipValueDefinitions: hasNoOpenItems,
+      },
+      profile: {
+        skipRules: true,
+        skipRuleTree: true,
+      },
+      tailoring: {
+        skipRules: !tailoring,
+        skipRuleTree: !tailoring,
+      },
     },
   };
+  console.log('ALL skip', tableView, skip[view]);
+
+  return !tableState ? noTableStateSkips : skip[view];
 };

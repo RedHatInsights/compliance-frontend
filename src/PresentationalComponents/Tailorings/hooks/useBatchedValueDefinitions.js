@@ -20,7 +20,6 @@ const useBatchedValueDefinitions = (options = {}) => {
   } = useFetchTotalBatched(fetchValueDefinitionsForBatch, {
     params,
     skip: skip || !batched,
-    withMeta: true,
   });
 
   return {

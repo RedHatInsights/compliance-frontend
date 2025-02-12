@@ -4,12 +4,7 @@ import useTableState, {
   useRawTableState,
 } from '../useTableState';
 import { TABLE_STATE_NAMESPACE } from './constants';
-
-const itemObserver = (
-  _currentState,
-  _observedPreviousState,
-  observedNextItems
-) => typeof observedNextItems?.length !== 'undefined';
+import { itemObserver, identifyItems } from './helpers';
 
 /**
  * This hook handles either just returning a provided array of items
@@ -39,9 +34,9 @@ const useItems = (itemsProp) => {
     const setStateFromAsyncItems = async () => {
       if (typeof itemsProp === 'function') {
         const items = await itemsProp(serialisedTableState, tableState);
-        setItems(items);
+        setItems(identifyItems(items));
       } else {
-        setItems(itemsProp);
+        setItems(identifyItems(itemsProp));
       }
     };
 
