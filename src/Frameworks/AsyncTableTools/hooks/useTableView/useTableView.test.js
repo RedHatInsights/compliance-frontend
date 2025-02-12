@@ -78,6 +78,7 @@ describe('useTableView', () => {
       const { result } = renderHook(
         () =>
           useTableView(exampleItems, columns, {
+            enableTreeView: true,
             tableTree,
           }),
         DEFAULT_RENDER_OPTIONS

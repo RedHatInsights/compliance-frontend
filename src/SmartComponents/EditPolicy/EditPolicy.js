@@ -24,7 +24,7 @@ const EditPolicy = ({ route }) => {
     data: { data: policy } = {},
     loading: policyLoading,
     error: policyError,
-  } = usePolicy(policyId, { skip: policyId === undefined });
+  } = usePolicy({ params: { policyId }, skip: policyId === undefined });
 
   const {
     data: { data: supportedProfiles } = {},

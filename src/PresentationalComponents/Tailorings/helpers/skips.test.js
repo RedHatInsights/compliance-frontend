@@ -1,14 +1,4 @@
-import { buildTreeTable, skips } from './helpers';
-
-import ruleTree from '@/__factories__/ruleTree';
-// import ruleGroups from './__factories__/ruleGroups';
-
-describe('buildTreeTable', () => {
-  it('should return a treeTable for rule groups and rules', () => {
-    const tree = ruleTree.build();
-    expect(buildTreeTable(tree, [])[0].leaves?.length).toEqual(2);
-  });
-});
+import skips from './skips';
 
 describe('skips', () => {
   const policy = {};
@@ -34,21 +24,23 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: true,
-        ruleTree: true,
-        rules: true,
-        valueDefinitions: true,
-        profile: {
-          rules: true,
-          ruleTree: true,
-        },
+        skipRuleTree: true,
+        skipRules: true,
+        skipRuleGroups: true,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: true,
+        skipRuleTree: true,
       },
       tailoring: {
-        rules: true,
-        ruleTree: true,
+        skipRules: true,
+        skipRuleTree: true,
       },
     });
   });
+
+  describe('rows view', () => {});
 
   it('should return an object with all skip options true, except SSG, if a tableState is present, but no policy, tailoring or SSG', () => {
     expect(
@@ -61,18 +53,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: false,
-        valueDefinitions: true,
-        profile: {
-          rules: true,
-          ruleTree: true,
-        },
+        skipRulesGroups: false,
+        skipRuleTree: false,
+        skipRules: false,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: true,
+        skipRuleTree: true,
       },
       tailoring: {
-        rules: true,
-        ruleTree: true,
+        skipRules: true,
+        skipRuleTree: true,
       },
     });
   });
@@ -89,18 +81,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: false,
-        valueDefinitions: true,
-        profile: {
-          rules: false,
-          ruleTree: false,
-        },
+        skipRuleGroups: false,
+        skipRuleTree: false,
+        skipRules: false,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: false,
+        skipRuleTree: false,
       },
       tailoring: {
-        rules: false,
-        ruleTree: false,
+        skipRules: false,
+        skipRuleTree: false,
       },
     });
   });
@@ -118,18 +110,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: false,
-        valueDefinitions: true,
-        profile: {
-          rules: false,
-          ruleTree: false,
-        },
+        skipRuleGroups: false,
+        skipRuleTree: false,
+        skipRules: false,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: false,
+        skipRuleTree: false,
       },
       tailoring: {
-        rules: false,
-        ruleTree: false,
+        skipRules: false,
+        skipRuleTree: false,
       },
     });
   });
@@ -151,18 +143,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: false,
-        valueDefinitions: true,
-        profile: {
-          rules: false,
-          ruleTree: false,
-        },
+        skipRuleGroups: false,
+        skipRuleTree: false,
+        skipRules: false,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: false,
+        skipRuleTree: false,
       },
       tailoring: {
-        rules: false,
-        ruleTree: false,
+        skipRules: false,
+        skipRuleTree: false,
       },
     });
   });
@@ -184,18 +176,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: false,
-        valueDefinitions: false,
-        profile: {
-          rules: true,
-          ruleTree: true,
-        },
+        skipRuleGroups: false,
+        skipRuleTree: false,
+        skipRules: false,
+        skipValueDefinitions: false,
+      },
+      profile: {
+        skipRules: true,
+        skipRuleTree: true,
       },
       tailoring: {
-        rules: false,
-        ruleTree: false,
+        skipRules: false,
+        skipRuleTree: false,
       },
     });
   });
@@ -217,18 +209,18 @@ describe('skips', () => {
       })
     ).toEqual({
       securityGuide: {
-        ruleGroups: false,
-        ruleTree: false,
-        rules: true,
-        valueDefinitions: true,
-        profile: {
-          rules: true,
-          ruleTree: true,
-        },
+        skipRuleGroups: false,
+        skipRuleTree: false,
+        skipRules: true,
+        skipValueDefinitions: true,
+      },
+      profile: {
+        skipRules: true,
+        skipRuleTree: true,
       },
       tailoring: {
-        rules: true,
-        ruleTree: false,
+        skipRules: true,
+        skipRuleTree: false,
       },
     });
   });

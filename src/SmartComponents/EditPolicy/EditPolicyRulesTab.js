@@ -8,6 +8,7 @@ import {
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import xor from 'lodash/xor';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
@@ -46,6 +47,15 @@ export const EditPolicyRulesTab = ({
   selectedVersionCounts,
 }) => {
   const [selectedRules, setSelectedRules] = useState(assignedRuleIds);
+  const additionalRules = Object.fromEntries(
+    Object.entries(selectedRules || {}).reduce(
+      (additions, [osMinorVersion, rules]) => [
+        ...additions,
+        [osMinorVersion, xor(rules, assignedRuleIds[osMinorVersion])],
+      ],
+      []
+    )
+  );
   const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
   const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
     (version) => !tailoringOsMinorVersions.includes(version)
@@ -175,8 +185,10 @@ export const EditPolicyRulesTab = ({
           valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
           preselected={selectedRules}
+          additionalRules={additionalRules}
           enableSecurityGuideRulesToggle
           selectedVersionCounts={selectedVersionCounts}
+          skipProfile="edit-policy"
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">

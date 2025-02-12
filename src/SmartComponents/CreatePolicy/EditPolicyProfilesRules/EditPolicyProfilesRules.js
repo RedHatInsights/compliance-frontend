@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
+import xor from 'lodash/xor';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { useDeepCompareEffect } from 'use-deep-compare';
 import {
   Bullseye,
   EmptyState,
@@ -15,7 +17,6 @@ import {
   reduxForm,
   propTypes as reduxFormPropTypes,
 } from 'redux-form';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 import {
   StateViewPart,
   StateViewWithError,
@@ -60,6 +61,22 @@ const EditPolicyProfilesRules = ({
     ),
     skip: skipFetchingProfileRuleIds,
   });
+  const additionalRules =
+    profilesAndRuleIds &&
+    selectedRuleRefIds?.reduce((additions, profileAndRules) => {
+      const originalRules = profilesAndRuleIds.find(
+        ({ osMinorVersion }) =>
+          osMinorVersion === profileAndRules.osMinorVersion
+      ).ruleIds;
+
+      return {
+        ...additions,
+        [profileAndRules.osMinorVersion]: xor(
+          profileAndRules.ruleRefIds,
+          originalRules
+        ),
+      };
+    }, {});
 
   const onSelect = useCallback(
     (
@@ -93,7 +110,7 @@ const EditPolicyProfilesRules = ({
     [change, selectedRuleRefIds]
   );
 
-  useDeepCompareEffectNoCheck(() => {
+  useDeepCompareEffect(() => {
     if (profilesAndRuleIds !== undefined && selectedRuleRefIds === undefined) {
       change(
         'selectedRuleRefIds',
@@ -165,7 +182,9 @@ const EditPolicyProfilesRules = ({
         </StateViewPart>
         <StateViewPart stateKey="data">
           <Tailorings
+            skipProfile="create-policy"
             profiles={profilesAndRuleIds}
+            additionalRules={additionalRules}
             columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
             ouiaId="RHELVersions"
             onSelect={onSelect}
