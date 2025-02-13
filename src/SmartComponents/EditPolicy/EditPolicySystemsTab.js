@@ -3,10 +3,13 @@ import { Text, TextContent } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
+import {
+  fetchSystemsApi,
+  fetchCustomOSes,
+} from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
-  <React.Fragment>
+  <div data-testid="empty-state">
     <TextContent className="pf-v5-u-mb-md">
       <Text>
         You do not have any <b>RHEL {osMajorVersion}</b> systems connected to
@@ -16,7 +19,7 @@ const EmptyState = ({ osMajorVersion }) => (
     <TextContent className="pf-v5-u-mb-md">
       <Text>Connect RHEL {osMajorVersion} systems to Insights.</Text>
     </TextContent>
-  </React.Fragment>
+  </div>
 );
 
 EmptyState.propTypes = {
@@ -25,7 +28,7 @@ EmptyState.propTypes = {
 
 const PrependComponent = ({ osMajorVersion }) => (
   <React.Fragment>
-    <TextContent className="pf-v5-u-mb-md">
+    <TextContent className="pf-v5-u-mb-md" data-testid="prepend-component">
       <Text>
         Select which of your <b>RHEL {osMajorVersion}</b> systems should be
         included in this policy.
@@ -41,43 +44,38 @@ PrependComponent.propTypes = {
 const EditPolicySystemsTab = ({
   policy,
   onSystemSelect,
-  selectedSystems = [],
+  selectedSystems,
+  supportedOsVersions,
 }) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  const { id: policyId, osMajorVersion, supportedOsVersions } = policy;
-  const osMinorVersions = supportedOsVersions.map(
-    (version) => version.split('.')[1]
-  );
-  const osFilter =
-    osMajorVersion &&
-    `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-      ','
+  const { os_major_version } = policy;
+
+  const defaultFilter =
+    os_major_version &&
+    `os_major_version = ${os_major_version} AND os_minor_version ^ (${supportedOsVersions.join(
+      ' '
     )})`;
-  const defaultFilter = osFilter
-    ? `${osFilter} or policy_id = ${policyId}`
-    : `policy_id = ${policyId}`;
 
   return (
-    <React.Fragment>
-      <SystemsTable
-        columns={[
-          Columns.Name,
-          Columns.inventoryColumn('tags'),
-          Columns.OperatingSystem(apiV2Enabled),
-        ]}
-        showOsMinorVersionFilter={[osMajorVersion]}
-        prependComponent={<PrependComponent osMajorVersion={osMajorVersion} />}
-        emptyStateComponent={<EmptyState osMajorVersion={osMajorVersion} />}
-        compact
-        showActions={false}
-        defaultFilter={defaultFilter}
-        enableExport={false}
-        remediationsEnabled={false}
-        preselectedSystems={selectedSystems.map(({ id }) => id)}
-        onSelect={onSystemSelect}
-        apiV2Enabled={false} //TODO: change to useAPIV2FeatureFlag when migrating to REST
-      />
-    </React.Fragment>
+    <SystemsTable
+      columns={[
+        Columns.Name,
+        Columns.inventoryColumn('tags'),
+        Columns.OperatingSystem(),
+      ]}
+      showOsMinorVersionFilter={[os_major_version]}
+      prependComponent={<PrependComponent osMajorVersion={os_major_version} />}
+      emptyStateComponent={<EmptyState osMajorVersion={os_major_version} />}
+      compact
+      showActions={false}
+      defaultFilter={defaultFilter}
+      enableExport={false}
+      remediationsEnabled={false}
+      preselectedSystems={selectedSystems}
+      onSelect={onSystemSelect}
+      apiV2Enabled={true}
+      fetchApi={fetchSystemsApi}
+      fetchCustomOSes={fetchCustomOSes}
+    />
   );
 };
 
@@ -86,6 +84,7 @@ EditPolicySystemsTab.propTypes = {
   newRuleTabs: propTypes.bool,
   onSystemSelect: propTypes.func,
   selectedSystems: propTypes.array,
+  supportedOsVersions: propTypes.array,
 };
 
 export default EditPolicySystemsTab;

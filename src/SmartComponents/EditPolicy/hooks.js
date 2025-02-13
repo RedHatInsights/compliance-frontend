@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react';
-import { usePolicy } from 'Mutations';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
 import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
 import useTailorings from '../../Utilities/hooks/api/useTailorings';
@@ -70,13 +68,7 @@ export const useOnSave = (
   updatedPolicyHostsAndRules,
   { onSave: onSaveCallback, onError: onErrorCallback } = {}
 ) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-  const updatePolicyGraphQL = usePolicy();
-  const updatePolicyRest = useUpdatePolicyRest(
-    policy,
-    updatedPolicyHostsAndRules
-  );
-  const updatePolicy = apiV2Enabled ? updatePolicyRest : updatePolicyGraphQL;
+  const updatePolicy = useUpdatePolicyRest(policy, updatedPolicyHostsAndRules);
 
   const [isSaving, setIsSaving] = useState(false);
 
