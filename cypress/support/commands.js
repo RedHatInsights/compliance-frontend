@@ -102,3 +102,10 @@ Cypress.Commands.add('checkAPIFiltering', (endpoint, filterKey, value) => {
       `filter=${encodeURIComponent(`${filterKey} ~ ${value}`)}`
     );
 });
+
+Cypress.Commands.add('sortTableColumn', (colName, order) => {
+  cy.get(`th[data-label="${colName}"] > button`).click();
+  cy.get(`th[data-label="${colName}"]`)
+    .invoke('attr', 'aria-sort')
+    .should('eq', order);
+})

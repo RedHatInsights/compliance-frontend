@@ -4,34 +4,34 @@ import '@testing-library/jest-dom';
 
 import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 
-import { profiles } from '@/__fixtures__/profiles.js';
 import CompliancePolicies from './CompliancePolicies.js';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
+import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
+import { buildPoliciesV2 } from '../../__factories__/policies';
 
-jest.mock('@apollo/client');
 jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
 
-describe('CompliancePolicies', () => {
-  const queryRefetch = jest.fn();
-  const queryDefaults = {
-    error: undefined,
-    loading: undefined,
-    refetch: queryRefetch,
-  };
+const policiesData = buildPoliciesV2(11);
+jest.mock('Utilities/hooks/usePoliciesCount', () => jest.fn());
+jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 
+describe('CompliancePolicies', () => {
   beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => false);
+    useAPIV2FeatureFlag.mockImplementation(() => true);
   });
 
   it('expect to render without error', () => {
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
-      data: profiles,
+    usePoliciesCount.mockImplementation(() => policiesData.length);
+    usePolicies.mockImplementation(() => ({
+      data: { data: policiesData, meta: { total: policiesData.length } },
+      loading: false,
+      error: null,
+      refetch: () => {},
     }));
 
     render(
@@ -39,20 +39,20 @@ describe('CompliancePolicies', () => {
         <CompliancePolicies />
       </TestWrapper>
     );
+    const tableRowsLength = policiesData.length + 1; // th also has 1 row
 
     expect(
       within(screen.getByLabelText('Policies')).queryAllByRole('row').length
-    ).toEqual(11);
+    ).toEqual(tableRowsLength);
   });
 
   it('expect to render emptystate', () => {
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
-      data: {
-        profiles: {
-          edges: [],
-        },
-      },
+    usePoliciesCount.mockImplementation(() => 0);
+    usePolicies.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
+      loading: false,
+      error: null,
+      refetch: () => {},
     }));
 
     render(
@@ -65,13 +65,12 @@ describe('CompliancePolicies', () => {
   });
 
   it('expect to render an error', () => {
-    const error = {
-      networkError: { statusCode: 500 },
-      error: 'Test Error loading',
-    };
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
-      error,
+    usePoliciesCount.mockImplementation(() => 0);
+    usePolicies.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
+      loading: false,
+      error: 'Something went wrong',
+      refetch: () => {},
     }));
 
     render(
@@ -84,9 +83,12 @@ describe('CompliancePolicies', () => {
   });
 
   it('expect to render loading', () => {
-    useQuery.mockImplementation(() => ({
-      ...queryDefaults,
+    usePoliciesCount.mockImplementation(() => 0);
+    usePolicies.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
       loading: true,
+      error: null,
+      refetch: () => {},
     }));
 
     render(
@@ -95,6 +97,6 @@ describe('CompliancePolicies', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByLabelText('Policies loading')).toBeInTheDocument(1);
+    expect(screen.getByText('Loading...')).toBeInTheDocument(1);
   });
 });

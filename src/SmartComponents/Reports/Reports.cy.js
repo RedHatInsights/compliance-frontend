@@ -2,7 +2,7 @@ import Reports from './Reports';
 import { init } from 'Store';
 import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
 import { buildReports } from '../../__factories__/reports';
-import { interceptReportsBatch } from '../../../cypress/utils/interceptors';
+import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 
 const mountComponent = () => {
   cy.mountWithContext(Reports, { store: init().getStore() });
@@ -227,19 +227,19 @@ describe('Reports table tests', () => {
   describe('Reports download', () => {
     beforeEach(() => {
       cy.wait('@getReports');
-      interceptReportsBatch(
+      interceptBatchRequest(
         'reports',
         0,
         reportsData.slice(0, 10),
         reportsData.length
       );
-      interceptReportsBatch(
+      interceptBatchRequest(
         'reports',
         10,
         reportsData.slice(10, 20),
         reportsData.length
       );
-      interceptReportsBatch(
+      interceptBatchRequest(
         'reports',
         20,
         reportsData.slice(20, 30),
@@ -250,9 +250,9 @@ describe('Reports table tests', () => {
       cy.get('button[aria-label="Export"]').click();
       cy.get('button[aria-label="Export to CSV"]').click();
 
-      cy.wait('@getReportsBatch1');
-      cy.wait('@getReportsBatch2');
-      cy.wait('@getReportsBatch3');
+      cy.wait('@reportsBatch1');
+      cy.wait('@reportsBatch2');
+      cy.wait('@reportsBatch3');
 
       // check if file downloaded and not empty
       cy.exec(`ls cypress/downloads | grep .csv | sort -n | tail -1`).then(
@@ -265,9 +265,9 @@ describe('Reports table tests', () => {
     it('JSON report download and content', () => {
       cy.get('button[aria-label="Export"]').click();
       cy.get('button[aria-label="Export to JSON"]').click();
-      cy.wait('@getReportsBatch1');
-      cy.wait('@getReportsBatch2');
-      cy.wait('@getReportsBatch3');
+      cy.wait('@reportsBatch1');
+      cy.wait('@reportsBatch2');
+      cy.wait('@reportsBatch3');
 
       // validate json content
       cy.exec('ls cypress/downloads | grep .json | sort -n | tail -1').then(
