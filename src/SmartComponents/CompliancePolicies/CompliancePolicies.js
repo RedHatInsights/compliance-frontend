@@ -11,8 +11,6 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
-import dataSerialiser from 'Utilities/dataSerialiser';
-import { dataMap } from './constants';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
@@ -47,7 +45,6 @@ const CompliancePolicies = () => {
 
   if (showTable) {
     if (data) {
-      data = dataSerialiser(data, dataMap);
       error = undefined;
     }
     totalPoliciesLoading = undefined;
@@ -94,8 +91,7 @@ const CompliancePolicies = () => {
                 loading={loading}
                 DedicatedAction={CreateLink}
                 options={{
-                  exporter: async () =>
-                    dataSerialiser(await policiesExporter(), dataMap),
+                  exporter: async () => await policiesExporter(),
                 }}
               />
             )}

@@ -4,8 +4,4 @@ export const nameFilter = {
   type: conditionalFilterType.text,
   label: 'Name',
   filterAttribute: 'title',
-  filter: (policies, value) =>
-    policies.filter((policy) =>
-      policy.name.toLowerCase().includes(value.toLowerCase())
-    ),
 };
