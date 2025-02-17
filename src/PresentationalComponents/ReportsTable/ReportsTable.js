@@ -6,7 +6,6 @@ import { ComplianceTable as TableToolsTable } from 'PresentationalComponents';
 import columns, { exportableColumns, PDFExportDownload } from './Columns';
 import {
   policyNameFilter,
-  policyTypeFilter,
   operatingSystemFilter,
   policyComplianceFilter,
 } from './Filters';
@@ -15,7 +14,6 @@ import '../../App.scss';
 const ReportsTable = ({
   reports,
   operatingSystems,
-  policyTypes,
   options,
   total,
   loading,
@@ -31,7 +29,6 @@ const ReportsTable = ({
     filters={{
       filterConfig: [
         ...policyNameFilter,
-        ...(policyTypes?.length > 0 ? policyTypeFilter(policyTypes) : []),
         ...(operatingSystems?.length > 0
           ? operatingSystemFilter(operatingSystems)
           : []),
@@ -57,7 +54,6 @@ ReportsTable.propTypes = {
   total: propTypes.number,
   loading: propTypes.bool,
   operatingSystems: propTypes.array.isRequired,
-  policyTypes: propTypes.array.isRequired,
   options: propTypes.object,
 };
 

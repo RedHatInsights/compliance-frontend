@@ -13,8 +13,6 @@ import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableSta
 import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 import useReportsCount from 'Utilities/hooks/useReportsCount';
-import dataSerialiser from 'Utilities/dataSerialiser';
-import { reportDataMap as dataMap } from '../../constants';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const ReportsHeader = () => (
@@ -43,7 +41,6 @@ const Reports = () => {
     [fetchReports]
   );
   const reportsExporter = useExporter(fetchForExport);
-  const serialisedData = reportsData && dataSerialiser(reportsData, dataMap);
   const data = operatingSystems;
   const loading = !data ? true : undefined;
 
@@ -60,13 +57,12 @@ const Reports = () => {
               <ReportsEmptyState />
             ) : (
               <ReportsTable
-                reports={serialisedData}
+                reports={reportsData}
                 operatingSystems={operatingSystems}
                 total={total}
                 loading={reportsLoading}
                 options={{
-                  exporter: async () =>
-                    dataSerialiser(await reportsExporter(), dataMap),
+                  exporter: async () => await reportsExporter(),
                 }}
               />
             )}

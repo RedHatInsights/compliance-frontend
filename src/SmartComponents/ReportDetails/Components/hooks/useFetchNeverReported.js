@@ -22,7 +22,7 @@ const useFetchNeverReported = (reportId) => {
         )
         .then(({ data: { data = [], meta = {} } = {} } = {}) => {
           return {
-            data: processSystemsData(data),
+            data: processSystemsData(data), // TODO clenup with systems table
             meta,
           };
         })

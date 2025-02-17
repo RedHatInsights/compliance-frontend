@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 import {
   Name,
@@ -10,122 +9,73 @@ import {
   PDFExportDownload,
 } from './Cells';
 
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+describe('ReportsTable Cells', () => {
+  it('expect to render Name cell', () => {
+    const defaultProps = {
+      id: '123',
+      title: 'Foo',
+      profile_title: 'Foo profile title',
+      compliance_threshold: 50,
+      os_major_version: 8,
+      business_objective: 'foo',
+    };
 
-describe('Name', () => {
-  beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => false);
-  });
-  it('expect to render without error', () => {
     render(
       <TestWrapper>
-        <Name
-          {...{
-            id: 'ID',
-            name: 'NAME',
-            policyType: 'POLICY_TYPE',
-            policy: {
-              id: 'POLICY_ID',
-              name: 'POLICY_NAME',
-            },
-          }}
-        />
+        <Name {...defaultProps} />
       </TestWrapper>
     );
 
-    expect(screen.getByText('POLICY_NAME')).toBeInTheDocument();
-  });
-});
-
-describe('OperatingSystem', () => {
-  const defaultProps = {
-    osMajorVersion: '7',
-  };
-
-  it('expect to render with SSG version', () => {
-    render(
-      <TestWrapper>
-        <OperatingSystem
-          {...defaultProps}
-          benchmark={{ version: '1.2.3' }}
-          policy={null}
-          unsupportedHostCount={0}
-        />
-      </TestWrapper>
+    expect(screen.getByText(defaultProps.title)).toBeInTheDocument();
+    const link = screen.getByRole('link', { name: defaultProps.title });
+    expect(link).toHaveAttribute(
+      'href',
+      expect.stringContaining(`/reports/${defaultProps.id}`)
     );
-
-    expect(screen.getByText('RHEL 7')).toBeInTheDocument();
-    expect(screen.getByText('SSG: 1.2.3')).toBeInTheDocument();
   });
 
-  it('expect to render with unsupported warning', () => {
+  it('expect to render OperatingSystem cell', () => {
+    const defaultProps = {
+      os_major_version: '7',
+    };
+
     render(
       <TestWrapper>
-        <OperatingSystem
-          {...defaultProps}
-          benchmark={{ version: '1.2.3' }}
-          unsupportedHostCount={3}
-          policy={null}
-        />
+        <OperatingSystem {...defaultProps} />
       </TestWrapper>
     );
-
     expect(
-      screen.getByLabelText('Unsupported SSG Version warning')
+      screen.getByText(`RHEL ${defaultProps.os_major_version}`)
     ).toBeInTheDocument();
   });
-});
 
-describe('CompliantSystems', () => {
-  const deftaultProps = {
-    testResultHostCount: 10,
-    compliantHostCount: 9,
-  };
+  it('expect to render CompliantSystems cell', () => {
+    const defaultProps = {
+      assigned_system_count: 10,
+      reported_system_count: 7,
+      unsupported_system_count: 2,
+      compliant_system_count: 4,
+    };
 
-  it('expect to render with unsupported hosts', () => {
     render(
       <TestWrapper>
-        <CompliantSystems {...deftaultProps} unsupportedHostCount={42} />
+        <CompliantSystems {...defaultProps} />
       </TestWrapper>
     );
 
     expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
+    expect(screen.getByText('40%')).toBeInTheDocument();
   });
-});
 
-describe('PDFExportDownload', () => {
-  it('expect to render without error', () => {
+  it('expect to render PDFExportDownload cell', () => {
     render(
       <TestWrapper>
-        <PDFExportDownload id="ID1" />
+        <PDFExportDownload id="123" />
       </TestWrapper>
     );
 
     expect(
       screen.getByLabelText('Reports PDF download link')
     ).toBeInTheDocument();
-  });
-});
-
-describe('NotReportedSystemsAPIv2', () => {
-  beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => true);
-  });
-  const deftaultProps = {
-    totalHostCount: 10,
-    testResultHostCount: 7,
-    unsupportedHostCount: 2,
-    compliantHostCount: 4,
-  };
-
-  it('expect to render with unsupported hosts', () => {
-    render(
-      <TestWrapper>
-        <CompliantSystems {...deftaultProps} />
-      </TestWrapper>
-    );
-
-    expect(screen.getByLabelText('Report chart')).toBeInTheDocument();
-    expect(screen.getByText('40%')).toBeInTheDocument();
   });
 });
