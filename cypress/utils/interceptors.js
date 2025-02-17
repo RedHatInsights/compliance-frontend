@@ -28,7 +28,7 @@ export const featureFlagsInterceptors = {
   },
 };
 
-export const interceptReportsBatch = (endpoint, offset, dataSlice, total, limit=10) => {
+export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=10) => {
   cy.intercept(new RegExp(`/api/compliance/v2/${endpoint}?.*limit=${limit}.*offset=${offset}.*`), {
     statusCode: 200,
     body: {
@@ -39,5 +39,5 @@ export const interceptReportsBatch = (endpoint, offset, dataSlice, total, limit=
         total: total,
       }
     }
-  }).as(`getReportsBatch${offset / 10 + 1}`); // getReportsBatch1, getReportsBatch2, etc
+  }).as(`${endpoint}Batch${offset / 10 + 1}`); // getReportsBatch1, getReportsBatch2, etc
 };
