@@ -16,7 +16,7 @@ import useAssignedRules from './hooks/useAssignedRules';
 import useAssignedSystems from './hooks/useAssignedSystems';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 
-export const EditPolicy = ({ route }) => {
+const EditPolicy = ({ route }) => {
   const navigate = useNavigate();
   const { policy_id: policyId } = useParams();
   const location = useLocation();
@@ -157,3 +157,5 @@ export const EditPolicy = ({ route }) => {
 EditPolicy.propTypes = {
   route: propTypes.object,
 };
+
+export default EditPolicy;

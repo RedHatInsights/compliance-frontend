@@ -11,7 +11,7 @@ jest.mock('./hooks', () => ({
   useNewRulesAlertState: jest.fn(() => [false, () => false]),
 }));
 
-// TODO: eshamard test EditPolicyForm - REST
+// TODO: implement EditPolicyForm tests for REST
 describe.skip('EditPolicyForm', () => {
   const policy = {
     ...policies.edges[0].node,
