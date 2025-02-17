@@ -29,49 +29,35 @@ const Dd = ({ children, ...props }) => (
 );
 Dd.propTypes = PropTypes;
 
-const PolicyDescription = ({ profile }) => (
-  <React.Fragment>
-    <TextList component={TextListVariants.dl}>
-      <Dt>
-        <Text className="ins-c-non-bold-h2">Policy details</Text>
-      </Dt>
-      <Dt>Operating system</Dt>
-      <Dd>RHEL {profile.osMajorVersion}</Dd>
-      <Dt>Compliance threshold</Dt>
-      <Dd>
-        {`${fixedPercentage(profile.complianceThreshold, 1)} of rules must be
-        passed for a system to be labeled "Compliant"`}
-      </Dd>
-      <Dt>Business objective</Dt>
-      <Dd>{profile.businessObjective?.title || '--'}</Dd>
-    </TextList>
-    <Link to={'/scappolicies/' + profile.id}>View policy</Link>
-  </React.Fragment>
-);
-
-PolicyDescription.propTypes = {
-  profile: propTypes.shape({
-    id: propTypes.string,
-    complianceThreshold: propTypes.number,
-    businessObjective: propTypes.object,
-    osMajorVersion: propTypes.string,
-    policy: propTypes.shape({
-      id: propTypes.string,
-    }),
-    benchmark: propTypes.shape({
-      version: propTypes.string,
-    }),
-  }),
-};
-
-const ReportDetailsDescription = ({ profile }) => (
+const ReportDetailsDescription = ({ report }) => (
   <TextContent className="policy-details">
-    <PolicyDescription {...{ profile }} />
+    <React.Fragment>
+      <TextList component={TextListVariants.dl}>
+        <Dt>
+          <Text className="ins-c-non-bold-h2">Policy details</Text>
+        </Dt>
+        <Dt>Operating system</Dt>
+        <Dd>RHEL {report.os_major_version}</Dd>
+        <Dt>Compliance threshold</Dt>
+        <Dd>
+          {`${fixedPercentage(report.compliance_threshold, 1)} of rules must be
+          passed for a system to be labeled "Compliant"`}
+        </Dd>
+        <Dt>Business objective</Dt>
+        <Dd>{report.business_objective || '--'}</Dd>
+      </TextList>
+      <Link to={'/scappolicies/' + report.id}>View policy</Link>
+    </React.Fragment>
   </TextContent>
 );
 
 ReportDetailsDescription.propTypes = {
-  profile: propTypes.object,
+  report: propTypes.shape({
+    id: propTypes.string,
+    compliance_threshold: propTypes.number,
+    business_objective: propTypes.string,
+    os_major_version: propTypes.string,
+  }),
 };
 
 export default ReportDetailsDescription;

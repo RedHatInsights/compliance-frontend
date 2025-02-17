@@ -2,36 +2,29 @@ import React from 'react';
 import { pluralize, Text } from '@patternfly/react-core';
 import { SupportedSSGVersionsLink } from 'PresentationalComponents';
 import { paletteColors } from '../../../../constants';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 
-const useLegendData = (donutValues, profile) => {
-  const {
-    testResultHostCount = 0,
-    unsupportedHostCount = 0,
-    totalHostCount = 0,
-  } = profile;
-  const isRestApiEnabled = useAPIV2FeatureFlag();
-  let notReportingHostCount;
-  if (isRestApiEnabled) {
-    notReportingHostCount = totalHostCount - testResultHostCount;
-  } else {
-    notReportingHostCount =
-      totalHostCount - unsupportedHostCount - testResultHostCount;
-  }
+const useLegendData = (donutValues) => {
+  const compliantSystemCount = donutValues[0].y;
+  const nonCompliantSystemCount = donutValues[1].y;
+  const unsupportedSystemCount = donutValues[2].y;
+  const notReportingSystemCount = donutValues[3].y;
 
   return [
     {
-      name: `${pluralize(donutValues[0].y, 'system')} compliant`,
+      name: `${pluralize(compliantSystemCount, 'system')} compliant`,
       symbol: { fill: paletteColors.blue300 },
     },
     {
-      name: `${pluralize(donutValues[1].y, 'system')} non-compliant`,
+      name: `${pluralize(nonCompliantSystemCount, 'system')} non-compliant`,
       symbol: { fill: paletteColors.blue200 },
     },
-    ...(unsupportedHostCount > 0
+    ...(unsupportedSystemCount > 0
       ? [
           {
-            name: `${pluralize(donutValues[2].y, 'system')} not supported`,
+            name: `${pluralize(
+              unsupportedSystemCount,
+              'system'
+            )} not supported`,
             symbol: { fill: paletteColors.gold300 },
             popover: {
               title: 'Unsupported SSG versions',
@@ -53,17 +46,17 @@ const useLegendData = (donutValues, profile) => {
           },
         ]
       : []),
-    ...(notReportingHostCount > 0
+    ...(notReportingSystemCount > 0
       ? [
           {
             name: `${pluralize(
-              notReportingHostCount,
+              notReportingSystemCount,
               'system'
             )} never reported`,
             popover: {
               title: 'Systems never reported',
               content: `${pluralize(
-                notReportingHostCount,
+                notReportingSystemCount,
                 'system'
               )} are not reporting scan results. This may be because the system is disconnected, or the insights-client is not properly configured to use Compliance.`,
             },
