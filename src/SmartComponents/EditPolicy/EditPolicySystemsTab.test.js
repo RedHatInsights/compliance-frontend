@@ -8,6 +8,7 @@ import {
 import systemsFactory from '@/__factories__/systems';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 import { waitFor } from '@testing-library/react';
+import useSystem from '@/Utilities/hooks/api/useSystem';
 
 jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => true));
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
@@ -26,26 +27,12 @@ jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   }),
 }));
 
+jest.mock('../../Utilities/hooks/api/useSystem');
 jest.mock('SmartComponents/SystemsTable/constants', () => ({
   ...jest.requireActual('SmartComponents/SystemsTable/constants'),
   fetchSystemsApi: jest.fn(() => Promise.resolve([])),
   fetchCustomOSes: jest.fn(() => Promise.resolve([])),
 }));
-jest.mock('@apollo/client');
-
-fetchSystemsApi.mockReturnValue(
-  Promise.resolve({
-    data: systemsFactory.buildList(2),
-    meta: { total: 2 },
-  })
-);
-
-fetchCustomOSes.mockReturnValue(
-  Promise.resolve({
-    data: ['8.1', '8.2'],
-    meta: { total: 2 },
-  })
-);
 
 const defaultProps = {
   policy: { os_major_version: 8 },
@@ -53,7 +40,26 @@ const defaultProps = {
   selectedSystems: ['test-system-1', 'test-system-2'],
   supportedOsVersions: [1, 2],
 };
+
 describe('EditPolicySystemsTab', () => {
+  beforeEach(() => {
+    fetchSystemsApi.mockReturnValue(
+      Promise.resolve({
+        data: systemsFactory.buildList(2),
+        meta: { total: 2 },
+      })
+    );
+
+    fetchCustomOSes.mockReturnValue(
+      Promise.resolve({
+        data: ['8.1', '8.2'],
+        meta: { total: 2 },
+      })
+    );
+    useSystem.mockReturnValue({
+      fetch: jest.fn(() => Promise.resolve({ data: [] })),
+    });
+  });
   it('Should render with data', async () => {
     render(
       <TestWrapper>
@@ -65,7 +71,7 @@ describe('EditPolicySystemsTab', () => {
     await waitFor(() =>
       expect(fetchSystemsApi).toHaveBeenCalledWith(0, 10, {
         filter:
-          'os_major_version = 8 AND os_minor_version ^ (1 2), display_name ~ test-name',
+          '(os_major_version = 8 AND os_minor_version ^ (1 2)) AND display_name ~ "test-name"',
         sortBy: ['name:asc'],
         tags: [],
       })
@@ -86,7 +92,7 @@ describe('EditPolicySystemsTab', () => {
     );
   });
 
-  it.only('Should display empty state', async () => {
+  it('Should display empty state', async () => {
     fetchSystemsApi.mockReturnValue(
       Promise.resolve({
         data: [],
