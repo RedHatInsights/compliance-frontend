@@ -56,8 +56,6 @@ const fetchMock = jest.fn(() => Promise.resolve({ data: [{ id: 'test-id' }] }));
 
 describe('EditPolicy', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-
     useUpdatePolicy.mockReturnValue({
       fetch: jest.fn(() => Promise.resolve()),
     });
@@ -105,6 +103,10 @@ describe('EditPolicy', () => {
 
       return <div>Mocked tabs</div>;
     });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('Should have proper modal title', () => {

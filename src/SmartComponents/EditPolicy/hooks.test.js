@@ -26,8 +26,6 @@ describe('useOnSave', function () {
   const onErrorCallback = jest.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
-
     onSaveCallBack.mockReset();
     onErrorCallback.mockReset();
     dispatchNotification.mockImplementation(mockedNotification);
@@ -39,6 +37,10 @@ describe('useOnSave', function () {
     useTailorings.mockReturnValue({
       fetch: jest.fn(() => Promise.resolve({ data: [] })),
     });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('returns a function to call with a policy and updated policy', async () => {
