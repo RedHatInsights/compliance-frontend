@@ -1,8 +1,9 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useOnSave } from './hooks';
-
-import { usePolicy } from 'Mutations';
-jest.mock('Mutations');
+import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
+import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
+import useTailorings from '../../Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
 
 import { dispatchNotification } from 'Utilities/Dispatcher';
 jest.mock('Utilities/Dispatcher');
@@ -12,12 +13,14 @@ jest.mock('Utilities/hooks/useAnchor', () => ({
   default: () => () => ({}),
 }));
 
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+jest.mock('../../Utilities/hooks/api/useAssignRules');
+jest.mock('../../Utilities/hooks/api/useAssignSystems');
+jest.mock('../../Utilities/hooks/api/useTailorings');
+jest.mock('../../Utilities/hooks/api/useUpdatePolicy');
 
 describe('useOnSave', function () {
   const policy = {};
-  const updatedPolicy = {};
+  const updatedPolicy = { description: 'Foo' };
   const mockedNotification = jest.fn();
   const onSaveCallBack = jest.fn();
   const onErrorCallback = jest.fn();
@@ -26,13 +29,25 @@ describe('useOnSave', function () {
     onSaveCallBack.mockReset();
     onErrorCallback.mockReset();
     dispatchNotification.mockImplementation(mockedNotification);
-    useAPIV2FeatureFlag.mockImplementation(() => false);
+
+    useAssignRules.mockReturnValue({ fetch: jest.fn(() => Promise.resolve()) });
+    useAssignSystems.mockReturnValue({
+      fetch: jest.fn(() => Promise.resolve()),
+    });
+    useTailorings.mockReturnValue({
+      fetch: jest.fn(() => Promise.resolve({ data: [] })),
+    });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('returns a function to call with a policy and updated policy', async () => {
-    usePolicy.mockImplementation(() => {
-      return () => Promise.resolve();
+    useUpdatePolicy.mockReturnValue({
+      fetch: jest.fn(() => Promise.resolve()),
     });
+
     const { result } = renderHook(() =>
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
@@ -58,9 +73,12 @@ describe('useOnSave', function () {
   });
 
   it('returns a function to call with a policy and updated policy and can raise an error', async () => {
-    usePolicy.mockImplementation(() => {
-      return () => Promise.reject({});
+    useUpdatePolicy.mockReturnValue({
+      fetch: jest.fn(() => {
+        return Promise.reject(new Error('Update failed'));
+      }),
     });
+
     const { result } = renderHook(() =>
       useOnSave(policy, updatedPolicy, {
         onSave: onSaveCallBack,
@@ -76,7 +94,7 @@ describe('useOnSave', function () {
       expect(mockedNotification).toHaveBeenCalledWith({
         variant: 'danger',
         title: 'Error updating policy',
-        description: undefined,
+        description: 'Update failed',
       })
     );
 
