@@ -19,7 +19,6 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { buildOSObject } from '../../Utilities/helpers';
 import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
@@ -89,20 +88,15 @@ export const EditPolicySystems = ({
   osMajorVersion,
   selectedSystems = [],
 }) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
   const onSelect = useOnSelect(change, countOsMinorVersions);
   const osMinorVersions = policy.supportedOsVersions.map(
     (version) => version.split('.')[1]
   );
 
   const defaultFilter = osMajorVersion
-    ? apiV2Enabled
-      ? `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-          ' '
-        )}) AND profile_ref_id !^ (${policy.refId})`
-      : `os_major_version = ${osMajorVersion} AND os_minor_version ^ (${osMinorVersions.join(
-          ','
-        )})`
+    ? `os_major_version = ${osMajorVersion} AND ` +
+      `os_minor_version ^ (${osMinorVersions.join(' ')}) AND ` +
+      `profile_ref_id !^ (${policy.refId})`
     : '';
 
   const fetchCustomOSes = ({ filters: defaultFilter }) =>
@@ -132,14 +126,14 @@ export const EditPolicySystems = ({
                 props: {
                   width: 40,
                 },
-                sortBy: apiV2Enabled ? ['display_name'] : ['name'],
+                sortBy: ['display_name'],
               },
               Columns.inventoryColumn('groups', {
                 requiresDefault: true,
                 sortBy: ['groups'],
               }),
               Columns.inventoryColumn('tags'),
-              Columns.OperatingSystem(apiV2Enabled),
+              Columns.OperatingSystem(),
             ]}
             remediationsEnabled={false}
             compact
@@ -149,7 +143,6 @@ export const EditPolicySystems = ({
             preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
             showGroupsFilter
-            apiV2Enabled={apiV2Enabled}
             fetchApi={fetchSystemsApi}
             fetchCustomOSes={fetchCustomOSes}
           />
