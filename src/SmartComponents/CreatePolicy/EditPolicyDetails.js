@@ -26,9 +26,9 @@ import {
 
 export const EditPolicyDetails = ({ change, policy, refId }) => {
   useEffect(() => {
-    if (policy && policy.refId !== refId) {
-      change('name', `${policy.name}`);
-      change('refId', `${policy.refId}`);
+    if (policy && policy.ref_id !== refId) {
+      change('name', `${policy.title}`);
+      change('refId', `${policy.ref_id}`);
       change('description', `${policy.description}`);
     }
   }, [policy]);
@@ -80,7 +80,7 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
             id="businessObjective"
             name="businessObjective"
             aria-describedby="businessObjective"
-            defaultValue={policy.businessObjective}
+            defaultValue={policy.business_objective}
           />
         </FormGroup>
         <ProfileThresholdField previousThreshold={100} />
@@ -103,8 +103,8 @@ const mapStateToProps = (state) => {
     policy,
     refId: selector(state, 'refId'),
     initialValues: {
-      name: `${policy.name}`,
-      refId: `${policy.refId}`,
+      name: `${policy.title}`,
+      refId: `${policy.ref_id}`,
       description: `${policy.description}`,
       benchmark: selector(state, 'benchmark'),
       osMajorVersion: selector(state, 'osMajorVersion'),
