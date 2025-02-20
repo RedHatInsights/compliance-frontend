@@ -1,46 +1,170 @@
 import React from 'react';
-import useAPIV2FeatureFlag from '../../../Utilities/hooks/useAPIV2FeatureFlag';
-import { render, screen } from '@testing-library/react';
-import CreateSCAPPolicy from './CreateSCAPPolicy';
-import CreateSCAPPolicyGraphQL from './CreateSCAPPolicyGraphQL';
-import CreateSCAPPolicyRest from './CreateSCAPPolicyRest';
+import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
+import userEvent from '@testing-library/user-event';
+import { supportedProfiles } from '../../../__fixtures__/supportedProfiles';
+import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
+import { CreateSCAPPolicyTableStateProvider } from './CreateSCAPPolicy';
+import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 
-jest.mock('./CreateSCAPPolicyRest');
-jest.mock('./CreateSCAPPolicyGraphQL');
-jest.mock('../../../Utilities/hooks/useAPIV2FeatureFlag');
+jest.mock('Utilities/hooks/api/useSecurityGuidesOS');
+jest.mock('Utilities/hooks/api/useSupportedProfiles');
+jest.mock('Utilities/hooks/useAPIV2FeatureFlag');
 
 describe('CreateSCAPPolicy', () => {
-  it('renders the loading state when the flag is not yet fetched', () => {
-    useAPIV2FeatureFlag.mockReturnValue(undefined);
+  const change = jest.fn();
+  const availableVersions = [6, 7, 8, 9];
+  useAPIV2FeatureFlag.mockReturnValue(true);
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('renders progressbar on loading data', () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: undefined,
+      loading: true,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: undefined,
+      loading: true,
+      error: undefined,
+    });
     render(
       <TestWrapper>
-        <CreateSCAPPolicy />
+        <CreateSCAPPolicyTableStateProvider change={change} />
       </TestWrapper>
     );
 
     screen.getByRole('progressbar');
   });
 
-  it('renders the GraphQL component if the flag is off', () => {
-    useAPIV2FeatureFlag.mockReturnValue(false);
+  it('renders available OS major versions when fetched', async () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: availableVersions,
+      loading: false,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: undefined,
+      loading: true,
+      error: undefined,
+    });
     render(
       <TestWrapper>
-        <CreateSCAPPolicy />
+        <CreateSCAPPolicyTableStateProvider change={change} />
       </TestWrapper>
     );
 
-    expect(CreateSCAPPolicyGraphQL).toBeCalled();
+    await waitFor(() => {
+      screen.getByText(
+        /select the operating system and policy type for this policy\./i
+      );
+    });
+    availableVersions.forEach((version) => screen.getByText(`RHEL ${version}`));
   });
 
-  it('renders the REST API component if the flag is on', () => {
-    useAPIV2FeatureFlag.mockReturnValue(true);
+  it('calls the change callback on OS select', async () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: availableVersions,
+      loading: false,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: undefined,
+      loading: true,
+      error: undefined,
+    });
     render(
       <TestWrapper>
-        <CreateSCAPPolicy />
+        <CreateSCAPPolicyTableStateProvider change={change} />
       </TestWrapper>
     );
 
-    expect(CreateSCAPPolicyRest).toBeCalled();
+    await userEvent.click(screen.getByRole('option', { name: 'RHEL 8' }));
+    expect(change).toBeCalledWith('osMajorVersion', 8);
+  });
+
+  it('indicates selected OS version and renders policies table', async () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: availableVersions,
+      loading: false,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: { data: [] },
+      loading: false,
+      error: undefined,
+    });
+    render(
+      <TestWrapper>
+        <CreateSCAPPolicyTableStateProvider
+          change={change}
+          selectedOsMajorVersion={8}
+        />
+      </TestWrapper>
+    );
+
+    expect(screen.getByRole('option', { name: 'RHEL 8' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+    screen.getByLabelText('PolicyTypeTable');
+  });
+
+  it('shows available supported profiles', async () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: availableVersions,
+      loading: false,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: { data: supportedProfiles },
+      loading: false,
+      error: undefined,
+    });
+    render(
+      <TestWrapper>
+        <CreateSCAPPolicyTableStateProvider
+          change={change}
+          selectedOsMajorVersion={8}
+        />
+      </TestWrapper>
+    );
+
+    supportedProfiles.forEach(({ title }) => {
+      screen.getByRole('cell', { name: title });
+    });
+  });
+
+  it('calls the change callback on profile select', async () => {
+    useSecurityGuidesOS.mockReturnValue({
+      data: availableVersions,
+      loading: false,
+      error: undefined,
+    });
+    useSupportedProfiles.mockReturnValue({
+      data: { data: supportedProfiles },
+      loading: false,
+      error: undefined,
+    });
+    render(
+      <TestWrapper>
+        <CreateSCAPPolicyTableStateProvider
+          change={change}
+          selectedOsMajorVersion={8}
+        />
+      </TestWrapper>
+    );
+
+    await userEvent.click(
+      screen.getByRole('radio', {
+        name: /select row 0/i,
+      })
+    );
+    expect(change).toBeCalledTimes(4);
   });
 });
