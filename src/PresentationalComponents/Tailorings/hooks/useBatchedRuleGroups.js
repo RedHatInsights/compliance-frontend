@@ -20,7 +20,6 @@ const useBatchedRuleGroups = (options = {}) => {
   } = useFetchTotalBatched(fetchRuleGroupsForBatch, {
     params,
     skip: skip || !batched,
-    withMeta: true,
   });
 
   return {

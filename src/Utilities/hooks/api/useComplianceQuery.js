@@ -94,7 +94,7 @@ const useComplianceQuery = (
     skip: useTableState && !serialisedTableState,
     ...options,
   });
-
+  // TODO Add fetchBatched function
   return query;
 };
 

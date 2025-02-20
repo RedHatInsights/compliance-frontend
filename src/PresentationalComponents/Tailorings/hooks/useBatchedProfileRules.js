@@ -3,7 +3,7 @@ import useProfileRules from 'Utilities/hooks/api/useProfileRules';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useBatchedProfileRules = (options = {}) => {
-  const { skip, batched = false, params } = options;
+  const { skip, batched = false } = options;
   const {
     data: rules,
     loading: rulesLoading,
@@ -15,8 +15,7 @@ const useBatchedProfileRules = (options = {}) => {
   });
 
   const fetchRulesForBatch = useCallback(
-    async (offset, limit, params = {}) =>
-      await fetchProfileRules({ ...params, limit, offset }, false),
+    async (offset, limit) => await fetchProfileRules({ limit, offset }, false),
     [fetchProfileRules]
   );
   const {
@@ -25,9 +24,7 @@ const useBatchedProfileRules = (options = {}) => {
     error: rulesBatchedError,
     fetch: fetchBatched,
   } = useFetchTotalBatched(fetchRulesForBatch, {
-    params,
     skip: skip || !batched,
-    withMeta: true,
   });
 
   return {

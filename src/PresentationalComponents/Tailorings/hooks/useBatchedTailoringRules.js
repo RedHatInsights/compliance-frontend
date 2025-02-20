@@ -3,7 +3,7 @@ import useTailoringRules from 'Utilities/hooks/api/useTailoringRules';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const useBatchedTailoringRules = (options = {}) => {
-  const { skip, batched = false, params } = options;
+  const { skip, batched = false } = options;
   const {
     data: rules,
     loading: rulesLoading,
@@ -14,8 +14,7 @@ const useBatchedTailoringRules = (options = {}) => {
     skip: skip || batched,
   });
   const fetchRulesForBatch = useCallback(
-    async (offset, limit, params = {}) =>
-      await fetchRules({ ...params, limit, offset }, false),
+    async (offset, limit) => await fetchRules({ limit, offset }, false),
     [fetchRules]
   );
   const {
@@ -24,11 +23,8 @@ const useBatchedTailoringRules = (options = {}) => {
     error: rulesBatchedError,
     fetch: fetchBatched,
   } = useFetchTotalBatched(fetchRulesForBatch, {
-    params,
     skip: skip || !batched,
-    withMeta: true,
   });
-
   return {
     loading: !batched ? rulesLoading : rulesLoading || rulesBatchedLoading,
     data: !batched ? rules : rulesBatched,

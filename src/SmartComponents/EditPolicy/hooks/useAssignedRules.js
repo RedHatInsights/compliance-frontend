@@ -45,12 +45,13 @@ const useAssignedRules = (policyId) => {
       );
 
       for (const tailoring of nonCanonicalTailorings) {
-        const receivedTailoringRules = await fetchTailoringRulesBatched({
-          // TODO: investigate why it's not stable with the dev server
-          policyId,
-          tailoringId: tailoring.id,
-        });
-
+        const { data: receivedTailoringRules } =
+          await fetchTailoringRulesBatched({
+            // TODO: investigate why it's not stable with the dev server
+            policyId,
+            tailoringId: tailoring.id,
+          });
+        console.log(receivedTailoringRules, 'yolo');
         rules[tailoring.os_minor_version] = receivedTailoringRules
           .flat()
           .map(({ id }) => id);

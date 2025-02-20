@@ -67,9 +67,12 @@ const useBulkSelect = ({
   const title = compileTitle(selectedIdsTotal, loading);
 
   const selectOne = useCallback(
-    (_, _selected, _key, row) =>
-      row.selected ? deselect(row[identifier]) : select(row[identifier]),
-    [select, deselect, identifier]
+    (_, _selected, _key, { item }) => {
+      return selectedIds.includes(item.itemId)
+        ? deselect(item[identifier])
+        : select(item[identifier]);
+    },
+    [select, deselect, identifier, selectedIds]
   );
   const selectPage = useCallback(
     () =>
@@ -87,14 +90,33 @@ const useBulkSelect = ({
     setLoading(false);
   };
 
-  const markRowSelected = (row) => ({
-    ...row,
-    selected: selectedIds.includes(row.itemId),
-  });
+  const markRowSelected = useCallback(
+    (item, rowsForItem, _index, isTreeTable) => {
+      const firstRow = rowsForItem[0];
+      const remainingRows = rowsForItem.slice(1);
+
+      return [
+        {
+          ...firstRow,
+          ...(!isTreeTable
+            ? { selected: selectedIds.includes(item.itemId) }
+            : {}),
+          props: {
+            ...firstRow.props,
+            ...(isTreeTable && !item.isTreeBranch
+              ? { isChecked: selectedIds.includes(item.itemId) }
+              : {}),
+          },
+        },
+        ...remainingRows,
+      ];
+    },
+    [selectedIds]
+  );
 
   return enableBulkSelect
     ? {
-        tableView: { markRowSelected, selectOne, set, select, deselect, clear },
+        tableView: { markRowSelected, select, deselect },
         tableProps: {
           onSelect: total > 0 ? selectOne : undefined,
           canSelectAll: false,
