@@ -39,7 +39,6 @@ export { default as ComplianceThresholdHelperText } from './ComplianceThresholdH
 export { default as SupportedSSGVersionsLink } from './SupportedSSGVersionsLink/SupportedSSGVersionsLink';
 export { default as UnsupportedSSGVersion } from './UnsupportedSSGVersion/UnsupportedSSGVersion';
 export { default as SubPageTitle } from './SubPageTitle/SubPageTitle';
-export { TabbedRules } from './TabbedRules';
 export { default as NoSystemsTableWithWarning } from './NoSystemsTableWithWarning/NoSystemsTableWithWarning';
 export { default as RulesTable } from './RulesTable/RulesTable';
 export { default as ConditionalLink } from './ConditionalLink/ConditionalLink';

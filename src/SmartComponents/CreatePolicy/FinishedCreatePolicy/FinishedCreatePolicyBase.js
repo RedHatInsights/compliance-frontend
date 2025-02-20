@@ -21,7 +21,7 @@ import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withApollo } from '@apollo/client/react/hoc';
+// import { withApollo } from '@apollo/client/react/hoc';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const EmptyStateWithErrors = ({ errors }) =>
@@ -46,8 +46,6 @@ export const FinishedCreatePolicyBase = ({
   name,
   complianceThreshold,
   businessObjective,
-  refId,
-  benchmarkId,
   systems,
   selectedRuleRefIds,
   valueOverrides = {},
@@ -68,9 +66,7 @@ export const FinishedCreatePolicyBase = ({
       description,
       name,
       complianceThreshold,
-      businessObjective: { title: businessObjective },
-      refId,
-      benchmarkId,
+      businessObjective: businessObjective,
       hosts: systems,
       selectedRuleRefIds,
       valueOverrides,
@@ -146,10 +142,8 @@ export const FinishedCreatePolicyBase = ({
 };
 
 FinishedCreatePolicyBase.propTypes = {
-  benchmarkId: propTypes.string.isRequired,
   businessObjective: propTypes.object,
   cloneFromProfileId: propTypes.string.isRequired,
-  refId: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   description: propTypes.string,
   systems: propTypes.array,
@@ -165,10 +159,8 @@ export const selector = formValueSelector('policyForm');
 export default compose(
   connect((state) => {
     return {
-      benchmarkId: selector(state, 'benchmark'),
       businessObjective: selector(state, 'businessObjective'),
       cloneFromProfileId: selector(state, 'profile').id,
-      refId: selector(state, 'refId'),
       name: selector(state, 'name'),
       description: selector(state, 'description'),
       complianceThreshold:
@@ -182,6 +174,5 @@ export default compose(
     form: 'policyForm',
     destroyOnUnmount: true,
     forceUnregisterOnUnmount: true,
-  }),
-  withApollo
+  })
 )(FinishedCreatePolicyBase);
