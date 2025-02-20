@@ -21,7 +21,6 @@ import { WrenchIcon } from '@patternfly/react-icons';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-// import { withApollo } from '@apollo/client/react/hoc';
 import { dispatchNotification } from 'Utilities/Dispatcher';
 
 const EmptyStateWithErrors = ({ errors }) =>

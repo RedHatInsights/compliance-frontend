@@ -24,14 +24,14 @@ import {
   PolicyBusinessObjectiveTooltip,
 } from 'PresentationalComponents';
 
-export const EditPolicyDetails = ({ change, policy, refId }) => {
+export const EditPolicyDetails = ({ change, profile, refId }) => {
   useEffect(() => {
-    if (policy && policy.ref_id !== refId) {
-      change('name', `${policy.title}`);
-      change('refId', `${policy.ref_id}`);
-      change('description', `${policy.description}`);
+    if (profile && profile.ref_id !== refId) {
+      change('name', `${profile.title}`);
+      change('refId', `${profile.ref_id}`);
+      change('description', `${profile.description}`);
     }
-  }, [policy]);
+  }, [profile]);
 
   return (
     <React.Fragment>
@@ -80,7 +80,7 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
             id="businessObjective"
             name="businessObjective"
             aria-describedby="businessObjective"
-            defaultValue={policy.business_objective}
+            defaultValue={profile.business_objective}
           />
         </FormGroup>
         <ProfileThresholdField previousThreshold={100} />
@@ -92,20 +92,20 @@ export const EditPolicyDetails = ({ change, policy, refId }) => {
 const selector = formValueSelector('policyForm');
 
 EditPolicyDetails.propTypes = {
-  policy: propTypes.object,
+  profile: propTypes.object,
   refId: propTypes.string,
   change: reduxFormPropTypes.change,
 };
 
 const mapStateToProps = (state) => {
-  const policy = selector(state, 'profile');
+  const profile = selector(state, 'profile');
   return {
-    policy,
+    profile,
     refId: selector(state, 'refId'),
     initialValues: {
-      name: `${policy.title}`,
-      refId: `${policy.ref_id}`,
-      description: `${policy.description}`,
+      name: `${profile.title}`,
+      refId: `${profile.ref_id}`,
+      description: `${profile.description}`,
       benchmark: selector(state, 'benchmark'),
       osMajorVersion: selector(state, 'osMajorVersion'),
       profile: selector(state, 'profile'),

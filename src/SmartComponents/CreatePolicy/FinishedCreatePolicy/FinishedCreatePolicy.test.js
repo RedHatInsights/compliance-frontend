@@ -65,9 +65,9 @@ describe('useUpdatePolicy', () => {
   const policyDataToSubmit = {
     name: 'Some policy name',
     description: 'Some policy description',
-    businessObjective: { title: 'Some defined business objective' },
+    businessObjective: 'Some defined business objective',
     complianceThreshold: 100,
-    benchmarkId: '4610092b-2e7f-4155-b101-964fede3566b',
+    cloneFromProfileId: '4610092b-2e7f-4155-b101-964fede3566b',
     selectedRuleRefIds: [
       {
         ruleRefIds: ['474129f9-1168-429e-833a-8d69e38284b8'],
@@ -87,10 +87,10 @@ describe('useUpdatePolicy', () => {
       [
         undefined, // X-RH identity
         {
-          business_objective: policyDataToSubmit.businessObjective.title,
+          business_objective: policyDataToSubmit.businessObjective,
           compliance_threshold: policyDataToSubmit.complianceThreshold,
           description: policyDataToSubmit.description,
-          profile_id: policyDataToSubmit.benchmarkId,
+          profile_id: policyDataToSubmit.cloneFromProfileId,
           title: policyDataToSubmit.name,
         },
       ],

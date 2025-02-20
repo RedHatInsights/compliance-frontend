@@ -165,6 +165,6 @@ describe('CreateSCAPPolicy', () => {
         name: /select row 0/i,
       })
     );
-    expect(change).toBeCalledTimes(4);
+    expect(change).toBeCalledTimes(3);
   });
 });

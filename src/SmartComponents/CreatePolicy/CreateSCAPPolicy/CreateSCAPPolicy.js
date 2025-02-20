@@ -110,9 +110,8 @@ const CreateSCAPPolicy = ({
             >
               <PolicyTypesTable
                 profiles={data?.availableProfiles || []}
-                onChange={(policy) => {
-                  change('profile', policy);
-                  change('benchmark', policy.security_guide_id);
+                onChange={(profile) => {
+                  change('profile', profile);
                   change('selectedRuleRefIds', undefined);
                   change('systems', []);
                 }}

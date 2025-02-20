@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import {
   Bullseye,
   EmptyState,
-  EmptyStateBody,
-  EmptyStateHeader,
   Spinner,
   Text,
   TextContent,
@@ -135,11 +133,6 @@ const EditPolicyProfilesRules = ({
     closeInlineEdit();
   };
 
-  const noRuleSets =
-    !preselectedRuleIdsError &&
-    !preselectedRuleIdsLoading &&
-    Object.keys(profilesAndRuleIds || {}).length === 0;
-
   return !preselected ? (
     <Bullseye>
       <Spinner />
@@ -163,21 +156,8 @@ const EditPolicyProfilesRules = ({
           error: preselectedRuleIdsError,
           data: profilesAndRuleIds,
           loading: preselectedRuleIdsLoading,
-          noRuleSets,
         }}
       >
-        <StateViewPart stateKey="noRuleSets">
-          <EmptyState>
-            <EmptyStateHeader
-              titleText="No rules can be configured"
-              headingLevel="h1"
-            />
-            <EmptyStateBody>
-              The policy type selected does not exist for the systems and OS
-              versions selected in the previous steps.
-            </EmptyStateBody>
-          </EmptyState>
-        </StateViewPart>
         <StateViewPart stateKey="loading">
           <EmptyState>
             <Spinner />

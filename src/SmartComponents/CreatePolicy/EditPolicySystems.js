@@ -83,20 +83,20 @@ const useOnSelect = (change, countOsMinorVersions) => {
 };
 
 export const EditPolicySystems = ({
-  policy,
+  profile,
   change,
   osMajorVersion,
   selectedSystems = [],
 }) => {
   const onSelect = useOnSelect(change, countOsMinorVersions);
-  const osMinorVersions = policy.supportedOsVersions.map(
+  const osMinorVersions = profile.supportedOsVersions.map(
     (version) => version.split('.')[1]
   );
 
   const defaultFilter = osMajorVersion
     ? `os_major_version = ${osMajorVersion} AND ` +
       `os_minor_version ^ (${osMinorVersions.join(' ')}) AND ` +
-      `profile_ref_id !^ (${policy.refId})`
+      `profile_ref_id !^ (${profile.ref_id})`
     : '';
 
   const fetchCustomOSes = ({ filters: defaultFilter }) =>
@@ -154,14 +154,14 @@ export const EditPolicySystems = ({
 
 EditPolicySystems.propTypes = {
   osMajorVersion: propTypes.string,
-  policy: propTypes.object,
+  profile: propTypes.object,
   selectedSystems: propTypes.array,
   change: reduxFormPropTypes.change,
 };
 
 const selector = formValueSelector('policyForm');
 const mapStateToProps = (state) => ({
-  policy: selector(state, 'profile'),
+  profile: selector(state, 'profile'),
   osMajorVersion: selector(state, 'osMajorVersion'),
   selectedSystems: selector(state, 'systems'),
 });
