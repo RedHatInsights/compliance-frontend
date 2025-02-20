@@ -16,14 +16,12 @@ const PolicyTypeTable = ({
   const columns = [
     {
       title: 'Policy name',
-      key: 'name',
-      sortByProp: 'name',
+      key: 'title',
       sortable: 'title',
     },
     {
       title: 'Supported OS versions',
       transforms: [fitContent],
-      sortByProp: 'supportedOsVersions',
       sortable: 'os_minor_versions',
       renderFunc: (_data, _id, profile) =>
         profile.supportedOsVersions.join(', '),
@@ -48,10 +46,6 @@ const PolicyTypeTable = ({
             type: conditionalFilterType.text,
             label: 'Policy name',
             filterAttribute: 'title',
-            filter: (policyTypes, value) =>
-              policyTypes.filter((policyType) =>
-                policyType?.name.toLowerCase().includes(value.toLowerCase())
-              ),
           },
         ],
       }}
