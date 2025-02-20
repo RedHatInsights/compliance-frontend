@@ -98,6 +98,6 @@ export default connect((state) => ({
   osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
   complianceThreshold:
     parseFloat(selector(state, 'complianceThreshold')) || 100.0,
-  parentProfileName: selector(state, 'profile').name,
+  parentProfileName: selector(state, 'profile').title,
   rulesCount: selector(state, 'selectedRuleRefIds').length,
 }))(ReviewCreatedPolicy);
