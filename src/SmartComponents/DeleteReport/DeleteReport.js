@@ -14,7 +14,7 @@ import { ComplianceModal } from 'PresentationalComponents';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import { apiInstance } from '../../Utilities/hooks/useQuery';
-import { handleDeleteReport } from '../CreatePolicy/helpers';
+import { handleDeleteReport } from './helpers';
 
 /**
  * DeleteReportBase Component
