@@ -94,7 +94,6 @@ const CreateSCAPPolicy = ({
                 className="pf-v5-u-mr-md"
                 title={`RHEL ${osMajorVersion}`}
                 onClick={() => {
-                  console.log('DEBUG clicked: ' + osMajorVersion);
                   change('osMajorVersion', osMajorVersion);
                 }}
                 isSelected={selectedOsMajorVersion === osMajorVersion}

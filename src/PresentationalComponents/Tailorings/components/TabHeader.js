@@ -9,8 +9,8 @@ import {
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
-import OsVersionText from '../../TabbedRules/OsVersionText';
-import { SSGVersionText } from '../../TabbedRules/ProfileTabContent';
+import OsVersionText from '../osVersionText';
+import { SSGVersionText } from '../ssgVersionText';
 
 const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
   return (
