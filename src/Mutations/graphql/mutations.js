@@ -88,13 +88,3 @@ export const CREATE_BUSINESS_OBJECTIVE = gql`
     }
   }
 `;
-
-export const DELETE_REPORT = gql`
-  mutation DeleteReport($input: deleteTestResultsInput!) {
-    deleteTestResults(input: $input) {
-      profile {
-        id
-      }
-    }
-  }
-`;
