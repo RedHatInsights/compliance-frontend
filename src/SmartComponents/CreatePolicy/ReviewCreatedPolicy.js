@@ -73,8 +73,6 @@ const ReviewCreatedPolicy = ({
 );
 
 ReviewCreatedPolicy.propTypes = {
-  benchmarkId: propTypes.string,
-  refId: propTypes.string,
   name: propTypes.string,
   businessObjective: propTypes.string,
   complianceThreshold: propTypes.number,
@@ -91,13 +89,11 @@ ReviewCreatedPolicy.propTypes = {
 const selector = formValueSelector('policyForm');
 
 export default connect((state) => ({
-  benchmarkId: selector(state, 'benchmark'),
-  refId: selector(state, 'refId'),
   name: selector(state, 'name'),
   businessObjective: selector(state, 'businessObjective'),
   osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
+  osMajorVersion: selector(state, 'osMajorVersion'),
   complianceThreshold:
     parseFloat(selector(state, 'complianceThreshold')) || 100.0,
-  parentProfileName: selector(state, 'profile').name,
-  rulesCount: selector(state, 'selectedRuleRefIds').length,
+  parentProfileName: selector(state, 'profile').title,
 }))(ReviewCreatedPolicy);
