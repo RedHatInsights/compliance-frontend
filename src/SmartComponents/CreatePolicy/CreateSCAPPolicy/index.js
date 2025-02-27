@@ -1,1 +1,1 @@
-export { default } from './CreateSCAPPolicy';
+export { CreateSCAPPolicyWithRedux as default } from './CreateSCAPPolicy';

@@ -12,14 +12,13 @@ import ReviewCreatedPolicy from './ReviewCreatedPolicy';
 import FinishedCreatePolicy from './FinishedCreatePolicy';
 import CreatePolicyFooter from './CreatePolicyFooter';
 import {
-  validateBenchmarkPage,
+  validateSecurityGuidePage,
   validateDetailsPage,
   validateRulesPage,
   validateSystemsPage,
 } from './validate';
 
 export const CreatePolicyForm = ({
-  benchmark,
   osMajorVersion,
   complianceThreshold,
   name,
@@ -54,7 +53,7 @@ export const CreatePolicyForm = ({
       id: 1,
       name: 'Create SCAP policy',
       component: <CreateSCAPPolicy />,
-      enableNext: validateBenchmarkPage(benchmark, osMajorVersion, profile),
+      enableNext: validateSecurityGuidePage(osMajorVersion, profile),
     },
     {
       id: 2,
@@ -80,7 +79,7 @@ export const CreatePolicyForm = ({
     {
       id: 5,
       name: 'Review',
-      component: <ReviewCreatedPolicy osMajorVersion={osMajorVersion} />,
+      component: <ReviewCreatedPolicy />,
       nextButtonText: 'Finish',
       canJumpTo:
         validateRulesPage(selectedRuleRefIds) &&
@@ -117,7 +116,6 @@ export const CreatePolicyForm = ({
 };
 
 CreatePolicyForm.propTypes = {
-  benchmark: propTypes.string,
   osMajorVersion: propTypes.string,
   osMinorVersionCounts: propTypes.arrayOf(
     propTypes.shape({
@@ -148,7 +146,6 @@ const CreatePolicy = reduxForm({
 
 const selector = formValueSelector('policyForm');
 export default connect((state) => ({
-  benchmark: selector(state, 'benchmark'),
   osMajorVersion: selector(state, 'osMajorVersion'),
   osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
   businessObjective: selector(state, 'businessObjective'),
