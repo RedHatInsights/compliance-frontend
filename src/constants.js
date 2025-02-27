@@ -94,23 +94,8 @@ export const systemsPolicyFilterConfiguration = (
     label: 'Policy',
     filterString: (value) => `${filterKey} = ${value}`,
     items: policies.map((policy) => ({
-      label: policy.name,
+      label: policy.title,
       value: policy.id,
-    })),
-  },
-];
-
-const osMajorVersionsFromProfiles = (policies) =>
-  Array.from(new Set(policies.map((profile) => profile.osMajorVersion)));
-
-export const systemsOsFilterConfiguration = (policies) => [
-  {
-    type: conditionalFilterType.checkbox,
-    label: 'Operating system',
-    filterString: (value) => `os_major_version = ${value}`,
-    items: osMajorVersionsFromProfiles(policies).map((osVersion) => ({
-      label: `RHEL ${osVersion}`,
-      value: osVersion,
     })),
   },
 ];

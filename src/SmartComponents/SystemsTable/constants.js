@@ -2,7 +2,6 @@ import { gql } from '@apollo/client';
 import pickBy from 'lodash/pickBy';
 import {
   systemsPolicyFilterConfiguration,
-  systemsOsFilterConfiguration,
   systemsOsMinorFilterConfiguration,
 } from '@/constants';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
@@ -23,9 +22,8 @@ export const GET_SYSTEMS_OSES = gql`
   }
 `;
 
-export const policyFilter = (policies, osFilter, filterKey) => [
+export const policyFilter = (policies, filterKey) => [
   ...systemsPolicyFilterConfiguration(policies, filterKey),
-  ...(osFilter ? systemsOsFilterConfiguration(policies) : []),
 ];
 
 export const osMinorVersionFilter = (...args) =>

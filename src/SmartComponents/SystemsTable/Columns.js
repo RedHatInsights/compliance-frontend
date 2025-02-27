@@ -88,7 +88,7 @@ export const Policies = {
   transforms: [nowrap],
   key: 'policies',
   exportKey: 'policies',
-  renderExport: (policies) => policies.map(({ name }) => name).join(', '),
+  renderExport: (policies) => policies.map(({ title }) => title).join(', '),
   props: {
     width: 40,
     ...disableSorting,
