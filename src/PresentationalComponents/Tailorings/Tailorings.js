@@ -7,7 +7,7 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
-import OsVersionText from '../TabbedRules/OsVersionText';
+import OsVersionText from './osVersionText';
 import TailoringTab from './components/TailoringTab';
 import { eventKey } from './helpers';
 import NoTailorings from './NoTailorings';
