@@ -19,7 +19,6 @@ import {
 } from './validate';
 
 export const CreatePolicyForm = ({
-  // securityGuide,
   osMajorVersion,
   complianceThreshold,
   name,
@@ -117,7 +116,6 @@ export const CreatePolicyForm = ({
 };
 
 CreatePolicyForm.propTypes = {
-  // securityGuide: propTypes.string,
   osMajorVersion: propTypes.string,
   osMinorVersionCounts: propTypes.arrayOf(
     propTypes.shape({
@@ -148,7 +146,6 @@ const CreatePolicy = reduxForm({
 
 const selector = formValueSelector('policyForm');
 export default connect((state) => ({
-  // securityGuide: selector(state, 'securityGuide'),
   osMajorVersion: selector(state, 'osMajorVersion'),
   osMinorVersionCounts: selector(state, 'osMinorVersionCounts'),
   businessObjective: selector(state, 'businessObjective'),
