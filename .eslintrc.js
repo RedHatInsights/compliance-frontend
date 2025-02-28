@@ -25,5 +25,8 @@ module.exports = {
       'warn',
       { definedTags: ['category', 'subcategory'] },
     ],
+    "react-hooks/exhaustive-deps": ["warn", {
+      "additionalHooks": "(useDeepCompareEffect|useDeepCompareCallback|useDeepCompareMemo|useDeepCompareImperativeHandle|useDeepCompareLayoutEffect)"
+    }]
   },
 };
