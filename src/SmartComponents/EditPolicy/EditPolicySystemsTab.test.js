@@ -10,7 +10,6 @@ import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/Te
 import { waitFor } from '@testing-library/react';
 import useSystem from '@/Utilities/hooks/api/useSystem';
 
-jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => true));
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   InventoryTable: jest.fn(({ getEntities }) => {
     getEntities(null, {
