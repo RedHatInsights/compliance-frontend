@@ -6,12 +6,9 @@ import propTypes from 'prop-types';
 import { MemoryRouter } from 'react-router-dom';
 
 import CompliancePolicies from './CompliancePolicies.js';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import { buildPoliciesV2 } from '../../__factories__/policies';
-
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
@@ -21,10 +18,6 @@ jest.mock('Utilities/hooks/usePoliciesCount', () => jest.fn());
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 
 describe('CompliancePolicies', () => {
-  beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => true);
-  });
-
   it('expect to render without error', () => {
     usePoliciesCount.mockImplementation(() => policiesData.length);
     usePolicies.mockImplementation(() => ({

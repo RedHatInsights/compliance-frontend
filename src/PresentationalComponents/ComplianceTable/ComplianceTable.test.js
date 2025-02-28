@@ -7,32 +7,22 @@ import columns from 'Utilities/hooks/useTableTools/__fixtures__/columns';
 
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import ComplianceTable from './ComplianceTable';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
+describe('ComplianceTable', () => {
+  const exampleItems = items(30).sort((item) => item.name);
+  const defaultProps = {
+    columns,
+    items: exampleItems,
+    'aria-label': 'Test Table',
+  };
 
-describe.each([true, false])(
-  'ComplianceTable with useAPIV2FeatureFlag set to %s',
-  (featureFlagValue) => {
-    beforeEach(() => {
-      useAPIV2FeatureFlag.mockImplementation(() => featureFlagValue);
-    });
+  it('expect to render', () => {
+    render(
+      <TableStateProvider>
+        <ComplianceTable {...defaultProps} />
+      </TableStateProvider>
+    );
 
-    const exampleItems = items(30).sort((item) => item.name);
-    const defaultProps = {
-      columns,
-      items: exampleItems,
-      'aria-label': 'Test Table',
-    };
-
-    it('expect to render', () => {
-      render(
-        <TableStateProvider>
-          <ComplianceTable {...defaultProps} />
-        </TableStateProvider>
-      );
-
-      expect(screen.getByLabelText('Test Table')).toBeInTheDocument();
-    });
-  }
-);
+    expect(screen.getByLabelText('Test Table')).toBeInTheDocument();
+  });
+});

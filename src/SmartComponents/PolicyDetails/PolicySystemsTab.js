@@ -6,7 +6,6 @@ import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import EditSystemsButtonToolbarItem from './EditSystemsButtonToolbarItem';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import { systemsDataMapper } from '@/constants';
 import dataSerialiser from '@/Utilities/dataSerialiser';
 import { buildOSObject } from '@/Utilities/helpers';
@@ -38,7 +37,6 @@ const fetchCustomOSes = ({ policyId, filters }) =>
   });
 
 const PolicySystemsTab = ({ policy }) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
   return (
     <SystemsTable
       columns={[
@@ -46,14 +44,13 @@ const PolicySystemsTab = ({ policy }) => {
           {
             showLink: true,
           },
-          { sortBy: apiV2Enabled ? ['display_name'] : ['name'] }
+          { sortBy: ['display_name'] }
         ),
         Columns.inventoryColumn('tags'),
-        Columns.OS(apiV2Enabled),
+        Columns.OS(),
       ]}
       showOsMinorVersionFilter={[policy.osMajorVersion]}
       policyId={policy.id}
-      defaultFilter={apiV2Enabled ? null : `policy_id = ${policy.id}`}
       policyRefId={policy.refId}
       showActions={false}
       remediationsEnabled={false}
@@ -67,7 +64,6 @@ const PolicySystemsTab = ({ policy }) => {
       complianceThreshold={policy.complianceThreshold}
       dedicatedAction={<EditSystemsButtonToolbarItem policy={policy} />}
       fetchApi={fetchApi}
-      apiV2Enabled={apiV2Enabled}
       fetchCustomOSes={fetchCustomOSes}
       ignoreOsMajorVersion
     />
