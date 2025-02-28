@@ -7,7 +7,6 @@ jest.mock('./hooks.js', () => ({
   useSystemBulkSelect: jest.fn(() => ({})),
   useSystemsExport: jest.fn(() => ({})),
 }));
-jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag', () => jest.fn(() => true));
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   InventoryTable: jest.fn(({ getEntities }) => {
     getEntities(10, {

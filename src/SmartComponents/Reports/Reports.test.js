@@ -5,7 +5,6 @@ import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/Te
 import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
 import useReportsCount from 'Utilities/hooks/useReportsCount.js';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs.js';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
 import Reports from './Reports.js';
 
@@ -13,11 +12,9 @@ jest.mock('@/Utilities/hooks/api/useReports');
 jest.mock('Utilities/hooks/api/useComplianceQuery', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
 jest.mock('Utilities/hooks/useReportsCount', () => jest.fn());
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
 
 describe('Reports', () => {
   it('Reports rendered with empty state', async () => {
-    useAPIV2FeatureFlag.mockImplementation(() => true);
     useReportsCount.mockImplementation(() => 0);
     useReportsOS.mockImplementation(() => ({
       data: [],
