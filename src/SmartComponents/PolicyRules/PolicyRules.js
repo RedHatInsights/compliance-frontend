@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import RulesTable from '@/PresentationalComponents/RulesTable/RulesTableRest';
@@ -10,7 +10,6 @@ import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableSta
 import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
 import useProfile from 'Utilities/hooks/api/useProfile';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
-
 
 const PolicyDefaultRules = () => {
   const tableState = useFullTableState();
@@ -76,9 +75,9 @@ const PolicyDefaultRules = () => {
           ruleValues={{}}
           loading={loading}
           ruleTree={builtTree}
+          skipValueDefinitions={true}
           options={{
-            exporter: async () =>
-              await ruleResultsExporter(),
+            exporter: async () => await ruleResultsExporter(),
           }}
         />
       </div>
