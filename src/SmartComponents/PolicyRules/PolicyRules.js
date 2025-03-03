@@ -76,6 +76,7 @@ const PolicyDefaultRules = () => {
           ruleValues={{}}
           loading={loading}
           ruleTree={builtTree}
+          skipValueDefinitions={true}
           options={{
             exporter: async () =>
               await ruleResultsExporter(),
