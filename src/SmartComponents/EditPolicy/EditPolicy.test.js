@@ -8,6 +8,7 @@ import useAssignRules from 'Utilities/hooks/api/useAssignRules';
 import useAssignedRules from './hooks/useAssignedRules';
 import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
 import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
 import userEvent from '@testing-library/user-event';
 import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
@@ -21,6 +22,7 @@ jest.mock('Utilities/hooks/api/useAssignSystems');
 jest.mock('Utilities/hooks/api/usePolicy');
 jest.mock('Utilities/hooks/api/useTailorings');
 jest.mock('Utilities/hooks/api/useUpdatePolicy');
+jest.mock('Utilities/hooks/api/useUpdateTailoring');
 jest.mock('./hooks/useAssignedRules');
 jest.mock('Utilities/Dispatcher', () => ({ dispatchNotification: jest.fn() }));
 
@@ -81,7 +83,12 @@ describe('EditPolicy', () => {
       assignedRulesLoading: false,
     }));
 
-    [useAssignRules, useAssignSystems, useSupportedProfiles].forEach((hook) => {
+    [
+      useAssignRules,
+      useAssignSystems,
+      useSupportedProfiles,
+      useUpdateTailoring,
+    ].forEach((hook) => {
       hook.mockImplementation(() => ({
         data: { data: [{ id: 'test-id' }] },
         loading: false,
@@ -188,6 +195,15 @@ describe('EditPolicy', () => {
         assignRulesRequest: { ids: ['rule-1', 'rule-2'] },
       })
     );
+
+    await waitFor(() =>
+      expect(fetchMock).toHaveBeenCalledWith({
+        policyId: 'test-id',
+        tailoringId: 'tailoring-id',
+        valuesUpdate: { value_overrides: { 'value-id': 'changed-value' } },
+      })
+    );
+
     await waitFor(() =>
       expect(dispatchNotification).toHaveBeenCalledWith({
         autoDismiss: true,

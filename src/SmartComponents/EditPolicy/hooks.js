@@ -4,6 +4,7 @@ import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
 import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
 import useTailorings from '../../Utilities/hooks/api/useTailorings';
 import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
+import useUpdateTailoring from '../../Utilities/hooks/api/useUpdateTailoring';
 
 const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
   const {
@@ -12,12 +13,14 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
     description,
     businessObjective,
     complianceThreshold,
+    value: valuesPerTailoringId,
   } = updatedPolicyHostsAndRules || {};
 
   const { fetch: assignRules } = useAssignRules({ skip: true });
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
   const { fetch: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updatePolicy } = useUpdatePolicy({ skip: true });
+  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true });
 
   const updatePolicyRest = async () => {
     const policyId = policy.id;
@@ -26,7 +29,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
       await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
     }
 
-    if (tailoringRules) {
+    if (tailoringRules || valuesPerTailoringId) {
       const tailoringsResponse = await fetchTailorings(
         {
           policyId,
@@ -35,16 +38,30 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
         false
       ); // fetch the most up-to-date tailorings
       const tailoringsUpdated = tailoringsResponse.data;
-      for (const entry of Object.entries(tailoringRules)) {
-        const [osMinorVersion, rules] = entry;
-        await assignRules({
-          policyId,
-          tailoringId: tailoringsUpdated.find(
-            ({ os_minor_version }) =>
-              os_minor_version === Number(osMinorVersion)
-          ).id,
-          assignRulesRequest: { ids: rules },
-        });
+      if (tailoringRules) {
+        for (const entry of Object.entries(tailoringRules)) {
+          // assign rules
+          const [osMinorVersion, rules] = entry;
+          await assignRules({
+            policyId,
+            tailoringId: tailoringsUpdated.find(
+              ({ os_minor_version }) =>
+                os_minor_version === Number(osMinorVersion)
+            ).id,
+            assignRulesRequest: { ids: rules },
+          });
+        }
+      }
+      if (valuesPerTailoringId) {
+        for (const entry of Object.entries(valuesPerTailoringId)) {
+          // patch rule values
+          const [tailoringId, valueOverrides] = entry;
+          await updateTailoring({
+            policyId,
+            tailoringId,
+            valuesUpdate: { value_overrides: valueOverrides },
+          });
+        }
       }
     }
 

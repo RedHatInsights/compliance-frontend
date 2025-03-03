@@ -75,7 +75,7 @@ const EditPolicy = ({ route }) => {
     setUpdatedPolicy((prev) => ({
       ...prev,
       value: {
-        ...prev.value,
+        ...prev?.value,
         [tailoring.id]: {
           ...tailoring.value_overrides,
           [valueDefinition.id]: newValue,
