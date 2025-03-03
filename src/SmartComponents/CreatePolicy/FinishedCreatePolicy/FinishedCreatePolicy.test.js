@@ -156,15 +156,11 @@ describe('useUpdatePolicy', () => {
       onProgress
     );
 
-    expect(updateTailoring).toBeCalledWith(
-      [
-        createdPolicyId,
-        createdTailoringId,
-        undefined,
-        { value_overrides: { test_id_1: 'test_value_1' } },
-      ],
-      false
-    );
+    expect(updateTailoring).toBeCalledWith({
+      policyId: createdPolicyId,
+      tailoringId: createdTailoringId,
+      valuesUpdate: { value_overrides: { test_id_1: 'test_value_1' } },
+    });
   });
 
   it('updates progress', async () => {
