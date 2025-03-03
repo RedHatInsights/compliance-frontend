@@ -1,11 +1,11 @@
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
+import { useDeepCompareEffect } from 'use-deep-compare';
 
 const useSerialisers = (
   serialiserNamespace,
   serialiser,
   serialiserInContext
 ) => {
-  useDeepCompareEffectNoCheck(() => {
+  useDeepCompareEffect(() => {
     if (serialiser) {
       serialiserInContext.current = {
         ...serialiserInContext.current,

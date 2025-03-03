@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Grid } from '@patternfly/react-core';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
@@ -6,7 +6,8 @@ import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableSt
 import RulesTable from '../../RulesTable/RulesTableRest';
 import useTailoringsData from '../hooks/useTailoringsData';
 import useSecurityGuideData from '../hooks/useSecurityGuideData';
-import { buildTreeTable, skips } from '../helpers';
+import useSecurityGuideProfileData from '../hooks/useSecurityGuideProfileData';
+import { prepareTreeTable, prepareRules, skips } from '../helpers';
 import TabHeader from './TabHeader';
 import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
 
@@ -35,7 +36,9 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
  *  @param   {object}             [props.preselected]                    An array of rule IDs to select
+ *  @param   {string}             [props.skipProfile]
  *
+ *  @param                        props.additionalRules
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -49,7 +52,6 @@ const TailoringTab = ({
   osMajorVersion,
   osMinorVersion,
   profileId,
-  ruleValues,
   columns,
   systemCount,
   rulesTableProps,
@@ -60,16 +62,22 @@ const TailoringTab = ({
   onValueOverrideSave,
   onSelect,
   preselected,
+  additionalRules,
   enableSecurityGuideRulesToggle,
+  skipProfile,
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
-  const groupFilter =
-    tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
+  const groupFilter = useMemo(() => {
+    return tableState?.tableState?.tableView === 'tree' &&
+      openRuleGroups?.length > 0
       ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
       : undefined;
+  }, [tableState, openRuleGroups]);
+
   const securityGuideId = securityGuideIdProp || tailoring?.security_guide_id;
   const shouldSkip = skips({
+    skipProfile,
     policy,
     tailoring,
     securityGuideId,
@@ -89,14 +97,19 @@ const TailoringTab = ({
   } = useSecurityGuideData({
     securityGuideId,
     profileId,
-    skipRules: shouldSkip.securityGuide.rules,
-    skipRuleTree: shouldSkip.securityGuide.ruleTree,
-    skipRuleGroups: shouldSkip.securityGuide.ruleGroups,
-    skipValueDefinitions: shouldSkip.securityGuide.valueDefinitions,
-    skipProfileRules: shouldSkip.securityGuide.profile.rules,
-    skipProfileTree: shouldSkip.securityGuide.profile.ruleTree,
+    ...shouldSkip.securityGuide,
     ...(groupFilter ? { groupFilter } : {}),
     tableState,
+  });
+
+  const {
+    data: { rules: profileRules, tree: profileRuleTree },
+  } = useSecurityGuideProfileData({
+    securityGuideId,
+    profileId,
+    groupFilter,
+    tableState,
+    ...shouldSkip.profile,
   });
 
   const {
@@ -106,22 +119,53 @@ const TailoringTab = ({
     policy,
     tailoring,
     tableState,
-    skipRules: shouldSkip.tailoring.rules,
-    skipRuleTree: shouldSkip.tailoring.ruleTree,
+    ...shouldSkip.tailoring,
     ...(groupFilter ? { groupFilter } : {}),
   });
-  const rules = tailoringRules || securityGuideRules;
-  const ruleTree =
-    ruleGroups && (tailoringRuleTree || securityGuideRuleTree)
-      ? buildTreeTable(
-          tailoringRuleTree || securityGuideRuleTree,
-          ruleGroups?.data,
-          preselected
-        )
-      : undefined;
+
+  const rules = useMemo(
+    () =>
+      prepareRules({
+        shouldSkip,
+        securityGuideRules,
+        profileRules,
+        tailoringRules,
+        valueDefinitions,
+        valueOverrides: tailoring?.value_overrides,
+      }),
+    [
+      shouldSkip,
+      tailoring,
+      tailoringRules,
+      securityGuideRules,
+      profileRules,
+      valueDefinitions,
+    ]
+  );
+
+  const ruleTree = useMemo(
+    () =>
+      prepareTreeTable({
+        shouldSkip,
+        securityGuideRuleTree,
+        profileRuleTree,
+        tailoringRuleTree,
+        additionalRules,
+        ruleGroups,
+      }),
+    [
+      shouldSkip,
+      tailoringRuleTree,
+      additionalRules,
+      ruleGroups,
+      securityGuideRuleTree,
+      profileRuleTree,
+    ]
+  );
 
   // TODO The wrapping of the fetches in an array is odd.
   // Figure out why this is and how we can avoid it
+  // TODO This hook could be made a feature of either the useComplianceQuery
   const exporter = async () =>
     (tailoring && policy
       ? [await fetchBatchedTailoringRules()]
@@ -175,17 +219,6 @@ const TailoringTab = ({
         remediationsEnabled={false}
         columns={columns}
         setRuleValues={setRuleValues}
-        // TODO Doublecheck if we should set default profile value_override values when creating a policy
-        // TODO in order to be clean this needs to change and we need to merge overrides passed in with the ones from tailoring
-        ruleValues={tailoring?.value_overrides || {}}
-        valueDefinitions={{
-          data: valueDefinitions?.data,
-          loading:
-            shouldSkip.securityGuide.valueDefinitions === false &&
-            valueDefinitions === undefined,
-        }}
-        // TODO follow up on above, this and everything related within the details row can go
-        valueOverrides={ruleValues}
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
@@ -231,6 +264,7 @@ TailoringTab.propTypes = {
   onValueOverrideSave: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
+  skipProfile: propTypes.string,
 };
 
 const TailoringTabProvider = (props) => (

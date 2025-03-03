@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
-import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import { useCallback } from 'react';
+import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import useQuery from '../useQuery';
 import useComplianceApi from './useComplianceApi';
+import useComplianceTableState from './useComplianceTableState';
 
 /**
  *  @typedef {object} useComplianceQueryParams
@@ -25,6 +26,8 @@ import useComplianceApi from './useComplianceApi';
  *  @param   {useComplianceQueryParams} [options.params]        API endpoint params
  *  @param   {boolean}                  [options.useTableState] Use the serialised table state
  *
+ *  @param                              options.batched
+ *  @param                              options.skip
  *  @returns {useQueryReturn}                                   An object containing a data, loading and error state, as well as a fetch and refetch function.
  *
  *  @category Compliance
@@ -60,42 +63,65 @@ import useComplianceApi from './useComplianceApi';
  */
 const useComplianceQuery = (
   endpoint,
-  { params, useTableState = false, ...options } = {}
+  {
+    params: paramsOption,
+    useTableState = false,
+    batched,
+    skip: skipOption,
+    ...options
+  } = {}
 ) => {
   const apiEndpoint = useComplianceApi(endpoint);
-  const serialisedTableState = useSerialisedTableState();
+  const { params, hasState } = useComplianceTableState(
+    useTableState,
+    paramsOption
+  );
+  const skip = (useTableState && !hasState) || skipOption;
+
   const {
-    filters,
-    pagination: { offset, limit } = {},
-    sort: sortBy,
-  } = serialisedTableState || {};
-
-  const filter = useMemo(
-    () =>
-      params?.filter
-        ? `(${params.filter})${filters ? ` AND ${filters}` : ''}`
-        : filters,
-    [params, filters]
-  );
-
-  const paramsFromSerialisedTableState = useMemo(
-    () => ({
-      limit,
-      offset,
-      sortBy,
-      ...params,
-      filter,
-    }),
-    [limit, offset, filter, sortBy, params]
-  );
-
-  const query = useQuery(apiEndpoint, {
-    params: useTableState ? paramsFromSerialisedTableState : params,
-    skip: useTableState && !serialisedTableState,
+    data: queryData,
+    error: queryError,
+    loading: queryLoading,
+    fetch: queryFetch,
+  } = useQuery(apiEndpoint, {
+    skip: skip || batched,
     ...options,
+    params,
   });
 
-  return query;
+  const fetchForBatch = useCallback(
+    async (offset, limit, params) =>
+      await queryFetch({ limit, offset, ...params }, false),
+    [queryFetch]
+  );
+
+  const {
+    loading: batchedLoading,
+    data: batchedData,
+    error: batchedError,
+    fetch: batchedFetch,
+  } = useFetchTotalBatched(fetchForBatch, {
+    skip: skip || !batched,
+  });
+
+  // TODO We can haz default exporter function for all endpoints
+  // TODO And one for all se ids
+
+  return {
+    ...(batched
+      ? {
+          data: batchedData,
+          error: batchedError,
+          loading: batchedLoading,
+        }
+      : {
+          data: queryData,
+          error: queryError,
+          loading: queryLoading,
+        }),
+    fetch: queryFetch,
+    fetchBatched: batchedFetch,
+  };
 };
 
 export default useComplianceQuery;
