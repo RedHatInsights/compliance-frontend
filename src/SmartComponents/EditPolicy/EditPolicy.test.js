@@ -104,7 +104,9 @@ describe('EditPolicy', () => {
             8: ['rule-1', 'rule-2'],
           },
           hosts: ['system-1'],
-          tailoringValueOverrides: { 'tailoring-id': { 'value-id': 'changed-value' } },
+          tailoringValueOverrides: {
+            8: { 'value-id': 'changed-value' },
+          },
         });
       }, []);
 
@@ -199,7 +201,7 @@ describe('EditPolicy', () => {
     await waitFor(() =>
       expect(fetchMock).toHaveBeenCalledWith({
         policyId: 'test-id',
-        tailoringId: 'tailoring-id',
+        tailoringId: 'tailoring-id-1',
         valuesUpdate: { value_overrides: { 'value-id': 'changed-value' } },
       })
     );

@@ -55,10 +55,13 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
       if (tailoringValueOverrides) {
         for (const entry of Object.entries(tailoringValueOverrides)) {
           // patch rule values
-          const [tailoringId, valueOverrides] = entry;
+          const [osMinorVersion, valueOverrides] = entry;
           await updateTailoring({
             policyId,
-            tailoringId,
+            tailoringId: tailoringsUpdated.find(
+              ({ os_minor_version }) =>
+                os_minor_version === Number(osMinorVersion)
+            ).id,
             valuesUpdate: { value_overrides: valueOverrides },
           });
         }

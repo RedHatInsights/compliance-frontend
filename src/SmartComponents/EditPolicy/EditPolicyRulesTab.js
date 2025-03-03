@@ -85,14 +85,13 @@ export const EditPolicyRulesTab = ({
         }, {}),
         tailoringValueOverrides: tailoringsData?.reduce(
           (overrides, tailoring) => {
-            const foo = {
+            return {
               ...overrides,
-              [tailoring.id]: {
+              [tailoring.os_minor_version]: {
                 ...tailoring.value_overrides,
-                ...prev?.tailoringValueOverrides?.[tailoring.id],
+                ...prev?.tailoringValueOverrides?.[tailoring.os_minor_version],
               },
             };
-            return foo;
           },
           {}
         ),

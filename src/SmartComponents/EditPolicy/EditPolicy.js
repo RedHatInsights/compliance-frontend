@@ -72,13 +72,15 @@ const EditPolicy = ({ route }) => {
     newValue,
     closeInlineEdit
   ) => {
+    // tailoring might be an object or just a number (minor version for profile tab)
+    const osMinorVersion = tailoring?.os_minor_version ?? tailoring;
     setUpdatedPolicy((prev) => {
       return {
         ...prev,
         tailoringValueOverrides: {
           ...prev?.tailoringValueOverrides,
-          [tailoring.id]: {
-            ...tailoring.value_overrides,
+          [osMinorVersion]: {
+            ...tailoring?.value_overrides,
             [valueDefinition.id]: newValue,
           },
         },
