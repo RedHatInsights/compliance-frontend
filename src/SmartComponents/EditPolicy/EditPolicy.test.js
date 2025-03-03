@@ -104,7 +104,7 @@ describe('EditPolicy', () => {
             8: ['rule-1', 'rule-2'],
           },
           hosts: ['system-1'],
-          value: { 'tailoring-id': { 'value-id': 'changed-value' } },
+          tailoringValueOverrides: { 'tailoring-id': { 'value-id': 'changed-value' } },
         });
       }, []);
 

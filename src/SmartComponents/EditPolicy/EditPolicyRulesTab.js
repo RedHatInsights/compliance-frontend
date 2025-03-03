@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   EmptyState,
   EmptyStateBody,
@@ -13,6 +13,8 @@ import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import Tailorings from '@/PresentationalComponents/Tailorings/Tailorings';
 import useProfileRuleIds from '../CreatePolicy/EditPolicyProfilesRules/useProfileRuleIds';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useDeepCompareEffect from 'use-deep-compare-effect';
 
 const EditPolicyRulesTabEmptyState = () => (
   <EmptyState>
@@ -39,6 +41,7 @@ export const EditPolicyRulesTab = ({
   assignedRuleIds,
   setRuleValues,
   setUpdatedPolicy,
+  updatedPolicy,
   selectedOsMinorVersions,
   selectedVersionCounts,
 }) => {
@@ -63,31 +66,54 @@ export const EditPolicyRulesTab = ({
     osMinorVersions: nonTailoringOsMinorVersions,
     skip: shouldSkipProfiles,
   });
+  const { data: { data: tailoringsData } = {} } = useTailorings({
+    params: {
+      policyId: policy.id,
+      filter: 'NOT(null? os_minor_version)',
+    },
+  });
 
-  useEffect(() => {
-    if (profilesRuleIds !== undefined && profilesRuleIdsLoading !== true) {
-      profilesRuleIds.forEach((entry) => {
-        if (!Object.keys(selectedRules).includes(`${entry.osMinorVersion}`)) {
-          setUpdatedPolicy((prev) => ({
-            ...prev,
-            tailoringRules: {
-              ...prev?.tailoringRules,
-              [Number(entry.osMinorVersion)]: entry.ruleIds,
-            },
-          }));
+  useDeepCompareEffect(() => {
+    setUpdatedPolicy((prev) => {
+      return {
+        ...prev,
+        tailoringRules: profilesRuleIds?.reduce((prevRuleIds, profile) => {
+          return {
+            ...prevRuleIds,
+            [Number(profile.osMinorVersion)]: profile.ruleIds,
+          };
+        }, {}),
+        tailoringValueOverrides: tailoringsData?.reduce(
+          (overrides, tailoring) => {
+            const foo = {
+              ...overrides,
+              [tailoring.id]: {
+                ...tailoring.value_overrides,
+                ...prev?.tailoringValueOverrides?.[tailoring.id],
+              },
+            };
+            return foo;
+          },
+          {}
+        ),
+      };
+    });
 
-          setSelectedRules((prev) => ({
-            ...prev,
-            [Number(entry.osMinorVersion)]: entry.ruleIds,
-          }));
-        }
-      });
-    }
+    setSelectedRules((prev) => ({
+      ...prev,
+      ...profilesRuleIds?.reduce((prevRuleIds, profile) => {
+        return {
+          ...prevRuleIds,
+          [Number(profile.osMinorVersion)]: profile.ruleIds,
+        };
+      }, {}),
+    }));
   }, [
     profilesRuleIds,
     profilesRuleIdsLoading,
     selectedRules,
     setUpdatedPolicy,
+    tailoringsData,
   ]);
 
   const handleSelect = useCallback(
@@ -147,6 +173,7 @@ export const EditPolicyRulesTab = ({
           level={1}
           ouiaId="RHELVersions"
           onValueOverrideSave={setRuleValues}
+          valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
           preselected={selectedRules}
           enableSecurityGuideRulesToggle
@@ -165,6 +192,7 @@ EditPolicyRulesTab.propTypes = {
   assignedRuleIds: propTypes.array,
   setRuleValues: propTypes.func,
   setUpdatedPolicy: propTypes.func,
+  updatedPolicy: propTypes.object,
   selectedOsMinorVersions: propTypes.array,
   selectedVersionCounts: propTypes.object,
 };

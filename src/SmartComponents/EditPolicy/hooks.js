@@ -13,7 +13,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
     description,
     businessObjective,
     complianceThreshold,
-    value: valuesPerTailoringId,
+    tailoringValueOverrides,
   } = updatedPolicyHostsAndRules || {};
 
   const { fetch: assignRules } = useAssignRules({ skip: true });
@@ -29,7 +29,7 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
       await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
     }
 
-    if (tailoringRules || valuesPerTailoringId) {
+    if (tailoringRules || tailoringValueOverrides) {
       const tailoringsResponse = await fetchTailorings(
         {
           policyId,
@@ -52,8 +52,8 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
           });
         }
       }
-      if (valuesPerTailoringId) {
-        for (const entry of Object.entries(valuesPerTailoringId)) {
+      if (tailoringValueOverrides) {
+        for (const entry of Object.entries(tailoringValueOverrides)) {
           // patch rule values
           const [tailoringId, valueOverrides] = entry;
           await updateTailoring({
