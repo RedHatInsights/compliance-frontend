@@ -19,6 +19,7 @@ const getCounts = (arr) =>
 const EditPolicyForm = ({
   policy,
   setUpdatedPolicy,
+  updatedPolicy,
   assignedRuleIds,
   assignedSystems,
   setRuleValues,
@@ -87,6 +88,7 @@ const EditPolicyForm = ({
             selectedOsMinorVersions={selectedOsMinorVersions}
             selectedVersionCounts={selectedVersionCounts}
             setUpdatedPolicy={setUpdatedPolicy}
+            updatedPolicy={updatedPolicy}
           />
         </Tab>
         <Tab

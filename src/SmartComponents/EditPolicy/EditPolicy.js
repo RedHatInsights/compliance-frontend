@@ -72,16 +72,20 @@ const EditPolicy = ({ route }) => {
     newValue,
     closeInlineEdit
   ) => {
-    setUpdatedPolicy((prev) => ({
-      ...prev,
-      value: {
-        ...prev.value,
-        [tailoring.id]: {
-          ...tailoring.value_overrides,
-          [valueDefinition.id]: newValue,
+    // tailoring might be an object or just a number (minor version for profile tab)
+    const osMinorVersion = tailoring?.os_minor_version ?? tailoring;
+    setUpdatedPolicy((prev) => {
+      return {
+        ...prev,
+        tailoringValueOverrides: {
+          ...prev?.tailoringValueOverrides,
+          [osMinorVersion]: {
+            ...tailoring?.value_overrides,
+            [valueDefinition.id]: newValue,
+          },
         },
-      },
-    }));
+      };
+    });
 
     closeInlineEdit();
   };

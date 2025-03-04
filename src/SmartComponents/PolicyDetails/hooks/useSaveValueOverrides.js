@@ -14,9 +14,12 @@ const useSaveValueOverrides = () => {
           [valueDefintion.id]: newValue,
         },
       };
-      const params = [policyId, tailoringId, undefined, tailoringData];
 
-      return await submit(params, false);
+      return await submit({
+        policyId,
+        tailoringId,
+        valuesUpdate: tailoringData,
+      });
     },
     [submit]
   );

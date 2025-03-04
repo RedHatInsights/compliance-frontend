@@ -109,18 +109,11 @@ export const useUpdatePolicy = () => {
         ) {
           continue;
         }
-
-        await updateTailoring(
-          [
-            newPolicyId,
-            tailoring.id,
-            undefined,
-            {
-              value_overrides: tailoringValueOverrides,
-            },
-          ],
-          false
-        );
+        await updateTailoring({
+          policyId: newPolicyId,
+          tailoringId: tailoring.id,
+          valuesUpdate: { value_overrides: tailoringValueOverrides },
+        });
 
         dispatchProgress();
       }
