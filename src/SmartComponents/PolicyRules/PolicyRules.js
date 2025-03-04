@@ -9,6 +9,7 @@ import { policyRulesSkips } from './helpers';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
 import useProfile from 'Utilities/hooks/api/useProfile';
+import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const PolicyDefaultRules = () => {
   const tableState = useFullTableState();
@@ -44,7 +45,7 @@ const PolicyDefaultRules = () => {
     },
   });
 
-  const { data, loading /*fetchRules*/ } = usePolicyRulesList({
+  const { data, loading, fetchRules } = usePolicyRulesList({
     profileId,
     securityGuideId,
     tableState,
@@ -54,8 +55,7 @@ const PolicyDefaultRules = () => {
 
   const { rules, builtTree } = data;
 
-  //TODO: Disabled for now. Bring back during polishing.
-  // const rulesExporter = useRulesExporter(fetchRules);
+  const ruleResultsExporter = useExporter(fetchRules);
 
   return (
     <>
@@ -75,6 +75,10 @@ const PolicyDefaultRules = () => {
           ruleValues={{}}
           loading={loading}
           ruleTree={builtTree}
+          skipValueDefinitions={true}
+          options={{
+            exporter: async () => await ruleResultsExporter(),
+          }}
         />
       </div>
     </>
