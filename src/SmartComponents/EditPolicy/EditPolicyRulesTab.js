@@ -83,8 +83,9 @@ export const EditPolicyRulesTab = ({
             [Number(profile.osMinorVersion)]: profile.ruleIds,
           };
         }, {}),
-        tailoringValueOverrides: tailoringsData?.reduce(
-          (overrides, tailoring) => {
+        tailoringValueOverrides: {
+          ...prev?.tailoringValueOverrides,
+          ...tailoringsData?.reduce((overrides, tailoring) => {
             return {
               ...overrides,
               [tailoring.os_minor_version]: {
@@ -92,9 +93,8 @@ export const EditPolicyRulesTab = ({
                 ...prev?.tailoringValueOverrides?.[tailoring.os_minor_version],
               },
             };
-          },
-          {}
-        ),
+          }, {}),
+        },
       };
     });
 
