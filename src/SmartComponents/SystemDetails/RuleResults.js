@@ -7,6 +7,7 @@ import columns from './Columns';
 import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
 
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
+import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 
 const RuleResults = ({ reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();
@@ -43,12 +44,20 @@ const RuleResults = ({ reportTestResult }) => {
     [ruleResults, reportTestResult]
   );
 
-  const fetchForExport = useCallback(
-    async (offset, limit) => await fetchRuleResults({ offset, limit }, false),
+  const fetchRules = useCallback(
+    async (offset, limit, params) =>
+      await fetchRuleResults({ offset, limit, ...params }, false),
     [fetchRuleResults]
   );
 
-  const ruleResultsExporter = useExporter(fetchForExport);
+  const { fetch: fetchBatched } = useFetchTotalBatched(fetchRules, {
+    skip: true,
+  });
+
+  const itemIdsInTable = async () =>
+    (await fetchBatched({ idsOnly: true })).data.map(({ id }) => id);
+
+  const ruleResultsExporter = useExporter(fetchRules);
 
   return (
     <RulesTable
@@ -69,6 +78,7 @@ const RuleResults = ({ reportTestResult }) => {
       options={{
         exporter: async () =>
           transformRules(await ruleResultsExporter(), reportTestResult),
+        itemIdsInTable,
       }}
       // TODO: provide ruleTree
     />
