@@ -81,6 +81,7 @@ const EditPolicy = ({ route }) => {
           ...prev?.tailoringValueOverrides,
           [osMinorVersion]: {
             ...tailoring?.value_overrides,
+            ...prev?.tailoringValueOverrides?.[osMinorVersion],
             [valueDefinition.id]: newValue,
           },
         },
