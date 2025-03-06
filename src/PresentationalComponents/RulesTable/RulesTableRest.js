@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
+import { Skeleton } from '@patternfly/react-core';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
 import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
 import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
 import defaultColumns from './Columns';
-import { List } from 'react-content-loader';
 
 /**
  * A component to show rules of a policy or test result.
@@ -90,94 +90,30 @@ const RulesTable = ({
 
   const DetailsRow = useMemo(() => {
     function Row(props) {
-      // eslint-disable-next-line react/prop-types
-      const { itemId, valueDefinitions, rowData } = props?.item || {};
-
-      const ruleValueDefinitions = rowData.value_checks?.map((checkId) =>
-        valueDefinitions?.data?.find(({ id }) => id === checkId)
-      );
-
-      const ruleRuleValues = ruleValues
-        ? Object.fromEntries(
-            Object.entries(ruleValues).filter(([id]) =>
-              rowData.value_checks.includes(id)
-            )
-          )
-        : undefined;
-
       const item = {
-        ...rowData,
-        itemId,
-        valueDefinitions: ruleValueDefinitions,
-        valueOverrides,
+        ...(props?.item || {}), // eslint-disable-line react/prop-types
         profile: { id: policyId, name: policyName },
-        ruleValues: ruleRuleValues,
       };
 
-      return (skipValueDefinitions === undefined ||
-        skipValueDefinitions === false) &&
-        (valueDefinitions === undefined ||
-          valueDefinitions.loading === true ||
-          valueDefinitions.data === undefined) ? (
-        <List />
-      ) : (
+      return props?.item?.loaded ? ( // eslint-disable-line react/prop-types
         <RuleDetailsRow
           onValueChange={onValueOverrideSave}
           onRuleValueReset={onRuleValueReset}
           item={item}
         />
+      ) : (
+        // TODO This doesn't appear correctly in the tree view
+        <Skeleton />
       );
     }
 
     return Row;
-  }, [
-    rules,
-    ruleValues,
-    policyId,
-    policyName,
-    onValueOverrideSave,
-    onRuleValueReset,
-    valueOverrides,
-  ]);
-
-  const itemsWithValueDefinitions = useMemo(
-    () =>
-      rules?.map((rule) => {
-        const updatedRule = { ...rule };
-
-        const updatedValueDefinitions = valueDefinitions?.data?.map(
-          (definition) => {
-            const matchingRule = rule.value_checks.find(
-              (checkId) => checkId === definition.id
-            );
-
-            if (matchingRule && valueOverrides) {
-              const override = Object.values(valueOverrides).find(
-                (overrideObj) => overrideObj[matchingRule]
-              );
-              if (override) {
-                definition.value = override[matchingRule];
-              }
-            }
-            return definition;
-          }
-        );
-        updatedRule.rowProps = {
-          valueDefinitions: {
-            data: updatedValueDefinitions,
-          },
-        };
-
-        return updatedRule;
-      }),
-    [rules, valueOverrides, valueDefinitions]
-  );
+  }, [policyId, policyName, onValueOverrideSave, onRuleValueReset]);
 
   return (
     <ComplianceTable
       aria-label="Rules Table"
-      items={itemsWithValueDefinitions}
-      valueOverrides={valueOverrides}
+      items={rules}
       columns={columns}
       isStickyHeader
       filters={{
@@ -202,17 +138,16 @@ const RulesTable = ({
       options={{
         ...COMPLIANCE_TABLE_DEFAULTS,
         ...options,
-        showViewToggle: true,
         defaultTableView,
-        ...(ruleTree ? { tableTree: ruleTree } : {}),
-        ...(ruleTree ? { tableTree: ruleTree, defaultTableView: 'tree' } : {}),
+        // TODO set this in views where we want a tree and make rows default
+        enableTreeView: true,
+        tableTree: ruleTree,
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
         preselected: selectedRules,
         detailsComponent: DetailsRow,
         selectedFilter,
         dedicatedAction: DedicatedAction,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
-        total,
       }}
       total={total}
       {...rulesTableProps}
