@@ -106,6 +106,7 @@ export const PolicyDetailsBase = ({
                       DedicatedAction={DedicatedAction}
                       onValueOverrideSave={saveToPolicy}
                       selectedVersionCounts={versionCounts}
+                      skipProfile="policy-details"
                     />
                   </PageSection>
                 </ContentTab>

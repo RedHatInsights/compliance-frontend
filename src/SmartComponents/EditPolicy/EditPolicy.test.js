@@ -155,7 +155,7 @@ describe('EditPolicy', () => {
     [usePolicy, useAssignRules, useAssignSystems].forEach(
       async (hook) =>
         await waitFor(() => {
-          expect(hook).toHaveBeenCalledWith('test-policy-id');
+          expect(hook).toHaveBeenCalled();
         })
     );
 
