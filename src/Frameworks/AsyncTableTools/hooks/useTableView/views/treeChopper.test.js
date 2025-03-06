@@ -23,26 +23,17 @@ describe('treeChopper', function () {
     const rows = treeChopper(exampleItems, columns, {
       tableTree,
       expandable: {
-        openItems: ['1st-branch', '1st-twig', exampleItems[0].itemId],
+        isItemOpen: (id) =>
+          ['1st-branch', '1st-twig', exampleItems[0].itemId].includes(id),
       },
       detailsComponent: ExampleDetailsRow,
     });
 
-    expect(
-      rows
-        .slice(0, 4)
-        .map(
-          ({
-            itemId,
-            cells: [{ props }],
-            props: { isDetailsRow = false } = {},
-          }) => [itemId, props, isDetailsRow]
-        )
-    ).toEqual([
-      ['1st-branch', { colSpan: 2 }, false],
-      ['1st-twig', { colSpan: 2 }, false],
-      [undefined, undefined, false],
-      ['2nd-twig', { colSpan: 2 }, false],
+    expect(rows.slice(0, 4).map(({ item: { itemId } }) => [itemId])).toEqual([
+      ['1st-branch'],
+      ['1st-twig'],
+      ['2nd-twig'],
+      ['2nd-branch'],
     ]);
   });
 });

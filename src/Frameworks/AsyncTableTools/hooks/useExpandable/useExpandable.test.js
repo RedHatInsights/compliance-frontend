@@ -29,8 +29,9 @@ describe('useExpandable', () => {
       },
       tableView: {
         onCollapse: expect.any(Function),
-        openItems: [],
-        openItem: expect.any(Function),
+        enableExpandingRow: expect.any(Boolean),
+        expandRow: expect.any(Function),
+        isItemOpen: expect.any(Function),
       },
     });
   });
@@ -44,24 +45,33 @@ describe('useExpandable', () => {
 
     act(() => {
       result.current.tableProps.onCollapse(undefined, undefined, undefined, {
-        itemId,
+        item: { itemId },
       });
     });
 
-    const openedRow = result.current.tableView.openItem(row, [], 0);
+    const openedRow = result.current.tableView.expandRow(
+      row,
+      [],
+      () => 1,
+      false
+    );
 
     expect(openedRow).toEqual([
       {
         isOpen: true,
-        itemId,
       },
       {
         cells: [
           {
             title: expect.anything(), //non-rendered ExampleDetailsRow
+            props: {
+              className: 'compliance-rule-details',
+            },
           },
         ],
-        fullWidth: true,
+        props: {
+          'aria-setsize': 0,
+        },
         parent: 0,
       },
     ]);
@@ -76,19 +86,19 @@ describe('useExpandable', () => {
     //expand
     act(() => {
       result.current.tableProps.onCollapse(null, 0, true, {
-        itemId: 'test-id',
+        item: { itemId: 'test-id' },
       });
     });
 
-    expect(result.current.tableView.openItems).toEqual(['test-id']);
+    expect(result.current.tableView.isItemOpen('test-id')).toBe(true);
 
     // collapse
     act(() => {
       result.current.tableProps.onCollapse(null, 0, false, {
-        itemId: 'test-id',
+        item: { itemId: 'test-id' },
       });
     });
 
-    expect(result.current.tableView.openItems).toEqual([]);
+    expect(result.current.tableView.isItemOpen('test-id')).toBe(false);
   });
 });

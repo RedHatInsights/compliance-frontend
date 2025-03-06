@@ -1,5 +1,5 @@
 import { useCallback, useState, useRef } from 'react';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
+import { useDeepCompareEffect } from 'use-deep-compare';
 
 import useSecurityGuides from 'Utilities/hooks/api/useSecurityGuides';
 import useProfiles from 'Utilities/hooks/api/useProfiles';
@@ -79,7 +79,7 @@ const useProfileRuleIds = ({
     ]
   );
 
-  useDeepCompareEffectNoCheck(() => {
+  useDeepCompareEffect(() => {
     const fetchMinorOsRuleIds = async () => {
       const profilesAndRuleIdsUpdated = structuredClone(
         profilesAndRuleIds || []
