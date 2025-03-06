@@ -61,35 +61,43 @@ const EditPolicyProfilesRules = ({
     skip: skipFetchingProfileRuleIds,
   });
 
+  const setRules = (osMinorVersionToChange, ruleIds) => {
+    if (ruleIds != null) {
+      change(
+        'selectedRuleRefIds',
+        selectedRuleRefIds.map(({ osMinorVersion, ruleRefIds }) => {
+          return {
+            osMinorVersion,
+            ruleRefIds:
+              osMinorVersion === osMinorVersionToChange ? ruleIds : ruleRefIds,
+          };
+        })
+      );
+    }
+  };
+
+  const getDefaultRulesByMinorVersion = (osMinorVersionToFind) => {
+    return (
+      profilesAndRuleIds.find(
+        ({ osMinorVersion: profileOsMinorVersion }) =>
+          profileOsMinorVersion === osMinorVersionToFind
+      )?.ruleIds || []
+    );
+  };
+
+  const onResetRules = (osMinorVersionToReset) => {
+    if (profilesAndRuleIds !== undefined && selectedRuleRefIds !== undefined) {
+      const newRules = getDefaultRulesByMinorVersion(osMinorVersionToReset);
+      setRules(osMinorVersionToReset, newRules);
+    }
+  };
+
   const onSelect = useCallback(
     (
       _securityGuideId,
       { os_minor_version: osMinorVersion },
       newSelectedRuleIds
-    ) => {
-      const updatedSelectedRuleRefIds = structuredClone(
-        selectedRuleRefIds || []
-      );
-
-      if (updatedSelectedRuleRefIds.length === 0) {
-        if (newSelectedRuleIds.length === 0) {
-          return;
-        }
-
-        updatedSelectedRuleRefIds.push({
-          osMinorVersion,
-          ruleRefIds: newSelectedRuleIds,
-        });
-      } else {
-        const index = updatedSelectedRuleRefIds.findIndex(
-          ({ osMinorVersion: _osMinorVersion }) =>
-            _osMinorVersion === osMinorVersion
-        );
-
-        updatedSelectedRuleRefIds[index].ruleRefIds = newSelectedRuleIds;
-      }
-      change('selectedRuleRefIds', updatedSelectedRuleRefIds);
-    },
+    ) => setRules(osMinorVersion, newSelectedRuleIds),
     [change, selectedRuleRefIds]
   );
 
@@ -99,10 +107,7 @@ const EditPolicyProfilesRules = ({
         'selectedRuleRefIds',
         osMinorVersionCounts.map(({ osMinorVersion }) => ({
           osMinorVersion,
-          ruleRefIds: profilesAndRuleIds.find(
-            ({ osMinorVersion: profileOsMinorVersion }) =>
-              profileOsMinorVersion === osMinorVersion
-          ).ruleIds,
+          ruleRefIds: getDefaultRulesByMinorVersion(osMinorVersion),
         }))
       );
     }
@@ -174,6 +179,7 @@ const EditPolicyProfilesRules = ({
             rulesPageLink={true}
             valueOverrides={valueOverrides}
             onValueOverrideSave={onValueOverrideSave}
+            onRuleReset={onResetRules}
             selectedVersionCounts={osMinorVersionCounts.reduce(
               (prev, cur) => ({
                 ...prev,

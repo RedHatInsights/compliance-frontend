@@ -36,6 +36,7 @@ import NoTailorings from './NoTailorings';
  *  @param   {object}             [props.valueOverrides]                 **deprecated** It should be calles "ruleValues"
  *  @param                        [props.rulesPageLink]
  *
+ *  @param                        props.onRuleReset
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -56,6 +57,7 @@ const Tailorings = ({
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
   valueOverrides,
+  onRuleReset,
   ...rulesTableProps
 }) => {
   const {
@@ -132,6 +134,7 @@ const Tailorings = ({
                 ouiaId={`RHEL ${tab.os_major_version}.${tab.os_minor_version}`}
               >
                 <TailoringTab
+                  onRuleReset={onRuleReset}
                   {...{
                     ...(tab.isSecurityGuide
                       ? {
@@ -190,6 +193,7 @@ Tailorings.propTypes = {
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
+  onRuleReset: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
