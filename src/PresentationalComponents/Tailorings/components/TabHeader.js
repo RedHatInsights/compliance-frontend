@@ -11,20 +11,29 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { LinkWithPermission as Link } from 'PresentationalComponents';
 import OsVersionText from '../osVersionText';
 import { SSGVersionText } from '../ssgVersionText';
+import ResetRules from 'PresentationalComponents/ResetRules/ResetRules';
 
-const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
+const TabHeader = ({
+  tailoring,
+  securityGuide,
+  profileId,
+  rulesPageLink,
+  onRuleReset,
+}) => {
+  const osMinorVersion =
+    tailoring?.os_minor_version || securityGuide?.osMinorVersion;
+  const osMajorVersion =
+    tailoring?.os_major_version || securityGuide?.osMajorVersion;
+  const ssgVersion =
+    tailoring?.security_guide_version || securityGuide?.version;
   return (
     <TextContent className="pf-v5-u-mt-md">
       <Text component={TextVariants.h3}>
         <span className="pf-v5-u-pr-sm">
           <OsVersionText
             profile={{
-              osMajorVersion:
-                tailoring?.os_major_version || securityGuide?.osMajorVersion,
-              osMinorVersion:
-                tailoring?.os_minor_version != null
-                  ? tailoring.os_minor_version
-                  : securityGuide?.osMinorVersion,
+              osMajorVersion,
+              osMinorVersion,
             }}
           />
         </span>
@@ -33,18 +42,19 @@ const TabHeader = ({ tailoring, securityGuide, profileId, rulesPageLink }) => {
         <FlexItem>
           <SSGVersionText
             profile={{
-              osMajorVersion:
-                tailoring?.os_major_version || securityGuide?.osMajorVersion,
-              osMinorVersion:
-                tailoring?.os_minor_version || securityGuide?.osMinorVersion,
+              osMajorVersion,
+              osMinorVersion,
               benchmark: {
-                version:
-                  tailoring?.security_guide_version || securityGuide?.version,
+                version: ssgVersion,
               },
             }}
           />
         </FlexItem>
         <FlexItem align={{ default: 'alignRight' }}>
+          <ResetRules
+            osMinorVersion={osMinorVersion}
+            onRuleReset={onRuleReset}
+          />
           {rulesPageLink && (
             <Link
               to={`/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`}
@@ -66,6 +76,7 @@ TabHeader.propTypes = {
   securityGuide: propTypes.object,
   profileId: propTypes.string,
   rulesPageLink: propTypes.bool,
+  onRuleReset: propTypes.func,
 };
 
 export default TabHeader;

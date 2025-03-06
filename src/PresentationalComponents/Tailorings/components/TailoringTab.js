@@ -36,6 +36,7 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
  *  @param   {object}             [props.preselected]                    An array of rule IDs to select
  *
+ *  @param                        [props.onRuleReset]                    A callback called when all rules in a specific OS Version are reset
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -57,6 +58,7 @@ const TailoringTab = ({
   rulesPageLink,
   setRuleValues,
   onRuleValueReset,
+  onRuleReset,
   onValueOverrideSave,
   onSelect,
   preselected,
@@ -158,10 +160,12 @@ const TailoringTab = ({
                 osMinorVersion,
               }
             }
+            onRuleReset={onRuleReset}
             profileId={profileId || tailoring.profile_id}
             rulesPageLink={rulesPageLink}
             resetLink={resetLink}
             systemCount={systemCount}
+            onSelect={onSelect}
           />
         )}
       </Grid>
@@ -229,6 +233,7 @@ TailoringTab.propTypes = {
   setRuleValues: propTypes.func,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
+  onRuleReset: propTypes.func,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
 };

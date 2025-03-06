@@ -1,24 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RebootingIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 
-const ResetRules = ({
-  handleSelect,
-  updateRules,
-  profile,
-  newOsMinorVersion,
-  originalRules,
-  loading,
-  selectedRuleRefIds,
-}) => {
-  useEffect(() => {
-    if (!loading) {
-      updateRules(selectedRuleRefIds);
-    }
-  }, [loading, originalRules]);
-
+/**
+ * This component displays a Reset Button
+ *
+ *  @param {object}   props                Component Props
+ *  @param {number}   props.osMinorVersion Operating System Minor Version
+ *  @param {Function} props.onRuleReset    Callback for resetting the rules
+ */
+const ResetRules = ({ osMinorVersion, onRuleReset }) => {
   const resetDefaultRules = () => {
-    handleSelect && handleSelect(profile, newOsMinorVersion, originalRules);
+    if (onRuleReset != null && osMinorVersion != null) {
+      onRuleReset(osMinorVersion);
+    }
   };
   return (
     <a className="pf-v5-u-ml-lg pf-v5-u-mr-xl" onClick={resetDefaultRules}>
@@ -29,13 +24,8 @@ const ResetRules = ({
 };
 
 ResetRules.propTypes = {
-  handleSelect: propTypes.func,
-  updateRules: propTypes.any,
-  profile: propTypes.any,
-  newOsMinorVersion: propTypes.any,
-  originalRules: propTypes.array,
-  loading: propTypes.bool,
-  selectedRuleRefIds: propTypes.array,
+  osMinorVersion: propTypes.number,
+  onRuleReset: propTypes.func,
 };
 
 export default ResetRules;

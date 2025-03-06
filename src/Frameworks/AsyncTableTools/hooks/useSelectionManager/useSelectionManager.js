@@ -1,5 +1,6 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import reducer, { init as initReducer } from './reducer';
+import isEqual from 'lodash/isEqual';
 
 /**
  * Provides a generic API to manage selection stats of one (default) or multiple groups of selections.
@@ -43,6 +44,15 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
 
   const clear = () => dispatch({ type: 'clear' });
 
+  const prevPreselected = useRef(preselected);
+
+  useEffect(() => {
+    if (preselected != null && !isEqual(preselected, prevPreselected.current)) {
+      set(preselected);
+      prevPreselected.current = preselected;
+    }
+  }, [preselected]);
+
   return {
     set,
     select,
@@ -50,7 +60,7 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
     toggle,
     reset,
     clear,
-    selection: withGroups ? selection : selection.default,
+    selection: withGroups ? selection || [] : selection.default || [],
   };
 };
 
