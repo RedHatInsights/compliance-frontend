@@ -137,7 +137,7 @@ PolicyDetailsBase.propTypes = {
 
 const PolicyDetails = ({ route }) => {
   const { policy_id: policyId } = useParams();
-  const query = usePolicy(policyId);
+  const query = usePolicy({ params: { policyId } });
   const versionCounts = usePolicyOsVersionCounts(policyId);
   const data = query?.data?.data
     ? {
