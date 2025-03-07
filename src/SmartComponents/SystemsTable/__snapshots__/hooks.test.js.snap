@@ -10,6 +10,7 @@ exports[`useGetEntities the returned function calls mockFetch 1`] = `
     {
       "id": 1,
       "name": "TEST ENTITY NAME",
+      "per_reporter_staleness": undefined,
       "selected": false,
     },
   ],
