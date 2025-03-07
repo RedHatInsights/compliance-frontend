@@ -2,12 +2,10 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import ReportDetails from './ReportDetails';
-import useAPIV2FeatureFlag from 'Utilities/hooks/useAPIV2FeatureFlag';
 import useReport from 'Utilities/hooks/api/useReport';
 import { buildReportV2 } from '../../__factories__/report';
 
 jest.mock('@/Utilities/hooks/api/useReport');
-jest.mock('@/Utilities/hooks/useAPIV2FeatureFlag');
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   useTitleEntity: () => ({}),
   setTitle: () => ({}),
@@ -21,10 +19,6 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('ReportDetails', () => {
-  beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => true);
-  });
-
   it('renders without error ', async () => {
     useReport.mockImplementation(() => ({
       data: {
