@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import useSelectionManager from '../useSelectionManager';
 import useTableState from '../useTableState';
-import { itemDetailsRow } from './helpers';
+import { itemDetailsRow, addExpandProp } from './helpers';
 
 /**
  *  @typedef {object | undefined} useExpandableReturn
@@ -29,25 +29,29 @@ const useExpandable = (options) => {
   // TODO If the selection manager is based on `useTableState`, observes can be used to reset open items
   const [, setOpenItemsState] = useTableState('open-items');
 
-  const onCollapse = (_event, _index, _isOpen, { itemId }) => {
+  const onCollapse = (_event, _index, _isOpen, { item: { itemId } }) =>
     toggle(itemId);
-  };
 
-  const openItem = useCallback(
-    (row, _selectedIds, index) => {
-      const isOpen = (openItems || []).includes(row.itemId);
+  const isItemOpen = useCallback(
+    (itemId) => (openItems || []).includes(itemId),
+    [openItems]
+  );
 
-      return isOpen
-        ? [
-            {
-              ...row,
-              isOpen,
-            },
-            itemDetailsRow(row, index, options),
-          ]
-        : [{ ...row, isOpen }];
+  const expandRow = useCallback(
+    (item, rowsForItem, runningIndex, isTreeTable) => {
+      const firstRow = rowsForItem[0];
+      const remainingRows = rowsForItem.slice(1);
+      const isOpen = isItemOpen(item.itemId);
+
+      return [
+        addExpandProp(firstRow, isTreeTable, isOpen),
+        ...(isOpen && !item.isTreeBranch
+          ? [itemDetailsRow(item, options, runningIndex)]
+          : []),
+        ...remainingRows,
+      ];
     },
-    [openItems, options]
+    [isItemOpen, options]
   );
 
   // TODO This is hackish. We should rather have a selection manager based on a table state
@@ -55,18 +59,21 @@ const useExpandable = (options) => {
     setOpenItemsState(openItems || []);
   }, [openItems, setOpenItemsState]);
 
-  return enableExpandingRow
-    ? {
-        tableProps: {
-          onCollapse,
-        },
-        tableView: {
-          onCollapse,
-          openItems,
-          openItem,
-        },
-      }
-    : {};
+  return {
+    tableView: {
+      enableExpandingRow,
+      onCollapse,
+      isItemOpen,
+      expandRow,
+    },
+    ...(enableExpandingRow
+      ? {
+          tableProps: {
+            onCollapse,
+          },
+        }
+      : {}),
+  };
 };
 
 export default useExpandable;

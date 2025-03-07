@@ -1,6 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
-import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
-import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
+import { useRef, useState } from 'react';
+import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
 
 /**
  *
@@ -19,7 +18,6 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *  @param   {Function}       fn                       Function to execute
  *  @param   {object}         [options]                Includes options like params and skip
  *  @param   {Array | object} [options.params]         Parameters passed to the request to make. If an array is passed it will be spread as arguments!
- *  @param   {boolean}        [options.debounce]       Enables/disables debouncing of requests
  *  @param   {boolean}        [options.convertToArray] A function to use to convert a params object into an arguments array to pass to the fetch function
  *  @param   {boolean}        [options.skip]           Wether or not to skip the request
  *
@@ -37,55 +35,46 @@ import debounce from '@redhat-cloud-services/frontend-components-utilities/debou
  *
  */
 const useQuery = (fn, options = {}) => {
-  const {
-    params = {},
-    skip = false,
-    debounced = true,
-    convertToArray,
-  } = options;
+  const { params = {}, skip = false, convertToArray } = options;
   const mounted = useRef(true);
+  // TODO we do not clear the data before we perform a request
+  // This can under certain conditions cause odd behaviour.
+  // For example, in tables when paginating, data from one page will be displayed as long as the next page is not loaded.
+  // Sometimes this is wanted, but other times this might cause unwanted behaviour. We should be able to control that.
   const [data, setData] = useState(undefined);
   const [error, setError] = useState(undefined);
   const [loading, setLoading] = useState(false);
 
-  const debouncedFn = debounce(fn, 50);
-
-  const fetchFn = useCallback(
+  const fetchFn = useDeepCompareCallback(
     async (fn, params, setDataState = true) => {
+      if (loading) {
+        return;
+      }
+
       if (setDataState) {
-        if (!loading) {
-          setDataState && setLoading(true);
-          try {
-            const data = await (async (params) => {
-              const convertedParams = convertToArray
-                ? convertToArray(params)
-                : params;
+        setLoading(true);
+        try {
+          const data = await (async (params) => {
+            const convertedParams = convertToArray
+              ? convertToArray(params)
+              : params;
 
-              if (Array.isArray(convertedParams)) {
-                return debounced && setDataState
-                  ? await debouncedFn(...convertedParams)
-                  : await fn(...convertedParams);
-              } else {
-                return debounced && setDataState
-                  ? await debouncedFn(convertedParams)
-                  : await fn(convertedParams);
-              }
-            })(params);
+            if (Array.isArray(convertedParams)) {
+              return await fn(...convertedParams);
+            } else {
+              return await fn(convertedParams);
+            }
+          })(params);
 
-            if (setDataState && mounted.current) {
-              setData(data?.data || data);
-              setLoading(false);
-            } else {
-              return data?.data || data;
-            }
-          } catch (e) {
-            console.log(e);
-            if (setDataState) {
-              setError(e);
-              setLoading(false);
-            } else {
-              throw e;
-            }
+          if (mounted.current) {
+            setData(data?.data || data);
+            setLoading(false);
+          }
+        } catch (e) {
+          console.log(e);
+          if (mounted.current) {
+            setError(e);
+            setLoading(false);
           }
         }
       } else {
@@ -96,13 +85,9 @@ const useQuery = (fn, options = {}) => {
               : params;
 
             if (Array.isArray(convertedParams)) {
-              return debounced && setDataState
-                ? await debouncedFn(...convertedParams)
-                : await fn(...convertedParams);
+              return await fn(...convertedParams);
             } else {
-              return debounced && setDataState
-                ? await debouncedFn(convertedParams)
-                : await fn(convertedParams);
+              return await fn(convertedParams);
             }
           })(params);
 
@@ -113,14 +98,14 @@ const useQuery = (fn, options = {}) => {
         }
       }
     },
-    [loading, debounced, debouncedFn, convertToArray]
+    [loading, convertToArray]
   );
 
-  const fetch = useCallback(
-    (fetchParams, setDataState) =>
-      fetchFn(
+  const fetch = useDeepCompareCallback(
+    async (fetchParams, setDataState) =>
+      await fetchFn(
         fn,
-        !Array.isArray(fetchParams)
+        !Array.isArray(fetchParams) && !Array.isArray(params)
           ? {
               ...params,
               ...fetchParams,
@@ -130,9 +115,12 @@ const useQuery = (fn, options = {}) => {
       ),
     [fn, fetchFn, params]
   );
-  const refetch = useCallback(() => fetchFn(fn, params), [fetchFn, fn, params]);
+  const refetch = useDeepCompareCallback(
+    async () => fetchFn(fn, params),
+    [fetchFn, fn, params]
+  );
 
-  useDeepCompareEffectNoCheck(() => {
+  useDeepCompareEffect(() => {
     mounted.current = true;
     !skip && refetch();
 

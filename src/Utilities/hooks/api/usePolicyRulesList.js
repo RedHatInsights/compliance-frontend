@@ -1,57 +1,28 @@
-import { useCallback, useMemo } from 'react';
+import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers/prepareTreeTable';
 import useProfileTree from './useProfileTree';
-import { buildTreeTable } from 'PresentationalComponents/Tailorings/helpers';
-import useBatchedRuleGroups from 'PresentationalComponents/Tailorings/hooks/useBatchedRuleGroups';
+import useRuleGroups from './useRuleGroups';
+
 import useProfileRules from './useProfileRules';
 
 export const usePolicyRulesList = ({
   profileId,
   securityGuideId,
-  tableState: { serialisedTableState: { filters, pagination, sort } = {} } = {},
   groupFilter,
   shouldSkip,
 }) => {
-  const ruleParams = useMemo(
-    () => ({
-      securityGuideId,
-      profileId,
-      limit: pagination?.limit || 10,
-      offset: pagination?.offset || 0,
-      sortBy: sort || 'title:asc',
-      filter:
-        filters || groupFilter
-          ? [
-              filters
-                ? `(${filters})${groupFilter ? ` AND (${groupFilter})` : ''}`
-                : groupFilter,
-            ]
-          : undefined,
-    }),
-    [securityGuideId, profileId, pagination, sort, filters, groupFilter]
-  );
   const {
     loading: isProfileRulesListLoading,
     data: profileRules,
     error: profileRulesListError,
-    fetch: fetchProfileRulesList,
   } = useProfileRules({
-    params: ruleParams,
-    skip: shouldSkip.rule,
-  });
-
-  const fetchRules = useCallback(
-    async (offset, limit) => {
-      const fetchParams = [
-        securityGuideId,
-        profileId,
-        undefined,
-        limit,
-        offset,
-      ];
-      return await fetchProfileRulesList(fetchParams, false);
+    params: {
+      securityGuideId,
+      profileId,
+      groupFilter,
     },
-    [fetchProfileRulesList, profileId, securityGuideId]
-  );
+    skip: shouldSkip.rule,
+    useTableState: true,
+  });
 
   const {
     data: rulesTreeData,
@@ -59,8 +30,8 @@ export const usePolicyRulesList = ({
     error: rulesTreeError,
   } = useProfileTree({
     params: {
-      securityGuideId: securityGuideId,
-      profileId: profileId,
+      securityGuideId,
+      profileId,
     },
     skip: shouldSkip.ruleTree,
   });
@@ -69,7 +40,7 @@ export const usePolicyRulesList = ({
     loading: ruleGroupsLoading,
     data: ruleGroups,
     error: ruleGroupsError,
-  } = useBatchedRuleGroups({
+  } = useRuleGroups({
     params: {
       securityGuideId,
     },
@@ -83,13 +54,12 @@ export const usePolicyRulesList = ({
 
   const loading =
     isProfileRulesListLoading || ruleGroupsLoading || rulesTreeLoading;
-  let error =
+  const error =
     profileRulesListError || rulesTreeError || ruleGroupsError || undefined;
 
   return {
     data: { rules: profileRules, ruleGroups, builtTree },
     error,
     loading,
-    fetchRules,
   };
 };

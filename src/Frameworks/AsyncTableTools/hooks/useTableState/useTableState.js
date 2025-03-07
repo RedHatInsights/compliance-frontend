@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import useDeepCompareEffect from 'use-deep-compare-effect';
+import { useDeepCompareEffect } from 'use-deep-compare';
 
 import useContextOrInternalStateAndRefs from './hooks/useContextOrInternalStateAndRefs';
 import useStateObservers from './hooks/useStateObservers';
