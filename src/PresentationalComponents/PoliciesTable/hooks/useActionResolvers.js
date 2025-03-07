@@ -13,14 +13,14 @@ const useActionResolver = () => {
     {
       title: 'Delete policy',
       isDisabled: !isDeleteAccessLoading && !hasDeleteAccess,
-      onClick: (_event, _index, policy) =>
-        navigate(`/scappolicies/${policy.itemId}/delete`),
+      onClick: (_event, _index, { item }) =>
+        navigate(`/scappolicies/${item.itemId}/delete`),
     },
     {
       title: 'Edit policy',
       isDisabled: !isEditAccessLoading && !hasEditAccess,
-      onClick: (_event, _index, policy) =>
-        navigate(`/scappolicies/${policy.itemId}/edit`),
+      onClick: (_event, _index, { item }) =>
+        navigate(`/scappolicies/${item.itemId}/edit`),
     },
   ];
 };
