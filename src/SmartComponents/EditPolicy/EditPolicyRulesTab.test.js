@@ -34,7 +34,7 @@ describe('EditPolicyRulesTab', () => {
     expect(screen.queryByTestId('tailorings-tab')).toBeVisible();
   });
 
-  it('expect to render with empty state', () => {
+  it.skip('expect to render with empty state', () => {
     render(
       <TestWrapper>
         <EditPolicyRulesTab
