@@ -132,10 +132,7 @@ const TailoringTab = ({
         profileRules,
         tailoringRules,
         valueDefinitions,
-        valueOverrides: {
-          ...tailoring?.value_overrides,
-          ...valueOverrides,
-        },
+        valueOverrides: { ...tailoring?.value_overrides, ...valueOverrides },
         ...(tableState?.tableState?.selectedRulesOnly
           ? { selected: preselected }
           : {}),
