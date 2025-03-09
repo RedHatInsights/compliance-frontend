@@ -148,6 +148,7 @@ const RulesTable = ({
         selectedFilter,
         dedicatedAction: DedicatedAction,
         ...(remediationsEnabled ? { dedicatedAction: remediationAction } : {}),
+        total,
       }}
       total={total}
       {...rulesTableProps}

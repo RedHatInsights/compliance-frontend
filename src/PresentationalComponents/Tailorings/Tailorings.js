@@ -158,7 +158,7 @@ const Tailorings = ({
                       additionalRules?.[tab.id] ||
                       additionalRules?.[tab.os_minor_version],
                     rulesPageLink: rulesPageLink,
-                    valueOverrides,
+                    valueOverrides: valueOverrides?.[tab.os_minor_version],
                   }}
                 />
               </Tab>
