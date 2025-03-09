@@ -134,7 +134,7 @@ const TailoringTab = ({
         valueDefinitions,
         valueOverrides: {
           ...tailoring?.value_overrides,
-          ...valueOverrides?.[osMinorVersion],
+          ...valueOverrides,
         },
         ...(tableState?.tableState?.selectedRulesOnly
           ? { selected: preselected }
