@@ -110,6 +110,11 @@ const mergeTree = (firstTree = [], secondTree = []) => {
     const branchInSecondTree = secondTree.find(
       ({ itemId }) => itemId === branch.itemId
     );
+    const combinedLeaves = unionBy(
+      branchInFirstTree?.leaves,
+      branchInSecondTree?.leaves,
+      'itemId'
+    );
 
     return [
       ...combinedBranches,
@@ -121,6 +126,7 @@ const mergeTree = (firstTree = [], secondTree = []) => {
           branchInFirstTree?.twigs,
           branchInSecondTree?.twigs
         ).sort(sortNodes),
+        leaves: combinedLeaves,
       },
     ];
   };
