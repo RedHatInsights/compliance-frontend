@@ -8,6 +8,7 @@ import {
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import xor from 'lodash/xor';
 import Spinner from '@redhat-cloud-services/frontend-components/Spinner';
 import { StateView, StateViewPart } from 'PresentationalComponents';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
@@ -46,6 +47,7 @@ export const EditPolicyRulesTab = ({
   selectedVersionCounts,
 }) => {
   const [selectedRules, setSelectedRules] = useState(assignedRuleIds);
+
   const tailoringOsMinorVersions = Object.keys(assignedRuleIds).map(Number);
   const nonTailoringOsMinorVersions = selectedOsMinorVersions.filter(
     (version) => !tailoringOsMinorVersions.includes(version)
@@ -66,6 +68,26 @@ export const EditPolicyRulesTab = ({
     osMinorVersions: nonTailoringOsMinorVersions,
     skip: shouldSkipProfiles,
   });
+
+  const additionalRules = Object.fromEntries(
+    Object.entries(selectedRules || {}).reduce(
+      (additions, [osMinorVersion, rules]) => [
+        ...additions,
+        [
+          osMinorVersion,
+          xor(rules, [
+            ...(assignedRuleIds[osMinorVersion] || []),
+            ...(profilesRuleIds?.find(
+              (profile) =>
+                Number(profile.osMinorVersion) === Number(osMinorVersion)
+            )?.ruleIds || []),
+          ]),
+        ],
+      ],
+      []
+    )
+  );
+
   const { data: { data: tailoringsData } = {} } = useTailorings({
     params: {
       policyId: policy.id,
@@ -77,12 +99,7 @@ export const EditPolicyRulesTab = ({
     setUpdatedPolicy((prev) => {
       return {
         ...prev,
-        tailoringRules: profilesRuleIds?.reduce((prevRuleIds, profile) => {
-          return {
-            ...prevRuleIds,
-            [Number(profile.osMinorVersion)]: profile.ruleIds,
-          };
-        }, {}),
+        tailoringRules: selectedRules,
         tailoringValueOverrides: {
           ...prev?.tailoringValueOverrides,
           ...tailoringsData?.reduce((overrides, tailoring) => {
@@ -103,7 +120,8 @@ export const EditPolicyRulesTab = ({
       ...profilesRuleIds?.reduce((prevRuleIds, profile) => {
         return {
           ...prevRuleIds,
-          [Number(profile.osMinorVersion)]: profile.ruleIds,
+          [Number(profile.osMinorVersion)]:
+            prev?.[profile.osMinorVersion] || profile.ruleIds,
         };
       }, {}),
     }));
@@ -116,7 +134,7 @@ export const EditPolicyRulesTab = ({
   ]);
 
   const handleSelect = useCallback(
-    (policy, tailoring, newSelectedRuleIds) => {
+    (_policy, tailoring, newSelectedRuleIds) => {
       setUpdatedPolicy((prev) => ({
         ...prev,
         tailoringRules: {
@@ -175,8 +193,10 @@ export const EditPolicyRulesTab = ({
           valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
           preselected={selectedRules}
+          additionalRules={additionalRules}
           enableSecurityGuideRulesToggle
           selectedVersionCounts={selectedVersionCounts}
+          skipProfile="edit-policy"
         />
       </StateViewPart>
       <StateViewPart stateKey="empty">

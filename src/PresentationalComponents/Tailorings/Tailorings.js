@@ -33,9 +33,11 @@ import NoTailorings from './NoTailorings';
  *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *  @param   {object}             [props.selectedVersionCounts]          An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
- *  @param   {object}             [props.valueOverrides]                 **deprecated** It should be calles "ruleValues"
+ *  @param   {object}             [props.valueOverrides]
  *  @param                        [props.rulesPageLink]
  *
+ *  @param                        props.skipProfile
+ *  @param                        props.additionalRules
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -56,6 +58,8 @@ const Tailorings = ({
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
   valueOverrides,
+  skipProfile,
+  additionalRules,
   ...rulesTableProps
 }) => {
   const {
@@ -144,13 +148,17 @@ const Tailorings = ({
                     columns,
                     enableSecurityGuideRulesToggle,
                     rulesTableProps,
+                    skipProfile,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
                     preselected:
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
+                    additionalRules:
+                      additionalRules?.[tab.id] ||
+                      additionalRules?.[tab.os_minor_version],
                     rulesPageLink: rulesPageLink,
-                    ruleValues: valueOverrides,
+                    valueOverrides: valueOverrides?.[tab.os_minor_version],
                   }}
                 />
               </Tab>
@@ -194,6 +202,8 @@ Tailorings.propTypes = {
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
   valueOverrides: propTypes.object,
+  skipProfile: propTypes.string,
+  additionalRules: propTypes.object,
 };
 
 export default Tailorings;

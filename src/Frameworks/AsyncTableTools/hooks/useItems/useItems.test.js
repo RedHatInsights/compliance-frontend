@@ -4,6 +4,8 @@ import items from '../../__fixtures__/items';
 
 import useItems from './useItems';
 
+const appendMockItemId = (item, idx) => ({ ...item, itemId: idx + 1 });
+
 describe('useItems', () => {
   const exampleItems = items(30).sort((item) => item.name);
 
@@ -13,12 +15,14 @@ describe('useItems', () => {
       DEFAULT_RENDER_OPTIONS
     );
 
-    await waitFor(() => expect(result.current.items).toEqual(exampleItems));
+    await waitFor(() =>
+      expect(result.current.items).toEqual(exampleItems.map(appendMockItemId))
+    );
     await waitFor(() => expect(result.current.loaded).toEqual(true));
   });
 
   it('accepts an async function returning an array as items and sets it as the state directly and set loaded to true', async () => {
-    const tenItems = exampleItems.slice(0, 10);
+    const tenItems = exampleItems.slice(0, 10).map(appendMockItemId);
     const asyncItems = async () => tenItems;
     const { result } = renderHook(
       () => useItems(asyncItems),

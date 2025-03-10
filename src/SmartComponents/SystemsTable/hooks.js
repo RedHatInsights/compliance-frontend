@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import pAll from 'p-all';
 import { Spinner } from '@patternfly/react-core';
 import debounce from '@redhat-cloud-services/frontend-components-utilities/debounce';
 import {
@@ -227,29 +228,48 @@ export const useSystemBulkSelect = ({
 }) => {
   const dispatch = useDispatch();
   const { isLoading, fetchBatched } = useFetchBatched();
-  const { loadedItems, addToLoadedItems, allLoaded } = useLoadedItems(
+  const { loadedItems, addToLoadedItems } = useLoadedItems(
     currentPageItems,
     total
   );
   const { fetch: fetchSystem } = useSystem({ skip: true });
 
+  const fetchSystemsById = useCallback(
+    async (ids) => {
+      const fns = ids.map(
+        (systemId) => async () => await fetchSystem([systemId], false)
+      );
+
+      const systemsData = await pAll(fns, {
+        concurrency: 4,
+      });
+
+      return systemsData;
+    },
+    [fetchSystem]
+  );
+
   useEffect(() => {
     const checkFirstPreselected = async () => {
-      for (const preselectedSystemId of preselectedSystems) {
-        if (
+      const systems = await fetchSystemsById(
+        preselectedSystems.filter((preselectedSystemId) => {
           currentPageItems.find(({ id }) => preselectedSystemId === id) ===
-          undefined
-        ) {
-          const system = await fetchSystem([preselectedSystemId], false);
-          addToLoadedItems([system.data]);
-        }
-      }
+            undefined;
+        })
+      );
+      addToLoadedItems(systems.map(({ data }) => data));
     };
 
     if (currentPageItems !== undefined && tableLoaded === true) {
       checkFirstPreselected();
     }
-  }, [tableLoaded, currentPageItems]);
+  }, [
+    tableLoaded,
+    currentPageItems,
+    fetchSystemsById,
+    preselectedSystems,
+    addToLoadedItems,
+  ]);
 
   useEffect(() => {
     if (tableLoaded === true && currentPageItems !== undefined) {
@@ -273,28 +293,34 @@ export const useSystemBulkSelect = ({
     fetchArguments
   );
 
-  const onSelectCallback = async (selectedIds) => {
-    dispatch(setDisabledSelection(true));
-    const systemsSelection = loadedItems.filter(({ id }) =>
-      selectedIds.includes(id)
-    );
-    onSelect && onSelect(systemsSelection);
-    dispatch(setDisabledSelection(false));
-  };
+  const onSelectCallback = useCallback(
+    async (selectedIds) => {
+      dispatch(setDisabledSelection(true));
+      const systemsToFetch = selectedIds.filter(
+        (id) => !loadedItems.map(({ id }) => id).includes(id)
+      );
 
-  const getItemsInTable = async () => {
-    let items = [];
+      const fetchedSystems = (await fetchSystemsById(systemsToFetch)).map(
+        ({ data }) => data
+      );
 
-    if (allLoaded) {
-      items = loadedItems;
-    } else {
-      const results = await fetchBatched(fetchSystems, total);
-      items = results.flatMap((result) => result.entities);
-      addToLoadedItems(items);
-    }
+      onSelect &&
+        onSelect([
+          ...loadedItems.filter(({ id }) => selectedIds.includes(id)),
+          ...fetchedSystems,
+        ]);
+      dispatch(setDisabledSelection(false));
+    },
+    [dispatch, loadedItems, fetchSystemsById, onSelect]
+  );
+
+  const getItemsInTable = useCallback(async () => {
+    const results = await fetchBatched(fetchSystems, total);
+    const items = results.flatMap((result) => result.entities);
+    addToLoadedItems(items);
 
     return items;
-  };
+  }, [addToLoadedItems, fetchBatched, fetchSystems, total]);
 
   const itemIdsInTable = async () => {
     const items = await getItemsInTable();

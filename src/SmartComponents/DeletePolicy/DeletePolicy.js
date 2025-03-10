@@ -31,7 +31,7 @@ const DeletePolicy = () => {
     data: { data: policy } = {},
     loading: loading,
     error: error,
-  } = usePolicy(policyId);
+  } = usePolicy({ params: { policyId } });
 
   const deletePolicy = async (id) => {
     try {
