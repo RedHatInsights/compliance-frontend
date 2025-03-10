@@ -111,18 +111,26 @@ const EditPolicyProfilesRules = ({
   );
 
   useDeepCompareEffect(() => {
-    if (profilesAndRuleIds !== undefined && selectedRuleRefIds === undefined) {
-      change(
-        'selectedRuleRefIds',
-        osMinorVersionCounts.map(({ osMinorVersion }) => ({
-          osMinorVersion,
-          ruleRefIds: profilesAndRuleIds.find(
-            ({ osMinorVersion: profileOsMinorVersion }) =>
-              profileOsMinorVersion === osMinorVersion
-          ).ruleIds,
-        }))
-      );
-    }
+    change(
+      'selectedRuleRefIds',
+      osMinorVersionCounts?.reduce((accum, { osMinorVersion }) => {
+        const refIdsPerMinorVersion = profilesAndRuleIds?.find(
+          ({ osMinorVersion: profileOsMinorVersion }) =>
+            profileOsMinorVersion === osMinorVersion
+        ).ruleIds;
+        return [
+          ...accum,
+          ...(refIdsPerMinorVersion?.length
+            ? [
+                {
+                  osMinorVersion,
+                  ruleRefIds: refIdsPerMinorVersion,
+                },
+              ]
+            : []),
+        ];
+      }, [])
+    );
   }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
 
   const onValueOverrideSave = (
@@ -181,26 +189,30 @@ const EditPolicyProfilesRules = ({
           </EmptyState>
         </StateViewPart>
         <StateViewPart stateKey="data">
-          <Tailorings
-            skipProfile="create-policy"
-            profiles={profilesAndRuleIds}
-            additionalRules={additionalRules}
-            columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
-            ouiaId="RHELVersions"
-            onSelect={onSelect}
-            preselected={preselected}
-            enableSecurityGuideRulesToggle
-            rulesPageLink={true}
-            valueOverrides={valueOverrides}
-            onValueOverrideSave={onValueOverrideSave}
-            selectedVersionCounts={osMinorVersionCounts.reduce(
-              (prev, cur) => ({
-                ...prev,
-                [cur.osMinorVersion]: cur.count,
-              }),
-              {}
+          {profilesAndRuleIds &&
+            Object.keys(preselected || {}).length ===
+              osMinorVersionCounts.length && (
+              <Tailorings
+                skipProfile="create-policy"
+                profiles={profilesAndRuleIds}
+                additionalRules={additionalRules}
+                columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
+                ouiaId="RHELVersions"
+                onSelect={onSelect}
+                preselected={preselected}
+                enableSecurityGuideRulesToggle
+                rulesPageLink={true}
+                valueOverrides={valueOverrides}
+                onValueOverrideSave={onValueOverrideSave}
+                selectedVersionCounts={osMinorVersionCounts.reduce(
+                  (prev, cur) => ({
+                    ...prev,
+                    [cur.osMinorVersion]: cur.count,
+                  }),
+                  {}
+                )}
+              />
             )}
-          />
         </StateViewPart>
       </StateViewWithError>
     </React.Fragment>
