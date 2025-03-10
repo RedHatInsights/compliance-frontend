@@ -58,6 +58,8 @@ export const useBulkSelect = ({
     selectedIds || []
   );
 
+  console.log('preselected', preselected);
+
   const isDisabled = total === 0;
   const checked = checkboxState(selectedIdsTotal, total);
   const title = compileTitle(selectedIdsTotal);

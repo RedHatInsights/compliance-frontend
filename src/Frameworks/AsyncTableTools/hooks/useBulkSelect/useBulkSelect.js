@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import useSelectionManager from '../useSelectionManager';
 import {
   checkCurrentPageSelected,
@@ -6,7 +6,7 @@ import {
   compileTitle,
   selectOrUnselect,
 } from './helpers';
-import useTableState from '@/Frameworks/AsyncTableTools/hooks/useTableState';
+import useCallbacksCallback from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useCallbacksCallback';
 
 /**
  *  @typedef {object} useBulkSelectReturn
@@ -91,11 +91,7 @@ const useBulkSelect = ({
     reset();
   }, [reset]);
 
-  const [, setSelectionCallback] = useTableState('resetSelectionCallback');
-
-  useEffect(() => {
-    setSelectionCallback(() => resetSelection);
-  }, [resetSelection, setSelectionCallback]);
+  useCallbacksCallback('resetSelection', resetSelection);
 
   const selectAll = async () => {
     setLoading(true);
