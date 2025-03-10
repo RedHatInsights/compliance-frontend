@@ -4,7 +4,7 @@ export const prepareRules = ({
   tailoringRules,
   valueDefinitions,
   valueOverrides,
-  selected,
+  // selected,
 }) => {
   const combinedRules = [
     ...(tailoringRules?.data || []),
@@ -14,10 +14,11 @@ export const prepareRules = ({
   const rules = combinedRules.filter(
     (obj, index) => index === combinedRules.findIndex((o) => obj.id === o.id)
   );
-  const filteredRules = selected
-    ? rules.filter(({ id }) => selected.includes(id))
-    : rules;
-  const data = filteredRules?.map((rule) => {
+  // TODO: investigate better solution to show Selected only correctly
+  // const filteredRules = selected
+  //   ? rules.filter(({ id }) => selected.includes(id))
+  //   : rules;
+  const data = rules?.map((rule) => {
     const definitions = rule.value_checks?.map((checkId) =>
       valueDefinitions?.data?.find(({ id }) => id === checkId)
     );
