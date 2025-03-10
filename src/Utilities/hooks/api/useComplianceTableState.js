@@ -26,7 +26,7 @@ const useComplianceTableState = (useTableState, paramsOption) => {
             sortBy,
             ...(filter ? { filter } : {}),
           }
-        : paramsParam;
+        : paramsOption;
     } else {
       return paramsOption;
     }
