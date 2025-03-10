@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useMemo, useReducer } from 'react';
 import reducer, { init as initReducer } from './reducer';
 
 /**
@@ -43,15 +43,18 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
 
   const clear = () => dispatch({ type: 'clear' });
 
-  return {
-    set,
-    select,
-    deselect,
-    toggle,
-    reset,
-    clear,
-    selection: withGroups ? selection : selection.default,
-  };
+  return useMemo(
+    () => ({
+      set,
+      select,
+      deselect,
+      toggle,
+      reset,
+      clear,
+      selection: withGroups ? selection : selection.default,
+    }),
+    [selection]
+  );
 };
 
 export default useSelectionManager;

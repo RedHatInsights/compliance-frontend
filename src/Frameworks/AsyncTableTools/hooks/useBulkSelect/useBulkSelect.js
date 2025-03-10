@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useSelectionManager from '../useSelectionManager';
 import {
   checkCurrentPageSelected,
@@ -6,6 +6,7 @@ import {
   compileTitle,
   selectOrUnselect,
 } from './helpers';
+import useTableState from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 
 /**
  *  @typedef {object} useBulkSelectReturn
@@ -49,6 +50,7 @@ const useBulkSelect = ({
     select,
     deselect,
     clear,
+    reset,
   } = useSelectionManager(preselected, {}, onSelect);
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
@@ -84,6 +86,16 @@ const useBulkSelect = ({
       !currentPageSelected ? select(itemIdsOnPage) : deselect(itemIdsOnPage),
     [select, deselect, itemIdsOnPage, currentPageSelected]
   );
+
+  const resetSelection = useCallback(() => {
+    reset();
+  }, [reset]);
+
+  const [, setSelectionCallback] = useTableState('resetSelectionCallback');
+
+  useEffect(() => {
+    setSelectionCallback(() => resetSelection);
+  }, [resetSelection, setSelectionCallback]);
 
   const selectAll = async () => {
     setLoading(true);
