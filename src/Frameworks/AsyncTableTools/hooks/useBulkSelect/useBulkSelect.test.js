@@ -1,6 +1,13 @@
 import useBulkSelect from './useBulkSelect';
 import { renderHook } from '@testing-library/react';
 
+jest.mock('../useTableState/hooks/useStateCallbacks', () => ({
+  __esModule: true,
+  default: () => ({
+    current: { resetSelection: () => {} },
+  }),
+}));
+
 describe('useBulkSelect', () => {
   const defaultOptions = {
     total: 0,
