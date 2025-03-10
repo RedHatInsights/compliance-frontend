@@ -30,6 +30,7 @@ import NoTailorings from './NoTailorings';
  *  @param   {string}             [props.ouiaId]                         OuiaId to pass to the PatternFly Table
  *  @param   {Function}           [props.onValueOverrideSave]            Callback function called when a value of a rule is saved
  *  @param   {Function}           [props.onSelect]                       Callback function called when any selection is made
+ *  @param   {object}             [props.selected]
  *  @param   {object}             [props.preselected]                    An object containing the preselection of rules for each tab
  *  @param   {boolean}            [props.enableSecurityGuideRulesToggle] Will enable the "Only Selected" toggle. When a policy with tailorings is shown and the toggle is enabled it will request rule data from the tailoring, with it disabled it will load rule data from the security guide. If a profile is provided it will load rules either from the profile, if the toggle is enabled, otherwise from the security guide.
  *  @param   {object}             [props.selectedVersionCounts]          An object containing minor version as a key and count as a value. Helps to render the system count badge in tab headers.
@@ -54,6 +55,7 @@ const Tailorings = ({
   rulesPageLink,
   onValueOverrideSave,
   onSelect,
+  selected,
   preselected,
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
@@ -151,6 +153,8 @@ const Tailorings = ({
                     skipProfile,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
+                    selected:
+                      selected?.[tab.id] || selected?.[tab.os_minor_version],
                     preselected:
                       preselected?.[tab.id] ||
                       preselected?.[tab.os_minor_version],
@@ -198,6 +202,7 @@ Tailorings.propTypes = {
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
+  selected: propTypes.object,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
   selectedVersionCounts: propTypes.object,
