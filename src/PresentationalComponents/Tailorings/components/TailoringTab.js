@@ -34,6 +34,7 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {Function}           [props.onRuleValueReset]               A callback called when values for a rule are reset
  *  @param   {Function}           [props.onValueOverrideSave]            **deprecated** We should be using setRuleValues instead
  *  @param   {Function}           [props.onSelect]                       A callback called when a selection is made
+ *  @param   {object}             [props.selected]                       An array of currently selected IDs
  *  @param   {object}             [props.preselected]                    An array of rule IDs to select
  *  @param   {string}             [props.skipProfile]
  *  @param                        [props.additionalRules]
@@ -61,6 +62,7 @@ const TailoringTab = ({
   onRuleValueReset,
   onValueOverrideSave,
   onSelect,
+  selected,
   preselected,
   additionalRules,
   enableSecurityGuideRulesToggle,
@@ -133,9 +135,7 @@ const TailoringTab = ({
         tailoringRules,
         valueDefinitions,
         valueOverrides: { ...tailoring?.value_overrides, ...valueOverrides },
-        ...(tableState?.tableState?.selectedRulesOnly
-          ? { selected: preselected }
-          : {}),
+        ...(tableState?.tableState?.selectedRulesOnly ? { selected } : {}),
       }),
     [
       shouldSkip,
@@ -145,7 +145,7 @@ const TailoringTab = ({
       profileRules,
       valueDefinitions,
       valueOverrides,
-      preselected,
+      selected,
       tableState,
     ]
   );
@@ -229,7 +229,8 @@ const TailoringTab = ({
         onRuleValueReset={onRuleValueReset}
         onValueOverrideSave={onValueSave}
         onSelect={onSelect ? onSelectRule : undefined}
-        selectedRules={preselected}
+        selectedRules={selected}
+        preselected={preselected}
         options={{
           exporter,
           itemIdsInTable,
@@ -269,6 +270,7 @@ TailoringTab.propTypes = {
   setRuleValues: propTypes.func,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
+  selected: propTypes.object,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
   skipProfile: propTypes.string,

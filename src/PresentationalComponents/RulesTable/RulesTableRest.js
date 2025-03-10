@@ -37,6 +37,8 @@ import defaultColumns from './Columns';
  *  @param   {Function}           [props.onSelect]             A function called when a selection action is performed
  *  @param   {string}             [props.defaultTableView]     A table view to show by default ("row" or "tree") // TODO we should use the table options directly
  *
+ *  @param                        props.selected
+ *  @param                        props.preselected
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -52,6 +54,7 @@ const RulesTable = ({
   ansibleSupportFilter = false,
   selectedFilter = false, // TODO this is potentially obsolete.
   selectedRules: selectedRulesProp = [],
+  preselected,
   hidePassed = false,
   options,
   activeFiltersPassed = false,
@@ -143,7 +146,8 @@ const RulesTable = ({
         enableTreeView: true,
         tableTree: ruleTree,
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
-        preselected: selectedRules,
+        selected: selectedRules,
+        preselected: preselected,
         detailsComponent: DetailsRow,
         selectedFilter,
         dedicatedAction: DedicatedAction,
@@ -166,6 +170,7 @@ RulesTable.propTypes = {
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
+  preselected: propTypes.array,
   selectedFilter: propTypes.bool,
   columns: propTypes.array,
   options: propTypes.object,
