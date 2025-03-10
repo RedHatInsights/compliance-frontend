@@ -1,27 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RebootingIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
+import useStateCallbacks from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useStateCallbacks';
 
-const ResetRules = ({
-  handleSelect,
-  updateRules,
-  profile,
-  newOsMinorVersion,
-  originalRules,
-  loading,
-  selectedRuleRefIds,
-}) => {
-  useEffect(() => {
-    if (!loading) {
-      updateRules(selectedRuleRefIds);
-    }
-  }, [loading, originalRules]);
+const ResetRules = () => {
+  const callbacks = useStateCallbacks();
 
-  const resetDefaultRules = () => {
-    handleSelect && handleSelect(profile, newOsMinorVersion, originalRules);
+  const resetSelectionCallback = () => {
+    callbacks?.current?.resetSelection?.();
   };
   return (
-    <a className="pf-v5-u-ml-lg pf-v5-u-mr-xl" onClick={resetDefaultRules}>
+    <a className="pf-v5-u-ml-lg pf-v5-u-mr-xl" onClick={resetSelectionCallback}>
       <RebootingIcon className="pf-v5-u-mr-sm" />
       Reset to default
     </a>

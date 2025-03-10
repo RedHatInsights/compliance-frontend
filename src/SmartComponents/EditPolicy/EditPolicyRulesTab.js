@@ -192,7 +192,9 @@ export const EditPolicyRulesTab = ({
           onValueOverrideSave={setRuleValues}
           valueOverrides={updatedPolicy?.tailoringValueOverrides}
           onSelect={handleSelect}
-          preselected={selectedRules}
+          showResetButton
+          selected={selectedRules}
+          preselected={assignedRuleIds}
           additionalRules={additionalRules}
           enableSecurityGuideRulesToggle
           selectedVersionCounts={selectedVersionCounts}
