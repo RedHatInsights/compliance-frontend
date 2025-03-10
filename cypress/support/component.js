@@ -20,7 +20,7 @@ import './commands';
 // require('./commands')
 import '@cypress/code-coverage/support';
 import '@patternfly/patternfly/patternfly.scss';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import mockChrome from '../../config/mockChrome';
 
 Cypress.Commands.add('mount', mount);
