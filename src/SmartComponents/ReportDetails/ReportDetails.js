@@ -196,7 +196,6 @@ const ReportDetails = ({ route }) => {
                     compliantFilter
                     ruleSeverityFilter
                     showGroupsFilter
-                    apiV2Enabled={true}
                     reportId={report_id}
                     fetchCustomOSes={fetchReportingCustomOSes}
                   />
@@ -240,7 +239,6 @@ const ReportDetails = ({ route }) => {
                     defaultFilter={'never_reported = true'}
                     ignoreOsMajorVersion
                     showGroupsFilter
-                    apiV2Enabled={true}
                     reportId={report_id}
                     fetchCustomOSes={fetchNeverReportedCustomOSes}
                     enableExport={false}

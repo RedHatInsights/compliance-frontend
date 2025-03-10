@@ -1,33 +1,3 @@
-export const featureFlagsInterceptors = {
-  apiV2Enabled: () => {
-    cy.intercept('GET', '/feature_flags*', {
-      statusCode: 200,
-      body: {
-        toggles: [
-          {
-            name: 'compliance-api-v2',
-            enabled: true,
-          },
-        ],
-      },
-    });
-  },
-
-  apiV2Disabled: () => {
-    cy.intercept('GET', '/feature_flags*', {
-      statusCode: 200,
-      body: {
-        toggles: [
-          {
-            name: 'compliance-api-v2',
-            enabled: false,
-          },
-        ],
-      },
-    });
-  },
-};
-
 export const interceptBatchRequest = (endpoint, offset, dataSlice, total, limit=10) => {
   cy.intercept(new RegExp(`/api/compliance/v2/${endpoint}?.*limit=${limit}.*offset=${offset}.*`), {
     statusCode: 200,

@@ -1,7 +1,7 @@
 // Policies are based on canonical profiles with systems assigned as well as rules assigned with the canonical profiles' rules as a default
 import { faker } from '@faker-js/faker';
 
-export const buildPoliciesV2 = (length) =>
+export const buildPolicies = (length) =>
   [...Array(length)].map(() => {
     const title = faker.lorem.words({ min: 2, max: 3 });
     const businessObjectiveString = faker.lorem.words(5);

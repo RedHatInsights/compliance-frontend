@@ -3,19 +3,13 @@ import { within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 
 import { PoliciesTable } from './PoliciesTable.js';
-import useAPIV2FeatureFlag from '../../Utilities/hooks/useAPIV2FeatureFlag';
 
-jest.mock('../../Utilities/hooks/useAPIV2FeatureFlag');
-
-const policies = buildPoliciesV2(10);
+const policies = buildPolicies(10);
 
 describe('PoliciesTable', () => {
-  beforeEach(() => {
-    useAPIV2FeatureFlag.mockImplementation(() => true);
-  });
   it('expect to render without error', () => {
     render(
       <TestWrapper>

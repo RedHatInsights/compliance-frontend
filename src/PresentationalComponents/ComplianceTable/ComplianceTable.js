@@ -1,9 +1,6 @@
 import React from 'react';
-import { Spinner, Bullseye } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import AsyncTableToolsTable from '@/Frameworks/AsyncTableTools/components/AsyncTableToolsTable';
-import { TableToolsTable } from 'Utilities/hooks/useTableTools';
-import useAPIV2FeatureFlag from '@/Utilities/hooks/useAPIV2FeatureFlag';
 import {
   paginationSerialiser,
   filtersSerialiser,
@@ -16,19 +13,13 @@ import {
  *
  *  @param   {object}             props Component props
  *
- *  @returns {React.ReactElement}       Returns either a Async or non async table depending on `useAPIV2FeatureFlag`
+ *  @returns {React.ReactElement}       Returns either a Async table
  *
  *  @category Compliance
  *
  */
 const ComplianceTable = (props) => {
-  const apiV2Enabled = useAPIV2FeatureFlag();
-
-  return apiV2Enabled === undefined ? (
-    <Bullseye>
-      <Spinner />
-    </Bullseye>
-  ) : apiV2Enabled ? (
+  return (
     <AsyncTableToolsTable
       {...props}
       options={{
@@ -40,8 +31,6 @@ const ComplianceTable = (props) => {
         ...props.options,
       }}
     />
-  ) : (
-    <TableToolsTable {...props} />
   );
 };
 

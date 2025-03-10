@@ -1,14 +1,13 @@
 import CompliancePolicies from './CompliancePolicies';
 import { init } from 'Store';
-import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
 };
 
-const policiesData = buildPoliciesV2(13);
+const policiesData = buildPolicies(13);
 const policiesDataFirstBatch = policiesData.slice(0, 10);
 
 const policiesResp = {
@@ -40,8 +39,6 @@ function getRequestParams({
 
 describe('Policies table tests API V2', () => {
   beforeEach(() => {
-    featureFlagsInterceptors.apiV2Enabled();
-
     cy.intercept(`/api/compliance/v2/policies?${getRequestParams()}`, {
       statusCode: 200,
       body: policiesResp,
