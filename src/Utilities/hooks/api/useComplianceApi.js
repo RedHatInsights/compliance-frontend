@@ -1,6 +1,6 @@
 import { useMemo, useEffect } from 'react';
 import { APIFactory } from '@redhat-cloud-services/javascript-clients-shared';
-import * as complianceApi from '@redhat-cloud-services/compliance-client/dist';
+import * as complianceApi from '@redhat-cloud-services/compliance-client';
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 
 const BASE_URL = '/api/compliance/v2';
