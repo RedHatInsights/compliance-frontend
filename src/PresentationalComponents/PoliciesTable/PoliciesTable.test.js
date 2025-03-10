@@ -3,11 +3,11 @@ import { within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 
 import { PoliciesTable } from './PoliciesTable.js';
 
-const policies = buildPoliciesV2(10);
+const policies = buildPolicies(10);
 
 describe('PoliciesTable', () => {
   it('expect to render without error', () => {

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import ReportDetails from './ReportDetails';
 import useReport from 'Utilities/hooks/api/useReport';
-import { buildReportV2 } from '../../__factories__/report';
+import { buildReport } from '../../__factories__/report';
 
 jest.mock('@/Utilities/hooks/api/useReport');
 jest.mock('Utilities/hooks/useDocumentTitle', () => ({
@@ -11,7 +11,7 @@ jest.mock('Utilities/hooks/useDocumentTitle', () => ({
   setTitle: () => ({}),
 }));
 
-const reportsData = buildReportV2();
+const reportsData = buildReport();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),

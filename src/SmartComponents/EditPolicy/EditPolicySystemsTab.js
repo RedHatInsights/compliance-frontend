@@ -72,7 +72,6 @@ const EditPolicySystemsTab = ({
       remediationsEnabled={false}
       preselectedSystems={selectedSystems}
       onSelect={onSystemSelect}
-      apiV2Enabled={true}
       fetchApi={fetchSystemsApi}
       fetchCustomOSes={fetchCustomOSes}
     />

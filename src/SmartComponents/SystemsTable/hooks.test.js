@@ -129,7 +129,6 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-        apiV2Enabled: true,
       })
     );
 
@@ -182,7 +181,6 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-        apiV2Enabled: true,
       })
     );
     await result.current([], {
@@ -212,7 +210,6 @@ describe('useGetEntities', () => {
           },
         ],
         selected: [{ id: 1 }],
-        apiV2Enabled: true,
       })
     );
     await result.current([], {

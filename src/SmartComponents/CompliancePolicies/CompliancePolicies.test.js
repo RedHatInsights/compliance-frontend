@@ -8,12 +8,12 @@ import { MemoryRouter } from 'react-router-dom';
 import CompliancePolicies from './CompliancePolicies.js';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 
 const TestWrapper = ({ children }) => <MemoryRouter>{children}</MemoryRouter>;
 TestWrapper.propTypes = { children: propTypes.node };
 
-const policiesData = buildPoliciesV2(11);
+const policiesData = buildPolicies(11);
 jest.mock('Utilities/hooks/usePoliciesCount', () => jest.fn());
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 

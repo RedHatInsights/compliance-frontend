@@ -1,6 +1,5 @@
 import Reports from './Reports';
 import { init } from 'Store';
-import { featureFlagsInterceptors } from '../../../cypress/utils/interceptors';
 import { buildReports } from '../../__factories__/reports';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 
@@ -35,8 +34,6 @@ function getRequestParams({
 
 describe('Reports table tests', () => {
   beforeEach(() => {
-    featureFlagsInterceptors.apiV2Enabled();
-
     cy.intercept('/api/compliance/v2/reports/os_versions', {
       statusCode: 200,
       body: [6, 7, 8, 9],

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import TestWrapper from '@/Utilities/TestWrapper';
 import PolicyDetails from '@/SmartComponents/PolicyDetails/PolicyDetails';
 import usePolicy from '../../Utilities/hooks/api/usePolicy';
-import { buildPoliciesV2 } from '../../__factories__/policies';
+import { buildPolicies } from '../../__factories__/policies';
 import usePolicyOsVersionCounts from '../../Utilities/hooks/api/usePolicyOsVersionCounts';
 
 jest.mock('../../Utilities/hooks/useDocumentTitle');
@@ -20,7 +20,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('PolicyDetails', () => {
-  const fixturePolicy = buildPoliciesV2(1)[0];
+  const fixturePolicy = buildPolicies(1)[0];
 
   it('renders without error', () => {
     usePolicy.mockReturnValue({
