@@ -1,68 +1,47 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
-import RemediationButton from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import { provideData } from './helpers';
+import { default as RemediationRemediationButton } from '@redhat-cloud-services/frontend-components-remediations/RemediationButton';
+import { useIssuesFetch } from './hooks';
 import FallbackButton from './components/FallBackButton';
 
-const ComplianceRemediationButton = ({ allSystems, selectedRules }) => {
-  const remediationData = useMemo(
-    () =>
-      provideData({
-        systems: allSystems,
-        selectedRules,
-      }),
-    [
-      allSystems?.map(({ id }) => id).join(),
-      selectedRules?.map(({ refId }) => refId).join(),
-    ]
+const ComplianceRemediationButton = ({
+  reportId,
+  reportTestResults,
+  selectedRuleResultIds,
+  onRemediationCreated,
+  ...buttonProps
+}) => {
+  const { isLoading: isLoadingIssues, fetch } = useIssuesFetch(
+    reportId,
+    reportTestResults,
+    selectedRuleResultIds
   );
 
   return (
-    <RemediationButton
-      isDisabled={!(remediationData.issues?.length > 0)}
-      onRemediationCreated={(result) =>
-        dispatchNotification(result.getNotification())
-      }
-      dataProvider={async () => remediationData}
+    <RemediationRemediationButton
+      isDisabled={reportTestResults?.length === 0 || isLoadingIssues}
+      onRemediationCreated={(result) => {
+        dispatchNotification(result.getNotification());
+      }}
+      dataProvider={fetch}
       buttonProps={{
         ouiaId: 'RemediateButton',
+        isLoading: isLoadingIssues,
       }}
       fallback={<FallbackButton />}
+      {...buttonProps}
     >
       Remediate
-    </RemediationButton>
+    </RemediationRemediationButton>
   );
 };
 
 ComplianceRemediationButton.propTypes = {
-  selectedRules: propTypes.array,
-  allSystems: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.string,
-      name: propTypes.string,
-      supported: propTypes.bool.isRequired,
-      profiles: propTypes.arrayOf(
-        propTypes.shape({
-          refId: propTypes.string,
-          name: propTypes.string,
-          rules: propTypes.arrayOf(
-            propTypes.shape({
-              title: propTypes.string,
-              severity: propTypes.string,
-              rationale: propTypes.string,
-              refId: propTypes.string,
-              description: propTypes.string,
-              compliant: propTypes.bool,
-              identifier: propTypes.string,
-              references: propTypes.string,
-            })
-          ),
-        })
-      ),
-    })
-  ),
-  addNotification: propTypes.func,
+  reportId: propTypes.string,
+  reportTestResults: propTypes.arrayOf(propTypes.object),
+  selectedRuleResultIds: propTypes.arrayOf(propTypes.string),
+  onRemediationCreated: propTypes.func,
 };
 
 export default ComplianceRemediationButton;
