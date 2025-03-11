@@ -31,7 +31,7 @@ export const Severity = {
 
 export const Passed = {
   title: 'Rule state',
-  sortable: 'compliant',
+  sortable: 'result',
   renderExport: (rule) => (rule?.compliant ? 'Yes' : 'No'),
   renderFunc: renderComponent(PassedCell),
   transforms: [fitContent],
