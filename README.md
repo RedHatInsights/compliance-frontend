@@ -65,7 +65,6 @@ The deployed documentation is available at https://redhatinsights.github.io/comp
   * [React](https://reactjs.org)
   * [Patternfly](https://github.com/patternfly/patternfly-react)
   * [Jest](https://jestjs.io) & [enzyme](https://enzymejs.github.io/enzyme/)
-  * GraphQL (using [Apollo](https://www.apollographql.com/docs/react/))
 
 ### Code standards
 
