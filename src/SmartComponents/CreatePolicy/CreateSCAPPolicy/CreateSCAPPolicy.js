@@ -19,7 +19,6 @@ import {
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 import useSecurityGuidesOS from 'Utilities/hooks/api/useSecurityGuidesOS';
-import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import PolicyTypesTable from '../Components/PolicyTypeTable';
 import PolicyTypeTooltip from '../Components/PolicyTypeTooltip';
@@ -42,8 +41,7 @@ const CreateSCAPPolicy = ({
     error: availableOsMajorVersionsError,
     loading: availableOsMajorVersionsLoading,
   } = useSecurityGuidesOS();
-  // we need table state to ensure default sorting is respected
-  const tableState = useFullTableState();
+
   const {
     data: { data: availableProfiles, meta: { total } = {} } = {},
     loading: availableProfilesLoading,
@@ -53,7 +51,7 @@ const CreateSCAPPolicy = ({
       filter: `os_major_version=${selectedOsMajorVersion}`,
     },
     useTableState: true,
-    skip: selectedOsMajorVersion === undefined || tableState === undefined,
+    skip: selectedOsMajorVersion === undefined,
   });
   const profilesData =
     availableProfiles && serialiseOsVersions(availableProfiles);
