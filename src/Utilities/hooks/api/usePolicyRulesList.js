@@ -14,6 +14,7 @@ export const usePolicyRulesList = ({
     loading: isProfileRulesListLoading,
     data: profileRules,
     error: profileRulesListError,
+    exporter,
   } = useProfileRules({
     params: {
       securityGuideId,
@@ -61,5 +62,6 @@ export const usePolicyRulesList = ({
     data: { rules: profileRules, ruleGroups, builtTree },
     error,
     loading,
+    exporter,
   };
 };

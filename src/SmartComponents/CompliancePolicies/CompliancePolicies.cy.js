@@ -265,7 +265,7 @@ describe('Policies table tests API V2', () => {
     });
   });
 
-  describe('Reports download', () => {
+  describe('Export download', () => {
     beforeEach(() => {
       cy.wait('@getPolicies');
       interceptBatchRequest(

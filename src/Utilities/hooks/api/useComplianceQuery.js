@@ -16,19 +16,31 @@ import useComplianceTableState from './useComplianceTableState';
  */
 
 /**
+ *  @typedef {object} useComplianceQueryReturn
  *
- * Hook to use a Compliance REST API v2 endpoint with useQuery.
- * Optionally support for using the serialised table state if a `<TableStateProvider/>` is available.
+ *  @property {object}   data         Property that contains the request response
+ *  @property {object}   error        Property that contains the request error
+ *  @property {boolean}  loading      Wether or not the requests are currently loading
+ *  @property {Function} fetch        Fetch function to call fetches on demand
+ *  @property {Function} fetchBatched Fetch function to call batched fetches on demand
+ *  @property {Function} fetchAllIds  Fetch function to call a batched fetch of all ids (with the idsOnly param) on demand
+ *  @property {Function} exporter     Fetch function to call a batched fetch of all data and return the objects on demand (can be passed as exporter to Table Tools)
+ *
+ */
+
+/**
+ *
+ * Hook to use a Compliance REST API v2 endpoint with useQuery. Optionally support for using the serialised table state if a `<TableStateProvider/>` is available.
  *
  *  @param   {Function}                 endpoint                String of the javascript-clients export for the needed endpoint
- *
  *  @param   {object}                   [options]               Options for useComplianceQuery & useQuery
  *  @param   {useComplianceQueryParams} [options.params]        API endpoint params
  *  @param   {boolean}                  [options.useTableState] Use the serialised table state
+ *  @param   {boolean}                  [options.batched]       Wether or not requests should be batched
+ *  @param   {boolean}                  [options.skip]          Wether or not to skip the request
+ *  @param   {object}                   [options.batch]         Options to be passed to the useFetchTotalBatched
  *
- *  @param                              options.batched
- *  @param                              options.skip
- *  @returns {useQueryReturn}                                   An object containing a data, loading and error state, as well as a fetch and refetch function.
+ *  @returns {useComplianceQueryReturn}                         An object containing a data, loading and error state, as well as a fetch and fetchBatched function.
  *
  *  @category Compliance
  *  @subcategory Hooks
@@ -60,14 +72,14 @@ import useComplianceTableState from './useComplianceTableState';
  *  useTableState: true
  * })
  *
- */
-const useComplianceQuery = (
+ */ const useComplianceQuery = (
   endpoint,
   {
     params: paramsOption,
     useTableState = false,
     batched = false,
     skip: skipOption,
+    batch = {},
     ...options
   } = {}
 ) => {
@@ -102,10 +114,13 @@ const useComplianceQuery = (
     fetch: batchedFetch,
   } = useFetchTotalBatched(fetchForBatch, {
     skip: !batched ? true : skip,
+    ...batch,
   });
 
-  // TODO We can implement a function to be returned that calls fetchBatched and returns the `data` property for exporting
-  // TODO Something similar as ^ can be done for the "itemIdsInTable" function we need for all tables, but by calling batched with { idsOnly: true }
+  const exporter = async () => (await batchedFetch()).data;
+
+  const fetchAllIds = async () =>
+    (await batchedFetch({ idsOnly: true })).data.map(({ id }) => id);
 
   return {
     ...(batched
@@ -121,6 +136,8 @@ const useComplianceQuery = (
         }),
     fetch: queryFetch,
     fetchBatched: batchedFetch,
+    fetchAllIds,
+    exporter,
   };
 };
 

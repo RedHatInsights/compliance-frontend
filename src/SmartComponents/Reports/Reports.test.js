@@ -2,27 +2,35 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper.js';
 
-import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
-import useReportsCount from 'Utilities/hooks/useReportsCount.js';
-import useReportsOS from 'Utilities/hooks/api/useReportsOs.js';
+import usePolicies from 'Utilities/hooks/api/usePolicies';
+import useReports from 'Utilities/hooks/api/useReports';
+import useReportsCount from 'Utilities/hooks/useReportsCount';
+import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 
 import Reports from './Reports.js';
 
-jest.mock('@/Utilities/hooks/api/useReports');
-jest.mock('Utilities/hooks/api/useComplianceQuery', () => jest.fn());
+// TODO We might want to rather mock the useComplianceWuery hook and assert that the correct params were passed as well.
+jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
+jest.mock('Utilities/hooks/api/useReports', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
 jest.mock('Utilities/hooks/useReportsCount', () => jest.fn());
 
 describe('Reports', () => {
   it('Reports rendered with empty state', async () => {
     useReportsCount.mockImplementation(() => 0);
-    useReportsOS.mockImplementation(() => ({
-      data: [],
+    usePolicies.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
       loading: false,
       error: null,
       refetch: () => {},
     }));
-    useComplianceQuery.mockImplementation(() => ({
+    useReportsOS.mockImplementation(() => ({
+      data: { data: [], meta: { total: 0 } },
+      loading: false,
+      error: null,
+      refetch: () => {},
+    }));
+    useReports.mockImplementation(() => ({
       data: { data: [], meta: { total: 0 } },
       loading: false,
       error: null,
@@ -37,7 +45,7 @@ describe('Reports', () => {
 
     expect(useReportsCount).toHaveBeenCalled();
     expect(useReportsOS).toHaveBeenCalled();
-    expect(useComplianceQuery).toHaveBeenCalled();
+    expect(useReports).toHaveBeenCalled();
 
     expect(
       await screen.findByRole('button', { name: 'Create new policy' })
