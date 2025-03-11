@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
-import RulesTable from '@/PresentationalComponents/RulesTable/RulesTableRest';
+import { RulesTable } from '@/PresentationalComponents';
 import PolicyRulesHeader from './PolicyRulesHeader';
 import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
