@@ -2,7 +2,6 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { valueDefinitions } from '../../../__fixtures__/values.js';
-import usePolicyMutation from '../../../Mutations/hooks/usePolicyMutation';
 import RuleValueEdit from './RuleValueEdit';
 
 jest.mock('react-router-dom', () => ({
@@ -10,11 +9,6 @@ jest.mock('react-router-dom', () => ({
     return <></>;
   },
 }));
-
-jest.mock('../../../Mutations/hooks/usePolicyMutation');
-usePolicyMutation.mockImplementation(() => () => {
-  return;
-});
 
 describe('RuleValueEdit', () => {
   it('expect to render values', () => {

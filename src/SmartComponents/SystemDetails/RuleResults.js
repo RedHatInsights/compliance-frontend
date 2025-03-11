@@ -1,13 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
-import RulesTable from '../../PresentationalComponents/RulesTable/RulesTableRest';
 import propTypes from 'prop-types';
-import TableStateProvider from '../../Frameworks/AsyncTableTools/components/TableStateProvider';
-import { useSerialisedTableState } from '../../Frameworks/AsyncTableTools/hooks/useTableState';
-import columns from './Columns';
-import useReportRuleResults from '../../Utilities/hooks/api/useReportRuleResults';
-
+import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
+import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
 import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
+import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
+import { RulesTable } from 'PresentationalComponents';
+import columns from './Columns';
 
 const RuleResults = ({ reportTestResult }) => {
   const serialisedTableState = useSerialisedTableState();

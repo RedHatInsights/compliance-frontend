@@ -10,10 +10,8 @@ import {
   policyComplianceFilter,
 } from './Filters';
 import { uniq } from 'Utilities/helpers';
-import { filterHelpers } from 'Utilities/hooks/useTableTools/testHelpers.js';
 import { buildReports } from '../../__factories__/reports';
 
-expect.extend(filterHelpers);
 const reportsData = buildReports(1);
 
 describe('ReportsTable', () => {
