@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import propTypes from 'prop-types';
 import { Skeleton } from '@patternfly/react-core';
 import { COMPLIANCE_TABLE_DEFAULTS } from '@/constants';
-import RemediationButton from 'PresentationalComponents/ComplianceRemediationButton/RemediationButtonRest';
+import { ComplianceRemediationButton } from 'PresentationalComponents';
 import { ComplianceTable } from 'PresentationalComponents';
 import RuleDetailsRow from './RuleDetailsRow';
 import buildFilterConfig from './Filters';
@@ -81,7 +81,7 @@ const RulesTable = ({
   const policies = [];
 
   const remediationAction = () => (
-    <RemediationButton
+    <ComplianceRemediationButton
       reportTestResults={selectedRules.length > 0 ? [reportTestResult] : []}
       selectedRuleResultIds={selectedRules}
       reportId={policyId}
