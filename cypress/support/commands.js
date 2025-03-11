@@ -25,12 +25,6 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import React from 'react';
-import {
-  ApolloClient,
-  ApolloProvider,
-  HttpLink,
-  InMemoryCache,
-} from '@apollo/client';
 import { mount } from '@cypress/react18';
 import FlagProvider from '@unleash/proxy-client-react';
 import { COMPLIANCE_API_ROOT } from '@/constants';
@@ -57,16 +51,6 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'mountWithContext',
   (Component, renderOptions = {}, props) => {
-    const client = new ApolloClient({
-      link: new HttpLink({
-        credentials: 'include',
-        uri: COMPLIANCE_API_ROOT + '/graphql',
-      }),
-      cache: new InMemoryCache(),
-    });
-
-    console.log(renderOptions);
-
     return mount(
       <FlagProvider
         config={{
@@ -75,11 +59,10 @@ Cypress.Commands.add(
           appName: 'abc',
         }}
       >
-        <ApolloProvider client={client}>
           <TestWrapper renderOptions={renderOptions}>
             <Component {...props} />
           </TestWrapper>
-        </ApolloProvider>
+
       </FlagProvider>
     );
   }
