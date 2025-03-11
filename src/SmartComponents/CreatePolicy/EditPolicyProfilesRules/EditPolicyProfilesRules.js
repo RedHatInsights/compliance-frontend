@@ -111,26 +111,35 @@ const EditPolicyProfilesRules = ({
   );
 
   useDeepCompareEffect(() => {
-    change(
-      'selectedRuleRefIds',
-      osMinorVersionCounts?.reduce((accum, { osMinorVersion }) => {
+    const newSelectedRuleRefIds = osMinorVersionCounts?.reduce(
+      (accum, { osMinorVersion }) => {
+        if (
+          selectedRuleRefIds?.some(
+            (entry) => entry.osMinorVersion === osMinorVersion
+          )
+        ) {
+          return accum; // Avoid overriding selection
+        }
         const refIdsPerMinorVersion = profilesAndRuleIds?.find(
           ({ osMinorVersion: profileOsMinorVersion }) =>
             profileOsMinorVersion === osMinorVersion
         ).ruleIds;
+
         return [
           ...accum,
           ...(refIdsPerMinorVersion?.length
-            ? [
-                {
-                  osMinorVersion,
-                  ruleRefIds: refIdsPerMinorVersion,
-                },
-              ]
+            ? [{ osMinorVersion, ruleRefIds: refIdsPerMinorVersion }]
             : []),
         ];
-      }, [])
+      },
+      []
     );
+    if (newSelectedRuleRefIds?.length !== 0) {
+      change('selectedRuleRefIds', [
+        ...(selectedRuleRefIds || []),
+        ...newSelectedRuleRefIds,
+      ]);
+    }
   }, [change, osMinorVersionCounts, profilesAndRuleIds, selectedRuleRefIds]);
 
   const onValueOverrideSave = (
