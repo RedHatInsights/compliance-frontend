@@ -1,10 +1,8 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import { useSerialisedTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 import useReportRuleResults from 'Utilities/hooks/api/useReportRuleResults';
-import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import { RulesTable } from 'PresentationalComponents';
 import columns from './Columns';
 
@@ -20,7 +18,11 @@ const RuleResults = ({ reportTestResult }) => {
   const testResultId = reportTestResult.id;
   const reportId = reportTestResult.report_id;
 
-  const { data: ruleResults, fetch: fetchRuleResults } = useReportRuleResults({
+  const {
+    data: ruleResults,
+    exporter,
+    fetchAllIds,
+  } = useReportRuleResults({
     params: {
       testResultId,
       reportId,
@@ -43,21 +45,6 @@ const RuleResults = ({ reportTestResult }) => {
     [ruleResults, reportTestResult]
   );
 
-  const fetchRules = useCallback(
-    async (offset, limit, params) =>
-      await fetchRuleResults({ offset, limit, ...params }, false),
-    [fetchRuleResults]
-  );
-
-  const { fetch: fetchBatched } = useFetchTotalBatched(fetchRules, {
-    skip: true,
-  });
-
-  const itemIdsInTable = async () =>
-    (await fetchBatched({ idsOnly: true })).data.map(({ id }) => id);
-
-  const ruleResultsExporter = useExporter(fetchRules);
-
   return (
     <RulesTable
       activeFiltersPassed={activeFiltersPassed}
@@ -75,9 +62,8 @@ const RuleResults = ({ reportTestResult }) => {
       reportTestResult={reportTestResult}
       skipValueDefinitions={true}
       options={{
-        exporter: async () =>
-          transformRules(await ruleResultsExporter(), reportTestResult),
-        itemIdsInTable,
+        exporter,
+        itemIdsInTable: fetchAllIds,
       }}
       // TODO: provide ruleTree
     />

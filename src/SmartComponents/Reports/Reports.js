@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
@@ -10,10 +10,9 @@ import {
   ReportsEmptyState,
 } from 'PresentationalComponents';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
-import useComplianceQuery from 'Utilities/hooks/api/useComplianceQuery';
+import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 import useReportsCount from 'Utilities/hooks/useReportsCount';
-import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 
 const ReportsHeader = () => (
   <PageHeader>
@@ -30,17 +29,14 @@ const Reports = () => {
     data: { data: reportsData, meta: { total } = {} } = {},
     error,
     loading: reportsLoading,
-    fetch: fetchReports,
-  } = useComplianceQuery('reports', {
+    exporter,
+  } = useReports({
     params: { filter: 'with_reported_systems = true' },
     useTableState: true,
-    debounced: false,
+    batch: {
+      batchSize: 10,
+    },
   });
-  const fetchForExport = useCallback(
-    async (offset, limit) => await fetchReports({ offset, limit }, false),
-    [fetchReports]
-  );
-  const reportsExporter = useExporter(fetchForExport);
   const data = operatingSystems;
   const loading = !data ? true : undefined;
 
@@ -62,7 +58,7 @@ const Reports = () => {
                 total={total}
                 loading={reportsLoading}
                 options={{
-                  exporter: async () => await reportsExporter(),
+                  exporter,
                 }}
               />
             )}

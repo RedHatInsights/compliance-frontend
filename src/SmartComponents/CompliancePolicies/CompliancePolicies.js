@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Grid } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
@@ -12,7 +12,6 @@ import {
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
-import useExporter from '@/Frameworks/AsyncTableTools/hooks/useExporter';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
@@ -23,23 +22,15 @@ const CompliancePolicies = () => {
   const totalPolicies = usePoliciesCount();
   let totalPoliciesLoading = totalPolicies == null;
 
-  const options = {
-    useTableState: true,
-  };
-
   let {
     data: { data, meta: { total: currentTotalPolicies } = {} } = {},
     error,
     loading,
-    fetch: fetchPolicies,
-  } = usePolicies(options);
-
-  const fetchForExport = useCallback(
-    async (offset, limit) => await fetchPolicies({ offset, limit }, false),
-    [fetchPolicies]
-  );
-
-  const policiesExporter = useExporter(fetchForExport);
+    exporter,
+  } = usePolicies({
+    useTableState: true,
+    batch: { batchSize: 10 },
+  });
 
   let showTable = data || !totalPoliciesLoading;
 
@@ -91,7 +82,7 @@ const CompliancePolicies = () => {
                 loading={loading}
                 DedicatedAction={CreateLink}
                 options={{
-                  exporter: async () => await policiesExporter(),
+                  exporter,
                 }}
               />
             )}

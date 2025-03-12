@@ -94,7 +94,8 @@ const TailoringTab = ({
       rules: securityGuideRules,
       valueDefinitions,
     },
-    fetchBatchedRules,
+    fetchAllIds: fetchAllSecurityGuideRuleIds,
+    exporter: securityGuideRulesExporter,
   } = useSecurityGuideData({
     securityGuideId,
     profileId,
@@ -115,7 +116,8 @@ const TailoringTab = ({
 
   const {
     data: { ruleTree: tailoringRuleTree, rules: tailoringRules },
-    fetchBatchedTailoringRules,
+    fetchAllIds: fetchAllTailoringRuleIds,
+    exporter: tailoringRulesExporter,
   } = useTailoringsData({
     policy,
     tailoring,
@@ -170,22 +172,16 @@ const TailoringTab = ({
     ]
   );
 
-  // TODO The wrapping of the fetches in an array is odd.
-  // Figure out why this is and how we can avoid it
-  // TODO This hook could be made a feature of either the useComplianceQuery
+  // TODO we might want to consider making this more explicit and also add SSG profile exporter and ids call
   const exporter = async () =>
-    (tailoring && policy
-      ? [await fetchBatchedTailoringRules()]
-      : [await fetchBatchedRules()]
-    ).flatMap((result) => result.data);
+    tailoring && policy
+      ? await tailoringRulesExporter()
+      : await securityGuideRulesExporter();
 
   const itemIdsInTable = async () =>
-    (tailoring && policy
-      ? await fetchBatchedTailoringRules({ idsOnly: true })
-      : await fetchBatchedRules({ idsOnly: true })
-    )
-      .flatMap((result) => result.data)
-      .map(({ id }) => id);
+    tailoring && policy
+      ? await fetchAllTailoringRuleIds()
+      : await fetchAllSecurityGuideRuleIds();
 
   const onValueSave = (_policyId, ...valueParams) =>
     onValueOverrideSave(tailoring || osMinorVersion, ...valueParams);

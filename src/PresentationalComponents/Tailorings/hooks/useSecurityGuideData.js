@@ -49,7 +49,8 @@ const useSecurityGuideData = ({
     data: rules,
     loading: rulesLoading,
     error: rulesError,
-    fetchBatched: fetchBatchedRules,
+    fetchAllIds,
+    exporter,
   } = useRules({
     params: {
       securityGuideId,
@@ -92,7 +93,8 @@ const useSecurityGuideData = ({
       ...(!skipRuleTree ? { ruleTree } : {}),
       ...(!skipRules ? { rules } : {}),
     },
-    fetchBatchedRules,
+    fetchAllIds,
+    exporter,
   };
 };
 
