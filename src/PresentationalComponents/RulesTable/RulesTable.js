@@ -95,7 +95,7 @@ const RulesTable = ({
         profile: { id: policyId, name: policyName },
       };
 
-      return props?.item?.loaded ? ( // eslint-disable-line react/prop-types
+      return props?.item?.loaded || skipValueDefinitions ? ( // eslint-disable-line react/prop-types
         <RuleDetailsRow
           onValueChange={onValueOverrideSave}
           onRuleValueReset={onRuleValueReset}

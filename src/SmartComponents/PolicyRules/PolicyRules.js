@@ -3,12 +3,16 @@ import { useParams } from 'react-router-dom';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import { RulesTable } from '@/PresentationalComponents';
 import PolicyRulesHeader from './PolicyRulesHeader';
-import { usePolicyRulesList } from '@/Utilities/hooks/api/usePolicyRulesList';
 import { useFullTableState } from '@/Frameworks/AsyncTableTools/hooks/useTableState';
-import { policyRulesSkips } from './helpers';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useSecurityGuide from 'Utilities/hooks/api/useSecurityGuide';
 import useProfile from 'Utilities/hooks/api/useProfile';
+import useSecurityGuideProfileData from 'PresentationalComponents/Tailorings/hooks/useSecurityGuideProfileData';
+import {
+  prepareTreeTable,
+  skips,
+} from 'PresentationalComponents/Tailorings/helpers';
+import useSecurityGuideData from 'PresentationalComponents/Tailorings/hooks/useSecurityGuideData';
 
 const PolicyDefaultRules = () => {
   const tableState = useFullTableState();
@@ -20,16 +24,6 @@ const PolicyDefaultRules = () => {
     tableState?.tableState?.tableView === 'tree' && openRuleGroups?.length > 0
       ? `rule_group_id ^ (${openRuleGroups.map((id) => `${id}`).join(' ')})`
       : undefined;
-
-  const shouldSkip = useMemo(
-    () =>
-      policyRulesSkips({
-        tableState,
-        profileId,
-        securityGuideId,
-      }),
-    [tableState]
-  );
 
   const { data: securityGuideData } = useSecurityGuide({
     params: {
@@ -44,15 +38,39 @@ const PolicyDefaultRules = () => {
     },
   });
 
-  const { data, loading, exporter } = usePolicyRulesList({
-    profileId,
+  const shouldSkip = skips({
+    skipProfile: 'policy-default-rules',
     securityGuideId,
+    profileId,
     tableState,
-    ...(groupFilter ? { groupFilter } : {}),
-    shouldSkip,
   });
 
-  const { rules, builtTree } = data;
+  const {
+    data: { ruleGroups },
+  } = useSecurityGuideData({
+    securityGuideId,
+    ...shouldSkip.securityGuide,
+  });
+
+  const {
+    data: { rules: profileRules, ruleTree: profileRuleTree },
+    exporter,
+  } = useSecurityGuideProfileData({
+    securityGuideId,
+    profileId,
+    groupFilter,
+    tableState,
+    ...shouldSkip.profile,
+  });
+
+  const ruleTree = useMemo(
+    () =>
+      prepareTreeTable({
+        profileRuleTree,
+        ruleGroups,
+      }),
+    [ruleGroups, profileRuleTree]
+  );
 
   return (
     <>
@@ -65,13 +83,13 @@ const PolicyDefaultRules = () => {
         <RulesTable
           policyId={profileId}
           securityGuideId={securityGuideId}
-          total={rules?.meta.total}
-          rules={rules?.data}
+          total={profileRules?.meta.total}
+          ruleTree={ruleTree}
+          rules={ruleTree ? profileRules?.data || [] : profileRules?.data}
+          ansibleSupportFilter
           remediationsEnabled={false}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           ruleValues={{}}
-          loading={loading}
-          ruleTree={builtTree}
           skipValueDefinitions={true}
           options={{
             exporter,
