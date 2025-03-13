@@ -23,6 +23,7 @@ import defaultColumns from './Columns';
  *  @param   {boolean}            [props.ansibleSupportFilter] Enables the ansible filter
  *  @param   {boolean}            [props.selectedFilter]       Enables the "Selected Only" filter
  *  @param   {Array}              [props.selectedRules]        An array of rule IDs currently selected
+ *  @param   {Array}              [props.preselected]          An array of rule IDs set as initial selection
  *  @param   {boolean}            [props.hidePassed]           Enables a default filter to only show failed rules.
  *  @param   {object}             [props.options ]             AsyncTableTools options
  *  @param   {boolean}            [props.activeFiltersPassed]  Enable Default filter
@@ -52,6 +53,7 @@ const RulesTable = ({
   ansibleSupportFilter = false,
   selectedFilter = false, // TODO this is potentially obsolete.
   selectedRules: selectedRulesProp = [],
+  preselected,
   hidePassed = false,
   options,
   activeFiltersPassed = false,
@@ -143,7 +145,8 @@ const RulesTable = ({
         enableTreeView: true,
         tableTree: ruleTree,
         onSelect: (onSelect || remediationsEnabled) && setSelectedRules,
-        preselected: selectedRules,
+        selected: selectedRules,
+        preselected: preselected,
         detailsComponent: DetailsRow,
         selectedFilter,
         dedicatedAction: DedicatedAction,
@@ -166,6 +169,7 @@ RulesTable.propTypes = {
   remediationsEnabled: propTypes.bool,
   ansibleSupportFilter: propTypes.bool,
   selectedRules: propTypes.array,
+  preselected: propTypes.array,
   selectedFilter: propTypes.bool,
   columns: propTypes.array,
   options: propTypes.object,

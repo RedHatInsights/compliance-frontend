@@ -5,6 +5,7 @@ import useContextOrInternalStateAndRefs from './hooks/useContextOrInternalStateA
 import useStateObservers from './hooks/useStateObservers';
 import useSerialisers from './hooks/useSerialisers';
 import compileState from './helpers/compileState';
+import useCallbacks from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useCallbacks';
 
 /**
  * Provides an interface for hooks to store their states name-spaced into the tableState in the TableContext
@@ -14,6 +15,7 @@ import compileState from './helpers/compileState';
  *  @param   {object} [options]            Options for the state
  *  @param   {object} [options.serialiser] A function to serialise the table state and allow access it via the useSerialisedTableState hook
  *  @param   {object} [options.observers]  An object with properties of an other state namespace and an object or function returning an object with an desired state should the other state change
+ *  @param   {object} [options.callbacks]  An object with callbacks
  *
  *  @returns {Array}                       An array with the first item being the tableState, the second a function to set the state and a third optional item with the serialised state if a serialiser was provided
  *
@@ -25,11 +27,13 @@ const useTableState = (namespace, initialState, options = {}) => {
   const {
     serialisers,
     observers,
+    callbacks,
     state: [state, setState],
   } = useContextOrInternalStateAndRefs();
 
   useStateObservers(namespace, options.observers, observers);
   useSerialisers(namespace, options.serialiser, serialisers);
+  useCallbacks(namespace, options.callbacks, callbacks);
 
   const setTableState = useCallback(
     function setTableState(newStateForNameSpace) {
@@ -44,7 +48,8 @@ const useTableState = (namespace, initialState, options = {}) => {
           currentState,
           newState,
           observers.current,
-          serialisers.current
+          serialisers.current,
+          callbacks.current
         );
 
         // Comment out for debugging table issues
@@ -57,7 +62,7 @@ const useTableState = (namespace, initialState, options = {}) => {
         return nextState;
       });
     },
-    [observers, serialisers, setState, namespace]
+    [observers, serialisers, callbacks, setState, namespace]
   );
 
   useDeepCompareEffect(() => {

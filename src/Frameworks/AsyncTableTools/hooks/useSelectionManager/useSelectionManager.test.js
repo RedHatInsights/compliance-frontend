@@ -59,6 +59,23 @@ describe('useSelectionManager', () => {
 
       expect(result.current.selection).toEqual(newSelection);
     });
+
+    it('resets selection to preselection', () => {
+      const newSelection = [0, 9, 8, 45, 3];
+      const { result } = renderHook(() =>
+        useSelectionManager(...defaultArguments)
+      );
+
+      act(() => {
+        result.current.set(newSelection);
+      });
+
+      act(() => {
+        result.current.reset();
+      });
+
+      expect(result.current.selection).toEqual(defaultArguments[0]);
+    });
   });
 
   describe('withGroups true', () => {
@@ -106,6 +123,18 @@ describe('useSelectionManager', () => {
     });
 
     it('sets items for a selection when calling set', () => {
+      const { result } = renderHook(() =>
+        useSelectionManager(...defaultArguments)
+      );
+
+      act(() => {
+        result.current.set([0, 9, 8, 45, 3], 'group1');
+      });
+
+      expect(result.current.selection.group1).toEqual([0, 9, 8, 45, 3]);
+    });
+
+    it('resets selection to preselected on reset', () => {
       const { result } = renderHook(() =>
         useSelectionManager(...defaultArguments)
       );

@@ -33,7 +33,7 @@ const EditPolicyProfilesRules = ({
   osMinorVersionCounts,
   valueOverrides = {},
 }) => {
-  const preselected =
+  const selected =
     selectedRuleRefIds &&
     (selectedRuleRefIds || []).reduce(
       (prev, cur) => ({
@@ -61,6 +61,20 @@ const EditPolicyProfilesRules = ({
     ),
     skip: skipFetchingProfileRuleIds,
   });
+
+  const preselected =
+    profilesAndRuleIds !== undefined
+      ? osMinorVersionCounts.reduce(
+          (acc, cur) => ({
+            ...acc,
+            [cur.osMinorVersion]: profilesAndRuleIds.find(
+              ({ osMinorVersion }) => osMinorVersion === cur.osMinorVersion
+            ).ruleIds,
+          }),
+          {}
+        )
+      : undefined;
+
   const additionalRules =
     profilesAndRuleIds &&
     selectedRuleRefIds?.reduce((additions, profileAndRules) => {
@@ -208,6 +222,8 @@ const EditPolicyProfilesRules = ({
                 columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
                 ouiaId="RHELVersions"
                 onSelect={onSelect}
+                showResetButton
+                selected={selected}
                 preselected={preselected}
                 enableSecurityGuideRulesToggle
                 rulesPageLink={true}

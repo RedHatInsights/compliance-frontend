@@ -6,6 +6,7 @@ import {
   compileTitle,
   selectOrUnselect,
 } from './helpers';
+import useCallbacksCallback from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useCallbacksCallback';
 
 /**
  *  @typedef {object} useBulkSelectReturn
@@ -49,6 +50,7 @@ const useBulkSelect = ({
     select,
     deselect,
     clear,
+    reset,
   } = useSelectionManager(preselected, {}, onSelect);
   const selectedIdsTotal = (selectedIds || []).length;
   const paginatedTotal = itemIdsOnPage?.length || total;
@@ -84,6 +86,12 @@ const useBulkSelect = ({
       !currentPageSelected ? select(itemIdsOnPage) : deselect(itemIdsOnPage),
     [select, deselect, itemIdsOnPage, currentPageSelected]
   );
+
+  const resetSelection = useCallback(() => {
+    reset();
+  }, [reset]);
+
+  useCallbacksCallback('resetSelection', resetSelection);
 
   const selectAll = async () => {
     setLoading(true);
