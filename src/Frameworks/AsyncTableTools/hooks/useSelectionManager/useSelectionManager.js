@@ -43,18 +43,15 @@ const useSelectionManager = (preselected, options = {}, handleSelect) => {
 
   const clear = () => dispatch({ type: 'clear' });
 
-  return useMemo(
-    () => ({
-      set,
-      select,
-      deselect,
-      toggle,
-      reset,
-      clear,
-      selection: withGroups ? selection : selection.default,
-    }),
-    [selection]
-  );
+  return {
+    set,
+    select,
+    deselect,
+    toggle,
+    reset,
+    clear,
+    selection: withGroups ? selection : selection.default,
+  };
 };
 
 export default useSelectionManager;
