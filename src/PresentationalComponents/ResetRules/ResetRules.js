@@ -1,10 +1,10 @@
 import React from 'react';
 import { RebootingIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
-import useContextOrInternalStateAndRefs from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useContextOrInternalStateAndRefs';
+import useStateCallbacks from '@/Frameworks/AsyncTableTools/hooks/useTableState/hooks/useStateCallbacks';
 
 const ResetRules = () => {
-  const { callbacks } = useContextOrInternalStateAndRefs();
+  const callbacks = useStateCallbacks();
 
   const resetSelectionCallback = () => {
     console.log('reset xd');
