@@ -222,6 +222,7 @@ const EditPolicyProfilesRules = ({
                 columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
                 ouiaId="RHELVersions"
                 onSelect={onSelect}
+                showResetButton
                 selected={selected}
                 preselected={preselected}
                 enableSecurityGuideRulesToggle

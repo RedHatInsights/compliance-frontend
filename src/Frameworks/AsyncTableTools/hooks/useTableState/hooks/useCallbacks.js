@@ -2,7 +2,6 @@ import { useDeepCompareEffect } from 'use-deep-compare';
 
 const useCallbacks = (callbackNamespace, callback, callbackInContext) => {
   useDeepCompareEffect(() => {
-    console.log('callback', callback);
     if (callback) {
       callbackInContext.current = {
         ...callbackInContext.current,

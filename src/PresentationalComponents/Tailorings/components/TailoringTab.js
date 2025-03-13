@@ -40,6 +40,7 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param                        [props.additionalRules]
  *  @param                        [props.valueOverrides]
  *
+ *  @param                        [props.showResetButton]                Enables reset rules button
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -68,6 +69,7 @@ const TailoringTab = ({
   enableSecurityGuideRulesToggle,
   skipProfile,
   valueOverrides,
+  showResetButton = false,
 }) => {
   const tableState = useFullTableState();
   const openRuleGroups = tableState?.tableState?.['open-items'];
@@ -207,6 +209,7 @@ const TailoringTab = ({
             }
             profileId={profileId || tailoring.profile_id}
             rulesPageLink={rulesPageLink}
+            showResetButton={showResetButton}
             resetLink={resetLink}
             systemCount={systemCount}
           />
@@ -266,6 +269,7 @@ TailoringTab.propTypes = {
   setRuleValues: propTypes.func,
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
+  showResetButton: propTypes.bool,
   selected: propTypes.array,
   preselected: propTypes.array,
   enableSecurityGuideRulesToggle: propTypes.bool,

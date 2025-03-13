@@ -39,6 +39,7 @@ import NoTailorings from './NoTailorings';
  *
  *  @param                        props.skipProfile
  *  @param                        props.additionalRules
+ *  @param                        [props.showResetButton]                Enables reset rules button
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
@@ -57,6 +58,7 @@ const Tailorings = ({
   onSelect,
   selected,
   preselected,
+  showResetButton,
   enableSecurityGuideRulesToggle,
   selectedVersionCounts,
   valueOverrides,
@@ -202,6 +204,7 @@ Tailorings.propTypes = {
   onRuleValueReset: propTypes.func,
   onValueOverrideSave: propTypes.func,
   onSelect: propTypes.func,
+  showResetButton: propTypes.bool,
   selected: propTypes.object,
   preselected: propTypes.object,
   enableSecurityGuideRulesToggle: propTypes.bool,
