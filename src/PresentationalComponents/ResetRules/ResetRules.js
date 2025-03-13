@@ -7,7 +7,6 @@ const ResetRules = () => {
   const callbacks = useStateCallbacks();
 
   const resetSelectionCallback = () => {
-    console.log('reset xd');
     callbacks?.current?.resetSelection?.();
   };
   return (
