@@ -155,6 +155,7 @@ const Tailorings = ({
                     skipProfile,
                     onValueOverrideSave: onValueSave,
                     ...(onSelect ? { onSelect: onSelectTailoring } : {}),
+                    showResetButton: showResetButton,
                     selected:
                       selected?.[tab.id] || selected?.[tab.os_minor_version],
                     preselected:

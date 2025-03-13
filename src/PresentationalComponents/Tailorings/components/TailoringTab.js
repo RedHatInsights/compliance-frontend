@@ -39,8 +39,8 @@ import SecurityGuideRulesToggle from './SecurityGuideRulesToggle';
  *  @param   {string}             [props.skipProfile]
  *  @param                        [props.additionalRules]
  *  @param                        [props.valueOverrides]
- *
  *  @param                        [props.showResetButton]                Enables reset rules button
+ *
  *  @returns {React.ReactElement}
  *
  *  @category Compliance

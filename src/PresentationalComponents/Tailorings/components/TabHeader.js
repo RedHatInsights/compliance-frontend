@@ -18,7 +18,7 @@ const TabHeader = ({
   securityGuide,
   profileId,
   rulesPageLink,
-  showResetRules,
+  showResetButton,
 }) => {
   return (
     <TextContent className="pf-v5-u-mt-md">
@@ -52,7 +52,7 @@ const TabHeader = ({
           />
         </FlexItem>
         <FlexItem align={{ default: 'alignRight' }}>
-          {showResetRules && <ResetRules />}
+          {showResetButton && <ResetRules />}
           {rulesPageLink && (
             <Link
               to={`/scappolicies/${profileId}/default_ruleset/${securityGuide?.id}`}
@@ -74,6 +74,7 @@ TabHeader.propTypes = {
   securityGuide: propTypes.object,
   profileId: propTypes.string,
   rulesPageLink: propTypes.bool,
+  showResetButton: propTypes.bool,
 };
 
 export default TabHeader;

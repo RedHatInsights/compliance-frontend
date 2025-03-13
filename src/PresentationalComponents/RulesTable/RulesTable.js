@@ -38,7 +38,6 @@ import defaultColumns from './Columns';
  *  @param   {Function}           [props.onSelect]             A function called when a selection action is performed
  *  @param   {string}             [props.defaultTableView]     A table view to show by default ("row" or "tree") // TODO we should use the table options directly
  *
- *  @param                        props.preselected
  *  @returns {React.ReactElement}
  *
  *  @category Compliance
