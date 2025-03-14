@@ -1,6 +1,6 @@
 import useComplianceQuery from '../useComplianceQuery';
 
-const convertToArray = (params) => {
+export const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {

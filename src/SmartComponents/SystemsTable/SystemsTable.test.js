@@ -1,12 +1,10 @@
 import { render, waitFor } from '@testing-library/react';
 import SystemsTable from './SystemsTable';
-import { useSystemBulkSelect } from './hooks.js';
 import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/TestingUtils/JestUtils/TestWrapper';
-jest.mock('./hooks.js', () => ({
-  ...jest.requireActual('./hooks.js'),
-  useSystemBulkSelect: jest.fn(() => ({})),
-  useSystemsExport: jest.fn(() => ({})),
-}));
+
+import useComplianceQuery from 'Utilities/hooks/useComplianceQuery';
+jest.mock('Utilities/hooks/useComplianceQuery');
+
 jest.mock('@redhat-cloud-services/frontend-components/Inventory', () => ({
   InventoryTable: jest.fn(({ getEntities }) => {
     getEntities(10, {
@@ -24,26 +22,45 @@ const mockProps = {
   enableExport: true,
   policies: [],
   onSelect: jest.fn(),
-  fetchApi: jest.fn(() => Promise.resolve({ data: [], meta: {} })),
-  fetchCustomOSes: jest.fn(),
   ignoreOsMajorVersion: false,
   defaultFilter: 'someFilter ~ test',
 };
 
+const mockUseQuery = jest.fn(() => {
+  return {
+    data: { data: [], meta: {} },
+    loading: false,
+    error: undefined,
+    fetch: () => ({ data: [], meta: {} }),
+  };
+});
+
 describe('SystemsTable', () => {
+  beforeEach(() => {
+    useComplianceQuery.mockImplementation(mockUseQuery);
+  });
+
   it('Should connect inventory with compliance filters so that full filters are passed to bulk selection', async () => {
     render(
       <TestWrapper>
         <SystemsTable {...mockProps} />
       </TestWrapper>,
     );
+
     await waitFor(() =>
-      expect(useSystemBulkSelect).toHaveBeenCalledWith(
+      expect(useComplianceQuery).toHaveBeenCalledWith(
+        'systems',
         expect.objectContaining({
-          fetchArguments: {
-            filter: '(someFilter ~ test) AND display_name ~ "test-name"',
-            tags: [],
-          },
+          params: { filter: 'someFilter ~ test' },
+        }),
+      ),
+    );
+
+    await waitFor(() =>
+      expect(useComplianceQuery).toHaveBeenCalledWith(
+        'systemsOS',
+        expect.objectContaining({
+          params: { filter: 'someFilter ~ test' },
         }),
       ),
     );

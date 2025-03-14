@@ -1,21 +1,19 @@
 import React from 'react';
 import { nowrap } from '@patternfly/react-table';
+import { Alert } from '@patternfly/react-core';
 import PageHeader, {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { StateViewPart, StateViewWithError } from 'PresentationalComponents';
 import { SystemsTable } from 'SmartComponents';
 import * as Columns from '../SystemsTable/Columns';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
-import {
-  fetchSystemsApi,
-  fetchCustomOSes,
-} from 'SmartComponents/SystemsTable/constants';
-
-const DEFAULT_FILTER = 'assigned_or_scanned=true';
 
 const ComplianceSystems = () => {
-  let { data: { data: policies } = {}, error, loading } = usePolicies();
+  const navigateToInventory = useNavigate('inventory');
+  const { data, error, loading } = usePolicies();
+  const policies = data?.data;
 
   return (
     <React.Fragment>
@@ -25,43 +23,50 @@ const ComplianceSystems = () => {
       <section className="pf-v6-c-page__main-section">
         <StateViewWithError stateValues={{ error, data: policies, loading }}>
           <StateViewPart stateKey="data">
-            {policies && (
-              <SystemsTable
-                columns={[
-                  Columns.customName(
-                    {
-                      showLink: true,
-                    },
-                    { sortBy: ['display_name'] },
-                  ),
-                  Columns.inventoryColumn('groups', {
-                    requiresDefault: true,
-                    sortBy: ['groups'],
-                  }),
-                  Columns.inventoryColumn('tags'),
-                  Columns.OS(),
-                  Columns.Policies,
-                  Columns.inventoryColumn('updated', {
-                    props: { isStatic: true },
-                    transforms: [nowrap],
-                  }),
-                ]}
-                defaultFilter={DEFAULT_FILTER}
-                systemProps={{
-                  isFullView: true,
-                }}
-                showOsMinorVersionFilter={policies.map(
-                  (policy) => policy.os_major_version,
-                )}
-                showComplianceSystemsInfo
-                enableEditPolicy={false}
-                remediationsEnabled={false}
-                policies={policies}
-                showGroupsFilter
-                fetchApi={fetchSystemsApi}
-                fetchCustomOSes={fetchCustomOSes}
-              />
-            )}
+            <Alert
+              isInline
+              variant="info"
+              ouiaId="SystemsListIsDifferentAlert"
+              title={
+                'The list of systems in this view is different than those that appear in the Inventory. ' +
+                'Only systems currently associated with or reporting against compliance policies are displayed.'
+              }
+            />
+            <SystemsTable
+              isFullView
+              columns={[
+                Columns.customName(
+                  {
+                    showLink: true,
+                  },
+                  { sortable: ['display_name'] },
+                ),
+                Columns.inventoryColumn('groups', {
+                  requiresDefault: true,
+                  sortable: ['groups'],
+                }),
+                Columns.inventoryColumn('tags'),
+                Columns.OS(),
+                Columns.Policies,
+                Columns.inventoryColumn('updated', {
+                  props: { isStatic: true },
+                  transforms: [nowrap],
+                }),
+              ]}
+              defaultFilter="assigned_or_scanned=true"
+              filters={{
+                policies,
+                groups: true,
+              }}
+              actions={[
+                {
+                  title: 'View in inventory',
+                  onClick: (_event, _index, { id }) =>
+                    navigateToInventory('/' + id),
+                },
+              ]}
+              onSelect={true}
+            />
           </StateViewPart>
         </StateViewWithError>
       </section>

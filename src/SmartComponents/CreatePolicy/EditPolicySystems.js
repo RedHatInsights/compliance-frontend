@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
   propTypes as reduxFormPropTypes,
   reduxForm,
@@ -18,9 +18,6 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
-import { apiInstance } from '@/Utilities/hooks/useQuery';
-import { buildOSObject } from '../../Utilities/helpers';
-import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -85,7 +82,6 @@ export const EditPolicySystems = ({
   profile,
   change,
   osMajorVersion,
-  osMinorVersionCounts,
   selectedSystems = [],
   allowNoSystems,
 }) => {
@@ -100,26 +96,6 @@ export const EditPolicySystems = ({
       `profile_ref_id !^ (${profile.ref_id})`
     : '';
 
-  const fetchCustomOSes = ({ filters: defaultFilter }) =>
-    apiInstance.systemsOS(null, defaultFilter).then(({ data }) => {
-      return {
-        results: buildOSObject(data),
-        total: data?.length || 0,
-      };
-    });
-
-  useEffect(() => {
-    if (!osMinorVersionCounts || !osMinorVersionCounts.length) {
-      change(
-        'osMinorVersionCounts',
-        profile.supportedOsVersions.map((version) => ({
-          osMinorVersion: version.split('.')[1],
-          count: 0,
-        })),
-      );
-    }
-  }, [profile, osMinorVersionCounts, change]);
-
   return (
     <React.Fragment>
       <Content className="pf-v6-u-mb-md">
@@ -128,7 +104,7 @@ export const EditPolicySystems = ({
       <Form>
         <FormGroup>
           <SystemsTable
-            showOsMinorVersionFilter={[osMajorVersion]}
+            apiEndpoint="systems"
             prependComponent={
               allowNoSystems ? undefined : (
                 <PrependComponent osMajorVersion={osMajorVersion} />
@@ -150,16 +126,13 @@ export const EditPolicySystems = ({
               Columns.inventoryColumn('tags'),
               Columns.OperatingSystem(),
             ]}
-            remediationsEnabled={false}
             compact
-            showActions={false}
             defaultFilter={defaultFilter}
-            enableExport={false}
+            filters={{
+              groups: true,
+            }}
             preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
-            showGroupsFilter
-            fetchApi={fetchSystemsApi}
-            fetchCustomOSes={fetchCustomOSes}
           />
         </FormGroup>
       </Form>
