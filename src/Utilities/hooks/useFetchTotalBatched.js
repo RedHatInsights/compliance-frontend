@@ -50,6 +50,8 @@ const useFetchTotalBatched = (fetchFn, options = {}) => {
       // When working with concurrent calls to fetchBatched Promise.all/pAll
       // `loading`s will collide and only the first call will succeed
       if (!loading.current) {
+        console.log('batchSize', batchSize);
+
         loading.current = true;
         const firstPage = await fetchFn(0, batchSize, ...args);
         const total = firstPage?.meta?.total;
