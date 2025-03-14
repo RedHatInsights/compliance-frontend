@@ -4,9 +4,10 @@ export const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {
-    const { tags, limit, offset, idsOnly, sortBy, filter } = params;
+    const { reportId, tags, limit, offset, idsOnly, sortBy, filter } = params;
 
     return [
+      reportId,
       undefined, // xRHIDENTITY
       tags,
       limit,
@@ -18,7 +19,7 @@ export const convertToArray = (params) => {
   }
 };
 
-const useSystems = (options) =>
-  useComplianceQuery('systems', { ...options, convertToArray });
+const useReportSystems = (options) =>
+  useComplianceQuery('reportSystems', { ...options, convertToArray });
 
-export default useSystems;
+export default useReportSystems;

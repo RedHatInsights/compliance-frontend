@@ -21,7 +21,6 @@ import { countOsMinorVersions } from 'Store/Reducers/SystemStore';
 import * as Columns from '../SystemsTable/Columns';
 import { apiInstance } from '@/Utilities/hooks/useQuery';
 import { buildOSObject } from '../../Utilities/helpers';
-import { fetchSystemsApi } from 'SmartComponents/SystemsTable/constants';
 
 const EmptyState = ({ osMajorVersion }) => (
   <React.Fragment>
@@ -99,14 +98,6 @@ export const EditPolicySystems = ({
       `profile_ref_id !^ (${profile.ref_id})`
     : '';
 
-  const fetchCustomOSes = ({ filters: defaultFilter }) =>
-    apiInstance.systemsOS(null, defaultFilter).then(({ data }) => {
-      return {
-        results: buildOSObject(data),
-        total: data?.length || 0,
-      };
-    });
-
   return (
     <React.Fragment>
       <TextContent className="pf-v5-u-mb-md">
@@ -115,7 +106,7 @@ export const EditPolicySystems = ({
       <Form>
         <FormGroup>
           <SystemsTable
-            showOsMinorVersionFilter={[osMajorVersion]}
+            apiEndpoint="systems"
             prependComponent={
               <PrependComponent osMajorVersion={osMajorVersion} />
             }
@@ -135,16 +126,13 @@ export const EditPolicySystems = ({
               Columns.inventoryColumn('tags'),
               Columns.OperatingSystem(),
             ]}
-            remediationsEnabled={false}
             compact
-            showActions={false}
             defaultFilter={defaultFilter}
-            enableExport={false}
-            preselectedSystems={selectedSystems.map(({ id }) => id)}
+            filters={{
+              groups: true,
+            }}
+            // preselectedSystems={selectedSystems.map(({ id }) => id)}
             onSelect={onSelect}
-            showGroupsFilter
-            fetchApi={fetchSystemsApi}
-            fetchCustomOSes={fetchCustomOSes}
           />
         </FormGroup>
       </Form>

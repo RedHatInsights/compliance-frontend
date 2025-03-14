@@ -185,7 +185,6 @@ export const EditPolicyRulesTab = ({
           resetLink
           rulesPageLink
           selectedFilter
-          remediationsEnabled={false}
           columns={[Columns.Name, Columns.Severity, Columns.Remediation]}
           level={1}
           ouiaId="RHELVersions"

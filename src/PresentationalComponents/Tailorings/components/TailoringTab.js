@@ -219,7 +219,6 @@ const TailoringTab = ({
         ruleTree={ruleTree}
         rules={ruleTree ? rules?.data || [] : rules?.data}
         ansibleSupportFilter
-        remediationsEnabled={false}
         columns={columns}
         setRuleValues={setRuleValues}
         onRuleValueReset={onRuleValueReset}

@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import useFetchTotalBatched from 'Utilities/hooks/useFetchTotalBatched';
 import useQuery from '../useQuery';
+import { paramsWithFilters } from './helpers';
 import useComplianceApi from './useComplianceApi';
 import useComplianceTableState from './useComplianceTableState';
 
@@ -101,26 +102,50 @@ import useComplianceTableState from './useComplianceTableState';
     params,
   });
 
+  const fetch = useCallback(
+    async (fetchParams, setDataState) =>
+      await queryFetch(paramsWithFilters(fetchParams, params), setDataState),
+    [queryFetch, params]
+  );
+
   const fetchForBatch = useCallback(
-    async (offset, limit, params) =>
-      await queryFetch({ limit, offset, ...params }, false),
-    [queryFetch]
+    async (offset, limit, fetchForBatchParams) =>
+      await queryFetch(
+        paramsWithFilters({ ...fetchForBatchParams, offset, limit }, params),
+        false
+      ),
+    [queryFetch, params]
   );
 
   const {
     loading: batchedLoading,
     data: batchedData,
     error: batchedError,
-    fetch: batchedFetch,
+    fetch: fetchBatched,
   } = useFetchTotalBatched(fetchForBatch, {
     skip: !batched ? true : skip,
     ...batch,
   });
 
-  const exporter = async () => (await batchedFetch()).data;
+  const exporter = useCallback(
+    async (exporterParams) => {
+      return (await fetchBatched(paramsWithFilters(exporterParams, params)))
+        .data;
+    },
+    [fetchBatched, params]
+  );
 
-  const fetchAllIds = async () =>
-    (await batchedFetch({ idsOnly: true })).data.map(({ id }) => id);
+  const fetchAllIds = useCallback(
+    async (fetchAllIdsParams) => {
+      return (
+        await fetchBatched({
+          ...paramsWithFilters(fetchAllIdsParams, params),
+          idsOnly: true,
+        })
+      ).data.map(({ id }) => id);
+    },
+    [fetchBatched, params]
+  );
 
   return {
     ...(batched
@@ -134,8 +159,8 @@ import useComplianceTableState from './useComplianceTableState';
           error: queryError,
           loading: queryLoading,
         }),
-    fetch: queryFetch,
-    fetchBatched: batchedFetch,
+    fetch,
+    fetchBatched,
     fetchAllIds,
     exporter,
   };

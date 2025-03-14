@@ -49,20 +49,22 @@ const findFilterSerialiser = (filterConfigItem) => {
  *
  */
 export const filtersSerialiser = (state, filters) => {
-  const queryParts = Object.entries(state || {}).reduce(
-    (filterQueryParts, [filterId, value]) => {
+  const queryParts = Object.entries(state || {})
+    .reduce((filterQueryParts, [filterId, value]) => {
       const filterConfigItem = filters.find((filter) => filter.id === filterId);
-      const filterSerialiser = findFilterSerialiser(filterConfigItem);
-
+      const filterSerialiser = findFilterSerialiser(filterConfigItem || {});
+      console.log(
+        filterSerialiser,
+        filterSerialiser?.(filterConfigItem, value)
+      );
       return [
         ...filterQueryParts,
         ...(filterSerialiser
           ? [filterSerialiser(filterConfigItem, value)]
           : []),
       ];
-    },
-    []
-  );
+    }, [])
+    .filter((v) => !!v);
 
   return queryParts.length > 0 ? queryParts.join(' AND ') : undefined;
 };

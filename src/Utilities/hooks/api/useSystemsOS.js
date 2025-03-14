@@ -4,17 +4,16 @@ export const convertToArray = (params) => {
   if (Array.isArray(params)) {
     return params;
   } else {
-    const { filter, policyId } = params;
+    const { filter } = params;
 
     return [
-      policyId,
       undefined, // xRHIDENTITY
       filter,
     ];
   }
 };
 
-const usePolicySystemsOS = (options) =>
-  useComplianceQuery('policySystemsOS', { ...options, convertToArray });
+const useSystemsOs = (options) =>
+  useComplianceQuery('systemsOS', { ...options, convertToArray });
 
-export default usePolicySystemsOS;
+export default useSystemsOs;

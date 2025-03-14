@@ -19,25 +19,8 @@ module.exports = {
   appUrl: `/${bundle}/${appName}`,
   useProxy: process.env.PROXY === 'true',
   devtool: 'hidden-source-map',
-  plugins: [
-    ...(process.env.ENABLE_SENTRY
-      ? [
-          sentryWebpackPlugin({
-            ...(process.env.SENTRY_AUTH_TOKEN && {
-              authToken: process.env.SENTRY_AUTH_TOKEN,
-            }),
-            org: 'red-hat-it',
-            project: 'compliance-rhel',
-            moduleMetadata: ({ release }) => ({
-              dsn: `https://6410c806f0ac7b638105bb4e15eb3399@o490301.ingest.us.sentry.io/4508083145408512`,
-              org: 'red-hat-it',
-              project: 'compliance-rhel',
-              release,
-            }),
-          }),
-        ]
-      : []),
-  ],
+  useDevBuild: true,
+  plugins: [],
   moduleFederation: {
     shared: [
       {
