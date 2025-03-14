@@ -49,6 +49,7 @@ const useTableStateHelper = ({ query: queryOptions } = {}) => {
 
 const defaultUseQueryOptions = {
   skip: true,
+  endpoint: expect.anything(),
   params: expect.anything(),
   compileResult: expect.anything(),
 };
