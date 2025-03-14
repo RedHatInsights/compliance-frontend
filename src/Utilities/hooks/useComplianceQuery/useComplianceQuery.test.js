@@ -21,7 +21,7 @@ const useTableStateHelper = ({ query: queryOptions } = {}) => {
     pagination: true,
     page: 1,
     perPage: 10,
-    numberOfItems: 50,
+    total: 50,
     serialisers: { pagination: paginationSerialiser },
   });
 
@@ -48,7 +48,6 @@ const useTableStateHelper = ({ query: queryOptions } = {}) => {
 };
 
 const defaultUseQueryOptions = {
-  skip: true,
   params: expect.anything(),
   compileResult: expect.anything(),
 };
@@ -60,6 +59,7 @@ const mockUseQuery = jest.fn(() => {
 describe('useComplianceQuery', () => {
   beforeEach(() => {
     useQuery.mockImplementation(mockUseQuery);
+    jest.clearAllMocks();
   });
 
   it('verifies pagination', async () => {
@@ -70,11 +70,11 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions,
+        expect.objectContaining({ skip: true }),
       ),
     );
 
-    act(() =>
+    await act(() =>
       result.current.paginate.toolbarProps.pagination.onSetPage(undefined, 2),
     );
 
@@ -82,6 +82,7 @@ describe('useComplianceQuery', () => {
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
         expect.objectContaining({
+          ...defaultUseQueryOptions,
           params: expect.objectContaining({
             limit: 10,
             offset: 10,
@@ -90,7 +91,7 @@ describe('useComplianceQuery', () => {
       ),
     );
 
-    act(() =>
+    await act(() =>
       result.current.paginate.toolbarProps.pagination.onPerPageSelect(null, 50),
     );
 
@@ -98,6 +99,7 @@ describe('useComplianceQuery', () => {
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
         expect.objectContaining({
+          ...defaultUseQueryOptions,
           params: expect.objectContaining({ limit: 50 }),
         }),
       ),
@@ -112,11 +114,11 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions,
+        expect.objectContaining({ skip: true }),
       ),
     );
 
-    act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
+    await act(() => result.current.sort.tableProps.onSort(null, 1, 'desc'));
 
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
@@ -139,7 +141,7 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        defaultUseQueryOptions,
+        expect.objectContaining({ skip: true }),
       ),
     );
 

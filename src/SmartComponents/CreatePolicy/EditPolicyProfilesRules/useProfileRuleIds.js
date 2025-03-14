@@ -40,7 +40,7 @@ const useProfileRuleIds = ({
 
   const fetchProfileRulesForBatch = useCallback(
     async (offset, limit, params) =>
-      await fetchProfileRules({ limit, offset, ...params }, false),
+      await fetchProfileRules({ limit, offset, ...params }),
     [fetchProfileRules],
   );
   const { fetch: fetchRulesBatched } = useFetchTotalBatched(
@@ -54,21 +54,25 @@ const useProfileRuleIds = ({
 
   const fetchProfilesAndIdsForMinorVersion = useCallback(
     async (osMinorVersion) => {
-      const securityGuideId = (
-        await fetchSecurityGuide(
-          {
-            filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
-          },
-          false,
-        )
-      ).data[0].id;
-      const profileId = (await fetchProfiles({ securityGuideId }, false))
-        .data[0].id;
-      const ruleIds = (
-        await fetchRulesBatched({ securityGuideId, profileId })
-      ).data?.map(({ id }) => id);
+      const ssg = (
+        await fetchSecurityGuide({
+          filter: `os_major_version=${osMajorVersion} AND supported_profile=${profileRefId}:${osMinorVersion}`,
+        })
+      )?.data?.[0];
 
-      return [securityGuideId, profileId, ruleIds];
+      if (ssg) {
+        const securityGuideId = ssg.id;
+        const profileId = (await fetchProfiles({ securityGuideId })).data[0].id;
+        const ruleIds = (
+          await fetchRulesBatched({ securityGuideId, profileId })
+        ).data?.map(({ id }) => id);
+
+        return [securityGuideId, profileId, ruleIds];
+      } else {
+        console.log(
+          `No SSG found for ${profileRefId} on ${osMajorVersion}.${osMinorVersion}`,
+        );
+      }
     },
     [
       osMajorVersion,
@@ -93,17 +97,20 @@ const useProfileRuleIds = ({
           ) !== undefined
         )
           continue; // skip this version since already fetched
-
-        const [securityGuideId, profileId, ruleIds] =
+        const profileAndIds =
           await fetchProfilesAndIdsForMinorVersion(osMinorVersion);
 
-        profilesAndRuleIdsUpdated.push({
-          osMajorVersion,
-          osMinorVersion,
-          securityGuideId,
-          profileId,
-          ruleIds,
-        });
+        if (profileAndIds?.length) {
+          const [securityGuideId, profileId, ruleIds] = profileAndIds;
+
+          profilesAndRuleIdsUpdated.push({
+            osMajorVersion,
+            osMinorVersion,
+            securityGuideId,
+            profileId,
+            ruleIds,
+          });
+        }
       }
 
       mounted.current && setProfilesAndRuleIds(profilesAndRuleIdsUpdated);
