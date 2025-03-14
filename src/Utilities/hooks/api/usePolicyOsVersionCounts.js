@@ -15,7 +15,7 @@ const usePolicyOsVersionCounts = (policyId) => {
     const getCounts = async () => {
       try {
         const newCounts = {};
-        const versions = await fetchPolicySystemsOS([policyId], false);
+        const versions = await fetchPolicySystemsOS({ policyId }, false);
 
         for (const version of versions) {
           const minor = version.split('.')[1];
