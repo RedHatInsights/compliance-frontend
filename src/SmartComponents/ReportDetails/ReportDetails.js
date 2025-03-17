@@ -43,14 +43,14 @@ import useFetchNeverReported from 'SmartComponents/ReportDetails/Components/hook
 import TabTitleWithData from 'SmartComponents/ReportDetails/Components/TabTitleWithData';
 
 const ReportDetails = ({ route }) => {
-  const { report_id } = useParams();
+  const { report_id: reportId } = useParams();
   const {
     data: { data } = {},
     error,
     loading,
-  } = useReport({ params: { reportId: report_id } });
-  const { data: { data: ssgVersions } = {} } = useReportTestResultsSG({
-    params: { reportId: report_id },
+  } = useReport({ params: { reportId } });
+  const { data: { data: ssgVersions = [] } = {} } = useReportTestResultsSG({
+    params: { reportId },
   });
   let reportData = {};
   let reportTitle;
@@ -72,13 +72,13 @@ const ReportDetails = ({ route }) => {
     isLoading: isLoadingReporting,
     fetch: fetchReporting,
     data: dataReporting,
-  } = useFetchReporting(report_id);
+  } = useFetchReporting(reportId);
 
   const {
     isLoading: isLoadingNeverReported,
     fetch: fetchNeverReported,
     data: dataNeverReported,
-  } = useFetchNeverReported(report_id);
+  } = useFetchNeverReported(reportId);
 
   return (
     <StateViewWithError stateValues={{ error, data, loading }}>
@@ -202,7 +202,7 @@ const ReportDetails = ({ route }) => {
                     compliantFilter
                     ruleSeverityFilter
                     showGroupsFilter
-                    reportId={report_id}
+                    reportId={reportId}
                     fetchCustomOSes={fetchReportingCustomOSes}
                   />
                 </Tab>
@@ -245,7 +245,7 @@ const ReportDetails = ({ route }) => {
                     defaultFilter={'never_reported = true'}
                     ignoreOsMajorVersion
                     showGroupsFilter
-                    reportId={report_id}
+                    reportId={reportId}
                     fetchCustomOSes={fetchNeverReportedCustomOSes}
                     enableExport={false}
                   />

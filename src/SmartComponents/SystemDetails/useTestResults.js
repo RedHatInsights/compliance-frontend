@@ -6,45 +6,36 @@ import useReportTestResults from '../../Utilities/hooks/api/useReportTestResults
 const useTestResults = (systemId) => {
   const [testResultsLoading, setTestResultsLoading] = useState(true);
   const [testResults, setTestResults] = useState(undefined);
-  const { data: reports, loading: reportsLoading } = useSystemReports({
-    params: [systemId],
+  const { data: { data: reports } = {}, loading: reportsLoading } =
+    useSystemReports({
+      params: { systemId },
+    });
+  const { fetchBatchedQueue: fetchReportTestResults } = useReportTestResults({
+    skip: true,
   });
-  const { fetch: fetchTestResults } = useReportTestResults({ skip: true });
 
   useEffect(() => {
     const collectTestResults = async () => {
-      const newTestResults = await Promise.all(
-        reports.data.map(({ id: policyId }) =>
-          fetchTestResults(
-            [
-              policyId,
-              undefined,
-              undefined,
-              100,
-              undefined,
-              undefined,
-              undefined,
-              `system_id=${systemId}`,
-            ],
-            false
-          )
-        )
-      );
+      const filter = `system_id=${systemId}`;
+      const fetchQueue = reports.map(({ id: reportId }) => ({
+        reportId,
+        filter,
+      }));
+      const fetchQueueResults = (await fetchReportTestResults(fetchQueue))
+        .map(({ meta, data }) => {
+          const report = reports.find(({ id }) => id === meta.reportId);
+          return (
+            meta.total > 0 && {
+              ...data[0],
+              title: report.title,
+              profile_title: report.profile_title,
+              report_id: report.id,
+            }
+          );
+        })
+        .filter((v) => !!v);
 
-      setTestResults(
-        newTestResults.flatMap(({ meta, data }, index) =>
-          meta.total === 0
-            ? []
-            : [
-                {
-                  ...data[0],
-                  title: reports.data[index].title,
-                  profile_title: reports.data[index].profile_title,
-                  report_id: reports.data[index].id,
-                },
-              ]
-        )
-      );
+      setTestResults(fetchQueueResults);
       setTestResultsLoading(false);
     };
 
@@ -52,8 +43,7 @@ const useTestResults = (systemId) => {
       setTestResultsLoading(true);
       collectTestResults();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reports, reportsLoading, systemId]);
+  }, [reports, reportsLoading, systemId, fetchReportTestResults]);
 
   return { testResults, testResultsLoading };
 };

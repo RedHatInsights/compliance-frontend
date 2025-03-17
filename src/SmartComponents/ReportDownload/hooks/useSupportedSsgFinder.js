@@ -3,6 +3,7 @@ import useCollection from 'Utilities/hooks/api_v1/useCollection';
 const compareAsIntegers = (firstString, secondString) =>
   parseInt(firstString) === parseInt(secondString);
 
+// TODO check if it can be replaced with the "supported profiles" endpoint
 const useSupportedSsgFinder = (skip) => {
   const { data: supportedSsgs } = useCollection('supported_ssgs', {
     type: 'supportedSsg',

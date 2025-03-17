@@ -11,7 +11,6 @@ import {
   StateViewPart,
 } from 'PresentationalComponents';
 import usePolicies from 'Utilities/hooks/api/usePolicies';
-import usePoliciesCount from 'Utilities/hooks/usePoliciesCount';
 import CreateLink from 'SmartComponents/CompliancePolicies/components/CreateLink';
 import ComplianceEmptyState from 'PresentationalComponents/ComplianceEmptyState';
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
@@ -19,34 +18,20 @@ import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableSta
 const CompliancePolicies = () => {
   // Async table needs info about total policy count before mounting
   // Also required for correctly showing empty state
-  const totalPolicies = usePoliciesCount();
-  let totalPoliciesLoading = totalPolicies == null;
-
-  let {
-    data: { data, meta: { total: currentTotalPolicies } = {} } = {},
+  // TODO Same as with the reports page. We need to finish the table tools empty state
+  const { data: totalPolicies, loading: totalPoliciesLoading } = usePolicies({
+    onlyTotal: true,
+  });
+  const {
+    data: { data: policies, meta } = {},
     error,
     loading,
     exporter,
   } = usePolicies({
     useTableState: true,
-    batch: { batchSize: 10 },
   });
-
-  let showTable = data || !totalPoliciesLoading;
-
-  if (showTable) {
-    if (data) {
-      error = undefined;
-    }
-    totalPoliciesLoading = undefined;
-  }
-  // Async table always needs one total value
-  const calculatedTotal = currentTotalPolicies ?? totalPolicies;
-
-  if (error) {
-    totalPoliciesLoading = undefined;
-    showTable = undefined;
-  }
+  const showTable =
+    (policies || totalPolicies) && !error && !(totalPoliciesLoading || loading);
 
   return (
     <React.Fragment>
@@ -57,8 +42,8 @@ const CompliancePolicies = () => {
         <StateView
           stateValues={{
             error,
-            loading: totalPoliciesLoading,
-            showTable: showTable,
+            loading: totalPoliciesLoading || loading,
+            showTable,
           }}
         >
           <StateViewPart stateKey="error">
@@ -77,9 +62,8 @@ const CompliancePolicies = () => {
               </Grid>
             ) : (
               <PoliciesTable
-                policies={data}
-                total={calculatedTotal}
-                loading={loading}
+                policies={policies}
+                total={meta?.total}
                 DedicatedAction={CreateLink}
                 options={{
                   exporter,

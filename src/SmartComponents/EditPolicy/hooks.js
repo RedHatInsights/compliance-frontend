@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react';
 import { dispatchNotification } from 'Utilities/Dispatcher';
-import useAssignRules from '../../Utilities/hooks/api/useAssignRules';
-import useAssignSystems from '../../Utilities/hooks/api/useAssignSystems';
-import useTailorings from '../../Utilities/hooks/api/useTailorings';
-import useUpdatePolicy from '../../Utilities/hooks/api/useUpdatePolicy';
-import useUpdateTailoring from '../../Utilities/hooks/api/useUpdateTailoring';
+import useAssignRules from 'Utilities/hooks/api/useAssignRules';
+import useAssignSystems from 'Utilities/hooks/api/useAssignSystems';
+import useTailorings from 'Utilities/hooks/api/useTailorings';
+import useUpdatePolicy from 'Utilities/hooks/api/useUpdatePolicy';
+import useUpdateTailoring from 'Utilities/hooks/api/useUpdateTailoring';
 
-const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
+const useSavePolicy = ({ id: policyId } = {}, updatedPolicyHostsAndRules) => {
   const {
     hosts,
     tailoringRules,
@@ -15,62 +15,56 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
     complianceThreshold,
     tailoringValueOverrides,
   } = updatedPolicyHostsAndRules || {};
+  const params = { policyId };
+  const { fetchBatched: fetchTailorings } = useTailorings({
+    params,
+    skip: true,
+  });
+  const { fetchQueue: assignRules } = useAssignRules({ params });
+  const { fetch: assignSystems } = useAssignSystems({ params });
+  const { fetch: updatePolicy } = useUpdatePolicy({ params });
+  const { fetchQueue: updateTailorings } = useUpdateTailoring({ params });
 
-  const { fetch: assignRules } = useAssignRules({ skip: true });
-  const { fetch: assignSystems } = useAssignSystems({ skip: true });
-  const { fetch: fetchTailorings } = useTailorings({ skip: true });
-  const { fetch: updatePolicy } = useUpdatePolicy({ skip: true });
-  const { fetch: updateTailoring } = useUpdateTailoring({ skip: true });
-
-  const updatePolicyRest = async () => {
-    const policyId = policy.id;
-
-    if (hosts !== undefined) {
-      await assignSystems({ policyId, assignSystemsRequest: { ids: hosts } });
+  const save = async () => {
+    if (hosts) {
+      await assignSystems({ assignSystemsRequest: { ids: hosts } });
     }
 
     if (tailoringRules || tailoringValueOverrides) {
-      const tailoringsResponse = await fetchTailorings(
-        {
-          policyId,
-          limit: 100,
-        },
-        false
-      ); // fetch the most up-to-date tailorings
+      const tailoringsResponse = await fetchTailorings();
       const tailoringsUpdated = tailoringsResponse.data;
+
       if (tailoringRules) {
-        for (const entry of Object.entries(tailoringRules)) {
-          // assign rules
-          const [osMinorVersion, rules] = entry;
-          await assignRules({
-            policyId,
+        const tailoringUpdates = Object.entries(tailoringRules).map(
+          ([osMinorVersion, rules]) => ({
             tailoringId: tailoringsUpdated.find(
               ({ os_minor_version }) =>
                 os_minor_version === Number(osMinorVersion)
             ).id,
             assignRulesRequest: { ids: rules },
-          });
-        }
+          })
+        );
+
+        await assignRules(tailoringUpdates);
       }
+
       if (tailoringValueOverrides) {
-        for (const entry of Object.entries(tailoringValueOverrides)) {
-          // patch rule values
-          const [osMinorVersion, valueOverrides] = entry;
-          await updateTailoring({
-            policyId,
+        const tailoringUpdates = Object.entries(tailoringValueOverrides).map(
+          ([osMinorVersion, valueOverrides]) => ({
             tailoringId: tailoringsUpdated.find(
               ({ os_minor_version }) =>
                 os_minor_version === Number(osMinorVersion)
             ).id,
             valuesUpdate: { value_overrides: valueOverrides },
-          });
-        }
+          })
+        );
+
+        await updateTailorings(tailoringUpdates);
       }
     }
 
     if (description || businessObjective || complianceThreshold) {
       await updatePolicy({
-        policyId,
         policyUpdate: {
           description,
           business_objective: businessObjective?.title ?? '--',
@@ -80,15 +74,18 @@ const useUpdatePolicyRest = (policy, updatedPolicyHostsAndRules) => {
     }
   };
 
-  return updatePolicyRest;
+  return save;
 };
 
 export const useOnSave = (
   policy,
   updatedPolicyHostsAndRules,
-  { onSave: onSaveCallback, onError: onErrorCallback } = {}
+  {
+    onSave: onSaveCallback = () => ({}),
+    onError: onErrorCallback = () => ({}),
+  } = {}
 ) => {
-  const updatePolicy = useUpdatePolicyRest(policy, updatedPolicyHostsAndRules);
+  const savePolicy = useSavePolicy(policy, updatedPolicyHostsAndRules);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -98,7 +95,7 @@ export const useOnSave = (
     }
 
     setIsSaving(true);
-    updatePolicy(policy, updatedPolicyHostsAndRules)
+    savePolicy(policy, updatedPolicyHostsAndRules)
       .then(() => {
         setIsSaving(false);
         dispatchNotification({
@@ -117,7 +114,14 @@ export const useOnSave = (
         });
         onErrorCallback?.();
       });
-  }, [isSaving, policy, updatedPolicyHostsAndRules]);
+  }, [
+    savePolicy,
+    isSaving,
+    policy,
+    updatedPolicyHostsAndRules,
+    onSaveCallback,
+    onErrorCallback,
+  ]);
 
   return [isSaving, onSave];
 };

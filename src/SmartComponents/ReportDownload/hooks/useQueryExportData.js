@@ -1,30 +1,7 @@
+import { useCallback } from 'react';
 import { prepareForExport } from './helpers';
-import { useSystemsFetch, useFetchFailedRules } from './apiQueryHooks';
-
-const useExportData = (report, exportSettings) => {
-  const fetchSystems = useSystemsFetch(report);
-  const fetchRules = useFetchFailedRules(report);
-
-  return async () => {
-    const [
-      compliantSystems,
-      nonCompliantSystems,
-      unsupportedSystems,
-      neverReported,
-    ] = await fetchSystems();
-
-    const topTenFailedRules = await fetchRules();
-
-    return prepareForExport(
-      exportSettings,
-      compliantSystems,
-      nonCompliantSystems,
-      unsupportedSystems,
-      neverReported,
-      topTenFailedRules
-    );
-  };
-};
+import useReportStats from 'Utilities/hooks/api/useReportStats';
+import useSystemsFetch from './useSystemsFetch';
 
 const useQueryExportData = (
   exportSettings,
@@ -34,9 +11,33 @@ const useQueryExportData = (
     onError: () => undefined,
   }
 ) => {
-  const fetchData = useExportData(report, exportSettings);
+  const fetchSystems = useSystemsFetch(report);
+  const { fetch: fetchRules } = useReportStats({
+    params: { reportId: report?.id },
+    skip: true,
+  });
 
-  return async () => {
+  const fetchData = useCallback(async () => {
+    const [
+      compliantSystems,
+      nonCompliantSystems,
+      unsupportedSystems,
+      neverReported,
+    ] = await fetchSystems();
+    const { data: { top_failed_rules: topTenFailedRules } = {} } =
+      await fetchRules();
+
+    return prepareForExport(
+      exportSettings,
+      compliantSystems,
+      nonCompliantSystems,
+      unsupportedSystems,
+      neverReported,
+      topTenFailedRules
+    );
+  }, [exportSettings, fetchSystems, fetchRules]);
+
+  const queryExportData = useCallback(async () => {
     try {
       const exportData = await fetchData();
 
@@ -50,7 +51,9 @@ const useQueryExportData = (
         throw error;
       }
     }
-  };
+  }, [fetchData, onError, onComplete]);
+
+  return queryExportData;
 };
 
 export default useQueryExportData;

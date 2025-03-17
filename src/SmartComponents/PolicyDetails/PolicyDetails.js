@@ -32,18 +32,47 @@ import './PolicyDetails.scss';
 import useSaveValueOverrides from './hooks/useSaveValueOverrides';
 import usePolicy from 'Utilities/hooks/api/usePolicy';
 import dataSerialiser from 'Utilities/dataSerialiser';
+import usePolicyOsVersionCounts from 'Utilities/hooks/usePolicyOsVersionCounts';
 import * as Columns from '@/PresentationalComponents/RulesTable/Columns';
 import EditRulesButtonToolbarItem from './EditRulesButtonToolbarItem';
-import usePolicyOsVersionCounts from '../../Utilities/hooks/api/usePolicyOsVersionCounts';
 
-export const PolicyDetailsBase = ({
-  route,
-  query,
-  saveToPolicy,
-  versionCounts,
-}) => {
+const dataMap = {
+  id: ['id', 'policy.id'],
+  title: 'name',
+  description: 'description',
+  business_objective: 'businessObjective.title',
+  compliance_threshold: 'complianceThreshold',
+  total_system_count: 'totalHostCount',
+  os_major_version: 'osMajorVersion',
+  profile_title: ['policy.name', 'policyType'],
+  ref_id: 'refId',
+};
+
+export const PolicyDetails = ({ route }) => {
   const defaultTab = 'details';
-  const { data, error, loading, refetch } = query;
+  const { policy_id: policyId } = useParams();
+  const {
+    data: { data: queryData } = {},
+    error,
+    loading,
+    refetch,
+  } = usePolicy({ params: { policyId } });
+  const versionCounts = usePolicyOsVersionCounts(policyId);
+  const data = queryData
+    ? {
+        profile: {
+          ...dataSerialiser(queryData, dataMap),
+          policy: { profiles: [] },
+        },
+      }
+    : {};
+
+  const saveValueOverrides = useSaveValueOverrides();
+  const saveToPolicy = async (...args) => {
+    await saveValueOverrides(...args);
+    refetch?.();
+  };
+
   const policy = data?.profile;
 
   useTitleEntity(route, policy?.name);
@@ -124,61 +153,8 @@ export const PolicyDetailsBase = ({
   );
 };
 
-PolicyDetailsBase.propTypes = {
-  route: PropTypes.object,
-  query: PropTypes.shape({
-    data: PropTypes.oneOf([undefined, PropTypes.object]),
-    error: PropTypes.oneOf([undefined, PropTypes.string]),
-    loading: PropTypes.oneOf([undefined, false, true]),
-    refetch: PropTypes.func,
-  }),
-  saveToPolicy: PropTypes.func,
-  versionCounts: PropTypes.object,
-};
-
-const PolicyDetails = ({ route }) => {
-  const { policy_id: policyId } = useParams();
-  const query = usePolicy({ params: { policyId } });
-  const versionCounts = usePolicyOsVersionCounts(policyId);
-  const data = query?.data?.data
-    ? {
-        profile: {
-          ...dataSerialiser(query.data.data, dataMap),
-          policy: { profiles: [] },
-        },
-      }
-    : {};
-
-  const saveValueOverrides = useSaveValueOverrides();
-  const saveValue = async (...args) => {
-    await saveValueOverrides(...args);
-    query.refetch?.();
-  };
-
-  return (
-    <PolicyDetailsBase
-      query={{ ...query, data }}
-      route={route}
-      saveToPolicy={saveValue}
-      versionCounts={versionCounts}
-    />
-  );
-};
-
 PolicyDetails.propTypes = {
   route: PropTypes.object,
 };
 
 export default PolicyDetails;
-
-const dataMap = {
-  id: ['id', 'policy.id'],
-  title: 'name',
-  description: 'description',
-  business_objective: 'businessObjective.title',
-  compliance_threshold: 'complianceThreshold',
-  total_system_count: 'totalHostCount',
-  os_major_version: 'osMajorVersion',
-  profile_title: ['policy.name', 'policyType'],
-  ref_id: 'refId',
-};

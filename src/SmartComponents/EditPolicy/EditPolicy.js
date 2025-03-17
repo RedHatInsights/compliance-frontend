@@ -9,12 +9,12 @@ import {
   StateViewWithError,
   StateViewPart,
 } from 'PresentationalComponents';
+import usePolicy from 'Utilities/hooks/api/usePolicy';
+import usePolicySystems from 'Utilities/hooks/api/usePolicySystems';
+import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
+import useAssignedRules from './hooks/useAssignedRules';
 import EditPolicyForm from './EditPolicyForm';
 import { useOnSave } from './hooks';
-import usePolicy from 'Utilities/hooks/api/usePolicy';
-import useAssignedRules from './hooks/useAssignedRules';
-import useAssignedSystems from './hooks/useAssignedSystems';
-import useSupportedProfiles from 'Utilities/hooks/api/useSupportedProfiles';
 
 const EditPolicy = ({ route }) => {
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ const EditPolicy = ({ route }) => {
   } = useSupportedProfiles({
     params: {
       filter: `os_major_version=${policy?.os_major_version}`,
-      limit: 100,
     },
-    skip: policyLoading || !policy?.os_major_version,
+    batched: true,
+    skip: !policy,
   });
 
   const securityGuide = supportedProfiles?.find(
@@ -45,15 +45,17 @@ const EditPolicy = ({ route }) => {
   const supportedOsVersions = securityGuide?.os_minor_versions || [];
 
   const { assignedRuleIds, assignedRulesLoading } = useAssignedRules(policyId);
-  const { assignedSystems, assignedSystemsLoading } = useAssignedSystems(
-    policyId,
-    policy,
-    policyLoading
-  );
+  const {
+    data: { data: assignedSystems } = {},
+    loading: assignedSystemsLoading,
+  } = usePolicySystems({
+    params: { policyId },
+    batched: true,
+  });
 
   const [updatedPolicy, setUpdatedPolicy] = useState(null);
 
-  const saveEnabled = !updatedPolicy;
+  const saveEnabled = !updatedPolicy || assignedRulesLoading;
 
   const onSaveCallback = (isClose) =>
     navigate(

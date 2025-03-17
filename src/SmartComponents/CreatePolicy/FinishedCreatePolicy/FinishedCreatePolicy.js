@@ -10,7 +10,7 @@ export const useUpdatePolicy = () => {
   const { fetch: createPolicy } = useCreatePolicy({ skip: true });
   const { fetch: assignRules } = useAssignRules({ skip: true });
   const { fetch: assignSystems } = useAssignSystems({ skip: true });
-  const { fetch: fetchTailorings } = useTailorings({ skip: true });
+  const { fetchBatched: fetchTailorings } = useTailorings({ skip: true });
   const { fetch: updateTailoring } = useUpdateTailoring({ skip: true }); // to update value overrides
 
   const updatedPolicy = useCallback(
@@ -41,39 +41,30 @@ export const useUpdatePolicy = () => {
         }
       };
 
-      const createPolicyResponse = await createPolicy(
-        [
-          undefined,
-          {
-            title: name,
-            description,
-            business_objective: businessObjective,
-            compliance_threshold: complianceThreshold,
-            profile_id: cloneFromProfileId,
-          },
-        ],
-        false
-      );
+      const createPolicyResponse = await createPolicy({
+        policy: {
+          title: name,
+          description,
+          business_objective: businessObjective,
+          compliance_threshold: complianceThreshold,
+          profile_id: cloneFromProfileId,
+        },
+      });
 
       dispatchProgress();
 
       const { id: newPolicyId } = createPolicyResponse.data;
 
-      await assignSystems(
-        [newPolicyId, undefined, { ids: hosts.map(({ id }) => id) }],
-        false
-      );
+      await assignSystems({
+        policyId: newPolicyId,
+        assignSystemsRequest: { ids: hosts.map(({ id }) => id) },
+      });
 
       dispatchProgress();
 
-      const fetchPolicyResponse = await fetchTailorings(
-        [
-          newPolicyId,
-          undefined,
-          100 /** to ensure we fetch all tailorings at once */,
-        ],
-        false
-      );
+      const fetchPolicyResponse = await fetchTailorings({
+        policyId: newPolicyId,
+      });
       const tailorings = fetchPolicyResponse.data;
 
       dispatchProgress();
@@ -84,17 +75,11 @@ export const useUpdatePolicy = () => {
             Number(osMinorVersion) === tailoring.os_minor_version
         ).ruleRefIds;
 
-        await assignRules(
-          [
-            newPolicyId,
-            tailoring.id,
-            undefined,
-            {
-              ids: rulesToAssign,
-            },
-          ],
-          false
-        );
+        await assignRules({
+          policyId: newPolicyId,
+          tailoringId: tailoring.id,
+          assignRulesRequest: { ids: rulesToAssign },
+        });
 
         dispatchProgress();
       }
