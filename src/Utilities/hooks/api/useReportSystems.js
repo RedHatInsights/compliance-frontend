@@ -1,15 +1,17 @@
 import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = ({
-  systemId,
+  reportId,
+  tags,
   limit,
   offset,
   idsOnly,
   sortBy,
   filter,
 }) => [
-  systemId,
+  reportId,
   undefined, // xRHIDENTITY
+  tags,
   limit,
   offset,
   idsOnly,
@@ -17,7 +19,7 @@ const convertToArray = ({
   filter,
 ];
 
-const useSystemPolicies = (options) =>
-  useComplianceQuery('systemPolicies', { ...options, convertToArray });
+const useReportSystems = (options) =>
+  useComplianceQuery('reportSystems', { ...options, convertToArray });
 
-export default useSystemPolicies;
+export default useReportSystems;

@@ -1,5 +1,15 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const usePolicies = (options) => useComplianceQuery('policies', options);
+const convertToArray = ({ limit, offset, idsOnly, sortBy, filter }) => [
+  undefined, // xRHIDENTITY
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+];
+
+const usePolicies = (options) =>
+  useComplianceQuery('policies', { ...options, convertToArray });
 
 export default usePolicies;

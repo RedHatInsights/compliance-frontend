@@ -39,7 +39,7 @@ const SystemDetails = ({ route }) => {
     data: { data } = {},
     error,
     loading,
-  } = useSystem({ params: [inventoryId] });
+  } = useSystem({ params: { systemId: inventoryId } });
   const systemName = data?.display_name || inventoryId;
 
   useTitleEntity(route, systemName);

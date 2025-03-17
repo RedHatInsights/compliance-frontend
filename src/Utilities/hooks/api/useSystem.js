@@ -1,5 +1,15 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const useSystem = (options) => useComplianceQuery('system', options);
+export const convertToArray = ({ systemId }) => [
+  systemId,
+  undefined, // xRHIDENTITY
+];
 
-export default useSystem;
+const useSystems = (options) =>
+  useComplianceQuery('system', {
+    ...options,
+    requiredParams: 'systemId',
+    convertToArray,
+  });
+
+export default useSystems;

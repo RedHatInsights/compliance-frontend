@@ -17,12 +17,11 @@ import useReport from 'Utilities/hooks/api/useReport';
 // Provides that export settings modal accessible in the report details
 export const ReportDownload = () => {
   const { report_id: reportId } = useParams();
-
   const {
     data: { data: reportData } = {},
     loading,
     error,
-  } = useReport(reportId);
+  } = useReport({ params: { reportId } });
 
   const navigate = useNavigate();
   const {
