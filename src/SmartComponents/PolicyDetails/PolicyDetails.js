@@ -157,7 +157,7 @@ const PolicyDetails = ({ route }) => {
 
   return (
     <PolicyDetailsBase
-      query={{ ...query, data }}
+      query={{ ...query, data, refetch: query.fetch }}
       route={route}
       saveToPolicy={saveValue}
       versionCounts={versionCounts}
