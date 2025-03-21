@@ -79,6 +79,7 @@ const NoTailorings = ({ policy, columns }) => {
         remediationsEnabled={false}
         columns={columns}
         DedicatedAction={DedicatedAction}
+        skipValueDefinitions={true}
       />
     </React.Fragment>
   );
