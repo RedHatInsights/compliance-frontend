@@ -1,6 +1,15 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const useReportTestResultsSG = (reportId, options) =>
-  useComplianceQuery('reportTestResultsSG', { params: [reportId], ...options });
+const convertToArray = ({ reportId }) => [
+  reportId,
+  undefined, // xRHIDENTITY
+];
+
+const useReportTestResultsSG = (options) =>
+  useComplianceQuery('reportTestResultsSG', {
+    ...options,
+    requiredParams: 'reportId',
+    convertToArray,
+  });
 
 export default useReportTestResultsSG;

@@ -1,4 +1,4 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
 const convertToArray = (params) => {
   if (Array.isArray(params)) {
@@ -14,6 +14,10 @@ const convertToArray = (params) => {
 };
 
 const useSecurityGuide = (options) =>
-  useComplianceQuery('securityGuide', { ...options, convertToArray });
+  useComplianceQuery('securityGuide', {
+    ...options,
+    requiredParams: 'securityGuideId',
+    convertToArray,
+  });
 
 export default useSecurityGuide;

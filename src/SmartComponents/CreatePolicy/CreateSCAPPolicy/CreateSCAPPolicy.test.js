@@ -41,7 +41,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('renders available OS major versions when fetched', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -66,7 +66,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('calls the change callback on OS select', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -87,7 +87,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('indicates selected OS version and renders policies table', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -114,7 +114,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('shows available supported profiles', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });
@@ -139,7 +139,7 @@ describe('CreateSCAPPolicy', () => {
 
   it('calls the change callback on profile select', async () => {
     useSecurityGuidesOS.mockReturnValue({
-      data: availableVersions,
+      data: { data: availableVersions },
       loading: false,
       error: undefined,
     });

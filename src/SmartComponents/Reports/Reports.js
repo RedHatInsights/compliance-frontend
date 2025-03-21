@@ -12,30 +12,31 @@ import {
 import TableStateProvider from '@/Frameworks/AsyncTableTools/components/TableStateProvider';
 import useReports from 'Utilities/hooks/api/useReports';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
-import useReportsCount from 'Utilities/hooks/useReportsCount';
 
 const ReportsHeader = () => (
   <PageHeader>
     <PageHeaderTitle title="Reports" />
   </PageHeader>
 );
+const REPORTS_FILTER = 'with_reported_systems = true';
 
 const Reports = () => {
   // Required for correctly showing empty state
-  const totalReports = useReportsCount();
-
-  const { data: operatingSystems } = useReportsOS();
+  // TODO We can probably avoid this extra request by finishing the empty state implementation in the TableTools
+  const { data: totalReports } = useReports({
+    onlyTotal: true,
+    filter: REPORTS_FILTER,
+  });
+  const { data: { data: operatingSystems } = {} } = useReportsOS();
   const {
     data: { data: reportsData, meta: { total } = {} } = {},
     error,
     loading: reportsLoading,
     exporter,
   } = useReports({
-    params: { filter: 'with_reported_systems = true' },
+    params: { filter: REPORTS_FILTER },
     useTableState: true,
-    batch: {
-      batchSize: 10,
-    },
+    batch: { batchSize: 10 },
   });
   const data = operatingSystems;
   const loading = !data ? true : undefined;

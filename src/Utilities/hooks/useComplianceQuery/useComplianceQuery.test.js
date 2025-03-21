@@ -47,9 +47,10 @@ const useTableStateHelper = ({ query: queryOptions } = {}) => {
   };
 };
 
-const initialSerializedState = {
+const defaultUseQueryOptions = {
   skip: true,
   params: expect.anything(),
+  compileResult: expect.anything(),
 };
 
 const mockUseQuery = jest.fn(() => {
@@ -69,7 +70,7 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        initialSerializedState
+        defaultUseQueryOptions
       )
     );
 
@@ -111,7 +112,7 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        initialSerializedState
+        defaultUseQueryOptions
       )
     );
 
@@ -138,7 +139,7 @@ describe('useComplianceQuery', () => {
     await waitFor(() =>
       expect(mockUseQuery).toHaveBeenCalledWith(
         expect.anything(),
-        initialSerializedState
+        defaultUseQueryOptions
       )
     );
 

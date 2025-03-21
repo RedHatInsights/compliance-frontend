@@ -1,6 +1,25 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
+
+const convertToArray = ({
+  reportId,
+  tags,
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+}) => [
+  reportId,
+  undefined, // xRHIDENTITY
+  tags,
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+];
 
 const useReportTestResults = (options) =>
-  useComplianceQuery('reportTestResults', options);
+  useComplianceQuery('reportTestResults', { ...options, convertToArray });
 
 export default useReportTestResults;

@@ -37,7 +37,7 @@ const CreateSCAPPolicy = ({
   change,
 }) => {
   const {
-    data: availableOsMajorVersions,
+    data: { data: availableOsMajorVersions } = {},
     error: availableOsMajorVersionsError,
     loading: availableOsMajorVersionsLoading,
   } = useSecurityGuidesOS();

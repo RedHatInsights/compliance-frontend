@@ -1,5 +1,16 @@
-import useComplianceQuery from './useComplianceQuery';
+import useComplianceQuery from '../useComplianceQuery';
 
-const useSystemsQuery = (options) => useComplianceQuery('systems', options);
+const convertToArray = ({ tags, limit, offset, idsOnly, sortBy, filter }) => [
+  undefined, // xRHIDENTITY
+  tags,
+  limit,
+  offset,
+  idsOnly,
+  sortBy,
+  filter,
+];
+
+const useSystemsQuery = (options) =>
+  useComplianceQuery('systems', { ...options, convertToArray });
 
 export default useSystemsQuery;

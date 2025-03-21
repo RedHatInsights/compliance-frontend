@@ -35,7 +35,7 @@ describe('ReportDetails', () => {
       </TestWrapper>
     );
 
-    expect(useReport).toHaveBeenCalledWith('1234');
+    expect(useReport).toHaveBeenCalledWith({ params: { reportId: '1234' } });
 
     expect(
       await screen.findByRole('heading', {

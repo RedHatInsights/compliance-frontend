@@ -7,9 +7,10 @@ const useAssignedRules = (policyId) => {
   const [assignedRuleIds, setAssignedRuleIds] = useState(null); // we want to explicitly set this to null, so that bulk select properly sets what is preselected items
   const [assignedRuleIdsLoading, setAssignedRuleIdsLoading] = useState(true);
 
-  const { data: tailoringsData, loading: tailoringsLoading } = useTailorings({
-    params: [policyId],
-  });
+  const { data: { data: tailoringsData } = {}, loading: tailoringsLoading } =
+    useTailorings({
+      params: { policyId },
+    });
   const { fetch: fetchTailoringRules } = useTailoringRules({ skip: true });
 
   const fetchBatched = useCallback(
@@ -40,7 +41,7 @@ const useAssignedRules = (policyId) => {
     const fillTailoringRules = async () => {
       let rules = {};
 
-      const nonCanonicalTailorings = tailoringsData.data.filter(
+      const nonCanonicalTailorings = tailoringsData.filter(
         ({ os_minor_version }) => os_minor_version !== null
       );
 

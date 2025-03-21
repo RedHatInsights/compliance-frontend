@@ -4,7 +4,6 @@ import TestWrapper from '@redhat-cloud-services/frontend-components-utilities/Te
 
 import usePolicies from 'Utilities/hooks/api/usePolicies';
 import useReports from 'Utilities/hooks/api/useReports';
-import useReportsCount from 'Utilities/hooks/useReportsCount';
 import useReportsOS from 'Utilities/hooks/api/useReportsOs';
 
 import Reports from './Reports.js';
@@ -13,11 +12,9 @@ import Reports from './Reports.js';
 jest.mock('Utilities/hooks/api/usePolicies', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReports', () => jest.fn());
 jest.mock('Utilities/hooks/api/useReportsOs', () => jest.fn());
-jest.mock('Utilities/hooks/useReportsCount', () => jest.fn());
 
 describe('Reports', () => {
   it('Reports rendered with empty state', async () => {
-    useReportsCount.mockImplementation(() => 0);
     usePolicies.mockImplementation(() => ({
       data: { data: [], meta: { total: 0 } },
       loading: false,
@@ -30,12 +27,16 @@ describe('Reports', () => {
       error: null,
       refetch: () => {},
     }));
-    useReports.mockImplementation(() => ({
-      data: { data: [], meta: { total: 0 } },
-      loading: false,
-      error: null,
-      refetch: () => {},
-    }));
+    useReports.mockImplementation(({ onlyTotal }) =>
+      !onlyTotal
+        ? {
+            data: { data: [], meta: { total: 0 } },
+            loading: false,
+            error: null,
+            refetch: () => {},
+          }
+        : { data: 0 }
+    );
 
     render(
       <TestWrapper>
@@ -43,7 +44,6 @@ describe('Reports', () => {
       </TestWrapper>
     );
 
-    expect(useReportsCount).toHaveBeenCalled();
     expect(useReportsOS).toHaveBeenCalled();
     expect(useReports).toHaveBeenCalled();
 

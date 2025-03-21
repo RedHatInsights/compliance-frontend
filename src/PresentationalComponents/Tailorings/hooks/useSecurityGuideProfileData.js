@@ -10,7 +10,7 @@ const useSecurityGuideProfileData = ({
   tableState: { tableState: { tableView } = {} } = {},
 }) => {
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: profileTreeLoading,
     error: profileTreeError,
   } = useProfileTree({
