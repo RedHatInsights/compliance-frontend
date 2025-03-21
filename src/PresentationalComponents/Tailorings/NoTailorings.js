@@ -76,7 +76,6 @@ const NoTailorings = ({ policy, columns }) => {
         ansibleSupportFilter
         loading={rulesLoading}
         defaultTableView="rows"
-        remediationsEnabled={false}
         columns={columns}
         DedicatedAction={DedicatedAction}
       />

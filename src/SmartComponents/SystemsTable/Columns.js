@@ -35,13 +35,14 @@ export const customColumn = (column, props) =>
   });
 
 export const Name = compileColumnRenderFunc({
-  key: 'name',
+  key: 'display_name',
   title: 'Name',
   sortBy: ['name'],
   props: {
     width: 40,
   },
-  renderExport: (system) => `${system.name} (${operatingSystemString(system)})`,
+  renderExport: (system) =>
+    `${system.display_name} (${operatingSystemString(system)})`,
   cell: NameCell,
 });
 

@@ -10,14 +10,14 @@ const useTailoringsData = ({
   groupFilter,
 }) => {
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useTailoringRuleTree({
     params: { policyId, tailoringId },
     skip: skipRuleTree,
   });
-
+  console.log(ruleTree);
   const {
     data: rules,
     loading: rulesLoading,

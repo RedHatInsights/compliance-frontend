@@ -33,7 +33,7 @@ export const CustomDisplay = (props) => {
     showOsInfo = false,
     showLink = false,
     idProperty = 'id',
-    nameProperty = 'name',
+    nameProperty = 'display_name',
   } = props;
   const hasOsInfo = (osMajorVersion, osMinorVersion) =>
     !!osMajorVersion && !!osMinorVersion && showOsInfo;
@@ -71,22 +71,22 @@ CustomDisplay.propTypes = {
 
 export const Name = ({
   id,
-  name,
-  osMajorVersion,
-  osMinorVersion,
+  display_name,
+  os_major_version,
+  os_minor_version,
   showOsInfo = false,
   showLink = false,
 }) => {
-  const hasOsInfo = (osMajorVersion, osMinorVersion) =>
-    !!osMajorVersion && !!osMinorVersion && showOsInfo;
+  const hasOsInfo = (os_major_version, os_minor_version) =>
+    !!os_major_version && !!os_minor_version && showOsInfo;
 
   return (
     <TextContent>
-      {showLink ? <SystemLink {...{ id }}>{name}</SystemLink> : name}
+      {showLink ? <SystemLink {...{ id }}>{display_name}</SystemLink> : display_name}
 
-      {hasOsInfo(osMajorVersion, osMinorVersion) && (
+      {hasOsInfo(os_major_version, os_minor_version) && (
         <Text component={TextVariants.small}>
-          RHEL {osMajorVersion}.{osMinorVersion}
+          RHEL {os_major_version}.{os_minor_version}
         </Text>
       )}
     </TextContent>
@@ -228,7 +228,7 @@ LastScanned.propTypes = {
   testResultProfiles: propTypes.array,
 };
 
-export const operatingSystemString = ({ osMinorVersion, osMajorVersion }) =>
-  `RHEL ${osMajorVersion}.${osMinorVersion}`;
+export const operatingSystemString = ({ os_minor_version, os_major_version }) =>
+  `RHEL ${os_major_version}.${os_minor_version}`;
 
 export const OperatingSystem = (system) => operatingSystemString(system);

@@ -23,7 +23,7 @@ const useSecurityGuideData = ({
   });
 
   const {
-    data: ruleTree,
+    data: { data: ruleTree } = {},
     loading: ruleTreeLoading,
     error: ruleTreeError,
   } = useSecurityGuideRuleTree({
@@ -32,6 +32,7 @@ const useSecurityGuideData = ({
     },
     skip: skipRuleTree,
   });
+  console.log(ruleTree);
 
   const {
     loading: ruleGroupsLoading,

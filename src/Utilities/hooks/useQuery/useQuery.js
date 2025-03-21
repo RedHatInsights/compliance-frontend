@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useDeepCompareEffect, useDeepCompareCallback } from 'use-deep-compare';
+import { compileResult } from './helpers';
 
 /**
  *
@@ -54,7 +55,7 @@ const useQuery = (fn, options = {}) => {
       if (setDataState) {
         setLoading(true);
         try {
-          const data = await (async (params) => {
+          const result = await (async (params) => {
             const convertedParams = convertToArray
               ? convertToArray(params)
               : params;
@@ -67,7 +68,7 @@ const useQuery = (fn, options = {}) => {
           })(params);
 
           if (mounted.current) {
-            setData(data?.data || data);
+            setData(compileResult(result, params));
             setLoading(false);
           }
         } catch (e) {
@@ -79,7 +80,7 @@ const useQuery = (fn, options = {}) => {
         }
       } else {
         try {
-          const data = await (async (params) => {
+          const result = await (async (params) => {
             const convertedParams = convertToArray
               ? convertToArray(params)
               : params;
@@ -91,7 +92,7 @@ const useQuery = (fn, options = {}) => {
             }
           })(params);
 
-          return data?.data || data;
+          return compileResult(result, params);
         } catch (e) {
           console.log(e);
           throw e;
