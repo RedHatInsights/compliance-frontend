@@ -95,6 +95,7 @@ import useComplianceTableState from './useComplianceTableState';
     error: queryError,
     loading: queryLoading,
     fetch: queryFetch,
+    refetch: queryRefetch,
   } = useQuery(apiEndpoint, {
     skip: batched ? true : skip,
     ...options,
@@ -138,6 +139,7 @@ import useComplianceTableState from './useComplianceTableState';
     fetchBatched: batchedFetch,
     fetchAllIds,
     exporter,
+    refetch: queryRefetch,
   };
 };
 

@@ -68,7 +68,7 @@ const PolicyDetailsDescription = ({ policy, refetch }) => {
               Component={TextArea}
               text={descriptionText}
               variant="description"
-              inlineClosedText={businessText}
+              inlineClosedText={descriptionText}
               label="Policy description"
               propertyName="description"
               className="pf-v5-c-form-control"
