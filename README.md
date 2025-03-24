@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/RedHatInsights/compliance-frontend.svg?branch=master)](https://travis-ci.org/RedHatInsights/compliance-frontend)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dae99b3728337e64871c/maintainability)](https://codeclimate.com/github/RedHatInsights/compliance-frontend/maintainability)
 
-UI application for Red Hat Insights Compliance.
+UI application for Red Hat Insights Compliance
 
 ## Running the frontend
 
