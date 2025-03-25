@@ -153,11 +153,7 @@ Policies.propTypes = {
 };
 
 export const FailedRules = ({ system_id, rulesFailed }) => {
-  return (
-    <SystemLink {...{ id: system_id }}>
-      {rulesFailed > 0 ? rulesFailed : 'N/A'}
-    </SystemLink>
-  );
+  return <SystemLink {...{ id: system_id }}>{rulesFailed}</SystemLink>;
 };
 
 FailedRules.propTypes = {

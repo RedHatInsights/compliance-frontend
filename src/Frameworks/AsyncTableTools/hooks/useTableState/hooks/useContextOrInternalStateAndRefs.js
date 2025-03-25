@@ -7,6 +7,7 @@ const useContextOrInternalStateAndRefs = () => {
     state: contextState,
     observers: contextObservers,
     serialisers: contextSerialisers,
+    callbacks: contextCallbacks,
   } = context || {};
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const useContextOrInternalStateAndRefs = () => {
     state: contextState,
     observers: contextObservers,
     serialisers: contextSerialisers,
+    callbacks: contextCallbacks,
   };
 };
 

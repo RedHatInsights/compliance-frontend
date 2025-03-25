@@ -63,7 +63,7 @@ describe('FailedRules', () => {
       </TestWrapper>
     );
 
-    expect(screen.getByText('N/A')).toBeInTheDocument();
+    expect(screen.getByText('0')).toBeInTheDocument();
   });
 });
 

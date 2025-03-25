@@ -33,6 +33,7 @@ const EditPolicyDetailsInline = ({
   typeOfInput,
   Component = TextInput,
   refetch,
+  style,
   ...props
 }) => {
   const copiedData = policy;
@@ -62,10 +63,15 @@ const EditPolicyDetailsInline = ({
     setValue(newText);
     // setDirty(!!e.target.value);
   };
+
+  const handleSaveEdit = () => {
+    setIsEditOpen(false);
+    refetch();
+  };
+
   const handleCloseEdit = () => {
     setIsEditOpen(false);
     // setDirty(false);
-    refetch();
   };
 
   const constructData =
@@ -77,7 +83,7 @@ const EditPolicyDetailsInline = ({
         };
 
   const [isSaving, onSave] = useOnSavePolicyDetails(policy, constructData, {
-    onSave: handleCloseEdit,
+    onSave: handleSaveEdit,
   });
 
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -115,7 +121,7 @@ const EditPolicyDetailsInline = ({
       <div className="pf-v5-c-inline-edit__group">
         {isEditOpen ? (
           <>
-            <div>
+            <div style={style}>
               <Component value={value} onChange={handleTextUpdate} {...props} />
               {showTextUnderInline && validThreshold ? (
                 <Text>{textUnderInline}</Text>
@@ -209,6 +215,7 @@ EditPolicyDetailsInline.propTypes = {
   typeOfInput: propTypes.string,
   Component: propTypes.node,
   refetch: propTypes.func,
+  style: propTypes.object,
 };
 
 export default EditPolicyDetailsInline;
