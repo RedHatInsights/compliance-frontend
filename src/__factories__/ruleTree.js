@@ -77,4 +77,11 @@ const ruleTreeFactory = Factory.define(({ transientParams }) => {
   return tree;
 });
 
+export const extendRuleTree = (ruleTree, additionalNode = {}) => {
+  return {
+    ...ruleTree,
+    children: [...ruleTree.children, additionalNode],
+  };
+};
+
 export default ruleTreeFactory;
