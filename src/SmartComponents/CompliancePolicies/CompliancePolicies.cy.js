@@ -3,6 +3,7 @@ import { init } from 'Store';
 import { buildPolicies } from '../../__factories__/policies';
 import { interceptBatchRequest } from '../../../cypress/utils/interceptors';
 import getRequestParams from '../../../cypress/utils/requestParams';
+import getComparisonMessage from '../../../cypress/utils/assertComparationMsg';
 
 const mountComponent = () => {
   cy.mountWithContext(CompliancePolicies, { store: init().getStore() });
@@ -302,23 +303,39 @@ describe('Policies table tests API V2', () => {
                     assert(
                       `RHEL ${policy.os_major_version}` ===
                         item['operatingSystem'],
-                      `OS comparation failed: ${policy.os_major_version} !== ${item['operatingSystem']}`
+                      getComparisonMessage(
+                        'OS',
+                        policy.os_major_version,
+                        item['operatingSystem']
+                      )
                     );
                     assert(
                       policy.total_system_count === item['systems'],
-                      `Systems comparation failed: ${policy.total_system_count} !== ${item['systems']}`
+                      getComparisonMessage(
+                        'Systems',
+                        policy.total_system_count,
+                        item['systems']
+                      )
                     );
                     const businessObj = policy.business_objective
                       ? policy.business_objective
                       : '--';
                     assert(
                       businessObj === item['businessObjective'],
-                      `BO comparation failed: ${businessObj} !== ${item['businessObjective']}`
+                      getComparisonMessage(
+                        'BO',
+                        businessObj,
+                        item['businessObjective']
+                      )
                     );
                     assert(
                       `${policy.compliance_threshold}%` ==
                         item['complianceThreshold'],
-                      `Threshold comparation failed: ${policy.compliance_threshold} !== ${item['complianceThreshold']}`
+                      getComparisonMessage(
+                        'Threshold',
+                        `${policy.compliance_threshold}%`,
+                        item['complianceThreshold']
+                      )
                     );
                   }
                 });
