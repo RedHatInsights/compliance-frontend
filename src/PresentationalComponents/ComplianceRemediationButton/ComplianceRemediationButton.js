@@ -32,7 +32,7 @@ const ComplianceRemediationButton = ({
       fallback={<FallbackButton />}
       {...buttonProps}
     >
-      Remediate
+      Plan remediation
     </RemediationRemediationButton>
   );
 };
